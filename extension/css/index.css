@@ -1,0 +1,611 @@
+:root {
+  --f-fm: "Inter", sans-serif;
+  --border-radius-msg: 2.2rem;
+  --border-radius-btn: 12px;
+  --border-radius-btn-big: 1.2rem;
+  --border-radius-dialog: 2.5rem;
+  --border-radius-contextmenu: 20px;
+  --border-radius-pre: 20px;
+  --p-contextmenu: 10px;
+  --p-msg: 20px;
+  --p-textarea: 10px;
+  --p-btn: 20px;
+  --py-btn: .8rem;
+  --px-btn: 1rem;
+  --p-sidebar-nav: 1rem;
+  --p-sidebar-nav-a: .8rem;
+  --p-dialog: 2rem;
+  --mt-chat-txt: .5rem;
+  --mb-chat-txt: 1rem;
+  --mb-msg: 2rem;
+  --my-pre: 1.5rem;
+  --blur-sticky: 20px;
+  --blur-modalbg: 8px;
+}
+
+html.light {
+  --accent-h: 250;
+  --accent-s: 99%;
+  --accent-l: 65%;
+  --accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l);
+  --green-hsl: 155 77% 43%;
+  --txt-h: 0;
+  --txt-s: 0%;
+  --txt-l: 0%;
+  --txt-hsl: var(--txt-h) var(--txt-s) var(--txt-l);
+  --surface-h: 0;
+  --surface-s: 0%;
+  --surface-l: 85%;
+  --surface-hsl: hsl(var(--accent-h) var(--surface-s) var(--surface-l));
+  --c-accent: hsl(var(--accent-hsl));
+  --c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 2), calc(var(--accent-l) * 1.3));
+  --c-green: hsl(var(--green-hsl));
+  --c-on-accent: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) * 1.5));
+  --c-txt: hsl(var(--txt-hsl));
+  --c-surface-1: hsl(0, 0%, var(--surface-l));
+  --c-surface-2: hsl(0, 0%, calc(var(--surface-l) / 1.089));
+  --c-surface-3: hsl(0, 0%, calc(var(--surface-l) / 1.18));
+  --c-bg-sidebar: var(--c-surface-1);
+  --c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025));
+  --c-bg-msg-user: hsla(var(--accent-hsl) / .08);
+  --c-bg-msg-gpt: #d6d6d6;
+  --c-bg-chats-sticky: hsla(var(--accent-hsl) / .02);
+  --c-bg-textarea: hsl(0, 0%, calc(var(--surface-l) / 1.05));
+  --c-border-textarea: var(--c-bg-textarea);
+  --c-placeholder-textarea: hsl(var(--txt-hsl) / .6);
+  --c-svg: #4e5066;
+  --c-svg-accent: #f2f2f2;
+  --c-bg-modalbg: hsla(var(--txt-hsl) / .2);
+  --c-bg-dialog: var(--c-surface-2);
+  --c-bg-tooltip: var(--c-accent-light);
+  --c-msg-name-user: var(--c-accent);
+  --c-msg-name-gpt: var(--c-green);
+  --c-btn: var(--c-on-accent);
+  --c-btn-danger: #d0353f;
+  --c-bg-btn: var(--c-accent);
+  --c-pre-header: transparent;
+  --c-bg-pre-header-btn: var(--c-surface-1);
+  --c-markdown-a: var(--c-accent);
+  --box-shadow: 0px 0px 100px 0px hsla(var(--accent-hsl) / .1);
+  --box-shadow-contextmenu: 0px 0px 5px -2px #0000002e;
+  --surface-primary: var(--c-surface-1) !important;
+  --surface-secondary: transparent !important;
+  --surface-tertiary: var(--c-bg-msg-gpt) !important;
+  --text-primary: var(--c-txt) !important;
+  --text-primary: var(--c-txt) !important;
+  --text-secondary: hsla(0, 0%, calc(var(--txt-hsl-l) / 1.5)) !important;
+  --text-tertiary: #666 !important;
+  --gray-300: var(--text-secondary) !important;
+  --gray-500: var(--c-txt) !important;
+}
+
+html.dark {
+  --accent-h: 272;
+  --accent-s: 93%;
+  --accent-l: 78%;
+  --accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l);
+  --green-hsl: 155 77% 43%;
+  --txt-h: 255;
+  --txt-s: 86%;
+  --txt-l: 92%;
+  --txt-hsl: var(--txt-h) var(--txt-s) var(--txt-l);
+  --surface-h: 249;
+  --surface-s: 19%;
+  --surface-l: 13%;
+  --surface-hsl: hsl(var(--accent-h) var(--surface-s) var(--surface-l));
+  --c-accent: hsl(var(--accent-hsl));
+  --c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 1.3), var(--accent-l));
+  --c-green: hsl(var(--green-hsl));
+  --c-on-accent: hsl(var(--accent-h), var(--accent-s), 10%);
+  --c-txt: hsl(var(--txt-hsl));
+  --c-surface-1: hsl(var(--accent-h), var(--surface-s), var(--surface-l));
+  --c-surface-2: hsl(var(--accent-h), var(--surface-s), calc(var(--surface-l) * 1.5));
+  --c-surface-3: hsl(var(--accent-h), var(--surface-s), calc(var(--surface-l) * 2));
+  --c-bg-sidebar: var(--c-surface-1);
+  --c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.076));
+  --c-bg-msg-user: hsla(var(--accent-hsl) / .04);
+  --c-bg-msg-gpt: hsla(var(--accent-hsl) / .08);
+  --c-bg-chats-sticky: hsla(var(--surface-hsl) / .02);
+  --c-bg-textarea: var(--c-surface-2);
+  --c-border-textarea: var(--c-surface-2);
+  --c-placeholder-textarea: hsl(var(--accent-hsl) / .8);
+  --c-svg: #4e5066;
+  --c-svg-accent: #f2f2f2;
+  --c-bg-modalbg: hsla(var(--accent-hsl) / .2);
+  --c-bg-dialog: var(--c-surface-2);
+  --c-bg-tooltip: var(--c-accent-light);
+  --c-msg-name-user: var(--c-accent);
+  --c-msg-name-gpt: var(--c-green);
+  --c-btn: var(--c-on-accent);
+  --c-btn-danger: #f19399;
+  --c-bg-btn: var(--c-accent);
+  --c-pre-header: transparent;
+  --c-bg-pre-header-btn: var(--c-surface-1);
+  --c-markdown-a: var(--c-accent);
+  --box-shadow: 0px 0px 100px 0px hsla(var(--accent-hsl) / .1);
+  --box-shadow-contextmenu: 0px 0px 8px -2px hsla(var(--accent-hsl) / .1);
+  --surface-primary: var(--c-surface-1) !important;
+  --surface-secondary: transparent !important;
+  --surface-tertiary: var(--c-bg-msg-gpt) !important;
+  --text-primary: var(--c-txt) !important;
+  --text-secondary: var(--c-accent-light) !important;
+  --text-tertiary: hsl(var(--accent-h) calc(var(--accent-s) / 2) var(--accent-l)) !important;
+  --gray-300: var(--text-secondary) !important;
+  --gray-500: var(--c-txt) !important;
+}
+
+html, body {
+  --text-primary: var(--c-txt) !important;
+  color: var(--c-txt) !important;
+  background-color: var(--c-bg-chats-container) !important;
+  font-family: var(--f-fm) !important;
+}
+
+button {
+  --text-primary: var(--c-txt) !important;
+}
+
+.bg-white {
+  background-color: var(--c-surface-1) !important;
+}
+
+.h-px {
+  display: none !important;
+}
+
+.border-gray-100 {
+  border-color: var(--c-surface-1) !important;
+}
+
+.text-gray-900, .text-gray-200 {
+  color: var(--c-txt) !important;
+}
+
+.markdown a {
+  color: var(--c-accent) !important;
+}
+
+.markdown a:hover {
+  text-decoration: underline !important;
+}
+
+.gap-2 {
+  gap: .8rem !important;
+}
+
+.flex-shrink-0.overflow-x-hidden, .bg-gray-900[data-headlessui-state="open"] {
+  color: var(--c-txt) !important;
+  --surface-primary: var(--c-surface-2) !important;
+  background-color: var(--c-bg-sidebar) !important;
+}
+
+.flex-shrink-0.overflow-x-hidden nav a > *, .bg-gray-900[data-headlessui-state="open"] nav a > * {
+  color: var(--c-txt) !important;
+}
+
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav {
+  padding: var(--p-sidebar-nav) !important;
+}
+
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav .mt-5 {
+  margin-top: 2.2rem !important;
+}
+
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav a {
+  transition: background-color .3s ease-in-out;
+  font-family: var(--f-fm) !important;
+  padding: var(--p-sidebar-nav-a) !important;
+  border-radius: var(--border-radius-btn) !important;
+}
+
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) .bg-gradient-to-l {
+  --surface-primary: var(--c-surface-2) !important;
+  --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position) !important;
+  color: var(--c-accent) !important;
+}
+
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) li .bg-token-surface-primary {
+  --surface-primary: var(--c-surface-2) !important;
+  --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position) !important;
+  color: var(--c-accent) !important;
+}
+
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) li .bg-token-surface-tertiary {
+  padding: var(--p-sidebar-nav-a) !important;
+  border-radius: var(--border-radius-btn) !important;
+  color: var(--c-txt) !important;
+  background-color: var(--c-surface-3) !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) li .bg-gradient-to-l {
+  opacity: 0 !important;
+}
+
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) li:has(a.bg-token-surface-primary) .bg-gradient-to-l {
+  opacity: 1 !important;
+}
+
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) div[data-projection-id]:has( > h3) {
+  margin-bottom: .3rem;
+}
+
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) div[data-projection-id] h3 {
+  text-transform: uppercase;
+  border-radius: 100vw;
+  font-weight: bold;
+  color: var(--c-accent) !important;
+  background-color: hsl(var(--accent-hsl) / .2) !important;
+  height: auto !important;
+  padding: .5rem 1rem !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+}
+
+[role="menu"] {
+  transition: all .3s ease-in-out;
+  background-color: var(--c-surface-3) !important;
+  border-radius: var(--border-radius-contextmenu) !important;
+  box-shadow: var(--box-shadow-contextmenu) !important;
+  border: none !important;
+  padding: .3rem !important;
+}
+
+[role="menuitem"] {
+  transition: all .3s ease-in-out;
+  border-radius: var(--border-radius-btn) !important;
+}
+
+[data-headlessui-state="open"] {
+  transition: all .3s ease-in-out;
+  background-color: var(--c-surface-3) !important;
+  border-radius: var(--border-radius-contextmenu) !important;
+}
+
+[data-headlessui-state="open"] nav a {
+  font-size: 14px !important;
+}
+
+[data-headlessui-state="open"] nav a[data-headlessui-state="active"], [data-headlessui-state="open"] nav a:hover {
+  background-color: var(--c-surface-2) !important;
+}
+
+[data-headlessui-state] > *, [data-headlessui-state] nav a {
+  color: var(--c-txt) !important;
+}
+
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav [data-headlessui-state="open"]:has(button[data-headlessui-state="open"]) nav a:last-child {
+  color: var(--c-btn-danger) !important;
+}
+
+main [role="presentation"] {
+  background-color: var(--c-bg-chats-container) !important;
+}
+
+main [data-message-author-role="user"], main [data-message-author-role="assistant"] {
+  margin-top: var(--mt-chat-txt) !important;
+  margin-bottom: var(--mb-chat-txt) !important;
+}
+
+main [data-message-author-role="user"] .markdown, main [data-message-author-role="assistant"] .markdown {
+  color: var(--c-txt) !important;
+}
+
+main [data-testid^="conversation-turn-"] {
+  margin-bottom: var(--mb-msg) !important;
+}
+
+main [data-testid^="conversation-turn-"] .group {
+  padding: calc(var(--p-msg) * 1.3) var(--p-msg) var(--p-msg) var(--p-msg) !important;
+  border-radius: var(--border-radius-msg) !important;
+}
+
+main [data-testid^="conversation-turn-"] .font-semibold.select-none {
+  text-transform: uppercase;
+}
+
+main [data-testid^="conversation-turn-"] .gizmo-shadow-stroke div {
+  color: var(--c-on-accent) !important;
+}
+
+main [data-testid^="conversation-turn-"]:nth-child(2n) .group {
+  background-color: var(--c-bg-msg-user);
+}
+
+main [data-testid^="conversation-turn-"]:nth-child(2n) .font-semibold.select-none {
+  color: var(--c-msg-name-user);
+}
+
+main [data-testid^="conversation-turn-"]:nth-child(2n) button svg > path {
+  fill: var(--c-msg-name-user) !important;
+}
+
+main [data-testid^="conversation-turn-"]:nth-child(odd) .group {
+  background-color: var(--c-bg-msg-gpt);
+}
+
+main [data-testid^="conversation-turn-"]:nth-child(odd) .font-semibold.select-none {
+  color: var(--c-msg-name-gpt);
+}
+
+main [data-testid^="conversation-turn-"]:nth-child(odd) button svg > path {
+  fill: var(--c-msg-name-gpt) !important;
+}
+
+main [data-testid^="conversation-turn-"] pre {
+  border-radius: var(--border-radius-pre) !important;
+  margin: var(--my-pre) auto !important;
+}
+
+main [data-testid^="conversation-turn-"] pre .bg-black > div {
+  background-color: var(--c-pre-header) !important;
+}
+
+main [data-testid^="conversation-turn-"] pre button {
+  background-color: var(--c-bg-pre-header-btn);
+  padding: var(--py-btn) var(--px-btn);
+  border-radius: 10px;
+}
+
+main form button.btn {
+  overflow: hidden;
+  background-color: var(--c-surface-2) !important;
+  color: var(--c-txt) !important;
+  border-radius: var(--border-radius-btn-big) !important;
+  padding: 1.5rem !important;
+}
+
+main form button.btn:hover {
+  background-color: var(--c-surface-3) !important;
+}
+
+main form button.btn .bg-gradient-to-l {
+  --tw-gradient-from: var(--c-surface-3) var(--tw-gradient-from-position);
+}
+
+main form button.btn:hover .bg-gradient-to-l span div {
+  --surface-secondary: var(--c-surface-2) !important;
+  padding: .5rem !important;
+}
+
+main .sticky {
+  background-color: var(--c-bg-chats-sticky) !important;
+  -webkit-backdrop-filter: blur(var(--blur-sticky)) !important;
+  backdrop-filter: blur(var(--blur-sticky)) !important;
+}
+
+main .sticky [aria-haspopup="menu"]:hover, main .sticky [aria-haspopup="menu"][data-state="open"] {
+  background-color: var(--c-surface-1) !important;
+}
+
+main .sticky button svg.icon-md > path {
+  fill: var(--c-on-accent) !important;
+}
+
+main form .overflow-hidden:has(textarea#prompt-textarea) {
+  background-color: var(--c-bg-textarea);
+  border: 3px solid var(--c-border-textarea);
+  padding: var(--p-textarea) !important;
+  border-radius: var(--border-radius-msg) !important;
+}
+
+main form .overflow-hidden:has(textarea#prompt-textarea) textarea::placeholder {
+  color: var(--c-placeholder-textarea) !important;
+}
+
+main form .overflow-hidden:has(textarea#prompt-textarea) button[data-testid="send-button"] {
+  transform: translate(-20%, -20%);
+  background-color: var(--c-accent) !important;
+  color: var(--c-txt) !important;
+  border-color: var(--c-accent) !important;
+  opacity: .5 !important;
+}
+
+main form .overflow-hidden:has(textarea#prompt-textarea) button[data-testid="send-button"]:has([data-state="delayed-open"]) {
+  opacity: 1;
+}
+
+main div[role="presentation"] div.w-full:has(form) {
+  margin-top: .5rem !important;
+}
+
+main div.flex.w-full.items-center > div {
+  box-shadow: none;
+  border: none;
+}
+
+.absolute.inset-0 .fixed.inset-0 {
+  background-color: var(--c-bg-modalbg) !important;
+  -webkit-backdrop-filter: blur(var(--blur-modalbg)) !important;
+  backdrop-filter: blur(var(--blur-modalbg)) !important;
+}
+
+div[role="dialog"] {
+  border-radius: var(--border-radius-dialog);
+  box-shadow: var(--box-shadow);
+  padding: var(--p-dialog) !important;
+  background-color: var(--c-bg-dialog) !important;
+}
+
+div[role="dialog"] .border-token-border-light, div[role="dialog"] .border-white, div[role="dialog"] .border-black {
+  border-color: #0000 !important;
+}
+
+div[role="dialog"] h2[as="h3"] {
+  text-transform: uppercase;
+}
+
+div[role="dialog"]:has(a[href="https://openai.com/enterprise"]) {
+  background-color: #0000 !important;
+}
+
+div[role="dialog"]:has(a[href="https://openai.com/enterprise"]) .rounded-md {
+  border-radius: var(--border-radius-msg) !important;
+}
+
+div[role="dialog"]:has(a[href="https://openai.com/enterprise"]) svg[stroke="currentColor"]:has(polyline) {
+  stroke: var(--c-accent) !important;
+}
+
+div[role="dialog"]:has(a[href="https://openai.com/enterprise"]) a[href="https://openai.com/enterprise"] {
+  color: var(--c-accent) !important;
+}
+
+div[role="dialog"] .bg-white, div[role="dialog"] .bg-gray-900 {
+  background-color: var(--c-surface-1) !important;
+}
+
+div[role="dialog"] textarea {
+  border-radius: var(--border-radius-contextmenu) !important;
+  background-color: var(--c-surface-1) !important;
+  border-color: #0000 !important;
+}
+
+div[role="dialog"]:has(textarea) .btn-primary {
+  padding: var(--py-btn) var(--px-btn) !important;
+  border: 2px solid red !important;
+}
+
+div[role="dialog"]:has(main div[data-radix-aspect-ratio-wrapper]) .w-full.rounded-lg {
+  border-radius: var(--border-radius-msg) !important;
+  background-color: var(--c-bg-chats-container) !important;
+}
+
+div[role="dialog"] table {
+  border-radius: var(--border-radius-contextmenu);
+  padding: var(--p-contextmenu) !important;
+}
+
+div[role="dialog"] table a {
+  color: var(--c-accent) !important;
+}
+
+div[role="dialog"] table button[aria-label="Delete shared link"] {
+  color: var(--c-btn-danger) !important;
+}
+
+div[role="dialog"] table span[data-state]:has(svg) {
+  opacity: .7;
+}
+
+div[role="dialog"] table span[data-state]:has(svg):hover {
+  opacity: 1;
+}
+
+div[role="dialog"] table th, div[role="dialog"] table td {
+  padding-top: var(--py-btn) !important;
+  padding-bottom: var(--py-btn) !important;
+}
+
+div[role="dialog"] table thead tr {
+  border-radius: var(--border-radius-btn) !important;
+  padding: var(--py-btn) var(--px-btn) !important;
+}
+
+div[role="dialog"] table thead th {
+  background-color: var(--c-surface-3) !important;
+  text-transform: uppercase !important;
+  color: var(--c-accent) !important;
+}
+
+div[role="dialog"] table thead th:first-child {
+  padding-left: var(--px-btn) !important;
+  border-radius: var(--border-radius-btn) 0 0 var(--border-radius-btn) !important;
+  padding-left: var(--px-btn) !important;
+  border-radius: var(--border-radius-btn) 0 0 var(--border-radius-btn) !important;
+}
+
+div[role="dialog"] table thead th:last-child {
+  padding-right: var(--px-btn) !important;
+  border-radius: 0 var(--border-radius-btn) var(--border-radius-btn) 0 !important;
+}
+
+div[data-radix-popper-content-wrapper] > * {
+  background-color: var(--c-surface-1) !important;
+  padding: var(--p-contextmenu) !important;
+  border-radius: var(--border-radius-contextmenu) !important;
+  box-shadow: var(--box-shadow-contextmenu) !important;
+}
+
+div[data-radix-popper-content-wrapper] [data-radix-collection-item] {
+  border-radius: var(--border-radius-btn);
+  height: auto !important;
+  padding: 15px !important;
+}
+
+div[data-radix-popper-content-wrapper] [data-radix-collection-item][data-state="unchecked"]:hover {
+  background-color: var(--c-surface-2) !important;
+}
+
+div[data-radix-popper-content-wrapper] [data-state="checked"] {
+  background-color: var(--c-bg-btn) !important;
+  color: var(--c-on-accent) !important;
+}
+
+.btn {
+  background-color: var(--c-bg-btn) !important;
+  color: var(--c-btn) !important;
+  border-radius: var(--border-radius-btn) !important;
+  border: none !important;
+}
+
+button.btn-danger {
+  background-color: var(--c-btn-danger) !important;
+  color: var(--c-bg-chats-container) !important;
+}
+
+html.light main [role="presentation"] button.absolute.rounded-full {
+  background-color: var(--c-txt) !important;
+}
+
+html.dark main [role="presentation"] button.absolute.rounded-full {
+  background-color: var(--c-accent) !important;
+}
+
+main [role="presentation"] button.absolute.rounded-full svg {
+  color: var(--c-on-accent) !important;
+}
+
+[role="tablist"] button {
+  border-radius: var(--border-radius-btn) !important;
+  padding: var(--py-btn) var(--px-btn) !important;
+}
+
+[role="tablist"] button[data-state="active"], [role="tablist"] button:hover {
+  background-color: var(--c-surface-3) !important;
+}
+
+button:has([data-state="checked"]) {
+  background-color: var(--c-bg-btn) !important;
+}
+
+button:has([data-state="unchecked"]) span {
+  background-color: var(--c-bg-btn) !important;
+}
+
+button[role="combobox"], button[role="combobox"]:hover {
+  background-color: var(--surface-tertiary) !important;
+}
+
+html.light div[data-radix-popper-content-wrapper]:has([role="tooltip"]) span {
+  color: var(--c-txt) !important;
+}
+
+html.dark div[data-radix-popper-content-wrapper]:has([role="tooltip"]) span {
+  color: var(--c-on-accent) !important;
+}
+
+div[data-radix-popper-content-wrapper]:has([role="tooltip"]) div {
+  background-color: var(--c-bg-tooltip) !important;
+  box-shadow: var(--box-shadow-contextmenu) !important;
+  -webkit-backdrop-filter: blur(var(--blur-contextmenu)) !important;
+  backdrop-filter: blur(var(--blur-contextmenu)) !important;
+}
+
+.gizmo-shadow-stroke.h-full:has(svg) {
+  color: var(--c-on-accent) !important;
+  background-color: var(--c-accent) !important;
+}
+
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,16 @@
+{
+	"name": "ChatGPTheme",
+	"description": "Style the ChatGPT",
+	"version": "1.0.0",
+	"manifest_version": 3,
+	"host_permissions": ["*://chat.openai.com/*"],
+	"permissions": ["storage"],
+	"author": ["itsmarta@proton.com"],
+	"content_scripts": [
+		{
+			"matches": ["https://chat.openai.com/*"],
+			"css": ["./css/index.css"],
+			"run_at": "document_end"
+		}
+	]
+}

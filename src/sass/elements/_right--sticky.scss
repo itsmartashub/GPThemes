@@ -1,0 +1,15 @@
+/* --------- STICKY ChatGPT NOTE ---------*/
+main .sticky {
+    background-color: var(--c-bg-chats-sticky) !important;
+    backdrop-filter: blur(var(--blur-sticky)) !important;
+}
+
+main .sticky [aria-haspopup="menu"]:hover,
+main .sticky [aria-haspopup="menu"][data-state="open"] {
+    background-color: var(--c-surface-1) !important;
+}
+
+/* --------- STICKY ChatGPT NOTE SV ICON ---------*/
+main .sticky button svg.icon-md>path {
+    fill: var(--c-on-accent) !important;
+}

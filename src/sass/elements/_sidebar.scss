@@ -1,0 +1,96 @@
+/* --------- SIDEBAR DESKTOP ---------*/
+.flex-shrink-0.overflow-x-hidden,
+.bg-gray-900[data-headlessui-state="open"] {
+    color: var(--c-txt) !important;
+    --surface-primary: var(--c-surface-2) !important;
+    background-color: var(--c-bg-sidebar) !important;
+
+    & nav a>* {
+        color: var(--c-txt) !important;
+    }
+}
+
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) {
+
+    // --------- SIDEBAR NAV ---------
+    nav {
+        padding: var(--p-sidebar-nav) !important;
+
+        /* TODO dodati u vars.scss */
+        .mt-5 {
+            margin-top: 2.2rem !important;
+        }
+    }
+
+    nav a {
+        font-family: var(--f-fm) !important;
+        padding: var(--p-sidebar-nav-a) !important;
+        border-radius: var(--border-radius-btn) !important;
+
+        transition: background-color .3s ease-in-out;
+    }
+
+    // --------- SIDEBAR ACTIVE LINK AND HOVER STATE ---------
+    // --------- SIDEBAR LINK ... BTN BG-GRADIENT ---------
+    .bg-gradient-to-l,
+    li .bg-token-surface-primary {
+        --surface-primary: var(--c-surface-2) !important;
+        --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position) !important;
+        color: var(--c-accent) !important;
+    }
+
+    /* za manji window size ovo dole ne radi, ali ne za veci. A ne radi jer ovo valjda ima vecu prenost:
+        .flex-shrink-0.overflow-x-hidden nav a > *, .bg-gray-900[data-headlessui-state="open"] nav a > * {
+            color: var(--c-txt) !important;
+        } 
+    */
+    /* li a.bg-token-surface-primary {
+        color: var(--c-accent) !important;
+    } */
+
+    li .bg-token-surface-tertiary {
+        padding: var(--p-sidebar-nav-a) !important;
+        border-radius: var(--border-radius-btn) !important;
+        color: var(--c-txt) !important;
+        background-color: var(--c-surface-3) !important;
+        left: 0 !important;
+        right: 0 !important;
+    }
+
+    // --------- SIDEBAR LINK ... BTN BG-GRADIENT ---------
+    li .bg-gradient-to-l {
+        opacity: 0 !important;
+    }
+
+    li:has(a.bg-token-surface-primary) .bg-gradient-to-l {
+        opacity: 1 !important;
+    }
+
+
+    // --------- SIDEBAR TIME HEADING ---------
+
+    div[data-projection-id] {
+
+        // Parent of time heading in sidebar
+        &:has(>h3) {
+            // border: 1px solid red !important;
+            margin-bottom: .3rem;
+        }
+
+        h3 {
+            display: inline-block !important;
+            color: var(--c-accent) !important;
+            // background-color: transparent !important;
+            background-color: hsl(var(--accent-hsl) / 0.2) !important;
+            border-radius: 100vw;
+            text-transform: uppercase;
+            font-weight: bold;
+            padding: .5rem 1rem !important;
+            height: auto !important;
+            // padding-inline: 1rem !important;
+            line-height: 1 !important;
+        }
+    }
+
+
+}

@@ -1,0 +1,72 @@
+html,
+body {
+    --text-primary: var(--c-txt) !important;
+    color: var(--c-txt) !important;
+
+    background-color: var(--c-bg-chats-container) !important;
+    font-family: var(--f-fm) !important;
+}
+
+button {
+    --text-primary: var(--c-txt) !important;
+}
+
+/* --------- btn scroll down u conversations i kad se stisne na Upgrade ---------*/
+.bg-token-surface-primary {
+    /* --surface-primary: red !important; */
+    // --surface-primary: var(--c-surface-1) !important;
+}
+
+.bg-white {
+    background-color: var(--c-surface-1) !important;
+}
+
+/* --------- bg when clicked on rename list item name ---------*/
+/* .bg-token-surface-tertiary {
+    background-color: var(--c-surface-3) !important;
+    padding: inherit !important;
+    border-radius: inherit !important;
+    color: var(--c-txt) !important;
+    left: 0 !important;
+    right: 0 !important;
+} */
+
+.h-px {
+    display: none !important;
+}
+
+.border-gray-100 {
+    border-color: var(--c-surface-1) !important;
+}
+
+.text-gray-900,
+.text-gray-200 {
+    color: var(--c-txt) !important;
+}
+
+// .bg-white,
+// .bg-gray-100 {
+//     background-color: var(--c-txt) !important;
+// }
+
+.markdown a {
+    color: var(--c-accent) !important;
+}
+
+.markdown a:hover {
+    text-decoration: underline !important;
+}
+
+/* .rounded-lg, ne moze, ovo je i za Theme btn, i sa contextmenu */
+/* .rounded-md {
+    border-radius: var(--border-radius-msg) !important;
+} */
+
+/* --------- recimo gap izmedju new chat example buttons ---------*/
+.gap-2 {
+    gap: .8rem !important;
+}
+
+/* svg path {
+    fill: var(--c-svg) !important;
+} */

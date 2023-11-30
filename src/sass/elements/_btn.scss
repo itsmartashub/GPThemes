@@ -1,0 +1,56 @@
+.btn {
+    background-color: var(--c-bg-btn) !important;
+    color: var(--c-btn) !important;
+    border: none !important;
+
+    border-radius: var(--border-radius-btn) !important;
+}
+
+button.btn-danger {
+    background-color: var(--c-btn-danger) !important;
+    color: var(--c-bg-chats-container) !important;
+}
+
+/* --------- RIGHT - SCROLL DOWN BTN BG --------- */
+html.light main [role="presentation"] button.absolute.rounded-full {
+    background-color: var(--c-txt) !important;
+}
+
+html.dark main [role="presentation"] button.absolute.rounded-full {
+    background-color: var(--c-accent) !important;
+}
+
+/* --------- RIGHT - SCROLL DOWN BTN SVG COLOR --------- */
+main [role="presentation"] button.absolute.rounded-full svg {
+    /*     color: var(--c-white) !important; */
+    color: var(--c-on-accent) !important;
+}
+
+
+/* --------- MODAL - DIALOG SETTINGS TABS --------- */
+[role="tablist"] button {
+    border-radius: var(--border-radius-btn) !important;
+    padding: var(--py-btn) var(--px-btn) !important;
+
+    &[data-state="active"],
+    &:hover {
+        background-color: var(--c-surface-3) !important;
+    }
+}
+
+// [role="tablist"] button[data-state="active"],
+// [role="tablist"] button:hover {
+//     background-color: var(--c-surface-3) !important;
+// }
+
+/* ---- MODAL - DIALOG SETTINGS - SWITCH BTN (UN)CHECKED BG (Chat history & Training) ---- */
+button:has([data-state="checked"]),
+button:has([data-state="unchecked"]) span {
+    background-color: var(--c-bg-btn) !important;
+}
+
+/* --------- MODAL - THEME BTN --------- */
+button[role="combobox"],
+button[role="combobox"]:hover {
+    background-color: var(--surface-tertiary) !important;
+}

@@ -1,0 +1,315 @@
+:root {
+    --f-fm: 'Inter', sans-serif;
+
+    --border-radius-msg: 2.2rem;
+    --border-radius-btn: 12px;
+    --border-radius-btn-big: 1.2rem;
+    --border-radius-dialog: 2.5rem;
+    --border-radius-contextmenu: 20px;
+    --border-radius-pre: 20px;
+
+    --p-contextmenu: 10px;
+    --p-msg: 20px;
+    --p-textarea: 10px;
+    --p-btn: 20px;
+    --py-btn: .8rem;
+    --px-btn: 1rem;
+
+    --p-sidebar-nav: 1rem;
+    --p-sidebar-nav-a: 0.8rem;
+    --p-dialog: 2rem;
+
+    --mt-chat-txt: .5rem;
+    --mb-chat-txt: 1rem;
+    --mb-msg: 2rem;
+    --my-pre: 1.5rem;
+
+    --blur-sticky: 20px;
+    --blur-modalbg: 8px;
+}
+
+/*
+    --text-primary: var(--gray-100);
+    --text-secondary: var(--gray-300);
+    --text-tertiary: var(--gizmo-gray-500); 
+    --surface-tertiary: var(--gray-700); 
+    --border-light: rgba(217, 217, 227, .1);
+    --border-medium: rgba(217, 217, 227, .15);
+    --border-heavy: rgba(217, 217, 227, .2);
+    --border-xheavy: rgba(217, 217, 227, .25);
+*/
+/* --gray-300: var(--text-secondary) !important; */
+/* 3 tacke u listi u sidebar */
+/* --gray-500: var(--c-txt) !important; */
+
+/* @ ================== LIGHT ================== */
+html.light {
+    // --accent-hsl: 250 99% 65%;
+    // --green-hsl: 155 77% 43%;
+    // --c-green: hsl(var(--green-hsl));
+    // --c-accent: hsl(var(--accent-hsl));
+    // --c-accent-light: hsl(250, 83%, 88%);
+    // --c-txt: hsl(0 0% 0%);
+    // --c-on-accent: hsl(255 100% 100%);
+
+    // --surface-l: 85%;
+    // --c-surface-1: hsl(0 0% var(--surface-l));
+    // --c-surface-2: hsl(0 0% calc(var(--surface-l) - 7%));
+    // --c-surface-3: hsl(0 0% calc(var(--surface-l) - 13%));
+
+    // --c-bg-sidebar: var(--c-surface-1);
+    // --c-bg-chats-container: hsl(0 0% calc(var(--surface-l) + 3%));
+    // ;
+    // --c-bg-msg-gpt: hsl(0 0% 84%);
+    // /* --c-bg-msg-gpt: hsl(0, 0%, 92%); */
+    // --c-bg-msg-user: hsla(var(--accent-hsl) / 0.08);
+    // --c-bg-chats-sticky: hsla(0 0 0 / 0.1);
+
+    // --c-bg-textarea: var(--c-bg-chats-container);
+    // --c-border-textarea: var(--c-bg-sidebar);
+    // --c-svg: #373537;
+    // --c-svg-accent: #f2f2f2;
+
+    // --c-bg-modalbg: hsla(0 0% 0% / 0.2);
+    // --c-bg-dialog: var(--c-surface-2);
+
+    // --c-bg-tooltip: var(--c-accent-light);
+
+    // --c-msg-name-user: var(--c-accent);
+    // --c-msg-name-gpt: var(--c-green);
+
+    // --c-btn: #fff;
+    // --c-btn-danger: hsl(356 62% 51%);
+    // --c-bg-btn: var(--c-accent);
+
+    // --c-pre-header: transparent;
+    // --c-bg-pre-header-btn: hsla(0 0% 100% / 0.102);
+    // --c-markdown-a: var(--c-accent);
+
+    // /* btn u biranju teme kad nemaa nikake pozadine */
+    // --surface-primary: blue !important;
+
+    // /* border oko context-menu */
+    // --surface-secondary: transparent !important;
+
+    // /* selected button/link/list in settings: General, Data controls */
+    // --surface-tertiary: var(--c-bg-msg-gpt) !important;
+
+    // --text-primary: var(--c-txt) !important;
+    // --text-secondary: hsl(0, 0%, 15%) !important;
+    // --text-tertiary: hsl(0, 0%, 20%) !important;
+
+    // --gray-300: var(--text-secondary) !important;
+
+    // /* 3 tacke u listi u sidebar */
+    // --gray-500: var(--c-txt) !important;
+
+    // --box-shadow: 0px 0px 100px 0px hsla(240 45% 61% / 0.1);
+    // --box-shadow-contextmenu: 0px 0px 8px -2px hsla(0, 0%, 0%, 0.1);
+
+
+
+    // --------------------------------------------------------
+
+    /* ? ========== HSL ========== */
+    --accent-h: 250;
+    --accent-s: 99%;
+    --accent-l: 65%;
+    --accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l);
+
+    --green-hsl: 155 77% 43%;
+
+    /* --txt-hsl: 255 86% 92%; */
+    --txt-h: 0;
+    --txt-s: 0%;
+    --txt-l: 0%;
+    --txt-hsl: var(--txt-h) var(--txt-s) var(--txt-l);
+
+    --surface-h: 0;
+    --surface-s: 0%;
+    --surface-l: 85%;
+    --surface-hsl: hsl(var(--accent-h) var(--surface-s) var(--surface-l));
+
+
+    /* ? ========== COLORS ========== */
+    --c-accent: hsl(var(--accent-hsl));
+    /* --c-accent-light: hsl(250, 83%, 68%); */
+    // --c-accent-light: hsl(var(--accent-h) var(--accent-s) calc(var(--accent-l) + 10%));
+    --c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 2), calc(var(--accent-l) * 1.3));
+    --c-green: hsl(var(--green-hsl));
+
+    --c-on-accent: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) * 1.5));
+    --c-txt: hsl(var(--txt-hsl));
+
+
+    --c-surface-1: hsl(0, 0%, var(--surface-l));
+    --c-surface-2: hsl(0, 0%, calc(var(--surface-l) / 1.089));
+    --c-surface-3: hsl(0, 0%, calc(var(--surface-l) / 1.18));
+
+    --c-bg-sidebar: var(--c-surface-1);
+    --c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025));
+
+    --c-bg-msg-user: hsla(var(--accent-hsl) / 0.08);
+    --c-bg-msg-gpt: hsl(0 0% 84%);
+    --c-bg-chats-sticky: hsla(var(--accent-hsl) / 0.02);
+
+    // --c-bg-textarea: var(--c-bg-chats-container);
+    --c-bg-textarea: hsl(0, 0%, calc(var(--surface-l) / 1.05));
+    --c-border-textarea: var(--c-bg-textarea);
+    --c-placeholder-textarea: hsl(var(--txt-hsl) / 0.6);
+
+    --c-svg: #4e5066;
+    --c-svg-accent: #f2f2f2;
+
+    --c-bg-modalbg: hsla(var(--txt-hsl) / 0.2);
+    --c-bg-dialog: var(--c-surface-2);
+
+    --c-bg-tooltip: var(--c-accent-light);
+
+    --c-msg-name-user: var(--c-accent);
+    --c-msg-name-gpt: var(--c-green);
+
+    --c-btn: var(--c-on-accent);
+    --c-btn-danger: hsl(356 62% 51%);
+    --c-bg-btn: var(--c-accent);
+
+    --c-pre-header: transparent;
+    /* --c-bg-pre-header-btn: hsla(0 0% 100% / 0.102); */
+    --c-bg-pre-header-btn: var(--c-surface-1);
+    --c-markdown-a: var(--c-accent);
+
+    /* btn u biranju teme kad nemaa nikake pozadine */
+    // --surface-primary: blue !important;
+    --surface-primary: var(--c-surface-1) !important;
+
+    /* border oko context-menu */
+    --surface-secondary: transparent !important;
+
+    /* selected button/link/list in settings: General, Data controls */
+    --surface-tertiary: var(--c-bg-msg-gpt) !important;
+
+    --text-primary: var(--c-txt) !important;
+    /* --text-secondary: hsl(249 19% calc(var(--txt-hsl-l) + 7%)) !important; */
+    /* --text-tertiary: hsl(249 19% calc(var(--txt-hsl-l) + 13%)) !important; */
+
+    --text-primary: var(--c-txt) !important;
+
+    /* txt ispod Upgrade, i txt ispod "Chat history & training" u settingsu i txt 3.5 u sticky pored ChatGPT 3.5 i kad je recimo focused sa tabom Dark u Themes i text kad se ode na Upgrade pa ono Have an existing plan? See billing help*/
+    // --text-secondary: hsl(0, 0%, 20%) !important;
+    // --text-secondary: hsl(var(--accent-h), calc(var(--accent-s) / 2), calc(var(--accent-l) / 1.5)) !important;
+    // --text-secondary: var(--c-accent-light) !important;
+    --text-secondary: hsla(0, 0%, calc(var(--txt-hsl-l) / 1.5)) !important;
+
+    /* strelica na dole pored 3.5 u sticky pored ChatGPT 3.5 i kad je nesto focused sa tabom - accessibility - npr Clear u clear all chats i text u contextmenu kad se klikne na ChatGPT 3.5 i text kad odemo u  UPgrade pa ono USD $0/month i USD $20/month */
+    // --text-tertiary: hsl(var(--accent-hsl) / .7) !important;
+    --text-tertiary: hsl(0, 0%, 40%) !important;
+
+    --gray-300: var(--text-secondary) !important;
+
+    /* 3 tacke u listi u sidebar */
+    --gray-500: var(--c-txt) !important;
+
+    --box-shadow: 0px 0px 100px 0px hsla(var(--accent-hsl) / 0.1);
+    --box-shadow-contextmenu: 0px 0px 5px -2px hsla(0, 0%, 0%, 0.18);
+}
+
+
+/* @ ================== DARK ================== */
+
+html.dark {
+    /* ? ========== HSL ========== */
+    --accent-h: 272;
+    --accent-s: 93%;
+    --accent-l: 78%;
+    --accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l);
+
+    --green-hsl: 155 77% 43%;
+
+    /* --txt-hsl: 255 86% 92%; */
+    --txt-h: 255;
+    --txt-s: 86%;
+    --txt-l: 92%;
+    --txt-hsl: var(--txt-h) var(--txt-s) var(--txt-l);
+
+    --surface-h: 249;
+    --surface-s: 19%;
+    --surface-l: 13%;
+    --surface-hsl: hsl(var(--accent-h) var(--surface-s) var(--surface-l));
+
+
+    /* ? ========== COLORS ========== */
+    --c-accent: hsl(var(--accent-hsl));
+    /* --c-accent-light: hsl(250, 83%, 68%); */
+    // --c-accent-light: hsl(var(--accent-h) var(--accent-s) calc(var(--accent-l) + 10%));
+    --c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 1.3), var(--accent-l));
+    --c-green: hsl(var(--green-hsl));
+
+    --c-on-accent: hsl(var(--accent-h), var(--accent-s), 10%);
+    --c-txt: hsl(var(--txt-hsl));
+
+
+    --c-surface-1: hsl(var(--accent-h), var(--surface-s), var(--surface-l));
+    --c-surface-2: hsl(var(--accent-h), var(--surface-s), calc(var(--surface-l) * 1.5));
+    --c-surface-3: hsl(var(--accent-h), var(--surface-s), calc(var(--surface-l) * 2));
+
+    --c-bg-sidebar: var(--c-surface-1);
+    --c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.076));
+
+    --c-bg-msg-user: hsla(var(--accent-hsl) / 0.04);
+    --c-bg-msg-gpt: hsla(var(--accent-hsl) / 0.08);
+    --c-bg-chats-sticky: hsla(var(--surface-hsl) / 0.02);
+
+    // --c-bg-textarea: var(--c-bg-chats-container);
+    --c-bg-textarea: var(--c-surface-2);
+    --c-border-textarea: var(--c-surface-2);
+    --c-placeholder-textarea: hsl(var(--accent-hsl) / 0.8);
+
+    --c-svg: #4e5066;
+    --c-svg-accent: #f2f2f2;
+
+    --c-bg-modalbg: hsla(var(--accent-hsl) / 0.2);
+    --c-bg-dialog: var(--c-surface-2);
+
+    --c-bg-tooltip: var(--c-accent-light);
+
+    --c-msg-name-user: var(--c-accent);
+    --c-msg-name-gpt: var(--c-green);
+
+    --c-btn: var(--c-on-accent);
+    --c-btn-danger: hsl(356 77% 76%);
+    --c-bg-btn: var(--c-accent);
+
+    --c-pre-header: transparent;
+    /* --c-bg-pre-header-btn: hsla(0 0% 100% / 0.102); */
+    --c-bg-pre-header-btn: var(--c-surface-1);
+    --c-markdown-a: var(--c-accent);
+
+    /* btn u biranju teme kad nemaa nikake pozadine */
+    --surface-primary: var(--c-surface-1) !important;
+
+    /* border oko context-menu */
+    --surface-secondary: transparent !important;
+
+    /* selected button/link/list in settings: General, Data controls */
+    --surface-tertiary: var(--c-bg-msg-gpt) !important;
+
+    --text-primary: var(--c-txt) !important;
+    /* --text-secondary: hsl(249 19% calc(var(--txt-hsl-l) + 7%)) !important; */
+    /* --text-tertiary: hsl(249 19% calc(var(--txt-hsl-l) + 13%)) !important; */
+
+    /* txt ispod Upgrade, i txt ispod Chat history & training u settingsu i txt 3.5 u sticky pored ChatGPT 3.5 i kad je recimo focused sa tabom Dark u Themes i text kad se ode na Upgrade pa ono Have an existing plan? See billing help*/
+    /* --text-secondary: rgb(13, 222, 37) !important; */
+    --text-secondary: var(--c-accent-light) !important;
+
+    /* strelica na dole pored 3.5 u sticky pored ChatGPT 3.5 i kad je nesto focused sa tabom - accessibility - npr Clear u clear all chats i text u contextmenu kad se klikne na ChatGPT 3.5 i text kad odemo u  UPgrade pa ono USD $0/month i USD $20/month */
+    /* --text-tertiary: red !important; */
+    --text-tertiary: hsl(var(--accent-h) calc(var(--accent-s) / 2) var(--accent-l)) !important;
+
+    --gray-300: var(--text-secondary) !important;
+
+    /* 3 tacke u listi u sidebar */
+    --gray-500: var(--c-txt) !important;
+
+    --box-shadow: 0px 0px 100px 0px hsla(var(--accent-hsl) / 0.1);
+    --box-shadow-contextmenu: 0px 0px 8px -2px hsla(var(--accent-hsl) / 0.1);
+}

@@ -1,0 +1,34 @@
+/* --------- RIGHT - TEXTAREA ---------*/
+main form .overflow-hidden:has(textarea#prompt-textarea) {
+    padding: var(--p-textarea) !important;
+    background-color: var(--c-bg-textarea);
+    border: 3px solid var(--c-border-textarea);
+    border-radius: var(--border-radius-msg) !important;
+
+    textarea::placeholder {
+        color: var(--c-placeholder-textarea) !important;
+    }
+
+    button[data-testid="send-button"] {
+        background-color: var(--c-accent) !important;
+        color: var(--c-txt) !important;
+        border-color: var(--c-accent) !important;
+        opacity: .5 !important;
+        transform: translate(-20%, -20%);
+
+        &:has([data-state="delayed-open"]) {
+            opacity: 1;
+        }
+    }
+}
+
+/* --------- RIGHT - TEXTAREA part wrapper, margin-top ---------*/
+main div[role="presentation"] div.w-full:has(form) {
+    margin-top: .5rem !important;
+}
+
+/* --------- RIGHT - TEXTAREA PARENT ---------*/
+main div.flex.w-full.items-center>div {
+    box-shadow: none;
+    border: none;
+}

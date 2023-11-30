@@ -1,0 +1,161 @@
+/* --------- MODAL - BG ---------*/
+.absolute.inset-0 .fixed.inset-0 {
+    background-color: var(--c-bg-modalbg) !important;
+    backdrop-filter: blur(var(--blur-modalbg)) !important;
+}
+
+// --------- MODAL - DIALOG SETTINGS ---------
+div[role="dialog"] {
+    padding: var(--p-dialog) !important;
+    background-color: var(--c-bg-dialog) !important;
+    border-radius: var(--border-radius-dialog);
+    box-shadow: var(--box-shadow);
+
+    .border-token-border-light,
+    .border-white,
+    .border-black {
+        border-color: transparent !important;
+    }
+
+    // Heading "Settings" in Settings Modal
+    h2[as="h3"] {
+        text-transform: uppercase;
+    }
+
+    // --------- MODAL - "Upgrade your plan" ---------
+
+    &:has(a[href="https://openai.com/enterprise"]) {
+        background-color: transparent !important;
+
+        // Border radius for "Upgrade your plan" dialog
+        .rounded-md {
+            border-radius: var(--border-radius-msg) !important;
+        }
+
+        // Stroke color for ✔️ in "Upgrade your plan" dialog list
+        svg[stroke="currentColor"]:has(polyline) {
+            stroke: var(--c-accent) !important;
+        }
+
+        //  See "ChatGPT Enterprise"
+        a[href="https://openai.com/enterprise"] {
+            color: var(--c-accent) !important;
+        }
+    }
+
+    // Ugly bg behind ✔️ "Upgrade your plan" dialog list
+    .bg-white,
+    .bg-gray-900 {
+        background-color: var(--c-surface-1) !important;
+    }
+
+
+    // --------- MODAL - DIALOG TEXTAREA ---------
+    textarea {
+        border-radius: var(--border-radius-contextmenu) !important;
+        /* border-color: var(--c-surface-3) !important; */
+        border-color: transparent !important;
+        background-color: var(--c-surface-1) !important;
+    }
+
+    // --------- MODAL - DIALOG BUTTONS where is dialog that containes textarea ---------
+    &:has(textarea) .btn-primary {
+        padding: var(--py-btn) var(--px-btn) !important;
+        border: 2px solid red !important;
+    }
+
+    // --------- MODAL - DIALOG Share Chat White preview div ---------
+    &:has(main div[data-radix-aspect-ratio-wrapper]) .w-full.rounded-lg {
+        border-radius: var(--border-radius-msg) !important;
+        background-color: var(--c-bg-chats-container) !important;
+    }
+
+    // --------- MODAL - Shared links - TABLE THEAD BG ---------
+    table {
+        padding: var(--p-contextmenu) !important;
+        border-radius: var(--border-radius-contextmenu);
+
+        // Link in table shared links
+        a {
+            color: var(--c-accent) !important;
+        }
+
+
+        // Delete shared link svg color
+        button[aria-label="Delete shared link"] {
+            color: var(--c-btn-danger) !important;
+        }
+
+        // Svg icons delete or share link hover state
+        span[data-state]:has(svg) {
+            opacity: .7;
+
+            &:hover {
+                opacity: 1;
+                // transform: scale(1.1);
+            }
+        }
+
+        th,
+        td {
+            padding-top: var(--py-btn) !important;
+            padding-bottom: var(--py-btn) !important;
+        }
+
+        thead tr {
+            border-radius: var(--border-radius-btn) !important;
+            padding: var(--py-btn) var(--px-btn) !important;
+        }
+
+        thead th {
+            background-color: var(--c-surface-3) !important;
+            text-transform: uppercase !important;
+            color: var(--c-accent) !important;
+        }
+
+        thead th:first-child {
+            padding-left: var(--px-btn) !important;
+            border-radius: var(--border-radius-btn) 0 0 var(--border-radius-btn) !important;
+        }
+
+        thead th:first-child {
+            padding-left: var(--px-btn) !important;
+            border-radius: var(--border-radius-btn) 0 0 var(--border-radius-btn) !important;
+        }
+
+        thead th:last-child {
+            padding-right: var(--px-btn) !important;
+            border-radius: 0 var(--border-radius-btn) var(--border-radius-btn) 0 !important;
+        }
+    }
+}
+
+
+div[data-radix-popper-content-wrapper] {
+
+    /* --------- MODAL - THEME - CONTEXT MENU I TOOLTIPS--------- */
+    &>* {
+
+        background-color: var(--c-surface-1) !important;
+        padding: var(--p-contextmenu) !important;
+        border-radius: var(--border-radius-contextmenu) !important;
+        box-shadow: var(--box-shadow-contextmenu) !important;
+    }
+
+    [data-radix-collection-item] {
+        border-radius: var(--border-radius-btn);
+        padding: 15px !important;
+        height: auto !important;
+    }
+
+    /* --------- MODAL - THEME - CONTEXT MENU ITEMS HOVER --------- */
+    [data-radix-collection-item][data-state="unchecked"]:hover {
+        background-color: var(--c-surface-2) !important;
+    }
+
+    /* --------- MODAL - THEME - CONTEXT MENU ITEM HOVER ACTIVE --------- */
+    [data-state="checked"] {
+        background-color: var(--c-bg-btn) !important;
+        color: var(--c-on-accent) !important;
+    }
+}

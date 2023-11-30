@@ -1,0 +1,32 @@
+{
+	"name": "gpthemes",
+	"version": "1.0.0",
+	"description": "GPThemes is a Chrome extension designed to improve the visual experience of ChatGPT by injecting custom CSS to enhance its theme.",
+	"main": "index.js",
+	"scripts": {
+		"dev": "parcel src/sass/index.scss --dist-dir extension/css",
+		"build": "parcel build src/sass/index.scss --dist-dir extension/css"
+	},
+	"author": "Marta Bires",
+	"keywords": [
+		"chatgpt",
+		"chat",
+		"openai",
+		"gpt",
+		"ai",
+		"extension",
+		"themes",
+		"chrome",
+		"style",
+		"chatgpt themes",
+		"style chatgpt",
+		"modern themes",
+		"minimalistic"
+	],
+	"license": "GPL-3.0",
+	"devDependencies": {
+		"@parcel/transformer-sass": "^2.10.3",
+		"parcel": "^2.10.3"
+	},
+	"browserslist": "> 0.5%, last 2 versions, not dead"
+}

@@ -1,0 +1,28 @@
+/* --------- RIGHT - NEW CHAT - 4 BIG BTNS --------- */
+main form button.btn {
+    padding: 1.5rem !important;
+    /* background-color: var(--c-bg-msg-gpt) !important; */
+    background-color: var(--c-surface-2) !important;
+    color: var(--c-txt) !important;
+    border-radius: var(--border-radius-btn-big) !important;
+    overflow: hidden;
+}
+
+/* --------- RIGHT - NEW CHAT - 4 BIG BTNS - HOVER STATE --------- */
+main form button.btn:hover {
+    /*  background-color: var(--c-bg-msg-user) !important; */
+    background-color: var(--c-surface-3) !important;
+}
+
+/* --------- RIGHT - NEW CHAT - 4 BIG BTNS - SVG desno BG --------- */
+main form button.btn .bg-gradient-to-l {
+    /* --tw-gradient-from: var(--c-bg-msg-user) var(--tw-gradient-from-position); */
+    --tw-gradient-from: var(--c-surface-3) var(--tw-gradient-from-position);
+}
+
+/* --------- RIGHT - NEW CHAT - 4 BIG BTNS - SVG desno ikonica --------- */
+main form button.btn:hover .bg-gradient-to-l span div {
+    /* --surface-secondary: var(--c-bg-msg-gpt) !important; */
+    --surface-secondary: var(--c-surface-2) !important;
+    padding: .5rem !important;
+}

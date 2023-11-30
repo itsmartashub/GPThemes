@@ -1,0 +1,19 @@
+/* --------- TOOLTIPS text color --------- */
+/* div[data-radix-popper-content-wrapper]:not([data-radix-collection-item][data-state="unchecked"]) span {
+    color: var(--c-txt) !important;
+} */
+html.light div[data-radix-popper-content-wrapper]:has([role="tooltip"]) span {
+    color: var(--c-txt) !important;
+}
+
+html.dark div[data-radix-popper-content-wrapper]:has([role="tooltip"]) span {
+    color: var(--c-on-accent) !important;
+}
+
+/* --------- TOOLTIPS arrow div bg color --------- */
+div[data-radix-popper-content-wrapper]:has([role="tooltip"]) div {
+    /* border: 2px solid red !important; */
+    background-color: var(--c-bg-tooltip) !important;
+    box-shadow: var(--box-shadow-contextmenu) !important;
+    backdrop-filter: blur(var(--blur-contextmenu)) !important;
+}
