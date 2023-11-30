@@ -145,6 +145,11 @@ button {
   --text-primary: var(--c-txt) !important;
 }
 
+input::placeholder, textarea::placeholder {
+  color: var(--c-placeholder) !important;
+  opacity: .6 !important;
+}
+
 .text-gray-500 {
   color: var(--text-tertiary) !important;
 }
@@ -474,9 +479,19 @@ div[role="dialog"] .bg-white, div[role="dialog"] .bg-gray-900 {
 }
 
 div[role="dialog"] textarea {
+  opacity: .7;
   border-radius: var(--border-radius-contextmenu) !important;
   background-color: var(--c-surface-1) !important;
   border-color: #0000 !important;
+}
+
+div[role="dialog"] textarea#feedback-other {
+  padding: 1.5rem;
+}
+
+div[role="dialog"] textarea:focus {
+  opacity: 1;
+  border-color: var(--c-surface-3) !important;
 }
 
 div[role="dialog"]:has(textarea) .btn-primary {

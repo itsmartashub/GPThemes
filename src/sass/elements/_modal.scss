@@ -56,6 +56,17 @@ div[role="dialog"] {
         /* border-color: var(--c-surface-3) !important; */
         border-color: transparent !important;
         background-color: var(--c-surface-1) !important;
+        opacity: .7;
+
+        // Textarea feedback when click on like btn in gpt answers
+        &#feedback-other {
+            padding: 1.5rem;
+        }
+
+        &:focus {
+            border-color: var(--c-surface-3) !important;
+            opacity: 1;
+        }
     }
 
     // --------- MODAL - DIALOG BUTTONS where is dialog that containes textarea ---------

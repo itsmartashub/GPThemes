@@ -11,6 +11,13 @@ button {
     --text-primary: var(--c-txt) !important;
 }
 
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--c-placeholder) !important;
+    opacity: .6 !important;
+}
+
 /* --------- btn scroll down u conversations i kad se stisne na Upgrade ---------*/
 .bg-token-surface-primary {
     /* --surface-primary: red !important; */
