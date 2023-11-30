@@ -3,6 +3,7 @@
 
     --border-radius-msg: 2.2rem;
     --border-radius-btn: 12px;
+    --border-radius-nav-a: var(--border-radius-btn);
     --border-radius-btn-big: 1.2rem;
     --border-radius-dialog: 2.5rem;
     --border-radius-contextmenu: 20px;
@@ -12,11 +13,12 @@
     --p-msg: 20px;
     --p-textarea: 10px;
     --p-btn: 20px;
-    --py-btn: .8rem;
+    --py-btn: .9rem;
     --px-btn: 1rem;
 
     --p-sidebar-nav: 1rem;
-    --p-sidebar-nav-a: 0.8rem;
+    --py-sidebar-nav-a-new-chat: 2rem;
+    --p-sidebar-nav-a: 0.9rem;
     --p-dialog: 2rem;
 
     --mt-chat-txt: .5rem;

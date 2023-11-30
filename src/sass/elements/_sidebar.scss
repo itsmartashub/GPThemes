@@ -20,15 +20,30 @@
         .mt-5 {
             margin-top: 2.2rem !important;
         }
+
+        a {
+            font-family: var(--f-fm) !important;
+            padding: var(--p-sidebar-nav-a) !important;
+            border-radius: var(--border-radius-nav-a) !important;
+
+            transition: background-color .3s ease-in-out;
+        }
+
+        // New Chat link (first in nav in sidebar)
+        a[href="/"] {
+            border: 2px solid var(--c-surface-2);
+            padding: var(--py-sidebar-nav-a-new-chat) !important;
+            // box-shadow: var(--box-shadow);
+            // padding-left: var(--py-sidebar-nav-new-chat) !important;
+            // padding-right: var(--py-sidebar-nav-new-chat) !important;
+        }
+
+        // Border-radius for all elements that have .rounded-lg class in <nav> of sidebar
+        .rounded-lg {
+            border-radius: var(--border-radius-nav-a) !important;
+        }
     }
 
-    nav a {
-        font-family: var(--f-fm) !important;
-        padding: var(--p-sidebar-nav-a) !important;
-        border-radius: var(--border-radius-btn) !important;
-
-        transition: background-color .3s ease-in-out;
-    }
 
     // --------- SIDEBAR ACTIVE LINK AND HOVER STATE ---------
     // --------- SIDEBAR LINK ... BTN BG-GRADIENT ---------
@@ -50,11 +65,12 @@
 
     li .bg-token-surface-tertiary {
         padding: var(--p-sidebar-nav-a) !important;
-        border-radius: var(--border-radius-btn) !important;
         color: var(--c-txt) !important;
         background-color: var(--c-surface-3) !important;
+        // border-radius: var(--border-radius-nav-a) !important;
         left: 0 !important;
         right: 0 !important;
+        // overflow: hidden !important;
     }
 
     // --------- SIDEBAR LINK ... BTN BG-GRADIENT ---------
@@ -68,7 +84,8 @@
 
 
     // --------- SIDEBAR TIME HEADING ---------
-
+    // nav div is for targeting smaller devices, div[data-projection-id] is for desktop
+    nav div,
     div[data-projection-id] {
 
         // Parent of time heading in sidebar
