@@ -1,18 +1,3 @@
-/* ------- SIDEBAR - PIH, vidim samo kad otvorim sidebar bottom, klik na username -------*/
-[role="menu"] {
-    background-color: var(--c-surface-3) !important;
-    border-radius: var(--border-radius-contextmenu) !important;
-    border: none !important;
-    padding: .3rem !important;
-    box-shadow: var(--box-shadow-contextmenu) !important;
-    transition: all .3s ease-in-out;
-}
-
-[role="menuitem"] {
-    border-radius: var(--border-radius-btn) !important;
-    transition: all .3s ease-in-out;
-}
-
 /* --------- SIDEBAR BOTTOM USERNAME CLICKED CONTEXT MENU ---------*/
 [data-headlessui-state="open"] {
     background-color: var(--c-surface-3) !important;

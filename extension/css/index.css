@@ -177,6 +177,24 @@ button {
   gap: .8rem !important;
 }
 
+[role="menu"] {
+  transition: all .3s ease-in-out;
+  background-color: var(--c-surface-3) !important;
+  border-radius: var(--border-radius-contextmenu) !important;
+  box-shadow: var(--box-shadow-contextmenu) !important;
+  border: none !important;
+  padding: .3rem !important;
+}
+
+[role="menuitem"] {
+  transition: all .3s ease-in-out;
+  border-radius: var(--border-radius-btn) !important;
+}
+
+[role="menuitem"]:hover {
+  background-color: var(--c-surface-2) !important;
+}
+
 .flex-shrink-0.overflow-x-hidden, .bg-gray-900[data-headlessui-state="open"] {
   color: var(--c-txt) !important;
   --surface-primary: var(--c-surface-2) !important;
@@ -245,20 +263,6 @@ button {
   padding: .5rem 1rem !important;
   line-height: 1 !important;
   display: inline-block !important;
-}
-
-[role="menu"] {
-  transition: all .3s ease-in-out;
-  background-color: var(--c-surface-3) !important;
-  border-radius: var(--border-radius-contextmenu) !important;
-  box-shadow: var(--box-shadow-contextmenu) !important;
-  border: none !important;
-  padding: .3rem !important;
-}
-
-[role="menuitem"] {
-  transition: all .3s ease-in-out;
-  border-radius: var(--border-radius-btn) !important;
 }
 
 [data-headlessui-state="open"] {
