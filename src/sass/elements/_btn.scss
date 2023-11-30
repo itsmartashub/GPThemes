@@ -34,6 +34,7 @@ main [role="presentation"] button.absolute.rounded-full svg {
 
     &[data-state="active"],
     &:hover {
+        //  OVo je ok za desktop, ali za manje je bolje surface 1
         background-color: var(--c-surface-3) !important;
     }
 }

@@ -454,6 +454,19 @@ div[role="dialog"] .border-token-border-light, div[role="dialog"] .border-white,
   border-color: #0000 !important;
 }
 
+div[role="dialog"] [role="tablist"][aria-orientation="horizontal"].bg-gray-100 {
+  background-color: var(--c-surface-3) !important;
+  border-radius: var(--border-radius-btn) !important;
+}
+
+div[role="dialog"] [role="tablist"][aria-orientation="horizontal"].bg-gray-100 button {
+  padding: var(--py-btn) var(--px-btn) !important;
+}
+
+div[role="dialog"] [role="tablist"][aria-orientation="horizontal"].bg-gray-100 button[data-state="active"] {
+  background-color: var(--c-surface-2) !important;
+}
+
 div[role="dialog"] h2[as="h3"] {
   text-transform: uppercase;
 }

@@ -17,6 +17,20 @@ div[role="dialog"] {
         border-color: transparent !important;
     }
 
+    [role="tablist"][aria-orientation="horizontal"].bg-gray-100 {
+        background-color: var(--c-surface-3) !important;
+        border-radius: var(--border-radius-btn) !important;
+
+        button {
+            padding: var(--py-btn) var(--px-btn) !important;
+        }
+
+        // button[role="tab"][data-state="active"] {
+        button[data-state="active"] {
+            background-color: var(--c-surface-2) !important;
+        }
+    }
+
     // Heading "Settings" in Settings Modal
     h2[as="h3"] {
         text-transform: uppercase;
