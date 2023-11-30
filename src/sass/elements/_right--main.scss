@@ -49,7 +49,7 @@ main [data-testid^="conversation-turn-"] {
 
         // --------- RIGHT - CHATS BUBBLEs - USER SVG ---------
         button svg>path {
-            fill: var(--c-msg-name-user) !important;
+            fill: var(--c-msg-name-user);
         }
     }
 
@@ -68,7 +68,7 @@ main [data-testid^="conversation-turn-"] {
 
         // --------- RIGHT - CHATS BUBBLEs - USER SVG ---------
         button svg>path {
-            fill: var(--c-msg-name-gpt) !important;
+            fill: var(--c-msg-name-gpt);
         }
     }
 
@@ -78,16 +78,28 @@ main [data-testid^="conversation-turn-"] {
         margin: var(--my-pre) auto !important;
 
         // --------- RIGHT - <pre> - header ---------
-        .bg-black>div {
+        .bg-black>div:has(> span) {
             background-color: var(--c-pre-header) !important;
+
+
+            >span {
+                color: var(--c-accent-light) !important;
+            }
+
+            // 'Copy code' btn in markdown
+            button:has(svg) {
+                color: var(--c-accent-light) !important;
+                background-color: var(--c-bg-pre-header-btn);
+                padding: var(--py-btn) var(--px-btn);
+                border-radius: 10px;
+
+                // SVG icons before 'Copy code' btn in md
+                svg>path {
+                    fill: var(--c-accent-light) !important;
+                }
+            }
         }
 
-        // --------- RIGHT - <pre> - COPY BTN ---------
-        button {
-            background-color: var(--c-bg-pre-header-btn);
-            padding: var(--py-btn) var(--px-btn);
-            border-radius: 10px;
-        }
     }
 }
 

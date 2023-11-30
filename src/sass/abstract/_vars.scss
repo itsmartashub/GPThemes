@@ -44,73 +44,6 @@
 
 /* @ ================== LIGHT ================== */
 html.light {
-    // --accent-hsl: 250 99% 65%;
-    // --green-hsl: 155 77% 43%;
-    // --c-green: hsl(var(--green-hsl));
-    // --c-accent: hsl(var(--accent-hsl));
-    // --c-accent-light: hsl(250, 83%, 88%);
-    // --c-txt: hsl(0 0% 0%);
-    // --c-on-accent: hsl(255 100% 100%);
-
-    // --surface-l: 85%;
-    // --c-surface-1: hsl(0 0% var(--surface-l));
-    // --c-surface-2: hsl(0 0% calc(var(--surface-l) - 7%));
-    // --c-surface-3: hsl(0 0% calc(var(--surface-l) - 13%));
-
-    // --c-bg-sidebar: var(--c-surface-1);
-    // --c-bg-chats-container: hsl(0 0% calc(var(--surface-l) + 3%));
-    // ;
-    // --c-bg-msg-gpt: hsl(0 0% 84%);
-    // /* --c-bg-msg-gpt: hsl(0, 0%, 92%); */
-    // --c-bg-msg-user: hsla(var(--accent-hsl) / 0.08);
-    // --c-bg-chats-sticky: hsla(0 0 0 / 0.1);
-
-    // --c-bg-textarea: var(--c-bg-chats-container);
-    // --c-border-textarea: var(--c-bg-sidebar);
-    // --c-svg: #373537;
-    // --c-svg-accent: #f2f2f2;
-
-    // --c-bg-modalbg: hsla(0 0% 0% / 0.2);
-    // --c-bg-dialog: var(--c-surface-2);
-
-    // --c-bg-tooltip: var(--c-accent-light);
-
-    // --c-msg-name-user: var(--c-accent);
-    // --c-msg-name-gpt: var(--c-green);
-
-    // --c-btn: #fff;
-    // --c-btn-danger: hsl(356 62% 51%);
-    // --c-bg-btn: var(--c-accent);
-
-    // --c-pre-header: transparent;
-    // --c-bg-pre-header-btn: hsla(0 0% 100% / 0.102);
-    // --c-markdown-a: var(--c-accent);
-
-    // /* btn u biranju teme kad nemaa nikake pozadine */
-    // --surface-primary: blue !important;
-
-    // /* border oko context-menu */
-    // --surface-secondary: transparent !important;
-
-    // /* selected button/link/list in settings: General, Data controls */
-    // --surface-tertiary: var(--c-bg-msg-gpt) !important;
-
-    // --text-primary: var(--c-txt) !important;
-    // --text-secondary: hsl(0, 0%, 15%) !important;
-    // --text-tertiary: hsl(0, 0%, 20%) !important;
-
-    // --gray-300: var(--text-secondary) !important;
-
-    // /* 3 tacke u listi u sidebar */
-    // --gray-500: var(--c-txt) !important;
-
-    // --box-shadow: 0px 0px 100px 0px hsla(240 45% 61% / 0.1);
-    // --box-shadow-contextmenu: 0px 0px 8px -2px hsla(0, 0%, 0%, 0.1);
-
-
-
-    // --------------------------------------------------------
-
     /* ? ========== HSL ========== */
     --accent-h: 250;
     --accent-s: 99%;
@@ -175,7 +108,8 @@ html.light {
 
     --c-pre-header: transparent;
     /* --c-bg-pre-header-btn: hsla(0 0% 100% / 0.102); */
-    --c-bg-pre-header-btn: var(--c-surface-1);
+    // --c-bg-pre-header-btn: var(--c-surface-1);
+    --c-bg-pre-header-btn: hsla(255, 100%, 100%, 0.1);
     --c-markdown-a: var(--c-accent);
 
     /* btn u biranju teme kad nemaa nikake pozadine */
@@ -281,7 +215,9 @@ html.dark {
 
     --c-pre-header: transparent;
     /* --c-bg-pre-header-btn: hsla(0 0% 100% / 0.102); */
-    --c-bg-pre-header-btn: var(--c-surface-1);
+    // --c-bg-pre-header-btn: var(--c-surface-1);
+    // --c-bg-pre-header-btn: hsla(var(--txt-hsl) / 0.2);
+    --c-bg-pre-header-btn: hsla(255, 100%, 100%, 0.1);
     --c-markdown-a: var(--c-accent);
 
     /* btn u biranju teme kad nemaa nikake pozadine */

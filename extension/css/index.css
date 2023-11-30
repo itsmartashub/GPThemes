@@ -64,7 +64,7 @@ html.light {
   --c-btn-danger: #d0353f;
   --c-bg-btn: var(--c-accent);
   --c-pre-header: transparent;
-  --c-bg-pre-header-btn: var(--c-surface-1);
+  --c-bg-pre-header-btn: #ffffff1a;
   --c-markdown-a: var(--c-accent);
   --box-shadow: 0px 0px 100px 0px hsla(var(--accent-hsl) / .1);
   --box-shadow-contextmenu: 0px 0px 5px -2px #0000002e;
@@ -120,7 +120,7 @@ html.dark {
   --c-btn-danger: #f19399;
   --c-bg-btn: var(--c-accent);
   --c-pre-header: transparent;
-  --c-bg-pre-header-btn: var(--c-surface-1);
+  --c-bg-pre-header-btn: #ffffff1a;
   --c-markdown-a: var(--c-accent);
   --box-shadow: 0px 0px 100px 0px hsla(var(--accent-hsl) / .1);
   --box-shadow-contextmenu: 0px 0px 8px -2px hsla(var(--accent-hsl) / .1);
@@ -322,7 +322,7 @@ main [data-testid^="conversation-turn-"]:nth-child(2n) .font-semibold.select-non
 }
 
 main [data-testid^="conversation-turn-"]:nth-child(2n) button svg > path {
-  fill: var(--c-msg-name-user) !important;
+  fill: var(--c-msg-name-user);
 }
 
 main [data-testid^="conversation-turn-"]:nth-child(odd) .group {
@@ -334,7 +334,7 @@ main [data-testid^="conversation-turn-"]:nth-child(odd) .font-semibold.select-no
 }
 
 main [data-testid^="conversation-turn-"]:nth-child(odd) button svg > path {
-  fill: var(--c-msg-name-gpt) !important;
+  fill: var(--c-msg-name-gpt);
 }
 
 main [data-testid^="conversation-turn-"] pre {
@@ -342,14 +342,23 @@ main [data-testid^="conversation-turn-"] pre {
   margin: var(--my-pre) auto !important;
 }
 
-main [data-testid^="conversation-turn-"] pre .bg-black > div {
+main [data-testid^="conversation-turn-"] pre .bg-black > div:has( > span) {
   background-color: var(--c-pre-header) !important;
 }
 
-main [data-testid^="conversation-turn-"] pre button {
+main [data-testid^="conversation-turn-"] pre .bg-black > div:has( > span) > span {
+  color: var(--c-accent-light) !important;
+}
+
+main [data-testid^="conversation-turn-"] pre .bg-black > div:has( > span) button:has(svg) {
   background-color: var(--c-bg-pre-header-btn);
   padding: var(--py-btn) var(--px-btn);
   border-radius: 10px;
+  color: var(--c-accent-light) !important;
+}
+
+main [data-testid^="conversation-turn-"] pre .bg-black > div:has( > span) button:has(svg) svg > path {
+  fill: var(--c-accent-light) !important;
 }
 
 main form button.btn {
