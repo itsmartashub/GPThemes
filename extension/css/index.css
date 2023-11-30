@@ -313,27 +313,27 @@ main [data-testid^="conversation-turn-"] .gizmo-shadow-stroke div {
   color: var(--c-on-accent) !important;
 }
 
-main [data-testid^="conversation-turn-"]:nth-child(2n) .group {
+main [data-testid^="conversation-turn-"]:has([data-message-author-role="user"]) .group {
   background-color: var(--c-bg-msg-user);
 }
 
-main [data-testid^="conversation-turn-"]:nth-child(2n) .font-semibold.select-none {
+main [data-testid^="conversation-turn-"]:has([data-message-author-role="user"]) .font-semibold.select-none {
   color: var(--c-msg-name-user);
 }
 
-main [data-testid^="conversation-turn-"]:nth-child(2n) button svg > path {
+main [data-testid^="conversation-turn-"]:has([data-message-author-role="user"]) button svg > path {
   fill: var(--c-msg-name-user);
 }
 
-main [data-testid^="conversation-turn-"]:nth-child(odd) .group {
+main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"]) .group {
   background-color: var(--c-bg-msg-gpt);
 }
 
-main [data-testid^="conversation-turn-"]:nth-child(odd) .font-semibold.select-none {
+main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"]) .font-semibold.select-none {
   color: var(--c-msg-name-gpt);
 }
 
-main [data-testid^="conversation-turn-"]:nth-child(odd) button svg > path {
+main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"]) button svg > path {
   fill: var(--c-msg-name-gpt);
 }
 

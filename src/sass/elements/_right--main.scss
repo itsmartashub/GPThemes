@@ -35,7 +35,8 @@ main [data-testid^="conversation-turn-"] {
     }
 
     /* --------- RIGHT - CHATS BUBBLES - USER ---------*/
-    &:nth-child(even) {
+    &:has([data-message-author-role="user"]) {
+        // &:nth-child(even) {
 
         // --------- RIGHT - CHATS BUBBLE BG ---------
         .group {
@@ -54,7 +55,8 @@ main [data-testid^="conversation-turn-"] {
     }
 
     /* @ --------- RIGHT - CHATS BUBBLES - GPT ---------*/
-    &:nth-child(odd) {
+    // &:nth-child(odd) {
+    &:has([data-message-author-role="assistant"]) {
 
         // --------- RIGHT - CHATS BUBBLE BG ---------
         .group {
@@ -81,12 +83,12 @@ main [data-testid^="conversation-turn-"] {
         .bg-black>div:has(> span) {
             background-color: var(--c-pre-header) !important;
 
-
+            // Code name in markdown header (html, php, css, etc)
             >span {
                 color: var(--c-accent-light) !important;
             }
 
-            // 'Copy code' btn in markdown
+            // 'Copy code' btn in markdown header
             button:has(svg) {
                 color: var(--c-accent-light) !important;
                 background-color: var(--c-bg-pre-header-btn);
