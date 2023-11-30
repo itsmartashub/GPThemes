@@ -43,7 +43,7 @@ div[role="dialog"] {
         }
     }
 
-    // Ugly bg behind ✔️ "Upgrade your plan" dialog list
+    // Ugly bg behind ✔️ "Upgrade your plan" dialog list. But also <thead> <th> in <table> (Shared Links)
     .bg-white,
     .bg-gray-900 {
         background-color: var(--c-surface-1) !important;
@@ -107,6 +107,12 @@ div[role="dialog"] {
             }
         }
 
+        // BG of thead th in table 'Shared Links'
+        .bg-white,
+        .bg-gray-900 {
+            background-color: transparent !important;
+        }
+
         th,
         td {
             padding-top: var(--py-btn) !important;
@@ -119,14 +125,10 @@ div[role="dialog"] {
         }
 
         thead th {
-            background-color: var(--c-surface-3) !important;
+            // background-color: var(--c-surface-3) !important;
+            // background-color: transparent !important;
             text-transform: uppercase !important;
             color: var(--c-accent) !important;
-        }
-
-        thead th:first-child {
-            padding-left: var(--px-btn) !important;
-            border-radius: var(--border-radius-btn) 0 0 var(--border-radius-btn) !important;
         }
 
         thead th:first-child {

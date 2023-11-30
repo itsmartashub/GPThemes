@@ -525,6 +525,10 @@ div[role="dialog"] table span[data-state]:has(svg):hover {
   opacity: 1;
 }
 
+div[role="dialog"] table .bg-white, div[role="dialog"] table .bg-gray-900 {
+  background-color: #0000 !important;
+}
+
 div[role="dialog"] table th, div[role="dialog"] table td {
   padding-top: var(--py-btn) !important;
   padding-bottom: var(--py-btn) !important;
@@ -536,14 +540,11 @@ div[role="dialog"] table thead tr {
 }
 
 div[role="dialog"] table thead th {
-  background-color: var(--c-surface-3) !important;
   text-transform: uppercase !important;
   color: var(--c-accent) !important;
 }
 
 div[role="dialog"] table thead th:first-child {
-  padding-left: var(--px-btn) !important;
-  border-radius: var(--border-radius-btn) 0 0 var(--border-radius-btn) !important;
   padding-left: var(--px-btn) !important;
   border-radius: var(--border-radius-btn) 0 0 var(--border-radius-btn) !important;
 }
