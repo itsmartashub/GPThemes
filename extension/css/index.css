@@ -232,8 +232,16 @@ input::placeholder, textarea::placeholder {
   padding: var(--py-sidebar-nav-a-new-chat) !important;
 }
 
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav .rounded-lg {
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav li .rounded-lg {
   border-radius: var(--border-radius-nav-a) !important;
+}
+
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav a span.bg-black {
+  border-color: #0000 !important;
+}
+
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav a span.bg-black > svg > path {
+  fill: var(--c-accent-light) !important;
 }
 
 .scrollbar-trigger:has(nav[aria-label="Chat history"]) .bg-gradient-to-l {

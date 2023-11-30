@@ -38,10 +38,21 @@
             // padding-right: var(--py-sidebar-nav-new-chat) !important;
         }
 
-        // Border-radius for all elements that have .rounded-lg class in <nav> of sidebar
-        .rounded-lg {
+        // Border-radius for all elements that have .rounded-lg class in <nav> of sidebar. ALi on zezne border-radiusu i contextmenu u bottom sidebar jer u on ima ovu klasu. Zato sad dodajem <li>
+        li .rounded-lg {
             border-radius: var(--border-radius-nav-a) !important;
         }
+
+        // "Upgrade" link in nav bg
+        a span.bg-black {
+            border-color: transparent !important;
+
+            // SVG icon in "Upgrade" link in nav
+            &>svg>path {
+                fill: var(--c-accent-light) !important;
+            }
+        }
+
     }
 
 
