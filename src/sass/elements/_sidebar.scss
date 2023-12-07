@@ -1,8 +1,8 @@
 /* --------- SIDEBAR DESKTOP ---------*/
 .flex-shrink-0.overflow-x-hidden,
 .bg-gray-900[data-headlessui-state="open"] {
-    color: var(--c-txt) !important;
     --surface-primary: var(--c-surface-2) !important;
+    color: var(--c-txt) !important;
     background-color: var(--c-bg-sidebar) !important;
 
     & nav a>* {
@@ -14,7 +14,10 @@
 
     // --------- SIDEBAR NAV ---------
     nav {
-        padding: var(--p-sidebar-nav) !important;
+
+        &:has([aria-label="Chat history"]) {
+            padding: var(--p-sidebar-nav) !important;
+        }
 
         /* TODO dodati u vars.scss */
         .mt-5 {
@@ -22,6 +25,7 @@
         }
 
         a {
+            color: var(--c-txt) !important;
             font-family: var(--f-fm) !important;
             padding: var(--p-sidebar-nav-a) !important;
             border-radius: var(--border-radius-nav-a) !important;
@@ -34,9 +38,6 @@
             border: 2px solid var(--c-surface-2);
             padding: var(--py-sidebar-nav-a-new-chat) !important;
             text-transform: uppercase;
-            // box-shadow: var(--box-shadow);
-            // padding-left: var(--py-sidebar-nav-new-chat) !important;
-            // padding-right: var(--py-sidebar-nav-new-chat) !important;
         }
 
         // Border-radius for all elements that have .rounded-lg class in <nav> of sidebar. ALi on zezne border-radiusu i contextmenu u bottom sidebar jer u on ima ovu klasu. Zato sad dodajem <li>

@@ -8,6 +8,7 @@
   --border-radius-contextmenu: 20px;
   --border-radius-pre: 20px;
   --p-contextmenu: 10px;
+  --p-contextmenu-item: .9rem 1rem;
   --p-msg: 20px;
   --p-textarea: 10px;
   --p-btn: 20px;
@@ -187,23 +188,32 @@ input::placeholder, textarea::placeholder {
   transition: all .3s ease-in-out;
   background-color: var(--c-surface-3) !important;
   border-radius: var(--border-radius-contextmenu) !important;
+  padding: var(--p-contextmenu) !important;
   box-shadow: var(--box-shadow-contextmenu) !important;
   border: none !important;
-  padding: .3rem !important;
 }
 
-[role="menuitem"] {
+[role="menu"] [role="menuitem"] {
   transition: all .3s ease-in-out;
+  padding: var(--p-contextmenu-item) !important;
   border-radius: var(--border-radius-btn) !important;
 }
 
-[role="menuitem"]:hover {
+[role="menu"] [role="menuitem"]:hover {
   background-color: var(--c-surface-2) !important;
 }
 
+[role="menu"] nav {
+  padding: 0 !important;
+}
+
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav [data-headlessui-state="open"]:has(button[data-headlessui-state="open"]) nav a:last-child {
+  color: var(--c-btn-danger) !important;
+}
+
 .flex-shrink-0.overflow-x-hidden, .bg-gray-900[data-headlessui-state="open"] {
-  color: var(--c-txt) !important;
   --surface-primary: var(--c-surface-2) !important;
+  color: var(--c-txt) !important;
   background-color: var(--c-bg-sidebar) !important;
 }
 
@@ -211,7 +221,7 @@ input::placeholder, textarea::placeholder {
   color: var(--c-txt) !important;
 }
 
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav {
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav:has([aria-label="Chat history"]) {
   padding: var(--p-sidebar-nav) !important;
 }
 
@@ -221,6 +231,7 @@ input::placeholder, textarea::placeholder {
 
 .scrollbar-trigger:has(nav[aria-label="Chat history"]) nav a {
   transition: background-color .3s ease-in-out;
+  color: var(--c-txt) !important;
   font-family: var(--f-fm) !important;
   padding: var(--p-sidebar-nav-a) !important;
   border-radius: var(--border-radius-nav-a) !important;
@@ -302,28 +313,6 @@ input::placeholder, textarea::placeholder {
   padding: .5rem 1rem !important;
   line-height: 1 !important;
   display: inline-block !important;
-}
-
-[data-headlessui-state="open"] {
-  transition: all .3s ease-in-out;
-  background-color: var(--c-surface-3) !important;
-  border-radius: var(--border-radius-contextmenu) !important;
-}
-
-[data-headlessui-state="open"] nav a {
-  font-size: 14px !important;
-}
-
-[data-headlessui-state="open"] nav a[data-headlessui-state="active"], [data-headlessui-state="open"] nav a:hover {
-  background-color: var(--c-surface-2) !important;
-}
-
-[data-headlessui-state] > *, [data-headlessui-state] nav a {
-  color: var(--c-txt) !important;
-}
-
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav [data-headlessui-state="open"]:has(button[data-headlessui-state="open"]) nav a:last-child {
-  color: var(--c-btn-danger) !important;
 }
 
 main [role="presentation"] {
@@ -608,24 +597,24 @@ div[role="dialog"] table thead th:last-child {
   border-radius: 0 var(--border-radius-btn) var(--border-radius-btn) 0 !important;
 }
 
-div[data-radix-popper-content-wrapper] > * {
+div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) > * {
   background-color: var(--c-surface-1) !important;
   padding: var(--p-contextmenu) !important;
   border-radius: var(--border-radius-contextmenu) !important;
   box-shadow: var(--box-shadow-contextmenu) !important;
 }
 
-div[data-radix-popper-content-wrapper] [data-radix-collection-item] {
+div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) [data-radix-collection-item] {
   border-radius: var(--border-radius-btn);
+  padding: var(--p-contextmenu-item) !important;
   height: auto !important;
-  padding: 15px !important;
 }
 
-div[data-radix-popper-content-wrapper] [data-radix-collection-item][data-state="unchecked"]:hover {
+div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) [data-radix-collection-item][data-state="unchecked"]:hover {
   background-color: var(--c-surface-2) !important;
 }
 
-div[data-radix-popper-content-wrapper] [data-state="checked"] {
+div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) [data-state="checked"] {
   background-color: var(--c-bg-btn) !important;
   color: var(--c-on-accent) !important;
 }

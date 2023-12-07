@@ -158,11 +158,11 @@ div[role="dialog"] {
 }
 
 
-div[data-radix-popper-content-wrapper] {
+/* --------- MODAL - CHOOSE THEME CONTEXT MENU & TOOLTIPS --------- */
+// Mora not role=menu da ne bih selektovala i onaj contextmenu u sidebar kad se klikne na prompt listitem 3 dots za opcije
+div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) {
 
-    /* --------- MODAL - THEME - CONTEXT MENU I TOOLTIPS--------- */
     &>* {
-
         background-color: var(--c-surface-1) !important;
         padding: var(--p-contextmenu) !important;
         border-radius: var(--border-radius-contextmenu) !important;
@@ -171,16 +171,16 @@ div[data-radix-popper-content-wrapper] {
 
     [data-radix-collection-item] {
         border-radius: var(--border-radius-btn);
-        padding: 15px !important;
+        padding: var(--p-contextmenu-item) !important;
         height: auto !important;
     }
 
-    /* --------- MODAL - THEME - CONTEXT MENU ITEMS HOVER --------- */
+    /* MODAL - CHOOSE THEME CONTEXT MENU HOVER */
     [data-radix-collection-item][data-state="unchecked"]:hover {
         background-color: var(--c-surface-2) !important;
     }
 
-    /* --------- MODAL - THEME - CONTEXT MENU ITEM HOVER ACTIVE --------- */
+    /* MODAL - TCHOOSE THEME CONTEXT MENUITEM HOVER ACTIVE */
     [data-state="checked"] {
         background-color: var(--c-bg-btn) !important;
         color: var(--c-on-accent) !important;
