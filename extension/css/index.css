@@ -178,6 +178,11 @@ input::placeholder, textarea::placeholder {
   gap: .8rem !important;
 }
 
+[class*=":bg-white/10"] {
+  background-color: var(--c-surface-3) !important;
+  border-color: var(--c-surface-3) !important;
+}
+
 [role="menu"] {
   transition: all .3s ease-in-out;
   background-color: var(--c-surface-3) !important;

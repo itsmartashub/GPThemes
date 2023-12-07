@@ -78,6 +78,8 @@ textarea::placeholder {
     gap: .8rem !important;
 }
 
-/* svg path {
-    fill: var(--c-svg) !important;
-} */
+/* Go to end arrow */
+[class*=":bg-white/10"] {
+    background-color: var(--c-surface-3) !important;
+    border-color: var(--c-surface-3) !important;
+}
