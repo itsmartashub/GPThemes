@@ -223,6 +223,7 @@ input::placeholder, textarea::placeholder {
 
 .scrollbar-trigger:has(nav[aria-label="Chat history"]) nav a[href="/"] {
   border: 2px solid var(--c-surface-2);
+  text-transform: uppercase;
   padding: var(--py-sidebar-nav-a-new-chat) !important;
 }
 
