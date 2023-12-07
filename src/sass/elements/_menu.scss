@@ -10,16 +10,23 @@
         padding: var(--p-contextmenu-item) !important;
         border-radius: var(--border-radius-btn) !important;
         transition: all .3s ease-in-out;
-        // font-size: 14px !important;
 
-        // &[data-headlessui-state="active"],
-        &:hover {
+
+        &:is(:hover, :focus) {
             background-color: var(--c-surface-2) !important;
         }
     }
 
+    /* Remove padding for menu in sidebar bottom */
     nav {
         padding: 0 !important;
+    }
+
+    &:has(a[href="https://openai.com/policies"]) {
+        a:first-child span {
+            color: var(--c-accent) !important;
+            font-weight: bold;
+        }
     }
 }
 

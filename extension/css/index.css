@@ -199,12 +199,17 @@ input::placeholder, textarea::placeholder {
   border-radius: var(--border-radius-btn) !important;
 }
 
-[role="menu"] [role="menuitem"]:hover {
+[role="menu"] [role="menuitem"]:is(:hover, :focus) {
   background-color: var(--c-surface-2) !important;
 }
 
 [role="menu"] nav {
   padding: 0 !important;
+}
+
+[role="menu"]:has(a[href="https://openai.com/policies"]) a:first-child span {
+  font-weight: bold;
+  color: var(--c-accent) !important;
 }
 
 .scrollbar-trigger:has(nav[aria-label="Chat history"]) nav [data-headlessui-state="open"]:has(button[data-headlessui-state="open"]) nav a:last-child {
