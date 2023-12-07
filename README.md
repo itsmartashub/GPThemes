@@ -34,7 +34,7 @@
 ## Soon
 
 -   **Chrome Web Store**: The extension will soon be available on the Chrome Web Store.
--   **GitHub Releases**: Once released, you'll be able to download the latest version directly from the GitHub Releases.
+-   **GitHub Releases**: Once released, it will be available for download directly from the GitHub Releases.
 
 ## Supported ChatGPT versions
 
