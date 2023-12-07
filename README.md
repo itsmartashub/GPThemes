@@ -36,14 +36,10 @@
 -   **Chrome Web Store**: The extension will soon be available on the Chrome Web Store.
 -   **GitHub Releases**: Once released, you'll be able to download the latest version directly from the GitHub Releases.
 
-## Usage
+## Supported ChatGPT versions
 
-Once the extension is installed, visit ChatGPT, and experience the improved theme immediately.
+**Note**: Currently, the focus is on enhancing the UI of the **free** [ChatGPT](https://chat.openai.com/) version. Exploring and editing elements of the **Pro** [ChatGPT](https://chat.openai.com/) version may be considered in future updates.
 
 ## Customization
 
 You can customize the extension's `CSS` by modifying the `index.css` file in the `extension/css` folder.
-
-## Supported ChatGPT versions
-
-**Note**: Currently, the focus is on enhancing the UI of the **free** [ChatGPT](https://chat.openai.com/) version. Exploring and editing elements of the **Pro** [ChatGPT](https://chat.openai.com/) version may be considered in future updates.
