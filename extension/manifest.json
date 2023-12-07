@@ -1,6 +1,6 @@
 {
 	"name": "ChatGPTheme",
-	"description": "Style the ChatGPT",
+	"description": "GPThemes is a Chrome extension designed to improve the visual experience of ChatGPT by injecting custom CSS to enhance its theme.",
 	"version": "1.0.0",
 	"manifest_version": 3,
 	"host_permissions": ["*://chat.openai.com/*"],

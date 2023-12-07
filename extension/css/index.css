@@ -343,6 +343,13 @@ main [data-testid^="conversation-turn-"] .group {
   border-radius: var(--border-radius-msg) !important;
 }
 
+main [data-testid^="conversation-turn-"] .group div[class*="lg:w-[calc(100%-115px)]"] {
+  --gap-3: .75rem;
+  --svg-w: 1.5rem;
+  margin-right: calc(var(--gap-3)  + var(--svg-w)) !important;
+  flex-grow: 1 !important;
+}
+
 main [data-testid^="conversation-turn-"] .font-semibold.select-none {
   text-transform: uppercase;
 }
