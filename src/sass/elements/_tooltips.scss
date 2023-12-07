@@ -11,9 +11,11 @@ html.dark div[data-radix-popper-content-wrapper]:has([role="tooltip"]) span {
 }
 
 /* --------- TOOLTIPS arrow div bg color --------- */
-div[data-radix-popper-content-wrapper]:has([role="tooltip"]) div {
-    /* border: 2px solid red !important; */
-    background-color: var(--c-bg-tooltip) !important;
-    box-shadow: var(--box-shadow-contextmenu) !important;
-    backdrop-filter: blur(var(--blur-contextmenu)) !important;
+div[data-radix-popper-content-wrapper]:has([role="tooltip"]) {
+
+    div {
+        background-color: var(--c-bg-tooltip) !important;
+        box-shadow: var(--box-shadow-contextmenu) !important;
+        backdrop-filter: blur(var(--blur-contextmenu)) !important;
+    }
 }

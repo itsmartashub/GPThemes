@@ -161,9 +161,11 @@ div[role="dialog"] {
 /* --------- MODAL - CHOOSE THEME CONTEXT MENU & TOOLTIPS --------- */
 // Mora not role=menu da ne bih selektovala i onaj contextmenu u sidebar kad se klikne na prompt listitem 3 dots za opcije
 div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) {
+    // div[data-radix-popper-content-wrapper] {
 
     &>* {
-        background-color: var(--c-surface-1) !important;
+        // ! kad je ovde background-color !important nmg da setujem style za tooltip jer ovo ga overwrituje
+        background-color: var(--c-surface-1);
         padding: var(--p-contextmenu) !important;
         border-radius: var(--border-radius-contextmenu) !important;
         box-shadow: var(--box-shadow-contextmenu) !important;

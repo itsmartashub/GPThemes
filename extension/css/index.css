@@ -612,7 +612,7 @@ div[role="dialog"] table thead th:last-child {
 }
 
 div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) > * {
-  background-color: var(--c-surface-1) !important;
+  background-color: var(--c-surface-1);
   padding: var(--p-contextmenu) !important;
   border-radius: var(--border-radius-contextmenu) !important;
   box-shadow: var(--box-shadow-contextmenu) !important;
