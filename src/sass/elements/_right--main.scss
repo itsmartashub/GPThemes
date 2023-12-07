@@ -65,12 +65,14 @@ main [data-testid^="conversation-turn-"] {
 
         // --------- RIGHT - CHATS BUBBLES - ACC NAMES - USER ---------
         .font-semibold.select-none {
-            color: var(--c-msg-name-gpt);
+            // color: var(--c-msg-name-gpt);
+            color: var(--avatar-color);
         }
 
         // --------- RIGHT - CHATS BUBBLEs - USER SVG ---------
         button svg>path {
-            fill: var(--c-msg-name-gpt);
+            // fill: var(--c-msg-name-gpt);
+            fill: var(--avatar-color);
         }
     }
 

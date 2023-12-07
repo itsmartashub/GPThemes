@@ -52,7 +52,7 @@ html.light {
     --accent-l: 65%;
     --accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l);
 
-    --green-hsl: 155 77% 43%;
+    // --green-hsl: 155 77% 43%;
 
     /* --txt-hsl: 255 86% 92%; */
     --txt-h: 0;
@@ -71,7 +71,7 @@ html.light {
     /* --c-accent-light: hsl(250, 83%, 68%); */
     // --c-accent-light: hsl(var(--accent-h) var(--accent-s) calc(var(--accent-l) + 10%));
     --c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 2), calc(var(--accent-l) * 1.3));
-    --c-green: hsl(var(--green-hsl));
+    // --c-green: hsl(var(--green-hsl));
 
     --c-on-accent: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) * 1.5));
     --c-txt: hsl(var(--txt-hsl));
@@ -102,7 +102,7 @@ html.light {
     --c-bg-tooltip: var(--c-accent-light);
 
     --c-msg-name-user: var(--c-accent);
-    --c-msg-name-gpt: var(--c-green);
+    // --c-msg-name-gpt: var(--c-green);
 
     --c-btn: var(--c-on-accent);
     --c-btn-danger: hsl(356 62% 51%);
@@ -159,7 +159,7 @@ html.dark {
     --accent-l: 78%;
     --accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l);
 
-    --green-hsl: 155 77% 43%;
+    // --green-hsl: 155 77% 43%;
 
     /* --txt-hsl: 255 86% 92%; */
     --txt-h: 255;
@@ -178,7 +178,7 @@ html.dark {
     /* --c-accent-light: hsl(250, 83%, 68%); */
     // --c-accent-light: hsl(var(--accent-h) var(--accent-s) calc(var(--accent-l) + 10%));
     --c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 1.3), var(--accent-l));
-    --c-green: hsl(var(--green-hsl));
+    // --c-green: hsl(var(--green-hsl));
 
     --c-on-accent: hsl(var(--accent-h), var(--accent-s), 10%);
     --c-txt: hsl(var(--txt-hsl));
@@ -209,7 +209,7 @@ html.dark {
     --c-bg-tooltip: var(--c-accent-light);
 
     --c-msg-name-user: var(--c-accent);
-    --c-msg-name-gpt: var(--c-green);
+    // --c-msg-name-gpt: var(--c-green);
 
     --c-btn: var(--c-on-accent);
     --c-btn-danger: hsl(356 77% 76%);

@@ -7,10 +7,9 @@
 	"permissions": ["storage"],
 	"author": ["itsmarta@proton.com"],
 	"icons": {
-		"16": "./assets/icons/16.png",
-		"32": "./assets/icons/32.png",
-		"48": "./assets/icons/48.png",
-		"128": "./assets/icons/128.png"
+		"16": "./assets/icons/newnew/16.png",
+		"48": "./assets/icons/newnew/48.png",
+		"128": "./assets/icons/newnew/128.png"
 	},
 	"content_scripts": [
 		{

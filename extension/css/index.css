@@ -30,7 +30,6 @@ html.light {
   --accent-s: 99%;
   --accent-l: 65%;
   --accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l);
-  --green-hsl: 155 77% 43%;
   --txt-h: 0;
   --txt-s: 0%;
   --txt-l: 0%;
@@ -41,7 +40,6 @@ html.light {
   --surface-hsl: hsl(var(--accent-h) var(--surface-s) var(--surface-l));
   --c-accent: hsl(var(--accent-hsl));
   --c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 2), calc(var(--accent-l) * 1.3));
-  --c-green: hsl(var(--green-hsl));
   --c-on-accent: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) * 1.5));
   --c-txt: hsl(var(--txt-hsl));
   --c-surface-1: hsl(0, 0%, var(--surface-l));
@@ -61,7 +59,6 @@ html.light {
   --c-bg-dialog: var(--c-surface-2);
   --c-bg-tooltip: var(--c-accent-light);
   --c-msg-name-user: var(--c-accent);
-  --c-msg-name-gpt: var(--c-green);
   --c-btn: var(--c-on-accent);
   --c-btn-danger: #d0353f;
   --c-bg-btn: var(--c-accent);
@@ -86,7 +83,6 @@ html.dark {
   --accent-s: 93%;
   --accent-l: 78%;
   --accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l);
-  --green-hsl: 155 77% 43%;
   --txt-h: 255;
   --txt-s: 86%;
   --txt-l: 92%;
@@ -97,7 +93,6 @@ html.dark {
   --surface-hsl: hsl(var(--accent-h) var(--surface-s) var(--surface-l));
   --c-accent: hsl(var(--accent-hsl));
   --c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 1.3), var(--accent-l));
-  --c-green: hsl(var(--green-hsl));
   --c-on-accent: hsl(var(--accent-h), var(--accent-s), 10%);
   --c-txt: hsl(var(--txt-hsl));
   --c-surface-1: hsl(var(--accent-h), var(--surface-s), var(--surface-l));
@@ -117,7 +112,6 @@ html.dark {
   --c-bg-dialog: var(--c-surface-2);
   --c-bg-tooltip: var(--c-accent-light);
   --c-msg-name-user: var(--c-accent);
-  --c-msg-name-gpt: var(--c-green);
   --c-btn: var(--c-on-accent);
   --c-btn-danger: #f19399;
   --c-bg-btn: var(--c-accent);
@@ -373,11 +367,11 @@ main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistan
 }
 
 main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"]) .font-semibold.select-none {
-  color: var(--c-msg-name-gpt);
+  color: var(--avatar-color);
 }
 
 main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"]) button svg > path {
-  fill: var(--c-msg-name-gpt);
+  fill: var(--avatar-color);
 }
 
 main [data-testid^="conversation-turn-"] pre {
