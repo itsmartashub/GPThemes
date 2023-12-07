@@ -1,7 +1,7 @@
 :root {
   --f-fm: "Inter", sans-serif;
   --border-radius-msg: 2.2rem;
-  --border-radius-btn: 12px;
+  --border-radius-btn: 14px;
   --border-radius-nav-a: var(--border-radius-btn);
   --border-radius-btn-big: 1.2rem;
   --border-radius-dialog: 2.5rem;
@@ -681,6 +681,14 @@ div[data-radix-popper-content-wrapper]:has([role="tooltip"]) div {
 .gizmo-shadow-stroke.h-full:has(svg) {
   color: var(--c-on-accent) !important;
   background-color: var(--c-accent) !important;
+}
+
+[role="alert"] {
+  background-color: var(--c-accent) !important;
+  color: var(--c-on-accent) !important;
+  padding: var(--py-btn) var(--px-btn) !important;
+  border-radius: var(--border-radius-btn) !important;
+  border: none !important;
 }
 
 /*# sourceMappingURL=index.css.map */
