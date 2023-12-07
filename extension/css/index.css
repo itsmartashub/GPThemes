@@ -255,6 +255,15 @@ input::placeholder, textarea::placeholder {
   fill: var(--c-accent-light) !important;
 }
 
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav button[id^="headlessui-menu-button-"] {
+  border-radius: var(--border-radius-nav-a);
+  margin-top: 1rem;
+}
+
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav button[id^="headlessui-menu-button-"] .font-semibold {
+  color: var(--c-txt);
+}
+
 .scrollbar-trigger:has(nav[aria-label="Chat history"]) .bg-gradient-to-l {
   --surface-primary: var(--c-surface-2) !important;
   --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position) !important;

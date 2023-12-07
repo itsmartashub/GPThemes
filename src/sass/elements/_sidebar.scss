@@ -55,6 +55,19 @@
             }
         }
 
+
+        // TODO add better styling to this btn
+        /* User profile button in sidebar bottom */
+        button[id^="headlessui-menu-button-"] {
+            border-radius: var(--border-radius-nav-a);
+            margin-top: 1rem;
+
+            /* Username div */
+            .font-semibold {
+                color: var(--c-txt);
+            }
+        }
+
     }
 
 
@@ -121,6 +134,7 @@
             line-height: 1 !important;
         }
     }
+
 
 
 }
