@@ -6,7 +6,7 @@
     background-color: var(--c-bg-sidebar) !important;
 
     /* Fix white txt on "NEW CHAT" in sidebar for light especially */
-    & nav a>* {
+    nav a>* {
         color: var(--c-txt) !important;
     }
 
@@ -32,25 +32,13 @@
     }
 }
 
-// TODO change bg of sidebar for desktop (nav:has([aria-label="Chat history"])) and for mobile (#headlessui-portal-root [id^="headlessui-dialog-panel-"]) by changing .bg-black
-/* Sidebar root parent for mobile sized */
-/* #headlessui-portal-root {
-    [id^="headlessui-dialog-panel-"] {
-        background-color: var(--c-bg-sidebar);
-    }
-} */
-
-/* sidebar for desktop (nav:has([aria-label="Chat history"])) and for mobile (#headlessui-portal-root [id^="headlessui-dialog-panel-"]) by changing .bg-black */
-// #headlessui-portal-root [id^="headlessui-dialog-panel-"][data-headlessui-state],
-// .scrollbar-trigger:has(nav[aria-label="Chat history"]) {
-
 nav[aria-label="Chat history"] {
     padding: var(--p-sidebar-nav) !important;
 
     // ! Strange black rectangle (.bg-black class) over "New Chat" btn when on links: https://chat.openai.com/gpts/discovery and https://chat.openai.com/g/g-UBYTKWkPj
-    .bg-black:has(a[href="/"]) {
+    .sticky.bg-black:has(a[href="/"]) {
         background-color: transparent !important;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
     }
 
     a {
@@ -80,99 +68,75 @@ nav[aria-label="Chat history"] {
                 fill: var(--c-on-accent) !important;
             }
         }
-
-        // TODO add better styling to this btn
-        /* User profile button in sidebar bottom */
-        button[id^="headlessui-menu-button-"] {
-            border-radius: var(--border-radius-nav-a);
-            margin-top: 1rem;
-
-            /* Username div */
-            .font-semibold {
-                color: var(--c-txt);
-            }
-        }
     }
 
     li {
         margin-bottom: var(--mb-sidebar-nav-li) !important;
 
-        a[href^="/c/"] {
+        .group {
+            a[href^="/c/"] {
 
-            /* 3 dots btn  next to <a> (button or div, depends if 3 dots > Rename clicked or not)*/
-            // &~.absolute {
-            //     // border-radius: var(--border-radius-nav-a) !important;
-            //     // border: 2px solid firebrick !important;
+                /* Selected/active link item */
+                &.bg-token-surface-primary {
 
-
-            //     // /* Rename input */
-            //     // input {
-            //     //     // input rename border color on focused
-            //     //     --tw-ring-color: transparent;
-            //     //     border: none !important;
-            //     //     height: 100% !important;
-            //     //     // border-color: var(--c-accent);
-            //     //     // background-color: hsl(var(--accent-hsl) / 0.2) !important;   
-            //     //     // border-radius: var(--border-radius-nav-a) !important;
-            //     // }
-            // }
-
-
-
-            /* Selected/active link item */
-            &.bg-token-surface-primary {
-                // overflow: hidden !important;
-                // border-radius: var(--border-radius-nav-a) !important;
-
-                /* 3 dots btn bg-gradient */
-                .bg-gradient-to-l {
-                    opacity: 1 !important;
+                    /* 3 dots btn bg-gradient */
+                    .bg-gradient-to-l {
+                        opacity: 1 !important;
+                    }
                 }
 
+                /* 3 dots btn bg-gradient - <div> u <a> i <div> u <button> */
+                .bg-gradient-to-l {
+                    --surface-primary: var(--c-surface-2) !important;
+                    --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position) !important;
+                    color: var(--c-accent) !important;
+                    opacity: 0 !important;
+                    // border: 2px solid red !important;
+                }
+
+                // /* Gradient */
+                // a[href^="/c/"] .bg-gradient-to-l {
+                //     --tw-gradient-from: var(--c-accent) var(--tw-gradient-from-position);
+                // }
+                // &:hover a[href^="/c/"] .bg-gradient-to-l {
+                //     --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position);
+                // }
             }
 
-            /* 3 dots bg ... btn bg-gradient - <div> u <a> i <div> u <button> */
-            // li .bg-token-surface-primary,
-            .bg-gradient-to-l {
-                --surface-primary: var(--c-surface-2) !important;
-                --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position) !important;
-                color: var(--c-accent) !important;
-                opacity: 0 !important;
-                // border: 2px solid red !important;
-            }
+            /* 3 dots > "Rename" clicked - style of input parent and input  - this is <div> next to <a> */
+            .bg-token-surface-tertiary {
+                padding: var(--p-sidebar-nav-a) !important;
+                color: var(--c-txt) !important;
+                border-radius: var(--border-radius-nav-a) !important;
+                background-color: hsl(var(--accent-hsl) / 0.2) !important;
+                // background-color: var(--c-surface-3) !important;
 
-            // /* Gradient */
-            // a[href^="/c/"] .bg-gradient-to-l {
-            //     --tw-gradient-from: var(--c-accent) var(--tw-gradient-from-position);
-            // }
-            // &:hover a[href^="/c/"] .bg-gradient-to-l {
-            //     --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position);
-            // }
+                /* this make it full width of <li>, from left to right */
+                left: 0 !important;
+                right: 0 !important;
+
+                /* Rename input.
+                    ! DO NOT TOUCH PADDING! TXT BEHIND GOIN TO BE VISIBLE. WTF OPENAI??? 
+                */
+                input {
+                    // input rename border color on focused
+                    --tw-ring-color: transparent;
+                    caret-color: var(--c-accent);
+                    border: none !important;
+                }
+            }
         }
+    }
 
-        /* 3 dots > "Rename" clicked - style of input parent and input  - this is <div> next to <a> */
-        .bg-token-surface-tertiary {
-            padding: var(--p-sidebar-nav-a) !important;
+    // TODO add better styling to this btn
+    /* User profile btn in sidebar bottom */
+    button[id^="headlessui-menu-button-"] {
+        border-radius: var(--border-radius-nav-a);
+        margin-top: 1rem;
+
+        /* Username div */
+        .font-semibold {
             color: var(--c-txt) !important;
-            border-radius: var(--border-radius-nav-a) !important;
-            background-color: hsl(var(--accent-hsl) / 0.2) !important;
-            // background-color: var(--c-surface-3) !important;
-
-            /* this make it full width of <li>, from left to right */
-            left: 0 !important;
-            right: 0 !important;
-            // top: 0;
-            // bottom: 0;
-
-            /* Rename input. // ! DO NOT TOUCH PADDING! TXT BEHIND GOIN TO BE VISIBLE. WTF OPENAI??? */
-            input {
-                // input rename border color on focused
-                --tw-ring-color: transparent;
-                caret-color: var(--c-accent);
-                border: none !important;
-                // height: 100% !important;
-                // border-color: var(--c-accent);
-            }
         }
     }
 
@@ -181,15 +145,3 @@ nav[aria-label="Chat history"] {
         border-radius: var(--border-radius-nav-a) !important;
     }
 }
-
-
-
-// // ! Strange black rectangle (.bg-black class) over "New Chat" btn when on links: https://chat.openai.com/gpts/discovery and https://chat.openai.com/g/g-UBYTKWkPj
-// nav .sticky.bg-black:has(a[href="/"]) {
-//     background-color: transparent !important;
-// }
-
-/* TODO dodati u vars.scss */
-// .mt-5 {
-//     margin-top: 2.2rem !important;
-// }

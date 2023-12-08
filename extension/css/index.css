@@ -1,7 +1,7 @@
 :root {
   --f-fm: "Inter", sans-serif;
   --border-radius-msg: 2.2rem;
-  --border-radius-btn: 14px;
+  --border-radius-btn: 12px;
   --border-radius-nav-a: var(--border-radius-btn);
   --border-radius-btn-big: 1.2rem;
   --border-radius-dialog: 2.5rem;
@@ -247,8 +247,8 @@ nav[aria-label="Chat history"] {
   padding: var(--p-sidebar-nav) !important;
 }
 
-nav[aria-label="Chat history"] .bg-black:has(a[href="/"]) {
-  margin-bottom: 2rem;
+nav[aria-label="Chat history"] .sticky.bg-black:has(a[href="/"]) {
+  margin-bottom: 1rem;
   background-color: #0000 !important;
 }
 
@@ -275,31 +275,22 @@ nav[aria-label="Chat history"] a span.bg-black > svg > path {
   fill: var(--c-on-accent) !important;
 }
 
-nav[aria-label="Chat history"] a button[id^="headlessui-menu-button-"] {
-  border-radius: var(--border-radius-nav-a);
-  margin-top: 1rem;
-}
-
-nav[aria-label="Chat history"] a button[id^="headlessui-menu-button-"] .font-semibold {
-  color: var(--c-txt);
-}
-
 nav[aria-label="Chat history"] li {
   margin-bottom: var(--mb-sidebar-nav-li) !important;
 }
 
-nav[aria-label="Chat history"] li a[href^="/c/"].bg-token-surface-primary .bg-gradient-to-l {
+nav[aria-label="Chat history"] li .group a[href^="/c/"].bg-token-surface-primary .bg-gradient-to-l {
   opacity: 1 !important;
 }
 
-nav[aria-label="Chat history"] li a[href^="/c/"] .bg-gradient-to-l {
+nav[aria-label="Chat history"] li .group a[href^="/c/"] .bg-gradient-to-l {
   --surface-primary: var(--c-surface-2) !important;
   --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position) !important;
   color: var(--c-accent) !important;
   opacity: 0 !important;
 }
 
-nav[aria-label="Chat history"] li .bg-token-surface-tertiary {
+nav[aria-label="Chat history"] li .group .bg-token-surface-tertiary {
   padding: var(--p-sidebar-nav-a) !important;
   color: var(--c-txt) !important;
   border-radius: var(--border-radius-nav-a) !important;
@@ -308,10 +299,19 @@ nav[aria-label="Chat history"] li .bg-token-surface-tertiary {
   right: 0 !important;
 }
 
-nav[aria-label="Chat history"] li .bg-token-surface-tertiary input {
+nav[aria-label="Chat history"] li .group .bg-token-surface-tertiary input {
   --tw-ring-color: transparent;
   caret-color: var(--c-accent);
   border: none !important;
+}
+
+nav[aria-label="Chat history"] button[id^="headlessui-menu-button-"] {
+  border-radius: var(--border-radius-nav-a);
+  margin-top: 1rem;
+}
+
+nav[aria-label="Chat history"] button[id^="headlessui-menu-button-"] .font-semibold {
+  color: var(--c-txt) !important;
 }
 
 nav[aria-label="Chat history"] .rounded-lg {
