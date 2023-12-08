@@ -19,6 +19,11 @@
             padding: var(--p-sidebar-nav) !important;
         }
 
+        // ! Strange black rectangle (.bg-black class) over "New Chat" btn when on links: https://chat.openai.com/gpts/discovery and https://chat.openai.com/g/g-UBYTKWkPj
+        .bg-black:has(a[href="/"]) {
+            background-color: transparent !important;
+        }
+
         /* TODO dodati u vars.scss */
         .mt-5 {
             margin-top: 2.2rem !important;
@@ -31,14 +36,16 @@
             border-radius: var(--border-radius-nav-a) !important;
 
             transition: background-color .3s ease-in-out;
+
+            // "New Chat" link (first in nav in sidebar)
+            &[href="/"] {
+                border: 2px solid var(--c-surface-2);
+                padding: var(--py-sidebar-nav-a-new-chat) !important;
+                text-transform: uppercase;
+            }
         }
 
-        // New Chat link (first in nav in sidebar)
-        a[href="/"] {
-            border: 2px solid var(--c-surface-2);
-            padding: var(--py-sidebar-nav-a-new-chat) !important;
-            text-transform: uppercase;
-        }
+
 
         // Border-radius for all elements that have .rounded-lg class in <nav> of sidebar. ALi on zezne border-radiusu i contextmenu u bottom sidebar jer u on ima ovu klasu. Zato sad dodajem <li>
         li .rounded-lg {

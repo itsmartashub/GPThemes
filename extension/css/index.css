@@ -230,6 +230,10 @@ input::placeholder, textarea::placeholder {
   padding: var(--p-sidebar-nav) !important;
 }
 
+.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav .bg-black:has(a[href="/"]) {
+  background-color: #0000 !important;
+}
+
 .scrollbar-trigger:has(nav[aria-label="Chat history"]) nav .mt-5 {
   margin-top: 2.2rem !important;
 }

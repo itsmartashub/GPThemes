@@ -32,6 +32,11 @@ textarea::placeholder {
     background-color: var(--c-surface-1) !important;
 }
 
+// TODO Nmg ovo, obrise svugde ovajj black sto je narocito vidljivo za light temu gde je recimo markdown <pre> ili Upgrade btn pa onaj krug ovo svg-a
+/* .bg-black {
+    background-color: var(--c-surface-1) !important;
+} */
+
 /* --------- bg when clicked on rename list item name ---------*/
 /* .bg-token-surface-tertiary {
     background-color: var(--c-surface-3) !important;
