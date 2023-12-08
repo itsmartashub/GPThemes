@@ -55,10 +55,13 @@
         // "Upgrade" link in nav bg
         a span.bg-black {
             border-color: transparent !important;
+            background-color: var(--c-accent) !important;
+            // background-color: var(--c-accent-light) !important;
 
             // SVG icon in "Upgrade" link in nav
             &>svg>path {
-                fill: var(--c-accent-light) !important;
+                // fill: var(--c-accent-light) !important;
+                fill: var(--c-on-accent) !important;
             }
         }
 

@@ -257,11 +257,12 @@ input::placeholder, textarea::placeholder {
 }
 
 .scrollbar-trigger:has(nav[aria-label="Chat history"]) nav a span.bg-black {
+  background-color: var(--c-accent) !important;
   border-color: #0000 !important;
 }
 
 .scrollbar-trigger:has(nav[aria-label="Chat history"]) nav a span.bg-black > svg > path {
-  fill: var(--c-accent-light) !important;
+  fill: var(--c-on-accent) !important;
 }
 
 .scrollbar-trigger:has(nav[aria-label="Chat history"]) nav button[id^="headlessui-menu-button-"] {
