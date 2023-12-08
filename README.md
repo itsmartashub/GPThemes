@@ -10,7 +10,7 @@
 
 <div align="center">
     <div>
-      <img src="https://github.com/itsmartashub/gpthemes/blob/master/gh/gpthemes_dark.png" alt="" width="100%"  />
+      <img src="https://github.com/itsmartashub/gpthemes/blob/master/gh/gpthemes-dark.png" alt="" width="100%"  />
     </div>
 </div>
 
@@ -19,7 +19,7 @@
 <summary><h2> WARNING: Brilliance in progress. Guard your gaze 😎  </summary>
 
 <div align="center">
-  <img src="https://github.com/itsmartashub/gpthemes/blob/master/gh/gpthemes_light.png" alt="" width="100%"  />
+  <img src="https://github.com/itsmartashub/gpthemes/blob/master/gh/gpthemes-light.png" alt="" width="100%"  />
 </div>
 </details>
 </div>
