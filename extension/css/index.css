@@ -14,13 +14,14 @@
   --p-btn: 20px;
   --py-btn: .9rem;
   --px-btn: 1rem;
-  --p-sidebar-nav: 1rem;
+  --p-sidebar-nav: .5rem;
   --py-sidebar-nav-a-new-chat: 2rem;
-  --p-sidebar-nav-a: .9rem;
+  --p-sidebar-nav-a: .6rem;
   --p-dialog: 2rem;
   --mt-chat-txt: .5rem;
   --mb-chat-txt: 1rem;
   --mb-msg: 2rem;
+  --mb-sidebar-nav-li: .2rem;
   --my-pre: 1.5rem;
   --blur-sticky: 20px;
   --blur-modalbg: 8px;
@@ -216,122 +217,105 @@ input::placeholder, textarea::placeholder {
   color: var(--c-btn-danger) !important;
 }
 
-.flex-shrink-0.overflow-x-hidden, .bg-gray-900[data-headlessui-state="open"] {
+.bg-black:has(nav[aria-label="Chat history"]) {
   --surface-primary: var(--c-surface-2) !important;
   color: var(--c-txt) !important;
   background-color: var(--c-bg-sidebar) !important;
 }
 
-.flex-shrink-0.overflow-x-hidden nav a > *, .bg-gray-900[data-headlessui-state="open"] nav a > * {
+.bg-black:has(nav[aria-label="Chat history"]) nav a > * {
   color: var(--c-txt) !important;
 }
 
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav:has([aria-label="Chat history"]) {
+.bg-black:has(nav[aria-label="Chat history"]) div:has( > h3[class*=":bg-black"]) {
+  margin-bottom: .3rem;
+}
+
+.bg-black:has(nav[aria-label="Chat history"]) h3[class*=":bg-black"] {
+  text-transform: uppercase;
+  border-radius: 100vw;
+  font-weight: bold;
+  color: var(--c-accent) !important;
+  background-color: hsl(var(--accent-hsl) / .2) !important;
+  height: auto !important;
+  padding: .5rem 1rem !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+}
+
+nav[aria-label="Chat history"] {
   padding: var(--p-sidebar-nav) !important;
 }
 
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav .bg-black:has(a[href="/"]) {
+nav[aria-label="Chat history"] .bg-black:has(a[href="/"]) {
+  margin-bottom: 2rem;
   background-color: #0000 !important;
 }
 
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav .mt-5 {
-  margin-top: 2.2rem !important;
-}
-
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav a {
+nav[aria-label="Chat history"] a {
   transition: background-color .3s ease-in-out;
   color: var(--c-txt) !important;
-  font-family: var(--f-fm) !important;
   padding: var(--p-sidebar-nav-a) !important;
+  font-family: var(--f-fm) !important;
   border-radius: var(--border-radius-nav-a) !important;
 }
 
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav a[href="/"] {
+nav[aria-label="Chat history"] a[href="/"] {
   border: 2px solid var(--c-surface-2);
   text-transform: uppercase;
   padding: var(--py-sidebar-nav-a-new-chat) !important;
 }
 
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav li .rounded-lg {
-  border-radius: var(--border-radius-nav-a) !important;
-}
-
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav a span.bg-black {
+nav[aria-label="Chat history"] a span.bg-black {
   background-color: var(--c-accent) !important;
   border-color: #0000 !important;
 }
 
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav a span.bg-black > svg > path {
+nav[aria-label="Chat history"] a span.bg-black > svg > path {
   fill: var(--c-on-accent) !important;
 }
 
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav button[id^="headlessui-menu-button-"] {
+nav[aria-label="Chat history"] a button[id^="headlessui-menu-button-"] {
   border-radius: var(--border-radius-nav-a);
   margin-top: 1rem;
 }
 
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav button[id^="headlessui-menu-button-"] .font-semibold {
+nav[aria-label="Chat history"] a button[id^="headlessui-menu-button-"] .font-semibold {
   color: var(--c-txt);
 }
 
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) .bg-gradient-to-l {
+nav[aria-label="Chat history"] li {
+  margin-bottom: var(--mb-sidebar-nav-li) !important;
+}
+
+nav[aria-label="Chat history"] li a[href^="/c/"].bg-token-surface-primary .bg-gradient-to-l {
+  opacity: 1 !important;
+}
+
+nav[aria-label="Chat history"] li a[href^="/c/"] .bg-gradient-to-l {
   --surface-primary: var(--c-surface-2) !important;
   --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position) !important;
   color: var(--c-accent) !important;
+  opacity: 0 !important;
 }
 
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) li .bg-token-surface-primary {
-  --surface-primary: var(--c-surface-2) !important;
-  --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position) !important;
-  color: var(--c-accent) !important;
-}
-
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) li .bg-token-surface-tertiary {
+nav[aria-label="Chat history"] li .bg-token-surface-tertiary {
   padding: var(--p-sidebar-nav-a) !important;
   color: var(--c-txt) !important;
-  background-color: var(--c-surface-3) !important;
+  border-radius: var(--border-radius-nav-a) !important;
+  background-color: hsl(var(--accent-hsl) / .2) !important;
   left: 0 !important;
   right: 0 !important;
 }
 
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) li .bg-gradient-to-l {
-  opacity: 0 !important;
+nav[aria-label="Chat history"] li .bg-token-surface-tertiary input {
+  --tw-ring-color: transparent;
+  caret-color: var(--c-accent);
+  border: none !important;
 }
 
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) li:has(a.bg-token-surface-primary) .bg-gradient-to-l {
-  opacity: 1 !important;
-}
-
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav div:has( > h3) {
-  margin-bottom: .3rem;
-}
-
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) div[data-projection-id]:has( > h3) {
-  margin-bottom: .3rem;
-}
-
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav div h3 {
-  text-transform: uppercase;
-  border-radius: 100vw;
-  font-weight: bold;
-  color: var(--c-accent) !important;
-  background-color: hsl(var(--accent-hsl) / .2) !important;
-  height: auto !important;
-  padding: .5rem 1rem !important;
-  line-height: 1 !important;
-  display: inline-block !important;
-}
-
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) div[data-projection-id] h3 {
-  text-transform: uppercase;
-  border-radius: 100vw;
-  font-weight: bold;
-  color: var(--c-accent) !important;
-  background-color: hsl(var(--accent-hsl) / .2) !important;
-  height: auto !important;
-  padding: .5rem 1rem !important;
-  line-height: 1 !important;
-  display: inline-block !important;
+nav[aria-label="Chat history"] .rounded-lg {
+  border-radius: var(--border-radius-nav-a) !important;
 }
 
 main [role="presentation"] {

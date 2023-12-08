@@ -1,59 +1,75 @@
-/* --------- SIDEBAR DESKTOP ---------*/
-.flex-shrink-0.overflow-x-hidden,
-.bg-gray-900[data-headlessui-state="open"] {
+/* Sidebar bg-color */
+.bg-black:has(nav[aria-label="Chat history"]) {
+    // --surface-primary fix dark/black color for a:hover states
     --surface-primary: var(--c-surface-2) !important;
     color: var(--c-txt) !important;
     background-color: var(--c-bg-sidebar) !important;
 
+    /* Fix white txt on "NEW CHAT" in sidebar for light especially */
     & nav a>* {
         color: var(--c-txt) !important;
     }
+
+    /* Parent of time heading (of Today, Yesterday) in sidebar */
+    div:has(>h3[class*=":bg-black"]) {
+        margin-bottom: .3rem;
+        // border: 2px solid red !important;
+    }
+
+    /* Today, Yesterday - Time heading in sidebar */
+    h3[class*=":bg-black"] {
+        display: inline-block !important;
+        color: var(--c-accent) !important;
+        // background-color: transparent !important;
+        background-color: hsl(var(--accent-hsl) / 0.2) !important;
+        border-radius: 100vw;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: .5rem 1rem !important;
+        height: auto !important;
+        // padding-inline: 1rem !important;
+        line-height: 1 !important;
+    }
 }
 
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) {
+// TODO change bg of sidebar for desktop (nav:has([aria-label="Chat history"])) and for mobile (#headlessui-portal-root [id^="headlessui-dialog-panel-"]) by changing .bg-black
+/* Sidebar root parent for mobile sized */
+/* #headlessui-portal-root {
+    [id^="headlessui-dialog-panel-"] {
+        background-color: var(--c-bg-sidebar);
+    }
+} */
 
-    // --------- SIDEBAR NAV ---------
-    nav {
+/* sidebar for desktop (nav:has([aria-label="Chat history"])) and for mobile (#headlessui-portal-root [id^="headlessui-dialog-panel-"]) by changing .bg-black */
+// #headlessui-portal-root [id^="headlessui-dialog-panel-"][data-headlessui-state],
+// .scrollbar-trigger:has(nav[aria-label="Chat history"]) {
 
-        &:has([aria-label="Chat history"]) {
-            padding: var(--p-sidebar-nav) !important;
-        }
+nav[aria-label="Chat history"] {
+    padding: var(--p-sidebar-nav) !important;
 
-        // ! Strange black rectangle (.bg-black class) over "New Chat" btn when on links: https://chat.openai.com/gpts/discovery and https://chat.openai.com/g/g-UBYTKWkPj
-        .bg-black:has(a[href="/"]) {
-            background-color: transparent !important;
-        }
+    // ! Strange black rectangle (.bg-black class) over "New Chat" btn when on links: https://chat.openai.com/gpts/discovery and https://chat.openai.com/g/g-UBYTKWkPj
+    .bg-black:has(a[href="/"]) {
+        background-color: transparent !important;
+        margin-bottom: 2rem;
+    }
 
-        /* TODO dodati u vars.scss */
-        .mt-5 {
-            margin-top: 2.2rem !important;
-        }
+    a {
+        color: var(--c-txt) !important;
+        padding: var(--p-sidebar-nav-a) !important;
+        font-family: var(--f-fm) !important;
+        border-radius: var(--border-radius-nav-a) !important;
 
-        a {
-            color: var(--c-txt) !important;
-            font-family: var(--f-fm) !important;
-            padding: var(--p-sidebar-nav-a) !important;
-            border-radius: var(--border-radius-nav-a) !important;
+        transition: background-color .3s ease-in-out;
 
-            transition: background-color .3s ease-in-out;
-
-            // "New Chat" link (first in nav in sidebar)
-            &[href="/"] {
-                border: 2px solid var(--c-surface-2);
-                padding: var(--py-sidebar-nav-a-new-chat) !important;
-                text-transform: uppercase;
-            }
-        }
-
-
-
-        // Border-radius for all elements that have .rounded-lg class in <nav> of sidebar. ALi on zezne border-radiusu i contextmenu u bottom sidebar jer u on ima ovu klasu. Zato sad dodajem <li>
-        li .rounded-lg {
-            border-radius: var(--border-radius-nav-a) !important;
+        // "New Chat" link (first in nav in sidebar)
+        &[href="/"] {
+            border: 2px solid var(--c-surface-2);
+            padding: var(--py-sidebar-nav-a-new-chat) !important;
+            text-transform: uppercase;
         }
 
         // "Upgrade" link in nav bg
-        a span.bg-black {
+        span.bg-black {
             border-color: transparent !important;
             background-color: var(--c-accent) !important;
             // background-color: var(--c-accent-light) !important;
@@ -64,7 +80,6 @@
                 fill: var(--c-on-accent) !important;
             }
         }
-
 
         // TODO add better styling to this btn
         /* User profile button in sidebar bottom */
@@ -77,74 +92,104 @@
                 color: var(--c-txt);
             }
         }
-
     }
 
+    li {
+        margin-bottom: var(--mb-sidebar-nav-li) !important;
 
-    // --------- SIDEBAR ACTIVE LINK AND HOVER STATE ---------
-    // --------- SIDEBAR LINK ... BTN BG-GRADIENT ---------
-    .bg-gradient-to-l,
-    li .bg-token-surface-primary {
-        --surface-primary: var(--c-surface-2) !important;
-        --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position) !important;
-        color: var(--c-accent) !important;
-    }
+        a[href^="/c/"] {
 
-    /* za manji window size ovo dole ne radi, ali ne za veci. A ne radi jer ovo valjda ima vecu prenost:
-        .flex-shrink-0.overflow-x-hidden nav a > *, .bg-gray-900[data-headlessui-state="open"] nav a > * {
+            /* 3 dots btn  next to <a> (button or div, depends if 3 dots > Rename clicked or not)*/
+            // &~.absolute {
+            //     // border-radius: var(--border-radius-nav-a) !important;
+            //     // border: 2px solid firebrick !important;
+
+
+            //     // /* Rename input */
+            //     // input {
+            //     //     // input rename border color on focused
+            //     //     --tw-ring-color: transparent;
+            //     //     border: none !important;
+            //     //     height: 100% !important;
+            //     //     // border-color: var(--c-accent);
+            //     //     // background-color: hsl(var(--accent-hsl) / 0.2) !important;   
+            //     //     // border-radius: var(--border-radius-nav-a) !important;
+            //     // }
+            // }
+
+
+
+            /* Selected/active link item */
+            &.bg-token-surface-primary {
+                // overflow: hidden !important;
+                // border-radius: var(--border-radius-nav-a) !important;
+
+                /* 3 dots btn bg-gradient */
+                .bg-gradient-to-l {
+                    opacity: 1 !important;
+                }
+
+            }
+
+            /* 3 dots bg ... btn bg-gradient - <div> u <a> i <div> u <button> */
+            // li .bg-token-surface-primary,
+            .bg-gradient-to-l {
+                --surface-primary: var(--c-surface-2) !important;
+                --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position) !important;
+                color: var(--c-accent) !important;
+                opacity: 0 !important;
+                // border: 2px solid red !important;
+            }
+
+            // /* Gradient */
+            // a[href^="/c/"] .bg-gradient-to-l {
+            //     --tw-gradient-from: var(--c-accent) var(--tw-gradient-from-position);
+            // }
+            // &:hover a[href^="/c/"] .bg-gradient-to-l {
+            //     --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position);
+            // }
+        }
+
+        /* 3 dots > "Rename" clicked - style of input parent and input  - this is <div> next to <a> */
+        .bg-token-surface-tertiary {
+            padding: var(--p-sidebar-nav-a) !important;
             color: var(--c-txt) !important;
-        } 
-    */
-    /* li a.bg-token-surface-primary {
-        color: var(--c-accent) !important;
-    } */
-
-    li .bg-token-surface-tertiary {
-        padding: var(--p-sidebar-nav-a) !important;
-        color: var(--c-txt) !important;
-        background-color: var(--c-surface-3) !important;
-        // border-radius: var(--border-radius-nav-a) !important;
-        left: 0 !important;
-        right: 0 !important;
-        // overflow: hidden !important;
-    }
-
-    // --------- SIDEBAR LINK ... BTN BG-GRADIENT ---------
-    li .bg-gradient-to-l {
-        opacity: 0 !important;
-    }
-
-    li:has(a.bg-token-surface-primary) .bg-gradient-to-l {
-        opacity: 1 !important;
-    }
-
-
-    // --------- SIDEBAR TIME HEADING ---------
-    // nav div is for targeting smaller devices, div[data-projection-id] is for desktop
-    nav div,
-    div[data-projection-id] {
-
-        // Parent of time heading in sidebar
-        &:has(>h3) {
-            // border: 1px solid red !important;
-            margin-bottom: .3rem;
-        }
-
-        h3 {
-            display: inline-block !important;
-            color: var(--c-accent) !important;
-            // background-color: transparent !important;
+            border-radius: var(--border-radius-nav-a) !important;
             background-color: hsl(var(--accent-hsl) / 0.2) !important;
-            border-radius: 100vw;
-            text-transform: uppercase;
-            font-weight: bold;
-            padding: .5rem 1rem !important;
-            height: auto !important;
-            // padding-inline: 1rem !important;
-            line-height: 1 !important;
+            // background-color: var(--c-surface-3) !important;
+
+            /* this make it full width of <li>, from left to right */
+            left: 0 !important;
+            right: 0 !important;
+            // top: 0;
+            // bottom: 0;
+
+            /* Rename input. // ! DO NOT TOUCH PADDING! TXT BEHIND GOIN TO BE VISIBLE. WTF OPENAI??? */
+            input {
+                // input rename border color on focused
+                --tw-ring-color: transparent;
+                caret-color: var(--c-accent);
+                border: none !important;
+                // height: 100% !important;
+                // border-color: var(--c-accent);
+            }
         }
     }
 
-
-
+    // Border-radius for all elements that have .rounded-lg class in <nav> of sidebar. ALi on zezne border-radiusu i contextmenu u bottom sidebar jer u on ima ovu klasu. Zato sad dodajem <li>
+    .rounded-lg {
+        border-radius: var(--border-radius-nav-a) !important;
+    }
 }
+
+
+
+// // ! Strange black rectangle (.bg-black class) over "New Chat" btn when on links: https://chat.openai.com/gpts/discovery and https://chat.openai.com/g/g-UBYTKWkPj
+// nav .sticky.bg-black:has(a[href="/"]) {
+//     background-color: transparent !important;
+// }
+
+/* TODO dodati u vars.scss */
+// .mt-5 {
+//     margin-top: 2.2rem !important;
+// }
