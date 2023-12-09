@@ -594,16 +594,6 @@ main div.flex.w-full.items-center > div {
   color: var(--c-accent) !important;
 }
 
-[role="dialog"] table thead th:first-child {
-  padding-left: var(--px-btn) !important;
-  border-radius: var(--border-radius-btn) 0 0 var(--border-radius-btn) !important;
-}
-
-[role="dialog"] table thead th:last-child {
-  padding-right: var(--px-btn) !important;
-  border-radius: 0 var(--border-radius-btn) var(--border-radius-btn) 0 !important;
-}
-
 div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) > * {
   background-color: var(--c-surface-1);
   padding: var(--p-contextmenu) !important;

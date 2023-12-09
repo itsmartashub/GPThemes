@@ -149,20 +149,8 @@
             }
 
             th {
-                // background-color: var(--c-surface-3) !important;
-                // background-color: transparent !important;
                 text-transform: uppercase !important;
                 color: var(--c-accent) !important;
-
-                &:first-child {
-                    padding-left: var(--px-btn) !important;
-                    border-radius: var(--border-radius-btn) 0 0 var(--border-radius-btn) !important;
-                }
-
-                &:last-child {
-                    padding-right: var(--px-btn) !important;
-                    border-radius: 0 var(--border-radius-btn) var(--border-radius-btn) 0 !important;
-                }
             }
         }
     }
