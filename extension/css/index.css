@@ -362,6 +362,7 @@ main [data-testid^="conversation-turn-"] {
 main [data-testid^="conversation-turn-"] .group {
   padding: calc(var(--p-msg) * 1.3) var(--p-msg) var(--p-msg) var(--p-msg) !important;
   border-radius: var(--border-radius-msg) !important;
+  line-height: 1.8 !important;
 }
 
 main [data-testid^="conversation-turn-"] .group div[class*="lg:w-[calc(100%-115px)]"] {
@@ -410,7 +411,7 @@ main [data-testid^="conversation-turn-"]:has([data-message-author-role="user"]) 
   background-color: var(--c-bg-msg-user);
 }
 
-main [data-testid^="conversation-turn-"]:has([data-message-author-role="user"]) .font-semibold.select-none {
+main [data-testid^="conversation-turn-"]:has([data-message-author-role="user"]) .group .font-semibold.select-none {
   color: var(--c-msg-name-user);
 }
 

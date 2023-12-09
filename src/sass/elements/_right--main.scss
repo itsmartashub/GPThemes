@@ -25,6 +25,7 @@ main [data-testid^="conversation-turn-"] {
         // padding: var(--p-msg) !important;
         padding: calc(var(--p-msg) * 1.3) var(--p-msg) var(--p-msg) var(--p-msg) !important;
         border-radius: var(--border-radius-msg) !important;
+        line-height: 1.8 !important;
 
         /*  TODO gap: 0.75rem + width: 1.5rem = 2.25rem toliko treba da bude padding-right/margin-right i dodati flex-grow: 1;
                 ovome: relative flex w-full flex-col lg:w-[calc(100%-115px)] agent-turn 
@@ -90,17 +91,15 @@ main [data-testid^="conversation-turn-"] {
         // === RIGHT - CHATS BUBBLE BG ===
         .group {
             background-color: var(--c-bg-msg-user);
+
+            /* === User/ChatGPT name === */
+            .font-semibold.select-none {
+                color: var(--c-msg-name-user);
+            }
         }
 
-        // === RIGHT - CHATS BUBBLES - ACC NAMES - USER ===
-        .font-semibold.select-none {
-            color: var(--c-msg-name-user);
-        }
 
-        // === RIGHT - CHATS BUBBLEs - USER SVG ===
-        // button svg>path {
-        //     fill: var(--c-msg-name-user);
-        // }
+        /*  Chat bubble footer SVG icons */
         button svg {
             // fill: var(--c-msg-name-gpt);
             color: var(--c-msg-name-user);
