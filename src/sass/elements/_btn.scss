@@ -65,10 +65,10 @@ main [role="presentation"] button.absolute.rounded-full svg {
 //     background-color: var(--c-surface-3) !important;
 // }
 
-/* === Settings > Chat history & Training. Switch btn (un)checked bg === */
-button[aria-label="Chat history & training"] {
+/* Checkbox button - switcher. In "Chat history & training: and "Custom instructions" */
+button[role="switch"] {
 
-    /* Settings > Chat history & Training ON chb */
+    /* Checkbox ON */
     &:has([data-state="checked"]) {
         background-color: var(--c-accent) !important;
 
@@ -78,7 +78,7 @@ button[aria-label="Chat history & training"] {
         }
     }
 
-    /* Settings > Chat history & Training OFF chb */
+    /* Checkbox OFF */
     &:has([data-state="unchecked"]) {
         background-color: var(--c-surface-3) !important;
 
