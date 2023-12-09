@@ -436,6 +436,14 @@ main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistan
   color: var(--avatar-color);
 }
 
+main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"]) .markdown a {
+  color: var(--avatar-color) !important;
+}
+
+main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"]) .markdown a:hover {
+  text-decoration-line: underline;
+}
+
 main [data-testid^="conversation-turn-"] pre {
   border-radius: var(--border-radius-pre) !important;
   margin: var(--my-pre) auto !important;

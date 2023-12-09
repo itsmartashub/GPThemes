@@ -42,7 +42,7 @@ main [data-testid^="conversation-turn-"] {
             // border: 2px solid red !important;    
         }
 
-        /* "Was this response better or worse?" el when clicked on regenerate answer btn  */
+        /* ""Was this response better or worse? 👍👎" el when clicked on regenerate answer btn  */
         .bg-gray-100,
         [class*=":bg-gray-700"] {
             background-color: transparent !important;
@@ -50,11 +50,13 @@ main [data-testid^="conversation-turn-"] {
             border: 1px solid var(--c-border);
             border-radius: var(--border-radius-contextmenu);
 
+            /* 👍👎 */
             button[title] {
                 border-radius: var(--border-radius-btn) !important;
                 border: 1px solid transparent;
                 transition: transform 0.2s ease-in-out;
 
+                /* Better, Worse, Same */
                 span {
                     color: var(--c-subtext-2) !important;
                 }
@@ -127,6 +129,15 @@ main [data-testid^="conversation-turn-"] {
         button svg {
             // fill: var(--c-msg-name-gpt);
             color: var(--avatar-color);
+        }
+
+        /* Links rendered in gpt answers */
+        .markdown a {
+            color: var(--avatar-color) !important;
+
+            &:hover {
+                text-decoration-line: underline;
+            }
         }
     }
 
