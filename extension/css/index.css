@@ -377,8 +377,8 @@ main [data-testid^="conversation-turn-"]:has([data-message-author-role="user"]) 
   color: var(--c-msg-name-user);
 }
 
-main [data-testid^="conversation-turn-"]:has([data-message-author-role="user"]) button svg > path {
-  fill: var(--c-msg-name-user);
+main [data-testid^="conversation-turn-"]:has([data-message-author-role="user"]) button svg {
+  color: var(--c-msg-name-user);
 }
 
 main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"]) .group {
@@ -389,8 +389,8 @@ main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistan
   color: var(--avatar-color);
 }
 
-main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"]) button svg > path {
-  fill: var(--avatar-color);
+main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"]) button svg {
+  color: var(--avatar-color);
 }
 
 main [data-testid^="conversation-turn-"] pre {

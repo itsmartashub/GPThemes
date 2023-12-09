@@ -59,17 +59,22 @@ nav[aria-label="Chat history"] {
             text-transform: uppercase;
         }
 
-        // "Upgrade" link in nav bg
+        /* "Upgrade" link in nav bg */
         span.bg-black {
             border-color: transparent !important;
             background-color: var(--c-accent) !important;
             // background-color: var(--c-accent-light) !important;
 
-            // SVG icon in "Upgrade" link in nav
-            &>svg>path {
+            /* SVG icon in "Upgrade" link in nav */
+            &>svg {
                 // fill: var(--c-accent-light) !important;
-                fill: var(--c-on-accent) !important;
+                color: var(--c-on-accent) !important;
             }
+
+            // &>svg>path {
+            //     // fill: var(--c-accent-light) !important;
+            //     fill: var(--c-on-accent) !important;
+            // }
         }
     }
 

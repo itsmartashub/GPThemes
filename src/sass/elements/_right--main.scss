@@ -67,29 +67,37 @@ main [data-testid^="conversation-turn-"] {
         }
 
         // === RIGHT - CHATS BUBBLEs - USER SVG ===
-        button svg>path {
-            fill: var(--c-msg-name-user);
+        // button svg>path {
+        //     fill: var(--c-msg-name-user);
+        // }
+        button svg {
+            // fill: var(--c-msg-name-gpt);
+            color: var(--c-msg-name-user);
         }
     }
 
     /* @ === RIGHT - CHATS BUBBLES - GPT ===*/
     &:has([data-message-author-role="assistant"]) {
 
-        // === RIGHT - CHATS BUBBLE BG ===
+        /*  === RIGHT - CHATS BUBBLE BG === */
         .group {
             background-color: var(--c-bg-msg-gpt);
         }
 
-        // === RIGHT - CHATS BUBBLES - ACC NAMES - USER ===
+        /* === RIGHT - CHATS BUBBLES - ACC NAMES - USER === */
         .font-semibold.select-none {
             // color: var(--c-msg-name-gpt);
             color: var(--avatar-color);
         }
 
-        // === RIGHT - CHATS BUBBLEs - USER SVG ===
-        button svg>path {
+        /*   === RIGHT - CHATS BUBBLEs - USER SVG === */
+        // button svg>path {
+        //     // fill: var(--c-msg-name-gpt);
+        //     fill: var(--avatar-color);
+        // }
+        button svg {
             // fill: var(--c-msg-name-gpt);
-            fill: var(--avatar-color);
+            color: var(--avatar-color);
         }
     }
 
@@ -103,12 +111,12 @@ main [data-testid^="conversation-turn-"] {
         }
 
 
-        // === RIGHT - <pre> - header ===
+        /*  === RIGHT - <pre> - header === */
         .bg-black>div:has(> span) {
             background-color: var(--c-bg-pre-header) !important;
 
             // Code name in markdown header (html, php, css, etc)
-            >span {
+            &>span {
                 color: var(--c-accent-light) !important;
             }
 
@@ -120,9 +128,13 @@ main [data-testid^="conversation-turn-"] {
                 border-radius: 10px;
 
                 // SVG icons before 'Copy code' btn in md
-                svg>path {
-                    fill: var(--c-accent-light) !important;
+                svg {
+                    color: var(--c-accent-light) !important;
                 }
+
+                // svg>path {
+                //     fill: var(--c-accent-light) !important;
+                // }
             }
         }
     }
