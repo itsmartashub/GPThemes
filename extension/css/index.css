@@ -7,10 +7,12 @@
   --border-radius-dialog: 2.5rem;
   --border-radius-contextmenu: 20px;
   --border-radius-pre: 20px;
+  --border-radius-tooltips: 1rem;
   --p-contextmenu: 10px;
   --p-contextmenu-item: .9rem 1rem;
   --p-msg: 20px;
   --p-textarea: 10px;
+  --p-tooltips: 8px;
   --p-btn: 20px;
   --py-btn: .9rem;
   --px-btn: 1rem;
@@ -779,8 +781,8 @@ html.dark div[data-radix-popper-content-wrapper]:has([role="tooltip"]) span {
 }
 
 div[data-radix-popper-content-wrapper]:has([role="tooltip"]) > * {
-  border-radius: var(--border-radius-contextmenu) !important;
-  padding: var(--p-contextmenu-item) !important;
+  border-radius: var(--border-radius-tooltips) !important;
+  padding: var(--p-tooltips) !important;
 }
 
 div[data-radix-popper-content-wrapper]:has([role="tooltip"]) div {
