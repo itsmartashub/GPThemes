@@ -485,10 +485,10 @@ main div.flex.w-full.items-center > div {
 }
 
 [role="dialog"] {
-  border-radius: var(--border-radius-dialog);
   box-shadow: var(--box-shadow);
   padding: var(--p-dialog) !important;
   background-color: var(--c-bg-dialog) !important;
+  border-radius: var(--border-radius-dialog) !important;
 }
 
 [role="dialog"] .border-token-border-light, [role="dialog"] .border-white, [role="dialog"] .border-black {
