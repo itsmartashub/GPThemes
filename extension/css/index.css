@@ -197,14 +197,6 @@ html.light [class*=":border-white/10"] {
   display: none !important;
 }
 
-.markdown a {
-  color: var(--c-accent) !important;
-}
-
-.markdown a:hover {
-  text-decoration: underline !important;
-}
-
 [role="menu"] {
   transition: all .3s ease-in-out;
   background-color: var(--c-surface-3) !important;
@@ -516,7 +508,11 @@ main .sticky [aria-haspopup="menu"]:hover, main .sticky [aria-haspopup="menu"][d
   background-color: var(--c-surface-1) !important;
 }
 
-main .sticky button svg.icon-md {
+main .sticky .btn {
+  border-radius: 100vw !important;
+}
+
+main .sticky .btn svg.icon-md {
   color: var(--c-on-accent) !important;
 }
 

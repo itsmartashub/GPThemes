@@ -103,17 +103,6 @@ html.light [class*=":border-white/10"] {
     display: none !important;
 }
 
-/* Links in markdown */
-.markdown a {
-    color: var(--c-accent) !important;
-
-    &:hover {
-        text-decoration: underline !important;
-    }
-}
-
-
-
 /* .markdown {
     [type="checkbox"]:checked {
         background-color: var(--c-accent);
