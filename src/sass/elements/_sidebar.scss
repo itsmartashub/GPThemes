@@ -10,6 +10,18 @@
         color: var(--c-txt) !important;
     }
 
+    /* CLEAR CHATS div - Visible when unchecked "Chat learning & Training" in Settings */
+    .absolute.left-0.top-0.overflow-hidden {
+        background-color: var(--c-bg-sidebar) !important;
+        overflow-y: scroll;
+
+        min-height: 50vh !important;
+
+        .bg-gradient-to-t {
+            opacity: 0;
+        }
+    }
+
 }
 
 
@@ -19,7 +31,7 @@ nav[aria-label="Chat history"] {
 
     // ! Strange black rectangle (.bg-black class) over "New Chat" btn when on links: https://chat.openai.com/gpts/discovery and https://chat.openai.com/g/g-UBYTKWkPj
     .sticky.bg-black:has(a[href="/"]) {
-        background-color: transparent !important;
+        background-color: var(--c-bg-sidebar);
         margin-bottom: 1rem;
     }
 

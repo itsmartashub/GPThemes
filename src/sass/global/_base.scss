@@ -53,24 +53,19 @@ textarea::placeholder {
 
 /* === BG COLORS */
 /* Textarea msg bg, Chat history & Training checkbox bullet */
-// .bg-gray-900,
+.bg-gray-900,
 .bg-white {
-    // background-color: var(--c-surface-1) !important;
+    background-color: var(--c-surface-1) !important;
     // background-color: var(--c-surface-2) !important;
     // background-color: red !important;
 }
+
 
 // TODO Nmg ovo, obrise svugde ovajj black sto je narocito vidljivo za light temu gde je recimo markdown <pre> ili Upgrade btn pa onaj krug ovo svg-a
 // .bg-black,
 // [class*=":bg-black"] {
 //     background-color: var(--c-surface-1) !important;
 // }
-
-// .bg-white,
-// .bg-gray-100 {
-//     background-color: var(--c-txt) !important;
-// }
-
 
 /* === BORDER COLORS */
 .border-gray-100 {

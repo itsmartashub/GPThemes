@@ -173,6 +173,10 @@ input::placeholder, textarea::placeholder {
   color: var(--c-btn-danger) !important;
 }
 
+.bg-gray-900, .bg-white {
+  background-color: var(--c-surface-1) !important;
+}
+
 .border-gray-100 {
   border-color: var(--c-surface-1) !important;
 }
@@ -239,13 +243,23 @@ html.light [class*=":border-white/10"] {
   color: var(--c-txt) !important;
 }
 
+.bg-black:has(nav[aria-label="Chat history"]) .absolute.left-0.top-0.overflow-hidden {
+  overflow-y: scroll;
+  background-color: var(--c-bg-sidebar) !important;
+  min-height: 50vh !important;
+}
+
+.bg-black:has(nav[aria-label="Chat history"]) .absolute.left-0.top-0.overflow-hidden .bg-gradient-to-t {
+  opacity: 0;
+}
+
 nav[aria-label="Chat history"] {
   padding: var(--p-sidebar-nav) !important;
 }
 
 nav[aria-label="Chat history"] .sticky.bg-black:has(a[href="/"]) {
+  background-color: var(--c-bg-sidebar);
   margin-bottom: 1rem;
-  background-color: #0000 !important;
 }
 
 nav[aria-label="Chat history"] div:has( > h3[class*=":bg-black"]) {
@@ -468,9 +482,9 @@ main .sticky button svg.icon-md {
 }
 
 main form .overflow-hidden:has(textarea#prompt-textarea) {
-  background-color: var(--c-bg-textarea);
   border: 3px solid var(--c-border-textarea);
   padding: var(--p-textarea) !important;
+  background-color: var(--c-bg-textarea) !important;
   border-radius: var(--border-radius-msg) !important;
 }
 
