@@ -162,11 +162,6 @@ input::placeholder, textarea::placeholder {
   color: var(--c-subtext-1) !important;
 }
 
-.bg-token-surface-primary {
-  --surface-primary: red !important;
-  --surface-primary: var(--c-surface-1) !important;
-}
-
 .bg-gray-900, .bg-white {
   background-color: var(--c-surface-1) !important;
 }

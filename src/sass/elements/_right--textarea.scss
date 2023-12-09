@@ -21,27 +21,18 @@ main form .overflow-hidden:has(textarea#prompt-textarea) {
             opacity: .5 !important;
         }
 
-        // &:not([disabled]) {
-        //     opacity: 1;
-        // }
-
-        /* svg[class*="text-white"] {
-            color: var(--c-on-accent) !important;
-        } */
         svg {
             color: var(--c-on-accent) !important;
         }
-
-
     }
 }
 
-/* --------- RIGHT - TEXTAREA part wrapper, margin-top ---------*/
+/* === RIGHT - TEXTAREA part wrapper, margin-top ===*/
 main div[role="presentation"] div.w-full:has(form) {
     margin-top: .5rem !important;
 }
 
-/* --------- RIGHT - TEXTAREA PARENT ---------*/
+/* === RIGHT - TEXTAREA PARENT ===*/
 main div.flex.w-full.items-center>div {
     box-shadow: none;
     border: none;

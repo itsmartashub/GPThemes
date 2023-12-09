@@ -40,10 +40,10 @@ textarea::placeholder {
     - Ugly bg behind ✔️ "Upgrade your plan" dialog list. But also <thead><th>in <table>(Shared Links) .bg-token-surface-primary 
     Black bg on content txt: "YOU'RE INVITED TO PLUS" pop-up
 */
-.bg-token-surface-primary {
-    --surface-primary: red !important;
-    --surface-primary: var(--c-surface-1) !important;
-}
+// .bg-token-surface-primary {
+//     --surface-primary: red !important;
+//     --surface-primary: var(--c-surface-1) !important;
+// }
 
 
 /* === BG COLORS */
