@@ -62,6 +62,7 @@ html.light {
   --c-svg-accent: #f2f2f2;
   --c-bg-modalbg: hsla(var(--txt-hsl) / .2);
   --c-bg-dialog: var(--c-surface-2);
+  --c-bg-contextmenu: var(--c-surface-3);
   --c-bg-tooltip: var(--c-accent-light);
   --c-msg-name-user: var(--c-accent);
   --c-border: hsla(var(--txt-hsl) / .05);
@@ -119,6 +120,7 @@ html.dark {
   --c-svg-accent: #f2f2f2;
   --c-bg-modalbg: hsla(var(--accent-hsl) / .2);
   --c-bg-dialog: var(--c-surface-2);
+  --c-bg-contextmenu: var(--c-surface-3);
   --c-bg-tooltip: var(--c-accent-light);
   --c-msg-name-user: var(--c-accent);
   --c-border: var(--c-surface-3);
@@ -169,10 +171,6 @@ input::placeholder, textarea::placeholder {
 
 .text-red-500 {
   color: var(--c-btn-danger) !important;
-}
-
-.bg-gray-900, .bg-white {
-  background-color: var(--c-surface-1) !important;
 }
 
 .border-gray-100 {
@@ -546,8 +544,17 @@ main div.flex.w-full.items-center > div {
   margin-top: 1rem;
 }
 
+[role="dialog"] .bg-token-surface-primary {
+  --surface-primary: transparent !important;
+}
+
 [role="dialog"]:has(a[href="https://openai.com/enterprise"]) {
-  background-color: #0000 !important;
+  width: max-content;
+  padding: 0 !important;
+}
+
+:is([role="dialog"]:has(a[href="https://openai.com/enterprise"]) .bg-white, [role="dialog"]:has(a[href="https://openai.com/enterprise"]) .bg-gray-900) {
+  background-color: var(--c-surface-2) !important;
 }
 
 [role="dialog"]:has(a[href="https://openai.com/enterprise"]) .rounded-md {
@@ -627,8 +634,8 @@ main div.flex.w-full.items-center > div {
   color: var(--c-accent) !important;
 }
 
-div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) > * {
-  background-color: var(--c-surface-1);
+div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) .bg-white {
+  background-color: var(--c-bg-contextmenu) !important;
   padding: var(--p-contextmenu) !important;
   border-radius: var(--border-radius-contextmenu) !important;
   box-shadow: var(--box-shadow-contextmenu) !important;
@@ -636,6 +643,7 @@ div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper
 
 div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) [data-radix-collection-item] {
   border-radius: var(--border-radius-btn);
+  margin-bottom: 4px;
   padding: var(--p-contextmenu-item) !important;
   height: auto !important;
 }
@@ -711,6 +719,11 @@ html.light div[data-radix-popper-content-wrapper]:has([role="tooltip"]) span {
 
 html.dark div[data-radix-popper-content-wrapper]:has([role="tooltip"]) span {
   color: var(--c-on-accent) !important;
+}
+
+div[data-radix-popper-content-wrapper]:has([role="tooltip"]) > * {
+  border-radius: var(--border-radius-contextmenu) !important;
+  padding: var(--p-contextmenu-item) !important;
 }
 
 div[data-radix-popper-content-wrapper]:has([role="tooltip"]) div {

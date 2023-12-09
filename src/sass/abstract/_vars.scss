@@ -104,6 +104,7 @@ html.light {
 
     --c-bg-modalbg: hsla(var(--txt-hsl) / 0.2);
     --c-bg-dialog: var(--c-surface-2);
+    --c-bg-contextmenu: var(--c-surface-3);
 
     --c-bg-tooltip: var(--c-accent-light);
 
@@ -212,13 +213,12 @@ html.dark {
     --c-border-textarea: var(--c-surface-2);
     --c-placeholder-textarea: hsl(var(--accent-hsl) / 0.8);
 
-
-
     --c-svg: #4e5066;
     --c-svg-accent: #f2f2f2;
 
     --c-bg-modalbg: hsla(var(--accent-hsl) / 0.2);
     --c-bg-dialog: var(--c-surface-2);
+    --c-bg-contextmenu: var(--c-surface-3);
 
     --c-bg-tooltip: var(--c-accent-light);
 

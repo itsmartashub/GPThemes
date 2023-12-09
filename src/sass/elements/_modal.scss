@@ -52,9 +52,20 @@
         margin-top: 1rem;
     }
 
+    .bg-token-surface-primary {
+        --surface-primary: transparent !important;
+    }
+
     /* MODAL - "Upgrade your plan" only */
     &:has(a[href="https://openai.com/enterprise"]) {
-        background-color: transparent !important;
+        // background-color: transparent !important;
+        width: max-content;
+        padding: 0 !important;
+
+        .bg-white,
+        .bg-gray-900 {
+            background-color: var(--c-surface-2) !important;
+        }
 
         /* Border radius for "Upgrade your plan" dialog */
         .rounded-md {
@@ -162,18 +173,23 @@
 div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) {
     // div[data-radix-popper-content-wrapper] {
 
-    &>* {
-        // ! kad je ovde background-color !important nmg da setujem style za tooltip jer ovo ga overwrituje
-        background-color: var(--c-surface-1);
+    .bg-white {
+        background-color: var(--c-bg-contextmenu) !important;
         padding: var(--p-contextmenu) !important;
         border-radius: var(--border-radius-contextmenu) !important;
         box-shadow: var(--box-shadow-contextmenu) !important;
     }
 
+    // &>* {
+    //     // ! kad je ovde background-color !important nmg da setujem style za tooltip jer ovo ga overwrituje
+    //     // background-color: var(--c-surface-1);
+    // }
+
     [data-radix-collection-item] {
         border-radius: var(--border-radius-btn);
         padding: var(--p-contextmenu-item) !important;
         height: auto !important;
+        margin-bottom: 4px;
     }
 
     /* MODAL - CHOOSE THEME CONTEXT MENU HOVER */

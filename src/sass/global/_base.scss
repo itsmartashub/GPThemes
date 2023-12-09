@@ -52,9 +52,12 @@ textarea::placeholder {
 
 
 /* === BG COLORS */
-.bg-gray-900,
+/* Textarea msg bg, Chat history & Training checkbox bullet */
+// .bg-gray-900,
 .bg-white {
-    background-color: var(--c-surface-1) !important;
+    // background-color: var(--c-surface-1) !important;
+    // background-color: var(--c-surface-2) !important;
+    // background-color: red !important;
 }
 
 // TODO Nmg ovo, obrise svugde ovajj black sto je narocito vidljivo za light temu gde je recimo markdown <pre> ili Upgrade btn pa onaj krug ovo svg-a
