@@ -11,59 +11,77 @@ button {
     --text-primary: var(--c-txt) !important;
 }
 
-
 input::placeholder,
 textarea::placeholder {
     color: var(--c-placeholder) !important;
     opacity: .6 !important;
 }
 
-/* --------- btn scroll down u conversations i kad se stisne na Upgrade ---------*/
-.bg-token-surface-primary {
-    /* --surface-primary: red !important; */
-    // --surface-primary: var(--c-surface-1) !important;
+/* ==== TYPOGRAPHY COLORS */
+[class*="text-gray-"]:not(.text-gray-500),
+[class*="text-white"]:not(.btn-primary .text-white, .bg-green-600) {
+    color: var(--c-txt) !important;
 }
 
+/* .text-gizmo-gray-500 is the footer txt in dialog "YOU'RE INVITED TO PLUS" */
+.text-gizmo-gray-500,
 .text-gray-500 {
-    color: var(--text-tertiary) !important;
+    color: var(--c-subtext-1) !important;
 }
 
+/* Go to end arrow */
+/* [class*=":bg-white/10"] {
+    background-color: var(--c-surface-3) !important;
+    border-color: var(--c-surface-3) !important;
+} */
+
+
+/* ? btn scroll down u conversations i kad se stisne na Upgrade ?*/
+// .bg-token-surface-primary {
+/* --surface-primary: red !important; */
+// --surface-primary: var(--c-surface-1) !important;
+// }
+
+
+/* === BG COLORS */
 .bg-white {
     background-color: var(--c-surface-1) !important;
 }
 
 // TODO Nmg ovo, obrise svugde ovajj black sto je narocito vidljivo za light temu gde je recimo markdown <pre> ili Upgrade btn pa onaj krug ovo svg-a
-/* .bg-black {
+.bg-black,
+[class*=":bg-black"] {
     background-color: var(--c-surface-1) !important;
-} */
-
-/* --------- bg when clicked on rename list item name ---------*/
-/* .bg-token-surface-tertiary {
-    background-color: var(--c-surface-3) !important;
-    padding: inherit !important;
-    border-radius: inherit !important;
-    color: var(--c-txt) !important;
-    left: 0 !important;
-    right: 0 !important;
-} */
-
-.h-px {
-    display: none !important;
 }
 
-.border-gray-100 {
-    border-color: var(--c-surface-1) !important;
-}
+/* Black bg on content txt: "YOU'RE INVITED TO PLUS" pop-up */
+[role="dialog"] {
+    .bg-token-surface-primary {
+        --surface-primary: var(--c-bg-dialog) !important;
+    }
 
-.text-gray-900,
-.text-gray-200 {
-    color: var(--c-txt) !important;
+    /* "Your invite is valid until December X, 2023" in "YOU'RE INVITED TO PLUS" footer */
+    .text-gizmo-gray-500 {
+        text-align: center;
+        margin-top: 1rem;
+    }
 }
 
 // .bg-white,
 // .bg-gray-100 {
 //     background-color: var(--c-txt) !important;
 // }
+
+
+/* === BORDER COLORS */
+.border-gray-100 {
+    border-color: var(--c-surface-1) !important;
+}
+
+
+.h-px {
+    display: none !important;
+}
 
 .markdown a {
     color: var(--c-accent) !important;
@@ -73,18 +91,18 @@ textarea::placeholder {
     text-decoration: underline !important;
 }
 
-/* .rounded-lg, ne moze, ovo je i za Theme btn, i sa contextmenu */
-/* .rounded-md {
-    border-radius: var(--border-radius-msg) !important;
-} */
-
-/* --------- recimo gap izmedju new chat example buttons ---------*/
+/* recimo gap izmedju new chat example buttons*/
 .gap-2 {
     gap: .8rem !important;
 }
 
-/* Go to end arrow */
-[class*=":bg-white/10"] {
-    background-color: var(--c-surface-3) !important;
-    border-color: var(--c-surface-3) !important;
-}
+
+/* .markdown {
+    [type="checkbox"]:checked {
+        background-color: var(--c-accent);
+        --svg: escape('<svg viewBox="0 0 16 16" fill="@{base}" xmlns="http://www.w3.org/2000/svg"><path d="M12.207 4.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L6.5 9.086l4.293-4.293a1 1 0 0 1 1.414 0z"/></svg>'
+        );
+        // background-image: "~url('data:image/svg+xml;charset=utf-8,@{svg}')";
+        background-image: "~url('data:image/svg+xml;charset=utf-8,#{var(--svg)}}')";
+    }
+} */

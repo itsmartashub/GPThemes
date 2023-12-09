@@ -44,6 +44,8 @@ html.light {
   --c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 2), calc(var(--accent-l) * 1.3));
   --c-on-accent: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) * 1.5));
   --c-txt: hsl(var(--txt-hsl));
+  --c-subtext-1: hsla(0, 0%, calc(var(--txt-hsl-l) / 1.5));
+  --c-subtext-2: #666;
   --c-surface-1: hsl(0, 0%, var(--surface-l));
   --c-surface-2: hsl(0, 0%, calc(var(--surface-l) / 1.089));
   --c-surface-3: hsl(0, 0%, calc(var(--surface-l) / 1.18));
@@ -74,8 +76,8 @@ html.light {
   --surface-tertiary: var(--c-bg-msg-gpt) !important;
   --text-primary: var(--c-txt) !important;
   --text-primary: var(--c-txt) !important;
-  --text-secondary: hsla(0, 0%, calc(var(--txt-hsl-l) / 1.5)) !important;
-  --text-tertiary: #666 !important;
+  --text-secondary: var(--c-subtext-1) !important;
+  --text-tertiary: var(--c-subtext-2) !important;
   --gray-300: var(--text-secondary) !important;
   --gray-500: var(--c-txt) !important;
 }
@@ -97,6 +99,7 @@ html.dark {
   --c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 1.3), var(--accent-l));
   --c-on-accent: hsl(var(--accent-h), var(--accent-s), 10%);
   --c-txt: hsl(var(--txt-hsl));
+  --c-subtext-1: var(--c-accent-light);
   --c-surface-1: hsl(var(--accent-h), var(--surface-s), var(--surface-l));
   --c-surface-2: hsl(var(--accent-h), var(--surface-s), calc(var(--surface-l) * 1.5));
   --c-surface-3: hsl(var(--accent-h), var(--surface-s), calc(var(--surface-l) * 2));
@@ -122,12 +125,13 @@ html.dark {
   --c-markdown-a: var(--c-accent);
   --box-shadow: 0px 0px 100px 0px hsla(var(--accent-hsl) / .1);
   --box-shadow-contextmenu: 0px 0px 8px -2px hsla(var(--accent-hsl) / .1);
+  --c-subtext-2: hsl(var(--accent-h) calc(var(--accent-s) / 2) var(--accent-l)) !important;
   --surface-primary: var(--c-surface-1) !important;
   --surface-secondary: transparent !important;
   --surface-tertiary: var(--c-bg-msg-gpt) !important;
   --text-primary: var(--c-txt) !important;
-  --text-secondary: var(--c-accent-light) !important;
-  --text-tertiary: hsl(var(--accent-h) calc(var(--accent-s) / 2) var(--accent-l)) !important;
+  --text-secondary: var(--c-subtext-0) !important;
+  --text-tertiary: var(--c-subtext-1) !important;
   --gray-300: var(--text-secondary) !important;
   --gray-500: var(--c-txt) !important;
 }
@@ -148,24 +152,33 @@ input::placeholder, textarea::placeholder {
   opacity: .6 !important;
 }
 
-.text-gray-500 {
-  color: var(--text-tertiary) !important;
+[class*="text-gray-"]:not(.text-gray-500), [class*="text-white"]:not(.btn-primary .text-white, .bg-green-600) {
+  color: var(--c-txt) !important;
 }
 
-.bg-white {
+.text-gizmo-gray-500, .text-gray-500 {
+  color: var(--c-subtext-1) !important;
+}
+
+.bg-white, .bg-black, [class*=":bg-black"] {
   background-color: var(--c-surface-1) !important;
 }
 
-.h-px {
-  display: none !important;
+[role="dialog"] .bg-token-surface-primary {
+  --surface-primary: var(--c-bg-dialog) !important;
+}
+
+[role="dialog"] .text-gizmo-gray-500 {
+  text-align: center;
+  margin-top: 1rem;
 }
 
 .border-gray-100 {
   border-color: var(--c-surface-1) !important;
 }
 
-.text-gray-900, .text-gray-200 {
-  color: var(--c-txt) !important;
+.h-px {
+  display: none !important;
 }
 
 .markdown a {
@@ -178,11 +191,6 @@ input::placeholder, textarea::placeholder {
 
 .gap-2 {
   gap: .8rem !important;
-}
-
-[class*=":bg-white/10"] {
-  background-color: var(--c-surface-3) !important;
-  border-color: var(--c-surface-3) !important;
 }
 
 [role="menu"] {
@@ -227,11 +235,20 @@ input::placeholder, textarea::placeholder {
   color: var(--c-txt) !important;
 }
 
-.bg-black:has(nav[aria-label="Chat history"]) div:has( > h3[class*=":bg-black"]) {
+nav[aria-label="Chat history"] {
+  padding: var(--p-sidebar-nav) !important;
+}
+
+nav[aria-label="Chat history"] .sticky.bg-black:has(a[href="/"]) {
+  margin-bottom: 1rem;
+  background-color: #0000 !important;
+}
+
+nav[aria-label="Chat history"] div:has( > h3[class*=":bg-black"]) {
   margin-bottom: .3rem;
 }
 
-.bg-black:has(nav[aria-label="Chat history"]) h3[class*=":bg-black"] {
+nav[aria-label="Chat history"] h3[class*=":bg-black"] {
   text-transform: uppercase;
   border-radius: 100vw;
   font-weight: bold;
@@ -241,15 +258,6 @@ input::placeholder, textarea::placeholder {
   padding: .5rem 1rem !important;
   line-height: 1 !important;
   display: inline-block !important;
-}
-
-nav[aria-label="Chat history"] {
-  padding: var(--p-sidebar-nav) !important;
-}
-
-nav[aria-label="Chat history"] .sticky.bg-black:has(a[href="/"]) {
-  margin-bottom: 1rem;
-  background-color: #0000 !important;
 }
 
 nav[aria-label="Chat history"] a {

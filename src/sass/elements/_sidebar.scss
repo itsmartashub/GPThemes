@@ -10,6 +10,19 @@
         color: var(--c-txt) !important;
     }
 
+}
+
+
+
+nav[aria-label="Chat history"] {
+    padding: var(--p-sidebar-nav) !important;
+
+    // ! Strange black rectangle (.bg-black class) over "New Chat" btn when on links: https://chat.openai.com/gpts/discovery and https://chat.openai.com/g/g-UBYTKWkPj
+    .sticky.bg-black:has(a[href="/"]) {
+        background-color: transparent !important;
+        margin-bottom: 1rem;
+    }
+
     /* Parent of time heading (of Today, Yesterday) in sidebar */
     div:has(>h3[class*=":bg-black"]) {
         margin-bottom: .3rem;
@@ -29,16 +42,6 @@
         height: auto !important;
         // padding-inline: 1rem !important;
         line-height: 1 !important;
-    }
-}
-
-nav[aria-label="Chat history"] {
-    padding: var(--p-sidebar-nav) !important;
-
-    // ! Strange black rectangle (.bg-black class) over "New Chat" btn when on links: https://chat.openai.com/gpts/discovery and https://chat.openai.com/g/g-UBYTKWkPj
-    .sticky.bg-black:has(a[href="/"]) {
-        background-color: transparent !important;
-        margin-bottom: 1rem;
     }
 
     a {

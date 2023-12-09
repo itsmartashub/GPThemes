@@ -77,6 +77,8 @@ html.light {
 
     --c-on-accent: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) * 1.5));
     --c-txt: hsl(var(--txt-hsl));
+    --c-subtext-1: hsla(0, 0%, calc(var(--txt-hsl-l) / 1.5));
+    --c-subtext-2: hsl(0, 0%, 40%);
 
 
     --c-surface-1: hsl(0, 0%, var(--surface-l));
@@ -136,11 +138,11 @@ html.light {
     // --text-secondary: hsl(0, 0%, 20%) !important;
     // --text-secondary: hsl(var(--accent-h), calc(var(--accent-s) / 2), calc(var(--accent-l) / 1.5)) !important;
     // --text-secondary: var(--c-accent-light) !important;
-    --text-secondary: hsla(0, 0%, calc(var(--txt-hsl-l) / 1.5)) !important;
+    --text-secondary: var(--c-subtext-1) !important;
 
     /* strelica na dole pored 3.5 u sticky pored ChatGPT 3.5 i kad je nesto focused sa tabom - accessibility - npr Clear u clear all chats i text u contextmenu kad se klikne na ChatGPT 3.5 i text kad odemo u  UPgrade pa ono USD $0/month i USD $20/month */
     // --text-tertiary: hsl(var(--accent-hsl) / .7) !important;
-    --text-tertiary: hsl(0, 0%, 40%) !important;
+    --text-tertiary: var(--c-subtext-2) !important;
 
     --gray-300: var(--text-secondary) !important;
 
@@ -184,6 +186,8 @@ html.dark {
 
     --c-on-accent: hsl(var(--accent-h), var(--accent-s), 10%);
     --c-txt: hsl(var(--txt-hsl));
+    --c-subtext-1: var(--c-accent-light);
+    --c-subtext-2: hsl(var(--accent-h) calc(var(--accent-s) / 2) var(--accent-l)) !important;
 
 
     --c-surface-1: hsl(var(--accent-h), var(--surface-s), var(--surface-l));
@@ -239,11 +243,11 @@ html.dark {
 
     /* txt ispod Upgrade, i txt ispod Chat history & training u settingsu i txt 3.5 u sticky pored ChatGPT 3.5 i kad je recimo focused sa tabom Dark u Themes i text kad se ode na Upgrade pa ono Have an existing plan? See billing help*/
     /* --text-secondary: rgb(13, 222, 37) !important; */
-    --text-secondary: var(--c-accent-light) !important;
+    --text-secondary: var(--c-subtext-0) !important;
 
     /* strelica na dole pored 3.5 u sticky pored ChatGPT 3.5 i kad je nesto focused sa tabom - accessibility - npr Clear u clear all chats i text u contextmenu kad se klikne na ChatGPT 3.5 i text kad odemo u  UPgrade pa ono USD $0/month i USD $20/month */
     /* --text-tertiary: red !important; */
-    --text-tertiary: hsl(var(--accent-h) calc(var(--accent-s) / 2) var(--accent-l)) !important;
+    --text-tertiary: var(--c-subtext-1) !important;
 
     --gray-300: var(--text-secondary) !important;
 
