@@ -285,8 +285,8 @@ nav[aria-label="Chat history"] a span.bg-black {
   border-color: #0000 !important;
 }
 
-nav[aria-label="Chat history"] a span.bg-black > svg > path {
-  fill: var(--c-on-accent) !important;
+nav[aria-label="Chat history"] a span.bg-black > svg {
+  color: var(--c-on-accent) !important;
 }
 
 nav[aria-label="Chat history"] li {
@@ -417,8 +417,8 @@ main [data-testid^="conversation-turn-"] pre .bg-black > div:has( > span) button
   color: var(--c-accent-light) !important;
 }
 
-main [data-testid^="conversation-turn-"] pre .bg-black > div:has( > span) button:has(svg) svg > path {
-  fill: var(--c-accent-light) !important;
+main [data-testid^="conversation-turn-"] pre .bg-black > div:has( > span) button:has(svg) svg {
+  color: var(--c-accent-light) !important;
 }
 
 main form .grow .gap-2 {
@@ -465,8 +465,8 @@ main .sticky [aria-haspopup="menu"]:hover, main .sticky [aria-haspopup="menu"][d
   background-color: var(--c-surface-1) !important;
 }
 
-main .sticky button svg.icon-md > path {
-  fill: var(--c-on-accent) !important;
+main .sticky button svg.icon-md {
+  color: var(--c-on-accent) !important;
 }
 
 main form .overflow-hidden:has(textarea#prompt-textarea) {
@@ -481,10 +481,13 @@ main form .overflow-hidden:has(textarea#prompt-textarea) textarea::placeholder {
 }
 
 main form .overflow-hidden:has(textarea#prompt-textarea) button[data-testid="send-button"] {
-  transform: translate(-20%, -20%);
+  padding: 2px;
   background-color: var(--c-accent) !important;
   color: var(--c-txt) !important;
   border-color: var(--c-accent) !important;
+  border-radius: 100vw !important;
+  bottom: 1.2rem !important;
+  right: 1.3rem !important;
 }
 
 main form .overflow-hidden:has(textarea#prompt-textarea) button[data-testid="send-button"][disabled] {

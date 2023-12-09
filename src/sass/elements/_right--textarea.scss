@@ -14,8 +14,11 @@ main form .overflow-hidden:has(textarea#prompt-textarea) {
         background-color: var(--c-accent) !important;
         color: var(--c-txt) !important;
         border-color: var(--c-accent) !important;
-        transform: translate(-20%, -20%);
-
+        border-radius: 100vw !important;
+        padding: 2px;
+        right: 1.3rem !important;
+        bottom: 1.2rem !important;
+        // transform: translate(-20%, -20%);
 
         &[disabled] {
             opacity: .5 !important;
