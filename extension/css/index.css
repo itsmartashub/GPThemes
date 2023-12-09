@@ -708,12 +708,20 @@ main [role="presentation"] button.absolute.rounded-full svg {
   background-color: var(--c-surface-3) !important;
 }
 
-button:has([data-state="checked"]) {
-  background-color: var(--c-bg-btn) !important;
+button[aria-label="Chat history & training"]:has([data-state="checked"]) {
+  background-color: var(--c-accent) !important;
 }
 
-button:has([data-state="unchecked"]) span {
-  background-color: var(--c-bg-btn) !important;
+button[aria-label="Chat history & training"]:has([data-state="checked"]) span {
+  background-color: var(--c-on-accent) !important;
+}
+
+button[aria-label="Chat history & training"]:has([data-state="unchecked"]) {
+  background-color: var(--c-surface-3) !important;
+}
+
+button[aria-label="Chat history & training"]:has([data-state="unchecked"]) span {
+  background-color: hsla(var(--accent-hsl) / .5) !important;
 }
 
 button[role="combobox"] {
