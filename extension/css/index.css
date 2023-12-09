@@ -422,7 +422,11 @@ main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistan
   background-color: var(--c-bg-msg-gpt);
 }
 
-main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"]) .font-semibold.select-none {
+main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"]) .group svg[role="img"] {
+  color: var(--c-surface-1) !important;
+}
+
+main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"]) .group .font-semibold.select-none {
   color: var(--avatar-color);
 }
 

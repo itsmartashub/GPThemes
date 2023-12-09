@@ -113,21 +113,22 @@ main [data-testid^="conversation-turn-"] {
         /*  === RIGHT - CHATS BUBBLE BG === */
         .group {
             background-color: var(--c-bg-msg-gpt);
+
+            svg[role="img"] {
+                color: var(--c-surface-1) !important;
+            }
+
+            /* === User/ChatGPT name === */
+            .font-semibold.select-none {
+                // color: var(--c-msg-name-gpt);
+                color: var(--avatar-color);
+            }
         }
 
-        /* === RIGHT - CHATS BUBBLES - ACC NAMES - USER === */
-        .font-semibold.select-none {
-            // color: var(--c-msg-name-gpt);
-            color: var(--avatar-color);
-        }
 
-        /*   === RIGHT - CHATS BUBBLEs - USER SVG === */
-        // button svg>path {
-        //     // fill: var(--c-msg-name-gpt);
-        //     fill: var(--avatar-color);
-        // }
+
+        /*  Chat bubble footer SVG icons */
         button svg {
-            // fill: var(--c-msg-name-gpt);
             color: var(--avatar-color);
         }
 
