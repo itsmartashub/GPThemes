@@ -394,10 +394,6 @@ main [data-testid^="conversation-turn-"] pre > .bg-black {
   background-color: var(--c-bg-pre) !important;
 }
 
-main [data-testid^="conversation-turn-"] pre .bg-token-surface-primary {
-  background-color: red;
-}
-
 main [data-testid^="conversation-turn-"] pre .bg-black > div:has( > span) {
   background-color: var(--c-bg-pre-header) !important;
 }
@@ -468,15 +464,14 @@ main form .overflow-hidden:has(textarea#prompt-textarea) button[data-testid="sen
   background-color: var(--c-accent) !important;
   color: var(--c-txt) !important;
   border-color: var(--c-accent) !important;
+}
+
+main form .overflow-hidden:has(textarea#prompt-textarea) button[data-testid="send-button"][disabled] {
   opacity: .5 !important;
 }
 
-main form .overflow-hidden:has(textarea#prompt-textarea) button[data-testid="send-button"] svg[class*="text-white"] {
-  color: var(--c-accent) !important;
-}
-
-main form .overflow-hidden:has(textarea#prompt-textarea) button[data-testid="send-button"]:has([data-state="delayed-open"]) {
-  opacity: 1;
+main form .overflow-hidden:has(textarea#prompt-textarea) button[data-testid="send-button"] svg {
+  color: var(--c-on-accent) !important;
 }
 
 main div[role="presentation"] div.w-full:has(form) {
@@ -637,7 +632,7 @@ div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper
   border: none !important;
 }
 
-button.btn-danger {
+.btn-danger {
   background-color: var(--c-btn-danger) !important;
   color: var(--c-bg-chats-container) !important;
 }

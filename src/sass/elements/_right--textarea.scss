@@ -14,16 +14,25 @@ main form .overflow-hidden:has(textarea#prompt-textarea) {
         background-color: var(--c-accent) !important;
         color: var(--c-txt) !important;
         border-color: var(--c-accent) !important;
-        opacity: .5 !important;
         transform: translate(-20%, -20%);
 
-        svg[class*="text-white"] {
-            color: var(--c-accent) !important;
+
+        &[disabled] {
+            opacity: .5 !important;
         }
 
-        &:has([data-state="delayed-open"]) {
-            opacity: 1;
+        // &:not([disabled]) {
+        //     opacity: 1;
+        // }
+
+        /* svg[class*="text-white"] {
+            color: var(--c-on-accent) !important;
+        } */
+        svg {
+            color: var(--c-on-accent) !important;
         }
+
+
     }
 }
 

@@ -1,9 +1,9 @@
-/* --------- RIGHT - CONVERSATION CONTAINER --------- */
+/* === RIGHT - CONVERSATION CONTAINER === */
 main [role="presentation"] {
     background-color: var(--c-bg-chats-container) !important;
 }
 
-/* ---------RIGHT - Chats - User/Assistend margin-bottom and top. Gap from heading and svg icons ---------*/
+/* ===RIGHT - Chats - User/Assistend margin-bottom and top. Gap from heading and svg icons ===*/
 main [data-message-author-role="user"],
 main [data-message-author-role="assistant"] {
     margin-top: var(--mt-chat-txt) !important;
@@ -17,12 +17,12 @@ main [data-message-author-role="assistant"] {
 
 
 
-/* @ --------- RIGHT - CHATS BUBBLES ---------*/
+/* @ === RIGHT - CHATS BUBBLES ===*/
 main [data-testid^="conversation-turn-"] {
     margin-bottom: var(--mb-msg) !important;
 
 
-    // --------- RIGHT - CHATS BUBBLES DIV ---------
+    // === RIGHT - CHATS BUBBLES DIV ===
     .group {
         // padding: var(--p-msg) !important;
         padding: calc(var(--p-msg) * 1.3) var(--p-msg) var(--p-msg) var(--p-msg) !important;
@@ -46,7 +46,7 @@ main [data-testid^="conversation-turn-"] {
 
     }
 
-    // --------- RIGHT - CHATS USER/GPT NAMES ---------
+    // === RIGHT - CHATS USER/GPT NAMES ===
     .font-semibold.select-none {
         text-transform: uppercase;
     }
@@ -55,49 +55,47 @@ main [data-testid^="conversation-turn-"] {
         color: var(--c-on-accent) !important;
     }
 
-    /* --------- RIGHT - CHATS BUBBLES - USER ---------*/
+    /* @ === RIGHT - CHATS BUBBLES - USER ===*/
     &:has([data-message-author-role="user"]) {
-        // &:nth-child(even) {
 
-        // --------- RIGHT - CHATS BUBBLE BG ---------
+        // === RIGHT - CHATS BUBBLE BG ===
         .group {
             background-color: var(--c-bg-msg-user);
         }
 
-        // --------- RIGHT - CHATS BUBBLES - ACC NAMES - USER ---------
+        // === RIGHT - CHATS BUBBLES - ACC NAMES - USER ===
         .font-semibold.select-none {
             color: var(--c-msg-name-user);
         }
 
-        // --------- RIGHT - CHATS BUBBLEs - USER SVG ---------
+        // === RIGHT - CHATS BUBBLEs - USER SVG ===
         button svg>path {
             fill: var(--c-msg-name-user);
         }
     }
 
-    /* @ --------- RIGHT - CHATS BUBBLES - GPT ---------*/
-    // &:nth-child(odd) {
+    /* @ === RIGHT - CHATS BUBBLES - GPT ===*/
     &:has([data-message-author-role="assistant"]) {
 
-        // --------- RIGHT - CHATS BUBBLE BG ---------
+        // === RIGHT - CHATS BUBBLE BG ===
         .group {
             background-color: var(--c-bg-msg-gpt);
         }
 
-        // --------- RIGHT - CHATS BUBBLES - ACC NAMES - USER ---------
+        // === RIGHT - CHATS BUBBLES - ACC NAMES - USER ===
         .font-semibold.select-none {
             // color: var(--c-msg-name-gpt);
             color: var(--avatar-color);
         }
 
-        // --------- RIGHT - CHATS BUBBLEs - USER SVG ---------
+        // === RIGHT - CHATS BUBBLEs - USER SVG ===
         button svg>path {
             // fill: var(--c-msg-name-gpt);
             fill: var(--avatar-color);
         }
     }
 
-    /* --------- RIGHT - <pre> - MARKDOWN CODE IN CHATS ---------*/
+    /* === RIGHT - <pre> - MARKDOWN CODE IN CHATS ===*/
     pre {
         border-radius: var(--border-radius-pre) !important;
         margin: var(--my-pre) auto !important;
@@ -106,12 +104,8 @@ main [data-testid^="conversation-turn-"] {
             background-color: var(--c-bg-pre) !important;
         }
 
-        .bg-token-surface-primary {
-            background-color: red;
-        }
 
-
-        // --------- RIGHT - <pre> - header ---------
+        // === RIGHT - <pre> - header ===
         .bg-black>div:has(> span) {
             background-color: var(--c-bg-pre-header) !important;
 
@@ -133,42 +127,5 @@ main [data-testid^="conversation-turn-"] {
                 }
             }
         }
-
     }
 }
-
-
-/* --------- RIGHT - <pre> - MARKDOWN CODE IN CHATS ---------*/
-// main [data-testid^="conversation-turn-"] pre {
-//     border-radius: var(--border-radius-pre) !important;
-//     margin: var(--my-pre) auto !important;
-
-//     // --------- RIGHT - <pre> - header ---------
-//     .bg-black>div {
-//         background-color: var(--c-pre-header) !important;
-//     }
-
-//     // --------- RIGHT - <pre> - COPY BTN ---------
-//     button {
-//         background-color: var(--c-bg-pre-header-btn);
-//         padding: var(--py-btn) var(--px-btn);
-//         border-radius: 10px;
-//     }
-// }
-
-/* --------- RIGHT - <pre> - header ---------*/
-// main [data-testid^="conversation-turn-"] pre .bg-black>div {
-//     background-color: var(--c-pre-header) !important;
-// }
-
-/* --------- RIGHT - <pre> - COPY BTN ---------*/
-// main [data-testid^="conversation-turn-"] pre button {
-//     background-color: var(--c-bg-pre-header-btn);
-//     padding: var(--py-btn) var(--px-btn);
-//     border-radius: 10px;
-// }
-
-/* --------- RIGHT - <pre> - COPY BTN HOVER STATE ---------*/
-// main [data-testid^="conversation-turn-"] pre button:hover {
-//     color: var(-c-msg-name-gpt) !important;
-// }
