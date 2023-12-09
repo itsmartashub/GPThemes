@@ -18,7 +18,7 @@ textarea::placeholder {
 }
 
 /* ==== TYPOGRAPHY COLORS */
-[class*="text-gray-"]:not(.text-gray-500),
+[class*="text-gray-"]:not(.text-gray-500, .text-gray-400),
 [class*="text-white"]:not(.btn-primary .text-white, .bg-green-600) {
     color: var(--c-txt) !important;
 }
@@ -27,6 +27,12 @@ textarea::placeholder {
 .text-gizmo-gray-500,
 .text-gray-500 {
     color: var(--c-subtext-1) !important;
+}
+
+/* Is this conversation helpful so far? 👍👎 */
+.text-gray-400 {
+    color: var(--c-subtext-2) !important;
+    // color: red !important;
 }
 
 /* Log out, Delete all conversations, Delete chat */

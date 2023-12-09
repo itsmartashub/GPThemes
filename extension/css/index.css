@@ -161,12 +161,16 @@ input::placeholder, textarea::placeholder {
   opacity: .6 !important;
 }
 
-[class*="text-gray-"]:not(.text-gray-500), [class*="text-white"]:not(.btn-primary .text-white, .bg-green-600) {
+[class*="text-gray-"]:not(.text-gray-500, .text-gray-400), [class*="text-white"]:not(.btn-primary .text-white, .bg-green-600) {
   color: var(--c-txt) !important;
 }
 
 .text-gizmo-gray-500, .text-gray-500 {
   color: var(--c-subtext-1) !important;
+}
+
+.text-gray-400 {
+  color: var(--c-subtext-2) !important;
 }
 
 .text-red-500 {
