@@ -377,6 +377,33 @@ main [data-testid^="conversation-turn-"] .group div[class*="lg:w-[calc(100%-115p
   flex-grow: 1 !important;
 }
 
+main [data-testid^="conversation-turn-"] .group .bg-gray-100, main [data-testid^="conversation-turn-"] .group [class*=":bg-gray-700"] {
+  border: 1px solid var(--c-border);
+  border-radius: var(--border-radius-contextmenu);
+  color: var(--c-subtext-2) !important;
+  background-color: #0000 !important;
+}
+
+main [data-testid^="conversation-turn-"] .group .bg-gray-100 button[title], main [data-testid^="conversation-turn-"] .group [class*=":bg-gray-700"] button[title] {
+  border: 1px solid #0000;
+  transition: transform .2s ease-in-out;
+  border-radius: var(--border-radius-btn) !important;
+}
+
+main [data-testid^="conversation-turn-"] .group .bg-gray-100 button[title] span, main [data-testid^="conversation-turn-"] .group [class*=":bg-gray-700"] button[title] span {
+  color: var(--c-subtext-2) !important;
+}
+
+main [data-testid^="conversation-turn-"] .group .bg-gray-100 button[title]:hover, main [data-testid^="conversation-turn-"] .group [class*=":bg-gray-700"] button[title]:hover {
+  transform: translateY(-4%);
+  border-color: var(--c-border) !important;
+  background-color: #0000 !important;
+}
+
+main [data-testid^="conversation-turn-"] .group .bg-gray-100 button[title]:hover span, main [data-testid^="conversation-turn-"] .group [class*=":bg-gray-700"] button[title]:hover span {
+  color: var(--avatar-color) !important;
+}
+
 main [data-testid^="conversation-turn-"] .font-semibold.select-none {
   text-transform: uppercase;
 }

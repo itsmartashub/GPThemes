@@ -42,6 +42,35 @@ main [data-testid^="conversation-turn-"] {
             // border: 2px solid red !important;    
         }
 
+        /* "Was this response better or worse?" el when clicked on regenerate answer btn  */
+        .bg-gray-100,
+        [class*=":bg-gray-700"] {
+            background-color: transparent !important;
+            color: var(--c-subtext-2) !important;
+            border: 1px solid var(--c-border);
+            border-radius: var(--border-radius-contextmenu);
+
+            button[title] {
+                border-radius: var(--border-radius-btn) !important;
+                border: 1px solid transparent;
+                transition: transform 0.2s ease-in-out;
+
+                span {
+                    color: var(--c-subtext-2) !important;
+                }
+
+                &:hover {
+                    background-color: transparent !important;
+                    border-color: var(--c-border) !important;
+                    transform: translateY(-4%);
+
+                    span {
+                        color: var(--avatar-color) !important;
+                    }
+                }
+            }
+        }
+
     }
 
     // === RIGHT - CHATS USER/GPT NAMES ===

@@ -62,10 +62,21 @@ textarea::placeholder {
 .bg-gray-900,
 .bg-white {
     background-color: var(--c-surface-1) !important;
-    // background-color: var(--c-surface-2) !important;
-    // background-color: red !important;
 }
 
+/* Like icon in "Provide aditional feedback" dialog when clicked liked answer */
+// .bg-green-100 {}
+
+
+/* 
+ - "Was this response better or worse?" el when clicked on regenerate answer btn 
+ - "Delete all shared links" in "Shared liks" dialog
+ - line | between "s this conversation helpful so far? 👍👎" and "x"
+*/
+// .bg-gray-100,
+// [class*=":bg-gray-700"] {
+//     background-color: red !important;
+// }
 
 // TODO Nmg ovo, obrise svugde ovajj black sto je narocito vidljivo za light temu gde je recimo markdown <pre> ili Upgrade btn pa onaj krug ovo svg-a
 // .bg-black,
