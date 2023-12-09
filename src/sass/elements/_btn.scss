@@ -55,3 +55,13 @@ button[role="combobox"],
 button[role="combobox"]:hover {
     background-color: var(--surface-tertiary) !important;
 }
+
+/* Send button */
+/* [data-testid="send-button"][class*="bg-gray-900"] {
+    background-color: var(--c-base) !important;
+    border-color: var(--overlay0);
+
+    svg[class*="text-white"] {  
+        color: var(--c-accent) !important;
+    }
+} */

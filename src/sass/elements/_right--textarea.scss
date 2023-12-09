@@ -1,4 +1,4 @@
-/* --------- RIGHT - TEXTAREA ---------*/
+/* ===  RIGHT - TEXTAREA */
 main form .overflow-hidden:has(textarea#prompt-textarea) {
     padding: var(--p-textarea) !important;
     background-color: var(--c-bg-textarea);
@@ -9,12 +9,17 @@ main form .overflow-hidden:has(textarea#prompt-textarea) {
         color: var(--c-placeholder-textarea) !important;
     }
 
+    /* Send button */
     button[data-testid="send-button"] {
         background-color: var(--c-accent) !important;
         color: var(--c-txt) !important;
         border-color: var(--c-accent) !important;
         opacity: .5 !important;
         transform: translate(-20%, -20%);
+
+        svg[class*="text-white"] {
+            color: var(--c-accent) !important;
+        }
 
         &:has([data-state="delayed-open"]) {
             opacity: 1;

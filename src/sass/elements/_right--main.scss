@@ -102,9 +102,18 @@ main [data-testid^="conversation-turn-"] {
         border-radius: var(--border-radius-pre) !important;
         margin: var(--my-pre) auto !important;
 
+        &>.bg-black {
+            background-color: var(--c-bg-pre) !important;
+        }
+
+        .bg-token-surface-primary {
+            background-color: red;
+        }
+
+
         // --------- RIGHT - <pre> - header ---------
         .bg-black>div:has(> span) {
-            background-color: var(--c-pre-header) !important;
+            background-color: var(--c-bg-pre-header) !important;
 
             // Code name in markdown header (html, php, css, etc)
             >span {

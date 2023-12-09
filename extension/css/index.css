@@ -66,7 +66,8 @@ html.light {
   --c-btn: var(--c-on-accent);
   --c-btn-danger: #d0353f;
   --c-bg-btn: var(--c-accent);
-  --c-pre-header: transparent;
+  --c-bg-pre: #000;
+  --c-bg-pre-header: transparent;
   --c-bg-pre-header-btn: #ffffff1a;
   --c-markdown-a: var(--c-accent);
   --box-shadow: 0px 0px 100px 0px hsla(var(--accent-hsl) / .1);
@@ -120,7 +121,8 @@ html.dark {
   --c-btn: var(--c-on-accent);
   --c-btn-danger: #f19399;
   --c-bg-btn: var(--c-accent);
-  --c-pre-header: transparent;
+  --c-bg-pre: #000;
+  --c-bg-pre-header: transparent;
   --c-bg-pre-header-btn: #ffffff1a;
   --c-markdown-a: var(--c-accent);
   --box-shadow: 0px 0px 100px 0px hsla(var(--accent-hsl) / .1);
@@ -165,7 +167,7 @@ input::placeholder, textarea::placeholder {
   --surface-primary: var(--c-surface-1) !important;
 }
 
-.bg-gray-900, .bg-white, .bg-black, [class*=":bg-black"] {
+.bg-gray-900, .bg-white {
   background-color: var(--c-surface-1) !important;
 }
 
@@ -388,8 +390,16 @@ main [data-testid^="conversation-turn-"] pre {
   margin: var(--my-pre) auto !important;
 }
 
+main [data-testid^="conversation-turn-"] pre > .bg-black {
+  background-color: var(--c-bg-pre) !important;
+}
+
+main [data-testid^="conversation-turn-"] pre .bg-token-surface-primary {
+  background-color: red;
+}
+
 main [data-testid^="conversation-turn-"] pre .bg-black > div:has( > span) {
-  background-color: var(--c-pre-header) !important;
+  background-color: var(--c-bg-pre-header) !important;
 }
 
 main [data-testid^="conversation-turn-"] pre .bg-black > div:has( > span) > span {
@@ -459,6 +469,10 @@ main form .overflow-hidden:has(textarea#prompt-textarea) button[data-testid="sen
   color: var(--c-txt) !important;
   border-color: var(--c-accent) !important;
   opacity: .5 !important;
+}
+
+main form .overflow-hidden:has(textarea#prompt-textarea) button[data-testid="send-button"] svg[class*="text-white"] {
+  color: var(--c-accent) !important;
 }
 
 main form .overflow-hidden:has(textarea#prompt-textarea) button[data-testid="send-button"]:has([data-state="delayed-open"]) {
