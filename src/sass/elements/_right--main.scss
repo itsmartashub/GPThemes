@@ -16,11 +16,9 @@ main [data-message-author-role="assistant"] {
 
 
 
-
 /* @ === RIGHT - CHATS BUBBLES ===*/
 main [data-testid^="conversation-turn-"] {
     margin-bottom: var(--mb-msg) !important;
-
 
     // === RIGHT - CHATS BUBBLES DIV ===
     .group {

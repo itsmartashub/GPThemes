@@ -421,7 +421,7 @@ main [data-testid^="conversation-turn-"] pre .bg-black > div:has( > span) button
   fill: var(--c-accent-light) !important;
 }
 
-main form button.btn {
+main form .grow span[data-projection-id] .btn {
   overflow: hidden;
   background-color: var(--c-surface-2) !important;
   color: var(--c-txt) !important;
@@ -429,17 +429,25 @@ main form button.btn {
   padding: 1.5rem !important;
 }
 
-main form button.btn:hover {
+main form .grow span[data-projection-id] .btn:hover {
   background-color: var(--c-surface-3) !important;
 }
 
-main form button.btn .bg-gradient-to-l {
+main form .grow span[data-projection-id] .btn:hover .bg-gradient-to-l span div {
+  --surface-secondary: var(--c-surface-2) !important;
+  padding: .5rem !important;
+}
+
+main form .grow span[data-projection-id] .btn .bg-gradient-to-l {
   --tw-gradient-from: var(--c-surface-3) var(--tw-gradient-from-position);
 }
 
-main form button.btn:hover .bg-gradient-to-l span div {
-  --surface-secondary: var(--c-surface-2) !important;
-  padding: .5rem !important;
+main form .grow span[data-projection-id] .btn .bg-token-surface-primary {
+  background-color: var(--c-accent) !important;
+}
+
+main form .grow span[data-projection-id] .btn .bg-token-surface-primary svg {
+  color: var(--c-on-accent) !important;
 }
 
 main .sticky {
