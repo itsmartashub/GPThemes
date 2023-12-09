@@ -69,6 +69,17 @@ textarea::placeholder {
     border-color: var(--c-surface-1) !important;
 }
 
+/* Border in dialogs after main heading - DARK */
+html.dark [class*=":border-white/10"] {
+    border-color: var(--c-border-accent) !important;
+}
+
+/* Border in dialogs after main heading - LIGHT */
+html.light [class*=":border-white/10"] {
+    border-color: var(--c-border) !important;
+}
+
+
 // .border-token-border-light,
 // .border-white,
 // .border-black {

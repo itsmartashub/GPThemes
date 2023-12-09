@@ -1,10 +1,17 @@
 .btn {
     background-color: var(--c-bg-btn) !important;
     color: var(--c-btn) !important;
-    border: none !important;
-
     border-radius: var(--border-radius-btn) !important;
+    border: none !important;
 }
+
+/* .btn-primary {
+    background-color: var(--c-bg-btn) !important;
+} */
+
+/* .btn-neutral {
+    background-color: hsla(var(--accent-hsl) / .6) !important;
+} */
 
 .btn-danger {
     background-color: var(--c-btn-danger) !important;
@@ -12,22 +19,34 @@
 }
 
 
-/* === RIGHT - Scroll Down Btn Bg LIGHT  === */
+/* === RIGHT - Scroll Down arrow bg LIGHT  === */
 html.light main [role="presentation"] button.absolute.rounded-full {
     background-color: var(--c-txt) !important;
 }
 
-/* === RIGHT - Scroll Down Btn Bg DARK  === */
+/* === RIGHT - Scroll Down arrow bg DARK  === */
 html.dark main [role="presentation"] button.absolute.rounded-full {
     background-color: var(--c-accent) !important;
 }
 
-/* === RIGHT - Scroll Down Btn SVG Color === */
+/* === RIGHT - Scroll Down arrow SVG Color === */
 main [role="presentation"] button.absolute.rounded-full svg {
     /*     color: var(--c-white) !important; */
     color: var(--c-on-accent) !important;
 }
 
+/* [role="dialog"]:has([role="tablist"]) {
+    .btn {
+        min-width: var(--min-w);
+    }
+} */
+
+/* All the .btn inside dialogs not having svg icon inside */
+[role="dialog"] {
+    .btn:not(.btn:has(svg)) {
+        min-width: var(--min-w);
+    }
+}
 
 /* === Settings > Tabs === */
 [role="tablist"] button {
@@ -53,9 +72,15 @@ button:has([data-state="unchecked"]) span {
 }
 
 /* === Settings > Theme selector drop down */
-button[role="combobox"],
-button[role="combobox"]:hover {
+button[role="combobox"] {
+    min-width: var(--min-w);
     background-color: var(--surface-tertiary) !important;
+    border-radius: var(--border-radius-btn) !important;
+
+    &:hover {
+        background-color: var(--c-accent) !important;
+        color: var(--c-on-accent) !important;
+    }
 }
 
 /* Send button */

@@ -30,6 +30,8 @@
 
     --blur-sticky: 20px;
     --blur-modalbg: 8px;
+
+    --min-w: 5.5rem;
 }
 
 /*
@@ -107,6 +109,9 @@ html.light {
 
     --c-msg-name-user: var(--c-accent);
     // --c-msg-name-gpt: var(--c-green);
+
+    --c-border: hsla(var(--txt-hsl) / 0.05);
+    --c-border-accent: hsla(var(--accent-hsl) / 0.1);
 
     --c-btn: var(--c-on-accent);
     --c-btn-danger: hsl(356 62% 51%);
@@ -207,6 +212,8 @@ html.dark {
     --c-border-textarea: var(--c-surface-2);
     --c-placeholder-textarea: hsl(var(--accent-hsl) / 0.8);
 
+
+
     --c-svg: #4e5066;
     --c-svg-accent: #f2f2f2;
 
@@ -217,6 +224,9 @@ html.dark {
 
     --c-msg-name-user: var(--c-accent);
     // --c-msg-name-gpt: var(--c-green);
+
+    --c-border: var(--c-surface-3);
+    --c-border-accent: hsla(var(--accent-hsl) / 0.05);
 
     --c-btn: var(--c-on-accent);
     --c-btn-danger: hsl(356 77% 76%);
