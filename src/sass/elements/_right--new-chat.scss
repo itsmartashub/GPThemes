@@ -1,42 +1,48 @@
 /* === RIGHT - NEW CHAT - 4 BIG BTNS === */
 
 main form .grow {
-    span[data-projection-id] {
-        .btn {
-            padding: 1.5rem !important;
-            /* background-color: var(--c-bg-msg-gpt) !important; */
-            background-color: var(--c-surface-2) !important;
-            color: var(--c-txt) !important;
-            border-radius: var(--border-radius-btn-big) !important;
-            overflow: hidden;
 
-            &:hover {
-                /* === RIGHT - NEW CHAT - 4 BIG BTNS - HOVER STATE === */
-                /*  background-color: var(--c-bg-msg-user) !important; */
-                background-color: var(--c-surface-3) !important;
+    /* recimo gap izmedju new chat example buttons*/
+    .gap-2 {
+        gap: .8rem !important;
+    }
 
-                /* === RIGHT - NEW CHAT - 4 BIG BTNS - SVG desno ikonica === */
-                .bg-gradient-to-l span div {
-                    /* --surface-secondary: var(--c-bg-msg-gpt) !important; */
-                    --surface-secondary: var(--c-surface-2) !important;
-                    padding: .5rem !important;
-                }
+    .btn {
+        padding: 1.5rem !important;
+        /* background-color: var(--c-bg-msg-gpt) !important; */
+        background-color: var(--c-surface-2) !important;
+        color: var(--c-txt) !important;
+        border-radius: var(--border-radius-btn-big) !important;
+        overflow: hidden;
+
+        &:hover {
+            /* === RIGHT - NEW CHAT - 4 BIG BTNS - HOVER STATE === */
+            /*  background-color: var(--c-bg-msg-user) !important; */
+            background-color: var(--c-surface-3) !important;
+
+            /* === RIGHT - NEW CHAT - 4 BIG BTNS - SVG desno ikonica === */
+            .bg-gradient-to-l span div {
+                /* --surface-secondary: var(--c-bg-msg-gpt) !important; */
+                --surface-secondary: var(--c-surface-2) !important;
+                padding: .5rem !important;
             }
+        }
 
-            /* Gradient bg visible on hover */
-            .bg-gradient-to-l {
-                /* --tw-gradient-from: var(--c-bg-msg-user) var(--tw-gradient-from-position); */
-                --tw-gradient-from: var(--c-surface-3) var(--tw-gradient-from-position);
-            }
+        /* Gradient bg visible on hover */
+        .bg-gradient-to-l {
+            /* --tw-gradient-from: var(--c-bg-msg-user) var(--tw-gradient-from-position); */
+            --tw-gradient-from: var(--c-surface-3) var(--tw-gradient-from-position);
+        }
 
-            /* Button SVG */
-            .bg-token-surface-primary {
-                background-color: var(--c-accent) !important;
+        /* Button SVG */
+        .bg-token-surface-primary {
+            background-color: var(--c-accent) !important;
+            border-radius: 100vw !important;
 
-                /* SVG icon*/
-                svg {
-                    color: var(--c-on-accent) !important;
-                }
+
+            /* SVG icon*/
+            svg {
+                color: var(--c-on-accent) !important;
             }
         }
     }

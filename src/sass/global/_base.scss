@@ -29,6 +29,11 @@ textarea::placeholder {
     color: var(--c-subtext-1) !important;
 }
 
+/* Log out, Delete all conversations, Delete chat */
+.text-red-500 {
+    color: var(--c-btn-danger) !important;
+}
+
 /* Go to end arrow */
 /* [class*=":bg-white/10"] {
     background-color: var(--c-surface-3) !important;
@@ -79,15 +84,6 @@ html.light [class*=":border-white/10"] {
     border-color: var(--c-border) !important;
 }
 
-
-// .border-token-border-light,
-// .border-white,
-// .border-black {
-//     border-color: transparent !important;
-// }
-
-
-/* === DISPLAY */
 .h-px {
     display: none !important;
 }
@@ -101,10 +97,6 @@ html.light [class*=":border-white/10"] {
     }
 }
 
-/* recimo gap izmedju new chat example buttons*/
-.gap-2 {
-    gap: .8rem !important;
-}
 
 
 /* .markdown {
