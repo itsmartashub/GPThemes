@@ -1,11 +1,11 @@
-/* --------- MODAL - BG ---------*/
+/*  MODAL - BG */
 .absolute.inset-0 .fixed.inset-0 {
     background-color: var(--c-bg-modalbg) !important;
     backdrop-filter: blur(var(--blur-modalbg)) !important;
 }
 
-// --------- MODAL - DIALOG SETTINGS ---------
-div[role="dialog"] {
+/* MODAL - DIALOG SETTINGS  */
+[role="dialog"] {
     padding: var(--p-dialog) !important;
     background-color: var(--c-bg-dialog) !important;
     border-radius: var(--border-radius-dialog);
@@ -31,40 +31,49 @@ div[role="dialog"] {
         }
     }
 
-    // Heading "Settings" in Settings Modal
+    /* Heading "Settings" in Settings Modal */
     h2[as="h3"] {
         text-transform: uppercase;
     }
 
-    // --------- MODAL - "Upgrade your plan" ---------
+    /* 
+        Ugly bg behind ✔️ "Upgrade your plan" dialog list. But also <thead><th>in <table>(Shared Links) .bg-token-surface-primary 
+        Black bg on content txt: "YOU'RE INVITED TO PLUS" pop-up
+    */
+    // .bg-token-surface-primary {
+    //     // --surface-primary: var(--c-bg-dialog) !important;
+    //     // --surface-primary: transparent !important;
+    //     background-color: var(--c-bg-dialog) !important;
+    // }
 
+    /* "Your invite is valid until December X, 2023" in "YOU'RE INVITED TO PLUS" footer */
+    .text-gizmo-gray-500 {
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    /* MODAL - "Upgrade your plan" only */
     &:has(a[href="https://openai.com/enterprise"]) {
         background-color: transparent !important;
 
-        // Border radius for "Upgrade your plan" dialog
+        /* Border radius for "Upgrade your plan" dialog */
         .rounded-md {
             border-radius: var(--border-radius-msg) !important;
         }
 
-        // Stroke color for ✔️ in "Upgrade your plan" dialog list
+        /*  Stroke color for ✔️ in "Upgrade your plan" dialog list */
         svg[stroke="currentColor"]:has(polyline) {
             stroke: var(--c-accent) !important;
         }
 
-        //  See "ChatGPT Enterprise"
+        /* See "ChatGPT Enterprise" */
         a[href="https://openai.com/enterprise"] {
             color: var(--c-accent) !important;
         }
     }
 
-    // Ugly bg behind ✔️ "Upgrade your plan" dialog list. But also <thead> <th> in <table> (Shared Links)
-    .bg-white,
-    .bg-gray-900 {
-        background-color: var(--c-surface-1) !important;
-    }
 
-
-    // --------- MODAL - DIALOG TEXTAREA ---------
+    /* MODAL - DIALOG TEXTAREA  */
     textarea {
         border-radius: var(--border-radius-contextmenu) !important;
         /* border-color: var(--c-surface-3) !important; */
@@ -83,19 +92,19 @@ div[role="dialog"] {
         }
     }
 
-    // --------- MODAL - DIALOG BUTTONS where is dialog that containes textarea ---------
+    /* MODAL - DIALOG BUTTONS where is dialog that containes textarea  */
     &:has(textarea) .btn-primary {
         padding: var(--py-btn) var(--px-btn) !important;
-        border: 2px solid red !important;
+        // border: 2px solid red !important;
     }
 
-    // --------- MODAL - DIALOG Share Chat White preview div ---------
+    /* MODAL - DIALOG Share Chat White preview div  */
     &:has(main div[data-radix-aspect-ratio-wrapper]) .w-full.rounded-lg {
         border-radius: var(--border-radius-msg) !important;
         background-color: var(--c-bg-chats-container) !important;
     }
 
-    // --------- MODAL - Shared links - TABLE THEAD BG ---------
+    /*  MODAL - Shared links - TABLE THEAD BG  */
     table {
         padding: var(--p-contextmenu) !important;
         border-radius: var(--border-radius-contextmenu);
@@ -133,32 +142,34 @@ div[role="dialog"] {
             padding-bottom: var(--py-btn) !important;
         }
 
-        thead tr {
-            border-radius: var(--border-radius-btn) !important;
-            padding: var(--py-btn) var(--px-btn) !important;
-        }
+        thead {
+            tr {
+                border-radius: var(--border-radius-btn) !important;
+                padding: var(--py-btn) var(--px-btn) !important;
+            }
 
-        thead th {
-            // background-color: var(--c-surface-3) !important;
-            // background-color: transparent !important;
-            text-transform: uppercase !important;
-            color: var(--c-accent) !important;
-        }
+            th {
+                // background-color: var(--c-surface-3) !important;
+                // background-color: transparent !important;
+                text-transform: uppercase !important;
+                color: var(--c-accent) !important;
 
-        thead th:first-child {
-            padding-left: var(--px-btn) !important;
-            border-radius: var(--border-radius-btn) 0 0 var(--border-radius-btn) !important;
-        }
+                &:first-child {
+                    padding-left: var(--px-btn) !important;
+                    border-radius: var(--border-radius-btn) 0 0 var(--border-radius-btn) !important;
+                }
 
-        thead th:last-child {
-            padding-right: var(--px-btn) !important;
-            border-radius: 0 var(--border-radius-btn) var(--border-radius-btn) 0 !important;
+                &:last-child {
+                    padding-right: var(--px-btn) !important;
+                    border-radius: 0 var(--border-radius-btn) var(--border-radius-btn) 0 !important;
+                }
+            }
         }
     }
 }
 
 
-/* --------- MODAL - CHOOSE THEME CONTEXT MENU & TOOLTIPS --------- */
+/*  MODAL - CHOOSE THEME CONTEXT MENU & TOOLTIPS  */
 // Mora not role=menu da ne bih selektovala i onaj contextmenu u sidebar kad se klikne na prompt listitem 3 dots za opcije
 div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) {
     // div[data-radix-popper-content-wrapper] {

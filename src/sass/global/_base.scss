@@ -35,15 +35,19 @@ textarea::placeholder {
     border-color: var(--c-surface-3) !important;
 } */
 
-
-/* ? btn scroll down u conversations i kad se stisne na Upgrade ?*/
-// .bg-token-surface-primary {
-/* --surface-primary: red !important; */
-// --surface-primary: var(--c-surface-1) !important;
-// }
+/* 
+    - btn scroll down u conversations 
+    - Ugly bg behind ✔️ "Upgrade your plan" dialog list. But also <thead><th>in <table>(Shared Links) .bg-token-surface-primary 
+    Black bg on content txt: "YOU'RE INVITED TO PLUS" pop-up
+*/
+.bg-token-surface-primary {
+    --surface-primary: red !important;
+    --surface-primary: var(--c-surface-1) !important;
+}
 
 
 /* === BG COLORS */
+.bg-gray-900,
 .bg-white {
     background-color: var(--c-surface-1) !important;
 }
@@ -52,19 +56,6 @@ textarea::placeholder {
 .bg-black,
 [class*=":bg-black"] {
     background-color: var(--c-surface-1) !important;
-}
-
-/* Black bg on content txt: "YOU'RE INVITED TO PLUS" pop-up */
-[role="dialog"] {
-    .bg-token-surface-primary {
-        --surface-primary: var(--c-bg-dialog) !important;
-    }
-
-    /* "Your invite is valid until December X, 2023" in "YOU'RE INVITED TO PLUS" footer */
-    .text-gizmo-gray-500 {
-        text-align: center;
-        margin-top: 1rem;
-    }
 }
 
 // .bg-white,
@@ -78,17 +69,25 @@ textarea::placeholder {
     border-color: var(--c-surface-1) !important;
 }
 
+// .border-token-border-light,
+// .border-white,
+// .border-black {
+//     border-color: transparent !important;
+// }
 
+
+/* === DISPLAY */
 .h-px {
     display: none !important;
 }
 
+/* Links in markdown */
 .markdown a {
     color: var(--c-accent) !important;
-}
 
-.markdown a:hover {
-    text-decoration: underline !important;
+    &:hover {
+        text-decoration: underline !important;
+    }
 }
 
 /* recimo gap izmedju new chat example buttons*/

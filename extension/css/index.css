@@ -160,17 +160,13 @@ input::placeholder, textarea::placeholder {
   color: var(--c-subtext-1) !important;
 }
 
-.bg-white, .bg-black, [class*=":bg-black"] {
+.bg-token-surface-primary {
+  --surface-primary: red !important;
+  --surface-primary: var(--c-surface-1) !important;
+}
+
+.bg-gray-900, .bg-white, .bg-black, [class*=":bg-black"] {
   background-color: var(--c-surface-1) !important;
-}
-
-[role="dialog"] .bg-token-surface-primary {
-  --surface-primary: var(--c-bg-dialog) !important;
-}
-
-[role="dialog"] .text-gizmo-gray-500 {
-  text-align: center;
-  margin-top: 1rem;
 }
 
 .border-gray-100 {
@@ -484,126 +480,126 @@ main div.flex.w-full.items-center > div {
   backdrop-filter: blur(var(--blur-modalbg)) !important;
 }
 
-div[role="dialog"] {
+[role="dialog"] {
   border-radius: var(--border-radius-dialog);
   box-shadow: var(--box-shadow);
   padding: var(--p-dialog) !important;
   background-color: var(--c-bg-dialog) !important;
 }
 
-div[role="dialog"] .border-token-border-light, div[role="dialog"] .border-white, div[role="dialog"] .border-black {
+[role="dialog"] .border-token-border-light, [role="dialog"] .border-white, [role="dialog"] .border-black {
   border-color: #0000 !important;
 }
 
-div[role="dialog"] [role="tablist"][aria-orientation="horizontal"].bg-gray-100 {
+[role="dialog"] [role="tablist"][aria-orientation="horizontal"].bg-gray-100 {
   background-color: var(--c-surface-3) !important;
   border-radius: var(--border-radius-btn) !important;
 }
 
-div[role="dialog"] [role="tablist"][aria-orientation="horizontal"].bg-gray-100 button {
+[role="dialog"] [role="tablist"][aria-orientation="horizontal"].bg-gray-100 button {
   padding: var(--py-btn) var(--px-btn) !important;
 }
 
-div[role="dialog"] [role="tablist"][aria-orientation="horizontal"].bg-gray-100 button[data-state="active"] {
+[role="dialog"] [role="tablist"][aria-orientation="horizontal"].bg-gray-100 button[data-state="active"] {
   background-color: var(--c-surface-2) !important;
 }
 
-div[role="dialog"] h2[as="h3"] {
+[role="dialog"] h2[as="h3"] {
   text-transform: uppercase;
 }
 
-div[role="dialog"]:has(a[href="https://openai.com/enterprise"]) {
+[role="dialog"] .text-gizmo-gray-500 {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+[role="dialog"]:has(a[href="https://openai.com/enterprise"]) {
   background-color: #0000 !important;
 }
 
-div[role="dialog"]:has(a[href="https://openai.com/enterprise"]) .rounded-md {
+[role="dialog"]:has(a[href="https://openai.com/enterprise"]) .rounded-md {
   border-radius: var(--border-radius-msg) !important;
 }
 
-div[role="dialog"]:has(a[href="https://openai.com/enterprise"]) svg[stroke="currentColor"]:has(polyline) {
+[role="dialog"]:has(a[href="https://openai.com/enterprise"]) svg[stroke="currentColor"]:has(polyline) {
   stroke: var(--c-accent) !important;
 }
 
-div[role="dialog"]:has(a[href="https://openai.com/enterprise"]) a[href="https://openai.com/enterprise"] {
+[role="dialog"]:has(a[href="https://openai.com/enterprise"]) a[href="https://openai.com/enterprise"] {
   color: var(--c-accent) !important;
 }
 
-div[role="dialog"] .bg-white, div[role="dialog"] .bg-gray-900 {
-  background-color: var(--c-surface-1) !important;
-}
-
-div[role="dialog"] textarea {
+[role="dialog"] textarea {
   opacity: .7;
   border-radius: var(--border-radius-contextmenu) !important;
   background-color: var(--c-surface-1) !important;
   border-color: #0000 !important;
 }
 
-div[role="dialog"] textarea#feedback-other {
+[role="dialog"] textarea#feedback-other {
   padding: 1.5rem;
 }
 
-div[role="dialog"] textarea:focus {
+[role="dialog"] textarea:focus {
   opacity: 1;
   border-color: var(--c-surface-3) !important;
 }
 
-div[role="dialog"]:has(textarea) .btn-primary {
+[role="dialog"]:has(textarea) .btn-primary {
   padding: var(--py-btn) var(--px-btn) !important;
-  border: 2px solid red !important;
 }
 
-div[role="dialog"]:has(main div[data-radix-aspect-ratio-wrapper]) .w-full.rounded-lg {
+[role="dialog"]:has(main div[data-radix-aspect-ratio-wrapper]) .w-full.rounded-lg {
   border-radius: var(--border-radius-msg) !important;
   background-color: var(--c-bg-chats-container) !important;
 }
 
-div[role="dialog"] table {
+[role="dialog"] table {
   border-radius: var(--border-radius-contextmenu);
   padding: var(--p-contextmenu) !important;
 }
 
-div[role="dialog"] table a {
+[role="dialog"] table a {
   color: var(--c-accent) !important;
 }
 
-div[role="dialog"] table button[aria-label="Delete shared link"] {
+[role="dialog"] table button[aria-label="Delete shared link"] {
   color: var(--c-btn-danger) !important;
 }
 
-div[role="dialog"] table span[data-state]:has(svg) {
+[role="dialog"] table span[data-state]:has(svg) {
   opacity: .7;
 }
 
-div[role="dialog"] table span[data-state]:has(svg):hover {
+[role="dialog"] table span[data-state]:has(svg):hover {
   opacity: 1;
 }
 
-div[role="dialog"] table .bg-white, div[role="dialog"] table .bg-gray-900 {
+[role="dialog"] table .bg-white, [role="dialog"] table .bg-gray-900 {
   background-color: #0000 !important;
 }
 
-div[role="dialog"] table th, div[role="dialog"] table td {
+[role="dialog"] table th, [role="dialog"] table td {
   padding-top: var(--py-btn) !important;
   padding-bottom: var(--py-btn) !important;
 }
 
-div[role="dialog"] table thead tr {
+[role="dialog"] table thead tr {
   border-radius: var(--border-radius-btn) !important;
   padding: var(--py-btn) var(--px-btn) !important;
 }
 
-div[role="dialog"] table thead th {
+[role="dialog"] table thead th {
   text-transform: uppercase !important;
   color: var(--c-accent) !important;
 }
 
-div[role="dialog"] table thead th:first-child {
+[role="dialog"] table thead th:first-child {
   padding-left: var(--px-btn) !important;
   border-radius: var(--border-radius-btn) 0 0 var(--border-radius-btn) !important;
 }
 
-div[role="dialog"] table thead th:last-child {
+[role="dialog"] table thead th:last-child {
   padding-right: var(--px-btn) !important;
   border-radius: 0 var(--border-radius-btn) var(--border-radius-btn) 0 !important;
 }
