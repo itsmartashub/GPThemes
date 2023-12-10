@@ -1,6 +1,6 @@
 {
 	"name": "GPThemes",
-	"description": "GPThemes is a browser extension crafted to elevate the visual aesthetics of ChatGPT. It achieves this by dynamically injecting custom CSS to enhance and personalize the theme, providing users with a more visually appealing and comfortable experience while using ChatGPT",
+	"description": "Instantly refresh ChatGPT's UI with a modern and enhanced look using custom CSS",
 	"version": "1.0.0",
 	"manifest_version": 3,
 	"host_permissions": ["*://chat.openai.com/*"],
