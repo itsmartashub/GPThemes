@@ -23,11 +23,14 @@ main [data-testid^="conversation-turn-"] {
     // === RIGHT - CHATS BUBBLES DIV ===
     .group {
         // padding: var(--p-msg) !important;
+        letter-spacing: .3px;
         padding: calc(var(--p-msg) * 1.3) var(--p-msg) var(--p-msg) var(--p-msg) !important;
         border-radius: var(--border-radius-msg) !important;
         line-height: 1.8 !important;
 
-        /*  TODO gap: 0.75rem + width: 1.5rem = 2.25rem toliko treba da bude padding-right/margin-right i dodati flex-grow: 1;
+
+        /*  TODO 
+            gap: 0.75rem + width: 1.5rem = 2.25rem toliko treba da bude padding-right/margin-right i dodati flex-grow: 1;
                 ovome: relative flex w-full flex-col lg:w-[calc(100%-115px)] agent-turn 
                 i ovome: lg:w-[calc(100%-115px)]    to je isti deo samo za user chat bubble
             to je kao chat onaj deo gde je chat, cudno ima veliki space sa desne strane, 
