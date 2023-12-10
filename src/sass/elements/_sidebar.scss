@@ -1,6 +1,6 @@
 /* Sidebar bg-color */
 .bg-black:has(nav[aria-label="Chat history"]) {
-    // --surface-primary fix dark/black color for a:hover states
+    /* --surface-primary fix dark/black color for a:hover states */
     --surface-primary: var(--c-surface-2) !important;
     color: var(--c-txt) !important;
     background-color: var(--c-bg-sidebar) !important;
@@ -21,9 +21,7 @@
             opacity: 0;
         }
     }
-
 }
-
 
 
 nav[aria-label="Chat history"] {
@@ -38,21 +36,18 @@ nav[aria-label="Chat history"] {
     /* Parent of time heading (of Today, Yesterday) in sidebar */
     div:has(>h3[class*=":bg-black"]) {
         margin-bottom: .3rem;
-        // border: 2px solid red !important;
     }
 
     /* Today, Yesterday - Time heading in sidebar */
     h3[class*=":bg-black"] {
         display: inline-block !important;
         color: var(--c-accent) !important;
-        // background-color: transparent !important;
         background-color: hsl(var(--accent-hsl) / 0.2) !important;
         border-radius: 100vw;
         text-transform: uppercase;
         font-weight: bold;
         padding: .5rem 1rem !important;
         height: auto !important;
-        // padding-inline: 1rem !important;
         line-height: 1 !important;
     }
 
@@ -64,7 +59,7 @@ nav[aria-label="Chat history"] {
 
         transition: background-color .3s ease-in-out;
 
-        // "New Chat" link (first in nav in sidebar)
+        /* "New Chat" link (first in nav in sidebar) */
         &[href="/"] {
             border: 2px solid var(--c-surface-2);
             padding: var(--py-sidebar-nav-a-new-chat) !important;
@@ -75,18 +70,11 @@ nav[aria-label="Chat history"] {
         span.bg-black {
             border-color: transparent !important;
             background-color: var(--c-accent) !important;
-            // background-color: var(--c-accent-light) !important;
 
             /* SVG icon in "Upgrade" link in nav */
             &>svg {
-                // fill: var(--c-accent-light) !important;
                 color: var(--c-on-accent) !important;
             }
-
-            // &>svg>path {
-            //     // fill: var(--c-accent-light) !important;
-            //     fill: var(--c-on-accent) !important;
-            // }
         }
     }
 
@@ -127,16 +115,16 @@ nav[aria-label="Chat history"] {
             .bg-token-surface-tertiary {
                 padding: var(--p-sidebar-nav-a) !important;
                 color: var(--c-txt) !important;
+                background-color: var(--c-surface-3) !important; // NOTE: bg can't be transparent-ish; it cause txt behind to be visible
+                border: 1px solid var(--c-border) !important;
                 border-radius: var(--border-radius-nav-a) !important;
-                background-color: hsl(var(--accent-hsl) / 0.2) !important;
-                // background-color: var(--c-surface-3) !important;
 
                 /* this make it full width of <li>, from left to right */
                 left: 0 !important;
                 right: 0 !important;
 
                 /* Rename input.
-                    ! DO NOT TOUCH PADDING! TXT BEHIND GOIN TO BE VISIBLE. WTF OPENAI??? 
+                    ! DO NOT TOUCH PADDING! TXT BEHIND GOIN TO BE VISIBLE. WTF??? 
                 */
                 input {
                     // input rename border color on focused

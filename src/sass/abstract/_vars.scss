@@ -69,7 +69,8 @@ html.light {
     --surface-h: 0;
     --surface-s: 0%;
     --surface-l: 85%;
-    --surface-hsl: hsl(var(--accent-h) var(--surface-s) var(--surface-l));
+    // --surface-hsl: hsl(var(--accent-h) var(--surface-s) var(--surface-l));
+    --surface-hsl: hsl(var(--surface-h) var(--surface-s) var(--surface-l));
 
 
     /* ? ========== COLORS ========== */
