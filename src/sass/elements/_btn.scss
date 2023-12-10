@@ -20,8 +20,6 @@
     background-color: var(--c-bg-btn) !important;
 } */
 
-
-
 .btn-danger {
     background-color: var(--c-btn-danger) !important;
     color: var(--c-bg-chats-container) !important;
@@ -40,15 +38,8 @@ html.dark main [role="presentation"] button.absolute.rounded-full {
 
 /* === RIGHT - Scroll Down arrow SVG Color === */
 main [role="presentation"] button.absolute.rounded-full svg {
-    /*     color: var(--c-white) !important; */
     color: var(--c-on-accent) !important;
 }
-
-/* [role="dialog"]:has([role="tablist"]) {
-    .btn {
-        min-width: var(--min-w);
-    }
-} */
 
 /* All the .btn inside dialogs not having svg icon inside */
 [role="dialog"] {
@@ -57,12 +48,8 @@ main [role="presentation"] button.absolute.rounded-full svg {
     }
 
     .btn-neutral:not(.PopoverContent) {
-        // background-color: hsla(var(--accent-hsl) / .6) !important;
         background-color: var(--c-surface-3) !important;
         color: var(--c-txt) !important;
-        // background-color: transparent !important;
-        // border: 2px solid var(--c-bg-btn) !important;
-        // color: var(--c-bg-btn) !important;
     }
 }
 
@@ -74,15 +61,10 @@ main [role="presentation"] button.absolute.rounded-full svg {
 
     &[data-state="active"],
     &:hover {
-        //  OVo je ok za desktop, ali za manje je bolje surface 1
+        //  Ovo je ok za desktop, ali za manje je bolje surface-1
         background-color: var(--c-surface-3) !important;
     }
 }
-
-// [role="tablist"] button[data-state="active"],
-// [role="tablist"] button:hover {
-//     background-color: var(--c-surface-3) !important;
-// }
 
 /* Checkbox button - switcher. In "Chat history & training: and "Custom instructions" */
 button[role="switch"] {
@@ -113,7 +95,6 @@ button[role="combobox"] {
     @extend .btn-neutral;
     min-width: var(--min-w);
     padding: var(--p-btn) !important;
-    // background-color: var(--c-surface-3) !important;
     border-radius: var(--border-radius-btn) !important;
 
     &:hover {
@@ -121,13 +102,3 @@ button[role="combobox"] {
         color: var(--c-on-accent) !important;
     }
 }
-
-/* Send button */
-/* [data-testid="send-button"][class*="bg-gray-900"] {
-    background-color: var(--c-base) !important;
-    border-color: var(--overlay0);
-
-    svg[class*="text-white"] {  
-        color: var(--c-accent) !important;
-    }
-} */
