@@ -164,7 +164,7 @@ main [data-testid^="conversation-turn-"] {
             button:has(svg) {
                 color: var(--c-accent-light) !important;
                 background-color: var(--c-bg-pre-header-btn);
-                padding: var(--py-btn) var(--px-btn);
+                // padding: var(--py-btn) var(--px-btn);
                 border-radius: 10px;
 
                 // SVG icons before 'Copy code' btn in md

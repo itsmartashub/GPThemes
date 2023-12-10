@@ -13,8 +13,8 @@
   --p-msg: 20px;
   --p-textarea: 10px;
   --p-tooltips: 8px;
-  --p-btn: 20px;
-  --py-btn: .9rem;
+  --p-btn: 10px 10px;
+  --py-btn: 1rem;
   --px-btn: 1rem;
   --p-sidebar-nav: .5rem;
   --py-sidebar-nav-a-new-chat: 2rem;
@@ -193,6 +193,10 @@ html.light [class*=":border-white/10"] {
 
 .h-px {
   display: none !important;
+}
+
+[role="separator"] {
+  border-color: var(--c-border) !important;
 }
 
 [role="menu"] {
@@ -465,7 +469,6 @@ main [data-testid^="conversation-turn-"] pre .bg-black > div:has( > span) > span
 
 main [data-testid^="conversation-turn-"] pre .bg-black > div:has( > span) button:has(svg) {
   background-color: var(--c-bg-pre-header-btn);
-  padding: var(--py-btn) var(--px-btn);
   border-radius: 10px;
   color: var(--c-accent-light) !important;
 }
@@ -586,10 +589,6 @@ main div.flex.w-full.items-center > div {
   border-radius: var(--border-radius-btn) !important;
 }
 
-[role="dialog"] [role="tablist"][aria-orientation="horizontal"].bg-gray-100 button {
-  padding: var(--py-btn) var(--px-btn) !important;
-}
-
 [role="dialog"] [role="tablist"][aria-orientation="horizontal"].bg-gray-100 button[data-state="active"] {
   background-color: var(--c-surface-2) !important;
 }
@@ -644,10 +643,6 @@ main div.flex.w-full.items-center > div {
   border-color: var(--c-surface-3) !important;
 }
 
-[role="dialog"]:has(textarea) .btn-primary {
-  padding: var(--py-btn) var(--px-btn) !important;
-}
-
 [role="dialog"]:has(main div[data-radix-aspect-ratio-wrapper]) .w-full.rounded-lg {
   border-radius: var(--border-radius-msg) !important;
   background-color: var(--c-bg-chats-container) !important;
@@ -685,7 +680,6 @@ main div.flex.w-full.items-center > div {
 
 [role="dialog"] table thead tr {
   border-radius: var(--border-radius-btn) !important;
-  padding: var(--py-btn) var(--px-btn) !important;
 }
 
 [role="dialog"] table thead th {
@@ -717,10 +711,20 @@ div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper
 }
 
 .btn {
+  transition: all .2s ease-in-out;
   background-color: var(--c-bg-btn) !important;
   color: var(--c-btn) !important;
   border-radius: var(--border-radius-btn) !important;
   border: none !important;
+}
+
+.btn:not(.btn-small) {
+  padding: var(--p-btn) !important;
+}
+
+.btn:is(:hover, :active) {
+  opacity: .8;
+  transform: translateY(-2px);
 }
 
 .btn-danger {
@@ -744,9 +748,14 @@ main [role="presentation"] button.absolute.rounded-full svg {
   min-width: var(--min-w);
 }
 
+[role="dialog"] .btn-neutral:not(.PopoverContent), [role="dialog"] button[role="combobox"]:not(.PopoverContent) {
+  background-color: var(--c-surface-3) !important;
+  color: var(--c-txt) !important;
+}
+
 [role="tablist"] button {
   border-radius: var(--border-radius-btn) !important;
-  padding: var(--py-btn) var(--px-btn) !important;
+  padding: var(--p-btn) !important;
 }
 
 [role="tablist"] button[data-state="active"], [role="tablist"] button:hover {
@@ -771,7 +780,7 @@ button[role="switch"]:has([data-state="unchecked"]) span {
 
 button[role="combobox"] {
   min-width: var(--min-w);
-  background-color: var(--surface-tertiary) !important;
+  padding: var(--p-btn) !important;
   border-radius: var(--border-radius-btn) !important;
 }
 
@@ -808,7 +817,7 @@ div[data-radix-popper-content-wrapper]:has([role="tooltip"]) div {
 [role="alert"] {
   background-color: var(--c-accent) !important;
   color: var(--c-on-accent) !important;
-  padding: var(--py-btn) var(--px-btn) !important;
+  padding: var(--p-btn) !important;
   border-radius: var(--border-radius-btn) !important;
   border: none !important;
 }

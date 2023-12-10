@@ -3,15 +3,24 @@
     color: var(--c-btn) !important;
     border-radius: var(--border-radius-btn) !important;
     border: none !important;
+    transition: all .2s ease-in-out;
+
+    &:not(.btn-small) {
+        // padding: 1.5rem !important;
+        padding: var(--p-btn) !important;
+    }
+
+    &:is(:hover, :active) {
+        transform: translateY(-2px);
+        opacity: .8;
+    }
 }
 
 /* .btn-primary {
     background-color: var(--c-bg-btn) !important;
 } */
 
-/* .btn-neutral {
-    background-color: hsla(var(--accent-hsl) / .6) !important;
-} */
+
 
 .btn-danger {
     background-color: var(--c-btn-danger) !important;
@@ -46,12 +55,22 @@ main [role="presentation"] button.absolute.rounded-full svg {
     .btn:not(.btn:has(svg)) {
         min-width: var(--min-w);
     }
+
+    .btn-neutral:not(.PopoverContent) {
+        // background-color: hsla(var(--accent-hsl) / .6) !important;
+        background-color: var(--c-surface-3) !important;
+        color: var(--c-txt) !important;
+        // background-color: transparent !important;
+        // border: 2px solid var(--c-bg-btn) !important;
+        // color: var(--c-bg-btn) !important;
+    }
 }
 
 /* === Settings > Tabs === */
 [role="tablist"] button {
     border-radius: var(--border-radius-btn) !important;
-    padding: var(--py-btn) var(--px-btn) !important;
+    // padding: var(--py-btn) var(--px-btn) !important;
+    padding: var(--p-btn) !important;
 
     &[data-state="active"],
     &:hover {
@@ -91,8 +110,10 @@ button[role="switch"] {
 
 /* === Settings > Theme selector drop down */
 button[role="combobox"] {
+    @extend .btn-neutral;
     min-width: var(--min-w);
-    background-color: var(--surface-tertiary) !important;
+    padding: var(--p-btn) !important;
+    // background-color: var(--c-surface-3) !important;
     border-radius: var(--border-radius-btn) !important;
 
     &:hover {
