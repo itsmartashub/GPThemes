@@ -7,6 +7,11 @@ body {
     font-family: var(--f-fm) !important;
 }
 
+::selection {
+    background-color: var(--c-accent) !important;
+    color: var(--c-on-accent) !important;
+}
+
 button {
     --text-primary: var(--c-txt) !important;
 }
