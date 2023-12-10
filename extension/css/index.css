@@ -155,8 +155,8 @@ html, body {
 }
 
 ::selection {
-  background-color: var(--c-accent) !important;
-  color: var(--c-on-accent) !important;
+  background-color: hsla(var(--accent-hsl) / .5) !important;
+  color: var(--c-txt) !important;
 }
 
 button {
@@ -475,6 +475,7 @@ main [data-testid^="conversation-turn-"] pre .bg-black > div:has( > span) > span
 
 main [data-testid^="conversation-turn-"] pre .bg-black > div:has( > span) button:has(svg) {
   background-color: var(--c-bg-pre-header-btn);
+  padding: var(--p-btn);
   border-radius: 10px;
   color: var(--c-accent-light) !important;
 }
