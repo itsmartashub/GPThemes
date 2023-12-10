@@ -227,6 +227,12 @@ html.light [class*=":border-white/10"] {
   color: var(--c-btn-danger) !important;
 }
 
+[data-radix-popper-content-wrapper] .absolute.right-11 {
+  --svg-w: 24px;
+  --gap-from-svg: 20px;
+  right: calc(var(--p-contextmenu)  + var(--svg-w)  + var(--gap-from-svg)) !important;
+}
+
 .bg-black:has(nav[aria-label="Chat history"]) {
   --surface-primary: var(--c-surface-2) !important;
   color: var(--c-txt) !important;

@@ -41,3 +41,11 @@
 .scrollbar-trigger:has(nav[aria-label="Chat history"]) nav [data-headlessui-state="open"]:has(button[data-headlessui-state="open"]) nav a:last-child {
     color: var(--c-btn-danger) !important;
 }
+
+// TODO check if this broke something else because it is the element hard for targeting
+/* "New Chat" xs in contextmenu in ChatGPT 3.5 */
+[data-radix-popper-content-wrapper] .absolute.right-11 {
+    --svg-w: 24px;
+    --gap-from-svg: 20px;
+    right: calc(var(--p-contextmenu) + var(--svg-w) + var(--gap-from-svg)) !important; // p-contextmenu = 10px, svg-w = 24px, gap-from-svg = 20px = (10px + 24px + 20px) = 54px. This is calculated spacing of "New Chat" in contextmenu in ChatGPT 3.5 and right edge in contextmenuitem
+}
