@@ -18,10 +18,10 @@ textarea::placeholder {
 }
 
 /* ==== TYPOGRAPHY COLORS */
-[class*="text-gray-"]:not(.text-gray-500, .text-gray-400),
+/* [class*="text-gray-"]:not(.text-gray-500, .text-gray-400),
 [class*="text-white"]:not(.btn-primary .text-white, .bg-green-600) {
     color: var(--c-txt) !important;
-}
+} */
 
 /* .text-gizmo-gray-500 is the footer txt in dialog "YOU'RE INVITED TO PLUS" */
 .text-gizmo-gray-500,

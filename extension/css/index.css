@@ -163,10 +163,6 @@ input::placeholder, textarea::placeholder {
   opacity: .6 !important;
 }
 
-[class*="text-gray-"]:not(.text-gray-500, .text-gray-400), [class*="text-white"]:not(.btn-primary .text-white, .bg-green-600) {
-  color: var(--c-txt) !important;
-}
-
 .text-gizmo-gray-500, .text-gray-500 {
   color: var(--c-subtext-1) !important;
 }
@@ -520,7 +516,7 @@ main .sticky .btn {
   border-radius: 100vw !important;
 }
 
-main .sticky .btn svg.icon-md {
+main .sticky .btn svg {
   color: var(--c-on-accent) !important;
 }
 
