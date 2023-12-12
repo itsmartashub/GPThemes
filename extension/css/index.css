@@ -62,7 +62,7 @@ html.light {
   --c-placeholder-textarea: hsl(var(--txt-hsl) / .6);
   --c-svg: #4e5066;
   --c-svg-accent: #f2f2f2;
-  --c-bg-modalbg: hsla(var(--txt-hsl) / .2);
+  --c-bg-modal: hsla(var(--txt-hsl) / .2);
   --c-bg-dialog: var(--c-surface-2);
   --c-bg-contextmenu: var(--c-surface-3);
   --c-bg-tooltip: var(--c-accent-light);
@@ -120,7 +120,7 @@ html.dark {
   --c-placeholder-textarea: hsl(var(--accent-hsl) / .8);
   --c-svg: #4e5066;
   --c-svg-accent: #f2f2f2;
-  --c-bg-modalbg: hsla(var(--accent-hsl) / .2);
+  --c-bg-modal: hsla(var(--accent-hsl) / .2);
   --c-bg-dialog: var(--c-surface-2);
   --c-bg-contextmenu: var(--c-surface-3);
   --c-bg-tooltip: var(--c-accent-light);
@@ -827,6 +827,32 @@ div[data-radix-popper-content-wrapper]:has([role="tooltip"]) div {
   padding: var(--p-btn) !important;
   border-radius: var(--border-radius-btn) !important;
   border: none !important;
+}
+
+*, :after, :before {
+  --tw-ring-color: hsl(var(--accent-h), calc(var(--accent-s) / 1.5), var(--accent-l)) !important;
+  --tw-ring-offset-color: var(--c-bg-dialog) !important;
+}
+
+:focus-visible:not(.btn-primary, .btn-danger, .btn-neutral:not([role="combobox"]), button[role="combobox"]:not([role="combobox"]), textarea#prompt-textarea, [aria-label="Delete shared link"], [class*="text-red-"]) {
+  outline: 2.5px solid hsl(var(--accent-h), calc(var(--accent-s) / 1.5), var(--accent-l));
+}
+
+:focus-visible:is(.btn-neutral[role="combobox"], button[role="combobox"]) {
+  border: none !important;
+}
+
+:focus-visible:is([aria-label="Delete shared link"], [class*="text-red-"]) {
+  --tw-ring-color: var(--c-btn-danger) !important;
+  outline: 2.5px solid var(--c-btn-danger) !important;
+}
+
+.btn-danger {
+  --tw-ring-color: var(--c-btn-danger) !important;
+}
+
+.btn-danger:focus {
+  outline-color: var(--c-bg-dialog) !important;
 }
 
 /*# sourceMappingURL=index.css.map */

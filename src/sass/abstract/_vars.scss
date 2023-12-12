@@ -34,6 +34,10 @@
     --blur-modalbg: 8px;
 
     --min-w: 5.5rem;
+
+
+    // --tw-ring-color: red !important;
+    // --tw-ring-offset-color: green !important;
 }
 
 /*
@@ -105,7 +109,7 @@ html.light {
     --c-svg: #4e5066;
     --c-svg-accent: #f2f2f2;
 
-    --c-bg-modalbg: hsla(var(--txt-hsl) / 0.2);
+    --c-bg-modal: hsla(var(--txt-hsl) / 0.2);
     --c-bg-dialog: var(--c-surface-2);
     --c-bg-contextmenu: var(--c-surface-3);
 
@@ -219,7 +223,7 @@ html.dark {
     --c-svg: #4e5066;
     --c-svg-accent: #f2f2f2;
 
-    --c-bg-modalbg: hsla(var(--accent-hsl) / 0.2);
+    --c-bg-modal: hsla(var(--accent-hsl) / 0.2);
     --c-bg-dialog: var(--c-surface-2);
     --c-bg-contextmenu: var(--c-surface-3);
 
