@@ -37,10 +37,6 @@
     }
 } */
 
-/* --------- SIDEBAR BOTTOM - Log Out ---------*/
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav [data-headlessui-state="open"]:has(button[data-headlessui-state="open"]) nav a:last-child {
-    color: var(--c-btn-danger) !important;
-}
 
 // TODO check if this broke something else because it is the element hard for targeting
 /* "New Chat" xs in contextmenu in ChatGPT 3.5 */

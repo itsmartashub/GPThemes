@@ -162,13 +162,26 @@ nav[aria-label="Chat history"] {
 
     // TODO add better styling to this btn
     /* User profile btn in sidebar bottom */
-    button[id^="headlessui-menu-button-"] {
-        border-radius: var(--border-radius-nav-a);
-        margin-top: 1rem;
+    .group[data-headlessui-state] {
 
-        /* Username div */
-        .font-semibold {
-            color: var(--c-txt) !important;
+        /* User profile btn in sidebar bottom */
+        button[aria-haspopup="true"] {
+            border-radius: var(--border-radius-nav-a);
+            margin-top: 1rem;
+
+            /* Username div */
+            .font-semibold {
+                color: var(--c-txt) !important;
+            }
+        }
+
+        /* Sidebar bottom - Log Out  */
+        [role="menu"] [role="menuitem"]:last-child {
+            color: var(--c-btn-danger) !important;
+
+            svg {
+                color: var(--c-btn-danger) !important;
+            }
         }
     }
 

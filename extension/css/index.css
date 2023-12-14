@@ -241,10 +241,6 @@ html.light [class*=":border-white/10"] {
   color: var(--c-accent) !important;
 }
 
-.scrollbar-trigger:has(nav[aria-label="Chat history"]) nav [data-headlessui-state="open"]:has(button[data-headlessui-state="open"]) nav a:last-child {
-  color: var(--c-btn-danger) !important;
-}
-
 [data-radix-popper-content-wrapper] .absolute.right-11 {
   --svg-w: 24px;
   --gap-from-svg: 20px;
@@ -366,13 +362,17 @@ nav[aria-label="Chat history"] li .group .bg-token-surface-tertiary input {
   border: none !important;
 }
 
-nav[aria-label="Chat history"] button[id^="headlessui-menu-button-"] {
+nav[aria-label="Chat history"] .group[data-headlessui-state] button[aria-haspopup="true"] {
   border-radius: var(--border-radius-nav-a);
   margin-top: 1rem;
 }
 
-nav[aria-label="Chat history"] button[id^="headlessui-menu-button-"] .font-semibold {
+nav[aria-label="Chat history"] .group[data-headlessui-state] button[aria-haspopup="true"] .font-semibold {
   color: var(--c-txt) !important;
+}
+
+nav[aria-label="Chat history"] .group[data-headlessui-state] [role="menu"] [role="menuitem"]:last-child, nav[aria-label="Chat history"] .group[data-headlessui-state] [role="menu"] [role="menuitem"]:last-child svg {
+  color: var(--c-btn-danger) !important;
 }
 
 nav[aria-label="Chat history"] .rounded-lg {
