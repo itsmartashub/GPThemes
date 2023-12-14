@@ -1,9 +1,8 @@
-/* Shared chats PAGE - green button "Upgrade to Plus to create your own GPT" */
-.bg-green-600:has(a[href="/gpts/discovery"]) {
-    margin: 2rem auto;
-}
-
 /* Footer tj wrapper for green btn "Upgrade to Plus to create your own GPT"  */
 main [role="presentation"] [class*="empty:hidden"]:has(> a[href="/gpts/discovery"]) {
-    padding: 1rem;
+    padding: 1.5rem;
+
+    .bg-green-600 {
+        @extend .btn;
+    }
 }

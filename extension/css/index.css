@@ -521,7 +521,31 @@ main form .grow .btn {
   padding: 1.5rem !important;
 }
 
+main form .grow [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 {
+  overflow: hidden;
+  background-color: var(--c-surface-2) !important;
+  color: var(--c-txt) !important;
+  border-radius: var(--border-radius-btn-big) !important;
+  padding: 1.5rem !important;
+}
+
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) form .grow .bg-green-600 {
+  overflow: hidden;
+  background-color: var(--c-surface-2) !important;
+  color: var(--c-txt) !important;
+  border-radius: var(--border-radius-btn-big) !important;
+  padding: 1.5rem !important;
+}
+
 main form .grow .btn .bg-gradient-to-l {
+  --tw-gradient-from: var(--c-surface-3) var(--tw-gradient-from-position);
+}
+
+main form .grow [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 .bg-gradient-to-l {
+  --tw-gradient-from: var(--c-surface-3) var(--tw-gradient-from-position);
+}
+
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) form .grow .bg-green-600 .bg-gradient-to-l {
   --tw-gradient-from: var(--c-surface-3) var(--tw-gradient-from-position);
 }
 
@@ -532,7 +556,29 @@ main form .grow .btn .bg-gradient-to-l .bg-token-surface-primary {
   padding: .5rem !important;
 }
 
+main form .grow [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 .bg-gradient-to-l .bg-token-surface-primary {
+  --surface-secondary: var(--c-surface-2) !important;
+  background-color: var(--c-accent) !important;
+  border-radius: 100vw !important;
+  padding: .5rem !important;
+}
+
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) form .grow .bg-green-600 .bg-gradient-to-l .bg-token-surface-primary {
+  --surface-secondary: var(--c-surface-2) !important;
+  background-color: var(--c-accent) !important;
+  border-radius: 100vw !important;
+  padding: .5rem !important;
+}
+
 main form .grow .btn .bg-gradient-to-l .bg-token-surface-primary svg {
+  color: var(--c-on-accent) !important;
+}
+
+main form .grow [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 .bg-gradient-to-l .bg-token-surface-primary svg {
+  color: var(--c-on-accent) !important;
+}
+
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) form .grow .bg-green-600 .bg-gradient-to-l .bg-token-surface-primary svg {
   color: var(--c-on-accent) !important;
 }
 
@@ -550,7 +596,23 @@ main .sticky .btn {
   border-radius: 100vw !important;
 }
 
+main .sticky [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 {
+  border-radius: 100vw !important;
+}
+
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .sticky .bg-green-600 {
+  border-radius: 100vw !important;
+}
+
 main .sticky .btn svg {
+  color: var(--c-on-accent) !important;
+}
+
+main .sticky [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 svg {
+  color: var(--c-on-accent) !important;
+}
+
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .sticky .bg-green-600 svg {
   color: var(--c-on-accent) !important;
 }
 
@@ -743,11 +805,28 @@ div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper
   border: none !important;
 }
 
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 {
+  transition: all .2s ease-in-out;
+  background-color: var(--c-bg-btn) !important;
+  color: var(--c-btn) !important;
+  border-radius: var(--border-radius-btn) !important;
+  border: none !important;
+}
+
 .btn:not(.btn-small) {
   padding: var(--p-btn) !important;
 }
 
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600:not(.btn-small) {
+  padding: var(--p-btn) !important;
+}
+
 .btn:is(:hover, :active) {
+  opacity: .8;
+  transform: translateY(-2px);
+}
+
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600:is(:hover, :active) {
   opacity: .8;
   transform: translateY(-2px);
 }
@@ -770,6 +849,14 @@ main [role="presentation"] button.absolute.rounded-full svg {
 }
 
 [role="dialog"] .btn:not(.btn:has(svg)) {
+  min-width: var(--min-w);
+}
+
+[role="dialog"] main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600:not(.btn:has(svg)) {
+  min-width: var(--min-w);
+}
+
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) [role="dialog"] .bg-green-600:not(.btn:has(svg)) {
   min-width: var(--min-w);
 }
 
@@ -885,11 +972,39 @@ td:not(:has(a[href^="/share/"])) svg:hover {
   transform: scale(.8);
 }
 
-main form .grow .btn, main form .grow .btn .bg-gradient-to-l {
+main form .grow .btn {
+  transition: all .3s ease-in-out;
+}
+
+main form .grow [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 {
+  transition: all .3s ease-in-out;
+}
+
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) form .grow .bg-green-600 {
+  transition: all .3s ease-in-out;
+}
+
+main form .grow .btn .bg-gradient-to-l {
+  transition: all .3s ease-in-out;
+}
+
+main form .grow [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 .bg-gradient-to-l {
+  transition: all .3s ease-in-out;
+}
+
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) form .grow .bg-green-600 .bg-gradient-to-l {
   transition: all .3s ease-in-out;
 }
 
 main form .grow .btn .bg-gradient-to-l span[data-state] {
+  overflow: hidden;
+}
+
+main form .grow [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 .bg-gradient-to-l span[data-state] {
+  overflow: hidden;
+}
+
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) form .grow .bg-green-600 .bg-gradient-to-l span[data-state] {
   overflow: hidden;
 }
 
@@ -899,11 +1014,41 @@ main form .grow .btn .bg-gradient-to-l span[data-state] .bg-token-surface-primar
   rotate: 45deg;
 }
 
+main form .grow [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
+  transition: all .3s ease-in-out;
+  translate: 0 100%;
+  rotate: 45deg;
+}
+
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) form .grow .bg-green-600 .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
+  transition: all .3s ease-in-out;
+  translate: 0 100%;
+  rotate: 45deg;
+}
+
 main form .grow .btn:hover {
   background-color: var(--c-surface-3) !important;
 }
 
+main form .grow [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600:hover {
+  background-color: var(--c-surface-3) !important;
+}
+
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) form .grow .bg-green-600:hover {
+  background-color: var(--c-surface-3) !important;
+}
+
 main form .grow .btn:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
+  translate: 0;
+  rotate: none;
+}
+
+main form .grow [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
+  translate: 0;
+  rotate: none;
+}
+
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) form .grow .bg-green-600:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
   translate: 0;
   rotate: none;
 }
@@ -970,12 +1115,8 @@ main [role="presentation"] button.absolute.rounded-full:hover {
   translate: 5px;
 }
 
-.bg-green-600:has(a[href="/gpts/discovery"]) {
-  margin: 2rem auto;
-}
-
 main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) {
-  padding: 1rem;
+  padding: 1.5rem;
 }
 
 /*# sourceMappingURL=index.css.map */
