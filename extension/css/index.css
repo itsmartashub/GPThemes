@@ -271,6 +271,10 @@ nav[aria-label="Chat history"] .sticky.bg-black:has(a[href="/"]) {
   margin-bottom: 1rem;
 }
 
+nav[aria-label="Chat history"] .overflow-y-auto {
+  padding-left: .3rem !important;
+}
+
 nav[aria-label="Chat history"] div:has( > h3[class*=":bg-black"]) {
   margin-bottom: .3rem;
 }
@@ -849,10 +853,6 @@ div[data-radix-popper-content-wrapper]:has([role="tooltip"]) div {
 
 .btn-danger {
   --tw-ring-color: var(--c-btn-danger) !important;
-}
-
-.btn-danger:focus {
-  outline-color: var(--c-bg-dialog) !important;
 }
 
 /*# sourceMappingURL=index.css.map */

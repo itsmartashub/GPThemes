@@ -33,6 +33,11 @@ nav[aria-label="Chat history"] {
         margin-bottom: 1rem;
     }
 
+    /* NEW CHAT + LIST of chats in nav. Adding padding-left prevent :focus-visible style in those elements to be cropped from the left because of the overflow-hidden */
+    .overflow-y-auto {
+        padding-left: 0.3rem !important;
+    }
+
     /* Parent of time heading (of Today, Yesterday) in sidebar */
     div:has(>h3[class*=":bg-black"]) {
         margin-bottom: .3rem;
