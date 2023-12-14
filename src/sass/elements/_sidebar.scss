@@ -98,6 +98,17 @@ nav[aria-label="Chat history"] {
                     }
                 }
 
+
+                // button.absolute {
+                //     border: 1px solid red !important;
+
+                //     :is(:hover, :focus) {
+                //         svg {
+                //             color: red !important;
+                //         }
+                //     }
+                // }
+
                 /* 3 dots btn bg-gradient - <div> u <a> i <div> u <button> */
                 .bg-gradient-to-l {
                     --surface-primary: var(--c-surface-2) !important;
@@ -116,6 +127,25 @@ nav[aria-label="Chat history"] {
                 // }
             }
 
+            /* Hover state color for button in 3 dots (btn SVG bg on hover) */
+            button[class*=":text-token-text-secondary"] {
+                --text-secondary: var(--c-txt) !important;
+
+                svg {
+                    transition: color .2s ease-in-out, transform .2s ease-in-out;
+                }
+
+                &:is(:hover, :focus, [data-state="open"]) {
+
+                    svg {
+                        transform: scale(1.1);
+                        // transform: scale(1.1) !important;
+                        // border: 2px solid var(--c-accent) !important;
+                    }
+                }
+            }
+
+
             /* 3 dots > "Rename" clicked - style of input parent and input  - this is <div> next to <a> */
             .bg-token-surface-tertiary {
                 padding: var(--p-sidebar-nav-a) !important;
@@ -124,7 +154,7 @@ nav[aria-label="Chat history"] {
                 border: 1px solid var(--c-border) !important;
                 border-radius: var(--border-radius-nav-a) !important;
 
-                /* this make it full width of <li>, from left to right */
+                /* This make it full width of <li>, from left to right */
                 left: 0 !important;
                 right: 0 !important;
 

@@ -329,6 +329,18 @@ nav[aria-label="Chat history"] li .group a[href^="/c/"] .bg-gradient-to-l {
   opacity: 0 !important;
 }
 
+nav[aria-label="Chat history"] li .group button[class*=":text-token-text-secondary"] {
+  --text-secondary: var(--c-txt) !important;
+}
+
+nav[aria-label="Chat history"] li .group button[class*=":text-token-text-secondary"] svg {
+  transition: color .2s ease-in-out, transform .2s ease-in-out;
+}
+
+nav[aria-label="Chat history"] li .group button[class*=":text-token-text-secondary"]:is(:hover, :focus, [data-state="open"]) svg {
+  transform: scale(1.1);
+}
+
 nav[aria-label="Chat history"] li .group .bg-token-surface-tertiary {
   padding: var(--p-sidebar-nav-a) !important;
   color: var(--c-txt) !important;
