@@ -26,7 +26,7 @@
   --mb-sidebar-nav-li: .2rem;
   --my-pre: 1.5rem;
   --blur-sticky: 20px;
-  --blur-modalbg: 8px;
+  --blur-modal: 8px;
   --min-w: 5.5rem;
 }
 
@@ -51,18 +51,18 @@ html.light {
   --c-subtext-2: #666;
   --c-surface-1: hsl(0, 0%, var(--surface-l));
   --c-surface-2: hsl(0, 0%, calc(var(--surface-l) / 1.089));
-  --c-surface-3: hsl(0, 0%, calc(var(--surface-l) / 1.18));
+  --c-surface-3: hsl(0, 0%, calc(var(--surface-l) / 1.1));
   --c-bg-sidebar: var(--c-surface-1);
   --c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025));
   --c-bg-msg-user: hsla(var(--accent-hsl) / .08);
   --c-bg-msg-gpt: #d6d6d6;
   --c-bg-chats-sticky: hsla(var(--accent-hsl) / .02);
-  --c-bg-textarea: hsl(0, 0%, calc(var(--surface-l) / 1.05));
+  --c-bg-textarea: hsla(0, 0%, calc(var(--surface-l) / 1.05));
   --c-border-textarea: var(--c-bg-textarea);
-  --c-placeholder-textarea: hsl(var(--txt-hsl) / .6);
+  --c-placeholder-textarea: hsla(var(--txt-hsl) / .6);
   --c-svg: #4e5066;
   --c-svg-accent: #f2f2f2;
-  --c-bg-modal: hsla(var(--txt-hsl) / .2);
+  --c-bg-modal: hsla(var(--txt-hsl) / .3);
   --c-bg-dialog: var(--c-surface-2);
   --c-bg-contextmenu: var(--c-surface-3);
   --c-bg-tooltip: var(--c-accent-light);
@@ -579,9 +579,9 @@ main div.flex.w-full.items-center > div {
 }
 
 .absolute.inset-0 .fixed.inset-0 {
-  background-color: var(--c-bg-modalbg) !important;
-  -webkit-backdrop-filter: blur(var(--blur-modalbg)) !important;
-  backdrop-filter: blur(var(--blur-modalbg)) !important;
+  background-color: var(--c-bg-modal) !important;
+  -webkit-backdrop-filter: blur(var(--blur-modal)) !important;
+  backdrop-filter: blur(var(--blur-modal)) !important;
 }
 
 [role="dialog"] {
