@@ -512,25 +512,18 @@ main form .grow .btn {
   padding: 1.5rem !important;
 }
 
-main form .grow .btn:hover {
-  background-color: var(--c-surface-3) !important;
-}
-
-main form .grow .btn:hover .bg-gradient-to-l span div {
-  --surface-secondary: var(--c-surface-2) !important;
-  padding: .5rem !important;
-}
-
 main form .grow .btn .bg-gradient-to-l {
   --tw-gradient-from: var(--c-surface-3) var(--tw-gradient-from-position);
 }
 
-main form .grow .btn .bg-token-surface-primary {
+main form .grow .btn .bg-gradient-to-l .bg-token-surface-primary {
+  --surface-secondary: var(--c-surface-2) !important;
   background-color: var(--c-accent) !important;
   border-radius: 100vw !important;
+  padding: .5rem !important;
 }
 
-main form .grow .btn .bg-token-surface-primary svg {
+main form .grow .btn .bg-gradient-to-l .bg-token-surface-primary svg {
   color: var(--c-on-accent) !important;
 }
 
@@ -865,6 +858,107 @@ div[data-radix-popper-content-wrapper]:has([role="tooltip"]) div {
 
 .btn-danger {
   --tw-ring-color: var(--c-btn-danger) !important;
+}
+
+button, li, a, svg, [class*=":hover"], [role="switch"] span[data-state] {
+  transition: all .35s ease-in-out;
+}
+
+button:not(.btn, [role="tab"], [role="combobox"], [data-testid="send-button"], [class*="[.final-completion]"]) svg:hover {
+  scale: 1.12;
+}
+
+td:not(:has(a[href^="/share/"])) svg:hover {
+  scale: 1.12;
+}
+
+[role="switch"]:hover span[data-state] {
+  transform: scale(.8);
+}
+
+main form .grow .btn, main form .grow .btn .bg-gradient-to-l {
+  transition: all .3s ease-in-out;
+}
+
+main form .grow .btn .bg-gradient-to-l span[data-state] {
+  overflow: hidden;
+}
+
+main form .grow .btn .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
+  transition: all .3s ease-in-out;
+  translate: 0 100%;
+  rotate: 45deg;
+}
+
+main form .grow .btn:hover {
+  background-color: var(--c-surface-3) !important;
+}
+
+main form .grow .btn:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
+  translate: 0;
+  rotate: none;
+}
+
+[data-testid="send-button"]:not([disabled]) {
+  transition: all .3s ease-in-out;
+}
+
+[data-testid="send-button"]:not([disabled]):hover {
+  translate: 0 -10%;
+}
+
+main [data-testid^="conversation-turn-"] .group {
+  transition: all .3s ease-in-out;
+}
+
+main [data-testid^="conversation-turn-"] .group:hover {
+  translate: 0 3px;
+}
+
+main [data-testid^="conversation-turn-"] .group:hover div[class*="empty:hidden"]:has(button[class*="[.final-completion]"]) .visible {
+  translate: 0;
+}
+
+main [data-testid^="conversation-turn-"] .group:hover [class*="[.final-completion]"] svg {
+  scale: 1;
+}
+
+main [data-testid^="conversation-turn-"] .group div[class*="empty:hidden"]:has(button[class*="[.final-completion]"]) {
+  overflow: hidden;
+}
+
+main [data-testid^="conversation-turn-"] .group div[class*="empty:hidden"]:has(button[class*="[.final-completion]"]) .visible {
+  transition: all .3s ease-in-out;
+  translate: 0 100%;
+}
+
+main [data-testid^="conversation-turn-"] .group [class*="[.final-completion]"] svg {
+  scale: 0;
+}
+
+main [data-testid^="conversation-turn-"] .group [class*="[.final-completion]"] svg:hover {
+  opacity: .8;
+  translate: 0 -3px;
+}
+
+main [data-testid^="conversation-turn-"] .group pre button:hover {
+  translate: 0 3px;
+  background-color: var(--c-accent) !important;
+  color: var(--c-on-accent) !important;
+}
+
+main [data-testid^="conversation-turn-"] .group pre button:hover svg {
+  color: var(--c-on-accent) !important;
+}
+
+main [role="presentation"] button.absolute.rounded-full:hover {
+  opacity: .9;
+  translate: 0 10%;
+}
+
+[role="dialog"] table a:hover {
+  text-decoration: underline;
+  translate: 5px;
 }
 
 /*# sourceMappingURL=index.css.map */

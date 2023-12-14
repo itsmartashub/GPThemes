@@ -85,6 +85,7 @@ nav[aria-label="Chat history"] {
 
     li {
         margin-bottom: var(--mb-sidebar-nav-li) !important;
+        // transition: all .35s ease-in-out;
 
         .group {
             a[href^="/c/"] {
@@ -97,17 +98,6 @@ nav[aria-label="Chat history"] {
                         opacity: 1 !important;
                     }
                 }
-
-
-                // button.absolute {
-                //     border: 1px solid red !important;
-
-                //     :is(:hover, :focus) {
-                //         svg {
-                //             color: red !important;
-                //         }
-                //     }
-                // }
 
                 /* 3 dots btn bg-gradient - <div> u <a> i <div> u <button> */
                 .bg-gradient-to-l {
@@ -144,7 +134,6 @@ nav[aria-label="Chat history"] {
                     }
                 }
             }
-
 
             /* 3 dots > "Rename" clicked - style of input parent and input  - this is <div> next to <a> */
             .bg-token-surface-tertiary {
@@ -183,7 +172,7 @@ nav[aria-label="Chat history"] {
         }
     }
 
-    // Border-radius for all elements that have .rounded-lg class in <nav> of sidebar. ALi on zezne border-radiusu i contextmenu u bottom sidebar jer u on ima ovu klasu. Zato sad dodajem <li>
+    /*  Border-radius for all elements that have .rounded-lg class in <nav> of sidebar. ALi on zezne border-radiusu i contextmenu u bottom sidebar jer u on ima ovu klasu. Zato sad dodajem <li> */
     .rounded-lg {
         border-radius: var(--border-radius-nav-a) !important;
     }
