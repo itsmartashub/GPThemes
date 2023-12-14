@@ -92,7 +92,7 @@ html.light {
 
     --c-surface-1: hsl(0, 0%, var(--surface-l));
     --c-surface-2: hsl(0, 0%, calc(var(--surface-l) / 1.089));
-    --c-surface-3: hsl(0, 0%, calc(var(--surface-l) / 1.1));
+    --c-surface-3: hsl(0, 0%, calc(var(--surface-l) / 1.18));
 
     --c-bg-sidebar: var(--c-surface-1);
     --c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025));
@@ -122,7 +122,7 @@ html.light {
     --c-border-accent: hsla(var(--accent-hsl) / 0.1);
 
     --c-btn: var(--c-on-accent);
-    --c-btn-danger: hsl(356 62% 51%);
+    --c-btn-danger: hsl(346, 51%, 45%);
     --c-bg-btn: var(--c-accent);
 
     --c-bg-pre: hsl(0, 0%, 0%);

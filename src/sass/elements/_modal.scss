@@ -1,10 +1,10 @@
-/*  MODAL - BG */
+/*  MODAL - Background */
 .absolute.inset-0 .fixed.inset-0 {
     background-color: var(--c-bg-modal) !important;
     backdrop-filter: blur(var(--blur-modal)) !important;
 }
 
-/* MODAL - DIALOG SETTINGS  */
+/* MODAL - Dialog Settings  */
 [role="dialog"] {
     padding: var(--p-dialog) !important;
     background-color: var(--c-bg-dialog) !important;
@@ -35,16 +35,6 @@
     h2[as="h3"] {
         text-transform: uppercase;
     }
-
-    /* 
-        Ugly bg behind ✔️ "Upgrade your plan" dialog list. But also <thead><th>in <table>(Shared Links) .bg-token-surface-primary 
-        Black bg on content txt: "YOU'RE INVITED TO PLUS" pop-up
-    */
-    // .bg-token-surface-primary {
-    //     // --surface-primary: var(--c-bg-dialog) !important;
-    //     // --surface-primary: transparent !important;
-    //     background-color: var(--c-bg-dialog) !important;
-    // }
 
     /* "Your invite is valid until December X, 2023" in "YOU'RE INVITED TO PLUS" footer */
     .text-gizmo-gray-500 {
@@ -84,7 +74,7 @@
     }
 
 
-    /* MODAL - DIALOG TEXTAREA  */
+    /* MODAL - Dialog - textarea  */
     textarea {
         border-radius: var(--border-radius-contextmenu) !important;
         /* border-color: var(--c-surface-3) !important; */
@@ -92,7 +82,7 @@
         background-color: var(--c-surface-1) !important;
         opacity: .7;
 
-        // Textarea feedback when click on like btn in gpt answers
+        /* Textarea feedback when click on like btn in gpt answers */
         &#feedback-other {
             padding: 1.5rem;
         }
@@ -103,13 +93,13 @@
         }
     }
 
-    /* MODAL - DIALOG BUTTONS where is dialog that containes textarea  */
+    /* MODAL - Dialog - Buttons where is dialog that containes textarea  */
     &:has(textarea) .btn-primary {
         // padding: var(--py-btn) var(--px-btn) !important;
         // border: 2px solid red !important;
     }
 
-    /* MODAL - DIALOG Share Chat White preview div  */
+    /* MODAL - Dialog - Share Chat White preview div  */
     &:has(main div[data-radix-aspect-ratio-wrapper]) .w-full.rounded-lg {
         border-radius: var(--border-radius-msg) !important;
         background-color: var(--c-bg-chats-container) !important;
@@ -168,10 +158,9 @@
 }
 
 
-/*  MODAL - CHOOSE THEME CONTEXT MENU & TOOLTIPS  */
-// Mora not role=menu da ne bih selektovala i onaj contextmenu u sidebar kad se klikne na prompt listitem 3 dots za opcije
+/*  MODAL - Choose theme context menu & tooltips?  */
+/* Mora not role=menu da ne bih selektovala i onaj contextmenu u sidebar kad se klikne na prompt listitem 3 dots za opcije */
 div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) {
-    // div[data-radix-popper-content-wrapper] {
 
     .bg-white {
         background-color: var(--c-bg-contextmenu) !important;
@@ -180,11 +169,6 @@ div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper
         box-shadow: var(--box-shadow-contextmenu) !important;
     }
 
-    // &>* {
-    //     // ! kad je ovde background-color !important nmg da setujem style za tooltip jer ovo ga overwrituje
-    //     // background-color: var(--c-surface-1);
-    // }
-
     [data-radix-collection-item] {
         border-radius: var(--border-radius-btn);
         padding: var(--p-contextmenu-item) !important;
@@ -192,12 +176,17 @@ div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper
         margin-bottom: 4px;
     }
 
-    /* MODAL - CHOOSE THEME CONTEXT MENU HOVER */
+    /* MODAL - Choose theme context menuitem hover */
     [data-radix-collection-item][data-state="unchecked"]:hover {
         background-color: var(--c-surface-2) !important;
     }
 
-    /* MODAL - TCHOOSE THEME CONTEXT MENUITEM HOVER ACTIVE */
+    /* MODAL - Choose theme context menuitem hover - Light theme */
+    /* html.light [data-radix-collection-item][data-state="unchecked"]:hover {
+        background-color: var(--c-surface-3) !important;
+    } */
+
+    /* MODAL - Choose theme context menuitem hover active */
     [data-state="checked"] {
         background-color: var(--c-bg-btn) !important;
         color: var(--c-on-accent) !important;

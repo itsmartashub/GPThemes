@@ -51,7 +51,7 @@ html.light {
   --c-subtext-2: #666;
   --c-surface-1: hsl(0, 0%, var(--surface-l));
   --c-surface-2: hsl(0, 0%, calc(var(--surface-l) / 1.089));
-  --c-surface-3: hsl(0, 0%, calc(var(--surface-l) / 1.1));
+  --c-surface-3: hsl(0, 0%, calc(var(--surface-l) / 1.18));
   --c-bg-sidebar: var(--c-surface-1);
   --c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025));
   --c-bg-msg-user: hsla(var(--accent-hsl) / .08);
@@ -70,7 +70,7 @@ html.light {
   --c-border: hsla(var(--txt-hsl) / .05);
   --c-border-accent: hsla(var(--accent-hsl) / .1);
   --c-btn: var(--c-on-accent);
-  --c-btn-danger: #d0353f;
+  --c-btn-danger: #ad3854;
   --c-bg-btn: var(--c-accent);
   --c-bg-pre: #000;
   --c-bg-pre-header: transparent;
@@ -206,7 +206,7 @@ html.light [class*=":border-white/10"] {
 
 [role="menu"] {
   transition: all .3s ease-in-out;
-  background-color: var(--c-surface-3) !important;
+  background-color: var(--c-bg-contextmenu) !important;
   border-radius: var(--border-radius-contextmenu) !important;
   padding: var(--p-contextmenu) !important;
   box-shadow: var(--box-shadow-contextmenu) !important;
