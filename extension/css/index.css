@@ -1081,7 +1081,7 @@ main [data-testid^="conversation-turn-"] .group div[class*="empty:hidden"]:has(b
 
 main [data-testid^="conversation-turn-"] .group div[class*="empty:hidden"]:has(button[class*="[.final-completion]"]) .visible {
   transition: all .3s ease-in-out;
-  translate: 0 100%;
+  translate: 0 130%;
 }
 
 main [data-testid^="conversation-turn-"] .group [class*="[.final-completion]"] svg {
@@ -1108,7 +1108,7 @@ main [role="presentation"] button.absolute.rounded-full:hover {
   opacity: 1 !important;
 }
 
-main [role="presentation"] button.absolute.rounded-full [role="dialog"] table a:hover {
+[role="dialog"] table a:hover {
   text-decoration: underline;
   translate: 5px;
 }

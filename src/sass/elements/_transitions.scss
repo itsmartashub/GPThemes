@@ -104,7 +104,7 @@ main [data-testid^="conversation-turn-"] {
 
             /* Bubble message footer (icons wrapper) */
             .visible {
-                translate: 0 100%;
+                translate: 0 130%;
                 transition: all .3s ease-in-out;
             }
         }
@@ -145,10 +145,10 @@ main [role="presentation"] button.absolute.rounded-full {
 
         opacity: 1 !important;
     }
+}
 
-    /* Table shared links */
-    [role="dialog"] table a:hover {
-        translate: 5px 0;
-        text-decoration: underline;
-    }
+/* ___ Table shared links */
+[role="dialog"] table a:hover {
+    translate: 5px 0;
+    text-decoration: underline;
 }
