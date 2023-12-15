@@ -13,7 +13,7 @@
   --p-msg: 20px;
   --p-textarea: 10px;
   --p-tooltips: 8px;
-  --p-btn: 10px 10px;
+  --p-btn: 10px;
   --py-btn: 1rem;
   --px-btn: 1rem;
   --p-sidebar-nav: .5rem;
@@ -120,7 +120,7 @@ html.dark {
   --c-placeholder-textarea: hsl(var(--accent-hsl) / .8);
   --c-svg: #4e5066;
   --c-svg-accent: #f2f2f2;
-  --c-bg-modal: hsla(var(--accent-hsl) / .2);
+  --c-bg-modal: hsla(var(--accent-hsl) / .22);
   --c-bg-dialog: var(--c-surface-2);
   --c-bg-contextmenu: var(--c-surface-3);
   --c-bg-tooltip: var(--c-accent-light);
@@ -135,7 +135,7 @@ html.dark {
   --c-bg-pre-header-btn: #ffffff1a;
   --c-markdown-a: var(--c-accent);
   --box-shadow: 0px 0px 100px 0px hsla(var(--accent-hsl) / .1);
-  --box-shadow-contextmenu: 0px 0px 8px -2px hsla(var(--accent-hsl) / .1);
+  --box-shadow-contextmenu: 0px 0px 30px -10px hsla(var(--accent-hsl) / .18);
   --c-subtext-2: hsl(var(--accent-h) calc(var(--accent-s) / 2) var(--accent-l)) !important;
   --surface-primary: var(--c-surface-1) !important;
   --surface-secondary: transparent !important;
@@ -247,6 +247,29 @@ html.light [class*=":border-white/10"] {
   right: calc(var(--p-contextmenu)  + var(--svg-w)  + var(--gap-from-svg)) !important;
 }
 
+div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) .bg-white {
+  background-color: var(--c-bg-contextmenu) !important;
+  padding: var(--p-contextmenu) !important;
+  border-radius: var(--border-radius-contextmenu) !important;
+  box-shadow: var(--box-shadow-contextmenu) !important;
+}
+
+div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) [data-radix-collection-item] {
+  border-radius: var(--border-radius-btn);
+  margin-bottom: 4px;
+  padding: var(--p-contextmenu-item) !important;
+  height: auto !important;
+}
+
+div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) [data-radix-collection-item][data-state="unchecked"]:hover {
+  background-color: var(--c-surface-2) !important;
+}
+
+div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) [data-state="checked"] {
+  background-color: var(--c-bg-btn) !important;
+  color: var(--c-on-accent) !important;
+}
+
 .bg-black:has(nav[aria-label="Chat history"]) {
   --surface-primary: var(--c-surface-2) !important;
   color: var(--c-txt) !important;
@@ -321,6 +344,10 @@ nav[aria-label="Chat history"] a span.bg-black > svg {
 
 nav[aria-label="Chat history"] li {
   margin-bottom: var(--mb-sidebar-nav-li) !important;
+}
+
+nav[aria-label="Chat history"] li .group a[href^="/c/"].bg-token-surface-primary {
+  background-color: var(--c-surface-2) !important;
 }
 
 nav[aria-label="Chat history"] li .group a[href^="/c/"].bg-token-surface-primary .bg-gradient-to-l {
@@ -513,7 +540,7 @@ main form .grow .gap-2 {
   gap: .8rem !important;
 }
 
-main form .grow .btn {
+main form .grow .btn, main form .grow button[role="combobox"] {
   overflow: hidden;
   background-color: var(--c-surface-2) !important;
   color: var(--c-txt) !important;
@@ -537,7 +564,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   padding: 1.5rem !important;
 }
 
-main form .grow .btn .bg-gradient-to-l {
+main form .grow .btn .bg-gradient-to-l, main form .grow button[role="combobox"] .bg-gradient-to-l {
   --tw-gradient-from: var(--c-surface-3) var(--tw-gradient-from-position);
 }
 
@@ -549,7 +576,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   --tw-gradient-from: var(--c-surface-3) var(--tw-gradient-from-position);
 }
 
-main form .grow .btn .bg-gradient-to-l .bg-token-surface-primary {
+main form .grow .btn .bg-gradient-to-l .bg-token-surface-primary, main form .grow button[role="combobox"] .bg-gradient-to-l .bg-token-surface-primary {
   --surface-secondary: var(--c-surface-2) !important;
   background-color: var(--c-accent) !important;
   border-radius: 100vw !important;
@@ -570,7 +597,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   padding: .5rem !important;
 }
 
-main form .grow .btn .bg-gradient-to-l .bg-token-surface-primary svg {
+main form .grow .btn .bg-gradient-to-l .bg-token-surface-primary svg, main form .grow button[role="combobox"] .bg-gradient-to-l .bg-token-surface-primary svg {
   color: var(--c-on-accent) !important;
 }
 
@@ -592,7 +619,7 @@ main .sticky [aria-haspopup="menu"]:hover, main .sticky [aria-haspopup="menu"][d
   background-color: var(--c-surface-1) !important;
 }
 
-main .sticky .btn {
+main .sticky .btn, main .sticky button[role="combobox"] {
   border-radius: 100vw !important;
 }
 
@@ -604,7 +631,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   border-radius: 100vw !important;
 }
 
-main .sticky .btn svg {
+main .sticky .btn svg, main .sticky button[role="combobox"] svg {
   color: var(--c-on-accent) !important;
 }
 
@@ -774,31 +801,7 @@ main div.flex.w-full.items-center > div {
   color: var(--c-accent) !important;
 }
 
-div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) .bg-white {
-  background-color: var(--c-bg-contextmenu) !important;
-  padding: var(--p-contextmenu) !important;
-  border-radius: var(--border-radius-contextmenu) !important;
-  box-shadow: var(--box-shadow-contextmenu) !important;
-}
-
-div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) [data-radix-collection-item] {
-  border-radius: var(--border-radius-btn);
-  margin-bottom: 4px;
-  padding: var(--p-contextmenu-item) !important;
-  height: auto !important;
-}
-
-div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) [data-radix-collection-item][data-state="unchecked"]:hover {
-  background-color: var(--c-surface-2) !important;
-}
-
-div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) [data-state="checked"] {
-  background-color: var(--c-bg-btn) !important;
-  color: var(--c-on-accent) !important;
-}
-
-.btn {
-  transition: all .2s ease-in-out;
+.btn, button[role="combobox"] {
   background-color: var(--c-bg-btn) !important;
   color: var(--c-btn) !important;
   border-radius: var(--border-radius-btn) !important;
@@ -806,14 +809,13 @@ div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper
 }
 
 main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 {
-  transition: all .2s ease-in-out;
   background-color: var(--c-bg-btn) !important;
   color: var(--c-btn) !important;
   border-radius: var(--border-radius-btn) !important;
   border: none !important;
 }
 
-.btn:not(.btn-small) {
+.btn:not(.btn-small), button[role="combobox"]:not(.btn-small) {
   padding: var(--p-btn) !important;
 }
 
@@ -821,7 +823,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   padding: var(--p-btn) !important;
 }
 
-.btn:is(:hover, :active) {
+.btn:is(:hover, :active), button[role="combobox"]:is(:hover, :active) {
   opacity: .8;
   transform: translateY(-2px);
 }
@@ -848,15 +850,19 @@ main [role="presentation"] button.absolute.rounded-full svg {
   color: var(--c-on-accent) !important;
 }
 
-[role="dialog"] .btn:not(.btn:has(svg)) {
+[role="dialog"] .btn:not(.btn:has(svg)):not(button[role="combobox"]:has(svg)) {
   min-width: var(--min-w);
 }
 
-[role="dialog"] main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600:not(.btn:has(svg)) {
+[role="dialog"] main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600:not(.btn:has(svg)):not(button[role="combobox"]:has(svg)) {
   min-width: var(--min-w);
 }
 
-main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) [role="dialog"] .bg-green-600:not(.btn:has(svg)) {
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) [role="dialog"] .bg-green-600:not(.btn:has(svg)):not(button[role="combobox"]:has(svg)) {
+  min-width: var(--min-w);
+}
+
+[role="dialog"] button[role="combobox"]:not(.btn:has(svg)):not(button[role="combobox"]:has(svg)) {
   min-width: var(--min-w);
 }
 
@@ -892,13 +898,6 @@ button[role="switch"]:has([data-state="unchecked"]) span {
 
 button[role="combobox"] {
   min-width: var(--min-w);
-  padding: var(--p-btn) !important;
-  border-radius: var(--border-radius-btn) !important;
-}
-
-button[role="combobox"]:hover {
-  background-color: var(--c-accent) !important;
-  color: var(--c-on-accent) !important;
 }
 
 html.light div[data-radix-popper-content-wrapper]:has([role="tooltip"]) span {
@@ -960,7 +959,7 @@ button, li, a, svg, [class*=":hover"], [role="switch"] span[data-state] {
   transition: all .35s ease-in-out;
 }
 
-button:not(.btn, [role="tab"], [role="combobox"], [data-testid="send-button"], [class*="[.final-completion]"]) svg:hover {
+button:not(.btn, button[role="combobox"], [role="tab"], [role="combobox"], [data-testid="send-button"], [class*="[.final-completion]"]) svg:hover {
   scale: 1.12;
 }
 
@@ -972,7 +971,7 @@ td:not(:has(a[href^="/share/"])) svg:hover {
   transform: scale(.8);
 }
 
-main form .grow .btn {
+main form .grow .btn, main form .grow button[role="combobox"] {
   transition: all .3s ease-in-out;
 }
 
@@ -984,7 +983,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   transition: all .3s ease-in-out;
 }
 
-main form .grow .btn .bg-gradient-to-l {
+main form .grow .btn .bg-gradient-to-l, main form .grow button[role="combobox"] .bg-gradient-to-l {
   transition: all .3s ease-in-out;
 }
 
@@ -996,7 +995,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   transition: all .3s ease-in-out;
 }
 
-main form .grow .btn .bg-gradient-to-l span[data-state] {
+main form .grow .btn .bg-gradient-to-l span[data-state], main form .grow button[role="combobox"] .bg-gradient-to-l span[data-state] {
   overflow: hidden;
 }
 
@@ -1008,7 +1007,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   overflow: hidden;
 }
 
-main form .grow .btn .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
+main form .grow .btn .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow button[role="combobox"] .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
   transition: all .3s ease-in-out;
   translate: 0 100%;
   rotate: 45deg;
@@ -1026,7 +1025,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   rotate: 45deg;
 }
 
-main form .grow .btn:hover {
+main form .grow .btn:hover, main form .grow button[role="combobox"]:hover {
   background-color: var(--c-surface-3) !important;
 }
 
@@ -1038,7 +1037,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   background-color: var(--c-surface-3) !important;
 }
 
-main form .grow .btn:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
+main form .grow .btn:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow button[role="combobox"]:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
   translate: 0;
   rotate: none;
 }

@@ -90,8 +90,9 @@ nav[aria-label="Chat history"] {
         .group {
             a[href^="/c/"] {
 
-                /* Selected/active link item */
+                /* Selected/active/hover link item */
                 &.bg-token-surface-primary {
+                    background-color: var(--c-surface-2) !important;
 
                     /* 3 dots btn bg-gradient */
                     .bg-gradient-to-l {

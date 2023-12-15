@@ -94,10 +94,10 @@
     }
 
     /* MODAL - Dialog - Buttons where is dialog that containes textarea  */
-    &:has(textarea) .btn-primary {
-        // padding: var(--py-btn) var(--px-btn) !important;
-        // border: 2px solid red !important;
-    }
+    // &:has(textarea) .btn-primary {
+    // padding: var(--py-btn) var(--px-btn) !important;
+    // border: 2px solid red !important;
+    // }
 
     /* MODAL - Dialog - Share Chat White preview div  */
     &:has(main div[data-radix-aspect-ratio-wrapper]) .w-full.rounded-lg {
@@ -154,41 +154,5 @@
                 color: var(--c-accent) !important;
             }
         }
-    }
-}
-
-
-/*  MODAL - Choose theme context menu & tooltips?  */
-/* Mora not role=menu da ne bih selektovala i onaj contextmenu u sidebar kad se klikne na prompt listitem 3 dots za opcije */
-div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) {
-
-    .bg-white {
-        background-color: var(--c-bg-contextmenu) !important;
-        padding: var(--p-contextmenu) !important;
-        border-radius: var(--border-radius-contextmenu) !important;
-        box-shadow: var(--box-shadow-contextmenu) !important;
-    }
-
-    [data-radix-collection-item] {
-        border-radius: var(--border-radius-btn);
-        padding: var(--p-contextmenu-item) !important;
-        height: auto !important;
-        margin-bottom: 4px;
-    }
-
-    /* MODAL - Choose theme context menuitem hover */
-    [data-radix-collection-item][data-state="unchecked"]:hover {
-        background-color: var(--c-surface-2) !important;
-    }
-
-    /* MODAL - Choose theme context menuitem hover - Light theme */
-    /* html.light [data-radix-collection-item][data-state="unchecked"]:hover {
-        background-color: var(--c-surface-3) !important;
-    } */
-
-    /* MODAL - Choose theme context menuitem hover active */
-    [data-state="checked"] {
-        background-color: var(--c-bg-btn) !important;
-        color: var(--c-on-accent) !important;
     }
 }

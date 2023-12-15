@@ -15,7 +15,7 @@
     --p-msg: 20px;
     --p-textarea: 10px;
     --p-tooltips: 8px;
-    --p-btn: 10px 10px;
+    --p-btn: 10px;
     --py-btn: 1rem;
     --px-btn: 1rem;
 
@@ -223,7 +223,7 @@ html.dark {
     --c-svg: #4e5066;
     --c-svg-accent: #f2f2f2;
 
-    --c-bg-modal: hsla(var(--accent-hsl) / 0.2);
+    --c-bg-modal: hsla(var(--accent-hsl) / 0.22);
     --c-bg-dialog: var(--c-surface-2);
     --c-bg-contextmenu: var(--c-surface-3);
 
@@ -274,5 +274,6 @@ html.dark {
     --gray-500: var(--c-txt) !important;
 
     --box-shadow: 0px 0px 100px 0px hsla(var(--accent-hsl) / 0.1);
-    --box-shadow-contextmenu: 0px 0px 8px -2px hsla(var(--accent-hsl) / 0.1);
+    --box-shadow-contextmenu: 0px 0px 30px -10px hsla(var(--accent-hsl) / 0.18);
+    // --box-shadow-contextmenu: 0px 0px 2px 1px hsla(var(--accent-hsl) / 0.2);
 }
