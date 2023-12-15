@@ -26,10 +26,10 @@
 
 ## Installation
 
-1. Download the `extension` folder.
+1. Download the `extension` folder or run the `git clone https://github.com/itsmartashub/GPThemes.git` in terminal.
 2. Open prefered Chromium-based browser and go to `chrome://extensions/`
 3. Enable `Developer mode` in the top-right corner.
-4. Click `Load unpacked` and select the extension folder.
+4. Click `Load unpacked` and select the `extension` folder.
 
 ## Soon
 
@@ -43,3 +43,9 @@
 ## Customization
 
 You can customize the extension's `CSS` by modifying the `index.css` file in the `extension/css` folder.
+
+## Kudosaurus Rex
+
+A huge shoutout to the testing maestro [@pbradjan1994](https://github.com/pbradjan1994) for being the bug whisperer in the wild world of my website extension. His insightful observations have significantly contributed to refining and enhancing the project. Grateful for your testing effort 🙏
+
+###### Sorry for the "clickbait" headline.
