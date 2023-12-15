@@ -4,7 +4,6 @@
 	"version": "1.0.0",
 	"manifest_version": 3,
 	"host_permissions": ["*://chat.openai.com/*"],
-	"permissions": ["storage"],
 	"author": ["itsmarta@proton.com"],
 	"icons": {
 		"16": "./assets/icons/16.png",
