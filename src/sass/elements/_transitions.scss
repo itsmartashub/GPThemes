@@ -138,15 +138,17 @@ main [data-testid^="conversation-turn-"] {
 /* ___ Scroll down button */
 main [role="presentation"] button.absolute.rounded-full {
     // transition: all .3s ease-in-out;
+    // border: 3px solid transparent !important;
 
     &:hover {
-        opacity: .9;
         translate: 0 10%;
-    }
-}
 
-/* Table shared links */
-[role="dialog"] table a:hover {
-    translate: 5px 0;
-    text-decoration: underline;
+        opacity: 1 !important;
+    }
+
+    /* Table shared links */
+    [role="dialog"] table a:hover {
+        translate: 5px 0;
+        text-decoration: underline;
+    }
 }

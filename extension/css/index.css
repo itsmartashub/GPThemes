@@ -840,11 +840,8 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   color: var(--c-bg-chats-container) !important;
 }
 
-html.light main [role="presentation"] button.absolute.rounded-full {
-  background-color: var(--c-txt) !important;
-}
-
-html.dark main [role="presentation"] button.absolute.rounded-full {
+main [role="presentation"] button.absolute.rounded-full {
+  box-shadow: var(--box-shadow-contextmenu);
   background-color: var(--c-accent) !important;
 }
 
@@ -1107,11 +1104,11 @@ main [data-testid^="conversation-turn-"] .group pre button:hover svg {
 }
 
 main [role="presentation"] button.absolute.rounded-full:hover {
-  opacity: .9;
   translate: 0 10%;
+  opacity: 1 !important;
 }
 
-[role="dialog"] table a:hover {
+main [role="presentation"] button.absolute.rounded-full [role="dialog"] table a:hover {
   text-decoration: underline;
   translate: 5px;
 }
