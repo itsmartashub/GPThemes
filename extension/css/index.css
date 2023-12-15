@@ -474,16 +474,49 @@ main [data-testid^="conversation-turn-"] .gizmo-shadow-stroke div {
   color: var(--c-on-accent) !important;
 }
 
+main [data-testid^="conversation-turn-"]:not(main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"])) .group {
+  background-color: var(--c-bg-msg-user);
+  outline: 2px solid #0000;
+}
+
 main [data-testid^="conversation-turn-"]:has([data-message-author-role="user"]) .group {
   background-color: var(--c-bg-msg-user);
+  outline: 2px solid #0000;
+}
+
+main [data-testid^="conversation-turn-"]:not(main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"])) .group .font-semibold.select-none {
+  color: var(--c-msg-name-user);
 }
 
 main [data-testid^="conversation-turn-"]:has([data-message-author-role="user"]) .group .font-semibold.select-none {
   color: var(--c-msg-name-user);
 }
 
+main [data-testid^="conversation-turn-"]:not(main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"])) button svg {
+  color: var(--c-msg-name-user);
+}
+
 main [data-testid^="conversation-turn-"]:has([data-message-author-role="user"]) button svg {
   color: var(--c-msg-name-user);
+}
+
+main [data-testid^="conversation-turn-"]:not(main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"])):has(textarea) .group {
+  outline-color: var(--c-surface-2) !important;
+  background-color: #0000 !important;
+}
+
+main [data-testid^="conversation-turn-"]:not(main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"])):has(textarea) .group textarea {
+  color: var(--c-subtext-2) !important;
+}
+
+main [data-testid^="conversation-turn-"]:not(main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"])):has(textarea) .group .btn-neutral {
+  background-color: var(--c-surface-3) !important;
+  color: var(--c-txt) !important;
+}
+
+main [data-testid^="conversation-turn-"]:not(main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"])):has(textarea) .group button[role="combobox"] {
+  background-color: var(--c-surface-3) !important;
+  color: var(--c-txt) !important;
 }
 
 main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"]) .group {
@@ -804,6 +837,7 @@ main div.flex.w-full.items-center > div {
 }
 
 .btn, button[role="combobox"] {
+  will-change: transform, opacity;
   background-color: var(--c-bg-btn) !important;
   color: var(--c-btn) !important;
   border-radius: var(--border-radius-btn) !important;
@@ -811,6 +845,7 @@ main div.flex.w-full.items-center > div {
 }
 
 main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 {
+  will-change: transform, opacity;
   background-color: var(--c-bg-btn) !important;
   color: var(--c-btn) !important;
   border-radius: var(--border-radius-btn) !important;
@@ -827,12 +862,12 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
 
 .btn:is(:hover, :active), button[role="combobox"]:is(:hover, :active) {
   opacity: .8;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600:is(:hover, :active) {
   opacity: .8;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .btn-danger {
@@ -937,7 +972,7 @@ div[data-radix-popper-content-wrapper]:has([role="tooltip"]) div {
   --tw-ring-offset-color: var(--c-bg-dialog) !important;
 }
 
-:focus-visible:not(.btn-primary, .btn-danger, .btn-neutral:not([role="combobox"], .bg-token-surface-tertiary input), button[role="combobox"]:not([role="combobox"], .bg-token-surface-tertiary input), textarea#prompt-textarea, [aria-label="Delete shared link"], [class*="text-red-"]) {
+:focus-visible:not(.btn-primary, .btn-danger, .btn-neutral:not([role="combobox"], .bg-token-surface-tertiary input), button[role="combobox"]:not([role="combobox"], .bg-token-surface-tertiary input), textarea, [aria-label="Delete shared link"], [class*="text-red-"]) {
   outline: 2.5px solid hsl(var(--accent-h), calc(var(--accent-s) / 1.5), var(--accent-l));
 }
 

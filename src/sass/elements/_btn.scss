@@ -1,4 +1,5 @@
 .btn {
+    will-change: transform, opacity;
     background-color: var(--c-bg-btn) !important;
     color: var(--c-btn) !important;
     border-radius: var(--border-radius-btn) !important;
@@ -10,7 +11,7 @@
     }
 
     &:is(:hover, :active) {
-        transform: translateY(-2px);
+        transform: translateY(-1px);
         opacity: .8;
     }
 }
@@ -23,7 +24,6 @@
     background-color: var(--c-btn-danger) !important;
     color: var(--c-bg-chats-container) !important;
 }
-
 
 /* === RIGHT - Scroll Down arrow bg LIGHT  === */
 // html.light main [role="presentation"] button.absolute.rounded-full {
@@ -38,13 +38,13 @@ main [role="presentation"] button.absolute.rounded-full {
     background-color: var(--c-accent) !important;
     box-shadow: var(--box-shadow-contextmenu);
 
-    /* === RIGHT - Scroll Down arrow SVG Color === */
+    /* RIGHT - Scroll Down arrow SVG Color === */
     svg {
         color: var(--c-on-accent) !important;
     }
 }
 
-/* All the .btn inside dialogs not having svg icon inside */
+/* === All the .btn inside dialogs not having svg icon inside */
 [role="dialog"] {
     .btn:not(.btn:has(svg)) {
         min-width: var(--min-w);
@@ -69,7 +69,7 @@ main [role="presentation"] button.absolute.rounded-full {
     }
 }
 
-/* Checkbox button - switcher. In "Chat history & training: and "Custom instructions" */
+/* === Checkbox button - switcher. In "Chat history & training: and "Custom instructions" */
 button[role="switch"] {
 
     /* Checkbox ON */
