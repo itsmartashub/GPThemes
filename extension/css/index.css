@@ -678,18 +678,23 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   color: var(--c-on-accent) !important;
 }
 
-main form .overflow-hidden:has(textarea#prompt-textarea) {
+main form [class*="[&:has(textarea:focus)]"]:has(textarea#prompt-textarea) {
   border: 3px solid var(--c-border-textarea);
+  transition: background-color .3s ease-in-out;
   padding: var(--p-textarea) !important;
-  background-color: var(--c-bg-textarea) !important;
   border-radius: var(--border-radius-msg) !important;
+  background-color: #0000 !important;
 }
 
-main form .overflow-hidden:has(textarea#prompt-textarea) textarea::placeholder {
+main form [class*="[&:has(textarea:focus)]"]:has(textarea#prompt-textarea):has(textarea:focus) {
+  background-color: var(--c-bg-textarea) !important;
+}
+
+main form [class*="[&:has(textarea:focus)]"]:has(textarea#prompt-textarea) textarea::placeholder {
   color: var(--c-placeholder-textarea) !important;
 }
 
-main form .overflow-hidden:has(textarea#prompt-textarea) button[data-testid="send-button"] {
+main form [class*="[&:has(textarea:focus)]"]:has(textarea#prompt-textarea) button[data-testid="send-button"] {
   padding: 2px;
   background-color: var(--c-accent) !important;
   color: var(--c-txt) !important;
@@ -699,11 +704,11 @@ main form .overflow-hidden:has(textarea#prompt-textarea) button[data-testid="sen
   right: 1.3rem !important;
 }
 
-main form .overflow-hidden:has(textarea#prompt-textarea) button[data-testid="send-button"][disabled] {
+main form [class*="[&:has(textarea:focus)]"]:has(textarea#prompt-textarea) button[data-testid="send-button"][disabled] {
   opacity: .5 !important;
 }
 
-main form .overflow-hidden:has(textarea#prompt-textarea) button[data-testid="send-button"] svg {
+main form [class*="[&:has(textarea:focus)]"]:has(textarea#prompt-textarea) button[data-testid="send-button"] svg {
   color: var(--c-on-accent) !important;
 }
 

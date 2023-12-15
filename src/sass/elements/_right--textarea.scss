@@ -1,9 +1,15 @@
-/* ===  RIGHT - TEXTAREA */
-main form .overflow-hidden:has(textarea#prompt-textarea) {
+/* ===  RIGHT - TEXTAREA PARENT, message type and send button */
+// main form .overflow-hidden:has(textarea#prompt-textarea) {
+main form [class*="[&:has(textarea:focus)]"]:has(textarea#prompt-textarea) {
     padding: var(--p-textarea) !important;
-    background-color: var(--c-bg-textarea) !important;
-    border: 3px solid var(--c-border-textarea);
+    background-color: transparent !important;
     border-radius: var(--border-radius-msg) !important;
+    border: 3px solid var(--c-border-textarea);
+    transition: background-color .3s ease-in-out;
+
+    &:has(textarea:focus) {
+        background-color: var(--c-bg-textarea) !important;
+    }
 
     textarea::placeholder {
         color: var(--c-placeholder-textarea) !important;
@@ -18,7 +24,6 @@ main form .overflow-hidden:has(textarea#prompt-textarea) {
         padding: 2px;
         right: 1.3rem !important;
         bottom: 1.2rem !important;
-        // transform: translate(-20%, -20%);
 
         &[disabled] {
             opacity: .5 !important;
