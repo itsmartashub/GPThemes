@@ -31,12 +31,17 @@ textarea::placeholder {
 
 /* .text-gizmo-gray-500 is the footer txt in dialog "YOU'RE INVITED TO PLUS" */
 .text-gizmo-gray-500,
-.text-gray-500 {
+// .text-gray-500,
+.text-gray-100 {
     color: var(--c-subtext-1) !important;
 }
 
-/* Is this conversation helpful so far? 👍👎 */
-.text-gray-400 {
+/* 
+ - Is this conversation helpful so far? 👍👎
+ - tg500 je recimo btn svg u "Archived/Shared Links" popup
+*/
+.text-gray-400,
+.text-gray-500 {
     color: var(--c-subtext-2) !important;
     // color: red !important;
 }

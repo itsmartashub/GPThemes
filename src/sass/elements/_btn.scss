@@ -50,6 +50,8 @@ main [role="presentation"] button.absolute.rounded-full {
         min-width: var(--min-w);
     }
 
+    /* ".PopoverContent" je recimo btn u "Shared Link to Chat" 3dots menu (Shared your Name & Delete Link) */
+    // .btn-neutral:not(&:has(.PopoverContent)) {
     .btn-neutral:not(.PopoverContent) {
         background-color: var(--c-surface-3) !important;
         color: var(--c-txt) !important;

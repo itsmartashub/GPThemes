@@ -127,13 +127,10 @@ html.light {
 
     --c-bg-pre: hsl(0, 0%, 0%);
     --c-bg-pre-header: transparent;
-    /* --c-bg-pre-header-btn: hsla(0 0% 100% / 0.102); */
-    // --c-bg-pre-header-btn: var(--c-surface-1);
     --c-bg-pre-header-btn: hsla(255, 100%, 100%, 0.1);
     --c-markdown-a: var(--c-accent);
 
     /* btn u biranju teme kad nemaa nikake pozadine */
-    // --surface-primary: blue !important;
     --surface-primary: var(--c-surface-1) !important;
 
     /* border oko context-menu */
@@ -143,15 +140,8 @@ html.light {
     --surface-tertiary: var(--c-bg-msg-gpt) !important;
 
     --text-primary: var(--c-txt) !important;
-    /* --text-secondary: hsl(249 19% calc(var(--txt-hsl-l) + 7%)) !important; */
-    /* --text-tertiary: hsl(249 19% calc(var(--txt-hsl-l) + 13%)) !important; */
 
-    --text-primary: var(--c-txt) !important;
-
-    /* txt ispod Upgrade, i txt ispod "Chat history & training" u settingsu i txt 3.5 u sticky pored ChatGPT 3.5 i kad je recimo focused sa tabom Dark u Themes i text kad se ode na Upgrade pa ono Have an existing plan? See billing help*/
-    // --text-secondary: hsl(0, 0%, 20%) !important;
-    // --text-secondary: hsl(var(--accent-h), calc(var(--accent-s) / 2), calc(var(--accent-l) / 1.5)) !important;
-    // --text-secondary: var(--c-accent-light) !important;
+    /* txt ispod Upgrade, i txt ispod "Chat history & training" u settingsu i txt 3.5 u sticky pored ChatGPT 3.5 i kad je recimo focused sa tabom Dark u Themes i text kad se ode na Upgrade pa ono Have an existing plan? See billing help */
     --text-secondary: var(--c-subtext-1) !important;
 
     /* strelica na dole pored 3.5 u sticky pored ChatGPT 3.5 i kad je nesto focused sa tabom - accessibility - npr Clear u clear all chats i text u contextmenu kad se klikne na ChatGPT 3.5 i text kad odemo u  UPgrade pa ono USD $0/month i USD $20/month */
@@ -275,5 +265,4 @@ html.dark {
 
     --box-shadow: 0px 0px 100px 0px hsla(var(--accent-hsl) / 0.1);
     --box-shadow-contextmenu: 0px 0px 30px -10px hsla(var(--accent-hsl) / 0.18);
-    // --box-shadow-contextmenu: 0px 0px 2px 1px hsla(var(--accent-hsl) / 0.2);
 }

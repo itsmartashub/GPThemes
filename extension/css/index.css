@@ -82,7 +82,6 @@ html.light {
   --surface-secondary: transparent !important;
   --surface-tertiary: var(--c-bg-msg-gpt) !important;
   --text-primary: var(--c-txt) !important;
-  --text-primary: var(--c-txt) !important;
   --text-secondary: var(--c-subtext-1) !important;
   --text-tertiary: var(--c-subtext-2) !important;
   --gray-300: var(--text-secondary) !important;
@@ -168,11 +167,11 @@ input::placeholder, textarea::placeholder {
   opacity: .6 !important;
 }
 
-.text-gizmo-gray-500, .text-gray-500 {
+.text-gizmo-gray-500, .text-gray-100 {
   color: var(--c-subtext-1) !important;
 }
 
-.text-gray-400 {
+.text-gray-400, .text-gray-500 {
   color: var(--c-subtext-2) !important;
 }
 
@@ -807,22 +806,6 @@ main div.flex.w-full.items-center > div {
   padding: var(--p-contextmenu) !important;
 }
 
-[role="dialog"] table a {
-  color: var(--c-accent) !important;
-}
-
-[role="dialog"] table button[aria-label="Delete shared link"] {
-  color: var(--c-btn-danger) !important;
-}
-
-[role="dialog"] table span[data-state]:has(svg) {
-  opacity: .7;
-}
-
-[role="dialog"] table span[data-state]:has(svg):hover {
-  opacity: 1;
-}
-
 [role="dialog"] table .bg-white, [role="dialog"] table .bg-gray-900 {
   background-color: #0000 !important;
 }
@@ -838,7 +821,20 @@ main div.flex.w-full.items-center > div {
 
 [role="dialog"] table thead th {
   text-transform: uppercase !important;
+  color: var(--c-txt) !important;
+}
+
+[role="dialog"] table tbody td:first-child a {
   color: var(--c-accent) !important;
+}
+
+[role="dialog"] table tbody td:has(button[aria-label^="Delete"]) span[data-state] {
+  place-items: center;
+  display: flex;
+}
+
+[role="dialog"] table button[aria-label^="Delete"] {
+  color: var(--c-btn-danger) !important;
 }
 
 .btn, button[role="combobox"] {
@@ -998,11 +994,7 @@ button, li, a, svg, [class*=":hover"], [role="switch"] span[data-state] {
   transition: all .35s ease-in-out;
 }
 
-button:not(.btn, button[role="combobox"], [role="tab"], [role="combobox"], [data-testid="send-button"], [class*="[.final-completion]"]) svg:hover {
-  scale: 1.12;
-}
-
-td:not(:has(a[href^="/share/"])) svg:hover {
+button:not(.btn, button[role="combobox"], [role="tab"], [role="combobox"], [data-testid="send-button"], [class*="[.final-completion]"], [aria-label^="Delete"], [aria-label="Unarchive conversation"]) svg:hover {
   scale: 1.12;
 }
 
@@ -1148,9 +1140,20 @@ main [role="presentation"] button.absolute.rounded-full:hover {
   opacity: 1 !important;
 }
 
-[role="dialog"] table a:hover {
+[role="dialog"] table tbody td:first-child a:hover {
   text-decoration: underline;
   translate: 5px;
+  color: var(--c-accent) !important;
+}
+
+[role="dialog"] table tbody td:first-child a:hover svg {
+  translate: -5px;
+  scale: .9 !important;
+}
+
+[role="dialog"] table tbody td:has(button[aria-label^="Delete"]) span[data-state]:hover svg {
+  translate: 0 -2px !important;
+  scale: 1 !important;
 }
 
 main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) {

@@ -93,45 +93,18 @@
         }
     }
 
-    /* MODAL - Dialog - Buttons where is dialog that containes textarea  */
-    // &:has(textarea) .btn-primary {
-    // padding: var(--py-btn) var(--px-btn) !important;
-    // border: 2px solid red !important;
-    // }
-
-    /* MODAL - Dialog - Share Chat White preview div  */
+    /* MODAL - Dialog - "Share Chat" White preview <div>  */
     &:has(main div[data-radix-aspect-ratio-wrapper]) .w-full.rounded-lg {
         border-radius: var(--border-radius-msg) !important;
         background-color: var(--c-bg-chats-container) !important;
     }
 
-    /*  MODAL - Shared links - TABLE THEAD BG  */
+    /* ___ MODAL - "SHARED LINKS" or "ARCHIVED CHATS" - Table  */
     table {
         padding: var(--p-contextmenu) !important;
         border-radius: var(--border-radius-contextmenu);
 
-        // Link in table shared links
-        a {
-            color: var(--c-accent) !important;
-        }
-
-
-        // Delete shared link svg color
-        button[aria-label="Delete shared link"] {
-            color: var(--c-btn-danger) !important;
-        }
-
-        // Svg icons delete or share link hover state
-        span[data-state]:has(svg) {
-            opacity: .7;
-
-            &:hover {
-                opacity: 1;
-                // transform: scale(1.1);
-            }
-        }
-
-        // BG of thead th in table 'Shared Links'
+        /* BG of thead>th */
         .bg-white,
         .bg-gray-900 {
             background-color: transparent !important;
@@ -151,8 +124,29 @@
 
             th {
                 text-transform: uppercase !important;
+                // color: var(--c-accent) !important;
+                color: var(--c-txt) !important;
+            }
+        }
+
+        tbody {
+
+            /* Link in table Shared Links/Archived Chats */
+            td:first-child a {
                 color: var(--c-accent) !important;
             }
+
+            /* Center the vertically svg icons next to each other in table */
+            td:has(button[aria-label^="Delete"]) span[data-state] {
+                display: flex;
+                align-items: center;
+                justify-items: center;
+            }
+        }
+
+        /* "Delete shared link" in Shared Links and "Delete conversation" in Archived Chats svg color */
+        button[aria-label^="Delete"] {
+            color: var(--c-btn-danger) !important;
         }
     }
 }

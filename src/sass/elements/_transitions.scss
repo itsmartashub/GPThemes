@@ -8,11 +8,30 @@ svg,
     transition: all .35s ease-in-out;
 }
 
-/* ___ SVG icon which are not in Theme choosing, or in active tab, in .btn, in send message btn, btns in message bubble footer ([class*="[.final-completion]"]) */
-button:not(.btn, [role="tab"], [role="combobox"], [data-testid="send-button"], [class*="[.final-completion]"]),
-td:not(:has(a[href^="/share/"])) {
+/* ___ BUTTON SVG icon which ARE NOT in:
+    - in .btn <button>
+    - Theme choosing <button>
+    - in active tab <button>
+    - in send message btn <button>
+    - btns in message bubble footer <button> ([class*="[.final-completion]"]) 
+------------------------------
+    - .btn  |  Button
+    - [role="tab"]  |  Active tab
+    - [role="combobox"]  |  Theme choosing
+    - [data-testid="send-button"]  |  Send Message Button
+    - [class*="[.final-completion]"]  |  Btns in Message bubble footer
+    - [aria-label^="Delete"])  | "Delete" icon in "Shared links" and "Archived Chats" 
+    - [aria-label="Unarchive conversation"])  | "Unarchive" icon in "Archived Chats"
+   */
+button:not(.btn,
+    [role="tab"],
+    [role="combobox"],
+    [data-testid="send-button"],
+    [class*="[.final-completion]"],
+    [aria-label^="Delete"],
+    [aria-label="Unarchive conversation"]) {
 
-    /* svg {
+    /*     svg {
         border: 1px solid red !important;
     } */
 
@@ -147,8 +166,35 @@ main [role="presentation"] button.absolute.rounded-full {
     }
 }
 
-/* ___ Table shared links */
-[role="dialog"] table a:hover {
-    translate: 5px 0;
-    text-decoration: underline;
+/* ___ Table "Archived Chats" or "Shared Links" */
+[role="dialog"] table {
+
+    tbody {
+
+        /* NAME - first column Links
+        "Shared links" & "Archived Chats" links in table, but a[href^="/c/"] is also Conversation SVG in "Shared Links", ahh */
+        td:first-child a:hover {
+            color: var(--c-accent) !important;
+
+            svg {
+                scale: .9 !important;
+                translate: -5px 0;
+            }
+
+            translate: 5px 0;
+            text-decoration: underline;
+        }
+
+        /* Table column that contains "Delete" svg icon */
+        td:has(button[aria-label^="Delete"]) {
+
+            /* SVG parent wrapper */
+            span[data-state]:hover {
+                svg {
+                    translate: 0 -2px !important;
+                    scale: 1 !important;
+                }
+            }
+        }
+    }
 }
