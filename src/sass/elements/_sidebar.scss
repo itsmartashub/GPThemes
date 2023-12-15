@@ -153,9 +153,11 @@ nav[aria-label="Chat history"] {
                 */
                 input {
                     // input rename border color on focused
-                    --tw-ring-color: transparent;
+                    --tw-ring-color: transparent !important;
                     caret-color: var(--c-accent);
                     border: none !important;
+                    outline: none !important;
+                    box-shadow: none !important;
                 }
             }
         }

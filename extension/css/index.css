@@ -384,9 +384,11 @@ nav[aria-label="Chat history"] li .group .bg-token-surface-tertiary {
 }
 
 nav[aria-label="Chat history"] li .group .bg-token-surface-tertiary input {
-  --tw-ring-color: transparent;
   caret-color: var(--c-accent);
+  --tw-ring-color: transparent !important;
+  box-shadow: none !important;
   border: none !important;
+  outline: none !important;
 }
 
 nav[aria-label="Chat history"] .group[data-headlessui-state] button[aria-haspopup="true"] {
@@ -938,7 +940,7 @@ div[data-radix-popper-content-wrapper]:has([role="tooltip"]) div {
   --tw-ring-offset-color: var(--c-bg-dialog) !important;
 }
 
-:focus-visible:not(.btn-primary, .btn-danger, .btn-neutral:not([role="combobox"]), button[role="combobox"]:not([role="combobox"]), textarea#prompt-textarea, [aria-label="Delete shared link"], [class*="text-red-"]) {
+:focus-visible:not(.btn-primary, .btn-danger, .btn-neutral:not([role="combobox"], .bg-token-surface-tertiary input), button[role="combobox"]:not([role="combobox"], .bg-token-surface-tertiary input), textarea#prompt-textarea, [aria-label="Delete shared link"], [class*="text-red-"]) {
   outline: 2.5px solid hsl(var(--accent-h), calc(var(--accent-s) / 1.5), var(--accent-l));
 }
 
