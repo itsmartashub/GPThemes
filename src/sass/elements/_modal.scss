@@ -1,10 +1,10 @@
-/*  MODAL - Background */
+/* ___  MODAL - Background */
 .absolute.inset-0 .fixed.inset-0 {
     background-color: var(--c-bg-modal) !important;
     backdrop-filter: blur(var(--blur-modal)) !important;
 }
 
-/* MODAL - Dialog Settings  */
+/* ___ MODAL - Dialog Settings  */
 [role="dialog"] {
     padding: var(--p-dialog) !important;
     background-color: var(--c-bg-dialog) !important;

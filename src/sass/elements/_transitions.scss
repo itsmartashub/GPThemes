@@ -41,6 +41,27 @@ button:not(.btn,
     }
 }
 
+.btn {
+    &:is(:hover, :active) {
+        transform: translateY(-1px);
+        opacity: .8;
+    }
+}
+
+/* dialog buttons */
+[role="dialog"] {
+
+    /* ".PopoverContent" je recimo menu od btn u "Shared Link to Chat" 3dots menu (Shared your Name & Delete Link) */
+    &.PopoverContent {
+        .btn-neutral:is(:hover, :focus) {
+            background-color: var(--c-surface-2) !important;
+            color: var(--c-txt) !important;
+            transform: none !important;
+            opacity: 1 !important;
+        }
+    }
+}
+
 /* ___ Switch button circle hover. Ovde ne moze :focus, ostane style kao da je checked ili obrnuto i kad se unhoveruje */
 [role="switch"]:hover {
     span[data-state] {

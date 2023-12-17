@@ -10,10 +10,7 @@
         padding: var(--p-btn) !important;
     }
 
-    &:is(:hover, :active) {
-        transform: translateY(-1px);
-        opacity: .8;
-    }
+
 }
 
 /* .btn-primary {
@@ -50,11 +47,17 @@ main [role="presentation"] button.absolute.rounded-full {
         min-width: var(--min-w);
     }
 
-    /* ".PopoverContent" je recimo btn u "Shared Link to Chat" 3dots menu (Shared your Name & Delete Link) */
-    // .btn-neutral:not(&:has(.PopoverContent)) {
-    .btn-neutral:not(.PopoverContent) {
+    &:not(.PopoverContent) .btn-neutral {
         background-color: var(--c-surface-3) !important;
         color: var(--c-txt) !important;
+    }
+
+    /* ".PopoverContent" je recimo menu od btn u "Shared Link to Chat" 3dots menu (Shared your Name & Delete Link) */
+    &.PopoverContent {
+        .btn-neutral {
+            background-color: transparent !important;
+            color: var(--c-txt) !important;
+        }
     }
 }
 

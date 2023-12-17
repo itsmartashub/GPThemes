@@ -167,12 +167,16 @@ input::placeholder, textarea::placeholder {
   opacity: .6 !important;
 }
 
-.text-gizmo-gray-500, .text-gray-100 {
-  color: var(--c-subtext-1) !important;
+[class*="text-gray-"]:not(.text-gray-400, .text-gray-500, .text-gray-600), [class*="text-white"]:not(.btn-primary .text-white, .bg-green-600) {
+  color: var(--c-txt) !important;
 }
 
-.text-gray-400, .text-gray-500 {
+.text-gray-400, .text-gray-600, .text-gray-500 {
   color: var(--c-subtext-2) !important;
+}
+
+.text-gizmo-gray-500, .text-gray-100 {
+  color: var(--c-subtext-1) !important;
 }
 
 .text-red-500 {
@@ -861,16 +865,6 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   padding: var(--p-btn) !important;
 }
 
-.btn:is(:hover, :active), button[role="combobox"]:is(:hover, :active) {
-  opacity: .8;
-  transform: translateY(-1px);
-}
-
-main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600:is(:hover, :active) {
-  opacity: .8;
-  transform: translateY(-1px);
-}
-
 .btn-danger {
   background-color: var(--c-btn-danger) !important;
   color: var(--c-bg-chats-container) !important;
@@ -901,9 +895,14 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   min-width: var(--min-w);
 }
 
-[role="dialog"] .btn-neutral:not(.PopoverContent), [role="dialog"] button[role="combobox"]:not(.PopoverContent) {
+[role="dialog"]:not(.PopoverContent) .btn-neutral, [role="dialog"]:not(.PopoverContent) button[role="combobox"] {
   background-color: var(--c-surface-3) !important;
   color: var(--c-txt) !important;
+}
+
+[role="dialog"].PopoverContent .btn-neutral, [role="dialog"].PopoverContent button[role="combobox"] {
+  color: var(--c-txt) !important;
+  background-color: #0000 !important;
 }
 
 [role="tablist"] button {
@@ -996,6 +995,23 @@ button, li, a, svg, [class*=":hover"], [role="switch"] span[data-state] {
 
 button:not(.btn, button[role="combobox"], [role="tab"], [role="combobox"], [data-testid="send-button"], [class*="[.final-completion]"], [aria-label^="Delete"], [aria-label="Unarchive conversation"]) svg:hover {
   scale: 1.12;
+}
+
+.btn:is(:hover, :active), button[role="combobox"]:is(:hover, :active) {
+  opacity: .8;
+  transform: translateY(-1px);
+}
+
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600:is(:hover, :active) {
+  opacity: .8;
+  transform: translateY(-1px);
+}
+
+[role="dialog"].PopoverContent .btn-neutral:is(:hover, :focus), [role="dialog"].PopoverContent button[role="combobox"]:is(:hover, :focus) {
+  background-color: var(--c-surface-2) !important;
+  color: var(--c-txt) !important;
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 [role="switch"]:hover span[data-state] {

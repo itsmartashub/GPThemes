@@ -24,10 +24,23 @@ textarea::placeholder {
 }
 
 /* ==== TYPOGRAPHY COLORS */
-/* [class*="text-gray-"]:not(.text-gray-500, .text-gray-400),
+[class*="text-gray-"]:not(.text-gray-400, .text-gray-500, .text-gray-600),
 [class*="text-white"]:not(.btn-primary .text-white, .bg-green-600) {
     color: var(--c-txt) !important;
-} */
+}
+
+/* 
+ - Is this conversation helpful so far? 👍👎
+ - tg500 je recimo btn svg u "Archived/Shared Links" popup
+ - tg-400 (dark) tg-600 (light) in "You have no shared links."
+*/
+.text-gray-400,
+.text-gray-600,
+.text-gray-500 {
+    color: var(--c-subtext-2) !important;
+    // color: red !important;
+}
+
 
 /* .text-gizmo-gray-500 is the footer txt in dialog "YOU'RE INVITED TO PLUS" */
 .text-gizmo-gray-500,
@@ -36,36 +49,10 @@ textarea::placeholder {
     color: var(--c-subtext-1) !important;
 }
 
-/* 
- - Is this conversation helpful so far? 👍👎
- - tg500 je recimo btn svg u "Archived/Shared Links" popup
-*/
-.text-gray-400,
-.text-gray-500 {
-    color: var(--c-subtext-2) !important;
-    // color: red !important;
-}
-
 /* Log out, Delete all conversations, Delete chat */
 .text-red-500 {
     color: var(--c-btn-danger) !important;
 }
-
-/* Go to end arrow */
-/* [class*=":bg-white/10"] {
-    background-color: var(--c-surface-3) !important;
-    border-color: var(--c-surface-3) !important;
-} */
-
-/* 
-    - btn scroll down u conversations 
-    - Ugly bg behind ✔️ "Upgrade your plan" dialog list. But also <thead><th>in <table>(Shared Links) .bg-token-surface-primary 
-    Black bg on content txt: "YOU'RE INVITED TO PLUS" pop-up
-*/
-// .bg-token-surface-primary {
-//     --surface-primary: red !important;
-//     --surface-primary: var(--c-surface-1) !important;
-// }
 
 
 /* === BG COLORS */
