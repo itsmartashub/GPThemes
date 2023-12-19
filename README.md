@@ -38,7 +38,7 @@
 1. Download the `gpthemes-chrome.zip` from the [Releases](https://github.com/itsmartashub/GPThemes/releases) and unzip.
 2. Open prefered Chromium-based browser and go to `chrome://extensions/`
 3. Enable `Developer mode` in the top-right corner.
-4. Click `Load unpacked` and select the `extension` folder.
+4. Click `Load unpacked` and select the `gpthemes-chrome` folder.
 
 ## Supported ChatGPT versions
 
