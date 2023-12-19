@@ -42,7 +42,7 @@
 
 ## Supported ChatGPT versions
 
-**Note**: Currently, the focus is on enhancing the UI of the **free** [ChatGPT](https://chat.openai.com/) version. Exploring and editing elements of the **Pro** [ChatGPT](https://chat.openai.com/) version may be considered in future updates.
+⚠️ **Important**: Currently, the focus is on enhancing the UI of the **free** [ChatGPT](https://chat.openai.com/) version. Exploring and editing elements of the **Pro** [ChatGPT](https://chat.openai.com/) version may be considered in future updates.
 
 ## Customization
 
