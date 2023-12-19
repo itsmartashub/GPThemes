@@ -26,15 +26,19 @@
 
 ## Installation
 
-1. Download the `extension` folder or run the `git clone https://github.com/itsmartashub/GPThemes.git` in terminal.
+### Chrome Web Store
+
+1. Go to the extension's page [here](https://chromewebstore.google.com/detail/gpthemes/bghdlfnkbghekhdadaokecnhkcodfcna)
+2. On the extension's page, click the `Add to Chrome` button.
+3. Confirm the installation when prompted.
+4. Visit the [ChatGPT website](https://chat.openai.com/)
+
+### Developer Mode
+
+1. Download the `gpthemes-chrome.zip` from the [Releases](https://github.com/itsmartashub/GPThemes/releases) and unzip.
 2. Open prefered Chromium-based browser and go to `chrome://extensions/`
 3. Enable `Developer mode` in the top-right corner.
 4. Click `Load unpacked` and select the `extension` folder.
-
-## Soon
-
--   **Chrome Web Store**: The extension will soon be available on the Chrome Web Store.
--   **GitHub Releases**: Once released, it will be available for download directly from the GitHub Releases.
 
 ## Supported ChatGPT versions
 
@@ -44,8 +48,6 @@
 
 You can customize the extension's `CSS` by modifying the `index.css` file in the `extension/css` folder.
 
-## Kudosaurus Rex
+## Acknowledgments
 
-A huge shoutout to the testing maestro [@pbradjan1994](https://github.com/pbradjan1994) for being the bug whisperer in the wild world of my website extension. His insightful observations have significantly contributed to refining and enhancing the project. Grateful for your testing effort 🙏
-
-###### Sorry for the "clickbait" headline.
+Shoutout to the testing maestro [@pbradjan1994](https://github.com/pbradjan1994) for being the bug whisperer in the wild world of my website extension. His insightful observations have significantly contributed to refining and enhancing the project. Grateful for your testing effort 🙏
