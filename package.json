@@ -2,10 +2,18 @@
 	"name": "gpthemes",
 	"version": "1.0.0",
 	"description": "GPThemes is a Chrome extension designed to improve the visual experience of ChatGPT by injecting custom CSS to enhance its theme.",
-	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/itsmartashub/GPThemes.git"
+	},
+	"bugs": {
+		"url": "https://github.com/itsmartashub/GPThemes/issues"
+	},
+	"homepage": "https://github.com/itsmartashub/GPThemes/",
 	"scripts": {
-		"dev": "parcel src/sass/index.scss --dist-dir extension/css",
-		"build": "parcel build src/sass/index.scss --dist-dir extension/css"
+		"test": "parcel src/sass/index.scss --dist-dir extension-test/css --no-source-maps",
+		"dev": "parcel src/sass/index.scss --dist-dir extension-dev/css --no-source-maps",
+		"build": "parcel build src/sass/index.scss --dist-dir extension-prod/css --no-source-maps"
 	},
 	"author": "Marta Bires",
 	"keywords": [
@@ -46,7 +54,27 @@
 	"license": "GPL-3.0",
 	"devDependencies": {
 		"@parcel/transformer-sass": "^2.10.3",
-		"parcel": "^2.10.3"
+		"parcel": "^2.10.3",
+		"parcel-reporter-static-files-copy": "^1.5.3",
+		"postcss": "^8.4.32",
+		"postcss-preset-env": "^9.3.0",
+		"postcss-transform": "^1.0.0"
 	},
-	"browserslist": "> 0.5%, last 2 versions, not dead"
+	"browserslist": "> 0.5%, last 2 versions, not dead",
+	"staticFiles": [
+		{
+			"staticPath": "./src/static/",
+			"distDir": "extension-dev",
+			"env": {
+				"NODE_ENV": "development"
+			}
+		},
+		{
+			"staticPath": "./src/static/",
+			"distDir": "extension-prod",
+			"env": {
+				"NODE_ENV": "production"
+			}
+		}
+	]
 }

@@ -2,3 +2,6 @@ node_modules
 .parcel-cache
 
 extension/css/index.css.map
+
+extension-test
+extension-prod

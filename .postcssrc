@@ -1,0 +1,12 @@
+{
+	"plugins": {
+		"css-has-pseudo": true,
+		"postcss-selector-not": true,
+		"postcss-custom-properties": true,
+		"postcss-gap-properties": true,
+		"postcss-clamp": true,
+		"postcss-transform": {
+			"preserve": false
+		}
+	}
+}
