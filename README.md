@@ -50,4 +50,4 @@ You can customize the extension's `CSS` by modifying the `index.css` file in the
 
 ## Acknowledgments
 
-Shoutout to the testing maestro [@pbradjan1994](https://github.com/pbradjan1994) for being the bug whisperer in the wild world of my website extension. His insightful observations have significantly contributed to refining and enhancing the project. Grateful for your testing effort 🙏
+Shoutout to the testing maestro [@TheMaskedGuardian](https://github.com/TheMaskedGuardian) for being the bug whisperer in the wild world of this website extension. His insightful observations have significantly contributed to refining and enhancing the project. Grateful for your testing effort 🙏
