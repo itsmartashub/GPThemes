@@ -1,10 +1,20 @@
 /* === TOOLTIPS text color === */
-html.light div[data-radix-popper-content-wrapper]:has([role="tooltip"]) span {
-    color: var(--c-txt) !important;
+/* html.light div[data-radix-popper-content-wrapper]:has([role="tooltip"]) span {
+        color: var(--c-txt) !important;
 }
-
 html.dark div[data-radix-popper-content-wrapper]:has([role="tooltip"]) span {
     color: var(--c-on-accent) !important;
+} */
+html.light div[data-radix-popper-content-wrapper]:has([role="tooltip"]) {
+    [class*="text-white"] {
+        color: var(--c-txt) !important;
+    }
+}
+
+html.dark div[data-radix-popper-content-wrapper]:has([role="tooltip"]) {
+    [class*="text-white"] {
+        color: var(--c-on-accent) !important;
+    }
 }
 
 /* === TOOLTIPS arrow div bg color === */
