@@ -1237,6 +1237,20 @@ button[role="combobox"] {
   min-width: 5.5rem;
 }
 
+.toast-root {
+  margin-top: -.4rem !important;
+}
+
+.toast-root [role="alert"] {
+  background-color: var(--c-accent) !important;
+  color: var(--c-on-accent) !important;
+  padding: 10px !important;
+  padding: var(--p-btn) !important;
+  border-radius: 12px !important;
+  border-radius: var(--border-radius-btn) !important;
+  border: none !important;
+}
+
 .js-has-pseudo [csstools-has-2w-38-31-30-1a-30-2x-2v-2w-38-w-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15-w-2j-2r-30-2p-37-37-16-1p-38-2t-3c-38-19-3b-2w-2x-38-2t-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
   color: var(--c-txt) !important;
 }
@@ -1289,16 +1303,6 @@ div[data-radix-popper-content-wrapper]:has([role="tooltip"]) div {
 .gizmo-shadow-stroke.h-full:has(svg) {
   color: var(--c-on-accent) !important;
   background-color: var(--c-accent) !important;
-}
-
-[role="alert"] {
-  background-color: var(--c-accent) !important;
-  color: var(--c-on-accent) !important;
-  padding: 10px !important;
-  padding: var(--p-btn) !important;
-  border-radius: 12px !important;
-  border-radius: var(--border-radius-btn) !important;
-  border: none !important;
 }
 
 *, :after, :before {

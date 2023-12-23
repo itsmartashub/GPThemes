@@ -1,0 +1,13 @@
+/* "Copied your User ID to clipboard" parent - toast message when clicking on ? icon bottom right on username */
+.toast-root {
+    margin-top: -.4rem !important;
+
+    /* "Copied your User ID to clipboard" - clicked on 'youremail@example.com' in context menu on ? fixed button in bottom right */
+    [role="alert"] {
+        background-color: var(--c-accent) !important;
+        color: var(--c-on-accent) !important;
+        padding: var(--p-btn) !important;
+        border-radius: var(--border-radius-btn) !important;
+        border: none !important;
+    }
+}
