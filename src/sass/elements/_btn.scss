@@ -1,5 +1,4 @@
 .btn {
-    will-change: transform, opacity;
     background-color: var(--c-bg-btn) !important;
     color: var(--c-btn) !important;
     border-radius: var(--border-radius-btn) !important;
@@ -9,8 +8,6 @@
         // padding: 1.5rem !important;
         padding: var(--p-btn) !important;
     }
-
-
 }
 
 /* .btn-primary {

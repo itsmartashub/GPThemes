@@ -5,7 +5,28 @@ a,
 svg,
 [class*=":hover"],
 [role="switch"] span[data-state] {
-    transition: all .35s ease-in-out;
+
+    transition: all .3s ease-in-out;
+
+    // transition:
+    //     all .35s var(--ease-default),
+    //     opacity .3 ease-in-out,
+    //     background-color .3 ease-in-out,
+    //     color .3 ease-in-out;
+
+
+    /*     transition:
+        transform .25s var(--ease-default),
+        opacity .3s ease-in-out,
+        background-color .3s ease-in-out,
+        color .3s ease-in-out,
+        border-color .3s ease-in-out,
+        box-shadow .3s ease-in-out,
+        scale .3s ease-in-out,
+        rotate .3s ease-in-out,
+        translate .3s ease-in-out,
+        filter .3s ease-in-out,
+        border-radius .3s ease-in-out, inset .3s ease-in-out; */
 }
 
 /* ___ BUTTON SVG icon which ARE NOT in:
@@ -31,19 +52,29 @@ button:not(.btn,
     [aria-label^="Delete"],
     [aria-label="Unarchive conversation"]) {
 
-    /*     svg {
-        border: 1px solid red !important;
-    } */
+    svg {
+        transform-origin: center center;
+        // border: 1px solid red !important;
+    }
 
     svg:hover {
         // opacity: .8;
-        scale: 1.12;
+        // scale: 1.12;
+        transform: scale(1.12);
     }
 }
 
 .btn {
+    will-change: transform, opacity;
+
+    transition:
+        transform .4s var(--easeOutBack),
+        opacity .3s ease-in-out,
+        background-color .3s ease-in-out,
+        color .3s ease-in-out !important;
+
     &:is(:hover, :active) {
-        transform: translateY(-1px);
+        transform: translateY(-2px);
         opacity: .8;
     }
 }
@@ -63,18 +94,25 @@ button:not(.btn,
 }
 
 /* ___ Switch button circle hover. Ovde ne moze :focus, ostane style kao da je checked ili obrnuto i kad se unhoveruje */
-[role="switch"]:hover {
+button[role="switch"] {
+
     span[data-state] {
-        /* Ovo se kosi sa openai klasama, jer on dodaje translate-x -19px, pa se circle pomera levo, sto i nije lose, lol. Ako to ne zelimo, mozemo koristiti scale umesto transform: scale */
-        transform: scale(.8);
-        // scale: .8;
+        transition: transform .4s var(--easeInOutBack), background-color .3s var(--ease-default);
+    }
+
+    &:hover {
+        span[data-state] {
+            /* Ovo se kosi sa openai klasama, jer on dodaje translate-x -19px, pa se circle pomera levo, sto i nije lose, lol. Ako to ne zelimo, mozemo koristiti scale umesto transform: scale */
+            transform: scale(.8);
+            // scale: .8;
+        }
     }
 }
 
 
 /* ___ New Chat big buttons */
 main form .grow .btn {
-    transition: all .3s ease-in-out;
+    // transition: .4s var(--easeOutBack), background-color .3s ease-in-out opacity .3s ease-in-out;
 
     /* Gradient bg visible on hover */
     .bg-gradient-to-l {
@@ -83,26 +121,31 @@ main form .grow .btn {
         /* Button SVG parent wrapper */
         span[data-state] {
             overflow: hidden;
+            padding: 4px; // because svg btn looks cut off in firefox, so add a little space around
 
             /* Button w/ SVG */
             .bg-token-surface-primary {
-                translate: 0 100%;
-                rotate: 45deg;
-                transition: all .3s ease-in-out;
+                // translate: 0 100%;
+                // rotate: 45deg;
+                transform: translateY(120%) scale(.5);
+                transition: transform .5s var(--easeOutBack);
             }
         }
     }
 
     &:hover {
         background-color: var(--c-surface-3) !important;
+        transform: translateY(-4px);
 
         .bg-gradient-to-l {
             span[data-state] {
 
                 /* Button w/ SVG */
                 .bg-token-surface-primary {
-                    translate: 0 0%;
-                    rotate: 0deg;
+                    // translate: 0 0%;
+                    // rotate: 0deg;
+                    transform: translateY(0%) scale(1);
+                    opacity: 1 !important;
                 }
             }
         }
@@ -112,10 +155,11 @@ main form .grow .btn {
 
 /* ___ Textarea send message send-button */
 [data-testid="send-button"]:not([disabled]) {
-    transition: all .3s ease-in-out;
+    transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out;
 
     &:hover {
-        translate: 0 -10%;
+        // translate: 0 -10%;
+        transform: translateY(-10%);
     }
 }
 
@@ -123,17 +167,22 @@ main form .grow .btn {
 /* ___ Chat Bubbles */
 main [data-testid^="conversation-turn-"] {
     .group {
-        transition: all .3s ease-in-out;
+        transition: transform .4s var(--easeOutBack);
 
         &:hover {
-            translate: 0 3px;
+            // translate: 0 3px;
+            transform: translateY(2px);
 
+            /* Bubble message footer (icons wrapper) */
             div[class*="empty:hidden"]:has(button[class*="[.final-completion]"]) .visible {
-                translate: 0 0;
+                // translate: 0 0;
+                transform: translateY(0);
             }
 
+            /* Bubble message footer (svg icons) */
             [class*="[.final-completion]"] svg {
-                scale: 1;
+                // scale: 1;
+                transform: scale(1);
             }
         }
 
@@ -144,30 +193,48 @@ main [data-testid^="conversation-turn-"] {
 
             /* Bubble message footer (icons wrapper) */
             .visible {
-                translate: 0 130%;
-                transition: all .3s ease-in-out;
+                // border: 2px solid salmon !important;
+                // translate: 0 130%;
+                transform: translateY(110%);
+                // transition: transform .3s var(--easeInOutCirc);
+                transition: transform .4s var(--easeInOutBack);
+                // transition: all .3s ease-in-out;
             }
         }
 
         /* Bubble message footer (svg icons) */
         [class*="[.final-completion]"] svg {
-            scale: 0;
+            // scale: 0;
+            // transform: scale(0) translateY(0px);
+            transform: translateY(0px);
+            transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out;
 
             &:hover {
                 opacity: .8;
-                translate: 0 -3px;
+                // transform: translateY(-3px) scale(1);
+                transform: translateY(-3px);
+                // translate: 0 -3px;
             }
         }
 
         /* Copy btn */
         pre {
-            button:hover {
-                background-color: var(--c-accent) !important;
-                color: var(--c-on-accent) !important;
-                translate: 0 3px;
+            button {
+                transition:
+                    transform .4s var(--easeOutBack),
+                    opacity .3s ease-in-out,
+                    background-color .2s ease-in-out,
+                    color .2s ease-in-out;
 
-                svg {
+                &:hover {
+                    background-color: var(--c-accent) !important;
                     color: var(--c-on-accent) !important;
+                    transform: translateY(2px);
+                    // translate: 0 3px;
+
+                    svg {
+                        color: var(--c-on-accent) !important;
+                    }
                 }
             }
         }
@@ -177,12 +244,13 @@ main [data-testid^="conversation-turn-"] {
 
 /* ___ Scroll down button */
 main [role="presentation"] button.absolute.rounded-full {
+    transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out;
     // transition: all .3s ease-in-out;
     // border: 3px solid transparent !important;
 
     &:hover {
-        translate: 0 10%;
-
+        // translate: 0 10%;
+        transform: translateY(10%);
         opacity: 1 !important;
     }
 }
@@ -194,26 +262,36 @@ main [role="presentation"] button.absolute.rounded-full {
 
         /* NAME - first column Links
         "Shared links" & "Archived Chats" links in table, but a[href^="/c/"] is also Conversation SVG in "Shared Links", ahh */
-        td:first-child a:hover {
-            color: var(--c-accent) !important;
+        td:first-child a {
+            transform-origin: center center;
 
-            svg {
-                scale: .9 !important;
-                translate: -5px 0;
+            &:hover {
+                color: var(--c-accent) !important;
+                text-decoration: underline;
+                // translate: 5px 0;
+                transform: translateX(5px);
+
+                svg {
+                    // scale: .9 !important;
+                    // translate: -5px 0;
+                    transform: translateX(-5px) scale(.9) !important;
+                }
+
             }
-
-            translate: 5px 0;
-            text-decoration: underline;
         }
 
         /* Table column that contains "Delete" svg icon */
         td:has(button[aria-label^="Delete"]) {
+            svg {
+                transition: transform .4s var(--easeOutBack);
+            }
 
             /* SVG parent wrapper */
             span[data-state]:hover {
                 svg {
-                    translate: 0 -2px !important;
-                    scale: 1 !important;
+                    transform: translateY(2px) scale(1) !important;
+                    // translate: 0 -2px !important;
+                    // scale: 1 !important;
                 }
             }
         }

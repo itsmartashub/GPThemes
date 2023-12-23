@@ -1,4 +1,29 @@
 :root {
+  --easeInSine: cubic-bezier(.12, 0, .39, 0);
+  --easeOutSine: cubic-bezier(.39, .575, .565, 1);
+  --easeInOutSine: cubic-bezier(.445, .05, .55, .95);
+  --easeInQuad: cubic-bezier(.55, .085, .68, .53);
+  --easeOutQuad: cubic-bezier(.25, .46, .45, .94);
+  --easeInOutQuad: cubic-bezier(.455, .03, .515, .955);
+  --easeInCubic: cubic-bezier(.55, .055, .675, .19);
+  --easeOutCubic: cubic-bezier(.215, .61, .355, 1);
+  --easeInOutCubic: cubic-bezier(.645, .045, .355, 1);
+  --easeInQuart: cubic-bezier(.165, .84, .44, 1);
+  --easeOutQuart: cubic-bezier(.165, .84, .44, 1);
+  --easeInOutQuart: cubic-bezier(.77, 0, .175, 1);
+  --easeInQuint: cubic-bezier(.755, .05, .855, .06);
+  --easeOutQuint: cubic-bezier(.23, 1, .32, 1);
+  --easeInOutQuint: cubic-bezier(.86, 0, .07, 1);
+  --easeInExpo: cubic-bezier(.95, .05, .795, .035);
+  --easeOutExpo: cubic-bezier(.19, 1, .22, 1);
+  --easeInOutExpo: cubic-bezier(1, 0, 0, 1);
+  --easeInCirc: cubic-bezier(.6, .04, .98, .335);
+  --easeOutCirc: cubic-bezier(.075, .82, .165, 1);
+  --easeInOutCirc: cubic-bezier(.785, .135, .15, .86);
+  --easeInBack: cubic-bezier(.6, -.28, .735, .045);
+  --easeOutBack: cubic-bezier(.175, .885, .32, 1.275);
+  --easeInOutBack: cubic-bezier(.68, -.55, .265, 1.55);
+  --ease-default: var(--easeInOutSine);
   --f-fm: "Inter", sans-serif;
   --border-radius-msg: 2.2rem;
   --border-radius-btn: 12px;
@@ -1090,7 +1115,6 @@ main div.flex.w-full.items-center > div {
 }
 
 .btn, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), button[role="combobox"], .btn, button[role="combobox"] {
-  will-change: transform, opacity;
   background-color: var(--c-bg-btn) !important;
   color: var(--c-btn) !important;
   border-radius: 12px !important;
@@ -1099,7 +1123,6 @@ main div.flex.w-full.items-center > div {
 }
 
 main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 {
-  will-change: transform, opacity;
   background-color: var(--c-bg-btn) !important;
   color: var(--c-btn) !important;
   border-radius: 12px !important;
@@ -1301,21 +1324,37 @@ div[data-radix-popper-content-wrapper]:has([role="tooltip"]) div {
 }
 
 button, li, a, svg, [class*=":hover"], [role="switch"] span[data-state] {
-  transition: all .35s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+button:not(.btn):not(button[role="combobox"]):not([role="tab"]):not([role="combobox"]):not([data-testid="send-button"]):not([class*="[.final-completion]"]):not([aria-label^="Delete"]):not([aria-label="Unarchive conversation"]) svg {
+  transform-origin: center;
 }
 
 button:not(.btn):not(button[role="combobox"]):not([role="tab"]):not([role="combobox"]):not([data-testid="send-button"]):not([class*="[.final-completion]"]):not([aria-label^="Delete"]):not([aria-label="Unarchive conversation"]) svg:hover {
-  scale: 1.12;
+  transform: scale(1.12);
+}
+
+.btn, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), button[role="combobox"], .btn, button[role="combobox"] {
+  will-change: transform, opacity;
+  transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out, background-color .3s ease-in-out, color .3s ease-in-out !important;
+  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out, background-color .3s ease-in-out, color .3s ease-in-out !important;
+}
+
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 {
+  will-change: transform, opacity;
+  transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out, background-color .3s ease-in-out, color .3s ease-in-out !important;
+  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out, background-color .3s ease-in-out, color .3s ease-in-out !important;
 }
 
 .btn:is(:hover, :active), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-2x-37-14-1m-2w-33-3a-2t-36-18-w-1m-2p-2r-38-2x-3a-2t-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), button[role="combobox"]:is(:hover, :active), .btn:is(:hover, :active), button[role="combobox"]:is(:hover, :active) {
   opacity: .8;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600:is(:hover, :active) {
   opacity: .8;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 [role="dialog"].PopoverContent .btn-neutral:is(:hover, :focus), [role="dialog"].PopoverContent button[role="combobox"]:is(:hover, :focus) {
@@ -1325,20 +1364,13 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   transform: none !important;
 }
 
-[role="switch"]:hover span[data-state] {
+button[role="switch"] span[data-state] {
+  transition: transform .4s cubic-bezier(.68, -.55, .265, 1.55), background-color .3s cubic-bezier(.445, .05, .55, .95);
+  transition: transform .4s var(--easeInOutBack), background-color .3s var(--ease-default);
+}
+
+button[role="switch"]:hover span[data-state] {
   transform: scale(.8);
-}
-
-main form .grow .btn, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[role="combobox"], main form .grow .btn, main form .grow button[role="combobox"] {
-  transition: all .3s ease-in-out;
-}
-
-main form .grow [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 {
-  transition: all .3s ease-in-out;
-}
-
-main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) form .grow .bg-green-600 {
-  transition: all .3s ease-in-out;
 }
 
 main form .grow .btn .bg-gradient-to-l, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[role="combobox"] .bg-gradient-to-l, main form .grow .btn .bg-gradient-to-l, main form .grow button[role="combobox"] .bg-gradient-to-l {
@@ -1354,88 +1386,96 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
 }
 
 main form .grow .btn .bg-gradient-to-l span[data-state], .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[role="combobox"] .bg-gradient-to-l span[data-state], main form .grow .btn .bg-gradient-to-l span[data-state], main form .grow button[role="combobox"] .bg-gradient-to-l span[data-state] {
+  padding: 4px;
   overflow: hidden;
 }
 
 main form .grow [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 .bg-gradient-to-l span[data-state] {
+  padding: 4px;
   overflow: hidden;
 }
 
 main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) form .grow .bg-green-600 .bg-gradient-to-l span[data-state] {
+  padding: 4px;
   overflow: hidden;
 }
 
 main form .grow .btn .bg-gradient-to-l span[data-state] .bg-token-surface-primary, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[role="combobox"] .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow .btn .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow button[role="combobox"] .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
-  transition: all .3s ease-in-out;
-  translate: 0 100%;
-  rotate: 45deg;
+  transition: transform .5s cubic-bezier(.175, .885, .32, 1.275);
+  transition: transform .5s var(--easeOutBack);
+  transform: translateY(120%)scale(.5);
 }
 
 main form .grow [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
-  transition: all .3s ease-in-out;
-  translate: 0 100%;
-  rotate: 45deg;
+  transition: transform .5s cubic-bezier(.175, .885, .32, 1.275);
+  transition: transform .5s var(--easeOutBack);
+  transform: translateY(120%)scale(.5);
 }
 
 main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) form .grow .bg-green-600 .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
-  transition: all .3s ease-in-out;
-  translate: 0 100%;
-  rotate: 45deg;
+  transition: transform .5s cubic-bezier(.175, .885, .32, 1.275);
+  transition: transform .5s var(--easeOutBack);
+  transform: translateY(120%)scale(.5);
 }
 
 main form .grow .btn:hover, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-2w-33-3a-2t-36]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-2w-33-3a-2t-36]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[role="combobox"]:hover, main form .grow .btn:hover, main form .grow button[role="combobox"]:hover {
+  transform: translateY(-4px);
   background-color: var(--c-surface-3) !important;
 }
 
 main form .grow [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600:hover {
+  transform: translateY(-4px);
   background-color: var(--c-surface-3) !important;
 }
 
 main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) form .grow .bg-green-600:hover {
+  transform: translateY(-4px);
   background-color: var(--c-surface-3) !important;
 }
 
 main form .grow .btn:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-2w-33-3a-2t-36-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-2w-33-3a-2t-36-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[role="combobox"]:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow .btn:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow button[role="combobox"]:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
-  translate: 0;
-  rotate: none;
+  transform: translateY(0%)scale(1);
+  opacity: 1 !important;
 }
 
 main form .grow [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
-  translate: 0;
-  rotate: none;
+  transform: translateY(0%)scale(1);
+  opacity: 1 !important;
 }
 
 main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) form .grow .bg-green-600:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
-  translate: 0;
-  rotate: none;
+  transform: translateY(0%)scale(1);
+  opacity: 1 !important;
 }
 
 [data-testid="send-button"]:not([disabled]) {
-  transition: all .3s ease-in-out;
+  transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out;
+  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out;
 }
 
 [data-testid="send-button"]:not([disabled]):hover {
-  translate: 0 -10%;
+  transform: translateY(-10%);
 }
 
 main [data-testid^="conversation-turn-"] .group {
-  transition: all .3s ease-in-out;
+  transition: transform .4s cubic-bezier(.175, .885, .32, 1.275);
+  transition: transform .4s var(--easeOutBack);
 }
 
 main [data-testid^="conversation-turn-"] .group:hover {
-  translate: 0 3px;
+  transform: translateY(2px);
 }
 
 .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-2r-33-32-3a-2t-36-37-2p-38-2x-33-32-19-38-39-36-32-19-2l-w-1a-2v-36-33-39-34-1m-2w-33-3a-2t-36-w-2s-2x-3a-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-2q-39-38-38-33-32-2j-2r-30-2p-37-37-16-1p-y-2j-1a-2u-2x-32-2p-30-19-2r-33-31-34-30-2t-38-2x-33-32-2l-y-2l-15-w-1a-3a-2x-37-2x-2q-30-2t]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
-  translate: 0;
+  transform: translateY(0);
 }
 
 main [data-testid^="conversation-turn-"] .group:hover div[class*="empty:hidden"]:has(button[class*="[.final-completion]"]) .visible {
-  translate: 0;
+  transform: translateY(0);
 }
 
 main [data-testid^="conversation-turn-"] .group:hover [class*="[.final-completion]"] svg {
-  scale: 1;
+  transform: scale(1);
 }
 
 .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-2r-33-32-3a-2t-36-37-2p-38-2x-33-32-19-38-39-36-32-19-2l-w-1a-2v-36-33-39-34-w-2s-2x-3a-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-2q-39-38-38-33-32-2j-2r-30-2p-37-37-16-1p-y-2j-1a-2u-2x-32-2p-30-19-2r-33-31-34-30-2t-38-2x-33-32-2l-y-2l-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
@@ -1447,26 +1487,35 @@ main [data-testid^="conversation-turn-"] .group div[class*="empty:hidden"]:has(b
 }
 
 .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-2r-33-32-3a-2t-36-37-2p-38-2x-33-32-19-38-39-36-32-19-2l-w-1a-2v-36-33-39-34-w-2s-2x-3a-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-2q-39-38-38-33-32-2j-2r-30-2p-37-37-16-1p-y-2j-1a-2u-2x-32-2p-30-19-2r-33-31-34-30-2t-38-2x-33-32-2l-y-2l-15-w-1a-3a-2x-37-2x-2q-30-2t]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
-  transition: all .3s ease-in-out;
-  translate: 0 130%;
+  transition: transform .4s cubic-bezier(.68, -.55, .265, 1.55);
+  transition: transform .4s var(--easeInOutBack);
+  transform: translateY(110%);
 }
 
 main [data-testid^="conversation-turn-"] .group div[class*="empty:hidden"]:has(button[class*="[.final-completion]"]) .visible {
-  transition: all .3s ease-in-out;
-  translate: 0 130%;
+  transition: transform .4s cubic-bezier(.68, -.55, .265, 1.55);
+  transition: transform .4s var(--easeInOutBack);
+  transform: translateY(110%);
 }
 
 main [data-testid^="conversation-turn-"] .group [class*="[.final-completion]"] svg {
-  scale: 0;
+  transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out;
+  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out;
+  transform: translateY(0);
 }
 
 main [data-testid^="conversation-turn-"] .group [class*="[.final-completion]"] svg:hover {
   opacity: .8;
-  translate: 0 -3px;
+  transform: translateY(-3px);
+}
+
+main [data-testid^="conversation-turn-"] .group pre button {
+  transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out, background-color .2s ease-in-out, color .2s ease-in-out;
+  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out, background-color .2s ease-in-out, color .2s ease-in-out;
 }
 
 main [data-testid^="conversation-turn-"] .group pre button:hover {
-  translate: 0 3px;
+  transform: translateY(2px);
   background-color: var(--c-accent) !important;
   color: var(--c-on-accent) !important;
 }
@@ -1475,30 +1524,46 @@ main [data-testid^="conversation-turn-"] .group pre button:hover svg {
   color: var(--c-on-accent) !important;
 }
 
+main [role="presentation"] button.absolute.rounded-full {
+  transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out;
+  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out;
+}
+
 main [role="presentation"] button.absolute.rounded-full:hover {
-  translate: 0 10%;
+  transform: translateY(10%);
   opacity: 1 !important;
+}
+
+[role="dialog"] table tbody td:first-child a {
+  transform-origin: center;
 }
 
 [role="dialog"] table tbody td:first-child a:hover {
   text-decoration: underline;
-  translate: 5px;
+  transform: translateX(5px);
   color: var(--c-accent) !important;
 }
 
 [role="dialog"] table tbody td:first-child a:hover svg {
-  translate: -5px;
-  scale: .9 !important;
+  transform: translateX(-5px)scale(.9) !important;
+}
+
+.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-38-2p-2q-30-2t-w-38-2q-33-2s-3d-w-38-2s-1m-2w-2p-37-14-2q-39-38-38-33-32-2j-2p-36-2x-2p-19-30-2p-2q-2t-30-2m-1p-1w-2t-30-2t-38-2t-2l-15-w-37-3a-2v]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
+  transition: transform .4s cubic-bezier(.175, .885, .32, 1.275);
+  transition: transform .4s var(--easeOutBack);
+}
+
+[role="dialog"] table tbody td:has(button[aria-label^="Delete"]) svg {
+  transition: transform .4s cubic-bezier(.175, .885, .32, 1.275);
+  transition: transform .4s var(--easeOutBack);
 }
 
 .js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-38-2p-2q-30-2t-w-38-2q-33-2s-3d-w-38-2s-1m-2w-2p-37-14-2q-39-38-38-33-32-2j-2p-36-2x-2p-19-30-2p-2q-2t-30-2m-1p-1w-2t-30-2t-38-2t-2l-15-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l-1m-2w-33-3a-2t-36-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
-  translate: 0 -2px !important;
-  scale: 1 !important;
+  transform: translateY(2px)scale(1) !important;
 }
 
 [role="dialog"] table tbody td:has(button[aria-label^="Delete"]) span[data-state]:hover svg {
-  translate: 0 -2px !important;
-  scale: 1 !important;
+  transform: translateY(2px)scale(1) !important;
 }
 
 .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
