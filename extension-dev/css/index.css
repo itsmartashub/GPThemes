@@ -101,6 +101,8 @@ html.light {
   --c-bg-pre-header: transparent;
   --c-bg-pre-header-btn: #ffffff1a;
   --c-markdown-a: var(--c-accent);
+  --c-scrollbar-thumb: var(--c-surface-3);
+  --c-scrollbar-track: transparent;
   --box-shadow: 0px 0px 100px 0px hsla(var(--accent-hsl) / .1);
   --box-shadow-contextmenu: 0px 0px 5px -2px #0000002e;
   --surface-primary: var(--c-surface-1) !important;
@@ -158,6 +160,8 @@ html.dark {
   --c-bg-pre-header: transparent;
   --c-bg-pre-header-btn: #ffffff1a;
   --c-markdown-a: var(--c-accent);
+  --c-scrollbar-thumb: var(--c-surface-3);
+  --c-scrollbar-track: transparent;
   --box-shadow: 0px 0px 100px 0px hsla(var(--accent-hsl) / .1);
   --box-shadow-contextmenu: 0px 0px 30px -10px hsla(var(--accent-hsl) / .18);
   --c-subtext-2: hsl(var(--accent-h) calc(var(--accent-s) / 2) var(--accent-l)) !important;
@@ -177,6 +181,14 @@ html, body {
   background-color: var(--c-bg-chats-container) !important;
   font-family: Inter, sans-serif !important;
   font-family: var(--f-fm) !important;
+}
+
+html {
+  scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--c-scrollbar-thumb) !important;
 }
 
 ::selection {

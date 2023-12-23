@@ -35,7 +35,6 @@
 
     --min-w: 5.5rem;
 
-
     // --tw-ring-color: red !important;
     // --tw-ring-offset-color: green !important;
 }
@@ -130,6 +129,9 @@ html.light {
     --c-bg-pre-header-btn: hsla(255, 100%, 100%, 0.1);
     --c-markdown-a: var(--c-accent);
 
+    --c-scrollbar-thumb: var(--c-surface-3);
+    --c-scrollbar-track: transparent;
+
     /* btn u biranju teme kad nemaa nikake pozadine */
     --surface-primary: var(--c-surface-1) !important;
 
@@ -155,6 +157,7 @@ html.light {
 
     --box-shadow: 0px 0px 100px 0px hsla(var(--accent-hsl) / 0.1);
     --box-shadow-contextmenu: 0px 0px 5px -2px hsla(0, 0%, 0%, 0.18);
+
 }
 
 
@@ -236,6 +239,10 @@ html.dark {
     // --c-bg-pre-header-btn: hsla(var(--txt-hsl) / 0.2);
     --c-bg-pre-header-btn: hsla(255, 100%, 100%, 0.1);
     --c-markdown-a: var(--c-accent);
+
+    --c-scrollbar-thumb: var(--c-surface-3);
+    --c-scrollbar-track: transparent;
+
 
     /* btn u biranju teme kad nemaa nikake pozadine */
     --surface-primary: var(--c-surface-1) !important;
