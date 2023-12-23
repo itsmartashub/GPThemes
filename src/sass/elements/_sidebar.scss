@@ -36,6 +36,11 @@ nav[aria-label="Chat history"] {
     /* NEW CHAT + LIST of chats in nav. Adding padding-left prevent :focus-visible style in those elements to be cropped from the left because of the overflow-hidden */
     .overflow-y-auto {
         padding-left: 0.3rem !important;
+
+        /* Your Firefox-specific styles here */
+        @-moz-document url-prefix() {
+            padding-right: 0.8rem !important; // this add only for Firefox
+        }
     }
 
     /* Parent of time heading (of Today, Yesterday) in sidebar */

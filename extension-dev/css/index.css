@@ -411,6 +411,12 @@ nav[aria-label="Chat history"] .overflow-y-auto {
   padding-left: .3rem !important;
 }
 
+@-moz-document url-prefix() {
+  nav[aria-label="Chat history"] .overflow-y-auto {
+    padding-right: .8rem !important;
+  }
+}
+
 .js-has-pseudo [csstools-has-32-2p-3a-2j-2p-36-2x-2p-19-30-2p-2q-2t-30-1p-y-1v-2w-2p-38-w-2w-2x-37-38-33-36-3d-y-2l-w-2s-2x-3a-1m-2w-2p-37-14-1q-w-2w-1f-2j-2r-30-2p-37-37-16-1p-y-1m-2q-2v-19-2q-30-2p-2r-2z-y-2l-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
   margin-bottom: .3rem;
 }
