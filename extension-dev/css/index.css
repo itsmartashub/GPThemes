@@ -617,6 +617,10 @@ main [data-testid^="conversation-turn-"] .group {
   line-height: 1.8 !important;
 }
 
+main [data-testid^="conversation-turn-"] .group .agent-turn {
+  width: 80% !important;
+}
+
 main [data-testid^="conversation-turn-"] .group div[class*="lg:w-[calc(100%-115px)]"] {
   --gap-3: .75rem;
   --svg-w: 1.5rem;
@@ -1525,21 +1529,21 @@ main [data-testid^="conversation-turn-"] .group [class*="[.final-completion]"] s
 }
 
 .js-has-pseudo [csstools-has-34-36-2t-w-2q-39-38-38-33-32-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist):not(does-not-exist):not(does-not-exist) {
-  transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out, background-color .2s ease-in-out, color .1s ease-in-out;
-  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out, background-color .2s ease-in-out, color .1s ease-in-out;
+  transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out, background-color .2s ease-in-out, color .1s ease-in-out !important;
+  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out, background-color .2s ease-in-out, color .1s ease-in-out !important;
 }
 
 pre button:has(svg) {
-  transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out, background-color .2s ease-in-out, color .1s ease-in-out;
-  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out, background-color .2s ease-in-out, color .1s ease-in-out;
+  transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out, background-color .2s ease-in-out, color .1s ease-in-out !important;
+  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out, background-color .2s ease-in-out, color .1s ease-in-out !important;
 }
 
 .js-has-pseudo [csstools-has-34-36-2t-w-2q-39-38-38-33-32-1m-2w-2p-37-14-37-3a-2v-15-w-37-3a-2v]:not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
-  transition: color .1s ease-in-out;
+  transition: color .1s ease-in-out !important;
 }
 
 pre button:has(svg) svg {
-  transition: color .1s ease-in-out;
+  transition: color .1s ease-in-out !important;
 }
 
 .js-has-pseudo [csstools-has-34-36-2t-w-2q-39-38-38-33-32-1m-2w-2p-37-14-37-3a-2v-15-1m-2w-33-3a-2t-36]:not(does-not-exist):not(does-not-exist):not(does-not-exist) {

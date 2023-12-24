@@ -27,6 +27,12 @@ main [data-testid^="conversation-turn-"] {
         border-radius: var(--border-radius-msg) !important;
         line-height: 1.8 !important;
 
+        .agent-turn {
+            width: 80% !important;
+            // border: 1px solid red !important;
+            // overflow-x: scroll !important;
+        }
+
 
         /*  TODO 
             gap: 0.75rem + width: 1.5rem = 2.25rem toliko treba da bude padding-right/margin-right i dodati flex-grow: 1;
