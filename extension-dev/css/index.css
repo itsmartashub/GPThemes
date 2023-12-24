@@ -1481,15 +1481,6 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   transform: translateY(-10%);
 }
 
-main [data-testid^="conversation-turn-"] .group {
-  transition: transform .4s cubic-bezier(.175, .885, .32, 1.275);
-  transition: transform .4s var(--easeOutBack);
-}
-
-main [data-testid^="conversation-turn-"] .group:hover {
-  transform: translateY(2px);
-}
-
 .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-2r-33-32-3a-2t-36-37-2p-38-2x-33-32-19-38-39-36-32-19-2l-w-1a-2v-36-33-39-34-1m-2w-33-3a-2t-36-w-2s-2x-3a-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-2q-39-38-38-33-32-2j-2r-30-2p-37-37-16-1p-y-2j-1a-2u-2x-32-2p-30-19-2r-33-31-34-30-2t-38-2x-33-32-2l-y-2l-15-w-1a-3a-2x-37-2x-2q-30-2t]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
   transform: translateY(0);
 }

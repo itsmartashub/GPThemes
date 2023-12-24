@@ -167,11 +167,11 @@ main form .grow .btn {
 /* ___ Chat Bubbles */
 main [data-testid^="conversation-turn-"] {
     .group {
-        transition: transform .4s var(--easeOutBack);
+        // transition: transform .4s var(--easeOutBack);
 
         &:hover {
             // translate: 0 3px;
-            transform: translateY(2px);
+            // transform: translateY(2px);
 
             /* Bubble message footer (icons wrapper) */
             div[class*="empty:hidden"]:has(button[class*="[.final-completion]"]) .visible {
