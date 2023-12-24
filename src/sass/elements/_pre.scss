@@ -14,6 +14,7 @@ pre {
 
     /* 'Copy code' btn in markdown header */
     button:has(svg) {
+        text-transform: uppercase !important;
         color: var(--c-on-accent) !important;
         background-color: var(--c-bg-pre-header-btn);
         padding: var(--p-btn);
