@@ -172,21 +172,23 @@ main [data-testid^="conversation-turn-"] {
         border-radius: var(--border-radius-pre) !important;
         margin: var(--my-pre) auto !important;
 
-        &>.bg-black {
-            background-color: var(--c-bg-pre) !important;
-        }
+        /* ! Moved to hljs themes scss */
+        // &>.bg-black {
+        //     background-color: var(--c-bg-pre) !important;
+        // }
 
 
         /*  === RIGHT - <pre> - header === */
         .bg-black>div:has(> span) {
-            background-color: var(--c-bg-pre-header) !important;
+            /* ! Moved to hljs themes scss */
+            // background-color: var(--c-bg-pre-header) !important;
 
-            // Code name in markdown header (html, php, css, etc)
+            /* Code name in markdown header (html, php, css, etc) */
             &>span {
                 color: var(--c-accent-light) !important;
             }
 
-            // 'Copy code' btn in markdown header
+            /* 'Copy code' btn in markdown header */
             button:has(svg) {
                 color: var(--c-accent-light) !important;
                 background-color: var(--c-bg-pre-header-btn);
@@ -194,14 +196,10 @@ main [data-testid^="conversation-turn-"] {
                 // padding: var(--py-btn) var(--px-btn);
                 border-radius: 10px;
 
-                // SVG icons before 'Copy code' btn in md
+                /* SVG icons before 'Copy code' btn in md */
                 svg {
                     color: var(--c-accent-light) !important;
                 }
-
-                // svg>path {
-                //     fill: var(--c-accent-light) !important;
-                // }
             }
         }
     }

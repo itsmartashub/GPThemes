@@ -1,0 +1,98 @@
+/**
+ * Panda Syntax Theme for Highlight.js
+ * Based on: https://github.com/tinkertrain/panda-syntax-vscode
+ * Author: Annmarie Switzer <https://github.com/annmarie-switzer>
+ */
+
+html.light .hljs,
+/* markdown pre */
+html.light pre .bg-black,
+/* markdown header - lang name and copy btn */
+html.light pre .bg-black>div:has(> span) {
+    color: #2a2c2d !important;
+    background: #e6e6e6 !important;
+}
+
+html.light .hljs-emphasis {
+    font-style: italic;
+}
+
+html.light .hljs-strong {
+    font-weight: bold;
+}
+
+html.light .hljs-link {
+    text-decoration: underline;
+}
+
+html.light .hljs-comment,
+html.light .hljs-quote {
+    color: #676B79 !important;
+    font-style: italic;
+}
+
+html.light .hljs-params {
+    color: #676B79 !important;
+}
+
+html.light .hljs-punctuation,
+html.light .hljs-attr {
+    color: #2a2c2d !important;
+}
+
+html.light .hljs-selector-tag,
+html.light .hljs-name,
+html.light .hljs-meta,
+html.light .hljs-operator,
+html.light .hljs-char.escape_ {
+    color: #c56200 !important;
+}
+
+html.light .hljs-keyword,
+html.light .hljs-deletion {
+    color: #d92792 !important;
+}
+
+html.light .hljs-regexp,
+html.light .hljs-selector-pseudo,
+html.light .hljs-selector-attr,
+html.light .hljs-variable.language_ {
+    color: #cc5e91 !important;
+}
+
+html.light .hljs-subst,
+html.light .hljs-property,
+html.light .hljs-code,
+html.light .hljs-formula,
+html.light .hljs-section,
+html.light .hljs-title.function_ {
+    color: #3787c7 !important;
+}
+
+html.light .hljs-string,
+html.light .hljs-symbol,
+html.light .hljs-bullet,
+html.light .hljs-addition,
+html.light .hljs-selector-class,
+html.light .hljs-title.class_,
+html.light .hljs-title.class_.inherited__,
+html.light .hljs-meta .hljs-string {
+    color: #0d7d6c !important;
+}
+
+html.light .hljs-variable,
+html.light .hljs-template-variable,
+html.light .hljs-number,
+html.light .hljs-literal,
+html.light .hljs-type,
+html.light .hljs-link,
+html.light .hljs-built_in,
+html.light .hljs-title,
+html.light .hljs-selector-id,
+html.light .hljs-tag,
+html.light .hljs-doctag,
+html.light .hljs-attribute,
+html.light .hljs-template-tag,
+html.light .hljs-meta .hljs-keyword {
+    color: #7641bb !important;
+}

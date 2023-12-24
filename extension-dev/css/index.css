@@ -736,18 +736,6 @@ main [data-testid^="conversation-turn-"] pre {
   margin: var(--my-pre) auto !important;
 }
 
-main [data-testid^="conversation-turn-"] pre > .bg-black {
-  background-color: var(--c-bg-pre) !important;
-}
-
-.js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-2r-33-32-3a-2t-36-37-2p-38-2x-33-32-19-38-39-36-32-19-2l-w-34-36-2t-w-1a-2q-2v-19-2q-30-2p-2r-2z-w-1q-w-2s-2x-3a-1m-2w-2p-37-14-1q-w-37-34-2p-32-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
-  background-color: var(--c-bg-pre-header) !important;
-}
-
-main [data-testid^="conversation-turn-"] pre .bg-black > div:has( > span) {
-  background-color: var(--c-bg-pre-header) !important;
-}
-
 .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-2r-33-32-3a-2t-36-37-2p-38-2x-33-32-19-38-39-36-32-19-2l-w-34-36-2t-w-1a-2q-2v-19-2q-30-2p-2r-2z-w-1q-w-2s-2x-3a-1m-2w-2p-37-14-1q-w-37-34-2p-32-15-w-1q-w-37-34-2p-32]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
   color: var(--c-accent-light) !important;
 }
@@ -1594,5 +1582,92 @@ main [role="presentation"] button.absolute.rounded-full:hover {
 
 main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) {
   padding: 1.5rem;
+}
+
+pre code.hljs {
+  padding: 1em;
+  display: block;
+  overflow-x: auto;
+}
+
+code.hljs {
+  padding: 3px 5px;
+}
+
+.hljs, pre .bg-black, .js-has-pseudo [csstools-has-34-36-2t-w-1a-2q-2v-19-2q-30-2p-2r-2z-w-1q-w-2s-2x-3a-1m-2w-2p-37-14-1q-w-37-34-2p-32-15]:not(does-not-exist):not(does-not-exist):not(does-not-exist), .hljs, pre .bg-black {
+  color: #e0def4 !important;
+  background: #232136 !important;
+}
+
+pre .bg-black > div:has( > span) {
+  color: #e0def4 !important;
+  background: #232136 !important;
+}
+
+.hljs::selection, .hljs ::selection {
+  color: #e0def4 !important;
+  background-color: #393552 !important;
+}
+
+.hljs-comment {
+  color: #59546d !important;
+}
+
+.hljs-tag {
+  color: #817c9c !important;
+}
+
+.hljs-subst, .hljs-punctuation, .hljs-operator {
+  color: #e0def4 !important;
+}
+
+.hljs-operator {
+  opacity: .7;
+}
+
+.hljs-bullet, .hljs-variable, .hljs-template-variable, .hljs-selector-tag, .hljs-name, .hljs-deletion {
+  color: #ecebf0 !important;
+}
+
+.hljs-symbol, .hljs-number, .hljs-link, .hljs-attr, .hljs-variable.constant_, .hljs-literal {
+  color: #eb6f92 !important;
+}
+
+.hljs-title, .hljs-class .hljs-title, .hljs-title.class_ {
+  color: #f6c177 !important;
+}
+
+.hljs-strong {
+  font-weight: bold;
+  color: #f6c177 !important;
+}
+
+.hljs-code, .hljs-addition, .hljs-title.class_.inherited__, .hljs-string {
+  color: #ea9a97 !important;
+}
+
+.hljs-built_in, .hljs-doctag, .hljs-quote, .hljs-keyword.hljs-atrule, .hljs-regexp {
+  color: #3e8fb0 !important;
+}
+
+.hljs-function .hljs-title, .hljs-attribute, .ruby .hljs-property, .hljs-title.function_, .hljs-section {
+  color: #9ccfd8 !important;
+}
+
+.hljs-type, .hljs-template-tag, .diff .hljs-meta, .hljs-keyword {
+  color: #c4a7e7 !important;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+  color: #c4a7e7 !important;
+}
+
+.hljs-meta, .hljs-meta .hljs-keyword, .hljs-meta .hljs-string {
+  color: #b9b9bc !important;
+}
+
+.hljs-meta .hljs-keyword, .hljs-meta-keyword {
+  font-weight: bold;
 }
 
