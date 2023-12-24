@@ -216,29 +216,33 @@ main [data-testid^="conversation-turn-"] {
                 // translate: 0 -3px;
             }
         }
+    }
+}
 
-        /* Copy btn */
-        pre {
-            button {
-                transition:
-                    transform .4s var(--easeOutBack),
-                    opacity .3s ease-in-out,
-                    background-color .2s ease-in-out,
-                    color .2s ease-in-out;
+/* Copy btn */
+pre {
+    button:has(svg) {
+        transition:
+            transform .4s var(--easeOutBack),
+            opacity .3s ease-in-out,
+            background-color .2s ease-in-out,
+            color .1s ease-in-out;
 
-                &:hover {
-                    background-color: var(--c-accent) !important;
-                    color: var(--c-on-accent) !important;
-                    transform: translateY(2px);
-                    // translate: 0 3px;
+        svg {
+            transition: color .1s ease-in-out;
+        }
 
-                    svg {
-                        color: var(--c-on-accent) !important;
-                    }
-                }
-            }
+        &:hover {
+            background-color: var(--c-accent-light) !important;
+            color: var(--c-on-accent) !important;
+            transform: translateY(2px);
         }
     }
+}
+
+html.light pre button:has(svg):hover {
+    background-color: var(--c-accent) !important;
+    color: var(--c-on-accent) !important;
 }
 
 

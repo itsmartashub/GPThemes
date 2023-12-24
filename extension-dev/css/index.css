@@ -99,7 +99,7 @@ html.light {
   --c-bg-btn: var(--c-accent);
   --c-bg-pre: #000;
   --c-bg-pre-header: transparent;
-  --c-bg-pre-header-btn: #ffffff1a;
+  --c-bg-pre-header-btn: var(--c-accent-light);
   --c-markdown-a: var(--c-accent);
   --c-scrollbar-thumb: var(--c-surface-3);
   --c-scrollbar-track: transparent;
@@ -158,7 +158,7 @@ html.dark {
   --c-bg-btn: var(--c-accent);
   --c-bg-pre: #000;
   --c-bg-pre-header: transparent;
-  --c-bg-pre-header-btn: #ffffff1a;
+  --c-bg-pre-header-btn: var(--c-accent);
   --c-markdown-a: var(--c-accent);
   --c-scrollbar-thumb: var(--c-surface-3);
   --c-scrollbar-track: transparent;
@@ -539,6 +539,53 @@ nav[aria-label="Chat history"] .rounded-lg {
   border-radius: var(--border-radius-nav-a) !important;
 }
 
+pre {
+  border-radius: 20px !important;
+  border-radius: var(--border-radius-pre) !important;
+  margin: 1.5rem auto !important;
+  margin: var(--my-pre) auto !important;
+}
+
+.js-has-pseudo [csstools-has-34-36-2t-w-2s-2x-3a-1m-2w-2p-37-14-2q-39-38-38-33-32-15-w-37-34-2p-32]:not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
+  color: var(--c-accent-light) !important;
+}
+
+pre div:has(button) span {
+  color: var(--c-accent-light) !important;
+}
+
+.js-has-pseudo [csstools-has-34-36-2t-w-2q-39-38-38-33-32-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist):not(does-not-exist):not(does-not-exist) {
+  background-color: var(--c-bg-pre-header-btn);
+  padding: 10px;
+  padding: var(--p-btn);
+  border-radius: 10px;
+  color: var(--c-on-accent) !important;
+}
+
+pre button:has(svg) {
+  background-color: var(--c-bg-pre-header-btn);
+  padding: 10px;
+  padding: var(--p-btn);
+  border-radius: 10px;
+  color: var(--c-on-accent) !important;
+}
+
+.js-has-pseudo [csstools-has-34-36-2t-w-2q-39-38-38-33-32-1m-2w-2p-37-14-37-3a-2v-15-w-37-3a-2v]:not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
+  color: currentColor !important;
+}
+
+pre button:has(svg) svg {
+  color: currentColor !important;
+}
+
+.js-has-pseudo [csstools-has-2w-38-31-30-1a-30-2x-2v-2w-38-w-34-36-2t-w-2q-39-38-38-33-32-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
+  color: var(--c-txt) !important;
+}
+
+html.light pre button:has(svg) {
+  color: var(--c-txt) !important;
+}
+
 main [role="presentation"] {
   background-color: var(--c-bg-chats-container) !important;
 }
@@ -731,45 +778,6 @@ main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistan
 
 main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"]) .markdown a:hover {
   text-decoration-line: underline;
-}
-
-main [data-testid^="conversation-turn-"] pre {
-  border-radius: 20px !important;
-  border-radius: var(--border-radius-pre) !important;
-  margin: 1.5rem auto !important;
-  margin: var(--my-pre) auto !important;
-}
-
-.js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-2r-33-32-3a-2t-36-37-2p-38-2x-33-32-19-38-39-36-32-19-2l-w-34-36-2t-w-1a-2q-2v-19-2q-30-2p-2r-2z-w-1q-w-2s-2x-3a-1m-2w-2p-37-14-1q-w-37-34-2p-32-15-w-1q-w-37-34-2p-32]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
-  color: var(--c-accent-light) !important;
-}
-
-main [data-testid^="conversation-turn-"] pre .bg-black > div:has( > span) > span {
-  color: var(--c-accent-light) !important;
-}
-
-.js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-2r-33-32-3a-2t-36-37-2p-38-2x-33-32-19-38-39-36-32-19-2l-w-34-36-2t-w-1a-2q-2v-19-2q-30-2p-2r-2z-w-1q-w-2s-2x-3a-1m-2w-2p-37-14-1q-w-37-34-2p-32-15-w-2q-39-38-38-33-32-1m-2w-2p-37-14-37-3a-2v-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
-  background-color: var(--c-bg-pre-header-btn);
-  padding: 10px;
-  padding: var(--p-btn);
-  border-radius: 10px;
-  color: var(--c-accent-light) !important;
-}
-
-main [data-testid^="conversation-turn-"] pre .bg-black > div:has( > span) button:has(svg) {
-  background-color: var(--c-bg-pre-header-btn);
-  padding: 10px;
-  padding: var(--p-btn);
-  border-radius: 10px;
-  color: var(--c-accent-light) !important;
-}
-
-.js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-2r-33-32-3a-2t-36-37-2p-38-2x-33-32-19-38-39-36-32-19-2l-w-34-36-2t-w-1a-2q-2v-19-2q-30-2p-2r-2z-w-1q-w-2s-2x-3a-1m-2w-2p-37-14-1q-w-37-34-2p-32-15-w-2q-39-38-38-33-32-1m-2w-2p-37-14-37-3a-2v-15-w-37-3a-2v]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
-  color: var(--c-accent-light) !important;
-}
-
-main [data-testid^="conversation-turn-"] pre .bg-black > div:has( > span) button:has(svg) svg {
-  color: var(--c-accent-light) !important;
 }
 
 main form .grow .gap-2 {
@@ -1523,18 +1531,43 @@ main [data-testid^="conversation-turn-"] .group [class*="[.final-completion]"] s
   transform: translateY(-3px);
 }
 
-main [data-testid^="conversation-turn-"] .group pre button {
-  transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out, background-color .2s ease-in-out, color .2s ease-in-out;
-  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out, background-color .2s ease-in-out, color .2s ease-in-out;
+.js-has-pseudo [csstools-has-34-36-2t-w-2q-39-38-38-33-32-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist):not(does-not-exist):not(does-not-exist) {
+  transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out, background-color .2s ease-in-out, color .1s ease-in-out;
+  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out, background-color .2s ease-in-out, color .1s ease-in-out;
 }
 
-main [data-testid^="conversation-turn-"] .group pre button:hover {
+pre button:has(svg) {
+  transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out, background-color .2s ease-in-out, color .1s ease-in-out;
+  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out, background-color .2s ease-in-out, color .1s ease-in-out;
+}
+
+.js-has-pseudo [csstools-has-34-36-2t-w-2q-39-38-38-33-32-1m-2w-2p-37-14-37-3a-2v-15-w-37-3a-2v]:not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
+  transition: color .1s ease-in-out;
+}
+
+pre button:has(svg) svg {
+  transition: color .1s ease-in-out;
+}
+
+.js-has-pseudo [csstools-has-34-36-2t-w-2q-39-38-38-33-32-1m-2w-2p-37-14-37-3a-2v-15-1m-2w-33-3a-2t-36]:not(does-not-exist):not(does-not-exist):not(does-not-exist) {
   transform: translateY(2px);
+  background-color: var(--c-accent-light) !important;
+  color: var(--c-on-accent) !important;
+}
+
+pre button:has(svg):hover {
+  transform: translateY(2px);
+  background-color: var(--c-accent-light) !important;
+  color: var(--c-on-accent) !important;
+}
+
+.js-has-pseudo [csstools-has-2w-38-31-30-1a-30-2x-2v-2w-38-w-34-36-2t-w-2q-39-38-38-33-32-1m-2w-2p-37-14-37-3a-2v-15-1m-2w-33-3a-2t-36]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
   background-color: var(--c-accent) !important;
   color: var(--c-on-accent) !important;
 }
 
-main [data-testid^="conversation-turn-"] .group pre button:hover svg {
+html.light pre button:has(svg):hover {
+  background-color: var(--c-accent) !important;
   color: var(--c-on-accent) !important;
 }
 

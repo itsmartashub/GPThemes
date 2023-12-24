@@ -1,0 +1,31 @@
+/* === RIGHT - <pre> - MARKDOWN CODE IN CHATS ===*/
+
+pre {
+    border-radius: var(--border-radius-pre) !important;
+    margin: var(--my-pre) auto !important;
+
+    /*  === RIGHT - <pre> - header === */
+    // Header selector: .bg-black>div:has(> span) 
+
+    /* Code name in markdown header (html, php, css, etc) */
+    div:has(button) span {
+        color: var(--c-accent-light) !important;
+    }
+
+    /* 'Copy code' btn in markdown header */
+    button:has(svg) {
+        color: var(--c-on-accent) !important;
+        background-color: var(--c-bg-pre-header-btn);
+        padding: var(--p-btn);
+        border-radius: 10px;
+
+        /* SVG icons before 'Copy code' btn in md */
+        svg {
+            color: currentColor !important;
+        }
+    }
+}
+
+html.light pre button:has(svg) {
+    color: var(--c-txt) !important;
+}

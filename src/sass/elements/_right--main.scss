@@ -15,7 +15,6 @@ main [data-message-author-role="assistant"] {
 }
 
 
-
 /* @ === RIGHT - CHATS BUBBLES ===*/
 main [data-testid^="conversation-turn-"] {
     margin-bottom: var(--mb-msg) !important;
@@ -76,7 +75,6 @@ main [data-testid^="conversation-turn-"] {
                 }
             }
         }
-
     }
 
     // === RIGHT - CHATS USER/GPT NAMES ===
@@ -106,7 +104,6 @@ main [data-testid^="conversation-turn-"] {
 
         /*  Chat bubble footer SVG icons */
         button svg {
-            // fill: var(--c-msg-name-gpt);
             color: var(--c-msg-name-user);
         }
     }
@@ -163,43 +160,6 @@ main [data-testid^="conversation-turn-"] {
 
             &:hover {
                 text-decoration-line: underline;
-            }
-        }
-    }
-
-    /* === RIGHT - <pre> - MARKDOWN CODE IN CHATS ===*/
-    pre {
-        border-radius: var(--border-radius-pre) !important;
-        margin: var(--my-pre) auto !important;
-
-        /* ! Moved to hljs themes scss */
-        // &>.bg-black {
-        //     background-color: var(--c-bg-pre) !important;
-        // }
-
-
-        /*  === RIGHT - <pre> - header === */
-        .bg-black>div:has(> span) {
-            /* ! Moved to hljs themes scss */
-            // background-color: var(--c-bg-pre-header) !important;
-
-            /* Code name in markdown header (html, php, css, etc) */
-            &>span {
-                color: var(--c-accent-light) !important;
-            }
-
-            /* 'Copy code' btn in markdown header */
-            button:has(svg) {
-                color: var(--c-accent-light) !important;
-                background-color: var(--c-bg-pre-header-btn);
-                padding: var(--p-btn);
-                // padding: var(--py-btn) var(--px-btn);
-                border-radius: 10px;
-
-                /* SVG icons before 'Copy code' btn in md */
-                svg {
-                    color: var(--c-accent-light) !important;
-                }
             }
         }
     }
