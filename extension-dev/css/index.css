@@ -250,6 +250,10 @@ html.light [class*=":border-white/10"] {
   display: none !important;
 }
 
+code.hljs {
+  letter-spacing: -.0125rem;
+}
+
 [role="separator"] {
   border-color: var(--c-border) !important;
 }
