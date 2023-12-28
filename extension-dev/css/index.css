@@ -403,12 +403,12 @@ nav[aria-label="Chat history"] {
 
 .js-has-pseudo [csstools-has-32-2p-3a-2j-2p-36-2x-2p-19-30-2p-2q-2t-30-1p-y-1v-2w-2p-38-w-2w-2x-37-38-33-36-3d-y-2l-w-1a-37-38-2x-2r-2z-3d-1a-2q-2v-19-2q-30-2p-2r-2z-1m-2w-2p-37-14-2p-2j-2w-36-2t-2u-1p-y-1b-y-2l-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
   background-color: var(--c-bg-sidebar);
-  margin-bottom: 1rem;
+  padding-bottom: 2rem !important;
 }
 
 nav[aria-label="Chat history"] .sticky.bg-black:has(a[href="/"]) {
   background-color: var(--c-bg-sidebar);
-  margin-bottom: 1rem;
+  padding-bottom: 2rem !important;
 }
 
 nav[aria-label="Chat history"] .overflow-y-auto {
