@@ -72,7 +72,7 @@ html.light {
   --c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 2), calc(var(--accent-l) * 1.3));
   --c-on-accent: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) * 1.5));
   --c-txt: hsl(var(--txt-hsl));
-  --c-subtext-1: hsla(0, 0%, calc(var(--txt-hsl-l) / 1.5));
+  --c-subtext-1: #333;
   --c-subtext-2: #666;
   --c-surface-1: hsl(0, 0%, var(--surface-l));
   --c-surface-2: hsl(0, 0%, calc(var(--surface-l) / 1.089));
@@ -213,7 +213,7 @@ input::placeholder, textarea::placeholder {
   color: var(--c-subtext-2) !important;
 }
 
-.text-gizmo-gray-500, .text-gray-100 {
+.text-token-text-secondary, .text-gizmo-gray-500, .text-gray-100 {
   color: var(--c-subtext-1) !important;
 }
 

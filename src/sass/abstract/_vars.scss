@@ -85,8 +85,9 @@ html.light {
 
     --c-on-accent: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) * 1.5));
     --c-txt: hsl(var(--txt-hsl));
-    --c-subtext-1: hsla(0, 0%, calc(var(--txt-hsl-l) / 1.5));
+    --c-subtext-1: hsla(0, 0%, 20%);
     --c-subtext-2: hsl(0, 0%, 40%);
+    // --c-subtext-1: hsla(0, 0%, calc(var(--txt-hsl-l) * 1.5));
 
 
     --c-surface-1: hsl(0, 0%, var(--surface-l));
