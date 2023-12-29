@@ -234,6 +234,10 @@ input::placeholder, textarea::placeholder {
   background-color: var(--c-surface-1) !important;
 }
 
+.bg-gray-50 {
+  background-color: var(--c-surface-2) !important;
+}
+
 [class*="dark:bg-gray-800"] {
   background-color: var(--c-bg-chats-container) !important;
 }
@@ -1315,6 +1319,10 @@ button[role="combobox"] {
   min-width: 5.5rem;
 }
 
+button[id*="headlessui-menu-button"][class*="bg-gray-50"] {
+  color: var(--c-txt) !important;
+}
+
 .toast-root {
   margin-top: -.4rem !important;
 }
@@ -1631,6 +1639,14 @@ main [role="presentation"] button.absolute.rounded-full:hover {
 
 [role="dialog"] table tbody td:has(button[aria-label^="Delete"]) span[data-state]:hover svg {
   transform: translateY(2px)scale(1) !important;
+}
+
+button[id*="headlessui-menu-button"][class*="rounded-full"] {
+  transition: transform .3s cubic-bezier(.075, .82, .165, 1);
+}
+
+button[id*="headlessui-menu-button"][class*="rounded-full"]:hover {
+  transform: scale(1.06);
 }
 
 .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {

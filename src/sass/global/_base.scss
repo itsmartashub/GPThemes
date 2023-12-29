@@ -92,6 +92,12 @@ textarea::placeholder {
     background-color: var(--c-surface-1) !important;
 }
 
+// border-gray-200 
+/* `❓` btn */
+.bg-gray-50 {
+    background-color: var(--c-surface-2) !important;
+}
+
 /* Shared chats PAGE - chats container bg */
 [class*="dark:bg-gray-800"] {
     background-color: var(--c-bg-chats-container) !important;
