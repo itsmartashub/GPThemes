@@ -1,6 +1,7 @@
 .prose {
     // --tw-prose-code: currentColor !important; // Code text in markdown
     // --tw-prose-bold: currentColor !important; // Bold text in markdown
+    color: var(--c-txt) !important;
     font-size: 1rem !important;
 
     --tw-prose-body: var(--c-txt) !important;
@@ -37,9 +38,9 @@
     --tw-prose-invert-th-borders: var(--c-border) !important;
     --tw-prose-invert-td-borders: var(--c-border) !important;
 
-    /* Markdown Links */
+    /* Markdown Links rendered in GPT answers */
     a {
-        @extend %link_hover;
+        @extend %link_hover_underlined;
     }
 
     /* Style Markdown Checkboxes */
@@ -50,6 +51,7 @@
         border-radius: 4px;
 
         &:checked {
+            accent-color: var(--c-accent) !important;
             background-color: var(--c-accent) !important;
         }
     }
@@ -97,10 +99,4 @@ html.dark .prose {
         // background-color: var(--c-accent-light) !important;
 
     }
-
-    // input[type=checkbox] {
-    //     &:checked {
-    //         color: var(--c-on-accent) !important;
-    //     }
-    // }
 }

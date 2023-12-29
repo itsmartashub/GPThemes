@@ -134,6 +134,8 @@
             /* Link in table Shared Links/Archived Chats */
             td:first-child a {
                 color: var(--c-accent) !important;
+                @extend %link_hover_underless;
+
             }
 
             /* Center the vertically svg icons next to each other in table */

@@ -240,7 +240,7 @@ main [role="presentation"] button.absolute.rounded-full {
 
         /* NAME - first column Links
         "Shared links" & "Archived Chats" links in table, but a[href^="/c/"] is also Conversation SVG in "Shared Links", ahh */
-        td:first-child a {
+        /*  td:first-child a {
             transform-origin: center center;
 
             &:hover {
@@ -253,7 +253,7 @@ main [role="presentation"] button.absolute.rounded-full {
                 }
 
             }
-        }
+        } */
 
         /* Table column that contains "Delete" svg icon */
         td:has(button[aria-label^="Delete"]) {

@@ -175,34 +175,37 @@ html.dark {
   --gray-500: var(--c-txt) !important;
 }
 
-.prose a {
+[role="dialog"] table tbody td:first-child a, .prose a {
   text-decoration: none;
-  transition: opacity .3s ease-in-out;
-  display: inline-block;
+  transition: opacity .3s;
   position: relative;
   color: var(--c-accent) !important;
 }
 
-.prose a:hover {
-  opacity: .9;
+[role="dialog"] table tbody td:first-child a:after, .prose a:after {
+  content: "";
+  background-color: currentColor;
+  border-radius: 20px;
+  width: 100%;
+  height: 2px;
+  transition: transform .3s cubic-bezier(.215, .61, .355, 1);
+  position: absolute;
+  bottom: -5px;
+  left: 0;
 }
 
-.prose a:hover:after {
+.prose a:after {
+  transform-origin: 0 100%;
+  transform: scaleX(1);
+}
+
+.prose a:hover:after, [role="dialog"] table tbody td:first-child a:after {
   transform-origin: 100% 100%;
   transform: scaleX(0);
 }
 
-.prose a:after {
-  content: "";
+[role="dialog"] table tbody td:first-child a:hover:after {
   transform-origin: 0 100%;
-  background-color: currentColor;
-  border-radius: 5px;
-  width: 100%;
-  height: 2px;
-  transition: transform .3s;
-  position: absolute;
-  bottom: 0;
-  left: 0;
   transform: scaleX(1);
 }
 
@@ -571,6 +574,7 @@ nav[aria-label="Chat history"] .rounded-lg {
 }
 
 .prose {
+  color: var(--c-txt) !important;
   --tw-prose-body: var(--c-txt) !important;
   --tw-prose-headings: var(--c-accent) !important;
   --tw-prose-links: var(--c-accent) !important;
@@ -606,6 +610,7 @@ nav[aria-label="Chat history"] .rounded-lg {
 }
 
 .prose input[type="checkbox"]:checked {
+  accent-color: var(--c-accent) !important;
   background-color: var(--c-accent) !important;
 }
 
@@ -699,10 +704,6 @@ main [data-message-author-role="user"], main [data-message-author-role="assistan
   margin-top: var(--mt-chat-txt) !important;
   margin-bottom: 1rem !important;
   margin-bottom: var(--mb-chat-txt) !important;
-}
-
-main [data-message-author-role="user"] .markdown, main [data-message-author-role="assistant"] .markdown {
-  color: var(--c-txt) !important;
 }
 
 main [data-testid^="conversation-turn-"] {
@@ -1662,20 +1663,6 @@ main [role="presentation"] button.absolute.rounded-full {
 main [role="presentation"] button.absolute.rounded-full:hover {
   transform: translateY(10%);
   opacity: 1 !important;
-}
-
-[role="dialog"] table tbody td:first-child a {
-  transform-origin: center;
-}
-
-[role="dialog"] table tbody td:first-child a:hover {
-  text-decoration: underline;
-  transform: translateX(5px);
-  color: var(--c-accent) !important;
-}
-
-[role="dialog"] table tbody td:first-child a:hover svg {
-  transform: translateX(-5px)scale(.9) !important;
 }
 
 .js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-38-2p-2q-30-2t-w-38-2q-33-2s-3d-w-38-2s-1m-2w-2p-37-14-2q-39-38-38-33-32-2j-2p-36-2x-2p-19-30-2p-2q-2t-30-2m-1p-1w-2t-30-2t-38-2t-2l-15-w-37-3a-2v]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {

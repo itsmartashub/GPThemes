@@ -3,20 +3,11 @@ main [role="presentation"] {
     background-color: var(--c-bg-chats-container) !important;
 }
 
-/* ===RIGHT - Chats - User/Assistend margin-bottom and top. Gap from heading and svg icons ===*/
+/* === RIGHT - Chats - Gap from heading and svg icons ===*/
 main [data-message-author-role="user"],
 main [data-message-author-role="assistant"] {
     margin-top: var(--mt-chat-txt) !important;
     margin-bottom: var(--mb-chat-txt) !important;
-
-    .markdown {
-        color: var(--c-txt) !important;
-
-        /* Bold text in markdown */
-        strong {
-            // color: var(--c-subtext-2) !important;
-        }
-    }
 }
 
 
@@ -24,12 +15,12 @@ main [data-message-author-role="assistant"] {
 main [data-testid^="conversation-turn-"] {
     margin-bottom: var(--mb-msg) !important;
 
-    // === RIGHT - CHATS BUBBLES DIV ===
+    /* RIGHT - CHATS BUBBLES DIV */
     .group {
         // padding: var(--p-msg) !important;
-        letter-spacing: .3px;
         padding: calc(var(--p-msg) * 1.3) var(--p-msg) var(--p-msg) var(--p-msg) !important;
         border-radius: var(--border-radius-msg) !important;
+        letter-spacing: .3px;
         line-height: 1.8 !important;
 
         .agent-turn {
@@ -88,7 +79,7 @@ main [data-testid^="conversation-turn-"] {
         }
     }
 
-    // === RIGHT - CHATS USER/GPT NAMES ===
+    /* RIGHT - CHATS USER/GPT NAMES */
     .font-semibold.select-none {
         text-transform: uppercase;
     }
@@ -97,12 +88,12 @@ main [data-testid^="conversation-turn-"] {
         color: var(--c-on-accent) !important;
     }
 
-    /* @ === RIGHT - CHATS BUBBLES - USER ===*/
+    /* @ RIGHT - CHATS BUBBLES - USER  */
     // There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario
     &:not(&:has([data-message-author-role="assistant"])),
     &:has([data-message-author-role="user"]) {
 
-        // === RIGHT - CHATS BUBBLE BG ===
+        /*  RIGHT - CHATS BUBBLE BG */
         .group {
             background-color: var(--c-bg-msg-user);
             outline: 2px solid transparent;
@@ -119,7 +110,7 @@ main [data-testid^="conversation-turn-"] {
         }
     }
 
-    // === RIGHT - CHATS BUBBLE BG EDIT ===
+    /* ___ RIGHT - CHATS BUBBLE BG EDIT */
     &:not(&:has([data-message-author-role="assistant"])):has(textarea) {
         .group {
             // background-color: var(--c-surface-1) !important;
@@ -140,10 +131,10 @@ main [data-testid^="conversation-turn-"] {
         }
     }
 
-    /* @ === RIGHT - CHATS BUBBLES - GPT ===*/
+    /* @ RIGHT - CHATS BUBBLES - GPT */
     &:has([data-message-author-role="assistant"]) {
 
-        /*  === RIGHT - CHATS BUBBLE BG === */
+        /*   RIGHT - CHATS BUBBLE BG  */
         .group {
             background-color: var(--c-bg-msg-gpt);
 
@@ -151,7 +142,7 @@ main [data-testid^="conversation-turn-"] {
                 color: var(--c-surface-1) !important;
             }
 
-            /* === User/ChatGPT name === */
+            /*  User/ChatGPT name  */
             .font-semibold.select-none {
                 // color: var(--c-msg-name-gpt);
                 color: var(--avatar-color);
@@ -210,19 +201,9 @@ main [data-testid^="conversation-turn-"] {
         }
 
 
-
         /*  Chat bubble footer SVG icons */
         button svg {
             color: var(--avatar-color);
         }
-
-        /* Links rendered in gpt answers */
-        // .markdown a {
-        //     color: var(--avatar-color) !important;
-
-        //     &:hover {
-        //         text-decoration-line: underline;
-        //     }
-        // }
     }
 }

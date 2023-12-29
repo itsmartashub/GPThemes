@@ -1,18 +1,8 @@
-%link_hover {
+%link_default {
     position: relative;
     text-decoration: none;
     color: var(--c-accent) !important;
-    display: inline-block;
-    transition: opacity .3s ease-in-out;
-
-    &:hover {
-        opacity: .9;
-
-        &::after {
-            transform: scaleX(0);
-            transform-origin: bottom right;
-        }
-    }
+    transition: opacity .3s ease;
 
     /* Style for the ::after pseudo-element (initially hidden) */
     &::after {
@@ -20,12 +10,45 @@
         position: absolute;
         width: 100%;
         height: 2px;
-        background-color: currentColor;
-        border-radius: 5px;
-        bottom: 0;
+        bottom: -5px;
         left: 0;
+        background-color: currentColor;
+        border-radius: 20px;
+        // transition: transform 0.3s $easeInOutExpo;
+        transition: transform 0.3s $easeOutCubic;
+        // transition: transform 0.3s ease;
+    }
+
+    // &:hover {
+    // opacity: .9;
+    // }
+}
+
+%link_hover_underlined {
+    @extend %link_default;
+
+    /* Style for the ::after pseudo-element (initially hidden) */
+    &::after {
         transform: scaleX(1);
         transform-origin: bottom left;
-        transition: transform 0.3s ease;
+    }
+
+    &:hover::after {
+        transform: scaleX(0);
+        transform-origin: bottom right;
+    }
+}
+
+%link_hover_underless {
+    @extend %link_default;
+
+    &::after {
+        transform: scaleX(0);
+        transform-origin: bottom right;
+    }
+
+    &:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
     }
 }
