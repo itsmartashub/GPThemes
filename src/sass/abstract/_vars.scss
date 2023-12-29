@@ -128,7 +128,8 @@ html.light {
     --c-bg-pre: hsl(0, 0%, 0%);
     --c-bg-pre-header: transparent;
     // --c-bg-pre-header-btn: hsla(255, 100%, 100%, 0.1);
-    --c-bg-pre-header-btn: var(--c-accent-light);
+    // --c-bg-pre-header-btn: var(--c-accent-light);
+    --c-bg-pre-header-btn: var(--c-accent);
     --c-markdown-a: var(--c-accent);
 
     --c-scrollbar-thumb: var(--c-surface-3);

@@ -99,7 +99,7 @@ html.light {
   --c-bg-btn: var(--c-accent);
   --c-bg-pre: #000;
   --c-bg-pre-header: transparent;
-  --c-bg-pre-header-btn: var(--c-accent-light);
+  --c-bg-pre-header-btn: var(--c-accent);
   --c-markdown-a: var(--c-accent);
   --c-scrollbar-thumb: var(--c-surface-3);
   --c-scrollbar-track: transparent;
@@ -685,14 +685,6 @@ pre button:has(svg) {
 
 pre button:has(svg) svg {
   color: currentColor !important;
-}
-
-.js-has-pseudo [csstools-has-2w-38-31-30-1a-30-2x-2v-2w-38-w-34-36-2t-w-2q-39-38-38-33-32-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
-  color: var(--c-txt) !important;
-}
-
-html.light pre button:has(svg) {
-  color: var(--c-txt) !important;
 }
 
 main [role="presentation"] {
@@ -1453,13 +1445,11 @@ button:not(.btn):not(button[role="combobox"]):not([role="tab"]):not([role="combo
 .btn, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), button[role="combobox"], .btn, button[role="combobox"] {
   will-change: transform, opacity;
   transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out, background-color .3s ease-in-out, color .3s ease-in-out !important;
-  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out, background-color .3s ease-in-out, color .3s ease-in-out !important;
 }
 
 main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 {
   will-change: transform, opacity;
   transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out, background-color .3s ease-in-out, color .3s ease-in-out !important;
-  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out, background-color .3s ease-in-out, color .3s ease-in-out !important;
 }
 
 .btn:is(:hover, :active), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-2x-37-14-1m-2w-33-3a-2t-36-18-w-1m-2p-2r-38-2x-3a-2t-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), button[role="combobox"]:is(:hover, :active), .btn:is(:hover, :active), button[role="combobox"]:is(:hover, :active) {
@@ -1480,8 +1470,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
 }
 
 button[role="switch"] span[data-state] {
-  transition: transform .4s cubic-bezier(.68, -.55, .265, 1.55), background-color .3s cubic-bezier(.445, .05, .55, .95);
-  transition: transform .4s var(--easeInOutBack), background-color .3s var(--ease-default);
+  transition: transform .4s cubic-bezier(.68, -.55, .265, 1.55), background-color .3s ease-in-out;
 }
 
 button[role="switch"]:hover span[data-state] {
@@ -1517,19 +1506,16 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
 
 main form .grow .btn .bg-gradient-to-l span[data-state] .bg-token-surface-primary, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[role="combobox"] .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow .btn .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow button[role="combobox"] .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
   transition: transform .5s cubic-bezier(.175, .885, .32, 1.275);
-  transition: transform .5s var(--easeOutBack);
   transform: translateY(120%)scale(.5);
 }
 
 main form .grow [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
   transition: transform .5s cubic-bezier(.175, .885, .32, 1.275);
-  transition: transform .5s var(--easeOutBack);
   transform: translateY(120%)scale(.5);
 }
 
 main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) form .grow .bg-green-600 .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
   transition: transform .5s cubic-bezier(.175, .885, .32, 1.275);
-  transition: transform .5s var(--easeOutBack);
   transform: translateY(120%)scale(.5);
 }
 
@@ -1565,7 +1551,6 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
 
 [data-testid="send-button"]:not([disabled]) {
   transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out;
-  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out;
 }
 
 [data-testid="send-button"]:not([disabled]):hover {
@@ -1594,19 +1579,16 @@ main [data-testid^="conversation-turn-"] .group div[class*="empty:hidden"]:has(b
 
 .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-2r-33-32-3a-2t-36-37-2p-38-2x-33-32-19-38-39-36-32-19-2l-w-1a-2v-36-33-39-34-w-2s-2x-3a-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-2q-39-38-38-33-32-2j-2r-30-2p-37-37-16-1p-y-2j-1a-2u-2x-32-2p-30-19-2r-33-31-34-30-2t-38-2x-33-32-2l-y-2l-15-w-1a-3a-2x-37-2x-2q-30-2t]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
   transition: transform .4s cubic-bezier(.68, -.55, .265, 1.55);
-  transition: transform .4s var(--easeInOutBack);
   transform: translateY(110%);
 }
 
 main [data-testid^="conversation-turn-"] .group div[class*="empty:hidden"]:has(button[class*="[.final-completion]"]) .visible {
   transition: transform .4s cubic-bezier(.68, -.55, .265, 1.55);
-  transition: transform .4s var(--easeInOutBack);
   transform: translateY(110%);
 }
 
 main [data-testid^="conversation-turn-"] .group [class*="[.final-completion]"] svg {
   transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out;
-  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out;
   transform: translateY(0);
 }
 
@@ -1617,12 +1599,10 @@ main [data-testid^="conversation-turn-"] .group [class*="[.final-completion]"] s
 
 .js-has-pseudo [csstools-has-34-36-2t-w-2q-39-38-38-33-32-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist):not(does-not-exist):not(does-not-exist) {
   transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out, background-color .2s ease-in-out, color .1s ease-in-out !important;
-  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out, background-color .2s ease-in-out, color .1s ease-in-out !important;
 }
 
 pre button:has(svg) {
   transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out, background-color .2s ease-in-out, color .1s ease-in-out !important;
-  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out, background-color .2s ease-in-out, color .1s ease-in-out !important;
 }
 
 .js-has-pseudo [csstools-has-34-36-2t-w-2q-39-38-38-33-32-1m-2w-2p-37-14-37-3a-2v-15-w-37-3a-2v]:not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
@@ -1646,18 +1626,15 @@ pre button:has(svg):hover {
 }
 
 .js-has-pseudo [csstools-has-2w-38-31-30-1a-30-2x-2v-2w-38-w-34-36-2t-w-2q-39-38-38-33-32-1m-2w-2p-37-14-37-3a-2v-15-1m-2w-33-3a-2t-36]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
-  background-color: var(--c-accent) !important;
-  color: var(--c-on-accent) !important;
+  color: var(--c-txt) !important;
 }
 
 html.light pre button:has(svg):hover {
-  background-color: var(--c-accent) !important;
-  color: var(--c-on-accent) !important;
+  color: var(--c-txt) !important;
 }
 
 main [role="presentation"] button.absolute.rounded-full {
   transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out;
-  transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out;
 }
 
 main [role="presentation"] button.absolute.rounded-full:hover {
@@ -1667,12 +1644,10 @@ main [role="presentation"] button.absolute.rounded-full:hover {
 
 .js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-38-2p-2q-30-2t-w-38-2q-33-2s-3d-w-38-2s-1m-2w-2p-37-14-2q-39-38-38-33-32-2j-2p-36-2x-2p-19-30-2p-2q-2t-30-2m-1p-1w-2t-30-2t-38-2t-2l-15-w-37-3a-2v]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
   transition: transform .4s cubic-bezier(.175, .885, .32, 1.275);
-  transition: transform .4s var(--easeOutBack);
 }
 
 [role="dialog"] table tbody td:has(button[aria-label^="Delete"]) svg {
   transition: transform .4s cubic-bezier(.175, .885, .32, 1.275);
-  transition: transform .4s var(--easeOutBack);
 }
 
 .js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-38-2p-2q-30-2t-w-38-2q-33-2s-3d-w-38-2s-1m-2w-2p-37-14-2q-39-38-38-33-32-2j-2p-36-2x-2p-19-30-2p-2q-2t-30-2m-1p-1w-2t-30-2t-38-2t-2l-15-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l-1m-2w-33-3a-2t-36-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {

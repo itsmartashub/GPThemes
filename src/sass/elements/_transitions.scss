@@ -66,7 +66,7 @@ button:not(.btn,
     will-change: transform, opacity;
 
     transition:
-        transform .4s var(--easeOutBack),
+        transform .4s $easeOutBack,
         opacity .3s ease-in-out,
         background-color .3s ease-in-out,
         color .3s ease-in-out !important;
@@ -95,7 +95,7 @@ button:not(.btn,
 button[role="switch"] {
 
     span[data-state] {
-        transition: transform .4s var(--easeInOutBack), background-color .3s var(--ease-default);
+        transition: transform .4s $easeInOutBack, background-color .3s ease-in-out;
     }
 
     &:hover {
@@ -109,7 +109,7 @@ button[role="switch"] {
 
 /* ___ New Chat big buttons */
 main form .grow .btn {
-    // transition: .4s var(--easeOutBack), background-color .3s ease-in-out opacity .3s ease-in-out;
+    // transition: .4s $easeOutBack, background-color .3s ease-in-out opacity .3s ease-in-out;
 
     /* Gradient bg visible on hover */
     .bg-gradient-to-l {
@@ -123,7 +123,7 @@ main form .grow .btn {
             /* Button w/ SVG */
             .bg-token-surface-primary {
                 transform: translateY(120%) scale(.5);
-                transition: transform .5s var(--easeOutBack);
+                transition: transform .5s $easeOutBack;
             }
         }
     }
@@ -148,7 +148,7 @@ main form .grow .btn {
 
 /* ___ Textarea send message send-button */
 [data-testid="send-button"]:not([disabled]) {
-    transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out;
+    transition: transform .4s $easeOutBack, opacity .3s ease-in-out;
 
     &:hover {
         transform: translateY(-10%);
@@ -179,14 +179,14 @@ main [data-testid^="conversation-turn-"] {
             /* Bubble message footer (icons wrapper) */
             .visible {
                 transform: translateY(110%);
-                transition: transform .4s var(--easeInOutBack);
+                transition: transform .4s $easeInOutBack;
             }
         }
 
         /* Bubble message footer (svg icons) */
         [class*="[.final-completion]"] svg {
             transform: translateY(0px);
-            transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out;
+            transition: transform .4s $easeOutBack, opacity .3s ease-in-out;
 
             &:hover {
                 opacity: .8;
@@ -196,11 +196,12 @@ main [data-testid^="conversation-turn-"] {
     }
 }
 
-/* Copy btn */
+/* "Copy code" btn */
 pre {
     button:has(svg) {
         transition:
-            transform .4s var(--easeOutBack),
+            // transform .4s $easeOutBack,
+            transform .4s $easeOutBack,
             opacity .3s ease-in-out,
             background-color .2s ease-in-out,
             color .1s ease-in-out !important;
@@ -218,14 +219,14 @@ pre {
 }
 
 html.light pre button:has(svg):hover {
-    background-color: var(--c-accent) !important;
-    color: var(--c-on-accent) !important;
+    // background-color: var(--c-accent) !important;
+    color: var(--c-txt) !important;
 }
 
 
 /* ___ Scroll down button */
 main [role="presentation"] button.absolute.rounded-full {
-    transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out;
+    transition: transform .4s $easeOutBack, opacity .3s ease-in-out;
 
     &:hover {
         transform: translateY(10%);
@@ -258,7 +259,7 @@ main [role="presentation"] button.absolute.rounded-full {
         /* Table column that contains "Delete" svg icon */
         td:has(button[aria-label^="Delete"]) {
             svg {
-                transition: transform .4s var(--easeOutBack);
+                transition: transform .4s $easeOutBack;
             }
 
             /* SVG parent wrapper */
