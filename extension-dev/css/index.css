@@ -175,12 +175,43 @@ html.dark {
   --gray-500: var(--c-txt) !important;
 }
 
+.prose a {
+  text-decoration: none;
+  transition: opacity .3s ease-in-out;
+  display: inline-block;
+  position: relative;
+  color: var(--c-accent) !important;
+}
+
+.prose a:hover {
+  opacity: .9;
+}
+
+.prose a:hover:after {
+  transform-origin: 100% 100%;
+  transform: scaleX(0);
+}
+
+.prose a:after {
+  content: "";
+  transform-origin: 0 100%;
+  background-color: currentColor;
+  border-radius: 5px;
+  width: 100%;
+  height: 2px;
+  transition: transform .3s;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: scaleX(1);
+}
+
 html, body {
   --text-primary: var(--c-txt) !important;
+  font-family: Inter, sans-serif, Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji !important;
+  font-family: var(--f-fm), Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji !important;
   color: var(--c-txt) !important;
   background-color: var(--c-bg-chats-container) !important;
-  font-family: Inter, sans-serif !important;
-  font-family: var(--f-fm) !important;
 }
 
 html {
@@ -539,6 +570,77 @@ nav[aria-label="Chat history"] .rounded-lg {
   border-radius: var(--border-radius-nav-a) !important;
 }
 
+.prose {
+  --tw-prose-body: var(--c-txt) !important;
+  --tw-prose-headings: var(--c-accent) !important;
+  --tw-prose-links: var(--c-accent) !important;
+  --tw-prose-bold: currentColor !important;
+  --tw-prose-counters: var(--c-accent) !important;
+  --tw-prose-bullets: var(--c-accent) !important;
+  --tw-prose-hr: var(--c-border) !important;
+  --tw-prose-quotes: var(--c-subtext-2) !important;
+  --tw-prose-quote-borders: var(--c-subtext-2) !important;
+  --tw-prose-code: currentCode !important;
+  --tw-prose-th-borders: var(--c-border) !important;
+  --tw-prose-td-borders: var(--c-border) !important;
+  --tw-prose-invert-body: var(--c-txt) !important;
+  --tw-prose-invert-headings: var(--c-accent) !important;
+  --tw-prose-invert-links: var(--c-accent) !important;
+  --tw-prose-invert-bold: currentColor !important;
+  --tw-prose-invert-counters: var(--c-accent) !important;
+  --tw-prose-invert-bullets: var(--c-accent) !important;
+  --tw-prose-invert-hr: var(--c-border) !important;
+  --tw-prose-invert-quotes: var(--c-subtext-2) !important;
+  --tw-prose-invert-quote-borders: var(--c-subtext-2) !important;
+  --tw-prose-invert-code: currentColor !important;
+  --tw-prose-invert-th-borders: var(--c-border) !important;
+  --tw-prose-invert-td-borders: var(--c-border) !important;
+  font-size: 1rem !important;
+}
+
+.prose input[type="checkbox"] {
+  border-radius: 4px;
+  border: 2px solid var(--c-accent) !important;
+  background-color: #0000 !important;
+  padding: 7px !important;
+}
+
+.prose input[type="checkbox"]:checked {
+  background-color: var(--c-accent) !important;
+}
+
+.prose table {
+  overflow: hidden;
+  border-radius: 12px !important;
+  border-radius: var(--border-radius-btn) !important;
+}
+
+.prose table thead {
+  text-transform: uppercase;
+  --tw-prose-headings: var(--c-txt) !important;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  background-color: hsla(var(--txt-hsl) / .15) !important;
+  font-size: .8rem !important;
+}
+
+.prose table, .prose table th, .prose table td {
+  border: 1px solid var(--c-border) !important;
+}
+
+.prose table th, .prose table td {
+  padding: .5rem !important;
+}
+
+.prose table tbody tr:nth-child(2n) {
+  background-color: hsla(var(--txt-hsl) / .03) !important;
+}
+
+html.dark .prose table thead {
+  --tw-prose-headings: var(--c-on-accent) !important;
+  background-color: hsla(var(--accent-hsl) / .7) !important;
+}
+
 pre {
   border-radius: 20px !important;
   border-radius: var(--border-radius-pre) !important;
@@ -601,10 +703,6 @@ main [data-message-author-role="user"], main [data-message-author-role="assistan
 
 main [data-message-author-role="user"] .markdown, main [data-message-author-role="assistant"] .markdown {
   color: var(--c-txt) !important;
-}
-
-main [data-message-author-role="user"] .markdown strong, main [data-message-author-role="assistant"] .markdown strong {
-  --tw-prose-bold: var(--c-txt) !important;
 }
 
 main [data-testid^="conversation-turn-"] {
@@ -772,22 +870,6 @@ main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistan
 
 main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"]) button svg {
   color: var(--avatar-color);
-}
-
-.js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-2r-33-32-3a-2t-36-37-2p-38-2x-33-32-19-38-39-36-32-19-2l-1m-2w-2p-37-14-2j-2s-2p-38-2p-19-31-2t-37-37-2p-2v-2t-19-2p-39-38-2w-33-36-19-36-33-30-2t-1p-2p-37-37-2x-37-38-2p-32-38-2l-15-w-1a-31-2p-36-2z-2s-33-3b-32-w-2p]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
-  color: var(--avatar-color) !important;
-}
-
-main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"]) .markdown a {
-  color: var(--avatar-color) !important;
-}
-
-.js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-2r-33-32-3a-2t-36-37-2p-38-2x-33-32-19-38-39-36-32-19-2l-1m-2w-2p-37-14-2j-2s-2p-38-2p-19-31-2t-37-37-2p-2v-2t-19-2p-39-38-2w-33-36-19-36-33-30-2t-1p-2p-37-37-2x-37-38-2p-32-38-2l-15-w-1a-31-2p-36-2z-2s-33-3b-32-w-2p-1m-2w-33-3a-2t-36]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
-  text-decoration-line: underline;
-}
-
-main [data-testid^="conversation-turn-"]:has([data-message-author-role="assistant"]) .markdown a:hover {
-  text-decoration-line: underline;
 }
 
 main form .grow .gap-2 {

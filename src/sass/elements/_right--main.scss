@@ -14,7 +14,6 @@ main [data-message-author-role="assistant"] {
 
         /* Bold text in markdown */
         strong {
-            --tw-prose-bold: var(--c-txt) !important;
             // color: var(--c-subtext-2) !important;
         }
     }
@@ -218,12 +217,12 @@ main [data-testid^="conversation-turn-"] {
         }
 
         /* Links rendered in gpt answers */
-        .markdown a {
-            color: var(--avatar-color) !important;
+        // .markdown a {
+        //     color: var(--avatar-color) !important;
 
-            &:hover {
-                text-decoration-line: underline;
-            }
-        }
+        //     &:hover {
+        //         text-decoration-line: underline;
+        //     }
+        // }
     }
 }

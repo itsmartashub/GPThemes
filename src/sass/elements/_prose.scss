@@ -1,0 +1,106 @@
+.prose {
+    // --tw-prose-code: currentColor !important; // Code text in markdown
+    // --tw-prose-bold: currentColor !important; // Bold text in markdown
+    font-size: 1rem !important;
+
+    --tw-prose-body: var(--c-txt) !important;
+    --tw-prose-headings: var(--c-accent) !important;
+    // --tw-prose-lead: red !important;
+    --tw-prose-links: var(--c-accent) !important;
+    --tw-prose-bold: currentColor !important;
+    --tw-prose-counters: var(--c-accent) !important;
+    --tw-prose-bullets: var(--c-accent) !important;
+    --tw-prose-hr: var(--c-border) !important;
+    --tw-prose-quotes: var(--c-subtext-2) !important;
+    --tw-prose-quote-borders: var(--c-subtext-2) !important;
+    // --tw-prose-captions: red !important;
+    --tw-prose-code: currentCode !important;
+    // --tw-prose-pre-code: var(--c-accent) !important;
+    --tw-prose-th-borders: var(--c-border) !important;
+    --tw-prose-td-borders: var(--c-border) !important;
+
+    /* ___For Dark theme??? */
+    --tw-prose-invert-body: var(--c-txt) !important;
+    --tw-prose-invert-headings: var(--c-accent) !important;
+    // --tw-prose-invert-lead: #9ca3af !important;
+    --tw-prose-invert-links: var(--c-accent) !important;
+    --tw-prose-invert-bold: currentColor !important;
+    --tw-prose-invert-counters: var(--c-accent) !important;
+    --tw-prose-invert-bullets: var(--c-accent) !important;
+    --tw-prose-invert-hr: var(--c-border) !important;
+    --tw-prose-invert-quotes: var(--c-subtext-2) !important;
+    --tw-prose-invert-quote-borders: var(--c-subtext-2) !important;
+    // --tw-prose-invert-captions: #9ca3af !important;
+    --tw-prose-invert-code: currentColor !important;
+    // --tw-prose-invert-pre-code: var(--c-accent) !important;
+    // --tw-prose-invert-pre-bg: red !important;
+    --tw-prose-invert-th-borders: var(--c-border) !important;
+    --tw-prose-invert-td-borders: var(--c-border) !important;
+
+    /* Markdown Links */
+    a {
+        @extend %link_hover;
+    }
+
+    /* Style Markdown Checkboxes */
+    input[type=checkbox] {
+        padding: 7px !important;
+        border: 2px solid var(--c-accent) !important;
+        background-color: transparent !important;
+        border-radius: 4px;
+
+        &:checked {
+            background-color: var(--c-accent) !important;
+        }
+    }
+
+    table {
+        /* TODO - this overflow cause cutting the border edges of latest <tr> child, wtf. So I have to add border to <table> also (down where <th>, <td> are) */
+        overflow: hidden;
+        border-radius: var(--border-radius-btn) !important;
+
+        thead {
+            --tw-prose-headings: var(--c-txt) !important;
+
+            border-collapse: collapse !important;
+            border-spacing: 0 !important;
+            background-color: hsla(var(--txt-hsl) / .15) !important;
+            // background-color: hsla(var(--accent-hsl) / .15) !important;
+            text-transform: uppercase;
+            font-size: .8rem !important;
+        }
+
+        &,
+        th,
+        td {
+            border: 1px solid var(--c-border) !important;
+        }
+
+        th,
+        td {
+            padding: .5rem !important;
+        }
+
+        /* Make odd rows darker */
+        tbody tr:nth-child(2n) {
+            background-color: hsla(var(--txt-hsl) / .03) !important;
+        }
+    }
+}
+
+
+/* Thead color for Dark theme */
+html.dark .prose {
+    table thead {
+        --tw-prose-headings: var(--c-on-accent) !important;
+        background-color: hsla(var(--accent-hsl) / .7) !important;
+        // background-color: var(--c-accent-light) !important;
+
+    }
+
+    // input[type=checkbox] {
+    //     &:checked {
+    //         color: var(--c-on-accent) !important;
+    //     }
+    // }
+}
