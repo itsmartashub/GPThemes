@@ -30,10 +30,7 @@ nav[aria-label="Chat history"] {
     // ! Strange black rectangle (.bg-black class) over "New Chat" btn when on links: https://chat.openai.com/gpts/discovery and https://chat.openai.com/g/g-UBYTKWkPj
     .sticky.bg-black:has(a[href="/"]) {
         background-color: var(--c-bg-sidebar);
-        padding-bottom: 2rem !important;
-        // margin-bottom: 1rem;
-        // background-color: hsla(0, 0%, var(--surface-l), 0.2) !important;
-        // backdrop-filter: blur(var(--blur-sticky));
+        padding-bottom: 1rem !important;
     }
 
     /* NEW CHAT + LIST of chats in nav. Adding padding-left prevent :focus-visible style in those elements to be cropped from the left because of the overflow-hidden */

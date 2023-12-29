@@ -1,29 +1,4 @@
 :root {
-  --easeInSine: cubic-bezier(.12, 0, .39, 0);
-  --easeOutSine: cubic-bezier(.39, .575, .565, 1);
-  --easeInOutSine: cubic-bezier(.445, .05, .55, .95);
-  --easeInQuad: cubic-bezier(.55, .085, .68, .53);
-  --easeOutQuad: cubic-bezier(.25, .46, .45, .94);
-  --easeInOutQuad: cubic-bezier(.455, .03, .515, .955);
-  --easeInCubic: cubic-bezier(.55, .055, .675, .19);
-  --easeOutCubic: cubic-bezier(.215, .61, .355, 1);
-  --easeInOutCubic: cubic-bezier(.645, .045, .355, 1);
-  --easeInQuart: cubic-bezier(.165, .84, .44, 1);
-  --easeOutQuart: cubic-bezier(.165, .84, .44, 1);
-  --easeInOutQuart: cubic-bezier(.77, 0, .175, 1);
-  --easeInQuint: cubic-bezier(.755, .05, .855, .06);
-  --easeOutQuint: cubic-bezier(.23, 1, .32, 1);
-  --easeInOutQuint: cubic-bezier(.86, 0, .07, 1);
-  --easeInExpo: cubic-bezier(.95, .05, .795, .035);
-  --easeOutExpo: cubic-bezier(.19, 1, .22, 1);
-  --easeInOutExpo: cubic-bezier(1, 0, 0, 1);
-  --easeInCirc: cubic-bezier(.6, .04, .98, .335);
-  --easeOutCirc: cubic-bezier(.075, .82, .165, 1);
-  --easeInOutCirc: cubic-bezier(.785, .135, .15, .86);
-  --easeInBack: cubic-bezier(.6, -.28, .735, .045);
-  --easeOutBack: cubic-bezier(.175, .885, .32, 1.275);
-  --easeInOutBack: cubic-bezier(.68, -.55, .265, 1.55);
-  --ease-default: var(--easeInOutSine);
   --f-fm: "Inter", sans-serif;
   --border-radius-msg: 2.2rem;
   --border-radius-btn: 12px;
@@ -437,12 +412,12 @@ nav[aria-label="Chat history"] {
 
 .js-has-pseudo [csstools-has-32-2p-3a-2j-2p-36-2x-2p-19-30-2p-2q-2t-30-1p-y-1v-2w-2p-38-w-2w-2x-37-38-33-36-3d-y-2l-w-1a-37-38-2x-2r-2z-3d-1a-2q-2v-19-2q-30-2p-2r-2z-1m-2w-2p-37-14-2p-2j-2w-36-2t-2u-1p-y-1b-y-2l-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
   background-color: var(--c-bg-sidebar);
-  padding-bottom: 2rem !important;
+  padding-bottom: 1rem !important;
 }
 
 nav[aria-label="Chat history"] .sticky.bg-black:has(a[href="/"]) {
   background-color: var(--c-bg-sidebar);
-  padding-bottom: 2rem !important;
+  padding-bottom: 1rem !important;
 }
 
 nav[aria-label="Chat history"] .overflow-y-auto {
@@ -1079,14 +1054,18 @@ main div.flex.w-full.items-center > div {
   border-color: #0000 !important;
 }
 
-[role="dialog"] [role="tablist"][aria-orientation="horizontal"].bg-gray-100 {
+[role="dialog"] [role="tablist"][data-orientation="horizontal"].bg-gray-100 {
   background-color: var(--c-surface-3) !important;
   border-radius: 12px !important;
   border-radius: var(--border-radius-btn) !important;
 }
 
-[role="dialog"] [role="tablist"][aria-orientation="horizontal"].bg-gray-100 button[data-state="active"] {
+[role="dialog"] [role="tablist"][data-orientation="horizontal"].bg-gray-100 button[data-state="active"] {
   background-color: var(--c-surface-2) !important;
+}
+
+[role="dialog"] [role="tabpanel"][data-orientation="horizontal"] {
+  padding: 1rem !important;
 }
 
 [role="dialog"] h2[as="h3"] {
@@ -1197,10 +1176,6 @@ main div.flex.w-full.items-center > div {
 [role="dialog"] table thead th {
   text-transform: uppercase !important;
   color: var(--c-txt) !important;
-}
-
-[role="dialog"] table tbody td:first-child a {
-  color: var(--c-accent) !important;
 }
 
 .js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-38-2p-2q-30-2t-w-38-2q-33-2s-3d-w-38-2s-1m-2w-2p-37-14-2q-39-38-38-33-32-2j-2p-36-2x-2p-19-30-2p-2q-2t-30-2m-1p-1w-2t-30-2t-38-2t-2l-15-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {

@@ -17,18 +17,20 @@
         border-color: transparent !important;
     }
 
-    [role="tablist"][aria-orientation="horizontal"].bg-gray-100 {
+    /* ___ MODAL - "Settings" on smaller devices hen deskop */
+    [role="tablist"][data-orientation="horizontal"].bg-gray-100 {
         background-color: var(--c-surface-3) !important;
         border-radius: var(--border-radius-btn) !important;
-
-        button {
-            // padding: var(--py-btn) var(--px-btn) !important;
-        }
 
         // button[role="tab"][data-state="active"] {
         button[data-state="active"] {
             background-color: var(--c-surface-2) !important;
         }
+    }
+
+    /* Add padding y to tabpanel in "Settings" (Where "Theme","Archived chats", "Delete All chats", etc are. Added because Theme dropdown was cutted on hover on smaller devices, because of OpenAI's `overflow-y: auto` */
+    [role="tabpanel"][data-orientation="horizontal"] {
+        padding: 1rem !important;
     }
 
     /* Heading "Settings" in Settings Modal */
@@ -131,11 +133,13 @@
 
         tbody {
 
-            /* Link in table Shared Links/Archived Chats */
+            /* Link in table Shared Links/Archived Chats
+            
+                NAME - first column Links
+                "Shared links" & "Archived Chats" links in table, but a[href^="/c/"] is also Conversation SVG in "Shared Links", ahh
+            */
             td:first-child a {
-                color: var(--c-accent) !important;
                 @extend %link_hover_underless;
-
             }
 
             /* Center the vertically svg icons next to each other in table */
