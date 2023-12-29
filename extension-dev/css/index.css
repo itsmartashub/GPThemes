@@ -603,6 +603,10 @@ main [data-message-author-role="user"] .markdown, main [data-message-author-role
   color: var(--c-txt) !important;
 }
 
+main [data-message-author-role="user"] .markdown strong, main [data-message-author-role="assistant"] .markdown strong {
+  --tw-prose-bold: var(--c-txt) !important;
+}
+
 main [data-testid^="conversation-turn-"] {
   margin-bottom: 2rem !important;
   margin-bottom: var(--mb-msg) !important;

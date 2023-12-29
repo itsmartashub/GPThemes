@@ -12,9 +12,11 @@ main [data-message-author-role="assistant"] {
     .markdown {
         color: var(--c-txt) !important;
 
-        // strong {
-        //     color: var(--c-subtext-2) !important;
-        // }
+        /* Bold text in markdown */
+        strong {
+            --tw-prose-bold: var(--c-txt) !important;
+            // color: var(--c-subtext-2) !important;
+        }
     }
 }
 
