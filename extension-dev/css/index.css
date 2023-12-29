@@ -1321,6 +1321,7 @@ button[role="combobox"] {
 
 button[id*="headlessui-menu-button"][class*="bg-gray-50"] {
   color: var(--c-txt) !important;
+  border: none !important;
 }
 
 .toast-root {
