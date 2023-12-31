@@ -21,7 +21,14 @@ Theme dropdown deo ima zeleni border za :focus-visible.
   - [aria-label="Delete shared link"] is recycle svg icon in "Shared link" table
   - .btn-neutral:not([role="combobox"] is in theme dropdown "Dark/Light/System" button") 
 */
-:focus-visible:not(.btn-primary, .btn-danger, .btn-neutral:not([role="combobox"], .bg-token-surface-tertiary input), textarea, [aria-label="Delete shared link"], [class*="text-red-"]) {
+:focus-visible:not(.btn-primary,
+    .btn-danger,
+    .btn-neutral:not([role="combobox"],
+        .bg-token-surface-tertiary input),
+    textarea,
+    input,
+    [aria-label="Delete shared link"],
+    [class*="text-red-"]) {
     outline: 2.5px solid hsl(var(--accent-h), calc(var(--accent-s) / 1.5), var(--accent-l));
 }
 
@@ -44,3 +51,5 @@ Theme dropdown deo ima zeleni border za :focus-visible.
     //     outline-color: var(--c-bg-dialog) !important;
     // }
 }
+
+input {}

@@ -135,8 +135,16 @@ textarea::placeholder {
 // }
 
 /* === BORDER COLORS */
+/* Border in textarea in "Custom Instructions" dialog */
 .border-gray-100 {
-    border-color: var(--c-surface-1) !important;
+    // border-color: var(--c-surface-1) !important;
+    border-color: transparent !important;
+}
+
+/* Border in inputs in "Upgrade your Plan" dialog */
+.border-gray-300 {
+    // border-color: red !important;
+    border-color: transparent !important;
 }
 
 /* Border in dialogs after main heading - DARK */
@@ -163,12 +171,15 @@ html.light [class*=":border-white/10"] {
     }
 } */
 
-
-// .rounded-md 
-// .bg-gray-100
-
 code.hljs {
     // font-size: .85rem !important;
     // font-family: 'JetBrains Mono', monospace !important;
     letter-spacing: -0.2px;
+}
+
+
+
+/* === BORDER RADIUS */
+.rounded-md {
+    border-radius: var(--border-radius-btn);
 }

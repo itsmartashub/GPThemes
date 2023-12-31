@@ -81,7 +81,7 @@
         border-radius: var(--border-radius-contextmenu) !important;
         /* border-color: var(--c-surface-3) !important; */
         border-color: transparent !important;
-        background-color: var(--c-surface-1) !important;
+        background-color: var(--c-surface-3) !important;
         opacity: .7;
 
         /* Textarea feedback when click on like btn in gpt answers */
@@ -93,9 +93,13 @@
             border-color: var(--c-surface-3) !important;
             opacity: 1;
         }
+
+        &::placeholder {
+            color: var(--c-subtext-1) !important;
+        }
     }
 
-    /* MODAL - Dialog - "Share Chat" White preview <div>  */
+    /* ___MODAL - Dialog - "Share Chat" White preview <div>  */
     &:has(main div[data-radix-aspect-ratio-wrapper]) .w-full.rounded-lg {
         border-radius: var(--border-radius-msg) !important;
         background-color: var(--c-bg-chats-container) !important;
@@ -153,6 +157,21 @@
         /* "Delete shared link" in Shared Links and "Delete conversation" in Archived Chats svg color */
         button[aria-label^="Delete"] {
             color: var(--c-btn-danger) !important;
+        }
+    }
+
+
+    /* ___ MODAL "Delete account - are you sure?" popup inputs parents */
+    div[class*="focus-within:ring-1"]:has(input) {
+        padding: .8rem !important;
+        background-color: var(--c-surface-3);
+
+        input {
+            background-color: var(--c-surface-3);
+
+            &::placeholder {
+                color: var(--c-subtext-1) !important;
+            }
         }
     }
 }

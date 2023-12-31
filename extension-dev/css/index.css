@@ -251,8 +251,8 @@ input::placeholder, textarea::placeholder {
   color: var(--c-on-accent) !important;
 }
 
-.border-gray-100 {
-  border-color: var(--c-surface-1) !important;
+.border-gray-100, .border-gray-300 {
+  border-color: #0000 !important;
 }
 
 html.dark [class*=":border-white/10"] {
@@ -269,6 +269,11 @@ html.light [class*=":border-white/10"] {
 
 code.hljs {
   letter-spacing: -.0125rem;
+}
+
+.rounded-md {
+  border-radius: 12px;
+  border-radius: var(--border-radius-btn);
 }
 
 [role="separator"] {
@@ -1133,7 +1138,7 @@ main div.flex.w-full.items-center > div {
   opacity: .7;
   border-radius: 20px !important;
   border-radius: var(--border-radius-contextmenu) !important;
-  background-color: var(--c-surface-1) !important;
+  background-color: var(--c-surface-3) !important;
   border-color: #0000 !important;
 }
 
@@ -1144,6 +1149,10 @@ main div.flex.w-full.items-center > div {
 [role="dialog"] textarea:focus {
   opacity: 1;
   border-color: var(--c-surface-3) !important;
+}
+
+[role="dialog"] textarea::placeholder {
+  color: var(--c-subtext-1) !important;
 }
 
 .js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-31-2p-2x-32-w-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-2p-37-34-2t-2r-38-19-36-2p-38-2x-33-19-3b-36-2p-34-34-2t-36-2l-15-w-1a-3b-19-2u-39-30-30-1a-36-33-39-32-2s-2t-2s-19-30-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
@@ -1198,6 +1207,32 @@ main div.flex.w-full.items-center > div {
 
 [role="dialog"] table button[aria-label^="Delete"] {
   color: var(--c-btn-danger) !important;
+}
+
+.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-2s-2x-3a-2j-2r-30-2p-37-37-16-1p-y-2u-33-2r-39-37-19-3b-2x-38-2w-2x-32-1m-36-2x-32-2v-19-1d-y-2l-1m-2w-2p-37-14-2x-32-34-39-38-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
+  background-color: var(--c-surface-3);
+  padding: .8rem !important;
+}
+
+[role="dialog"] div[class*="focus-within:ring-1"]:has(input) {
+  background-color: var(--c-surface-3);
+  padding: .8rem !important;
+}
+
+.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-2s-2x-3a-2j-2r-30-2p-37-37-16-1p-y-2u-33-2r-39-37-19-3b-2x-38-2w-2x-32-1m-36-2x-32-2v-19-1d-y-2l-1m-2w-2p-37-14-2x-32-34-39-38-15-w-2x-32-34-39-38]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
+  background-color: var(--c-surface-3);
+}
+
+[role="dialog"] div[class*="focus-within:ring-1"]:has(input) input {
+  background-color: var(--c-surface-3);
+}
+
+.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-2s-2x-3a-2j-2r-30-2p-37-37-16-1p-y-2u-33-2r-39-37-19-3b-2x-38-2w-2x-32-1m-36-2x-32-2v-19-1d-y-2l-1m-2w-2p-37-14-2x-32-34-39-38-15-w-2x-32-34-39-38]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist)::placeholder {
+  color: var(--c-subtext-1) !important;
+}
+
+[role="dialog"] div[class*="focus-within:ring-1"]:has(input) input::placeholder {
+  color: var(--c-subtext-1) !important;
 }
 
 .btn, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), button[class*="bg-[#3C46FF] text-[#fff]"], button[role="combobox"], .btn, button[class*="bg-[#3C46FF] text-[#fff]"], button[role="combobox"] {
@@ -1406,7 +1441,7 @@ div[data-radix-popper-content-wrapper]:has([role="tooltip"]) div {
   --tw-ring-offset-color: var(--c-bg-dialog) !important;
 }
 
-:focus-visible:not(.btn-primary):not(.btn-danger):not(.btn-neutral:not([role="combobox"]):not(.bg-token-surface-tertiary input)):not(button[role="combobox"]:not([role="combobox"]):not(.bg-token-surface-tertiary input)):not(textarea):not([aria-label="Delete shared link"]):not([class*="text-red-"]) {
+:focus-visible:not(.btn-primary):not(.btn-danger):not(.btn-neutral:not([role="combobox"]):not(.bg-token-surface-tertiary input)):not(button[role="combobox"]:not([role="combobox"]):not(.bg-token-surface-tertiary input)):not(textarea):not(input):not([aria-label="Delete shared link"]):not([class*="text-red-"]) {
   outline: 2.5px solid hsl(var(--accent-h), calc(var(--accent-s) / 1.5), var(--accent-l));
 }
 
