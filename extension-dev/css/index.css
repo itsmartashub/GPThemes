@@ -259,6 +259,10 @@ input::placeholder, textarea::placeholder {
   border: none;
 }
 
+[class*="dark:border-gray-700"] {
+  border-color: #0000 !important;
+}
+
 html.dark [class*=":border-white/10"] {
   border-color: var(--c-border-accent) !important;
 }
