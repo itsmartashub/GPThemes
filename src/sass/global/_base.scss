@@ -84,6 +84,11 @@ textarea::placeholder {
     color: var(--c-btn-danger) !important;
 }
 
+/* Intro page (before login) */
+[class*="text-[#FE7600]"] {
+    color: var(--c-accent);
+}
+
 
 /* === BG COLORS */
 /* Textarea msg bg, Chat history & Training checkbox bullet */

@@ -107,3 +107,8 @@ button[id*="headlessui-menu-button"][class*="bg-gray-50"] {
     color: var(--c-txt) !important;
     border: none !important;
 }
+
+/* Intro page (before login) */
+button[class*="bg-[#3C46FF] text-[#fff]"] {
+    @extend .btn;
+}
