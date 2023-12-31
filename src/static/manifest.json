@@ -18,7 +18,7 @@
 		{
 			"matches": ["https://chat.openai.com/*", "http://chat.openai.com/*"],
 			"css": ["./css/index.css"],
-			"run_at": "document_end"
+			"run_at": "document_start"
 		}
 	]
 }
