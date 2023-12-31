@@ -144,8 +144,17 @@ textarea::placeholder {
 /* Border in inputs in "Upgrade your Plan" dialog */
 .border-gray-300 {
     // border-color: red !important;
-    border-color: transparent !important;
+    // border-color: transparent !important;
+    border: none;
 }
+
+
+
+/* "Upgrade your plan" dialog, "Share link to chat" dialog chat min duplicate,  */
+// [class*="dark:border-gray-700"] {
+//     // border-color: transparent !important;
+//     border-color: red !important;
+// }
 
 /* Border in dialogs after main heading - DARK */
 html.dark [class*=":border-white/10"] {
@@ -182,4 +191,10 @@ code.hljs {
 /* === BORDER RADIUS */
 .rounded-md {
     border-radius: var(--border-radius-btn);
+}
+
+
+/* Shadow in "Upgrade your plan" */
+.shadow-md {
+    box-shadow: none;
 }

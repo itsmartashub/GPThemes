@@ -1,10 +1,10 @@
-/* ___  MODAL - Background */
+/* ___  MODAL Background */
 .absolute.inset-0 .fixed.inset-0 {
     background-color: var(--c-bg-modal) !important;
     backdrop-filter: blur(var(--blur-modal)) !important;
 }
 
-/* ___ MODAL - Dialog Settings  */
+/* ___ DIALOG - Dialog Settings  */
 [role="dialog"] {
     padding: var(--p-dialog) !important;
     background-color: var(--c-bg-dialog) !important;
@@ -17,7 +17,7 @@
         border-color: transparent !important;
     }
 
-    /* ___ MODAL - "Settings" on smaller devices hen deskop */
+    /* ___ DIALOG - "Settings" on smaller devices hen deskop */
     [role="tablist"][data-orientation="horizontal"].bg-gray-100 {
         background-color: var(--c-surface-3) !important;
         border-radius: var(--border-radius-btn) !important;
@@ -48,12 +48,15 @@
         --surface-primary: transparent !important;
     }
 
-    /* MODAL - "Upgrade your plan" only */
+    /* DIALOG - "Upgrade your plan" only */
     &:has(a[href="https://openai.com/enterprise"]) {
         // background-color: transparent !important;
-        width: max-content;
+        // Change `width: max-content;` to `max-width: max-content;` in `[role="dialog"]:has(a[href="https://openai.com/enterprise"])` because it disables shrinking the content in `Upgrade your plan` popup. But then I have to fix the content 
+        max-width: max-content;
         padding: 0 !important;
+        border: none !important;
 
+        /* Strange white bg behind ✔️ items */
         .bg-white,
         .bg-gray-900 {
             background-color: var(--c-surface-2) !important;
@@ -76,11 +79,10 @@
     }
 
 
-    /* MODAL - Dialog - textarea  */
+    /* DIALOG - textarea ("Custom instructions") */
     textarea {
         border-radius: var(--border-radius-contextmenu) !important;
-        /* border-color: var(--c-surface-3) !important; */
-        border-color: transparent !important;
+        // border-color: transparent !important;
         background-color: var(--c-surface-3) !important;
         opacity: .7;
 
@@ -99,13 +101,13 @@
         }
     }
 
-    /* ___MODAL - Dialog - "Share Chat" White preview <div>  */
+    /* ___ Dialog - "Share Chat" White preview <div>  */
     &:has(main div[data-radix-aspect-ratio-wrapper]) .w-full.rounded-lg {
         border-radius: var(--border-radius-msg) !important;
         background-color: var(--c-bg-chats-container) !important;
     }
 
-    /* ___ MODAL - "SHARED LINKS" or "ARCHIVED CHATS" - Table  */
+    /* ___ DIALOG - "SHARED LINKS" or "ARCHIVED CHATS" - Table  */
     table {
         padding: var(--p-contextmenu) !important;
         border-radius: var(--border-radius-contextmenu);
@@ -161,7 +163,7 @@
     }
 
 
-    /* ___ MODAL "Delete account - are you sure?" popup inputs parents */
+    /* ___ DIALOG "Delete account - are you sure?" inputs parents */
     div[class*="focus-within:ring-1"]:has(input) {
         padding: .8rem !important;
         background-color: var(--c-surface-3);

@@ -251,8 +251,12 @@ input::placeholder, textarea::placeholder {
   color: var(--c-on-accent) !important;
 }
 
-.border-gray-100, .border-gray-300 {
+.border-gray-100 {
   border-color: #0000 !important;
+}
+
+.border-gray-300 {
+  border: none;
 }
 
 html.dark [class*=":border-white/10"] {
@@ -274,6 +278,10 @@ code.hljs {
 .rounded-md {
   border-radius: 12px;
   border-radius: var(--border-radius-btn);
+}
+
+.shadow-md {
+  box-shadow: none;
 }
 
 [role="separator"] {
@@ -1095,12 +1103,14 @@ main div.flex.w-full.items-center > div {
 }
 
 .js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-2p-2j-2w-36-2t-2u-1p-y-2w-38-38-34-37-1m-1b-1b-33-34-2t-32-2p-2x-1a-2r-33-31-1b-2t-32-38-2t-36-34-36-2x-37-2t-y-2l-15]:not(.does-not-exist):not(does-not-exist) {
-  width: max-content;
+  max-width: max-content;
+  border: none !important;
   padding: 0 !important;
 }
 
 [role="dialog"]:has(a[href="https://openai.com/enterprise"]) {
-  width: max-content;
+  max-width: max-content;
+  border: none !important;
   padding: 0 !important;
 }
 
@@ -1139,7 +1149,6 @@ main div.flex.w-full.items-center > div {
   border-radius: 20px !important;
   border-radius: var(--border-radius-contextmenu) !important;
   background-color: var(--c-surface-3) !important;
-  border-color: #0000 !important;
 }
 
 [role="dialog"] textarea#feedback-other {
