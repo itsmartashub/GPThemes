@@ -148,6 +148,33 @@ html.dark {
   --gray-500: var(--c-txt) !important;
 }
 
+@keyframes fadeInFromLeft {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOutToLeft {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+nav[aria-label="Chat history"] li .group > div.absolute {
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
+  padding-left: .5rem;
+  background-color: var(--c-surface-2) !important;
+}
+
 [role="dialog"] table tbody td:first-child a, .prose a {
   text-decoration: none;
   transition: opacity .3s;
@@ -514,31 +541,28 @@ nav[aria-label="Chat history"] li {
   margin-bottom: var(--mb-sidebar-nav-li) !important;
 }
 
-nav[aria-label="Chat history"] li .group a[href^="/c/"].bg-token-surface-primary {
-  background-color: var(--c-surface-2) !important;
+nav[aria-label="Chat history"] li .group {
+  --duration-trans: .3s;
+  --duration-anim: .2s;
+  transition: background-color .3s ease-in-out;
+  transition: background-color var(--duration-trans) ease-in-out;
+  overflow: hidden;
 }
 
-nav[aria-label="Chat history"] li .group a[href^="/c/"].bg-token-surface-primary .bg-gradient-to-l {
-  opacity: 1 !important;
+nav[aria-label="Chat history"] li .group button {
+  color: var(--c-txt) !important;
+}
+
+nav[aria-label="Chat history"] li .group span button {
+  color: var(--c-subtext-1) !important;
+}
+
+nav[aria-label="Chat history"] li .group > div.absolute, nav[aria-label="Chat history"] li .group:hover > div.absolute {
+  animation: fadeInFromLeft var(--duration-anim) ease-in-out forwards;
 }
 
 nav[aria-label="Chat history"] li .group a[href^="/c/"] .bg-gradient-to-l {
-  --surface-primary: var(--c-surface-2) !important;
-  --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position) !important;
-  color: var(--c-accent) !important;
-  opacity: 0 !important;
-}
-
-nav[aria-label="Chat history"] li .group button[class*=":text-token-text-secondary"] {
-  --text-secondary: var(--c-txt) !important;
-}
-
-nav[aria-label="Chat history"] li .group button[class*=":text-token-text-secondary"] svg {
-  transition: color .2s ease-in-out, transform .2s ease-in-out;
-}
-
-nav[aria-label="Chat history"] li .group button[class*=":text-token-text-secondary"]:is(:hover, :focus, [data-state="open"]) svg {
-  transform: scale(1.1);
+  display: none !important;
 }
 
 nav[aria-label="Chat history"] li .group .bg-token-surface-tertiary {

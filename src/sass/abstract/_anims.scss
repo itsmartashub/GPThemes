@@ -1,0 +1,45 @@
+/* @keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+} */
+
+@keyframes fadeInFromLeft {
+    from {
+        // opacity: 0;
+        transform: translateX(100%);
+        /* Adjust the initial translation distance as needed */
+    }
+
+    to {
+        // opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOutToLeft {
+    from {
+        // opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        // opacity: 0;
+        transform: translateX(100%);
+        /* Adjust the final translation distance as needed */
+    }
+}

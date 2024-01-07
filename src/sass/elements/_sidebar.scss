@@ -90,27 +90,59 @@ nav[aria-label="Chat history"] {
 
     li {
         margin-bottom: var(--mb-sidebar-nav-li) !important;
-        // transition: all .35s ease-in-out;
 
         .group {
-            a[href^="/c/"] {
+            --duration-trans: .3s;
+            --duration-anim: .2s;
+            transition: background-color var(--duration-trans) ease-in-out;
+            overflow: hidden;
 
-                /* Selected/active/hover link item */
-                &.bg-token-surface-primary {
-                    background-color: var(--c-surface-2) !important;
+            /* 3dots btn */
+            button {
+                color: var(--c-txt) !important;
+            }
 
-                    /* 3 dots btn bg-gradient */
-                    .bg-gradient-to-l {
-                        opacity: 1 !important;
-                    }
+            /* Archive btn */
+            span {
+                button {
+                    color: var(--c-subtext-1) !important;
                 }
+            }
+
+            /* Active-link 3-dots and archive btns wrapper */
+            &>div.absolute {
+                @extend %sidebar_link_item_btns_bg;
+                animation: fadeInFromLeft var(--duration-anim) ease-in-out forwards;
+            }
+
+            &:hover {
+                &>div.absolute {
+                    // @extend %sidebar_link_item_btns_bg;
+                    animation: fadeInFromLeft var(--duration-anim) ease-in-out forwards;
+                }
+            }
+
+
+            a[href^="/c/"] {
+                /* ! NOW `.bg-token-surface-primary` IS DELETED BY OPENAI ffs*/
+                /* Selected/active/hover link item */
+                // &.bg-token-surface-primary {
+                //     background-color: var(--c-surface-2) !important;
+
+                //     /* 3 dots btn bg-gradient */
+                //     .bg-gradient-to-l {
+                //         opacity: 1 !important;
+                //     }
+                // }
 
                 /* 3 dots btn bg-gradient - <div> u <a> i <div> u <button> */
                 .bg-gradient-to-l {
-                    --surface-primary: var(--c-surface-2) !important;
-                    --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position) !important;
-                    color: var(--c-accent) !important;
-                    opacity: 0 !important;
+                    // --surface-primary: var(--c-surface-2) !important;
+                    // --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position) !important;
+                    // color: var(--c-accent) !important;
+                    // opacity: 0 !important;
+
+                    display: none !important;
                     // border: 2px solid red !important;
                 }
 
@@ -124,22 +156,24 @@ nav[aria-label="Chat history"] {
             }
 
             /* Hover state color for button in 3 dots (btn SVG bg on hover) */
-            button[class*=":text-token-text-secondary"] {
-                --text-secondary: var(--c-txt) !important;
+            // button[class*=":text-token-text-secondary"] {
 
-                svg {
-                    transition: color .2s ease-in-out, transform .2s ease-in-out;
-                }
 
-                &:is(:hover, :focus, [data-state="open"]) {
+            // button:has(svg) {
+            //     color: var(--c-txt) !important;
 
-                    svg {
-                        transform: scale(1.1);
-                        // transform: scale(1.1) !important;
-                        // border: 2px solid var(--c-accent) !important;
-                    }
-                }
-            }
+            //     // &:hover {
+            //     //     color: var(--c-subtext-1) !important;
+            //     // }
+
+            //     &:nth-child(2) {
+            //         color: var(--c-subtext-1) !important;
+            //     }
+
+            //     svg {
+            //         transition: color .2s ease-in-out, transform .2s ease-in-out;
+            //     }
+            // }
 
             /* 3 dots > "Rename" clicked - style of input parent and input  - this is <div> next to <a> */
             .bg-token-surface-tertiary {
