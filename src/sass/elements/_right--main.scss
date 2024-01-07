@@ -13,13 +13,13 @@ main [data-message-author-role="assistant"] {
 
 /* @ === RIGHT - CHATS BUBBLES ===*/
 main [data-testid^="conversation-turn-"] {
-    margin-bottom: var(--mb-msg) !important;
+    margin-bottom: var(--mb-chat-bubble) !important;
 
     /* RIGHT - CHATS BUBBLES DIV */
     .group {
-        // padding: var(--p-msg) !important;
-        padding: calc(var(--p-msg) * 1.3) var(--p-msg) var(--p-msg) var(--p-msg) !important;
-        border-radius: var(--border-radius-msg) !important;
+        // padding: var(--p-chat-bubble) !important;
+        padding: calc(var(--p-chat-bubble) * 1.3) var(--p-chat-bubble) var(--p-chat-bubble) var(--p-chat-bubble) !important;
+        border-radius: var(--br-chat-bubble) !important;
         letter-spacing: .3px;
         line-height: 1.8 !important;
 
@@ -53,11 +53,11 @@ main [data-testid^="conversation-turn-"] {
             background-color: transparent !important;
             color: var(--c-subtext-2) !important;
             border: 1px solid var(--c-border);
-            border-radius: var(--border-radius-contextmenu);
+            border-radius: var(--br-contextmenu);
 
             /* 👍👎 */
             button[title] {
-                border-radius: var(--border-radius-btn) !important;
+                border-radius: var(--br-btn) !important;
                 border: 1px solid transparent;
                 transition: transform 0.2s ease-in-out;
 

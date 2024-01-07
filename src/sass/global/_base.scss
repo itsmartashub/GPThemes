@@ -6,9 +6,13 @@ html,
 body {
     --text-primary: var(--c-txt) !important;
 
-    font-family: var(--f-fm), Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji !important;
+    font-family: var(--f-fm) !important;
     color: var(--c-txt) !important;
     background-color: var(--c-bg-chats-container) !important;
+}
+
+a {
+    font-family: var(--f-fm) !important;
 }
 
 /* scrollbar-color for For Firefox */
@@ -190,7 +194,7 @@ code.hljs {
 
 /* === BORDER RADIUS */
 .rounded-md {
-    border-radius: var(--border-radius-btn);
+    border-radius: var(--br-btn);
 }
 
 

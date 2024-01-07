@@ -11,7 +11,7 @@ main form .grow {
         padding: 1.5rem !important;
         background-color: var(--c-surface-2) !important;
         color: var(--c-txt) !important;
-        border-radius: var(--border-radius-btn-big) !important;
+        border-radius: var(--br-btn-big) !important;
         overflow: hidden; // Mora jer kad se hoveruje .btn, onda se  .bg-gradient-to-l radius ne uklapa s ovim, manji je i onda .btn cudno izgleda sa desne strane, ovaj ga overflowuje
 
         /* Gradient bg visible on hover */

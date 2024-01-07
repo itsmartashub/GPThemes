@@ -59,7 +59,7 @@
     table {
         /* TODO - this overflow cause cutting the border edges of latest <tr> child, wtf. So I have to add border to <table> also (down where <th>, <td> are) */
         overflow: hidden;
-        border-radius: var(--border-radius-btn) !important;
+        border-radius: var(--br-btn) !important;
 
         thead {
             --tw-prose-headings: var(--c-txt) !important;

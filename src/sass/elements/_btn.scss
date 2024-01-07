@@ -1,7 +1,7 @@
 .btn {
     background-color: var(--c-bg-btn) !important;
     color: var(--c-btn) !important;
-    border-radius: var(--border-radius-btn) !important;
+    border-radius: var(--br-btn) !important;
     border: none !important;
 
     &:not(.btn-small) {
@@ -41,7 +41,7 @@ main [role="presentation"] button.absolute.rounded-full {
 /* === All the .btn inside dialogs not having svg icon inside */
 [role="dialog"] {
     .btn:not(.btn:has(svg)) {
-        min-width: var(--min-w);
+        min-width: var(--min-w-btn);
     }
 
     &:not(.PopoverContent) .btn-neutral {
@@ -60,7 +60,7 @@ main [role="presentation"] button.absolute.rounded-full {
 
 /* === Settings > Tabs === */
 [role="tablist"] button {
-    border-radius: var(--border-radius-btn) !important;
+    border-radius: var(--br-btn) !important;
     // padding: var(--py-btn) var(--px-btn) !important;
     padding: var(--p-btn) !important;
 
@@ -99,7 +99,7 @@ button[role="switch"] {
 button[role="combobox"] {
     @extend .btn;
     @extend .btn-neutral;
-    min-width: var(--min-w);
+    min-width: var(--min-w-btn);
 }
 
 /* === ❓ circle btn on bottom right */

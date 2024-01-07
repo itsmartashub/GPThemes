@@ -22,7 +22,7 @@ div[data-radix-popper-content-wrapper]:has([role="tooltip"]) {
 
     /* Tooltip body */
     &>* {
-        border-radius: var(--border-radius-tooltips) !important;
+        border-radius: var(--br-tooltips) !important;
         padding: var(--p-tooltips) !important;
     }
 

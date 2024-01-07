@@ -1,9 +1,9 @@
 /* ===  RIGHT - TEXTAREA PARENT, message type and send button */
 // main form .overflow-hidden:has(textarea#prompt-textarea) {
 main form [class*="[&:has(textarea:focus)]"]:has(textarea#prompt-textarea) {
-    padding: var(--p-textarea) !important;
+    padding: var(--p-prompt-textarea) !important;
     background-color: transparent !important;
-    border-radius: var(--border-radius-msg) !important;
+    border-radius: var(--br-prompt-textarea) !important;
     border: 3px solid var(--c-border-textarea);
     transition: background-color .3s ease-in-out;
 

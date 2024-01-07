@@ -65,14 +65,14 @@ nav[aria-label="Chat history"] {
         color: var(--c-txt) !important;
         padding: var(--p-sidebar-nav-a) !important;
         font-family: var(--f-fm) !important;
-        border-radius: var(--border-radius-nav-a) !important;
+        border-radius: var(--br-nav-a) !important;
 
         transition: background-color .3s ease-in-out;
 
         /* "New Chat" link (first in nav in sidebar) */
         &[href="/"] {
             border: 2px solid var(--c-surface-2);
-            padding: var(--py-sidebar-nav-a-new-chat) !important;
+            padding: var(--p-sidebar-nav-a-new-chat) !important;
             text-transform: uppercase;
         }
 
@@ -147,7 +147,7 @@ nav[aria-label="Chat history"] {
                 color: var(--c-txt) !important;
                 background-color: var(--c-surface-3) !important; // NOTE: bg can't be transparent-ish; it cause txt behind to be visible
                 border: 1px solid var(--c-border) !important;
-                border-radius: var(--border-radius-nav-a) !important;
+                border-radius: var(--br-nav-a) !important;
 
                 /* This make it full width of <li>, from left to right */
                 left: 0 !important;
@@ -174,7 +174,7 @@ nav[aria-label="Chat history"] {
 
         /* User profile btn in sidebar bottom */
         button[aria-haspopup="true"] {
-            border-radius: var(--border-radius-nav-a);
+            border-radius: var(--br-nav-a);
             margin-top: 1rem;
 
             /* Username div */
@@ -195,6 +195,6 @@ nav[aria-label="Chat history"] {
 
     /*  Border-radius for all elements that have .rounded-lg class in <nav> of sidebar. ALi on zezne border-radiusu i contextmenu u bottom sidebar jer u on ima ovu klasu. Zato sad dodajem <li> */
     .rounded-lg {
-        border-radius: var(--border-radius-nav-a) !important;
+        border-radius: var(--br-nav-a) !important;
     }
 }

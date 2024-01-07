@@ -8,7 +8,7 @@
 [role="dialog"] {
     padding: var(--p-dialog) !important;
     background-color: var(--c-bg-dialog) !important;
-    border-radius: var(--border-radius-dialog) !important;
+    border-radius: var(--br-dialog) !important;
     box-shadow: var(--box-shadow);
 
     .border-token-border-light,
@@ -20,7 +20,7 @@
     /* ___ DIALOG - "Settings" on smaller devices hen deskop */
     [role="tablist"][data-orientation="horizontal"].bg-gray-100 {
         background-color: var(--c-surface-3) !important;
-        border-radius: var(--border-radius-btn) !important;
+        border-radius: var(--br-btn) !important;
 
         // button[role="tab"][data-state="active"] {
         button[data-state="active"] {
@@ -64,7 +64,7 @@
 
         /* Border radius for "Upgrade your plan" dialog */
         .rounded-md {
-            border-radius: var(--border-radius-msg) !important;
+            border-radius: var(--br-chat-bubble) !important;
         }
 
         /*  Stroke color for ✔️ in "Upgrade your plan" dialog list */
@@ -81,7 +81,7 @@
 
     /* DIALOG - textarea ("Custom instructions") */
     textarea {
-        border-radius: var(--border-radius-contextmenu) !important;
+        border-radius: var(--br-contextmenu) !important;
         // border-color: transparent !important;
         background-color: var(--c-surface-3) !important;
         opacity: .7;
@@ -103,14 +103,14 @@
 
     /* ___ Dialog - "Share Chat" White preview <div>  */
     &:has(main div[data-radix-aspect-ratio-wrapper]) .w-full.rounded-lg {
-        border-radius: var(--border-radius-msg) !important;
+        border-radius: var(--br-chat-bubble) !important;
         background-color: var(--c-bg-chats-container) !important;
     }
 
     /* ___ DIALOG - "SHARED LINKS" or "ARCHIVED CHATS" - Table  */
     table {
         padding: var(--p-contextmenu) !important;
-        border-radius: var(--border-radius-contextmenu);
+        border-radius: var(--br-contextmenu);
 
         /* BG of thead>th */
         .bg-white,
@@ -126,7 +126,7 @@
 
         thead {
             tr {
-                border-radius: var(--border-radius-btn) !important;
+                border-radius: var(--br-btn) !important;
                 // padding: var(--py-btn) var(--px-btn) !important;
             }
 
