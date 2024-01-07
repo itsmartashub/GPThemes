@@ -147,7 +147,7 @@ html.light {
     /* btn u biranju teme kad nemaa nikake pozadine */
     --surface-primary: var(--c-surface-1) !important;
 
-    /* border oko context-menu */
+    /* border oko context-menu, .bg-token-surface-secondary (za active link u sidebaru)*/
     --surface-secondary: transparent !important;
 
     /* Selected button/link/list in settings: "General", "Data controls" */

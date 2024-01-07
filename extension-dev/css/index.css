@@ -245,6 +245,10 @@ input::placeholder, textarea::placeholder {
   background-color: var(--c-surface-2) !important;
 }
 
+.bg-token-surface-secondary {
+  --surface-secondary: var(--c-surface-2) !important;
+}
+
 [class*="dark:bg-gray-800"] {
   background-color: var(--c-bg-chats-container) !important;
 }

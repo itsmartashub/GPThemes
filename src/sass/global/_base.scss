@@ -107,6 +107,11 @@ textarea::placeholder {
     background-color: var(--c-surface-2) !important;
 }
 
+/* Active link bg in sidebar listitem */
+.bg-token-surface-secondary {
+    --surface-secondary: var(--c-surface-2) !important;
+}
+
 /* Shared chats PAGE - chats container bg */
 [class*="dark:bg-gray-800"] {
     background-color: var(--c-bg-chats-container) !important;
