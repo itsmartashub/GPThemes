@@ -3,19 +3,17 @@ button,
 li,
 a,
 svg,
-[class*=":hover"],
-[role="switch"] span[data-state] {
+[class*=':hover'],
+[role='switch'] span[data-state] {
+	transition: all 0.3s ease-in-out;
 
-    transition: all .3s ease-in-out;
+	// transition:
+	//     all .35s var(--ease-default),
+	//     opacity .3 ease-in-out,
+	//     background-color .3 ease-in-out,
+	//     color .3 ease-in-out;
 
-    // transition:
-    //     all .35s var(--ease-default),
-    //     opacity .3 ease-in-out,
-    //     background-color .3 ease-in-out,
-    //     color .3 ease-in-out;
-
-
-    /*     transition:
+	/*     transition:
         transform .25s var(--ease-default),
         opacity .3s ease-in-out,
         background-color .3s ease-in-out,
@@ -44,221 +42,208 @@ svg,
     - [aria-label^="Delete"])  | "Delete" icon in "Shared links" and "Archived Chats" 
     - [aria-label="Unarchive conversation"])  | "Unarchive" icon in "Archived Chats"
    */
-button:not(.btn,
-    [role="tab"],
-    [role="combobox"],
-    [data-testid="send-button"],
-    [class*="[.final-completion]"],
-    [aria-label^="Delete"],
-    [aria-label="Unarchive conversation"]) {
+button:not(
+		.btn,
+		[role='tab'],
+		[role='combobox'],
+		[data-testid='send-button'],
+		[class*='[.final-completion]'],
+		[aria-label^='Delete'],
+		[aria-label='Unarchive conversation']
+	) {
+	svg {
+		transform-origin: center center;
+		// border: 1px solid red !important;
+	}
 
-    svg {
-        transform-origin: center center;
-        // border: 1px solid red !important;
-    }
-
-    svg:hover {
-        transform: scale(1.12);
-    }
+	svg:hover {
+		transform: scale(1.12);
+	}
 }
 
 .btn {
-    will-change: transform, opacity;
+	will-change: transform, opacity;
 
-    transition:
-        transform .4s $easeOutBack,
-        opacity .3s ease-in-out,
-        background-color .3s ease-in-out,
-        color .3s ease-in-out !important;
+	transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out,
+		color 0.3s ease-in-out !important;
 
-    &:is(:hover, :active) {
-        transform: translateY(-2px);
-        opacity: .8;
-    }
+	&:is(:hover, :active) {
+		transform: translateY(-2px);
+		opacity: 0.8;
+	}
 }
 
 /* dialog buttons */
-[role="dialog"] {
-
-    /* ".PopoverContent" je recimo menu od btn u "Shared Link to Chat" 3dots menu (Shared your Name & Delete Link) */
-    &.PopoverContent {
-        .btn-neutral:is(:hover, :focus) {
-            background-color: var(--c-surface-2) !important;
-            color: var(--c-txt) !important;
-            transform: none !important;
-            opacity: 1 !important;
-        }
-    }
+[role='dialog'] {
+	/* ".PopoverContent" je recimo menu od btn u "Shared Link to Chat" 3dots menu (Shared your Name & Delete Link) */
+	&.PopoverContent {
+		.btn-neutral:is(:hover, :focus) {
+			background-color: var(--c-surface-2) !important;
+			color: var(--c-txt) !important;
+			transform: none !important;
+			opacity: 1 !important;
+		}
+	}
 }
 
 /* ___ Switch button circle hover. Ovde ne moze :focus, ostane style kao da je checked ili obrnuto i kad se unhoveruje */
-button[role="switch"] {
+button[role='switch'] {
+	span[data-state] {
+		transition: transform 0.4s $easeInOutBack, background-color 0.3s ease-in-out;
+	}
 
-    span[data-state] {
-        transition: transform .4s $easeInOutBack, background-color .3s ease-in-out;
-    }
-
-    &:hover {
-        span[data-state] {
-            /* Ovo se kosi sa openai klasama, jer on dodaje translate-x -19px, pa se circle pomera levo, sto i nije lose, lol. Ako to ne zelimo, mozemo koristiti scale umesto transform: scale */
-            transform: scale(.8);
-        }
-    }
+	&:hover {
+		span[data-state] {
+			/* Ovo se kosi sa openai klasama, jer on dodaje translate-x -19px, pa se circle pomera levo, sto i nije lose, lol. Ako to ne zelimo, mozemo koristiti scale umesto transform: scale */
+			transform: scale(0.8);
+		}
+	}
 }
-
 
 /* ___ New Chat big buttons */
 main form .grow .btn {
-    // transition: .4s $easeOutBack, background-color .3s ease-in-out opacity .3s ease-in-out;
+	// transition: .4s $easeOutBack, background-color .3s ease-in-out opacity .3s ease-in-out;
 
-    /* Gradient bg visible on hover */
-    .bg-gradient-to-l {
-        transition: all .3s ease-in-out;
+	/* Gradient bg visible on hover */
+	.bg-gradient-to-l {
+		transition: all 0.3s ease-in-out;
 
-        /* Button SVG parent wrapper */
-        span[data-state] {
-            overflow: hidden;
-            padding: 4px; // because svg btn looks cut off in firefox, so add a little space around
+		/* Button SVG parent wrapper */
+		span[data-state] {
+			overflow: hidden;
+			padding: 4px; // because svg btn looks cut off in firefox, so add a little space around
 
-            /* Button w/ SVG */
-            .bg-token-surface-primary {
-                transform: translateY(120%) scale(.5);
-                transition: transform .5s $easeOutBack;
-            }
-        }
-    }
+			/* Button w/ SVG */
+			.bg-token-surface-primary {
+				transform: translateY(120%) scale(0.5);
+				transition: transform 0.5s $easeOutBack;
+			}
+		}
+	}
 
-    &:hover {
-        background-color: var(--c-surface-3) !important;
-        transform: translateY(-4px);
+	&:hover {
+		background-color: var(--c-surface-3) !important;
+		transform: translateY(-4px);
 
-        .bg-gradient-to-l {
-            span[data-state] {
-
-                /* Button w/ SVG */
-                .bg-token-surface-primary {
-                    transform: translateY(0%) scale(1);
-                    opacity: 1 !important;
-                }
-            }
-        }
-    }
+		.bg-gradient-to-l {
+			span[data-state] {
+				/* Button w/ SVG */
+				.bg-token-surface-primary {
+					transform: translateY(0%) scale(1);
+					opacity: 1 !important;
+				}
+			}
+		}
+	}
 }
-
 
 /* ___ Textarea send message send-button */
-[data-testid="send-button"]:not([disabled]) {
-    transition: transform .4s $easeOutBack, opacity .3s ease-in-out;
+[data-testid='send-button']:not([disabled]) {
+	transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out;
 
-    &:hover {
-        transform: translateY(-10%);
-    }
+	&:hover {
+		transform: translateY(-10%);
+	}
 }
 
-
 /* ___ Chat Bubbles */
-main [data-testid^="conversation-turn-"] {
-    .group {
-        &:hover {
+main [data-testid^='conversation-turn-'] {
+	.group {
+		&:hover {
+			/* Bubble message footer (icons wrapper) */
+			div[class*='empty:hidden']:has(button[class*='[.final-completion]']) .visible {
+				transform: translateY(0);
+				opacity: 1;
+			}
 
-            /* Bubble message footer (icons wrapper) */
-            div[class*="empty:hidden"]:has(button[class*="[.final-completion]"]) .visible {
-                transform: translateY(0);
-            }
+			/* Bubble message footer (svg icons) */
+			[class*='[.final-completion]'] svg {
+				transform: scale(1);
+			}
+		}
 
-            /* Bubble message footer (svg icons) */
-            [class*="[.final-completion]"] svg {
-                transform: scale(1);
-            }
-        }
+		/* Bubble message footer */
+		div[class*='empty:hidden']:has(button[class*='[.final-completion]']) {
+			overflow-y: hidden;
+			padding-inline: 10px; // to make counter answer (<2/4>) visible when this is overflow-hidden, we need to add padding-inline, or we can use overflow-y: clip; And overflow is "important" for translate transition
 
-        /* Bubble message footer */
-        div[class*="empty:hidden"]:has(button[class*="[.final-completion]"]) {
-            overflow: hidden;
+			/* Bubble message footer (icons wrapper) */
+			.visible {
+				transform: translateY(100%);
+				opacity: 0;
+				transition: transform 0.4s $easeOutBack, opacity 0.3s ease;
+			}
+		}
 
-            /* Bubble message footer (icons wrapper) */
-            .visible {
-                transform: translateY(110%);
-                transition: transform .4s $easeInOutBack;
-            }
-        }
+		/* Bubble message footer (svg icons) */
+		[class*='[.final-completion]'] svg {
+			transform: translateY(0px);
+			transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out;
 
-        /* Bubble message footer (svg icons) */
-        [class*="[.final-completion]"] svg {
-            transform: translateY(0px);
-            transition: transform .4s $easeOutBack, opacity .3s ease-in-out;
-
-            &:hover {
-                opacity: .8;
-                transform: translateY(-3px);
-            }
-        }
-    }
+			&:hover {
+				opacity: 0.8;
+				transform: translateY(-3px);
+			}
+		}
+	}
 }
 
 /* "Copy code" btn */
 pre {
-    button:has(svg) {
-        transition:
-            transform .4s $easeOutBack,
-            opacity .3s ease-in-out,
-            background-color .2s ease-in-out,
-            color .1s ease-in-out !important;
+	button:has(svg) {
+		transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out, background-color 0.2s ease-in-out,
+			color 0.1s ease-in-out !important;
 
-        svg {
-            transition: color .1s ease-in-out !important;
-        }
+		svg {
+			transition: color 0.1s ease-in-out !important;
+		}
 
-        &:hover {
-            background-color: var(--c-accent-light) !important;
-            color: var(--c-on-accent) !important;
-            transform: translateY(2px);
-        }
-    }
+		&:hover {
+			background-color: var(--c-accent-light) !important;
+			color: var(--c-on-accent) !important;
+			transform: translateY(2px);
+		}
+	}
 }
 
 html.light pre button:has(svg):hover {
-    color: var(--c-txt) !important;
+	color: var(--c-txt) !important;
 }
 
-
 /* ___ Scroll down button */
-main [role="presentation"] button.absolute.rounded-full {
-    transition: transform .4s $easeOutBack, opacity .3s ease-in-out;
+main [role='presentation'] button.absolute.rounded-full {
+	transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out;
 
-    &:hover {
-        transform: translateY(10%);
-        opacity: 1 !important;
-    }
+	&:hover {
+		transform: translateY(10%);
+		opacity: 1 !important;
+	}
 }
 
 /* ___ Table "Archived Chats" or "Shared Links" */
-[role="dialog"] table {
+[role='dialog'] table {
+	tbody {
+		/* Table column that contains "Delete" svg icon */
+		td:has(button[aria-label^='Delete']) {
+			svg {
+				transition: transform 0.4s $easeOutBack;
+			}
 
-    tbody {
-
-        /* Table column that contains "Delete" svg icon */
-        td:has(button[aria-label^="Delete"]) {
-            svg {
-                transition: transform .4s $easeOutBack;
-            }
-
-            /* SVG parent wrapper */
-            span[data-state]:hover {
-                svg {
-                    transform: translateY(2px) scale(1) !important;
-                }
-            }
-        }
-    }
+			/* SVG parent wrapper */
+			span[data-state]:hover {
+				svg {
+					transform: translateY(2px) scale(1) !important;
+				}
+			}
+		}
+	}
 }
 
-
 /* === ❓ circle btn on bottom right */
-button[id*="headlessui-menu-button"][class*="rounded-full"] {
-    transition: transform .3s $easeOutCirc;
+button[id*='headlessui-menu-button'][class*='rounded-full'] {
+	transition: transform 0.3s $easeOutCirc;
 
-    &:hover {
-        transform: scale(1.06);
-    }
+	&:hover {
+		transform: scale(1.06);
+	}
 }

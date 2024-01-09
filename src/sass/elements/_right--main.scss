@@ -1,209 +1,150 @@
 /* === RIGHT - CONVERSATION CONTAINER === */
-main [role="presentation"] {
-    background-color: var(--c-bg-chats-container) !important;
+main [role='presentation'] {
+	background-color: var(--c-bg-chats-container) !important;
 }
 
 /* === RIGHT - Chats - Gap from heading and svg icons ===*/
-main [data-message-author-role="user"],
-main [data-message-author-role="assistant"] {
-    margin-top: var(--mt-chat-txt) !important;
-    margin-bottom: var(--mb-chat-txt) !important;
+main [data-message-author-role='user'],
+main [data-message-author-role='assistant'] {
+	margin-top: var(--mt-chat-txt) !important;
+	margin-bottom: var(--mb-chat-txt) !important;
 }
 
-
 /* @ === RIGHT - CHATS BUBBLES ===*/
-main [data-testid^="conversation-turn-"] {
-    margin-bottom: var(--mb-chat-bubble) !important;
+main [data-testid^='conversation-turn-'] {
+	margin-bottom: var(--mb-chat-bubble) !important;
 
-    /* RIGHT - CHATS BUBBLES DIV */
-    .group {
-        // padding: var(--p-chat-bubble) !important;
-        padding: calc(var(--p-chat-bubble) * 1.3) var(--p-chat-bubble) var(--p-chat-bubble) var(--p-chat-bubble) !important;
-        border-radius: var(--br-chat-bubble) !important;
-        letter-spacing: .3px;
-        line-height: 1.8 !important;
+	/* RIGHT - CHATS BUBBLES DIV */
+	.group {
+		// padding: var(--p-chat-bubble) !important;
+		padding: calc(var(--p-chat-bubble) * 1.3) var(--p-chat-bubble) var(--p-chat-bubble) var(--p-chat-bubble) !important;
+		border-radius: var(--br-chat-bubble) !important;
+		letter-spacing: 0.3px;
+		line-height: 1.8 !important;
 
-        .agent-turn {
-            width: 80% !important;
-            // border: 1px solid red !important;
-            // overflow-x: scroll !important;
-        }
+		.agent-turn {
+			width: 80% !important;
+			// border: 1px solid red !important;
+			// overflow-x: scroll !important;
+		}
 
-
-        /*  TODO 
+		/*  TODO 
             gap: 0.75rem + width: 1.5rem = 2.25rem toliko treba da bude padding-right/margin-right i dodati flex-grow: 1;
                 ovome: relative flex w-full flex-col lg:w-[calc(100%-115px)] agent-turn 
                 i ovome: lg:w-[calc(100%-115px)]    to je isti deo samo za user chat bubble
             to je kao chat onaj deo gde je chat, cudno ima veliki space sa desne strane, 
         */
-        // Fix original strange space on the right (left is svg of user/gpt) in the chat bubbles where text is
-        div[class*="lg:w-[calc(100%-115px)]"] {
-            // .agent-turn {
-            --gap-3: 0.75rem;
-            --svg-w: 1.5rem;
-            flex-grow: 1 !important;
-            margin-right: calc(var(--gap-3) + var(--svg-w)) !important;
-            // padding-right: calc(var(--gap-3) + var(--svg-w)) !important;
-            // border: 2px solid red !important;    
-        }
+		// Fix original strange space on the right (left is svg of user/gpt) in the chat bubbles where text is
+		div[class*='lg:w-[calc(100%-115px)]'] {
+			// .agent-turn {
+			--gap-3: 0.75rem;
+			--svg-w: 1.5rem;
+			flex-grow: 1 !important;
+			margin-right: calc(var(--gap-3) + var(--svg-w)) !important;
+			// padding-right: calc(var(--gap-3) + var(--svg-w)) !important;
+			// border: 2px solid red !important;
+		}
 
-        /* ""Was this response better or worse? 👍👎" el when clicked on regenerate answer btn  */
-        .bg-gray-100,
-        [class*=":bg-gray-700"] {
-            background-color: transparent !important;
-            color: var(--c-subtext-2) !important;
-            border: 1px solid var(--c-border);
-            border-radius: var(--br-contextmenu);
+		/* ""Was this response better or worse? 👍👎" el when clicked on regenerate answer btn  */
+		.bg-gray-100,
+		[class*=':bg-gray-700'] {
+			background-color: transparent !important;
+			color: var(--c-subtext-2) !important;
+			border: 1px solid var(--c-border);
+			border-radius: var(--br-contextmenu);
 
-            /* 👍👎 */
-            button[title] {
-                border-radius: var(--br-btn) !important;
-                border: 1px solid transparent;
-                transition: transform 0.2s ease-in-out;
+			/* 👍👎 */
+			button[title] {
+				border-radius: var(--br-btn) !important;
+				border: 1px solid transparent;
+				transition: transform 0.2s ease-in-out;
 
-                /* Better, Worse, Same */
-                span {
-                    color: var(--c-subtext-2) !important;
-                }
+				/* Better, Worse, Same */
+				span {
+					color: var(--c-subtext-2) !important;
+				}
 
-                &:hover {
-                    background-color: transparent !important;
-                    border-color: var(--c-border) !important;
-                    transform: translateY(-4%);
+				&:hover {
+					background-color: transparent !important;
+					border-color: var(--c-border) !important;
+					transform: translateY(-4%);
 
-                    span {
-                        color: var(--avatar-color) !important;
-                    }
-                }
-            }
-        }
-    }
+					span {
+						color: var(--avatar-color) !important;
+					}
+				}
+			}
+		}
+	}
 
-    /* RIGHT - CHATS USER/GPT NAMES */
-    .font-semibold.select-none {
-        text-transform: uppercase;
-    }
+	/* RIGHT - CHATS USER/GPT NAMES */
+	.font-semibold.select-none {
+		text-transform: uppercase;
+	}
 
-    .gizmo-shadow-stroke div {
-        color: var(--c-on-accent) !important;
-    }
+	.gizmo-shadow-stroke div {
+		color: var(--c-on-accent) !important;
+	}
 
-    /* @ RIGHT - CHATS BUBBLES - USER  */
-    // There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario
-    &:not(&:has([data-message-author-role="assistant"])),
-    &:has([data-message-author-role="user"]) {
+	/* @ RIGHT - CHATS BUBBLES - USER  */
+	// There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario
+	&:not(&:has([data-message-author-role='assistant'])),
+	&:has([data-message-author-role='user']) {
+		/*  RIGHT - CHATS BUBBLE BG */
+		.group {
+			background-color: var(--c-bg-msg-user);
+			outline: 2px solid transparent;
 
-        /*  RIGHT - CHATS BUBBLE BG */
-        .group {
-            background-color: var(--c-bg-msg-user);
-            outline: 2px solid transparent;
+			/* === User/ChatGPT name === */
+			.font-semibold.select-none {
+				color: var(--c-msg-name-user);
+			}
+		}
 
-            /* === User/ChatGPT name === */
-            .font-semibold.select-none {
-                color: var(--c-msg-name-user);
-            }
-        }
+		/*  Chat bubble footer SVG icons */
+		button svg {
+			color: var(--c-msg-name-user);
+		}
+	}
 
-        /*  Chat bubble footer SVG icons */
-        button svg {
-            color: var(--c-msg-name-user);
-        }
-    }
+	/* ___ RIGHT - CHATS BUBBLE BG EDIT */
+	&:not(&:has([data-message-author-role='assistant'])):has(textarea) {
+		.group {
+			background-color: transparent !important;
+			outline-color: var(--c-surface-2) !important;
 
-    /* ___ RIGHT - CHATS BUBBLE BG EDIT */
-    &:not(&:has([data-message-author-role="assistant"])):has(textarea) {
-        .group {
-            // background-color: var(--c-surface-1) !important;
-            // box-shadow: 0px 0px 0px 2px hsla(var(--accent-hsl) / .2) !important;
-            // box-shadow: 0px 0px 0px 5px var(--c-bg-msg-user) !important;
-            background-color: transparent !important;
-            outline-color: var(--c-surface-2) !important;
+			textarea {
+				color: var(--c-subtext-2) !important;
+			}
 
-            textarea {
-                color: var(--c-subtext-2) !important;
-            }
+			.btn-neutral {
+				background-color: var(--c-surface-3) !important;
+				// background-color: var(--c-bg-msg-user) !important;
+				color: var(--c-txt) !important;
+			}
+		}
+	}
 
-            .btn-neutral {
-                background-color: var(--c-surface-3) !important;
-                // background-color: var(--c-bg-msg-user) !important;
-                color: var(--c-txt) !important;
-            }
-        }
-    }
+	/* @ RIGHT - CHATS BUBBLES - GPT */
+	&:has([data-message-author-role='assistant']) {
+		/*   RIGHT - CHATS BUBBLE BG  */
+		.group {
+			background-color: var(--c-bg-msg-gpt);
 
-    /* @ RIGHT - CHATS BUBBLES - GPT */
-    &:has([data-message-author-role="assistant"]) {
+			svg[role='img'] {
+				color: var(--c-surface-1) !important;
+			}
 
-        /*   RIGHT - CHATS BUBBLE BG  */
-        .group {
-            background-color: var(--c-bg-msg-gpt);
+			/*  User/ChatGPT name  */
+			.font-semibold.select-none {
+				// color: var(--c-msg-name-gpt);
+				color: var(--avatar-color);
+			}
+		}
 
-            svg[role="img"] {
-                color: var(--c-surface-1) !important;
-            }
-
-            /*  User/ChatGPT name  */
-            .font-semibold.select-none {
-                // color: var(--c-msg-name-gpt);
-                color: var(--avatar-color);
-            }
-
-
-            // button[class*="final-completion"]:has(svg) {
-
-            //     /* Copy button tooltip */
-            //     position: relative;
-
-            //     &:hover {
-            //         &::after {
-            //             opacity: 1;
-            //             transform: translate(-50%, 0);
-            //         }
-            //     }
-
-            //     &::after {
-            //         // content: 'copy to clipboard';
-            //         position: absolute;
-            //         width: max-content;
-            //         height: 1.5rem;
-            //         line-height: 1.2 !important;
-            //         vertical-align: middle;
-            //         bottom: -100%;
-            //         left: 50%;
-            //         font-size: .8rem;
-            //         opacity: 0;
-            //         background-color: var(--c-surface-3);
-            //         color: var(--c-txt);
-            //         padding: .2rem .5rem;
-            //         border-radius: 8px;
-            //         z-index: 1;
-            //         transform: translate(-50%, -20%);
-            //         transition: transform .4s var(--easeOutBack), opacity .3s ease-in-out;
-            //     }
-
-            //     &:nth-of-type(1)::after {
-            //         content: 'copy to clipboard';
-            //     }
-
-            //     &:nth-of-type(2)::after {
-            //         content: 'like';
-            //     }
-
-            //     &:nth-of-type(3)::after {
-            //         content: 'dislike';
-            //     }
-
-            //     &:nth-of-type(4)::after {
-            //         content: 'regenerate';
-            //     }
-
-            // }
-        }
-
-
-        /*  Chat bubble footer SVG icons */
-        button svg {
-            color: var(--avatar-color);
-        }
-    }
+		/*  Chat bubble footer SVG icons */
+		button svg {
+			color: var(--avatar-color);
+		}
+	}
 }
