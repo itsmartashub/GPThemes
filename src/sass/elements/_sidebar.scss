@@ -93,7 +93,6 @@ nav[aria-label='Chat history'] {
 		.group {
 			--duration-trans: 0.3s;
 			--duration-anim: 0.2s;
-			// transition: background-color var(--duration-trans) ease-in-out;
 			overflow: hidden;
 
 			&:hover {
@@ -118,15 +117,7 @@ nav[aria-label='Chat history'] {
 			/* Active-link 3-dots and archive btns wrapper */
 			& > div.absolute {
 				@extend %sidebar_link_item_btns_bg;
-				// animation: fadeInFromLeft var(--duration-anim) ease-in-out forwards;
 			}
-
-			// &:hover {
-			// 	& > div.absolute {
-			// 		// @extend %sidebar_link_item_btns_bg;
-			// 		animation: fadeInFromLeft var(--duration-anim) ease-in-out forwards;
-			// 	}
-			// }
 
 			a[href^='/c/'] {
 				/* ! NOW `.bg-token-surface-primary` IS DELETED BY OPENAI ffs*/
@@ -159,25 +150,6 @@ nav[aria-label='Chat history'] {
 				//     --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position);
 				// }
 			}
-
-			/* Hover state color for button in 3 dots (btn SVG bg on hover) */
-			// button[class*=":text-token-text-secondary"] {
-
-			// button:has(svg) {
-			//     color: var(--c-txt) !important;
-
-			//     // &:hover {
-			//     //     color: var(--c-subtext-1) !important;
-			//     // }
-
-			//     &:nth-child(2) {
-			//         color: var(--c-subtext-1) !important;
-			//     }
-
-			//     svg {
-			//         transition: color .2s ease-in-out, transform .2s ease-in-out;
-			//     }
-			// }
 
 			/* 3 dots > "Rename" clicked - style of input parent and input  - this is <div> next to <a> */
 			.bg-token-surface-tertiary {

@@ -1,11 +1,11 @@
 %sidebar_link_item_btns_bg {
-    /* 
+	/* 
         hsla(0, 0%, calc(var(--surface-l) / 1.089), 0.7) 
         - this nice resolve but it doesn't work bcs it is BLACK-ISH, WTF ???? 
     */
-    // background-image: linear-gradient(to right, hsla(0, 0%, calc(var(--surface-l) / 1.089), 0.7) 0%, var(--c-surface-2) 30%, var(--c-surface-2) 100%) !important;
-    background-color: var(--c-surface-2) !important;
-    border-top-right-radius: inherit;
-    border-bottom-right-radius: inherit;
-    padding-left: .5rem;
+	// background-image: linear-gradient(to right, hsla(0, 0%, calc(var(--surface-l) / 1.089), 0.7) 0%, var(--c-surface-2) 30%, var(--c-surface-2) 100%) !important;
+	background-color: var(--c-surface-2) !important;
+	border-top-right-radius: inherit;
+	border-bottom-right-radius: inherit;
+	padding-left: 0.5rem;
 }

@@ -1,7 +1,7 @@
 :root {
   --f-fm: "Inter", sans-serif, Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   --br-chat-bubble: 2.6rem;
-  --br-prompt-textarea: 2.5rem;
+  --br-prompt-textarea: 2.2rem;
   --br-btn: .9rem;
   --br-btn-big: 1.2rem;
   --br-nav-a: var(--br-btn);
@@ -146,26 +146,6 @@ html.dark {
   --text-tertiary: var(--c-subtext-2) !important;
   --gray-300: var(--text-secondary) !important;
   --gray-500: var(--c-txt) !important;
-}
-
-@keyframes fadeInFromLeft {
-  from {
-    transform: translateX(100%);
-  }
-
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeOutToLeft {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(100%);
-  }
 }
 
 @keyframes scrollText {
@@ -1023,7 +1003,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   transition: background-color .3s ease-in-out;
   padding: .7rem !important;
   padding: var(--p-prompt-textarea) !important;
-  border-radius: 2.5rem !important;
+  border-radius: 2.2rem !important;
   border-radius: var(--br-prompt-textarea) !important;
   background-color: #0000 !important;
 }
@@ -1033,7 +1013,7 @@ main form [class*="[&:has(textarea:focus)]"]:has(textarea#prompt-textarea) {
   transition: background-color .3s ease-in-out;
   padding: .7rem !important;
   padding: var(--p-prompt-textarea) !important;
-  border-radius: 2.5rem !important;
+  border-radius: 2.2rem !important;
   border-radius: var(--br-prompt-textarea) !important;
   background-color: #0000 !important;
 }
