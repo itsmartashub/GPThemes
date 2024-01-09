@@ -93,7 +93,7 @@ nav[aria-label='Chat history'] {
 		.group {
 			--duration-trans: 0.3s;
 			--duration-anim: 0.2s;
-			transition: background-color var(--duration-trans) ease-in-out;
+			// transition: background-color var(--duration-trans) ease-in-out;
 			overflow: hidden;
 
 			/* 3dots btn */
@@ -111,15 +111,15 @@ nav[aria-label='Chat history'] {
 			/* Active-link 3-dots and archive btns wrapper */
 			& > div.absolute {
 				@extend %sidebar_link_item_btns_bg;
-				animation: fadeInFromLeft var(--duration-anim) ease-in-out forwards;
+				// animation: fadeInFromLeft var(--duration-anim) ease-in-out forwards;
 			}
 
-			&:hover {
-				& > div.absolute {
-					// @extend %sidebar_link_item_btns_bg;
-					animation: fadeInFromLeft var(--duration-anim) ease-in-out forwards;
-				}
-			}
+			// &:hover {
+			// 	& > div.absolute {
+			// 		// @extend %sidebar_link_item_btns_bg;
+			// 		animation: fadeInFromLeft var(--duration-anim) ease-in-out forwards;
+			// 	}
+			// }
 
 			a[href^='/c/'] {
 				/* ! NOW `.bg-token-surface-primary` IS DELETED BY OPENAI ffs*/

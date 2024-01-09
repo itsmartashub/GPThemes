@@ -544,8 +544,6 @@ nav[aria-label="Chat history"] li {
 nav[aria-label="Chat history"] li .group {
   --duration-trans: .3s;
   --duration-anim: .2s;
-  transition: background-color .3s ease-in-out;
-  transition: background-color var(--duration-trans) ease-in-out;
   overflow: hidden;
 }
 
@@ -555,10 +553,6 @@ nav[aria-label="Chat history"] li .group button {
 
 nav[aria-label="Chat history"] li .group span button {
   color: var(--c-subtext-1) !important;
-}
-
-nav[aria-label="Chat history"] li .group > div.absolute, nav[aria-label="Chat history"] li .group:hover > div.absolute {
-  animation: fadeInFromLeft var(--duration-anim) ease-in-out forwards;
 }
 
 nav[aria-label="Chat history"] li .group a[href^="/c/"] .bg-gradient-to-l {
