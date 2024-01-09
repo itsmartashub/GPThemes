@@ -168,6 +168,20 @@ html.dark {
   }
 }
 
+@keyframes scrollText {
+  0% {
+    transform: translateX(0);
+  }
+
+  70% {
+    transform: translateX(-26%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
 nav[aria-label="Chat history"] li .group > div.absolute {
   border-top-right-radius: inherit;
   border-bottom-right-radius: inherit;
@@ -545,6 +559,10 @@ nav[aria-label="Chat history"] li .group {
   --duration-trans: .3s;
   --duration-anim: .2s;
   overflow: hidden;
+}
+
+nav[aria-label="Chat history"] li .group:hover a[href^="/c/"] > div.relative.grow.overflow-hidden.whitespace-nowrap {
+  animation: 3s cubic-bezier(.445, .05, .55, .95) backwards scrollText;
 }
 
 nav[aria-label="Chat history"] li .group button {

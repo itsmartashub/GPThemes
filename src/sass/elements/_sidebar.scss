@@ -96,6 +96,13 @@ nav[aria-label='Chat history'] {
 			// transition: background-color var(--duration-trans) ease-in-out;
 			overflow: hidden;
 
+			&:hover {
+				/* Anim long (all actually) txt to scroll left to be shown whole */
+				a[href^='/c/'] > div.relative.grow.overflow-hidden.whitespace-nowrap {
+					animation: scrollText 3s $easeInOutSine backwards;
+				}
+			}
+
 			/* 3dots btn */
 			button {
 				color: var(--c-txt) !important;
