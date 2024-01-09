@@ -266,6 +266,10 @@ input::placeholder, textarea::placeholder {
   background-color: var(--c-surface-2) !important;
 }
 
+.bg-gray-100 {
+  background-color: var(--c-subtext-2) !important;
+}
+
 .bg-token-surface-secondary {
   --surface-secondary: var(--c-surface-2) !important;
 }
@@ -551,6 +555,10 @@ nav[aria-label="Chat history"] li .group button {
 
 nav[aria-label="Chat history"] li .group span button {
   color: var(--c-subtext-1) !important;
+}
+
+nav[aria-label="Chat history"] li .group a[href^="/c/"] > div.relative.grow.overflow-hidden.whitespace-nowrap {
+  will-change: transform;
 }
 
 nav[aria-label="Chat history"] li .group a[href^="/c/"] .bg-gradient-to-l {
@@ -1636,13 +1644,11 @@ main [data-testid^="conversation-turn-"] .group:hover [class*="[.final-completio
 }
 
 .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-2r-33-32-3a-2t-36-37-2p-38-2x-33-32-19-38-39-36-32-19-2l-w-1a-2v-36-33-39-34-w-2s-2x-3a-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-2q-39-38-38-33-32-2j-2r-30-2p-37-37-16-1p-y-2j-1a-2u-2x-32-2p-30-19-2r-33-31-34-30-2t-38-2x-33-32-2l-y-2l-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
-  padding-inline: 10px;
-  overflow-y: hidden;
+  overflow-y: clip;
 }
 
 main [data-testid^="conversation-turn-"] .group div[class*="empty:hidden"]:has(button[class*="[.final-completion]"]) {
-  padding-inline: 10px;
-  overflow-y: hidden;
+  overflow-y: clip;
 }
 
 .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-2r-33-32-3a-2t-36-37-2p-38-2x-33-32-19-38-39-36-32-19-2l-w-1a-2v-36-33-39-34-w-2s-2x-3a-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-2q-39-38-38-33-32-2j-2r-30-2p-37-37-16-1p-y-2j-1a-2u-2x-32-2p-30-19-2r-33-31-34-30-2t-38-2x-33-32-2l-y-2l-15-w-1a-3a-2x-37-2x-2q-30-2t]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {

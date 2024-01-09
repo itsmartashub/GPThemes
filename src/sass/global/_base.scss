@@ -4,25 +4,25 @@
 
 html,
 body {
-    --text-primary: var(--c-txt) !important;
+	--text-primary: var(--c-txt) !important;
 
-    font-family: var(--f-fm) !important;
-    color: var(--c-txt) !important;
-    background-color: var(--c-bg-chats-container) !important;
+	font-family: var(--f-fm) !important;
+	color: var(--c-txt) !important;
+	background-color: var(--c-bg-chats-container) !important;
 }
 
 a {
-    font-family: var(--f-fm) !important;
+	font-family: var(--f-fm) !important;
 }
 
 /* scrollbar-color for For Firefox */
 html {
-    scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track); // second parameter (transparent) is for bg-thumb
+	scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track); // second parameter (transparent) is for bg-thumb
 }
 
 /* scrollbar-thumb-color for Chromium-based browsers */
 ::-webkit-scrollbar-thumb {
-    background-color: var(--c-scrollbar-thumb) !important;
+	background-color: var(--c-scrollbar-thumb) !important;
 }
 
 /* scrollbar-track for Chromium-based browsers */
@@ -35,26 +35,26 @@ html {
 // }
 
 ::selection {
-    background-color: hsla(var(--accent-hsl) / .5) !important;
-    color: var(--c-txt) !important;
-    // color: var(--c-on-accent) !important;
+	background-color: hsla(var(--accent-hsl) / 0.5) !important;
+	color: var(--c-txt) !important;
+	// color: var(--c-on-accent) !important;
 }
 
 button {
-    --text-primary: var(--c-txt) !important;
+	--text-primary: var(--c-txt) !important;
 }
 
 input::placeholder,
 textarea::placeholder {
-    color: var(--c-placeholder) !important;
-    opacity: .6 !important;
+	color: var(--c-placeholder) !important;
+	opacity: 0.6 !important;
 }
 
 /* ==== TYPOGRAPHY COLORS */
 /* Obrati paznju na TOOLTIP clr i accent btns sa svg!!! */
-[class*="text-gray-"]:not(.text-gray-400, .text-gray-500, .text-gray-600),
-[class*="text-white"]:not(.btn-primary .text-white, .bg-green-600, svg) {
-    color: var(--c-txt) !important;
+[class*='text-gray-']:not(.text-gray-400, .text-gray-500, .text-gray-600),
+[class*='text-white']:not(.btn-primary .text-white, .bg-green-600, svg) {
+	color: var(--c-txt) !important;
 }
 
 /* 
@@ -65,67 +65,69 @@ textarea::placeholder {
 .text-gray-400,
 .text-gray-600,
 .text-gray-500 {
-    color: var(--c-subtext-2) !important;
-    // color: red !important;
+	color: var(--c-subtext-2) !important;
+	// color: red !important;
 }
 
 .text-token-text-secondary {
-
-    color: var(--c-subtext-1) !important;
-    // color: red !important;
+	color: var(--c-subtext-1) !important;
+	// color: red !important;
 }
-
 
 /* .text-gizmo-gray-500 is the footer txt in dialog "YOU'RE INVITED TO PLUS" */
 .text-gizmo-gray-500,
 // .text-gray-500,
 .text-gray-100 {
-    color: var(--c-subtext-1) !important;
+	color: var(--c-subtext-1) !important;
 }
 
 /* Log out, Delete all conversations, Delete chat */
 .text-red-500 {
-    color: var(--c-btn-danger) !important;
+	color: var(--c-btn-danger) !important;
 }
 
 /* Intro page (before login) */
-[class*="text-[#FE7600]"] {
-    color: var(--c-accent);
+[class*='text-[#FE7600]'] {
+	color: var(--c-accent);
 }
-
 
 /* === BG COLORS */
 /* Textarea msg bg, Chat history & Training checkbox bullet */
 .bg-gray-900,
 .bg-white {
-    background-color: var(--c-surface-1) !important;
+	background-color: var(--c-surface-1) !important;
 }
 
-// border-gray-200 
+// border-gray-200
 /* `❓` btn */
 .bg-gray-50 {
-    background-color: var(--c-surface-2) !important;
+	background-color: var(--c-surface-2) !important;
+}
+
+/* Line | in "Is this conversation helpful so far?
+👍 👎 | ✖️" */
+.bg-gray-100 {
+	background-color: var(--c-subtext-2) !important;
 }
 
 /* Active link bg in sidebar listitem */
 .bg-token-surface-secondary {
-    --surface-secondary: var(--c-surface-2) !important;
+	--surface-secondary: var(--c-surface-2) !important;
 }
 
 /* Shared chats PAGE - chats container bg */
-[class*="dark:bg-gray-800"] {
-    background-color: var(--c-bg-chats-container) !important;
+[class*='dark:bg-gray-800'] {
+	background-color: var(--c-bg-chats-container) !important;
 }
 
 /* Shared chats PAGE - green button "Upgrade to Plus to create your own GPT" */
-[class*="bg-green-600"] {
-    background-color: var(--c-accent) !important;
-    color: var(--c-on-accent) !important;
+[class*='bg-green-600'] {
+	background-color: var(--c-accent) !important;
+	color: var(--c-on-accent) !important;
 }
 
 /* Like icon in "Provide aditional feedback" dialog when clicked liked answer */
 // .bg-green-100 {}
-
 
 /* 
  - "Was this response better or worse?" el when clicked on regenerate answer btn 
@@ -146,37 +148,35 @@ textarea::placeholder {
 /* === BORDER COLORS */
 /* Border in textarea in "Custom Instructions" dialog */
 .border-gray-100 {
-    // border-color: var(--c-surface-1) !important;
-    border-color: transparent !important;
+	// border-color: var(--c-surface-1) !important;
+	border-color: transparent !important;
 }
 
 /* Border in inputs in "Upgrade your Plan" dialog */
 .border-gray-300 {
-    // border-color: red !important;
-    // border-color: transparent !important;
-    border: none;
+	// border-color: red !important;
+	// border-color: transparent !important;
+	border: none;
 }
 
-
-
 /* "Upgrade your plan" dialog, "Share link to chat" dialog chat min duplicate */
-[class*="dark:border-gray-700"] {
-    border-color: transparent !important;
-    // border-color: red !important;
+[class*='dark:border-gray-700'] {
+	border-color: transparent !important;
+	// border-color: red !important;
 }
 
 /* Border in dialogs after main heading - DARK */
-html.dark [class*=":border-white/10"] {
-    border-color: var(--c-border-accent) !important;
+html.dark [class*=':border-white/10'] {
+	border-color: var(--c-border-accent) !important;
 }
 
 /* Border in dialogs after main heading - LIGHT */
-html.light [class*=":border-white/10"] {
-    border-color: var(--c-border) !important;
+html.light [class*=':border-white/10'] {
+	border-color: var(--c-border) !important;
 }
 
 .h-px {
-    display: none !important;
+	display: none !important;
 }
 
 /* .markdown {
@@ -190,20 +190,17 @@ html.light [class*=":border-white/10"] {
 } */
 
 code.hljs {
-    // font-size: .85rem !important;
-    // font-family: 'JetBrains Mono', monospace !important;
-    letter-spacing: -0.2px;
+	// font-size: .85rem !important;
+	// font-family: 'JetBrains Mono', monospace !important;
+	letter-spacing: -0.2px;
 }
-
-
 
 /* === BORDER RADIUS */
 .rounded-md {
-    border-radius: var(--br-btn);
+	border-radius: var(--br-btn);
 }
-
 
 /* Shadow in "Upgrade your plan" */
 .shadow-md {
-    box-shadow: none;
+	box-shadow: none;
 }

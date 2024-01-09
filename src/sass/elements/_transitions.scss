@@ -164,8 +164,8 @@ main [data-testid^='conversation-turn-'] {
 
 		/* Bubble message footer */
 		div[class*='empty:hidden']:has(button[class*='[.final-completion]']) {
-			overflow-y: hidden;
-			padding-inline: 10px; // to make counter answer (<2/4>) visible when this is overflow-hidden, we need to add padding-inline, or we can use overflow-y: clip; And overflow is "important" for translate transition
+			overflow-y: clip;
+			// padding-inline: 10px; // to make counter answer (<2/4>) visible when this is overflow-hidden, we need to add padding-inline, or we can use overflow-y: clip; And overflow is "important" for translate transition
 
 			/* Bubble message footer (icons wrapper) */
 			.visible {
