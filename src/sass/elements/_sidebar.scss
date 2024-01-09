@@ -1,234 +1,232 @@
 /* Sidebar bg-color */
-.bg-black:has(nav[aria-label="Chat history"]) {
-    /* --surface-primary fix dark/black color for a:hover states */
-    --surface-primary: var(--c-surface-2) !important;
-    color: var(--c-txt) !important;
-    background-color: var(--c-bg-sidebar) !important;
+.bg-black:has(nav[aria-label='Chat history']) {
+	/* --surface-primary fix dark/black color for a:hover states */
+	--surface-primary: var(--c-surface-2) !important;
+	color: var(--c-txt) !important;
+	background-color: var(--c-bg-sidebar) !important;
 
-    /* Fix white txt on "NEW CHAT" in sidebar for light especially */
-    nav a>* {
-        color: var(--c-txt) !important;
-    }
+	/* Fix white txt on "NEW CHAT" in sidebar for light especially */
+	nav a > * {
+		color: var(--c-txt) !important;
+	}
 
-    /* CLEAR CHATS div - Visible when unchecked "Chat learning & Training" in Settings */
-    .absolute.left-0.top-0.overflow-hidden {
-        background-color: var(--c-bg-sidebar) !important;
-        overflow-y: scroll;
+	/* CLEAR CHATS div - Visible when unchecked "Chat learning & Training" in Settings */
+	.absolute.left-0.top-0.overflow-hidden {
+		background-color: var(--c-bg-sidebar) !important;
+		overflow-y: scroll;
 
-        min-height: 50vh !important;
+		min-height: 50vh !important;
 
-        .bg-gradient-to-t {
-            opacity: 0;
-        }
-    }
+		.bg-gradient-to-t {
+			opacity: 0;
+		}
+	}
 }
 
+nav[aria-label='Chat history'] {
+	padding: var(--p-sidebar-nav) !important;
 
-nav[aria-label="Chat history"] {
-    padding: var(--p-sidebar-nav) !important;
+	// ! Strange black rectangle (.bg-black class) over "New Chat" btn when on links: https://chat.openai.com/gpts/discovery and https://chat.openai.com/g/g-UBYTKWkPj
+	.sticky.bg-black:has(a[href='/']) {
+		background-color: var(--c-bg-sidebar);
+		padding-bottom: 1rem !important;
+	}
 
-    // ! Strange black rectangle (.bg-black class) over "New Chat" btn when on links: https://chat.openai.com/gpts/discovery and https://chat.openai.com/g/g-UBYTKWkPj
-    .sticky.bg-black:has(a[href="/"]) {
-        background-color: var(--c-bg-sidebar);
-        padding-bottom: 1rem !important;
-    }
+	/* NEW CHAT + LIST of chats in nav. Adding padding-left prevent :focus-visible style in those elements to be cropped from the left because of the overflow-hidden */
+	.overflow-y-auto {
+		padding-left: 0.3rem !important;
 
-    /* NEW CHAT + LIST of chats in nav. Adding padding-left prevent :focus-visible style in those elements to be cropped from the left because of the overflow-hidden */
-    .overflow-y-auto {
-        padding-left: 0.3rem !important;
+		/* Your Firefox-specific styles here */
+		@-moz-document url-prefix() {
+			padding-right: 0.8rem !important; // this add only for Firefox
+		}
+	}
 
-        /* Your Firefox-specific styles here */
-        @-moz-document url-prefix() {
-            padding-right: 0.8rem !important; // this add only for Firefox
-        }
-    }
+	/* Parent of time heading (of Today, Yesterday) in sidebar */
+	div:has(> h3[class*=':bg-black']) {
+		margin-bottom: 0.3rem;
+	}
 
-    /* Parent of time heading (of Today, Yesterday) in sidebar */
-    div:has(>h3[class*=":bg-black"]) {
-        margin-bottom: .3rem;
-    }
+	/* Today, Yesterday - Time heading in sidebar */
+	h3[class*=':bg-black'] {
+		display: inline-block !important;
+		color: var(--c-accent) !important;
+		background-color: hsl(var(--accent-hsl) / 0.2) !important;
+		border-radius: 100vw;
+		text-transform: uppercase;
+		font-weight: bold;
+		padding: 0.5rem 1rem !important;
+		height: auto !important;
+		line-height: 1 !important;
+	}
 
-    /* Today, Yesterday - Time heading in sidebar */
-    h3[class*=":bg-black"] {
-        display: inline-block !important;
-        color: var(--c-accent) !important;
-        background-color: hsl(var(--accent-hsl) / 0.2) !important;
-        border-radius: 100vw;
-        text-transform: uppercase;
-        font-weight: bold;
-        padding: .5rem 1rem !important;
-        height: auto !important;
-        line-height: 1 !important;
-    }
+	a {
+		color: var(--c-txt) !important;
+		padding: var(--p-sidebar-nav-a) !important;
+		font-family: var(--f-fm) !important;
+		border-radius: var(--br-nav-a) !important;
 
-    a {
-        color: var(--c-txt) !important;
-        padding: var(--p-sidebar-nav-a) !important;
-        font-family: var(--f-fm) !important;
-        border-radius: var(--br-nav-a) !important;
+		transition: background-color 0.3s ease-in-out;
 
-        transition: background-color .3s ease-in-out;
+		/* "New Chat" link (first in nav in sidebar) */
+		&[href='/'] {
+			border: 2px solid var(--c-surface-2);
+			padding: var(--p-sidebar-nav-a-new-chat) !important;
+			text-transform: uppercase;
+		}
 
-        /* "New Chat" link (first in nav in sidebar) */
-        &[href="/"] {
-            border: 2px solid var(--c-surface-2);
-            padding: var(--p-sidebar-nav-a-new-chat) !important;
-            text-transform: uppercase;
-        }
+		/* "Upgrade" link in nav bg */
+		span.bg-black {
+			border-color: transparent !important;
+			background-color: var(--c-accent) !important;
 
-        /* "Upgrade" link in nav bg */
-        span.bg-black {
-            border-color: transparent !important;
-            background-color: var(--c-accent) !important;
+			/* SVG icon in "Upgrade" link in nav */
+			& > svg {
+				color: var(--c-on-accent) !important;
+			}
+		}
+	}
 
-            /* SVG icon in "Upgrade" link in nav */
-            &>svg {
-                color: var(--c-on-accent) !important;
-            }
-        }
-    }
+	li {
+		margin-bottom: var(--mb-sidebar-nav-li) !important;
 
-    li {
-        margin-bottom: var(--mb-sidebar-nav-li) !important;
+		.group {
+			--duration-trans: 0.3s;
+			--duration-anim: 0.2s;
+			transition: background-color var(--duration-trans) ease-in-out;
+			overflow: hidden;
 
-        .group {
-            --duration-trans: .3s;
-            --duration-anim: .2s;
-            transition: background-color var(--duration-trans) ease-in-out;
-            overflow: hidden;
+			/* 3dots btn */
+			button {
+				color: var(--c-txt) !important;
+			}
 
-            /* 3dots btn */
-            button {
-                color: var(--c-txt) !important;
-            }
+			/* Archive btn */
+			span {
+				button {
+					color: var(--c-subtext-1) !important;
+				}
+			}
 
-            /* Archive btn */
-            span {
-                button {
-                    color: var(--c-subtext-1) !important;
-                }
-            }
+			/* Active-link 3-dots and archive btns wrapper */
+			& > div.absolute {
+				@extend %sidebar_link_item_btns_bg;
+				animation: fadeInFromLeft var(--duration-anim) ease-in-out forwards;
+			}
 
-            /* Active-link 3-dots and archive btns wrapper */
-            &>div.absolute {
-                @extend %sidebar_link_item_btns_bg;
-                animation: fadeInFromLeft var(--duration-anim) ease-in-out forwards;
-            }
+			&:hover {
+				& > div.absolute {
+					// @extend %sidebar_link_item_btns_bg;
+					animation: fadeInFromLeft var(--duration-anim) ease-in-out forwards;
+				}
+			}
 
-            &:hover {
-                &>div.absolute {
-                    // @extend %sidebar_link_item_btns_bg;
-                    animation: fadeInFromLeft var(--duration-anim) ease-in-out forwards;
-                }
-            }
+			a[href^='/c/'] {
+				/* ! NOW `.bg-token-surface-primary` IS DELETED BY OPENAI ffs*/
+				/* Selected/active/hover link item */
+				// &.bg-token-surface-primary {
+				//     background-color: var(--c-surface-2) !important;
 
+				//     /* 3 dots btn bg-gradient */
+				//     .bg-gradient-to-l {
+				//         opacity: 1 !important;
+				//     }
+				// }
 
-            a[href^="/c/"] {
-                /* ! NOW `.bg-token-surface-primary` IS DELETED BY OPENAI ffs*/
-                /* Selected/active/hover link item */
-                // &.bg-token-surface-primary {
-                //     background-color: var(--c-surface-2) !important;
+				/* 3 dots btn bg-gradient - <div> u <a> i <div> u <button> */
+				.bg-gradient-to-l {
+					// --surface-primary: var(--c-surface-2) !important;
+					// --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position) !important;
+					// color: var(--c-accent) !important;
+					// opacity: 0 !important;
 
-                //     /* 3 dots btn bg-gradient */
-                //     .bg-gradient-to-l {
-                //         opacity: 1 !important;
-                //     }
-                // }
+					display: none !important;
+					// border: 2px solid red !important;
+				}
 
-                /* 3 dots btn bg-gradient - <div> u <a> i <div> u <button> */
-                .bg-gradient-to-l {
-                    // --surface-primary: var(--c-surface-2) !important;
-                    // --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position) !important;
-                    // color: var(--c-accent) !important;
-                    // opacity: 0 !important;
+				// /* Gradient */
+				// a[href^="/c/"] .bg-gradient-to-l {
+				//     --tw-gradient-from: var(--c-accent) var(--tw-gradient-from-position);
+				// }
+				// &:hover a[href^="/c/"] .bg-gradient-to-l {
+				//     --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position);
+				// }
+			}
 
-                    display: none !important;
-                    // border: 2px solid red !important;
-                }
+			/* Hover state color for button in 3 dots (btn SVG bg on hover) */
+			// button[class*=":text-token-text-secondary"] {
 
-                // /* Gradient */
-                // a[href^="/c/"] .bg-gradient-to-l {
-                //     --tw-gradient-from: var(--c-accent) var(--tw-gradient-from-position);
-                // }
-                // &:hover a[href^="/c/"] .bg-gradient-to-l {
-                //     --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position);
-                // }
-            }
+			// button:has(svg) {
+			//     color: var(--c-txt) !important;
 
-            /* Hover state color for button in 3 dots (btn SVG bg on hover) */
-            // button[class*=":text-token-text-secondary"] {
+			//     // &:hover {
+			//     //     color: var(--c-subtext-1) !important;
+			//     // }
 
+			//     &:nth-child(2) {
+			//         color: var(--c-subtext-1) !important;
+			//     }
 
-            // button:has(svg) {
-            //     color: var(--c-txt) !important;
+			//     svg {
+			//         transition: color .2s ease-in-out, transform .2s ease-in-out;
+			//     }
+			// }
 
-            //     // &:hover {
-            //     //     color: var(--c-subtext-1) !important;
-            //     // }
+			/* 3 dots > "Rename" clicked - style of input parent and input  - this is <div> next to <a> */
+			.bg-token-surface-tertiary {
+				padding: var(--p-sidebar-nav-a) !important;
+				color: var(--c-txt) !important;
+				background-color: var(
+					--c-surface-3
+				) !important; // NOTE: bg can't be transparent-ish; it cause txt behind to be visible
+				border: 1px solid var(--c-border) !important;
+				border-radius: var(--br-nav-a) !important;
 
-            //     &:nth-child(2) {
-            //         color: var(--c-subtext-1) !important;
-            //     }
+				/* This make it full width of <li>, from left to right */
+				left: 0 !important;
+				right: 0 !important;
 
-            //     svg {
-            //         transition: color .2s ease-in-out, transform .2s ease-in-out;
-            //     }
-            // }
-
-            /* 3 dots > "Rename" clicked - style of input parent and input  - this is <div> next to <a> */
-            .bg-token-surface-tertiary {
-                padding: var(--p-sidebar-nav-a) !important;
-                color: var(--c-txt) !important;
-                background-color: var(--c-surface-3) !important; // NOTE: bg can't be transparent-ish; it cause txt behind to be visible
-                border: 1px solid var(--c-border) !important;
-                border-radius: var(--br-nav-a) !important;
-
-                /* This make it full width of <li>, from left to right */
-                left: 0 !important;
-                right: 0 !important;
-
-                /* Rename input.
+				/* Rename input.
                     ! DO NOT TOUCH PADDING! TXT BEHIND GOIN TO BE VISIBLE. WTF??? 
                 */
-                input {
-                    // input rename border color on focused
-                    --tw-ring-color: transparent !important;
-                    caret-color: var(--c-accent);
-                    border: none !important;
-                    outline: none !important;
-                    box-shadow: none !important;
-                }
-            }
-        }
-    }
+				input {
+					// input rename border color on focused
+					--tw-ring-color: transparent !important;
+					caret-color: var(--c-accent);
+					border: none !important;
+					outline: none !important;
+					box-shadow: none !important;
+				}
+			}
+		}
+	}
 
-    // TODO add better styling to this btn
-    /* User profile btn in sidebar bottom */
-    .group[data-headlessui-state] {
+	// TODO add better styling to this btn
+	/* User profile btn in sidebar bottom */
+	.group[data-headlessui-state] {
+		/* User profile btn in sidebar bottom */
+		button[aria-haspopup='true'] {
+			border-radius: var(--br-nav-a);
+			margin-top: 1rem;
 
-        /* User profile btn in sidebar bottom */
-        button[aria-haspopup="true"] {
-            border-radius: var(--br-nav-a);
-            margin-top: 1rem;
+			/* Username div */
+			.font-semibold {
+				color: var(--c-txt) !important;
+			}
+		}
 
-            /* Username div */
-            .font-semibold {
-                color: var(--c-txt) !important;
-            }
-        }
+		/* Sidebar bottom - Log Out  */
+		[role='menu'] [role='menuitem']:last-child {
+			color: var(--c-btn-danger) !important;
 
-        /* Sidebar bottom - Log Out  */
-        [role="menu"] [role="menuitem"]:last-child {
-            color: var(--c-btn-danger) !important;
+			svg {
+				color: var(--c-btn-danger) !important;
+			}
+		}
+	}
 
-            svg {
-                color: var(--c-btn-danger) !important;
-            }
-        }
-    }
-
-    /*  Border-radius for all elements that have .rounded-lg class in <nav> of sidebar. ALi on zezne border-radiusu i contextmenu u bottom sidebar jer u on ima ovu klasu. Zato sad dodajem <li> */
-    .rounded-lg {
-        border-radius: var(--br-nav-a) !important;
-    }
+	/*  Border-radius for all elements that have .rounded-lg class in <nav> of sidebar. ALi on zezne border-radiusu i contextmenu u bottom sidebar jer u on ima ovu klasu. Zato sad dodajem <li> */
+	.rounded-lg {
+		border-radius: var(--br-nav-a) !important;
+	}
 }
