@@ -306,7 +306,7 @@ input::placeholder, textarea::placeholder {
   opacity: .6 !important;
 }
 
-[class*="text-gray-"]:not(.text-gray-400):not(.text-gray-500):not(.text-gray-600), [class*="text-white"]:not(.btn-primary .text-white):not(.bg-green-600):not(svg) {
+[class*="text-gray-"]:not(.text-gray-400):not(.text-gray-500):not(.text-gray-600), [class*="text-white"]:not(.btn-primary .text-white):not(.toast-root .text-white):not(.bg-green-600):not(svg) {
   color: var(--c-txt) !important;
 }
 

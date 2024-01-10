@@ -53,7 +53,7 @@ textarea::placeholder {
 /* ==== TYPOGRAPHY COLORS */
 /* Obrati paznju na TOOLTIP clr i accent btns sa svg!!! */
 [class*='text-gray-']:not(.text-gray-400, .text-gray-500, .text-gray-600),
-[class*='text-white']:not(.btn-primary .text-white, .bg-green-600, svg) {
+[class*='text-white']:not(.btn-primary .text-white, .toast-root .text-white, .bg-green-600, svg) {
 	color: var(--c-txt) !important;
 }
 
