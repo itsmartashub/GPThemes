@@ -20,8 +20,9 @@
 	background-color: var(--c-bg-dialog) !important;
 	border-radius: var(--br-dialog) !important;
 	box-shadow: var(--box-shadow);
-	// @extend %animFadeIn;
-	@extend %animClipPathRectFromUp;
+	--anim-duration: 0.28s;
+	@extend %animFadeIn;
+	// @extend %animFadeInClipPath;
 
 	.border-token-border-light,
 	.border-white,

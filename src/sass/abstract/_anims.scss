@@ -10,7 +10,7 @@
 	}
 }
 
-@keyframes animClipPathCircle {
+@keyframes animFadeInClipPathCircle {
 	0% {
 		opacity: 0;
 		clip-path: circle(0%);
@@ -24,17 +24,7 @@
 	}
 }
 
-@keyframes animClipPathRectFromDown {
-	0% {
-		opacity: 0;
-		clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
-	}
-	100% {
-		opacity: 1;
-		clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-	}
-}
-@keyframes animClipPathRectFromUp {
+@keyframes animFadeInClipPath {
 	0% {
 		opacity: 0;
 		clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);

@@ -11,7 +11,7 @@
 	// @extend %animFadeIn;
 
 	&:not(nav[aria-label='Chat history'] .group[data-headlessui-state] [role='menu']) {
-		@extend %animClipPathRectFromUp;
+		@extend %animFadeInClipPath;
 	}
 
 	[role='menuitem'] {
@@ -62,7 +62,7 @@ div[data-radix-popper-content-wrapper] {
 			div[data-radix-popper-content-wrapper]:has(div[role='menu']),
 			div[data-radix-popper-content-wrapper]:has([role='tooltip'])
 		) {
-		@extend %animClipPathRectFromUp;
+		@extend %animFadeInClipPath;
 	}
 
 	.bg-white {

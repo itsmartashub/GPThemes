@@ -10,17 +10,13 @@
 	padding-left: 0.5rem;
 }
 
-%animClipPathCircle {
+%animFadeInClipPathCircle {
 	will-change: opacity, clip-path;
-	animation: animClipPathCircle 0.2s linear forwards;
+	animation: animFadeInClipPathCircle 0.2s linear forwards;
 }
-%animClipPathRectFromUp {
+%animFadeInClipPath {
 	will-change: opacity, clip-path;
-	animation: animClipPathRectFromUp 0.2s linear forwards;
-}
-%animClipPathRectFromDown {
-	will-change: opacity, clip-path;
-	animation: animClipPathRectFromDown 0.2s linear forwards;
+	animation: animFadeInClipPath 0.2s linear forwards;
 }
 %animFadeIn {
 	will-change: opacity;
@@ -29,13 +25,4 @@
 %animFadeOut {
 	will-change: opacity;
 	animation: animFade var(--anim-duration, 0.4s) linear reverse;
-}
-
-%animFadeInOutDataState {
-	&[data-state='open'] {
-		@extend %animFadeIn;
-	}
-	&[data-state='closed'] {
-		@extend %animFadeOut;
-	}
 }
