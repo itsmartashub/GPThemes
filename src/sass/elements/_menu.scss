@@ -1,33 +1,34 @@
-[role="menu"] {
-    background-color: var(--c-bg-contextmenu) !important;
-    border-radius: var(--br-contextmenu) !important;
-    border: none !important;
-    padding: var(--p-contextmenu) !important;
-    box-shadow: var(--box-shadow-contextmenu) !important;
-    transition: all .3s ease-in-out;
+[role='menu'] {
+	background-color: var(--c-bg-contextmenu) !important;
+	border-radius: var(--br-contextmenu) !important;
+	border: none !important;
+	padding: var(--p-contextmenu) !important;
+	box-shadow: var(--box-shadow-contextmenu) !important;
+	transition: all 0.3s ease-in-out;
+	@extend %animFadeIn;
 
-    [role="menuitem"] {
-        padding: var(--p-contextmenu-item) !important;
-        border-radius: var(--br-btn) !important;
-        transition: all .3s ease-in-out;
+	[role='menuitem'] {
+		padding: var(--p-contextmenu-item) !important;
+		border-radius: var(--br-btn) !important;
+		transition: all 0.3s ease-in-out;
 
+		&:hover {
+			background-color: var(--c-surface-2) !important;
+		}
+	}
 
-        &:is(:hover, :focus) {
-            background-color: var(--c-surface-2) !important;
-        }
-    }
+	/* Remove padding for menu in sidebar bottom */
+	nav {
+		padding: 0 !important;
+	}
 
-    /* Remove padding for menu in sidebar bottom */
-    nav {
-        padding: 0 !important;
-    }
-
-    &:has(a[href="https://openai.com/policies"]) {
-        a:first-child span {
-            color: var(--c-accent) !important;
-            font-weight: bold;
-        }
-    }
+	&:has(a[href="https://openai.com/policies"])
+	{
+		a:first-child span {
+			color: var(--c-accent) !important;
+			font-weight: bold;
+		}
+	}
 }
 
 /* Light theme */
@@ -37,46 +38,48 @@
     }
 } */
 
-
 // TODO check if this broke something else because it is the element hard for targeting
 /* "New Chat" xs in contextmenu in ChatGPT 3.5 */
 [data-radix-popper-content-wrapper] .absolute.right-11 {
-    --svg-w: 24px;
-    --gap-from-svg: 20px;
-    right: calc(var(--p-contextmenu) + var(--svg-w) + var(--gap-from-svg)) !important; // p-contextmenu = 10px, svg-w = 24px, gap-from-svg = 20px = (10px + 24px + 20px) = 54px. This is calculated spacing of "New Chat" in contextmenu in ChatGPT 3.5 and right edge in contextmenuitem
+	--svg-w: 24px;
+	--gap-from-svg: 20px;
+	right: calc(
+		var(--p-contextmenu) + var(--svg-w) + var(--gap-from-svg)
+	) !important; // p-contextmenu = 10px, svg-w = 24px, gap-from-svg = 20px = (10px + 24px + 20px) = 54px. This is calculated spacing of "New Chat" in contextmenu in ChatGPT 3.5 and right edge in contextmenuitem
 }
-
 
 /* __ MODAL - Choose theme context menu & tooltips?  */
 /* Mora not role=menu da ne bih selektovala i onaj contextmenu u sidebar kad se klikne na prompt listitem 3 dots za opcije */
-div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) {
-    .bg-white {
-        background-color: var(--c-bg-contextmenu) !important;
-        padding: var(--p-contextmenu) !important;
-        border-radius: var(--br-contextmenu) !important;
-        box-shadow: var(--box-shadow-contextmenu) !important;
-    }
+div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role='menu'])) {
+	@extend %animFadeIn;
 
-    [data-radix-collection-item] {
-        border-radius: var(--br-btn);
-        padding: var(--p-contextmenu-item) !important;
-        height: auto !important;
-        margin-bottom: 4px;
-    }
+	.bg-white {
+		background-color: var(--c-bg-contextmenu) !important;
+		padding: var(--p-contextmenu) !important;
+		border-radius: var(--br-contextmenu) !important;
+		box-shadow: var(--box-shadow-contextmenu) !important;
+	}
 
-    /* MODAL - Choose theme context menuitem hover */
-    [data-radix-collection-item][data-state="unchecked"]:hover {
-        background-color: var(--c-surface-2) !important;
-    }
+	[data-radix-collection-item] {
+		border-radius: var(--br-btn);
+		padding: var(--p-contextmenu-item) !important;
+		height: auto !important;
+		margin-bottom: 4px;
+	}
 
-    /* MODAL - Choose theme context menuitem hover - Light theme */
-    /* html.light [data-radix-collection-item][data-state="unchecked"]:hover {
+	/* MODAL - Choose theme context menuitem hover */
+	[data-radix-collection-item][data-state='unchecked']:hover {
+		background-color: var(--c-surface-2) !important;
+	}
+
+	/* MODAL - Choose theme context menuitem hover - Light theme */
+	/* html.light [data-radix-collection-item][data-state="unchecked"]:hover {
         background-color: var(--c-surface-3) !important;
     } */
 
-    /* MODAL - Choose theme context menuitem hover active */
-    [data-state="checked"] {
-        background-color: var(--c-bg-btn) !important;
-        color: var(--c-on-accent) !important;
-    }
+	/* MODAL - Choose theme context menuitem hover active */
+	[data-state='checked'] {
+		background-color: var(--c-bg-btn) !important;
+		color: var(--c-on-accent) !important;
+	}
 }

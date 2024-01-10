@@ -19,7 +19,7 @@ html.dark div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
 
 /* === TOOLTIPS arrow div bg color === */
 div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
-	animation: clipPathAnim 0.2s $easeInCirc forwards;
+	@extend %animFadeIn;
 
 	/* Tooltip body */
 	& > * {

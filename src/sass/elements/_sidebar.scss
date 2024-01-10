@@ -98,7 +98,7 @@ nav[aria-label='Chat history'] {
 			&:hover {
 				/* Anim long (all actually) txt to scroll left to be shown whole */
 				a[href^='/c/'] > div.relative.grow.overflow-hidden.whitespace-nowrap {
-					animation: scrollText 3s $easeInOutSine backwards;
+					animation: animScrollText 3s $easeInOutSine backwards;
 				}
 			}
 

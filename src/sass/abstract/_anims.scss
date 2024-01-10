@@ -1,4 +1,4 @@
-@keyframes scrollText {
+@keyframes animScrollText {
 	0% {
 		transform: translateX(0);
 	}
@@ -10,21 +10,33 @@
 	}
 }
 
-@keyframes clipPathAnim {
+@keyframes animClipPathCircle {
 	0% {
 		opacity: 0;
-		clip-path: circle(0% at 50% 50%);
+		clip-path: circle(0%);
+		// clip-path: polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%);
 	}
+
 	100% {
 		opacity: 1;
 		clip-path: circle(100% at 50% 50%);
+		// clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 	}
 }
-@keyframes fadeIn {
+
+@keyframes animClipPathRectFromDown {
+	0% {
+		clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+	}
+	100% {
+		clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+	}
+}
+
+@keyframes animFadeIn {
 	from {
 		opacity: 0;
 	}
-
 	to {
 		opacity: 1;
 	}

@@ -148,7 +148,7 @@ html.dark {
   --gray-500: var(--c-txt) !important;
 }
 
-@keyframes scrollText {
+@keyframes animScrollText {
   0% {
     transform: translateX(0);
   }
@@ -162,7 +162,7 @@ html.dark {
   }
 }
 
-@keyframes clipPathAnim {
+@keyframes animClipPathCircle {
   0% {
     opacity: 0;
     clip-path: circle(0%);
@@ -174,7 +174,17 @@ html.dark {
   }
 }
 
-@keyframes fadeIn {
+@keyframes animClipPathRectFromDown {
+  0% {
+    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+  }
+
+  100% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+
+@keyframes animFadeIn {
   from {
     opacity: 0;
   }
@@ -189,6 +199,21 @@ nav[aria-label="Chat history"] li .group > div.absolute {
   border-bottom-right-radius: inherit;
   padding-left: .5rem;
   background-color: var(--c-surface-2) !important;
+}
+
+.js-has-pseudo [csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15]:not(.does-not-exist):not(does-not-exist), [role="dialog"] [id*="-content-"], .absolute.inset-0 .fixed.inset-0, .js-has-pseudo div[data-radix-popper-content-wrapper]:not([csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2s-2x-3a-2j-36-33-30-2t-1p-31-2t-32-39-2l-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist)), [role="menu"], [role="dialog"] [id*="-content-"], .absolute.inset-0 .fixed.inset-0, [role="menu"] {
+  will-change: opacity;
+  animation: .3s linear forwards animFadeIn;
+}
+
+div[data-radix-popper-content-wrapper]:has([role="tooltip"]) {
+  will-change: opacity;
+  animation: .3s linear forwards animFadeIn;
+}
+
+div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) {
+  will-change: opacity;
+  animation: .3s linear forwards animFadeIn;
 }
 
 [role="dialog"] table tbody td:first-child a, .prose a {
@@ -365,7 +390,7 @@ code.hljs {
   border-radius: var(--br-btn) !important;
 }
 
-[role="menu"] [role="menuitem"]:is(:hover, :focus) {
+[role="menu"] [role="menuitem"]:hover {
   background-color: var(--c-surface-2) !important;
 }
 
@@ -568,7 +593,7 @@ nav[aria-label="Chat history"] li .group {
 }
 
 nav[aria-label="Chat history"] li .group:hover a[href^="/c/"] > div.relative.grow.overflow-hidden.whitespace-nowrap {
-  animation: 3s cubic-bezier(.445, .05, .55, .95) backwards scrollText;
+  animation: 3s cubic-bezier(.445, .05, .55, .95) backwards animScrollText;
 }
 
 nav[aria-label="Chat history"] li .group button {
@@ -1481,14 +1506,6 @@ html.light div[data-radix-popper-content-wrapper]:has([role="tooltip"]) [class*=
 
 html.dark div[data-radix-popper-content-wrapper]:has([role="tooltip"]) [class*="text-white"] {
   color: var(--c-on-accent) !important;
-}
-
-.js-has-pseudo [csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15]:not(.does-not-exist):not(does-not-exist) {
-  animation: .2s cubic-bezier(.6, .04, .98, .335) forwards clipPathAnim;
-}
-
-div[data-radix-popper-content-wrapper]:has([role="tooltip"]) {
-  animation: .2s cubic-bezier(.6, .04, .98, .335) forwards clipPathAnim;
 }
 
 .js-has-pseudo [csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15-w-1q-w-16]:not(.does-not-exist):not(does-not-exist) {

@@ -9,3 +9,20 @@
 	border-bottom-right-radius: inherit;
 	padding-left: 0.5rem;
 }
+
+%will_change_cp {
+	will-change: clip-path;
+}
+
+%animClipPathCircle {
+	will-change: opacity, clip-path;
+	animation: animClipPathCircle 0.2s linear forwards;
+}
+%animClipPathRectFromDown {
+	@extend %will_change_cp;
+	animation: animClipPathRectFromDown 0.2s linear forwards;
+}
+%animFadeIn {
+	will-change: opacity;
+	animation: animFadeIn 0.3s linear forwards;
+}
