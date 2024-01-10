@@ -25,6 +25,10 @@ div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
 	& > * {
 		border-radius: var(--br-tooltips) !important;
 		padding: var(--p-tooltips) !important;
+
+		// [class*='text-white'] {
+		// 	color: var(--c-on-accent) !important;
+		// }
 	}
 
 	/* Small triangle */

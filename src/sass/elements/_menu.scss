@@ -4,10 +4,15 @@
 	border: none !important;
 	padding: var(--p-contextmenu) !important;
 	box-shadow: var(--box-shadow-contextmenu) !important;
-	transition: all 0.3s ease-in-out;
+	// transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+	// transition: all 0.3s ease-in-out;
 	// --anim-duration: 0.2s;
 	// @extend %animFadeIn;
-	@extend %animClipPathRectFromUp;
+	// @extend %animFadeIn;
+
+	&:not(nav[aria-label='Chat history'] .group[data-headlessui-state] [role='menu']) {
+		@extend %animClipPathRectFromUp;
+	}
 
 	[role='menuitem'] {
 		padding: var(--p-contextmenu-item) !important;
@@ -51,11 +56,14 @@
 }
 
 /* __ MODAL - Choose theme context menu & tooltips?  */
-/* Mora not role=menu da ne bih selektovala i onaj contextmenu u sidebar kad se klikne na prompt listitem 3 dots za opcije */
 div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role='menu'])) {
-	// --anim-duration: 0.2s;
-	// @extend %animFadeIn;
+	/* Mora not role=menu da ne bih selektovala i onaj contextmenu u sidebar kad se klikne na prompt listitem 3 dots za opcije i div[data-radix-popper-content-wrapper]:has([role='tooltip']) da ne bih selektovala tooltip */
 	@extend %animClipPathRectFromUp;
+	// &:not(
+	// 		div[data-radix-popper-content-wrapper]:has(div[role='menu']),
+	// 		div[data-radix-popper-content-wrapper]:has([role='tooltip'])
+	// 	) {
+	// }
 
 	.bg-white {
 		background-color: var(--c-bg-contextmenu) !important;

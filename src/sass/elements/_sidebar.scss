@@ -198,11 +198,17 @@ nav[aria-label='Chat history'] {
 		}
 
 		/* Sidebar bottom - Log Out  */
-		[role='menu'] [role='menuitem']:last-child {
-			color: var(--c-btn-danger) !important;
+		[role='menu'] {
+			animation: none !important;
+			// transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+			transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 
-			svg {
+			[role='menuitem']:last-child {
 				color: var(--c-btn-danger) !important;
+
+				svg {
+					color: var(--c-btn-danger) !important;
+				}
 			}
 		}
 	}

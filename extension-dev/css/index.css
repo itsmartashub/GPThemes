@@ -215,7 +215,7 @@ nav[aria-label="Chat history"] li .group > div.absolute {
   background-color: var(--c-surface-2) !important;
 }
 
-[role="dialog"], .js-has-pseudo div[data-radix-popper-content-wrapper]:not([csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2s-2x-3a-2j-36-33-30-2t-1p-31-2t-32-39-2l-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist)), [role="menu"], [role="dialog"], [role="menu"] {
+[role="dialog"], .js-has-pseudo div[data-radix-popper-content-wrapper]:not([csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2s-2x-3a-2j-36-33-30-2t-1p-31-2t-32-39-2l-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist)), [role="menu"]:not(nav[aria-label="Chat history"] .group[data-headlessui-state] [role="menu"]), [role="dialog"], [role="menu"]:not(nav[aria-label="Chat history"] .group[data-headlessui-state] [role="menu"]) {
   will-change: opacity, clip-path;
   animation: .2s linear forwards animClipPathRectFromUp;
 }
@@ -306,7 +306,7 @@ input::placeholder, textarea::placeholder {
   opacity: .6 !important;
 }
 
-[class*="text-gray-"]:not(.text-gray-400):not(.text-gray-500):not(.text-gray-600), [class*="text-white"]:not(.btn-primary .text-white):not(.toast-root .text-white):not(.bg-green-600):not(svg) {
+[class*="text-gray-"]:not(.text-gray-400):not(.text-gray-500):not(.text-gray-600), [class*="text-white"]:not(.btn-primary .text-white):not(.bg-green-600):not(svg) {
   color: var(--c-txt) !important;
 }
 
@@ -393,7 +393,6 @@ code.hljs {
 }
 
 [role="menu"] {
-  transition: all .3s ease-in-out;
   background-color: var(--c-bg-contextmenu) !important;
   border-radius: 1.5rem !important;
   border-radius: var(--br-contextmenu) !important;
@@ -661,6 +660,11 @@ nav[aria-label="Chat history"] .group[data-headlessui-state] button[aria-haspopu
 
 nav[aria-label="Chat history"] .group[data-headlessui-state] button[aria-haspopup="true"] .font-semibold {
   color: var(--c-txt) !important;
+}
+
+nav[aria-label="Chat history"] .group[data-headlessui-state] [role="menu"] {
+  transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+  animation: none !important;
 }
 
 nav[aria-label="Chat history"] .group[data-headlessui-state] [role="menu"] [role="menuitem"]:last-child, nav[aria-label="Chat history"] .group[data-headlessui-state] [role="menu"] [role="menuitem"]:last-child svg {
