@@ -684,6 +684,25 @@ pre {
   margin: var(--my-pre) auto !important;
 }
 
+pre .bg-black.rounded-md {
+  border-radius: .9rem !important;
+  border-radius: var(--br-btn) !important;
+}
+
+.js-has-pseudo [csstools-has-34-36-2t-w-1a-2q-2v-19-2q-30-2p-2r-2z-w-1q-w-2s-2x-3a-1m-2w-2p-37-14-1q-w-37-34-2p-32-15-w-1a-36-33-39-32-2s-2t-2s-19-38-19-31-2s]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
+  border-top-left-radius: .9rem !important;
+  border-top-left-radius: var(--br-btn) !important;
+  border-top-right-radius: .9rem !important;
+  border-top-right-radius: var(--br-btn) !important;
+}
+
+pre .bg-black > div:has( > span) .rounded-t-md {
+  border-top-left-radius: .9rem !important;
+  border-top-left-radius: var(--br-btn) !important;
+  border-top-right-radius: .9rem !important;
+  border-top-right-radius: var(--br-btn) !important;
+}
+
 .js-has-pseudo [csstools-has-34-36-2t-w-2s-2x-3a-1m-2w-2p-37-14-2q-39-38-38-33-32-15-w-37-34-2p-32]:not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
   color: var(--c-accent-light) !important;
 }

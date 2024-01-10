@@ -1,28 +1,54 @@
 /* === RIGHT - <pre> - MARKDOWN CODE IN CHATS ===*/
 
 pre {
-    border-radius: var(--br-pre) !important;
-    margin: var(--my-pre) auto !important;
+	border-radius: var(--br-pre) !important;
+	margin: var(--my-pre) auto !important;
+	// overflow: clip !important;
 
-    /*  === RIGHT - <pre> - header === */
-    // Header selector: .bg-black>div:has(> span) 
+	/*  === RIGHT - <pre> - header === */
+	/*``` Header selector: .bg-black>div:has(> span) */
 
-    /* Code name in markdown header (html, php, css, etc) */
-    div:has(button) span {
-        color: var(--c-accent-light) !important;
-    }
+	/* // TODO
+		There seems to be an unusual behavior with the top-border-radius for the Markdown header, causing it to lose its radius and appear almost sharp (aka the original design). This occurs when the inspect element is open or when the screen size is reduced. It happens like a flash when hovering over the chat-bubble and then moving out of it completely or when in the inspect mode, also hovering COPY btn, idk. I cannot fully comprehend the issue, but it seems that the original design is being restored, despite my attempts to override it using various methods:
 
-    /* 'Copy code' btn in markdown header */
-    button:has(svg) {
-        text-transform: uppercase !important;
-        color: var(--c-on-accent) !important;
-        background-color: var(--c-bg-pre-header-btn);
-        padding: var(--p-btn);
-        border-radius: 10px;
+		I have rewritten the .rounded-md class and also the .rounded-t-md class for the header. I applied overflow: clip/hidden to <pre> and the Markdown header. However, none of these measures seem to resolve the issue.
 
-        /* SVG icons before 'Copy code' btn in md */
-        svg {
-            color: currentColor !important;
-        }
-    }
+		// ! UPDATE
+		It seems it works fine now.
+	*/
+	/* Markdown */
+	.bg-black {
+		&.rounded-md {
+			border-radius: var(--br-btn) !important;
+		}
+
+		/* Markdown header */
+		& > div:has(> span) {
+			// overflow: clip !important;
+
+			.rounded-t-md {
+				// overflow: clip !important;
+				border-top-left-radius: var(--br-btn) !important;
+				border-top-right-radius: var(--br-btn) !important;
+			}
+		}
+	}
+	/* Code name in markdown header (html, php, css, etc) */
+	div:has(button) span {
+		color: var(--c-accent-light) !important;
+	}
+
+	/* 'Copy code' btn in markdown header */
+	button:has(svg) {
+		text-transform: uppercase !important;
+		color: var(--c-on-accent) !important;
+		background-color: var(--c-bg-pre-header-btn);
+		padding: var(--p-btn);
+		border-radius: 10px;
+
+		/* SVG icons before 'Copy code' btn in md */
+		svg {
+			color: currentColor !important;
+		}
+	}
 }
