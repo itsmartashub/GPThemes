@@ -3,10 +3,29 @@
 		transform: translateX(0);
 	}
 	70% {
-		// transform: translateX(calc(-100% + var(--translate-offset, 0)));
 		transform: translateX(-26%);
 	}
 	100% {
 		transform: translateX(0);
+	}
+}
+
+@keyframes clipPathAnim {
+	0% {
+		opacity: 0;
+		clip-path: circle(0% at 50% 50%);
+	}
+	100% {
+		opacity: 1;
+		clip-path: circle(100% at 50% 50%);
+	}
+}
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
 	}
 }
