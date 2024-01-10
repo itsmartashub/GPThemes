@@ -215,12 +215,12 @@ nav[aria-label="Chat history"] li .group > div.absolute {
   background-color: var(--c-surface-2) !important;
 }
 
-[role="dialog"], .js-has-pseudo div[data-radix-popper-content-wrapper]:not([csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2s-2x-3a-2j-36-33-30-2t-1p-31-2t-32-39-2l-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist)), [role="menu"]:not(nav[aria-label="Chat history"] .group[data-headlessui-state] [role="menu"]), [role="dialog"], [role="menu"]:not(nav[aria-label="Chat history"] .group[data-headlessui-state] [role="menu"]) {
+[role="dialog"], .js-has-pseudo div[data-radix-popper-content-wrapper]:not([csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2s-2x-3a-2j-36-33-30-2t-1p-31-2t-32-39-2l-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist)):not([csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15]:not(.does-not-exist):not(does-not-exist)), [role="menu"]:not(nav[aria-label="Chat history"] .group[data-headlessui-state] [role="menu"]), [role="dialog"], [role="menu"]:not(nav[aria-label="Chat history"] .group[data-headlessui-state] [role="menu"]) {
   will-change: opacity, clip-path;
   animation: .2s linear forwards animClipPathRectFromUp;
 }
 
-div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) {
+div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])):not(div[data-radix-popper-content-wrapper]:has([role="tooltip"])) {
   will-change: opacity, clip-path;
   animation: .2s linear forwards animClipPathRectFromUp;
 }
@@ -435,7 +435,7 @@ code.hljs {
   right: calc(var(--p-contextmenu)  + var(--svg-w)  + var(--gap-from-svg)) !important;
 }
 
-.js-has-pseudo div[data-radix-popper-content-wrapper]:not([csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2s-2x-3a-2j-36-33-30-2t-1p-31-2t-32-39-2l-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist)) .bg-white {
+div[data-radix-popper-content-wrapper] .bg-white {
   background-color: var(--c-bg-contextmenu) !important;
   padding: .8rem !important;
   padding: var(--p-contextmenu) !important;
@@ -444,16 +444,7 @@ code.hljs {
   box-shadow: var(--box-shadow-contextmenu) !important;
 }
 
-div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) .bg-white {
-  background-color: var(--c-bg-contextmenu) !important;
-  padding: .8rem !important;
-  padding: var(--p-contextmenu) !important;
-  border-radius: 1.5rem !important;
-  border-radius: var(--br-contextmenu) !important;
-  box-shadow: var(--box-shadow-contextmenu) !important;
-}
-
-.js-has-pseudo div[data-radix-popper-content-wrapper]:not([csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2s-2x-3a-2j-36-33-30-2t-1p-31-2t-32-39-2l-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist)) [data-radix-collection-item] {
+div[data-radix-popper-content-wrapper] [data-radix-collection-item] {
   border-radius: .9rem;
   border-radius: var(--br-btn);
   margin-bottom: 4px;
@@ -462,29 +453,11 @@ div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper
   height: auto !important;
 }
 
-div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) [data-radix-collection-item] {
-  border-radius: .9rem;
-  border-radius: var(--br-btn);
-  margin-bottom: 4px;
-  padding: .9rem 1rem !important;
-  padding: var(--p-contextmenu-item) !important;
-  height: auto !important;
-}
-
-.js-has-pseudo div[data-radix-popper-content-wrapper]:not([csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2s-2x-3a-2j-36-33-30-2t-1p-31-2t-32-39-2l-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist)) [data-radix-collection-item][data-state="unchecked"]:hover {
+div[data-radix-popper-content-wrapper] [data-radix-collection-item][data-state="unchecked"]:hover {
   background-color: var(--c-surface-2) !important;
 }
 
-div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) [data-radix-collection-item][data-state="unchecked"]:hover {
-  background-color: var(--c-surface-2) !important;
-}
-
-.js-has-pseudo div[data-radix-popper-content-wrapper]:not([csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2s-2x-3a-2j-36-33-30-2t-1p-31-2t-32-39-2l-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist)) [data-state="checked"] {
-  background-color: var(--c-bg-btn) !important;
-  color: var(--c-on-accent) !important;
-}
-
-div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) [data-state="checked"] {
+div[data-radix-popper-content-wrapper] [data-state="checked"] {
   background-color: var(--c-bg-btn) !important;
   color: var(--c-on-accent) !important;
 }

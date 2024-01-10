@@ -56,14 +56,14 @@
 }
 
 /* __ MODAL - Choose theme context menu & tooltips?  */
-div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role='menu'])) {
+div[data-radix-popper-content-wrapper] {
 	/* Mora not role=menu da ne bih selektovala i onaj contextmenu u sidebar kad se klikne na prompt listitem 3 dots za opcije i div[data-radix-popper-content-wrapper]:has([role='tooltip']) da ne bih selektovala tooltip */
-	@extend %animClipPathRectFromUp;
-	// &:not(
-	// 		div[data-radix-popper-content-wrapper]:has(div[role='menu']),
-	// 		div[data-radix-popper-content-wrapper]:has([role='tooltip'])
-	// 	) {
-	// }
+	&:not(
+			div[data-radix-popper-content-wrapper]:has(div[role='menu']),
+			div[data-radix-popper-content-wrapper]:has([role='tooltip'])
+		) {
+		@extend %animClipPathRectFromUp;
+	}
 
 	.bg-white {
 		background-color: var(--c-bg-contextmenu) !important;
