@@ -5,12 +5,14 @@
 	padding: var(--p-contextmenu) !important;
 	box-shadow: var(--box-shadow-contextmenu) !important;
 	transition: all 0.3s ease-in-out;
-	@extend %animFadeIn;
+	// --anim-duration: 0.2s;
+	// @extend %animFadeIn;
+	@extend %animClipPathRectFromUp;
 
 	[role='menuitem'] {
 		padding: var(--p-contextmenu-item) !important;
 		border-radius: var(--br-btn) !important;
-		transition: all 0.3s ease-in-out;
+		transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
 		&:hover {
 			background-color: var(--c-surface-2) !important;
@@ -51,7 +53,9 @@
 /* __ MODAL - Choose theme context menu & tooltips?  */
 /* Mora not role=menu da ne bih selektovala i onaj contextmenu u sidebar kad se klikne na prompt listitem 3 dots za opcije */
 div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role='menu'])) {
-	@extend %animFadeIn;
+	// --anim-duration: 0.2s;
+	// @extend %animFadeIn;
+	@extend %animClipPathRectFromUp;
 
 	.bg-white {
 		background-color: var(--c-bg-contextmenu) !important;
@@ -71,11 +75,6 @@ div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper
 	[data-radix-collection-item][data-state='unchecked']:hover {
 		background-color: var(--c-surface-2) !important;
 	}
-
-	/* MODAL - Choose theme context menuitem hover - Light theme */
-	/* html.light [data-radix-collection-item][data-state="unchecked"]:hover {
-        background-color: var(--c-surface-3) !important;
-    } */
 
 	/* MODAL - Choose theme context menuitem hover active */
 	[data-state='checked'] {

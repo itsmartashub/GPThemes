@@ -176,10 +176,24 @@ html.dark {
 
 @keyframes animClipPathRectFromDown {
   0% {
+    opacity: 0;
     clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
   }
 
   100% {
+    opacity: 1;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+
+@keyframes animClipPathRectFromUp {
+  0% {
+    opacity: 0;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+  }
+
+  100% {
+    opacity: 1;
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   }
 }
@@ -201,19 +215,26 @@ nav[aria-label="Chat history"] li .group > div.absolute {
   background-color: var(--c-surface-2) !important;
 }
 
-.js-has-pseudo [csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15]:not(.does-not-exist):not(does-not-exist), [role="dialog"] [id*="-content-"], .absolute.inset-0 .fixed.inset-0, .js-has-pseudo div[data-radix-popper-content-wrapper]:not([csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2s-2x-3a-2j-36-33-30-2t-1p-31-2t-32-39-2l-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist)), [role="menu"], [role="dialog"] [id*="-content-"], .absolute.inset-0 .fixed.inset-0, [role="menu"] {
+[role="dialog"], .js-has-pseudo div[data-radix-popper-content-wrapper]:not([csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2s-2x-3a-2j-36-33-30-2t-1p-31-2t-32-39-2l-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist)), [role="menu"], [role="dialog"], [role="menu"] {
+  will-change: opacity, clip-path;
+  animation: .2s linear forwards animClipPathRectFromUp;
+}
+
+div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) {
+  will-change: opacity, clip-path;
+  animation: .2s linear forwards animClipPathRectFromUp;
+}
+
+.js-has-pseudo [csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15]:not(.does-not-exist):not(does-not-exist), [role="dialog"] [id*="-content-"], [role="dialog"] [id*="-content-"] {
   will-change: opacity;
-  animation: .3s linear forwards animFadeIn;
+  animation: .2s linear forwards animFadeIn;
+  animation: animFadeIn var(--anim-duration, .2s) linear forwards;
 }
 
 div[data-radix-popper-content-wrapper]:has([role="tooltip"]) {
   will-change: opacity;
-  animation: .3s linear forwards animFadeIn;
-}
-
-div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])) {
-  will-change: opacity;
-  animation: .3s linear forwards animFadeIn;
+  animation: .2s linear forwards animFadeIn;
+  animation: animFadeIn var(--anim-duration, .2s) linear forwards;
 }
 
 [role="dialog"] table tbody td:first-child a, .prose a {
@@ -383,7 +404,7 @@ code.hljs {
 }
 
 [role="menu"] [role="menuitem"] {
-  transition: all .3s ease-in-out;
+  transition: background-color .3s ease-in-out, color .3s ease-in-out;
   padding: .9rem 1rem !important;
   padding: var(--p-contextmenu-item) !important;
   border-radius: .9rem !important;

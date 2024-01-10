@@ -2,7 +2,16 @@
 .absolute.inset-0 .fixed.inset-0 {
 	background-color: var(--c-bg-modal) !important;
 	backdrop-filter: blur(var(--blur-modal)) !important;
-	@extend %animFadeIn;
+	// --anim-duration: 0.2s;
+	// @extend %animFadeIn;
+
+	// &[data-state='open'] {
+	// 	@extend %animFadeIn;
+	// }
+	// &[data-state='closed'] {
+	// 	@extend %animFadeOut;
+	// }
+	// @extend %animFadeInOutDataState;
 }
 
 /* ___ DIALOG - Dialog Settings  */
@@ -12,6 +21,7 @@
 	border-radius: var(--br-dialog) !important;
 	box-shadow: var(--box-shadow);
 	// @extend %animFadeIn;
+	@extend %animClipPathRectFromUp;
 
 	.border-token-border-light,
 	.border-white,

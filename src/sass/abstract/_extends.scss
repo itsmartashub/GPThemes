@@ -10,19 +10,32 @@
 	padding-left: 0.5rem;
 }
 
-%will_change_cp {
-	will-change: clip-path;
-}
-
 %animClipPathCircle {
 	will-change: opacity, clip-path;
 	animation: animClipPathCircle 0.2s linear forwards;
 }
+%animClipPathRectFromUp {
+	will-change: opacity, clip-path;
+	animation: animClipPathRectFromUp 0.2s linear forwards;
+}
 %animClipPathRectFromDown {
-	@extend %will_change_cp;
+	will-change: opacity, clip-path;
 	animation: animClipPathRectFromDown 0.2s linear forwards;
 }
 %animFadeIn {
 	will-change: opacity;
-	animation: animFadeIn 0.3s linear forwards;
+	animation: animFadeIn var(--anim-duration, 0.2s) linear forwards;
+}
+%animFadeOut {
+	will-change: opacity;
+	animation: animFade var(--anim-duration, 0.4s) linear reverse;
+}
+
+%animFadeInOutDataState {
+	&[data-state='open'] {
+		@extend %animFadeIn;
+	}
+	&[data-state='closed'] {
+		@extend %animFadeOut;
+	}
 }
