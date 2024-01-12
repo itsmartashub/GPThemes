@@ -1,0 +1,44 @@
+/* ==== TYPOGRAPHY COLORS */
+
+/*
+	- Obrati paznju na TOOLTIP clr i accent btns sa svg!!!
+ 	- Have to add .toast-root .text-white[role='alert'] into :not() but it somehow affects tooltip txt color, wtf. And I cant investigate tooltip bcs it goes hidden when it is shown only on javascript mouseover.
+*/
+[class*='text-gray-']:not(.text-gray-400, .text-gray-500, .text-gray-600),
+[class*='text-white']:not(.btn-primary .text-white, .bg-green-600, svg) {
+	color: var(--c-txt) !important;
+}
+
+/* 
+ - Is this conversation helpful so far? 👍👎
+ - tg500 je recimo btn svg u "Archived/Shared Links" popup
+ - tg-400 (dark) tg-600 (light) in "You have no shared links."
+*/
+.text-gray-400,
+.text-gray-600,
+.text-gray-500 {
+	color: var(--c-subtext-2) !important;
+	// color: red !important;
+}
+
+.text-token-text-secondary {
+	color: var(--c-subtext-1) !important;
+	// color: red !important;
+}
+
+/* .text-gizmo-gray-500 is the footer txt in dialog "YOU'RE INVITED TO PLUS" */
+.text-gizmo-gray-500,
+// .text-gray-500,
+.text-gray-100 {
+	color: var(--c-subtext-1) !important;
+}
+
+/* Log out, Delete all conversations, Delete chat */
+.text-red-500 {
+	color: var(--c-btn-danger) !important;
+}
+
+/* Intro page (before login) */
+[class*='text-[#FE7600]'] {
+	color: var(--c-accent);
+}

@@ -1,0 +1,71 @@
+/* === BG COLORS */
+
+/* Textarea msg bg, Chat history & Training checkbox bullet */
+.bg-gray-900,
+.bg-white {
+	background-color: var(--c-surface-1) !important;
+}
+
+// border-gray-200
+/* `❓` btn */
+.bg-gray-50 {
+	background-color: var(--c-surface-2) !important;
+}
+
+/* Line | in "Is this conversation helpful so far?
+👍 👎 | ✖️" */
+.bg-gray-100 {
+	background-color: var(--c-subtext-2) !important;
+}
+/* 
+ - "Was this response better or worse?" el when clicked on regenerate answer btn 
+ - "Delete all shared links" in "Shared liks" dialog
+ - line | between "s this conversation helpful so far? 👍👎" and "x"
+*/
+// .bg-gray-100,
+// [class*=":bg-gray-700"] {
+//     background-color: red !important;
+// }
+
+/* Active link bg in sidebar listitem */
+.bg-token-surface-secondary {
+	--surface-secondary: var(--c-surface-2) !important;
+}
+
+/* Shared chats PAGE - chats container bg */
+[class*='dark:bg-gray-800'] {
+	background-color: var(--c-bg-chats-container) !important;
+}
+
+/* GPTS store PAGE - "Search public GPTs" input bg */
+[class*='dark:bg-gray-700'] {
+	background-color: var(--c-surface-2) !important;
+}
+
+/* GPTS store PAGE - "Search public GPTs" search list item bg on hover, also for items in "Featured" section. Also "Top picks", "DALLE", "writing" etc tags hover states */
+[class*='dark:hover:bg-gray-600'] {
+	&:hover {
+		background-color: var(--c-surface-1) !important;
+	}
+}
+
+/* GPTs store PAGE - "Trending" section items hover state" */
+[class*='dark:hover:bg-gray-700'] {
+	&:hover {
+		background-color: var(--c-surface-2) !important;
+	}
+}
+/* Shared chats PAGE - green button "Upgrade to Plus to create your own GPT" */
+[class*='bg-green-600'] {
+	background-color: var(--c-accent) !important;
+	color: var(--c-on-accent) !important;
+}
+
+/* Like icon in "Provide aditional feedback" dialog when clicked liked answer */
+// .bg-green-100 {}
+
+// TODO Nmg ovo, obrise svugde ovajj black sto je narocito vidljivo za light temu gde je recimo markdown <pre> ili Upgrade btn pa onaj krug ovo svg-a
+// .bg-black,
+// [class*=":bg-black"] {
+//     background-color: var(--c-surface-1) !important;
+// }
