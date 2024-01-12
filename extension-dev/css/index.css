@@ -162,7 +162,7 @@ html.dark {
   }
 }
 
-@keyframes animClipPathCircle {
+@keyframes animFadeInClipPathCircle {
   0% {
     opacity: 0;
     clip-path: circle(0%);
@@ -174,19 +174,7 @@ html.dark {
   }
 }
 
-@keyframes animClipPathRectFromDown {
-  0% {
-    opacity: 0;
-    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
-  }
-
-  100% {
-    opacity: 1;
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-  }
-}
-
-@keyframes animClipPathRectFromUp {
+@keyframes animFadeInClipPath {
   0% {
     opacity: 0;
     clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
@@ -217,12 +205,12 @@ nav[aria-label="Chat history"] li .group > div.absolute {
 
 .js-has-pseudo div[data-radix-popper-content-wrapper]:not([csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2s-2x-3a-2j-36-33-30-2t-1p-31-2t-32-39-2l-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist)):not([csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15]:not(.does-not-exist):not(does-not-exist)), [role="menu"]:not(nav[aria-label="Chat history"] .group[data-headlessui-state] [role="menu"]), [role="menu"]:not(nav[aria-label="Chat history"] .group[data-headlessui-state] [role="menu"]) {
   will-change: opacity, clip-path;
-  animation: .2s linear forwards animClipPathRectFromUp;
+  animation: .2s linear forwards animFadeInClipPath;
 }
 
 div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper]:has(div[role="menu"])):not(div[data-radix-popper-content-wrapper]:has([role="tooltip"])) {
   will-change: opacity, clip-path;
-  animation: .2s linear forwards animClipPathRectFromUp;
+  animation: .2s linear forwards animFadeInClipPath;
 }
 
 .js-has-pseudo [csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15]:not(.does-not-exist):not(does-not-exist), [role="dialog"] [id*="-content-"], [role="dialog"], [role="dialog"] [id*="-content-"], [role="dialog"] {
@@ -346,6 +334,14 @@ input::placeholder, textarea::placeholder {
   background-color: var(--c-bg-chats-container) !important;
 }
 
+[class*="dark:bg-gray-700"] {
+  background-color: var(--c-surface-2) !important;
+}
+
+[class*="dark:hover:bg-gray-600"]:hover {
+  background-color: var(--c-surface-1) !important;
+}
+
 [class*="bg-green-600"] {
   background-color: var(--c-accent) !important;
   color: var(--c-on-accent) !important;
@@ -353,6 +349,10 @@ input::placeholder, textarea::placeholder {
 
 .border-gray-100 {
   border-color: #0000 !important;
+}
+
+.border-gray-200 {
+  border-color: var(--c-surface-2) !important;
 }
 
 .border-gray-300 {
@@ -1037,9 +1037,19 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
 }
 
 main .sticky {
+  -webkit-backdrop-filter: blur(var(--blur-sticky));
+  backdrop-filter: blur(var(--blur-sticky));
   background-color: var(--c-bg-chats-sticky) !important;
-  -webkit-backdrop-filter: blur(var(--blur-sticky)) !important;
-  backdrop-filter: blur(var(--blur-sticky)) !important;
+}
+
+.js-has-pseudo [csstools-has-31-2p-2x-32-w-1a-37-38-2x-2r-2z-3d-1m-2w-2p-37-14-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15]:not(.does-not-exist):not(does-not-exist), main .sticky.top-14, main .sticky.top-14 {
+  --c-bg-chats-sticky: var(--c-bg-chats-container) !important;
+  --blur-sticky: 0 !important;
+}
+
+main .sticky:has([href="/gpts/editor"]) {
+  --c-bg-chats-sticky: var(--c-bg-chats-container) !important;
+  --blur-sticky: 0 !important;
 }
 
 main .sticky [aria-haspopup="menu"]:hover, main .sticky [aria-haspopup="menu"][data-state="open"] {
@@ -1163,7 +1173,7 @@ main div.flex.w-full.items-center > div {
 
 [role="dialog"] {
   box-shadow: var(--box-shadow);
-  --anim-duration: .25s;
+  --anim-duration: .28s;
   padding: 2rem !important;
   padding: var(--p-dialog) !important;
   background-color: var(--c-bg-dialog) !important;
@@ -1813,6 +1823,18 @@ button[id*="headlessui-menu-button"][class*="rounded-full"]:hover {
 
 main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) {
   padding: 1.5rem;
+}
+
+input[placeholder="Search public GPTs"] {
+  outline: none;
+}
+
+input[placeholder="Search public GPTs"]::placeholder {
+  color: var(--c-subtext-1) !important;
+}
+
+input[placeholder="Search public GPTs"] .hidden {
+  background-color: red !important;
 }
 
 pre code.hljs {

@@ -123,6 +123,17 @@ textarea::placeholder {
 	background-color: var(--c-bg-chats-container) !important;
 }
 
+/* GPTS store PAGE - "Search public GPTs" input bg */
+[class*='dark:bg-gray-700'] {
+	background-color: var(--c-surface-2) !important;
+}
+
+/* GPTS store PAGE - "Search public GPTs" search list item bg on hover */
+[class*='dark:hover:bg-gray-600'] {
+	&:hover {
+		background-color: var(--c-surface-1) !important;
+	}
+}
 /* Shared chats PAGE - green button "Upgrade to Plus to create your own GPT" */
 [class*='bg-green-600'] {
 	background-color: var(--c-accent) !important;
@@ -155,9 +166,9 @@ textarea::placeholder {
 	border-color: transparent !important;
 }
 
-// .border-gray-200 {
-// 	border-color: var(--c-bg-textarea) !important;
-// }
+.border-gray-200 {
+	border-color: var(--c-surface-2) !important;
+}
 
 /* Border in inputs in "Upgrade your Plan" dialog */
 .border-gray-300 {
