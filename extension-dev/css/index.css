@@ -1052,6 +1052,10 @@ main .sticky:has([href="/gpts/editor"]) {
   --blur-sticky: 0 !important;
 }
 
+main .sticky.top-14 {
+  padding-bottom: .6rem !important;
+}
+
 main .sticky [aria-haspopup="menu"]:hover, main .sticky [aria-haspopup="menu"][data-state="open"] {
   background-color: var(--c-surface-1) !important;
 }

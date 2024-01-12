@@ -9,9 +9,9 @@ main .sticky {
 		--c-bg-chats-sticky: var(--c-bg-chats-container) !important;
 		--blur-sticky: 0 !important;
 	}
-	/* 	&.top-14 {
-		padding-bottom: 0.5rem !important;
-	} */
+	&.top-14 {
+		padding-bottom: 0.6rem !important;
+	}
 
 	[aria-haspopup='menu']:hover,
 	[aria-haspopup='menu'][data-state='open'] {
