@@ -3,7 +3,7 @@ main .sticky {
 	background-color: var(--c-bg-chats-sticky) !important;
 	backdrop-filter: blur(var(--blur-sticky));
 
-	/*  My GPTs page sticky headers w/ +CREATE btn (.top-0 and .top-14) */
+	/*  "My GPTs" page sticky headers w/ +CREATE btn (.top-0 and .top-14) */
 	&:has([href='/gpts/editor']),
 	&.top-14 {
 		--c-bg-chats-sticky: var(--c-bg-chats-container) !important;
