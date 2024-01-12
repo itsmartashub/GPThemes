@@ -1,5 +1,6 @@
 :root {
   --f-fm: "Inter", sans-serif, Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --fsz-error-404: 3rem;
   --br-chat-bubble: 2.6rem;
   --br-prompt-textarea: 2.2rem;
   --br-btn: .9rem;
@@ -309,6 +310,14 @@ code.hljs {
 
 .shadow-md {
   box-shadow: none;
+}
+
+.next-error-h1 {
+  color: var(--c-accent);
+  font-size: 3rem !important;
+  font-size: var(--fsz-error-404) !important;
+  border-color: currentColor !important;
+  font-weight: 600 !important;
 }
 
 [class*="text-gray-"]:not(.text-gray-100):not(.text-gray-400):not(.text-gray-500):not(.text-gray-600), [class*="text-white"]:not(.btn-primary .text-white):not(.bg-green-600):not(svg) {

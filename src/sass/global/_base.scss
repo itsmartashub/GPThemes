@@ -79,3 +79,11 @@ code.hljs {
 .shadow-md {
 	box-shadow: none;
 }
+
+/* "404 |" in "404 | This page could not be found" */
+.next-error-h1 {
+	color: var(--c-accent);
+	border-color: currentColor !important;
+	font-size: var(--fsz-error-404) !important;
+	font-weight: 600 !important;
+}
