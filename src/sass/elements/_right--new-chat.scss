@@ -1,35 +1,35 @@
 /* === RIGHT - NEW CHAT - 4 BIG BTNS === */
 
 main form .grow {
+	/* recimo gap izmedju new chat example buttons*/
+	.gap-2 {
+		gap: 0.8rem !important;
+	}
 
-    /* recimo gap izmedju new chat example buttons*/
-    .gap-2 {
-        gap: .8rem !important;
-    }
+	.btn {
+		padding: 1.5rem !important;
+		background-color: var(--c-surface-2) !important;
+		color: var(--c-txt) !important;
+		border-radius: var(--br-btn-big) !important;
+		overflow: hidden; // Mora jer kad se hoveruje .btn, onda se  .bg-gradient-to-l radius ne uklapa s ovim, manji je i onda .btn cudno izgleda sa desne strane, ovaj ga overflowuje
 
-    .btn {
-        padding: 1.5rem !important;
-        background-color: var(--c-surface-2) !important;
-        color: var(--c-txt) !important;
-        border-radius: var(--br-btn-big) !important;
-        overflow: hidden; // Mora jer kad se hoveruje .btn, onda se  .bg-gradient-to-l radius ne uklapa s ovim, manji je i onda .btn cudno izgleda sa desne strane, ovaj ga overflowuje
+		/* Gradient bg visible on hover */
+		.bg-gradient-to-l {
+			--gradient-color-from: var(--c-surface-3) !important;
+			// --tw-gradient-from: var(--c-surface-3) var(--tw-gradient-from-position) !important;
 
-        /* Gradient bg visible on hover */
-        .bg-gradient-to-l {
-            --tw-gradient-from: var(--c-surface-3) var(--tw-gradient-from-position);
+			/* Button SVG parent */
+			.bg-token-surface-primary {
+				--surface-secondary: var(--c-surface-2) !important;
+				background-color: var(--c-accent) !important;
+				border-radius: 100vw !important;
+				padding: 0.5rem !important;
 
-            /* Button SVG parent */
-            .bg-token-surface-primary {
-                --surface-secondary: var(--c-surface-2) !important;
-                background-color: var(--c-accent) !important;
-                border-radius: 100vw !important;
-                padding: .5rem !important;
-
-                /* SVG icon*/
-                svg {
-                    color: var(--c-on-accent) !important;
-                }
-            }
-        }
-    }
+				/* SVG icon*/
+				svg {
+					color: var(--c-on-accent) !important;
+				}
+			}
+		}
+	}
 }

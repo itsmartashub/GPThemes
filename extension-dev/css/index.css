@@ -362,9 +362,10 @@ code.hljs {
 }
 
 .bg-gradient-to-l, .bg-gradient-to-r {
-  --tw-gradient-to: transparent var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-  --tw-gradient-from: var(--c-surface-1) var(--tw-gradient-from-position) !important;
+  --gradient-color-from: var(--c-surface-1);
+  --gradient-color-to: transparent;
+  --tw-gradient-to: var(--gradient-color-to) var(--tw-gradient-to-position);
+  --tw-gradient-from: var(--gradient-color-from) var(--tw-gradient-from-position) !important;
 }
 
 .bg-token-surface-secondary {
@@ -996,15 +997,15 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
 }
 
 main form .grow .btn .bg-gradient-to-l, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l, main form .grow button[role="combobox"] .bg-gradient-to-l, main form .grow .btn .bg-gradient-to-l, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l, main form .grow button[role="combobox"] .bg-gradient-to-l {
-  --tw-gradient-from: var(--c-surface-3) var(--tw-gradient-from-position);
+  --gradient-color-from: var(--c-surface-3) !important;
 }
 
 main form .grow [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 .bg-gradient-to-l {
-  --tw-gradient-from: var(--c-surface-3) var(--tw-gradient-from-position);
+  --gradient-color-from: var(--c-surface-3) !important;
 }
 
 main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) form .grow .bg-green-600 .bg-gradient-to-l {
-  --tw-gradient-from: var(--c-surface-3) var(--tw-gradient-from-position);
+  --gradient-color-from: var(--c-surface-3) !important;
 }
 
 main form .grow .btn .bg-gradient-to-l .bg-token-surface-primary, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l .bg-token-surface-primary, main form .grow button[role="combobox"] .bg-gradient-to-l .bg-token-surface-primary, main form .grow .btn .bg-gradient-to-l .bg-token-surface-primary, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l .bg-token-surface-primary, main form .grow button[role="combobox"] .bg-gradient-to-l .bg-token-surface-primary {

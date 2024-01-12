@@ -99,9 +99,11 @@
 
 .bg-gradient-to-l,
 .bg-gradient-to-r {
-	--tw-gradient-from: var(--c-surface-1) var(--tw-gradient-from-position) !important;
-	--tw-gradient-to: transparent var(--tw-gradient-to-position);
-	--tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+	--gradient-color-from: var(--c-surface-1);
+	--gradient-color-to: transparent;
+
+	--tw-gradient-from: var(--gradient-color-from) var(--tw-gradient-from-position) !important;
+	--tw-gradient-to: var(--gradient-color-to) var(--tw-gradient-to-position);
 }
 
 /* Active link bg in sidebar listitem */
