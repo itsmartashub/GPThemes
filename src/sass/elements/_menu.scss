@@ -77,6 +77,7 @@ div[data-radix-popper-content-wrapper] {
 		padding: var(--p-contextmenu-item) !important;
 		height: auto !important;
 		margin-bottom: 4px;
+		overflow: visible !important;
 	}
 
 	/* MODAL - Choose theme context menuitem hover */

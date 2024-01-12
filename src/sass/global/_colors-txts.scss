@@ -3,15 +3,17 @@
 /*
 	- Obrati paznju na TOOLTIP clr i accent btns sa svg!!!
  	- Have to add .toast-root .text-white[role='alert'] into :not() but it somehow affects tooltip txt color, wtf. And I cant investigate tooltip bcs it goes hidden when it is shown only on javascript mouseover.
+
+	- [class*='text-gray-'] utice i na div[data-radix-popper-content-wrapper] tj "Theme" dropdown iteme te ne mogu da se overwrituju tamo u _menu.scss. Zato sam sklonila !important
 */
-[class*='text-gray-']:not(.text-gray-400, .text-gray-500, .text-gray-600),
+[class*='text-gray-']:not(.text-gray-100, .text-gray-400, .text-gray-500, .text-gray-600),
 [class*='text-white']:not(.btn-primary .text-white, .bg-green-600, svg) {
-	color: var(--c-txt) !important;
+	color: var(--c-txt);
 }
 
 /* 
  - Is this conversation helpful so far? 👍👎
- - tg500 je recimo btn svg u "Archived/Shared Links" popup
+ - tg-500 je recimo btn svg u "Archived/Shared Links" popup
  - tg-400 (dark) tg-600 (light) in "You have no shared links."
 */
 .text-gray-400,
@@ -21,19 +23,18 @@
 	// color: red !important;
 }
 
+/* .text-gizmo-gray-500 is the footer txt in dialog "YOU'RE INVITED TO PLUS" */
+.text-gizmo-gray-500,
+.text-gray-100 {
+	color: var(--c-subtext-1) !important;
+}
+
 .text-token-text-secondary {
 	color: var(--c-subtext-1) !important;
 	// color: red !important;
 }
 
-/* .text-gizmo-gray-500 is the footer txt in dialog "YOU'RE INVITED TO PLUS" */
-.text-gizmo-gray-500,
-// .text-gray-500,
-.text-gray-100 {
-	color: var(--c-subtext-1) !important;
-}
-
-/* Log out, Delete all conversations, Delete chat */
+/* "Log out", "Delete all conversations", "Delete chat" */
 .text-red-500 {
 	color: var(--c-btn-danger) !important;
 }

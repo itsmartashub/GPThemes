@@ -311,15 +311,15 @@ code.hljs {
   box-shadow: none;
 }
 
-[class*="text-gray-"]:not(.text-gray-400):not(.text-gray-500):not(.text-gray-600), [class*="text-white"]:not(.btn-primary .text-white):not(.bg-green-600):not(svg) {
-  color: var(--c-txt) !important;
+[class*="text-gray-"]:not(.text-gray-100):not(.text-gray-400):not(.text-gray-500):not(.text-gray-600), [class*="text-white"]:not(.btn-primary .text-white):not(.bg-green-600):not(svg) {
+  color: var(--c-txt);
 }
 
 .text-gray-400, .text-gray-600, .text-gray-500 {
   color: var(--c-subtext-2) !important;
 }
 
-.text-token-text-secondary, .text-gizmo-gray-500, .text-gray-100 {
+.text-gizmo-gray-500, .text-gray-100, .text-token-text-secondary {
   color: var(--c-subtext-1) !important;
 }
 
@@ -451,6 +451,7 @@ div[data-radix-popper-content-wrapper] [data-radix-collection-item] {
   padding: .9rem 1rem !important;
   padding: var(--p-contextmenu-item) !important;
   height: auto !important;
+  overflow: visible !important;
 }
 
 div[data-radix-popper-content-wrapper] [data-radix-collection-item][data-state="unchecked"]:hover {
