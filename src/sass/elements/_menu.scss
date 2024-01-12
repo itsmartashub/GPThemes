@@ -19,6 +19,7 @@
 		border-radius: var(--br-btn) !important;
 		transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
+		/* // TODO dark:hover:bg-white/5   ima vec u globalu. Videti da li obrisati ovah hover i ostaviti onaj tamo samo. Rizicno je malo, sta ako se promeni ta klasa */
 		&:hover {
 			background-color: var(--c-surface-2) !important;
 		}

@@ -1,22 +1,32 @@
 /* === BG COLORS */
 
-/* Textarea msg bg, Chat history & Training checkbox bullet */
+/* 
+- Textarea msg bg. 
+- "Share link to chat" dialog chat min duplicate (.bg-white)
+- Chat history & Training" checkbox bullet
+ */
 .bg-gray-900,
 .bg-white {
 	background-color: var(--c-surface-1) !important;
+	// background-color: red !important;
 }
 
-// border-gray-200
-/* `❓` btn */
-.bg-gray-50 {
+/* 
+// ``` .bg-gray-50
+		- "❓" btn 
+
+// ``` .bg-gray-100
+		- Line | in "Is this conversation helpful so far?
+👍 👎 | ✖️" */
+.bg-gray-50,
+.bg-gray-100 {
 	background-color: var(--c-surface-2) !important;
 }
+// .bg-gray-50 {
+// 	// background-color: var(--c-surface-2) !important;
+// 	background-color: red !important;
+// }
 
-/* Line | in "Is this conversation helpful so far?
-👍 👎 | ✖️" */
-.bg-gray-100 {
-	background-color: var(--c-subtext-2) !important;
-}
 /* 
  - "Was this response better or worse?" el when clicked on regenerate answer btn 
  - "Delete all shared links" in "Shared liks" dialog
@@ -27,25 +37,14 @@
 //     background-color: red !important;
 // }
 
-/* Active link bg in sidebar listitem */
-.bg-token-surface-secondary {
-	--surface-secondary: var(--c-surface-2) !important;
-}
-
-/* Shared chats PAGE - chats container bg */
-[class*='dark:bg-gray-800'] {
-	background-color: var(--c-bg-chats-container) !important;
-}
-
-/* GPTS store PAGE - "Search public GPTs" input bg */
-[class*='dark:bg-gray-700'] {
-	background-color: var(--c-surface-2) !important;
-}
-
-/* GPTS store PAGE - "Search public GPTs" search list item bg on hover, also for items in "Featured" section. Also "Top picks", "DALLE", "writing" etc tags hover states */
+/* hover:bg-gray-100 dark:hover:bg-gray-600 
+	- GPTs Store PAGE - "Featured" section items :hover states
+	- GPTs Store PAGE - "Top picks", "DALLE", "Writing" etc tags :hover states 
+	- GPTs Store PAGE - "Search public GPTs" search list item bg :hover states */
 [class*='dark:hover:bg-gray-600'] {
 	&:hover {
 		background-color: var(--c-surface-1) !important;
+		// background-color: red !important;
 	}
 }
 
@@ -55,6 +54,34 @@
 		background-color: var(--c-surface-2) !important;
 	}
 }
+
+/* [role='menuitem'] :hover state */
+[class*='dark:hover:bg-gray-800'],
+[class*='dark:hover:bg-white/5'] {
+	&:hover {
+		background-color: var(--c-surface-2) !important;
+		// background-color: red !important;
+	}
+}
+
+/* 
+	- GPTS store PAGE - "Search public GPTs" search input bg. Nema klase za light temu te selektujem klasom za darks 
+	- GPTS store PAGE - "Search public GPTs" search list item bg 
+	- GPTs Store PAGE - "Top picks", "DALLE", "Writing" etc tags 
+	- GPTs Store PAGE - "Featured" section items bg
+	- GPTs Store PAGE - Bg for Buttons left and right arrow for "Top picks", "DALLE", "Writing" etc tags on smaller screens  */
+[class*='dark:bg-gray-700'] {
+	background-color: var(--c-surface-2) !important;
+	// background-color: red !important;
+}
+
+/* Textarea in [role="dialog"] */
+// [class*='dark:bg-gray-800'] {
+// background-color: var(--c-surface-3) !important;
+// background-color: red !important;
+// background-color: red !important;
+// }
+
 /* Shared chats PAGE - green button "Upgrade to Plus to create your own GPT" */
 [class*='bg-green-600'] {
 	background-color: var(--c-accent) !important;
@@ -69,3 +96,15 @@
 // [class*=":bg-black"] {
 //     background-color: var(--c-surface-1) !important;
 // }
+
+.bg-gradient-to-l,
+.bg-gradient-to-r {
+	--tw-gradient-from: var(--c-surface-1) var(--tw-gradient-from-position) !important;
+	--tw-gradient-to: transparent var(--tw-gradient-to-position);
+	--tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+/* Active link bg in sidebar listitem */
+.bg-token-surface-secondary {
+	--surface-secondary: var(--c-surface-2) !important;
+}

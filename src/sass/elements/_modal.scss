@@ -102,7 +102,7 @@
 	textarea {
 		border-radius: var(--br-contextmenu) !important;
 		// border-color: transparent !important;
-		background-color: var(--c-surface-3) !important;
+		background-color: var(--c-surface-3) !important; // [class*='dark:bg-gray-800']
 		opacity: 0.7;
 
 		/* Textarea feedback when click on like btn in gpt answers */

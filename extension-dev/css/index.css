@@ -344,23 +344,7 @@ code.hljs {
   background-color: var(--c-surface-1) !important;
 }
 
-.bg-gray-50 {
-  background-color: var(--c-surface-2) !important;
-}
-
-.bg-gray-100 {
-  background-color: var(--c-subtext-2) !important;
-}
-
-.bg-token-surface-secondary {
-  --surface-secondary: var(--c-surface-2) !important;
-}
-
-[class*="dark:bg-gray-800"] {
-  background-color: var(--c-bg-chats-container) !important;
-}
-
-[class*="dark:bg-gray-700"] {
+.bg-gray-50, .bg-gray-100 {
   background-color: var(--c-surface-2) !important;
 }
 
@@ -368,13 +352,23 @@ code.hljs {
   background-color: var(--c-surface-1) !important;
 }
 
-[class*="dark:hover:bg-gray-700"]:hover {
+[class*="dark:hover:bg-gray-700"]:hover, [class*="dark:hover:bg-gray-800"]:hover, [class*="dark:hover:bg-white/5"]:hover, [class*="dark:bg-gray-700"] {
   background-color: var(--c-surface-2) !important;
 }
 
 [class*="bg-green-600"] {
   background-color: var(--c-accent) !important;
   color: var(--c-on-accent) !important;
+}
+
+.bg-gradient-to-l, .bg-gradient-to-r {
+  --tw-gradient-to: transparent var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-from: var(--c-surface-1) var(--tw-gradient-from-position) !important;
+}
+
+.bg-token-surface-secondary {
+  --surface-secondary: var(--c-surface-2) !important;
 }
 
 .border-gray-100 {
