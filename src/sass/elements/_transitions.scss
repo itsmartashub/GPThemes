@@ -250,17 +250,34 @@ button[id*='headlessui-menu-button'][class*='rounded-full'] {
 
 /* GPTs Store page - All the card items */
 main:has(.sticky [href='/gpts/editor']) {
-	/* Sticky header with tags aka "Top Picks", "DALLE", "Writing", etc */
 	.sticky {
+		/* Sticky header with tags aka "Top Picks", "DALLE", "Writing", etc */
 		[class*='md:rounded-none'],
 		[class*='md:rounded-lg'] {
 			transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s $easeInCirc;
 		}
-
+		/* Non-active pill-tag */
 		[class*='md:rounded-lg']:hover {
 			transform: scale(0.955);
 			background-color: var(--c-accent) !important;
 			color: var(--c-on-accent) !important;
+		}
+
+		/* Left/right arrows in tags track */
+		[class*='bg-gradient-to-'] button {
+			transition: transform 0.3s $easeInQuart;
+		}
+		/* Right tags arrow */
+		[class*='bg-gradient-to-l'] button {
+			&:hover {
+				transform: translateX(3px);
+			}
+		}
+		/* Left tags arrow */
+		[class*='bg-gradient-to-r'] button {
+			&:hover {
+				transform: translateX(-3px);
+			}
 		}
 	}
 	/* All the card items in GPTs Store main page */

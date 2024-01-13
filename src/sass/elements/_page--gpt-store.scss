@@ -25,6 +25,14 @@ main:has(.sticky [href='/gpts/editor']) {
 			background-color: hsla(var(--accent-hsl) / 0.2) !important;
 			color: var(--c-accent) !important;
 		}
+
+		/* Left/right arrows in tags track */
+		[class*='bg-gradient-to-'] {
+			button {
+				background-color: var(--c-accent) !important;
+				color: var(--c-on-accent) !important;
+			}
+		}
 	}
 	/* All the card items in GPTs Store main page */
 	.h-fit {
