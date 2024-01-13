@@ -247,3 +247,18 @@ button[id*='headlessui-menu-button'][class*='rounded-full'] {
 		transform: scale(1.06);
 	}
 }
+
+/* GPTs Store page - All the card items */
+main:has(.sticky [href='/gpts/editor']) {
+	/* All the card items in GPTs Store main page */
+	.h-fit {
+		a[href*='/g/g-'] {
+			// border: 1px solid red !important;
+			transition: transform 0.3s $easeInOutSine, background-color 0.3s ease-in-out;
+
+			&:hover {
+				transform: translateY(-3px);
+			}
+		}
+	}
+}

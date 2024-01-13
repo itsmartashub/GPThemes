@@ -1,0 +1,30 @@
+input[placeholder='Search public GPTs'] {
+	outline: none;
+
+	&::placeholder {
+		color: var(--c-subtext-1) !important;
+	}
+}
+
+main:has(.sticky [href='/gpts/editor']) {
+	/* All the card items in GPTs Store main page */
+	.h-fit {
+		// ! moved to _transitions.scss
+		/* a [href*='/g/g-'] {
+			// border: 1px solid red !important;
+			transition: transform 0.3s $easeInOutSine, background-color 0.3s ease-in-out;
+
+			&:hover {
+				transform: translateY(-3px);
+			}
+		} */
+
+		/* "See more" full-width buttons */
+		.btn.w-full {
+			// border: 1px solid red !important;
+			// padding: calc(var(--p-btn) * 1.5) !important;
+			padding: 1.8rem !important;
+			border-radius: calc(var(--br-btn) * 1.2) !important;
+		}
+	}
+}

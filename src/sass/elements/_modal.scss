@@ -32,6 +32,7 @@
 
 	/* In tab dialog part which is changing on tabpanel click (on right side) */
 	[id*='-content-'] {
+		--anim-duration: 0.18s;
 		@extend %animFadeIn;
 	}
 
