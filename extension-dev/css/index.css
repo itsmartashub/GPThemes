@@ -1894,12 +1894,24 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   padding: 1.5rem;
 }
 
-input[placeholder="Search public GPTs"] {
-  outline: none;
+.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-36-33-39-32-2s-2t-2s-19-3c-30]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
+  border-radius: 1.2rem !important;
+  border-radius: var(--br-btn-big) !important;
 }
 
-input[placeholder="Search public GPTs"]::placeholder {
-  color: var(--c-subtext-1) !important;
+main:has(.sticky [href="/gpts/editor"]) .rounded-xl {
+  border-radius: 1.2rem !important;
+  border-radius: var(--br-btn-big) !important;
+}
+
+.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-36-33-39-32-2s-2t-2s-19-30-2v]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
+  border-radius: .9rem !important;
+  border-radius: var(--br-btn) !important;
+}
+
+main:has(.sticky [href="/gpts/editor"]) .rounded-lg {
+  border-radius: .9rem !important;
+  border-radius: var(--br-btn) !important;
 }
 
 .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-2j-2r-30-2p-37-37-16-1p-y-31-2s-1m-36-33-39-32-2s-2t-2s-19-32-33-32-2t-y-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-2j-2r-30-2p-37-37-16-1p-y-31-2s-1m-36-33-39-32-2s-2t-2s-19-30-2v-y-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist), :is(main:has(.sticky [href="/gpts/editor"]) .sticky [class*="md:rounded-none"], main:has(.sticky [href="/gpts/editor"]) .sticky [class*="md:rounded-lg"]) {
@@ -1937,6 +1949,36 @@ main:has(.sticky [href="/gpts/editor"]) .sticky [class*="md:rounded-lg"] {
 main:has(.sticky [href="/gpts/editor"]) .sticky [class*="bg-gradient-to-"] button {
   background-color: var(--c-accent) !important;
   color: var(--c-on-accent) !important;
+}
+
+.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-2x-32-34-39-38-2j-34-30-2p-2r-2t-2w-33-30-2s-2t-36-1p-y-2b-2t-2p-36-2r-2w-w-34-39-2q-30-2x-2r-w-1z-28-2c-37-y-2l]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
+  outline: none;
+}
+
+main:has(.sticky [href="/gpts/editor"]) input[placeholder="Search public GPTs"] {
+  outline: none;
+}
+
+.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-2x-32-34-39-38-2j-34-30-2p-2r-2t-2w-33-30-2s-2t-36-1p-y-2b-2t-2p-36-2r-2w-w-34-39-2q-30-2x-2r-w-1z-28-2c-37-y-2l]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist)::placeholder {
+  color: var(--c-subtext-1) !important;
+}
+
+main:has(.sticky [href="/gpts/editor"]) input[placeholder="Search public GPTs"]::placeholder {
+  color: var(--c-subtext-1) !important;
+}
+
+.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-2j-2x-2s-16-1p-2w-2t-2p-2s-30-2t-37-37-39-2x-19-34-33-34-33-3a-2t-36-19-34-2p-32-2t-30-19-2l]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
+  transform: translateY(-5px);
+  --br-search-query-section: calc(var(--br-btn) * 1.2) !important;
+  border-radius: 0 0 1.08rem 1.08rem !important;
+  border-radius: 0 0 var(--br-search-query-section) var(--br-search-query-section) !important;
+}
+
+main:has(.sticky [href="/gpts/editor"]) [id*="headlessui-popover-panel-"] {
+  transform: translateY(-5px);
+  --br-search-query-section: calc(var(--br-btn) * 1.2) !important;
+  border-radius: 0 0 1.08rem 1.08rem !important;
+  border-radius: 0 0 var(--br-search-query-section) var(--br-search-query-section) !important;
 }
 
 .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-2w-19-2u-2x-38-w-1a-2q-38-32-1a-3b-19-2u-39-30-30]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-2w-19-2u-2x-38-w-2q-39-38-38-33-32-1a-3b-19-2u-39-30-30-2j-36-33-30-2t-1p-2r-33-31-2q-33-2q-33-3c-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-2w-19-2u-2x-38-w-2q-39-38-38-33-32-1a-3b-19-2u-39-30-30-2j-2r-30-2p-37-37-16-1p-y-2q-2v-19-2j-z-1f-1v-1g-1i-1y-1y-2l-w-38-2t-3c-38-19-2j-z-2u-2u-2u-2l-y-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-2w-19-2u-2x-38-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-3b-19-2u-39-30-30-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2w-19-2u-2x-38-w-1a-3b-19-2u-39-30-30-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {

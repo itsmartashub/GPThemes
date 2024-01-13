@@ -1,12 +1,12 @@
-input[placeholder='Search public GPTs'] {
-	outline: none;
-
-	&::placeholder {
-		color: var(--c-subtext-1) !important;
-	}
-}
-
 main:has(.sticky [href='/gpts/editor']) {
+	/* Main Cards (big) */
+	.rounded-xl {
+		border-radius: var(--br-btn-big) !important;
+	}
+	/* Search query list cards. Input search */
+	.rounded-lg {
+		border-radius: var(--br-btn) !important;
+	}
 	/* Sticky header tags aka "Top Picks", "DALLE", "Writing", etc */
 	.sticky {
 		[class*='md:rounded-none'],
@@ -34,6 +34,31 @@ main:has(.sticky [href='/gpts/editor']) {
 			}
 		}
 	}
+
+	/* Input search */
+	input[placeholder='Search public GPTs'] {
+		outline: none;
+
+		&::placeholder {
+			color: var(--c-subtext-1) !important;
+		}
+	}
+
+	/* Section visible on search query */
+	[id*='headlessui-popover-panel-'] {
+		--br-search-query-section: calc(var(--br-btn) * 1.2) !important;
+
+		/* Added to visually remove unstickness search query section from input search */
+		transform: translateY(-5px);
+
+		border-radius: 0 0 var(--br-search-query-section) var(--br-search-query-section) !important;
+
+		/* Search query section items/cards */
+		/* 		[class*='rounded-lg'] {
+			border-radius: var(--br-btn) !important;
+		} */
+	}
+
 	/* All the card items in GPTs Store main page */
 	.h-fit {
 		/* "See more" full-width buttons */
@@ -46,6 +71,7 @@ main:has(.sticky [href='/gpts/editor']) {
 }
 
 /* 
+? Active tag classes ("Top Picks") vs no-active tag classes ("DALLE", "Writing", etc)
 ```border-token-text-primary bg-black text-white dark:bg-gray-100 dark:text-gray-800 md:rounded-none md:border-b-2 md:text-black dark:md:text-white
 cursor-pointer scroll-mx-5 whitespace-nowrap rounded-3xl px-3 py-2 first:ml-4 last:mr-4 md:px-2 md:first:ml-0 md:last:mr-0 border-token-text-primary bg-black text-white dark:bg-gray-100 dark:text-gray-800 md:rounded-none md:border-b-2 md:bg-transparent md:text-black dark:md:bg-transparent dark:md:text-white
 

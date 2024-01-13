@@ -10,6 +10,7 @@
 @import 'global/_colors-txts';
 @import 'global/_colors-bgs';
 @import 'global/_colors-borders';
+@import 'global/_rounded';
 
 @import 'elements/_separators';
 @import 'elements/_menu';
@@ -27,10 +28,8 @@
 @import 'elements/_logo';
 @import 'elements/_accessibility';
 @import 'elements/_transitions';
-@import 'elements/_page--shared-links';
-@import 'elements/_page--gpt-store';
-
-// @import 'elements/_input';
+@import 'pages/_shared-links';
+@import 'pages/_gpt-store';
 
 /* Highlight,js Theme Styles */
 @import 'hljs/_ros-pine-moon'; // TOP, ide uz temu, jedan od favorita
