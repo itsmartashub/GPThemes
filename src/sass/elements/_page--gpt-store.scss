@@ -7,24 +7,43 @@ input[placeholder='Search public GPTs'] {
 }
 
 main:has(.sticky [href='/gpts/editor']) {
+	.sticky {
+		[class*='md:rounded-none'],
+		[class*='md:rounded-lg'] {
+			border-radius: 50vw !important;
+			padding-inline: 1rem !important;
+		}
+		/* Active tag aka "Top Picks" */
+		[class*='md:rounded-none'] {
+			// border: 1px solid red !important;
+			border: none !important;
+			background-color: var(--c-accent) !important;
+			color: var(--c-on-accent) !important;
+			border-radius: 50vw !important;
+		}
+		/* No-active tags aka "DALLE", "Writing", etc */
+		[class*='md:rounded-lg'] {
+			// border: 1px solid greenyellow !important;
+			border-radius: 50vw !important;
+			background-color: hsla(var(--accent-hsl) / 0.2) !important;
+			color: var(--c-accent) !important;
+		}
+	}
 	/* All the card items in GPTs Store main page */
 	.h-fit {
-		// ! moved to _transitions.scss
-		/* a [href*='/g/g-'] {
-			// border: 1px solid red !important;
-			transition: transform 0.3s $easeInOutSine, background-color 0.3s ease-in-out;
-
-			&:hover {
-				transform: translateY(-3px);
-			}
-		} */
-
 		/* "See more" full-width buttons */
 		.btn.w-full {
-			// border: 1px solid red !important;
 			// padding: calc(var(--p-btn) * 1.5) !important;
 			padding: 1.8rem !important;
 			border-radius: calc(var(--br-btn) * 1.2) !important;
 		}
 	}
 }
+
+/* 
+```border-token-text-primary bg-black text-white dark:bg-gray-100 dark:text-gray-800 md:rounded-none md:border-b-2 md:text-black dark:md:text-white
+cursor-pointer scroll-mx-5 whitespace-nowrap rounded-3xl px-3 py-2 first:ml-4 last:mr-4 md:px-2 md:first:ml-0 md:last:mr-0 border-token-text-primary bg-black text-white dark:bg-gray-100 dark:text-gray-800 md:rounded-none md:border-b-2 md:bg-transparent md:text-black dark:md:bg-transparent dark:md:text-white
+
+```bg-gray-50, dark:bg-gray-700 md:rounded-lg md:text-token-text-tertiary md:hover:bg-gray-50 dark:md:hover:bg-gray-700
+cursor-pointer scroll-mx-5 whitespace-nowrap rounded-3xl px-3 py-2 first:ml-4 last:mr-4 md:px-2 md:first:ml-0 md:last:mr-0 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 md:rounded-lg md:bg-transparent md:text-token-text-tertiary md:hover:bg-gray-50 dark:md:bg-transparent dark:md:hover:bg-gray-700
+*/
