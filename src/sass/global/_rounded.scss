@@ -17,14 +17,14 @@
 - Check switch btn
 - Close sidebar btn */
 .rounded-full {
-	@include borderBoxShadow(rgb(2, 0, 139));
+	// @include borderBoxShadow(rgb(2, 0, 139));
 }
 
 /* 
 - GPTs - pill tags in sticky header */
 .rounded-3xl {
 	// border-radius: var(--br-btn-big) !important;
-	@include borderBoxShadow(purple);
+	// @include borderBoxShadow(purple);
 }
 /* 
 - Dialogs
@@ -36,7 +36,7 @@
 - Custom Instructions > "bubble" on right side when textarea focused */
 .rounded-xl {
 	border-radius: var(--br-btn-big) !important;
-	@include borderBoxShadow(red);
+	// @include borderBoxShadow(red);
 }
 
 /* 
@@ -49,7 +49,7 @@
 -  */
 .rounded-lg {
 	border-radius: var(--br-btn) !important;
-	@include borderBoxShadow(orange);
+	// @include borderBoxShadow(orange);
 }
 
 /*
@@ -60,7 +60,7 @@
 - "Was this response better or worse? 👍👎" el when clicked on regenerate answer btn and its inner buttons */
 .rounded-md {
 	border-radius: var(--br-btn) !important;
-	@include borderBoxShadow(yellow);
+	// @include borderBoxShadow(yellow);
 }
 
 /*
@@ -68,7 +68,7 @@
 - menuitems in ChatGPT 3.5 contextmenu and contextmenu in 3dots in sidebar  ("Share", "Rename", "Delete") */
 .rounded {
 	border-radius: var(--br-btn) !important;
-	@include borderBoxShadow(lightgreen);
+	// @include borderBoxShadow(lightgreen);
 }
 
 .rounded-t-md {

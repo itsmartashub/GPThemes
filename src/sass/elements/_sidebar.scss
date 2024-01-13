@@ -96,12 +96,13 @@ nav[aria-label='Chat history'] {
 			--duration-anim: 0.2s;
 			overflow: hidden;
 
-			&:hover {
-				/* Anim long (all actually) txt to scroll left to be shown whole */
-				a[href^='/c/'] > div.relative.grow.overflow-hidden.whitespace-nowrap {
-					animation: animScrollText 3s $easeInOutSine backwards;
-				}
-			}
+			/* TODO mozda dodati opet u buducnosti. Sad nema poente, jer text parent ima overflow hidden i isece citav text, a ova animacija ga svakako opet samo prikaze onoliki koliki je. Ako stavim overlow: visible na hover, animacija je razlicito primenjena na svaki element, posto je width za svaki eelement razlicit u zavisnosti od duzine texta, i animacija ne moze sa istim durationom da bude ista, a sadrzaj treba mnogo vise da se skroluje. A ne zelim jos da koristim javascript za fetchvanje width-a svakog elementa posebno i onda posebni duration za svaki element u zavisnosti od duzine texta. A i preopteretila bi se extenzija da lupujem kroz svaki element, citam podatke i dodajem animaciju, samo zarad tog efekta. Nije vredno */
+			// &:hover {
+			// 	/* Anim long (all actually) txt to scroll left to be shown whole */
+			// 	a[href^='/c/'] > div.relative.grow.overflow-hidden.whitespace-nowrap {
+			// 		animation: animScrollText 3s $easeInOutSine backwards;
+			// 	}
+			// }
 
 			/* 3dots btn */
 			button {

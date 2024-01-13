@@ -397,42 +397,14 @@ html.light [class*=":border-white/10"] {
   border-color: var(--c-border) !important;
 }
 
-.rounded-full {
-  border: 2px solid #02008b !important;
-  box-shadow: 0 0 0 2px #02008b !important;
-}
-
-.rounded-3xl {
-  border: 2px solid purple !important;
-  box-shadow: 0 0 0 2px purple !important;
-}
-
 .rounded-xl {
   border-radius: 1.2rem !important;
   border-radius: var(--br-btn-big) !important;
-  border: 2px solid red !important;
-  box-shadow: 0 0 0 2px red !important;
 }
 
-.rounded-lg {
+.rounded-lg, .rounded-md, .rounded {
   border-radius: .909091rem !important;
   border-radius: var(--br-btn) !important;
-  border: 2px solid orange !important;
-  box-shadow: 0 0 0 2px orange !important;
-}
-
-.rounded-md {
-  border-radius: .909091rem !important;
-  border-radius: var(--br-btn) !important;
-  border: 2px solid #ff0 !important;
-  box-shadow: 0 0 0 2px #ff0 !important;
-}
-
-.rounded {
-  border-radius: .909091rem !important;
-  border-radius: var(--br-btn) !important;
-  border: 2px solid #90ee90 !important;
-  box-shadow: 0 0 0 2px #90ee90 !important;
 }
 
 .rounded-t-md {
@@ -644,10 +616,6 @@ nav[aria-label="Chat history"] li .group {
   --duration-trans: .3s;
   --duration-anim: .2s;
   overflow: hidden;
-}
-
-nav[aria-label="Chat history"] li .group:hover a[href^="/c/"] > div.relative.grow.overflow-hidden.whitespace-nowrap {
-  animation: 3s cubic-bezier(.445, .05, .55, .95) backwards animScrollText;
 }
 
 nav[aria-label="Chat history"] li .group button {
