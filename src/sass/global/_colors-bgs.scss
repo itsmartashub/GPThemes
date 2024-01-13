@@ -110,3 +110,37 @@
 .bg-token-surface-secondary {
 	--surface-secondary: var(--c-surface-2) !important;
 }
+
+/* 
+- Tabs in Settings
+- Dialogs
+- Table <thead> els
+- Share Link > Mini chat conversation
+- Context menu items in Share Link > Mini chat conversation
+- Context menu items in Settings > Theme ddl and Theme
+- Sticky header 
+- Prompt textarea
+- Circled picture in gpt logo - NEWCHAT
+- Scrolldown btn
+ */
+[class*='bg-white'] {
+	// background-color: var(--c-surface-2) !important;
+	@include borderBoxShadow(red);
+	background-color: red;
+}
+
+/* 
+- Sidebar
+- Sidebar sticky behind NEWCHAT btn
+- Sidebar "Today", "Yesterday"... time headings
+- GPTs - active pill ("Top Picks")
+- Tooltip
+- ChatGPT 3.5 btn in sticky header
+- Context menu items in 3dots
+- Context menu items in ChatGPT 3.5
+- Markdown <pre> */
+[class*='bg-black'] {
+	background-color: var(--c-surface-1);
+	@include borderBoxShadow(lightgreen);
+	background-color: lightgreen;
+}

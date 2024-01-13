@@ -1,40 +1,23 @@
-/* === TOOLTIPS text color === */
-/* html.light div[data-radix-popper-content-wrapper]:has([role="tooltip"]) span {
-        color: var(--c-txt) !important;
+/* === TOOLTIPS arrow div bg color === */
+div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
+	@extend %animFadeIn;
+
+	/* Tooltip and triangle bg */
+	.bg-black {
+		background-color: var(--c-bg-tooltip) !important;
+		padding: var(--p-tooltips) !important;
+		box-shadow: var(--box-shadow-contextmenu) !important;
+	}
 }
-html.dark div[data-radix-popper-content-wrapper]:has([role="tooltip"]) span {
-    color: var(--c-on-accent) !important;
-} */
+
+/* === TOOLTIPS text color === */
 html.light div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
 	[class*='text-white'] {
 		color: var(--c-txt) !important;
 	}
 }
-
 html.dark div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
 	[class*='text-white'] {
 		color: var(--c-on-accent) !important;
-	}
-}
-
-/* === TOOLTIPS arrow div bg color === */
-div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
-	@extend %animFadeIn;
-
-	/* Tooltip body */
-	& > * {
-		// border-radius: var(--br-tooltips) !important;
-		padding: var(--p-tooltips) !important;
-
-		// [class*='text-white'] {
-		// 	color: var(--c-on-accent) !important;
-		// }
-	}
-
-	/* Small triangle */
-	div {
-		background-color: var(--c-bg-tooltip) !important;
-		box-shadow: var(--box-shadow-contextmenu) !important;
-		backdrop-filter: blur(var(--blur-contextmenu)) !important;
 	}
 }

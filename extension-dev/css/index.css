@@ -150,20 +150,6 @@ html.dark {
   --gray-500: var(--c-txt) !important;
 }
 
-@keyframes animScrollText {
-  0% {
-    transform: translateX(0);
-  }
-
-  70% {
-    transform: translateX(-26%);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-}
-
 @keyframes animFadeInClipPathCircle {
   0% {
     opacity: 0;
@@ -373,6 +359,19 @@ code.hljs {
   --surface-secondary: var(--c-surface-2) !important;
 }
 
+[class*="bg-white"] {
+  background-color: red;
+  border: 2px solid red !important;
+  box-shadow: 0 0 0 2px red !important;
+}
+
+[class*="bg-black"] {
+  background-color: var(--c-surface-1);
+  background-color: #90ee90;
+  border: 2px solid #90ee90 !important;
+  box-shadow: 0 0 0 2px #90ee90 !important;
+}
+
 .border-gray-100 {
   border-color: #0000 !important;
 }
@@ -432,6 +431,7 @@ html.light [class*=":border-white/10"] {
   padding: .8rem !important;
   padding: var(--p-contextmenu) !important;
   box-shadow: var(--box-shadow-contextmenu) !important;
+  border: none !important;
 }
 
 [role="menu"] [role="menuitem"] {
@@ -624,10 +624,6 @@ nav[aria-label="Chat history"] li .group button {
 
 nav[aria-label="Chat history"] li .group span button {
   color: var(--c-subtext-1) !important;
-}
-
-nav[aria-label="Chat history"] li .group a[href^="/c/"] > div.relative.grow.overflow-hidden.whitespace-nowrap {
-  will-change: transform;
 }
 
 nav[aria-label="Chat history"] li .group a[href^="/c/"] .bg-gradient-to-l {
@@ -832,10 +828,15 @@ main [data-testid^="conversation-turn-"] .group div[class*="lg:w-[calc(100%-115p
 }
 
 main [data-testid^="conversation-turn-"] .group .bg-gray-100, main [data-testid^="conversation-turn-"] .group [class*=":bg-gray-700"] {
+  border: 1px solid var(--c-border);
   border-radius: 1.27273rem;
   border-radius: var(--br-contextmenu);
   color: var(--c-subtext-2) !important;
   background-color: #0000 !important;
+}
+
+main [data-testid^="conversation-turn-"] .group .bg-gray-100 svg.rounded-full, main [data-testid^="conversation-turn-"] .group [class*=":bg-gray-700"] svg.rounded-full {
+  border: 1px solid var(--avatar-color);
 }
 
 main [data-testid^="conversation-turn-"] .group .bg-gray-100 button[title], main [data-testid^="conversation-turn-"] .group [class*=":bg-gray-700"] button[title] {
@@ -1510,6 +1511,20 @@ button[id*="headlessui-menu-button"][class*="bg-gray-50"] {
   border: none !important;
 }
 
+.js-has-pseudo [csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15-w-1a-2q-2v-19-2q-30-2p-2r-2z]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
+  background-color: var(--c-bg-tooltip) !important;
+  padding: .2rem !important;
+  padding: var(--p-tooltips) !important;
+  box-shadow: var(--box-shadow-contextmenu) !important;
+}
+
+div[data-radix-popper-content-wrapper]:has([role="tooltip"]) .bg-black {
+  background-color: var(--c-bg-tooltip) !important;
+  padding: .2rem !important;
+  padding: var(--p-tooltips) !important;
+  box-shadow: var(--box-shadow-contextmenu) !important;
+}
+
 .js-has-pseudo [csstools-has-2w-38-31-30-1a-30-2x-2v-2w-38-w-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15-w-2j-2r-30-2p-37-37-16-1p-38-2t-3c-38-19-3b-2w-2x-38-2t-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
   color: var(--c-txt) !important;
 }
@@ -1524,30 +1539,6 @@ html.light div[data-radix-popper-content-wrapper]:has([role="tooltip"]) [class*=
 
 html.dark div[data-radix-popper-content-wrapper]:has([role="tooltip"]) [class*="text-white"] {
   color: var(--c-on-accent) !important;
-}
-
-.js-has-pseudo [csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15-w-1q-w-16]:not(.does-not-exist):not(does-not-exist) {
-  padding: .2rem !important;
-  padding: var(--p-tooltips) !important;
-}
-
-div[data-radix-popper-content-wrapper]:has([role="tooltip"]) > * {
-  padding: .2rem !important;
-  padding: var(--p-tooltips) !important;
-}
-
-.js-has-pseudo [csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15-w-2s-2x-3a]:not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
-  background-color: var(--c-bg-tooltip) !important;
-  box-shadow: var(--box-shadow-contextmenu) !important;
-  -webkit-backdrop-filter: blur(var(--blur-contextmenu)) !important;
-  backdrop-filter: blur(var(--blur-contextmenu)) !important;
-}
-
-div[data-radix-popper-content-wrapper]:has([role="tooltip"]) div {
-  background-color: var(--c-bg-tooltip) !important;
-  box-shadow: var(--box-shadow-contextmenu) !important;
-  -webkit-backdrop-filter: blur(var(--blur-contextmenu)) !important;
-  backdrop-filter: blur(var(--blur-contextmenu)) !important;
 }
 
 .js-has-pseudo [csstools-has-1a-2v-2x-3e-31-33-19-37-2w-2p-2s-33-3b-19-37-38-36-33-2z-2t-1a-2w-19-2u-39-30-30-1m-2w-2p-37-14-37-3a-2v-15]:not(.does-not-exist):not(does-not-exist) {

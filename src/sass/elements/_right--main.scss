@@ -50,16 +50,20 @@ main [data-testid^='conversation-turn-'] {
 		[class*=':bg-gray-700'] {
 			background-color: transparent !important;
 			color: var(--c-subtext-2) !important;
-			// border: 1px solid var(--c-border);
+			border: 1px solid var(--c-border);
 			border-radius: var(--br-contextmenu);
 
+			/* "Same" svg, fix white border */
+			svg.rounded-full {
+				border: 1px solid var(--avatar-color);
+			}
 			/* 👍👎 */
 			button[title] {
 				border-radius: var(--br-btn) !important;
 				border: 1px solid transparent;
 				transition: transform 0.2s $easeInOutSine;
 
-				/* Better, Worse, Same */
+				/* "Better", "Worse", "Same" */
 				span {
 					transition: color 0.2s $easeInOutSine;
 					color: var(--c-subtext-2) !important;
