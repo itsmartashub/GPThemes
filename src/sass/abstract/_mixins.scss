@@ -1,0 +1,4 @@
+@mixin borderBoxShadow($color) {
+	border: 2px solid $color !important;
+	box-shadow: 0px 0px 0px 2px $color !important;
+}

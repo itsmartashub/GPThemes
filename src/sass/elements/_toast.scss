@@ -2,13 +2,14 @@
 .toast-root {
 	margin-top: -0.4rem !important;
 
-	/* "Copied your User ID to clipboard" - clicked on 'youremail@example.com' in context menu on ? fixed button in bottom right.
-    Also alert shown on "ℹ️ Unable to load conversations j10898d8ds8a-dsa689d6as9-s68d7a-j10898d8ds8a */
+	/* 
+	- "Copied your User ID to clipboard" - clicked on 'youremail@example.com' in context menu on ? fixed button in bottom right.
+	- Alert shown on "ℹ️ Unable to load conversations j10898d8ds8a-dsa689d6as9-s68d7a-j10898d8ds8a */
 	[role='alert'] {
 		background-color: var(--c-accent) !important;
 		color: var(--c-on-accent) !important;
 		padding: var(--p-btn) !important;
-		border-radius: var(--br-btn) !important;
+		border-radius: var(--br-btn) !important; // TODO obrisati ovo ako ostavim u globalu .rounded-lg onaj
 		border: none !important;
 	}
 }

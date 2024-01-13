@@ -1,14 +1,15 @@
 :root {
   --f-fm: "Inter", sans-serif, Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   --fsz-error-404: 3rem;
-  --br-chat-bubble: 2.6rem;
-  --br-prompt-textarea: 2.2rem;
-  --br-btn: .9rem;
-  --br-btn-big: 1.2rem;
+  --br: 1rem;
+  --br-chat-bubble: calc(var(--br) * 2.55);
+  --br-prompt-textarea: calc(var(--br) * 2.25);
+  --br-btn: calc(var(--br) / 1.1);
+  --br-btn-big: calc(var(--br) * 1.2);
   --br-nav-a: var(--br-btn);
-  --br-dialog: 2.5rem;
-  --br-contextmenu: 1.5rem;
-  --br-pre: 1.5rem;
+  --br-dialog: calc(var(--br) * 2.5);
+  --br-contextmenu: calc(var(--br-btn) * 1.4);
+  --br-pre: calc(var(--br) * 1.5);
   --br-tooltips: var(--br-btn);
   --p-chat-bubble: 1.8rem;
   --p-contextmenu: .8rem;
@@ -304,7 +305,7 @@ code.hljs {
 }
 
 .rounded-md {
-  border-radius: .9rem;
+  border-radius: .909091rem;
   border-radius: var(--br-btn);
 }
 
@@ -392,25 +393,80 @@ html.dark [class*=":border-white/10"] {
   border-color: var(--c-border-accent) !important;
 }
 
-html.light [class*=":border-white/10"], [role="separator"] {
+html.light [class*=":border-white/10"] {
+  border-color: var(--c-border) !important;
+}
+
+.rounded-full {
+  border: 2px solid #02008b !important;
+  box-shadow: 0 0 0 2px #02008b !important;
+}
+
+.rounded-3xl {
+  border: 2px solid purple !important;
+  box-shadow: 0 0 0 2px purple !important;
+}
+
+.rounded-xl {
+  border-radius: 1.2rem !important;
+  border-radius: var(--br-btn-big) !important;
+  border: 2px solid red !important;
+  box-shadow: 0 0 0 2px red !important;
+}
+
+.rounded-lg {
+  border-radius: .909091rem !important;
+  border-radius: var(--br-btn) !important;
+  border: 2px solid orange !important;
+  box-shadow: 0 0 0 2px orange !important;
+}
+
+.rounded-md {
+  border-radius: .909091rem !important;
+  border-radius: var(--br-btn) !important;
+  border: 2px solid #ff0 !important;
+  box-shadow: 0 0 0 2px #ff0 !important;
+}
+
+.rounded {
+  border-radius: .909091rem !important;
+  border-radius: var(--br-btn) !important;
+  border: 2px solid #90ee90 !important;
+  box-shadow: 0 0 0 2px #90ee90 !important;
+}
+
+.rounded-t-md {
+  border-top-left-radius: .909091rem !important;
+  border-top-left-radius: var(--br-btn) !important;
+  border-top-right-radius: .909091rem !important;
+  border-top-right-radius: var(--br-btn) !important;
+}
+
+.rounded-b-md {
+  border-bottom-left-radius: .909091rem !important;
+  border-bottom-left-radius: var(--br-btn) !important;
+  border-bottom-right-radius: .909091rem !important;
+  border-bottom-right-radius: var(--br-btn) !important;
+}
+
+[role="separator"] {
   border-color: var(--c-border) !important;
 }
 
 [role="menu"] {
   background-color: var(--c-bg-contextmenu) !important;
-  border-radius: 1.5rem !important;
+  border-radius: 1.27273rem !important;
   border-radius: var(--br-contextmenu) !important;
   padding: .8rem !important;
   padding: var(--p-contextmenu) !important;
   box-shadow: var(--box-shadow-contextmenu) !important;
-  border: none !important;
 }
 
 [role="menu"] [role="menuitem"] {
   transition: background-color .3s ease-in-out, color .3s ease-in-out;
   padding: .9rem 1rem !important;
   padding: var(--p-contextmenu-item) !important;
-  border-radius: .9rem !important;
+  border-radius: .909091rem !important;
   border-radius: var(--br-btn) !important;
 }
 
@@ -443,13 +499,13 @@ div[data-radix-popper-content-wrapper] .bg-white {
   background-color: var(--c-bg-contextmenu) !important;
   padding: .8rem !important;
   padding: var(--p-contextmenu) !important;
-  border-radius: 1.5rem !important;
+  border-radius: 1.27273rem !important;
   border-radius: var(--br-contextmenu) !important;
   box-shadow: var(--box-shadow-contextmenu) !important;
 }
 
 div[data-radix-popper-content-wrapper] [data-radix-collection-item] {
-  border-radius: .9rem;
+  border-radius: .909091rem;
   border-radius: var(--br-btn);
   margin-bottom: 4px;
   padding: .9rem 1rem !important;
@@ -559,7 +615,7 @@ nav[aria-label="Chat history"] a {
   padding: var(--p-sidebar-nav-a) !important;
   font-family: Inter, sans-serif, Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji !important;
   font-family: var(--f-fm) !important;
-  border-radius: .9rem !important;
+  border-radius: .909091rem !important;
   border-radius: var(--br-nav-a) !important;
 }
 
@@ -616,7 +672,7 @@ nav[aria-label="Chat history"] li .group .bg-token-surface-tertiary {
   color: var(--c-txt) !important;
   background-color: var(--c-surface-3) !important;
   border: 1px solid var(--c-border) !important;
-  border-radius: .9rem !important;
+  border-radius: .909091rem !important;
   border-radius: var(--br-nav-a) !important;
   left: 0 !important;
   right: 0 !important;
@@ -631,7 +687,7 @@ nav[aria-label="Chat history"] li .group .bg-token-surface-tertiary input {
 }
 
 nav[aria-label="Chat history"] .group[data-headlessui-state] button[aria-haspopup="true"] {
-  border-radius: .9rem;
+  border-radius: .909091rem;
   border-radius: var(--br-nav-a);
   margin-top: 1rem;
 }
@@ -650,7 +706,7 @@ nav[aria-label="Chat history"] .group[data-headlessui-state] [role="menu"] [role
 }
 
 nav[aria-label="Chat history"] .rounded-lg {
-  border-radius: .9rem !important;
+  border-radius: .909091rem !important;
   border-radius: var(--br-nav-a) !important;
 }
 
@@ -697,7 +753,7 @@ nav[aria-label="Chat history"] .rounded-lg {
 
 .prose table {
   overflow: hidden;
-  border-radius: .9rem !important;
+  border-radius: .909091rem !important;
   border-radius: var(--br-btn) !important;
 }
 
@@ -734,25 +790,6 @@ pre {
   margin: var(--my-pre) auto !important;
 }
 
-pre .bg-black.rounded-md {
-  border-radius: .9rem !important;
-  border-radius: var(--br-btn) !important;
-}
-
-.js-has-pseudo [csstools-has-34-36-2t-w-1a-2q-2v-19-2q-30-2p-2r-2z-w-1q-w-2s-2x-3a-1m-2w-2p-37-14-1q-w-37-34-2p-32-15-w-1a-36-33-39-32-2s-2t-2s-19-38-19-31-2s]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
-  border-top-left-radius: .9rem !important;
-  border-top-left-radius: var(--br-btn) !important;
-  border-top-right-radius: .9rem !important;
-  border-top-right-radius: var(--br-btn) !important;
-}
-
-pre .bg-black > div:has( > span) .rounded-t-md {
-  border-top-left-radius: .9rem !important;
-  border-top-left-radius: var(--br-btn) !important;
-  border-top-right-radius: .9rem !important;
-  border-top-right-radius: var(--br-btn) !important;
-}
-
 .js-has-pseudo [csstools-has-34-36-2t-w-2s-2x-3a-1m-2w-2p-37-14-2q-39-38-38-33-32-15-w-37-34-2p-32]:not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
   color: var(--c-accent-light) !important;
 }
@@ -765,18 +802,20 @@ pre div:has(button) span {
   background-color: var(--c-bg-pre-header-btn);
   padding: .77rem;
   padding: var(--p-btn);
-  border-radius: 10px;
   text-transform: uppercase !important;
   color: var(--c-on-accent) !important;
+  border-radius: .909091rem !important;
+  border-radius: var(--br-btn) !important;
 }
 
 pre button:has(svg) {
   background-color: var(--c-bg-pre-header-btn);
   padding: .77rem;
   padding: var(--p-btn);
-  border-radius: 10px;
   text-transform: uppercase !important;
   color: var(--c-on-accent) !important;
+  border-radius: .909091rem !important;
+  border-radius: var(--br-btn) !important;
 }
 
 .js-has-pseudo [csstools-has-34-36-2t-w-2q-39-38-38-33-32-1m-2w-2p-37-14-37-3a-2v-15-w-37-3a-2v]:not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
@@ -807,7 +846,7 @@ main [data-testid^="conversation-turn-"] .group {
   letter-spacing: .01875rem;
   padding: 2.34rem 1.8rem 1.8rem !important;
   padding: calc(var(--p-chat-bubble) * 1.3) var(--p-chat-bubble) var(--p-chat-bubble) var(--p-chat-bubble) !important;
-  border-radius: 2.6rem !important;
+  border-radius: 2.55rem !important;
   border-radius: var(--br-chat-bubble) !important;
   line-height: 1.8 !important;
 }
@@ -825,8 +864,7 @@ main [data-testid^="conversation-turn-"] .group div[class*="lg:w-[calc(100%-115p
 }
 
 main [data-testid^="conversation-turn-"] .group .bg-gray-100, main [data-testid^="conversation-turn-"] .group [class*=":bg-gray-700"] {
-  border: 1px solid var(--c-border);
-  border-radius: 1.5rem;
+  border-radius: 1.27273rem;
   border-radius: var(--br-contextmenu);
   color: var(--c-subtext-2) !important;
   background-color: #0000 !important;
@@ -834,12 +872,13 @@ main [data-testid^="conversation-turn-"] .group .bg-gray-100, main [data-testid^
 
 main [data-testid^="conversation-turn-"] .group .bg-gray-100 button[title], main [data-testid^="conversation-turn-"] .group [class*=":bg-gray-700"] button[title] {
   border: 1px solid #0000;
-  transition: transform .2s ease-in-out;
-  border-radius: .9rem !important;
+  transition: transform .2s cubic-bezier(.445, .05, .55, .95);
+  border-radius: .909091rem !important;
   border-radius: var(--br-btn) !important;
 }
 
 main [data-testid^="conversation-turn-"] .group .bg-gray-100 button[title] span, main [data-testid^="conversation-turn-"] .group [class*=":bg-gray-700"] button[title] span {
+  transition: color .2s cubic-bezier(.445, .05, .55, .95);
   color: var(--c-subtext-2) !important;
 }
 
@@ -1066,15 +1105,15 @@ main .sticky [aria-haspopup="menu"]:hover, main .sticky [aria-haspopup="menu"][d
 }
 
 main .sticky .btn, .js-has-pseudo [csstools-has-31-2p-2x-32-w-1a-37-38-2x-2r-2z-3d-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), main .sticky button[class*="bg-[#3C46FF] text-[#fff]"], main .sticky button[role="combobox"], main .sticky .btn, main .sticky button[class*="bg-[#3C46FF] text-[#fff]"], main .sticky button[role="combobox"] {
-  border-radius: 100vw !important;
+  border-radius: 50vw !important;
 }
 
 main .sticky [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 {
-  border-radius: 100vw !important;
+  border-radius: 50vw !important;
 }
 
 main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .sticky .bg-green-600 {
-  border-radius: 100vw !important;
+  border-radius: 50vw !important;
 }
 
 main .sticky .btn svg, .js-has-pseudo [csstools-has-31-2p-2x-32-w-1a-37-38-2x-2r-2z-3d-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main .sticky button[class*="bg-[#3C46FF] text-[#fff]"] svg, main .sticky button[role="combobox"] svg, main .sticky .btn svg, main .sticky button[class*="bg-[#3C46FF] text-[#fff]"] svg, main .sticky button[role="combobox"] svg {
@@ -1094,7 +1133,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   transition: background-color .3s ease-in-out;
   padding: .7rem !important;
   padding: var(--p-prompt-textarea) !important;
-  border-radius: 2.2rem !important;
+  border-radius: 2.25rem !important;
   border-radius: var(--br-prompt-textarea) !important;
   background-color: #0000 !important;
 }
@@ -1104,7 +1143,7 @@ main form [class*="[&:has(textarea:focus)]"]:has(textarea#prompt-textarea) {
   transition: background-color .3s ease-in-out;
   padding: .7rem !important;
   padding: var(--p-prompt-textarea) !important;
-  border-radius: 2.2rem !important;
+  border-radius: 2.25rem !important;
   border-radius: var(--br-prompt-textarea) !important;
   background-color: #0000 !important;
 }
@@ -1200,8 +1239,6 @@ main div.flex.w-full.items-center > div {
 
 [role="dialog"] [role="tablist"][data-orientation="horizontal"].bg-gray-100 {
   background-color: var(--c-surface-3) !important;
-  border-radius: .9rem !important;
-  border-radius: var(--br-btn) !important;
 }
 
 [role="dialog"] [role="tablist"][data-orientation="horizontal"].bg-gray-100 button[data-state="active"] {
@@ -1242,12 +1279,12 @@ main div.flex.w-full.items-center > div {
 }
 
 .js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-2p-2j-2w-36-2t-2u-1p-y-2w-38-38-34-37-1m-1b-1b-33-34-2t-32-2p-2x-1a-2r-33-31-1b-2t-32-38-2t-36-34-36-2x-37-2t-y-2l-15-w-1a-36-33-39-32-2s-2t-2s-19-31-2s]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
-  border-radius: 2.6rem !important;
+  border-radius: 2.55rem !important;
   border-radius: var(--br-chat-bubble) !important;
 }
 
 [role="dialog"]:has(a[href="https://openai.com/enterprise"]) .rounded-md {
-  border-radius: 2.6rem !important;
+  border-radius: 2.55rem !important;
   border-radius: var(--br-chat-bubble) !important;
 }
 
@@ -1269,7 +1306,7 @@ main div.flex.w-full.items-center > div {
 
 [role="dialog"] textarea {
   opacity: .7;
-  border-radius: 1.5rem !important;
+  border-radius: 1.27273rem !important;
   border-radius: var(--br-contextmenu) !important;
   background-color: var(--c-surface-3) !important;
 }
@@ -1288,20 +1325,18 @@ main div.flex.w-full.items-center > div {
 }
 
 .js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-31-2p-2x-32-w-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-2p-37-34-2t-2r-38-19-36-2p-38-2x-33-19-3b-36-2p-34-34-2t-36-2l-15-w-1a-3b-19-2u-39-30-30-1a-36-33-39-32-2s-2t-2s-19-30-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
-  border-radius: 2.6rem !important;
+  border-radius: 2.55rem !important;
   border-radius: var(--br-chat-bubble) !important;
   background-color: var(--c-bg-chats-container) !important;
 }
 
 [role="dialog"]:has(main div[data-radix-aspect-ratio-wrapper]) .w-full.rounded-lg {
-  border-radius: 2.6rem !important;
+  border-radius: 2.55rem !important;
   border-radius: var(--br-chat-bubble) !important;
   background-color: var(--c-bg-chats-container) !important;
 }
 
 [role="dialog"] table {
-  border-radius: 1.5rem;
-  border-radius: var(--br-contextmenu);
   padding: .8rem !important;
   padding: var(--p-contextmenu) !important;
 }
@@ -1315,11 +1350,6 @@ main div.flex.w-full.items-center > div {
   padding-top: var(--py-btn) !important;
   padding-bottom: 1rem !important;
   padding-bottom: var(--py-btn) !important;
-}
-
-[role="dialog"] table thead tr {
-  border-radius: .9rem !important;
-  border-radius: var(--br-btn) !important;
 }
 
 [role="dialog"] table thead th {
@@ -1370,7 +1400,7 @@ main div.flex.w-full.items-center > div {
 .btn, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), button[class*="bg-[#3C46FF] text-[#fff]"], button[role="combobox"], .btn, button[class*="bg-[#3C46FF] text-[#fff]"], button[role="combobox"] {
   background-color: var(--c-bg-btn) !important;
   color: var(--c-btn) !important;
-  border-radius: .9rem !important;
+  border-radius: .909091rem !important;
   border-radius: var(--br-btn) !important;
   border: none !important;
 }
@@ -1378,7 +1408,7 @@ main div.flex.w-full.items-center > div {
 main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 {
   background-color: var(--c-bg-btn) !important;
   color: var(--c-btn) !important;
-  border-radius: .9rem !important;
+  border-radius: .909091rem !important;
   border-radius: var(--br-btn) !important;
   border: none !important;
 }
@@ -1448,8 +1478,6 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
 }
 
 [role="tablist"] button {
-  border-radius: .9rem !important;
-  border-radius: var(--br-btn) !important;
   padding: .77rem !important;
   padding: var(--p-btn) !important;
 }
@@ -1509,7 +1537,7 @@ button[id*="headlessui-menu-button"][class*="bg-gray-50"] {
   color: var(--c-on-accent) !important;
   padding: .77rem !important;
   padding: var(--p-btn) !important;
-  border-radius: .9rem !important;
+  border-radius: .909091rem !important;
   border-radius: var(--br-btn) !important;
   border: none !important;
 }
@@ -1531,15 +1559,11 @@ html.dark div[data-radix-popper-content-wrapper]:has([role="tooltip"]) [class*="
 }
 
 .js-has-pseudo [csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15-w-1q-w-16]:not(.does-not-exist):not(does-not-exist) {
-  border-radius: .9rem !important;
-  border-radius: var(--br-tooltips) !important;
   padding: .2rem !important;
   padding: var(--p-tooltips) !important;
 }
 
 div[data-radix-popper-content-wrapper]:has([role="tooltip"]) > * {
-  border-radius: .9rem !important;
-  border-radius: var(--br-tooltips) !important;
   padding: .2rem !important;
   padding: var(--p-tooltips) !important;
 }
@@ -1894,28 +1918,8 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   padding: 1.5rem;
 }
 
-.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-36-33-39-32-2s-2t-2s-19-3c-30]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
-  border-radius: 1.2rem !important;
-  border-radius: var(--br-btn-big) !important;
-}
-
-main:has(.sticky [href="/gpts/editor"]) .rounded-xl {
-  border-radius: 1.2rem !important;
-  border-radius: var(--br-btn-big) !important;
-}
-
-.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-36-33-39-32-2s-2t-2s-19-30-2v]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
-  border-radius: .9rem !important;
-  border-radius: var(--br-btn) !important;
-}
-
-main:has(.sticky [href="/gpts/editor"]) .rounded-lg {
-  border-radius: .9rem !important;
-  border-radius: var(--br-btn) !important;
-}
-
 .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-2j-2r-30-2p-37-37-16-1p-y-31-2s-1m-36-33-39-32-2s-2t-2s-19-32-33-32-2t-y-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-2j-2r-30-2p-37-37-16-1p-y-31-2s-1m-36-33-39-32-2s-2t-2s-19-30-2v-y-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist), :is(main:has(.sticky [href="/gpts/editor"]) .sticky [class*="md:rounded-none"], main:has(.sticky [href="/gpts/editor"]) .sticky [class*="md:rounded-lg"]) {
-  border-radius: 50vw !important;
+  border-radius: 100vw !important;
   padding-inline: 1rem !important;
 }
 
@@ -1970,49 +1974,49 @@ main:has(.sticky [href="/gpts/editor"]) input[placeholder="Search public GPTs"]:
 .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-2j-2x-2s-16-1p-2w-2t-2p-2s-30-2t-37-37-39-2x-19-34-33-34-33-3a-2t-36-19-34-2p-32-2t-30-19-2l]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
   transform: translateY(-5px);
   --br-search-query-section: calc(var(--br-btn) * 1.2) !important;
-  border-radius: 0 0 1.08rem 1.08rem !important;
+  border-radius: 0 0 1.09091rem 1.09091rem !important;
   border-radius: 0 0 var(--br-search-query-section) var(--br-search-query-section) !important;
 }
 
 main:has(.sticky [href="/gpts/editor"]) [id*="headlessui-popover-panel-"] {
   transform: translateY(-5px);
   --br-search-query-section: calc(var(--br-btn) * 1.2) !important;
-  border-radius: 0 0 1.08rem 1.08rem !important;
+  border-radius: 0 0 1.09091rem 1.09091rem !important;
   border-radius: 0 0 var(--br-search-query-section) var(--br-search-query-section) !important;
 }
 
 .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-2w-19-2u-2x-38-w-1a-2q-38-32-1a-3b-19-2u-39-30-30]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-2w-19-2u-2x-38-w-2q-39-38-38-33-32-1a-3b-19-2u-39-30-30-2j-36-33-30-2t-1p-2r-33-31-2q-33-2q-33-3c-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-2w-19-2u-2x-38-w-2q-39-38-38-33-32-1a-3b-19-2u-39-30-30-2j-2r-30-2p-37-37-16-1p-y-2q-2v-19-2j-z-1f-1v-1g-1i-1y-1y-2l-w-38-2t-3c-38-19-2j-z-2u-2u-2u-2l-y-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-2w-19-2u-2x-38-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-3b-19-2u-39-30-30-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2w-19-2u-2x-38-w-1a-3b-19-2u-39-30-30-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
-  border-radius: 1.08rem !important;
+  border-radius: 1.09091rem !important;
   border-radius: calc(var(--br-btn) * 1.2) !important;
   padding: 1.8rem !important;
 }
 
 main:has(.sticky [href="/gpts/editor"]) .h-fit .btn.w-full {
-  border-radius: 1.08rem !important;
+  border-radius: 1.09091rem !important;
   border-radius: calc(var(--br-btn) * 1.2) !important;
   padding: 1.8rem !important;
 }
 
 main:has(.sticky [href="/gpts/editor"]) .h-fit button.w-full[role="combobox"] {
-  border-radius: 1.08rem !important;
+  border-radius: 1.09091rem !important;
   border-radius: calc(var(--br-btn) * 1.2) !important;
   padding: 1.8rem !important;
 }
 
 main:has(.sticky [href="/gpts/editor"]) .h-fit button.w-full[class*="bg-[#3C46FF] text-[#fff]"] {
-  border-radius: 1.08rem !important;
+  border-radius: 1.09091rem !important;
   border-radius: calc(var(--br-btn) * 1.2) !important;
   padding: 1.8rem !important;
 }
 
 main:has(.sticky [href="/gpts/editor"]) .h-fit [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .w-full.bg-green-600 {
-  border-radius: 1.08rem !important;
+  border-radius: 1.09091rem !important;
   border-radius: calc(var(--br-btn) * 1.2) !important;
   padding: 1.8rem !important;
 }
 
 main:has(.sticky [href="/gpts/editor"]) [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .h-fit .w-full.bg-green-600 {
-  border-radius: 1.08rem !important;
+  border-radius: 1.09091rem !important;
   border-radius: calc(var(--br-btn) * 1.2) !important;
   padding: 1.8rem !important;
 }

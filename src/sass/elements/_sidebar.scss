@@ -65,6 +65,7 @@ nav[aria-label='Chat history'] {
 		padding: var(--p-sidebar-nav-a) !important;
 		font-family: var(--f-fm) !important;
 		border-radius: var(--br-nav-a) !important;
+		// border-radius: inherit !important;
 
 		transition: background-color 0.3s ease-in-out;
 
@@ -136,22 +137,9 @@ nav[aria-label='Chat history'] {
 
 				/* 3 dots btn bg-gradient - <div> u <a> i <div> u <button> */
 				.bg-gradient-to-l {
-					// --surface-primary: var(--c-surface-2) !important;
-					// --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position) !important;
-					// color: var(--c-accent) !important;
-					// opacity: 0 !important;
-
 					display: none !important;
 					// border: 2px solid red !important;
 				}
-
-				// /* Gradient */
-				// a[href^="/c/"] .bg-gradient-to-l {
-				//     --tw-gradient-from: var(--c-accent) var(--tw-gradient-from-position);
-				// }
-				// &:hover a[href^="/c/"] .bg-gradient-to-l {
-				//     --tw-gradient-from: var(--surface-primary) var(--tw-gradient-from-position);
-				// }
 			}
 
 			/* 3 dots > "Rename" clicked - style of input parent and input  - this is <div> next to <a> */
@@ -213,7 +201,8 @@ nav[aria-label='Chat history'] {
 		}
 	}
 
-	/*  Border-radius for all elements that have .rounded-lg class in <nav> of sidebar. ALi on zezne border-radiusu i contextmenu u bottom sidebar jer u on ima ovu klasu. Zato sad dodajem <li> */
+	/*  Border-radius for all elements that have .rounded-lg class in <nav> of sidebar. ALi on zezne border-radiusu i contextmenu u bottom sidebar jer i on ima ovu klasu. Zato sad dodajem <li> */
+	// TODO mozda mogu obrisati, ako global ostane ista ova
 	.rounded-lg {
 		border-radius: var(--br-nav-a) !important;
 	}

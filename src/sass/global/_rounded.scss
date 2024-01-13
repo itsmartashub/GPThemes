@@ -1,6 +1,83 @@
-/* [class*='rounded-xl'] {
-    border-radius: var(--br-btn-big) !important;
+// [class*='rounded-xl'] {
+// 	border-radius: var(--br-btn-big) !important;
+// 	border: 1px solid red !important;
+// }
+// [class*='rounded-lg'] {
+// 	border-radius: var(--br-btn) !important;
+// 	border: 1px solid green !important;
+// }
+// [class*='rounded-md'] {
+// 	border-radius: var(--br-btn) !important;
+// 	border: 1px solid yellow !important;
+// }
+/* 
+- Scroll down btn.
+- GPTs - product card circle pictures
+- General profile pic: "NEWCHAT", "Upgrade Plan", user profile in sidebar.
+- Check switch btn
+- Close sidebar btn */
+.rounded-full {
+	@include borderBoxShadow(rgb(2, 0, 139));
 }
-[class*='rounded-lg'] {
-    border-radius: var(--br-btn) !important;
-} */
+
+/* 
+- GPTs - pill tags in sticky header */
+.rounded-3xl {
+	// border-radius: var(--br-btn-big) !important;
+	@include borderBoxShadow(purple);
+}
+/* 
+- Dialogs
+- ChatGPT 3.5 btn in sticky header
+- GPTs - Search input
+- GPTs - product cards
+- NEW CHAT big buttons
+- NEW CHAT big btns on hover svg wrapper etc
+- Custom Instructions > "bubble" on right side when textarea focused */
+.rounded-xl {
+	border-radius: var(--br-btn-big) !important;
+	@include borderBoxShadow(red);
+}
+
+/* 
+- All sidebar <a> buttons/links
+- Theme btn,
+- SVGs: Share Link, Send btn in pompt-textarea,  
+- GPTs - sticky btns "Global view" and "My GPTs"
+- GPTs - search query section product cards/items 
+- Toast root notify
+-  */
+.rounded-lg {
+	border-radius: var(--br-btn) !important;
+	@include borderBoxShadow(orange);
+}
+
+/*
+- Small btns in chat footer.
+- <pre>
+- Tab btns in dialog.
+- contextmenu-items in "Theme" ddl
+- "Was this response better or worse? 👍👎" el when clicked on regenerate answer btn and its inner buttons */
+.rounded-md {
+	border-radius: var(--br-btn) !important;
+	@include borderBoxShadow(yellow);
+}
+
+/*
+- Textarea in dialog.
+- menuitems in ChatGPT 3.5 contextmenu and contextmenu in 3dots in sidebar  ("Share", "Rename", "Delete") */
+.rounded {
+	border-radius: var(--br-btn) !important;
+	@include borderBoxShadow(lightgreen);
+}
+
+.rounded-t-md {
+	// overflow: clip !important;
+	border-top-left-radius: var(--br-btn) !important;
+	border-top-right-radius: var(--br-btn) !important;
+}
+.rounded-b-md {
+	// overflow: clip !important;
+	border-bottom-left-radius: var(--br-btn) !important;
+	border-bottom-right-radius: var(--br-btn) !important;
+}

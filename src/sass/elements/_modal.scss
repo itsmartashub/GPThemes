@@ -39,7 +39,7 @@
 	/* ___ DIALOG - "Settings" on smaller devices hen deskop */
 	[role='tablist'][data-orientation='horizontal'].bg-gray-100 {
 		background-color: var(--c-surface-3) !important;
-		border-radius: var(--br-btn) !important;
+		// border-radius: var(--br-btn) !important;
 
 		// button[role="tab"][data-state="active"] {
 		button[data-state='active'] {
@@ -130,7 +130,7 @@
 	/* ___ DIALOG - "SHARED LINKS" or "ARCHIVED CHATS" - Table  */
 	table {
 		padding: var(--p-contextmenu) !important;
-		border-radius: var(--br-contextmenu);
+		// border-radius: var(--br-contextmenu);
 
 		/* BG of thead>th */
 		.bg-white,
@@ -146,7 +146,7 @@
 
 		thead {
 			tr {
-				border-radius: var(--br-btn) !important;
+				// border-radius: var(--br-btn) !important;
 				// padding: var(--py-btn) var(--px-btn) !important;
 			}
 

@@ -1,7 +1,7 @@
 [role='menu'] {
 	background-color: var(--c-bg-contextmenu) !important;
 	border-radius: var(--br-contextmenu) !important;
-	border: none !important;
+	// border: none !important;
 	padding: var(--p-contextmenu) !important;
 	box-shadow: var(--box-shadow-contextmenu) !important;
 	// transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
@@ -66,6 +66,7 @@ div[data-radix-popper-content-wrapper] {
 		@extend %animFadeInClipPath;
 	}
 
+	/* Context menu bg */
 	.bg-white {
 		background-color: var(--c-bg-contextmenu) !important;
 		padding: var(--p-contextmenu) !important;

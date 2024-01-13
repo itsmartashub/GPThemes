@@ -18,20 +18,20 @@ pre {
 	*/
 	/* Markdown */
 	.bg-black {
-		&.rounded-md {
-			border-radius: var(--br-btn) !important;
-		}
+		// &.rounded-md {
+		// 	border-radius: var(--br-btn) !important;
+		// }
 
 		/* Markdown header */
-		& > div:has(> span) {
-			// overflow: clip !important;
+		// & > div:has(> span) {
+		// overflow: clip !important;
 
-			.rounded-t-md {
-				// overflow: clip !important;
-				border-top-left-radius: var(--br-btn) !important;
-				border-top-right-radius: var(--br-btn) !important;
-			}
-		}
+		// .rounded-t-md {
+		// // overflow: clip !important;
+		// border-top-left-radius: var(--br-btn) !important;
+		// border-top-right-radius: var(--br-btn) !important;
+		// }
+		// }
 	}
 	/* Code name in markdown header (html, php, css, etc) */
 	div:has(button) span {
@@ -44,7 +44,7 @@ pre {
 		color: var(--c-on-accent) !important;
 		background-color: var(--c-bg-pre-header-btn);
 		padding: var(--p-btn);
-		border-radius: 10px;
+		border-radius: var(--br-btn) !important;
 
 		/* SVG icons before 'Copy code' btn in md */
 		svg {

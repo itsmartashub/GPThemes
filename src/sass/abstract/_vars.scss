@@ -6,15 +6,22 @@
 	--fsz-error-404: 3rem;
 
 	/* ? --- Border-radius --- */
-	--br-chat-bubble: 2.6rem;
+	--br: 1rem;
+	--br-chat-bubble: calc(var(--br) * 2.55);
+	// --br-chat-bubble: 2.6rem;
 	// --br-prompt-textarea: var(--br-chat-bubble);
-	--br-prompt-textarea: 2.2rem;
-	--br-btn: 0.9rem;
-	--br-btn-big: 1.2rem;
+	// --br-prompt-textarea: 2.2rem;
+	--br-prompt-textarea: calc(var(--br) * 2.25);
+	--br-btn: calc(var(--br) / 1.1);
+	// --br-btn-big: 1.2rem;
+	--br-btn-big: calc(var(--br) * 1.2);
 	--br-nav-a: var(--br-btn);
-	--br-dialog: 2.5rem;
-	--br-contextmenu: 1.5rem;
-	--br-pre: 1.5rem;
+	// --br-dialog: 2.5rem;
+	--br-dialog: calc(var(--br) * 2.5);
+	--br-contextmenu: calc(var(--br-btn) * 1.4);
+	// --br-contextmenu: 1.5rem;
+	// --br-pre: 1.5rem;
+	--br-pre: calc(var(--br) * 1.5);
 	--br-tooltips: var(--br-btn);
 
 	/* ? --- Paddings --- */

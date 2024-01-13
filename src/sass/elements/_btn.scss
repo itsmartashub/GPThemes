@@ -1,13 +1,13 @@
 .btn {
-    background-color: var(--c-bg-btn) !important;
-    color: var(--c-btn) !important;
-    border-radius: var(--br-btn) !important;
-    border: none !important;
+	background-color: var(--c-bg-btn) !important;
+	color: var(--c-btn) !important;
+	border-radius: var(--br-btn) !important;
+	border: none !important;
 
-    &:not(.btn-small) {
-        // padding: 1.5rem !important;
-        padding: var(--p-btn) !important;
-    }
+	&:not(.btn-small) {
+		// padding: 1.5rem !important;
+		padding: var(--p-btn) !important;
+	}
 }
 
 /* .btn-primary {
@@ -15,8 +15,8 @@
 } */
 
 .btn-danger {
-    background-color: var(--c-btn-danger) !important;
-    color: var(--c-bg-chats-container) !important;
+	background-color: var(--c-btn-danger) !important;
+	color: var(--c-bg-chats-container) !important;
 }
 
 /* === RIGHT - Scroll Down arrow bg LIGHT  === */
@@ -28,87 +28,86 @@
 // html.dark main [role="presentation"] button.absolute.rounded-full {
 //     background-color: var(--c-accent) !important;
 // }
-main [role="presentation"] button.absolute.rounded-full {
-    background-color: var(--c-accent) !important;
-    box-shadow: var(--box-shadow-contextmenu);
+main [role='presentation'] button.absolute.rounded-full {
+	background-color: var(--c-accent) !important;
+	box-shadow: var(--box-shadow-contextmenu);
 
-    /* RIGHT - Scroll Down arrow SVG Color === */
-    svg {
-        color: var(--c-on-accent) !important;
-    }
+	/* RIGHT - Scroll Down arrow SVG Color === */
+	svg {
+		color: var(--c-on-accent) !important;
+	}
 }
 
 /* === All the .btn inside dialogs not having svg icon inside */
-[role="dialog"] {
-    .btn:not(.btn:has(svg)) {
-        min-width: var(--min-w-btn);
-    }
+[role='dialog'] {
+	.btn:not(.btn:has(svg)) {
+		min-width: var(--min-w-btn);
+	}
 
-    &:not(.PopoverContent) .btn-neutral {
-        background-color: var(--c-surface-3) !important;
-        color: var(--c-txt) !important;
-    }
+	&:not(.PopoverContent) .btn-neutral {
+		background-color: var(--c-surface-3) !important;
+		color: var(--c-txt) !important;
+	}
 
-    /* ".PopoverContent" je recimo menu od btn u "Shared Link to Chat" 3dots menu (Shared your Name & Delete Link) */
-    &.PopoverContent {
-        .btn-neutral {
-            background-color: transparent !important;
-            color: var(--c-txt) !important;
-        }
-    }
+	/* ".PopoverContent" je recimo menu od btn u "Shared Link to Chat" 3dots menu (Shared your Name & Delete Link) */
+	&.PopoverContent {
+		.btn-neutral {
+			background-color: transparent !important;
+			color: var(--c-txt) !important;
+		}
+	}
 }
 
 /* === Settings > Tabs === */
-[role="tablist"] button {
-    border-radius: var(--br-btn) !important;
-    // padding: var(--py-btn) var(--px-btn) !important;
-    padding: var(--p-btn) !important;
+[role='tablist'] button {
+	// border-radius: var(--br-btn) !important;
+	// padding: var(--py-btn) var(--px-btn) !important;
+	padding: var(--p-btn) !important;
 
-    &[data-state="active"],
-    &:hover {
-        //  Ovo je ok za desktop, ali za manje je bolje surface-1
-        background-color: var(--c-surface-3) !important;
-    }
+	&[data-state='active'],
+	&:hover {
+		//  Ovo je ok za desktop, ali za manje je bolje surface-1
+		background-color: var(--c-surface-3) !important;
+	}
 }
 
 /* === Checkbox button - switcher. In "Chat history & training: and "Custom instructions" */
-button[role="switch"] {
+button[role='switch'] {
+	/* Checkbox ON */
+	&:has([data-state='checked']) {
+		background-color: var(--c-accent) !important;
 
-    /* Checkbox ON */
-    &:has([data-state="checked"]) {
-        background-color: var(--c-accent) !important;
+		/* Chb bullet/circle checked */
+		span {
+			background-color: var(--c-on-accent) !important;
+		}
+	}
 
-        /* Chb bullet/circle checked */
-        span {
-            background-color: var(--c-on-accent) !important;
-        }
-    }
+	/* Checkbox OFF */
+	&:has([data-state='unchecked']) {
+		background-color: var(--c-surface-3) !important;
 
-    /* Checkbox OFF */
-    &:has([data-state="unchecked"]) {
-        background-color: var(--c-surface-3) !important;
-
-        /* Chb bullet/circle unchecked */
-        span {
-            background-color: hsla(var(--accent-hsl) / .5) !important;
-        }
-    }
+		/* Chb bullet/circle unchecked */
+		span {
+			background-color: hsla(var(--accent-hsl) / 0.5) !important;
+		}
+	}
 }
 
 /* === Settings > Theme selector drop down */
-button[role="combobox"] {
-    @extend .btn;
-    @extend .btn-neutral;
-    min-width: var(--min-w-btn);
+button[role='combobox'] {
+	@extend .btn;
+	@extend .btn-neutral;
+	min-width: var(--min-w-btn);
 }
 
 /* === ❓ circle btn on bottom right */
-button[id*="headlessui-menu-button"][class*="bg-gray-50"] {
-    color: var(--c-txt) !important;
-    border: none !important;
+button[id*='headlessui-menu-button'][class*='bg-gray-50'] {
+	color: var(--c-txt) !important;
+	border: none !important;
 }
 
 /* Intro page (before login) */
-button[class*="bg-[#3C46FF] text-[#fff]"] {
-    @extend .btn;
+button[class*='bg-[#3C46FF] text-[#fff]'] {
+	@extend .btn;
 }

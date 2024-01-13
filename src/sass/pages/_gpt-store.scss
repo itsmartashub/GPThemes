@@ -1,17 +1,17 @@
 main:has(.sticky [href='/gpts/editor']) {
-	/* Main Cards (big) */
-	.rounded-xl {
-		border-radius: var(--br-btn-big) !important;
-	}
-	/* Search query list cards. Input search */
-	.rounded-lg {
-		border-radius: var(--br-btn) !important;
-	}
+	// /* Main Cards (big) */
+	// .rounded-xl {
+	// 	border-radius: var(--br-btn-big) !important;
+	// }
+	// /* Search query list cards. Input search */
+	// .rounded-lg {
+	// 	border-radius: var(--br-btn) !important;
+	// }
 	/* Sticky header tags aka "Top Picks", "DALLE", "Writing", etc */
 	.sticky {
 		[class*='md:rounded-none'],
 		[class*='md:rounded-lg'] {
-			border-radius: 50vw !important;
+			border-radius: 100vw !important;
 			padding-inline: 1rem !important;
 		}
 		/* Active tag aka "Top Picks" */
