@@ -65,7 +65,6 @@
 }
 
 /* 
-	- GPTS store PAGE - "Search public GPTs" search input bg. Nema klase za light temu te selektujem klasom za darks 
 	- GPTS store PAGE - "Search public GPTs" search list item bg 
 	- GPTs Store PAGE - "Top picks", "DALLE", "Writing" etc tags 
 	- GPTs Store PAGE - "Featured" section items bg
@@ -75,12 +74,14 @@
 	// background-color: red !important;
 }
 
-/* Textarea in [role="dialog"] */
-// [class*='dark:bg-gray-800'] {
-// background-color: var(--c-surface-3) !important;
-// background-color: red !important;
-// background-color: red !important;
-// }
+/* 
+- "Shared links" PAGE - overall BG !!!!
+- GPTS store PAGE - "Search public GPTs" search input bg. Nema klase za light temu te selektujem klasom za darks 
+- Textarea in [role="dialog"] */
+[class*='dark:bg-gray-800'] {
+	background-color: var(--c-bg-chats-container) !important; // var(--c-surface-1)
+	// background-color: lightsalmon !important;
+}
 
 /* Shared chats PAGE - green button "Upgrade to Plus to create your own GPT" */
 [class*='bg-green-600'] {
@@ -112,16 +113,19 @@
 }
 
 /* 
-- Tabs in Settings
 - Dialogs
+- Tabs in "Settings"
 - Table <thead> els
 - Share Link > Mini chat conversation
 - Context menu items in Share Link > Mini chat conversation
 - Context menu items in Settings > Theme ddl and Theme
 - Sticky header 
 - Prompt textarea
-- Circled picture in gpt logo - NEWCHAT
+- Sidebar Circled gpt logo - NEWCHAT/CLEAR CHAT
+- Circled gpt logo "How can I help you today
 - Scrolldown btn
+- ❓ btn on bottom right
+- Checkbox circle
  */
 [class*='bg-white'] {
 	// background-color: var(--c-surface-2) !important;
@@ -133,14 +137,18 @@
 - Sidebar
 - Sidebar sticky behind NEWCHAT btn
 - Sidebar "Today", "Yesterday"... time headings
-- GPTs - active pill ("Top Picks")
+- Sidebar user profile picture
 - Tooltip
 - ChatGPT 3.5 btn in sticky header
 - Context menu items in 3dots
 - Context menu items in ChatGPT 3.5
-- Markdown <pre> */
+- Markdown <pre>
+- Prompt textarea send button
+- GPTs - active pill ("Top Picks")
+ */
 [class*='bg-black'] {
 	background-color: var(--c-surface-1);
+
 	@include borderBoxShadow(lightgreen);
 	background-color: lightgreen;
 }

@@ -53,9 +53,9 @@ main [data-testid^='conversation-turn-'] {
 			border: 1px solid var(--c-border);
 			border-radius: var(--br-contextmenu);
 
-			/* "Same" svg, fix white border */
+			/* "Same" svg, fix white border for visualy consistency */
 			svg.rounded-full {
-				border: 1px solid var(--avatar-color);
+				border-color: var(--avatar-color);
 			}
 			/* 👍👎 */
 			button[title] {

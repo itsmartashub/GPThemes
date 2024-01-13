@@ -38,6 +38,7 @@ main:has(.sticky [href='/gpts/editor']) {
 	/* Input search */
 	input[placeholder='Search public GPTs'] {
 		outline: none;
+		background-color: var(--c-surface-2) !important;
 
 		&::placeholder {
 			color: var(--c-subtext-1) !important;
