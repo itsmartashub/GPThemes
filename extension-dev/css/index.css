@@ -307,7 +307,7 @@ code.hljs {
   font-weight: 600 !important;
 }
 
-[class*="text-gray-"]:not(.text-gray-100):not(.text-gray-400):not(.text-gray-500):not(.text-gray-600), [class*="text-white"]:not(.btn-primary .text-white):not(.bg-green-600):not(svg) {
+[class*="text-gray-"]:not(.text-gray-100):not(.text-gray-400):not(.text-gray-500):not(.text-gray-600), [class*="text-white"]:not(.btn-primary .text-white):not(.bg-green-600):not(svg):not(.toast-root .text-white[role="alert"]) {
   color: var(--c-txt);
 }
 

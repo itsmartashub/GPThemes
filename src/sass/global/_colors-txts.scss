@@ -7,7 +7,7 @@
 	- [class*='text-gray-'] utice i na div[data-radix-popper-content-wrapper] tj "Theme" dropdown iteme te ne mogu da se overwrituju tamo u _menu.scss. Zato sam sklonila !important
 */
 [class*='text-gray-']:not(.text-gray-100, .text-gray-400, .text-gray-500, .text-gray-600),
-[class*='text-white']:not(.btn-primary .text-white, .bg-green-600, svg) {
+[class*='text-white']:not(.btn-primary .text-white, .bg-green-600, svg, .toast-root .text-white[role='alert']) {
 	color: var(--c-txt);
 }
 
