@@ -19,6 +19,11 @@ main:has(.sticky [href='/gpts/editor']) {
 			border: none !important;
 			background-color: var(--c-accent) !important;
 			color: var(--c-on-accent) !important;
+
+			/* Fix active pill tag bg be overwritten by global [class*='bg-black'] */
+			&[class*='bg-black'] {
+				background-color: var(--c-accent) !important;
+			}
 		}
 		/* No-active tags aka "DALLE", "Writing", etc */
 		[class*='md:rounded-lg'] {

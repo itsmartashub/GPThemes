@@ -364,16 +364,11 @@ code.hljs {
 }
 
 [class*="bg-white"] {
-  background-color: red;
-  border: 2px solid red !important;
-  box-shadow: 0 0 0 2px red !important;
+  background-color: var(--c-surface-2) !important;
 }
 
 [class*="bg-black"] {
   background-color: var(--c-surface-1);
-  background-color: #90ee90;
-  border: 2px solid #90ee90 !important;
-  box-shadow: 0 0 0 2px #90ee90 !important;
 }
 
 .border-gray-100 {
@@ -1896,6 +1891,14 @@ main:has(.sticky [href="/gpts/editor"]) .sticky [class*="md:rounded-none"] {
   background-color: var(--c-accent) !important;
   color: var(--c-on-accent) !important;
   border: none !important;
+}
+
+.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-2j-2r-30-2p-37-37-16-1p-y-31-2s-1m-36-33-39-32-2s-2t-2s-19-32-33-32-2t-y-2l-2j-2r-30-2p-37-37-16-1p-2q-2v-19-2q-30-2p-2r-2z-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
+  background-color: var(--c-accent) !important;
+}
+
+main:has(.sticky [href="/gpts/editor"]) .sticky [class*="md:rounded-none"][class*="bg-black"] {
+  background-color: var(--c-accent) !important;
 }
 
 .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-2j-2r-30-2p-37-37-16-1p-y-31-2s-1m-36-33-39-32-2s-2t-2s-19-30-2v-y-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {

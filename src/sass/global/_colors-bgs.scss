@@ -126,11 +126,12 @@
 - Scrolldown btn
 - ❓ btn on bottom right
 - Checkbox circle
+- GPTs Store PAGE - Search query section
  */
 [class*='bg-white'] {
-	// background-color: var(--c-surface-2) !important;
-	@include borderBoxShadow(red);
-	background-color: red;
+	background-color: var(--c-surface-2) !important;
+	// @include borderBoxShadow(red);
+	// background-color: red;
 }
 
 /* 
@@ -148,7 +149,6 @@
  */
 [class*='bg-black'] {
 	background-color: var(--c-surface-1);
-
-	@include borderBoxShadow(lightgreen);
-	background-color: lightgreen;
+	// @include borderBoxShadow(lightgreen);
+	// background-color: lightgreen;
 }
