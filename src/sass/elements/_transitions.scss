@@ -250,6 +250,19 @@ button[id*='headlessui-menu-button'][class*='rounded-full'] {
 
 /* GPTs Store page - All the card items */
 main:has(.sticky [href='/gpts/editor']) {
+	/* Sticky header with tags aka "Top Picks", "DALLE", "Writing", etc */
+	.sticky {
+		[class*='md:rounded-none'],
+		[class*='md:rounded-lg'] {
+			transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s $easeInCirc;
+		}
+
+		[class*='md:rounded-lg']:hover {
+			transform: scale(0.955);
+			background-color: var(--c-accent) !important;
+			color: var(--c-on-accent) !important;
+		}
+	}
 	/* All the card items in GPTs Store main page */
 	.h-fit {
 		a[href*='/g/g-'] {
