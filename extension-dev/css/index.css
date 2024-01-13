@@ -435,6 +435,7 @@ html.light [class*=":border-white/10"] {
 
 [role="menu"] [role="menuitem"] {
   transition: background-color .3s ease-in-out, color .3s ease-in-out;
+  background-color: inherit !important;
   padding: .9rem 1rem !important;
   padding: var(--p-contextmenu-item) !important;
   border-radius: .909091rem !important;
