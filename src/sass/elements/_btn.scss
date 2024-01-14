@@ -99,6 +99,10 @@ button[role='combobox'] {
 	@extend .btn;
 	@extend .btn-neutral;
 	min-width: var(--min-w-btn);
+
+	/* Theme btn - fix height smaller then other btns */
+	height: auto;
+	line-height: inherit;
 }
 
 /* === ❓ circle btn on bottom right */

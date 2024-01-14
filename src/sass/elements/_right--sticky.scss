@@ -1,7 +1,8 @@
 /* === STICKY ChatGPT version ===*/
-main .sticky {
+.sticky {
 	background-color: var(--c-bg-chats-sticky) !important;
 	backdrop-filter: blur(var(--blur-sticky));
+	border: none !important;
 
 	/*  "My GPTs" page sticky headers w/ +CREATE btn (.top-0 and .top-14) */
 	&:has([href='/gpts/editor']),

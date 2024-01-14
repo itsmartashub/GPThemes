@@ -184,13 +184,6 @@ html.dark {
   }
 }
 
-nav[aria-label="Chat history"] li .group > div.absolute {
-  border-top-right-radius: inherit;
-  border-bottom-right-radius: inherit;
-  padding-left: .5rem;
-  background-color: var(--c-surface-2) !important;
-}
-
 .js-has-pseudo div[data-radix-popper-content-wrapper]:not([csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2s-2x-3a-2j-36-33-30-2t-1p-31-2t-32-39-2l-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist)):not([csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15]:not(.does-not-exist):not(does-not-exist)), [role="menu"]:not(nav[aria-label="Chat history"] .group[data-headlessui-state] [role="menu"]), [role="menu"]:not(nav[aria-label="Chat history"] .group[data-headlessui-state] [role="menu"]) {
   will-change: opacity, clip-path;
   animation: .2s linear forwards animFadeInClipPath;
@@ -245,6 +238,13 @@ div[data-radix-popper-content-wrapper]:has([role="tooltip"]) {
 [role="dialog"] table tbody td:first-child a:hover:after {
   transform-origin: 0 100%;
   transform: scaleX(1);
+}
+
+nav[aria-label="Chat history"] li .group > div.absolute {
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
+  padding-left: .5rem;
+  background-color: var(--c-surface-2) !important;
 }
 
 html, body {
@@ -1049,35 +1049,36 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   color: var(--c-on-accent) !important;
 }
 
-main .sticky {
+.sticky {
   -webkit-backdrop-filter: blur(var(--blur-sticky));
   backdrop-filter: blur(var(--blur-sticky));
   background-color: var(--c-bg-chats-sticky) !important;
+  border: none !important;
 }
 
-.js-has-pseudo [csstools-has-31-2p-2x-32-w-1a-37-38-2x-2r-2z-3d-1m-2w-2p-37-14-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15]:not(.does-not-exist):not(does-not-exist), main .sticky.top-14, main .sticky.top-14 {
+.js-has-pseudo [csstools-has-1a-37-38-2x-2r-2z-3d-1m-2w-2p-37-14-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15]:not(.does-not-exist), .sticky.top-14, .sticky.top-14 {
   --c-bg-chats-sticky: var(--c-bg-chats-container) !important;
   --blur-sticky: 0 !important;
 }
 
-main .sticky:has([href="/gpts/editor"]) {
+.sticky:has([href="/gpts/editor"]) {
   --c-bg-chats-sticky: var(--c-bg-chats-container) !important;
   --blur-sticky: 0 !important;
 }
 
-main .sticky.top-14 {
+.sticky.top-14 {
   padding-bottom: .6rem !important;
 }
 
-main .sticky [aria-haspopup="menu"]:hover, main .sticky [aria-haspopup="menu"][data-state="open"] {
+.sticky [aria-haspopup="menu"]:hover, .sticky [aria-haspopup="menu"][data-state="open"] {
   background-color: var(--c-surface-1) !important;
 }
 
-main .sticky .btn, .js-has-pseudo [csstools-has-31-2p-2x-32-w-1a-37-38-2x-2r-2z-3d-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), main .sticky button[class*="bg-[#3C46FF] text-[#fff]"], main .sticky button[role="combobox"], main .sticky .btn, main .sticky button[class*="bg-[#3C46FF] text-[#fff]"], main .sticky button[role="combobox"] {
+.sticky .btn, .js-has-pseudo [csstools-has-1a-37-38-2x-2r-2z-3d-w-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .sticky button[class*="bg-[#3C46FF] text-[#fff]"], .sticky button[role="combobox"], .sticky .btn, .sticky button[class*="bg-[#3C46FF] text-[#fff]"], .sticky button[role="combobox"] {
   border-radius: 50vw !important;
 }
 
-main .sticky [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 {
+.sticky main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 {
   border-radius: 50vw !important;
 }
 
@@ -1085,11 +1086,11 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   border-radius: 50vw !important;
 }
 
-main .sticky .btn svg, .js-has-pseudo [csstools-has-31-2p-2x-32-w-1a-37-38-2x-2r-2z-3d-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main .sticky button[class*="bg-[#3C46FF] text-[#fff]"] svg, main .sticky button[role="combobox"] svg, main .sticky .btn svg, main .sticky button[class*="bg-[#3C46FF] text-[#fff]"] svg, main .sticky button[role="combobox"] svg {
+.sticky .btn svg, .js-has-pseudo [csstools-has-1a-37-38-2x-2r-2z-3d-w-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .sticky button[class*="bg-[#3C46FF] text-[#fff]"] svg, .sticky button[role="combobox"] svg, .sticky .btn svg, .sticky button[class*="bg-[#3C46FF] text-[#fff]"] svg, .sticky button[role="combobox"] svg {
   color: var(--c-on-accent) !important;
 }
 
-main .sticky [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 svg {
+.sticky main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 svg {
   color: var(--c-on-accent) !important;
 }
 
@@ -1490,6 +1491,8 @@ button[role="switch"]:has([data-state="unchecked"]) span {
 button[role="combobox"] {
   min-width: var(--min-w-btn);
   min-width: 5.5rem;
+  line-height: inherit !important;
+  height: auto !important;
 }
 
 button[id*="headlessui-menu-button"][class*="bg-gray-50"] {
