@@ -5,6 +5,11 @@
 	color: var(--c-txt) !important;
 	background-color: var(--c-bg-sidebar) !important;
 
+	.sticky {
+		background-color: var(--c-bg-sidebar) !important;
+		backdrop-filter: blur(0) !important;
+	}
+
 	/* Fix white txt on "NEW CHAT" in sidebar for light especially */
 	nav a > * {
 		color: var(--c-txt) !important;
