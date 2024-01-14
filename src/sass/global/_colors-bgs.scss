@@ -77,10 +77,11 @@
 /* 
 - "Shared links" PAGE - overall BG !!!!
 - GPTS store PAGE - "Search public GPTs" search input bg. Nema klase za light temu te selektujem klasom za darks 
+- Bg of mini chat-bubble in "Share link to chat" dialog.
 - Textarea in [role="dialog"] */
 [class*='dark:bg-gray-800'] {
-	background-color: var(--c-bg-chats-container) !important; // var(--c-surface-1)
-	// background-color: lightsalmon !important;
+	background-color: var(--c-bg-chats-container) !important; // var(--c-surface-3)
+	// background-color: var(--c-surface-1) !important;
 }
 
 /* Shared chats PAGE - green button "Upgrade to Plus to create your own GPT" */
@@ -91,12 +92,6 @@
 
 /* Like icon in "Provide aditional feedback" dialog when clicked liked answer */
 // .bg-green-100 {}
-
-// TODO Nmg ovo, obrise svugde ovajj black sto je narocito vidljivo za light temu gde je recimo markdown <pre> ili Upgrade btn pa onaj krug ovo svg-a
-// .bg-black,
-// [class*=":bg-black"] {
-//     background-color: var(--c-surface-1) !important;
-// }
 
 .bg-gradient-to-l,
 .bg-gradient-to-r {

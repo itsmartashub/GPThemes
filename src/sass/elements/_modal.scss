@@ -2,16 +2,6 @@
 .absolute.inset-0 .fixed.inset-0 {
 	background-color: var(--c-bg-modal) !important;
 	backdrop-filter: blur(var(--blur-modal)) !important;
-	// --anim-duration: 0.2s;
-	// @extend %animFadeIn;
-
-	// &[data-state='open'] {
-	// 	@extend %animFadeIn;
-	// }
-	// &[data-state='closed'] {
-	// 	@extend %animFadeOut;
-	// }
-	// @extend %animFadeInOutDataState;
 }
 
 /* ___ DIALOG - Dialog Settings  */
@@ -22,7 +12,6 @@
 	box-shadow: var(--box-shadow);
 	--anim-duration: 0.28s;
 	@extend %animFadeIn;
-	// @extend %animFadeInClipPath;
 
 	.border-token-border-light,
 	.border-white,
@@ -30,7 +19,7 @@
 		border-color: transparent !important;
 	}
 
-	/* In tab dialog part which is changing on tabpanel click (on right side) */
+	/* Tab view transitions - In tab dialog part which is changing on tabpanel click (on right side) */
 	[id*='-content-'] {
 		--anim-duration: 0.18s;
 		@extend %animFadeIn;
@@ -96,6 +85,13 @@
 		a[href="https://openai.com/enterprise"]
 		{
 			color: var(--c-accent) !important;
+		}
+	}
+
+	&:has([data-testid^='conversation-turn-']) {
+		[class*='dark:bg-gray-800'] {
+			background-color: var(--c-surface-1) !important;
+			// background-color: lightsalmon !important;
 		}
 	}
 
