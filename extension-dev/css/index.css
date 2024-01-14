@@ -474,6 +474,7 @@ div[data-radix-popper-content-wrapper] .bg-white {
   border-radius: 1.27273rem !important;
   border-radius: var(--br-contextmenu) !important;
   box-shadow: var(--box-shadow-contextmenu) !important;
+  overflow: visible !important;
 }
 
 div[data-radix-popper-content-wrapper] [data-radix-collection-item] {
@@ -482,12 +483,14 @@ div[data-radix-popper-content-wrapper] [data-radix-collection-item] {
   margin-bottom: 4px;
   padding: .9rem 1rem !important;
   padding: var(--p-contextmenu-item) !important;
+  outline: none !important;
   height: auto !important;
   overflow: visible !important;
 }
 
 div[data-radix-popper-content-wrapper] [data-radix-collection-item][data-state="unchecked"]:hover {
   background-color: var(--c-surface-2) !important;
+  outline: none !important;
 }
 
 div[data-radix-popper-content-wrapper] [data-state="checked"] {

@@ -62,6 +62,7 @@ div[data-radix-popper-content-wrapper] {
 		padding: var(--p-contextmenu) !important;
 		border-radius: var(--br-contextmenu) !important;
 		box-shadow: var(--box-shadow-contextmenu) !important;
+		overflow: visible !important; // for what is this? hhh
 	}
 
 	[data-radix-collection-item] {
@@ -70,11 +71,15 @@ div[data-radix-popper-content-wrapper] {
 		height: auto !important;
 		margin-bottom: 4px;
 		overflow: visible !important;
+		outline: none !important;
 	}
 
 	/* MODAL - Choose theme context menuitem hover */
-	[data-radix-collection-item][data-state='unchecked']:hover {
-		background-color: var(--c-surface-2) !important;
+	[data-radix-collection-item][data-state='unchecked'] {
+		&:hover {
+			background-color: var(--c-surface-2) !important;
+			outline: none !important; // TODO this is temp fix. This ecause there were somewhite uglu outline on hover. But this also breaks :focus-visible accessibility style...
+		}
 	}
 
 	/* MODAL - Choose theme context menuitem hover active */
