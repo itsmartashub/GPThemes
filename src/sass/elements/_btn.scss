@@ -60,13 +60,11 @@ main [role='presentation'] button.absolute.rounded-full {
 
 /* === Settings > Tabs === */
 [role='tablist'] button {
-	// border-radius: var(--br-btn) !important;
-	// padding: var(--py-btn) var(--px-btn) !important;
 	padding: var(--p-btn) !important;
 
 	&[data-state='active'],
 	&:hover {
-		//  Ovo je ok za desktop, ali za manje je bolje surface-1
+		// TODO Ovo je ok za desktop, ali za manje je bolje surface-1. Takodje dodati horiz gap izmedju
 		background-color: var(--c-surface-3) !important;
 	}
 }
@@ -111,7 +109,7 @@ button[id*='headlessui-menu-button'][class*='bg-gray-50'] {
 	border: none !important;
 }
 
-/* Intro page (before login) */
+/* Intro page (before Login or Register) */
 button[class*='bg-[#3C46FF] text-[#fff]'] {
 	@extend .btn;
 }

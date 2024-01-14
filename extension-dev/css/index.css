@@ -1064,36 +1064,35 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   color: var(--c-on-accent) !important;
 }
 
-.sticky {
+main .sticky {
   -webkit-backdrop-filter: blur(var(--blur-sticky));
   backdrop-filter: blur(var(--blur-sticky));
   background-color: var(--c-bg-chats-sticky) !important;
-  border: none !important;
 }
 
-.js-has-pseudo [csstools-has-1a-37-38-2x-2r-2z-3d-1m-2w-2p-37-14-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15]:not(.does-not-exist), .sticky.top-14, .sticky.top-14 {
+.js-has-pseudo [csstools-has-31-2p-2x-32-w-1a-37-38-2x-2r-2z-3d-1m-2w-2p-37-14-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15]:not(.does-not-exist):not(does-not-exist), main .sticky.top-14, main .sticky.top-14 {
   --c-bg-chats-sticky: var(--c-bg-chats-container) !important;
   --blur-sticky: 0 !important;
 }
 
-.sticky:has([href="/gpts/editor"]) {
+main .sticky:has([href="/gpts/editor"]) {
   --c-bg-chats-sticky: var(--c-bg-chats-container) !important;
   --blur-sticky: 0 !important;
 }
 
-.sticky.top-14 {
+main .sticky.top-14 {
   padding-bottom: .6rem !important;
 }
 
-.sticky [aria-haspopup="menu"]:hover, .sticky [aria-haspopup="menu"][data-state="open"] {
+main .sticky [aria-haspopup="menu"]:hover, main .sticky [aria-haspopup="menu"][data-state="open"] {
   background-color: var(--c-surface-1) !important;
 }
 
-.sticky .btn, .js-has-pseudo [csstools-has-1a-37-38-2x-2r-2z-3d-w-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .sticky button[class*="bg-[#3C46FF] text-[#fff]"], .sticky button[role="combobox"], .sticky .btn, .sticky button[class*="bg-[#3C46FF] text-[#fff]"], .sticky button[role="combobox"] {
+main .sticky .btn, .js-has-pseudo [csstools-has-31-2p-2x-32-w-1a-37-38-2x-2r-2z-3d-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), main .sticky button[class*="bg-[#3C46FF] text-[#fff]"], main .sticky button[role="combobox"], main .sticky .btn, main .sticky button[class*="bg-[#3C46FF] text-[#fff]"], main .sticky button[role="combobox"] {
   border-radius: 50vw !important;
 }
 
-.sticky main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 {
+main .sticky [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 {
   border-radius: 50vw !important;
 }
 
@@ -1101,16 +1100,20 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   border-radius: 50vw !important;
 }
 
-.sticky .btn svg, .js-has-pseudo [csstools-has-1a-37-38-2x-2r-2z-3d-w-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .sticky button[class*="bg-[#3C46FF] text-[#fff]"] svg, .sticky button[role="combobox"] svg, .sticky .btn svg, .sticky button[class*="bg-[#3C46FF] text-[#fff]"] svg, .sticky button[role="combobox"] svg {
+main .sticky .btn svg, .js-has-pseudo [csstools-has-31-2p-2x-32-w-1a-37-38-2x-2r-2z-3d-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main .sticky button[class*="bg-[#3C46FF] text-[#fff]"] svg, main .sticky button[role="combobox"] svg, main .sticky .btn svg, main .sticky button[class*="bg-[#3C46FF] text-[#fff]"] svg, main .sticky button[role="combobox"] svg {
   color: var(--c-on-accent) !important;
 }
 
-.sticky main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 svg {
+main .sticky [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 svg {
   color: var(--c-on-accent) !important;
 }
 
 main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .sticky .bg-green-600 svg {
   color: var(--c-on-accent) !important;
+}
+
+.sticky.border-token-border-medium {
+  border: none !important;
 }
 
 .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-2j-2r-30-2p-37-37-16-1p-y-2j-12-1m-2w-2p-37-14-38-2t-3c-38-2p-36-2t-2p-1m-2u-33-2r-39-37-15-2l-y-2l-1m-2w-2p-37-14-38-2t-3c-38-2p-36-2t-2p-z-34-36-33-31-34-38-19-38-2t-3c-38-2p-36-2t-2p-15]:not(#does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
