@@ -52,7 +52,7 @@
 ## Supported ChatGPT versions
 
 > [!IMPORTANT]
-> Currently, the focus is on enhancing the UI of the [ChatGPT](https://chat.openai.com/) `3.5` version. Exploring and editing elements of the **Pro** [ChatGPT](https://chat.openai.com/) version may be considered in future updates.
+> Currently, the focus is on enhancing the UI/UX of the `ChatGPT 3.5` version. Exploring and editing elements of `ChatGPT Pro` version may be considered in future updates.
 
 ## Customization
 
