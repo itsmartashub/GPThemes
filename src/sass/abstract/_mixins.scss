@@ -1,8 +1,0 @@
-@mixin adjust-hue($color, $amount) {
-	$adjusted-hue: $color + $amount; // Adjust hue with calculation
-	color: hsl(
-		$adjusted-hue,
-		saturation($color),
-		lightness($color)
-	); // Use adjusted hue with original saturation and lightness
-}

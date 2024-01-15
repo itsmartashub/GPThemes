@@ -111,6 +111,15 @@
 		}
 	}
 
+	& [class*='dark:bg-gray-700']:has(input[id]) {
+		background-color: var(--c-surface-3) !important;
+
+		input {
+			background-color: inherit !important;
+		}
+		// background-color: red !important;
+	}
+
 	/* ___ Dialog - "Share Chat" White preview <div>  */
 	&:has(main div[data-radix-aspect-ratio-wrapper]) .w-full.rounded-lg {
 		border-radius: var(--br-chat-bubble) !important;
