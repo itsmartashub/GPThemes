@@ -8,19 +8,12 @@
 	/* ? --- Border-radius --- */
 	--br: 1rem;
 	--br-chat-bubble: calc(var(--br) * 2.55);
-	// --br-chat-bubble: 2.6rem;
-	// --br-prompt-textarea: var(--br-chat-bubble);
-	// --br-prompt-textarea: 2.2rem;
 	--br-prompt-textarea: calc(var(--br) * 2.25);
 	--br-btn: calc(var(--br) / 1.1);
-	// --br-btn-big: 1.2rem;
 	--br-btn-big: calc(var(--br) * 1.2);
 	--br-nav-a: var(--br-btn);
-	// --br-dialog: 2.5rem;
 	--br-dialog: calc(var(--br) * 2.5);
 	--br-contextmenu: calc(var(--br-btn) * 1.4);
-	// --br-contextmenu: 1.5rem;
-	// --br-pre: 1.5rem;
 	--br-pre: calc(var(--br) * 1.5);
 	--br-tooltips: var(--br-btn);
 
@@ -55,24 +48,7 @@
 
 	/* ? --- Shadow things --- */
 	--box-shadow-values: 0px 0px 100px 0px;
-
-	// --tw-ring-color: red !important;
-	// --tw-ring-offset-color: green !important;
 }
-
-/*
-    --text-primary: var(--gray-100);
-    --text-secondary: var(--gray-300);
-    --text-tertiary: var(--gizmo-gray-500); 
-    --surface-tertiary: var(--gray-700); 
-    --border-light: rgba(217, 217, 227, .1);
-    --border-medium: rgba(217, 217, 227, .15);
-    --border-heavy: rgba(217, 217, 227, .2);
-    --border-xheavy: rgba(217, 217, 227, .25);
-*/
-/* --gray-300: var(--text-secondary) !important; */
-/* 3 tacke u listi u sidebar */
-/* --gray-500: var(--c-txt) !important; */
 
 /* @ ================== LIGHT ================== */
 html.light {
@@ -94,6 +70,13 @@ html.light {
 	--surface-l: 85%;
 	--surface-hsl: hsl(var(--surface-h) var(--surface-s) var(--surface-l));
 
+	/* --danger-hsl: 346 51% 45% */
+	--danger-h: 346;
+	--danger-s: 51%;
+	--danger-l: 45%;
+	--danger-hsl: var(--danger-h) var(--danger-s) var(--danger-l);
+	--c-danger: hsl(var(--danger-hsl));
+
 	/* ? ========== COLORS ========== */
 	--c-accent: hsl(var(--accent-hsl));
 	--c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 2), calc(var(--accent-l) * 1.3));
@@ -105,9 +88,9 @@ html.light {
 	--c-subtext-2: hsl(0, 0%, 40%);
 
 	/* ? ========== Surface colors ========== */
-	--c-surface-1: hsl(0, 0%, var(--surface-l));
-	--c-surface-2: hsl(0, 0%, calc(var(--surface-l) / 1.089));
-	--c-surface-3: hsl(0, 0%, calc(var(--surface-l) / 1.18));
+	--c-surface-1: hsl(0, 0%, var(--surface-l)); // dark
+	--c-surface-2: hsl(0, 0%, calc(var(--surface-l) / 1.089)); // darker - 78.05
+	--c-surface-3: hsl(0, 0%, calc(var(--surface-l) / 1.18)); // darkest - 72.03
 
 	/* ? ========== Layout colors ========== */
 	--c-bg-sidebar: var(--c-surface-1);
@@ -138,7 +121,6 @@ html.light {
 
 	/* ? ========== btn colors ========== */
 	--c-btn: var(--c-on-accent);
-	--c-btn-danger: hsl(346, 51%, 45%);
 	--c-bg-btn: var(--c-accent);
 
 	/* ? ========== <pre>/markdown things colors ========== */
@@ -217,6 +199,13 @@ html.dark {
 	--surface-l: 13%;
 	--surface-hsl: hsl(var(--accent-h) var(--surface-s) var(--surface-l));
 
+	/* --danger-hsl: 356 77% 76% */
+	--danger-h: 356;
+	--danger-s: 77%;
+	--danger-l: 76%;
+	--danger-hsl: var(--danger-h) var(--danger-s) var(--danger-l);
+	--c-danger: hsl(var(--danger-hsl));
+
 	/* ? ========== COLORS ========== */
 	--c-accent: hsl(var(--accent-hsl));
 	--c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 1.3), var(--accent-l));
@@ -228,9 +217,9 @@ html.dark {
 	--c-subtext-2: hsl(var(--accent-h) calc(var(--accent-s) / 2) var(--accent-l)) !important;
 
 	/* ? ========== Surface colors ========== */
-	--c-surface-1: hsl(var(--accent-h), var(--surface-s), var(--surface-l));
-	--c-surface-2: hsl(var(--accent-h), var(--surface-s), calc(var(--surface-l) * 1.5));
-	--c-surface-3: hsl(var(--accent-h), var(--surface-s), calc(var(--surface-l) * 2));
+	--c-surface-1: hsl(var(--accent-h), var(--surface-s), var(--surface-l)); // darkest
+	--c-surface-2: hsl(var(--accent-h), var(--surface-s), calc(var(--surface-l) * 1.5)); // darker
+	--c-surface-3: hsl(var(--accent-h), var(--surface-s), calc(var(--surface-l) * 2)); // dark
 
 	/* ? ========== Layout colors ========== */
 	--c-bg-sidebar: var(--c-surface-1);
@@ -262,7 +251,6 @@ html.dark {
 
 	/* ? ========== btn colors ========== */
 	--c-btn: var(--c-on-accent);
-	--c-btn-danger: hsl(356 77% 76%);
 	--c-bg-btn: var(--c-accent);
 
 	/* ? ========== <pre>/markdown things colors ========== */

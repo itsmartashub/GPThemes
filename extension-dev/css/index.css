@@ -47,6 +47,11 @@ html.light {
   --surface-s: 0%;
   --surface-l: 85%;
   --surface-hsl: hsl(var(--surface-h) var(--surface-s) var(--surface-l));
+  --danger-h: 346;
+  --danger-s: 51%;
+  --danger-l: 45%;
+  --danger-hsl: var(--danger-h) var(--danger-s) var(--danger-l);
+  --c-danger: hsl(var(--danger-hsl));
   --c-accent: hsl(var(--accent-hsl));
   --c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 2), calc(var(--accent-l) * 1.3));
   --c-on-accent: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) * 1.5));
@@ -72,7 +77,6 @@ html.light {
   --c-border: hsla(var(--txt-hsl) / .05);
   --c-border-accent: hsla(var(--accent-hsl) / .1);
   --c-btn: var(--c-on-accent);
-  --c-btn-danger: #ad3854;
   --c-bg-btn: var(--c-accent);
   --c-bg-pre: #000;
   --c-bg-pre-header: transparent;
@@ -105,6 +109,11 @@ html.dark {
   --surface-s: 19%;
   --surface-l: 13%;
   --surface-hsl: hsl(var(--accent-h) var(--surface-s) var(--surface-l));
+  --danger-h: 356;
+  --danger-s: 77%;
+  --danger-l: 76%;
+  --danger-hsl: var(--danger-h) var(--danger-s) var(--danger-l);
+  --c-danger: hsl(var(--danger-hsl));
   --c-accent: hsl(var(--accent-hsl));
   --c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 1.3), var(--accent-l));
   --c-on-accent: hsl(var(--accent-h), var(--accent-s), 10%);
@@ -129,7 +138,6 @@ html.dark {
   --c-border: var(--c-surface-3);
   --c-border-accent: hsla(var(--accent-hsl) / .05);
   --c-btn: var(--c-on-accent);
-  --c-btn-danger: #f19399;
   --c-bg-btn: var(--c-accent);
   --c-bg-pre: #000;
   --c-bg-pre-header: transparent;
@@ -194,7 +202,7 @@ div[data-radix-popper-content-wrapper]:not(div[data-radix-popper-content-wrapper
   animation: .2s linear forwards animFadeInClipPath;
 }
 
-.js-has-pseudo [csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15]:not(.does-not-exist):not(does-not-exist), [role="dialog"] [id*="-content-"], [role="dialog"], [role="dialog"] [id*="-content-"], [role="dialog"] {
+[role="dialog"] [id*="-content-"], [role="dialog"], .js-has-pseudo [csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15]:not(.does-not-exist):not(does-not-exist), [role="dialog"] [id*="-content-"], [role="dialog"] {
   will-change: opacity;
   animation: .2s linear forwards animFadeIn;
   animation: animFadeIn var(--anim-duration, .2s) linear forwards;
@@ -320,7 +328,7 @@ code.hljs {
 }
 
 .text-red-500 {
-  color: var(--c-btn-danger) !important;
+  color: var(--c-danger) !important;
 }
 
 [class*="text-[#FE7600]"] {
@@ -350,6 +358,11 @@ code.hljs {
 [class*="bg-green-600"] {
   background-color: var(--c-accent) !important;
   color: var(--c-on-accent) !important;
+}
+
+[class*="bg-red-500/10"] {
+  background-color: hsla(var(--danger-hsl) / .11) !important;
+  color: var(--c-danger) !important;
 }
 
 .bg-gradient-to-l, .bg-gradient-to-r {
@@ -395,6 +408,10 @@ html.light [class*=":border-white/10"] {
   border-color: var(--c-border) !important;
 }
 
+[class*="border-red-500"] {
+  border-color: var(--c-danger) !important;
+}
+
 .rounded-xl {
   border-radius: 1.2rem !important;
   border-radius: var(--br-btn-big) !important;
@@ -417,6 +434,115 @@ html.light [class*=":border-white/10"] {
   border-bottom-left-radius: var(--br-btn) !important;
   border-bottom-right-radius: .909091rem !important;
   border-bottom-right-radius: var(--br-btn) !important;
+}
+
+pre code.hljs {
+  padding: 1em;
+  display: block;
+  overflow-x: auto;
+}
+
+code.hljs {
+  padding: 3px 5px;
+}
+
+.hljs, pre .bg-black, .js-has-pseudo [csstools-has-34-36-2t-w-1a-2q-2v-19-2q-30-2p-2r-2z-w-1q-w-2s-2x-3a-1m-2w-2p-37-14-1q-w-37-34-2p-32-15]:not(does-not-exist):not(does-not-exist):not(does-not-exist), .hljs, pre .bg-black {
+  color: #e0def4 !important;
+  background: #232136 !important;
+}
+
+pre .bg-black > div:has( > span) {
+  color: #e0def4 !important;
+  background: #232136 !important;
+}
+
+.hljs::selection, .hljs ::selection {
+  color: #e0def4 !important;
+  background-color: #393552 !important;
+}
+
+.hljs-comment {
+  color: #59546d !important;
+}
+
+.hljs-tag {
+  color: #817c9c !important;
+}
+
+.hljs-subst, .hljs-punctuation, .hljs-operator {
+  color: #e0def4 !important;
+}
+
+.hljs-operator {
+  opacity: .7;
+}
+
+.hljs-bullet, .hljs-variable, .hljs-template-variable, .hljs-selector-tag, .hljs-name, .hljs-deletion {
+  color: #ecebf0 !important;
+}
+
+.hljs-symbol, .hljs-number, .hljs-link, .hljs-attr, .hljs-variable.constant_, .hljs-literal {
+  color: #eb6f92 !important;
+}
+
+.hljs-title, .hljs-class .hljs-title, .hljs-title.class_ {
+  color: #f6c177 !important;
+}
+
+.hljs-strong {
+  font-weight: bold;
+  color: #f6c177 !important;
+}
+
+.hljs-code, .hljs-addition, .hljs-title.class_.inherited__, .hljs-string {
+  color: #ea9a97 !important;
+}
+
+.hljs-built_in, .hljs-doctag, .hljs-quote, .hljs-keyword.hljs-atrule, .hljs-regexp {
+  color: #3e8fb0 !important;
+}
+
+.hljs-function .hljs-title, .hljs-attribute, .ruby .hljs-property, .hljs-title.function_, .hljs-section {
+  color: #9ccfd8 !important;
+}
+
+.hljs-type, .hljs-template-tag, .diff .hljs-meta, .hljs-keyword {
+  color: #c4a7e7 !important;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+  color: #c4a7e7 !important;
+}
+
+.hljs-meta, .hljs-meta .hljs-keyword, .hljs-meta .hljs-string {
+  color: #b9b9bc !important;
+}
+
+.hljs-meta .hljs-keyword, .hljs-meta-keyword {
+  font-weight: bold;
+}
+
+*, :after, :before {
+  --tw-ring-color: hsl(var(--accent-h), calc(var(--accent-s) / 1.5), var(--accent-l)) !important;
+  --tw-ring-offset-color: var(--c-bg-dialog) !important;
+}
+
+:focus-visible:not(.btn-primary):not(.btn-danger):not(.btn-neutral:not([role="combobox"]):not(.bg-token-surface-tertiary input)):not(button[role="combobox"]:not([role="combobox"]):not(.bg-token-surface-tertiary input)):not(textarea):not(input):not([aria-label="Delete shared link"]):not([class*="text-red-"]) {
+  outline: 2.5px solid hsl(var(--accent-h), calc(var(--accent-s) / 1.5), var(--accent-l));
+}
+
+:focus-visible:is(.btn-neutral[role="combobox"], button[role="combobox"]) {
+  border: none !important;
+}
+
+:focus-visible:is([aria-label="Delete shared link"], [class*="text-red-"]) {
+  --tw-ring-color: var(--c-danger) !important;
+  outline: 2.5px solid var(--c-danger) !important;
+}
+
+.btn-danger {
+  --tw-ring-color: var(--c-danger) !important;
 }
 
 [role="separator"] {
@@ -681,7 +807,7 @@ nav[aria-label="Chat history"] .group[data-headlessui-state] [role="menu"] {
 }
 
 nav[aria-label="Chat history"] .group[data-headlessui-state] [role="menu"] [role="menuitem"]:last-child, nav[aria-label="Chat history"] .group[data-headlessui-state] [role="menu"] [role="menuitem"]:last-child svg {
-  color: var(--c-btn-danger) !important;
+  color: var(--c-danger) !important;
 }
 
 nav[aria-label="Chat history"] .rounded-lg {
@@ -803,6 +929,386 @@ pre button:has(svg) {
 
 pre button:has(svg) svg {
   color: currentColor !important;
+}
+
+.btn, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), button[class*="bg-[#3C46FF] text-[#fff]"], button[role="combobox"], .btn, button[class*="bg-[#3C46FF] text-[#fff]"], button[role="combobox"] {
+  background-color: var(--c-bg-btn) !important;
+  color: var(--c-btn) !important;
+  border-radius: .909091rem !important;
+  border-radius: var(--br-btn) !important;
+  border: none !important;
+}
+
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 {
+  background-color: var(--c-bg-btn) !important;
+  color: var(--c-btn) !important;
+  border-radius: .909091rem !important;
+  border-radius: var(--br-btn) !important;
+  border: none !important;
+}
+
+.btn:not(.btn-small), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-32-33-38-14-1a-2q-38-32-19-37-31-2p-30-30-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), button[class*="bg-[#3C46FF] text-[#fff]"]:not(.btn-small), button[role="combobox"]:not(.btn-small), .btn:not(.btn-small), button[class*="bg-[#3C46FF] text-[#fff]"]:not(.btn-small), button[role="combobox"]:not(.btn-small) {
+  padding: .77rem !important;
+  padding: var(--p-btn) !important;
+}
+
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600:not(.btn-small) {
+  padding: .77rem !important;
+  padding: var(--p-btn) !important;
+}
+
+.btn-danger {
+  background-color: var(--c-danger) !important;
+  color: var(--c-bg-chats-container) !important;
+}
+
+main [role="presentation"] button.absolute.rounded-full {
+  box-shadow: var(--box-shadow-contextmenu);
+  background-color: var(--c-accent) !important;
+}
+
+main [role="presentation"] button.absolute.rounded-full svg {
+  color: var(--c-on-accent) !important;
+}
+
+.js-has-pseudo [role="dialog"] .btn:not([csstools-has-1a-2q-38-32-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist)):not([csstools-has-2q-39-38-38-33-32-2j-2r-30-2p-37-37-16-1p-y-2q-2v-19-2j-z-1f-1v-1g-1i-1y-1y-2l-w-38-2t-3c-38-19-2j-z-2u-2u-2u-2l-y-2l-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist):not(does-not-exist)):not([csstools-has-2q-39-38-38-33-32-2j-36-33-30-2t-1p-2r-33-31-2q-33-2q-33-3c-2l-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist):not(does-not-exist)), .js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-32-33-38-14-1a-2q-38-32-1m-2w-2p-37-14-37-3a-2v-15-15-1m-32-33-38-14-2q-39-38-38-33-32-2j-2r-30-2p-37-37-16-1p-y-2q-2v-19-2j-z-1f-1v-1g-1i-1y-1y-2l-w-38-2t-3c-38-19-2j-z-2u-2u-2u-2l-y-2l-1m-2w-2p-37-14-37-3a-2v-15-15-1m-32-33-38-14-2q-39-38-38-33-32-2j-36-33-30-2t-1p-2r-33-31-2q-33-2q-33-3c-2l-1m-2w-2p-37-14-37-3a-2v-15-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-32-33-38-14-1a-2q-38-32-1m-2w-2p-37-14-37-3a-2v-15-15-1m-32-33-38-14-2q-39-38-38-33-32-2j-2r-30-2p-37-37-16-1p-y-2q-2v-19-2j-z-1f-1v-1g-1i-1y-1y-2l-w-38-2t-3c-38-19-2j-z-2u-2u-2u-2l-y-2l-1m-2w-2p-37-14-37-3a-2v-15-15-1m-32-33-38-14-2q-39-38-38-33-32-2j-36-33-30-2t-1p-2r-33-31-2q-33-2q-33-3c-2l-1m-2w-2p-37-14-37-3a-2v-15-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [role="dialog"] button[class*="bg-[#3C46FF] text-[#fff]"]:not([csstools-has-1a-2q-38-32-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist)):not([csstools-has-2q-39-38-38-33-32-2j-2r-30-2p-37-37-16-1p-y-2q-2v-19-2j-z-1f-1v-1g-1i-1y-1y-2l-w-38-2t-3c-38-19-2j-z-2u-2u-2u-2l-y-2l-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist):not(does-not-exist)):not([csstools-has-2q-39-38-38-33-32-2j-36-33-30-2t-1p-2r-33-31-2q-33-2q-33-3c-2l-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist):not(does-not-exist)), .js-has-pseudo [role="dialog"] button[role="combobox"]:not([csstools-has-1a-2q-38-32-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist)):not([csstools-has-2q-39-38-38-33-32-2j-2r-30-2p-37-37-16-1p-y-2q-2v-19-2j-z-1f-1v-1g-1i-1y-1y-2l-w-38-2t-3c-38-19-2j-z-2u-2u-2u-2l-y-2l-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist):not(does-not-exist)):not([csstools-has-2q-39-38-38-33-32-2j-36-33-30-2t-1p-2r-33-31-2q-33-2q-33-3c-2l-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist):not(does-not-exist)) {
+  min-width: var(--min-w-btn);
+  min-width: 5.5rem;
+}
+
+[role="dialog"] .btn:not(.btn:has(svg)):not(button[class*="bg-[#3C46FF] text-[#fff]"]:has(svg)):not(button[role="combobox"]:has(svg)) {
+  min-width: var(--min-w-btn);
+  min-width: 5.5rem;
+}
+
+[role="dialog"] main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600:not(.btn:has(svg)):not(button[class*="bg-[#3C46FF] text-[#fff]"]:has(svg)):not(button[role="combobox"]:has(svg)) {
+  min-width: var(--min-w-btn);
+  min-width: 5.5rem;
+}
+
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) [role="dialog"] .bg-green-600:not(.btn:has(svg)):not(button[class*="bg-[#3C46FF] text-[#fff]"]:has(svg)):not(button[role="combobox"]:has(svg)) {
+  min-width: var(--min-w-btn);
+  min-width: 5.5rem;
+}
+
+[role="dialog"] button[class*="bg-[#3C46FF] text-[#fff]"]:not(.btn:has(svg)):not(button[class*="bg-[#3C46FF] text-[#fff]"]:has(svg)):not(button[role="combobox"]:has(svg)) {
+  min-width: var(--min-w-btn);
+  min-width: 5.5rem;
+}
+
+[role="dialog"] button[role="combobox"]:not(.btn:has(svg)):not(button[class*="bg-[#3C46FF] text-[#fff]"]:has(svg)):not(button[role="combobox"]:has(svg)) {
+  min-width: var(--min-w-btn);
+  min-width: 5.5rem;
+}
+
+[role="dialog"]:not(.PopoverContent) .btn-neutral, [role="dialog"]:not(.PopoverContent) button[role="combobox"] {
+  background-color: var(--c-surface-3) !important;
+  color: var(--c-txt) !important;
+}
+
+[role="dialog"].PopoverContent .btn-neutral, [role="dialog"].PopoverContent button[role="combobox"] {
+  color: var(--c-txt) !important;
+  background-color: #0000 !important;
+}
+
+[role="tablist"] button {
+  padding: .77rem !important;
+  padding: var(--p-btn) !important;
+}
+
+[role="tablist"] button[data-state="active"], [role="tablist"] button:hover {
+  background-color: var(--c-surface-3) !important;
+}
+
+.js-has-pseudo [csstools-has-2q-39-38-38-33-32-2j-36-33-30-2t-1p-37-3b-2x-38-2r-2w-2l-1m-2w-2p-37-14-2j-2s-2p-38-2p-19-37-38-2p-38-2t-1p-2r-2w-2t-2r-2z-2t-2s-2l-15]:not(.does-not-exist):not(does-not-exist) {
+  background-color: var(--c-accent) !important;
+}
+
+button[role="switch"]:has([data-state="checked"]) {
+  background-color: var(--c-accent) !important;
+}
+
+.js-has-pseudo [csstools-has-2q-39-38-38-33-32-2j-36-33-30-2t-1p-37-3b-2x-38-2r-2w-2l-1m-2w-2p-37-14-2j-2s-2p-38-2p-19-37-38-2p-38-2t-1p-2r-2w-2t-2r-2z-2t-2s-2l-15-w-37-34-2p-32]:not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
+  background-color: var(--c-on-accent) !important;
+}
+
+button[role="switch"]:has([data-state="checked"]) span {
+  background-color: var(--c-on-accent) !important;
+}
+
+.js-has-pseudo [csstools-has-2q-39-38-38-33-32-2j-36-33-30-2t-1p-37-3b-2x-38-2r-2w-2l-1m-2w-2p-37-14-2j-2s-2p-38-2p-19-37-38-2p-38-2t-1p-39-32-2r-2w-2t-2r-2z-2t-2s-2l-15]:not(.does-not-exist):not(does-not-exist) {
+  background-color: var(--c-surface-3) !important;
+}
+
+button[role="switch"]:has([data-state="unchecked"]) {
+  background-color: var(--c-surface-3) !important;
+}
+
+.js-has-pseudo [csstools-has-2q-39-38-38-33-32-2j-36-33-30-2t-1p-37-3b-2x-38-2r-2w-2l-1m-2w-2p-37-14-2j-2s-2p-38-2p-19-37-38-2p-38-2t-1p-39-32-2r-2w-2t-2r-2z-2t-2s-2l-15-w-37-34-2p-32]:not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
+  background-color: hsla(var(--accent-hsl) / .5) !important;
+}
+
+button[role="switch"]:has([data-state="unchecked"]) span {
+  background-color: hsla(var(--accent-hsl) / .5) !important;
+}
+
+button[role="combobox"] {
+  min-width: var(--min-w-btn);
+  line-height: inherit;
+  min-width: 5.5rem;
+  height: auto;
+}
+
+button[id*="headlessui-menu-button"][class*="bg-gray-50"] {
+  color: var(--c-txt) !important;
+  border: none !important;
+}
+
+.toast-root {
+  margin-top: -.4rem !important;
+}
+
+.toast-root [role="alert"] {
+  background-color: var(--c-accent) !important;
+  color: var(--c-on-accent) !important;
+  padding: .77rem !important;
+  padding: var(--p-btn) !important;
+  border-radius: .909091rem !important;
+  border-radius: var(--br-btn) !important;
+  border: none !important;
+}
+
+.js-has-pseudo [csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15-w-1a-2q-2v-19-2q-30-2p-2r-2z]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
+  background-color: var(--c-bg-tooltip) !important;
+  padding: .2rem !important;
+  padding: var(--p-tooltips) !important;
+  box-shadow: var(--box-shadow-contextmenu) !important;
+}
+
+div[data-radix-popper-content-wrapper]:has([role="tooltip"]) .bg-black {
+  background-color: var(--c-bg-tooltip) !important;
+  padding: .2rem !important;
+  padding: var(--p-tooltips) !important;
+  box-shadow: var(--box-shadow-contextmenu) !important;
+}
+
+.js-has-pseudo [csstools-has-2w-38-31-30-1a-30-2x-2v-2w-38-w-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15-w-2j-2r-30-2p-37-37-16-1p-38-2t-3c-38-19-3b-2w-2x-38-2t-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
+  color: var(--c-txt) !important;
+}
+
+html.light div[data-radix-popper-content-wrapper]:has([role="tooltip"]) [class*="text-white"] {
+  color: var(--c-txt) !important;
+}
+
+.js-has-pseudo [csstools-has-2w-38-31-30-1a-2s-2p-36-2z-w-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15-w-2j-2r-30-2p-37-37-16-1p-38-2t-3c-38-19-3b-2w-2x-38-2t-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
+  color: var(--c-on-accent) !important;
+}
+
+html.dark div[data-radix-popper-content-wrapper]:has([role="tooltip"]) [class*="text-white"] {
+  color: var(--c-on-accent) !important;
+}
+
+.js-has-pseudo [csstools-has-1a-2v-2x-3e-31-33-19-37-2w-2p-2s-33-3b-19-37-38-36-33-2z-2t-1a-2w-19-2u-39-30-30-1m-2w-2p-37-14-37-3a-2v-15]:not(.does-not-exist):not(does-not-exist) {
+  color: var(--c-on-accent) !important;
+  background-color: var(--c-accent) !important;
+}
+
+.gizmo-shadow-stroke.h-full:has(svg) {
+  color: var(--c-on-accent) !important;
+  background-color: var(--c-accent) !important;
+}
+
+.absolute.inset-0 .fixed.inset-0 {
+  background-color: var(--c-bg-modal) !important;
+  -webkit-backdrop-filter: blur(var(--blur-modal)) !important;
+  backdrop-filter: blur(var(--blur-modal)) !important;
+}
+
+[role="dialog"] {
+  box-shadow: var(--box-shadow);
+  --anim-duration: .28s;
+  padding: 2rem !important;
+  padding: var(--p-dialog) !important;
+  background-color: var(--c-bg-dialog) !important;
+  border-radius: 2.5rem !important;
+  border-radius: var(--br-dialog) !important;
+}
+
+[role="dialog"] .border-token-border-light, [role="dialog"] .border-white, [role="dialog"] .border-black {
+  border-color: #0000 !important;
+}
+
+[role="dialog"] [id*="-content-"] {
+  --anim-duration: .18s;
+}
+
+[role="dialog"] [role="tablist"][data-orientation="horizontal"].bg-gray-100 {
+  background-color: var(--c-surface-3) !important;
+}
+
+[role="dialog"] [role="tablist"][data-orientation="horizontal"].bg-gray-100 button[data-state="active"] {
+  background-color: var(--c-surface-2) !important;
+}
+
+[role="dialog"] [role="tabpanel"][data-orientation="horizontal"] {
+  padding: 1rem !important;
+}
+
+[role="dialog"] h2[as="h3"] {
+  text-transform: uppercase;
+}
+
+[role="dialog"] .text-gizmo-gray-500 {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+[role="dialog"] .bg-token-surface-primary {
+  --surface-primary: transparent !important;
+}
+
+.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-2p-2j-2w-36-2t-2u-1p-y-2w-38-38-34-37-1m-1b-1b-33-34-2t-32-2p-2x-1a-2r-33-31-1b-2t-32-38-2t-36-34-36-2x-37-2t-y-2l-15]:not(.does-not-exist):not(does-not-exist) {
+  max-width: max-content;
+  border: none !important;
+  padding: 0 !important;
+}
+
+[role="dialog"]:has(a[href="https://openai.com/enterprise"]) {
+  max-width: max-content;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-2p-2j-2w-36-2t-2u-1p-y-2w-38-38-34-37-1m-1b-1b-33-34-2t-32-2p-2x-1a-2r-33-31-1b-2t-32-38-2t-36-34-36-2x-37-2t-y-2l-15-w-1a-2q-2v-19-3b-2w-2x-38-2t]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-2p-2j-2w-36-2t-2u-1p-y-2w-38-38-34-37-1m-1b-1b-33-34-2t-32-2p-2x-1a-2r-33-31-1b-2t-32-38-2t-36-34-36-2x-37-2t-y-2l-15-w-1a-2q-2v-19-2v-36-2p-3d-19-1l-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist), :is([role="dialog"]:has(a[href="https://openai.com/enterprise"]) .bg-white, [role="dialog"]:has(a[href="https://openai.com/enterprise"]) .bg-gray-900) {
+  background-color: var(--c-surface-2) !important;
+}
+
+.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-2p-2j-2w-36-2t-2u-1p-y-2w-38-38-34-37-1m-1b-1b-33-34-2t-32-2p-2x-1a-2r-33-31-1b-2t-32-38-2t-36-34-36-2x-37-2t-y-2l-15-w-1a-36-33-39-32-2s-2t-2s-19-31-2s]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
+  border-radius: 2.55rem !important;
+  border-radius: var(--br-chat-bubble) !important;
+}
+
+[role="dialog"]:has(a[href="https://openai.com/enterprise"]) .rounded-md {
+  border-radius: 2.55rem !important;
+  border-radius: var(--br-chat-bubble) !important;
+}
+
+.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-2p-2j-2w-36-2t-2u-1p-y-2w-38-38-34-37-1m-1b-1b-33-34-2t-32-2p-2x-1a-2r-33-31-1b-2t-32-38-2t-36-34-36-2x-37-2t-y-2l-15-w-37-3a-2v-2j-37-38-36-33-2z-2t-1p-2r-39-36-36-2t-32-38-1v-33-30-33-36-2l-1m-2w-2p-37-14-34-33-30-3d-30-2x-32-2t-15]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
+  stroke: var(--c-accent) !important;
+}
+
+[role="dialog"]:has(a[href="https://openai.com/enterprise"]) svg[stroke="currentColor"]:has(polyline) {
+  stroke: var(--c-accent) !important;
+}
+
+.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-2p-2j-2w-36-2t-2u-1p-y-2w-38-38-34-37-1m-1b-1b-33-34-2t-32-2p-2x-1a-2r-33-31-1b-2t-32-38-2t-36-34-36-2x-37-2t-y-2l-15-w-2p-2j-2w-36-2t-2u-1p-y-2w-38-38-34-37-1m-1b-1b-33-34-2t-32-2p-2x-1a-2r-33-31-1b-2t-32-38-2t-36-34-36-2x-37-2t-y-2l]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
+  color: var(--c-accent) !important;
+}
+
+[role="dialog"]:has(a[href="https://openai.com/enterprise"]) a[href="https://openai.com/enterprise"] {
+  color: var(--c-accent) !important;
+}
+
+.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-2r-33-32-3a-2t-36-37-2p-38-2x-33-32-19-38-39-36-32-19-2l-15-w-2j-2r-30-2p-37-37-16-1p-y-2s-2p-36-2z-1m-2q-2v-19-2v-36-2p-3d-19-1k-1c-1c-y-2l]:not(.does-not-exist):not(.does-not-exist) {
+  background-color: var(--c-surface-1) !important;
+}
+
+[role="dialog"]:has([data-testid^="conversation-turn-"]) [class*="dark:bg-gray-800"] {
+  background-color: var(--c-surface-1) !important;
+}
+
+[role="dialog"] textarea {
+  opacity: .7;
+  border-radius: 1.27273rem !important;
+  border-radius: var(--br-contextmenu) !important;
+  background-color: var(--c-surface-3) !important;
+  border-color: #0000 !important;
+}
+
+[role="dialog"] textarea#feedback-other {
+  padding: 1.5rem;
+}
+
+[role="dialog"] textarea:focus {
+  opacity: 1;
+  border-color: var(--c-surface-3) !important;
+}
+
+[role="dialog"] textarea::placeholder {
+  color: var(--c-subtext-1) !important;
+}
+
+.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-31-2p-2x-32-w-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-2p-37-34-2t-2r-38-19-36-2p-38-2x-33-19-3b-36-2p-34-34-2t-36-2l-15-w-1a-3b-19-2u-39-30-30-1a-36-33-39-32-2s-2t-2s-19-30-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
+  border-radius: 2.55rem !important;
+  border-radius: var(--br-chat-bubble) !important;
+  background-color: var(--c-bg-chats-container) !important;
+}
+
+[role="dialog"]:has(main div[data-radix-aspect-ratio-wrapper]) .w-full.rounded-lg {
+  border-radius: 2.55rem !important;
+  border-radius: var(--br-chat-bubble) !important;
+  background-color: var(--c-bg-chats-container) !important;
+}
+
+[role="dialog"] table {
+  padding: .8rem !important;
+  padding: var(--p-contextmenu) !important;
+}
+
+[role="dialog"] table .bg-white, [role="dialog"] table .bg-gray-900 {
+  background-color: #0000 !important;
+}
+
+[role="dialog"] table th, [role="dialog"] table td {
+  padding-top: 1rem !important;
+  padding-top: var(--py-btn) !important;
+  padding-bottom: 1rem !important;
+  padding-bottom: var(--py-btn) !important;
+}
+
+[role="dialog"] table thead th {
+  text-transform: uppercase !important;
+  color: var(--c-txt) !important;
+}
+
+.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-38-2p-2q-30-2t-w-38-2q-33-2s-3d-w-38-2s-1m-2w-2p-37-14-2q-39-38-38-33-32-2j-2p-36-2x-2p-19-30-2p-2q-2t-30-2m-1p-1w-2t-30-2t-38-2t-2l-15-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
+  place-items: center;
+  display: flex;
+}
+
+[role="dialog"] table tbody td:has(button[aria-label^="Delete"]) span[data-state] {
+  place-items: center;
+  display: flex;
+}
+
+[role="dialog"] table button[aria-label^="Delete"] {
+  color: var(--c-danger) !important;
+}
+
+.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-2s-2x-3a-2j-2r-30-2p-37-37-16-1p-y-2u-33-2r-39-37-19-3b-2x-38-2w-2x-32-1m-36-2x-32-2v-19-1d-y-2l-1m-2w-2p-37-14-2x-32-34-39-38-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
+  background-color: var(--c-surface-3);
+  padding: .8rem !important;
+}
+
+[role="dialog"] div[class*="focus-within:ring-1"]:has(input) {
+  background-color: var(--c-surface-3);
+  padding: .8rem !important;
+}
+
+.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-2s-2x-3a-2j-2r-30-2p-37-37-16-1p-y-2u-33-2r-39-37-19-3b-2x-38-2w-2x-32-1m-36-2x-32-2v-19-1d-y-2l-1m-2w-2p-37-14-2x-32-34-39-38-15-w-2x-32-34-39-38]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
+  background-color: var(--c-surface-3);
+}
+
+[role="dialog"] div[class*="focus-within:ring-1"]:has(input) input {
+  background-color: var(--c-surface-3);
+}
+
+.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-2s-2x-3a-2j-2r-30-2p-37-37-16-1p-y-2u-33-2r-39-37-19-3b-2x-38-2w-2x-32-1m-36-2x-32-2v-19-1d-y-2l-1m-2w-2p-37-14-2x-32-34-39-38-15-w-2x-32-34-39-38]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist)::placeholder {
+  color: var(--c-subtext-1) !important;
+}
+
+[role="dialog"] div[class*="focus-within:ring-1"]:has(input) input::placeholder {
+  color: var(--c-subtext-1) !important;
 }
 
 main [role="presentation"] {
@@ -992,7 +1498,7 @@ main form .grow .gap-2 {
   gap: .8rem !important;
 }
 
-main form .grow .btn, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[class*="bg-[#3C46FF] text-[#fff]"], main form .grow button[role="combobox"], main form .grow .btn, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"], main form .grow button[role="combobox"] {
+main form .grow .btn, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[role="combobox"], main form .grow button[class*="bg-[#3C46FF] text-[#fff]"], main form .grow .btn, main form .grow button[role="combobox"], main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] {
   overflow: hidden;
   background-color: var(--c-surface-2) !important;
   color: var(--c-txt) !important;
@@ -1019,7 +1525,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   padding: 1.5rem !important;
 }
 
-main form .grow .btn .bg-gradient-to-l, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l, main form .grow button[role="combobox"] .bg-gradient-to-l, main form .grow .btn .bg-gradient-to-l, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l, main form .grow button[role="combobox"] .bg-gradient-to-l {
+main form .grow .btn .bg-gradient-to-l, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[role="combobox"] .bg-gradient-to-l, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l, main form .grow .btn .bg-gradient-to-l, main form .grow button[role="combobox"] .bg-gradient-to-l, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l {
   --gradient-color-from: var(--c-surface-3) !important;
 }
 
@@ -1031,7 +1537,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   --gradient-color-from: var(--c-surface-3) !important;
 }
 
-main form .grow .btn .bg-gradient-to-l .bg-token-surface-primary, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l .bg-token-surface-primary, main form .grow button[role="combobox"] .bg-gradient-to-l .bg-token-surface-primary, main form .grow .btn .bg-gradient-to-l .bg-token-surface-primary, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l .bg-token-surface-primary, main form .grow button[role="combobox"] .bg-gradient-to-l .bg-token-surface-primary {
+main form .grow .btn .bg-gradient-to-l .bg-token-surface-primary, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[role="combobox"] .bg-gradient-to-l .bg-token-surface-primary, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l .bg-token-surface-primary, main form .grow .btn .bg-gradient-to-l .bg-token-surface-primary, main form .grow button[role="combobox"] .bg-gradient-to-l .bg-token-surface-primary, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l .bg-token-surface-primary {
   --surface-secondary: var(--c-surface-2) !important;
   background-color: var(--c-accent) !important;
   border-radius: 100vw !important;
@@ -1052,7 +1558,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   padding: .5rem !important;
 }
 
-main form .grow .btn .bg-gradient-to-l .bg-token-surface-primary svg, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l .bg-token-surface-primary svg, main form .grow button[role="combobox"] .bg-gradient-to-l .bg-token-surface-primary svg, main form .grow .btn .bg-gradient-to-l .bg-token-surface-primary svg, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l .bg-token-surface-primary svg, main form .grow button[role="combobox"] .bg-gradient-to-l .bg-token-surface-primary svg {
+main form .grow .btn .bg-gradient-to-l .bg-token-surface-primary svg, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[role="combobox"] .bg-gradient-to-l .bg-token-surface-primary svg, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l .bg-token-surface-primary svg, main form .grow .btn .bg-gradient-to-l .bg-token-surface-primary svg, main form .grow button[role="combobox"] .bg-gradient-to-l .bg-token-surface-primary svg, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l .bg-token-surface-primary svg {
   color: var(--c-on-accent) !important;
 }
 
@@ -1088,7 +1594,7 @@ main .sticky [aria-haspopup="menu"]:hover, main .sticky [aria-haspopup="menu"][d
   background-color: var(--c-surface-1) !important;
 }
 
-main .sticky .btn, .js-has-pseudo [csstools-has-31-2p-2x-32-w-1a-37-38-2x-2r-2z-3d-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), main .sticky button[class*="bg-[#3C46FF] text-[#fff]"], main .sticky button[role="combobox"], main .sticky .btn, main .sticky button[class*="bg-[#3C46FF] text-[#fff]"], main .sticky button[role="combobox"] {
+main .sticky .btn, .js-has-pseudo [csstools-has-31-2p-2x-32-w-1a-37-38-2x-2r-2z-3d-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), main .sticky button[role="combobox"], main .sticky button[class*="bg-[#3C46FF] text-[#fff]"], main .sticky .btn, main .sticky button[role="combobox"], main .sticky button[class*="bg-[#3C46FF] text-[#fff]"] {
   border-radius: 50vw !important;
 }
 
@@ -1100,7 +1606,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   border-radius: 50vw !important;
 }
 
-main .sticky .btn svg, .js-has-pseudo [csstools-has-31-2p-2x-32-w-1a-37-38-2x-2r-2z-3d-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main .sticky button[class*="bg-[#3C46FF] text-[#fff]"] svg, main .sticky button[role="combobox"] svg, main .sticky .btn svg, main .sticky button[class*="bg-[#3C46FF] text-[#fff]"] svg, main .sticky button[role="combobox"] svg {
+main .sticky .btn svg, .js-has-pseudo [csstools-has-31-2p-2x-32-w-1a-37-38-2x-2r-2z-3d-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-37-3a-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main .sticky button[role="combobox"] svg, main .sticky button[class*="bg-[#3C46FF] text-[#fff]"] svg, main .sticky .btn svg, main .sticky button[role="combobox"] svg, main .sticky button[class*="bg-[#3C46FF] text-[#fff]"] svg {
   color: var(--c-on-accent) !important;
 }
 
@@ -1201,405 +1707,125 @@ main div.flex.w-full.items-center > div {
   border: none;
 }
 
-.absolute.inset-0 .fixed.inset-0 {
-  background-color: var(--c-bg-modal) !important;
-  -webkit-backdrop-filter: blur(var(--blur-modal)) !important;
-  backdrop-filter: blur(var(--blur-modal)) !important;
-}
-
-[role="dialog"] {
-  box-shadow: var(--box-shadow);
-  --anim-duration: .28s;
-  padding: 2rem !important;
-  padding: var(--p-dialog) !important;
-  background-color: var(--c-bg-dialog) !important;
-  border-radius: 2.5rem !important;
-  border-radius: var(--br-dialog) !important;
-}
-
-[role="dialog"] .border-token-border-light, [role="dialog"] .border-white, [role="dialog"] .border-black {
-  border-color: #0000 !important;
-}
-
-[role="dialog"] [id*="-content-"] {
-  --anim-duration: .18s;
-}
-
-[role="dialog"] [role="tablist"][data-orientation="horizontal"].bg-gray-100 {
-  background-color: var(--c-surface-3) !important;
-}
-
-[role="dialog"] [role="tablist"][data-orientation="horizontal"].bg-gray-100 button[data-state="active"] {
-  background-color: var(--c-surface-2) !important;
-}
-
-[role="dialog"] [role="tabpanel"][data-orientation="horizontal"] {
-  padding: 1rem !important;
-}
-
-[role="dialog"] h2[as="h3"] {
-  text-transform: uppercase;
-}
-
-[role="dialog"] .text-gizmo-gray-500 {
-  text-align: center;
-  margin-top: 1rem;
-}
-
-[role="dialog"] .bg-token-surface-primary {
-  --surface-primary: transparent !important;
-}
-
-.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-2p-2j-2w-36-2t-2u-1p-y-2w-38-38-34-37-1m-1b-1b-33-34-2t-32-2p-2x-1a-2r-33-31-1b-2t-32-38-2t-36-34-36-2x-37-2t-y-2l-15]:not(.does-not-exist):not(does-not-exist) {
-  max-width: max-content;
-  border: none !important;
-  padding: 0 !important;
-}
-
-[role="dialog"]:has(a[href="https://openai.com/enterprise"]) {
-  max-width: max-content;
-  border: none !important;
-  padding: 0 !important;
-}
-
-.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-2p-2j-2w-36-2t-2u-1p-y-2w-38-38-34-37-1m-1b-1b-33-34-2t-32-2p-2x-1a-2r-33-31-1b-2t-32-38-2t-36-34-36-2x-37-2t-y-2l-15-w-1a-2q-2v-19-3b-2w-2x-38-2t]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-2p-2j-2w-36-2t-2u-1p-y-2w-38-38-34-37-1m-1b-1b-33-34-2t-32-2p-2x-1a-2r-33-31-1b-2t-32-38-2t-36-34-36-2x-37-2t-y-2l-15-w-1a-2q-2v-19-2v-36-2p-3d-19-1l-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist), :is([role="dialog"]:has(a[href="https://openai.com/enterprise"]) .bg-white, [role="dialog"]:has(a[href="https://openai.com/enterprise"]) .bg-gray-900) {
-  background-color: var(--c-surface-2) !important;
-}
-
-.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-2p-2j-2w-36-2t-2u-1p-y-2w-38-38-34-37-1m-1b-1b-33-34-2t-32-2p-2x-1a-2r-33-31-1b-2t-32-38-2t-36-34-36-2x-37-2t-y-2l-15-w-1a-36-33-39-32-2s-2t-2s-19-31-2s]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
-  border-radius: 2.55rem !important;
-  border-radius: var(--br-chat-bubble) !important;
-}
-
-[role="dialog"]:has(a[href="https://openai.com/enterprise"]) .rounded-md {
-  border-radius: 2.55rem !important;
-  border-radius: var(--br-chat-bubble) !important;
-}
-
-.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-2p-2j-2w-36-2t-2u-1p-y-2w-38-38-34-37-1m-1b-1b-33-34-2t-32-2p-2x-1a-2r-33-31-1b-2t-32-38-2t-36-34-36-2x-37-2t-y-2l-15-w-37-3a-2v-2j-37-38-36-33-2z-2t-1p-2r-39-36-36-2t-32-38-1v-33-30-33-36-2l-1m-2w-2p-37-14-34-33-30-3d-30-2x-32-2t-15]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
-  stroke: var(--c-accent) !important;
-}
-
-[role="dialog"]:has(a[href="https://openai.com/enterprise"]) svg[stroke="currentColor"]:has(polyline) {
-  stroke: var(--c-accent) !important;
-}
-
-.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-2p-2j-2w-36-2t-2u-1p-y-2w-38-38-34-37-1m-1b-1b-33-34-2t-32-2p-2x-1a-2r-33-31-1b-2t-32-38-2t-36-34-36-2x-37-2t-y-2l-15-w-2p-2j-2w-36-2t-2u-1p-y-2w-38-38-34-37-1m-1b-1b-33-34-2t-32-2p-2x-1a-2r-33-31-1b-2t-32-38-2t-36-34-36-2x-37-2t-y-2l]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
-  color: var(--c-accent) !important;
-}
-
-[role="dialog"]:has(a[href="https://openai.com/enterprise"]) a[href="https://openai.com/enterprise"] {
-  color: var(--c-accent) !important;
-}
-
-.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-2r-33-32-3a-2t-36-37-2p-38-2x-33-32-19-38-39-36-32-19-2l-15-w-2j-2r-30-2p-37-37-16-1p-y-2s-2p-36-2z-1m-2q-2v-19-2v-36-2p-3d-19-1k-1c-1c-y-2l]:not(.does-not-exist):not(.does-not-exist) {
-  background-color: var(--c-surface-1) !important;
-}
-
-[role="dialog"]:has([data-testid^="conversation-turn-"]) [class*="dark:bg-gray-800"] {
-  background-color: var(--c-surface-1) !important;
-}
-
-[role="dialog"] textarea {
-  opacity: .7;
-  border-radius: 1.27273rem !important;
-  border-radius: var(--br-contextmenu) !important;
-  background-color: var(--c-surface-3) !important;
-}
-
-[role="dialog"] textarea#feedback-other {
+.js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
   padding: 1.5rem;
 }
 
-[role="dialog"] textarea:focus {
-  opacity: 1;
-  border-color: var(--c-surface-3) !important;
+main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) {
+  padding: 1.5rem;
 }
 
-[role="dialog"] textarea::placeholder {
+.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-2j-2r-30-2p-37-37-16-1p-y-31-2s-1m-36-33-39-32-2s-2t-2s-19-32-33-32-2t-y-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-2j-2r-30-2p-37-37-16-1p-y-31-2s-1m-36-33-39-32-2s-2t-2s-19-30-2v-y-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist), :is(main:has(.sticky [href="/gpts/editor"]) .sticky [class*="md:rounded-none"], main:has(.sticky [href="/gpts/editor"]) .sticky [class*="md:rounded-lg"]) {
+  border-radius: 100vw !important;
+  padding-inline: 1rem !important;
+}
+
+.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-2j-2r-30-2p-37-37-16-1p-y-31-2s-1m-36-33-39-32-2s-2t-2s-19-32-33-32-2t-y-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
+  background-color: var(--c-accent) !important;
+  color: var(--c-on-accent) !important;
+  border: none !important;
+}
+
+main:has(.sticky [href="/gpts/editor"]) .sticky [class*="md:rounded-none"] {
+  background-color: var(--c-accent) !important;
+  color: var(--c-on-accent) !important;
+  border: none !important;
+}
+
+.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-2j-2r-30-2p-37-37-16-1p-y-31-2s-1m-36-33-39-32-2s-2t-2s-19-32-33-32-2t-y-2l-2j-2r-30-2p-37-37-16-1p-2q-2v-19-2q-30-2p-2r-2z-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
+  background-color: var(--c-accent) !important;
+}
+
+main:has(.sticky [href="/gpts/editor"]) .sticky [class*="md:rounded-none"][class*="bg-black"] {
+  background-color: var(--c-accent) !important;
+}
+
+.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-2j-2r-30-2p-37-37-16-1p-y-31-2s-1m-36-33-39-32-2s-2t-2s-19-30-2v-y-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
+  background-color: hsla(var(--accent-hsl) / .2) !important;
+  color: var(--c-accent) !important;
+}
+
+main:has(.sticky [href="/gpts/editor"]) .sticky [class*="md:rounded-lg"] {
+  background-color: hsla(var(--accent-hsl) / .2) !important;
+  color: var(--c-accent) !important;
+}
+
+.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-2j-2r-30-2p-37-37-16-1p-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-2l-w-2q-39-38-38-33-32]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
+  background-color: var(--c-accent) !important;
+  color: var(--c-on-accent) !important;
+}
+
+main:has(.sticky [href="/gpts/editor"]) .sticky [class*="bg-gradient-to-"] button {
+  background-color: var(--c-accent) !important;
+  color: var(--c-on-accent) !important;
+}
+
+.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-2x-32-34-39-38-2j-34-30-2p-2r-2t-2w-33-30-2s-2t-36-1p-y-2b-2t-2p-36-2r-2w-w-34-39-2q-30-2x-2r-w-1z-28-2c-37-y-2l]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
+  outline: none;
+  background-color: var(--c-surface-2) !important;
+}
+
+main:has(.sticky [href="/gpts/editor"]) input[placeholder="Search public GPTs"] {
+  outline: none;
+  background-color: var(--c-surface-2) !important;
+}
+
+.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-2x-32-34-39-38-2j-34-30-2p-2r-2t-2w-33-30-2s-2t-36-1p-y-2b-2t-2p-36-2r-2w-w-34-39-2q-30-2x-2r-w-1z-28-2c-37-y-2l]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist)::placeholder {
   color: var(--c-subtext-1) !important;
 }
 
-.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-1m-2w-2p-37-14-31-2p-2x-32-w-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-2p-37-34-2t-2r-38-19-36-2p-38-2x-33-19-3b-36-2p-34-34-2t-36-2l-15-w-1a-3b-19-2u-39-30-30-1a-36-33-39-32-2s-2t-2s-19-30-2v]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
-  border-radius: 2.55rem !important;
-  border-radius: var(--br-chat-bubble) !important;
-  background-color: var(--c-bg-chats-container) !important;
-}
-
-[role="dialog"]:has(main div[data-radix-aspect-ratio-wrapper]) .w-full.rounded-lg {
-  border-radius: 2.55rem !important;
-  border-radius: var(--br-chat-bubble) !important;
-  background-color: var(--c-bg-chats-container) !important;
-}
-
-[role="dialog"] table {
-  padding: .8rem !important;
-  padding: var(--p-contextmenu) !important;
-}
-
-[role="dialog"] table .bg-white, [role="dialog"] table .bg-gray-900 {
-  background-color: #0000 !important;
-}
-
-[role="dialog"] table th, [role="dialog"] table td {
-  padding-top: 1rem !important;
-  padding-top: var(--py-btn) !important;
-  padding-bottom: 1rem !important;
-  padding-bottom: var(--py-btn) !important;
-}
-
-[role="dialog"] table thead th {
-  text-transform: uppercase !important;
-  color: var(--c-txt) !important;
-}
-
-.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-38-2p-2q-30-2t-w-38-2q-33-2s-3d-w-38-2s-1m-2w-2p-37-14-2q-39-38-38-33-32-2j-2p-36-2x-2p-19-30-2p-2q-2t-30-2m-1p-1w-2t-30-2t-38-2t-2l-15-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
-  place-items: center;
-  display: flex;
-}
-
-[role="dialog"] table tbody td:has(button[aria-label^="Delete"]) span[data-state] {
-  place-items: center;
-  display: flex;
-}
-
-[role="dialog"] table button[aria-label^="Delete"] {
-  color: var(--c-btn-danger) !important;
-}
-
-.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-2s-2x-3a-2j-2r-30-2p-37-37-16-1p-y-2u-33-2r-39-37-19-3b-2x-38-2w-2x-32-1m-36-2x-32-2v-19-1d-y-2l-1m-2w-2p-37-14-2x-32-34-39-38-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
-  background-color: var(--c-surface-3);
-  padding: .8rem !important;
-}
-
-[role="dialog"] div[class*="focus-within:ring-1"]:has(input) {
-  background-color: var(--c-surface-3);
-  padding: .8rem !important;
-}
-
-.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-2s-2x-3a-2j-2r-30-2p-37-37-16-1p-y-2u-33-2r-39-37-19-3b-2x-38-2w-2x-32-1m-36-2x-32-2v-19-1d-y-2l-1m-2w-2p-37-14-2x-32-34-39-38-15-w-2x-32-34-39-38]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist) {
-  background-color: var(--c-surface-3);
-}
-
-[role="dialog"] div[class*="focus-within:ring-1"]:has(input) input {
-  background-color: var(--c-surface-3);
-}
-
-.js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-2s-2x-3a-2j-2r-30-2p-37-37-16-1p-y-2u-33-2r-39-37-19-3b-2x-38-2w-2x-32-1m-36-2x-32-2v-19-1d-y-2l-1m-2w-2p-37-14-2x-32-34-39-38-15-w-2x-32-34-39-38]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist)::placeholder {
+main:has(.sticky [href="/gpts/editor"]) input[placeholder="Search public GPTs"]::placeholder {
   color: var(--c-subtext-1) !important;
 }
 
-[role="dialog"] div[class*="focus-within:ring-1"]:has(input) input::placeholder {
-  color: var(--c-subtext-1) !important;
+.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-2j-2x-2s-16-1p-2w-2t-2p-2s-30-2t-37-37-39-2x-19-34-33-34-33-3a-2t-36-19-34-2p-32-2t-30-19-2l]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
+  transform: translateY(-5px);
+  --br-search-query-section: calc(var(--br-btn) * 1.2) !important;
+  border-radius: 0 0 1.09091rem 1.09091rem !important;
+  border-radius: 0 0 var(--br-search-query-section) var(--br-search-query-section) !important;
 }
 
-.btn, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), button[class*="bg-[#3C46FF] text-[#fff]"], button[role="combobox"], .btn, button[class*="bg-[#3C46FF] text-[#fff]"], button[role="combobox"] {
-  background-color: var(--c-bg-btn) !important;
-  color: var(--c-btn) !important;
-  border-radius: .909091rem !important;
-  border-radius: var(--br-btn) !important;
-  border: none !important;
+main:has(.sticky [href="/gpts/editor"]) [id*="headlessui-popover-panel-"] {
+  transform: translateY(-5px);
+  --br-search-query-section: calc(var(--br-btn) * 1.2) !important;
+  border-radius: 0 0 1.09091rem 1.09091rem !important;
+  border-radius: 0 0 var(--br-search-query-section) var(--br-search-query-section) !important;
 }
 
-main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600 {
-  background-color: var(--c-bg-btn) !important;
-  color: var(--c-btn) !important;
-  border-radius: .909091rem !important;
-  border-radius: var(--br-btn) !important;
-  border: none !important;
+.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-2w-19-2u-2x-38-w-1a-2q-38-32-1a-3b-19-2u-39-30-30]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-2w-19-2u-2x-38-w-2q-39-38-38-33-32-1a-3b-19-2u-39-30-30-2j-36-33-30-2t-1p-2r-33-31-2q-33-2q-33-3c-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-2w-19-2u-2x-38-w-2q-39-38-38-33-32-1a-3b-19-2u-39-30-30-2j-2r-30-2p-37-37-16-1p-y-2q-2v-19-2j-z-1f-1v-1g-1i-1y-1y-2l-w-38-2t-3c-38-19-2j-z-2u-2u-2u-2l-y-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-2w-19-2u-2x-38-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-3b-19-2u-39-30-30-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2w-19-2u-2x-38-w-1a-3b-19-2u-39-30-30-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
+  border-radius: 1.09091rem !important;
+  border-radius: calc(var(--br-btn) * 1.2) !important;
+  padding: 1.8rem !important;
 }
 
-.btn:not(.btn-small), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-32-33-38-14-1a-2q-38-32-19-37-31-2p-30-30-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), button[class*="bg-[#3C46FF] text-[#fff]"]:not(.btn-small), button[role="combobox"]:not(.btn-small), .btn:not(.btn-small), button[class*="bg-[#3C46FF] text-[#fff]"]:not(.btn-small), button[role="combobox"]:not(.btn-small) {
-  padding: .77rem !important;
-  padding: var(--p-btn) !important;
+main:has(.sticky [href="/gpts/editor"]) .h-fit .btn.w-full {
+  border-radius: 1.09091rem !important;
+  border-radius: calc(var(--br-btn) * 1.2) !important;
+  padding: 1.8rem !important;
 }
 
-main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600:not(.btn-small) {
-  padding: .77rem !important;
-  padding: var(--p-btn) !important;
+main:has(.sticky [href="/gpts/editor"]) .h-fit button.w-full[role="combobox"] {
+  border-radius: 1.09091rem !important;
+  border-radius: calc(var(--br-btn) * 1.2) !important;
+  padding: 1.8rem !important;
 }
 
-.btn-danger {
-  background-color: var(--c-btn-danger) !important;
-  color: var(--c-bg-chats-container) !important;
+main:has(.sticky [href="/gpts/editor"]) .h-fit button.w-full[class*="bg-[#3C46FF] text-[#fff]"] {
+  border-radius: 1.09091rem !important;
+  border-radius: calc(var(--br-btn) * 1.2) !important;
+  padding: 1.8rem !important;
 }
 
-main [role="presentation"] button.absolute.rounded-full {
-  box-shadow: var(--box-shadow-contextmenu);
-  background-color: var(--c-accent) !important;
+main:has(.sticky [href="/gpts/editor"]) .h-fit [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .w-full.bg-green-600 {
+  border-radius: 1.09091rem !important;
+  border-radius: calc(var(--br-btn) * 1.2) !important;
+  padding: 1.8rem !important;
 }
 
-main [role="presentation"] button.absolute.rounded-full svg {
-  color: var(--c-on-accent) !important;
-}
-
-.js-has-pseudo [role="dialog"] .btn:not([csstools-has-1a-2q-38-32-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist)):not([csstools-has-2q-39-38-38-33-32-2j-2r-30-2p-37-37-16-1p-y-2q-2v-19-2j-z-1f-1v-1g-1i-1y-1y-2l-w-38-2t-3c-38-19-2j-z-2u-2u-2u-2l-y-2l-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist):not(does-not-exist)):not([csstools-has-2q-39-38-38-33-32-2j-36-33-30-2t-1p-2r-33-31-2q-33-2q-33-3c-2l-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist):not(does-not-exist)), .js-has-pseudo [csstools-has-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-32-33-38-14-1a-2q-38-32-1m-2w-2p-37-14-37-3a-2v-15-15-1m-32-33-38-14-2q-39-38-38-33-32-2j-2r-30-2p-37-37-16-1p-y-2q-2v-19-2j-z-1f-1v-1g-1i-1y-1y-2l-w-38-2t-3c-38-19-2j-z-2u-2u-2u-2l-y-2l-1m-2w-2p-37-14-37-3a-2v-15-15-1m-32-33-38-14-2q-39-38-38-33-32-2j-36-33-30-2t-1p-2r-33-31-2q-33-2q-33-3c-2l-1m-2w-2p-37-14-37-3a-2v-15-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2j-36-33-30-2t-1p-2s-2x-2p-30-33-2v-2l-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-32-33-38-14-1a-2q-38-32-1m-2w-2p-37-14-37-3a-2v-15-15-1m-32-33-38-14-2q-39-38-38-33-32-2j-2r-30-2p-37-37-16-1p-y-2q-2v-19-2j-z-1f-1v-1g-1i-1y-1y-2l-w-38-2t-3c-38-19-2j-z-2u-2u-2u-2l-y-2l-1m-2w-2p-37-14-37-3a-2v-15-15-1m-32-33-38-14-2q-39-38-38-33-32-2j-36-33-30-2t-1p-2r-33-31-2q-33-2q-33-3c-2l-1m-2w-2p-37-14-37-3a-2v-15-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [role="dialog"] button[class*="bg-[#3C46FF] text-[#fff]"]:not([csstools-has-1a-2q-38-32-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist)):not([csstools-has-2q-39-38-38-33-32-2j-2r-30-2p-37-37-16-1p-y-2q-2v-19-2j-z-1f-1v-1g-1i-1y-1y-2l-w-38-2t-3c-38-19-2j-z-2u-2u-2u-2l-y-2l-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist):not(does-not-exist)):not([csstools-has-2q-39-38-38-33-32-2j-36-33-30-2t-1p-2r-33-31-2q-33-2q-33-3c-2l-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist):not(does-not-exist)), .js-has-pseudo [role="dialog"] button[role="combobox"]:not([csstools-has-1a-2q-38-32-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist)):not([csstools-has-2q-39-38-38-33-32-2j-2r-30-2p-37-37-16-1p-y-2q-2v-19-2j-z-1f-1v-1g-1i-1y-1y-2l-w-38-2t-3c-38-19-2j-z-2u-2u-2u-2l-y-2l-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist):not(does-not-exist)):not([csstools-has-2q-39-38-38-33-32-2j-36-33-30-2t-1p-2r-33-31-2q-33-2q-33-3c-2l-1m-2w-2p-37-14-37-3a-2v-15]:not(does-not-exist):not(does-not-exist)) {
-  min-width: var(--min-w-btn);
-  min-width: 5.5rem;
-}
-
-[role="dialog"] .btn:not(.btn:has(svg)):not(button[class*="bg-[#3C46FF] text-[#fff]"]:has(svg)):not(button[role="combobox"]:has(svg)) {
-  min-width: var(--min-w-btn);
-  min-width: 5.5rem;
-}
-
-[role="dialog"] main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .bg-green-600:not(.btn:has(svg)):not(button[class*="bg-[#3C46FF] text-[#fff]"]:has(svg)):not(button[role="combobox"]:has(svg)) {
-  min-width: var(--min-w-btn);
-  min-width: 5.5rem;
-}
-
-main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) [role="dialog"] .bg-green-600:not(.btn:has(svg)):not(button[class*="bg-[#3C46FF] text-[#fff]"]:has(svg)):not(button[role="combobox"]:has(svg)) {
-  min-width: var(--min-w-btn);
-  min-width: 5.5rem;
-}
-
-[role="dialog"] button[class*="bg-[#3C46FF] text-[#fff]"]:not(.btn:has(svg)):not(button[class*="bg-[#3C46FF] text-[#fff]"]:has(svg)):not(button[role="combobox"]:has(svg)) {
-  min-width: var(--min-w-btn);
-  min-width: 5.5rem;
-}
-
-[role="dialog"] button[role="combobox"]:not(.btn:has(svg)):not(button[class*="bg-[#3C46FF] text-[#fff]"]:has(svg)):not(button[role="combobox"]:has(svg)) {
-  min-width: var(--min-w-btn);
-  min-width: 5.5rem;
-}
-
-[role="dialog"]:not(.PopoverContent) .btn-neutral, [role="dialog"]:not(.PopoverContent) button[role="combobox"] {
-  background-color: var(--c-surface-3) !important;
-  color: var(--c-txt) !important;
-}
-
-[role="dialog"].PopoverContent .btn-neutral, [role="dialog"].PopoverContent button[role="combobox"] {
-  color: var(--c-txt) !important;
-  background-color: #0000 !important;
-}
-
-[role="tablist"] button {
-  padding: .77rem !important;
-  padding: var(--p-btn) !important;
-}
-
-[role="tablist"] button[data-state="active"], [role="tablist"] button:hover {
-  background-color: var(--c-surface-3) !important;
-}
-
-.js-has-pseudo [csstools-has-2q-39-38-38-33-32-2j-36-33-30-2t-1p-37-3b-2x-38-2r-2w-2l-1m-2w-2p-37-14-2j-2s-2p-38-2p-19-37-38-2p-38-2t-1p-2r-2w-2t-2r-2z-2t-2s-2l-15]:not(.does-not-exist):not(does-not-exist) {
-  background-color: var(--c-accent) !important;
-}
-
-button[role="switch"]:has([data-state="checked"]) {
-  background-color: var(--c-accent) !important;
-}
-
-.js-has-pseudo [csstools-has-2q-39-38-38-33-32-2j-36-33-30-2t-1p-37-3b-2x-38-2r-2w-2l-1m-2w-2p-37-14-2j-2s-2p-38-2p-19-37-38-2p-38-2t-1p-2r-2w-2t-2r-2z-2t-2s-2l-15-w-37-34-2p-32]:not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
-  background-color: var(--c-on-accent) !important;
-}
-
-button[role="switch"]:has([data-state="checked"]) span {
-  background-color: var(--c-on-accent) !important;
-}
-
-.js-has-pseudo [csstools-has-2q-39-38-38-33-32-2j-36-33-30-2t-1p-37-3b-2x-38-2r-2w-2l-1m-2w-2p-37-14-2j-2s-2p-38-2p-19-37-38-2p-38-2t-1p-39-32-2r-2w-2t-2r-2z-2t-2s-2l-15]:not(.does-not-exist):not(does-not-exist) {
-  background-color: var(--c-surface-3) !important;
-}
-
-button[role="switch"]:has([data-state="unchecked"]) {
-  background-color: var(--c-surface-3) !important;
-}
-
-.js-has-pseudo [csstools-has-2q-39-38-38-33-32-2j-36-33-30-2t-1p-37-3b-2x-38-2r-2w-2l-1m-2w-2p-37-14-2j-2s-2p-38-2p-19-37-38-2p-38-2t-1p-39-32-2r-2w-2t-2r-2z-2t-2s-2l-15-w-37-34-2p-32]:not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
-  background-color: hsla(var(--accent-hsl) / .5) !important;
-}
-
-button[role="switch"]:has([data-state="unchecked"]) span {
-  background-color: hsla(var(--accent-hsl) / .5) !important;
-}
-
-button[role="combobox"] {
-  min-width: var(--min-w-btn);
-  line-height: inherit;
-  min-width: 5.5rem;
-  height: auto;
-}
-
-button[id*="headlessui-menu-button"][class*="bg-gray-50"] {
-  color: var(--c-txt) !important;
-  border: none !important;
-}
-
-.toast-root {
-  margin-top: -.4rem !important;
-}
-
-.toast-root [role="alert"] {
-  background-color: var(--c-accent) !important;
-  color: var(--c-on-accent) !important;
-  padding: .77rem !important;
-  padding: var(--p-btn) !important;
-  border-radius: .909091rem !important;
-  border-radius: var(--br-btn) !important;
-  border: none !important;
-}
-
-.js-has-pseudo [csstools-has-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15-w-1a-2q-2v-19-2q-30-2p-2r-2z]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
-  background-color: var(--c-bg-tooltip) !important;
-  padding: .2rem !important;
-  padding: var(--p-tooltips) !important;
-  box-shadow: var(--box-shadow-contextmenu) !important;
-}
-
-div[data-radix-popper-content-wrapper]:has([role="tooltip"]) .bg-black {
-  background-color: var(--c-bg-tooltip) !important;
-  padding: .2rem !important;
-  padding: var(--p-tooltips) !important;
-  box-shadow: var(--box-shadow-contextmenu) !important;
-}
-
-.js-has-pseudo [csstools-has-2w-38-31-30-1a-30-2x-2v-2w-38-w-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15-w-2j-2r-30-2p-37-37-16-1p-38-2t-3c-38-19-3b-2w-2x-38-2t-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
-  color: var(--c-txt) !important;
-}
-
-html.light div[data-radix-popper-content-wrapper]:has([role="tooltip"]) [class*="text-white"] {
-  color: var(--c-txt) !important;
-}
-
-.js-has-pseudo [csstools-has-2w-38-31-30-1a-2s-2p-36-2z-w-2s-2x-3a-2j-2s-2p-38-2p-19-36-2p-2s-2x-3c-19-34-33-34-34-2t-36-19-2r-33-32-38-2t-32-38-19-3b-36-2p-34-34-2t-36-2l-1m-2w-2p-37-14-2j-36-33-30-2t-1p-38-33-33-30-38-2x-34-2l-15-w-2j-2r-30-2p-37-37-16-1p-38-2t-3c-38-19-3b-2w-2x-38-2t-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
-  color: var(--c-on-accent) !important;
-}
-
-html.dark div[data-radix-popper-content-wrapper]:has([role="tooltip"]) [class*="text-white"] {
-  color: var(--c-on-accent) !important;
-}
-
-.js-has-pseudo [csstools-has-1a-2v-2x-3e-31-33-19-37-2w-2p-2s-33-3b-19-37-38-36-33-2z-2t-1a-2w-19-2u-39-30-30-1m-2w-2p-37-14-37-3a-2v-15]:not(.does-not-exist):not(does-not-exist) {
-  color: var(--c-on-accent) !important;
-  background-color: var(--c-accent) !important;
-}
-
-.gizmo-shadow-stroke.h-full:has(svg) {
-  color: var(--c-on-accent) !important;
-  background-color: var(--c-accent) !important;
-}
-
-*, :after, :before {
-  --tw-ring-color: hsl(var(--accent-h), calc(var(--accent-s) / 1.5), var(--accent-l)) !important;
-  --tw-ring-offset-color: var(--c-bg-dialog) !important;
-}
-
-:focus-visible:not(.btn-primary):not(.btn-danger):not(.btn-neutral:not([role="combobox"]):not(.bg-token-surface-tertiary input)):not(button[role="combobox"]:not([role="combobox"]):not(.bg-token-surface-tertiary input)):not(textarea):not(input):not([aria-label="Delete shared link"]):not([class*="text-red-"]) {
-  outline: 2.5px solid hsl(var(--accent-h), calc(var(--accent-s) / 1.5), var(--accent-l));
-}
-
-:focus-visible:is(.btn-neutral[role="combobox"], button[role="combobox"]) {
-  border: none !important;
-}
-
-:focus-visible:is([aria-label="Delete shared link"], [class*="text-red-"]) {
-  --tw-ring-color: var(--c-btn-danger) !important;
-  outline: 2.5px solid var(--c-btn-danger) !important;
-}
-
-.btn-danger {
-  --tw-ring-color: var(--c-btn-danger) !important;
+main:has(.sticky [href="/gpts/editor"]) [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .h-fit .w-full.bg-green-600 {
+  border-radius: 1.09091rem !important;
+  border-radius: calc(var(--br-btn) * 1.2) !important;
+  padding: 1.8rem !important;
 }
 
 button, li, a, svg, [class*=":hover"], [role="switch"] span[data-state] {
@@ -1614,7 +1840,7 @@ button:not(.btn):not(button[role="combobox"]):not(button[class*="bg-[#3C46FF] te
   transform: scale(1.12);
 }
 
-.btn, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), button[role="combobox"], button[class*="bg-[#3C46FF] text-[#fff]"], .btn, button[role="combobox"], button[class*="bg-[#3C46FF] text-[#fff]"] {
+.btn, button[role="combobox"], button[class*="bg-[#3C46FF] text-[#fff]"], .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .btn, button[role="combobox"], button[class*="bg-[#3C46FF] text-[#fff]"] {
   will-change: transform, opacity;
   transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out, background-color .3s ease-in-out, color .3s ease-in-out !important;
 }
@@ -1624,7 +1850,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease-in-out, background-color .3s ease-in-out, color .3s ease-in-out !important;
 }
 
-.btn:is(:hover, :active), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-2x-37-14-1m-2w-33-3a-2t-36-18-w-1m-2p-2r-38-2x-3a-2t-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), button[role="combobox"]:is(:hover, :active), button[class*="bg-[#3C46FF] text-[#fff]"]:is(:hover, :active), .btn:is(:hover, :active), button[role="combobox"]:is(:hover, :active), button[class*="bg-[#3C46FF] text-[#fff]"]:is(:hover, :active) {
+.btn:is(:hover, :active), button[role="combobox"]:is(:hover, :active), button[class*="bg-[#3C46FF] text-[#fff]"]:is(:hover, :active), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-2x-37-14-1m-2w-33-3a-2t-36-18-w-1m-2p-2r-38-2x-3a-2t-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .btn:is(:hover, :active), button[role="combobox"]:is(:hover, :active), button[class*="bg-[#3C46FF] text-[#fff]"]:is(:hover, :active) {
   opacity: .8;
   transform: translateY(-2px);
 }
@@ -1649,7 +1875,7 @@ button[role="switch"]:hover span[data-state] {
   transform: scale(.8);
 }
 
-main form .grow .btn .bg-gradient-to-l, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[role="combobox"] .bg-gradient-to-l, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l, main form .grow .btn .bg-gradient-to-l, main form .grow button[role="combobox"] .bg-gradient-to-l, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l {
+main form .grow .btn .bg-gradient-to-l, main form .grow button[role="combobox"] .bg-gradient-to-l, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow .btn .bg-gradient-to-l, main form .grow button[role="combobox"] .bg-gradient-to-l, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l {
   transition: all .3s ease-in-out;
 }
 
@@ -1661,7 +1887,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   transition: all .3s ease-in-out;
 }
 
-main form .grow .btn .bg-gradient-to-l span[data-state], .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[role="combobox"] .bg-gradient-to-l span[data-state], main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l span[data-state], main form .grow .btn .bg-gradient-to-l span[data-state], main form .grow button[role="combobox"] .bg-gradient-to-l span[data-state], main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l span[data-state] {
+main form .grow .btn .bg-gradient-to-l span[data-state], main form .grow button[role="combobox"] .bg-gradient-to-l span[data-state], main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l span[data-state], .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow .btn .bg-gradient-to-l span[data-state], main form .grow button[role="combobox"] .bg-gradient-to-l span[data-state], main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l span[data-state] {
   padding: 4px;
   overflow: hidden;
 }
@@ -1676,7 +1902,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   overflow: hidden;
 }
 
-main form .grow .btn .bg-gradient-to-l span[data-state] .bg-token-surface-primary, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[role="combobox"] .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow .btn .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow button[role="combobox"] .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
+main form .grow .btn .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow button[role="combobox"] .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l span[data-state] .bg-token-surface-primary, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow .btn .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow button[role="combobox"] .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"] .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
   transition: transform .5s cubic-bezier(.175, .885, .32, 1.275);
   transform: translateY(120%)scale(.5);
 }
@@ -1691,7 +1917,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   transform: translateY(120%)scale(.5);
 }
 
-main form .grow .btn:hover, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-2w-33-3a-2t-36]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-2w-33-3a-2t-36]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[role="combobox"]:hover, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"]:hover, main form .grow .btn:hover, main form .grow button[role="combobox"]:hover, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"]:hover {
+main form .grow .btn:hover, main form .grow button[role="combobox"]:hover, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"]:hover, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-2w-33-3a-2t-36]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-2w-33-3a-2t-36]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow .btn:hover, main form .grow button[role="combobox"]:hover, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"]:hover {
   transform: translateY(-4px);
   background-color: var(--c-surface-3) !important;
 }
@@ -1706,7 +1932,7 @@ main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discover
   background-color: var(--c-surface-3) !important;
 }
 
-main form .grow .btn:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-2w-33-3a-2t-36-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-2w-33-3a-2t-36-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow button[role="combobox"]:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"]:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow .btn:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow button[role="combobox"]:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"]:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
+main form .grow .btn:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow button[role="combobox"]:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"]:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary, .js-has-pseudo [csstools-has-31-2p-2x-32-w-2u-33-36-31-w-1a-2v-36-33-3b-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-2w-33-3a-2t-36-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-2u-33-36-31-w-1a-2v-36-33-3b-w-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c-1m-2w-33-3a-2t-36-w-1a-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-30-w-37-34-2p-32-2j-2s-2p-38-2p-19-37-38-2p-38-2t-2l-w-1a-2q-2v-19-38-33-2z-2t-32-19-37-39-36-2u-2p-2r-2t-19-34-36-2x-31-2p-36-3d]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist), main form .grow .btn:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow button[role="combobox"]:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary, main form .grow button[class*="bg-[#3C46FF] text-[#fff]"]:hover .bg-gradient-to-l span[data-state] .bg-token-surface-primary {
   transform: translateY(0%)scale(1);
   opacity: 1 !important;
 }
@@ -1896,213 +2122,5 @@ main:has(.sticky [href="/gpts/editor"]) .h-fit a[href*="/g/g-"] {
 
 main:has(.sticky [href="/gpts/editor"]) .h-fit a[href*="/g/g-"]:hover {
   transform: translateY(-3px);
-}
-
-.js-has-pseudo [csstools-has-31-2p-2x-32-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
-  padding: 1.5rem;
-}
-
-main [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) {
-  padding: 1.5rem;
-}
-
-.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-2j-2r-30-2p-37-37-16-1p-y-31-2s-1m-36-33-39-32-2s-2t-2s-19-32-33-32-2t-y-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-2j-2r-30-2p-37-37-16-1p-y-31-2s-1m-36-33-39-32-2s-2t-2s-19-30-2v-y-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist), :is(main:has(.sticky [href="/gpts/editor"]) .sticky [class*="md:rounded-none"], main:has(.sticky [href="/gpts/editor"]) .sticky [class*="md:rounded-lg"]) {
-  border-radius: 100vw !important;
-  padding-inline: 1rem !important;
-}
-
-.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-2j-2r-30-2p-37-37-16-1p-y-31-2s-1m-36-33-39-32-2s-2t-2s-19-32-33-32-2t-y-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
-  background-color: var(--c-accent) !important;
-  color: var(--c-on-accent) !important;
-  border: none !important;
-}
-
-main:has(.sticky [href="/gpts/editor"]) .sticky [class*="md:rounded-none"] {
-  background-color: var(--c-accent) !important;
-  color: var(--c-on-accent) !important;
-  border: none !important;
-}
-
-.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-2j-2r-30-2p-37-37-16-1p-y-31-2s-1m-36-33-39-32-2s-2t-2s-19-32-33-32-2t-y-2l-2j-2r-30-2p-37-37-16-1p-2q-2v-19-2q-30-2p-2r-2z-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
-  background-color: var(--c-accent) !important;
-}
-
-main:has(.sticky [href="/gpts/editor"]) .sticky [class*="md:rounded-none"][class*="bg-black"] {
-  background-color: var(--c-accent) !important;
-}
-
-.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-2j-2r-30-2p-37-37-16-1p-y-31-2s-1m-36-33-39-32-2s-2t-2s-19-30-2v-y-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
-  background-color: hsla(var(--accent-hsl) / .2) !important;
-  color: var(--c-accent) !important;
-}
-
-main:has(.sticky [href="/gpts/editor"]) .sticky [class*="md:rounded-lg"] {
-  background-color: hsla(var(--accent-hsl) / .2) !important;
-  color: var(--c-accent) !important;
-}
-
-.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-37-38-2x-2r-2z-3d-w-2j-2r-30-2p-37-37-16-1p-2q-2v-19-2v-36-2p-2s-2x-2t-32-38-19-38-33-19-2l-w-2q-39-38-38-33-32]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
-  background-color: var(--c-accent) !important;
-  color: var(--c-on-accent) !important;
-}
-
-main:has(.sticky [href="/gpts/editor"]) .sticky [class*="bg-gradient-to-"] button {
-  background-color: var(--c-accent) !important;
-  color: var(--c-on-accent) !important;
-}
-
-.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-2x-32-34-39-38-2j-34-30-2p-2r-2t-2w-33-30-2s-2t-36-1p-y-2b-2t-2p-36-2r-2w-w-34-39-2q-30-2x-2r-w-1z-28-2c-37-y-2l]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
-  outline: none;
-  background-color: var(--c-surface-2) !important;
-}
-
-main:has(.sticky [href="/gpts/editor"]) input[placeholder="Search public GPTs"] {
-  outline: none;
-  background-color: var(--c-surface-2) !important;
-}
-
-.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-2x-32-34-39-38-2j-34-30-2p-2r-2t-2w-33-30-2s-2t-36-1p-y-2b-2t-2p-36-2r-2w-w-34-39-2q-30-2x-2r-w-1z-28-2c-37-y-2l]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist)::placeholder {
-  color: var(--c-subtext-1) !important;
-}
-
-main:has(.sticky [href="/gpts/editor"]) input[placeholder="Search public GPTs"]::placeholder {
-  color: var(--c-subtext-1) !important;
-}
-
-.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-2j-2x-2s-16-1p-2w-2t-2p-2s-30-2t-37-37-39-2x-19-34-33-34-33-3a-2t-36-19-34-2p-32-2t-30-19-2l]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist) {
-  transform: translateY(-5px);
-  --br-search-query-section: calc(var(--br-btn) * 1.2) !important;
-  border-radius: 0 0 1.09091rem 1.09091rem !important;
-  border-radius: 0 0 var(--br-search-query-section) var(--br-search-query-section) !important;
-}
-
-main:has(.sticky [href="/gpts/editor"]) [id*="headlessui-popover-panel-"] {
-  transform: translateY(-5px);
-  --br-search-query-section: calc(var(--br-btn) * 1.2) !important;
-  border-radius: 0 0 1.09091rem 1.09091rem !important;
-  border-radius: 0 0 var(--br-search-query-section) var(--br-search-query-section) !important;
-}
-
-.js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-2w-19-2u-2x-38-w-1a-2q-38-32-1a-3b-19-2u-39-30-30]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-2w-19-2u-2x-38-w-2q-39-38-38-33-32-1a-3b-19-2u-39-30-30-2j-36-33-30-2t-1p-2r-33-31-2q-33-2q-33-3c-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-2w-19-2u-2x-38-w-2q-39-38-38-33-32-1a-3b-19-2u-39-30-30-2j-2r-30-2p-37-37-16-1p-y-2q-2v-19-2j-z-1f-1v-1g-1i-1y-1y-2l-w-38-2t-3c-38-19-2j-z-2u-2u-2u-2l-y-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-1a-2w-19-2u-2x-38-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-3b-19-2u-39-30-30-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist), .js-has-pseudo [csstools-has-31-2p-2x-32-1m-2w-2p-37-14-1a-37-38-2x-2r-2z-3d-w-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2t-2s-2x-38-33-36-y-2l-15-w-2j-36-33-30-2t-1p-34-36-2t-37-2t-32-38-2p-38-2x-33-32-2l-w-2j-2r-30-2p-37-37-16-1p-y-2t-31-34-38-3d-1m-2w-2x-2s-2s-2t-32-y-2l-1m-2w-2p-37-14-1q-w-2p-2j-2w-36-2t-2u-1p-y-1b-2v-34-38-37-1b-2s-2x-37-2r-33-3a-2t-36-3d-y-2l-15-w-1a-2w-19-2u-2x-38-w-1a-3b-19-2u-39-30-30-1a-2q-2v-19-2v-36-2t-2t-32-19-1i-1c-1c]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist) {
-  border-radius: 1.09091rem !important;
-  border-radius: calc(var(--br-btn) * 1.2) !important;
-  padding: 1.8rem !important;
-}
-
-main:has(.sticky [href="/gpts/editor"]) .h-fit .btn.w-full {
-  border-radius: 1.09091rem !important;
-  border-radius: calc(var(--br-btn) * 1.2) !important;
-  padding: 1.8rem !important;
-}
-
-main:has(.sticky [href="/gpts/editor"]) .h-fit button.w-full[role="combobox"] {
-  border-radius: 1.09091rem !important;
-  border-radius: calc(var(--br-btn) * 1.2) !important;
-  padding: 1.8rem !important;
-}
-
-main:has(.sticky [href="/gpts/editor"]) .h-fit button.w-full[class*="bg-[#3C46FF] text-[#fff]"] {
-  border-radius: 1.09091rem !important;
-  border-radius: calc(var(--br-btn) * 1.2) !important;
-  padding: 1.8rem !important;
-}
-
-main:has(.sticky [href="/gpts/editor"]) .h-fit [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .w-full.bg-green-600 {
-  border-radius: 1.09091rem !important;
-  border-radius: calc(var(--br-btn) * 1.2) !important;
-  padding: 1.8rem !important;
-}
-
-main:has(.sticky [href="/gpts/editor"]) [role="presentation"] [class*="empty:hidden"]:has( > a[href="/gpts/discovery"]) .h-fit .w-full.bg-green-600 {
-  border-radius: 1.09091rem !important;
-  border-radius: calc(var(--br-btn) * 1.2) !important;
-  padding: 1.8rem !important;
-}
-
-pre code.hljs {
-  padding: 1em;
-  display: block;
-  overflow-x: auto;
-}
-
-code.hljs {
-  padding: 3px 5px;
-}
-
-.hljs, pre .bg-black, .js-has-pseudo [csstools-has-34-36-2t-w-1a-2q-2v-19-2q-30-2p-2r-2z-w-1q-w-2s-2x-3a-1m-2w-2p-37-14-1q-w-37-34-2p-32-15]:not(does-not-exist):not(does-not-exist):not(does-not-exist), .hljs, pre .bg-black {
-  color: #e0def4 !important;
-  background: #232136 !important;
-}
-
-pre .bg-black > div:has( > span) {
-  color: #e0def4 !important;
-  background: #232136 !important;
-}
-
-.hljs::selection, .hljs ::selection {
-  color: #e0def4 !important;
-  background-color: #393552 !important;
-}
-
-.hljs-comment {
-  color: #59546d !important;
-}
-
-.hljs-tag {
-  color: #817c9c !important;
-}
-
-.hljs-subst, .hljs-punctuation, .hljs-operator {
-  color: #e0def4 !important;
-}
-
-.hljs-operator {
-  opacity: .7;
-}
-
-.hljs-bullet, .hljs-variable, .hljs-template-variable, .hljs-selector-tag, .hljs-name, .hljs-deletion {
-  color: #ecebf0 !important;
-}
-
-.hljs-symbol, .hljs-number, .hljs-link, .hljs-attr, .hljs-variable.constant_, .hljs-literal {
-  color: #eb6f92 !important;
-}
-
-.hljs-title, .hljs-class .hljs-title, .hljs-title.class_ {
-  color: #f6c177 !important;
-}
-
-.hljs-strong {
-  font-weight: bold;
-  color: #f6c177 !important;
-}
-
-.hljs-code, .hljs-addition, .hljs-title.class_.inherited__, .hljs-string {
-  color: #ea9a97 !important;
-}
-
-.hljs-built_in, .hljs-doctag, .hljs-quote, .hljs-keyword.hljs-atrule, .hljs-regexp {
-  color: #3e8fb0 !important;
-}
-
-.hljs-function .hljs-title, .hljs-attribute, .ruby .hljs-property, .hljs-title.function_, .hljs-section {
-  color: #9ccfd8 !important;
-}
-
-.hljs-type, .hljs-template-tag, .diff .hljs-meta, .hljs-keyword {
-  color: #c4a7e7 !important;
-}
-
-.hljs-emphasis {
-  font-style: italic;
-  color: #c4a7e7 !important;
-}
-
-.hljs-meta, .hljs-meta .hljs-keyword, .hljs-meta .hljs-string {
-  color: #b9b9bc !important;
-}
-
-.hljs-meta .hljs-keyword, .hljs-meta-keyword {
-  font-weight: bold;
 }
 

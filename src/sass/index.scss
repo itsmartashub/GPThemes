@@ -2,10 +2,11 @@
 // @import 'font-face/_jetbrains';
 @import 'abstract/_easing';
 @import 'abstract/_vars';
+// @import 'abstract/_mixins';
 @import 'abstract/_anims';
 @import 'abstract/_extends';
 
-@import 'dev/_mixins';
+// @import 'dev/_mixins';
 
 @import 'global/_base';
 @import 'global/_colors-txts';
@@ -13,24 +14,26 @@
 @import 'global/_colors-borders';
 @import 'global/_rounded';
 
+/* Highlight,js Theme Styles */
+@import 'hljs/_ros-pine-moon';
+
+// @import 'elements/_forms';
+@import 'elements/_accessibility';
 @import 'elements/_separators';
 @import 'elements/_menu';
 @import 'elements/_sidebar';
 @import 'elements/_prose';
 @import 'elements/_pre';
-@import 'elements/_right--main';
-@import 'elements/_right--new-chat';
-@import 'elements/_right--sticky';
-@import 'elements/_right--textarea';
-@import 'elements/_modal';
 @import 'elements/_btn';
 @import 'elements/_toast';
 @import 'elements/_tooltips';
 @import 'elements/_logo';
-@import 'elements/_accessibility';
-@import 'elements/_transitions';
+@import 'elements/_modal';
+@import 'elements/_dialogs';
+@import 'elements/_right--main';
+@import 'elements/_right--new-chat';
+@import 'elements/_right--sticky';
+@import 'elements/_right--textarea';
 @import 'pages/_shared-links';
 @import 'pages/_gpt-store';
-
-/* Highlight,js Theme Styles */
-@import 'hljs/_ros-pine-moon'; // TOP, ide uz temu, jedan od favorita
+@import 'elements/_transitions';

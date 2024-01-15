@@ -32,3 +32,8 @@ html.dark [class*=':border-white/10'] {
 html.light [class*=':border-white/10'] {
 	border-color: var(--c-border) !important;
 }
+
+/* "This content may violate content policy..." warning */
+[class*='border-red-500'] {
+	border-color: var(--c-danger) !important;
+}

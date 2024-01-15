@@ -90,6 +90,12 @@
 	color: var(--c-on-accent) !important;
 }
 
+[class*='bg-red-500/10'] {
+	background-color: hsla(var(--danger-hsl) / 0.11) !important;
+	color: var(--c-danger) !important;
+	// background-color: var(--c-danger) !important;
+}
+
 /* Like icon in "Provide aditional feedback" dialog when clicked liked answer */
 // .bg-green-100 {}
 

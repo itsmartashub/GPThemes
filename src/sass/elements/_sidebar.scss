@@ -198,10 +198,10 @@ nav[aria-label='Chat history'] {
 			transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 
 			[role='menuitem']:last-child {
-				color: var(--c-btn-danger) !important;
+				color: var(--c-danger) !important;
 
 				svg {
-					color: var(--c-btn-danger) !important;
+					color: var(--c-danger) !important;
 				}
 			}
 		}

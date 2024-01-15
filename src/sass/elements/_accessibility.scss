@@ -1,10 +1,13 @@
 *,
 :after,
 :before {
-    --tw-ring-color: hsl(var(--accent-h), calc(var(--accent-s) / 1.5), var(--accent-l)) !important; // out border (box-shadow) on dialog btns color
-    --tw-ring-offset-color: var(--c-bg-dialog) !important; // inner border on dialog btns color
+	--tw-ring-color: hsl(
+		var(--accent-h),
+		calc(var(--accent-s) / 1.5),
+		var(--accent-l)
+	) !important; // out border (box-shadow) on dialog btns color
+	--tw-ring-offset-color: var(--c-bg-dialog) !important; // inner border on dialog btns color
 }
-
 
 /*
     buttons, switch btns, svg buttons, input, menuitem (no btns in dialog tho, it is special style w/ --tw-ring-color and --tw-ring-offset-color vars) border/outline on keyboard focus or :focus-visible
@@ -15,41 +18,42 @@
 //     }
 // }
 
-
 /* 
 Theme dropdown deo ima zeleni border za :focus-visible.
   - [aria-label="Delete shared link"] is recycle svg icon in "Shared link" table
   - .btn-neutral:not([role="combobox"] is in theme dropdown "Dark/Light/System" button") 
 */
-:focus-visible:not(.btn-primary,
-    .btn-danger,
-    .btn-neutral:not([role="combobox"],
-        .bg-token-surface-tertiary input),
-    textarea,
-    input,
-    [aria-label="Delete shared link"],
-    [class*="text-red-"]) {
-    outline: 2.5px solid hsl(var(--accent-h), calc(var(--accent-s) / 1.5), var(--accent-l));
+:focus-visible:not(
+		.btn-primary,
+		.btn-danger,
+		.btn-neutral:not([role='combobox'], .bg-token-surface-tertiary input),
+		textarea,
+		input,
+		[aria-label='Delete shared link'],
+		[class*='text-red-']
+	) {
+	outline: 2.5px solid hsl(var(--accent-h), calc(var(--accent-s) / 1.5), var(--accent-l));
 }
 
-:focus-visible:is(.btn-neutral[role="combobox"]) {
-    border: none !important;
+:focus-visible:is(.btn-neutral[role='combobox']) {
+	border: none !important;
 }
 
 /* 🗑️ Recycle icon in "Shared link" table */
-:focus-visible:is([aria-label="Delete shared link"], [class*="text-red-"]) {
-    --tw-ring-color: var(--c-btn-danger) !important;
-    // --tw-ring-color: var(--c-btn-danger) !important;
-    outline: 2.5px solid var(--c-btn-danger) !important;
+:focus-visible:is([aria-label='Delete shared link'], [class*='text-red-']) {
+	--tw-ring-color: var(--c-danger) !important;
+	// --tw-ring-color: var(--c-danger) !important;
+	outline: 2.5px solid var(--c-danger) !important;
 }
 
 .btn-danger {
-    --tw-ring-color: var(--c-btn-danger) !important;
-    // outline: 2.5px solid var(--c-btn-danger) !important;
+	--tw-ring-color: var(--c-danger) !important;
+	// outline: 2.5px solid var(--c-danger) !important;
 
-    // &:focus {
-    //     outline-color: var(--c-bg-dialog) !important;
-    // }
+	// &:focus {
+	//     outline-color: var(--c-bg-dialog) !important;
+	// }
 }
 
-input {}
+input {
+}
