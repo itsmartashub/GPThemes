@@ -64,7 +64,8 @@ button:not(
 .btn {
 	will-change: transform, opacity;
 
-	transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out,
+	// transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out !important;
+	transition: transform 0.2s $easeInOutQuad, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out,
 		color 0.3s ease-in-out !important;
 
 	&:is(:hover, :active) {
@@ -254,7 +255,8 @@ main:has(.sticky [href='/gpts/editor']) {
 		/* Sticky header with tags aka "Top Picks", "DALLE", "Writing", etc */
 		[class*='md:rounded-none'],
 		[class*='md:rounded-lg'] {
-			transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s $easeInCirc;
+			// transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s $easeInCirc;
+			transition: background-color 0.3s $easeInOutSine, color 0.3s $easeInOutSine, transform 0.3s $easeInOutSine;
 		}
 		/* Non-active pill-tag */
 		[class*='md:rounded-lg']:hover {
