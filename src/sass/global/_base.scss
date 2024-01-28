@@ -16,23 +16,15 @@ a {
 }
 
 /* scrollbar-color for For Firefox */
-html {
-	scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track); // second parameter (transparent) is for bg-thumb
+@-moz-document url-prefix() {
+	html {
+		scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track); // second parameter (transparent) is for bg-thumb
+	}
 }
-
-/* scrollbar-thumb-color for Chromium-based browsers */
+// /* scrollbar-thumb-color for Chromium-based browsers */
 ::-webkit-scrollbar-thumb {
 	background-color: var(--c-scrollbar-thumb) !important;
 }
-
-/* scrollbar-track for Chromium-based browsers */
-// ::-webkit-scrollbar-track {
-//     // background-color: red !important;
-
-//     &:hover {
-//         background-color: var(--c-surface-2) !important;
-//     }
-// }
 
 ::selection {
 	background-color: hsla(var(--accent-hsl) / 0.5) !important;
