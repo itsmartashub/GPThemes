@@ -29,7 +29,7 @@ $themeButtons.forEach((btn) => {
 
 function createAndAppendSVGStickyBtn() {
 	const gpthFloatingBtn = document.createElement('div')
-	gpthFloatingBtn.id = 'gpthCustomizerBtn'
+	gpthFloatingBtn.id = 'gpthCustomizerContainer'
 	gpthFloatingBtn.className = 'gpth__svg'
 
 	gpthFloatingBtn.innerHTML = `
@@ -51,6 +51,8 @@ function createAndAppendSVGStickyBtn() {
 
 function applyTheme(theme) {
 	console.log(theme)
+	let htmlTag = document.documentElement
+
 	// document.documentElement.className = theme === 'oled' ? 'oled dark' : theme
 	if (theme === 'oled') {
 		htmlTag.dataset.gptheme = theme
@@ -62,6 +64,7 @@ function applyTheme(theme) {
 		htmlTag.hasAttribute('data-gptheme') && htmlTag.removeAttribute('data-gptheme')
 	}
 }
+
 function toggleOptions() {
 	isOptionsShown = !isOptionsShown
 	$options.classList.toggle('gpth-options-shown', isOptionsShown)
@@ -69,6 +72,7 @@ function toggleOptions() {
 	if (isOptionsShown) document.body.addEventListener('click', hideOptions)
 	else document.body.removeEventListener('click', hideOptions)
 }
+
 function hideOptions(event) {
 	console.log(event.target)
 

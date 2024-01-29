@@ -2,8 +2,8 @@
 	&__svg {
 		--svg-size: 2.25rem;
 		// --top: calc(var(--h-header) + 1rem);
-		--top: 1rem;
-		--right: 0.8rem;
+		--top: var(--h-header);
+		--right: 1.3rem;
 		/*position: relative;
 		z-index: 999; */
 		// position: absolute;
