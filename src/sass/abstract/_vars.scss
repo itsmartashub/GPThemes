@@ -5,6 +5,8 @@
 		Noto Color Emoji;
 	--fsz-error-404: 3rem;
 
+	--h-header: calc(3.5rem + 0.5rem + 0.375rem);
+
 	/* ? --- Border-radius --- */
 	--br: 1rem;
 	--br-chat-bubble: calc(var(--br) * 2.55);
@@ -306,4 +308,141 @@ html.dark {
 	/* ? ========== BOX-SHADOW ==========*/
 	--box-shadow: var(--box-shadow-values) hsla(var(--accent-hsl) / 0.1);
 	--box-shadow-contextmenu: 0px 0px 30px -10px hsla(var(--accent-hsl) / 0.18);
+}
+
+/* @ ================== OLED ================== */
+html.dark[data-gptheme='oled'] {
+	/* ? ========== HSL ========== */
+
+	/* --accent-hsl: 272 93% 78%; */
+	--accent-h: 272;
+	--accent-s: 93%;
+	--accent-l: 78%;
+	--accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l);
+
+	/* --txt-hsl: 255 86% 92%; */
+	--txt-h: 255;
+	--txt-s: 86%;
+	--txt-l: 92%;
+	--txt-hsl: var(--txt-h) var(--txt-s) var(--txt-l);
+
+	--surface-h: 0;
+	--surface-s: 0%;
+	--surface-l: 0%;
+	--surface-hsl: hsl(var(--accent-h) var(--surface-s) var(--surface-l));
+
+	/* --danger-hsl: 356 77% 76% */
+	--danger-h: 356;
+	--danger-s: 77%;
+	--danger-l: 76%;
+	--danger-hsl: var(--danger-h) var(--danger-s) var(--danger-l);
+	--c-danger: hsl(var(--danger-hsl));
+
+	/* ? ========== COLORS ========== */
+	--c-accent: hsl(var(--accent-hsl));
+	--c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 1.3), var(--accent-l));
+	--c-on-accent: hsl(var(--accent-h), var(--accent-s), 10%);
+
+	/* ? ========== Text colors ========== */
+	--c-txt: hsl(var(--txt-hsl));
+	--c-subtext-1: var(--c-accent-light);
+	--c-subtext-2: hsl(var(--accent-h) calc(var(--accent-s) / 2) var(--accent-l)) !important;
+
+	/* ? ========== Surface colors ========== */
+	--c-surface-1: black; // darkest
+	// --c-surface-2: #191c1e; // darker
+	// --c-surface-3: #262229; // dark
+	--c-surface-2: hsl(var(--accent-h), calc(var(--surface-s) + 10%), calc(var(--surface-l) + 5%)); // darker
+	--c-surface-3: hsl(var(--accent-h), calc(var(--surface-s) + 10%), calc(var(--surface-l) + 9%)); // dark
+
+	/* ? ========== Layout colors ========== */
+	// --c-bg-sidebar: var(--c-surface-1);
+	// --c-bg-chats-container: var(--c-surface-2);
+	--c-bg-sidebar: black;
+	--c-bg-chats-container: black;
+	--c-bg-chats-sticky: black;
+
+	/* ? ========== Chat bubbles colors ========== */
+	// --c-bg-msg-user: hsla(var(--accent-hsl) / 0.04);
+	// --c-bg-msg-gpt: hsla(var(--accent-hsl) / 0.08);
+	--c-bg-msg-user: hsl(var(--accent-h), var(--surface-s), calc(var(--surface-l) + 4%));
+	--c-bg-msg-gpt: hsl(var(--accent-h), var(--surface-s), calc(var(--surface-l) + 6%));
+	--c-msg-name-user: var(--c-accent);
+	// --c-msg-name-gpt: var(--c-green);
+
+	/* ? ========== Type message textarea colors ========== */
+	--c-bg-textarea: var(--c-surface-2);
+	--c-border-textarea: var(--c-surface-2);
+	--c-placeholder-textarea: hsl(var(--accent-hsl) / 0.8);
+
+	/* ? ========== modal, dialog, contextmenu bg ========== */
+	--c-bg-modal: hsla(var(--accent-hsl) / 0.09);
+	--c-bg-dialog: var(--c-surface-1);
+	--c-bg-contextmenu: var(--c-surface-3);
+
+	/* ? ========== Tooltip bg ========== */
+	--c-bg-tooltip: var(--c-accent-light);
+
+	/* ? ========== border colors ========== */
+	--c-border: var(--c-surface-3);
+	--c-border-accent: hsla(var(--accent-hsl) / 0.05);
+
+	/* ? ========== btn colors ========== */
+	--c-btn: var(--c-on-accent);
+	--c-bg-btn: var(--c-accent);
+
+	/* ? ========== <pre>/markdown things colors ========== */
+	--c-bg-pre: hsl(0, 0%, 0%);
+	--c-bg-pre-header: transparent;
+	--c-bg-pre-header-btn: var(--c-accent);
+	--c-markdown-a: var(--c-accent);
+
+	/* ? ========== Scrollbar colors ========== */
+	--c-scrollbar-thumb: var(--c-surface-3);
+	--c-scrollbar-track: transparent;
+
+	/* ? ========== OpenAI surface colors ========== */
+	/* btn u biranju teme kad nema nikake pozadine */
+	--surface-primary: var(--c-surface-1) !important;
+
+	/* border oko context-menu */
+	--surface-secondary: transparent !important;
+
+	/* Selected button/link/list in settings: "General", "Data controls" */
+	--surface-tertiary: var(--c-bg-msg-gpt) !important;
+
+	/* ? ========== OpenAI text colors ========== */
+	/*``` --text-primary 
+        - body txt
+        - ??
+    */
+	--text-primary: var(--c-txt) !important;
+
+	/*``` --text-secondary 
+        - txt ispod "Upgrade"
+        - txt ispod "Chat history & training" u Settingsu
+        - txt "3.5" u sticky pored "ChatGPT 3.5"
+        - kad je recimo focused sa tabom Dark u "Themes"
+        - text kad se ode na "Upgrade" pa ono "Have an existing plan? See billing help"
+    */
+	--text-secondary: var(--c-subtext-1) !important;
+
+	/*``` --text-tertiary 
+        - strelica na dole pored 3.5 u sticky pored ChatGPT 3.5
+        - kad je nesto focused sa tabom - accessibility - npr Clear u clear all chats
+        - text u contextmenu kad se klikne na ChatGPT 3.5
+        - text kad odemo u  UPgrade pa ono USD $0/month i USD $20/month 
+    */
+	--text-tertiary: var(--c-subtext-2) !important;
+
+	/* ? ========== PROVERITI - gray ========== */
+	--gray-300: var(--text-secondary) !important;
+
+	/* 3 tacke u listi u sidebar */
+	--gray-500: var(--c-txt) !important;
+
+	/* ? ========== BOX-SHADOW ==========*/
+	--box-shadow: var(--box-shadow-values) hsla(var(--accent-hsl) / 0.1);
+	--box-shadow-contextmenu: 0px 0px 30px 0px hsla(var(--accent-hsl) / 0.1);
+	// --box-shadow-contextmenu: 0px 0px 30px 0px red;
 }

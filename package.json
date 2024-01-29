@@ -1,6 +1,6 @@
 {
 	"name": "gpthemes",
-	"version": "1.2.1",
+	"version": "1.3.0",
 	"description": "GPThemes is a Chrome extension designed to improve the visual experience of ChatGPT by injecting custom CSS to enhance its theme.",
 	"repository": {
 		"type": "git",
@@ -11,12 +11,12 @@
 	},
 	"homepage": "https://github.com/itsmartashub/GPThemes/",
 	"scripts": {
-		"test": "parcel src/sass/index.scss --dist-dir extension-test/css --no-source-maps",
-		"dev": "parcel src/sass/index.scss --dist-dir extension-dev/css --no-source-maps",
-		"build": "parcel build src/sass/index.scss --dist-dir extension-prod/css --no-source-maps",
-		"hybrid": "parcel src/popup.html --dist-dir extension-hybrid/ --no-source-maps"
+		"dev_ch": "parcel watch src/manifests/chrome/manifest.json --host localhost --dist-dir dev-chrome",
+		"dev_ff": "parcel watch src/manifests/firefox-mv2/manifest.json --host localhost --dist-dir dev-firefox-mv2",
+		"build_ch": "parcel build src/manifests/chrome/manifest.json --dist-dir prod-chrome --no-source-maps",
+		"build_ff": "parcel build src/manifests/firefox-mv2/manifest.json --dist-dir prod-firefox-mv2 --no-source-maps"
 	},
-	"author": "Marta Bires",
+	"author": "itsmarta",
 	"keywords": [
 		"chatgpt",
 		"chat",
@@ -55,29 +55,12 @@
 	"license": "GPL-3.0",
 	"devDependencies": {
 		"@parcel/config-webextension": "^2.11.0",
-		"@parcel/transformer-sass": "^2.10.3",
-		"parcel": "^2.10.3",
-		"parcel-reporter-static-files-copy": "^1.5.3",
+		"@parcel/transformer-sass": "^2.11.0",
+		"parcel": "^2.11.0",
 		"postcss": "^8.4.32",
 		"postcss-preset-env": "^9.3.0",
 		"postcss-transform": "^0.0.2",
 		"webextension-polyfill": "^0.10.0"
 	},
-	"browserslist": "> 0.5%, last 2 versions, not dead",
-	"staticFiles": [
-		{
-			"staticPath": "./src/static/",
-			"distDir": "extension-dev",
-			"env": {
-				"NODE_ENV": "development"
-			}
-		},
-		{
-			"staticPath": "./src/static/",
-			"distDir": "extension-prod",
-			"env": {
-				"NODE_ENV": "production"
-			}
-		}
-	]
+	"browserslist": "> 0.5%, last 2 versions, not dead"
 }
