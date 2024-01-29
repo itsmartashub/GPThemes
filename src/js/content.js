@@ -1,3 +1,12 @@
+// Use a cross-browser storage API:
+// const storage = chrome.storage.sync || browser.storage.sync
+import browser from 'webextension-polyfill'
+
+browser.storage.sync.get('gptheme').then((data) => {
+	const theme = data.gptheme || 'light'
+	applyTheme(theme)
+})
+
 createAndAppendSVGStickyBtn()
 
 let isOptionsShown = false
@@ -40,6 +49,19 @@ function createAndAppendSVGStickyBtn() {
 	document.body.appendChild(gpthFloatingBtn)
 }
 
+function applyTheme(theme) {
+	console.log(theme)
+	// document.documentElement.className = theme === 'oled' ? 'oled dark' : theme
+	if (theme === 'oled') {
+		htmlTag.dataset.gptheme = theme
+		htmlTag.style.colorScheme = 'dark'
+		htmlTag.className = 'dark'
+	} else {
+		htmlTag.style.colorScheme = theme
+		htmlTag.className = theme
+		htmlTag.hasAttribute('data-gptheme') && htmlTag.removeAttribute('data-gptheme')
+	}
+}
 function toggleOptions() {
 	isOptionsShown = !isOptionsShown
 	$options.classList.toggle('gpth-options-shown', isOptionsShown)
