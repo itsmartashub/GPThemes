@@ -2,4 +2,5 @@
 .absolute.inset-0 .fixed.inset-0 {
 	background-color: var(--c-bg-modal) !important;
 	backdrop-filter: blur(var(--blur-modal)) !important;
+	// z-index: 100;
 }
