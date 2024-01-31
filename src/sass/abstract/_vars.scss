@@ -179,6 +179,7 @@ html.light {
 	--box-shadow: var(--box-shadow-values) hsla(var(--accent-hsl) / 0.1);
 	// --box-shadow-contextmenu: 0px 0px 5px -2px hsla(0, 0%, 0%, 0.18);
 	--box-shadow-contextmenu: inset 0px 0px 10px 2px hsla(0, 0%, 0%, 0.1);
+	--box-shadow-textarea: inset 0px 0px 15px 1px hsla(0, 0%, 0%, 0.1) !important;
 }
 
 /* @ ================== DARK ================== */
@@ -309,7 +310,8 @@ html.dark {
 	/* ? ========== BOX-SHADOW ==========*/
 	--box-shadow: var(--box-shadow-values) hsla(var(--accent-hsl) / 0.1);
 	// --box-shadow-contextmenu: 0px 0px 30px -10px hsla(var(--accent-hsl) / 0.18);
-	--box-shadow-contextmenu: inset 0px 0px 10px 2px hsla(var(--accent-hsl) / 0.15);
+	--box-shadow-contextmenu: inset 0px 0px 12px 1px hsla(var(--accent-hsl) / 0.13);
+	--box-shadow-textarea: inset 0px 0px 15px 1px hsla(var(--accent-hsl) / 0.05) !important;
 }
 
 /* @ ================== OLED ================== */
@@ -351,11 +353,13 @@ html.dark[data-gptheme='oled'] {
 	--c-subtext-2: hsl(var(--accent-h) calc(var(--accent-s) / 2) var(--accent-l)) !important;
 
 	/* ? ========== Surface colors ========== */
+	// --c-surface-1: black; // darkest
 	--c-surface-1: black; // darkest
 	// --c-surface-2: #191c1e; // darker
 	// --c-surface-3: #262229; // dark
-	--c-surface-2: hsl(var(--accent-h), calc(var(--surface-s) + 10%), calc(var(--surface-l) + 5%)); // darker
-	--c-surface-3: hsl(var(--accent-h), calc(var(--surface-s) + 10%), calc(var(--surface-l) + 9%)); // dark
+	--c-surface-2: hsl(var(--accent-h), calc(var(--surface-s) + 15%), calc(var(--surface-l) + 12%)); // darker
+	// --c-surface-2: rgb(49, 220, 74); // darker
+	--c-surface-3: hsl(var(--accent-h), calc(var(--surface-s) + 15%), calc(var(--surface-l) + 8%)); // dark
 
 	/* ? ========== Layout colors ========== */
 	// --c-bg-sidebar: var(--c-surface-1);
@@ -367,14 +371,13 @@ html.dark[data-gptheme='oled'] {
 	/* ? ========== Chat bubbles colors ========== */
 	// --c-bg-msg-user: hsla(var(--accent-hsl) / 0.04);
 	// --c-bg-msg-gpt: hsla(var(--accent-hsl) / 0.08);
-	--c-bg-msg-user: hsl(var(--accent-h), var(--surface-s), calc(var(--surface-l) + 4%));
-	--c-bg-msg-gpt: hsl(var(--accent-h), var(--surface-s), calc(var(--surface-l) + 6%));
+	--c-bg-msg-user: hsl(var(--accent-h), calc(var(--surface-s) + 15%), calc(var(--surface-l) + 4%));
+	--c-bg-msg-gpt: hsl(var(--accent-h), calc(var(--surface-s) + 20%), calc(var(--surface-l) + 6%));
 	--c-msg-name-user: var(--c-accent);
 	// --c-msg-name-gpt: var(--c-green);
 
 	/* ? ========== Type message textarea colors ========== */
-	--c-bg-textarea: var(--c-surface-2);
-	--c-border-textarea: var(--c-surface-2);
+	--c-bg-textarea: var(--c-surface-3);
 	--c-placeholder-textarea: hsl(var(--accent-hsl) / 0.8);
 
 	/* ? ========== modal, dialog, contextmenu bg ========== */
@@ -447,6 +450,7 @@ html.dark[data-gptheme='oled'] {
 	--box-shadow: var(--box-shadow-values) hsla(var(--accent-hsl) / 0.1);
 	// --box-shadow-contextmenu: 0px 0px 30px 0px hsla(var(--accent-hsl) / 0.1);
 	// --box-shadow-contextmenu: 0px 0px 30px 0px red;
-	--box-shadow-contextmenu: inset 0px 0px 10px 2px hsla(var(--accent-hsl) / 0.1);
+	--box-shadow-contextmenu: inset 0px 0px 15px 1px hsla(var(--accent-hsl) / 0.08);
+	--box-shadow-textarea: inset 0px 0px 15px 1px hsla(var(--accent-hsl) / 0.05) !important;
 	// --box-shadow-contextmenu: 0px 0px 30px 0px red;
 }

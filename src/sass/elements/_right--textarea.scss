@@ -1,47 +1,54 @@
 /* ===  RIGHT - TEXTAREA PARENT, message type and send button */
 // main form .overflow-hidden:has(textarea#prompt-textarea) {
-main form [class*="[&:has(textarea:focus)]"]:has(textarea#prompt-textarea) {
-    padding: var(--p-prompt-textarea) !important;
-    background-color: transparent !important;
-    border-radius: var(--br-prompt-textarea) !important;
-    border: 3px solid var(--c-border-textarea);
-    transition: background-color .3s ease-in-out;
+main form [class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea) {
+	padding: var(--p-prompt-textarea) !important;
+	// background-color: transparent !important;
+	// background-color: var(--c-bg-chats-container) !important;
+	background-color: var(--c-bg-textarea) !important;
+	border-radius: var(--br-prompt-textarea) !important;
+	// border: 3px solid var(--c-border-textarea);
+	border: none !important;
+	box-shadow: var(--box-shadow-textarea);
+	transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+	// box-shadow: var(--box-shadow-contextmenu) !important;
 
-    &:has(textarea:focus) {
-        background-color: var(--c-bg-textarea) !important;
-    }
+	&:has(textarea#prompt-textarea:focus) {
+		// box-shadow: var(--box-shadow-contextmenu) !important;
+		// border-color: transparent !important;
+		box-shadow: none !important;
+	}
 
-    textarea::placeholder {
-        color: var(--c-placeholder-textarea) !important;
-    }
+	textarea::placeholder {
+		color: var(--c-placeholder-textarea) !important;
+	}
 
-    /* Send button */
-    button[data-testid="send-button"] {
-        background-color: var(--c-accent) !important;
-        color: var(--c-txt) !important;
-        border-color: var(--c-accent) !important;
-        border-radius: 100vw !important;
-        padding: 2px;
-        right: 1.3rem !important;
-        bottom: 1.2rem !important;
+	/* Send button */
+	button[data-testid='send-button'] {
+		background-color: var(--c-accent) !important;
+		color: var(--c-txt) !important;
+		border-color: var(--c-accent) !important;
+		border-radius: 100vw !important;
+		padding: 2px;
+		right: 1.3rem !important;
+		bottom: 1.2rem !important;
 
-        &[disabled] {
-            opacity: .5 !important;
-        }
+		&[disabled] {
+			opacity: 0.5 !important;
+		}
 
-        svg {
-            color: var(--c-on-accent) !important;
-        }
-    }
+		svg {
+			color: var(--c-on-accent) !important;
+		}
+	}
 }
 
 /* === RIGHT - TEXTAREA part wrapper, margin-top ===*/
-main div[role="presentation"] div.w-full:has(form) {
-    margin-top: .5rem !important;
+main div[role='presentation'] div.w-full:has(form) {
+	margin-top: 0.5rem !important;
 }
 
 /* === RIGHT - TEXTAREA PARENT ===*/
-main div.flex.w-full.items-center>div {
-    box-shadow: none;
-    border: none;
+main div.flex.w-full.items-center > div {
+	box-shadow: none;
+	border: none;
 }
