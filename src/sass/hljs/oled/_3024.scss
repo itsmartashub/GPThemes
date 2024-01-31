@@ -45,14 +45,14 @@ html.dark[data-gptheme='oled'] {
 	}
 
 	.hljs {
-		color: #a5a2a2;
-		background: #090300;
+		color: #a5a2a2 !important;
+		background: #000 !important;
 	}
 
 	.hljs::selection,
 	.hljs ::selection {
-		background-color: #4a4543;
-		color: #a5a2a2;
+		background-color: #4a4543 !important;
+		color: #a5a2a2 !important;
 	}
 
 	/* purposely do not highlight these things */
@@ -63,19 +63,19 @@ html.dark[data-gptheme='oled'] {
 
 	/* base03 - #5c5855 -  Comments, Invisibles, Line Highlighting */
 	.hljs-comment {
-		color: #5c5855;
+		color: #5c5855 !important;
 	}
 
 	/* base04 - #807d7c -  Dark Foreground (Used for status bars) */
 	.hljs-tag {
-		color: #807d7c;
+		color: #807d7c !important;
 	}
 
 	/* base05 - #a5a2a2 -  Default Foreground, Caret, Delimiters, Operators */
 	.hljs-subst,
 	.hljs-punctuation,
 	.hljs-operator {
-		color: #a5a2a2;
+		color: #a5a2a2 !important;
 	}
 
 	.hljs-operator {
@@ -89,7 +89,7 @@ html.dark[data-gptheme='oled'] {
 	.hljs-selector-tag,
 	.hljs-name,
 	.hljs-deletion {
-		color: #db2d20;
+		color: #db2d20 !important;
 	}
 
 	/* base09 - Integers, Boolean, Constants, XML Attributes, Markup Link Url */
@@ -99,19 +99,19 @@ html.dark[data-gptheme='oled'] {
 	.hljs-attr,
 	.hljs-variable.constant_,
 	.hljs-literal {
-		color: #e8bbd0;
+		color: #e8bbd0 !important;
 	}
 
 	/* base0A - Classes, Markup Bold, Search Text Background */
 	.hljs-title,
 	.hljs-class .hljs-title,
 	.hljs-title.class_ {
-		color: #fded02;
+		color: #fded02 !important;
 	}
 
 	.hljs-strong {
 		font-weight: bold;
-		color: #fded02;
+		color: #fded02 !important;
 	}
 
 	/* base0B - Strings, Inherited Class, Markup Code, Diff Inserted */
@@ -119,7 +119,7 @@ html.dark[data-gptheme='oled'] {
 	.hljs-addition,
 	.hljs-title.class_.inherited__,
 	.hljs-string {
-		color: #01a252;
+		color: #01a252 !important;
 	}
 
 	/* base0C - Support, Regular Expressions, Escape Characters, Markup Quotes */
@@ -128,7 +128,7 @@ html.dark[data-gptheme='oled'] {
 .hljs-quote,
 .hljs-keyword.hljs-atrule,
 .hljs-regexp {
-		color: #b5e4f4;
+		color: #b5e4f4 !important;
 	}
 
 	/* base0D - Functions, Methods, Attribute IDs, Headings */
@@ -137,7 +137,7 @@ html.dark[data-gptheme='oled'] {
 	.ruby .hljs-property,
 	.hljs-title.function_,
 	.hljs-section {
-		color: #01a0e4;
+		color: #01a0e4 !important;
 	}
 
 	/* base0E - Keywords, Storage, Selector, Markup Italic, Diff Changed */
@@ -149,10 +149,10 @@ html.dark[data-gptheme='oled'] {
 .hljs-template-tag,
 .diff .hljs-meta,
 .hljs-keyword {
-		color: #a16a94;
+		color: #a16a94 !important;
 	}
 	.hljs-emphasis {
-		color: #a16a94;
+		color: #a16a94 !important;
 		font-style: italic;
 	}
 
@@ -164,7 +164,7 @@ html.dark[data-gptheme='oled'] {
 */
 .hljs-meta .hljs-keyword,
 .hljs-meta .hljs-string {
-		color: #cdab53;
+		color: #cdab53 !important;
 	}
 
 	.hljs-meta .hljs-keyword,

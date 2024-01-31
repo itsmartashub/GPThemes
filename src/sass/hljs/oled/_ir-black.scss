@@ -3,49 +3,49 @@
 */
 html.dark[data-gptheme='oled'] {
 	.hljs {
-		background: #000;
-		color: #f8f8f8;
+		background: #000 !important;
+		color: #f8f8f8 !important;
 	}
 
 	.hljs-comment,
 	.hljs-quote,
 	.hljs-meta {
-		color: #7c7c7c;
+		color: #7c7c7c !important;
 	}
 
 	.hljs-keyword,
 	.hljs-selector-tag,
 	.hljs-tag,
 	.hljs-name {
-		color: #96cbfe;
+		color: #96cbfe !important;
 	}
 
 	.hljs-attribute,
 	.hljs-selector-id {
-		color: #ffffb6;
+		color: #ffffb6 !important;
 	}
 
 	.hljs-string,
 	.hljs-selector-attr,
 	.hljs-selector-pseudo,
 	.hljs-addition {
-		color: #a8ff60;
+		color: #a8ff60 !important;
 	}
 
 	.hljs-subst {
-		color: #daefa3;
+		color: #daefa3 !important;
 	}
 
 	.hljs-regexp,
 	.hljs-link {
-		color: #e9c062;
+		color: #e9c062 !important;
 	}
 
 	.hljs-title,
 	.hljs-section,
 	.hljs-type,
 	.hljs-doctag {
-		color: #ffffb6;
+		color: #ffffb6 !important;
 	}
 
 	.hljs-symbol,
@@ -53,12 +53,12 @@ html.dark[data-gptheme='oled'] {
 	.hljs-variable,
 	.hljs-template-variable,
 	.hljs-literal {
-		color: #c6c5fe;
+		color: #c6c5fe !important;
 	}
 
 	.hljs-number,
 	.hljs-deletion {
-		color: #ff73fd;
+		color: #ff73fd !important;
 	}
 
 	.hljs-emphasis {

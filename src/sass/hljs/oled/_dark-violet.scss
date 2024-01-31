@@ -45,14 +45,14 @@ html.dark[data-gptheme='oled'] {
 	}
 
 	.hljs {
-		color: #b08ae6;
-		background: #000000;
+		color: #b08ae6 !important;
+		background: #000000 !important;
 	}
 
 	.hljs::selection,
 	.hljs ::selection {
-		background-color: #432d59;
-		color: #b08ae6;
+		background-color: #432d59 !important;
+		color: #b08ae6 !important;
 	}
 
 	/* purposely do not highlight these things */
@@ -63,23 +63,23 @@ html.dark[data-gptheme='oled'] {
 
 	/* base03 - #593380 -  Comments, Invisibles, Line Highlighting */
 	.hljs-comment {
-		color: #593380;
+		color: #593380 !important;
 	}
 
 	/* base04 - #00ff00 -  Dark Foreground (Used for status bars) */
 	.hljs-tag {
-		color: #00ff00;
+		color: #00ff00 !important;
 	}
 
 	/* base05 - #b08ae6 -  Default Foreground, Caret, Delimiters, Operators */
 	.hljs-subst,
 	.hljs-punctuation,
 	.hljs-operator {
-		color: #b08ae6;
+		color: #b08ae6 !important;
 	}
 
 	.hljs-operator {
-		opacity: 0.7;
+		opacity: 0.7 !important;
 	}
 
 	/* base08 - Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted */
@@ -89,7 +89,7 @@ html.dark[data-gptheme='oled'] {
 	.hljs-selector-tag,
 	.hljs-name,
 	.hljs-deletion {
-		color: #a82ee6;
+		color: #a82ee6 !important;
 	}
 
 	/* base09 - Integers, Boolean, Constants, XML Attributes, Markup Link Url */
@@ -99,19 +99,19 @@ html.dark[data-gptheme='oled'] {
 	.hljs-attr,
 	.hljs-variable.constant_,
 	.hljs-literal {
-		color: #bb66cc;
+		color: #bb66cc !important;
 	}
 
 	/* base0A - Classes, Markup Bold, Search Text Background */
 	.hljs-title,
 	.hljs-class .hljs-title,
 	.hljs-title.class_ {
-		color: #f29df2;
+		color: #f29df2 !important;
 	}
 
 	.hljs-strong {
 		font-weight: bold;
-		color: #f29df2;
+		color: #f29df2 !important;
 	}
 
 	/* base0B - Strings, Inherited Class, Markup Code, Diff Inserted */
@@ -119,7 +119,7 @@ html.dark[data-gptheme='oled'] {
 	.hljs-addition,
 	.hljs-title.class_.inherited__,
 	.hljs-string {
-		color: #4595e6;
+		color: #4595e6 !important;
 	}
 
 	/* base0C - Support, Regular Expressions, Escape Characters, Markup Quotes */
@@ -128,7 +128,7 @@ html.dark[data-gptheme='oled'] {
 .hljs-quote,
 .hljs-keyword.hljs-atrule,
 .hljs-regexp {
-		color: #40dfff;
+		color: #40dfff !important;
 	}
 
 	/* base0D - Functions, Methods, Attribute IDs, Headings */
@@ -137,7 +137,7 @@ html.dark[data-gptheme='oled'] {
 	.ruby .hljs-property,
 	.hljs-title.function_,
 	.hljs-section {
-		color: #4136d9;
+		color: #4136d9 !important;
 	}
 
 	/* base0E - Keywords, Storage, Selector, Markup Italic, Diff Changed */
@@ -149,10 +149,10 @@ html.dark[data-gptheme='oled'] {
 .hljs-template-tag,
 .diff .hljs-meta,
 .hljs-keyword {
-		color: #7e5ce6;
+		color: #7e5ce6 !important;
 	}
 	.hljs-emphasis {
-		color: #7e5ce6;
+		color: #7e5ce6 !important;
 		font-style: italic;
 	}
 
@@ -164,7 +164,7 @@ html.dark[data-gptheme='oled'] {
 */
 .hljs-meta .hljs-keyword,
 .hljs-meta .hljs-string {
-		color: #a886bf;
+		color: #a886bf !important;
 	}
 
 	.hljs-meta .hljs-keyword,
