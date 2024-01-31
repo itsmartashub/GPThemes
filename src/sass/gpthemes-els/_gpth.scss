@@ -46,6 +46,9 @@
 		background-color: var(--c-bg-contextmenu);
 		clip-path: polygon(0 0, 100% 0, 100% 0, 0% 0);
 		box-shadow: var(--box-shadow-contextmenu);
+		// border: 1px solid hsla(var(--accent-hsl) / 0.1);
+
+		// border: 1px solid hsla(var(--accent-hsl), 0.1) !important;
 
 		transition: all 0.4s ease-in-out;
 

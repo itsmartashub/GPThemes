@@ -177,7 +177,8 @@ html.light {
 
 	/* ? ========== BOX-SHADOW ==========*/
 	--box-shadow: var(--box-shadow-values) hsla(var(--accent-hsl) / 0.1);
-	--box-shadow-contextmenu: 0px 0px 5px -2px hsla(0, 0%, 0%, 0.18);
+	// --box-shadow-contextmenu: 0px 0px 5px -2px hsla(0, 0%, 0%, 0.18);
+	--box-shadow-contextmenu: inset 0px 0px 10px 2px hsla(0, 0%, 0%, 0.1);
 }
 
 /* @ ================== DARK ================== */
@@ -307,7 +308,8 @@ html.dark {
 
 	/* ? ========== BOX-SHADOW ==========*/
 	--box-shadow: var(--box-shadow-values) hsla(var(--accent-hsl) / 0.1);
-	--box-shadow-contextmenu: 0px 0px 30px -10px hsla(var(--accent-hsl) / 0.18);
+	// --box-shadow-contextmenu: 0px 0px 30px -10px hsla(var(--accent-hsl) / 0.18);
+	--box-shadow-contextmenu: inset 0px 0px 10px 2px hsla(var(--accent-hsl) / 0.15);
 }
 
 /* @ ================== OLED ================== */
@@ -443,6 +445,8 @@ html.dark[data-gptheme='oled'] {
 
 	/* ? ========== BOX-SHADOW ==========*/
 	--box-shadow: var(--box-shadow-values) hsla(var(--accent-hsl) / 0.1);
-	--box-shadow-contextmenu: 0px 0px 30px 0px hsla(var(--accent-hsl) / 0.1);
+	// --box-shadow-contextmenu: 0px 0px 30px 0px hsla(var(--accent-hsl) / 0.1);
+	// --box-shadow-contextmenu: 0px 0px 30px 0px red;
+	--box-shadow-contextmenu: inset 0px 0px 10px 2px hsla(var(--accent-hsl) / 0.1);
 	// --box-shadow-contextmenu: 0px 0px 30px 0px red;
 }
