@@ -16,19 +16,12 @@
 /* Highlight,js Theme Styles */
 @import 'hljs/_ros-pine-moon';
 
-// @import 'hljs/oled/_ros-pine'; //NIJE OLED
-// @import 'hljs/oled/_ashes'; //NIJE OLED onako, atom fazon
-// @import 'hljs/oled/_seti-ui'; // NIJE OLED
-
-// @import 'hljs/oled/_qualia'; // meh, plavo??
-// @import 'hljs/oled/_3024'; // onako, red/pink/blue/green zagasito
-// @import 'hljs/oled/_atelier-cave'; // ok. pink/orange/bluegreen/blue zagasito
+/* OLED hljs Themes */
+@import 'hljs/oled/_ir-black'; // favorit. yellowish/pink/blue jace boje
 // @import 'hljs/oled/_black-metal'; // fino. nije toliko colorful. pink/peach/darkteal/grey
 // @import 'hljs/oled/_black-metal-bathory'; // kao i ovo gore, skoro, malo jace boje, nisu tako zagasite
-@import 'hljs/oled/_ir-black'; // favorit. yellowish/pink/blue jace boje
 // @import 'hljs/oled/_dark-violet'; // pinkish
 // @import 'hljs/oled/_pico'; // orange/green darkest
-// @import 'hljs/oled/_qtcreator-dark'; // ne. yellow/blue/pink stronger colors
 
 // @import 'elements/_forms';
 @import 'elements/_accessibility';
