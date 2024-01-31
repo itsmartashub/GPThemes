@@ -24,8 +24,7 @@
 	"permissions": ["storage", "https://chat.openai.com/*"],
 	"browser_specific_settings": {
 		"gecko": {
-			"id": "gpthemes@itsmarta",
-			"strict_min_version": "121.0"
+			"id": "gpthemes@itsmarta"
 		}
 	}
 }
