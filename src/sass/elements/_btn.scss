@@ -61,6 +61,7 @@ main [role='presentation'] button.absolute.rounded-full {
 /* === Settings > Tabs === */
 [role='tablist'] button {
 	padding: var(--p-btn) !important;
+	background-color: transparent !important;
 
 	&[data-state='active'],
 	&:hover {

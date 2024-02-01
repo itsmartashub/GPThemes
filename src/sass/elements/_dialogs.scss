@@ -19,14 +19,16 @@
 		@extend %animFadeIn;
 	}
 
-	/* ___ DIALOG - "Settings" on smaller devices hen deskop */
-	[role='tablist'][data-orientation='horizontal'].bg-gray-100 {
-		background-color: var(--c-surface-3) !important;
-		// border-radius: var(--br-btn) !important;
+	[role='tablist'] {
+		/* ___ DIALOG - "Settings" on smaller devices then deskop */
+		&[data-orientation='horizontal'].bg-gray-100 {
+			background-color: var(--c-surface-3) !important;
+			// border-radius: var(--br-btn) !important;
 
-		// button[role="tab"][data-state="active"] {
-		button[data-state='active'] {
-			background-color: var(--c-surface-2) !important;
+			// button[role="tab"][data-state="active"] {
+			button[data-state='active'] {
+				background-color: var(--c-surface-2) !important;
+			}
 		}
 	}
 
