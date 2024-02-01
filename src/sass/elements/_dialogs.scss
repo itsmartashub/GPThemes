@@ -123,7 +123,13 @@
 	/* ___ Dialog - "Share Chat" White preview <div>  */
 	&:has(main div[data-radix-aspect-ratio-wrapper]) .w-full.rounded-lg {
 		border-radius: var(--br-chat-bubble) !important;
-		background-color: var(--c-bg-chats-container) !important;
+		box-shadow: var(--box-shadow);
+		border: none !important;
+
+		/* Mini chat conversation */
+		.bg-white {
+			background-color: var(--c-surface-1) !important;
+		}
 	}
 
 	/* ___ DIALOG - "SHARED LINKS" or "ARCHIVED CHATS" - Table  */
