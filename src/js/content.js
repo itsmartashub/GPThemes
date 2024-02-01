@@ -16,7 +16,7 @@ const $svgIcon = document.querySelector('.gpth__svg-icon')
 const $themeButtons = document.querySelectorAll('.gpth__themes-btns button')
 
 $svgIcon.addEventListener('click', toggleOptions)
-document.body.addEventListener('click', hideOptions)
+// document.body.addEventListener('click', hideOptions)
 
 $themeButtons.forEach((btn) => {
 	btn.addEventListener('click', function (event) {
@@ -50,7 +50,6 @@ function createAndAppendSVGStickyBtn() {
 }
 
 function applyTheme(theme) {
-	console.log(theme)
 	let htmlTag = document.documentElement
 
 	// document.documentElement.className = theme === 'oled' ? 'oled dark' : theme
@@ -75,8 +74,11 @@ function toggleOptions() {
 
 function hideOptions(event) {
 	console.log(event.target)
+	console.log($svgIcon.contains(event.target))
 
 	if (!$svgIcon.contains(event.target) && !$options.contains(event.target)) {
+		console.log(event.target)
 		toggleOptions()
+		// toggleOptions2()
 	}
 }
