@@ -1,6 +1,9 @@
 // Use a cross-browser storage API:
 // const storage = chrome.storage.sync || browser.storage.sync
 import browser from 'webextension-polyfill'
+import gpthToggleImg from '../img/gpth-toggle-circled.webp'
+
+// console.log(gpthToggleImg)
 
 browser.storage.sync.get('gptheme').then((data) => {
 	const theme = data.gptheme || 'light'
@@ -32,19 +35,36 @@ function createAndAppendSVGStickyBtn() {
 	gpthFloatingBtn.id = 'gpthCustomizerContainer'
 	gpthFloatingBtn.className = 'gpth__svg'
 
-	gpthFloatingBtn.innerHTML = `
-        <div class="gpth__svg-icon">🎨</div>
-        <div class="gpth__options">
-            <div class="gpth__themes">
-                <h5>THEMES</h5>
-                <div class="gpth__themes-btns">
-                    <button id="light" data-gpth-theme="light">☀️</button>
-                    <button id="dark" data-gpth-theme="dark">🌙</button>
-                    <button id="oled" data-gpth-theme="black">🌖</button>
-                </div>
-            </div>
-        </div>
-    `
+	/* 	let htmlCode = `
+		<div class="gpth__svg-icon">🎨</div>
+		<div class="gpth__options">
+			<div class="gpth__themes">
+				<h5>THEMES</h5>
+				<div class="gpth__themes-btns">
+					<button id="light" data-gpth-theme="light">☀️</button>
+					<button id="dark" data-gpth-theme="dark">🌙</button>
+					<button id="oled" data-gpth-theme="black">🌖</button>
+				</div>
+			</div>
+		</div>
+	` */
+	// <img src="../img/gpth-icon-circled.png" alt="gpth-toggle"/>
+	let htmlCode = `
+		<div class="gpth__svg-icon">
+			<img src="${gpthToggleImg}" alt="gpth-toggle"/>
+		</div>
+		<div class="gpth__options">
+			<div class="gpth__themes">
+				<div class="gpth__themes-btns">
+					<button id="light" data-gpth-theme="light">☀️</button>
+					<button id="dark" data-gpth-theme="dark">🌙</button>
+					<button id="oled" data-gpth-theme="black">🌖</button>
+				</div>
+			</div>
+		</div>
+	`
+
+	gpthFloatingBtn.innerHTML = htmlCode
 
 	document.body.appendChild(gpthFloatingBtn)
 }
