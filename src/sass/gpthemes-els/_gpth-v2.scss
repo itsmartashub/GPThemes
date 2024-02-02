@@ -10,7 +10,7 @@
 
 		// this add only for Firefox
 		@-moz-document url-prefix() {
-			--right: 1rem;
+			--right: 0.95rem;
 		}
 
 		&-icon {
@@ -64,7 +64,7 @@
 
 				&::after {
 					opacity: 1;
-					transform: translate(-120%, -50%);
+					transform: translate(-115%, -50%);
 				}
 			}
 		}
