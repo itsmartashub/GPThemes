@@ -11,6 +11,7 @@ browser.storage.sync.get('gptheme').then((data) => {
 })
 
 createAndAppendSVGStickyBtn()
+// trackHtmlClassChange()
 
 let isOptionsShown = false
 
@@ -102,3 +103,26 @@ function hideOptions(event) {
 		// toggleOptions2()
 	}
 }
+
+// function trackHtmlClassChange() {
+// 	// Select the target element
+// 	const target = document.documentElement
+
+// 	// Create an observer instance
+// 	const observer = new MutationObserver(function (mutations) {
+// 		mutations.forEach(function (mutation) {
+// 			if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+// 				// Do something when the class attribute changes
+// 				// console.log('Class attribute has changed')
+// 				// alert('Class attribute has changed')
+// 				alert(target.className)
+// 			}
+// 		})
+// 	})
+
+// 	// Configuration of the observer:
+// 	const config = { attributes: true, attributeFilter: ['class'] }
+
+// 	// Pass in the target node, as well as the observer options
+// 	observer.observe(target, config)
+// }

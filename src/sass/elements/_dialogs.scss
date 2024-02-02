@@ -6,6 +6,7 @@
 	box-shadow: var(--box-shadow);
 	--anim-duration: 0.28s;
 	@extend %animFadeIn;
+	z-index: calc(var(--z-modal) + 1) !important;
 
 	.border-token-border-light,
 	.border-white,
