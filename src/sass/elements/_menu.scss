@@ -49,7 +49,8 @@
 
 /* __ MODAL - Choose theme context menu & tooltips?  */
 div[data-radix-popper-content-wrapper] {
-	// z-index: calc(var(--z-modal) + 200) !important;
+	z-index: calc(var(--z-modal) + 50) !important;
+	// z-index: 200 !important;
 
 	/* Mora not role=menu da ne bih selektovala i onaj contextmenu u sidebar kad se klikne na prompt listitem 3 dots za opcije i div[data-radix-popper-content-wrapper]:has([role='tooltip']) da ne bih selektovala tooltip */
 	&:not(
