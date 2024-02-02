@@ -3,7 +3,7 @@
 import browser from 'webextension-polyfill'
 import gpthToggleImg from '../img/gpth-toggle-circled.webp'
 
-// console.log(gpthToggleImg)
+let isOptionsShown = false
 
 browser.storage.sync.get('gptheme').then((data) => {
 	const theme = data.gptheme || 'light'
@@ -11,45 +11,39 @@ browser.storage.sync.get('gptheme').then((data) => {
 })
 
 createAndAppendSVGStickyBtn()
-// trackHtmlClassChange()
+// trackHtmlClassChanges()
 
-let isOptionsShown = false
-
+const $htmlTag = document.documentElement
 const $options = document.querySelector('.gpth__options')
 const $svgIcon = document.querySelector('.gpth__svg-icon')
-const $themeButtons = document.querySelectorAll('.gpth__themes-btns button')
+const $themeButtonsContainer = document.querySelector('.gpth__themes-btns')
+// const $themeButtons = document.querySelectorAll('.gpth__themes-btns button')
 
 $svgIcon.addEventListener('click', toggleOptions)
-// document.body.addEventListener('click', hideOptions)
 
-$themeButtons.forEach((btn) => {
-	btn.addEventListener('click', function (event) {
-		const theme = event.target.id
+/* $themeButtons.forEach((btn) => {
+	btn.addEventListener('click', ({ target }) => {
+		const theme = target.id
 		browser.storage.sync.set({ gptheme: theme })
 		applyTheme(theme)
 		toggleOptions()
 	})
+}) */
+
+$themeButtonsContainer.addEventListener('click', (event) => {
+	const themeButton = event.target.closest('button')
+	if (!themeButton) return
+
+	const theme = themeButton.id
+	browser.storage.sync.set({ gptheme: theme })
+	applyTheme(theme)
+	toggleOptions()
 })
 
 function createAndAppendSVGStickyBtn() {
 	const gpthFloatingBtn = document.createElement('div')
-	gpthFloatingBtn.id = 'gpthCustomizerContainer'
 	gpthFloatingBtn.className = 'gpth__svg'
 
-	/* 	let htmlCode = `
-		<div class="gpth__svg-icon">🎨</div>
-		<div class="gpth__options">
-			<div class="gpth__themes">
-				<h5>THEMES</h5>
-				<div class="gpth__themes-btns">
-					<button id="light" data-gpth-theme="light">☀️</button>
-					<button id="dark" data-gpth-theme="dark">🌙</button>
-					<button id="oled" data-gpth-theme="black">🌖</button>
-				</div>
-			</div>
-		</div>
-	` */
-	// <img src="../img/gpth-icon-circled.png" alt="gpth-toggle"/>
 	let htmlCode = `
 		<div class="gpth__svg-icon">
 			<img src="${gpthToggleImg}" alt="gpth-toggle"/>
@@ -66,11 +60,10 @@ function createAndAppendSVGStickyBtn() {
 	`
 
 	gpthFloatingBtn.innerHTML = htmlCode
-
 	document.body.appendChild(gpthFloatingBtn)
 }
 
-function applyTheme(theme) {
+/* function applyTheme(theme) {
 	let htmlTag = document.documentElement
 
 	// document.documentElement.className = theme === 'oled' ? 'oled dark' : theme
@@ -84,6 +77,14 @@ function applyTheme(theme) {
 		htmlTag.hasAttribute('data-gptheme') && htmlTag.removeAttribute('data-gptheme')
 	}
 }
+ */
+
+function applyTheme(theme) {
+	$htmlTag.dataset.gptheme = theme
+	$htmlTag.style.colorScheme = theme === 'oled' ? 'dark' : theme
+	$htmlTag.className = theme === 'oled' ? 'dark' : theme
+	if (theme !== 'oled') $htmlTag.removeAttribute('data-gptheme')
+}
 
 function toggleOptions() {
 	isOptionsShown = !isOptionsShown
@@ -94,35 +95,32 @@ function toggleOptions() {
 }
 
 function hideOptions(event) {
-	console.log(event.target)
-	console.log($svgIcon.contains(event.target))
-
 	if (!$svgIcon.contains(event.target) && !$options.contains(event.target)) {
-		console.log(event.target)
 		toggleOptions()
-		// toggleOptions2()
 	}
 }
 
-// function trackHtmlClassChange() {
-// 	// Select the target element
-// 	const target = document.documentElement
+/* function trackHtmlClassChanges() {
+	// Select the target element
+	const target = document.documentElement
 
-// 	// Create an observer instance
-// 	const observer = new MutationObserver(function (mutations) {
-// 		mutations.forEach(function (mutation) {
-// 			if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-// 				// Do something when the class attribute changes
-// 				// console.log('Class attribute has changed')
-// 				// alert('Class attribute has changed')
-// 				alert(target.className)
-// 			}
-// 		})
-// 	})
+	// Create an observer instance
+	const observer = new MutationObserver(function (mutations) {
+		mutations.forEach(function (mutation) {
+			if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+				// Do something when the class attribute changes
+				// console.log('Class attribute has changed')
+				// alert('Class attribute has changed')
+				// alert(target.className)
+				browser.storage.sync.set({ gptheme: target.className })
+				applyTheme(target.className)
+			}
+		})
+	})
 
-// 	// Configuration of the observer:
-// 	const config = { attributes: true, attributeFilter: ['class'] }
+	// Configuration of the observer:
+	const config = { attributes: true, attributeFilter: ['class'] }
 
-// 	// Pass in the target node, as well as the observer options
-// 	observer.observe(target, config)
-// }
+	// Pass in the target node, as well as the observer options
+	observer.observe(target, config)
+} */
