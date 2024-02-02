@@ -21,6 +21,7 @@
 			--icon-shadow-blur: 0px;
 			--icon-shadow-offset: 6px;
 			--icon-shadow-color: hsla(var(--accent-hsl) / 0.1);
+			position: relative;
 			display: grid;
 			place-items: center;
 			width: var(--svg-size);
@@ -39,6 +40,23 @@
 				transition: box-shadow 0.2s $easeOutCubic;
 			}
 
+			&::after {
+				content: 'Choose theme';
+				position: absolute;
+				top: 50%;
+				left: 0;
+				font-size: 0.75rem;
+				border-radius: 10px;
+				width: max-content;
+				height: max-content;
+				padding: 0.5rem 0.8rem;
+				pointer-events: none;
+				background-color: var(--c-bg-tooltip);
+				opacity: 0;
+				transform: translate(-100%, -50%);
+				transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+			}
+
 			&:hover {
 				--icon-shadow-blur: 30px;
 				--icon-shadow-offset: 7px;
@@ -47,6 +65,11 @@
 
 				outline: 5px solid hsla(var(--accent-hsl) / 0.05);
 				outline-offset: 8px;
+
+				&::after {
+					opacity: 1;
+					transform: translate(-120%, -50%);
+				}
 			}
 		}
 	}
@@ -272,9 +295,15 @@
 	}
 }
 
-html.light [data-gpth-theme]::after {
-	color: var(--c-txt);
+html.light {
+	& [data-gpth-theme]::after,
+	.gpth__svg-icon::after {
+		color: var(--c-txt);
+	}
 }
-html.dark [data-gpth-theme]::after {
-	color: var(--c-on-accent);
+html.dark {
+	& [data-gpth-theme]::after,
+	.gpth__svg-icon::after {
+		color: var(--c-on-accent);
+	}
 }
