@@ -50,6 +50,12 @@ main:has(.sticky [href='/gpts/editor']) {
 		}
 	}
 
+	/* All the cards hover bg (on search query list and on main big ones) */
+	[class*='dark:hover:bg-white/10'] {
+		&:hover {
+			background-color: var(--c-surface-3) !important;
+		}
+	}
 	/* Section visible on search query */
 	[id*='headlessui-popover-panel-'] {
 		--br-search-query-section: calc(var(--br-btn) * 1.2) !important;
@@ -60,9 +66,19 @@ main:has(.sticky [href='/gpts/editor']) {
 		border-radius: 0 0 var(--br-search-query-section) var(--br-search-query-section) !important;
 
 		/* Search query section items/cards */
-		/* 		[class*='rounded-lg'] {
+		.gizmo-link {
 			border-radius: var(--br-btn) !important;
-		} */
+			margin-bottom: 0.5rem;
+
+			svg.text-gray-400 {
+				color: var(--c-on-accent) !important;
+				// color: red !important;
+			}
+
+			// &:hover {
+			// 	background-color: var(--c-surface-3) !important;
+			// }
+		}
 	}
 
 	/* All the card items in GPTs Store main page */
