@@ -29,7 +29,6 @@ $svgIcon.addEventListener('click', toggleOptions)
 		toggleOptions()
 	})
 }) */
-
 $themeButtonsContainer.addEventListener('click', (event) => {
 	const themeButton = event.target.closest('button')
 	if (!themeButton) return
@@ -78,7 +77,6 @@ function createAndAppendSVGStickyBtn() {
 	}
 }
  */
-
 function applyTheme(theme) {
 	$htmlTag.dataset.gptheme = theme
 	$htmlTag.style.colorScheme = theme === 'oled' ? 'dark' : theme
