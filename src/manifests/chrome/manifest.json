@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"version": "2.0.0",
-	"name": "GPThemes - Restyled ChatGPT",
+	"name": "GPThemes - ChatGPT Restyled",
 	"description": "Instantly refresh ChatGPT's UI with a modern and enhanced look using custom CSS",
 	"author": "itsmarta",
 	"homepage_url": "https://github.com/itsmartashub/GPThemes",
