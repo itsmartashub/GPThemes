@@ -58,7 +58,8 @@ function createAndAppendSVGStickyBtn() {
 		</div>
 	`
 
-	gpthFloatingBtn.innerHTML = htmlCode
+	// gpthFloatingBtn.innerHTML = htmlCode
+	gpthFloatingBtn.insertAdjacentHTML('beforeend', htmlCode)
 	document.body.appendChild(gpthFloatingBtn)
 }
 
