@@ -93,12 +93,12 @@ main [data-testid^='conversation-turn-'] {
 
 	/* @ RIGHT - CHATS BUBBLES - USER  */
 	// There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario
-	&:not(&:has([data-message-author-role='assistant'])),
+	// &:not(&:has([data-message-author-role='assistant'])),
 	&:has([data-message-author-role='user']) {
 		/*  RIGHT - CHATS BUBBLE BG */
 		.group {
 			background-color: var(--c-bg-msg-user);
-			outline: 2px solid transparent;
+			outline: 2px solid transparent !important;
 
 			/* === User/ChatGPT name === */
 			.font-semibold.select-none {
@@ -111,20 +111,35 @@ main [data-testid^='conversation-turn-'] {
 			color: var(--c-msg-name-user);
 		}
 	}
-
-	/* ___ RIGHT - CHATS BUBBLE BG EDIT */
-	&:not(&:has([data-message-author-role='assistant'])):has(textarea) {
+	/* User chat bubble - Edit state. There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario */
+	&:has(textarea) {
+		/* 		.flex.flex-grow.flex-col.max-w-full > div {
+			@extend %animFadeIn;
+		} */
 		.group {
-			background-color: transparent !important;
-			outline-color: var(--c-surface-2) !important;
+			background-color: var(--c-bg-chats-container) !important;
+			box-shadow: var(--box-shadow-textarea);
+			outline: 2px solid hsla(var(--accent-hsl) / 0.1) !important;
+			transition: outline 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+			/* === User/ChatGPT name === */
+			.font-semibold.select-none {
+				color: var(--c-msg-name-user);
+			}
 
 			textarea {
+				@extend %animFadeIn;
 				color: var(--c-subtext-2) !important;
+				padding: 0.5rem 0;
+			}
+
+			/* Parent of buttons: "Save & Submit" and "Cancel" */
+			.text-center.mt-2.flex.justify-center {
+				@extend %animFadeIn;
 			}
 
 			.btn-neutral {
 				background-color: var(--c-surface-3) !important;
-				// background-color: var(--c-bg-msg-user) !important;
 				color: var(--c-txt) !important;
 			}
 		}
