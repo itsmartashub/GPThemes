@@ -1,0 +1,11 @@
+input[type='checkbox'] {
+	padding: 7px !important;
+	border: 2px solid var(--c-accent) !important;
+	background-color: transparent !important;
+	border-radius: 4px;
+
+	&:checked {
+		accent-color: var(--c-accent) !important;
+		background-color: var(--c-accent) !important;
+	}
+}
