@@ -18,9 +18,11 @@ main form .grow {
 			--gradient-color-from: var(--c-surface-3) !important;
 			// --tw-gradient-from: var(--c-surface-3) var(--tw-gradient-from-position) !important;
 
-			/* Button SVG parent */
-			.bg-token-surface-primary {
-				--surface-secondary: var(--c-surface-2) !important;
+			/* Button SVG parent ❌ 
+			No more .bg-token-surface-primary class, now is .bg-token-main-surface-primary */
+			// .bg-token-surface-primary {
+			.bg-token-main-surface-primary {
+				// --surface-secondary: var(--c-surface-2) !important;
 				background-color: var(--c-accent) !important;
 				border-radius: 100vw !important;
 				padding: 0.5rem !important;

@@ -115,7 +115,8 @@ main form .grow .btn {
 			padding: 4px; // because svg btn looks cut off in firefox, so add a little space around
 
 			/* Button w/ SVG */
-			.bg-token-surface-primary {
+			// .bg-token-surface-primary { this class doesnt exist anymore...
+			.bg-token-main-surface-primary {
 				transform: translateY(120%) scale(0.5);
 				transition: transform 0.5s $easeOutBack;
 			}
@@ -129,7 +130,8 @@ main form .grow .btn {
 		.bg-gradient-to-l {
 			span[data-state] {
 				/* Button w/ SVG */
-				.bg-token-surface-primary {
+				// .bg-token-surface-primary {
+				.bg-token-main-surface-primary {
 					transform: translateY(0%) scale(1);
 					opacity: 1 !important;
 				}

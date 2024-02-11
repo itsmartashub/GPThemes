@@ -53,8 +53,10 @@
 
 	--z-modal: 100;
 
-	--sidebar-surface-primary: var(--c-bg-sidebar) !important; // GPT's variable !!
-	--sidebar-surface-secondary: var(--c-surface-2) !important; // GPT's variable !!
+	--sidebar-surface-primary: var(--c-bg-sidebar) !important; // GPT's variable !! sidebar bg, nav item bg on hover
+	--sidebar-surface-secondary: var(--c-surface-2) !important; // GPT's variable !! nav item bg on hover
+	// --main-surface-primary: var(--c-surface-2); // arrow btn in new chat big buttons
+	--main-surface-primary: var(--c-accent); // arrow btn in new chat big buttons
 
 	// TODO  	--border-light: red !important; // border oko "Uprade" btn-a: .border-token-border-light
 }
