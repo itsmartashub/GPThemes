@@ -59,7 +59,9 @@
 	--sidebar-surface-secondary: var(
 		--c-surface-2
 	) !important; // GPT's variable in .bg-token-sidebar-surface-secondary nav item bg on hover
-	--main-surface-primary: var(--c-surface-1) !important; // arrow btn in new chat big buttons
+	--main-surface-primary: var(
+		--c-surface-1
+	) !important; // header of tables in "Shared links" and "Archived chats" - arrow btn in new chat big buttons
 	--main-surface-secondary: var(
 		--c-surface-2
 	) !important; // markdown header bg, footer of mini chat preview in "Share Link to Chat"
