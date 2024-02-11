@@ -129,9 +129,9 @@
 		border: none !important;
 
 		/* Mini chat conversation */
-		.bg-white {
-			background-color: var(--c-surface-1) !important;
-		}
+		--main-surface-primary: var(--c-surface-1) !important; // mini chat preview background in "Share Link to Chat"
+		--main-surface-secondary: var(--c-surface-1) !important; // footer of mini chat preview in "Share Link to Chat"
+		--main-surface-tertiary: transparent !important; // border color of footer of mini chat preview in "Share Link to Chat"
 	}
 
 	/* ___ DIALOG - "SHARED LINKS" or "ARCHIVED CHATS" - Table  */
