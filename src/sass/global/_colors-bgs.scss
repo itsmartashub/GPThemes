@@ -131,7 +131,8 @@
 - GPTs Store PAGE - Search query section
 - GPTs Store PAGE - Search query section link-on-hover - CHANGE IT !!
  */
-[class*='bg-white'] {
+[class*='bg-white'],
+.bg-token-sidebar-surface-secondary {
 	background-color: var(--c-surface-2) !important;
 	// @include borderBoxShadow(red);
 	// background-color: red;
@@ -151,7 +152,7 @@
 - GPTs - active pill ("Top Picks")
  */
 [class*='bg-black'],
-[class*='bg-token-sidebar-surface-primary'] {
+.bg-token-sidebar-surface-primary {
 	background-color: var(--c-surface-1);
 	// @include borderBoxShadow(lightgreen);
 	// background-color: lightgreen;

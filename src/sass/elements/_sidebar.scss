@@ -89,7 +89,7 @@ nav[aria-label='Chat history'] {
 		}
 
 		/* "Upgrade" link in nav bg */
-		span.bg-black {
+		span.rounded-full.border-token-border-light {
 			border-color: transparent !important;
 			background-color: var(--c-accent) !important;
 
