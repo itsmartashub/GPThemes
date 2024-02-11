@@ -1,9 +1,10 @@
 /* Sidebar bg-color */
-.bg-black:has(nav[aria-label='Chat history']) {
+// .bg-black:has(nav[aria-label='Chat history']) {
+.bg-token-sidebar-surface-primary:has(nav[aria-label='Chat history']) {
 	/* --surface-primary fix dark/black color for a:hover states */
 	--surface-primary: var(--c-surface-2) !important;
 	color: var(--c-txt) !important;
-	background-color: var(--c-bg-sidebar) !important;
+	// background-color: var(--c-bg-sidebar) !important;
 
 	.sticky {
 		background-color: var(--c-bg-sidebar) !important;
