@@ -23,9 +23,10 @@ nav[aria-label='Chat history'] {
 
 	/* Parent of "NEW CHAT" btn */
 	.sticky {
-		// background-color: var(--c-bg-sidebar) !important;
+		background-color: var(--c-bg-sidebar) !important;
 		backdrop-filter: blur(0px) !important;
 		margin-bottom: 0.5rem !important;
+		padding-bottom: 0.5rem;
 	}
 
 	/* CLEAR CHATS div - Visible when unchecked "Chat learning & Training" in Settings */
