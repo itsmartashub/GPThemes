@@ -58,6 +58,7 @@ main:has(.sticky [href='/gpts/editor']) {
 	}
 	/* Section visible on search query */
 	[id*='headlessui-popover-panel-'] {
+		// --main-surface-primary: var(--c-surface-2) !important;
 		--br-search-query-section: calc(var(--br-btn) * 1.2) !important;
 
 		/* Added to visually remove unstickness search query section from input search */
