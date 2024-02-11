@@ -1,6 +1,10 @@
 /* === RIGHT - CONVERSATION CONTAINER === */
 main [role='presentation'] {
-	background-color: var(--c-bg-chats-container) !important;
+	&,
+	/* Shared Link Page */
+	.bg-token-main-surface-primary.h-full {
+		background-color: var(--c-bg-chats-container) !important;
+	}
 }
 
 /* === RIGHT - Chats - Gap from heading and svg icons ===*/
