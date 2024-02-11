@@ -3,7 +3,7 @@
 */
 html.dark[data-gptheme='oled'] {
 	.hljs {
-		background: #000 !important;
+		background: var(--c-bg-pre) !important;
 		color: #f8f8f8 !important;
 	}
 

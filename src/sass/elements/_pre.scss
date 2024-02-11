@@ -3,6 +3,14 @@
 pre {
 	border-radius: var(--br-pre) !important;
 	margin: var(--my-pre) auto !important;
+
+	--c-bg-pre: #232136;
+	--main-surface-secondary: var(--c-bg-pre) !important;
+
+	.bg-gray-950 {
+		background-color: var(--c-bg-pre) !important;
+	}
+
 	// overflow: clip !important;
 
 	/*  === RIGHT - <pre> - header === */
@@ -17,22 +25,6 @@ pre {
 		It seems it works fine now.
 	*/
 	/* Markdown */
-	.bg-black {
-		// &.rounded-md {
-		// 	border-radius: var(--br-btn) !important;
-		// }
-
-		/* Markdown header */
-		// & > div:has(> span) {
-		// overflow: clip !important;
-
-		// .rounded-t-md {
-		// // overflow: clip !important;
-		// border-top-left-radius: var(--br-btn) !important;
-		// border-top-right-radius: var(--br-btn) !important;
-		// }
-		// }
-	}
 	/* Code name in markdown header (html, php, css, etc) */
 	div:has(button) span {
 		color: var(--c-accent-light) !important;
@@ -50,5 +42,11 @@ pre {
 		svg {
 			color: currentColor !important;
 		}
+	}
+}
+
+html.dark[data-gptheme='oled'] {
+	pre {
+		--c-bg-pre: #000;
 	}
 }
