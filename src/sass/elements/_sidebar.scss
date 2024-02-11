@@ -50,21 +50,21 @@ nav[aria-label='Chat history'] {
 	}
 
 	/* Parent of time heading (of Today, Yesterday) in sidebar */
-	div:has(> h3[class*=':bg-black']) {
+	[data-projection-id]:has(h3) {
 		margin-bottom: 0.3rem;
-	}
 
-	/* Today, Yesterday - Time heading in sidebar */
-	h3[class*=':bg-black'] {
-		display: inline-block !important;
-		color: var(--c-accent) !important;
-		background-color: hsl(var(--accent-hsl) / 0.2) !important;
-		border-radius: 100vw;
-		text-transform: uppercase;
-		font-weight: bold;
-		padding: 0.5rem 1rem !important;
-		height: auto !important;
-		line-height: 1 !important;
+		/* Today, Yesterday - Time heading in sidebar */
+		h3 {
+			display: inline-block !important;
+			color: var(--c-accent) !important;
+			background-color: hsl(var(--accent-hsl) / 0.2) !important;
+			border-radius: 100vw;
+			text-transform: uppercase;
+			font-weight: bold;
+			padding: 0.5rem 1rem !important;
+			height: auto !important;
+			line-height: 1 !important;
+		}
 	}
 
 	a {
