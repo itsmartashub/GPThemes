@@ -50,8 +50,7 @@ main [data-testid^='conversation-turn-'] {
 		}
 
 		/* "Was this response better or worse? 👍👎" el when clicked on regenerate answer btn  */
-		.bg-gray-100,
-		[class*=':bg-gray-700'] {
+		.bg-token-main-surface-secondary:has(button[title^='This response was']) {
 			background-color: transparent !important;
 			color: var(--c-subtext-2) !important;
 			border: 1px solid var(--c-border);
