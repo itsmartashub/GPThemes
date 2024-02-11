@@ -140,7 +140,7 @@
 /* 
 - Sidebar
 - Sidebar sticky behind NEWCHAT btn
-- Sidebar "Today", "Yesterday"... time headings
+- Sidebar "Today", "Yesterday"... time headings 
 - Sidebar user profile picture
 - Tooltip
 - ChatGPT 3.5 btn in sticky header
@@ -150,7 +150,8 @@
 - Prompt textarea send button
 - GPTs - active pill ("Top Picks")
  */
-[class*='bg-black'] {
+[class*='bg-black'],
+[class*='bg-token-sidebar-surface-primary'] {
 	background-color: var(--c-surface-1);
 	// @include borderBoxShadow(lightgreen);
 	// background-color: lightgreen;

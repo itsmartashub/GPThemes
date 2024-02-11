@@ -1,5 +1,4 @@
 /* Sidebar bg-color */
-// .bg-black:has(nav[aria-label='Chat history']) {
 .bg-token-sidebar-surface-primary:has(nav[aria-label='Chat history']) {
 	/* --surface-primary fix dark/black color for a:hover states */
 	// --surface-primary: var(--c-surface-2) !important;
@@ -7,14 +6,26 @@
 	color: var(--c-txt) !important;
 	// background-color: var(--c-bg-sidebar) !important;
 
-	.sticky {
-		background-color: var(--c-bg-sidebar) !important;
-		backdrop-filter: blur(0) !important;
-	}
-
 	/* Fix white txt on "NEW CHAT" in sidebar for light especially */
 	nav a > * {
 		color: var(--c-txt) !important;
+	}
+}
+
+nav[aria-label='Chat history'] {
+	padding: var(--p-sidebar-nav) !important;
+
+	// ! Strange black rectangle (.bg-black class) over "New Chat" btn when on links: https://chat.openai.com/gpts/discovery and https://chat.openai.com/g/g-UBYTKWkPj
+	/* .sticky.bg-black:has(a[href='/']) {
+		background-color: var(--c-bg-sidebar);
+		padding-bottom: 1rem !important;
+	} */
+
+	/* Parent of "NEW CHAT" btn */
+	.sticky {
+		// background-color: var(--c-bg-sidebar) !important;
+		backdrop-filter: blur(0px) !important;
+		margin-bottom: 0.5rem !important;
 	}
 
 	/* CLEAR CHATS div - Visible when unchecked "Chat learning & Training" in Settings */
@@ -28,16 +39,6 @@
 			opacity: 0;
 		}
 	}
-}
-
-nav[aria-label='Chat history'] {
-	padding: var(--p-sidebar-nav) !important;
-
-	// ! Strange black rectangle (.bg-black class) over "New Chat" btn when on links: https://chat.openai.com/gpts/discovery and https://chat.openai.com/g/g-UBYTKWkPj
-	.sticky.bg-black:has(a[href='/']) {
-		background-color: var(--c-bg-sidebar);
-		padding-bottom: 1rem !important;
-	}
 
 	/* NEW CHAT + LIST of chats in nav. Adding padding-left prevent :focus-visible style in those elements to be cropped from the left because of the overflow-hidden */
 	.overflow-y-auto {
@@ -49,9 +50,13 @@ nav[aria-label='Chat history'] {
 		}
 	}
 
-	/* Parent of time heading (of Today, Yesterday) in sidebar */
-	[data-projection-id]:has(h3) {
-		margin-bottom: 0.3rem;
+	/*
+	Parent of time heading (of Today, Yesterday) in sidebar.
+	! div:has(> h3)  is selector for the same but in GPTs page !!! */
+	[data-projection-id]:has(h3),
+	div:has(> h3) {
+		margin-top: 1.5rem !important;
+		margin-bottom: 0.3rem !important;
 
 		/* Today, Yesterday - Time heading in sidebar */
 		h3 {
@@ -102,6 +107,11 @@ nav[aria-label='Chat history'] {
 			--duration-trans: 0.3s;
 			--duration-anim: 0.2s;
 			overflow: hidden;
+
+			&.bg-token-sidebar-surface-secondary,
+			&.bg-token-sidebar-surface-primary {
+				background-color: var(--c-surface-2) !important;
+			}
 
 			/* TODO mozda dodati opet u buducnosti. Sad nema poente, jer text parent ima overflow hidden i isece citav text, a ova animacija ga svakako opet samo prikaze onoliki koliki je. Ako stavim overlow: visible na hover, animacija je razlicito primenjena na svaki element, posto je width za svaki eelement razlicit u zavisnosti od duzine texta, i animacija ne moze sa istim durationom da bude ista, a sadrzaj treba mnogo vise da se skroluje. A ne zelim jos da koristim javascript za fetchvanje width-a svakog elementa posebno i onda posebni duration za svaki element u zavisnosti od duzine texta. A i preopteretila bi se extenzija da lupujem kroz svaki element, citam podatke i dodajem animaciju, samo zarad tog efekta. Nije vredno */
 			// &:hover {
