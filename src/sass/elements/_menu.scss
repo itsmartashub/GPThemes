@@ -61,12 +61,15 @@ div[data-radix-popper-content-wrapper] {
 	}
 
 	/* Context menu bg */
-	.bg-white {
-		background-color: var(--c-bg-contextmenu) !important;
+	// .bg-white {
+	// .bg-token-popover-surface-primary
+	[role='listbox'] {
+		// background-color: var(--c-bg-contextmenu) !important;
 		padding: var(--p-contextmenu) !important;
 		border-radius: var(--br-contextmenu) !important;
 		box-shadow: var(--box-shadow-contextmenu) !important;
 		overflow: visible !important; // for what is this? hhh
+		border: none;
 	}
 
 	[data-radix-collection-item] {
