@@ -59,6 +59,10 @@
 	--main-surface-primary: var(--c-accent); // arrow btn in new chat big buttons
 	--main-surface-secondary: ; // markdown header bg
 
+	--text-quaternary: var(--c-surface-2) !important; // sidebar collapse btn
+	// --text-quaternary: var(--c-surface-3) !important; // sidebar collapse btn
+	// --text-quaternary: red !important;
+
 	// TODO  	--border-light: red !important; // border oko "Uprade" btn-a: .border-token-border-light
 }
 
