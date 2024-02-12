@@ -139,15 +139,9 @@
 
 	/* ___ DIALOG - "SHARED LINKS" or "ARCHIVED CHATS" - Table  */
 	table {
-		// --main-surface-primary: var(--c-surface-2) !important;
+		--main-surface-primary: transparent !important; /* BG of thead>th ---> .bg-token-main-surface-primary */
 		padding: var(--p-contextmenu) !important;
 		// border-radius: var(--br-contextmenu);
-
-		/* BG of thead>th */
-		.bg-white,
-		.bg-gray-900 {
-			background-color: transparent !important;
-		}
 
 		th,
 		td {
@@ -206,7 +200,13 @@
 		}
 	}
 
-	/* "Select your Team Plan" dialog radio buttons when clicking "Upgrade plan" > "Team" */
+	/* "Create Workspace" dialog when clicking "Upgrade plan" > "Team" */
+	&:has(input#workspace-name) {
+		/* "Workspace name" bg color: .bg-token-main-surface-primary */
+		--main-surface-primary: transparent !important;
+	}
+
+	/* "Select your Team Plan" dialog radio buttons when clicking "Upgrade plan" > "Team" > "Select billing options" */
 	&:has(input[name='seats']) {
 		/* input counter for seats */
 		input[name='seats'] {
