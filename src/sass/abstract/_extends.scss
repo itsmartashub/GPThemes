@@ -1,7 +1,7 @@
-%animFadeInClipPathCircle {
+/* %animFadeInClipPathCircle {
 	will-change: opacity, clip-path;
 	animation: animFadeInClipPathCircle 0.2s linear forwards;
-}
+} */
 %animFadeInClipPath {
 	will-change: opacity, clip-path;
 	animation: animFadeInClipPath 0.2s linear forwards;
@@ -10,10 +10,10 @@
 	will-change: opacity;
 	animation: animFadeIn var(--anim-duration, 0.2s) linear forwards;
 }
-%animFadeOut {
+/* %animFadeOut {
 	will-change: opacity;
 	animation: animFade var(--anim-duration, 0.4s) linear reverse;
-}
+} */
 
 %link_default {
 	position: relative;
