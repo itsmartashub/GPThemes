@@ -61,11 +61,14 @@
 		padding: 0 !important;
 		border: none !important;
 
-		/* Strange white bg behind ✔️ items */
-		.bg-white,
-		.bg-gray-900 {
+		.bg-token-popover-surface-primary {
 			background-color: var(--c-surface-2) !important;
 		}
+		/* Strange white bg behind ✔️ items - now is:  .bg-token-main-surface-primary */
+		/* .bg-white,
+		.bg-gray-900 {
+			background-color: var(--c-surface-2) !important;
+		} */
 
 		/* Border radius for "Upgrade your plan" dialog */
 		.rounded-md {
