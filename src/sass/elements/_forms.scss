@@ -9,3 +9,19 @@ input[type='checkbox'] {
 		background-color: var(--c-accent) !important;
 	}
 }
+
+/* "Select your Team Plan" dialog radio buttons when clicking "Upgrade plan" > "Team" */
+button[role='radio'] {
+	border-color: var(--c-accent) !important;
+
+	// &[data-state='unchecked'] {
+	// 	border-color: var(--c-accent);
+	// }
+	&[data-state='checked'] {
+		background-color: var(--c-accent);
+	}
+
+	svg {
+		color: var(--c-on-accent) !important;
+	}
+}

@@ -205,4 +205,15 @@
 			}
 		}
 	}
+
+	/* "Select your Team Plan" dialog radio buttons when clicking "Upgrade plan" > "Team" */
+	&:has(input[name='seats']) {
+		/* input counter for seats */
+		input[name='seats'] {
+			background-color: hsla(var(--accent-hsl) / 0.3) !important;
+			padding: var(--p-btn) !important;
+			height: 100% !important;
+			margin: 0 0.8rem;
+		}
+	}
 }
