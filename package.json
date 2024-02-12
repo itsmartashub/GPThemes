@@ -11,15 +11,15 @@
 	},
 	"homepage": "https://github.com/itsmartashub/GPThemes/",
 	"scripts": {
-		"clean_dev": "rimraf .parcel-cache extension-dev",
-		"clean_prod": "rimraf .parcel-cache extension-prod",
-		"clean_zips": "rimraf extension-zips",
+		"clean-dev": "rimraf .parcel-cache extension-dev",
+		"clean-prod": "rimraf .parcel-cache extension-prod",
+		"clean-zips": "rimraf extension-zips",
 		"dev": "parcel watch src/manifests/chrome/manifest.json --host localhost --dist-dir extension-dev/chromium",
-		"dev_ff": "parcel watch src/manifests/firefox-mv2/manifest.json --host localhost --dist-dir extension-dev/firefox-mv2",
+		"dev-ff": "parcel watch src/manifests/firefox-mv2/manifest.json --host localhost --dist-dir extension-dev/firefox-mv2",
 		"build": "parcel build src/manifests/chrome/manifest.json --dist-dir extension-prod/gpthemes-chromium --no-source-maps",
-		"build_ff": "parcel build src/manifests/firefox-mv2/manifest.json --dist-dir extension-prod/gpthemes-firefox-mv2 --no-source-maps",
+		"build-ff": "parcel build src/manifests/firefox-mv2/manifest.json --dist-dir extension-prod/gpthemes-firefox-mv2 --no-source-maps",
 		"zip": "node ./scripts/zip.js",
-		"build_all": "npm run clean_prod && npm run build && npm run build_ff && npm run zip"
+		"build-all": "npm run clean-prod && npm run build && npm run build-ff && npm run zip"
 	},
 	"author": "itsmarta",
 	"keywords": [
