@@ -14,9 +14,6 @@ input[type='checkbox'] {
 button[role='radio'] {
 	border-color: var(--c-accent) !important;
 
-	// &[data-state='unchecked'] {
-	// 	border-color: var(--c-accent);
-	// }
 	&[data-state='checked'] {
 		background-color: var(--c-accent);
 	}

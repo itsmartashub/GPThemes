@@ -6,7 +6,23 @@ import gpthToggleImg from '../img/gpth-toggle-circled.webp'
 let isOptionsShown = false
 
 browser.storage.sync.get('gptheme').then((data) => {
-	const theme = data.gptheme || 'light'
+	/* 	const theme = data.gptheme || 'dark'
+	applyTheme(theme) */
+	let theme = ''
+	const storedTheme = data.gptheme
+
+	if (storedTheme) {
+		theme = storedTheme
+		applyTheme(theme)
+
+		return
+	}
+
+	// Check if the dark or light theme preference is set
+	const lightThemeQuery = window.matchMedia('(prefers-color-scheme: light)')
+
+	lightThemeQuery.matches ? (theme = 'light') : (theme = 'dark') // Fallback theme
+
 	applyTheme(theme)
 })
 
