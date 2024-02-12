@@ -5,7 +5,7 @@
 	border-radius: var(--br-dialog) !important;
 	box-shadow: var(--box-shadow);
 	--anim-duration: 0.28s;
-	@extend %animFadeIn;
+	// @extend %animFadeIn;
 
 	.border-token-border-light,
 	.border-white,
@@ -55,15 +55,16 @@
 	/* DIALOG - "Upgrade your plan" only */
 	&:has(a[href="https://openai.com/enterprise"])
 	{
-		// background-color: transparent !important;
+		--popover-surface-primary: var(--c-bg-dialog) !important; /* Dialog bg */
+		--main-surface-primary: transparent !important; /* Strange white bg behind ✔️ items - now is:  .bg-token-main-surface-primary */
 		// Change `width: max-content;` to `max-width: max-content;` in `[role="dialog"]:has(a[href="https://openai.com/enterprise"])` because it disables shrinking the content in `Upgrade your plan` popup. But then I have to fix the content
 		max-width: max-content;
 		padding: 0 !important;
 		border: none !important;
 
-		.bg-token-popover-surface-primary {
-			background-color: var(--c-surface-2) !important;
-		}
+		// .bg-token-popover-surface-primary {
+		// 	background-color: var(--c-surface-2) !important;
+		// }
 		/* Strange white bg behind ✔️ items - now is:  .bg-token-main-surface-primary */
 		/* .bg-white,
 		.bg-gray-900 {
