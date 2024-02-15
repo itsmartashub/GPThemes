@@ -28,8 +28,13 @@
 		padding: 0 !important;
 	}
 
+	/* Context menu when clicked ❓ on bottom right */
 	&:has(a[href="https://openai.com/policies"])
 	{
+		a {
+			font-size: 0.8rem;
+		}
+		/* User's email */
 		a:first-child span {
 			color: var(--c-accent) !important;
 			font-weight: bold;

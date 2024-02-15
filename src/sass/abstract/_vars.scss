@@ -88,7 +88,11 @@
 	- "Upgrade ur plan" dialog bg */
 	--popover-surface-primary: var(--c-bg-contextmenu) !important;
 
-	--border-light: transparent !important; // border oko "Uprade" btn-a: .border-token-border-light, border oko inputa u GPTs page
+	/* .border-token-border-light
+	- border oko "Uprade" btn-a
+	- border oko inputa u GPTs page
+	- border u "Keyboard shortcuts" oko kao tastera */
+	--border-light: transparent !important;
 }
 
 /* @ ================== LIGHT ================== */

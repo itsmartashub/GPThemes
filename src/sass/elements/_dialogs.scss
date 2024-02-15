@@ -215,4 +215,13 @@
 			margin: 0 0.8rem;
 		}
 	}
+
+	/* "Keyboard Shortcuts" keyboard tasters */
+	&:has(.truncate) {
+		.border-token-border-light {
+			color: var(--c-accent) !important;
+			border-color: hsla(var(--accent-hsl) / 0.3) !important;
+			border-radius: 10px !important;
+		}
+	}
 }
