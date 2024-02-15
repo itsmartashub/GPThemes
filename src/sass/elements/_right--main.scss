@@ -21,16 +21,21 @@ main [data-testid^='conversation-turn-'] {
 	/* RIGHT - CHATS BUBBLES DIV */
 	.group {
 		// padding: var(--p-chat-bubble) !important;
-		padding: calc(var(--p-chat-bubble) * 1.3) var(--p-chat-bubble) var(--p-chat-bubble) var(--p-chat-bubble) !important;
+		padding: calc(var(--p-chat-bubble) * 1.6) var(--p-chat-bubble) var(--p-chat-bubble) var(--p-chat-bubble) !important;
 		border-radius: var(--br-chat-bubble) !important;
 		letter-spacing: 0.3px;
 		line-height: 1.8 !important;
 
-		.agent-turn {
-			width: 80% !important;
-			// border: 1px solid red !important;
-			// overflow-x: scroll !important;
+		/* Left chat content parent 
+		! Adding fixed width prevent content overflowing on the right side of chat bubble when there is some markdown (<pre>) element shown with scrolling horizontally */
+		.relative.flex.w-full.flex-col {
+			width: 90% !important;
 		}
+
+		// .agent-turn {
+		// 	// width: 80% !important;
+		// 	width: 91% !important;
+		// }
 
 		/*  TODO 
             gap: 0.75rem + width: 1.5rem = 2.25rem toliko treba da bude padding-right/margin-right i dodati flex-grow: 1;
