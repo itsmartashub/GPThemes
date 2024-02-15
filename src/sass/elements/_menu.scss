@@ -81,6 +81,14 @@ div[data-radix-popper-content-wrapper] {
 		border: none;
 	}
 
+	/* Theme dropdown bg */
+	.popover {
+		background-color: var(--c-bg-contextmenu) !important;
+		/* --main-surface-primary: var(--white)!important; */
+		// --main-surface-secondary: var(--gray-100)!important;
+		// --main-surface-tertiary: var(--gray-200)!important;
+	}
+
 	[data-radix-collection-item] {
 		border-radius: var(--br-btn);
 		padding: var(--p-contextmenu-item) !important;
