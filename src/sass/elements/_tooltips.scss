@@ -8,18 +8,17 @@ div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
 	div {
 		background-color: var(--c-bg-tooltip) !important;
 		padding: var(--p-tooltips) !important;
-		box-shadow: var(--box-shadow-contextmenu) !important;
 	}
 }
 
 /* === TOOLTIPS text color === */
 html.light div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
-	[class*='text-white'] {
+	[class*='text-'] {
 		color: var(--c-txt) !important;
 	}
 }
 html.dark div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
-	[class*='text-white'] {
+	[class*='text-'] {
 		color: var(--c-on-accent) !important;
 	}
 }
