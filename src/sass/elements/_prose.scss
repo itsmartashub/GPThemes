@@ -38,6 +38,27 @@
 	--tw-prose-invert-th-borders: var(--c-border) !important;
 	--tw-prose-invert-td-borders: var(--c-border) !important;
 
+	/* Markdown Blockquotes border-left */
+	blockquote {
+		// border-color: var(--c-subtext-2) !important;
+		border-color: var(--tw-prose-quote-borders) !important;
+	}
+
+	/* Markdown Lists/bullers. Center them, they were on top, not centered */
+	ul > li {
+		/* Bullets before checkboxes */
+		&:has(input[type='checkbox']) {
+			&::before {
+				--tw-translate-y: 100%;
+			}
+		}
+
+		/* Bullets */
+		&::before {
+			--tw-translate-y: 50%;
+		}
+	}
+
 	/* Markdown Links rendered in GPT answers */
 	a {
 		@extend %link_hover_underlined;
