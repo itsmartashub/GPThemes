@@ -28,30 +28,16 @@ main [data-testid^='conversation-turn-'] {
 
 		/* Left chat content parent 
 		! Adding fixed width prevent content overflowing on the right side of chat bubble when there is some markdown (<pre>) element shown with scrolling horizontally */
+		/* 
+			0.75rem = gap-3 = gap between profile svg/img and right content
+			2.25rem = w-9 = gpt profile svg parent width */
 		.relative.flex.w-full.flex-col {
-			width: 90% !important;
-		}
-
-		// .agent-turn {
-		// 	// width: 80% !important;
-		// 	width: 91% !important;
-		// }
-
-		/*  TODO 
-            gap: 0.75rem + width: 1.5rem = 2.25rem toliko treba da bude padding-right/margin-right i dodati flex-grow: 1;
-                ovome: relative flex w-full flex-col lg:w-[calc(100%-115px)] agent-turn 
-                i ovome: lg:w-[calc(100%-115px)]    to je isti deo samo za user chat bubble
-            to je kao chat onaj deo gde je chat, cudno ima veliki space sa desne strane, 
-        */
-		// Fix original strange space on the right (left is svg of user/gpt) in the chat bubbles where text is
-		div[class*='lg:w-[calc(100%-115px)]'] {
-			// .agent-turn {
-			--gap-3: 0.75rem;
-			--svg-w: 1.5rem;
-			flex-grow: 1 !important;
-			margin-right: calc(var(--gap-3) + var(--svg-w)) !important;
-			// padding-right: calc(var(--gap-3) + var(--svg-w)) !important;
-			// border: 2px solid red !important;
+			--svg-w: 2.25rem;
+			--svg-gap: 0.75rem;
+			// width: 90% !important; // unstable width when resizing window/zooming in-out
+			width: calc(
+				100% - var(--svg-w) - var(--svg-gap) - var(--p-chat-bubble)
+			) !important; // more consistent width (right chat bubble spacing = left spacing)
 		}
 
 		/* "Was this response better or worse? 👍👎" el when clicked on regenerate answer btn  */

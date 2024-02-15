@@ -37,3 +37,8 @@ html.light [class*=':border-white/10'] {
 [class*='border-red-500'] {
 	border-color: var(--c-danger) !important;
 }
+
+/* "Share link" mini chat footer 3 dots btn */
+[class*='focus-visible:border-green-500'] {
+	border-color: transparent !important;
+}
