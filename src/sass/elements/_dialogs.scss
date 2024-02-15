@@ -11,6 +11,14 @@
 		border-color: transparent !important;
 	}
 
+	/*
+	- "Upgrade your plan" bg and ✔️ bg
+	- "Custom Instructions" ("CUSTOMIZE CHATGPT" now) textarea bg
+	 */
+	.bg-token-main-surface-primary:not(textarea) {
+		background-color: var(--c-surface-2) !important;
+	}
+
 	/* Tab view transitions - In tab dialog part which is changing on tabpanel click (on right side) */
 	[id*='-content-'] {
 		--anim-duration: 0.18s;
@@ -217,11 +225,46 @@
 	}
 
 	/* "Keyboard Shortcuts" keyboard tasters */
+	// this is also the text in "Settings" dialog so we need more special selector
 	&:has(.truncate) {
-		.border-token-border-light {
+		// .border-token-border-light:has(span.text-xs) {
+		.border-token-border-light:not(:has(button)) {
 			color: var(--c-accent) !important;
 			border-color: hsla(var(--accent-hsl) / 0.3) !important;
 			border-radius: 10px !important;
 		}
 	}
 }
+
+/* ! NOT WORKING - CANNOT OVERWRITE THIS WTF */
+// .dark .popover,
+// .light .popover,
+// .popover {
+// 	/* [role='menu'] */
+// 	--main-surface-secondary: var(--c-surface-2) !important;
+// 	--main-surface-tertiary: var(--c-surface-3) !important;
+
+// 	&.bg-token-surface-primary {
+// 		--main-surface-primary: var(--c-surface-2) !important;
+// 		background-color: var(--c-surface-2) !important;
+// 	}
+// 	&.bg-token-surface-secondary {
+// 		--main-surface-secondary: var(--c-surface-2) !important;
+// 		background-color: var(--c-surface-2) !important;
+// 	}
+// 	&.bg-token-surface-tertiary {
+// 		--main-surface-tertiary: var(--c-surface-3) !important;
+// 		background-color: var(--c-surface-3) !important;
+// 	}
+// 	// --main-surface-primary: var(--white) !important;
+// 	// --main-surface-secondary: var(--gray-100) !important;
+// 	// --main-surface-tertiary: var(--gray-200) !important;
+
+// 	/* [role='dialog'] */
+// 	// --main-surface-primary: var(--gray-700)!important;
+// 	// --main-surface-secondary: var(--gray-600)!important;
+// 	// --main-surface-tertiary: var(--gray-500)!important;
+// 	// --text-primary: var(--white)!important;
+// 	// --text-secondary: var(--gray-200)!important;
+// 	// --text-tertiary: var(--gray-300)!important;
+// }

@@ -122,3 +122,21 @@ div[data-radix-popper-content-wrapper] {
 // 	// z-index: calc(var(--z-modal) + 200) !important;
 // 	z-index: 200 !important;
 // }
+
+/* [role='menu'] for contextmenu */
+.popover {
+	--main-surface-primary: var(--c-surface-2) !important;
+	--main-surface-secondary: var(--c-surface-2) !important;
+	--main-surface-tertiary: var(--c-surface-3) !important;
+	// --main-surface-primary: var(--white) !important;
+	// --main-surface-secondary: var(--gray-100) !important;
+	// --main-surface-tertiary: var(--gray-200) !important;
+
+	/* [role='dialog'] */
+	// --main-surface-primary: var(--gray-700)!important;
+	// --main-surface-secondary: var(--gray-600)!important;
+	// --main-surface-tertiary: var(--gray-500)!important;
+	// --text-primary: var(--white)!important;
+	// --text-secondary: var(--gray-200)!important;
+	// --text-tertiary: var(--gray-300)!important;
+}
