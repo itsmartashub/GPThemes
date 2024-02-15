@@ -1,9 +1,17 @@
-/* ___ DIALOG - Dialog Settings  */
+/* Dialogs - Settings  */
 [role='dialog'] {
 	padding: var(--p-dialog) !important;
 	background-color: var(--c-bg-dialog) !important;
 	border-radius: var(--br-dialog) !important;
 	box-shadow: var(--box-shadow);
+
+	&:has(.popover) {
+		.popover {
+			--main-surface-primary: var(--c-surface-2) !important;
+			--main-surface-secondary: var(--c-surface-2) !important;
+			--main-surface-tertiary: var(--c-surface-3) !important;
+		}
+	}
 
 	.border-token-border-light,
 	.border-white,
@@ -14,10 +22,10 @@
 	/*
 	- "Upgrade your plan" bg and ✔️ bg
 	- "Custom Instructions" ("CUSTOMIZE CHATGPT" now) textarea bg
-	 */
-	.bg-token-main-surface-primary:not(textarea) {
-		background-color: var(--c-surface-2) !important;
-	}
+	- "Share Link" mini chat footer (where 3 dots are) */
+	// .bg-token-main-surface-primary:not(textarea) {
+	// 	background-color: var(--c-surface-2) !important;
+	// }
 
 	/* Tab view transitions - In tab dialog part which is changing on tabpanel click (on right side) */
 	[id*='-content-'] {
@@ -241,6 +249,7 @@
 // .light .popover,
 // .popover {
 // 	/* [role='menu'] */
+//  --main-surface-primary: var(--c-surface-2) !important;
 // 	--main-surface-secondary: var(--c-surface-2) !important;
 // 	--main-surface-tertiary: var(--c-surface-3) !important;
 
