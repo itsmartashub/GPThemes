@@ -64,6 +64,7 @@
 		"adm-zip": "^0.5.10",
 		"parcel": "^2.11.0",
 		"postcss": "^8.4.32",
+		"postcss-discard-unused": "^6.0.2",
 		"postcss-preset-env": "^9.3.0",
 		"postcss-transform": "^0.0.2",
 		"rimraf": "^5.0.5",
