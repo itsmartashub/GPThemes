@@ -194,23 +194,22 @@ main [data-testid^='conversation-turn-'] {
 /* "Copy code" btn */
 pre {
 	button:has(svg) {
-		transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out, background-color 0.2s ease-in-out,
-			color 0.1s ease-in-out !important;
+		transition: transform 0.4s $easeOutBack, opacity 0.2s ease, background-color 0.2s ease-in-out, color 0.3s ease !important;
 
 		svg {
-			transition: color 0.1s ease-in-out !important;
+			transition: color 0s ease !important;
 		}
 
 		&:hover {
-			background-color: var(--c-accent-light) !important;
-			color: var(--c-on-accent) !important;
+			--c-bg-pre-header-btn: hsla(var(--accent-hsl) / 0.225);
+			--c-bg-pre-header-btn-color: var(--c-accent) !important;
 			transform: translateY(2px);
 		}
 	}
 }
-
 html.light pre button:has(svg):hover {
-	color: var(--c-txt) !important;
+	--c-bg-pre-header-btn: var(--c-accent) !important;
+	--c-bg-pre-header-btn-color: var(--c-on-accent) !important;
 }
 
 /* ___ Scroll down button */

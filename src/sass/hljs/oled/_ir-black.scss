@@ -2,9 +2,9 @@
   IR_Black style (c) Vasily Mikhailitchenko <vaskas@programica.ru>
 */
 html.dark[data-gptheme='oled'] {
-	.hljs {
-		background: var(--c-bg-pre) !important;
-		color: #f8f8f8 !important;
+	.markdown {
+		--c-bg-pre: #000;
+		--hljs-color: #f8f8f8;
 	}
 
 	.hljs-comment,
@@ -59,13 +59,5 @@ html.dark[data-gptheme='oled'] {
 	.hljs-number,
 	.hljs-deletion {
 		color: #ff73fd !important;
-	}
-
-	.hljs-emphasis {
-		font-style: italic;
-	}
-
-	.hljs-strong {
-		font-weight: bold;
 	}
 }

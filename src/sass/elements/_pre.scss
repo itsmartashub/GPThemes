@@ -3,50 +3,45 @@
 pre {
 	border-radius: var(--br-pre) !important;
 	margin: var(--my-pre) auto !important;
+	// border: 3px solid pink;
 
-	--c-bg-pre: #232136;
-	--main-surface-secondary: var(--c-bg-pre) !important;
-
+	/* Whole code block hljs element */
 	.bg-gray-950 {
 		background-color: var(--c-bg-pre) !important;
+		border-radius: inherit !important;
+		padding: 1.8rem !important;
+		// border: 2px solid red;
 	}
 
-	// overflow: clip !important;
-
-	/*  === RIGHT - <pre> - header === */
-	/*``` Header selector: .bg-black>div:has(> span) */
-
-	/* // TODO
-		There seems to be an unusual behavior with the top-border-radius for the Markdown header, causing it to lose its radius and appear almost sharp (aka the original design). This occurs when the inspect element is open or when the screen size is reduced. It happens like a flash when hovering over the chat-bubble and then moving out of it completely or when in the inspect mode, also hovering COPY btn, idk. I cannot fully comprehend the issue, but it seems that the original design is being restored, despite my attempts to override it using various methods:
-
-		I have rewritten the .rounded-md class and also the .rounded-t-md class for the header. I applied overflow: clip/hidden to <pre> and the Markdown header. However, none of these measures seem to resolve the issue.
-
-		// ! UPDATE
-		It seems it works fine now.
-	*/
-	/* Markdown */
-	/* Code name in markdown header (html, php, css, etc) */
-	div:has(button) span {
-		color: var(--c-accent-light) !important;
+	/* pre header */
+	.bg-token-main-surface-secondary {
+		padding: 0 !important;
 	}
 
-	/* 'Copy code' btn in markdown header */
+	/* Code name in pre header (html, php, css, etc) */
+	& > div > div > span:not([data-state]) {
+		color: var(--c-subtext-1) !important;
+		font-weight: bold;
+	}
+
+	/* "Copy Code" btn in pre header */
 	button:has(svg) {
 		text-transform: uppercase !important;
-		color: var(--c-on-accent) !important;
 		background-color: var(--c-bg-pre-header-btn);
+		color: var(--c-bg-pre-header-btn-color);
 		padding: var(--p-btn);
 		border-radius: var(--br-btn) !important;
+		font-weight: bold;
 
 		/* SVG icons before 'Copy code' btn in md */
 		svg {
 			color: currentColor !important;
 		}
 	}
-}
 
-html.dark[data-gptheme='oled'] {
-	pre {
-		--c-bg-pre: #000;
+	/* Code snippets without (after) pre-header (code name and "Copy Code" btn */
+	.overflow-y-auto:has(> code) {
+		// border: 2px solid lavenderblush;
+		padding: 1rem 0 0 0 !important;
 	}
 }

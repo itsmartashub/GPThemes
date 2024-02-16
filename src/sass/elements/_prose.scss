@@ -121,15 +121,15 @@ html.dark .prose {
 }
 
 /* Code-snippets markdown and markdown header */
-html.dark[data-gptheme='oled'] {
-	.prose {
-		.bg-black {
-			background-color: #000 !important;
+// html.dark[data-gptheme='oled'] {
+// .prose {
+// 	.bg-black {
+// 		background-color: #000 !important;
 
-			/* Markdown code-snippets (prose) header */
-			.bg-token-surface-primary {
-				background-color: #000 !important;
-			}
-		}
-	}
-}
+// 		/* Markdown code-snippets (prose) header */
+// 		.bg-token-surface-primary {
+// 			background-color: #000 !important;
+// 		}
+// 	}
+// }
+// }
