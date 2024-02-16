@@ -1,6 +1,7 @@
 {
 	"name": "gpthemes",
-	"version": "2.0.1",
+	"displayName": "GPThemes - ChatGPT Restyled",
+	"version": "2.0.2",
 	"description": "GPThemes is a Chrome extension designed to improve the visual experience of ChatGPT by injecting custom CSS to enhance its theme.",
 	"repository": {
 		"type": "git",
@@ -36,7 +37,6 @@
 		"style chatgpt",
 		"modern themes",
 		"minimalistic",
-		"chatgpt",
 		"gpthemes",
 		"chrome extension",
 		"ui customization",
@@ -55,7 +55,9 @@
 		"chatgpt enhancement",
 		"css injection",
 		"chrome web store",
-		"web design makeover"
+		"web design makeover",
+		"firefox",
+		"firefox addons"
 	],
 	"license": "GPL-3.0",
 	"devDependencies": {
