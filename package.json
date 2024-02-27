@@ -20,7 +20,7 @@
 		"build": "parcel build src/manifests/chrome/manifest.json --dist-dir extension-prod/gpthemes-chromium --no-source-maps",
 		"build-ff": "parcel build src/manifests/firefox-mv2/manifest.json --dist-dir extension-prod/gpthemes-firefox-mv2 --no-source-maps",
 		"zip": "node ./scripts/zip.js",
-		"build-all": "npm run clean-prod && npm run build && npm run build-ff && npm run zip"
+		"build-all": "npm run clean-prod && npm run clean-zips && npm run build && npm run build-ff && npm run zip"
 	},
 	"author": "itsmarta",
 	"keywords": [
