@@ -56,7 +56,7 @@ body:
           label: Additional context (Optional)
           description: Provide any additional information about this feature request.
       validations:
-          required: true
+          required: false
 
     - type: markdown
       attributes:
