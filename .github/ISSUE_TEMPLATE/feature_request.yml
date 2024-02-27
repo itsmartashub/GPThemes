@@ -1,0 +1,64 @@
+name: 💡 Feature Request (Suggestion)
+# description: Have a new idea/feature for GPThemes? Let me know...
+description: Create a feature request to enhance the experience using GPThemes.
+title: '[FEATURE] this_replace_with_title'
+labels: ['enhancement']
+body:
+    - type: markdown
+      attributes:
+          value: |
+              Please fill out the sections below to properly describe the new feature you are suggesting.
+
+              Thank you for taking the time to create this feature request.
+
+    - type: checkboxes
+      id: duplicates
+      attributes:
+          label: Prerequisites (Required)
+          description: Increase the chances of your issue being accepted by making sure it has not been raised before.
+          options:
+              - label: I [searched for any existing report](https://github.com/itsmartashub/GPThemes/issues?q=is%3Aissue) about this feature to avoid opening a duplicate.
+                required: true
+              - label: This issue contains only one feature.
+                required: true
+              - label: The title of this issue accurately describes the feature.
+                required: true
+
+    - type: textarea
+      id: description
+      attributes:
+          label: Feature Request Description (Required)
+          description: Provide a clear and concise description of this feature request with any problems and solutions.
+          # placeholder: A button in the screen X that allows to do Y
+      validations:
+          required: true
+
+    # - type: textarea
+    #   id: rationale
+    #   attributes:
+    #       label: Use Case (Required)
+    #       description: It should be implemented because...? Provide a scenario or use case for this feature, if applicable.
+    #       # placeholder: It will allow to do Y that is needed for Z
+    #   validations:
+    #       required: true
+
+    - type: textarea
+      id: screenshots
+      attributes:
+          label: Screenshots or Videos (Optional)
+          description: Add screenshots or video to help explain this feature request, if applicable.
+      validations:
+          required: false
+
+    - type: textarea
+      id: context
+      attributes:
+          label: Additional context (Optional)
+          description: Provide any additional information about this feature request.
+      validations:
+          required: true
+
+    - type: markdown
+      attributes:
+          value: |
+              ### Thanks for your suggestion! 🙏 Your input helps me improve the browser extension. 🫂
