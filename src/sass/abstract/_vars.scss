@@ -93,10 +93,14 @@
 	- border oko inputa u GPTs page
 	- border u "Keyboard shortcuts" oko kao tastera */
 	--border-light: transparent !important;
+
+	// --text-primary: var(--c-txt) !important;
+	// --text-secondary: var(--c-subtext-1) !important;
+	// --text-tertiary: var(--c-subtext-2) !important;
 }
 
 /* @ ================== LIGHT ================== */
-html.light {
+.light {
 	/* ? ========== HSL ========== */
 	/* --accent-hsl: 250 99% 65%; */
 	--accent-h: 250;
@@ -225,7 +229,7 @@ html.light {
 }
 
 /* @ ================== DARK ================== */
-html.dark {
+.dark {
 	/* ? ========== HSL ========== */
 
 	/* --accent-hsl: 272 93% 78%; */
@@ -356,7 +360,7 @@ html.dark {
 }
 
 /* @ ================== OLED ================== */
-html.dark[data-gptheme='oled'] {
+.dark[data-gptheme='oled'] {
 	/* ? ========== HSL ========== */
 
 	/* --accent-hsl: 272 93% 78%; */

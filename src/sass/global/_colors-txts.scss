@@ -29,6 +29,14 @@
 	color: var(--c-subtext-1) !important;
 }
 
+/* 
+- GPTs Page - "Discover and create custom versions of ChatGPT that combine instructions, extra knowledge, and any - combination of skills.
+- Footer - "ChatGPT can make mistakes. Consider checking important information."
+- ChatGPT 3.5 - 3.5 txt
+- "Upgrade your plan" dialog - "Have an existing plan? See billing help" and "* Price billed annually, minimum 2 users" 
+- Settings - Text after "Chat history & training"
+- "Loading" in dialogs
+- "👍👎 ❌" in "Was this response better or worse? 👍👎 | ❌"*/
 .text-token-text-secondary {
 	color: var(--c-subtext-1) !important;
 	// color: red !important;
@@ -37,6 +45,7 @@
 /* "ChatGPT 3.5 ^ and its contextmenu small txt", "Upgrade plan - Get GPT-4, DALL-E, and more", icon bubble in tables, "X" close btn in dialogs, etc */
 .text-token-text-tertiary {
 	--text-tertiary: var(--c-subtext-2) !important;
+	// --text-tertiary: red !important;
 }
 
 /* "Log out", "Delete all conversations", "Delete chat" */
