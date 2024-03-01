@@ -6,14 +6,14 @@ html,
 body {
 	--text-primary: var(--c-txt) !important;
 
-	font-family: var(--f-fm) !important;
+	// font-family: var(--f-fm) !important;
 	color: var(--c-txt) !important;
 	background-color: var(--c-bg-chats-container) !important;
 }
 
-a {
-	font-family: var(--f-fm) !important;
-}
+// a {
+// 	font-family: var(--f-fm) !important;
+// }
 
 /* scrollbar-color for For Firefox */
 @-moz-document url-prefix() {
