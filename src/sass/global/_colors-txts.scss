@@ -34,6 +34,11 @@
 	// color: red !important;
 }
 
+/* "ChatGPT 3.5 ^ and its contextmenu small txt", "Upgrade plan - Get GPT-4, DALL-E, and more", icon bubble in tables, "X" close btn in dialogs, etc */
+.text-token-text-tertiary {
+	--text-tertiary: var(--c-subtext-2) !important;
+}
+
 /* "Log out", "Delete all conversations", "Delete chat" */
 .text-red-500 {
 	color: var(--c-danger) !important;
