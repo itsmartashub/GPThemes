@@ -40,6 +40,20 @@ main form [class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea) {
 			color: var(--c-on-accent) !important;
 		}
 	}
+
+	.absolute:has(button[aria-label='Stop generating']) {
+		right: 1.3rem !important;
+		bottom: 0.9rem !important;
+	}
+	button[aria-label='Stop generating'] {
+		border-color: var(--c-accent);
+		padding: 0.38rem !important;
+
+		svg {
+			color: var(--c-accent);
+			transform: scale(1.07);
+		}
+	}
 }
 
 /* === RIGHT - TEXTAREA part wrapper, margin-top ===*/
