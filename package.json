@@ -12,15 +12,15 @@
 	},
 	"homepage": "https://github.com/itsmartashub/GPThemes/",
 	"scripts": {
-		"clean-dev": "rimraf .parcel-cache extension-dev",
-		"clean-prod": "rimraf .parcel-cache extension-prod",
-		"clean-zips": "rimraf extension-zips",
+		"clean:dev": "rimraf .parcel-cache extension-dev",
+		"clean:prod": "rimraf .parcel-cache extension-prod",
+		"clean:zips": "rimraf extension-zips",
 		"dev": "parcel watch src/manifests/chrome/manifest.json --host localhost --dist-dir extension-dev/chromium",
-		"dev-ff": "parcel watch src/manifests/firefox-mv2/manifest.json --host localhost --dist-dir extension-dev/firefox-mv2",
+		"dev:ff": "parcel watch src/manifests/firefox-mv2/manifest.json --host localhost --dist-dir extension-dev/firefox-mv2",
 		"build": "parcel build src/manifests/chrome/manifest.json --dist-dir extension-prod/gpthemes-chromium --no-source-maps",
-		"build-ff": "parcel build src/manifests/firefox-mv2/manifest.json --dist-dir extension-prod/gpthemes-firefox-mv2 --no-source-maps",
+		"build:ff": "parcel build src/manifests/firefox-mv2/manifest.json --dist-dir extension-prod/gpthemes-firefox-mv2 --no-source-maps",
 		"zip": "node ./scripts/zip.js",
-		"build-all": "npm run clean-prod && npm run clean-zips && npm run build && npm run build-ff && npm run zip"
+		"build:all": "npm run clean-prod && npm run clean-zips && npm run build && npm run build-ff && npm run zip"
 	},
 	"author": "itsmarta",
 	"keywords": [
@@ -61,14 +61,14 @@
 	],
 	"license": "GPL-3.0",
 	"devDependencies": {
-		"@parcel/config-webextension": "^2.11.0",
-		"@parcel/transformer-sass": "^2.11.0",
+		"@parcel/config-webextension": "^2.12.0",
+		"@parcel/transformer-sass": "^2.12.0",
 		"adm-zip": "^0.5.10",
-		"parcel": "^2.11.0",
-		"postcss": "^8.4.32",
-		"postcss-discard-unused": "^6.0.2",
-		"postcss-preset-env": "^9.3.0",
-		"postcss-transform": "^0.0.2",
+		"parcel": "^2.12.0",
+		"postcss": "^8.4.35",
+		"postcss-discard-unused": "^6.0.3",
+		"postcss-preset-env": "^9.4.0",
+		"postcss-transform": "^1.0.0",
 		"rimraf": "^5.0.5",
 		"webextension-polyfill": "^0.10.0"
 	},
