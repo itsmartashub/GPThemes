@@ -1,10 +1,10 @@
 .prose {
 	// --tw-prose-code: currentColor !important; // Code text in markdown
 	// --tw-prose-bold: currentColor !important; // Bold text in markdown
-	color: var(--c-txt) !important;
 	font-size: 1rem !important;
 
-	--tw-prose-body: var(--c-txt) !important;
+	// TODO - ne znam sto --c-txt u light temi ne radi kako treba, svetla je. Zato koristim var(--text-primary) za --tw-prose-body
+	--tw-prose-body: inherit !important;
 	--tw-prose-headings: var(--c-accent) !important;
 	// --tw-prose-lead: red !important;
 	--tw-prose-links: var(--c-accent) !important;

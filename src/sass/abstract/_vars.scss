@@ -94,13 +94,13 @@
 	- border u "Keyboard shortcuts" oko kao tastera */
 	--border-light: transparent !important;
 
-	// --text-primary: var(--c-txt) !important;
-	// --text-secondary: var(--c-subtext-1) !important;
-	// --text-tertiary: var(--c-subtext-2) !important;
+	/* 	--text-primary: var(--c-txt) !important;
+	--text-secondary: var(--c-subtext-1) !important;
+	--text-tertiary: var(--c-subtext-2) !important; */
 }
 
 /* @ ================== LIGHT ================== */
-.light {
+html.light {
 	/* ? ========== HSL ========== */
 	/* --accent-hsl: 250 99% 65%; */
 	--accent-h: 250;
@@ -108,7 +108,7 @@
 	--accent-l: 65%;
 	--accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l);
 
-	/* --txt-hsl: 255 86% 92%; */
+	/* --txt-hsl: 0 0% 0%; */
 	--txt-h: 0;
 	--txt-s: 0%;
 	--txt-l: 0%;
@@ -229,7 +229,7 @@
 }
 
 /* @ ================== DARK ================== */
-.dark {
+html.dark {
 	/* ? ========== HSL ========== */
 
 	/* --accent-hsl: 272 93% 78%; */
@@ -360,7 +360,7 @@
 }
 
 /* @ ================== OLED ================== */
-.dark[data-gptheme='oled'] {
+html.dark[data-gptheme='oled'] {
 	/* ? ========== HSL ========== */
 
 	/* --accent-hsl: 272 93% 78%; */
