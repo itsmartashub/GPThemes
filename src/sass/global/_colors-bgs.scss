@@ -91,7 +91,9 @@
 	color: var(--c-on-accent) !important;
 }
 
-[class*='bg-red-500/10'] {
+/* "This content may violate content policy..." & "This content may violate our Terms of Use or usage policies." warnings */
+[class*='bg-red-500/10'],
+[class*='bg-orange-500/10'] {
 	background-color: hsla(var(--danger-hsl) / 0.11) !important;
 	color: var(--c-danger) !important;
 	// background-color: var(--c-danger) !important;

@@ -2,6 +2,7 @@
 	// --tw-prose-code: currentColor !important; // Code text in markdown
 	// --tw-prose-bold: currentColor !important; // Bold text in markdown
 	font-size: 1rem !important;
+	// --text-tertiary: var(--c-subtext-2) !important;
 
 	// TODO - ne znam sto --c-txt u light temi ne radi kako treba, svetla je. Zato koristim var(--text-primary) za --tw-prose-body
 	--tw-prose-body: inherit !important;
@@ -38,10 +39,6 @@
 	--tw-prose-invert-th-borders: var(--c-border) !important;
 	--tw-prose-invert-td-borders: var(--c-border) !important;
 
-	/* Ordered list item number (li::before) */
-	--text-tertiary: var(--c-accent) !important;
-	// --text-tertiary: var(--c-subtext-2) !important;
-
 	/* Markdown Blockquotes border-left */
 	blockquote {
 		// border-color: var(--c-subtext-2) !important;
@@ -62,6 +59,12 @@
 			--tw-translate-y: 50%;
 			line-height: 1 !important;
 		}
+	}
+
+	li {
+		/* Ordered list item number (li::before) */
+		--text-tertiary: var(--c-accent) !important;
+		// --text-tertiary: var(--c-subtext-2) !important;
 	}
 
 	/* Markdown Links rendered in GPT answers */

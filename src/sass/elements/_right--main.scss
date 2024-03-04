@@ -174,12 +174,14 @@ main [data-testid^='conversation-turn-'] {
 }
 
 html.light main [data-testid^='conversation-turn-'] {
-	--c-avatar: color-mix(in srgb-linear, var(--avatar-color) 78%, black);
-	// --c-avatar: color-mix(in lab, var(--avatar-color) 85%, black);
+	--c-avatar: color-mix(in srgb-linear, var(--avatar-color) 80%, black);
+	// --c-avatar: color-mix(in srgb-linear, var(--avatar-color) 70%, black);
+	// --c-avatar: color-mix(in lab, var(--avatar-color) 80%, black);
 }
-/* html.dark,
+html.dark,
 html.oled {
 	main [data-testid^='conversation-turn-'] {
-		--c-avatar: color-mix(in srgb, var(--avatar-color) 70%, white);
+		// --c-avatar: color-mix(in oklab, var(--avatar-color) 97%, white);
+		--c-avatar: color-mix(in hwb, var(--avatar-color) 94%, white);
 	}
-} */
+}
