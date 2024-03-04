@@ -174,7 +174,8 @@ main [data-testid^='conversation-turn-'] {
 }
 
 html.light main [data-testid^='conversation-turn-'] {
-	--c-avatar: color-mix(in srgb, var(--avatar-color) 80%, black);
+	--c-avatar: color-mix(in srgb-linear, var(--avatar-color) 78%, black);
+	// --c-avatar: color-mix(in lab, var(--avatar-color) 85%, black);
 }
 /* html.dark,
 html.oled {

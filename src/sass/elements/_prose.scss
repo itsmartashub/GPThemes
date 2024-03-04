@@ -49,13 +49,14 @@
 		/* Bullets before checkboxes */
 		&:has(input[type='checkbox']) {
 			&::before {
-				--tw-translate-y: 100%;
+				--tw-translate-y: 150% !important;
 			}
 		}
 
 		/* Bullets */
 		&::before {
 			--tw-translate-y: 50%;
+			line-height: 1 !important;
 		}
 	}
 
