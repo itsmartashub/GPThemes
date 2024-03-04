@@ -12,8 +12,8 @@
 	--tw-prose-counters: var(--c-accent) !important;
 	--tw-prose-bullets: var(--c-accent) !important;
 	--tw-prose-hr: var(--c-border) !important;
-	--tw-prose-quotes: var(--c-subtext-2) !important;
-	--tw-prose-quote-borders: var(--c-subtext-2) !important;
+	--tw-prose-quotes: var(--c-accent) !important;
+	--tw-prose-quote-borders: var(--c-accent) !important;
 	// --tw-prose-captions: red !important;
 	--tw-prose-code: currentCode !important;
 	// --tw-prose-pre-code: var(--c-accent) !important;
@@ -29,14 +29,18 @@
 	--tw-prose-invert-counters: var(--c-accent) !important;
 	--tw-prose-invert-bullets: var(--c-accent) !important;
 	--tw-prose-invert-hr: var(--c-border) !important;
-	--tw-prose-invert-quotes: var(--c-subtext-2) !important;
-	--tw-prose-invert-quote-borders: var(--c-subtext-2) !important;
+	--tw-prose-invert-quotes: var(--c-accent) !important;
+	--tw-prose-invert-quote-borders: var(--c-accent) !important;
 	// --tw-prose-invert-captions: #9ca3af !important;
 	--tw-prose-invert-code: currentColor !important;
 	// --tw-prose-invert-pre-code: var(--c-accent) !important;
 	// --tw-prose-invert-pre-bg: red !important;
 	--tw-prose-invert-th-borders: var(--c-border) !important;
 	--tw-prose-invert-td-borders: var(--c-border) !important;
+
+	/* Ordered list item number (li::before) */
+	--text-tertiary: var(--c-accent) !important;
+	// --text-tertiary: var(--c-subtext-2) !important;
 
 	/* Markdown Blockquotes border-left */
 	blockquote {
