@@ -1,5 +1,7 @@
 /* === RIGHT - CONVERSATION CONTAINER === */
 main [role='presentation'] {
+	// $avatar-color: css('--c-avatar');
+
 	&,
 	/* Shared Link Page */
 	.bg-token-main-surface-primary.h-full {
@@ -17,6 +19,7 @@ main [data-message-author-role='assistant'] {
 /* @ === RIGHT - CHATS BUBBLES ===*/
 main [data-testid^='conversation-turn-'] {
 	margin-bottom: var(--mb-chat-bubble) !important;
+	// --c-avatar: var(--avatar-color);
 
 	/* RIGHT - CHATS BUBBLES DIV */
 	.group {
@@ -49,7 +52,7 @@ main [data-testid^='conversation-turn-'] {
 
 			/* "Same" svg, fix white border for visualy consistency */
 			svg.rounded-full {
-				border-color: var(--avatar-color);
+				border-color: var(--c-avatar);
 			}
 			/* 👍👎 */
 			button[title] {
@@ -69,7 +72,7 @@ main [data-testid^='conversation-turn-'] {
 					transform: translateY(-4%);
 
 					span {
-						color: var(--avatar-color) !important;
+						color: var(--c-avatar) !important;
 					}
 				}
 			}
@@ -145,6 +148,11 @@ main [data-testid^='conversation-turn-'] {
 		.group {
 			background-color: var(--c-bg-msg-gpt);
 
+			/* Chats bubble gpt image */
+			[style^='background-color']:has(svg) {
+				background-color: var(--c-avatar) !important;
+			}
+
 			svg[role='img'] {
 				color: var(--c-surface-1) !important;
 			}
@@ -152,13 +160,25 @@ main [data-testid^='conversation-turn-'] {
 			/*  User/ChatGPT name  */
 			.font-semibold.select-none {
 				// color: var(--c-msg-name-gpt);
-				color: var(--avatar-color);
+				color: var(--c-avatar);
+				// color: darken($avatar-color, 20%);
+				// color: darken($avatar-color, 20%);
 			}
 		}
 
 		/*  Chat bubble footer SVG icons */
 		button svg {
-			color: var(--avatar-color);
+			color: var(--c-avatar);
 		}
 	}
 }
+
+html.light main [data-testid^='conversation-turn-'] {
+	--c-avatar: color-mix(in srgb, var(--avatar-color) 80%, black);
+}
+/* html.dark,
+html.oled {
+	main [data-testid^='conversation-turn-'] {
+		--c-avatar: color-mix(in srgb, var(--avatar-color) 70%, white);
+	}
+} */

@@ -3,4 +3,6 @@ node_modules
 
 release.md
 
-extension-*
+# extension-*
+extension-prod
+extension-zips

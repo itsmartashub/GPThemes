@@ -98,6 +98,9 @@
 	/* 	--text-primary: var(--c-txt) !important;
 	--text-secondary: var(--c-subtext-1) !important;
 	--text-tertiary: var(--c-subtext-2) !important; */
+
+	// --c-avatar: var(--avatar-color, #19c37d);
+	--c-avatar: var(--avatar-color, #19c37d);
 }
 
 /* @ ================== LIGHT ================== */
@@ -161,6 +164,8 @@ html.light {
 	--c-bg-modal: hsla(var(--txt-hsl) / 0.3);
 	--c-bg-dialog: var(--c-surface-2);
 	--c-bg-contextmenu: var(--c-surface-3);
+	--c-bg-contextmenu-item: var(--c-surface-2);
+	// --c-bg-contextmenu: hsl(0, 0%, calc(var(--surface-l) / 1.1));
 
 	/* ? ========== Tooltip bg ========== */
 	--c-bg-tooltip: var(--c-accent-light);
@@ -292,6 +297,7 @@ html.dark {
 	--c-bg-modal: hsla(var(--accent-hsl) / 0.22);
 	--c-bg-dialog: var(--c-surface-2);
 	--c-bg-contextmenu: var(--c-surface-3);
+	--c-bg-contextmenu-item: var(--c-surface-2);
 
 	/* ? ========== Tooltip bg ========== */
 	--c-bg-tooltip: var(--c-accent-light);
@@ -430,6 +436,7 @@ html.dark[data-gptheme='oled'] {
 	--c-bg-modal: hsla(var(--accent-hsl) / 0.09);
 	--c-bg-dialog: var(--c-surface-1);
 	--c-bg-contextmenu: var(--c-surface-3);
+	--c-bg-contextmenu-item: var(--c-surface-2);
 
 	/* ? ========== Tooltip bg ========== */
 	--c-bg-tooltip: var(--c-accent-light);
@@ -499,3 +506,5 @@ html.dark[data-gptheme='oled'] {
 	--box-shadow-textarea: inset 0px 0px 15px 1px hsla(var(--accent-hsl) / 0.05) !important;
 	// --box-shadow-contextmenu: 0px 0px 30px 0px red;
 }
+
+// $avatar-color: #19c37d;
