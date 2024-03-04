@@ -35,7 +35,7 @@ html.light [class*=':border-white/10'] {
 	border-color: var(--c-border) !important;
 }
 
-/* TOS - "This content may violate content policy..." & "This content may violate our Terms of Use or usage policies." warnings */
+/* TOS - "This content may violate content policy..." (red) & "This content may violate our Terms of Use or usage policies." (orange) warnings */
 [class*='border-red-500'],
 [class*='border-orange-500'] {
 	border-color: var(--c-danger) !important;

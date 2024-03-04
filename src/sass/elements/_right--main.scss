@@ -181,7 +181,7 @@ html.light main [data-testid^='conversation-turn-'] {
 html.dark,
 html.oled {
 	main [data-testid^='conversation-turn-'] {
-		// --c-avatar: color-mix(in oklab, var(--avatar-color) 97%, white);
-		--c-avatar: color-mix(in hwb, var(--avatar-color) 94%, white);
+		--c-avatar: color-mix(in oklab, var(--avatar-color) 96%, white);
+		// --c-avatar: color-mix(in hwb, var(--avatar-color) 94%, white);
 	}
 }
