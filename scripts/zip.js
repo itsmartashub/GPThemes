@@ -2,7 +2,6 @@ const fs = require('fs/promises')
 const AdmZip = require('adm-zip')
 const { join } = require('path')
 
-const version = '2.0.2'
 const filenameInputFolder = 'extension-prod'
 const filenameOutputFolder = 'extension-zips'
 const filenamePrefix = 'gpthemes-'

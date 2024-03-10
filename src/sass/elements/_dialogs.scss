@@ -66,6 +66,16 @@
 		--surface-primary: transparent !important;
 	}
 
+	/* "Enabled" btn for 2fa */
+	span.bg-green-50.text-green-700 {
+		background-color: hsla(var(--accent-hsl) / 0.15) !important;
+		color: var(--c-accent) !important;
+		padding: 0.3rem 0.8rem !important;
+		font-weight: bold;
+		text-transform: uppercase;
+		font-size: 0.68rem !important;
+	}
+
 	/* DIALOG - "Upgrade your plan" only */
 	&:has(a[href="https://openai.com/enterprise"])
 	{

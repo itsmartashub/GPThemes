@@ -1,8 +1,8 @@
 node_modules
 .parcel-cache
+.env
 
 release.md
-
 # extension-*
 extension-prod
 extension-zips
