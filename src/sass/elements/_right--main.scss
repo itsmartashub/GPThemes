@@ -84,8 +84,32 @@ main [data-testid^='conversation-turn-'] {
 		text-transform: uppercase;
 	}
 
+	/* GPT logo in chats */
 	.gizmo-shadow-stroke div {
 		color: var(--c-on-accent) !important;
+	}
+
+	/* Response 1 or Response 2 chat bubble when we have to choose 1 answer */
+	button[class*='hover:border-[var(--avatar-color)]'] {
+		border-radius: var(--br-chat-bubble) !important;
+		padding: 2rem;
+		transition: 0.3s $easeInOutSine;
+
+		&:hover {
+			transform: translateY(-5px);
+		}
+
+		/* GPT logo */
+		.rounded-full svg {
+			color: var(--c-surface-1) !important;
+		}
+
+		/* "Response 1", "Response 2" txt */
+		.text-sm.text-token-text-tertiary {
+			text-transform: uppercase;
+			color: var(--c-avatar) !important; // iliti zelena kao i svg
+			font-weight: bold;
+		}
 	}
 
 	/* @ RIGHT - CHATS BUBBLES - USER  */
