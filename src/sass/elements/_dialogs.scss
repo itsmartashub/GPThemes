@@ -35,13 +35,12 @@
 
 	[role='tablist'] {
 		/* ___ DIALOG - "Settings" on smaller devices then deskop */
-		&[data-orientation='horizontal'].bg-gray-100 {
+		&[data-orientation='horizontal'] {
 			background-color: var(--c-surface-3) !important;
-			// border-radius: var(--br-btn) !important;
 
-			// button[role="tab"][data-state="active"] {
 			button[data-state='active'] {
-				background-color: var(--c-surface-2) !important;
+				background-color: var(--c-accent) !important;
+				color: var(--c-on-accent);
 			}
 		}
 	}
