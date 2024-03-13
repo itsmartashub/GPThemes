@@ -98,9 +98,11 @@ main [data-testid^='conversation-turn-'] {
 	button[class*='hover:border-[var(--avatar-color)]'] {
 		border-radius: var(--br-chat-bubble) !important;
 		padding: 2rem;
-		transition: 0.3s $easeInOutSine;
+		transition: transform 0.3s $easeInOutSine, border 0.3s $easeInOutSine;
+		box-shadow: 0 0 0px 0px hsla(0 0 0 / 0);
 
 		&:hover {
+			box-shadow: var(--box-shadow-contextmenu);
 			transform: translateY(-5px);
 		}
 
