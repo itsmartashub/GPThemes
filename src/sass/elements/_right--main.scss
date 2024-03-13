@@ -19,15 +19,31 @@ main [data-message-author-role='assistant'] {
 /* @ === RIGHT - CHATS BUBBLES ===*/
 main [data-testid^='conversation-turn-'] {
 	margin-bottom: var(--mb-chat-bubble) !important;
+
+	/* Horizontal gap from chat bubble to screen-edge */
+	& > div {
+		/* Original is px-4 or 1rem */
+		@include dev(mob) {
+			padding-left: 0.45rem;
+			padding-right: 0.45rem;
+		}
+	}
 	// --c-avatar: var(--avatar-color);
 
 	/* RIGHT - CHATS BUBBLES DIV */
 	.group {
+		--pt-multiplier: 1.6;
 		// padding: var(--p-chat-bubble) !important;
-		padding: calc(var(--p-chat-bubble) * 1.6) var(--p-chat-bubble) var(--p-chat-bubble) var(--p-chat-bubble) !important;
+		padding: calc(var(--p-chat-bubble) * var(--pt-multiplier)) var(--p-chat-bubble) var(--p-chat-bubble)
+			var(--p-chat-bubble) !important;
 		border-radius: var(--br-chat-bubble) !important;
 		letter-spacing: 0.3px;
 		line-height: 1.8 !important;
+
+		@include dev(mob) {
+			--pt-multiplier: 1.4;
+			// border: 4px solid red !important;
+		}
 
 		/* Left chat content parent 
 		! Adding fixed width prevent content overflowing on the right side of chat bubble when there is some markdown (<pre>) element shown with scrolling horizontally */
@@ -37,7 +53,7 @@ main [data-testid^='conversation-turn-'] {
 		.relative.flex.w-full.flex-col {
 			--svg-w: 2.25rem;
 			--svg-gap: 0.75rem;
-			// width: 90% !important; // unstable width when resizing window/zooming in-out
+
 			width: calc(
 				100% - var(--svg-w) - var(--svg-gap) - var(--p-chat-bubble)
 			) !important; // more consistent width (right chat bubble spacing = left spacing)
@@ -45,6 +61,19 @@ main [data-testid^='conversation-turn-'] {
 			span[data-state] {
 				display: flex;
 				place-items: center;
+			}
+
+			@include dev(mob) {
+				--svg-w: 24px;
+				// --moveToLeft: var(--svg-gap);
+				// --moveToLeft: var(--svg-w);
+				--moveToLeft: calc(var(--svg-w) + (var(--svg-gap) / 1.5));
+
+				/* Markdown parent - actually message content, without logo and User/ChatGPT name */
+				.flex-col.gap-1.md\:gap-3 {
+					transform: translateX(calc(var(--moveToLeft) * -1));
+					width: calc(100% + var(--moveToLeft) + var(--p-chat-bubble)) !important;
+				}
 			}
 		}
 

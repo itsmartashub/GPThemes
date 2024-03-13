@@ -101,6 +101,11 @@
 
 	// --c-avatar: var(--avatar-color, #19c37d);
 	--c-avatar: var(--avatar-color, #19c37d);
+
+	@include dev(mob) {
+		--p-chat-bubble: 1.2rem;
+		--br-chat-bubble: calc(var(--br) * 2);
+	}
 }
 
 /* @ ================== LIGHT ================== */

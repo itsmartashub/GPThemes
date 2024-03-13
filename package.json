@@ -18,7 +18,6 @@
 		"clean:all": "npm run clean:dev && npm run clean:prod && npm run clean:zips",
 		"dev": "parcel watch src/manifests/chrome/manifest.json --host localhost --dist-dir extension-dev/chromium",
 		"dev:ff": "parcel watch src/manifests/firefox-mv2/manifest.json --host localhost --dist-dir extension-dev/firefox-mv2",
-		"dev:both": "npm run dev && npm run dev:ff",
 		"build": "parcel build src/manifests/chrome/manifest.json --dist-dir extension-prod/gpthemes-chromium --no-source-maps",
 		"build:ff": "parcel build src/manifests/firefox-mv2/manifest.json --dist-dir extension-prod/gpthemes-firefox-mv2 --no-source-maps",
 		"zip": "node ./scripts/zip.js",

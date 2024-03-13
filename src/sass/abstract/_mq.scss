@@ -1,0 +1,64 @@
+//? JONAS - MEDIA QUERY MANAGER
+/*
+0 - 600px:      mob
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+[1200 - 1800] is where our normal styles apply
+1800px + :      Big desktop
+
+$breakpoint arguement choices:
+- mob
+- tab-port
+- tab-land
+- big-desktop
+
+ORDER: Base + typography > general layout + grid > page layout > components
+
+1em = 16px
+*/
+
+$mob-ant: 20em;
+$mob: 31.25em;
+$tab-port: 37.5em;
+$tab-land: 51.25em;
+$laptop: 56.25em;
+$big: 120em;
+
+// JONAS WAY
+@mixin dev($bp) {
+	@if $bp == mob-ant {
+		@media only screen and (max-width: #{$mob-ant}) {
+			@content;
+		} //320px
+	}
+
+	@if $bp == mob {
+		@media only screen and (max-width: #{$mob}) {
+			@content;
+		} //500px
+	}
+
+	@if $bp == tab-port {
+		@media only screen and (max-width: #{$tab-port}) {
+			@content;
+		} //600px
+	}
+
+	@if $bp == tab-land {
+		@media only screen and (max-width: #{$tab-land}) {
+			@content;
+		} //900px
+	}
+
+	@if $bp == laptop {
+		@media only screen and (max-width: #{$laptop}) {
+			@content;
+		} //1200px
+	}
+
+	@if $bp == big-desktop {
+		@media only screen and (min-width: #{$big}) {
+			@content;
+		} //1800
+	}
+}
