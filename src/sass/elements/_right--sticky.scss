@@ -33,4 +33,6 @@ main .sticky {
 /* Sticky header for smaller screens. Remove border-bottom */
 .sticky.border-token-border-medium {
 	border: none !important;
+	background-color: var(--c-bg-chats-sticky) !important;
+	backdrop-filter: blur(var(--blur-sticky));
 }
