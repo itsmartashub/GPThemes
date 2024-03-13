@@ -41,6 +41,11 @@ main [data-testid^='conversation-turn-'] {
 			width: calc(
 				100% - var(--svg-w) - var(--svg-gap) - var(--p-chat-bubble)
 			) !important; // more consistent width (right chat bubble spacing = left spacing)
+
+			span[data-state] {
+				display: flex;
+				place-items: center;
+			}
 		}
 
 		/* "Was this response better or worse? 👍👎" el when clicked on regenerate answer btn  */

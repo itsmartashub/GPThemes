@@ -171,11 +171,11 @@ main [data-testid^='conversation-turn-'] {
 			// padding-inline: 10px; // to make counter answer (<2/4>) visible when this is overflow-hidden, we need to add padding-inline, or we can use overflow-y: clip; And overflow is "important" for translate transition
 
 			/* Bubble message footer (icons wrapper) */
-			.visible {
-				transform: translateY(100%);
-				opacity: 0;
-				transition: transform 0.4s $easeOutBack, opacity 0.3s ease;
-			}
+			// .visible {
+			// 	transform: translateY(100%);
+			// 	opacity: 0;
+			// 	transition: transform 0.4s $easeOutBack, opacity 0.3s ease;
+			// }
 		}
 
 		/* Bubble message footer (svg icons) */
@@ -185,7 +185,7 @@ main [data-testid^='conversation-turn-'] {
 
 			&:hover {
 				opacity: 0.8;
-				transform: translateY(-3px);
+				transform: translateY(-2px);
 			}
 		}
 	}
