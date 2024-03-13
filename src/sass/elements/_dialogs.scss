@@ -35,6 +35,11 @@
 
 	[role='tablist'] {
 		/* ___ DIALOG - "Settings" on smaller devices then deskop */
+
+		&:has([data-orientation='horizontal']) {
+			flex-wrap: wrap;
+		}
+
 		&[data-orientation='horizontal'] {
 			background-color: var(--c-surface-3) !important;
 
