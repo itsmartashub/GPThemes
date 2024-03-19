@@ -226,8 +226,8 @@ main [data-testid^='conversation-turn-'] {
 			}
 		}
 
-		/*  Chat bubble footer SVG icons */
-		button svg {
+		/*  Chat bubble footer SVG icons, ali koje nisu .popover, jer je ovo " kada selektujemo neki txt u gpt bubble, pa onaj "Reply" */
+		button:not(.popover) svg {
 			color: var(--c-avatar);
 		}
 	}
