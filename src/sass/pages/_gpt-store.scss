@@ -101,3 +101,53 @@ cursor-pointer scroll-mx-5 whitespace-nowrap rounded-3xl px-3 py-2 first:ml-4 la
 ```bg-gray-50, dark:bg-gray-700 md:rounded-lg md:text-token-text-tertiary md:hover:bg-gray-50 dark:md:hover:bg-gray-700
 cursor-pointer scroll-mx-5 whitespace-nowrap rounded-3xl px-3 py-2 first:ml-4 last:mr-4 md:px-2 md:first:ml-0 md:last:mr-0 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 md:rounded-lg md:bg-transparent md:text-token-text-tertiary md:hover:bg-gray-50 dark:md:bg-transparent dark:md:hover:bg-gray-700
 */
+
+div[data-radix-popper-content-wrapper]:has(.bg-blue-400.rotate-45) {
+	// border: 2px solid red !important;
+	overflow: visible !important;
+
+	.bg-blue-400 {
+		background-color: var(--c-accent) !important;
+		color: var(--c-on-accent) !important;
+	}
+
+	.bg-white {
+		background-color: var(--c-on-accent) !important;
+		color: var(--c-accent);
+	}
+}
+
+/* GPT Store product dialog when clicked on any product in store */
+[role='dialog'] {
+	/* Gradient in header where "x" close btn is */
+	.from-token-main-surface-primary {
+		--main-surface-primary: var(--c-surface-2) !important;
+	}
+
+	.bg-token-main-surface-secondary {
+		--main-surface-secondary: var(--c-surface-3) !important;
+	}
+
+	/* "Conversation Starters" bubbles */
+	.border-token-border-medium {
+		--border-medium: transparent !important;
+	}
+
+	/* Numbers in "Ratings" svg stars */
+	svg.text-green-500 ~ .text-white {
+		color: var(--c-on-accent) !important;
+	}
+
+	&:has([href^='/g/g-']) {
+		/* "Conversation Starters" example bubbles */
+		.bg-token-main-surface-primary[href^='/g/g-'] {
+			--main-surface-primary: var(--c-surface-3) !important;
+			--main-surface-secondary: hsla(var(--accent-hsl) / 0.4) !important;
+
+			/* "Conversation Starters" shape on bottom left */
+			.bg-token-main-surface-primary {
+				display: none;
+			}
+		}
+	}
+}
