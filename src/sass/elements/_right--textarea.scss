@@ -54,6 +54,14 @@ main form [class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea) {
 			transform: scale(1.07);
 		}
 	}
+
+	/* "Reply" in msg textarea */
+	.bg-token-main-surface-secondary {
+		background-color: var(--c-surface-3);
+		border-color: var(--c-accent);
+		border-radius: calc(var(--br-prompt-textarea) / 1.5) !important;
+		padding: 0.8rem;
+	}
 }
 
 /* === RIGHT - TEXTAREA part wrapper, margin-top ===*/
@@ -65,4 +73,11 @@ main div[role='presentation'] div.w-full:has(form) {
 main div.flex.w-full.items-center > div {
 	box-shadow: none;
 	border: none;
+}
+
+html.dark[data-gptheme='oled'] main form [class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea) {
+	/* "Reply" in msg textarea */
+	.bg-token-main-surface-secondary {
+		background-color: var(--c-surface-2);
+	}
 }
