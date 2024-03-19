@@ -55,5 +55,5 @@
 
 /* Intro page (before login) */
 [class*='text-[#FE7600]'] {
-	color: var(--c-accent);
+	color: var(--c-accent) !important;
 }
