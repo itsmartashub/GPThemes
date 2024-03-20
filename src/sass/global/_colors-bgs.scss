@@ -162,10 +162,10 @@
 
 /* TODO - NE RADI JEBENO */
 .bg-token-main-surface-tertiary {
-	// --main-surface-tertiary: var(--c-surface-3) !important;
 	--main-surface-tertiary: var(--c-surface-3) !important;
+	// background-color: var(--c-surface-3) !important;
 }
-// .bg-token-main-surface-tertiary {
-// 	--main-surface-tertiary: var(--c-surface-3) !important;
-// 	// background-color: var(--c-surface-3) !important;
-// }
+
+.from-token-main-surface-primary {
+	--main-surface-primary: var(--c-surface-2) !important;
+}

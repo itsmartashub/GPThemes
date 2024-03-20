@@ -66,6 +66,7 @@
 		margin-top: 1rem;
 	}
 
+	/* ???? */
 	.bg-token-surface-primary {
 		--surface-primary: transparent !important;
 	}
@@ -254,6 +255,39 @@
 			color: var(--c-accent) !important;
 			border-color: hsla(var(--accent-hsl) / 0.3) !important;
 			border-radius: 10px !important;
+		}
+	}
+
+	/* Dialog - GPTs Store Page - GPT Store product dialog when clicked on any product in store 
+		- Ovaj href je "More info" u "Share Link" dialogu, dakle selektujemo sve koji NEMAJU taj "More info" jer necemo da ovaj style se appluje za ovaj "Share Link" dialog jer sjebe dizajn
+	*/
+	&:not(&:has([href^='https://help.openai.com/en/articles/7925741-chatgpt-shared-links-faq']))
+	{
+		.border-token-border-medium {
+			--border-medium: transparent !important;
+		}
+
+		/* Numbers in "Ratings" svg stars */
+		svg.text-green-500 ~ .text-white {
+			color: var(--c-on-accent) !important;
+		}
+
+		&:has([href^='/g/g-']) {
+			/* "Conversation Starters" example bubbles */
+			.bg-token-main-surface-primary[href^='/g/g-'] {
+				--main-surface-primary: var(--c-surface-3) !important;
+				--main-surface-secondary: hsla(var(--accent-hsl) / 0.4) !important;
+
+				/* "Conversation Starters" bubble shape on bottom left */
+				.bg-token-main-surface-primary {
+					display: none;
+				}
+			}
+
+			/* "More by [creator_name]" product card element  */
+			.bg-token-main-surface-secondary {
+				--main-surface-secondary: var(--c-surface-3) !important;
+			}
 		}
 	}
 }

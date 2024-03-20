@@ -117,37 +117,39 @@ div[data-radix-popper-content-wrapper]:has(.bg-blue-400.rotate-45) {
 	}
 }
 
+/* ? MOVED INTO "_dialog.scss" !!!! */
+/* TODO check if some of those style can go into global!!! */
 /* GPT Store product dialog when clicked on any product in store */
-[role='dialog'] {
-	/* Gradient in header where "x" close btn is */
-	.from-token-main-surface-primary {
-		--main-surface-primary: var(--c-surface-2) !important;
-	}
+// [role='dialog'] {
+// 	/* Gradient in header where "x" close btn is */
+// 	// .from-token-main-surface-primary {
+// 	// 	--main-surface-primary: var(--c-surface-2) !important;
+// 	// }
 
-	.bg-token-main-surface-secondary {
-		--main-surface-secondary: var(--c-surface-3) !important;
-	}
+// 	// .bg-token-main-surface-secondary {
+// 	// 	--main-surface-secondary: var(--c-surface-3) !important;
+// 	// }
 
-	/* "Conversation Starters" bubbles */
-	.border-token-border-medium {
-		--border-medium: transparent !important;
-	}
+// 	/* "Conversation Starters" bubbles */
+// 	.border-token-border-medium {
+// 		--border-medium: transparent !important;
+// 	}
 
-	/* Numbers in "Ratings" svg stars */
-	svg.text-green-500 ~ .text-white {
-		color: var(--c-on-accent) !important;
-	}
+// 	/* Numbers in "Ratings" svg stars */
+// 	svg.text-green-500 ~ .text-white {
+// 		color: var(--c-on-accent) !important;
+// 	}
 
-	&:has([href^='/g/g-']) {
-		/* "Conversation Starters" example bubbles */
-		.bg-token-main-surface-primary[href^='/g/g-'] {
-			--main-surface-primary: var(--c-surface-3) !important;
-			--main-surface-secondary: hsla(var(--accent-hsl) / 0.4) !important;
+// 	// &:has([href^='/g/g-']) {
+// 	// 	/* "Conversation Starters" example bubbles */
+// 	// 	.bg-token-main-surface-primary[href^='/g/g-'] {
+// 	// 		--main-surface-primary: var(--c-surface-3) !important;
+// 	// 		--main-surface-secondary: hsla(var(--accent-hsl) / 0.4) !important;
 
-			/* "Conversation Starters" shape on bottom left */
-			.bg-token-main-surface-primary {
-				display: none;
-			}
-		}
-	}
-}
+// 	// 		/* "Conversation Starters" shape on bottom left */
+// 	// 		.bg-token-main-surface-primary {
+// 	// 			display: none;
+// 	// 		}
+// 	// 	}
+// 	// }
+// }
