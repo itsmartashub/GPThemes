@@ -1,58 +1,47 @@
 // Use a cross-browser storage API:
-// const storage = chrome.storage.sync || browser.storage.sync
 import browser from 'webextension-polyfill'
 import gpthToggleImg from '../img/gpth-toggle-circled.webp'
 
+// let isOptionsShown = false
+
+// Global Variables
 let isOptionsShown = false
+let $htmlTag
+let $floatingBtn
+let $floatingThemeOptions
+let $floatingThemesBtnsContainer
 
-browser.storage.sync.get('gptheme').then((data) => {
-	/* 	const theme = data.gptheme || 'dark'
-	applyTheme(theme) */
-	let theme = ''
-	const storedTheme = data.gptheme
-
-	if (storedTheme) {
-		theme = storedTheme
-		applyTheme(theme)
-
-		return
-	}
-
-	// Check if the dark or light theme preference is set
-	const lightThemeQuery = window.matchMedia('(prefers-color-scheme: light)')
-
-	lightThemeQuery.matches ? (theme = 'light') : (theme = 'dark') // Fallback theme
-
-	applyTheme(theme)
-})
-
+// Initialization
+initializeTheme()
 createAndAppendSVGStickyBtn()
 
-const $htmlTag = document.documentElement
-const $options = document.querySelector('.gpth__options')
-const $svgIcon = document.querySelector('.gpth__svg-icon')
-const $themeButtonsContainer = document.querySelector('.gpth__themes-btns')
-// const $themeButtons = document.querySelectorAll('.gpth__themes-btns button')
+// const $htmlTag = document.documentElement
+// const $floatingBtn = document.querySelector('.gpth__svg-icon')
+// const $floatingThemeOptions = document.querySelector('.gpth__options')
+// const $floatingThemesBtnsContainer = document.querySelector('.gpth__themes-btns')
 
-$svgIcon.addEventListener('click', toggleOptions)
+// $floatingBtn.addEventListener('click', toggleOptions)
+// $floatingThemesBtnsContainer.addEventListener('click', handleChangeTheme)
 
-/* $themeButtons.forEach((btn) => {
-	btn.addEventListener('click', ({ target }) => {
-		const theme = target.id
-		browser.storage.sync.set({ gptheme: theme })
+async function initializeTheme() {
+	try {
+		const { gptheme: storedTheme } = await browser.storage.sync.get('gptheme')
+		const theme = storedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+		applyTheme(theme)
+	} catch (error) {
+		console.error('Error initializing theme:', error)
+	}
+}
+
+async function setTheme(theme) {
+	try {
+		await browser.storage.sync.set({ gptheme: theme })
 		applyTheme(theme)
 		toggleOptions()
-	})
-}) */
-$themeButtonsContainer.addEventListener('click', (event) => {
-	const themeButton = event.target.closest('button')
-	if (!themeButton) return
-
-	const theme = themeButton.id
-	browser.storage.sync.set({ gptheme: theme })
-	applyTheme(theme)
-	toggleOptions()
-})
+	} catch (error) {
+		console.error('Error setting theme:', error)
+	}
+}
 
 function createAndAppendSVGStickyBtn() {
 	const gpthFloatingBtn = document.createElement('div')
@@ -76,23 +65,26 @@ function createAndAppendSVGStickyBtn() {
 	// gpthFloatingBtn.innerHTML = htmlCode
 	gpthFloatingBtn.insertAdjacentHTML('beforeend', htmlCode)
 	document.body.appendChild(gpthFloatingBtn)
+
+	// Cache DOM elements after appending
+	$htmlTag = document.documentElement
+	$floatingBtn = document.querySelector('.gpth__svg-icon')
+	$floatingThemeOptions = document.querySelector('.gpth__options')
+	$floatingThemesBtnsContainer = document.querySelector('.gpth__themes-btns')
+
+	// Add event listeners after DOM elements are appended
+	$floatingBtn.addEventListener('click', toggleOptions)
+	$floatingThemesBtnsContainer.addEventListener('click', handleChangeTheme)
 }
 
-/* function applyTheme(theme) {
-	let htmlTag = document.documentElement
+function handleChangeTheme(e) {
+	const themeButton = e.target.closest('button')
+	if (!themeButton) return
 
-	// document.documentElement.className = theme === 'oled' ? 'oled dark' : theme
-	if (theme === 'oled') {
-		htmlTag.dataset.gptheme = theme
-		htmlTag.style.colorScheme = 'dark'
-		htmlTag.className = 'dark'
-	} else {
-		htmlTag.style.colorScheme = theme
-		htmlTag.className = theme
-		htmlTag.hasAttribute('data-gptheme') && htmlTag.removeAttribute('data-gptheme')
-	}
+	const theme = themeButton.id
+	setTheme(theme)
 }
- */
+
 function applyTheme(theme) {
 	$htmlTag.dataset.gptheme = theme
 	$htmlTag.style.colorScheme = theme === 'oled' ? 'dark' : theme
@@ -102,14 +94,17 @@ function applyTheme(theme) {
 
 function toggleOptions() {
 	isOptionsShown = !isOptionsShown
-	$options.classList.toggle('gpth-options-shown', isOptionsShown)
+	$floatingThemeOptions.classList.toggle('gpth-options-shown', isOptionsShown)
 
 	if (isOptionsShown) document.body.addEventListener('click', hideOptions)
 	else document.body.removeEventListener('click', hideOptions)
 }
 
-function hideOptions(event) {
-	if (!$svgIcon.contains(event.target) && !$options.contains(event.target)) {
-		toggleOptions()
-	}
+function hideOptions(e) {
+	const isClickInsideFloatingBtn = $floatingBtn.contains(e.target)
+	const isClickInsideFloatingOptions = $floatingThemeOptions.contains(e.target)
+
+	if (!isClickInsideFloatingBtn && !isClickInsideFloatingOptions) toggleOptions()
+
+	// if (!$floatingBtn.contains(e.target) && !$floatingThemeOptions.contains(e.target)) toggleOptions()
 }
