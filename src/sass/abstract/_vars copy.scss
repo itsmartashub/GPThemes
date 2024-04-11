@@ -1,8 +1,4 @@
 :root {
-	/* ? --- Fonts --- */
-	// --f-fm: 'Inter', sans-serif, Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
-	// 	Noto Sans, sans-serif, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
-	// 	Noto Color Emoji;
 	--fsz-error-404: 3rem;
 
 	--h-header: calc(3.5rem + 0.5rem + 0.375rem);
@@ -52,54 +48,19 @@
 	--box-shadow-values: 0px 0px 100px 0px;
 
 	--z-modal: 100;
-
-	/* .bg-token-sidebar-surface-primary
-	- sidebar bg
-	- nav item bg on hover */
 	--sidebar-surface-primary: var(--c-bg-sidebar) !important;
-
-	/* .bg-token-sidebar-surface-secondary
-	- GPT's variable in  nav item bg on hover */
 	--sidebar-surface-secondary: var(--c-surface-2) !important;
-
-	/* .bg-token-sidebar-surface-tertiary
-	- GPT's variable in  nav item bg on hover */
 	--sidebar-surface-tertiary: var(--c-surface-2) !important;
-
-	/* 
-	- header of tables in "Shared links" and "Archived chats"
-	- Arrow btn in new chat big buttons */
 	--main-surface-primary: var(--c-surface-2) !important;
-
-	/*
-	- markdown header bg
-	- footer of mini chat preview in "Share Link to Chat" */
 	--main-surface-secondary: var(--c-surface-2) !important;
-
-	/* 
-	- border-clr of footer of mini chat preview in "Share Link to Chat",
-	- "Any personalized data not present in the conversation won’t be shared with viewers (ex: custom instructions)." bg in "Share Link to Chat" */
 	--main-surface-tertiary: var(--c-surface-3);
-
-	/* sidebar collapse btn */
 	--text-quaternary: var(--c-surface-2);
-
-	/* .bg-token-popover-surface-primary  
-	- contextmenu in theme dropdown chooser
-	- "Upgrade ur plan" dialog bg */
 	--popover-surface-primary: var(--c-bg-contextmenu) !important;
-
-	/* .border-token-border-light
-	- border oko "Uprade" btn-a
-	- border oko inputa u GPTs page
-	- border u "Keyboard shortcuts" oko kao tastera */
 	--border-light: transparent !important;
 
 	--text-primary: var(--c-txt) !important;
 	--text-secondary: var(--c-subtext-1) !important;
 	--text-tertiary: var(--c-subtext-2) !important;
-
-	// --c-avatar: var(--avatar-color, #19c37d);
 	--c-avatar: var(--avatar-color, #19c37d);
 
 	@include dev(mob) {
@@ -194,48 +155,16 @@ html.light {
 	--c-scrollbar-track: transparent;
 
 	/* ? ========== OpenAI surface colors ========== */
-	/* btn u biranju teme kad nemaa nikake pozadine */
 	--surface-primary: var(--c-surface-1) !important;
-
-	/* border oko context-menu, .bg-token-surface-secondary (za active link u sidebaru)*/
 	--surface-secondary: transparent !important;
-
-	/* Selected button/link/list in settings: "General", "Data controls" */
 	--surface-tertiary: var(--c-bg-msg-gpt) !important;
-
-	/* ? ========== OpenAI text colors ========== */
-	// /*``` --text-primary
-	//     - body txt
-	//     - ??
-	// */
-	// --text-primary: var(--c-txt) !important;
-
-	// /*``` --text-secondary
-	//     - txt ispod "Upgrade"
-	//     - txt ispod "Chat history & training" u Settingsu
-	//     - txt "3.5" u sticky pored "ChatGPT 3.5"
-	//     - kad je recimo focused sa tabom Dark u "Themes"
-	//     - text kad se ode na "Upgrade" pa ono "Have an existing plan? See billing help"
-	// */
-	// --text-secondary: var(--c-subtext-1) !important;
-
-	// /*``` --text-tertiary
-	//     - strelica na dole pored 3.5 u sticky pored ChatGPT 3.5
-	//     - kad je nesto focused sa tabom - accessibility - npr Clear u clear all chats
-	//     - text u contextmenu kad se klikne na ChatGPT 3.5
-	//     - text kad odemo u  UPgrade pa ono USD $0/month i USD $20/month
-	// */
-	// --text-tertiary: var(--c-subtext-2) !important;
 
 	/* ? ========== PROVERITI - gray ========== */
 	--gray-300: var(--text-secondary) !important;
-
-	/* 3 tacke u listi u sidebar */
 	--gray-500: var(--c-txt) !important;
 
 	/* ? ========== BOX-SHADOW ==========*/
 	--box-shadow: var(--box-shadow-values) hsla(var(--accent-hsl) / 0.1);
-	// --box-shadow-contextmenu: 0px 0px 5px -2px hsla(0, 0%, 0%, 0.18);
 	--box-shadow-contextmenu: inset 0px 0px 10px 2px hsla(0, 0%, 0%, 0.1);
 	--box-shadow-textarea: inset 0px 0px 15px 1px hsla(0, 0%, 0%, 0.1) !important;
 }
@@ -328,36 +257,8 @@ html.dark {
 	/* ? ========== OpenAI surface colors ========== */
 	/* btn u biranju teme kad nema nikake pozadine */
 	--surface-primary: var(--c-surface-1) !important;
-
-	/* border oko context-menu */
 	--surface-secondary: transparent !important;
-
-	/* Selected button/link/list in settings: "General", "Data controls" */
 	--surface-tertiary: var(--c-bg-msg-gpt) !important;
-
-	// /* ? ========== OpenAI text colors ========== */
-	// /*``` --text-primary
-	//     - body txt
-	//     - ??
-	// */
-	// --text-primary: var(--c-txt) !important;
-
-	// /*``` --text-secondary
-	//     - txt ispod "Upgrade"
-	//     - txt ispod "Chat history & training" u Settingsu
-	//     - txt "3.5" u sticky pored "ChatGPT 3.5"
-	//     - kad je recimo focused sa tabom Dark u "Themes"
-	//     - text kad se ode na "Upgrade" pa ono "Have an existing plan? See billing help"
-	// */
-	// --text-secondary: var(--c-subtext-1) !important;
-
-	// /*``` --text-tertiary
-	//     - strelica na dole pored 3.5 u sticky pored ChatGPT 3.5
-	//     - kad je nesto focused sa tabom - accessibility - npr Clear u clear all chats
-	//     - text u contextmenu kad se klikne na ChatGPT 3.5
-	//     - text kad odemo u  UPgrade pa ono USD $0/month i USD $20/month
-	// */
-	// --text-tertiary: var(--c-subtext-2) !important;
 
 	/* ? ========== PROVERITI - gray ========== */
 	--gray-300: var(--text-secondary) !important;
@@ -367,7 +268,6 @@ html.dark {
 
 	/* ? ========== BOX-SHADOW ==========*/
 	--box-shadow: var(--box-shadow-values) hsla(var(--accent-hsl) / 0.1);
-	// --box-shadow-contextmenu: 0px 0px 30px -10px hsla(var(--accent-hsl) / 0.18);
 	--box-shadow-contextmenu: inset 0px 0px 12px 1px hsla(var(--accent-hsl) / 0.13);
 	--box-shadow-textarea: inset 0px 0px 15px 1px hsla(var(--accent-hsl) / 0.05) !important;
 }
@@ -411,28 +311,19 @@ html.dark[data-gptheme='oled'] {
 	--c-subtext-2: hsl(var(--accent-h) calc(var(--accent-s) / 2) var(--accent-l)) !important;
 
 	/* ? ========== Surface colors ========== */
-	// --c-surface-1: black; // darkest
 	--c-surface-1: black; // darkest
-	// --c-surface-2: #191c1e; // darker
-	// --c-surface-3: #262229; // dark
 	--c-surface-2: hsl(var(--accent-h), calc(var(--surface-s) + 15%), calc(var(--surface-l) + 12%)); // darker
-	// --c-surface-2: rgb(49, 220, 74); // darker
 	--c-surface-3: hsl(var(--accent-h), calc(var(--surface-s) + 15%), calc(var(--surface-l) + 8%)); // dark
 
 	/* ? ========== Layout colors ========== */
-	// --c-bg-sidebar: var(--c-surface-1);
-	// --c-bg-chats-container: var(--c-surface-2);
 	--c-bg-sidebar: black;
 	--c-bg-chats-container: black;
 	--c-bg-chats-sticky: black;
 
 	/* ? ========== Chat bubbles colors ========== */
-	// --c-bg-msg-user: hsla(var(--accent-hsl) / 0.04);
-	// --c-bg-msg-gpt: hsla(var(--accent-hsl) / 0.08);
 	--c-bg-msg-user: hsl(var(--accent-h), calc(var(--surface-s) + 15%), calc(var(--surface-l) + 4%));
 	--c-bg-msg-gpt: hsl(var(--accent-h), calc(var(--surface-s) + 20%), calc(var(--surface-l) + 6%));
 	--c-msg-name-user: var(--c-accent);
-	// --c-msg-name-gpt: var(--c-green);
 
 	/* ? ========== Type message textarea colors ========== */
 	--c-bg-textarea: var(--c-surface-3);
@@ -455,48 +346,14 @@ html.dark[data-gptheme='oled'] {
 	--c-btn: var(--c-on-accent);
 	--c-bg-btn: var(--c-accent);
 
-	/* ? ========== <pre>/markdown things colors ========== */
-	// --c-bg-pre-header-btn: var(--c-accent);
-	// --c-bg-pre-header-btn-color: var(--c-on-accent);
-	// --c-markdown-a: var(--c-accent);
-
 	/* ? ========== Scrollbar colors ========== */
 	--c-scrollbar-thumb: var(--c-surface-3);
 	--c-scrollbar-track: transparent;
 
 	/* ? ========== OpenAI surface colors ========== */
-	/* btn u biranju teme kad nema nikake pozadine */
 	--surface-primary: var(--c-surface-1) !important;
-
-	/* border oko context-menu */
 	--surface-secondary: transparent !important;
-
-	/* Selected button/link/list in settings: "General", "Data controls" */
 	--surface-tertiary: var(--c-bg-msg-gpt) !important;
-
-	// /* ? ========== OpenAI text colors ========== */
-	// /*``` --text-primary
-	//     - body txt
-	//     - ??
-	// */
-	// --text-primary: var(--c-txt) !important;
-
-	// /*``` --text-secondary
-	//     - txt ispod "Upgrade"
-	//     - txt ispod "Chat history & training" u Settingsu
-	//     - txt "3.5" u sticky pored "ChatGPT 3.5"
-	//     - kad je recimo focused sa tabom Dark u "Themes"
-	//     - text kad se ode na "Upgrade" pa ono "Have an existing plan? See billing help"
-	// */
-	// --text-secondary: var(--c-subtext-1) !important;
-
-	// /*``` --text-tertiary
-	//     - strelica na dole pored 3.5 u sticky pored ChatGPT 3.5
-	//     - kad je nesto focused sa tabom - accessibility - npr Clear u clear all chats
-	//     - text u contextmenu kad se klikne na ChatGPT 3.5
-	//     - text kad odemo u  UPgrade pa ono USD $0/month i USD $20/month
-	// */
-	// --text-tertiary: var(--c-subtext-2) !important;
 
 	/* ? ========== PROVERITI - gray ========== */
 	--gray-300: var(--text-secondary) !important;
@@ -506,11 +363,6 @@ html.dark[data-gptheme='oled'] {
 
 	/* ? ========== BOX-SHADOW ==========*/
 	--box-shadow: var(--box-shadow-values) hsla(var(--accent-hsl) / 0.1);
-	// --box-shadow-contextmenu: 0px 0px 30px 0px hsla(var(--accent-hsl) / 0.1);
-	// --box-shadow-contextmenu: 0px 0px 30px 0px red;
 	--box-shadow-contextmenu: inset 0px 0px 15px 1px hsla(var(--accent-hsl) / 0.08);
 	--box-shadow-textarea: inset 0px 0px 15px 1px hsla(var(--accent-hsl) / 0.05) !important;
-	// --box-shadow-contextmenu: 0px 0px 30px 0px red;
 }
-
-// $avatar-color: #19c37d;

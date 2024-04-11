@@ -108,3 +108,7 @@ function hideOptions(e) {
 
 	// if (!$floatingBtn.contains(e.target) && !$floatingThemeOptions.contains(e.target)) toggleOptions()
 }
+
+setTimeout(() => {
+	$floatingBtn.classList.add('gpth__svg--small')
+}, 3000)
