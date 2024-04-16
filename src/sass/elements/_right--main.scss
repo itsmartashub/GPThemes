@@ -41,7 +41,9 @@ main [data-testid^='conversation-turn-'] {
 
 	/* RIGHT - CHATS BUBBLES DIV */
 	// .group {
-	& > div > div {
+
+	& > div:first-child > div:first-child {
+		// & > div > div {
 		--pt-multiplier: 1.6;
 		padding: calc(var(--p-chat-bubble) * var(--pt-multiplier)) var(--p-chat-bubble) var(--p-chat-bubble)
 			var(--p-chat-bubble) !important;
@@ -95,6 +97,7 @@ main [data-testid^='conversation-turn-'] {
 			/* "Same" svg, fix white border for visualy consistency */
 			svg.rounded-full {
 				border-color: var(--c-avatar);
+				// border-color: var(--c-accent);
 			}
 			/* 👍👎 */
 			button[title] {
@@ -115,6 +118,7 @@ main [data-testid^='conversation-turn-'] {
 
 					span {
 						color: var(--c-avatar) !important;
+						// border-color: var(--c-accent) !important;
 					}
 				}
 			}
@@ -132,37 +136,38 @@ main [data-testid^='conversation-turn-'] {
 		color: var(--c-accent) !important;
 	}
 
-	/* Response 1 or Response 2 chat bubble when we have to choose 1 answer */
-	button[class*='hover:border-[var(--avatar-color)]'] {
-		border-radius: var(--br-chat-bubble) !important;
-		padding: 2rem;
-		transition: transform 0.3s $easeInOutSine, border 0.3s $easeInOutSine;
-		box-shadow: 0 0 0px 0px transparent;
+	// /* Response 1 or Response 2 chat bubble when we have to choose 1 answer */
+	// button[class*='hover:border-[var(--avatar-color)]'] {
+	// 	border-radius: var(--br-chat-bubble) !important;
+	// 	padding: 2rem;
+	// 	transition: transform 0.3s $easeInOutSine, border 0.3s $easeInOutSine;
+	// 	box-shadow: 0 0 0px 0px transparent;
 
-		&:hover {
-			box-shadow: var(--box-shadow-contextmenu);
-			transform: translateY(-5px);
-		}
+	// 	&:hover {
+	// 		box-shadow: var(--box-shadow-contextmenu);
+	// 		transform: translateY(-5px);
+	// 	}
 
-		/* GPT logo */
-		.rounded-full svg {
-			color: var(--c-surface-1) !important;
-		}
+	// 	/* GPT logo */
+	// 	.rounded-full svg {
+	// 		color: var(--c-surface-1) !important;
+	// 	}
 
-		/* "Response 1", "Response 2" txt */
-		.text-sm.text-token-text-tertiary {
-			text-transform: uppercase;
-			color: var(--c-avatar) !important; // iliti zelena kao i svg
-			font-weight: bold;
-		}
-	}
+	// 	/* "Response 1", "Response 2" txt */
+	// 	.text-sm.text-token-text-tertiary {
+	// 		text-transform: uppercase;
+	// 		color: var(--c-avatar) !important; // iliti zelena kao i svg
+	// 		font-weight: bold;
+	// 	}
+	// }
 
 	/* @ RIGHT - CHATS BUBBLES - USER  */
 	// There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario
 	&:has([data-message-author-role='user']) {
 		/*  RIGHT - CHATS BUBBLE BG */
 		// .group {
-		& > div > div {
+		// & > div > div {
+		& > div:first-child > div:first-child {
 			background-color: var(--c-bg-msg-user);
 			outline: 2px solid transparent !important;
 		}
@@ -200,7 +205,7 @@ main [data-testid^='conversation-turn-'] {
 			@extend %animFadeIn;
 		} */
 		// .group {
-		& > div > div {
+		& > div:first-child > div:first-child {
 			background-color: var(--c-bg-chats-container) !important;
 			box-shadow: var(--box-shadow-textarea);
 			outline: 2px solid hsla(var(--accent-hsl) / 0.1) !important;
@@ -233,7 +238,8 @@ main [data-testid^='conversation-turn-'] {
 	&:has([data-message-author-role='assistant']) {
 		/*   RIGHT - CHATS BUBBLE BG  */
 		// .group {
-		& > div > div {
+		// & > div > div {
+		& > div:first-child > div:first-child {
 			background-color: var(--c-bg-msg-gpt);
 
 			/* ! REMOVED DUE TO NEW CHANGES BY GPT...*/
@@ -250,5 +256,32 @@ main [data-testid^='conversation-turn-'] {
 		/* button:not(.popover) svg {
 			color: var(--c-avatar);
 		} */
+
+		/* Response 1 or Response 2 chat bubble when we have to choose 1 answer */
+		& > div:first-child button:has([data-message-author-role='assistant']) {
+			// border: 2px solid red !important;
+
+			border-radius: var(--br-chat-bubble) !important;
+			padding: 2rem;
+			transition: transform 0.3s $easeInOutSine, border 0.3s $easeInOutSine;
+			box-shadow: 0 0 0px 0px transparent;
+
+			&:hover {
+				box-shadow: var(--box-shadow-contextmenu);
+				transform: translateY(-5px);
+			}
+
+			/* GPT logo */
+			// .rounded-full svg {
+			// 	color: var(--c-surface-1) !important;
+			// }
+
+			/* "Response 1", "Response 2" txt */
+			.text-sm.text-token-text-tertiary {
+				text-transform: uppercase;
+				color: var(--c-accent) !important; // iliti zelena kao i svg
+				font-weight: bold;
+			}
+		}
 	}
 }
