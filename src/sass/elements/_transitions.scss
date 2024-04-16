@@ -151,34 +151,41 @@ main form .grow .btn {
 
 /* ___ Chat Bubbles */
 main [data-testid^='conversation-turn-'] {
-	.group {
+	// .group {
+	& > div > div {
 		&:hover {
 			/* Bubble message footer (icons wrapper) */
-			div[class*='empty:hidden']:has(button[class*='[.final-completion]']) .visible {
+			// div[class*='empty:hidden']:has(button[class*='[.final-completion]']) .visible {
+			// 	transform: translateY(0);
+			// 	opacity: 1;
+			// }
+			div[class*='empty:hidden'] .self-end {
 				transform: translateY(0);
 				opacity: 1;
 			}
 
 			/* Bubble message footer (svg icons) */
-			[class*='[.final-completion]'] svg {
+			// [class*='[.final-completion]'] svg {
+			.self-end button svg {
 				transform: scale(1);
 			}
 		}
 
 		/* Bubble message footer */
-		div[class*='empty:hidden']:has(button[class*='[.final-completion]']) {
+		// div[class*='empty:hidden']:has(button[class*='[.final-completion]']) {
+		div[class*='empty:hidden'] {
 			overflow-y: clip;
 			// padding-inline: 10px; // to make counter answer (<2/4>) visible when this is overflow-hidden, we need to add padding-inline, or we can use overflow-y: clip; And overflow is "important" for translate transition
 
 			/* Bubble message footer (icons wrapper) */
-			.visible {
+			.self-end {
 				transform: translateY(100%);
 				opacity: 0;
 				transition: transform 0.4s $easeOutBack, opacity 0.3s ease;
 			}
 
 			@include dev(mob) {
-				.visible {
+				.self-end {
 					transform: translateY(0%);
 					opacity: 1;
 					// transition: transform 0.4s $easeOutBack, opacity 0.3s ease;
@@ -187,7 +194,8 @@ main [data-testid^='conversation-turn-'] {
 		}
 
 		/* Bubble message footer (svg icons) */
-		[class*='[.final-completion]'] svg {
+		// [class*='[.final-completion]'] svg {
+		.self-end button svg {
 			transform: translateY(0px);
 			transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out;
 

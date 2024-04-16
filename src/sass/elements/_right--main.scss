@@ -2,10 +2,19 @@
 main [role='presentation'] {
 	// $avatar-color: css('--c-avatar');
 
+	/* Main Page chat-container  Bg*/
 	&,
-	/* Shared Link Page */
-	.bg-token-main-surface-primary.h-full {
+	/* Shared Link Page Bg */
+	.bg-token-main-surface-primary.h-full.overflow-auto {
 		background-color: var(--c-bg-chats-container) !important;
+	}
+
+	/* GPT logo in chat bubble */
+	.gizmo-bot-avatar div, 
+	/* GPT logo in "New Chat" main chat-container */
+	.gizmo-shadow-stroke {
+		background-color: var(--c-accent) !important;
+		color: var(--c-on-accent) !important;
 	}
 }
 
@@ -18,6 +27,7 @@ main [data-message-author-role='assistant'] {
 
 /* @ === RIGHT - CHATS BUBBLES ===*/
 main [data-testid^='conversation-turn-'] {
+	--c-avatar: var(--avatar-color);
 	margin-bottom: var(--mb-chat-bubble) !important;
 
 	/* Horizontal gap from chat bubble to screen-edge */
@@ -28,12 +38,11 @@ main [data-testid^='conversation-turn-'] {
 			padding-right: 0.45rem;
 		}
 	}
-	// --c-avatar: var(--avatar-color);
 
 	/* RIGHT - CHATS BUBBLES DIV */
-	.group {
+	// .group {
+	& > div > div {
 		--pt-multiplier: 1.6;
-		// padding: var(--p-chat-bubble) !important;
 		padding: calc(var(--p-chat-bubble) * var(--pt-multiplier)) var(--p-chat-bubble) var(--p-chat-bubble)
 			var(--p-chat-bubble) !important;
 		border-radius: var(--br-chat-bubble) !important;
@@ -42,7 +51,6 @@ main [data-testid^='conversation-turn-'] {
 
 		@include dev(mob) {
 			--pt-multiplier: 1.4;
-			// border: 4px solid red !important;
 		}
 
 		/* Left chat content parent 
@@ -116,11 +124,12 @@ main [data-testid^='conversation-turn-'] {
 	/* RIGHT - CHATS USER/GPT NAMES */
 	.font-semibold.select-none {
 		text-transform: uppercase;
+		color: var(--c-accent);
 	}
 
-	/* GPT logo in chats */
-	.gizmo-shadow-stroke div {
-		color: var(--c-on-accent) !important;
+	/*  Chat bubble footer SVG icons - edit, read aloud, copy, regenerate, bad response */
+	.self-end button svg {
+		color: var(--c-accent) !important;
 	}
 
 	/* Response 1 or Response 2 chat bubble when we have to choose 1 answer */
@@ -150,22 +159,12 @@ main [data-testid^='conversation-turn-'] {
 
 	/* @ RIGHT - CHATS BUBBLES - USER  */
 	// There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario
-	// &:not(&:has([data-message-author-role='assistant'])),
 	&:has([data-message-author-role='user']) {
 		/*  RIGHT - CHATS BUBBLE BG */
-		.group {
+		// .group {
+		& > div > div {
 			background-color: var(--c-bg-msg-user);
 			outline: 2px solid transparent !important;
-
-			/* === User/ChatGPT name === */
-			.font-semibold.select-none {
-				color: var(--c-msg-name-user);
-			}
-		}
-
-		/*  Chat bubble footer SVG icons */
-		button svg {
-			color: var(--c-msg-name-user);
 		}
 
 		/* "Replying to:" text content, like bloquoted text */
@@ -200,7 +199,8 @@ main [data-testid^='conversation-turn-'] {
 		/* 		.flex.flex-grow.flex-col.max-w-full > div {
 			@extend %animFadeIn;
 		} */
-		.group {
+		// .group {
+		& > div > div {
 			background-color: var(--c-bg-chats-container) !important;
 			box-shadow: var(--box-shadow-textarea);
 			outline: 2px solid hsla(var(--accent-hsl) / 0.1) !important;
@@ -232,40 +232,23 @@ main [data-testid^='conversation-turn-'] {
 	/* @ RIGHT - CHATS BUBBLES - GPT */
 	&:has([data-message-author-role='assistant']) {
 		/*   RIGHT - CHATS BUBBLE BG  */
-		.group {
+		// .group {
+		& > div > div {
 			background-color: var(--c-bg-msg-gpt);
 
+			/* ! REMOVED DUE TO NEW CHANGES BY GPT...*/
 			/* Chats bubble gpt image */
-			[style^='background-color']:has(svg) {
+			/* [style^='background-color']:has(svg) {
 				background-color: var(--c-avatar) !important;
 			}
-
 			svg[role='img'] {
 				color: var(--c-surface-1) !important;
-			}
-
-			/*  User/ChatGPT name  */
-			.font-semibold.select-none {
-				color: var(--c-avatar);
-			}
+			} */
 		}
 
 		/*  Chat bubble footer SVG icons, ali koje nisu .popover, jer je ovo " kada selektujemo neki txt u gpt bubble, pa onaj "Reply" */
-		button:not(.popover) svg {
+		/* button:not(.popover) svg {
 			color: var(--c-avatar);
-		}
-	}
-}
-
-html.light main [data-testid^='conversation-turn-'] {
-	--c-avatar: color-mix(in srgb-linear, var(--avatar-color) 80%, black);
-	// --c-avatar: color-mix(in srgb-linear, var(--avatar-color) 70%, black);
-	// --c-avatar: color-mix(in lab, var(--avatar-color) 80%, black);
-}
-html.dark,
-html.oled {
-	main [data-testid^='conversation-turn-'] {
-		--c-avatar: color-mix(in oklab, var(--avatar-color) 96%, white);
-		// --c-avatar: color-mix(in hwb, var(--avatar-color) 94%, white);
+		} */
 	}
 }
