@@ -158,7 +158,7 @@ main [data-testid^='conversation-turn-'] {
 			div[class*='empty:hidden'] {
 				.self-end {
 					transform: translateY(0);
-					// opacity: 1;
+					opacity: 1;
 
 					/* Bubble message footer (svg icons) */
 					button svg {
@@ -176,7 +176,7 @@ main [data-testid^='conversation-turn-'] {
 			/* Bubble message footer (icons wrapper) */
 			.self-end {
 				transform: translateY(100%);
-				// opacity: 0;
+				opacity: 0;
 				transition: transform 0.4s $easeOutBack, opacity 0.3s ease;
 
 				/* Bubble message footer (svg icons) */
