@@ -172,32 +172,49 @@ main [data-testid^='conversation-turn-'] {
 			outline: 2px solid transparent !important;
 		}
 
-		/* "Replying to:" text content, like bloquoted text */
-		.border-l-2.overflow-y-auto {
+		[data-message-author-role='user'] > div.font-medium.text-token-text-tertiary:has(svg.shrink-0) {
 			--p: 1rem;
 			background-color: hsla(var(--accent-hsl) / 0.1) !important;
+			color: var(--c-subtext-1) !important;
+			// color: var(--c-accent) !important;
 			border-radius: 1rem;
 			border: none !important;
 			padding: var(--p);
-			padding-left: calc(var(--p) * 1.5);
-			position: relative;
 
-			/* Simulate the border-left but more modern, inside the "Replying to:" content */
-			&::before {
-				content: '';
-				position: absolute;
-				top: 50%;
-				left: calc(var(--p) / 1.5);
-				// left: 0;
-				// background-color: var(--c-accent);
-				background-color: hsla(var(--accent-hsl) / 0.6) !important;
-				width: 4px;
-				// height: calc(100% - (var(--p) * 2.5));
-				height: calc(100% - (var(--p) * 2.8));
-				border-radius: 5px;
-				transform: translateY(-50%);
+			svg {
+				margin-right: 0.5rem;
+				// color: var(--c-accent) !important;
+				// background-color: hsla(var(--accent-hsl) / 0.13) !important;
+				// border-radius: 5px;
 			}
 		}
+
+		/* "Replying to:" text content, like bloquoted text */
+		// .border-l-2.overflow-y-auto {
+		// 	--p: 1rem;
+		// 	background-color: hsla(var(--accent-hsl) / 0.1) !important;
+		// 	border-radius: 1rem;
+		// 	border: none !important;
+		// 	padding: var(--p);
+		// 	padding-left: calc(var(--p) * 1.5);
+		// 	position: relative;
+
+		// 	/* Simulate the border-left but more modern, inside the "Replying to:" content */
+		// 	&::before {
+		// 		content: '';
+		// 		position: absolute;
+		// 		top: 50%;
+		// 		left: calc(var(--p) / 1.5);
+		// 		// left: 0;
+		// 		// background-color: var(--c-accent);
+		// 		background-color: hsla(var(--accent-hsl) / 0.6) !important;
+		// 		width: 4px;
+		// 		// height: calc(100% - (var(--p) * 2.5));
+		// 		height: calc(100% - (var(--p) * 2.8));
+		// 		border-radius: 5px;
+		// 		transform: translateY(-50%);
+		// 	}
+		// }
 	}
 	/* User chat bubble - Edit state. There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario */
 	&:has(textarea) {
