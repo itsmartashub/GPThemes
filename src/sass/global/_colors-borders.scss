@@ -45,3 +45,9 @@ html.light [class*=':border-white/10'] {
 [class*='focus-visible:border-green-500'] {
 	border-color: transparent !important;
 }
+
+/*This removes the border from code snippets box and (green) checkboxes/switches in "Settings" */
+[class*='border-token-border-medium'] {
+	// --border-medium: transparent !important;
+	border: none !important;
+}
