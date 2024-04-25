@@ -93,6 +93,8 @@
 		}
 	}
 	&__options {
+		--c-alpha: 0.5;
+
 		pointer-events: none;
 		opacity: 0;
 		display: grid;
@@ -110,10 +112,24 @@
 		box-shadow: var(--box-shadow);
 
 		// background-image: linear-gradient(-135deg, #716782, #42335d, #2e1f48);
-		background-image: linear-gradient(135deg, #332250, #42335d 40%, #6c607f 100%);
+		// background-image: linear-gradient(135deg, #332250, #42335d 40%, #6c607f 100%);
 
 		clip-path: polygon(0 0, 100% 0, 100% 0, 0% 0);
 		transition: all 0.3s ease-in-out;
+		// background-image: linear-gradient(
+		// 	135deg,
+		// 	hsla(var(--accent-hsl) / var(--c-alpha)),
+		// 	hsla(var(--accent-hsl) / calc(var(--c-alpha) / 4)) 40%,
+		// 	hsla(var(--accent-hsl) / calc(var(--c-alpha) / 4)) 60%,
+		// 	hsla(var(--accent-hsl) / calc(var(--c-alpha) / 1)) 100%
+		// );
+		background-image: linear-gradient(
+			135deg,
+			hsla(var(--accent-hsl) / calc(var(--c-alpha) / 5)),
+			hsla(var(--accent-hsl) / calc(var(--c-alpha) / 2)) 45%,
+			hsla(var(--accent-hsl) / calc(var(--c-alpha) / 2)) 55%,
+			hsla(var(--accent-hsl) / calc(var(--c-alpha) / 5)) 100%
+		);
 		backdrop-filter: blur(5px);
 
 		@include dev(mob) {
@@ -160,10 +176,7 @@
 				line-height: 1;
 				border-radius: 50vw;
 				border: none;
-				background-color: var(--btn-bg);
-				// box-shadow: inset 0px 0px 5px 1px var(--btn-shadow-color);
-				// box-shadow: inset 0px 0px 8px 1px var(--btn-shadow-color);
-				// box-shadow: 0px 0px 5px 2px hsla(var(--accent-hsl) / 0.2)
+				background: var(--btn-bg);
 				transform: scale(0);
 				transition: background-color 0.2s ease, background-image 0.2s ease, transform 0.3s ease-in-out;
 
@@ -184,11 +197,8 @@
 				}
 
 				&:hover {
-					--btn-bg: hsla(0, 0%, 0%, 0) !important;
-
-					&#dark {
-						background-image: none;
-					}
+					--btn-bg: none !important;
+					// background-image: none;
 
 					&::after {
 						opacity: 1;
@@ -196,16 +206,19 @@
 					}
 				}
 
-				&#light {
-					--btn-bg: var(--c-accent-light);
+				&:not(&#dark, &#oled) {
+					box-shadow: none !important;
+					--btn-bg: radial-gradient(
+						circle,
+						hsla(var(--accent-hsl) / 1) 0,
+						hsla(var(--accent-hsl) / 0.2) 60%,
+						hsla(var(--accent-hsl) / 1) 100%
+					);
 				}
 				&#dark {
-					--btn-shadow-color: hsla(255, 12%, 7%, 0.2);
-					--btn-bg: hsl(272, 19%, 20%);
-					background-image: linear-gradient(135deg, #8d80a0, #50416b, #2f1f49);
+					--btn-bg: linear-gradient(135deg, #8d80a0, #50416b, #2f1f49);
 				}
 				&#oled {
-					--btn-shadow-color: hsla(0, 0%, 100%, 0.2);
 					--btn-bg: #000;
 				}
 			}

@@ -12,10 +12,11 @@ let $floatingBtn
 let $floatingThemeOptions
 let $floatingThemesBtnsContainer
 
+let $settings // @ Accent Theme
+let isSettingsOpen = false
+
 // Initialization
-initTheme()
-createAndAppendSVGStickyBtn()
-decreiseFloatingBtnSize()
+init()
 
 async function initTheme() {
 	try {
@@ -51,6 +52,7 @@ function createAndAppendSVGStickyBtn() {
 					<button id="light" data-gpth-theme="light">☀️</button>
 					<button id="dark" data-gpth-theme="dark">🌙</button>
 					<button id="oled" data-gpth-theme="black">🌖</button>
+					<button id="gpth-open-settings" data-gpth-theme="more">⚙️</button>
 				</div>
 			</div>
 		</div>
@@ -77,12 +79,13 @@ function handleChangeTheme(e) {
 
 	const theme = themeButton.id
 
-	if (theme !== 'open-gpth-settings') {
+	if (theme !== 'gpth-open-settings') {
 		setTheme(theme)
 		return
 	}
 
-	if (theme === 'open-gpth-settings') {
+	/* If clicked on "⚙️ Open Settings" */
+	if (theme === 'gpth-open-settings') {
 		openSettings()
 	}
 }
@@ -115,4 +118,75 @@ function decreiseFloatingBtnSize() {
 	setTimeout(() => {
 		$floatingBtn.classList.add('gpth__svg--small')
 	}, 3000)
+}
+
+/* ______________ THEME CUSTOMIZATION - ACCENT THEME ______________ */
+function renderSettings() {
+	const gpthSettings = document.createElement('div')
+	gpthSettings.className = `gpth-settings fixed grid items-center gap-4`
+
+	let htmlCode = `
+		<header class="mb-5">
+
+				<h3 class="mt-6 text-center font-medium text-xl">Theme Customization</h3>
+
+				<button class="text-token-text-tertiary hover:text-token-text-secondary absolute top-4 right-4" id="gpth-settings-close">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.34315 6.34338L17.6569 17.6571M17.6569 6.34338L6.34315 17.6571" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+				</button>
+
+		</header>
+
+		<main class="mb-10">
+			<section class="colorpicker-container">
+				<div class="colorpicker">
+					<input type="color" id="accentLight" value="#6b4dfe" />
+					<label for="accentLight">Accent <span>Light</span></label>
+				</div>
+				<div class="colorpicker">
+					<input type="color" id="accentDark" value="#ca93fb" />
+					<label for="accentDark">Accent <span>Dark</span></label>
+				</div>
+			</section>
+		</main>
+
+		<footer class="grid">
+			<button id="resetBtn" class="btn block relative btn-primary text-center" as="button">Reset All</button>
+		</footer>
+
+		<div class="blur-box"></div>
+		<div class="blur-box"></div>
+		<div class="blur-box"></div>
+	`
+
+	// gpthFloatingBtn.innerHTML = htmlCode
+	gpthSettings.insertAdjacentHTML('beforeend', htmlCode)
+	document.body.appendChild(gpthSettings)
+	document.getElementById('gpth-settings-close').addEventListener('click', closeSettings)
+	$settings = gpthSettings
+}
+function openSettings() {
+	$settings.classList.add('gpth-settings--open')
+	$settings.addEventListener('transitionend', handleSettingsOpened)
+	toggleOptions()
+}
+function handleSettingsOpened() {
+	document.body.addEventListener('click', handleClickOutsideSettings)
+	$settings.removeEventListener('transitionend', handleSettingsOpened)
+}
+function closeSettings() {
+	$settings.classList.remove('gpth-settings--open')
+	document.body.removeEventListener('click', handleClickOutsideSettings)
+}
+function handleClickOutsideSettings(e) {
+	let isOpenSettingsButton = e.target.id === 'gpth-settings-open'
+
+	if (!$settings.contains(e.target) && !isOpenSettingsButton) closeSettings()
+}
+
+/* === Initialization */
+function init() {
+	initTheme()
+	createAndAppendSVGStickyBtn()
+	renderSettings()
+	decreiseFloatingBtnSize()
 }
