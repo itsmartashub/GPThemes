@@ -156,7 +156,8 @@
 
 html.dark {
 	.markdown {
-		--c-bg-pre: #281f34;
+		// --c-bg-pre: #281f34;
+		--c-bg-pre: hsla(var(--accent-h) var(--surface-s) var(--surface-l) / 0.6);
 		--hljs-bg: transparent;
 		--hljs-color: #e0def4;
 		--hljs-selection-bg: #393552;
