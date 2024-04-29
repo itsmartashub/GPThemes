@@ -14,8 +14,11 @@ let $floatingThemeOptions
 let $floatingThemesBtnsContainer
 
 let $settings // @ Accent Theme
-let isSettingsOpen = false
+// let isSettingsOpen = false
 let styleElement = null // Declare the styleElement variable
+
+let defaultColorLight = '#6b4dfe'
+let defaultColorDark = '#ca93fb'
 
 // Initialization
 init()
@@ -193,14 +196,22 @@ function handleColorInput() {
 			e.target.addEventListener('input', (e) => {
 				updateCSSVars(e.target.value, null)
 			})
-			// TODO Save light accent color to storage
+			// Save light accent color to storage
+			e.target.addEventListener('change', (e) => {
+				setAccentToStorage('accent_light', e.target.value)
+				closeSettings()
+			})
 		}
 
 		if (e.target.id === 'accentDark') {
 			e.target.addEventListener('input', (e) => {
 				updateCSSVars(null, e.target.value)
 			})
-			// TODO Save dark accent color to storage
+			// Save dark accent color to storage
+			e.target.addEventListener('change', (e) => {
+				setAccentToStorage('accent_dark', e.target.value)
+				closeSettings()
+			})
 		}
 	})
 }
@@ -241,11 +252,73 @@ function updateCSSVars(lightColor, darkColor) {
 	styleElement.textContent = cssVars
 }
 
+async function setAccentToStorage(storageColorProperty, accentValue) {
+	try {
+		if (storageColorProperty === 'accent_light') {
+			await browser.storage.sync.set({ accent_light: accentValue })
+		}
+		if (storageColorProperty === 'accent_dark') {
+			await browser.storage.sync.set({ accent_dark: accentValue })
+		}
+		console.log({ storageColorProperty, accentValue })
+	} catch (e) {
+		console.error('Error setting the accent colors in storage:', e)
+	}
+}
+
+function setColorInputValue({ accentLight, accentDark }) {
+	console.log({ accentLight, accentDark })
+	$settings.querySelector('.colorpicker #accentLight').value = accentLight
+	$settings.querySelector('.colorpicker #accentDark').value = accentDark
+}
+
+async function handleAccentsStorage() {
+	try {
+		// Get accent colors from storage
+		const { accent_light: accentLight, accent_dark: accentDark } = await browser.storage.sync.get([
+			'accent_light',
+			'accent_dark',
+		])
+		console.log('Retrieved accent colors from storage:', accentLight, accentDark)
+
+		// Set default accent colors if not already set
+		if (!accentLight || !accentDark) {
+			await browser.storage.sync.set({
+				accent_light: defaultColorLight,
+				accent_dark: defaultColorDark,
+			})
+			console.log('Default accent colors set in storage')
+		}
+
+		const accentColorLight = accentLight || defaultColorLight
+		const accentColorDark = accentDark || defaultColorDark
+
+		// Update CSS with retrieved or default accent colors
+		updateCSSVars(accentColorLight, accentColorDark)
+
+		setColorInputValue({ accentLight: accentColorLight, accentDark: accentColorDark })
+
+		console.log('Accent colors applied to CSS:', accentColorLight, accentColorDark)
+	} catch (error) {
+		console.error('Error handling accent colors:', error)
+	}
+}
+
 /* === Initialization */
 function init() {
 	initTheme()
 	createAndAppendSVGStickyBtn()
 	renderSettings()
 	decreiseFloatingBtnSize()
+	handleAccentsStorage()
 	handleColorInput()
+}
+
+/* ? Only for debugging - remove later! */
+debugGetAllStorageItems()
+// Get all the items in the storage
+function debugGetAllStorageItems() {
+	browser.storage.sync.get(null, function (items) {
+		console.log(items) // This will log all the items stored in sync storage
+	})
 }
