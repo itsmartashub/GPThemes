@@ -155,7 +155,7 @@ function renderSettings() {
 		</main>
 
 		<footer class="grid">
-			<button id="resetBtn" class="btn block relative btn-primary text-center" as="button">Reset All</button>
+			<button id="resetAllSettings" class="btn block relative btn-primary text-center" as="button">Reset All</button>
 		</footer>
 
 		<div class="blur-box"></div>
@@ -168,6 +168,8 @@ function renderSettings() {
 	document.body.appendChild(gpthSettings)
 	document.getElementById('gpth-settings-close').addEventListener('click', closeSettings)
 	$settings = gpthSettings
+
+	$settings.querySelector('#resetAllSettings').addEventListener('click', resetAllSettings)
 }
 function openSettings() {
 	$settings.classList.add('gpth-settings--open')
@@ -302,6 +304,36 @@ async function handleAccentsStorage() {
 	} catch (error) {
 		console.error('Error handling accent colors:', error)
 	}
+}
+async function resetAllSettings() {
+	if (!styleElement) injectStyleElement()
+
+	// let accentLight = [250, 99, 65]
+	// let accentDark = [272, 93, 78]
+	let accentLight = hexToHSL(defaultColorLight)
+	let accentDark = hexToHSL(defaultColorDark)
+
+	const cssVars = `
+        html.light {
+            --accent-h: ${accentLight[0]} !important;
+            --accent-s: ${accentLight[1]}% !important;
+            --accent-l: ${accentLight[2]}% !important;
+        }
+        html.dark {
+            --accent-h: ${accentDark[0]} !important;
+            --accent-s: ${accentDark[1]}% !important;
+            --accent-l: ${accentDark[2]}% !important;
+        }
+    `
+
+	styleElement.textContent = cssVars
+
+	setColorInputValue({ accentLight: defaultColorLight, accentDark: defaultColorDark })
+
+	await browser.storage.sync.set({
+		accent_light: defaultColorLight,
+		accent_dark: defaultColorDark,
+	})
 }
 
 /* === Initialization */
