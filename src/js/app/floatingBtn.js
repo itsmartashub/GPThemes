@@ -2,6 +2,7 @@
 import browser from 'webextension-polyfill'
 
 import gpthToggleImg from '../../img/gpth-toggle-circled.webp'
+import { hexToHSL } from '../utils/hexToHSL'
 
 // let isOptionsShown = false
 
@@ -14,6 +15,7 @@ let $floatingThemesBtnsContainer
 
 let $settings // @ Accent Theme
 let isSettingsOpen = false
+let styleElement = null // Declare the styleElement variable
 
 // Initialization
 init()
@@ -183,10 +185,67 @@ function handleClickOutsideSettings(e) {
 	if (!$settings.contains(e.target) && !isOpenSettingsButton) closeSettings()
 }
 
+function handleColorInput() {
+	$settings.addEventListener('click', (e) => {
+		console.log(e.target)
+
+		if (e.target.id === 'accentLight') {
+			e.target.addEventListener('input', (e) => {
+				updateCSSVars(e.target.value, null)
+			})
+			// TODO Save light accent color to storage
+		}
+
+		if (e.target.id === 'accentDark') {
+			e.target.addEventListener('input', (e) => {
+				updateCSSVars(null, e.target.value)
+			})
+			// TODO Save dark accent color to storage
+		}
+	})
+}
+// Function to create and inject the <style> element
+function injectStyleElement() {
+	styleElement = document.createElement('style')
+	styleElement.type = 'text/css'
+	document.head.appendChild(styleElement)
+}
+
+function updateCSSVars(lightColor, darkColor) {
+	if (!styleElement) injectStyleElement()
+
+	const lightHSL = lightColor
+		? hexToHSL(lightColor)
+		: hexToHSL($settings.querySelector('.colorpicker #accentLight').value)
+	const darkHSL = darkColor
+		? hexToHSL(darkColor)
+		: hexToHSL($settings.querySelector('.colorpicker #accentDark').value)
+
+	let cssVars = ''
+
+	cssVars = `
+        html.light {
+            --accent-h: ${lightHSL[0]} !important;
+            --accent-s: ${lightHSL[1]}% !important;
+            --accent-l: ${lightHSL[2]}% !important;
+        }
+        html.dark {
+            --accent-h: ${darkHSL[0]} !important;
+            --accent-s: ${darkHSL[1]}% !important;
+            --accent-l: ${darkHSL[2]}% !important;
+        }
+    `
+
+	console.log(cssVars)
+
+	styleElement.textContent = cssVars
+}
+
 /* === Initialization */
 function init() {
 	initTheme()
 	createAndAppendSVGStickyBtn()
 	renderSettings()
 	decreiseFloatingBtnSize()
+	handleColorInput()
 }
