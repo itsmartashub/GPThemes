@@ -18,9 +18,6 @@
 			"run_at": "document_end"
 		}
 	],
-	"background": {
-		"scripts": ["../../js/background.js"]
-	},
 	"permissions": ["storage", "https://chat.openai.com/*"],
 	"browser_specific_settings": {
 		"gecko": {

@@ -1,12 +1,13 @@
 @import 'components/_colorpicker';
 @import 'components/_blur-box';
 @import 'layouts/_header';
-// @import 'layouts/_main';
-// @import 'layouts/_footer';
 
 .gpth-settings {
+	overflow: clip;
 	--top: calc(var(--h-header) + 0.5rem + 3rem);
 	--right: 1.3rem;
+	--shadow-color: hsla(var(--accent-hsl) / 0.09);
+	--shadow-values: inset 0 0 20px 10px;
 	// @extend [role='dialog'];
 	opacity: 0;
 	pointer-events: none;
@@ -19,14 +20,18 @@
 	right: var(--right);
 	max-width: 39rem;
 	max-height: 80vh;
-	// background-color: var(--c-surface-1);
 	transform: translateX(50%) !important;
 	z-index: calc(var(--z-modal) + 10);
-	background-color: hsla(var(--accent-h) var(--surface-s) var(--surface-l) / 0.7);
+	background-color: var(--c-bg-sidebar);
+	box-shadow: var(--shadow-values) var(--shadow-color);
+	// background-color: var(--c-surface-3);
+	// background-color: var(--c-surface-1);
+	// background-color: hsla(var(--accent-h) var(--surface-s) var(--surface-l) / 0.7);
+
 	// background-color: hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.5) / 0.7);
-	backdrop-filter: blur(20px);
+	// backdrop-filter: blur(10px);
 	transition: all 0.3s ease;
-	box-shadow: var(--box-shadow-contextmenu);
+	// box-shadow: var(--box-shadow-contextmenu);
 
 	&--open {
 		opacity: 1 !important;
@@ -36,9 +41,9 @@
 	}
 }
 
-html.light {
-	.gpth-settings {
-		// background-color: hsla(var(--accent-h) var(--surface-s) var(--surface-l) / 0.7);
-		background-color: hsla(0 0% calc(var(--surface-l) / 1.18) / 0.7);
-	}
-}
+// html.light {
+// 	.gpth-settings {
+// 		// background-color: hsla(var(--accent-h) var(--surface-s) var(--surface-l) / 0.7);
+// 		background-color: hsla(0 0% calc(var(--surface-l) / 1.18) / 0.7);
+// 	}
+// }

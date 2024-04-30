@@ -138,7 +138,11 @@ html.light {
 
 	/* ? ========== COLORS ========== */
 	--c-accent: hsl(var(--accent-hsl));
-	--c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 2), calc(var(--accent-l) * 1.3));
+	// --c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 2), calc(var(--accent-l) * 1.3));
+	--c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) * 0.3), 75%);
+	// --c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) * 0.6), calc(var(--accent-l) * 1.6));
+	// --c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) * 0.4), calc(var(--accent-l) * 2.5));
+
 	// --c-on-accent: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) * 1.8));
 	--c-on-accent: hsl(var(--accent-h), var(--accent-s), 88%);
 
@@ -381,16 +385,16 @@ html.dark[data-gptheme='oled'] {
 	/* ? ========== HSL ========== */
 
 	/* --accent-hsl: 272 93% 78%; */
-	--accent-h: 272;
+	/* 	--accent-h: 272;
 	--accent-s: 93%;
 	--accent-l: 78%;
-	--accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l);
+	--accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l); */
 
 	/* --txt-hsl: 255 86% 92%; */
-	--txt-h: 255;
+	/* 	--txt-h: var(--accent-h);
 	--txt-s: 86%;
-	--txt-l: 92%;
-	--txt-hsl: var(--txt-h) var(--txt-s) var(--txt-l);
+	--txt-l: 94%;
+	--txt-hsl: var(--txt-h) var(--txt-s) var(--txt-l); */
 
 	--surface-h: 0;
 	--surface-s: 0%;

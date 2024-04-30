@@ -1,6 +1,7 @@
 // Use a cross-browser storage API:
 import browser from 'webextension-polyfill'
 
+import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint, icon_palette } from './icons.js'
 import gpthToggleImg from '../../img/gpth-toggle-circled.webp'
 import { hexToHSL } from '../utils/hexToHSL'
 
@@ -54,10 +55,10 @@ function createAndAppendSVGStickyBtn() {
 		<div class="gpth__options">
 			<div class="gpth__themes">
 				<div class="gpth__themes-btns">
-					<button id="light" data-gpth-theme="light">☀️</button>
-					<button id="dark" data-gpth-theme="dark">🌙</button>
-					<button id="oled" data-gpth-theme="black">🌖</button>
-					<button id="gpth-open-settings" data-gpth-theme="more">⚙️</button>
+					<button id="light" data-gpth-theme="light">${icon_sun}</button>
+					<button id="dark" data-gpth-theme="dark">${icon_moon}</button>
+					<button id="oled" data-gpth-theme="black">${icon_moon_full}</button>
+					<button id="gpth-open-settings" data-gpth-theme="more">${icon_settings}</button>
 				</div>
 			</div>
 		</div>

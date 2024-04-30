@@ -1,5 +1,5 @@
 .blur-box {
-	--box_size: 4rem;
+	--box_size: 3rem;
 	position: fixed;
 
 	width: var(--box_size);
@@ -8,7 +8,7 @@
 	box-shadow: 0 0 100px 20px var(--c-accent);
 	border-radius: 50vw;
 	// opacity: 0.25;
-	opacity: 0.4;
+	opacity: 0.6;
 	filter: blur(40px);
 	z-index: -1;
 	user-select: none;
@@ -20,12 +20,12 @@
 	}
 	&:nth-of-type(2) {
 		top: 30%;
-		left: 10%;
+		left: 0%;
 	}
 	&:nth-of-type(3) {
-		--box_size: 2rem;
+		// --box_size: 2rem;
 
 		bottom: 0%;
-		right: 30%;
+		left: 30%;
 	}
 }
