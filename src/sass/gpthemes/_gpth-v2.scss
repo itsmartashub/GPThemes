@@ -1,13 +1,14 @@
 .gpth {
-	&__svg {
-		--svg-size: 2rem;
+	&__floating {
+		--floating-icon-size: 3rem;
 		--top: calc(var(--h-header) + 0.5rem);
 		--right: 1.3rem;
 		position: fixed;
 		top: var(--top);
 		right: var(--right);
 		z-index: 10;
-		color: var(--c-on-accent) !important;
+
+		// border: 2px solid red;
 		transition: transform 0.8s $easeInOutCirc;
 
 		// this add only for Firefox
@@ -16,45 +17,33 @@
 		}
 
 		@include dev(mob) {
-			--right: 5 %;
-			--svg-size: 1.8rem;
+			--right: 5%;
+			--floating-icon-size: 1.8rem;
 		}
 
 		&--small {
 			--scale: 0.9;
 			transform: scale(var(--scale)) rotate(360deg);
-
-			// @include dev(mob) {
-			// 	--scale: 0.;
-			// }
 		}
 
 		&-icon {
-			--icon-shadow-blur: 0px;
-			--icon-shadow-offset: 0.3em;
-			--icon-shadow-color: hsla(var(--accent-hsl) / 0.15);
 			position: relative;
 			display: grid;
 			place-items: center;
-			width: var(--svg-size);
-			height: var(--svg-size);
+			width: var(--floating-icon-size);
+			height: var(--floating-icon-size);
+			color: var(--c-accent);
+			background-image: linear-gradient(
+				135deg,
+				hsla(var(--accent-hsl) / 0.45) 0%,
+				hsla(var(--accent-hsl) / 0.1) 40%,
+				hsla(var(--accent-hsl) / 0.05) 60%,
+				hsla(var(--accent-hsl) / 0.45) 100%
+			);
+			backdrop-filter: blur(10px);
 			border-radius: 50vw;
-			box-shadow: var(--box-shadow);
-			transition: transform 0.15s $easeOutCubic, outline 0.25s $easeOutCubic;
+			transition: transform 0.15s $easeOutCubic, background-color 0.3s $easeOutCubic;
 			cursor: pointer;
-
-			@include dev(mob) {
-				--icon-shadow-offset: 0.25em;
-			}
-
-			img {
-				object-fit: cover;
-				width: var(--svg-size);
-				height: var(--svg-size);
-				border-radius: 50vw;
-				box-shadow: 0px 0px var(--icon-shadow-blur) var(--icon-shadow-offset) hsla(var(--accent-hsl) / 0.3);
-				transition: box-shadow 0.2s $easeOutCubic;
-			}
 
 			&::after {
 				content: 'Change theme';
@@ -69,9 +58,11 @@
 				padding: 0.5rem 0.8rem;
 				pointer-events: none;
 				background-color: var(--c-bg-tooltip);
+				color: var(--c-on-accent);
 				// color: var(--c-on-accent);
-				opacity: 0;
-				transform: translate(-100%, -50%);
+				// opacity: 0;
+				transform-origin: right center;
+				transform: translate(-110%, -50%) scale(0);
 				transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 
 				@include dev(mob) {
@@ -80,17 +71,16 @@
 			}
 
 			&:hover {
-				--icon-shadow-blur: 30px;
-				--icon-shadow-offset: 1em;
-				--icon-shadow-color: hsla(var(--accent-hsl) / 0.2);
-				transform: scale(1) translateY(2px);
+				background-image: none;
+				background-color: var(--c-accent);
+				color: var(--c-on-accent);
 
-				// outline: 5px solid hsla(var(--accent-hsl) / 0.01);
-				// outline-offset: 8px;
-
+				svg {
+					transform: scale(1.1);
+				}
 				&::after {
-					opacity: 1;
-					transform: translate(-115%, -50%);
+					// opacity: 1;
+					transform: translate(-115%, -50%) scale(1);
 				}
 			}
 		}
@@ -343,7 +333,7 @@ html.dark {
 }
  */
 html.light {
-	.gpth__svg-icon::after {
+	.gpth__floating-icon::after {
 		color: var(--c-txt);
 	}
 }

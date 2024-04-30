@@ -46,12 +46,14 @@ async function setTheme(theme) {
 
 function createAndAppendSVGStickyBtn() {
 	const gpthFloatingBtn = document.createElement('div')
-	gpthFloatingBtn.className = 'gpth__svg'
+	gpthFloatingBtn.className = 'gpth__floating'
 
+	// <img src="${gpthToggleImg}" alt="gpth-toggle"/>
 	let htmlCode = `
-		<div class="gpth__svg-icon">
-			<img src="${gpthToggleImg}" alt="gpth-toggle"/>
+		<div class="gpth__floating-icon">
+			${icon_paint}
 		</div>
+		
 		<div class="gpth__options">
 			<div class="gpth__themes">
 				<div class="gpth__themes-btns">
@@ -70,7 +72,7 @@ function createAndAppendSVGStickyBtn() {
 
 	// Cache DOM elements after appending
 	$htmlTag = document.documentElement
-	$floatingBtn = document.querySelector('.gpth__svg-icon')
+	$floatingBtn = document.querySelector('.gpth__floating-icon')
 	$floatingThemeOptions = document.querySelector('.gpth__options')
 	$floatingThemesBtnsContainer = document.querySelector('.gpth__themes-btns')
 
@@ -122,7 +124,7 @@ function hideOptions(e) {
 
 function decreiseFloatingBtnSize() {
 	setTimeout(() => {
-		$floatingBtn.classList.add('gpth__svg--small')
+		$floatingBtn.classList.add('gpth__floating--small')
 	}, 3000)
 }
 
@@ -348,10 +350,11 @@ function init() {
 }
 
 /* ? Only for debugging - remove later! */
-debugGetAllStorageItems()
+/* debugGetAllStorageItems()
 // Get all the items in the storage
 function debugGetAllStorageItems() {
 	browser.storage.sync.get(null, function (items) {
 		console.log(items) // This will log all the items stored in sync storage
 	})
 }
+*/
