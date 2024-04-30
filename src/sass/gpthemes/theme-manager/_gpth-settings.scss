@@ -17,7 +17,7 @@
 	right: var(--right);
 	max-width: 39rem;
 	max-height: 80vh;
-	transform: translateX(50%) !important;
+	transform: translateX(calc(100% + 1.5rem)) !important;
 	z-index: calc(var(--z-modal) + 10);
 	background-color: var(--c-bg-sidebar);
 
@@ -37,7 +37,6 @@
 	&--open {
 		opacity: 1 !important;
 		pointer-events: all !important;
-		// transform: translate(-50%, -50%) !important;
 		transform: translateX(0%) !important;
 	}
 }

@@ -2162,7 +2162,7 @@ html.light .gpth__floating-icon:after {
   padding: 1.5rem;
   transition: all .3s;
   overflow: clip;
-  transform: translateX(50%) !important;
+  transform: translateX(calc(100% + 1.5rem)) !important;
 }
 
 .gpth-settings--open {

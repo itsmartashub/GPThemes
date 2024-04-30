@@ -15,11 +15,13 @@ let $floatingOptions
 let $floatingBtnsContainer
 
 let $settings // @ Accent Theme
+let $resetAllBtn
 // let isSettingsOpen = false
 let styleElement = null // Declare the styleElement variable
 
 let defaultColorLight = '#6b4dfe'
 let defaultColorDark = '#ca93fb'
+// let isDisabledResetAll = true
 
 // Initialization
 init()
@@ -165,16 +167,21 @@ function renderSettings() {
 	// <div class="blur-box"></div>
 
 	// gpthFloatingBtn.innerHTML = htmlCode
+
 	gpthSettings.insertAdjacentHTML('beforeend', htmlCode)
 	document.body.appendChild(gpthSettings)
 	document.getElementById('gpth-settings-close').addEventListener('click', closeSettings)
 	$settings = gpthSettings
+	$resetAllBtn = $settings.querySelector('#resetAllSettings')
+	$resetAllBtn.disabled = true
 
 	$settings.querySelector('#resetAllSettings').addEventListener('click', resetAllSettings)
 }
+
 function openSettings() {
 	$settings.classList.add('gpth-settings--open')
 	$settings.addEventListener('transitionend', handleSettingsOpened)
+	$resetAllBtn.disabled = false
 
 	// isOptionsShown = false
 	// toggleOptions()
@@ -186,6 +193,7 @@ function handleSettingsOpened() {
 function closeSettings() {
 	$settings.classList.remove('gpth-settings--open')
 	document.body.removeEventListener('click', handleClickOutsideSettings)
+	$resetAllBtn.disabled = true
 }
 function handleClickOutsideSettings(e) {
 	let isOpenSettingsButton = e.target.id === 'gpth-settings-open'
