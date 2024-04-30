@@ -58,7 +58,7 @@
 			transition: all 0.4s ease-in-out 0.2s;
 		}
 
-		&.gpth-options-shown {
+		&.gpth__options--shown {
 			// opacity: 1;
 			pointer-events: all !important;
 			clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%) !important;

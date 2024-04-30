@@ -11,8 +11,8 @@ import { hexToHSL } from '../utils/hexToHSL'
 let isOptionsShown = false
 let $htmlTag
 let $floatingBtn
-let $floatingThemeOptions
-let $floatingThemesBtnsContainer
+let $floatingOptions
+let $floatingBtnsContainer
 
 let $settings // @ Accent Theme
 // let isSettingsOpen = false
@@ -55,14 +55,12 @@ function createAndAppendSVGStickyBtn() {
 		</div>
 		
 		<div class="gpth__options">
-			<div class="gpth__themes">
-				<div class="gpth__themes-btns">
+				<div class="gpth__options-btns">
 					<button id="light" data-gpth-theme="light">${icon_sun}</button>
 					<button id="dark" data-gpth-theme="dark">${icon_moon}</button>
 					<button id="oled" data-gpth-theme="black">${icon_moon_full}</button>
 					<button id="gpth-open-settings" data-gpth-theme="more">${icon_settings}</button>
 				</div>
-			</div>
 		</div>
 	`
 
@@ -72,13 +70,13 @@ function createAndAppendSVGStickyBtn() {
 
 	// Cache DOM elements after appending
 	$htmlTag = document.documentElement
-	$floatingBtn = document.querySelector('.gpth__floating-icon')
-	$floatingThemeOptions = document.querySelector('.gpth__options')
-	$floatingThemesBtnsContainer = document.querySelector('.gpth__themes-btns')
+	$floatingBtn = document.querySelector('.gpth__floating')
+	$floatingOptions = document.querySelector('.gpth__options')
+	$floatingBtnsContainer = document.querySelector('.gpth__options-btns')
 
 	// Add event listeners after DOM elements are appended
 	$floatingBtn.addEventListener('click', toggleOptions)
-	$floatingThemesBtnsContainer.addEventListener('click', handleChangeTheme)
+	$floatingBtnsContainer.addEventListener('click', handleChangeTheme)
 }
 
 function handleChangeTheme(e) {
@@ -95,6 +93,7 @@ function handleChangeTheme(e) {
 	/* If clicked on "⚙️ Open Settings" */
 	if (theme === 'gpth-open-settings') {
 		openSettings()
+		// toggleOptions()
 	}
 }
 
@@ -107,7 +106,7 @@ function applyTheme(theme) {
 
 function toggleOptions() {
 	isOptionsShown = !isOptionsShown
-	$floatingThemeOptions.classList.toggle('gpth-options-shown', isOptionsShown)
+	$floatingOptions.classList.toggle('gpth__options--shown', isOptionsShown)
 
 	if (isOptionsShown) document.body.addEventListener('click', hideOptions)
 	else document.body.removeEventListener('click', hideOptions)
@@ -115,7 +114,7 @@ function toggleOptions() {
 
 function hideOptions(e) {
 	const isClickInsideFloatingBtn = $floatingBtn.contains(e.target)
-	const isClickInsideFloatingOptions = $floatingThemeOptions.contains(e.target)
+	const isClickInsideFloatingOptions = $floatingOptions.contains(e.target)
 
 	if (!isClickInsideFloatingBtn && !isClickInsideFloatingOptions) toggleOptions()
 
@@ -160,11 +159,10 @@ function renderSettings() {
 		<footer class="grid">
 			<button id="resetAllSettings" class="btn block relative btn-primary text-center" as="button">Reset All</button>
 		</footer>
-
-		<div class="blur-box"></div>
-		<div class="blur-box"></div>
-		<div class="blur-box"></div>
 	`
+	// <div div div class="blur-box" ></div >
+	// <div class="blur-box"></div>
+	// <div class="blur-box"></div>
 
 	// gpthFloatingBtn.innerHTML = htmlCode
 	gpthSettings.insertAdjacentHTML('beforeend', htmlCode)
@@ -177,7 +175,9 @@ function renderSettings() {
 function openSettings() {
 	$settings.classList.add('gpth-settings--open')
 	$settings.addEventListener('transitionend', handleSettingsOpened)
-	toggleOptions()
+
+	// isOptionsShown = false
+	// toggleOptions()
 }
 function handleSettingsOpened() {
 	document.body.addEventListener('click', handleClickOutsideSettings)
@@ -195,7 +195,7 @@ function handleClickOutsideSettings(e) {
 
 function handleColorInput() {
 	$settings.addEventListener('click', (e) => {
-		console.log(e.target)
+		// console.log(e.target)
 
 		if (e.target.id === 'accentLight') {
 			e.target.addEventListener('input', (e) => {
@@ -265,14 +265,14 @@ async function setAccentToStorage(storageColorProperty, accentValue) {
 		if (storageColorProperty === 'accent_dark') {
 			await browser.storage.sync.set({ accent_dark: accentValue })
 		}
-		console.log({ storageColorProperty, accentValue })
+		// console.log({ storageColorProperty, accentValue })
 	} catch (e) {
 		console.error('Error setting the accent colors in storage:', e)
 	}
 }
 
 function setColorInputValue({ accentLight, accentDark }) {
-	console.log({ accentLight, accentDark })
+	// console.log({ accentLight, accentDark })
 	$settings.querySelector('.colorpicker #accentLight').value = accentLight
 	$settings.querySelector('.colorpicker #accentDark').value = accentDark
 }
@@ -284,7 +284,7 @@ async function handleAccentsStorage() {
 			'accent_light',
 			'accent_dark',
 		])
-		console.log('Retrieved accent colors from storage:', accentLight, accentDark)
+		// console.log('Retrieved accent colors from storage:', accentLight, accentDark)
 
 		// Set default accent colors if not already set
 		if (!accentLight || !accentDark) {
@@ -303,7 +303,7 @@ async function handleAccentsStorage() {
 
 		setColorInputValue({ accentLight: accentColorLight, accentDark: accentColorDark })
 
-		console.log('Accent colors applied to CSS:', accentColorLight, accentColorDark)
+		// console.log('Accent colors applied to CSS:', accentColorLight, accentColorDark)
 	} catch (error) {
 		console.error('Error handling accent colors:', error)
 	}

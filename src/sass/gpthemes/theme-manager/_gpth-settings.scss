@@ -1,5 +1,5 @@
 @import 'components/_colorpicker';
-@import 'components/_blur-box';
+// @import 'components/_blur-box';
 @import 'layouts/_header';
 
 .gpth-settings {
@@ -11,9 +11,6 @@
 	// @extend [role='dialog'];
 	opacity: 0;
 	pointer-events: none;
-	// position: fixed;
-	// display: grid;
-	// place-items: center;
 	padding: 1.5rem;
 	border-radius: var(--br-dialog);
 	top: var(--top);
@@ -23,15 +20,19 @@
 	transform: translateX(50%) !important;
 	z-index: calc(var(--z-modal) + 10);
 	background-color: var(--c-bg-sidebar);
-	box-shadow: var(--shadow-values) var(--shadow-color);
-	// background-color: var(--c-surface-3);
-	// background-color: var(--c-surface-1);
-	// background-color: hsla(var(--accent-h) var(--surface-s) var(--surface-l) / 0.7);
 
-	// background-color: hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.5) / 0.7);
-	// backdrop-filter: blur(10px);
+	// background-image: linear-gradient(
+	// 	135deg,
+	// 	hsla(var(--accent-hsl) / 0.2) 0%,
+	// 	hsla(var(--accent-hsl) / 0.05) 20%,
+	// 	hsla(var(--accent-hsl) / 0.05) 80%,
+	// 	hsla(var(--accent-hsl) / 0.2) 100%
+	// );
+	// border: 1px solid hsla(var(--accent-hsl) / 0.2);
+	// backdrop-filter: blur(50px);
+
+	box-shadow: var(--shadow-values) var(--shadow-color);
 	transition: all 0.3s ease;
-	// box-shadow: var(--box-shadow-contextmenu);
 
 	&--open {
 		opacity: 1 !important;

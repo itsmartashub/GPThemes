@@ -1,14 +1,15 @@
 .gpth {
 	&__floating {
-		--floating-icon-size: 3rem;
+		--floating-icon-size: 2.8rem;
 		--top: calc(var(--h-header) + 0.5rem);
 		--right: 1.3rem;
+		--floating-scale: 1.2;
+		--floating-rotate: 0;
 		position: fixed;
 		top: var(--top);
 		right: var(--right);
 		z-index: 10;
-
-		// border: 2px solid red;
+		transform: scale(var(--floating-scale)) rotate(var(--floating-rotate));
 		transition: transform 0.8s $easeInOutCirc;
 
 		// this add only for Firefox
@@ -22,8 +23,12 @@
 		}
 
 		&--small {
-			--scale: 0.9;
-			transform: scale(var(--scale)) rotate(360deg);
+			--floating-scale: 1;
+			--floating-rotate: 360deg;
+
+			.gpth__floating-icon {
+				border: 1px solid hsla(var(--accent-hsl) / 0.2);
+			}
 		}
 
 		&-icon {
@@ -40,6 +45,8 @@
 				hsla(var(--accent-hsl) / 0.05) 60%,
 				hsla(var(--accent-hsl) / 0.45) 100%
 			);
+			// border: 1px solid hsla(var(--accent-hsl) / 0.2);
+
 			backdrop-filter: blur(10px);
 			border-radius: 50vw;
 			transition: transform 0.15s $easeOutCubic, background-color 0.3s $easeOutCubic;
@@ -86,8 +93,8 @@
 		}
 	}
 	&__options {
-		--shadow-color: hsla(var(--accent-hsl) / 0.08);
-		--shadow-values: inset 0 0 10px 5px;
+		// --shadow-color: hsla(var(--accent-hsl) / 0.08);
+		// --shadow-values: inset 0 0 10px 5px;
 		pointer-events: none;
 		opacity: 0;
 		display: grid;
@@ -102,8 +109,18 @@
 		transform: translateX(50%);
 		border-radius: 20vw;
 		clip-path: polygon(0 0, 100% 0, 100% 0, 0% 0);
-		background-color: hsla(var(--accent-hsl) / 0.12);
-		box-shadow: var(--shadow-values) var(--shadow-color);
+		// background-color: hsla(var(--accent-hsl) / 0.12);
+		// box-shadow: var(--shadow-values) var(--shadow-color);
+		background-image: linear-gradient(
+			135deg,
+			hsla(var(--accent-hsl) / 0.2) 0%,
+			hsla(var(--accent-hsl) / 0.03) 40%,
+			hsla(var(--accent-hsl) / 0.03) 60%,
+			hsla(var(--accent-hsl) / 0.2) 100%
+		);
+		border: 1px solid hsla(var(--accent-hsl) / 0.2);
+		backdrop-filter: blur(10px);
+
 		transition: clip-path 0.3s $easeInOutCirc, opacity 0.3s ease-in-out;
 		backdrop-filter: blur(5px);
 
@@ -111,13 +128,14 @@
 			padding: 0.65rem;
 		}
 
-		&.gpth-options-shown {
+		&--shown {
 			opacity: 1;
 			pointer-events: all !important;
 			clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%) !important;
 
 			button {
-				transform: scale(1);
+				// --btn-scale: 1 !important;
+				transform: scale(1) !important;
 			}
 		}
 
@@ -128,10 +146,6 @@
 			letter-spacing: 1px;
 			font-weight: 100;
 		}
-	}
-	&__themes {
-		display: grid;
-		place-items: center;
 
 		&-btns {
 			gap: 1rem;
@@ -140,8 +154,7 @@
 
 			button {
 				--btn-size: 2rem;
-				--btn-bg: var(--c-surface-2);
-				--btn-shadow-color: var(--btn-bg);
+				// --btn-scale: 0;
 				cursor: pointer;
 				position: relative;
 				width: var(--btn-size);
@@ -151,6 +164,7 @@
 				line-height: 1;
 				border-radius: 50vw;
 				color: var(--c-accent);
+				// transform: scale(var(--btn-scale));
 				transform: scale(0);
 				transition: color 0.2s ease, transform 0.3s $easeInOutCirc;
 
@@ -166,16 +180,17 @@
 					top: 50%;
 					left: 50%;
 					width: max-content;
-					font-size: 0.8rem;
-					padding: 4px 4px;
+					font-size: 0.7rem;
+					text-transform: uppercase;
+					font-weight: 700;
+					padding: 6px;
 					border-radius: 5px;
-					// background-color: var(--c-accent-light);
 					background-color: var(--c-accent);
 					color: var(--c-on-accent);
-					opacity: 0;
 					border-radius: 50vw;
+					opacity: 0;
 					transform: translate(-50%, -50%) scale(0);
-					transition: 0.3s $easeInOutCirc;
+					transition: transform 0.3s $easeInOutCirc, opacity 0.4s linear;
 				}
 
 				&:hover {
@@ -185,27 +200,69 @@
 						transform: translate(-50%, -50%) scale(1);
 					}
 				}
-
-				// &:not(&#dark, &#oled) {
-				// 	box-shadow: none !important;
-				// 	// --btn-bg: radial-gradient(
-				// 	// 	circle,
-				// 	// 	hsla(var(--accent-hsl) / 1) 0,
-				// 	// 	hsla(var(--accent-hsl) / 0.2) 60%,
-				// 	// 	hsla(var(--accent-hsl) / 1) 100%
-				// 	// );
-				// 	--btn-bg: var(--c-accent);
-				// }
-				// &#dark {
-				// 	// --btn-bg: linear-gradient(135deg, #8d80a0, #50416b, #2f1f49);
-				// 	--btn-bg: hsl(var(--accent-h), calc(var(--accent-s) * 1.9), 19%);
-				// }
-				// &#oled {
-				// 	--btn-bg: #000;
-				// }
 			}
 		}
 	}
+
+	/* 	&__themes {
+		display: grid;
+		place-items: center;
+
+		&-btns {
+			gap: 1rem;
+			display: grid;
+			border-radius: var(--br-btn);
+
+			button {
+				--btn-size: 2rem;
+				--btn-scale: 0;
+				cursor: pointer;
+				position: relative;
+				width: var(--btn-size);
+				height: var(--btn-size);
+				display: grid;
+				place-items: center;
+				line-height: 1;
+				border-radius: 50vw;
+				color: var(--c-accent);
+				transform: scale(var(--btn-scale));
+				transition: color 0.2s ease, transform 0.3s $easeInOutCirc;
+
+				.icon {
+					--icon-size: 1.5em;
+					height: var(--icon-size);
+					width: var(--icon-size);
+				}
+
+				&::after {
+					content: attr(data-gpth-theme);
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					width: max-content;
+					font-size: 0.7rem;
+					text-transform: uppercase;
+					font-weight: 700;
+					padding: 6px;
+					border-radius: 5px;
+					background-color: var(--c-accent);
+					color: var(--c-on-accent);
+					border-radius: 50vw;
+					opacity: 0;
+					transform: translate(-50%, -50%) scale(0);
+					transition: transform 0.3s $easeInOutCirc, opacity 0.4s linear;
+				}
+
+				&:hover {
+					color: transparent;
+					&::after {
+						opacity: 1;
+						transform: translate(-50%, -50%) scale(1);
+					}
+				}
+			}
+		}
+	} */
 
 	/* Jos ne koristim ovo. Za image upload */
 	/* 	&__upload {
