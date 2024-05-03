@@ -12,6 +12,10 @@
 		transform: scale(var(--floating-scale)) rotate(var(--floating-rotate));
 		transition: transform 0.8s $easeInOutCirc;
 
+		font-family: Söhne, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans',
+			sans-serif, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+			'Noto Color Emoji';
+
 		// this add only for Firefox
 		@-moz-document url-prefix() {
 			--right: 0.95rem;
@@ -46,8 +50,8 @@
 				hsla(var(--accent-hsl) / 0.45) 100%
 			);
 			// border: 1px solid hsla(var(--accent-hsl) / 0.2);
-
 			backdrop-filter: blur(10px);
+
 			border-radius: 50vw;
 			transition: transform 0.15s $easeOutCubic, background-color 0.3s $easeOutCubic;
 			cursor: pointer;
@@ -57,8 +61,8 @@
 				position: absolute;
 				top: 50%;
 				left: 0;
-				font-size: 0.78rem;
-				font-weight: 600;
+				font-size: 0.865rem;
+				font-weight: 500;
 				border-radius: 1.2rem;
 				width: max-content;
 				height: max-content;
@@ -139,18 +143,18 @@
 			}
 		}
 
-		h5 {
-			margin-bottom: 1rem;
-			display: inline-block;
-			font-size: 1.3rem;
-			letter-spacing: 1px;
-			font-weight: 100;
-		}
+		// h5 {
+		// 	margin-bottom: 1rem;
+		// 	display: inline-block;
+		// 	font-size: 1.3rem;
+		// 	letter-spacing: 1px;
+		// 	font-weight: 100;
+		// }
 
 		&-btns {
 			gap: 1rem;
 			display: grid;
-			border-radius: var(--br-btn);
+			// border-radius: var(--br-btn);
 
 			button {
 				--btn-size: 2rem;
@@ -166,12 +170,13 @@
 				color: var(--c-accent);
 				// transform: scale(var(--btn-scale));
 				transform: scale(0);
-				transition: color 0.2s ease, transform 0.3s $easeInOutCirc;
+				transition: 0.3s linear;
 
 				.icon {
 					--icon-size: 1.5em;
 					height: var(--icon-size);
 					width: var(--icon-size);
+					// transition: stroke 0.3s ease;
 				}
 
 				&::after {
@@ -189,7 +194,7 @@
 					color: var(--c-on-accent);
 					border-radius: 50vw;
 					opacity: 0;
-					transform: translate(-50%, -50%) scale(0);
+					transform: translate(-50%, 0%) scale(0);
 					transition: transform 0.3s $easeInOutCirc, opacity 0.4s linear;
 				}
 

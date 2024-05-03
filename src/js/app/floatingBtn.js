@@ -57,12 +57,12 @@ function createAndAppendSVGStickyBtn() {
 		</div>
 		
 		<div class="gpth__options">
-				<div class="gpth__options-btns">
-					<button id="light" data-gpth-theme="light">${icon_sun}</button>
-					<button id="dark" data-gpth-theme="dark">${icon_moon}</button>
-					<button id="oled" data-gpth-theme="black">${icon_moon_full}</button>
-					<button id="gpth-open-settings" data-gpth-theme="more">${icon_settings}</button>
-				</div>
+			<div class="gpth__options-btns">
+				<button id="light" data-gpth-theme="light">${icon_sun}</button>
+				<button id="dark" data-gpth-theme="dark">${icon_moon}</button>
+				<button id="oled" data-gpth-theme="black">${icon_moon_full}</button>
+				<button id="gpth-open-settings" data-gpth-theme="more">${icon_settings}</button>
+			</div>
 		</div>
 	`
 
