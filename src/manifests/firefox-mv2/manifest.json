@@ -12,7 +12,7 @@
 	},
 	"content_scripts": [
 		{
-			"matches": ["https://chat.openai.com/*"],
+			"matches": ["https://chat.openai.com/*", "https://chatgpt.com/*"],
 			"js": ["../../js/content.js"],
 			"css": ["../../sass/index.scss"],
 			"run_at": "document_end"
@@ -21,7 +21,7 @@
 	"background": {
 		"scripts": ["../../js/background.js"]
 	},
-	"permissions": ["storage", "https://chat.openai.com/*"],
+	"permissions": ["storage", "https://chat.openai.com/*", "https://chatgpt.com/*"],
 	"browser_specific_settings": {
 		"gecko": {
 			"id": "gpthemes@itsmarta"
