@@ -5,6 +5,7 @@
 	border-radius: var(--br-dialog) !important;
 	box-shadow: var(--box-shadow);
 
+	/* Bez ovog "Upgrade your plan" je broken */
 	&:has(.popover) {
 		.popover {
 			--main-surface-primary: var(--c-surface-2) !important;
@@ -18,14 +19,6 @@
 	.border-black {
 		border-color: transparent !important;
 	}
-
-	/*
-	- "Upgrade your plan" bg and ✔️ bg
-	- "Custom Instructions" ("CUSTOMIZE CHATGPT" now) textarea bg
-	- "Share Link" mini chat footer (where 3 dots are) */
-	// .bg-token-main-surface-primary:not(textarea) {
-	// 	background-color: var(--c-surface-2) !important;
-	// }
 
 	/* Tab view transitions - In tab dialog part which is changing on tabpanel click (on right side) */
 	[id*='-content-'] {
@@ -155,16 +148,15 @@
 		// background-color: red !important;
 	}
 
-	/* ___ Dialog - "Share Chat" White preview <div>  */
-	&:has(main div[data-radix-aspect-ratio-wrapper]) .w-full.rounded-lg {
-		border-radius: var(--br-chat-bubble) !important;
-		box-shadow: var(--box-shadow);
-		border: none !important;
+	/* ___ Dialog - "Share Link to Chat"  */
+	&:has(input[value^="https://chatgpt.com/share/"])
+	{
+		--main-surface-primary: var(--c-surface-3) !important; // bg of link preview and "🔗 Create Link" btn
 
-		/* Mini chat conversation */
-		--main-surface-primary: var(--c-surface-1) !important; // mini chat preview background in "Share Link to Chat"
-		--main-surface-secondary: var(--c-surface-1) !important; // footer of mini chat preview in "Share Link to Chat"
-		--main-surface-tertiary: transparent !important; // border color of footer of mini chat preview in "Share Link to Chat"
+		// bg-gradient of link preview
+		.from-token-main-surface-primary {
+			--gradient-color-from: --main-surface-primary;
+		}
 	}
 
 	/* ___ DIALOG - "SHARED LINKS" or "ARCHIVED CHATS" - Table  */
@@ -293,38 +285,43 @@
 }
 
 /* ! NOT WORKING - CANNOT OVERWRITE THIS WTF */
-// .dark .popover,
-// .light .popover,
-// .popover {
-// 	/* [role='menu'] */
-//  --main-surface-primary: var(--c-surface-2) !important;
-// 	--main-surface-secondary: var(--c-surface-2) !important;
-// 	--main-surface-tertiary: var(--c-surface-3) !important;
+/* .dark .popover,
+.light .popover,
+.popover {
+	--main-surface-primary: var(--c-surface-2) !important;
+	--main-surface-secondary: var(--c-surface-2) !important;
+	--main-surface-tertiary: var(--c-surface-3) !important;
 
-// 	&.bg-token-surface-primary {
-// 		--main-surface-primary: var(--c-surface-2) !important;
-// 		background-color: var(--c-surface-2) !important;
-// 	}
-// 	&.bg-token-surface-secondary {
-// 		--main-surface-secondary: var(--c-surface-2) !important;
-// 		background-color: var(--c-surface-2) !important;
-// 	}
-// 	&.bg-token-surface-tertiary {
-// 		--main-surface-tertiary: var(--c-surface-3) !important;
-// 		background-color: var(--c-surface-3) !important;
-// 	}
-// 	// --main-surface-primary: var(--white) !important;
-// 	// --main-surface-secondary: var(--gray-100) !important;
-// 	// --main-surface-tertiary: var(--gray-200) !important;
+	&.bg-token-main-surface-primary {
+		--main-surface-primary: var(--c-surface-2) !important;
+		background-color: var(--c-surface-2) !important;
+	}
+	&.bg-token-main-surface-secondary {
+		--main-surface-secondary: var(--c-surface-2) !important;
+		background-color: var(--c-surface-2) !important;
+	}
+	&.bg-token-main-surface-tertiary {
+		--main-surface-tertiary: var(--c-surface-3) !important;
+		background-color: var(--c-surface-3) !important;
+	}
+} */
 
-// 	/* [role='dialog'] */
-// 	// --main-surface-primary: var(--gray-700)!important;
-// 	// --main-surface-secondary: var(--gray-600)!important;
-// 	// --main-surface-tertiary: var(--gray-500)!important;
-// 	// --text-primary: var(--white)!important;
-// 	// --text-secondary: var(--gray-200)!important;
-// 	// --text-tertiary: var(--gray-300)!important;
+/* ! THIS WORKS */
+// .dark .popover {
+// 	// --main-surface-primary: red !important;
+// 	.bg-token-main-surface-primary {
+// 		background-color: var(--c-surface-1) !important;
+// 		// background-color: red !important;
+// 	}
 // }
-// .popover {
+// .light .popover {
+// 	// --main-surface-primary: red !important;
 
+// 	.from-token-main-surface-primary {
+// 		--gradient-color-from: var(--c-surface-3) !important;
+// 	}
+// 	.bg-token-main-surface-primary {
+// 		background-color: var(--c-surface-3) !important;
+// 		// background-color: red !important;
+// 	}
 // }
