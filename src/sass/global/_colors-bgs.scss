@@ -89,8 +89,9 @@
 	color: var(--c-on-accent) !important;
 }
 
-/* TOS - "This content may violate content policy..." (red) & "This content may violate our Terms of Use or usage policies." (orange) warnings */
-[class*='bg-red-500/10'],
+/* TOS - "This content may violate content policy..." (red) & "This content may violate our Terms of Use or usage policies." (orange) warnings. Also alert in "Share Link to Chat" dialog shown sometimes */
+// [class*='bg-red-500/10'],
+[class*='bg-red-500'],
 [class*='bg-orange-500/10'] {
 	background-color: hsla(var(--danger-hsl) / 0.11) !important;
 	color: var(--c-danger) !important;
