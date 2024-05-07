@@ -79,7 +79,8 @@
 	--main-surface-tertiary: var(--c-surface-3);
 
 	/* sidebar collapse btn */
-	--text-quaternary: var(--c-surface-2);
+	--text-quaternary: var(--c-surface-3) !important;
+	// --text-quaternary: red;
 
 	/* .bg-token-popover-surface-primary  
 	- contextmenu in theme dropdown chooser
@@ -367,6 +368,9 @@ html.dark {
 	// --box-shadow-contextmenu: 0px 0px 30px -10px hsla(var(--accent-hsl) / 0.18);
 	--box-shadow-contextmenu: inset 0px 0px 12px 1px hsla(var(--accent-hsl) / 0.13);
 	--box-shadow-textarea: inset 0px 0px 15px 1px hsla(var(--accent-hsl) / 0.05) !important;
+
+	/* sidebar collapse btn */
+	// --text-quaternary: var(--c-accent-light) !important;
 }
 
 /* @ ================== OLED ================== */

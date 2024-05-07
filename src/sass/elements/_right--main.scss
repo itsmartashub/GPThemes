@@ -259,3 +259,18 @@ main [data-testid^='conversation-turn-'] {
 		}
 	}
 }
+
+/* Collapse sidebar btn - hover state*/
+main {
+	[class*='fixed left-0 top-1/2']:has(button) {
+		.rounded-full {
+			transition: background-color 0.2s ease-in-out;
+		}
+
+		&:hover {
+			.rounded-full {
+				background-color: var(--c-accent) !important;
+			}
+		}
+	}
+}
