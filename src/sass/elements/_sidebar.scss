@@ -139,31 +139,56 @@ nav[aria-label='Chat history'] {
 			}
 
 			/* 3 dots > "Rename" clicked - style of input parent and input  - this is <div> next to <a> */
-			.bg-token-surface-tertiary {
-				padding: var(--p-sidebar-nav-a) !important;
-				color: var(--c-txt) !important;
-				background-color: var(
-					--c-surface-3
-				) !important; // NOTE: bg can't be transparent-ish; it cause txt behind to be visible
-				border: 1px solid var(--c-border) !important;
-				border-radius: var(--br-nav-a) !important;
+			&:has(input) {
+				// outline: 1px solid hsl(var(--accent-hsl) / 0.3);
+				outline: 2px solid var(--c-surface-2);
+				&,
+				& .bg-token-sidebar-surface-secondary {
+					background-color: var(--c-bg-sidebar) !important;
+					// color: var(--c-on-accent) !important;
+				}
 
-				/* This make it full width of <li>, from left to right */
-				left: 0 !important;
-				right: 0 !important;
-
-				/* Rename input.
-                    ! DO NOT TOUCH PADDING! TXT BEHIND GOIN TO BE VISIBLE. WTF??? 
-                */
 				input {
 					// input rename border color on focused
 					--tw-ring-color: transparent !important;
-					caret-color: var(--c-accent);
+					caret-color: var(--c-txt);
 					border: none !important;
 					outline: none !important;
-					box-shadow: none !important;
+					// box-shadow: none !important;
 				}
 			}
+
+			/* 3 dots > "Rename" clicked - style of input parent and input  - this is <div> next to <a> */
+			// .bg-token-surface-tertiary {
+			// 	padding: var(--p-sidebar-nav-a) !important;
+			// 	color: var(--c-txt) !important;
+			// 	background-color: var(
+			// 		--c-surface-3
+			// 	) !important; // NOTE: bg can't be transparent-ish; it cause txt behind to be visible
+			// 	border: 1px solid var(--c-border) !important;
+			// 	border-radius: var(--br-nav-a) !important;
+
+			// 	/* This make it full width of <li>, from left to right */
+			// 	left: 0 !important;
+			// 	right: 0 !important;
+
+			// 	/* Rename input.
+			//         ! DO NOT TOUCH PADDING! TXT BEHIND GOIN TO BE VISIBLE. WTF???
+			//     */
+			// 	input {
+			// 		// input rename border color on focused
+			// 		--tw-ring-color: transparent !important;
+			// 		caret-color: var(--c-accent);
+			// 		border: none !important;
+			// 		outline: none !important;
+			// 		box-shadow: none !important;
+
+			// 		&:focus {
+			// 			border: none !important;
+			// 			outline: none !important;
+			// 		}
+			// 	}
+			// }
 		}
 	}
 

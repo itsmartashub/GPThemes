@@ -136,31 +136,6 @@ main [data-testid^='conversation-turn-'] {
 		color: var(--c-accent) !important;
 	}
 
-	// /* Response 1 or Response 2 chat bubble when we have to choose 1 answer */
-	// button[class*='hover:border-[var(--avatar-color)]'] {
-	// 	border-radius: var(--br-chat-bubble) !important;
-	// 	padding: 2rem;
-	// 	transition: transform 0.3s $easeInOutSine, border 0.3s $easeInOutSine;
-	// 	box-shadow: 0 0 0px 0px transparent;
-
-	// 	&:hover {
-	// 		box-shadow: var(--box-shadow-contextmenu);
-	// 		transform: translateY(-5px);
-	// 	}
-
-	// 	/* GPT logo */
-	// 	.rounded-full svg {
-	// 		color: var(--c-surface-1) !important;
-	// 	}
-
-	// 	/* "Response 1", "Response 2" txt */
-	// 	.text-sm.text-token-text-tertiary {
-	// 		text-transform: uppercase;
-	// 		color: var(--c-avatar) !important; // iliti zelena kao i svg
-	// 		font-weight: bold;
-	// 	}
-	// }
-
 	/* @ RIGHT - CHATS BUBBLES - USER  */
 	// There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario
 	&:has([data-message-author-role='user']) {
@@ -273,8 +248,7 @@ main [data-testid^='conversation-turn-'] {
 
 		/* Response 1 or Response 2 chat bubble when we have to choose 1 answer */
 		& > div:first-child button:has([data-message-author-role='assistant']) {
-			// border: 2px solid red !important;
-
+			// background-color: var(--c-bg-msg-gpt) !important;
 			border-radius: var(--br-chat-bubble) !important;
 			padding: 2rem;
 			transition: transform 0.3s $easeInOutSine, border 0.3s $easeInOutSine;
