@@ -2,7 +2,6 @@
 
 /* 
 - Textarea msg bg. 
-- "Share link to chat" dialog chat min duplicate (.bg-white)
 - Chat history & Training" checkbox bullet
  */
 .bg-gray-900,
@@ -78,7 +77,6 @@
 /* 
 - "Shared links" PAGE - overall BG !!!!
 - GPTS store PAGE - "Search public GPTs" search input bg. Nema klase za light temu te selektujem klasom za darks 
-- Bg of mini chat-bubble in "Share link to chat" dialog.
 - Textarea in [role="dialog"] */
 [class*='dark:bg-gray-800'] {
 	background-color: var(--c-bg-chats-container) !important; // var(--c-surface-3)
