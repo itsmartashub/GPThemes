@@ -7,9 +7,9 @@
 	box-shadow: var(--box-shadow-contextmenu) !important;
 	// transition: all 0.3s ease-in-out;
 
-	&:not(nav[aria-label='Chat history'] .group[data-headlessui-state] [role='menu']) {
-		@extend %animFadeInClipPath;
-	}
+	// &:not(nav[aria-label='Chat history'] .group[data-headlessui-state] [role='menu']) {
+	// 	@extend %animFadeInClipPath;
+	// }
 
 	[role='menuitem'] {
 		background-color: inherit !important;
@@ -68,12 +68,12 @@ div[data-radix-popper-content-wrapper] {
 	}
 
 	/* Mora not role=menu da ne bih selektovala i onaj contextmenu u sidebar kad se klikne na prompt listitem 3 dots za opcije i div[data-radix-popper-content-wrapper]:has([role='tooltip']) da ne bih selektovala tooltip */
-	&:not(
-			div[data-radix-popper-content-wrapper]:has(div[role='menu']),
-			div[data-radix-popper-content-wrapper]:has([role='tooltip'])
-		) {
-		@extend %animFadeInClipPath;
-	}
+	// &:not(
+	// 		div[data-radix-popper-content-wrapper]:has(div[role='menu']),
+	// 		div[data-radix-popper-content-wrapper]:has([role='tooltip'])
+	// 	) {
+	// 	@extend %animFadeInClipPath;
+	// }
 
 	/* Context menu bg */
 	// .bg-white {

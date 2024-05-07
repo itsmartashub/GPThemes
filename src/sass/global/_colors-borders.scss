@@ -50,3 +50,8 @@ html.light [class*=':border-white/10'] {
 	// --border-medium: transparent !important;
 	border: none !important;
 }
+
+/* div[role='separator'] {
+	// --border-light: var(--c-border) !important;
+	--border-light: red !important;
+} */

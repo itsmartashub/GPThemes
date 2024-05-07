@@ -24,7 +24,7 @@
 	}
 } */
 
-@keyframes animFadeInClipPath {
+/* @keyframes animFadeInClipPath {
 	0% {
 		opacity: 0;
 		clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
@@ -33,7 +33,7 @@
 		opacity: 1;
 		clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 	}
-}
+} */
 
 @keyframes animFadeIn {
 	from {
