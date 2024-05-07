@@ -149,13 +149,28 @@
 	}
 
 	/* ___ Dialog - "Share Link to Chat"  */
-	&:has(input[value^="https://chatgpt.com/share/"])
+	&:has(input[value^="https://chatgpt.com/share/"]),
+	&:has(input[value^="https://chat.openai.com/share/"]) // "PUBLIC LINK UPDATED"
 	{
 		--main-surface-primary: var(--c-surface-3) !important; // bg of link preview and "🔗 Create Link" btn
 
 		// bg-gradient of link preview
 		.from-token-main-surface-primary {
 			--gradient-color-from: --main-surface-primary;
+		}
+
+		/* PUBLIC LINK UPDATED - Social platforms in show in footer after the  "🔗 Copy Link" btn */
+		a[href*='linkedin'],
+		a[href*='facebook'],
+		a[href*='reddit'],
+		a[href*='twitter'] {
+			& + span {
+				color: var(--c-accent);
+				background-color: hsla(var(--accent-hsl) / 0.15) !important;
+				padding: 3px 8px;
+				border-radius: 50vw;
+				font-weight: 600;
+			}
 		}
 	}
 
