@@ -230,29 +230,15 @@ main [data-testid^='conversation-turn-'] {
 		// & > div > div {
 		& > div:first-child > div:first-child {
 			background-color: var(--c-bg-msg-gpt);
-
-			/* ! REMOVED DUE TO NEW CHANGES BY GPT...*/
-			/* Chats bubble gpt image */
-			/* [style^='background-color']:has(svg) {
-				background-color: var(--c-avatar) !important;
-			}
-			svg[role='img'] {
-				color: var(--c-surface-1) !important;
-			} */
 		}
-
-		/*  Chat bubble footer SVG icons, ali koje nisu .popover, jer je ovo " kada selektujemo neki txt u gpt bubble, pa onaj "Reply" */
-		/* button:not(.popover) svg {
-			color: var(--c-avatar);
-		} */
 
 		/* Response 1 or Response 2 chat bubble when we have to choose 1 answer */
 		& > div:first-child button:has([data-message-author-role='assistant']) {
-			// background-color: var(--c-bg-msg-gpt) !important;
+			background-color: var(--c-bg-msg-gpt) !important;
 			border-radius: var(--br-chat-bubble) !important;
 			padding: 2rem;
-			transition: transform 0.3s $easeInOutSine, border 0.3s $easeInOutSine;
 			box-shadow: 0 0 0px 0px transparent;
+			transition: transform 0.3s $easeInOutSine, border 0.3s $easeInOutSine;
 
 			&:hover {
 				box-shadow: var(--box-shadow-contextmenu);
