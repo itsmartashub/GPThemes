@@ -51,11 +51,8 @@ nav[aria-label='Chat history'] {
 		}
 	}
 
-	/*
-	Parent of time heading (of Today, Yesterday) in sidebar.
-	! div:has(> h3)  is selector for the same but in GPTs page !!! */
-	[data-projection-id]:has(h3),
-	div:has(> h3) {
+	/* Parent of time heading (of Today, Yesterday) in sidebar. */
+	span:has(> h3) {
 		margin-top: 1.5rem !important;
 		margin-bottom: 0.3rem !important;
 
