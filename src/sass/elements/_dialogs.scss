@@ -279,14 +279,14 @@
 			color: var(--c-on-accent) !important;
 		}
 
-		&:has([href^='/g/g-']) {
+		&:has([href*='/g/g-']) {
 			/* "Conversation Starters" example bubbles */
-			.bg-token-main-surface-primary[href^='/g/g-'] {
+			.bg-token-main-surface-primary[href*='/g/g-'] {
 				--main-surface-primary: var(--c-surface-3) !important;
 				--main-surface-secondary: hsla(var(--accent-hsl) / 0.4) !important;
 
 				/* "Conversation Starters" bubble shape on bottom left */
-				.bg-token-main-surface-primary {
+				.absolute.border-token-border-medium {
 					display: none;
 				}
 			}
@@ -294,6 +294,16 @@
 			/* "More by [creator_name]" product card element  */
 			.bg-token-main-surface-secondary {
 				--main-surface-secondary: var(--c-surface-3) !important;
+			}
+		}
+
+		/* GPTs Store - Close btn in product dialog */
+		.fixed.left-4.right-4 {
+			.btn-secondary {
+				background-color: transparent !important;
+				padding: 0px !important;
+				transform: none !important;
+				height: 2.25rem; // GPT's 3-dots height
 			}
 		}
 	}
