@@ -72,17 +72,15 @@
 	--main-surface-primary: var(--c-surface-2) !important;
 
 	/*
-	- markdown header bg
-	- footer of mini chat preview in "Share Link to Chat" */
+	- markdown header bg */
 	--main-surface-secondary: var(--c-surface-2) !important;
 
-	/* 
-	- border-clr of footer of mini chat preview in "Share Link to Chat",
-	- "Any personalized data not present in the conversation won’t be shared with viewers (ex: custom instructions)." bg in "Share Link to Chat" */
+	/* ??? */
 	--main-surface-tertiary: var(--c-surface-3);
 
 	/* sidebar collapse btn */
-	--text-quaternary: var(--c-surface-2);
+	--text-quaternary: var(--c-surface-3) !important;
+	// --text-quaternary: red;
 
 	/* .bg-token-popover-surface-primary  
 	- contextmenu in theme dropdown chooser
@@ -98,6 +96,12 @@
 	--text-primary: var(--c-txt) !important;
 	--text-secondary: var(--c-subtext-1) !important;
 	--text-tertiary: var(--c-subtext-2) !important;
+
+	--text-error: var(--c-danger) !important;
+
+	// .text-token-text-error {
+	// 	color: var(--text-error);
+	// }
 
 	// --c-avatar: var(--avatar-color, #19c37d);
 	--c-avatar: var(--avatar-color, #19c37d);
@@ -378,6 +382,9 @@ html.dark {
 	// --box-shadow-contextmenu: 0px 0px 30px -10px hsla(var(--accent-hsl) / 0.18);
 	--box-shadow-contextmenu: inset 0px 0px 12px 1px hsla(var(--accent-hsl) / 0.13);
 	--box-shadow-textarea: inset 0px 0px 15px 1px hsla(var(--accent-hsl) / 0.05) !important;
+
+	/* sidebar collapse btn */
+	// --text-quaternary: var(--c-accent-light) !important;
 }
 
 /* @ ================== OLED ================== */

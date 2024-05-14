@@ -136,31 +136,6 @@ main [data-testid^='conversation-turn-'] {
 		color: var(--c-accent) !important;
 	}
 
-	// /* Response 1 or Response 2 chat bubble when we have to choose 1 answer */
-	// button[class*='hover:border-[var(--avatar-color)]'] {
-	// 	border-radius: var(--br-chat-bubble) !important;
-	// 	padding: 2rem;
-	// 	transition: transform 0.3s $easeInOutSine, border 0.3s $easeInOutSine;
-	// 	box-shadow: 0 0 0px 0px transparent;
-
-	// 	&:hover {
-	// 		box-shadow: var(--box-shadow-contextmenu);
-	// 		transform: translateY(-5px);
-	// 	}
-
-	// 	/* GPT logo */
-	// 	.rounded-full svg {
-	// 		color: var(--c-surface-1) !important;
-	// 	}
-
-	// 	/* "Response 1", "Response 2" txt */
-	// 	.text-sm.text-token-text-tertiary {
-	// 		text-transform: uppercase;
-	// 		color: var(--c-avatar) !important; // iliti zelena kao i svg
-	// 		font-weight: bold;
-	// 	}
-	// }
-
 	/* @ RIGHT - CHATS BUBBLES - USER  */
 	// There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario
 	&:has([data-message-author-role='user']) {
@@ -218,9 +193,6 @@ main [data-testid^='conversation-turn-'] {
 	}
 	/* User chat bubble - Edit state. There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario */
 	&:has(textarea) {
-		/* 		.flex.flex-grow.flex-col.max-w-full > div {
-			@extend %animFadeIn;
-		} */
 		// .group {
 		& > div:first-child > div:first-child {
 			background-color: var(--c-bg-chats-container) !important;
@@ -258,30 +230,15 @@ main [data-testid^='conversation-turn-'] {
 		// & > div > div {
 		& > div:first-child > div:first-child {
 			background-color: var(--c-bg-msg-gpt);
-
-			/* ! REMOVED DUE TO NEW CHANGES BY GPT...*/
-			/* Chats bubble gpt image */
-			/* [style^='background-color']:has(svg) {
-				background-color: var(--c-avatar) !important;
-			}
-			svg[role='img'] {
-				color: var(--c-surface-1) !important;
-			} */
 		}
-
-		/*  Chat bubble footer SVG icons, ali koje nisu .popover, jer je ovo " kada selektujemo neki txt u gpt bubble, pa onaj "Reply" */
-		/* button:not(.popover) svg {
-			color: var(--c-avatar);
-		} */
 
 		/* Response 1 or Response 2 chat bubble when we have to choose 1 answer */
 		& > div:first-child button:has([data-message-author-role='assistant']) {
-			// border: 2px solid red !important;
-
+			background-color: var(--c-bg-msg-gpt) !important;
 			border-radius: var(--br-chat-bubble) !important;
 			padding: 2rem;
-			transition: transform 0.3s $easeInOutSine, border 0.3s $easeInOutSine;
 			box-shadow: 0 0 0px 0px transparent;
+			transition: transform 0.3s $easeInOutSine, border 0.3s $easeInOutSine;
 
 			&:hover {
 				box-shadow: var(--box-shadow-contextmenu);
@@ -298,6 +255,21 @@ main [data-testid^='conversation-turn-'] {
 				text-transform: uppercase;
 				color: var(--c-accent) !important; // iliti zelena kao i svg
 				font-weight: bold;
+			}
+		}
+	}
+}
+
+/* Collapse sidebar btn - hover state*/
+main {
+	[class*='fixed left-0 top-1/2']:has(button) {
+		.rounded-full {
+			transition: background-color 0.2s ease-in-out;
+		}
+
+		&:hover {
+			.rounded-full {
+				background-color: var(--c-accent) !important;
 			}
 		}
 	}

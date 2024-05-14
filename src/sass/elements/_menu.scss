@@ -1,15 +1,8 @@
 [role='menu'] {
 	background-color: var(--c-bg-contextmenu) !important;
 	border-radius: var(--br-contextmenu) !important;
-	// border: none !important;
 	padding: var(--p-contextmenu) !important;
-	// border: 1px solid hsla(var(--accent-hsl) / 0.2) !important;
 	box-shadow: var(--box-shadow-contextmenu) !important;
-	// transition: all 0.3s ease-in-out;
-
-	&:not(nav[aria-label='Chat history'] .group[data-headlessui-state] [role='menu']) {
-		@extend %animFadeInClipPath;
-	}
 
 	[role='menuitem'] {
 		background-color: inherit !important;
@@ -45,12 +38,30 @@
 
 // TODO check if this broke something else because it is the element hard for targeting
 /* "New Chat" xs in contextmenu in ChatGPT 3.5 */
-[data-radix-popper-content-wrapper] .absolute.right-11 {
-	--svg-w: 24px;
-	--gap-from-svg: 20px;
-	right: calc(
-		var(--p-contextmenu) + var(--svg-w) + var(--gap-from-svg)
-	) !important; // p-contextmenu = 10px, svg-w = 24px, gap-from-svg = 20px = (10px + 24px + 20px) = 54px. This is calculated spacing of "New Chat" in contextmenu in ChatGPT 3.5 and right edge in contextmenuitem
+[data-radix-popper-content-wrapper] {
+	// .absolute.right-11 {
+	// 	// --svg-w: 24px;
+	// 	// --gap-from-svg: 20px;
+	// 	// right: calc(
+	// 	// 	var(--p-contextmenu) + var(--svg-w) + var(--gap-from-svg)
+	// 	// ) !important; // p-contextmenu = 10px, svg-w = 24px, gap-from-svg = 20px = (10px + 24px + 20px) = 54px. This is calculated spacing of "New Chat" in contextmenu in ChatGPT 3.5 and right edge in contextmenuitem
+	// }
+
+	/* ChatGPT 3.5 contextmenu item that has "New Chat" txt and icon */
+	[role='menuitem']:has(.absolute.right-11) {
+		--text-primary: var(--c-txt); // fix "New Chat 📝" color
+		--anim-duration: 0.3s;
+
+		/* ChatGPT 3.5 contextmenu item ✔️ svg in "GPT-3.5" item, or should be in active model */
+		svg {
+			transition: none !important;
+		}
+
+		/* ChatGPT 3.5 contextmenu item that direclty has "New Chat" txt and icon */
+		.hidden:has(> .absolute.right-11) {
+			@extend %animFadeIn;
+		}
+	}
 }
 
 /* __ MODAL - Choose theme context menu & tooltips?  */
@@ -68,12 +79,12 @@ div[data-radix-popper-content-wrapper] {
 	}
 
 	/* Mora not role=menu da ne bih selektovala i onaj contextmenu u sidebar kad se klikne na prompt listitem 3 dots za opcije i div[data-radix-popper-content-wrapper]:has([role='tooltip']) da ne bih selektovala tooltip */
-	&:not(
-			div[data-radix-popper-content-wrapper]:has(div[role='menu']),
-			div[data-radix-popper-content-wrapper]:has([role='tooltip'])
-		) {
-		@extend %animFadeInClipPath;
-	}
+	// &:not(
+	// 		div[data-radix-popper-content-wrapper]:has(div[role='menu']),
+	// 		div[data-radix-popper-content-wrapper]:has([role='tooltip'])
+	// 	) {
+	// 	@extend %animFadeInClipPath;
+	// }
 
 	/* Context menu bg */
 	// .bg-white {
@@ -141,4 +152,33 @@ div[data-radix-popper-content-wrapper] {
 	// --text-primary: var(--white)!important;
 	// --text-secondary: var(--gray-200)!important;
 	// --text-tertiary: var(--gray-300)!important;
+}
+
+/* Settings > Language > dropdown which is rendered into body>direct  */
+/* div:has(> div[role='listbox']:has(data-radix-select-viewport[role='presentation']:has([role='option']))) {
+	border: 3px solid red !important;
+	z-index: calc(var(--z-modal) + 200) !important;
+} */
+
+/*
+	Settings > Language > dropdown which is rendered into body>direct.
+	.absolute.inset-0:has(.fixed.inset-0) is a modal */
+body > .absolute.inset-0:has(.fixed.inset-0) + div:not([data-radix-popper-content-wrapper]):has(> div[role='listbox']) {
+	z-index: calc(var(--z-modal) + 200) !important;
+
+	[role='listbox'] {
+		@extend [role='menu'];
+
+		[role='option'] {
+			background-color: inherit !important;
+			padding: var(--p-contextmenu-item) !important;
+			border-radius: var(--br-btn) !important;
+			transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+			outline: none !important;
+
+			&:hover {
+				background-color: var(--c-bg-contextmenu-item) !important;
+			}
+		}
+	}
 }

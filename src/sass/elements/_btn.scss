@@ -19,6 +19,10 @@
 	color: var(--c-bg-chats-container) !important;
 }
 
+// .btn-secondary {
+// 	background-color: red !important;
+// }
+
 /* === RIGHT - Scroll Down arrow bg LIGHT  === */
 // html.light main [role="presentation"] button.absolute.rounded-full {
 //     background-color: var(--c-txt) !important;
@@ -72,6 +76,8 @@ main [role='presentation'] button.absolute.rounded-full {
 
 /* === Checkbox button - switcher. In "Chat history & training: and "Custom instructions" */
 button[role='switch'] {
+	border: 1px solid hsla(var(--accent-hsl) / 0.5) !important;
+
 	/* Checkbox ON */
 	&:has([data-state='checked']) {
 		background-color: var(--c-accent) !important;
@@ -114,4 +120,9 @@ button[id*='headlessui-menu-button'][class*='rounded-full'] {
 /* Intro page (before Login or Register) */
 button[class*='bg-[#3C46FF] text-[#fff]'] {
 	@extend .btn;
+}
+/* "Upgrade to Plus" btn in ChatGPT 3.5 contextmenu */
+button[class*='bg-brand-purple'] {
+	background-color: var(--c-accent) !important;
+	color: var(--c-on-accent) !important;
 }

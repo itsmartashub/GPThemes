@@ -92,13 +92,6 @@ button[role='switch'] {
 	span[data-state] {
 		transition: transform 0.4s $easeInOutBack, background-color 0.3s ease-in-out;
 	}
-
-	&:hover {
-		span[data-state] {
-			/* Ovo se kosi sa openai klasama, jer on dodaje translate-x -19px, pa se circle pomera levo, sto i nije lose, lol. Ako to ne zelimo, mozemo koristiti scale umesto transform: scale */
-			transform: scale(0.8);
-		}
-	}
 }
 
 /* ___ New Chat big buttons */

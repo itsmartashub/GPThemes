@@ -51,11 +51,8 @@ nav[aria-label='Chat history'] {
 		}
 	}
 
-	/*
-	Parent of time heading (of Today, Yesterday) in sidebar.
-	! div:has(> h3)  is selector for the same but in GPTs page !!! */
-	[data-projection-id]:has(h3),
-	div:has(> h3) {
+	/* Parent of time heading (of Today, Yesterday) in sidebar */
+	span:has(> h3) {
 		margin-top: 1.5rem !important;
 		margin-bottom: 0.3rem !important;
 
@@ -105,25 +102,13 @@ nav[aria-label='Chat history'] {
 		margin-bottom: var(--mb-sidebar-nav-li) !important;
 
 		.group {
-			--duration-trans: 0.3s;
-			--duration-anim: 0.2s;
 			overflow: hidden;
 
 			/* Active sidebar list item */
-			/* 		&.bg-token-sidebar-surface-secondary,
-			&.bg-token-sidebar-surface-primary, */
 			&.bg-token-sidebar-surface-tertiary {
 				// background-color: var(--c-surface-2) !important;
 				opacity: 1 !important;
 			}
-
-			/* TODO mozda dodati opet u buducnosti. Sad nema poente, jer text parent ima overflow hidden i isece citav text, a ova animacija ga svakako opet samo prikaze onoliki koliki je. Ako stavim overlow: visible na hover, animacija je razlicito primenjena na svaki element, posto je width za svaki eelement razlicit u zavisnosti od duzine texta, i animacija ne moze sa istim durationom da bude ista, a sadrzaj treba mnogo vise da se skroluje. A ne zelim jos da koristim javascript za fetchvanje width-a svakog elementa posebno i onda posebni duration za svaki element u zavisnosti od duzine texta. A i preopteretila bi se extenzija da lupujem kroz svaki element, citam podatke i dodajem animaciju, samo zarad tog efekta. Nije vredno */
-			// &:hover {
-			// 	/* Anim long (all actually) txt to scroll left to be shown whole */
-			// 	a[href^='/c/'] > div.relative.grow.overflow-hidden.whitespace-nowrap {
-			// 		animation: animScrollText 3s $easeInOutSine backwards;
-			// 	}
-			// }
 
 			/* 3dots btn */
 			button {
@@ -143,20 +128,6 @@ nav[aria-label='Chat history'] {
 			}
 
 			a[href^='/c/'] {
-				/* & > div.relative.grow.overflow-hidden.whitespace-nowrap {
-					will-change: transform;
-				} */
-				/* ! NOW `.bg-token-surface-primary` IS DELETED BY OPENAI ffs*/
-				/* Selected/active/hover link item */
-				// &.bg-token-surface-primary {
-				//     background-color: var(--c-surface-2) !important;
-
-				//     /* 3 dots btn bg-gradient */
-				//     .bg-gradient-to-l {
-				//         opacity: 1 !important;
-				//     }
-				// }
-
 				/* 3 dots btn bg-gradient - <div> u <a> i <div> u <button> */
 				.bg-gradient-to-l {
 					display: none !important;
@@ -165,31 +136,56 @@ nav[aria-label='Chat history'] {
 			}
 
 			/* 3 dots > "Rename" clicked - style of input parent and input  - this is <div> next to <a> */
-			.bg-token-surface-tertiary {
-				padding: var(--p-sidebar-nav-a) !important;
-				color: var(--c-txt) !important;
-				background-color: var(
-					--c-surface-3
-				) !important; // NOTE: bg can't be transparent-ish; it cause txt behind to be visible
-				border: 1px solid var(--c-border) !important;
-				border-radius: var(--br-nav-a) !important;
+			&:has(input) {
+				// outline: 1px solid hsl(var(--accent-hsl) / 0.3);
+				outline: 2px solid var(--c-surface-2);
+				&,
+				& .bg-token-sidebar-surface-secondary {
+					background-color: var(--c-bg-sidebar) !important;
+					// color: var(--c-on-accent) !important;
+				}
 
-				/* This make it full width of <li>, from left to right */
-				left: 0 !important;
-				right: 0 !important;
-
-				/* Rename input.
-                    ! DO NOT TOUCH PADDING! TXT BEHIND GOIN TO BE VISIBLE. WTF??? 
-                */
 				input {
 					// input rename border color on focused
 					--tw-ring-color: transparent !important;
-					caret-color: var(--c-accent);
+					caret-color: var(--c-txt);
 					border: none !important;
 					outline: none !important;
-					box-shadow: none !important;
+					// box-shadow: none !important;
 				}
 			}
+
+			/* 3 dots > "Rename" clicked - style of input parent and input  - this is <div> next to <a> */
+			// .bg-token-surface-tertiary {
+			// 	padding: var(--p-sidebar-nav-a) !important;
+			// 	color: var(--c-txt) !important;
+			// 	background-color: var(
+			// 		--c-surface-3
+			// 	) !important; // NOTE: bg can't be transparent-ish; it cause txt behind to be visible
+			// 	border: 1px solid var(--c-border) !important;
+			// 	border-radius: var(--br-nav-a) !important;
+
+			// 	/* This make it full width of <li>, from left to right */
+			// 	left: 0 !important;
+			// 	right: 0 !important;
+
+			// 	/* Rename input.
+			//         ! DO NOT TOUCH PADDING! TXT BEHIND GOIN TO BE VISIBLE. WTF???
+			//     */
+			// 	input {
+			// 		// input rename border color on focused
+			// 		--tw-ring-color: transparent !important;
+			// 		caret-color: var(--c-accent);
+			// 		border: none !important;
+			// 		outline: none !important;
+			// 		box-shadow: none !important;
+
+			// 		&:focus {
+			// 			border: none !important;
+			// 			outline: none !important;
+			// 		}
+			// 	}
+			// }
 		}
 	}
 
@@ -209,7 +205,7 @@ nav[aria-label='Chat history'] {
 
 		/* Sidebar bottom - Log Out  */
 		[role='menu'] {
-			animation: none !important;
+			// animation: none !important;
 			// transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 			transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 

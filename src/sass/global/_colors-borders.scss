@@ -17,8 +17,7 @@
 	border: none;
 }
 
-/* "Upgrade your plan" dialog, "Share link to chat" dialog chat min duplicate, "Is this conversation helpful so far? 👍 👎 | ✖️"
-
+/* Border in "Is this conversation helpful so far? 👍 👎 | ✖️"
 TODO rewrite this to add border-color in "Is this conversation helpful so far? 👍 👎 | ✖️" */
 [class*='dark:border-gray-700'] {
 	border-color: transparent !important;
@@ -51,3 +50,8 @@ html.light [class*=':border-white/10'] {
 	// --border-medium: transparent !important;
 	border: none !important;
 }
+
+/* div[role='separator'] {
+	// --border-light: var(--c-border) !important;
+	--border-light: red !important;
+} */

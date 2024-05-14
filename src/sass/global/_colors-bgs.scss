@@ -2,7 +2,6 @@
 
 /* 
 - Textarea msg bg. 
-- "Share link to chat" dialog chat min duplicate (.bg-white)
 - Chat history & Training" checkbox bullet
  */
 .bg-gray-900,
@@ -78,7 +77,6 @@
 /* 
 - "Shared links" PAGE - overall BG !!!!
 - GPTS store PAGE - "Search public GPTs" search input bg. Nema klase za light temu te selektujem klasom za darks 
-- Bg of mini chat-bubble in "Share link to chat" dialog.
 - Textarea in [role="dialog"] */
 [class*='dark:bg-gray-800'] {
 	background-color: var(--c-bg-chats-container) !important; // var(--c-surface-3)
@@ -91,8 +89,9 @@
 	color: var(--c-on-accent) !important;
 }
 
-/* TOS - "This content may violate content policy..." (red) & "This content may violate our Terms of Use or usage policies." (orange) warnings */
-[class*='bg-red-500/10'],
+/* TOS - "This content may violate content policy..." (red) & "This content may violate our Terms of Use or usage policies." (orange) warnings. Also alert in "Share Link to Chat" dialog shown sometimes */
+// [class*='bg-red-500/10'],
+[class*='bg-red-500'],
 [class*='bg-orange-500/10'] {
 	background-color: hsla(var(--danger-hsl) / 0.11) !important;
 	color: var(--c-danger) !important;
@@ -169,3 +168,14 @@
 .from-token-main-surface-primary {
 	--main-surface-primary: var(--c-surface-2) !important;
 }
+
+/* 
+- When clicked on dropdown in Settings > Language list
+- "Conversation Starters" example bubbles in dialog in GPTs page when clicked on product */
+// .bg-token-main-surface-primary {
+// 	background-color: var(--c-surface-3) !important;
+
+// 	&:hover {
+// 		background-color: var(--c-surface-2) !important;
+// 	}
+// }
