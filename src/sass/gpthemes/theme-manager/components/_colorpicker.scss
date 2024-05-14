@@ -1,0 +1,87 @@
+.colorpicker {
+	// --colorpicker_shadow_color: hsla(0 0% var(--surface-l) / 0.8);
+	&-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1rem;
+	}
+
+	// --shadow-color: hsla(var(--accent-hsl) / 0.1);
+	// --shadow-values: 0 0 0 1px;
+	display: grid;
+	place-content: center;
+	place-items: center;
+	gap: 1rem;
+	padding: 1rem;
+	border-radius: 1rem;
+	font-size: 0.6rem;
+	text-transform: uppercase;
+	aspect-ratio: 1;
+	// box-shadow: var(--shadow-values) var(--shadow-color);
+	transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+	cursor: pointer;
+
+	background-image: linear-gradient(
+		135deg,
+		hsla(var(--accent-hsl) / 0.2) 0%,
+		hsla(var(--accent-hsl) / 0.03) 40%,
+		hsla(var(--accent-hsl) / 0.03) 60%,
+		hsla(var(--accent-hsl) / 0.1) 100%
+	);
+	border: 1px solid hsla(var(--accent-hsl) / 0.1);
+	backdrop-filter: blur(5px);
+
+	input[type='color'] {
+		--input_color_size: 2.4rem;
+		--br_colorpicker: 12px;
+		width: var(--input_color_size);
+		height: var(--input_color_size);
+		background-color: transparent;
+		// border: 5px solid var(--c-surface-3);
+		// outline: 5px solid var(--c-surface-3);
+		border-radius: var(--br_colorpicker);
+		cursor: pointer;
+		// transition: border-color 0.3s ease-in-out;
+
+		&::-webkit-color-swatch-wrapper {
+			padding: 0;
+			// border: none;
+			// outline: none;
+		}
+		&::-webkit-color-swatch {
+			border: none;
+			outline: none;
+			border-radius: var(--br_colorpicker);
+		}
+
+		/* &:hover {
+			background-color: transparent;
+			border-color: transparent;
+		} */
+	}
+
+	label {
+		cursor: pointer;
+
+		span {
+			font-weight: bold;
+		}
+	}
+
+	&:hover {
+		// --shadow-values: 0 0 0 2px;
+		transform: scale(0.98);
+		// background-color: var(--border-color);
+		// background-color: var(--shadow-color);
+		// border-color: transparent !important;
+		// opacity: 0.8;
+		// box-shadow: inset 0 0 10px 10px var(--c-surface-2);
+	}
+}
+
+/* html.dark .colorpicker {
+	--colorpicker_shadow_color: hsla(var(--accent-hsl) / 0.05);
+	box-shadow: var(--box-shadow-contextmenu);
+}
+ */

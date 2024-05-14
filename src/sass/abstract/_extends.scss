@@ -75,3 +75,15 @@
 	border-bottom-right-radius: inherit;
 	padding-left: 0.5rem;
 }
+
+%gpth_floating_icon {
+	background-image: linear-gradient(
+		135deg,
+		hsla(var(--accent-hsl) / 0.45) 0%,
+		hsla(var(--accent-hsl) / 0.1) 40%,
+		hsla(var(--accent-hsl) / 0.05) 60%,
+		hsla(var(--accent-hsl) / 0.45) 100%
+	);
+	border: 1px solid hsla(var(--accent-hsl) / 0.2);
+	backdrop-filter: blur(10px);
+}

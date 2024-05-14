@@ -1,13 +1,20 @@
 .gpth {
-	&__svg {
-		--svg-size: 2rem;
+	&__floating {
+		--floating-icon-size: 2.8rem;
 		--top: calc(var(--h-header) + 0.5rem);
 		--right: 1.3rem;
+		--floating-scale: 1.2;
+		--floating-rotate: 0;
 		position: fixed;
 		top: var(--top);
 		right: var(--right);
 		z-index: 10;
+		transform: scale(var(--floating-scale)) rotate(var(--floating-rotate));
 		transition: transform 0.8s $easeInOutCirc;
+
+		font-family: Söhne, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans',
+			sans-serif, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+			'Noto Color Emoji';
 
 		// this add only for Firefox
 		@-moz-document url-prefix() {
@@ -15,60 +22,58 @@
 		}
 
 		@include dev(mob) {
-			--right: 5 %;
-			--svg-size: 1.8rem;
+			--right: 5%;
+			--floating-icon-size: 1.8rem;
 		}
 
 		&--small {
-			--scale: 0.9;
-			transform: scale(var(--scale)) rotate(360deg);
+			--floating-scale: 1;
+			--floating-rotate: 360deg;
 
-			// @include dev(mob) {
-			// 	--scale: 0.;
-			// }
+			.gpth__floating-icon {
+				border: 1px solid hsla(var(--accent-hsl) / 0.2);
+			}
 		}
 
 		&-icon {
-			--icon-shadow-blur: 0px;
-			--icon-shadow-offset: 0.3em;
-			--icon-shadow-color: hsla(var(--accent-hsl) / 0.15);
 			position: relative;
 			display: grid;
 			place-items: center;
-			width: var(--svg-size);
-			height: var(--svg-size);
+			width: var(--floating-icon-size);
+			height: var(--floating-icon-size);
+			color: var(--c-accent);
+			background-image: linear-gradient(
+				135deg,
+				hsla(var(--accent-hsl) / 0.45) 0%,
+				hsla(var(--accent-hsl) / 0.1) 40%,
+				hsla(var(--accent-hsl) / 0.05) 60%,
+				hsla(var(--accent-hsl) / 0.45) 100%
+			);
+			// border: 1px solid hsla(var(--accent-hsl) / 0.2);
+			backdrop-filter: blur(10px);
+
 			border-radius: 50vw;
-			box-shadow: var(--box-shadow);
-			transition: transform 0.15s $easeOutCubic, outline 0.25s $easeOutCubic;
+			transition: transform 0.15s $easeOutCubic, background-color 0.3s $easeOutCubic;
 			cursor: pointer;
-
-			@include dev(mob) {
-				--icon-shadow-offset: 0.25em;
-			}
-
-			img {
-				object-fit: cover;
-				width: var(--svg-size);
-				height: var(--svg-size);
-				border-radius: 50vw;
-				box-shadow: 0px 0px var(--icon-shadow-blur) var(--icon-shadow-offset) hsla(var(--accent-hsl) / 0.3);
-				transition: box-shadow 0.2s $easeOutCubic;
-			}
 
 			&::after {
 				content: 'Change theme';
 				position: absolute;
 				top: 50%;
 				left: 0;
-				font-size: 0.75rem;
+				font-size: 0.865rem;
+				font-weight: 500;
 				border-radius: 1.2rem;
 				width: max-content;
 				height: max-content;
 				padding: 0.5rem 0.8rem;
 				pointer-events: none;
 				background-color: var(--c-bg-tooltip);
-				opacity: 0;
-				transform: translate(-100%, -50%);
+				color: var(--c-on-accent);
+				// color: var(--c-on-accent);
+				// opacity: 0;
+				transform-origin: right center;
+				transform: translate(-110%, -50%) scale(0);
 				transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 
 				@include dev(mob) {
@@ -77,22 +82,23 @@
 			}
 
 			&:hover {
-				--icon-shadow-blur: 30px;
-				--icon-shadow-offset: 1em;
-				--icon-shadow-color: hsla(var(--accent-hsl) / 0.2);
-				transform: scale(1) translateY(2px);
+				background-image: none;
+				background-color: var(--c-accent);
+				color: var(--c-on-accent);
 
-				// outline: 5px solid hsla(var(--accent-hsl) / 0.01);
-				// outline-offset: 8px;
-
+				svg {
+					transform: scale(1.1);
+				}
 				&::after {
-					opacity: 1;
-					transform: translate(-115%, -50%);
+					// opacity: 1;
+					transform: translate(-115%, -50%) scale(1);
 				}
 			}
 		}
 	}
 	&__options {
+		// --shadow-color: hsla(var(--accent-hsl) / 0.08);
+		// --shadow-values: inset 0 0 10px 5px;
 		pointer-events: none;
 		opacity: 0;
 		display: grid;
@@ -106,39 +112,104 @@
 		top: 150%;
 		transform: translateX(50%);
 		border-radius: 20vw;
-		background-color: var(--c-surface-3);
-		box-shadow: var(--box-shadow);
-
-		// background-image: linear-gradient(-135deg, #716782, #42335d, #2e1f48);
-		background-image: linear-gradient(135deg, #332250, #42335d 40%, #6c607f 100%);
-
 		clip-path: polygon(0 0, 100% 0, 100% 0, 0% 0);
-		transition: all 0.3s ease-in-out;
+		// background-color: hsla(var(--accent-hsl) / 0.12);
+		// box-shadow: var(--shadow-values) var(--shadow-color);
+		background-image: linear-gradient(
+			135deg,
+			hsla(var(--accent-hsl) / 0.2) 0%,
+			hsla(var(--accent-hsl) / 0.03) 40%,
+			hsla(var(--accent-hsl) / 0.03) 60%,
+			hsla(var(--accent-hsl) / 0.2) 100%
+		);
+		border: 1px solid hsla(var(--accent-hsl) / 0.2);
+		backdrop-filter: blur(10px);
+
+		transition: clip-path 0.3s $easeInOutCirc, opacity 0.3s ease-in-out;
 		backdrop-filter: blur(5px);
 
 		@include dev(mob) {
 			padding: 0.65rem;
 		}
 
-		&.gpth-options-shown {
+		&--shown {
 			opacity: 1;
 			pointer-events: all !important;
 			clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%) !important;
 
 			button {
-				transform: scale(1);
+				// --btn-scale: 1 !important;
+				transform: scale(1) !important;
 			}
 		}
 
-		h5 {
-			margin-bottom: 1rem;
-			display: inline-block;
-			font-size: 1.3rem;
-			letter-spacing: 1px;
-			font-weight: 100;
+		// h5 {
+		// 	margin-bottom: 1rem;
+		// 	display: inline-block;
+		// 	font-size: 1.3rem;
+		// 	letter-spacing: 1px;
+		// 	font-weight: 100;
+		// }
+
+		&-btns {
+			gap: 1rem;
+			display: grid;
+			// border-radius: var(--br-btn);
+
+			button {
+				--btn-size: 2rem;
+				// --btn-scale: 0;
+				cursor: pointer;
+				position: relative;
+				width: var(--btn-size);
+				height: var(--btn-size);
+				display: grid;
+				place-items: center;
+				line-height: 1;
+				border-radius: 50vw;
+				color: var(--c-accent);
+				// transform: scale(var(--btn-scale));
+				transform: scale(0);
+				transition: 0.3s linear;
+
+				.icon {
+					--icon-size: 1.5em;
+					height: var(--icon-size);
+					width: var(--icon-size);
+					// transition: stroke 0.3s ease;
+				}
+
+				&::after {
+					content: attr(data-gpth-theme);
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					width: max-content;
+					font-size: 0.7rem;
+					text-transform: uppercase;
+					font-weight: 700;
+					padding: 6px;
+					border-radius: 5px;
+					background-color: var(--c-accent);
+					color: var(--c-on-accent);
+					border-radius: 50vw;
+					opacity: 0;
+					transform: translate(-50%, 0%) scale(0);
+					transition: transform 0.3s $easeInOutCirc, opacity 0.4s linear;
+				}
+
+				&:hover {
+					color: transparent;
+					&::after {
+						opacity: 1;
+						transform: translate(-50%, -50%) scale(1);
+					}
+				}
+			}
 		}
 	}
-	&__themes {
+
+	/* 	&__themes {
 		display: grid;
 		place-items: center;
 
@@ -149,8 +220,7 @@
 
 			button {
 				--btn-size: 2rem;
-				--btn-bg: var(--c-surface-2);
-				--btn-shadow-color: var(--btn-bg);
+				--btn-scale: 0;
 				cursor: pointer;
 				position: relative;
 				width: var(--btn-size);
@@ -159,13 +229,15 @@
 				place-items: center;
 				line-height: 1;
 				border-radius: 50vw;
-				border: none;
-				background-color: var(--btn-bg);
-				// box-shadow: inset 0px 0px 5px 1px var(--btn-shadow-color);
-				// box-shadow: inset 0px 0px 8px 1px var(--btn-shadow-color);
-				// box-shadow: 0px 0px 5px 2px hsla(var(--accent-hsl) / 0.2)
-				transform: scale(0);
-				transition: background-color 0.2s ease, background-image 0.2s ease, transform 0.3s ease-in-out;
+				color: var(--c-accent);
+				transform: scale(var(--btn-scale));
+				transition: color 0.2s ease, transform 0.3s $easeInOutCirc;
+
+				.icon {
+					--icon-size: 1.5em;
+					height: var(--icon-size);
+					width: var(--icon-size);
+				}
 
 				&::after {
 					content: attr(data-gpth-theme);
@@ -173,44 +245,29 @@
 					top: 50%;
 					left: 50%;
 					width: max-content;
-					font-size: 0.8rem;
-					padding: 4px 4px;
+					font-size: 0.7rem;
+					text-transform: uppercase;
+					font-weight: 700;
+					padding: 6px;
 					border-radius: 5px;
-					background-color: var(--c-accent-light);
-					opacity: 0;
+					background-color: var(--c-accent);
+					color: var(--c-on-accent);
 					border-radius: 50vw;
+					opacity: 0;
 					transform: translate(-50%, -50%) scale(0);
-					transition: 0.25s ease-in-out;
+					transition: transform 0.3s $easeInOutCirc, opacity 0.4s linear;
 				}
 
 				&:hover {
-					--btn-bg: hsla(0, 0%, 0%, 0) !important;
-
-					&#dark {
-						background-image: none;
-					}
-
+					color: transparent;
 					&::after {
 						opacity: 1;
 						transform: translate(-50%, -50%) scale(1);
 					}
 				}
-
-				&#light {
-					--btn-bg: var(--c-accent-light);
-				}
-				&#dark {
-					--btn-shadow-color: hsla(255, 12%, 7%, 0.2);
-					--btn-bg: hsl(272, 19%, 20%);
-					background-image: linear-gradient(135deg, #8d80a0, #50416b, #2f1f49);
-				}
-				&#oled {
-					--btn-shadow-color: hsla(0, 0%, 100%, 0.2);
-					--btn-bg: #000;
-				}
 			}
 		}
-	}
+	} */
 
 	/* Jos ne koristim ovo. Za image upload */
 	/* 	&__upload {
@@ -324,7 +381,7 @@
 	} */
 }
 
-html.light {
+/* html.light {
 	& [data-gpth-theme]::after,
 	.gpth__svg-icon::after {
 		color: var(--c-txt);
@@ -334,5 +391,11 @@ html.dark {
 	& [data-gpth-theme]::after,
 	.gpth__svg-icon::after {
 		color: var(--c-on-accent);
+	}
+}
+ */
+html.light {
+	.gpth__floating-icon::after {
+		color: var(--c-txt);
 	}
 }

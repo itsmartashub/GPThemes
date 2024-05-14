@@ -1,0 +1,31 @@
+.blur-box {
+	--box_size: 3rem;
+	position: fixed;
+
+	width: var(--box_size);
+	height: var(--box_size);
+	background-color: var(--c-accent);
+	box-shadow: 0 0 100px 20px var(--c-accent);
+	border-radius: 50vw;
+	// opacity: 0.25;
+	opacity: 0.6;
+	filter: blur(40px);
+	z-index: -1;
+	user-select: none;
+	pointer-events: none;
+
+	&:nth-of-type(1) {
+		top: 2%;
+		right: 12%;
+	}
+	&:nth-of-type(2) {
+		top: 30%;
+		left: 0%;
+	}
+	&:nth-of-type(3) {
+		// --box_size: 2rem;
+
+		bottom: 0%;
+		left: 30%;
+	}
+}
