@@ -168,3 +168,14 @@
 .from-token-main-surface-primary {
 	--main-surface-primary: var(--c-surface-2) !important;
 }
+
+/* 
+- When clicked on dropdown in Settings > Language list
+- "Conversation Starters" example bubbles in dialog in GPTs page when clicked on product */
+// .bg-token-main-surface-primary {
+// 	background-color: var(--c-surface-3) !important;
+
+// 	&:hover {
+// 		background-color: var(--c-surface-2) !important;
+// 	}
+// }

@@ -322,21 +322,37 @@
 } */
 
 /* ! THIS WORKS */
-// .dark .popover {
-// 	// --main-surface-primary: red !important;
-// 	.bg-token-main-surface-primary {
-// 		background-color: var(--c-surface-1) !important;
-// 		// background-color: red !important;
-// 	}
-// }
-// .light .popover {
-// 	// --main-surface-primary: red !important;
+/* .dark .popover {
+	// --main-surface-primary: red !important;
+	.bg-token-main-surface-primary {
+		background-color: var(--c-surface-1) !important;
+		// background-color: red !important;
+	}
+}
+.light .popover {
+	// --main-surface-primary: red !important;
 
-// 	.from-token-main-surface-primary {
-// 		--gradient-color-from: var(--c-surface-3) !important;
-// 	}
-// 	.bg-token-main-surface-primary {
-// 		background-color: var(--c-surface-3) !important;
-// 		// background-color: red !important;
-// 	}
-// }
+	.from-token-main-surface-primary {
+		--gradient-color-from: var(--c-surface-3) !important;
+	}
+	.bg-token-main-surface-primary {
+		background-color: var(--c-surface-3) !important;
+		// background-color: red !important;
+	}
+}
+ */
+
+// [class*='popover'] {
+/* .dark .popover,
+.light .popover,
+.popover {
+	--main-surface-primary: red !important;
+	--main-surface-secondary: red !important;
+	--main-surface-tertiary: red !important;
+	--text-primary: red !important;
+	--text-secondary: red !important;
+	--text-tertiary: red !important;
+	--text-quaternary: red !important;
+	--sidebar-surface-primary: red !important;
+}
+ */

@@ -1,15 +1,8 @@
 [role='menu'] {
 	background-color: var(--c-bg-contextmenu) !important;
 	border-radius: var(--br-contextmenu) !important;
-	// border: none !important;
 	padding: var(--p-contextmenu) !important;
-	// border: 1px solid hsla(var(--accent-hsl) / 0.2) !important;
 	box-shadow: var(--box-shadow-contextmenu) !important;
-	// transition: all 0.3s ease-in-out;
-
-	// &:not(nav[aria-label='Chat history'] .group[data-headlessui-state] [role='menu']) {
-	// 	@extend %animFadeInClipPath;
-	// }
 
 	[role='menuitem'] {
 		background-color: inherit !important;
@@ -159,4 +152,33 @@ div[data-radix-popper-content-wrapper] {
 	// --text-primary: var(--white)!important;
 	// --text-secondary: var(--gray-200)!important;
 	// --text-tertiary: var(--gray-300)!important;
+}
+
+/* Settings > Language > dropdown which is rendered into body>direct  */
+/* div:has(> div[role='listbox']:has(data-radix-select-viewport[role='presentation']:has([role='option']))) {
+	border: 3px solid red !important;
+	z-index: calc(var(--z-modal) + 200) !important;
+} */
+
+/*
+	Settings > Language > dropdown which is rendered into body>direct.
+	.absolute.inset-0:has(.fixed.inset-0) is a modal */
+body > .absolute.inset-0:has(.fixed.inset-0) + div:not([data-radix-popper-content-wrapper]):has(> div[role='listbox']) {
+	z-index: calc(var(--z-modal) + 200) !important;
+
+	[role='listbox'] {
+		@extend [role='menu'];
+
+		[role='option'] {
+			background-color: inherit !important;
+			padding: var(--p-contextmenu-item) !important;
+			border-radius: var(--br-btn) !important;
+			transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+			outline: none !important;
+
+			&:hover {
+				background-color: var(--c-bg-contextmenu-item) !important;
+			}
+		}
+	}
 }
