@@ -43,17 +43,16 @@ main form div[class*='bg-[#f4f4f4]']:has(textarea#prompt-textarea) {
 		border-radius: calc(var(--br-prompt-textarea) / 1.5) !important;
 		padding: 0.8rem;
 	}
+
+	/* Attach files svg */
+	button[aria-label='Attach files'] {
+		color: var(--c-accent) !important;
+	}
 }
 
 /* === RIGHT - TEXTAREA part wrapper, margin-top ===*/
 main div[role='presentation'] div.w-full:has(form) {
 	margin-top: 0.5rem !important;
-}
-
-/* === RIGHT - TEXTAREA PARENT ===*/
-main div.flex.w-full.items-center > div {
-	box-shadow: none;
-	border: none;
 }
 
 html.dark[data-gptheme='oled'] main form div[class*='bg-[#f4f4f4]']:has(textarea#prompt-textarea) {

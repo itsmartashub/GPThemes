@@ -36,55 +36,20 @@
 	}
 }
 
-// TODO check if this broke something else because it is the element hard for targeting
-/* "New Chat" xs in contextmenu in ChatGPT 3.5 */
-[data-radix-popper-content-wrapper] {
-	[data-radix-menu-content]:has(a[href^="https://help.openai.com/"])
-	{
-		div:has(>a[href^="https://help.openai.com/"])
-		{
-			margin-bottom: 0.5rem;
-		}
-
-		/* ChatGPT 3.5 contextmenu item */
-		[role='menuitem'] {
-			span:has(> svg) {
-				background-color: hsla(var(--accent-hsl) / 0.11) !important;
-				svg {
-					color: var(--c-accent);
-				}
-			}
-		}
-	}
-}
-
 /* __ MODAL - Choose theme context menu & tooltips?  */
-div[data-radix-popper-content-wrapper] {
+[data-radix-popper-content-wrapper] {
 	z-index: calc(var(--z-modal) + 50) !important;
-	// z-index: 200 !important;
 
 	/* "Custom Instructions" dialog */
 	&:has([role='dialog']) {
 		/* "Custom Instructions" dialog context menu visible on textarea focus */
 		[role='dialog'] {
 			--box-shadow: var(--box-shadow-contextmenu) !important;
-			// box-shadow: var(--box-shadow-contextmenu) !important;
 		}
 	}
 
-	/* Mora not role=menu da ne bih selektovala i onaj contextmenu u sidebar kad se klikne na prompt listitem 3 dots za opcije i div[data-radix-popper-content-wrapper]:has([role='tooltip']) da ne bih selektovala tooltip */
-	// &:not(
-	// 		div[data-radix-popper-content-wrapper]:has(div[role='menu']),
-	// 		div[data-radix-popper-content-wrapper]:has([role='tooltip'])
-	// 	) {
-	// 	@extend %animFadeInClipPath;
-	// }
-
 	/* Context menu bg */
-	// .bg-white {
-	// .bg-token-popover-surface-primary
 	[role='listbox'] {
-		// background-color: var(--c-bg-contextmenu) !important;
 		padding: var(--p-contextmenu) !important;
 		border-radius: var(--br-contextmenu) !important;
 		box-shadow: var(--box-shadow-contextmenu) !important;
@@ -107,14 +72,14 @@ div[data-radix-popper-content-wrapper] {
 		margin-bottom: 4px;
 		overflow: visible !important;
 		outline: none !important;
-	}
 
-	/* MODAL - Choose theme context menuitem hover */
-	[data-radix-collection-item][data-state='unchecked'] {
-		&:hover {
-			// background-color: var(--c-surface-2) !important;
-			background-color: var(--c-bg-contextmenu-item) !important;
-			outline: none !important; // TODO this is temp fix. This ecause there were somewhite uglu outline on hover. But this also breaks :focus-visible accessibility style...
+		/* MODAL - Choose theme context menuitem hover */
+		&[data-state='unchecked'] {
+			&:hover {
+				// background-color: var(--c-surface-2) !important;
+				background-color: var(--c-bg-contextmenu-item) !important;
+				outline: none !important; // TODO this is temp fix. This ecause there were somewhite uglu outline on hover. But this also breaks :focus-visible accessibility style...
+			}
 		}
 	}
 
@@ -123,12 +88,48 @@ div[data-radix-popper-content-wrapper] {
 		background-color: var(--c-bg-btn) !important;
 		color: var(--c-on-accent) !important;
 	}
-}
 
-// .data-radix-popper-content-wrapper {
-// 	// z-index: calc(var(--z-modal) + 200) !important;
-// 	z-index: 200 !important;
-// }
+	/* "Parent of "Models ℹ️" heading in contextmenu in ChatGPT 3.5" */
+	[data-radix-menu-content]:has(a[href^="https://help.openai.com/"])
+	{
+		/* "Models ℹ️ heading in contextmenu in ChatGPT 3.5" */
+		div:has(>a[href^="https://help.openai.com/"])
+		{
+			margin-bottom: 0.5rem;
+		}
+
+		/* ChatGPT 3.5 contextmenu item */
+		[role='menuitem'] {
+			span:has(> svg) {
+				background-color: hsla(var(--accent-hsl) / 0.11) !important;
+				svg {
+					color: var(--c-accent);
+				}
+			}
+		}
+	}
+
+	/* Element visible when hover on "Attach Files" svg icon in prompt msg */
+	[data-side='top'] {
+		&,
+		span .rotate-45 {
+			background-color: var(--c-bg-tooltip) !important;
+			color: var(--c-txt) !important;
+		}
+	}
+}
+html.dark [data-radix-popper-content-wrapper] {
+	[data-side='top'] {
+		&,
+		span .rotate-45 {
+			color: var(--c-on-accent) !important;
+		}
+	}
+
+	button {
+		background-color: var(--c-surface-3) !important;
+	}
+}
 
 /* [role='menu'] for contextmenu */
 .popover {

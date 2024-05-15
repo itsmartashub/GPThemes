@@ -2,12 +2,11 @@
 div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
 	@extend %animFadeIn;
 
-	/* Tooltip and triangle bg */
-	// .bg-black not existing anymore, it is .bg-gray-950 now, but I select it via <div> tag
-
-	div {
-		background-color: var(--c-bg-tooltip) !important;
-		padding: var(--p-tooltips) !important;
+	&:not(&:has([data-side='top'])) {
+		div {
+			background-color: var(--c-bg-tooltip) !important;
+			padding: var(--p-tooltips) !important;
+		}
 	}
 }
 
