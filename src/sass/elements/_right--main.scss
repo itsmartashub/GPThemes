@@ -83,19 +83,18 @@ main [data-testid^='conversation-turn-'] {
 		}
 	}
 
-	/* RIGHT - CHATS USER/GPT NAMES */
-	.font-semibold.select-none {
-		text-transform: uppercase;
-		color: var(--c-accent);
-	}
-
 	/*  Chat bubble footer SVG icons - edit, read aloud, copy, regenerate, bad response */
-	.self-end button svg {
-		color: var(--c-accent) !important;
+	// .self-end button svg {
+	// 	color: var(--c-accent) !important;
+	// }
+
+	[class*='empty:hidden'] {
+		button svg {
+			color: var(--c-accent);
+		}
 	}
 
 	/* @ RIGHT - CHATS BUBBLES - USER  */
-	// There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario
 	&:has([data-message-author-role='user']) {
 		/*  RIGHT - CHATS BUBBLE BG */
 		& > div:first-child > div:first-child {
@@ -105,6 +104,28 @@ main [data-testid^='conversation-turn-'] {
 				padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.2);
 				border-radius: var(--br-chat-bubble) !important;
 			}
+		}
+
+		/* Reply in msg */
+		div:has(> svg + .line-clamp-3) {
+			position: relative;
+			padding: 5px 10px;
+			background-color: hsla(var(--accent-hsl) / 0.15);
+			color: var(--c-accent);
+			border-radius: var(--br-btn);
+			border-left: 5px solid var(--c-accent);
+
+			/* 			&::after {
+				content: '';
+				position: absolute;
+				height: 50%;
+				width: 3px;
+				background-color: var(--c-accent);
+				left: 8px;
+				border-radius: 5px;
+				top: 50%;
+				transform: translate(-50%, -50%);
+			} */
 		}
 	}
 
@@ -194,21 +215,6 @@ main [data-testid^='conversation-turn-'] {
 				text-transform: uppercase;
 				color: var(--c-accent) !important; // iliti zelena kao i svg
 				font-weight: bold;
-			}
-		}
-	}
-}
-
-/* Collapse sidebar btn - hover state*/
-main {
-	[class*='fixed left-0 top-1/2']:has(button) {
-		.rounded-full {
-			transition: background-color 0.2s ease-in-out;
-		}
-
-		&:hover {
-			.rounded-full {
-				background-color: var(--c-accent) !important;
 			}
 		}
 	}

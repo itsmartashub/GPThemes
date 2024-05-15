@@ -37,7 +37,7 @@ main form div[class*='bg-[#f4f4f4]']:has(textarea#prompt-textarea) {
 	}
 
 	/* "Reply" in msg textarea */
-	.bg-token-main-surface-secondary {
+	.bg-token-main-surface-primary {
 		background-color: var(--c-surface-3);
 		border-color: var(--c-accent);
 		border-radius: calc(var(--br-prompt-textarea) / 1.5) !important;
@@ -58,7 +58,7 @@ main div.flex.w-full.items-center > div {
 
 html.dark[data-gptheme='oled'] main form div[class*='bg-[#f4f4f4]']:has(textarea#prompt-textarea) {
 	/* "Reply" in msg textarea */
-	.bg-token-main-surface-secondary {
+	.bg-token-main-surface-primary {
 		background-color: var(--c-surface-2);
 	}
 }
