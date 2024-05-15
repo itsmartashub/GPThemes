@@ -9,7 +9,7 @@
 
 	/* ? --- Border-radius --- */
 	--br: 1rem;
-	--br-chat-bubble: calc(var(--br) * 2.55);
+	--br-chat-bubble: calc(var(--br) * 1.9);
 	--br-prompt-textarea: calc(var(--br) * 2.25);
 	--br-btn: calc(var(--br) / 1.1);
 	--br-btn-big: calc(var(--br) * 1.2);
@@ -20,7 +20,7 @@
 	--br-tooltips: var(--br-btn);
 
 	/* ? --- Paddings --- */
-	--p-chat-bubble: 1.5rem;
+	--p-chat-bubble: 1.2rem;
 	--p-contextmenu: 0.8rem;
 	--p-contextmenu-item: 0.9rem 1rem;
 	--p-prompt-textarea: 0.7rem;
@@ -76,7 +76,7 @@
 	--main-surface-secondary: var(--c-surface-2) !important;
 
 	/* ??? */
-	--main-surface-tertiary: var(--c-surface-3);
+	--main-surface-tertiary: var(--c-surface-3) !important;
 
 	/* sidebar collapse btn */
 	--text-quaternary: var(--c-surface-3) !important;

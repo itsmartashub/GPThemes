@@ -169,6 +169,12 @@
 	--main-surface-primary: var(--c-surface-2) !important;
 }
 
+/* .bg-token-main-surface-tertiary {
+	&:hover {
+		--main-surface-tertiary: greenyellow !important;
+		background-color: red !important;
+	}
+} */
 /* 
 - When clicked on dropdown in Settings > Language list
 - "Conversation Starters" example bubbles in dialog in GPTs page when clicked on product */
