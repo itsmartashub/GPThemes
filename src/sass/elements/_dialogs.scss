@@ -156,7 +156,7 @@
 
 		// bg-gradient of link preview
 		.from-token-main-surface-primary {
-			--gradient-color-from: --main-surface-primary;
+			--gradient-color-from: var(--main-surface-primary);
 		}
 
 		/* PUBLIC LINK UPDATED - Social platforms in show in footer after the  "🔗 Copy Link" btn */

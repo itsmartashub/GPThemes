@@ -84,10 +84,6 @@ main [data-testid^='conversation-turn-'] {
 	}
 
 	/*  Chat bubble footer SVG icons - edit, read aloud, copy, regenerate, bad response */
-	// .self-end button svg {
-	// 	color: var(--c-accent) !important;
-	// }
-
 	[class*='empty:hidden'] {
 		button svg {
 			color: var(--c-accent);
@@ -121,7 +117,7 @@ main [data-testid^='conversation-turn-'] {
 			border-radius: var(--br-btn);
 			border-left: 5px solid var(--c-accent);
 
-			/* 			&::after {
+			/* &::after {
 				content: '';
 				position: absolute;
 				height: 50%;
@@ -223,6 +219,42 @@ main [data-testid^='conversation-turn-'] {
 				color: var(--c-accent) !important; // iliti zelena kao i svg
 				font-weight: bold;
 			}
+		}
+
+		.overflow-hidden:has(> .divide-y) {
+			.from-token-main-surface-secondary {
+				--gradient-color-from: var(--c-surface-2) !important;
+
+				svg {
+					color: var(--c-accent) !important;
+				}
+			}
+
+			a {
+				border-radius: var(--br-btn);
+			}
+		}
+	}
+}
+
+/* "Searched x sites" Links wrapper! */
+html.dark main [data-testid^='conversation-turn-']:has([data-message-author-role='assistant']) {
+	.overflow-hidden:has(> .divide-y) {
+		.from-token-main-surface-secondary {
+			--gradient-color-from: var(--c-surface-3) !important;
+		}
+		a:hover {
+			background-color: var(--c-surface-3);
+		}
+	}
+}
+html[data-gptheme='oled'] main [data-testid^='conversation-turn-']:has([data-message-author-role='assistant']) {
+	.overflow-hidden:has(> .divide-y) {
+		.from-token-main-surface-secondary {
+			--gradient-color-from: var(--c-surface-2) !important;
+		}
+		a:hover {
+			background-color: var(--c-surface-2);
 		}
 	}
 }
