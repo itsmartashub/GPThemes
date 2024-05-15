@@ -169,7 +169,6 @@ html.light {
 	/* ? ========== Chat bubbles colors ========== */
 	--c-bg-msg-user: hsla(var(--accent-hsl) / 0.08);
 	--c-bg-msg-gpt: hsl(0 0% 84%);
-	--c-msg-name-user: var(--c-accent);
 
 	/* ? ========== Type message textarea colors ========== */
 	--c-bg-textarea: hsla(0, 0%, calc(var(--surface-l) / 1.05));
@@ -304,7 +303,6 @@ html.dark {
 	/* ? ========== Chat bubbles colors ========== */
 	--c-bg-msg-user: hsla(var(--accent-hsl) / 0.04);
 	--c-bg-msg-gpt: hsla(var(--accent-hsl) / 0.08);
-	--c-msg-name-user: var(--c-accent);
 	// --c-msg-name-gpt: var(--c-green);
 
 	/* ? ========== Type message textarea colors ========== */
@@ -447,8 +445,6 @@ html.dark[data-gptheme='oled'] {
 	// --c-bg-msg-gpt: hsla(var(--accent-hsl) / 0.08);
 	--c-bg-msg-user: hsl(var(--accent-h), calc(var(--surface-s) + 15%), calc(var(--surface-l) + 4%));
 	--c-bg-msg-gpt: hsl(var(--accent-h), calc(var(--surface-s) + 20%), calc(var(--surface-l) + 6%));
-	--c-msg-name-user: var(--c-accent);
-	// --c-msg-name-gpt: var(--c-green);
 
 	/* ? ========== Type message textarea colors ========== */
 	--c-bg-textarea: var(--c-surface-3);

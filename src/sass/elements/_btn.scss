@@ -1,5 +1,7 @@
 .btn {
-	background-color: var(--c-bg-btn) !important;
+	// background-color: var(--c-bg-btn) !important;
+	// background-color: hsla(var(--accent-hsl) / 0.18);
+
 	color: var(--c-btn) !important;
 	border-radius: var(--br-btn) !important;
 	border: none !important;
@@ -8,30 +10,33 @@
 		// padding: 1.5rem !important;
 		padding: var(--p-btn) !important;
 	}
+
+	&-primary {
+		background-color: var(--c-bg-btn) !important;
+	}
+	&-secondary {
+		// background-color: hsl(var(--accent-h), calc(var(--accent-s) / 1.8), var(--accent-l)) !important;
+		// background-color: hsl(var(--accent-h), calc(var(--accent-s) * 0.5), 50%) !important;
+
+		// background-color: hsl(var(--accent-h), calc(var(--accent-s) * 0.3), 55%) !important;
+		// color: var(--c-txt) !important;
+
+		// background-color: transparent !important;
+		color: var(--c-accent) !important;
+		background-color: hsla(var(--accent-hsl) / 0.15) !important;
+		backdrop-filter: blur(5px);
+		// outline: 2px solid var(--c-accent);
+	}
+	&-danger {
+		background-color: var(--c-danger) !important;
+		color: var(--c-bg-chats-container) !important;
+	}
+
+	&-green {
+		background-color: var(--c-accent) !important;
+	}
 }
 
-/* .btn-primary {
-    background-color: var(--c-bg-btn) !important;
-} */
-
-.btn-danger {
-	background-color: var(--c-danger) !important;
-	color: var(--c-bg-chats-container) !important;
-}
-
-// .btn-secondary {
-// 	background-color: red !important;
-// }
-
-/* === RIGHT - Scroll Down arrow bg LIGHT  === */
-// html.light main [role="presentation"] button.absolute.rounded-full {
-//     background-color: var(--c-txt) !important;
-// }
-
-/* === RIGHT - Scroll Down arrow bg DARK  === */
-// html.dark main [role="presentation"] button.absolute.rounded-full {
-//     background-color: var(--c-accent) !important;
-// }
 main [role='presentation'] button.absolute.rounded-full {
 	background-color: var(--c-accent) !important;
 	box-shadow: var(--box-shadow-contextmenu);
@@ -48,29 +53,32 @@ main [role='presentation'] button.absolute.rounded-full {
 		min-width: var(--min-w-btn);
 	}
 
-	&:not(.PopoverContent) .btn-neutral {
-		background-color: var(--c-surface-3) !important;
-		color: var(--c-txt) !important;
-	}
+	// &:not(.PopoverContent) .btn-neutral {
+	// 	background-color: var(--c-surface-3) !important;
+	// 	color: var(--c-txt) !important;
+	// }
 
-	/* ".PopoverContent" je recimo menu od btn u "Shared Link to Chat" 3dots menu (Shared your Name & Delete Link) */
-	&.PopoverContent {
-		.btn-neutral {
-			background-color: transparent !important;
-			color: var(--c-txt) !important;
-		}
-	}
+	// /* ".PopoverContent" je recimo menu od btn u "Shared Link to Chat" 3dots menu (Shared your Name & Delete Link) */
+	// &.PopoverContent {
+	// 	.btn-neutral {
+	// 		background-color: transparent !important;
+	// 		color: var(--c-txt) !important;
+	// 	}
+	// }
 }
 
 /* === Settings > Tabs === */
 [role='tablist'] button {
-	padding: var(--p-btn) !important;
+	padding: var(--p-btn);
 	background-color: transparent !important;
 
 	&[data-state='active'],
 	&:hover {
 		// TODO Ovo je ok za desktop, ali za manje je bolje surface-1. Takodje dodati horiz gap izmedju
-		background-color: var(--c-surface-3) !important;
+		// background-color: var(--c-surface-3) !important;
+		// @extend .btn-secondary;
+		background-color: var(--c-accent) !important;
+		color: var(--c-on-accent) !important;
 	}
 }
 
@@ -102,7 +110,8 @@ button[role='switch'] {
 /* === Settings > Theme selector drop down */
 button[role='combobox'] {
 	@extend .btn;
-	@extend .btn-neutral;
+	@extend .btn-secondary;
+	font-weight: 500 !important;
 	min-width: var(--min-w-btn);
 
 	/* Theme btn - fix height smaller then other btns */
