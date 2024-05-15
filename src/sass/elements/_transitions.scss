@@ -94,53 +94,53 @@ button[role='switch'] {
 	}
 }
 
-/* ___ New Chat big buttons */
-main form .grow .btn {
-	// transition: .4s $easeOutBack, background-color .3s ease-in-out opacity .3s ease-in-out;
+/* TODO REMOVED due to GPT4o! New Chat big buttons */
+// main form .grow .btn {
+// 	// transition: .4s $easeOutBack, background-color .3s ease-in-out opacity .3s ease-in-out;
 
-	/* Gradient bg visible on hover */
-	.bg-gradient-to-l {
-		transition: all 0.3s ease-in-out;
+// 	/* Gradient bg visible on hover */
+// 	.bg-gradient-to-l {
+// 		transition: all 0.3s ease-in-out;
 
-		/* Button SVG parent wrapper */
-		span[data-state] {
-			overflow: hidden;
-			padding: 4px; // because svg btn looks cut off in firefox, so add a little space around
+// 		/* Button SVG parent wrapper */
+// 		span[data-state] {
+// 			overflow: hidden;
+// 			padding: 4px; // because svg btn looks cut off in firefox, so add a little space around
 
-			/* Button w/ SVG */
-			// .bg-token-surface-primary { this class doesnt exist anymore...
-			.bg-token-main-surface-primary {
-				transform: translateY(120%) scale(0.5);
-				transition: transform 0.5s $easeOutBack;
-			}
-		}
-	}
+// 			/* Button w/ SVG */
+// 			// .bg-token-surface-primary { this class doesnt exist anymore...
+// 			.bg-token-main-surface-primary {
+// 				transform: translateY(120%) scale(0.5);
+// 				transition: transform 0.5s $easeOutBack;
+// 			}
+// 		}
+// 	}
 
-	&:hover {
-		background-color: var(--c-surface-3) !important;
-		transform: translateY(-4px);
+// 	&:hover {
+// 		background-color: var(--c-surface-3) !important;
+// 		transform: translateY(-4px);
 
-		.bg-gradient-to-l {
-			span[data-state] {
-				/* Button w/ SVG */
-				// .bg-token-surface-primary {
-				.bg-token-main-surface-primary {
-					transform: translateY(0%) scale(1);
-					opacity: 1 !important;
-				}
-			}
-		}
-	}
-}
+// 		.bg-gradient-to-l {
+// 			span[data-state] {
+// 				/* Button w/ SVG */
+// 				// .bg-token-surface-primary {
+// 				.bg-token-main-surface-primary {
+// 					transform: translateY(0%) scale(1);
+// 					opacity: 1 !important;
+// 				}
+// 			}
+// 		}
+// 	}
+// }
 
-/* ___ Textarea send message send-button */
-[data-testid='send-button']:not([disabled]) {
+/* TODO REMOVED due to GPT4o! Textarea send message send-button */
+/* [data-testid='send-button']:not([disabled]) {
 	transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out;
 
 	&:hover {
 		transform: translateY(-10%);
 	}
-}
+} */
 
 /* ___ Chat Bubbles */
 main [data-testid^='conversation-turn-'] {
