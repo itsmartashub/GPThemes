@@ -106,9 +106,15 @@ main [data-testid^='conversation-turn-'] {
 			}
 		}
 
+		/* Flex-end the Reply in user chat bubble */
+		[data-message-author-role='user'] {
+			align-items: flex-end !important;
+		}
+
 		/* Reply in msg */
 		div:has(> svg + .line-clamp-3) {
 			position: relative;
+			align-items: flex-end !important;
 			padding: 5px 10px;
 			background-color: hsla(var(--accent-hsl) / 0.15);
 			color: var(--c-accent);
@@ -133,9 +139,10 @@ main [data-testid^='conversation-turn-'] {
 	There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario */
 	div:has(> textarea) {
 		// .bg-token-main-surface-tertiary:has(> textarea) {
-		--main-surface-tertiary: hsla(var(--accent-hsl) / 0.18) !important;
+		--main-surface-tertiary: hsla(var(--accent-hsl) / 0.13) !important;
 		padding: var(--p-chat-bubble) !important;
 
+		/* Make the text in edit textarea to be the full-width */
 		textarea {
 			width: 100%;
 		}
