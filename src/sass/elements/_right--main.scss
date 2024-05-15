@@ -27,7 +27,7 @@ main [role='presentation'] {
 
 /* @ === RIGHT - CHATS BUBBLES ===*/
 main [data-testid^='conversation-turn-'] {
-	/* Edit icon in user chat for example, edit state user chat bg  */
+	/* Edit icon in user chat for example. Edit state user chat bg  */
 	--main-surface-tertiary: var(--c-surface-3) !important;
 	// --main-surface-tertiary: hsla(var(--c-accent-hsl) / 0.5) !important;
 
@@ -99,13 +99,10 @@ main [data-testid^='conversation-turn-'] {
 	&:has([data-message-author-role='user']) {
 		/*  RIGHT - CHATS BUBBLE BG */
 		& > div:first-child > div:first-child {
-			// background-color: var(--c-bg-msg-user);
-			// outline: 2px solid red !important;
-
 			/* ? gpt4o - User message */
 			[class*='group/text-message rounded-3xl bg-[#f4f4f4]'] {
 				background-color: var(--c-bg-msg-user);
-				padding: var(--p-chat-bubble);
+				padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.2);
 				border-radius: var(--br-chat-bubble) !important;
 			}
 		}

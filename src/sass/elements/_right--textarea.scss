@@ -1,20 +1,14 @@
 /* ===  RIGHT - TEXTAREA PARENT, message type and send button */
-// main form .overflow-hidden:has(textarea#prompt-textarea) {
-main form [class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea) {
+// main form [class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea) {
+main form div[class*='bg-[#f4f4f4]']:has(textarea#prompt-textarea) {
 	padding: var(--p-prompt-textarea) !important;
-	// background-color: transparent !important;
-	// background-color: var(--c-bg-chats-container) !important;
 	background-color: var(--c-bg-textarea) !important;
 	border-radius: var(--br-prompt-textarea) !important;
-	// border: 3px solid var(--c-border-textarea);
 	border: none !important;
 	box-shadow: var(--box-shadow-textarea);
 	transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-	// box-shadow: var(--box-shadow-contextmenu) !important;
 
 	&:has(textarea#prompt-textarea:focus) {
-		// box-shadow: var(--box-shadow-contextmenu) !important;
-		// border-color: transparent !important;
 		box-shadow: none !important;
 	}
 
@@ -23,7 +17,8 @@ main form [class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea) {
 	}
 
 	/* Send button */
-	button[data-testid='send-button'] {
+	// button[data-testid='send-button'] {
+	button.rounded-full {
 		background-color: var(--c-accent) !important;
 		color: var(--c-txt) !important;
 		border-color: var(--c-accent) !important;
@@ -38,20 +33,6 @@ main form [class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea) {
 
 		svg {
 			color: var(--c-on-accent) !important;
-		}
-	}
-
-	.absolute:has(button[aria-label='Stop generating']) {
-		right: 1.3rem !important;
-		bottom: 0.9rem !important;
-	}
-	button[aria-label='Stop generating'] {
-		border-color: var(--c-accent);
-		padding: 0.38rem !important;
-
-		svg {
-			color: var(--c-accent);
-			transform: scale(1.07);
 		}
 	}
 
@@ -75,7 +56,7 @@ main div.flex.w-full.items-center > div {
 	border: none;
 }
 
-html.dark[data-gptheme='oled'] main form [class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea) {
+html.dark[data-gptheme='oled'] main form div[class*='bg-[#f4f4f4]']:has(textarea#prompt-textarea) {
 	/* "Reply" in msg textarea */
 	.bg-token-main-surface-secondary {
 		background-color: var(--c-surface-2);

@@ -9,7 +9,8 @@
 
 	/* ? --- Border-radius --- */
 	--br: 1rem;
-	--br-chat-bubble: calc(var(--br) * 1.9);
+	// --br-chat-bubble: calc(var(--br) * 1.9);
+	--br-chat-bubble: 30px;
 	--br-prompt-textarea: calc(var(--br) * 2.25);
 	--br-btn: calc(var(--br) / 1.1);
 	--br-btn-big: calc(var(--br) * 1.2);
