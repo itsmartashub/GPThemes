@@ -2,18 +2,11 @@
 div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
 	@extend %animFadeIn;
 
-	&:not(&:has([data-side='top'])) {
-		div {
-			background-color: var(--c-bg-tooltip) !important;
-			padding: var(--p-tooltips) !important;
-		}
+	// &:not(&:has([data-side='top'])) {
+	div {
+		background-color: var(--c-bg-tooltip) !important;
+		padding: var(--p-tooltips) !important;
 	}
-}
-
-/* === TOOLTIPS text color === */
-html.light div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
-	// [class*='text-'] {
-	// 	color: var(--c-txt) !important;
 	// }
 
 	&:not(&:has([data-side='top'])) {
@@ -21,7 +14,27 @@ html.light div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
 			color: var(--c-txt) !important;
 		}
 	}
+
+	/* Links in tooltips shown when hovered on some search "Link" in GPT chat bubble */
+	&:has(a[href^='http']) {
+		a[href^='http'] {
+			color: currentColor !important;
+		}
+	}
 }
+
+/* === TOOLTIPS text color === */
+// html.light div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
+// 	// [class*='text-'] {
+// 	// 	color: var(--c-txt) !important;
+// 	// }
+
+// 	&:not(&:has([data-side='top'])) {
+// 		[class*='text-'] {
+// 			color: var(--c-txt) !important;
+// 		}
+// 	}
+// }
 html.dark div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
 	// [class*='text-'] {
 	// 	color: var(--c-on-accent) !important;
@@ -29,6 +42,12 @@ html.dark div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
 
 	&:not(&:has([data-side='top'])) {
 		[class*='text-'] {
+			color: var(--c-on-accent) !important;
+		}
+	}
+
+	&:has(a[href^='http']) {
+		a[href^='http'] {
 			color: var(--c-on-accent) !important;
 		}
 	}

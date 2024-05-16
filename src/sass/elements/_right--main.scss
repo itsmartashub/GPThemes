@@ -167,6 +167,14 @@ main [data-testid^='conversation-turn-'] {
 			/* 
 			0.75rem = gap-3 = gap between profile svg/img and right content
 			2.25rem = w-9 = gpt profile svg parent width */
+
+			/* ! TODO - BY COMMENTING THIS WE FIX MUPLIPLE BUGS IN GPT CHAT LIKE LINKS WRAPPED IN MANY ROWS AND TOOLTIP FOR "REPLY" OR LINK PREVIEW TOOLTIP NOT POSITIONING CORRECTLY. BUT IF WE REMOVE THIS, THEN GPT CHAT'S BUBBLE WIDTH LOOKS SO ODD!!! WITH MARKDOWN/<PRE> ELEMENTS RENDERED THO
+			This mostly happend bcs of this:
+
+		````  span[data-state] {
+		```		  display: flex;
+		````	  place-items: center;
+		```    } */
 			.relative.flex.w-full.flex-col {
 				--svg-w: 2.25rem;
 				--svg-gap: 0.75rem;
@@ -175,10 +183,11 @@ main [data-testid^='conversation-turn-'] {
 					100% - var(--svg-w) - var(--svg-gap) - var(--p-chat-bubble)
 				) !important; // more consistent width (right chat bubble spacing = left spacing)
 
-				span[data-state] {
+				/* This break links in markdown, make them wrapped */
+				/* span[data-state] {
 					display: flex;
 					place-items: center;
-				}
+				} */
 
 				@include dev(mob) {
 					--svg-w: 24px;
