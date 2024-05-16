@@ -16,7 +16,11 @@ main form {
 		&:has(textarea#prompt-textarea:focus) {
 			box-shadow: none !important;
 		}
-
+		/* In "temporary chat" textarea is black so the color and caret-color are white, so this fix that */
+		textarea {
+			color: var(--c-txt);
+			caret-color: currentColor;
+		}
 		textarea::placeholder {
 			color: var(--c-placeholder-textarea) !important;
 		}
