@@ -1,52 +1,64 @@
 /* ===  RIGHT - TEXTAREA PARENT, message type and send button */
 // main form [class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea) {
-main form div[class*='bg-[#f4f4f4]']:has(textarea#prompt-textarea) {
-	padding: var(--p-prompt-textarea) !important;
-	background-color: var(--c-bg-textarea) !important;
-	border-radius: var(--br-prompt-textarea) !important;
-	border: none !important;
-	box-shadow: var(--box-shadow-textarea);
-	transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+main form {
+	// Normal textarea prompt
+	div[class*='bg-[#f4f4f4]']:has(textarea#prompt-textarea),
 
-	&:has(textarea#prompt-textarea:focus) {
-		box-shadow: none !important;
-	}
+	// Textare when clicked on "Temporary Chat" toggle
+	div[class*='bg-black']:has(textarea#prompt-textarea) {
+		padding: var(--p-prompt-textarea) !important;
+		background-color: var(--c-bg-textarea) !important;
+		border-radius: var(--br-prompt-textarea) !important;
+		border: none !important;
+		box-shadow: var(--box-shadow-textarea);
+		transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
-	textarea::placeholder {
-		color: var(--c-placeholder-textarea) !important;
-	}
-
-	/* Send button */
-	// button[data-testid='send-button'] {
-	button.rounded-full {
-		background-color: var(--c-accent) !important;
-		color: var(--c-txt) !important;
-		border-color: var(--c-accent) !important;
-		border-radius: 100vw !important;
-		padding: 2px;
-		right: 1.3rem !important;
-		bottom: 1.2rem !important;
-
-		&[disabled] {
-			opacity: 0.5 !important;
+		&:has(textarea#prompt-textarea:focus) {
+			box-shadow: none !important;
 		}
 
-		svg {
-			color: var(--c-on-accent) !important;
+		textarea::placeholder {
+			color: var(--c-placeholder-textarea) !important;
 		}
-	}
 
-	/* "Reply" in msg textarea */
-	.bg-token-main-surface-primary {
-		background-color: var(--c-surface-3);
-		border-color: var(--c-accent);
-		border-radius: calc(var(--br-prompt-textarea) / 1.5) !important;
-		padding: 0.8rem;
-	}
+		/* Send button */
+		// button[data-testid='send-button'] {
+		button.rounded-full {
+			background-color: var(--c-accent) !important;
+			color: var(--c-txt) !important;
+			border-color: var(--c-accent) !important;
+			border-radius: 100vw !important;
+			padding: 2px;
+			// right: 1.3rem !important;
+			// bottom: 1.2rem !important;
 
-	/* Attach files svg */
-	button[aria-label='Attach files'] {
-		color: var(--c-accent) !important;
+			&[disabled] {
+				opacity: 0.5 !important;
+			}
+
+			svg {
+				color: var(--c-on-accent) !important;
+			}
+		}
+
+		/* "Reply" in msg textarea */
+		.bg-token-main-surface-primary {
+			background-color: var(--c-surface-3);
+			border-color: var(--c-accent);
+			border-radius: calc(var(--br-prompt-textarea) / 1.5) !important;
+			padding: 0.8rem;
+		}
+
+		/* 📎 "Attach files" button parent oof parent which has items-end */
+		// div:has(& > div[type='button'][aria-haspopup='dialog']:has(button[aria-label='Attach files'])) {
+		div:has(> div[type='button'][aria-haspopup='dialog']):has(button[aria-label='Attach files']) {
+			align-items: center !important;
+			// background-color: red !important;
+		}
+		/* 📎 Attach files svg */
+		button[aria-label='Attach files'] {
+			color: var(--c-accent) !important;
+		}
 	}
 }
 
