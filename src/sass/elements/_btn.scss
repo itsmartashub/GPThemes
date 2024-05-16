@@ -35,6 +35,10 @@
 	&-green {
 		background-color: var(--c-accent) !important;
 	}
+
+	&:not(&-secondary, &-danger, &-green) {
+		background-color: var(--c-accent) !important;
+	}
 }
 
 main [role='presentation'] button.absolute.rounded-full {
