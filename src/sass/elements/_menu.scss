@@ -108,29 +108,7 @@
 			}
 		}
 	}
-
-	/* Element visible when hover on "Attach Files" svg icon in prompt msg */
-	[data-side='top'] {
-		&,
-		span .rotate-45 {
-			background-color: var(--c-bg-tooltip) !important;
-			color: var(--c-txt) !important;
-		}
-	}
 }
-html.dark [data-radix-popper-content-wrapper] {
-	[data-side='top'] {
-		&,
-		span .rotate-45 {
-			color: var(--c-on-accent) !important;
-		}
-	}
-
-	button {
-		background-color: var(--c-surface-3) !important;
-	}
-}
-
 /* [role='menu'] for contextmenu */
 .popover {
 	--main-surface-primary: var(--c-surface-2) !important;

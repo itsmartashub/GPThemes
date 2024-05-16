@@ -72,6 +72,10 @@ button:not(
 		transform: translateY(-2px);
 		opacity: 0.8;
 	}
+
+	// &:not(&-secondary, &-danger, &-green):is(:hover, :active) {
+	// 	color: var(--c-accent) !important;
+	// }
 }
 
 /* dialog buttons */

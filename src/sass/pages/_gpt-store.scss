@@ -1,12 +1,10 @@
 main:has(.sticky [href='/gpts/editor']) {
-	// /* Main Cards (big) */
-	// .rounded-xl {
-	// 	border-radius: var(--br-btn-big) !important;
-	// }
-	// /* Search query list cards. Input search */
-	// .rounded-lg {
-	// 	border-radius: var(--br-btn) !important;
-	// }
+	/* Notification on the top of the GPTs Store page (before the sticky header): "GPTs will be coming to free users over the next few weeks. Stay tuned!" */
+	.bg-token-main-surface-tertiary[class*='h-[52px] w-full'] {
+		background-color: hsla(var(--accent-hsl) / 0.07) !important;
+		border-bottom: 1px solid hsla(var(--accent-hsl) / 0.04);
+		color: var(--c-accent);
+	}
 	/* Sticky header tags aka "Top Picks", "DALLE", "Writing", etc */
 	.sticky {
 		[class*='md:rounded-none'],
@@ -151,12 +149,3 @@ div[data-radix-popper-content-wrapper]:has(.bg-blue-400.rotate-45) {
 // 	// 	}
 // 	// }
 // }
-
-/* Notification on the top of the GPTs Store page (before the sticky header): "GPTs will be coming to free users over the next few weeks. Stay tuned!" */
-main:not([role='presentation']) {
-	.bg-token-main-surface-tertiary[class*='h-[52px] w-full'] {
-		background-color: hsla(var(--accent-hsl) / 0.07) !important;
-		border-bottom: 1px solid hsla(var(--accent-hsl) / 0.04);
-		color: var(--c-accent);
-	}
-}

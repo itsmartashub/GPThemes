@@ -12,12 +12,24 @@ div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
 
 /* === TOOLTIPS text color === */
 html.light div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
-	[class*='text-'] {
-		color: var(--c-txt) !important;
+	// [class*='text-'] {
+	// 	color: var(--c-txt) !important;
+	// }
+
+	&:not(&:has([data-side='top'])) {
+		[class*='text-'] {
+			color: var(--c-txt) !important;
+		}
 	}
 }
 html.dark div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
-	[class*='text-'] {
-		color: var(--c-on-accent) !important;
+	// [class*='text-'] {
+	// 	color: var(--c-on-accent) !important;
+	// }
+
+	&:not(&:has([data-side='top'])) {
+		[class*='text-'] {
+			color: var(--c-on-accent) !important;
+		}
 	}
 }
