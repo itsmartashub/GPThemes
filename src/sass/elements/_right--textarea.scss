@@ -51,10 +51,10 @@ main form {
 
 		/* 📎 "Attach files" button parent oof parent which has items-end */
 		// div:has(& > div[type='button'][aria-haspopup='dialog']:has(button[aria-label='Attach files'])) {
-		div:has(> div[type='button'][aria-haspopup='dialog']):has(button[aria-label='Attach files']) {
-			align-items: center !important;
-			// background-color: red !important;
-		}
+		// div:has(> div[type='button'][aria-haspopup='dialog']):has(button[aria-label='Attach files']) {
+		// align-items: center !important;
+		// background-color: red !important;
+		// }
 		/* 📎 Attach files svg */
 		button[aria-label='Attach files'] {
 			color: var(--c-accent) !important;
