@@ -1,5 +1,6 @@
 /* ___  MODAL Background */
-.absolute.inset-0 .fixed.inset-0 {
+.absolute.inset-0 .fixed.inset-0,
+.fixed.inset-0[class*='bg-black/90'] {
 	background-color: var(--c-bg-modal) !important;
 	backdrop-filter: blur(var(--blur-modal)) !important;
 	z-index: var(--z-modal);

@@ -314,6 +314,14 @@
 			}
 		}
 	}
+
+	&:has(img[alt='Uploaded image']) {
+		padding: 0 !important;
+		img[alt='Uploaded image'] {
+			border-radius: var(--br-contextmenu);
+			outline: 1px solid hsla(var(--accent-hsl) / 0.5);
+		}
+	}
 }
 
 /* ! NOT WORKING - CANNOT OVERWRITE THIS WTF */
