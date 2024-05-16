@@ -1,8 +1,11 @@
 /* ===  RIGHT - TEXTAREA PARENT, message type and send button */
 // main form [class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea) {
 main form {
-	// Normal textarea prompt
+	// gpt4o textarea prompt
 	div[class*='bg-[#f4f4f4]']:has(textarea#prompt-textarea),
+
+	// Guest/3.5 textarea prompt
+	div[class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea),
 
 	// Textare when clicked on "Temporary Chat" toggle
 	div[class*='bg-black']:has(textarea#prompt-textarea) {
@@ -26,15 +29,15 @@ main form {
 		}
 
 		/* Send button */
-		// button[data-testid='send-button'] {
+		// guest/3.5 send button
+		button[data-testid='send-button'],
+		// 4o send button 
 		button.rounded-full {
 			background-color: var(--c-accent) !important;
 			color: var(--c-txt) !important;
 			border-color: var(--c-accent) !important;
 			border-radius: 100vw !important;
 			padding: 2px;
-			// right: 1.3rem !important;
-			// bottom: 1.2rem !important;
 
 			&[disabled] {
 				opacity: 0.5 !important;
@@ -43,6 +46,11 @@ main form {
 			svg {
 				color: var(--c-on-accent) !important;
 			}
+		}
+
+		button[data-testid='send-button'] {
+			right: 1.3rem !important;
+			bottom: 1.2rem !important;
 		}
 
 		/* "Reply" in msg textarea */
