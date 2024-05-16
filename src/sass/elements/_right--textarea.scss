@@ -56,8 +56,10 @@ main form {
 		// background-color: red !important;
 		// }
 		/* 📎 Attach files svg */
-		button[aria-label='Attach files'] {
+		button[aria-label='Attach files'] svg {
+			// svg {
 			color: var(--c-accent) !important;
+			// }
 		}
 		/* 🖼️ "Attach Files" - attached image wrapper */
 		div[type='button'][aria-haspopup='dialog'] {
