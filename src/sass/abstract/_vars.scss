@@ -9,8 +9,8 @@
 
 	/* ? --- Border-radius --- */
 	--br: 1rem;
-	// --br-chat-bubble: calc(var(--br) * 1.9);
-	--br-chat-bubble: 30px;
+	--br-chat-bubble: calc(var(--br) * 1.9);
+	// --br-chat-bubble: 30px;
 	--br-prompt-textarea: calc(var(--br) * 2.25);
 	--br-btn: calc(var(--br) / 1.1);
 	--br-btn-big: calc(var(--br) * 1.2);
@@ -164,7 +164,7 @@ html.light {
 	/* ? ========== Layout colors ========== */
 	--c-bg-sidebar: var(--c-surface-1);
 	--c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025));
-	--c-bg-chats-sticky: hsla(var(--accent-hsl) / 0.02);
+	--c-bg-chats-sticky: hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 0.02);
 
 	/* ? ========== Chat bubbles colors ========== */
 	--c-bg-msg-user: hsla(var(--accent-hsl) / 0.08);
@@ -298,7 +298,7 @@ html.dark {
 	/* ? ========== Layout colors ========== */
 	--c-bg-sidebar: var(--c-surface-1);
 	--c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.076));
-	--c-bg-chats-sticky: hsla(var(--surface-hsl) / 0.02);
+	--c-bg-chats-sticky: hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.076) / 0.02);
 
 	/* ? ========== Chat bubbles colors ========== */
 	--c-bg-msg-user: hsla(var(--accent-hsl) / 0.04);
@@ -438,7 +438,7 @@ html.dark[data-gptheme='oled'] {
 	// --c-bg-chats-container: var(--c-surface-2);
 	--c-bg-sidebar: black;
 	--c-bg-chats-container: black;
-	--c-bg-chats-sticky: black;
+	--c-bg-chats-sticky: rgba(0, 0, 0, 0.02);
 
 	/* ? ========== Chat bubbles colors ========== */
 	// --c-bg-msg-user: hsla(var(--accent-hsl) / 0.04);
