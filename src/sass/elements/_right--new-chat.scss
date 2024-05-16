@@ -38,11 +38,12 @@
 
 /* New chat prompt examples - card buttons with prompt pregenerated */
 main [role='presentation'] {
-	button.relative.flex.w-40.flex-col.rounded-2xl.border-token-border-light.text-left.align-top {
-		border: 1px solid var(--sidebar-surface-secondary) !important;
+	button.relative.flex.w-40.flex-col.rounded-2xl.border-token-border-light {
+		--clr: hsla(var(--accent-hsl) / 0.08);
+		border: 1px solid var(--clr) !important;
 
 		&:hover {
-			background-color: var(--sidebar-surface-secondary) !important;
+			background-color: var(--clr) !important;
 		}
 	}
 }

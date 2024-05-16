@@ -1,10 +1,6 @@
 /* Sidebar bg-color */
 .bg-token-sidebar-surface-primary:has(nav[aria-label='Chat history']) {
-	/* --surface-primary fix dark/black color for a:hover states */
-	// --surface-primary: var(--c-surface-2) !important;
-	// --surface-primary: red !important;
 	color: var(--c-txt) !important;
-	// background-color: var(--c-bg-sidebar) !important;
 
 	/* Fix white txt on "NEW CHAT" in sidebar for light especially */
 	nav a > * {
@@ -15,25 +11,18 @@
 nav[aria-label='Chat history'] {
 	padding: var(--p-sidebar-nav) !important;
 
-	// ! Strange black rectangle (.bg-black class) over "New Chat" btn when on links: https://chat.openai.com/gpts/discovery and https://chat.openai.com/g/g-UBYTKWkPj
-	/* .sticky.bg-black:has(a[href='/']) {
-		background-color: var(--c-bg-sidebar);
-		padding-bottom: 1rem !important;
-	} */
-
 	/* Parent of "NEW CHAT" btn */
 	.sticky {
 		background-color: var(--c-bg-sidebar) !important;
 		backdrop-filter: blur(0px) !important;
-		margin-bottom: 0.5rem !important;
-		padding-bottom: 0.5rem;
+		// margin-bottom: 0.5rem !important;
+		// padding-bottom: 0.5rem;
 	}
 
 	/* CLEAR CHATS div - Visible when unchecked "Chat learning & Training" in Settings */
 	.absolute.left-0.top-0.overflow-hidden {
 		background-color: var(--c-bg-sidebar) !important;
 		overflow-y: scroll;
-
 		min-height: 50vh !important;
 
 		.bg-gradient-to-t {

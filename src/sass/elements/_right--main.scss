@@ -93,14 +93,14 @@ main [data-testid^='conversation-turn-'] {
 	/* @ RIGHT - CHATS BUBBLES - USER  */
 	&:has([data-message-author-role='user']) {
 		/*  RIGHT - CHATS BUBBLE BG */
-		& > div:first-child > div:first-child {
-			/* ? gpt4o - User message */
-			[class*='group/text-message rounded-3xl bg-[#f4f4f4]'] {
-				background-color: var(--c-bg-msg-user);
-				padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.2);
-				border-radius: var(--br-chat-bubble) !important;
-			}
+		// & > div:first-child > div:first-child {
+		/* ? gpt4o - User message */
+		[class*='bg-[#f4f4f4]'] {
+			background-color: var(--c-bg-msg-user);
+			padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.2);
+			border-radius: var(--br-chat-bubble) !important;
 		}
+		// }
 
 		/* Flex-end the Reply in user chat bubble */
 		[data-message-author-role='user'] {
