@@ -143,3 +143,15 @@ button[class*='bg-brand-purple'] {
 	background-color: var(--c-accent) !important;
 	color: var(--c-on-accent) !important;
 }
+
+/* "Tell us more" example buttons when clicked on 👎 in GPT chat bubble and the same buttons in "Provide Additional Feedback" when clicked on "More" */
+button.border-token-border-light[class*='hover:bg-token-main-surface-secondary'] {
+	border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
+	color: var(--c-accent) !important;
+	backdrop-filter: blur(14px);
+
+	&:hover {
+		transform: translateY(-1px);
+		background-color: hsla(var(--accent-hsl) / 0.1) !important;
+	}
+}

@@ -186,7 +186,7 @@ html.light {
 	--c-bg-tooltip: var(--c-accent-light);
 
 	/* ? ========== border colors ========== */
-	--c-border: hsla(var(--txt-hsl) / 0.05);
+	--c-border: hsla(var(--txt-hsl) / 0.08);
 	--c-border-accent: hsla(var(--accent-hsl) / 0.1);
 
 	/* ? ========== btn colors ========== */
@@ -460,7 +460,7 @@ html.dark[data-gptheme='oled'] {
 	--c-bg-tooltip: var(--c-accent-light);
 
 	/* ? ========== border colors ========== */
-	--c-border: var(--c-surface-3);
+	--c-border: var(--c-surface-2);
 	--c-border-accent: hsla(var(--accent-hsl) / 0.05);
 
 	/* ? ========== btn colors ========== */

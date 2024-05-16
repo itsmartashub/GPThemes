@@ -175,7 +175,9 @@ main [data-testid^='conversation-turn-'] {
 		```		  display: flex;
 		````	  place-items: center;
 		```    } */
-			.relative.flex.w-full.flex-col {
+			/* There are more elements with the same class like the "Tell us more" parent when we click on dislike button in GPT chat */
+			.agent-turn.relative.flex.w-full.flex-col {
+				// border: 2px solid red !important;
 				--svg-w: 2.25rem;
 				--svg-gap: 0.75rem;
 
@@ -183,7 +185,7 @@ main [data-testid^='conversation-turn-'] {
 					100% - var(--svg-w) - var(--svg-gap) - var(--p-chat-bubble)
 				) !important; // more consistent width (right chat bubble spacing = left spacing)
 
-				/* This break links in markdown, make them wrapped */
+				/* This break links in markdown making them wrapped */
 				/* span[data-state] {
 					display: flex;
 					place-items: center;
@@ -201,6 +203,29 @@ main [data-testid^='conversation-turn-'] {
 						width: calc(100% + var(--moveToLeft) + var(--p-chat-bubble)) !important;
 					}
 				}
+			}
+
+			/* "Tell us more" example buttons when clicked on 👎 in GPT chat bubble  - MOVED TO _btn.scss */
+			/* button.border-token-border-light {
+				// border: 1px solid var(--c-subtext-2) !important;
+				border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
+				color: var(--c-accent) !important;
+
+				&:hover {
+					transform: translateY(-1px);
+					background-color: hsla(var(--accent-hsl) / 0.1) !important;
+				}
+			} */
+
+			/* Parent of "Tell us more" example buttons when clicked on 👎 in GPT chat bubble*/
+			[class*='min-h-[96px] w-full'] {
+				border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
+				border-radius: var(--br-contextmenu);
+				background-color: hsla(var(--accent-hsl) / 0.05);
+
+				// .relative.flex.w-full.flex-col {
+				// 	width: 100% !important;
+				// }
 			}
 		}
 

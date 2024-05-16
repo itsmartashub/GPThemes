@@ -61,7 +61,8 @@ button:not(
 	}
 }
 
-.btn {
+/* .btn that IS NOT DISABLED, like "Create" on GPTs page */
+.btn:not(.cursor-not-allowed) {
 	will-change: transform, opacity;
 
 	// transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out !important;
