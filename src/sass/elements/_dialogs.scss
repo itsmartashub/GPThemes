@@ -156,9 +156,8 @@
 
 		// bg-gradient of link preview
 		.from-token-main-surface-primary {
-			// --main-surface-primary: var(--c-surface-3) !important; // bg of link preview and "🔗 Create Link" btn
-			// --gradient-color-from: var(--c-surface-3);
-			--gradient-color-from: var(--main-surface-primary);
+			display: none;
+			// --gradient-color-from: var(--main-surface-primary);
 		}
 
 		/* PUBLIC LINK UPDATED - Social platforms in show in footer after the  "🔗 Copy Link" btn */
