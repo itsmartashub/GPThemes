@@ -89,10 +89,11 @@
 	color: var(--c-on-accent) !important;
 }
 
-/* TOS - "This content may violate content policy..." (red) & "This content may violate our Terms of Use or usage policies." (orange) warnings. Also alert in "Share Link to Chat" dialog shown sometimes */
+/* TOS - "This content may violate content policy..." (red) & "This content may violate our Terms of Use or usage policies." (orange) warnings. Also alert in "Share Link to Chat" dialog shown sometimes.
+This content may violate our Terms of Use or usage policies. is bg-orange-400 now !!! */
 // [class*='bg-red-500/10'],
 [class*='bg-red-500'],
-[class*='bg-orange-500/10'] {
+[class*='bg-orange-400'] {
 	background-color: hsla(var(--danger-hsl) / 0.11) !important;
 	color: var(--c-danger) !important;
 	// background-color: var(--c-danger) !important;
