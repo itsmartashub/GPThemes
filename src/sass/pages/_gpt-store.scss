@@ -58,11 +58,13 @@ main:has(.sticky [href='/gpts/editor']) {
 	}
 	/* Section visible on search query */
 	[id*='headlessui-popover-panel-'] {
+		// border: 1px solid red !important;
 		// --main-surface-primary: var(--c-surface-2) !important;
 		--br-search-query-section: calc(var(--br-btn) * 1.2) !important;
 
 		/* Added to visually remove unstickness search query section from input search */
-		transform: translateY(-5px);
+		transform: translateY(-3px);
+		padding-top: 10px;
 
 		border-radius: 0 0 var(--br-search-query-section) var(--br-search-query-section) !important;
 
@@ -75,10 +77,6 @@ main:has(.sticky [href='/gpts/editor']) {
 				color: var(--c-on-accent) !important;
 				// color: red !important;
 			}
-
-			// &:hover {
-			// 	background-color: var(--c-surface-3) !important;
-			// }
 		}
 	}
 
@@ -153,3 +151,12 @@ div[data-radix-popper-content-wrapper]:has(.bg-blue-400.rotate-45) {
 // 	// 	}
 // 	// }
 // }
+
+/* Notification on the top of the GPTs Store page (before the sticky header): "GPTs will be coming to free users over the next few weeks. Stay tuned!" */
+main:not([role='presentation']) {
+	.bg-token-main-surface-tertiary[class*='h-[52px] w-full'] {
+		background-color: hsla(var(--accent-hsl) / 0.07) !important;
+		border-bottom: 1px solid hsla(var(--accent-hsl) / 0.04);
+		color: var(--c-accent);
+	}
+}
