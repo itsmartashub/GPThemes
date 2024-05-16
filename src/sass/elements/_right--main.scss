@@ -29,7 +29,7 @@ main [role='presentation'] {
 main [data-testid^='conversation-turn-'] {
 	/* Edit icon in user chat for example. Edit state user chat bg  */
 	--main-surface-tertiary: var(--c-surface-3) !important;
-	// --main-surface-tertiary: hsla(var(--c-accent-hsl) / 0.5) !important;
+	// --main-surface-tertiary: hsla(var(--accent-hsl) / 0.5) !important;
 
 	--c-avatar: var(--avatar-color);
 	margin-bottom: var(--mb-chat-bubble) !important;
