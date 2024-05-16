@@ -276,6 +276,11 @@
 			--border-medium: transparent !important;
 		}
 
+		/* Gradient in dialog header when clicked on GPTs product, but if we add this style here it broke the gradient in "Create Link" dialog bcs there is var(--c-surface-3) (or var(--main-surface-primary) */
+		.from-token-main-surface-primary {
+			--main-surface-primary: var(--c-surface-2) !important;
+		}
+
 		/* Numbers in "Ratings" svg stars */
 		svg.text-green-500 ~ .text-white {
 			color: var(--c-on-accent) !important;

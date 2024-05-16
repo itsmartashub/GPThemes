@@ -169,6 +169,7 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 /* 
 - Gradient before "Create Link" in "Share Link to Public" dialog
 - Gradient before "Open link" icon in "Search x sites" dropdown link items in GPT's chat
+- Gradient in dialog header when clicked on GPTs product, but if we add this style here it broke the gradient in "Create Link" dialog bcs there is var(--c-surface-3) (or var(--main-surface-primary)
  */
 // .from-token-main-surface-primary {
 // 	--main-surface-primary: var(--c-surface-2) !important;
