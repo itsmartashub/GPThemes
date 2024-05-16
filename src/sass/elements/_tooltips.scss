@@ -1,54 +1,54 @@
-/* === TOOLTIPS arrow div bg color === */
+/* === TOOLTIPS arrow div bg color === 
+	- Classic tooltips
+	- Tooltip with searched links in GPT chat bubble
+	- Tooltip when hover on "Attach Files" button in prompt textarea
+	- Tooltip when hover on ❌ in attached images in prompt textarea
+*/
 div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
 	@extend %animFadeIn;
+	padding: var(--p-tooltips) !important;
 
-	// &:not(&:has([data-side='top'])) {
-	div {
+	/* Basic tooltip & tooltip with searched links in GPT chat bubble */
+	.bg-gray-950 {
 		background-color: var(--c-bg-tooltip) !important;
-		padding: var(--p-tooltips) !important;
-	}
-	// }
+		// border: 2px solid greenyellow !important;
 
-	&:not(&:has([data-side='top'])) {
 		[class*='text-'] {
 			color: var(--c-txt) !important;
+			// color: greenyellow !important;
+		}
+	}
+
+	/* Tooltip with small buttons (when hover on "Attach Files" button in prompt textarea) */
+	.bg-token-main-surface-primary {
+		// border: 2px solid red !important;
+		--main-surface-primary: var(--c-surface-3) !important;
+		// background-color: var(--main-surface-primary) !important;
+
+		[class*='text-'] {
+			color: var(--c-txt) !important;
+			// color: red !important;
 		}
 	}
 
 	/* Links in tooltips shown when hovered on some search "Link" in GPT chat bubble */
-	&:has(a[href^='http']) {
-		a[href^='http'] {
-			color: currentColor !important;
-		}
-	}
+	// &:has(a[href^='http']) {
+	// 	a[href^='http'] {
+	// 		color: currentColor !important;
+	// 	}
+	// }
 }
 
-/* === TOOLTIPS text color === */
-// html.light div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
-// 	// [class*='text-'] {
-// 	// 	color: var(--c-txt) !important;
-// 	// }
-
-// 	&:not(&:has([data-side='top'])) {
-// 		[class*='text-'] {
-// 			color: var(--c-txt) !important;
-// 		}
-// 	}
-// }
 html.dark div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
-	// [class*='text-'] {
-	// 	color: var(--c-on-accent) !important;
-	// }
-
-	&:not(&:has([data-side='top'])) {
+	.bg-gray-950 {
 		[class*='text-'] {
 			color: var(--c-on-accent) !important;
 		}
 	}
 
-	&:has(a[href^='http']) {
-		a[href^='http'] {
-			color: var(--c-on-accent) !important;
-		}
-	}
+	// &:has(a[href^='http']) {
+	// 	a[href^='http'] {
+	// 		color: var(--c-on-accent) !important;
+	// 	}
+	// }
 }

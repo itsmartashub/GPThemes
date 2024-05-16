@@ -68,6 +68,9 @@ button:not(
 	transition: transform 0.2s $easeInOutQuad, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out,
 		color 0.3s ease-in-out !important;
 
+	/* [class*='-translate-y-1/2']) je btn ❌ u attached image*/
+	// &:is(:hover, :active):not(.absolute.right-1.top-1.rounded-full) {
+	// &:is(:hover, :active):not([class*='-translate-y-1/2']) {
 	&:is(:hover, :active) {
 		transform: translateY(-2px);
 		opacity: 0.8;
@@ -78,7 +81,7 @@ button:not(
 	// }
 }
 
-/* dialog buttons */
+/* ! TODO - DELETE due to GPT4o! - New dialog buttons */
 [role='dialog'] {
 	/* ".PopoverContent" je recimo menu od btn u "Shared Link to Chat" 3dots menu (Shared your Name & Delete Link) */
 	&.PopoverContent {
@@ -219,8 +222,9 @@ html.light pre button:has(svg):hover {
 	--c-bg-pre-header-btn-color: var(--c-on-accent) !important;
 }
 
-/* ___ Scroll down button */
-main [role='presentation'] button.absolute.rounded-full {
+/* ___ Scroll down button 
+[class*='-translate-y-1/2'] je btn ❌ u attached image */
+main [role='presentation'] button.absolute.rounded-full:not([class*='-translate-y-1/2']) {
 	transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out;
 
 	&:hover {

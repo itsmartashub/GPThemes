@@ -59,6 +59,13 @@ main form {
 		button[aria-label='Attach files'] {
 			color: var(--c-accent) !important;
 		}
+		/* 🖼️ "Attach Files" - attached image wrapper */
+		div[type='button'][aria-haspopup='dialog'] {
+			/* "Attach Files" attached image */
+			span.bg-cover {
+				border-radius: 10px;
+			}
+		}
 	}
 }
 
