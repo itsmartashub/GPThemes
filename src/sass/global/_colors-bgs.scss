@@ -165,9 +165,13 @@
 	// background-color: var(--c-surface-3) !important;
 }
 
-.from-token-main-surface-primary {
-	--main-surface-primary: var(--c-surface-2) !important;
-}
+/* 
+- Gradient before "Create Link" in "Share Link to Public" dialog
+- Gradient before "Open link" icon in "Search x sites" dropdown link items in GPT's chat
+ */
+// .from-token-main-surface-primary {
+// 	--main-surface-primary: var(--c-surface-2) !important;
+// }
 
 /* .bg-token-main-surface-tertiary {
 	&:hover {
