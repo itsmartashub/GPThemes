@@ -176,9 +176,9 @@ main:has(button[aria-label='Stop generating']) {
 		}
 
 		/* Guest/3.5 - Attach files button */
-		.absolute[type='button'][aria-haspopup='dialog']:has(button[aria-label='Attach files']) {
-			bottom: 1.5rem !important;
-		}
+		// .absolute[type='button'][aria-haspopup='dialog']:has(button[aria-label='Attach files']) {
+		// 	bottom: 1.5rem !important;
+		// }
 	}
 
 	/* @ NEW CHAT BIH BUTTONS */
