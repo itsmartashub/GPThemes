@@ -56,8 +56,46 @@ main:has(button[data-testid='send-button']) {
 		}
 
 		/* Guest/3.5 - Attach files button */
-		div:has(& > div[type='button'][aria-haspopup='dialog']:has(button[aria-label='Attach files'])) {
+		.absolute[type='button'][aria-haspopup='dialog']:has(button[aria-label='Attach files']) {
 			bottom: 1.5rem !important;
+		}
+	}
+
+	/* @ NEW CHAT BIH BUTTONS */
+	form .grow {
+		/* recimo gap izmedju new chat example buttons*/
+		.gap-2 {
+			gap: 0.8rem !important;
+		}
+		[class*='grid-cols-[repeat(auto-fit,minmax(250px,1fr))]'] {
+			.btn {
+				padding: 1.5rem !important;
+				background-color: var(--c-surface-2) !important;
+				color: var(--c-txt) !important;
+				border-radius: var(--br-btn-big) !important;
+				overflow: hidden; // Mora jer kad se hoveruje .btn, onda se  .bg-gradient-to-l radius ne uklapa s ovim, manji je i onda .btn cudno izgleda sa desne strane, ovaj ga overflowuje
+
+				/* Gradient bg visible on hover */
+				.bg-gradient-to-l {
+					--gradient-color-from: var(--c-surface-3) !important;
+					// --tw-gradient-from: var(--c-surface-3) var(--tw-gradient-from-position) !important;
+
+					/* Button SVG parent ❌
+				No more .bg-token-surface-primary class, now is .bg-token-main-surface-primary */
+					// .bg-token-surface-primary {
+					.bg-token-main-surface-primary {
+						// --surface-secondary: var(--c-surface-2) !important;
+						background-color: var(--c-accent) !important;
+						border-radius: 100vw !important;
+						padding: 0.5rem !important;
+
+						/* SVG icon*/
+						svg {
+							color: var(--c-on-accent) !important;
+						}
+					}
+				}
+			}
 		}
 	}
 }
