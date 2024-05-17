@@ -26,7 +26,14 @@
 // main:has(form div[class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea)) {
 // 	border: 10px solid orange !important;
 // }
-main:has(button[data-testid='send-button']) {
+
+/* ? Unique selector for detecting the UI with the old design vs new one (gpt4o)
+- [data-testid='send-button'] is used for detecting the UI with the old design vs new one (gpt4o).
+- The problem is while gpt generating the answer this selector is gone, but the [aria-label='Stop generating'] is visible now (stop btn), so we use this selector too! 
+- This could causes many problems if ChatGPT add those attributes to the new 4o desgin too! Then the old design and the new design would be merged together. */
+main:has(button[data-testid='send-button']),
+main:has(button[aria-label='Stop generating']) {
+	// main:where(form div[class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea)) {
 	border: 10px solid orange !important;
 
 	/* @ CHAT BUBBLES  */
@@ -86,6 +93,20 @@ main:has(button[data-testid='send-button']) {
 		button[data-testid='send-button'] {
 			right: 1.3rem !important;
 			bottom: 1.2rem !important;
+		}
+
+		.absolute:has(button[aria-label='Stop generating']) {
+			right: 1.3rem !important;
+			bottom: 0.9rem !important;
+		}
+		button[aria-label='Stop generating'] {
+			border-color: var(--c-accent);
+			padding: 0.38rem !important;
+
+			svg {
+				color: var(--c-accent);
+				transform: scale(1.07);
+			}
 		}
 
 		/* Guest/3.5 - Attach files button */
