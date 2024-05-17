@@ -50,31 +50,32 @@ main:has(button[aria-label='Stop generating']) {
 			[data-message-author-role='user'] {
 				align-items: flex-start !important;
 			}
+		}
 
-			/* User chat bubble - Edit state. There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario */
-			&:has(textarea) {
-				// .group {
-				& > div:first-child > div:first-child {
-					background-color: var(--c-bg-chats-container) !important;
-					box-shadow: var(--box-shadow-textarea);
-					outline: 2px solid hsla(var(--accent-hsl) / 0.1) !important;
-					transition: outline 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+		/* User chat bubble - Edit state. There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select like this for that case scenario */
+		[class^='group/conversation-turn']:has(textarea) {
+			// .group {
 
-					/* === User/ChatGPT name === */
-					.font-semibold.select-none {
-						color: var(--c-msg-name-user);
-					}
+			/* === User/ChatGPT name === */
+			.font-semibold.select-none {
+				color: var(--c-msg-name-user);
+			}
+			.font-semibold.select-none + div .max-w-full {
+				background-color: var(--c-bg-chats-container) !important;
+				box-shadow: var(--box-shadow-textarea);
+				border-radius: var(--br-chat-bubble) !important;
+				outline: 2px solid hsla(var(--accent-hsl) / 0.1) !important;
+				transition: outline 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 
-					textarea {
-						@extend %animFadeIn;
-						color: var(--c-subtext-2) !important;
-						padding: 0.5rem 0;
-					}
+				textarea {
+					@extend %animFadeIn;
+					color: var(--c-subtext-2) !important;
+					padding: 0.5rem 0;
+				}
 
-					/* Parent of buttons: "Save & Submit" and "Cancel" */
-					.text-center.mt-2.flex.justify-center {
-						@extend %animFadeIn;
-					}
+				/* Parent of buttons: "Save & Submit" and "Cancel" */
+				.text-center.mt-2.flex.justify-center {
+					@extend %animFadeIn;
 				}
 			}
 		}
