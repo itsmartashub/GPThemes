@@ -151,56 +151,56 @@ button[role='switch'] {
 } */
 
 /* TODO - See if this still exists, i think there is no more .self-end ___ Chat Bubbles */
-main [data-testid^='conversation-turn-'] {
-	// .group {
-	& > div:first-child > div:first-child {
-		&:hover {
-			/* Bubble message footer (icons wrapper) */
-			div[class*='empty:hidden'] {
-				.self-end {
-					transform: translateY(0);
-					opacity: 1;
+// main [data-testid^='conversation-turn-'] {
+// 	// .group {
+// 	& > div:first-child > div:first-child {
+// 		&:hover {
+// 			/* Bubble message footer (icons wrapper) */
+// 			div[class*='empty:hidden'] {
+// 				.self-end {
+// 					transform: translateY(0);
+// 					opacity: 1;
 
-					/* Bubble message footer (svg icons) */
-					button svg {
-						transform: scale(1);
-					}
-				}
-			}
-		}
+// 					/* Bubble message footer (svg icons) */
+// 					button svg {
+// 						transform: scale(1);
+// 					}
+// 				}
+// 			}
+// 		}
 
-		/* Bubble message footer */
-		div[class*='empty:hidden'] {
-			overflow-y: clip;
-			// padding-inline: 10px; // to make counter answer (<2/4>) visible when this is overflow-hidden, we need to add padding-inline, or we can use overflow-y: clip; And overflow is "important" for translate transition
+// 		/* Bubble message footer */
+// 		div[class*='empty:hidden'] {
+// 			overflow-y: clip;
+// 			// padding-inline: 10px; // to make counter answer (<2/4>) visible when this is overflow-hidden, we need to add padding-inline, or we can use overflow-y: clip; And overflow is "important" for translate transition
 
-			/* Bubble message footer (icons wrapper) */
-			.self-end {
-				transform: translateY(100%);
-				opacity: 0;
-				transition: transform 0.4s $easeOutBack, opacity 0.3s ease;
+// 			/* Bubble message footer (icons wrapper) */
+// 			.self-end {
+// 				transform: translateY(100%);
+// 				opacity: 0;
+// 				transition: transform 0.4s $easeOutBack, opacity 0.3s ease;
 
-				/* Bubble message footer (svg icons) */
-				button svg {
-					transform: translateY(0px);
-					transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out;
+// 				/* Bubble message footer (svg icons) */
+// 				button svg {
+// 					transform: translateY(0px);
+// 					transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out;
 
-					&:hover {
-						opacity: 0.7;
-						transform: translateY(-2px);
-					}
-				}
-			}
+// 					&:hover {
+// 						opacity: 0.7;
+// 						transform: translateY(-2px);
+// 					}
+// 				}
+// 			}
 
-			@include dev(mob) {
-				.self-end {
-					transform: translateY(0%) !important;
-					opacity: 1 !important;
-				}
-			}
-		}
-	}
-}
+// 			@include dev(mob) {
+// 				.self-end {
+// 					transform: translateY(0%) !important;
+// 					opacity: 1 !important;
+// 				}
+// 			}
+// 		}
+// 	}
+// }
 
 /* "Copy code" btn */
 pre {
