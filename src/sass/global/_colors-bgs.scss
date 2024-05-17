@@ -89,11 +89,13 @@
 	color: var(--c-on-accent) !important;
 }
 
-/* TOS - "This content may violate content policy..." (red) & "This content may violate our Terms of Use or usage policies." (orange) warnings. Also alert in "Share Link to Chat" dialog shown sometimes.
-This content may violate our Terms of Use or usage policies. is bg-orange-400 now !!! */
+/* Errors and TOS - "This content may violate content policy..." (red) & "This content may violate our Terms of Use or usage policies." (orange) warnings. Also alert in "Share Link to Chat" dialog shown sometimes.
+This content may violate our Terms of Use or usage policies. is bg-orange-400 now !!!
+- bg-token-surface-error is a error: "We are sorry, but you do not have access to GPT interactions." shown when we do not have access to GPTs products */
 // [class*='bg-red-500/10'],
 [class*='bg-red-500'],
-[class*='bg-orange-400'] {
+[class*='bg-orange-400'],
+[class*='bg-token-surface-error'] {
 	background-color: hsla(var(--danger-hsl) / 0.11) !important;
 	color: var(--c-danger) !important;
 	// background-color: var(--c-danger) !important;
