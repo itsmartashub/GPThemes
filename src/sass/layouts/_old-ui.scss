@@ -381,14 +381,3 @@ main:has([data-testid^='conversation-turn-'] .font-semibold.select-none) {
 		}
 	}
 }
-
-// main :has([data-testid^='conversation-turn-'] *) :is(.font-semibold.select-none, [data-message-author-role='user']) {
-// 	border: 20px solid lightblue !important;
-// }
-
-// main:has([data-testid^='conversation-turn-'] :is(.font-semibold.select-none, [data-message-author-role='user'])):has(
-// 		[data-testid^='conversation-turn-'].font-semibold.select-none
-// 	):has([data-testid^='conversation-turn-'] [data-message-author-role='user']) {
-// 	border: 20px solid red !important;
-// 	/* styles here */
-// }

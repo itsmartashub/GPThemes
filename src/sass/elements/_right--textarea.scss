@@ -49,19 +49,26 @@ main form {
 		}
 
 		/* "Reply" in msg textarea */
-		.bg-token-main-surface-primary {
+		.bg-token-main-surface-primary.divide-y {
 			background-color: var(--c-surface-3);
 			border-color: var(--c-accent);
 			border-radius: calc(var(--br-prompt-textarea) / 1.5) !important;
 			padding: 0.8rem;
 		}
 
+		/* Attached files background */
+		.bg-token-main-surface-primary:not(.divide-y) {
+			border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
+			background-color: hsla(var(--accent-hsl) / 0.12) !important;
+			color: var(--c-accent) !important;
+		}
+
 		/* 📎 "Attach files" button parent oof parent which has items-end */
 		// div:has(& > div[type='button'][aria-haspopup='dialog']:has(button[aria-label='Attach files'])) {
-		// div:has(> div[type='button'][aria-haspopup='dialog']):has(button[aria-label='Attach files']) {
-		// align-items: center !important;
-		// background-color: red !important;
-		// }
+		div[type='button'][aria-haspopup='dialog']:has(button[aria-label='Attach files']) {
+			margin-bottom: calc(var(--p-prompt-textarea) / 2);
+		}
+
 		/* 📎 Attach files svg */
 		button[aria-label='Attach files'] svg {
 			color: var(--c-accent) !important;
@@ -70,7 +77,7 @@ main form {
 		div[type='button'][aria-haspopup='dialog'] {
 			/* "Attach Files" attached image */
 			span.bg-cover {
-				border-radius: 10px;
+				border-radius: 10px !important;
 			}
 		}
 	}
