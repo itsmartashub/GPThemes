@@ -28,6 +28,12 @@ main .sticky {
 			color: var(--c-on-accent) !important;
 		}
 	}
+
+	.btn-secondary {
+		svg {
+			color: var(--c-accent) !important;
+		}
+	}
 }
 
 /* Sticky header for smaller screens. Remove border-bottom */
