@@ -46,6 +46,11 @@
 		[role='dialog'] {
 			--box-shadow: var(--box-shadow-contextmenu) !important;
 		}
+
+		/* Small div rotated to simulate chevron on notification bubbles */
+		// .h-3.w-3.rotate-45.transform.rounded-br-sm.bg-gray-900 {
+		// 	background-color: var(--c-surface-3) !important;
+		// }
 	}
 
 	/* Context menu bg */
