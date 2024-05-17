@@ -142,23 +142,21 @@ main:has(button[aria-label='Stop generating']) {
 	/* @ PROMPT TEXTAREA  */
 	// Guest/3.5 textarea prompt
 	form div[class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea) {
-		/* Guest/3.5 - Send button */
+		/* Guest/3.5 - "Send button" */
 		button[data-testid='send-button'] {
 			right: 1.3rem !important;
-			bottom: 1.2rem !important;
+			bottom: 1.3rem !important;
 		}
 
+		/* "Stop generating" btn */
 		.absolute:has(button[aria-label='Stop generating']) {
-			right: 1.3rem !important;
+			// right: 1.3rem !important;
 			bottom: 0.9rem !important;
-		}
-		button[aria-label='Stop generating'] {
-			border-color: var(--c-accent);
-			padding: 0.38rem !important;
 
-			svg {
-				color: var(--c-accent);
-				transform: scale(1.07);
+			button[aria-label='Stop generating'] {
+				svg {
+					color: var(--c-accent);
+				}
 			}
 		}
 
