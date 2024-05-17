@@ -106,6 +106,21 @@ main:has(button[aria-label='Stop generating']) {
 					max-width: 100% !important;
 				}
 			}
+
+			/* Uploaded image parent */
+			.w-full.mt-1 {
+				margin: 0 !important;
+				.bg-token-main-surface-secondary {
+					border-radius: var(--br-contextmenu) !important;
+				}
+			}
+			/* Uploaded image */
+			button:has(img[alt='Uploaded image']) {
+				img[alt='Uploaded image'] {
+					border-radius: var(--br-contextmenu) !important;
+					margin: 0 !important;
+				}
+			}
 		}
 
 		/* User chat bubble - Edit state. There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select like this for that case scenario */
