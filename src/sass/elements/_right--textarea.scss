@@ -48,6 +48,11 @@ main form {
 			}
 		}
 
+		button[data-testid='send-button'] {
+			right: 1.3rem !important;
+			bottom: 1.2rem !important;
+		}
+
 		/* "Reply" in msg textarea */
 		.bg-token-main-surface-primary {
 			background-color: var(--c-surface-3);
