@@ -25,6 +25,10 @@
 		color: var(--c-accent) !important;
 		background-color: hsla(var(--accent-hsl) / 0.15) !important;
 		backdrop-filter: blur(5px);
+
+		svg {
+			fill: var(--c-accent) !important;
+		}
 		// outline: 2px solid var(--c-accent);
 	}
 	&-danger {
