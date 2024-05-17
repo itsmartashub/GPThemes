@@ -29,12 +29,12 @@
 
 /* ? Unique selector for detecting the UI with the old design vs new one (gpt4o)
 - [data-testid='send-button'] is used for detecting the UI with the old design vs new one (gpt4o).
-- The problem is while gpt generating the answer this selector is gone, but the [aria-label='Stop generating'] is visible now (stop btn), so we use this selector too! 
+- The problem is while gpt generating the answer this selector is gone, but the [aria-lab`el='Stop generating'] is visible now (stop btn), so we use this selector too! 
 - This could causes many problems if ChatGPT add those attributes to the new 4o desgin too! Then the old design and the new design would be merged together. */
 main:has(button[data-testid='send-button']),
 main:has(button[aria-label='Stop generating']) {
 	// main:where(form div[class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea)) {
-	border: 10px solid orange !important;
+	// border: 10px solid orange !important;
 
 	/* @ CHAT BUBBLES  */
 	[data-testid^='conversation-turn-'] {
@@ -262,7 +262,7 @@ main:has(button[aria-label='Stop generating']) {
 ! WARNING: THIS CAN BREAK AND NEW-UI WEBSITE IF THEY ADD .font-semibold.select-none inside the [data-testid^='conversation-turn-']
 */
 main:has([data-testid^='conversation-turn-'] .font-semibold.select-none) {
-	border: 20px solid red !important;
+	// border: 20px solid red !important;
 
 	[data-testid^='conversation-turn-'] {
 		[data-message-author-role='user'],
