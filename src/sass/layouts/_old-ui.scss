@@ -1,0 +1,63 @@
+// main [data-testid^='conversation-turn-'] {
+// 	&:has([data-message-author-role='user']) {
+// 		// [class*='lg:max-w-[40rem]']:not([class*='bg-[#f4f4f4]']) {
+// 		&:not(.lg\:max-w-\[40rem\].bg-\[\#f4f4f4\]) {
+// 			// border: 2px solid red !important;
+// 		}
+
+// 		// 	background-color: var(--c-bg-msg-user);
+// 		// 	padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.2);
+// 		// 	border-radius: var(--br-chat-bubble) !important;
+// 	}
+// }
+
+// [data-message-author-role='user'] {
+//     align-items: flex-start !important;
+// }
+// [class*='lg:max-w-[40rem]'] {
+// 	background-color: var(--c-bg-msg-user);
+// 	padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.2);
+// 	border-radius: var(--br-chat-bubble) !important;
+// }
+
+// main:has(div[class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea)) {
+// 	box-shadow: inset 0 0 0 10px red !important;
+// }
+// main:has(form div[class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea)) {
+// 	border: 10px solid orange !important;
+// }
+main:has(button[data-testid='send-button']) {
+	border: 10px solid orange !important;
+
+	/* @ CHAT BUBBLES  */
+	[data-testid^='conversation-turn-'] {
+		&:has([data-message-author-role='user']) {
+			/* Chat bubble */
+			[class*='lg:max-w-[40rem]'] {
+				background-color: var(--c-bg-msg-user);
+				padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.2);
+				border-radius: var(--br-chat-bubble) !important;
+			}
+
+			/* Flex-end the Reply in user chat bubble */
+			[data-message-author-role='user'] {
+				align-items: flex-start !important;
+			}
+		}
+	}
+
+	/* @ PROMPT TEXTAREA  */
+	// Guest/3.5 textarea prompt
+	form div[class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea) {
+		/* Guest/3.5 - Send button */
+		button[data-testid='send-button'] {
+			right: 1.3rem !important;
+			bottom: 1.2rem !important;
+		}
+
+		/* Guest/3.5 - Attach files button */
+		div:has(& > div[type='button'][aria-haspopup='dialog']:has(button[aria-label='Attach files'])) {
+			bottom: 1.5rem !important;
+		}
+	}
+}
