@@ -85,8 +85,26 @@ main [data-testid^='conversation-turn-'] {
 
 	/*  Chat bubble footer SVG icons - edit, read aloud, copy, regenerate, bad response */
 	[class*='empty:hidden'] {
-		button svg {
-			color: var(--c-accent);
+		button {
+			svg {
+				color: var(--c-accent);
+			}
+
+			&:hover {
+				background-color: var(--c-accent) !important;
+				color: var(--c-on-accent) !important;
+
+				svg {
+					color: var(--c-on-accent) !important;
+				}
+				// background-color: hsla(var(--accent-hsl) / 0.18);
+			}
+		}
+
+		& > .bg-token-main-surface-primary {
+			--main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important;
+			// background-color: hsla(var(--accent-hsl) / 0.1) !important;
+			backdrop-filter: blur(8px);
 		}
 	}
 
@@ -105,6 +123,21 @@ main [data-testid^='conversation-turn-'] {
 		/* Flex-end the Reply in user chat bubble */
 		[data-message-author-role='user'] {
 			align-items: flex-end !important;
+
+			/* Edit icon in User chat */
+			.absolute.bottom-0.right-full.top-0 {
+				button {
+					background-color: hsla(var(--accent-hsl) / 0.1);
+
+					/* &:hover {
+						background-color: var(--c-accent) !important;
+
+						svg {
+							color: var(--c-on-accent) !important;
+						}
+					} */
+				}
+			}
 		}
 
 		/* Reply in msg */
@@ -134,8 +167,9 @@ main [data-testid^='conversation-turn-'] {
 	/* User chat bubble - Edit state.
 	There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario */
 	div:has(> textarea) {
+		// @extend %animFadeIn;
 		// .bg-token-main-surface-tertiary:has(> textarea) {
-		--main-surface-tertiary: hsla(var(--accent-hsl) / 0.13) !important;
+		--main-surface-tertiary: hsla(var(--accent-hsl) / 0.1) !important;
 		padding: var(--p-chat-bubble) !important;
 
 		/* Make the text in edit textarea to be the full-width */
