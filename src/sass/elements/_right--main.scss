@@ -1,7 +1,5 @@
 /* === RIGHT - CONVERSATION CONTAINER === */
 main [role='presentation'] {
-	// $avatar-color: css('--c-avatar');
-
 	/* Main Page chat-container  Bg*/
 	&,
 	/* Shared Link Page Bg */
@@ -9,20 +7,21 @@ main [role='presentation'] {
 		background-color: var(--c-bg-chats-container) !important;
 	}
 
+	/* GPT logo in new chat page when no-btns are shown. Its important to make this code before .gizmo-shadow-stroke (main new chat logo in old-ui) because it override its color */
+	.flex.h-full > svg[role='img'] {
+		color: var(--c-accent);
+	}
 	/* GPT logo in chat bubble */
 	.gizmo-bot-avatar div, 
-	/* GPT logo in "New Chat" main chat-container */
+	/* GPT logo in "New Chat" main chat-container in old-ui */
 	.gizmo-shadow-stroke {
 		background-color: var(--c-accent) !important;
-		color: var(--c-on-accent) !important;
+		svg {
+			color: var(--c-on-accent) !important;
+		}
 	}
 	.gizmo-bot-avatar {
 		--main-surface-tertiary: var(--c-accent) !important;
-	}
-
-	/* GPT logo in new chat page when no-btns are shown */
-	.flex.h-full > svg[role='img'] {
-		color: var(--c-accent);
 	}
 }
 
@@ -38,8 +37,6 @@ main [data-testid^='conversation-turn-'] {
 	/* Edit icon in user chat for example. Edit state user chat bg  */
 	--main-surface-tertiary: var(--c-surface-3) !important;
 	// --main-surface-tertiary: hsla(var(--accent-hsl) / 0.5) !important;
-
-	--c-avatar: var(--avatar-color);
 	margin-bottom: var(--mb-chat-bubble) !important;
 
 	/* Horizontal gap from chat bubble to screen-edge */
@@ -53,6 +50,34 @@ main [data-testid^='conversation-turn-'] {
 
 	/* RIGHT - CHATS BUBBLES DIV */
 	& > div:first-child > div:first-child {
+	}
+
+	/*  Chat bubble footer SVG icons - edit, read aloud, copy, regenerate, bad response */
+	[class*='empty:hidden'] {
+		// button[class*='hover:bg-token-main-surface-secondary'],
+		// button[class*='hover:bg-token-main-surface-tertiary'] {
+		button {
+			svg {
+				color: var(--c-accent);
+			}
+
+			&:hover {
+				background-color: var(--c-accent) !important;
+				color: var(--c-on-accent) !important;
+
+				svg {
+					color: var(--c-on-accent) !important;
+				}
+				// background-color: hsla(var(--accent-hsl) / 0.18);
+			}
+		}
+
+		& > .bg-token-main-surface-primary {
+			--main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important;
+			// background-color: hsla(var(--accent-hsl) / 0.1) !important;
+			backdrop-filter: blur(8px);
+		}
+
 		/* "Was this response better or worse? 👍👎" el when clicked on regenerate answer btn  */
 		.bg-token-main-surface-secondary:has(button[title^='This response was']) {
 			background-color: transparent !important;
@@ -89,32 +114,6 @@ main [data-testid^='conversation-turn-'] {
 					transform: translateY(-4%);
 				}
 			}
-		}
-	}
-
-	/*  Chat bubble footer SVG icons - edit, read aloud, copy, regenerate, bad response */
-	[class*='empty:hidden'] {
-		button[class*='hover:bg-token-main-surface-secondary'],
-		button[class*='hover:bg-token-main-surface-tertiary'] {
-			svg {
-				color: var(--c-accent);
-			}
-
-			&:hover {
-				background-color: var(--c-accent) !important;
-				color: var(--c-on-accent) !important;
-
-				svg {
-					color: var(--c-on-accent);
-				}
-				// background-color: hsla(var(--accent-hsl) / 0.18);
-			}
-		}
-
-		& > .bg-token-main-surface-primary {
-			--main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important;
-			// background-color: hsla(var(--accent-hsl) / 0.1) !important;
-			backdrop-filter: blur(8px);
 		}
 	}
 
