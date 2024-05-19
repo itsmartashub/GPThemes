@@ -49,8 +49,8 @@ main [data-testid^='conversation-turn-'] {
 	}
 
 	/* RIGHT - CHATS BUBBLES DIV */
-	& > div:first-child > div:first-child {
-	}
+	// & > div:first-child > div:first-child {
+	// }
 
 	/*  Chat bubble footer SVG icons - edit, read aloud, copy, regenerate, bad response */
 	[class*='empty:hidden'] {
