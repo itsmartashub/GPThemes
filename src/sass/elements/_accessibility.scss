@@ -26,16 +26,17 @@ Theme dropdown deo ima zeleni border za :focus-visible.
 :focus-visible:not(
 		.btn-primary,
 		.btn-danger,
-		.btn-neutral:not([role='combobox'], .bg-token-surface-tertiary input),
+		.btn-secondary:not([role='combobox'], .bg-token-surface-tertiary input),
 		textarea,
 		input,
 		[aria-label='Delete shared link'],
-		[class*='text-red-']
+		[class*='text-red-'],
+		button[type='button']
 	) {
 	outline: 2.5px solid hsl(var(--accent-h), calc(var(--accent-s) / 1.5), var(--accent-l));
 }
 
-:focus-visible:is(.btn-neutral[role='combobox']) {
+:focus-visible:is(.btn-secondary[role='combobox']) {
 	border: none !important;
 }
 
@@ -55,5 +56,10 @@ Theme dropdown deo ima zeleni border za :focus-visible.
 	// }
 }
 
-input {
+[class*='focus'] {
+	box-shadow: none !important;
+	outline: none !important;
+	&:focus {
+		box-shadow: none !important;
+	}
 }
