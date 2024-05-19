@@ -227,6 +227,13 @@ main [data-testid^='conversation-turn-'] {
 				// 	width: 100% !important;
 				// }
 			}
+
+			/* GPT avatar in its chat bubbles */
+			@include dev(mob) {
+				.gizmo-bot-avatar:has(svg[role='img']) {
+					visibility: hidden;
+				}
+			}
 		}
 
 		/* Response 1 or Response 2 chat bubble when we have to choose 1 answer */
