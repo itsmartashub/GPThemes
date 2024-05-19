@@ -16,6 +16,14 @@ main [role='presentation'] {
 		background-color: var(--c-accent) !important;
 		color: var(--c-on-accent) !important;
 	}
+	.gizmo-bot-avatar {
+		--main-surface-tertiary: var(--c-accent) !important;
+	}
+
+	/* GPT logo in new chat page when no-btns are shown */
+	.flex.h-full > svg[role='img'] {
+		color: var(--c-accent);
+	}
 }
 
 /* === RIGHT - Chats - Gap from heading and svg icons ===*/
@@ -52,32 +60,33 @@ main [data-testid^='conversation-turn-'] {
 			border: 1px solid var(--c-border);
 			border-radius: var(--br-contextmenu);
 
-			/* "Same" svg, fix white border for visualy consistency */
-			svg.rounded-full {
-				border-color: var(--c-avatar);
-				// border-color: var(--c-accent);
-			}
 			/* 👍👎 */
 			button[title] {
 				border-radius: var(--br-btn) !important;
 				border: 1px solid transparent;
 				transition: transform 0.2s $easeInOutSine;
 
+				/* "Better", "Worse", "Same" svg */
+				svg {
+					color: var(--c-accent) !important;
+
+					/* "Same" svg, fix white border for visualy consistency */
+					&.rounded-full {
+						border-color: currentColor;
+					}
+				}
+
 				/* "Better", "Worse", "Same" */
 				span {
 					transition: color 0.2s $easeInOutSine;
-					color: var(--c-subtext-2) !important;
+					color: currentColor !important;
 				}
 
 				&:hover {
+					color: var(--c-accent) !important;
 					background-color: transparent !important;
-					border-color: var(--c-border) !important;
+					border-color: currentColor !important;
 					transform: translateY(-4%);
-
-					span {
-						color: var(--c-avatar) !important;
-						// border-color: var(--c-accent) !important;
-					}
 				}
 			}
 		}
@@ -85,7 +94,8 @@ main [data-testid^='conversation-turn-'] {
 
 	/*  Chat bubble footer SVG icons - edit, read aloud, copy, regenerate, bad response */
 	[class*='empty:hidden'] {
-		button {
+		button[class*='hover:bg-token-main-surface-secondary'],
+		button[class*='hover:bg-token-main-surface-tertiary'] {
 			svg {
 				color: var(--c-accent);
 			}
@@ -95,7 +105,7 @@ main [data-testid^='conversation-turn-'] {
 				color: var(--c-on-accent) !important;
 
 				svg {
-					color: var(--c-on-accent) !important;
+					color: var(--c-on-accent);
 				}
 				// background-color: hsla(var(--accent-hsl) / 0.18);
 			}
