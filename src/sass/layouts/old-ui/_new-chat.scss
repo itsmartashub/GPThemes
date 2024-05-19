@@ -1,0 +1,65 @@
+main:has(button[data-testid='send-button']),
+main:has(button[aria-label='Stop generating']) {
+	/* @ NEW CHAT BIH BUTTONS */
+	form .grow {
+		/* recimo gap izmedju new chat example buttons*/
+		.gap-2 {
+			gap: 0.8rem !important;
+		}
+		[class*='grid-cols-[repeat(auto-fit,minmax(250px,1fr))]'] {
+			.btn {
+				padding: 1.5rem !important;
+				background-color: var(--c-surface-2) !important;
+				color: var(--c-txt) !important;
+				border-radius: var(--br-btn-big) !important;
+				overflow: hidden; // Mora jer kad se hoveruje .btn, onda se  .bg-gradient-to-l radius ne uklapa s ovim, manji je i onda .btn cudno izgleda sa desne strane, ovaj ga overflowuje
+
+				/* Gradient bg visible on hover */
+				.bg-gradient-to-l {
+					--gradient-color-from: var(--c-surface-3) !important;
+					transition: all 0.3s ease-in-out;
+
+					/* Button SVG parent ❌ */
+					.bg-token-main-surface-primary {
+						background-color: var(--c-accent) !important;
+						border-radius: 100vw !important;
+						padding: 0.5rem !important;
+
+						/* SVG icon*/
+						svg {
+							color: var(--c-on-accent) !important;
+						}
+					}
+
+					/* Button SVG parent wrapper */
+					span[data-state] {
+						overflow: hidden;
+						padding: 4px; // because svg btn looks cut off in firefox, so add a little space around
+
+						/* Button w/ SVG */
+						.bg-token-main-surface-primary {
+							transform: translateY(120%) scale(0.5);
+							transition: transform 0.5s $easeOutBack;
+						}
+					}
+				}
+
+				&:hover {
+					background-color: var(--c-surface-3) !important;
+					transform: translateY(-4px);
+
+					.bg-gradient-to-l {
+						span[data-state] {
+							/* Button w/ SVG */
+							// .bg-token-surface-primary {
+							.bg-token-main-surface-primary {
+								transform: translateY(0%) scale(1);
+								opacity: 1 !important;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

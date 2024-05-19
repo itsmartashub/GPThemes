@@ -1,39 +1,38 @@
 /* Sidebar bg-color */
 .bg-token-sidebar-surface-primary:has(nav[aria-label='Chat history']) {
-	/* --surface-primary fix dark/black color for a:hover states */
-	// --surface-primary: var(--c-surface-2) !important;
-	// --surface-primary: red !important;
 	color: var(--c-txt) !important;
-	// background-color: var(--c-bg-sidebar) !important;
 
 	/* Fix white txt on "NEW CHAT" in sidebar for light especially */
 	nav a > * {
 		color: var(--c-txt) !important;
+	}
+
+	/* "New Chat" link (first in nav in sidebar) */
+	nav a[href='/'] {
+		border: 2px solid var(--c-surface-2);
+		padding: var(--p-sidebar-nav-a-new-chat) !important;
+		text-transform: uppercase;
+	}
+
+	/* "Explore GPTs" link parents - Ne mozemo dodati direkt n ovaj lnk jer kad dodamo vise GPTs producta u ovu listu da bude iznad "Explore GPTs" onda ono nema margin-top vec samo ovaj link, a mi zelimo parent da ima */
+	nav .sticky + div:has(a[href^='/gpts']) {
+		margin-top: 0.8rem;
 	}
 }
 
 nav[aria-label='Chat history'] {
 	padding: var(--p-sidebar-nav) !important;
 
-	// ! Strange black rectangle (.bg-black class) over "New Chat" btn when on links: https://chat.openai.com/gpts/discovery and https://chat.openai.com/g/g-UBYTKWkPj
-	/* .sticky.bg-black:has(a[href='/']) {
-		background-color: var(--c-bg-sidebar);
-		padding-bottom: 1rem !important;
-	} */
-
-	/* Parent of "NEW CHAT" btn */
-	.sticky {
+	/* TODO - maybe remove? Parent of "NEW CHAT" btn */
+	.sticky:has(a[href='/']) {
 		background-color: var(--c-bg-sidebar) !important;
-		backdrop-filter: blur(0px) !important;
-		margin-bottom: 0.5rem !important;
-		padding-bottom: 0.5rem;
+		// backdrop-filter: blur(0px) !important;
 	}
 
-	/* CLEAR CHATS div - Visible when unchecked "Chat learning & Training" in Settings */
+	/* TODO 4o REMOVED THIS i think - CLEAR CHATS div - Visible when unchecked "Chat learning & Training" in Settings */
 	.absolute.left-0.top-0.overflow-hidden {
 		background-color: var(--c-bg-sidebar) !important;
 		overflow-y: scroll;
-
 		min-height: 50vh !important;
 
 		.bg-gradient-to-t {
@@ -78,13 +77,6 @@ nav[aria-label='Chat history'] {
 		// border-radius: inherit !important;
 
 		transition: background-color 0.3s ease-in-out;
-
-		/* "New Chat" link (first in nav in sidebar) */
-		&[href='/'] {
-			border: 2px solid var(--c-surface-2);
-			padding: var(--p-sidebar-nav-a-new-chat) !important;
-			text-transform: uppercase;
-		}
 
 		/* "Upgrade" link in nav bg */
 		span.rounded-full.border-token-border-light {

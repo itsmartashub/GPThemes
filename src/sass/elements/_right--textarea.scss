@@ -1,66 +1,131 @@
 /* ===  RIGHT - TEXTAREA PARENT, message type and send button */
-// main form .overflow-hidden:has(textarea#prompt-textarea) {
-main form [class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea) {
-	padding: var(--p-prompt-textarea) !important;
-	// background-color: transparent !important;
-	// background-color: var(--c-bg-chats-container) !important;
-	background-color: var(--c-bg-textarea) !important;
-	border-radius: var(--br-prompt-textarea) !important;
-	// border: 3px solid var(--c-border-textarea);
-	border: none !important;
-	box-shadow: var(--box-shadow-textarea);
-	transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-	// box-shadow: var(--box-shadow-contextmenu) !important;
+// main form [class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea) {
+main form {
+	// gpt4o textarea prompt
+	div[class*='bg-[#f4f4f4]']:has(textarea#prompt-textarea),
 
-	&:has(textarea#prompt-textarea:focus) {
-		// box-shadow: var(--box-shadow-contextmenu) !important;
-		// border-color: transparent !important;
-		box-shadow: none !important;
-	}
+	// Guest/3.5 textarea prompt
+	div[class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea),
 
-	textarea::placeholder {
-		color: var(--c-placeholder-textarea) !important;
-	}
+	// Textare when clicked on "Temporary Chat" toggle
+	div[class*='bg-black']:has(textarea#prompt-textarea) {
+		padding: var(--p-prompt-textarea) !important;
+		background-color: var(--c-bg-textarea) !important;
+		border-radius: var(--br-prompt-textarea) !important;
+		border: none !important;
+		box-shadow: var(--box-shadow-textarea);
+		transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
-	/* Send button */
-	button[data-testid='send-button'] {
-		background-color: var(--c-accent) !important;
-		color: var(--c-txt) !important;
-		border-color: var(--c-accent) !important;
-		border-radius: 100vw !important;
-		padding: 2px;
-		right: 1.3rem !important;
-		bottom: 1.2rem !important;
-
-		&[disabled] {
-			opacity: 0.5 !important;
+		&:has(textarea#prompt-textarea:focus) {
+			box-shadow: none !important;
+		}
+		/* In "temporary chat" textarea is black so the color and caret-color are white, so this fix that */
+		textarea {
+			color: var(--c-txt);
+			caret-color: currentColor;
+		}
+		textarea::placeholder {
+			color: var(--c-placeholder-textarea) !important;
 		}
 
-		svg {
+		/* Send button */
+		// guest/3.5 send button
+		button[data-testid='send-button'],
+		// 4o send button 
+		button.rounded-full {
+			background-color: var(--c-accent) !important;
+			color: var(--c-txt) !important;
+			border-color: var(--c-accent) !important;
+			border-radius: 100vw !important;
+			padding: 2px;
+
+			&[disabled] {
+				opacity: 0.5 !important;
+			}
+
+			svg {
+				color: var(--c-on-accent) !important;
+			}
+		}
+
+		/* "Reply" in msg textarea */
+		.bg-token-main-surface-primary.divide-y {
+			background-color: var(--c-surface-3);
+			border-color: var(--c-accent);
+			border-radius: calc(var(--br-prompt-textarea) / 1.5) !important;
+			padding: 0.8rem;
+		}
+
+		/* Attached files background */
+		.bg-token-main-surface-primary:not(.divide-y) {
+			border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
+			background-color: hsla(var(--accent-hsl) / 0.12) !important;
+			color: var(--c-accent) !important;
+		}
+
+		/* 📎 "Attach files" button parent oof parent which has items-end */
+		// div:has(& > div[type='button'][aria-haspopup='dialog']:has(button[aria-label='Attach files'])) {
+		div[type='button'][aria-haspopup='dialog']:has(button[aria-label='Attach files']) {
+			margin-bottom: calc(var(--p-prompt-textarea) / 2);
+		}
+
+		/* 📎 Attach files svg */
+		button[aria-label='Attach files'] svg {
+			color: var(--c-accent) !important;
+		}
+		/* 🖼️ "Attach Files" - attached image wrapper */
+		div[type='button'][aria-haspopup='dialog'] {
+			/* "Attach Files" attached image */
+			span.bg-cover {
+				border-radius: 10px !important;
+			}
+		}
+	}
+
+	/* @mentions in textarea */
+	.absolute.bottom-16.z-10 {
+		.popover {
+			backdrop-filter: blur(30px) !important;
+			border: hsla(var(--accent-hsl) / 0.5);
+			background-color: hsla(var(--accent-hsl) / 0.12) !important;
+			box-shadow: var(--box-shadow-textarea);
+		}
+
+		/* @mentions - Search GPTs */
+		input {
+			// background-color: hsla(var(--accent-hsl) / 0.1) !important;
+			background-color: transparent !important;
+			border: 1px solid hsla(var(--accent-hsl) / 0.4) !important;
+			border-radius: var(--br-btn) !important;
+			color: var(--c-accent) !important;
+			margin-bottom: 1rem;
+			padding: var(--p-btn) !important;
+		}
+
+		// .bg-token-main-surface-primary {
+		// }
+
+		/* @mentions - GPTs list, scrollable product parent */
+		.max-h-40.overflow-y-auto {
+			& > div:not(:last-child) {
+				margin-bottom: 0.5rem;
+			}
+		}
+		/* @mentions - Active GPTs item */
+		.bg-token-main-surface-secondary {
+			background-color: var(--c-accent) !important;
 			color: var(--c-on-accent) !important;
+
+			[class*='text-'] {
+				color: currentColor !important;
+			}
 		}
-	}
 
-	.absolute:has(button[aria-label='Stop generating']) {
-		right: 1.3rem !important;
-		bottom: 0.9rem !important;
-	}
-	button[aria-label='Stop generating'] {
-		border-color: var(--c-accent);
-		padding: 0.38rem !important;
-
-		svg {
-			color: var(--c-accent);
-			transform: scale(1.07);
+		[class*='hover:bg-token-main-surface-secondary']:not(.bg-token-main-surface-secondary) {
+			&:hover {
+				background-color: hsla(var(--accent-hsl) / 0.1) !important;
+			}
 		}
-	}
-
-	/* "Reply" in msg textarea */
-	.bg-token-main-surface-secondary {
-		background-color: var(--c-surface-3);
-		border-color: var(--c-accent);
-		border-radius: calc(var(--br-prompt-textarea) / 1.5) !important;
-		padding: 0.8rem;
 	}
 }
 
@@ -69,15 +134,9 @@ main div[role='presentation'] div.w-full:has(form) {
 	margin-top: 0.5rem !important;
 }
 
-/* === RIGHT - TEXTAREA PARENT ===*/
-main div.flex.w-full.items-center > div {
-	box-shadow: none;
-	border: none;
-}
-
-html.dark[data-gptheme='oled'] main form [class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea) {
+html.dark[data-gptheme='oled'] main form div[class*='bg-[#f4f4f4]']:has(textarea#prompt-textarea) {
 	/* "Reply" in msg textarea */
-	.bg-token-main-surface-secondary {
+	.bg-token-main-surface-primary {
 		background-color: var(--c-surface-2);
 	}
 }

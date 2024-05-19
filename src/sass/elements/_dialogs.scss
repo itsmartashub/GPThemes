@@ -156,7 +156,8 @@
 
 		// bg-gradient of link preview
 		.from-token-main-surface-primary {
-			--gradient-color-from: --main-surface-primary;
+			display: none;
+			// --gradient-color-from: var(--main-surface-primary);
 		}
 
 		/* PUBLIC LINK UPDATED - Social platforms in show in footer after the  "🔗 Copy Link" btn */
@@ -274,6 +275,11 @@
 			--border-medium: transparent !important;
 		}
 
+		/* Gradient in dialog header when clicked on GPTs product, but if we add this style here it broke the gradient in "Create Link" dialog bcs there is var(--c-surface-3) (or var(--main-surface-primary) */
+		.from-token-main-surface-primary {
+			--main-surface-primary: var(--c-surface-2) !important;
+		}
+
 		/* Numbers in "Ratings" svg stars */
 		svg.text-green-500 ~ .text-white {
 			color: var(--c-on-accent) !important;
@@ -305,6 +311,14 @@
 				transform: none !important;
 				height: 2.25rem; // GPT's 3-dots height
 			}
+		}
+	}
+
+	&:has(img[alt='Uploaded image']) {
+		padding: 0 !important;
+		img[alt='Uploaded image'] {
+			border-radius: var(--br-contextmenu);
+			outline: 1px solid hsla(var(--accent-hsl) / 0.5);
 		}
 	}
 }

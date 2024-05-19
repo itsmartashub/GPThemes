@@ -64,12 +64,16 @@
 	li {
 		/* Ordered list item number (li::before) */
 		--text-tertiary: var(--c-accent) !important;
-		// --text-tertiary: var(--c-subtext-2) !important;
 	}
 
 	/* Markdown Links rendered in GPT answers */
 	a {
-		@extend %link_hover_underlined;
+		color: var(--c-accent) !important;
+
+		&[href] {
+			@extend %link_hover_underlined;
+		}
+		// color: var(--c-accent) !important;
 	}
 
 	/* Style Markdown Checkboxes */

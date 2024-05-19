@@ -19,14 +19,18 @@ main [role='presentation'] {
 }
 
 /* === RIGHT - Chats - Gap from heading and svg icons ===*/
-main [data-message-author-role='user'],
-main [data-message-author-role='assistant'] {
-	margin-top: var(--mt-chat-txt) !important;
-	margin-bottom: var(--mb-chat-txt) !important;
-}
+// main [data-message-author-role='user'],
+// main [data-message-author-role='assistant'] {
+// 	margin-top: var(--mt-chat-txt) !important;
+// 	margin-bottom: var(--mb-chat-txt) !important;
+// }
 
 /* @ === RIGHT - CHATS BUBBLES ===*/
 main [data-testid^='conversation-turn-'] {
+	/* Edit icon in user chat for example. Edit state user chat bg  */
+	--main-surface-tertiary: var(--c-surface-3) !important;
+	// --main-surface-tertiary: hsla(var(--accent-hsl) / 0.5) !important;
+
 	--c-avatar: var(--avatar-color);
 	margin-bottom: var(--mb-chat-bubble) !important;
 
@@ -40,53 +44,7 @@ main [data-testid^='conversation-turn-'] {
 	}
 
 	/* RIGHT - CHATS BUBBLES DIV */
-	// .group {
-
 	& > div:first-child > div:first-child {
-		// & > div > div {
-		--pt-multiplier: 1.6;
-		padding: calc(var(--p-chat-bubble) * var(--pt-multiplier)) var(--p-chat-bubble) var(--p-chat-bubble)
-			var(--p-chat-bubble) !important;
-		border-radius: var(--br-chat-bubble) !important;
-		letter-spacing: 0.3px;
-		line-height: 1.8 !important;
-
-		@include dev(mob) {
-			--pt-multiplier: 1.4;
-		}
-
-		/* Left chat content parent 
-		! Adding fixed width prevent content overflowing on the right side of chat bubble when there is some markdown (<pre>) element shown with scrolling horizontally */
-		/* 
-			0.75rem = gap-3 = gap between profile svg/img and right content
-			2.25rem = w-9 = gpt profile svg parent width */
-		.relative.flex.w-full.flex-col {
-			--svg-w: 2.25rem;
-			--svg-gap: 0.75rem;
-
-			width: calc(
-				100% - var(--svg-w) - var(--svg-gap) - var(--p-chat-bubble)
-			) !important; // more consistent width (right chat bubble spacing = left spacing)
-
-			span[data-state] {
-				display: flex;
-				place-items: center;
-			}
-
-			@include dev(mob) {
-				--svg-w: 24px;
-				// --moveToLeft: var(--svg-gap);
-				// --moveToLeft: var(--svg-w);
-				--moveToLeft: calc(var(--svg-w) + (var(--svg-gap) / 1.5));
-
-				/* Markdown parent - actually message content, without logo and User/ChatGPT name */
-				.flex-col.gap-1.md\:gap-3 {
-					transform: translateX(calc(var(--moveToLeft) * -1));
-					width: calc(100% + var(--moveToLeft) + var(--p-chat-bubble)) !important;
-				}
-			}
-		}
-
 		/* "Was this response better or worse? 👍👎" el when clicked on regenerate answer btn  */
 		.bg-token-main-surface-secondary:has(button[title^='This response was']) {
 			background-color: transparent !important;
@@ -125,111 +83,150 @@ main [data-testid^='conversation-turn-'] {
 		}
 	}
 
-	/* RIGHT - CHATS USER/GPT NAMES */
-	.font-semibold.select-none {
-		text-transform: uppercase;
-		color: var(--c-accent);
-	}
-
 	/*  Chat bubble footer SVG icons - edit, read aloud, copy, regenerate, bad response */
-	.self-end button svg {
-		color: var(--c-accent) !important;
+	[class*='empty:hidden'] {
+		button svg {
+			color: var(--c-accent);
+		}
 	}
 
 	/* @ RIGHT - CHATS BUBBLES - USER  */
-	// There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario
 	&:has([data-message-author-role='user']) {
 		/*  RIGHT - CHATS BUBBLE BG */
-		// .group {
-		// & > div > div {
-		& > div:first-child > div:first-child {
+		// & > div:first-child > div:first-child {
+		/* ? gpt4o - User message */
+		[class*='bg-[#f4f4f4]'] {
 			background-color: var(--c-bg-msg-user);
-			outline: 2px solid transparent !important;
+			padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.2);
+			border-radius: var(--br-chat-bubble) !important;
 		}
-
-		[data-message-author-role='user'] > div.font-medium.text-token-text-tertiary:has(svg.shrink-0) {
-			--p: 1rem;
-			background-color: hsla(var(--accent-hsl) / 0.1) !important;
-			color: var(--c-subtext-1) !important;
-			// color: var(--c-accent) !important;
-			border-radius: 1rem;
-			border: none !important;
-			padding: var(--p);
-
-			svg {
-				margin-right: 0.5rem;
-				// color: var(--c-accent) !important;
-				// background-color: hsla(var(--accent-hsl) / 0.13) !important;
-				// border-radius: 5px;
-			}
-		}
-
-		/* "Replying to:" text content, like bloquoted text */
-		// .border-l-2.overflow-y-auto {
-		// 	--p: 1rem;
-		// 	background-color: hsla(var(--accent-hsl) / 0.1) !important;
-		// 	border-radius: 1rem;
-		// 	border: none !important;
-		// 	padding: var(--p);
-		// 	padding-left: calc(var(--p) * 1.5);
-		// 	position: relative;
-
-		// 	/* Simulate the border-left but more modern, inside the "Replying to:" content */
-		// 	&::before {
-		// 		content: '';
-		// 		position: absolute;
-		// 		top: 50%;
-		// 		left: calc(var(--p) / 1.5);
-		// 		// left: 0;
-		// 		// background-color: var(--c-accent);
-		// 		background-color: hsla(var(--accent-hsl) / 0.6) !important;
-		// 		width: 4px;
-		// 		// height: calc(100% - (var(--p) * 2.5));
-		// 		height: calc(100% - (var(--p) * 2.8));
-		// 		border-radius: 5px;
-		// 		transform: translateY(-50%);
-		// 	}
 		// }
+
+		/* Flex-end the Reply in user chat bubble */
+		[data-message-author-role='user'] {
+			align-items: flex-end !important;
+		}
+
+		/* Reply in msg */
+		div:has(> svg + .line-clamp-3) {
+			position: relative;
+			align-items: flex-end !important;
+			padding: 5px 10px;
+			background-color: hsla(var(--accent-hsl) / 0.15);
+			color: var(--c-accent);
+			border-radius: var(--br-btn);
+			border-left: 5px solid var(--c-accent);
+
+			/* &::after {
+				content: '';
+				position: absolute;
+				height: 50%;
+				width: 3px;
+				background-color: var(--c-accent);
+				left: 8px;
+				border-radius: 5px;
+				top: 50%;
+				transform: translate(-50%, -50%);
+			} */
+		}
 	}
-	/* User chat bubble - Edit state. There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario */
-	&:has(textarea) {
-		// .group {
-		& > div:first-child > div:first-child {
-			background-color: var(--c-bg-chats-container) !important;
-			box-shadow: var(--box-shadow-textarea);
-			outline: 2px solid hsla(var(--accent-hsl) / 0.1) !important;
-			transition: outline 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 
-			/* === User/ChatGPT name === */
-			.font-semibold.select-none {
-				color: var(--c-msg-name-user);
-			}
+	/* User chat bubble - Edit state.
+	There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario */
+	div:has(> textarea) {
+		// .bg-token-main-surface-tertiary:has(> textarea) {
+		--main-surface-tertiary: hsla(var(--accent-hsl) / 0.13) !important;
+		padding: var(--p-chat-bubble) !important;
 
-			textarea {
-				@extend %animFadeIn;
-				color: var(--c-subtext-2) !important;
-				padding: 0.5rem 0;
-			}
-
-			/* Parent of buttons: "Save & Submit" and "Cancel" */
-			.text-center.mt-2.flex.justify-center {
-				@extend %animFadeIn;
-			}
-
-			.btn-neutral {
-				background-color: var(--c-surface-3) !important;
-				color: var(--c-txt) !important;
-			}
+		/* Make the text in edit textarea to be the full-width */
+		textarea {
+			width: 100%;
 		}
 	}
 
 	/* @ RIGHT - CHATS BUBBLES - GPT */
 	&:has([data-message-author-role='assistant']) {
 		/*   RIGHT - CHATS BUBBLE BG  */
-		// .group {
-		// & > div > div {
 		& > div:first-child > div:first-child {
 			background-color: var(--c-bg-msg-gpt);
+
+			--pt-multiplier: 1.3;
+			padding: calc(var(--p-chat-bubble) * var(--pt-multiplier)) var(--p-chat-bubble) var(--p-chat-bubble)
+				var(--p-chat-bubble) !important;
+			// padding: var(--p-chat-bubble);
+			border-radius: var(--br-chat-bubble) !important;
+			letter-spacing: 0.3px;
+			line-height: 1.8 !important;
+
+			@include dev(mob) {
+				--pt-multiplier: 1.4;
+			}
+
+			/* Left chat content parent 
+		! Adding fixed width prevent content overflowing on the right side of chat bubble when there is some markdown (<pre>) element shown with scrolling horizontally */
+			/* 
+			0.75rem = gap-3 = gap between profile svg/img and right content
+			2.25rem = w-9 = gpt profile svg parent width */
+
+			/* ! TODO - BY COMMENTING THIS WE FIX MUPLIPLE BUGS IN GPT CHAT LIKE LINKS WRAPPED IN MANY ROWS AND TOOLTIP FOR "REPLY" OR LINK PREVIEW TOOLTIP NOT POSITIONING CORRECTLY. BUT IF WE REMOVE THIS, THEN GPT CHAT'S BUBBLE WIDTH LOOKS SO ODD!!! WITH MARKDOWN/<PRE> ELEMENTS RENDERED THO
+			This mostly happend bcs of this:
+
+		````  span[data-state] {
+		```		  display: flex;
+		````	  place-items: center;
+		```    } */
+			/* There are more elements with the same class like the "Tell us more" parent when we click on dislike button in GPT chat */
+			.agent-turn.relative.flex.w-full.flex-col {
+				// border: 2px solid red !important;
+				--svg-w: 2.25rem;
+				--svg-gap: 0.75rem;
+
+				width: calc(
+					100% - var(--svg-w) - var(--svg-gap) - var(--p-chat-bubble)
+				) !important; // more consistent width (right chat bubble spacing = left spacing)
+
+				/* This break links in markdown making them wrapped */
+				/* span[data-state] {
+					display: flex;
+					place-items: center;
+				} */
+
+				@include dev(mob) {
+					--svg-w: 24px;
+					// --moveToLeft: var(--svg-gap);
+					// --moveToLeft: var(--svg-w);
+					--moveToLeft: calc(var(--svg-w) + (var(--svg-gap) / 1.5));
+
+					/* Markdown parent - actually message content, without logo and User/ChatGPT name */
+					.flex-col.gap-1.md\:gap-3 {
+						transform: translateX(calc(var(--moveToLeft) * -1));
+						width: calc(100% + var(--moveToLeft) + var(--p-chat-bubble)) !important;
+					}
+				}
+			}
+
+			/* "Tell us more" example buttons when clicked on 👎 in GPT chat bubble  - MOVED TO _btn.scss */
+			/* button.border-token-border-light {
+				// border: 1px solid var(--c-subtext-2) !important;
+				border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
+				color: var(--c-accent) !important;
+
+				&:hover {
+					transform: translateY(-1px);
+					background-color: hsla(var(--accent-hsl) / 0.1) !important;
+				}
+			} */
+
+			/* Parent of "Tell us more" example buttons when clicked on 👎 in GPT chat bubble*/
+			[class*='min-h-[96px] w-full'] {
+				border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
+				border-radius: var(--br-contextmenu);
+				background-color: hsla(var(--accent-hsl) / 0.05);
+
+				// .relative.flex.w-full.flex-col {
+				// 	width: 100% !important;
+				// }
+			}
 		}
 
 		/* Response 1 or Response 2 chat bubble when we have to choose 1 answer */
@@ -257,20 +254,41 @@ main [data-testid^='conversation-turn-'] {
 				font-weight: bold;
 			}
 		}
+
+		.overflow-hidden:has(> .divide-y) {
+			.from-token-main-surface-secondary {
+				--gradient-color-from: var(--c-surface-2) !important;
+
+				svg {
+					color: var(--c-accent) !important;
+				}
+			}
+
+			a {
+				border-radius: var(--br-btn);
+			}
+		}
 	}
 }
 
-/* Collapse sidebar btn - hover state*/
-main {
-	[class*='fixed left-0 top-1/2']:has(button) {
-		.rounded-full {
-			transition: background-color 0.2s ease-in-out;
+/* "Searched x sites" Links wrapper! */
+html.dark main [data-testid^='conversation-turn-']:has([data-message-author-role='assistant']) {
+	.overflow-hidden:has(> .divide-y) {
+		.from-token-main-surface-secondary {
+			--gradient-color-from: var(--c-surface-3) !important;
 		}
-
-		&:hover {
-			.rounded-full {
-				background-color: var(--c-accent) !important;
-			}
+		a:hover {
+			background-color: var(--c-surface-3);
+		}
+	}
+}
+html[data-gptheme='oled'] main [data-testid^='conversation-turn-']:has([data-message-author-role='assistant']) {
+	.overflow-hidden:has(> .divide-y) {
+		.from-token-main-surface-secondary {
+			--gradient-color-from: var(--c-surface-2) !important;
+		}
+		a:hover {
+			background-color: var(--c-surface-2);
 		}
 	}
 }

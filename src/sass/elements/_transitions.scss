@@ -61,20 +61,28 @@ button:not(
 	}
 }
 
-.btn {
+/* .btn that IS NOT DISABLED, like "Create" on GPTs page */
+.btn:not(.cursor-not-allowed) {
 	will-change: transform, opacity;
 
 	// transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out !important;
 	transition: transform 0.2s $easeInOutQuad, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out,
 		color 0.3s ease-in-out !important;
 
+	/* [class*='-translate-y-1/2']) je btn ❌ u attached image*/
+	// &:is(:hover, :active):not(.absolute.right-1.top-1.rounded-full) {
+	// &:is(:hover, :active):not([class*='-translate-y-1/2']) {
 	&:is(:hover, :active) {
 		transform: translateY(-2px);
 		opacity: 0.8;
 	}
+
+	// &:not(&-secondary, &-danger, &-green):is(:hover, :active) {
+	// 	color: var(--c-accent) !important;
+	// }
 }
 
-/* dialog buttons */
+/* ! TODO - DELETE due to GPT4o! - New dialog buttons */
 [role='dialog'] {
 	/* ".PopoverContent" je recimo menu od btn u "Shared Link to Chat" 3dots menu (Shared your Name & Delete Link) */
 	&.PopoverContent {
@@ -94,105 +102,105 @@ button[role='switch'] {
 	}
 }
 
-/* ___ New Chat big buttons */
-main form .grow .btn {
-	// transition: .4s $easeOutBack, background-color .3s ease-in-out opacity .3s ease-in-out;
+/* TODO REMOVED due to GPT4o! New Chat big buttons */
+// main form .grow .btn {
+// 	// transition: .4s $easeOutBack, background-color .3s ease-in-out opacity .3s ease-in-out;
 
-	/* Gradient bg visible on hover */
-	.bg-gradient-to-l {
-		transition: all 0.3s ease-in-out;
+// 	/* Gradient bg visible on hover */
+// 	.bg-gradient-to-l {
+// 		transition: all 0.3s ease-in-out;
 
-		/* Button SVG parent wrapper */
-		span[data-state] {
-			overflow: hidden;
-			padding: 4px; // because svg btn looks cut off in firefox, so add a little space around
+// 		/* Button SVG parent wrapper */
+// 		span[data-state] {
+// 			overflow: hidden;
+// 			padding: 4px; // because svg btn looks cut off in firefox, so add a little space around
 
-			/* Button w/ SVG */
-			// .bg-token-surface-primary { this class doesnt exist anymore...
-			.bg-token-main-surface-primary {
-				transform: translateY(120%) scale(0.5);
-				transition: transform 0.5s $easeOutBack;
-			}
-		}
-	}
+// 			/* Button w/ SVG */
+// 			// .bg-token-surface-primary { this class doesnt exist anymore...
+// 			.bg-token-main-surface-primary {
+// 				transform: translateY(120%) scale(0.5);
+// 				transition: transform 0.5s $easeOutBack;
+// 			}
+// 		}
+// 	}
 
-	&:hover {
-		background-color: var(--c-surface-3) !important;
-		transform: translateY(-4px);
+// 	&:hover {
+// 		background-color: var(--c-surface-3) !important;
+// 		transform: translateY(-4px);
 
-		.bg-gradient-to-l {
-			span[data-state] {
-				/* Button w/ SVG */
-				// .bg-token-surface-primary {
-				.bg-token-main-surface-primary {
-					transform: translateY(0%) scale(1);
-					opacity: 1 !important;
-				}
-			}
-		}
-	}
-}
+// 		.bg-gradient-to-l {
+// 			span[data-state] {
+// 				/* Button w/ SVG */
+// 				// .bg-token-surface-primary {
+// 				.bg-token-main-surface-primary {
+// 					transform: translateY(0%) scale(1);
+// 					opacity: 1 !important;
+// 				}
+// 			}
+// 		}
+// 	}
+// }
 
-/* ___ Textarea send message send-button */
-[data-testid='send-button']:not([disabled]) {
+/* TODO REMOVED due to GPT4o! Textarea send message send-button */
+/* [data-testid='send-button']:not([disabled]) {
 	transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out;
 
 	&:hover {
 		transform: translateY(-10%);
 	}
-}
+} */
 
-/* ___ Chat Bubbles */
-main [data-testid^='conversation-turn-'] {
-	// .group {
-	& > div:first-child > div:first-child {
-		&:hover {
-			/* Bubble message footer (icons wrapper) */
-			div[class*='empty:hidden'] {
-				.self-end {
-					transform: translateY(0);
-					opacity: 1;
+/* TODO - See if this still exists, i think there is no more .self-end ___ Chat Bubbles */
+// main [data-testid^='conversation-turn-'] {
+// 	// .group {
+// 	& > div:first-child > div:first-child {
+// 		&:hover {
+// 			/* Bubble message footer (icons wrapper) */
+// 			div[class*='empty:hidden'] {
+// 				.self-end {
+// 					transform: translateY(0);
+// 					opacity: 1;
 
-					/* Bubble message footer (svg icons) */
-					button svg {
-						transform: scale(1);
-					}
-				}
-			}
-		}
+// 					/* Bubble message footer (svg icons) */
+// 					button svg {
+// 						transform: scale(1);
+// 					}
+// 				}
+// 			}
+// 		}
 
-		/* Bubble message footer */
-		div[class*='empty:hidden'] {
-			overflow-y: clip;
-			// padding-inline: 10px; // to make counter answer (<2/4>) visible when this is overflow-hidden, we need to add padding-inline, or we can use overflow-y: clip; And overflow is "important" for translate transition
+// 		/* Bubble message footer */
+// 		div[class*='empty:hidden'] {
+// 			overflow-y: clip;
+// 			// padding-inline: 10px; // to make counter answer (<2/4>) visible when this is overflow-hidden, we need to add padding-inline, or we can use overflow-y: clip; And overflow is "important" for translate transition
 
-			/* Bubble message footer (icons wrapper) */
-			.self-end {
-				transform: translateY(100%);
-				opacity: 0;
-				transition: transform 0.4s $easeOutBack, opacity 0.3s ease;
+// 			/* Bubble message footer (icons wrapper) */
+// 			.self-end {
+// 				transform: translateY(100%);
+// 				opacity: 0;
+// 				transition: transform 0.4s $easeOutBack, opacity 0.3s ease;
 
-				/* Bubble message footer (svg icons) */
-				button svg {
-					transform: translateY(0px);
-					transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out;
+// 				/* Bubble message footer (svg icons) */
+// 				button svg {
+// 					transform: translateY(0px);
+// 					transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out;
 
-					&:hover {
-						opacity: 0.7;
-						transform: translateY(-2px);
-					}
-				}
-			}
+// 					&:hover {
+// 						opacity: 0.7;
+// 						transform: translateY(-2px);
+// 					}
+// 				}
+// 			}
 
-			@include dev(mob) {
-				.self-end {
-					transform: translateY(0%) !important;
-					opacity: 1 !important;
-				}
-			}
-		}
-	}
-}
+// 			@include dev(mob) {
+// 				.self-end {
+// 					transform: translateY(0%) !important;
+// 					opacity: 1 !important;
+// 				}
+// 			}
+// 		}
+// 	}
+// }
 
 /* "Copy code" btn */
 pre {
@@ -215,8 +223,9 @@ html.light pre button:has(svg):hover {
 	--c-bg-pre-header-btn-color: var(--c-on-accent) !important;
 }
 
-/* ___ Scroll down button */
-main [role='presentation'] button.absolute.rounded-full {
+/* ___ Scroll down button 
+[class*='-translate-y-1/2'] je btn ❌ u attached image */
+main [role='presentation'] button.absolute.rounded-full:not([class*='-translate-y-1/2']) {
 	transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out;
 
 	&:hover {
