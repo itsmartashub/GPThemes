@@ -87,6 +87,15 @@ main:has(button[aria-label='Stop generating']) {
 			}
 		}
 
+		&:has([data-message-author-role='assistant']) {
+			/* GPT avatar in its chat bubbles */
+			@include dev(mob) {
+				.gizmo-bot-avatar:has(svg[role='img']) {
+					visibility: visible !important;
+				}
+			}
+		}
+
 		/* User chat bubble - Edit state. There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select like this for that case scenario */
 		[class^='group/conversation-turn']:has(textarea) {
 			/* === User/ChatGPT name === */
