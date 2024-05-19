@@ -249,5 +249,14 @@ main:has([data-testid^='conversation-turn-'] .font-semibold.select-none) {
 			text-transform: uppercase;
 			color: var(--c-accent);
 		}
+
+		&:has([data-message-author-role='assistant']) {
+			/* GPT avatar in its chat bubbles */
+			@include dev(mob) {
+				.gizmo-bot-avatar:has(svg[role='img']) {
+					visibility: visible !important;
+				}
+			}
+		}
 	}
 }
