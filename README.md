@@ -5,7 +5,7 @@
 </div>
 
 <h1 align="center">GPThemes</h1>
-<h3 align="center">GPThemes is a Chrome extension designed to improve the visual experience of ChatGPT by injecting custom CSS to enhance its theme. </h3>
+<h3 align="center">Transform ChatGPT's user interface with customisable accent colours, modern designs and chat bubbles. </h3>
 <br/><br/>
 
 <div align="center">
@@ -16,13 +16,38 @@
 
 <div align="center">
 <details>
-<summary><h2> WARNING: Brilliance in progress. Guard your gaze 😎  </summary>
+<summary><h2>More Screenshots </summary>
 
 <div align="center">
-  <img src="https://github.com/itsmartashub/gpthemes/blob/master/gh/gpthemes-light.png" alt="" width="100%"  />
+    <h3>New UI</h3>
+    <div>
+      <div>
+        <img src="https://github.com/itsmartashub/gpthemes/blob/master/gh/gpthemes-amoled.png" alt="" width="100%"  />
+      </div>
+      <div>
+        <img src="https://github.com/itsmartashub/gpthemes/blob/master/gh/gpthemes-light.png" alt="" width="100%"  />
+      </div>
+    </div>
+    <h3>Old Ui</h3>
+    <div>
+      <div>
+        <img src="https://github.com/itsmartashub/gpthemes/blob/master/gh/gpthemes-dark-oldui.png" alt="" width="100%"  />
+      </div>
+        <div>
+        <img src="https://github.com/itsmartashub/gpthemes/blob/master/gh/gpthemes-light-oldui.png" alt="" width="100%"  />
+      </div>
+    </div>
 </div>
 </details>
 </div>
+
+## Main features
+
+-   **Custom theming**: Personalize ChatGPT with your accent color and see a live preview.
+-   **Modern themes**: Light, Dark, and Black (AMOLED) options for a stylish look.
+-   **Chat bubbles**: Sleek design to differentiate your messages from AI responses.
+-   **Easy theme switching**: Change themes via a floating button.
+-   **Wide compatibility**: GPThemes supports the latest ChatGPT UI, `GPT-4o`, as well as previous versions, ensuring a seamless experience for all users.
 
 ## Installation
 
@@ -44,19 +69,27 @@
 
 ### Developer Mode (Chromium)
 
-1. Download the `gpthemes-chromium.zip` from the [Releases](https://github.com/itsmartashub/GPThemes/releases) and unzip.
+1. Download the `gpthemes-chromium-vX.X.X.zip` from the [Releases](https://github.com/itsmartashub/GPThemes/releases) and unzip.
 2. Open prefered Chromium-based browser and go to `chrome://extensions/`
 3. Enable `Developer mode` in the top-right corner.
-4. Click `Load unpacked` and select the `gpthemes-chromium` folder.
+4. Click `Load unpacked` and select the `gpthemes-chromium-vX.X.X` folder.
+
+### Permissions
+
+-   **Storage**: Saves your chosen theme and accent colors for a consistent experience across all ChatGPT's URLs
+-   **ChatGPT Website Access**: Enables GPThemes to customize the visual elements on `chat.openai.com` and `chatgpt.com` (new domain) for the optimal experience.
 
 ## Supported ChatGPT versions
 
-> [!IMPORTANT]
-> Currently, the focus is on enhancing the UI/UX of the `ChatGPT 3.5` version. Exploring and editing elements of `ChatGPT Pro` version may be considered in future updates.
+> [!WARNING]
+> Please be aware that GPThemes is currently tailored to enhance the experience for `GPT-4o` and `GPT-3.5`. The `GPT Pro` is not fully supported yet! Probably the style is not as intended for certain elements! Exploring and editing all the elements of `GPT Pro` version may be considered in future updates.
 
-## Customization
+## Disclaimer
 
-You can customize the extension's style by modifying the `index.css` file in the extension's folder.
+-   I'd like to remind you that **ChatGPT frequently updates its website**, and even minor changes can sometimes cause unexpected issues with the extension's functionality and appearance.
+-   Your patience are greatly appreciated. If you notice any obvious issues with the appearance or functionality of the extension, I'm likely already working on it or it has already been fixed, but Chrome hasn't yet reflected the changes live. You can track the status on GitHub to stay informed.
+-   Please note that this is a hobby project and it all depends on my available free time, so it might take a little while to get everything up and running. </br></br>
+    **Thank you for your understanding.**
 
 ## Acknowledgments
 
