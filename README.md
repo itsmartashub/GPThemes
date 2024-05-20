@@ -43,10 +43,10 @@
 </details>
 </div>
 
-## Main features
+## Main Features
 
 -   **Custom theming**: Personalize ChatGPT with your accent color and see a live preview.
--   **Modern themes**: Light, Dark, and Black (AMOLED) options for a stylish look.
+-   **Modern themes**: **Light**, **Dark**, and **Black** (AMOLED) options for a stylish look.
 -   **Chat bubbles**: Sleek design to differentiate your messages from AI responses.
 -   **Easy theme switching**: Change themes via a floating button.
 -   **Wide compatibility**: GPThemes supports the latest ChatGPT UI, `GPT-4o`, as well as previous versions, ensuring a seamless experience for all users.
@@ -84,12 +84,13 @@
 ## Supported ChatGPT versions
 
 > [!WARNING]
-> Please be aware that GPThemes is currently tailored to enhance the experience for `GPT-4o` and `GPT-3.5`. The `GPT Pro` is not fully supported yet! Probably the style is not as intended for certain elements! Exploring and editing all the elements of `GPT Pro` version may be considered in future updates.
+> Please be aware that GPThemes is currently tailored to enhance the experience for `GPT-4o` and `GPT-3.5`. The `GPT Pro` is not fully supported yet! Probably the style is not as intended for certain elements! </br>
+> Exploring and editing all the elements of `GPT Pro` version may be considered in future updates.
 
 ## Disclaimer
 
 -   I'd like to remind you that **ChatGPT frequently updates its website**, and even minor changes can sometimes cause unexpected issues with the extension's functionality and appearance.
--   Your patience are greatly appreciated. If you notice any obvious issues with the appearance or functionality of the extension, I'm likely already working on it or it has already been fixed, but Chrome hasn't yet reflected the changes live. You can track the status on GitHub to stay informed.
+-   Your patience are greatly appreciated. If you notice any obvious issues with the appearance or functionality of the extension, I'm likely already working on it or it has already been fixed, but Chrome Store hasn't yet reflected the changes live. You can track the status on GitHub to stay informed.
 -   Please note that this is a hobby project and it all depends on my available free time, so it might take a little while to get everything up and running. </br></br>
     **Thank you for your understanding.**
 
