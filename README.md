@@ -76,7 +76,7 @@
 3. Enable `Developer mode` in the top-right corner.
 4. Click `Load unpacked` and select the `gpthemes-chromium-vX.X.X` folder.
 
-### Permissions
+## Permissions
 
 -   **Storage**: Saves your chosen theme and accent colors for a consistent experience across all ChatGPT's URLs
 -   **ChatGPT Website Access**: Enables GPThemes to customize the visual elements on `chat.openai.com` and `chatgpt.com` (new domain) for the optimal experience.
