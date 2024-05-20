@@ -24,16 +24,18 @@
       <div>
         <img src="https://github.com/itsmartashub/gpthemes/blob/master/gh/gpthemes-amoled.png" alt="" width="100%"  />
       </div>
+        </br>
       <div>
         <img src="https://github.com/itsmartashub/gpthemes/blob/master/gh/gpthemes-light.png" alt="" width="100%"  />
       </div>
-    </div>
+    </div></br></br>
     <h3>Old Ui</h3>
     <div>
       <div>
         <img src="https://github.com/itsmartashub/gpthemes/blob/master/gh/gpthemes-dark-oldui.png" alt="" width="100%"  />
       </div>
-        <div>
+        </br>
+      <div>
         <img src="https://github.com/itsmartashub/gpthemes/blob/master/gh/gpthemes-light-oldui.png" alt="" width="100%"  />
       </div>
     </div>
