@@ -81,7 +81,9 @@ main form {
 
 			/* 📎 "Attach files" svg */
 			button:has(svg) {
-				color: var(--c-accent) !important;
+				svg {
+					color: var(--c-accent) !important;
+				}
 			}
 
 			/* 🖼️ "Attach Files" - attached image wrapper */
