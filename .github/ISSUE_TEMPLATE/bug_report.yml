@@ -1,6 +1,6 @@
 name: 🐛 Bug Report
 description: Create a report about a bug you experienced while using GPThemes.
-title: '[BUG] this_replace_with_title'
+title: 'your_accurately_describing_title'
 labels: ['bug']
 body:
     - type: markdown
@@ -13,8 +13,8 @@ body:
     - type: checkboxes
       id: duplicates
       attributes:
-          # label: Please complete all tasks before submitting a report (Required)
-          label: Prerequisites (Required)
+          # label: Please complete all tasks before submitting a report
+          label: Prerequisites
           # description: Increase the chances of your issue being accepted by making sure it has not been raised before.
           options:
               # - label: I've checked that there is no "open" or "closed" issue about this bug.
@@ -28,7 +28,7 @@ body:
     - type: textarea
       id: description
       attributes:
-          label: Bug Description (Required)
+          label: Bug Description
           description: Please provide a clear and concise description of the problem you encountered.
       validations:
           required: true
@@ -36,7 +36,7 @@ body:
     - type: textarea
       id: steps
       attributes:
-          label: Steps to Reproduce (Required)
+          label: Steps to Reproduce
           #   description: To help me recreate the bug, provide a numbered list of the exact steps taken to trigger the buggy behavior.
           description: What did you do for the bug to occur?
           placeholder: |
@@ -55,14 +55,14 @@ body:
 
     - type: textarea
       attributes:
-          label: Expected Behavior (Required)
+          label: Expected Behavior
           description: Provide a clear and concise description of what you expected to happen.
       validations:
           required: true
 
     - type: textarea
       attributes:
-          label: Actual Behavior (Required)
+          label: Actual Behavior
           description: Provide a clear and concise description of what happened.
       validations:
           required: true
@@ -70,7 +70,7 @@ body:
     # - type: dropdown
     #   id: browser
     #   attributes:
-    #       label: Select Your Browser (Required)
+    #       label: Select Your Browser
     #       options:
     #           - 'Chrome'
     #           - 'Firefox'
@@ -81,7 +81,7 @@ body:
     # - type: input
     #   id: other-browser
     #   attributes:
-    #       label: If you select "Other" previously, please specify browser (Optional)
+    #       label: If you select "Other" previously, please specify browser
     #       # description: Please fill this only if you choose "Other" for browser selection
     #       placeholder: e.g. "Floorp"
     #   validations:
@@ -103,7 +103,7 @@ body:
     - type: input
       id: browser-version
       attributes:
-          label: Web Browser name and version (Required)
+          label: Web Browser name and version
           placeholder: e.g. "Chrome 121.0.6167.184"
       validations:
           required: true
@@ -111,24 +111,24 @@ body:
     - type: input
       id: extension-version
       attributes:
-          label: GPThemes version (Required)
+          label: GPThemes version
           placeholder: e.g. "v2.0.2"
       validations:
           required: true
 
     - type: dropdown
       attributes:
-          label: Does this happen when GPThemes is disabled? (Required)
+          label: Does this happen when GPThemes is disabled?
           options:
-              - 'Yes'
               - 'No'
+              - 'Yes'
       validations:
           required: true
 
     - type: textarea
       id: screenshots
       attributes:
-          label: Screenshots or Videos (Optional)
+          label: Screenshots or Videos
           description: If applicable, attach any relevant screenshots or videos showing the issue.
       validations:
           required: false
@@ -136,7 +136,7 @@ body:
     - type: textarea
       id: additional-information
       attributes:
-          label: Additional Information (Optional)
+          label: Additional Information
           description: Provide any additional information about this bug.
       validations:
           required: false
