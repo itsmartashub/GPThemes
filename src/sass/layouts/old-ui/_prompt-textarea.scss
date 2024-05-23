@@ -21,6 +21,7 @@ main:has(button[aria-label='Stop generating']) {
 			}
 		}
 
+		/* "Reply" in msg textarea */
 		.bg-token-main-surface-secondary:has(> .max-h-32.whitespace-pre-wrap.break-words) {
 			background-color: var(--c-surface-3) !important;
 			border-color: var(--c-accent);

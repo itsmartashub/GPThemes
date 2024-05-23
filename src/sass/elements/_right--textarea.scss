@@ -74,26 +74,35 @@ main form {
 		// 	color: var(--c-accent) !important;
 		// }
 		/* Moram ovako jer imamo dva div[type='button'][aria-haspopup='dialog'] */
-		div[type='button'][aria-haspopup='dialog']:has(input[type='file']) {
-			margin-bottom: calc(var(--p-prompt-textarea) / 2);
 
-			// border: 2px solid red !important;
-
+		div:has(> input[type='file']) {
 			/* 📎 "Attach files" svg */
-			button:has(svg) {
+			button:has(> svg) {
+				border: 2px solid red !important;
+				margin-bottom: calc(var(--p-prompt-textarea) / 2);
 				svg {
 					color: var(--c-accent) !important;
 				}
 			}
+		}
 
-			/* 🖼️ "Attach Files" - attached image wrapper */
-			div[type='button'][aria-haspopup='dialog'] {
-				// border: 2px solid lightgreen !important;
-				/* "Attach Files" attached image */
-				span.bg-cover {
-					border-radius: 10px !important;
-				}
+		/* 🖼️ "Attach Files" - attached image wrapper */
+		div[type='button'][aria-haspopup='dialog'] {
+			border: 2px solid lightgreen !important;
+			/* "Attach Files" attached image */
+			span.bg-cover {
+				border-radius: 10px !important;
 			}
+			// div[type='button'][aria-haspopup='dialog']:has(input[type='file']) {
+			// 	// border: 2px solid red !important;
+
+			// 	/* 📎 "Attach files" svg */
+			// 	// button:has(> svg) {
+			// 	// 	svg {
+			// 	// 		color: var(--c-accent) !important;
+			// 	// 	}
+			// 	// }
+			// }
 		}
 	}
 
