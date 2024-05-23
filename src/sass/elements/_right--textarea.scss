@@ -78,7 +78,7 @@ main form {
 		div:has(> input[type='file']) {
 			/* 📎 "Attach files" svg */
 			button:has(> svg) {
-				border: 2px solid red !important;
+				// border: 2px solid red !important;
 				margin-bottom: calc(var(--p-prompt-textarea) / 2);
 				svg {
 					color: var(--c-accent) !important;
@@ -88,7 +88,7 @@ main form {
 
 		/* 🖼️ "Attach Files" - attached image wrapper */
 		div[type='button'][aria-haspopup='dialog'] {
-			border: 2px solid lightgreen !important;
+			// border: 2px solid lightgreen !important;
 			/* "Attach Files" attached image */
 			span.bg-cover {
 				border-radius: 10px !important;
