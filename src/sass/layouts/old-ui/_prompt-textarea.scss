@@ -22,7 +22,7 @@ main:has(button[aria-label='Stop generating']) {
 		}
 
 		.bg-token-main-surface-secondary:has(> .max-h-32.whitespace-pre-wrap.break-words) {
-			background-color: var(--c-surface-3);
+			background-color: var(--c-surface-3) !important;
 			border-color: var(--c-accent);
 			border-radius: calc(var(--br-prompt-textarea) / 1.5) !important;
 			padding: 0.8rem;
@@ -32,5 +32,17 @@ main:has(button[aria-label='Stop generating']) {
 		// .absolute[type='button'][aria-haspopup='dialog']:has(button[aria-label='Attach files']) {
 		// 	bottom: 1.5rem !important;
 		// }
+	}
+}
+
+html.dark[data-gptheme='oled'] {
+	main:has(button[data-testid='send-button']),
+	main:has(button[aria-label='Stop generating']) {
+		form div[class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea) {
+			/* "Reply" in msg textarea */
+			.bg-token-main-surface-secondary:has(> .max-h-32.whitespace-pre-wrap.break-words) {
+				background-color: var(--c-surface-2) !important;
+			}
+		}
 	}
 }
