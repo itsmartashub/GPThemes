@@ -1,7 +1,0 @@
-name: Developer Issue Form
-description: This issue form is for developers only.
-title: ''
-body:
-    - type: markdown
-      attributes:
-          value: ''
