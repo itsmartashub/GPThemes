@@ -29,17 +29,6 @@ nav[aria-label='Chat history'] {
 		// backdrop-filter: blur(0px) !important;
 	}
 
-	/* TODO 4o REMOVED THIS i think - CLEAR CHATS div - Visible when unchecked "Chat learning & Training" in Settings */
-	.absolute.left-0.top-0.overflow-hidden {
-		background-color: var(--c-bg-sidebar) !important;
-		overflow-y: scroll;
-		min-height: 50vh !important;
-
-		.bg-gradient-to-t {
-			opacity: 0;
-		}
-	}
-
 	/* NEW CHAT + LIST of chats in nav. Adding padding-left prevent :focus-visible style in those elements to be cropped from the left because of the overflow-hidden */
 	.overflow-y-auto {
 		padding-left: 0.3rem !important;

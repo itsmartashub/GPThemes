@@ -1,11 +1,15 @@
 /* === STICKY ChatGPT version ===*/
 /* Removing "main" before sticky caused this style is applied on many elements I don't want: Sidebar "NEW CHT" wrapper, and down the [aria-haspopup='menu']:hover caused also issues on in pop-up table on more options (3dots) svg icon.
-But adding this "main" blocked this style to smaller screens so I have to add it down, out of this block */
-main .sticky {
+But adding this "main" blocked this style to smaller screens so I have to add it down, out of this block,
+
+.h-full.overflow-y-auto:has(.sticky [href^='/auth/login?next=/gpts']) is for Guest mode on GPTs Store */
+main .sticky,
+.h-full.overflow-y-auto:has(.sticky [href^='/auth/login?next=/gpts']) .sticky {
 	background-color: var(--c-bg-chats-sticky) !important;
 	backdrop-filter: blur(var(--blur-sticky));
 
 	/*  "My GPTs" page sticky headers w/ +CREATE btn (.top-0 and .top-14) */
+	&:has([href^='/auth/login?next=/gpts']),
 	&:has([href='/gpts/editor']),
 	&.top-14 {
 		--c-bg-chats-sticky: var(--c-bg-chats-container) !important;
