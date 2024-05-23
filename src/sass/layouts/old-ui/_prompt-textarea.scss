@@ -21,6 +21,13 @@ main:has(button[aria-label='Stop generating']) {
 			}
 		}
 
+		.bg-token-main-surface-secondary:has(> .max-h-32.whitespace-pre-wrap.break-words) {
+			background-color: var(--c-surface-3);
+			border-color: var(--c-accent);
+			border-radius: calc(var(--br-prompt-textarea) / 1.5) !important;
+			padding: 0.8rem;
+		}
+
 		/* Guest/3.5 - Attach files button */
 		// .absolute[type='button'][aria-haspopup='dialog']:has(button[aria-label='Attach files']) {
 		// 	bottom: 1.5rem !important;

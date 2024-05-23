@@ -85,6 +85,17 @@ main:has(button[aria-label='Stop generating']) {
 					margin: 0 !important;
 				}
 			}
+
+			/* Reply in User msg */
+			div.font-semibold.text-sm:has(> svg.shrink-0) {
+				position: relative;
+				align-items: flex-end !important;
+				padding: 5px 10px;
+				background-color: hsla(var(--accent-hsl) / 0.15);
+				color: var(--c-accent);
+				border-radius: var(--br-btn);
+				border-left: 5px solid var(--c-accent);
+			}
 		}
 
 		&:has([data-message-author-role='assistant']) {

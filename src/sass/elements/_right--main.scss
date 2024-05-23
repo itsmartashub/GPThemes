@@ -137,14 +137,6 @@ main [data-testid^='conversation-turn-'] {
 			.absolute.bottom-0.right-full.top-0 {
 				button {
 					background-color: hsla(var(--accent-hsl) / 0.1);
-
-					/* &:hover {
-						background-color: var(--c-accent) !important;
-
-						svg {
-							color: var(--c-on-accent) !important;
-						}
-					} */
 				}
 			}
 		}
