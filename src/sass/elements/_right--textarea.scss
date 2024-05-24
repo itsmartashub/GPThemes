@@ -13,17 +13,18 @@ main form {
 		background-color: var(--c-bg-textarea) !important;
 		border-radius: var(--br-prompt-textarea) !important;
 		border: none !important;
-		box-shadow: var(--box-shadow-textarea);
+		// box-shadow: var(--box-shadow-textarea);
 		transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
-		&:has(textarea#prompt-textarea:focus) {
-			box-shadow: none !important;
-		}
+		// &:has(textarea#prompt-textarea:focus) {
+		// 	box-shadow: none !important;
+		// }
 		/* In "temporary chat" textarea is black so the color and caret-color are white, so this fix that */
 		textarea {
 			color: var(--c-txt);
 			caret-color: currentColor;
 		}
+
 		textarea::placeholder {
 			color: var(--c-placeholder-textarea) !important;
 		}
@@ -76,10 +77,12 @@ main form {
 		/* Moram ovako jer imamo dva div[type='button'][aria-haspopup='dialog'] */
 
 		div:has(> input[type='file']) {
+
 			/* 📎 "Attach files" svg */
 			button:has(> svg) {
 				// border: 2px solid red !important;
 				margin-bottom: calc(var(--p-prompt-textarea) / 2);
+
 				svg {
 					color: var(--c-accent) !important;
 				}
@@ -88,11 +91,13 @@ main form {
 
 		/* 🖼️ "Attach Files" - attached image wrapper */
 		div[type='button'][aria-haspopup='dialog'] {
+
 			// border: 2px solid lightgreen !important;
 			/* "Attach Files" attached image */
 			span.bg-cover {
 				border-radius: 10px !important;
 			}
+
 			// div[type='button'][aria-haspopup='dialog']:has(input[type='file']) {
 			// 	// border: 2px solid red !important;
 
@@ -131,10 +136,11 @@ main form {
 
 		/* @mentions - GPTs list, scrollable product parent */
 		.max-h-40.overflow-y-auto {
-			& > div:not(:last-child) {
+			&>div:not(:last-child) {
 				margin-bottom: 0.5rem;
 			}
 		}
+
 		/* @mentions - Active GPTs item */
 		.bg-token-main-surface-secondary {
 			background-color: var(--c-accent) !important;
@@ -159,6 +165,7 @@ main div[role='presentation'] div.w-full:has(form) {
 }
 
 html.dark[data-gptheme='oled'] main form div[class*='bg-[#f4f4f4]']:has(textarea#prompt-textarea) {
+
 	/* "Reply" in msg textarea */
 	.bg-token-main-surface-primary {
 		background-color: var(--c-surface-2);
