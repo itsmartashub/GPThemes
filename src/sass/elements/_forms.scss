@@ -22,3 +22,12 @@ button[role='radio'] {
 		color: var(--c-on-accent) !important;
 	}
 }
+
+/* input placeholder color */
+input,
+textarea {
+	&::placeholder {
+		opacity: 0.6 !important;
+		color: var(--c-subtext-2) !important;
+	}
+}

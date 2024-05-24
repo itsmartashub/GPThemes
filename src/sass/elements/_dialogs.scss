@@ -124,7 +124,8 @@
 		background-color: var(--c-surface-3) !important; // [class*='dark:bg-gray-800']
 		opacity: 0.7;
 
-		/* Textarea feedback when click on like btn in gpt answers */
+		/* Textarea feedback when click on like btn in gpt answers
+		TODO(remove): there is no "👍 like" btn anymore */
 		&#feedback-other {
 			padding: 1.5rem;
 		}
@@ -224,7 +225,9 @@
 		}
 	}
 
-	/* ___ DIALOG "Delete account - are you sure?" inputs parents */
+	/* ___ DIALOG "Delete account - are you sure?" inputs parents
+	
+	TODO:(delete?) this isn't exist anymore*/
 	div[class*='focus-within:ring-1']:has(input) {
 		padding: 0.8rem !important;
 		background-color: var(--c-surface-3);

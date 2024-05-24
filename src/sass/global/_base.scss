@@ -36,12 +36,6 @@ button {
 	--text-primary: var(--c-txt) !important;
 }
 
-input::placeholder,
-textarea::placeholder {
-	color: var(--c-placeholder) !important;
-	opacity: 0.6 !important;
-}
-
 .h-px {
 	display: none !important;
 }
