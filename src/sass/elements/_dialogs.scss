@@ -148,10 +148,14 @@
 
 	/* ___ Dialog - "Share Link to Chat"  */
 	&:has(input[value^="https://chatgpt.com/share/"]),
-	&:has(input[value^="https://chat.openai.com/share/"]) // "PUBLIC LINK UPDATED"
+	// "PUBLIC LINK UPDATED"
+	&:has(input[value^="https://chat.openai.com/share/"]) {
 
-		{
-		--main-surface-primary: var(--c-surface-3) !important; // bg of link preview and "🔗 Create Link" btn
+		// --main-surface-primary: var(--c-surface-3) !important; // bg of link preview and "🔗 Create Link" btn
+		// // mozda i ukloniti, nije lose i bez ovog ustvari tj da input bude iste boje kao i dialog
+		.bg-token-main-surface-primary {
+			--main-surface-primary: var(--c-surface-3) !important; // bg of link preview and "🔗 Create Link" btn
+		}
 
 		// bg-gradient of link preview
 		.from-token-main-surface-primary {
