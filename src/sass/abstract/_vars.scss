@@ -112,8 +112,8 @@
 
 	@include dev(mob) {
 		// --h-header: 40px;
-		--p-chat-bubble: 1.2rem;
-		--br-chat-bubble: calc(var(--br) * 2);
+		--p-chat-bubble: .8rem;
+		--br-chat-bubble: calc(var(--br) * 1.55);
 	}
 }
 
@@ -514,6 +514,9 @@ html.dark[data-gptheme='oled'] {
 	--box-shadow-contextmenu: inset 0px 0px 15px 1px hsla(var(--accent-hsl) / 0.08);
 	--box-shadow-textarea: inset 0px 0px 15px 1px hsla(var(--accent-hsl) / 0.05) !important;
 	// --box-shadow-contextmenu: 0px 0px 30px 0px red;
+
+
+
 }
 
 // $avatar-color: #19c37d;
