@@ -21,6 +21,7 @@
 .bg-gray-100 {
 	background-color: var(--c-surface-2) !important;
 }
+
 // .bg-gray-50 {
 // 	// background-color: var(--c-surface-2) !important;
 // 	background-color: red !important;
@@ -162,11 +163,19 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 	// background-color: lightgreen;
 }
 
+/* 
+- Builder profile "PlaceholderGPT" */
+.bg-token-main-surface-primary {
+	--main-surface-primary: var(--c-surface-3);
+	// background-color: var(--c-surface-3) !important;
+}
+
 /* TODO - NE RADI JEBENO */
 .bg-token-main-surface-tertiary {
 	--main-surface-tertiary: var(--c-surface-3) !important;
 	// background-color: var(--c-surface-3) !important;
 }
+
 
 /* 
 - Gradient before "Create Link" in "Share Link to Public" dialog
@@ -197,6 +206,7 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 .bg-token-main-surface-secondary {
 	background-color: var(--c-surface-2) !important;
 }
+
 // .bg-token-main-surface-tertiary {
 // 	background-color: var(--c-surface-1) !important;
 // }

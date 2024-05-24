@@ -164,7 +164,7 @@
 		a[href*='facebook'],
 		a[href*='reddit'],
 		a[href*='twitter'] {
-			transform: scale(.9);
+			transform: scale(0.9);
 			margin-bottom: 5px !important;
 
 			&:hover {
@@ -330,7 +330,6 @@
 		}
 	}
 
-
 	// &:has(img[alt='Uploaded image']) {
 	/* Uploaded image dialog (When clicked on image from gpt user chat (alt='Uploaded image'), and on mini attached preview in textarea) (alt='User uploaded image') */
 	&:has(img.h-full.w-full.object-contain) {
@@ -344,11 +343,31 @@
 		}
 	}
 
-
 	/* "Analysis" dialog with markdown code */
 	&:has(.markdown) {
 		.bg-black {
 			border-radius: var(--br-dialog);
+		}
+	}
+
+	.gizmo-shadow-stroke {
+		background-color: var(--c-accent) !important;
+
+		svg {
+			color: var(--c-on-accent) !important;
+		}
+	}
+
+	/* "Build Profile" content */
+	[id*='BuilderProfile'][role='tabpanel'] {
+		// border: 2px solid red !important;
+
+		/* PlaceholderGPT - By community builder */
+		.bg-token-main-surface-primary.relative:has(.gizmo-shadow-stroke svg) {
+			--main-surface-primary: transparent !important;
+			// margin-bottom: 1rem;
+			// // background-color: hsla(var(--accent-hsl) / 0.02) !important;
+			// border: 1px solid hsla(var(--accent-hsl) / 0.3) !important;
 		}
 	}
 }
