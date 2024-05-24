@@ -345,7 +345,10 @@
 
 	/* "Analysis" dialog with markdown code */
 	&:has(.markdown) {
-		.bg-black {
+
+		.bg-black,
+		.bg-gray-950 {
+			background-color: var(--c-bg-pre);
 			border-radius: var(--br-dialog);
 		}
 	}
