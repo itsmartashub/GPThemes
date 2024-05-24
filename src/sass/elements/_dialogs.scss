@@ -313,9 +313,9 @@
 		}
 	}
 
+	
 	// &:has(img[alt='Uploaded image']) {
-
-		/* Uploaded image dialog (When clicked on image from gpt user chat, and on mini attached preview in textarea) */
+	/* Uploaded image dialog (When clicked on image from gpt user chat (alt='Uploaded image'), and on mini attached preview in textarea) (alt='User uploaded image') */
 	&:has(img.h-full.w-full.object-contain) {
 		padding: 0 !important;
 		// img[alt='Uploaded image'] {
@@ -327,7 +327,7 @@
 	}
 
 
-	/* "Analysis" dialog with markdown code*/
+	/* "Analysis" dialog with markdown code */
 	&:has(.markdown) {
 		.bg-black {
 			border-radius: var(--br-dialog) ;

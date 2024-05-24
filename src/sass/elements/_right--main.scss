@@ -311,6 +311,15 @@ main [data-testid^='conversation-turn-'] {
 				border-radius: var(--br-btn);
 			}
 		}
+
+
+		/* Terminal svg icon: View analysis */
+		.markdown {
+			button:has(> svg[class*='hover:text-token-link-hover']) {
+				border-radius: 5px;
+				padding-inline: 5px;
+			}
+		}
 	}
 }
 

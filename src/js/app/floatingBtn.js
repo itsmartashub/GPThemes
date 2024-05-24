@@ -1,8 +1,9 @@
 // Use a cross-browser storage API:
 import browser from 'webextension-polyfill'
 
-import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint, icon_palette } from './icons.js'
-import gpthToggleImg from '../../img/gpth-toggle-circled.webp'
+// import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint, icon_palette } from './icons.js'
+import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './icons.js'
+// import gpthToggleImg from '../../img/gpth-toggle-circled.webp'
 import { hexToHSL } from '../utils/hexToHSL'
 
 // let isOptionsShown = false

@@ -6,5 +6,6 @@ release.md
 # extension-*
 extension-prod
 extension-zips
+extension-dev
 
 release.html
