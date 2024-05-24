@@ -170,8 +170,10 @@ main [data-testid^='conversation-turn-'] {
 	div:has(> textarea) {
 		// @extend %animFadeIn;
 		// .bg-token-main-surface-tertiary:has(> textarea) {
-		--main-surface-tertiary: hsla(var(--accent-hsl) / 0.1) !important;
+		--main-surface-tertiary: hsla(var(--accent-hsl) / 0.03) !important;
 		padding: var(--p-chat-bubble) !important;
+		border: 1px solid hsla(var(--accent-hsl) / 0.1);
+		caret-color: var(--c-accent);
 
 		/* Make the text in edit textarea to be the full-width */
 		textarea {
