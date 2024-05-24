@@ -75,10 +75,11 @@
 	}
 
 	/* DIALOG - "Upgrade your plan" only */
-	&:has(a[href="https://openai.com/enterprise"])
-	{
-		--popover-surface-primary: var(--c-bg-dialog) !important; /* Dialog bg */
-		--main-surface-primary: transparent !important; /* Strange white bg behind ✔️ items - now is:  .bg-token-main-surface-primary */
+	&:has(a[href="https://openai.com/enterprise"]) {
+		--popover-surface-primary: var(--c-bg-dialog) !important;
+		/* Dialog bg */
+		--main-surface-primary: transparent !important;
+		/* Strange white bg behind ✔️ items - now is:  .bg-token-main-surface-primary */
 		// Change `width: max-content;` to `max-width: max-content;` in `[role="dialog"]:has(a[href="https://openai.com/enterprise"])` because it disables shrinking the content in `Upgrade your plan` popup. But then I have to fix the content
 		max-width: max-content;
 		padding: 0 !important;
@@ -104,8 +105,7 @@
 		}
 
 		/* See "ChatGPT Enterprise" */
-		a[href="https://openai.com/enterprise"]
-		{
+		a[href="https://openai.com/enterprise"] {
 			color: var(--c-accent) !important;
 		}
 	}
@@ -142,13 +142,15 @@
 		input {
 			background-color: inherit !important;
 		}
+
 		// background-color: red !important;
 	}
 
 	/* ___ Dialog - "Share Link to Chat"  */
 	&:has(input[value^="https://chatgpt.com/share/"]),
 	&:has(input[value^="https://chat.openai.com/share/"]) // "PUBLIC LINK UPDATED"
-	{
+
+		{
 		--main-surface-primary: var(--c-surface-3) !important; // bg of link preview and "🔗 Create Link" btn
 
 		// bg-gradient of link preview
@@ -162,10 +164,21 @@
 		a[href*='facebook'],
 		a[href*='reddit'],
 		a[href*='twitter'] {
-			& + span {
+			transform: scale(.9);
+			margin-bottom: 5px !important;
+
+			&:hover {
+				transform: scale(1);
+			}
+
+			svg {
+				--main-surface-secondary: var(--c-surface-3) !important;
+			}
+
+			&+span {
 				color: var(--c-accent);
 				background-color: hsla(var(--accent-hsl) / 0.15) !important;
-				padding: 3px 8px;
+				padding: 2px 8px;
 				border-radius: 50vw;
 				font-weight: 600;
 			}
@@ -174,7 +187,8 @@
 
 	/* ___ DIALOG - "SHARED LINKS" or "ARCHIVED CHATS" - Table  */
 	table {
-		--main-surface-primary: transparent !important; /* BG of thead>th ---> .bg-token-main-surface-primary */
+		--main-surface-primary: transparent !important;
+		/* BG of thead>th ---> .bg-token-main-surface-primary */
 		padding: var(--p-contextmenu) !important;
 		// border-radius: var(--br-contextmenu);
 
@@ -198,6 +212,7 @@
 		}
 
 		tbody {
+
 			/* Link in table Shared Links/Archived Chats
             
                 NAME - first column Links
@@ -245,6 +260,7 @@
 
 	/* "Select your Team Plan" dialog radio buttons when clicking "Upgrade plan" > "Team" > "Select billing options" */
 	&:has(input[name='seats']) {
+
 		/* input counter for seats */
 		input[name='seats'] {
 			background-color: hsla(var(--accent-hsl) / 0.3) !important;
@@ -257,6 +273,7 @@
 	/* "Keyboard Shortcuts" keyboard tasters */
 	// this is also the text in "Settings" dialog so we need more special selector
 	&:has(.truncate) {
+
 		// .border-token-border-light:has(span.text-xs) {
 		.border-token-border-light:not(:has(button)) {
 			color: var(--c-accent) !important;
@@ -268,8 +285,7 @@
 	/* Dialog - GPTs Store Page - GPT Store product dialog when clicked on any product in store 
 		- Ovaj href je "More info" u "Share Link" dialogu, dakle selektujemo sve koji NEMAJU taj "More info" jer necemo da ovaj style se appluje za ovaj "Share Link" dialog jer sjebe dizajn
 	*/
-	&:not(&:has([href^='https://help.openai.com/en/articles/7925741-chatgpt-shared-links-faq']))
-	{
+	&:not(&:has([href^='https://help.openai.com/en/articles/7925741-chatgpt-shared-links-faq'])) {
 		.border-token-border-medium {
 			--border-medium: transparent !important;
 		}
@@ -280,11 +296,12 @@
 		}
 
 		/* Numbers in "Ratings" svg stars */
-		svg.text-green-500 ~ .text-white {
+		svg.text-green-500~.text-white {
 			color: var(--c-on-accent) !important;
 		}
 
 		&:has([href*='/g/g-']) {
+
 			/* "Conversation Starters" example bubbles */
 			.bg-token-main-surface-primary[href*='/g/g-'] {
 				--main-surface-primary: var(--c-surface-3) !important;
@@ -313,11 +330,12 @@
 		}
 	}
 
-	
+
 	// &:has(img[alt='Uploaded image']) {
 	/* Uploaded image dialog (When clicked on image from gpt user chat (alt='Uploaded image'), and on mini attached preview in textarea) (alt='User uploaded image') */
 	&:has(img.h-full.w-full.object-contain) {
 		padding: 0 !important;
+
 		// img[alt='Uploaded image'] {
 		img.h-full.w-full.object-contain {
 			border-radius: var(--br-contextmenu);
@@ -330,7 +348,7 @@
 	/* "Analysis" dialog with markdown code */
 	&:has(.markdown) {
 		.bg-black {
-			border-radius: var(--br-dialog) ;
+			border-radius: var(--br-dialog);
 		}
 	}
 }
