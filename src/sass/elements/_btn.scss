@@ -2,7 +2,7 @@
 	// background-color: var(--c-bg-btn) !important;
 	// background-color: hsla(var(--accent-hsl) / 0.18);
 
-	color: var(--c-btn) !important;
+	color: var(--c-on-accent) !important;
 	border-radius: var(--br-btn) !important;
 	border: none !important;
 
@@ -11,8 +11,13 @@
 		padding: var(--p-btn) !important;
 	}
 
+	svg {
+		color: currentColor !important;
+	}
+
 	&-primary {
-		background-color: var(--c-bg-btn) !important;
+		background-color: var(--c-accent) !important;
+		color: var(--c-on-accent) !important;
 	}
 	&-secondary {
 		// background-color: hsl(var(--accent-h), calc(var(--accent-s) / 1.8), var(--accent-l)) !important;

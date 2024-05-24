@@ -191,10 +191,6 @@ html.light {
 	--c-border: hsla(var(--txt-hsl) / 0.08);
 	--c-border-accent: hsla(var(--accent-hsl) / 0.1);
 
-	/* ? ========== btn colors ========== */
-	--c-btn: var(--c-on-accent);
-	--c-bg-btn: var(--c-accent);
-
 	/* ? ========== <pre>/markdown things colors ========== */
 	--c-bg-pre-header-btn: hsla(var(--accent-hsl) / 0.15);
 	--c-bg-pre-header-btn-color: var(--c-txt);
@@ -324,10 +320,6 @@ html.dark {
 	/* ? ========== border colors ========== */
 	--c-border: var(--c-surface-3);
 	--c-border-accent: hsla(var(--accent-hsl) / 0.05);
-
-	/* ? ========== btn colors ========== */
-	--c-btn: var(--c-on-accent);
-	--c-bg-btn: var(--c-accent);
 
 	/* ? ========== <pre>/markdown things colors ========== */
 	--c-bg-pre-header-btn: var(--c-accent);
@@ -464,10 +456,6 @@ html.dark[data-gptheme='oled'] {
 	/* ? ========== border colors ========== */
 	--c-border: var(--c-surface-2);
 	--c-border-accent: hsla(var(--accent-hsl) / 0.05);
-
-	/* ? ========== btn colors ========== */
-	--c-btn: var(--c-on-accent);
-	--c-bg-btn: var(--c-accent);
 
 	/* ? ========== <pre>/markdown things colors ========== */
 	// --c-bg-pre-header-btn: var(--c-accent);

@@ -134,10 +134,6 @@
 			border-color: var(--c-surface-3) !important;
 			opacity: 1;
 		}
-
-		&::placeholder {
-			color: var(--c-subtext-1) !important;
-		}
 	}
 
 	& [class*='dark:bg-gray-700']:has(input[id]) {
