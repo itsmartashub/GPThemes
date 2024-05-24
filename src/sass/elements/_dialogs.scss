@@ -313,11 +313,24 @@
 		}
 	}
 
-	&:has(img[alt='Uploaded image']) {
+	// &:has(img[alt='Uploaded image']) {
+
+		/* Uploaded image dialog (When clicked on image from gpt user chat, and on mini attached preview in textarea) */
+	&:has(img.h-full.w-full.object-contain) {
 		padding: 0 !important;
-		img[alt='Uploaded image'] {
+		// img[alt='Uploaded image'] {
+		img.h-full.w-full.object-contain {
 			border-radius: var(--br-contextmenu);
 			outline: 1px solid hsla(var(--accent-hsl) / 0.5);
+			box-shadow: var(--box-shadow);
+		}
+	}
+
+
+	/* "Analysis" dialog with markdown code*/
+	&:has(.markdown) {
+		.bg-black {
+			border-radius: var(--br-dialog) ;
 		}
 	}
 }
