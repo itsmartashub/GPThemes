@@ -3,7 +3,7 @@
 	color: var(--c-txt) !important;
 
 	/* Fix white txt on "NEW CHAT" in sidebar for light especially */
-	nav a > * {
+	nav a>* {
 		color: var(--c-txt) !important;
 	}
 
@@ -15,7 +15,7 @@
 	}
 
 	/* "Explore GPTs" link parents - Ne mozemo dodati direkt n ovaj lnk jer kad dodamo vise GPTs producta u ovu listu da bude iznad "Explore GPTs" onda ono nema margin-top vec samo ovaj link, a mi zelimo parent da ima */
-	nav .sticky + div:has(a[href^='/gpts']) {
+	nav .sticky+div:has(a[href^='/gpts']) {
 		margin-top: 0.8rem;
 	}
 }
@@ -73,7 +73,7 @@ nav[aria-label='Chat history'] {
 			background-color: var(--c-accent) !important;
 
 			/* SVG icon in "Upgrade" link in nav */
-			& > svg {
+			&>svg {
 				color: var(--c-on-accent) !important;
 			}
 		}
@@ -104,11 +104,13 @@ nav[aria-label='Chat history'] {
 			}
 
 			/* Active-link 3-dots and archive btns wrapper */
-			& > div.absolute {
+			&>div.absolute {
 				@extend %sidebar_link_item_btns_bg;
 			}
 
-			a[href^='/c/'] {
+			// a[href^='/c/'] {
+			a {
+
 				/* 3 dots btn bg-gradient - <div> u <a> i <div> u <button> */
 				.bg-gradient-to-l {
 					display: none !important;
@@ -120,6 +122,7 @@ nav[aria-label='Chat history'] {
 			&:has(input) {
 				// outline: 1px solid hsl(var(--accent-hsl) / 0.3);
 				outline: 2px solid var(--c-surface-2);
+
 				&,
 				& .bg-token-sidebar-surface-secondary {
 					background-color: var(--c-bg-sidebar) !important;
@@ -135,44 +138,22 @@ nav[aria-label='Chat history'] {
 					// box-shadow: none !important;
 				}
 			}
-
-			/* 3 dots > "Rename" clicked - style of input parent and input  - this is <div> next to <a> */
-			// .bg-token-surface-tertiary {
-			// 	padding: var(--p-sidebar-nav-a) !important;
-			// 	color: var(--c-txt) !important;
-			// 	background-color: var(
-			// 		--c-surface-3
-			// 	) !important; // NOTE: bg can't be transparent-ish; it cause txt behind to be visible
-			// 	border: 1px solid var(--c-border) !important;
-			// 	border-radius: var(--br-nav-a) !important;
-
-			// 	/* This make it full width of <li>, from left to right */
-			// 	left: 0 !important;
-			// 	right: 0 !important;
-
-			// 	/* Rename input.
-			//         ! DO NOT TOUCH PADDING! TXT BEHIND GOIN TO BE VISIBLE. WTF???
-			//     */
-			// 	input {
-			// 		// input rename border color on focused
-			// 		--tw-ring-color: transparent !important;
-			// 		caret-color: var(--c-accent);
-			// 		border: none !important;
-			// 		outline: none !important;
-			// 		box-shadow: none !important;
-
-			// 		&:focus {
-			// 			border: none !important;
-			// 			outline: none !important;
-			// 		}
-			// 	}
-			// }
 		}
+
+		// .group.active\:90 {
+
+		// 	/* Active sidebar list item */
+		// 	&.bg-token-sidebar-surface-tertiary {
+		// 		// background-color: var(--c-surface-2) !important;
+		// 		opacity: 1 !important;
+		// 	}
+		// }
 	}
 
 	// TODO add better styling to this btn
 	/* User profile btn in sidebar bottom */
 	.group[data-headlessui-state] {
+
 		/* User profile btn in sidebar bottom */
 		button[aria-haspopup='true'] {
 			border-radius: var(--br-nav-a);
