@@ -47,6 +47,10 @@
 	--text-tertiary: var(--c-subtext-2) !important;
 	// --text-tertiary: red !important;
 }
+/* Sidebar collapse btn;"ChatGPT 3.5 - Fastest" in 4o menu when hover on it in chat bubbles */
+.text-token-text-quaternary {
+	--text-quaternary: var(--c-subtext-2) !important;
+}
 
 /* "Log out", "Delete all conversations", "Delete chat" */
 .text-red-500 {
