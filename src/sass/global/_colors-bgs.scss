@@ -164,9 +164,11 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 }
 
 /* 
-- Builder profile "PlaceholderGPT" */
+- Builder profile "PlaceholderGPT"
+- GPTs - Search input and search query bg */
 .bg-token-main-surface-primary {
-	--main-surface-primary: var(--c-surface-3);
+	// --main-surface-primary: red;
+	--main-surface-primary: var(--c-surface-2);
 	// background-color: var(--c-surface-3) !important;
 }
 

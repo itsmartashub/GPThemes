@@ -360,14 +360,14 @@
 
 	/* "Build Profile" content */
 	[id*='BuilderProfile'][role='tabpanel'] {
-		// border: 2px solid red !important;
 
 		/* PlaceholderGPT - By community builder */
 		.bg-token-main-surface-primary.relative:has(.gizmo-shadow-stroke svg) {
 			--main-surface-primary: transparent !important;
-			// margin-bottom: 1rem;
-			// // background-color: hsla(var(--accent-hsl) / 0.02) !important;
-			// border: 1px solid hsla(var(--accent-hsl) / 0.3) !important;
+		}
+
+		.bg-token-main-surface-primary:not(.gizmo-shadow-stroke) {
+			--main-surface-primary: var(--c-surface-3) !important;
 		}
 	}
 }
