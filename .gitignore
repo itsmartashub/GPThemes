@@ -4,8 +4,10 @@ node_modules
 
 release.md
 # extension-*
-extension-prod
-extension-zips
-extension-dev
+# extension-prod
+# extension-zips
+# extension-dev
+build/prod
+build/zips
 
 release.html
