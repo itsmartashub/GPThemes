@@ -19,6 +19,7 @@
 		background-color: var(--c-accent) !important;
 		color: var(--c-on-accent) !important;
 	}
+
 	&-secondary {
 		// background-color: hsl(var(--accent-h), calc(var(--accent-s) / 1.8), var(--accent-l)) !important;
 		// background-color: hsl(var(--accent-h), calc(var(--accent-s) * 0.5), 50%) !important;
@@ -35,8 +36,10 @@
 			// color: var(--c-accent) !important;
 			fill: var(--c-accent) !important;
 		}
+
 		// outline: 2px solid var(--c-accent);
 	}
+
 	&-danger {
 		background-color: var(--c-danger) !important;
 		color: var(--c-bg-chats-container) !important;
@@ -70,25 +73,16 @@ main [role='presentation'] button.absolute.rounded-full {
 	.btn:not(.btn:has(svg)) {
 		min-width: var(--min-w-btn);
 	}
-
-	// &:not(.PopoverContent) .btn-neutral {
-	// 	background-color: var(--c-surface-3) !important;
-	// 	color: var(--c-txt) !important;
-	// }
-
-	// /* ".PopoverContent" je recimo menu od btn u "Shared Link to Chat" 3dots menu (Shared your Name & Delete Link) */
-	// &.PopoverContent {
-	// 	.btn-neutral {
-	// 		background-color: transparent !important;
-	// 		color: var(--c-txt) !important;
-	// 	}
-	// }
 }
 
 /* === Settings > Tabs === */
 [role='tablist'] button {
 	padding: var(--p-btn);
 	background-color: transparent !important;
+
+	svg {
+		transition: none !important;
+	}
 
 	&[data-state='active'],
 	&:hover {
@@ -148,6 +142,7 @@ button[id*='headlessui-menu-button'][class*='rounded-full'] {
 button[class*='bg-[#3C46FF] text-[#fff]'] {
 	@extend .btn;
 }
+
 /* "Upgrade to Plus" btn in ChatGPT 3.5 contextmenu */
 button[class*='bg-brand-purple'] {
 	background-color: var(--c-accent) !important;

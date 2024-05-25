@@ -5,7 +5,7 @@ a,
 svg,
 [class*=':hover'],
 [role='switch'] span[data-state] {
-	transition: all 0.3s ease-in-out;
+	transition: all 0.25s ease-in-out;
 
 	// transition:
 	//     all .35s var(--ease-default),
@@ -42,15 +42,13 @@ svg,
     - [aria-label^="Delete"])  | "Delete" icon in "Shared links" and "Archived Chats" 
     - [aria-label="Unarchive conversation"])  | "Unarchive" icon in "Archived Chats"
    */
-button:not(
-		.btn,
-		[role='tab'],
-		[role='combobox'],
-		[data-testid='send-button'],
-		[class*='[.final-completion]'],
-		[aria-label^='Delete'],
-		[aria-label='Unarchive conversation']
-	) {
+button:not(.btn,
+	[role='tab'],
+	[role='combobox'],
+	[data-testid='send-button'],
+	[class*='[.final-completion]'],
+	[aria-label^='Delete'],
+	[aria-label='Unarchive conversation']) {
 	svg {
 		transform-origin: center center;
 		// border: 1px solid red !important;
@@ -80,19 +78,6 @@ button:not(
 	// &:not(&-secondary, &-danger, &-green):is(:hover, :active) {
 	// 	color: var(--c-accent) !important;
 	// }
-}
-
-/* ! TODO - DELETE due to GPT4o! - New dialog buttons */
-[role='dialog'] {
-	/* ".PopoverContent" je recimo menu od btn u "Shared Link to Chat" 3dots menu (Shared your Name & Delete Link) */
-	&.PopoverContent {
-		.btn-neutral:is(:hover, :focus) {
-			background-color: var(--c-surface-2) !important;
-			color: var(--c-txt) !important;
-			transform: none !important;
-			opacity: 1 !important;
-		}
-	}
 }
 
 /* ___ Switch button circle hover. Ovde ne moze :focus, ostane style kao da je checked ili obrnuto i kad se unhoveruje */
@@ -218,6 +203,7 @@ pre {
 		}
 	}
 }
+
 html.light pre button:has(svg):hover {
 	--c-bg-pre-header-btn: var(--c-accent) !important;
 	--c-bg-pre-header-btn-color: var(--c-on-accent) !important;
@@ -237,6 +223,7 @@ main [role='presentation'] button.absolute.rounded-full:not([class*='-translate-
 /* ___ Table "Archived Chats" or "Shared Links" */
 [role='dialog'] table {
 	tbody {
+
 		/* Table column that contains "Delete" svg icon */
 		td:has(button[aria-label^='Delete']) {
 			svg {
@@ -265,12 +252,14 @@ button[id*='headlessui-menu-button'][class*='rounded-full'] {
 /* GPTs Store page - All the card items */
 main:has(.sticky [href='/gpts/editor']) {
 	.sticky {
+
 		/* Sticky header with tags aka "Top Picks", "DALLE", "Writing", etc */
 		[class*='md:rounded-none'],
 		[class*='md:rounded-lg'] {
 			// transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s $easeInCirc;
 			transition: background-color 0.3s $easeInOutSine, color 0.3s $easeInOutSine, transform 0.3s $easeInOutSine;
 		}
+
 		/* Non-active pill-tag */
 		[class*='md:rounded-lg']:hover {
 			transform: scale(0.955);
@@ -282,12 +271,14 @@ main:has(.sticky [href='/gpts/editor']) {
 		[class*='bg-gradient-to-'] button {
 			transition: transform 0.3s $easeInQuart;
 		}
+
 		/* Right tags arrow */
 		[class*='bg-gradient-to-l'] button {
 			&:hover {
 				transform: translateX(3px);
 			}
 		}
+
 		/* Left tags arrow */
 		[class*='bg-gradient-to-r'] button {
 			&:hover {
@@ -295,6 +286,7 @@ main:has(.sticky [href='/gpts/editor']) {
 			}
 		}
 	}
+
 	/* All the card items in GPTs Store main page */
 	.h-fit {
 		a[href*='/g/g-'] {

@@ -46,6 +46,10 @@
 	/* Add padding y to tabpanel in "Settings" (Where "Theme","Archived chats", "Delete All chats", etc are. Added because Theme dropdown was cutted on hover on smaller devices, because of OpenAI's `overflow-y: auto` */
 	[role='tabpanel'][data-orientation='horizontal'] {
 		padding: 1rem !important;
+
+		@include dev(mob) {
+			padding: 0rem !important;
+		}
 	}
 
 	/* Heading "Settings" in Settings Modal */

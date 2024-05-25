@@ -23,11 +23,11 @@
 	}
 
 	/* Context menu when clicked ❓ on bottom right */
-	&:has(a[href="https://openai.com/policies"])
-	{
+	&:has(a[href="https://openai.com/policies"]) {
 		a {
 			font-size: 0.8rem;
 		}
+
 		/* User's email */
 		a:first-child span {
 			color: var(--c-accent) !important;
@@ -42,6 +42,7 @@
 
 	/* "Custom Instructions" dialog */
 	&:has([role='dialog']) {
+
 		/* "Custom Instructions" dialog context menu visible on textarea focus */
 		[role='dialog'] {
 			--box-shadow: var(--box-shadow-contextmenu) !important;
@@ -72,7 +73,7 @@
 
 	[data-radix-collection-item] {
 		border-radius: var(--br-btn);
-		padding: var(--p-contextmenu-item) !important;
+		// padding: var(--p-contextmenu-item) !important;
 		height: auto !important;
 		margin-bottom: 4px;
 		overflow: visible !important;
@@ -95,11 +96,10 @@
 	}
 
 	/* "Parent of "Models ℹ️" heading in contextmenu in ChatGPT 3.5" */
-	[data-radix-menu-content]:has(a[href^="https://help.openai.com/"])
-	{
+	[data-radix-menu-content]:has(a[href^="https://help.openai.com/"]) {
+
 		/* "Models ℹ️ heading in contextmenu in ChatGPT 3.5" */
-		div:has(>a[href^="https://help.openai.com/"])
-		{
+		div:has(>a[href^="https://help.openai.com/"]) {
 			margin-bottom: 0.5rem;
 		}
 
@@ -107,6 +107,7 @@
 		[role='menuitem'] {
 			span:has(> svg) {
 				background-color: hsla(var(--accent-hsl) / 0.11) !important;
+
 				svg {
 					color: var(--c-accent);
 				}
@@ -114,6 +115,7 @@
 		}
 	}
 }
+
 /* [role='menu'] for contextmenu */
 .popover {
 	--main-surface-primary: var(--c-surface-2) !important;
@@ -141,7 +143,7 @@
 /*
 	Settings > Language > dropdown which is rendered into body>direct.
 	.absolute.inset-0:has(.fixed.inset-0) is a modal */
-body > .absolute.inset-0:has(.fixed.inset-0) + div:not([data-radix-popper-content-wrapper]):has(> div[role='listbox']) {
+body>.absolute.inset-0:has(.fixed.inset-0)+div:not([data-radix-popper-content-wrapper]):has(> div[role='listbox']) {
 	z-index: calc(var(--z-modal) + 200) !important;
 
 	[role='listbox'] {

@@ -1,38 +1,24 @@
 *,
 :after,
 :before {
-	--tw-ring-color: hsl(
-		var(--accent-h),
-		calc(var(--accent-s) / 1.5),
-		var(--accent-l)
-	) !important; // out border (box-shadow) on dialog btns color
+	--tw-ring-color: hsl(var(--accent-h),
+			calc(var(--accent-s) / 1.5),
+			var(--accent-l)) !important; // out border (box-shadow) on dialog btns color
 	--tw-ring-offset-color: var(--c-bg-dialog) !important; // inner border on dialog btns color
 }
-
-/*
-    buttons, switch btns, svg buttons, input, menuitem (no btns in dialog tho, it is special style w/ --tw-ring-color and --tw-ring-offset-color vars) border/outline on keyboard focus or :focus-visible
-*/
-// :is(button, a, [role="menuitem"]:not([class*="text-red-"]), [role="dialog"] textarea):not(.btn-primary, .btn-neutral, textarea#prompt-textarea) {
-//     &:focus-visible {
-//         outline: 2.5px solid hsl(var(--accent-h), calc(var(--accent-s) / 1.5), var(--accent-l));
-//     }
-// }
 
 /* 
 Theme dropdown deo ima zeleni border za :focus-visible.
   - [aria-label="Delete shared link"] is recycle svg icon in "Shared link" table
-  - .btn-neutral:not([role="combobox"] is in theme dropdown "Dark/Light/System" button") 
 */
-:focus-visible:not(
-		.btn-primary,
-		.btn-danger,
-		.btn-secondary:not([role='combobox'], .bg-token-surface-tertiary input),
-		textarea,
-		input,
-		[aria-label='Delete shared link'],
-		[class*='text-red-'],
-		button[type='button']
-	) {
+:focus-visible:not(.btn-primary,
+	.btn-danger,
+	.btn-secondary:not([role='combobox'], .bg-token-surface-tertiary input),
+	textarea,
+	input,
+	[aria-label='Delete shared link'],
+	[class*='text-red-'],
+	button[type='button']) {
 	outline: 2.5px solid hsl(var(--accent-h), calc(var(--accent-s) / 1.5), var(--accent-l));
 }
 
@@ -59,6 +45,7 @@ Theme dropdown deo ima zeleni border za :focus-visible.
 [class*='focus'] {
 	box-shadow: none !important;
 	outline: none !important;
+
 	&:focus {
 		box-shadow: none !important;
 	}
