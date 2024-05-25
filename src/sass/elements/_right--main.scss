@@ -1,5 +1,6 @@
 /* === RIGHT - CONVERSATION CONTAINER === */
 main [role='presentation'] {
+
 	/* Main Page chat-container  Bg*/
 	&,
 	/* Shared Link Page Bg */
@@ -8,18 +9,21 @@ main [role='presentation'] {
 	}
 
 	/* GPT logo in new chat page when no-btns are shown. Its important to make this code before .gizmo-shadow-stroke (main new chat logo in old-ui) because it override its color */
-	.flex.h-full > svg[role='img'] {
+	.flex.h-full>svg[role='img'] {
 		color: var(--c-accent);
 	}
+
 	/* GPT logo in chat bubble */
-	.gizmo-bot-avatar div, 
+	.gizmo-bot-avatar div,
 	/* GPT logo in "New Chat" main chat-container in old-ui */
 	.gizmo-shadow-stroke {
 		background-color: var(--c-accent) !important;
+
 		svg {
 			color: var(--c-on-accent) !important;
 		}
 	}
+
 	.gizmo-bot-avatar {
 		--main-surface-tertiary: var(--c-accent) !important;
 	}
@@ -40,7 +44,8 @@ main [data-testid^='conversation-turn-'] {
 	margin-bottom: var(--mb-chat-bubble) !important;
 
 	/* Horizontal gap from chat bubble to screen-edge */
-	& > div {
+	&>div {
+
 		/* Original is px-4 or 1rem */
 		@include dev(mob) {
 			padding-left: 0.45rem;
@@ -54,6 +59,7 @@ main [data-testid^='conversation-turn-'] {
 
 	/*  Chat bubble footer SVG icons - edit, read aloud, copy, regenerate, bad response */
 	[class*='empty:hidden'] {
+
 		// button[class*='hover:bg-token-main-surface-secondary'],
 		// button[class*='hover:bg-token-main-surface-tertiary'] {
 		button {
@@ -68,11 +74,12 @@ main [data-testid^='conversation-turn-'] {
 				svg {
 					color: var(--c-on-accent) !important;
 				}
+
 				// background-color: hsla(var(--accent-hsl) / 0.18);
 			}
 		}
 
-		& > .bg-token-main-surface-primary {
+		&>.bg-token-main-surface-primary {
 			--main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important;
 			// background-color: hsla(var(--accent-hsl) / 0.1) !important;
 			backdrop-filter: blur(8px);
@@ -119,6 +126,7 @@ main [data-testid^='conversation-turn-'] {
 
 	/* @ RIGHT - CHATS BUBBLES - USER  */
 	&:has([data-message-author-role='user']) {
+
 		/*  RIGHT - CHATS BUBBLE BG */
 		// & > div:first-child > div:first-child {
 		/* ? gpt4o - User message */
@@ -127,6 +135,7 @@ main [data-testid^='conversation-turn-'] {
 			padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.2);
 			border-radius: var(--br-chat-bubble) !important;
 		}
+
 		// }
 
 		/* Flex-end the Reply in user chat bubble */
@@ -183,13 +192,13 @@ main [data-testid^='conversation-turn-'] {
 
 	/* @ RIGHT - CHATS BUBBLES - GPT */
 	&:has([data-message-author-role='assistant']) {
+
 		/*   RIGHT - CHATS BUBBLE BG  */
-		& > div:first-child > div:first-child {
+		&>div:first-child>div:first-child {
 			background-color: var(--c-bg-msg-gpt);
 
 			--pt-multiplier: 1.3;
-			padding: calc(var(--p-chat-bubble) * var(--pt-multiplier)) var(--p-chat-bubble) var(--p-chat-bubble)
-				var(--p-chat-bubble) !important;
+			padding: calc(var(--p-chat-bubble) * var(--pt-multiplier)) var(--p-chat-bubble) var(--p-chat-bubble) var(--p-chat-bubble) !important;
 			// padding: var(--p-chat-bubble);
 			border-radius: var(--br-chat-bubble) !important;
 			letter-spacing: 0.3px;
@@ -218,9 +227,7 @@ main [data-testid^='conversation-turn-'] {
 				--svg-w: 2.25rem;
 				--svg-gap: 0.75rem;
 
-				width: calc(
-					100% - var(--svg-w) - var(--svg-gap) - var(--p-chat-bubble)
-				) !important; // more consistent width (right chat bubble spacing = left spacing)
+				width: calc(100% - var(--svg-w) - var(--svg-gap) - var(--p-chat-bubble)) !important; // more consistent width (right chat bubble spacing = left spacing)
 
 				/* This break links in markdown making them wrapped */
 				/* span[data-state] {
@@ -265,6 +272,7 @@ main [data-testid^='conversation-turn-'] {
 				// }
 			}
 		}
+
 		/* GPT avatar in its chat bubbles */
 		@include dev(mob) {
 			.gizmo-bot-avatar:has(svg[role='img']) {
@@ -273,7 +281,7 @@ main [data-testid^='conversation-turn-'] {
 		}
 
 		/* Response 1 or Response 2 chat bubble when we have to choose 1 answer */
-		& > div:first-child button:has([data-message-author-role='assistant']) {
+		&>div:first-child button:has([data-message-author-role='assistant']) {
 			background-color: var(--c-bg-msg-gpt) !important;
 			border-radius: var(--br-chat-bubble) !important;
 			padding: 2rem;
@@ -320,6 +328,18 @@ main [data-testid^='conversation-turn-'] {
 				padding-inline: 5px;
 			}
 		}
+
+		/* "Analysis" markdown code */
+		.bg-black:has(> .markdown) {
+			background-color: var(--c-bg-pre) !important;
+
+			.bg-gray-700 {
+				background-color: inherit !important;
+				// background-color: transparent !important;
+				border: 1px solid var(--c-border);
+				border-radius: var(--br-contextmenu) !important;
+			}
+		}
 	}
 }
 
@@ -329,16 +349,19 @@ html.dark main [data-testid^='conversation-turn-']:has([data-message-author-role
 		.from-token-main-surface-secondary {
 			--gradient-color-from: var(--c-surface-3) !important;
 		}
+
 		a:hover {
 			background-color: var(--c-surface-3);
 		}
 	}
 }
+
 html[data-gptheme='oled'] main [data-testid^='conversation-turn-']:has([data-message-author-role='assistant']) {
 	.overflow-hidden:has(> .divide-y) {
 		.from-token-main-surface-secondary {
 			--gradient-color-from: var(--c-surface-2) !important;
 		}
+
 		a:hover {
 			background-color: var(--c-surface-2);
 		}

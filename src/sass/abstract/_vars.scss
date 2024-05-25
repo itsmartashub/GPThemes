@@ -154,6 +154,8 @@ html.light {
 	// --c-on-accent: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) * 1.8));
 	--c-on-accent: hsl(var(--accent-h), var(--accent-s), 88%);
 
+	--c-bg-pre: var(--c-surface-2);
+
 	/* ? ========== Text colors ========== */
 	--c-txt: hsl(var(--txt-hsl));
 	--c-subtext-1: hsla(0, 0%, 20%);

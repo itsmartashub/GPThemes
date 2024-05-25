@@ -22,6 +22,11 @@
 	background-color: var(--c-surface-2) !important;
 }
 
+/* "Analysis code" - THe Results code snippets  */
+.bg-gray-700 {
+	background-color: var(--c-surface-1);
+}
+
 // .bg-gray-50 {
 // 	// background-color: var(--c-surface-2) !important;
 // 	background-color: red !important;
@@ -156,6 +161,7 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 - Prompt textarea send button
 - GPTs - active pill ("Top Picks")
  */
+// .bg-black,
 [class*='bg-black'],
 .bg-token-sidebar-surface-primary {
 	background-color: var(--c-surface-1);
