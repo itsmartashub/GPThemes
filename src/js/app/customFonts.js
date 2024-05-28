@@ -59,7 +59,27 @@ function setInputFields({ fontFamily, fontSize = '16' }) {
 	document.getElementById('fontFamily').value = fontFamily
 	document.getElementById('fontSize').value = fontSize
 }
+function getFontsFromStorage() {
+	browser.storage.sync.get(['fontFamily', 'fontSize'], (data) => {
+		if (data.fontFamily && data.fontSize) {
+			setCSSVariables({ fontFamily: data.fontFamily, fontSize: data.fontSize })
 
+			// Set input fields
+			setInputFields({ fontFamily: data.fontFamily, fontSize: data.fontSize })
+
+			// Load selected font from Google Fonts
+			createAndInjectLinkElement(data.fontFamily)
+		}
+	})
+}
+function setFontsToStorage({ fontFamily, fontSize }) {
+	browser.storage.sync.set({ fontFamily, fontSize })
+}
+function removeFontsFromStorage() {
+	browser.storage.sync.remove(['fontFamily', 'fontSize'])
+}
+
+// Create the <link> in <head> which will fetch the selected font from Google Fonts
 function createAndInjectLinkElement(fontFamily) {
 	let href = `https://fonts.googleapis.com/css2?family=${fontFamily.replace(
 		' ',
@@ -69,9 +89,9 @@ function createAndInjectLinkElement(fontFamily) {
 	// Ako je href == currFontHref, ne dodajemo link!
 	if (currFontHref && currFontHref === href) return
 
-	// Check if the link is already injected
+	// TODO Check if the link is already injected
 
-	// Remove existing Google Font links
+	// TODO Remove existing Google Font links
 
 	currFontHref = href
 
@@ -95,10 +115,7 @@ export function applyFont() {
 	setCSSVariables({ fontFamily, fontSize })
 
 	// Save settings to chrome.storage
-	browser.storage.sync.set({
-		fontFamily: fontFamily,
-		fontSize: fontSize,
-	})
+	setFontsToStorage({ fontFamily, fontSize })
 }
 export function resetFont() {
 	// Reset CSS variables to default values
@@ -107,8 +124,15 @@ export function resetFont() {
 	// Reset input fields to default values
 	setInputFields({ fontFamily: 'Default', fontSize: '16' })
 
-	// Remove custom font link from the head
+	// TODO Remove custom font link from the head
 
 	// Remove custom font settings from chrome.storage
-	chrome.storage.sync.remove(['fontFamily', 'fontSize'])
+	removeFontsFromStorage()
 }
+
+function initFonts() {
+	console.log(fontFamilyDefault)
+
+	getFontsFromStorage()
+}
+initFonts()
