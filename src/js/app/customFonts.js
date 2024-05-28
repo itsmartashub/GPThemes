@@ -17,6 +17,9 @@ const fontNames = [
 	'Quicksand',
 ]
 
+let googleFontWeights = `:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900`
+let currFontHref = null
+
 export let fontHtmlCode = `
 	<section id="fontChangerPopover" class="fonts mt-10">
 		<h4 class="mb-5">Fonts</h4>
@@ -56,11 +59,37 @@ function setInputFields({ fontFamily, fontSize = '16' }) {
 	document.getElementById('fontFamily').value = fontFamily
 	document.getElementById('fontSize').value = fontSize
 }
+
+function createAndInjectLinkElement(fontFamily) {
+	let href = `https://fonts.googleapis.com/css2?family=${fontFamily.replace(
+		' ',
+		'+'
+	)}${googleFontWeights}&display=swap`
+
+	// Ako je href == currFontHref, ne dodajemo link!
+	if (currFontHref && currFontHref === href) return
+
+	// Check if the link is already injected
+
+	// Remove existing Google Font links
+
+	currFontHref = href
+
+	const link = document.createElement('link')
+	link.rel = 'stylesheet'
+	link.href = href
+
+	document.head.appendChild(link)
+
+	return link
+}
+
 export function applyFont() {
 	const fontFamily = document.getElementById('fontFamily').value
 	const fontSize = document.getElementById('fontSize').value + 'px'
 
 	// Create the <link> in <head> which will fetch the selected font from Google Fonts
+	createAndInjectLinkElement(fontFamily)
 
 	// Apply CSS variables
 	setCSSVariables({ fontFamily, fontSize })
@@ -76,7 +105,6 @@ export function resetFont() {
 	setCSSVariables({ fontFamily: fontFamilyDefault, fontSize: '16px' })
 
 	// Reset input fields to default values
-	// document.getElementById('fontFamily').value =
 	setInputFields({ fontFamily: 'Default', fontSize: '16' })
 
 	// Remove custom font link from the head
