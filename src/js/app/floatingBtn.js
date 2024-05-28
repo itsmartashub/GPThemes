@@ -6,6 +6,9 @@ import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from '
 // import gpthToggleImg from '../../img/gpth-toggle-circled.webp'
 import { hexToHSL } from '../utils/hexToHSL'
 
+import { fontHtmlCode } from './customFonts'
+// console.log(fontHtmlCode)
+
 // let isOptionsShown = false
 
 // Global Variables
@@ -147,21 +150,26 @@ function renderSettings() {
 		</header>
 
 		<main class="mb-10">
-			<section class="colorpicker-container">
-				<div class="colorpicker">
-					<input type="color" id="accentLight" value="#6b4dfe" />
-					<label for="accentLight">Accent <span>Light</span></label>
+			<section>
+				<div class="colorpicker-container">
+					<div class="colorpicker">
+						<input type="color" id="accentLight" value="#6b4dfe" />
+						<label for="accentLight">Accent <span>Light</span></label>
+					</div>
+					<div class="colorpicker">
+						<input type="color" id="accentDark" value="#ca93fb" />
+						<label for="accentDark">Accent <span>Dark</span></label>
+					</div>
 				</div>
-				<div class="colorpicker">
-					<input type="color" id="accentDark" value="#ca93fb" />
-					<label for="accentDark">Accent <span>Dark</span></label>
-				</div>
+				<footer class="grid m-5">
+					<button id="resetAllSettings" class="btn block relative btn-primary text-center" as="button">Reset Accents</button>
+				</footer>
 			</section>
-		</main>
 
-		<footer class="grid">
-			<button id="resetAllSettings" class="btn block relative btn-primary text-center" as="button">Reset All</button>
-		</footer>
+
+
+			${fontHtmlCode}
+		</main>
 	`
 	// <div div div class="blur-box" ></div >
 	// <div class="blur-box"></div>
@@ -261,7 +269,7 @@ function updateCSSVars(lightColor, darkColor) {
         }
     `
 
-	console.log(cssVars)
+	// console.log(cssVars)
 
 	styleElement.textContent = cssVars
 }

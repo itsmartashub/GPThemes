@@ -11,11 +11,11 @@
 	// @extend [role='dialog'];
 	opacity: 0;
 	pointer-events: none;
-	padding: 1.5rem;
+	padding: 2.2rem 3rem;
 	border-radius: var(--br-dialog);
 	top: var(--top);
 	right: var(--right);
-	max-width: 39rem;
+	max-width: 35rem;
 	max-height: 80vh;
 	transform: translateX(calc(100% + 1.5rem)) !important;
 	z-index: calc(var(--z-modal) + 10);
