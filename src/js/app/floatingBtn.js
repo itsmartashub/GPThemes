@@ -6,7 +6,7 @@ import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from '
 // import gpthToggleImg from '../../img/gpth-toggle-circled.webp'
 import { hexToHSL } from '../utils/hexToHSL'
 
-import { fontHtmlCode } from './customFonts'
+import { fontHtmlCode, applyFont, resetFont } from './customFonts'
 // console.log(fontHtmlCode)
 
 // let isOptionsShown = false
@@ -185,6 +185,8 @@ function renderSettings() {
 	$resetAllBtn.disabled = true
 
 	$settings.querySelector('#resetAllSettings').addEventListener('click', resetAllSettings)
+	document.getElementById('applyFont').addEventListener('click', applyFont)
+	document.getElementById('resetFont').addEventListener('click', resetFont)
 }
 
 function openSettings() {

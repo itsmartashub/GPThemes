@@ -42,20 +42,25 @@ export let fontHtmlCode = `
 		</div>
 
 		<div class="gap-2 mt-4 grid">
+			<button id="resetFont" class="btn block relative btn-secondary text-center">Reset to Default</button>
 			<button id="applyFont" class="btn block relative btn-primary text-center">Apply Fonts</button>
 		</div>
 	</section>
 `
 
 function setCSSVariables({ fontFamily, fontSize = '16px' }) {
-	console.log(fontFamily, fontSize)
 	document.documentElement.style.setProperty('--f-family', fontFamily)
 	document.documentElement.style.setProperty('--f-size', fontSize)
 }
-
+function setInputFields({ fontFamily, fontSize = '16' }) {
+	document.getElementById('fontFamily').value = fontFamily
+	document.getElementById('fontSize').value = fontSize
+}
 export function applyFont() {
 	const fontFamily = document.getElementById('fontFamily').value
 	const fontSize = document.getElementById('fontSize').value + 'px'
+
+	// Create the <link> in <head> which will fetch the selected font from Google Fonts
 
 	// Apply CSS variables
 	setCSSVariables({ fontFamily, fontSize })
@@ -65,4 +70,17 @@ export function applyFont() {
 		fontFamily: fontFamily,
 		fontSize: fontSize,
 	})
+}
+export function resetFont() {
+	// Reset CSS variables to default values
+	setCSSVariables({ fontFamily: fontFamilyDefault, fontSize: '16px' })
+
+	// Reset input fields to default values
+	// document.getElementById('fontFamily').value =
+	setInputFields({ fontFamily: 'Default', fontSize: '16' })
+
+	// Remove custom font link from the head
+
+	// Remove custom font settings from chrome.storage
+	chrome.storage.sync.remove(['fontFamily', 'fontSize'])
 }
