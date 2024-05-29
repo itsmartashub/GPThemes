@@ -1,4 +1,6 @@
 import browser from 'webextension-polyfill'
+import { pxToRem } from '../utils/fontsConverting'
+// import { remToPx } from '../utils/fontsConverting'
 
 const fontFamilyDefault = getComputedStyle(document.documentElement).getPropertyValue('--f-family-default')
 
@@ -12,7 +14,6 @@ const fontNames = [
 	'Noto Sans',
 	'Monospace',
 	'Lato',
-	'Merriweather',
 	'Quicksand',
 	// 'Merriweather',
 	// 'Karla',
@@ -55,11 +56,12 @@ export let fontHtmlCode = `
 
 function setCSSVariables({ fontFamily, fontSize = '16' }) {
 	console.log('setCSSVariables()', { fontFamily, fontSize })
-	document.documentElement.style.setProperty('--f-family', fontFamily)
-	document.documentElement.style.setProperty('--f-size', `${fontSize}px`)
 
-	console.log(getComputedStyle(document.documentElement).getPropertyValue('--f-family'))
-	console.log(getComputedStyle(document.documentElement).getPropertyValue('--f-size'))
+	document.documentElement.style.setProperty('--f-family', fontFamily)
+	document.documentElement.style.setProperty('--f-size', `${pxToRem(fontSize)}`)
+
+	console.log('--f-family', getComputedStyle(document.documentElement).getPropertyValue('--f-family'))
+	console.log('--f-size: ', getComputedStyle(document.documentElement).getPropertyValue('--f-size'))
 }
 function setInputFields({ fontFamily, fontSize = '16' }) {
 	console.log('setInputFields()', fontFamily, fontSize)
@@ -69,7 +71,7 @@ function setInputFields({ fontFamily, fontSize = '16' }) {
 async function getFontsFromStorage() {
 	try {
 		const data = await browser.storage.sync.get(['fontFamily', 'fontSize'])
-		console.log('data', data)
+		console.log('data: ', data)
 
 		if (data.fontFamily && data.fontSize) {
 			setCSSVariables({ fontFamily: data.fontFamily, fontSize: data.fontSize })
@@ -139,24 +141,24 @@ function removeExistingGoogleFontLinks() {
 		link.parentNode.removeChild(link)
 	})
 }
-// function isLinkAlreadyInjected(href) {
-// 	let googleFontLinks = getAllGoogleFontLinks()
+/* function isLinkAlreadyInjected(href) {
+	let googleFontLinks = getAllGoogleFontLinks()
 
-// 	console.log('isLinkAlreadyInjected()')
+	console.log('isLinkAlreadyInjected()')
 
-// 	if (!googleFontLinks) return false
+	if (!googleFontLinks) return false
 
-// 	for (let link of googleFontLinks) {
-// 		console.log('link.href:', link.href)
-// 		console.log('href:', href)
+	for (let link of googleFontLinks) {
+		console.log('link.href:', link.href)
+		console.log('href:', href)
 
-// 		if (link.href === href) {
-// 			console.log('Link injected already')
-// 			return true
-// 		}
-// 	}
-// 	return false
-// }
+		if (link.href === href) {
+			console.log('Link injected already')
+			return true
+		}
+	}
+	return false
+} */
 
 export function applyFont() {
 	const fontFamily = document.getElementById('fontFamily').value
@@ -180,7 +182,7 @@ export function resetFont() {
 	// Reset input fields to default values
 	setInputFields({ fontFamily: 'Default', fontSize: '16' })
 
-	// TODO Remove custom font link from the head
+	// Remove custom font link from the head
 	removeExistingGoogleFontLinks()
 
 	// Remove custom font settings from chrome.storage
