@@ -34,7 +34,9 @@ export let fontHtmlCode = `
 				${fontNames
 					.map(
 						(name) =>
-							`<option class="bg-token-sidebar-surface-secondary rounded-md outline-none border-none" value="${name} p-4">${name}</option>`
+							`<option class="bg-token-sidebar-surface-secondary rounded-md outline-none border-none" value="${name}">${
+								name ? name : 'Default'
+							}</option>`
 					)
 					.join('')}
 				</select>
@@ -48,22 +50,7 @@ export let fontHtmlCode = `
 				inputValue: '16',
 				inputPlaceholder: '16px',
 			})}
-			${renderFont({
-				name: 'Letter Spacing',
-				className: 'fonts__letterSpacing',
-				inputId: 'letterSpacing',
-				inputType: 'number',
-				inputValue: '1',
-				inputPlaceholder: '1px',
-			})}
-			${renderFont({
-				name: 'Line Height',
-				className: 'fonts__lineHeight',
-				inputId: 'lineHeight',
-				inputType: 'number',
-				inputValue: '1.5',
-				inputPlaceholder: '1.5',
-			})}
+
 		</div>
 
 		<div class="gap-2 mt-4 grid">
@@ -211,4 +198,23 @@ export function resetFont() {
 function initFonts() {
 	getFontsFromStorage()
 }
+
+// Init
 initFonts()
+
+/* ${renderFont({
+	name: 'Letter Spacing',
+	className: 'fonts__letterSpacing',
+	inputId: 'letterSpacing',
+	inputType: 'number',
+	inputValue: '1',
+	inputPlaceholder: '1px',
+})}
+${renderFont({
+	name: 'Line Height',
+	className: 'fonts__lineHeight',
+	inputId: 'lineHeight',
+	inputType: 'number',
+	inputValue: '1.5',
+	inputPlaceholder: '1.5',
+})} */
