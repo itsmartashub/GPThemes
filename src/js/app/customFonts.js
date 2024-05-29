@@ -72,11 +72,7 @@ export let fontHtmlCode = `
 	</section>
 `
 
-function setCSSVar({ varName, varValue }) {
-	console.log('setCSSVar():', varName, varValue)
-	document.documentElement.style.setProperty(varName, varValue)
-}
-function setCSSVariables({ fontFamily, fontSize = '16' }) {
+/* function setCSSVariables({ fontFamily, fontSize = '16' }) {
 	if (fontFamily !== defaultFontFamily) {
 		document.documentElement.style.setProperty('--f-family', `${fontFamily}, ${defaultFontFamily}`)
 		document.documentElement.style.setProperty('--f-size', `${pxToRem(fontSize)}`)
@@ -97,6 +93,10 @@ function setInputFields({ fontFamily, fontSize = '16' }) {
 
 	document.getElementById('fontFamily').value = defaultFontFamily
 	document.getElementById('fontSize').value = fontSize
+} */
+function setCSSVar({ varName, varValue }) {
+	console.log('setCSSVar():', varName, varValue)
+	document.documentElement.style.setProperty(varName, varValue)
 }
 function setInputField({ inputSelector, inputVal }) {
 	console.log('setInputField():', inputSelector, inputVal)
@@ -113,10 +113,12 @@ async function getFontsFromStorage() {
 	try {
 		const data = await browser.storage.sync.get(['fontFamily', 'fontSize', 'letterSpacing', 'lineHeight'])
 
-		console.log('data: ', data)
+		// console.log('data: ', data)
 
 		if (data.fontFamily) {
-			setCSSVar({ varName: '--f-family', varValue: data.fontFamily })
+			setCSSVar({ varName: '--f-family', varValue: `${data.fontFamily}, ${defaultFontFamily}` })
+			setInputField({ inputSelector: '#fontFamily', inputVal: data.fontFamily })
+
 			// Load selected font from Google Fonts
 			createAndInjectLinkElement(data.fontFamily)
 		}
@@ -125,11 +127,11 @@ async function getFontsFromStorage() {
 			setInputField({ inputSelector: '#fontSize', inputVal: data.fontSize })
 		}
 		if (data.letterSpacing) {
-			setCSSVar({ varName: '--f-letter-spacing', varValue: `${data.fontSize}px` })
+			setCSSVar({ varName: '--f-letter-spacing', varValue: `${data.letterSpacing}px` })
 			setInputField({ inputSelector: '#letterSpacing', inputVal: data.letterSpacing })
 		}
 		if (data.lineHeight) {
-			setCSSVar({ varName: '--f-line-height', varValue: data.fontSize })
+			setCSSVar({ varName: '--f-line-height', varValue: data.lineHeight })
 			setInputField({ inputSelector: '#lineHeight', inputVal: data.lineHeight })
 		}
 	} catch (error) {
@@ -137,10 +139,10 @@ async function getFontsFromStorage() {
 	}
 }
 
-async function setFontsToStorage({ fontFamily, fontSize = '16' }) {
+/* async function setFontsToStorage({ fontFamily, fontSize = '16' }) {
 	// Save selected font to storage
 	await browser.storage.sync.set({ fontFamily, fontSize })
-}
+} */
 async function setPropToStorage({ propName, propVal }) {
 	// Save selected font to storage
 	await browser.storage.sync.set({ [propName]: propVal })
@@ -185,6 +187,7 @@ function getAllGoogleFontLinks() {
 }
 function removeExistingGoogleFontLinks() {
 	let googleFontLinks = getAllGoogleFontLinks()
+	currFontHref = null
 	// Remove all existing Google Font links
 	googleFontLinks.forEach((link) => {
 		link.parentNode.removeChild(link)
@@ -209,22 +212,22 @@ function removeExistingGoogleFontLinks() {
 	return false
 } */
 
-// export function applyFont() {
-// 	const fontFamily = document.getElementById('fontFamily').value
-// 	let fontSize = document.getElementById('fontSize').value
+/* export function applyFont() {
+	const fontFamily = document.getElementById('fontFamily').value
+	let fontSize = document.getElementById('fontSize').value
 
-// 	console.log('applyFont()', fontFamily, fontSize)
+	console.log('applyFont()', fontFamily, fontSize)
 
-// 	// Create the <link> in <head> which will fetch the selected font from Google Fonts
-// 	createAndInjectLinkElement(fontFamily)
+	// Create the <link> in <head> which will fetch the selected font from Google Fonts
+	createAndInjectLinkElement(fontFamily)
 
-// 	// Apply CSS variables
-// 	setCSSVariables({ fontFamily, fontSize })
+	// Apply CSS variables
+	setCSSVariables({ fontFamily, fontSize })
 
-// 	// Save settings to chrome.storage
-// 	setFontsToStorage({ fontFamily, fontSize })
-// }
-export function resetFont() {
+	// Save settings to chrome.storage
+	setFontsToStorage({ fontFamily, fontSize })
+} */
+/* export function resetFont() {
 	// Reset CSS variables to default values
 	setCSSVariables({ fontFamily: defaultFontFamily, fontSize: '16' })
 
@@ -236,7 +239,7 @@ export function resetFont() {
 
 	// Remove custom font settings from chrome.storage
 	removeFontsFromStorage()
-}
+} */
 export function resetToDefaults() {
 	// Reset CSS variables to default values
 	setCSSVar({ varName: '--f-family', varValue: defaultFontFamily })
@@ -264,13 +267,12 @@ export function applyFontFamily(e) {
 	createAndInjectLinkElement(fontFamily)
 
 	// Apply CSS variables
-	setCSSVar({ varName: '--f-family', varValue: fontFamily })
+	setCSSVar({ varName: '--f-family', varValue: `${fontFamily}, ${defaultFontFamily}` })
 
 	// Save settings to chrome.storage
 	setPropToStorage({ propName: 'fontFamily', propVal: fontFamily })
 }
 export function applyFontSize(e) {
-	console.log('applyFontSize()', e.target.value)
 	const fontSize = e.target.value
 
 	// Apply CSS variables
@@ -280,7 +282,7 @@ export function applyFontSize(e) {
 	setPropToStorage({ propName: 'fontSize', propVal: fontSize })
 }
 export function applyLetterSpacing(e) {
-	console.log('applyLetterSpacing()', e.target.value)
+	// console.log('applyLetterSpacing()', e.target.value)
 	const letterSpacing = e.target.value
 
 	// Apply CSS variables
@@ -290,7 +292,6 @@ export function applyLetterSpacing(e) {
 	setPropToStorage({ propName: 'letterSpacing', propVal: letterSpacing })
 }
 export function applyLineHeight(e) {
-	console.log('applyLineHeight()', e.target.value)
 	const lineHeight = e.target.value
 
 	// Apply CSS variables
@@ -300,29 +301,6 @@ export function applyLineHeight(e) {
 	setPropToStorage({ propName: 'lineHeight', propVal: lineHeight })
 }
 
-function initFonts() {
-	getFontsFromStorage()
-}
-
-// Init
-initFonts()
-
-/* ${renderFont({
-	name: 'Letter Spacing',
-	className: 'fonts__letterSpacing',
-	inputId: 'letterSpacing',
-	inputType: 'number',
-	inputValue: '1',
-	inputPlaceholder: '1px',
-})}
-${renderFont({
-	name: 'Line Height',
-	className: 'fonts__lineHeight',
-	inputId: 'lineHeight',
-	inputType: 'number',
-	inputValue: '1.5',
-	inputPlaceholder: '1.5',
-})} */
 export function addFontsEventHandlers() {
 	document.querySelector('.gpth-settings #fontFamily').addEventListener('change', applyFontFamily)
 	document.querySelector('.gpth-settings #fontSize').addEventListener('input', applyFontSize)
@@ -330,3 +308,10 @@ export function addFontsEventHandlers() {
 	document.querySelector('.gpth-settings #lineHeight').addEventListener('input', applyLineHeight)
 	document.querySelector('.gpth-settings #resetFont').addEventListener('click', resetToDefaults)
 }
+
+function initFonts() {
+	getFontsFromStorage()
+}
+
+// Init
+initFonts()

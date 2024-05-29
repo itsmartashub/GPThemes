@@ -4,7 +4,7 @@ body {
 
 	// font-family: var(--f-fm) !important;
 	font-size: var(--f-size) !important;
-	letter-spacing: var(--f-letter-spacing) !important;
+	letter-spacing: calc(var(--f-letter-spacing) / 16) !important;
 	;
 	color: var(--c-txt) !important;
 	background-color: var(--c-bg-chats-container) !important;

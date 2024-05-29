@@ -195,6 +195,7 @@ main [data-testid^='conversation-turn-'] {
 	&:has([data-message-author-role='assistant']) {
 		.markdown {
 			line-height: calc(var(--f-line-height) / 16) !important;
+			// letter-spacing: var(--f-letter-spacing) !important;
 		}
 
 		/*   RIGHT - CHATS BUBBLE BG  */
@@ -205,8 +206,8 @@ main [data-testid^='conversation-turn-'] {
 			padding: calc(var(--p-chat-bubble) * var(--pt-multiplier)) var(--p-chat-bubble) var(--p-chat-bubble) var(--p-chat-bubble) !important;
 			// padding: var(--p-chat-bubble);
 			border-radius: var(--br-chat-bubble) !important;
-			letter-spacing: 0.3px;
-			line-height: 1.8 !important;
+			// letter-spacing: 0.3px;
+			// line-height: 1.8 !important;
 
 			@include dev(mob) {
 				--pt-multiplier: 1.4;
