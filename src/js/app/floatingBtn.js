@@ -169,10 +169,10 @@ function decreiseFloatingBtnSize() {
 /* ______________ THEME CUSTOMIZATION - ACCENT THEME ______________ */
 function renderSettings() {
 	const gpthSettings = document.createElement('div')
-	gpthSettings.className = `gpth-settings fixed grid items-center gap-4`
+	gpthSettings.className = `gpth-settings fixed flex flex-col`
 
 	let htmlCode = `
-		<header>
+		<header class="mb-5">
 			<h2 class="mt-5 text-center font-medium">Theme Customization</h2>
 
 			<button class="text-token-text-tertiary hover:text-token-text-secondary absolute top-4 right-4" id="gpth-settings-close">
@@ -182,7 +182,7 @@ function renderSettings() {
 
 		<main>
 			<div class="tabs">
-				<div class="tab-buttons flex items-center rounded-full p-1 mb-6">
+				<div class="tab-buttons flex items-center rounded-full p-1 mb-6 font-semibold">
 					<button class="tab-button py-2 px-4 focus:outline-none text-center rounded-full active">
 						Color
 					</button>
@@ -203,7 +203,8 @@ function renderSettings() {
 					</div>
 
 					<div class="tab-pane hidden" id="tab-assets">
-						<p class="text-center text-token-text-secondary font-semibold">Coming Soon</p>
+						<p class="text-center text-token-text-tertiary text-sm mb-2 font-weight-200">ooops, such empty</p>
+						<p class="text-center text-token-text-secondary text-md font-semibold">Coming Soon</p>
 					</div>
 				</div>
 			</div>

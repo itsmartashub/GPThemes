@@ -17,7 +17,7 @@
 // }
 
 .tab-buttons {
-    background-color: hsla(var(--accent-hsl) / 0.1);
+    background-color: hsla(var(--accent-hsl) / 0.15);
     color: var(--c-accent);
 }
 
@@ -30,6 +30,6 @@
     }
 }
 
-.tab-pane.active {
+.tab-pane {
     @extend %animFadeIn;
 }

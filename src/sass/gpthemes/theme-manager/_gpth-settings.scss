@@ -16,6 +16,8 @@
 	border-radius: var(--br-dialog);
 	top: var(--top);
 	right: var(--right);
+	width: 24rem;
+	// height: 50vh;
 	max-width: 35rem;
 	max-height: 70vh;
 	transform: translateX(calc(100% + 1.5rem)) !important;

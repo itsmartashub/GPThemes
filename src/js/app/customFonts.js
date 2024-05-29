@@ -17,8 +17,6 @@ const fontNames = [
 	'Monospace',
 	'Lato',
 	'Quicksand',
-	// 'Merriweather',
-	// 'Karla',
 	'Outfit',
 ]
 
@@ -54,24 +52,24 @@ export let fontHtmlCode = `
 `
 
 function setCSSVariables({ fontFamily, fontSize = '16' }) {
-	console.log('setCSSVariables()', { fontFamily, fontSize })
+	// console.log('setCSSVariables()', { fontFamily, fontSize })
 
 	if (fontFamily !== fontFamilyDefault) {
-		console.log('fontFamily NIJE DEFAULT')
+		// console.log('fontFamily NIJE DEFAULT')
 		document.documentElement.style.setProperty('--f-family', `${fontFamily}, ${fontFamilyDefault}`)
 		document.documentElement.style.setProperty('--f-size', `${pxToRem(fontSize)}`)
 		return
 	}
-	console.log('fontFamily JE DEFAULT')
+	// console.log('fontFamily JE DEFAULT')
 
 	document.documentElement.style.setProperty('--f-family', fontFamilyDefault)
 	document.documentElement.style.setProperty('--f-size', `${pxToRem(fontSize)}`)
 
-	console.log('--f-family', getComputedStyle(document.documentElement).getPropertyValue('--f-family'))
-	console.log('--f-size: ', getComputedStyle(document.documentElement).getPropertyValue('--f-size'))
+	// console.log('--f-family', getComputedStyle(document.documentElement).getPropertyValue('--f-family'))
+	// console.log('--f-size: ', getComputedStyle(document.documentElement).getPropertyValue('--f-size'))
 }
 function setInputFields({ fontFamily, fontSize = '16' }) {
-	console.log('setInputFields():', fontFamily, fontSize)
+	// console.log('setInputFields():', fontFamily, fontSize)
 
 	if (fontFamily !== 'Default') {
 		document.getElementById('fontFamily').value = fontFamily
@@ -102,13 +100,13 @@ async function getFontsFromStorage() {
 }
 
 async function setFontsToStorage({ fontFamily, fontSize = '16' }) {
-	console.log('setFontsToStorage()', fontFamily, fontSize)
+	// console.log('setFontsToStorage()', fontFamily, fontSize)
 
 	// Save selected font to storage
 	await browser.storage.sync.set({ fontFamily, fontSize })
 
-	console.log('--f-family', getComputedStyle(document.documentElement).getPropertyValue('--f-family'))
-	console.log(getComputedStyle(document.documentElement).getPropertyValue('--f-size'))
+	// console.log('--f-family', getComputedStyle(document.documentElement).getPropertyValue('--f-family'))
+	// console.log(getComputedStyle(document.documentElement).getPropertyValue('--f-size'))
 }
 async function removeFontsFromStorage() {
 	await browser.storage.sync.remove(['fontFamily', 'fontSize'])
