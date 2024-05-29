@@ -1,0 +1,35 @@
+// .tab-pane {
+//     display: none;
+// }
+
+// .tab-pane.active {
+//     display: block;
+// }
+
+// .tab-pane:target {
+//     display: block;
+//     @extend %animFadeIn;
+// }
+
+// .tab-button.active {
+//     background-color: var(--c-accent);
+//     color: var(--c-on-accent);
+// }
+
+.tab-buttons {
+    background-color: hsla(var(--accent-hsl) / 0.1);
+    color: var(--c-accent);
+}
+
+.tab-button {
+    flex: 1;
+
+    &.active {
+        background-color: var(--c-accent);
+        color: var(--c-on-accent) !important;
+    }
+}
+
+.tab-pane.active {
+    @extend %animFadeIn;
+}

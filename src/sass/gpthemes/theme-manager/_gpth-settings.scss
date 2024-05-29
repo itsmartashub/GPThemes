@@ -1,6 +1,7 @@
 @import 'components/_colorpicker';
 // @import 'components/_blur-box';
 @import 'layouts/_header';
+@import 'components/_tabs';
 
 .gpth-settings {
 	overflow: clip;
@@ -16,10 +17,11 @@
 	top: var(--top);
 	right: var(--right);
 	max-width: 35rem;
-	max-height: 80vh;
+	max-height: 70vh;
 	transform: translateX(calc(100% + 1.5rem)) !important;
 	z-index: calc(var(--z-modal) + 10);
 	background-color: var(--c-bg-sidebar);
+	overflow-y: scroll;
 
 	// background-image: linear-gradient(
 	// 	135deg,

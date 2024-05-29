@@ -1,6 +1,7 @@
 import browser from 'webextension-polyfill'
 import { pxToRem } from '../utils/fontsConverting'
 // import { remToPx } from '../utils/fontsConverting'
+import { renderFont, renderButton } from './components/renderFonts'
 
 const fontFamilyDefault = getComputedStyle(document.documentElement).getPropertyValue('--f-family-default')
 
@@ -24,32 +25,50 @@ let googleFontWeights = `:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,
 let currFontHref = null
 
 export let fontHtmlCode = `
-	<section id="fontChangerPopover" class="fonts mt-10">
-		<h4 class="mb-5">Fonts</h4>
-
-		<div class="flex gap-4">
-			<div class="fonts__family text-sm mb-2 flex flex-col flex-1">
-				<label for="fontFamily" class="uppercase text-xs">Font Family:</label>
-				<select id="fontFamily" class="bg-token-sidebar-surface-primary rounded-lg w-full">
-					<option class="class="bg-token-sidebar-surface-primary rounded-lg" value="${fontFamilyDefault}">Default</option>
+	<section id="fontChangerPopover" class="fonts">
+		<div class="grid gap-4">
+			<div class="fonts__family text-sm mb-2 flex flex-col">
+				<label for="fontFamily" class="uppercase text-xs mb-1 font-semibold">Font Family:</label>
+				<select id="fontFamily" class="bg-token-sidebar-surface-secondary rounded-md outline-none border-none p-3 focus:none">
+					<option class="" value="${fontFamilyDefault}">Default</option>
 				${fontNames
 					.map(
 						(name) =>
-							`<option class="class="bg-token-sidebar-surface-primary rounded-lg" value="${name}">${name}</option>`
+							`<option class="bg-token-sidebar-surface-secondary rounded-md outline-none border-none" value="${name} p-4">${name}</option>`
 					)
 					.join('')}
 				</select>
 			</div>
 
-			<div class="fonts__size text-xs mb-2 flex flex-col flex-1">
-				<label for="fontSize" class="uppercase text-xs">Font Size (<code class="text-xs">px</code>):</label>
-				<input type="number" id="fontSize" value="16" placeholder="16px" class="bg-token-sidebar-surface-primary rounded-lg">
-			</div>
+			${renderFont({
+				name: 'Font Size',
+				className: 'fonts__size',
+				inputId: 'fontSize',
+				inputType: 'number',
+				inputValue: '16',
+				inputPlaceholder: '16px',
+			})}
+			${renderFont({
+				name: 'Letter Spacing',
+				className: 'fonts__letterSpacing',
+				inputId: 'letterSpacing',
+				inputType: 'number',
+				inputValue: '1',
+				inputPlaceholder: '1px',
+			})}
+			${renderFont({
+				name: 'Line Height',
+				className: 'fonts__lineHeight',
+				inputId: 'lineHeight',
+				inputType: 'number',
+				inputValue: '1.5',
+				inputPlaceholder: '1.5',
+			})}
 		</div>
 
 		<div class="gap-2 mt-4 grid">
-			<button id="resetFont" class="btn block relative btn-secondary text-center">Reset to Default</button>
-			<button id="applyFont" class="btn block relative btn-primary text-center">Apply Fonts</button>
+			${renderButton({ id: 'applyFont', content: 'Apply Fonts', disabled: false, className: 'btn-primary' })}
+			${renderButton({ id: 'resetFont', content: 'Reset Fonts', disabled: false, className: 'btn-secondary' })}
 		</div>
 	</section>
 `
