@@ -6,6 +6,7 @@ import { renderFont, renderButton } from './components/renderFonts'
 const fontFamilyDefault = getComputedStyle(document.documentElement).getPropertyValue('--f-family-default')
 
 const fontNames = [
+	'Default',
 	'Inter',
 	'Roboto',
 	'Roboto Mono',
@@ -30,15 +31,7 @@ export let fontHtmlCode = `
 			<div class="fonts__family text-sm mb-2 flex flex-col">
 				<label for="fontFamily" class="uppercase text-xs mb-1 font-semibold">Font Family:</label>
 				<select id="fontFamily" class="bg-token-sidebar-surface-secondary rounded-md outline-none border-none p-3 focus:none">
-					<option class="" value="${fontFamilyDefault}">Default</option>
-				${fontNames
-					.map(
-						(name) =>
-							`<option class="bg-token-sidebar-surface-secondary rounded-md outline-none border-none" value="${name}">${
-								name ? name : 'Default'
-							}</option>`
-					)
-					.join('')}
+				${fontNames.map((name) => `<option value="${name === 'Default' ? fontFamilyDefault : name}">${name}</option>`).join('')}
 				</select>
 			</div>
 
@@ -63,15 +56,30 @@ export let fontHtmlCode = `
 function setCSSVariables({ fontFamily, fontSize = '16' }) {
 	console.log('setCSSVariables()', { fontFamily, fontSize })
 
-	document.documentElement.style.setProperty('--f-family', fontFamily)
+	if (fontFamily !== fontFamilyDefault) {
+		console.log('fontFamily NIJE DEFAULT')
+		document.documentElement.style.setProperty('--f-family', `${fontFamily}, ${fontFamilyDefault}`)
+		document.documentElement.style.setProperty('--f-size', `${pxToRem(fontSize)}`)
+		return
+	}
+	console.log('fontFamily JE DEFAULT')
+
+	document.documentElement.style.setProperty('--f-family', fontFamilyDefault)
 	document.documentElement.style.setProperty('--f-size', `${pxToRem(fontSize)}`)
 
 	console.log('--f-family', getComputedStyle(document.documentElement).getPropertyValue('--f-family'))
 	console.log('--f-size: ', getComputedStyle(document.documentElement).getPropertyValue('--f-size'))
 }
 function setInputFields({ fontFamily, fontSize = '16' }) {
-	console.log('setInputFields()', fontFamily, fontSize)
-	document.getElementById('fontFamily').value = fontFamily
+	console.log('setInputFields():', fontFamily, fontSize)
+
+	if (fontFamily !== 'Default') {
+		document.getElementById('fontFamily').value = fontFamily
+		document.getElementById('fontSize').value = fontSize
+		return
+	}
+
+	document.getElementById('fontFamily').value = fontFamilyDefault
 	document.getElementById('fontSize').value = fontSize
 }
 async function getFontsFromStorage() {
@@ -118,7 +126,7 @@ function createAndInjectLinkElement(fontFamily) {
 
 	// TODO Check if the link is already injected
 
-	// TODO Remove existing Google Font links
+	// Remove existing Google Font links
 	removeExistingGoogleFontLinks()
 
 	currFontHref = href
