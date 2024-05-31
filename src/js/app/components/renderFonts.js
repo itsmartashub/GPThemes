@@ -31,10 +31,11 @@ export function renderFont({
 
 	return `
         <div class="${className} fonts__group cards--small">
-            <label for="${inputId}" class="rounded-full flex items-center gap-2 h-full">
+            <label for="${inputId}" class="rounded-full flex items-center gap-2 h-full w-full">
                 <input type="${inputType}" id="${inputId}" value="${inputValue}" placeholder="${inputPlaceholder}" class="rounded-full outline-none border-none font-bold" minlength="${min}" maxlength="${max}">
-                <div>
-                    <p class="fonts__unit rounded-full flex items-center justify-center mb-1 p-1">pixels</p>
+
+                <div class="fonts__unit-name-wrapper">
+                    <p class="fonts__unit rounded-full flex items-center justify-center">pixels</p>
                     <p class="fonts__name uppercase font-semibold">${name}</p>
                 </div>
             </label>
@@ -61,11 +62,12 @@ export function renderFontBigCards({
 }) {
 	return `
         <div class="${className} fonts__group cards--big">
-            <label for="${inputId}" class="h-full">
+            <label for="${inputId}" class="h-full w-full">
                 <div>
                     <p class="fonts__unit fonts__icon">PX</p>
                     <p class="fonts__name uppercase font-semibold">${name}</p>
                 </div>
+
                 <input type="${inputType}" id="${inputId}" value="${inputValue}" placeholder="${inputPlaceholder}" class="outline-none border-none focus:outline-none focus:border-none font-bold" minlength="${min}" maxlength="${max}">
             </label>
         </div>`

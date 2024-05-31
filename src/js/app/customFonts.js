@@ -70,7 +70,7 @@ export let fontHtmlCode = `
 	<section id="fontChangerPopover" class="fonts">
 		<div class="fonts__props">
 			<div class="fonts__family fonts__group cards--big">
-				<label for="fontFamily" class="h-full">
+				<label for="fontFamily" class="h-full w-full">
 					<div>
 						<p class="fonts__unit fonts__icon">T</p>
 						<p class="fonts__name uppercase font-semibold">FONT FAMILY</p>

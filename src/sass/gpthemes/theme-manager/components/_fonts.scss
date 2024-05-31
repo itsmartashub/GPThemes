@@ -1,9 +1,8 @@
 .fonts {
     &__props {
-        --gap: .65rem;
+        --gap: 0.65rem;
 
         display: grid;
-        // grid-template-columns: repeat(auto-fit, minmax(136px, 1fr));
         grid-template-columns: repeat(2, 1fr);
         align-items: center;
         gap: calc(var(--gap) * 2) var(--gap);
@@ -14,13 +13,41 @@
 
         min-width: var(--group-min-w);
         height: var(--group-h);
+
+        label,
+        label > * {
+            cursor: pointer !important;
+        }
+
+        &:hover,
+        input,
+        select,
+        .fonts__unit-name-wrapper {
+            transition: all 0.45s $easeOutBack;
+        }
+
+        input:is(:focus, :focus-visible, :focus-within) {
+            translate: scale(1.1);
+        }
     }
 
+    /* === SMALL CARDS */
     &__group.cards--small {
         // --group-h: 3rem;
         // --input-size: calc(var(--group-h) - 0.2rem);
 
-        label:has(input) {
+        &:hover {
+            input {
+                transform: scale(1.1);
+            }
+
+            .fonts__unit-name-wrapper {
+                // transform: translatex(2px) scale(.95);
+                transform: translatex(2px);
+            }
+        }
+
+        label {
             height: 3rem;
             background-color: var(--c-surface-2);
             padding: 5px;
@@ -38,39 +65,58 @@
             text-align: center;
         }
 
-        select {
-            background-color: var(--c-surface-2);
-            padding: .6rem;
+        .fonts__unit {
+            background-color: hsla(var(--accent-hsl) / 0.12);
+            color: var(--c-accent);
+            font-size: 0.72rem;
+            width: max-content;
             line-height: 1;
+            padding: 2px;
+            margin-bottom: 4px;
+            margin-left: -2px;
+        }
+
+        .fonts__name {
+            font-size: 0.7rem;
+        }
+
+        &:has(input:focus) {
+            .fonts__unit-name-wrapper {
+                // transform: translateX(10%);
+                // opacity: 0;
+                display: none;
+            }
+
+            label {
+                display: flex !important;
+            }
+
+            input {
+                width: 100%;
+                transform: unset !important;
+                aspect-ratio: unset !important;
+            }
         }
     }
 
-    &__unit {
-        background-color: hsla(var(--accent-hsl) / 0.12);
-        color: var(--c-accent);
-        font-size: 0.72rem;
-        width: max-content;
-        line-height: 1;
-        padding: 0 4px;
-        margin-left: -2px;
-    }
+    /* ________________________________________________________________ */
 
-    &__name {
-        font-size: 0.7rem;
-    }
-
-
+    /* @ BIG CARDS */
     &__group.cards--big {
-        // --group-max-h: 120px;
-        // --group-max-h: 130px;
         --group-h: 110px;
-        // --group-h: 139px;
-        // --input-size: calc(var(--group-h) / 2);
-        padding: 1rem;
         border-radius: 1.5rem;
         background-color: var(--c-surface-2);
         height: var(--group-h);
-        // aspect-ratio: 1 / 1;
+        padding: .9rem;
+
+        &:hover {
+            transform: translateY(-2px);
+
+            input,
+            select {
+                transform: translateY(-2px);
+            }
+        }
 
         .fonts__icon {
             --icon-size: 1.8rem;
@@ -81,7 +127,7 @@
             border-radius: 8px;
             background-color: hsla(var(--accent-hsl) / 0.15);
             color: var(--c-accent);
-            font-size: .8rem;
+            font-size: 0.8rem;
             font-weight: bold;
             margin-bottom: 2px;
             margin-left: -1px;
@@ -89,19 +135,23 @@
 
         .fonts__name {
             color: var(--c-accent);
-            font-size: .8rem;
+            font-size: 0.8rem;
             margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            font-size: 1.6rem;
+            padding: 0 4px !important;
+            margin-left: -4px;
         }
 
         select,
         input {
             // height: var(--input-size);
-            width: 100%;
             background-color: transparent !important;
-            font-size: 1.6rem;
-            padding: 0 4px !important;
             line-height: 1;
-            margin-left: -4px;
+            cursor: pointer;
 
             &:focus {
                 outline: none;
@@ -114,8 +164,10 @@
 
         select {
             font-size: 1.2rem;
-            padding: .5rem !important;
-            margin-left: -.5rem !important;
+            padding: 0.5rem;
+            padding-right: 0 !important;
+            margin-left: -0.5rem;
+            width: calc(100% + 1rem) !important;
             word-wrap: break-word;
             font-weight: bold;
             background: none;
@@ -126,7 +178,7 @@
             option {
                 // background-color: red;
                 background-color: var(--c-surface-2) !important;
-                font-size: .8rem !important;
+                font-size: 0.8rem !important;
                 /*  position: relative;
 
                 &::after {
@@ -150,20 +202,19 @@
 
     /* Remove the arrow from the number inputs */
     /* Hide the arrows in WebKit browsers (Chrome, Safari, Edge) */
-    input[type="number"]::-webkit-outer-spin-button,
-    input[type="number"]::-webkit-inner-spin-button {
+    input[type='number']::-webkit-outer-spin-button,
+    input[type='number']::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }
 
     /* Hide the arrows in Firefox */
-    input[type="number"] {
+    input[type='number'] {
         -moz-appearance: textfield;
     }
 
     /* Optional: Ensure consistent appearance across all browsers */
-    input[type="number"] {
+    input[type='number'] {
         appearance: none;
     }
-
 }
