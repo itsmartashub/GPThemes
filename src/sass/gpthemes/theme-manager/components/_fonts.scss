@@ -1,1 +1,169 @@
-.fonts {}
+.fonts {
+    &__props {
+        --gap: .65rem;
+
+        display: grid;
+        // grid-template-columns: repeat(auto-fit, minmax(136px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        gap: calc(var(--gap) * 2) var(--gap);
+    }
+
+    &__group {
+        --group-min-w: 136px;
+
+        min-width: var(--group-min-w);
+        height: var(--group-h);
+    }
+
+    &__group.cards--small {
+        // --group-h: 3rem;
+        // --input-size: calc(var(--group-h) - 0.2rem);
+
+        label:has(input) {
+            height: 3rem;
+            background-color: var(--c-surface-2);
+            padding: 5px;
+            line-height: 1;
+        }
+
+        input {
+            aspect-ratio: 1 / 1;
+            // width: var(--input-size);
+            // height: var(--input-size);
+            height: 100%;
+            background-color: hsla(var(--accent-hsl) / 0.2);
+            color: var(--c-accent);
+            padding: 0 !important;
+            text-align: center;
+        }
+
+        select {
+            background-color: var(--c-surface-2);
+            padding: .6rem;
+            line-height: 1;
+        }
+    }
+
+    &__unit {
+        background-color: hsla(var(--accent-hsl) / 0.12);
+        color: var(--c-accent);
+        font-size: 0.72rem;
+        width: max-content;
+        line-height: 1;
+        padding: 0 4px;
+        margin-left: -2px;
+    }
+
+    &__name {
+        font-size: 0.7rem;
+    }
+
+
+    &__group.cards--big {
+        // --group-max-h: 120px;
+        // --group-max-h: 130px;
+        --group-h: 110px;
+        // --group-h: 139px;
+        // --input-size: calc(var(--group-h) / 2);
+        padding: 1rem;
+        border-radius: 1.5rem;
+        background-color: var(--c-surface-2);
+        height: var(--group-h);
+        // aspect-ratio: 1 / 1;
+
+        .fonts__icon {
+            --icon-size: 1.8rem;
+            width: var(--icon-size);
+            height: var(--icon-size);
+            display: grid;
+            place-items: center;
+            border-radius: 8px;
+            background-color: hsla(var(--accent-hsl) / 0.15);
+            color: var(--c-accent);
+            font-size: .8rem;
+            font-weight: bold;
+            margin-bottom: 2px;
+            margin-left: -1px;
+        }
+
+        .fonts__name {
+            color: var(--c-accent);
+            font-size: .8rem;
+            margin-bottom: 5px;
+        }
+
+        select,
+        input {
+            // height: var(--input-size);
+            width: 100%;
+            background-color: transparent !important;
+            font-size: 1.6rem;
+            padding: 0 4px !important;
+            line-height: 1;
+            margin-left: -4px;
+
+            &:focus {
+                outline: none;
+                border: none;
+                border-radius: 1rem;
+                background-color: hsla(var(--accent-hsl) / 0.15) !important;
+                color: var(--c-accent);
+            }
+        }
+
+        select {
+            font-size: 1.2rem;
+            padding: .5rem !important;
+            margin-left: -.5rem !important;
+            word-wrap: break-word;
+            font-weight: bold;
+            background: none;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+
+            option {
+                // background-color: red;
+                background-color: var(--c-surface-2) !important;
+                font-size: .8rem !important;
+                /*  position: relative;
+
+                &::after {
+                    content: '';
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    border-radius: 1rem;
+                    background-color: var(--c-accent-light);
+                }
+
+                &:hover {
+                    &::after {
+                        background-color: var(--c-accent);
+                    }
+                } */
+            }
+        }
+    }
+
+    /* Remove the arrow from the number inputs */
+    /* Hide the arrows in WebKit browsers (Chrome, Safari, Edge) */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Hide the arrows in Firefox */
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+
+    /* Optional: Ensure consistent appearance across all browsers */
+    input[type="number"] {
+        appearance: none;
+    }
+
+}

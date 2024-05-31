@@ -1,7 +1,7 @@
 import browser from 'webextension-polyfill'
 import { pxToRem } from '../utils/fontsConverting'
 // import { remToPx } from '../utils/fontsConverting'
-import { renderFont, renderButton } from './components/renderFonts'
+import { renderFont, renderFontBigCards, renderButton } from './components/renderFonts'
 
 const defaultFontFamily = getComputedStyle(document.documentElement).getPropertyValue('--f-family-default')
 const defaultFontSize = '16'
@@ -27,17 +27,61 @@ const fontNames = [
 let googleFontWeights = `:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900`
 let currFontHref = null
 
+// let htmlFontFamily = `
+// 	<div class="${fonts__family} fonts__group cards--big">
+// 		<label for="fontFamily" class="h-full">
+// 			<div>
+// 				<p class="fonts__unit fonts__icon">T</p>
+// 				<p class="fonts__name uppercase font-semibold">FONT FAMILY</p>
+// 			</div>
+// 			<select id="fontFamily" class="rounded-full outline-none border-none focus:none h-full w-full">
+// 					<p class="fonts__name uppercase font-semibold">FONT FAMILY</p>
+// 					${fontNames.map((name) => `<option value="${name === 'Default' ? defaultFontFamily : name}">${name}</option>`).join('')}
+// 			</select>
+// 		</label>
+// 	</div>`
+
+// let htmlFontFamilyFirst = `
+// <div class="fonts__group fonts__family flex flex-col">
+// <label for="fontFamily" class="rounded-full flex items-center h-full w-full">
+// <select id="fontFamily" class="rounded-full outline-none border-none focus:none h-full w-full">
+// 	<p class="fonts__name uppercase font-semibold">FONT FAMILY</p>
+// 	${fontNames.map((name) => `<option value="${name === 'Default' ? defaultFontFamily : name}">${name}</option>`).join('')}
+// </select>
+// </label>
+// </div>`
+
+/* 
+<div class="flex flex-col items-center justify-center bg-gray-100 p-4 rounded-lg max-w-32 h-32">
+    <span class="text-sm text-purple-500">LINE HEIGHT</span>
+    <span class="text-4xl">28</span>
+    <span class="text-purple-500">PX</span>
+</div>
+
+<div class="flex items-center gap-2 p-1 rounded-full h-14 bg-token-sidebar-surface-secondary max-w-full w-34">
+    <span class="text-lg bg-token-sidebar-surface-primary rounded-full h-12 w-12 font-bold flex items-center justify-center">28</span>
+	<div class="block-inline">
+		<p class="text-xs bg-token-sidebar-surface-primary rounded-full p-1">pixels</p>
+		<p class="text-xs font-semibold">LETTER SPACING</p>
+	</div>
+</div> */
+
 export let fontHtmlCode = `
 	<section id="fontChangerPopover" class="fonts">
-		<div class="grid gap-4">
-			<div class="fonts__family text-sm mb-2 flex flex-col">
-				<label for="fontFamily" class="uppercase text-xs mb-1 font-semibold">Font Family:</label>
-				<select id="fontFamily" class="bg-token-sidebar-surface-secondary rounded-md outline-none border-none p-3 focus:none">
-				${fontNames.map((name) => `<option value="${name === 'Default' ? defaultFontFamily : name}">${name}</option>`).join('')}
-				</select>
+		<div class="fonts__props">
+			<div class="fonts__family fonts__group cards--big">
+				<label for="fontFamily" class="h-full">
+					<div>
+						<p class="fonts__unit fonts__icon">T</p>
+						<p class="fonts__name uppercase font-semibold">FONT FAMILY</p>
+					</div>
+					<select id="fontFamily" class="border-none outline-none focus:none">
+							${fontNames.map((name) => `<option value="${name === 'Default' ? defaultFontFamily : name}">${name}</option>`).join('')}
+					</select>
+				</label>
 			</div>
 
-			${renderFont({
+			${renderFontBigCards({
 				name: 'Font Size',
 				className: 'fonts__size',
 				inputId: 'fontSize',
@@ -45,6 +89,8 @@ export let fontHtmlCode = `
 				inputValue: defaultFontSize,
 				inputPlaceholder: '16px',
 				unit: 'px',
+				min: 10,
+				max: 25,
 			})}
 			${renderFont({
 				name: 'Line Height',
@@ -54,6 +100,8 @@ export let fontHtmlCode = `
 				inputValue: defaultLineHeight,
 				inputPlaceholder: `${defaultLineHeight}px`,
 				unit: 'px',
+				min: 1,
+				max: 50,
 			})}
 			${renderFont({
 				name: 'Letter Spacing',
@@ -63,12 +111,14 @@ export let fontHtmlCode = `
 				inputValue: defaultLetterSpacing,
 				inputPlaceholder: `${defaultFontSize}px`,
 				unit: 'px',
+				min: -10,
+				max: 16,
 			})}
 		</div>
 
-		<div class="gap-2 mt-4 grid">
+		<footer class="grid mt-10">
 			${renderButton({ id: 'resetFont', content: 'Reset Fonts', disabled: false, className: 'btn-primary' })}
-		</div>
+		</footer>
 	</section>
 `
 

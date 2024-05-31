@@ -39,7 +39,7 @@ const renderColorsTab = `
 				<label for="accentDark">Accent <span>Dark</span></label>
 			</div>
 		</div>
-		<footer class="grid m-5">
+		<footer class="grid mt-10">
 			<button id="resetAllSettings" class="btn block relative btn-primary text-center" as="button">Reset Accents</button>
 		</footer>
 	</section>
@@ -180,9 +180,9 @@ function renderSettings() {
 			</button>
 		</header>
 
-		<main>
+		<main >
 			<div class="tabs">
-				<div class="tab-buttons flex items-center rounded-full p-1 mb-6 font-semibold">
+				<div class="tab-buttons flex items-center rounded-full p-1 font-semibold mb-10">
 					<button class="tab-button py-2 px-4 focus:outline-none text-center rounded-full active">
 						Color
 					</button>
@@ -193,7 +193,8 @@ function renderSettings() {
 						Assets
 					</button>
 				</div>
-				<div class="tab-content p-4">
+
+				<div class="tab-content">
 					<div class="tab-pane active" id="tab-colors">
 						${renderColorsTab}
 					</div>
