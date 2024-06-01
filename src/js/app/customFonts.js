@@ -1,6 +1,5 @@
 import browser from 'webextension-polyfill'
 import { pxToRem } from '../utils/fontsConverting'
-// import { remToPx } from '../utils/fontsConverting'
 import { renderFont, renderFontBigCards, renderButton } from './components/renderFonts'
 
 const defaultFontFamily = getComputedStyle(document.documentElement).getPropertyValue('--f-family-default')
@@ -26,45 +25,6 @@ const fontNames = [
 
 let googleFontWeights = `:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900`
 let currFontHref = null
-
-// let htmlFontFamily = `
-// 	<div class="${fonts__family} fonts__group cards--big">
-// 		<label for="fontFamily" class="h-full">
-// 			<div>
-// 				<p class="fonts__unit fonts__icon">T</p>
-// 				<p class="fonts__name uppercase font-semibold">FONT FAMILY</p>
-// 			</div>
-// 			<select id="fontFamily" class="rounded-full outline-none border-none focus:none h-full w-full">
-// 					<p class="fonts__name uppercase font-semibold">FONT FAMILY</p>
-// 					${fontNames.map((name) => `<option value="${name === 'Default' ? defaultFontFamily : name}">${name}</option>`).join('')}
-// 			</select>
-// 		</label>
-// 	</div>`
-
-// let htmlFontFamilyFirst = `
-// <div class="fonts__group fonts__family flex flex-col">
-// <label for="fontFamily" class="rounded-full flex items-center h-full w-full">
-// <select id="fontFamily" class="rounded-full outline-none border-none focus:none h-full w-full">
-// 	<p class="fonts__name uppercase font-semibold">FONT FAMILY</p>
-// 	${fontNames.map((name) => `<option value="${name === 'Default' ? defaultFontFamily : name}">${name}</option>`).join('')}
-// </select>
-// </label>
-// </div>`
-
-/* 
-<div class="flex flex-col items-center justify-center bg-gray-100 p-4 rounded-lg max-w-32 h-32">
-    <span class="text-sm text-purple-500">LINE HEIGHT</span>
-    <span class="text-4xl">28</span>
-    <span class="text-purple-500">PX</span>
-</div>
-
-<div class="flex items-center gap-2 p-1 rounded-full h-14 bg-token-sidebar-surface-secondary max-w-full w-34">
-    <span class="text-lg bg-token-sidebar-surface-primary rounded-full h-12 w-12 font-bold flex items-center justify-center">28</span>
-	<div class="block-inline">
-		<p class="text-xs bg-token-sidebar-surface-primary rounded-full p-1">pixels</p>
-		<p class="text-xs font-semibold">LETTER SPACING</p>
-	</div>
-</div> */
 
 export let fontHtmlCode = `
 	<section id="fontChangerPopover" class="fonts">
@@ -145,11 +105,11 @@ function setInputFields({ fontFamily, fontSize = '16' }) {
 	document.getElementById('fontSize').value = fontSize
 } */
 function setCSSVar({ varName, varValue }) {
-	console.log('setCSSVar():', varName, varValue)
+	// console.log('setCSSVar():', varName, varValue)
 	document.documentElement.style.setProperty(varName, varValue)
 }
 function setInputField({ inputSelector, inputVal }) {
-	console.log('setInputField():', inputSelector, inputVal)
+	// console.log('setInputField():', inputSelector, inputVal)
 
 	let inputEl = document.querySelector(`.gpth-settings ${inputSelector}`)
 
@@ -325,6 +285,8 @@ export function applyFontFamily(e) {
 export function applyFontSize(e) {
 	const fontSize = e.target.value
 
+	if (!validateInputField({ inputField: e.target, min: 8, max: 24 })) return
+
 	// Apply CSS variables
 	setCSSVar({ varName: '--f-size', varValue: `${pxToRem(fontSize)}` })
 
@@ -335,6 +297,8 @@ export function applyLetterSpacing(e) {
 	// console.log('applyLetterSpacing()', e.target.value)
 	const letterSpacing = e.target.value
 
+	if (!validateInputField({ inputField: e.target, min: -30, max: 30 })) return
+
 	// Apply CSS variables
 	setCSSVar({ varName: '--f-letter-spacing', varValue: `${letterSpacing}px` })
 
@@ -343,6 +307,8 @@ export function applyLetterSpacing(e) {
 }
 export function applyLineHeight(e) {
 	const lineHeight = e.target.value
+
+	if (!validateInputField({ inputField: e.target, min: 12, max: 60 })) return
 
 	// Apply CSS variables
 	setCSSVar({ varName: '--f-line-height', varValue: lineHeight })
@@ -357,6 +323,20 @@ export function addFontsEventHandlers() {
 	document.querySelector('.gpth-settings #letterSpacing').addEventListener('input', applyLetterSpacing)
 	document.querySelector('.gpth-settings #lineHeight').addEventListener('input', applyLineHeight)
 	document.querySelector('.gpth-settings #resetFont').addEventListener('click', resetToDefaults)
+}
+
+function validateInputField({ inputField, min, max = 24 }) {
+	const inputValue = parseFloat(inputField.value)
+
+	if (isNaN(inputValue)) {
+		alert('Input must be a number.')
+		return false
+	} else if (inputValue < min || inputValue > max) {
+		alert(`Number must be between ${min} and ${max}`)
+		return false
+	}
+
+	return true
 }
 
 function initFonts() {

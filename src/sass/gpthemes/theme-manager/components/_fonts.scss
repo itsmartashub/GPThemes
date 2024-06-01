@@ -140,10 +140,10 @@
         }
 
         input {
-            width: 100%;
             font-size: 1.6rem;
             padding: 0 4px !important;
             margin-left: -4px;
+            width: calc(100% + 4px + 4px) !important; // margin 4px + padding 4px
         }
 
         select,
