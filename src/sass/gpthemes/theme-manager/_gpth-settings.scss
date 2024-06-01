@@ -1,6 +1,7 @@
 @import 'components/_colorpicker';
 @import 'layouts/_header';
 @import 'components/_tabs';
+@import 'components/_cards';
 @import 'components/_fonts';
 
 .gpth-settings {
@@ -16,9 +17,10 @@
 	border-radius: var(--br-dialog);
 	top: var(--top);
 	right: var(--right);
-	width: 26rem;
+	// width: 26rem;
 	// height: 50vh;
 	// max-width: 30rem;
+	width: clamp(25rem, 25vw, 30rem);
 	max-height: 70vh;
 	transform: translateX(calc(100% + 1.5rem)) !important;
 	z-index: calc(var(--z-modal) + 10);
@@ -36,12 +38,18 @@
 	// backdrop-filter: blur(50px);
 
 	box-shadow: var(--shadow-values) var(--shadow-color);
-	transition: all 0.3s ease;
+	transition: transform 0.3s $easeOutBack, opacity 0.3s ease;
 
 	&--open {
 		opacity: 1 !important;
 		pointer-events: all !important;
 		transform: translateX(0%) !important;
+	}
+
+	@include dev(mob) {
+		width: calc(100% - 2.5rem);
+		max-height: 70vh;
+		padding: 2.2rem;
 	}
 }
 

@@ -29,13 +29,13 @@ let currFontHref = null
 export let fontHtmlCode = `
 	<section id="fontChangerPopover" class="fonts">
 		<div class="fonts__props">
-			<div class="fonts__family fonts__group cards--big">
-				<label for="fontFamily" class="h-full w-full">
+			<div class="fonts__family fonts__group card card--big h-full">
+				<label for="fontFamily" class="grid gap-1 h-full w-full">
 					<div>
-						<p class="fonts__unit fonts__icon">T</p>
-						<p class="fonts__name uppercase font-semibold">FONT FAMILY</p>
+						<p class="card__unit card__icon">T</p>
+						<p class="card__name uppercase font-semibold">FONT FAMILY</p>
 					</div>
-					<select id="fontFamily" class="border-none outline-none focus:none">
+					<select id="fontFamily" class="border-none outline-none focus:none font-bold">
 							${fontNames.map((name) => `<option value="${name === 'Default' ? defaultFontFamily : name}">${name}</option>`).join('')}
 					</select>
 				</label>
