@@ -3,6 +3,7 @@
 @import 'components/_tabs';
 @import 'components/_cards';
 @import 'components/_fonts';
+@import 'components/_error-msg';
 
 .gpth-settings {
 	overflow: clip;
@@ -49,7 +50,7 @@
 	@include dev(mob) {
 		width: calc(100% - 2.5rem);
 		max-height: 70vh;
-		padding: 2.2rem;
+		padding: 2rem;
 	}
 }
 

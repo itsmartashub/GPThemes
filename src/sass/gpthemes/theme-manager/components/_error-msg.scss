@@ -1,0 +1,12 @@
+.gpth-error-msg {
+    // position: fixed;
+    // top: 1%;
+    // right: 2%;
+    // border-radius: var(--br-btn);
+    // top: calc(var(--h-header) + 0.5rem + 3rem);
+    @extend %animFadeIn;
+    top: 3rem;
+    right: 4rem;
+    // z-index: var(--z-modal);
+    backdrop-filter: blur(10px);
+}

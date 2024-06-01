@@ -47,10 +47,10 @@ export let fontHtmlCode = `
 				inputId: 'fontSize',
 				inputType: 'number',
 				inputValue: defaultFontSize,
-				inputPlaceholder: '16px',
+				inputPlaceholder: defaultFontSize,
 				unit: 'px',
-				min: 10,
-				max: 25,
+				min: 12,
+				max: 24,
 			})}
 			${renderFont({
 				name: 'Line Height',
@@ -58,10 +58,10 @@ export let fontHtmlCode = `
 				inputId: 'lineHeight',
 				inputType: 'number',
 				inputValue: defaultLineHeight,
-				inputPlaceholder: `${defaultLineHeight}px`,
+				inputPlaceholder: defaultLineHeight,
 				unit: 'px',
-				min: 1,
-				max: 50,
+				min: 12,
+				max: 60,
 			})}
 			${renderFont({
 				name: 'Letter Spacing',
@@ -69,10 +69,10 @@ export let fontHtmlCode = `
 				inputId: 'letterSpacing',
 				inputType: 'number',
 				inputValue: defaultLetterSpacing,
-				inputPlaceholder: `${defaultFontSize}px`,
+				inputPlaceholder: defaultLetterSpacing,
 				unit: 'px',
-				min: -10,
-				max: 16,
+				min: -30,
+				max: 30,
 			})}
 		</div>
 
@@ -285,13 +285,24 @@ export function applyFontFamily(e) {
 export function applyFontSize(e) {
 	const fontSize = e.target.value
 
-	if (!validateInputField({ inputField: e.target, min: 8, max: 24 })) return
+	if (!validateInputField({ inputField: e.target, min: 12, max: 24 })) return
 
 	// Apply CSS variables
 	setCSSVar({ varName: '--f-size', varValue: `${pxToRem(fontSize)}` })
 
 	// Save settings to chrome.storage
 	setPropToStorage({ propName: 'fontSize', propVal: fontSize })
+}
+export function applyLineHeight(e) {
+	const lineHeight = e.target.value
+
+	if (!validateInputField({ inputField: e.target, min: 12, max: 60 })) return
+
+	// Apply CSS variables
+	setCSSVar({ varName: '--f-line-height', varValue: lineHeight })
+
+	// Save settings to chrome.storage
+	setPropToStorage({ propName: 'lineHeight', propVal: lineHeight })
 }
 export function applyLetterSpacing(e) {
 	// console.log('applyLetterSpacing()', e.target.value)
@@ -304,17 +315,6 @@ export function applyLetterSpacing(e) {
 
 	// Save settings to chrome.storage
 	setPropToStorage({ propName: 'letterSpacing', propVal: letterSpacing })
-}
-export function applyLineHeight(e) {
-	const lineHeight = e.target.value
-
-	if (!validateInputField({ inputField: e.target, min: 12, max: 60 })) return
-
-	// Apply CSS variables
-	setCSSVar({ varName: '--f-line-height', varValue: lineHeight })
-
-	// Save settings to chrome.storage
-	setPropToStorage({ propName: 'lineHeight', propVal: lineHeight })
 }
 
 export function addFontsEventHandlers() {
@@ -329,14 +329,37 @@ function validateInputField({ inputField, min, max = 24 }) {
 	const inputValue = parseFloat(inputField.value)
 
 	if (isNaN(inputValue)) {
-		alert('Input must be a number.')
+		// alert('Input must be a number.')
+		console.log('Input must be a number.')
+		displayError('Input must be a number.')
 		return false
 	} else if (inputValue < min || inputValue > max) {
-		alert(`Number must be between ${min} and ${max}`)
+		// alert(`Number must be between ${min} and ${max}`)
+		console.log(`Number must be between ${min} and ${max}`)
+		displayError(`Number must be between ${min} and ${max}`)
 		return false
 	}
 
 	return true
+}
+
+function displayError(message) {
+	// Remove any previous error messages
+	const existingError = document.querySelector('.gpth-error-msg')
+	if (existingError) {
+		existingError.remove()
+	}
+
+	// Create and insert the new error message
+	const errorMessage = document.createElement('div')
+	errorMessage.className = 'gpth-error-msg fixed rounded-xl bg-red-500 red-500 p-3 font-semibold'
+	errorMessage.textContent = message
+	document.body.appendChild(errorMessage)
+
+	// Remove the error message after 4 seconds
+	setTimeout(() => {
+		errorMessage.remove()
+	}, 4000)
 }
 
 function initFonts() {

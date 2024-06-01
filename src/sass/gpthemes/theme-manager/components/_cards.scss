@@ -54,7 +54,7 @@
         }
 
         .card__unit {
-            --px: 0.34rem;
+            --px: 0.25rem;
             background-color: hsla(var(--accent-hsl) / 0.12);
             color: var(--c-accent);
             // font-size: 0.72rem;
@@ -63,7 +63,7 @@
             line-height: 1;
             padding: 0.1rem var(--px);
             margin-bottom: 0.25rem;
-            translate: -0.1rem 0;
+            translate: -0.15rem 0;
         }
 
         .card__name {
@@ -160,7 +160,7 @@
         }
 
         input {
-            --p-input-select: 0.2rem;
+            --p-input-select: 0.06em !important;
             // font-size: 1.6rem;
             font-size: 1em;
         }

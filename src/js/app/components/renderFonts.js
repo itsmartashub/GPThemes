@@ -5,7 +5,7 @@ export function renderFont({
 	inputType,
 	inputValue,
 	inputPlaceholder,
-	min = 0,
+	min = 16,
 	max = 24,
 	unit = 'px',
 }) {
