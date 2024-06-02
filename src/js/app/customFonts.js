@@ -6,7 +6,6 @@ const defaultFontFamily = getComputedStyle(document.documentElement).getProperty
 const defaultFontSize = '16'
 const defaultLetterSpacing = '0'
 const defaultLineHeight = 28
-// const defaultLineHeight = '24px'
 
 const fontNames = [
 	'Default',
@@ -25,6 +24,10 @@ const fontNames = [
 
 let googleFontWeights = `:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900`
 let currFontHref = null
+
+let onFocusValFontSize = null,
+	onFocusValLineHeight = null,
+	onFocusValLetterSpacing = null
 
 export let fontHtmlCode = `
 	<section id="fontChangerPopover" class="fonts">
@@ -82,30 +85,8 @@ export let fontHtmlCode = `
 	</section>
 `
 
-/* function setCSSVariables({ fontFamily, fontSize = '16' }) {
-	if (fontFamily !== defaultFontFamily) {
-		document.documentElement.style.setProperty('--f-family', `${fontFamily}, ${defaultFontFamily}`)
-		document.documentElement.style.setProperty('--f-size', `${pxToRem(fontSize)}`)
-		return
-	}
-
-	document.documentElement.style.setProperty('--f-family', defaultFontFamily)
-	document.documentElement.style.setProperty('--f-size', `${pxToRem(fontSize)}`)
-}
-function setInputFields({ fontFamily, fontSize = '16' }) {
-	// console.log('setInputFields():', fontFamily, fontSize)
-
-	if (fontFamily !== 'Default') {
-		document.getElementById('fontFamily').value = fontFamily
-		document.getElementById('fontSize').value = fontSize
-		return
-	}
-
-	document.getElementById('fontFamily').value = defaultFontFamily
-	document.getElementById('fontSize').value = fontSize
-} */
 function setCSSVar({ varName, varValue }) {
-	// console.log('setCSSVar():', varName, varValue)
+	console.log('setCSSVar():', varName, varValue)
 	document.documentElement.style.setProperty(varName, varValue)
 }
 function setInputField({ inputSelector, inputVal }) {
@@ -149,10 +130,6 @@ async function getFontsFromStorage() {
 	}
 }
 
-/* async function setFontsToStorage({ fontFamily, fontSize = '16' }) {
-	// Save selected font to storage
-	await browser.storage.sync.set({ fontFamily, fontSize })
-} */
 async function setPropToStorage({ propName, propVal }) {
 	// Save selected font to storage
 	await browser.storage.sync.set({ [propName]: propVal })
@@ -203,53 +180,6 @@ function removeExistingGoogleFontLinks() {
 		link.parentNode.removeChild(link)
 	})
 }
-/* function isLinkAlreadyInjected(href) {
-	let googleFontLinks = getAllGoogleFontLinks()
-
-	console.log('isLinkAlreadyInjected()')
-
-	if (!googleFontLinks) return false
-
-	for (let link of googleFontLinks) {
-		console.log('link.href:', link.href)
-		console.log('href:', href)
-
-		if (link.href === href) {
-			console.log('Link injected already')
-			return true
-		}
-	}
-	return false
-} */
-
-/* export function applyFont() {
-	const fontFamily = document.getElementById('fontFamily').value
-	let fontSize = document.getElementById('fontSize').value
-
-	console.log('applyFont()', fontFamily, fontSize)
-
-	// Create the <link> in <head> which will fetch the selected font from Google Fonts
-	createAndInjectLinkElement(fontFamily)
-
-	// Apply CSS variables
-	setCSSVariables({ fontFamily, fontSize })
-
-	// Save settings to chrome.storage
-	setFontsToStorage({ fontFamily, fontSize })
-} */
-/* export function resetFont() {
-	// Reset CSS variables to default values
-	setCSSVariables({ fontFamily: defaultFontFamily, fontSize: '16' })
-
-	// Reset input fields to default values
-	setInputFields({ fontFamily: 'Default', fontSize: '16' })
-
-	// Remove custom font link from the head
-	removeExistingGoogleFontLinks()
-
-	// Remove custom font settings from chrome.storage
-	removeFontsFromStorage()
-} */
 export function resetToDefaults() {
 	// Reset CSS variables to default values
 	setCSSVar({ varName: '--f-family', varValue: defaultFontFamily })
@@ -285,6 +215,8 @@ export function applyFontFamily(e) {
 export function applyFontSize(e) {
 	const fontSize = e.target.value
 
+	if (onFocusValFontSize == fontSize) return
+
 	let isValid = validateInputField({
 		inputField: e.target,
 		min: 12,
@@ -313,6 +245,8 @@ export function applyFontSize(e) {
 export function applyLineHeight(e) {
 	const lineHeight = e.target.value
 
+	if (onFocusValLineHeight == lineHeight) return
+
 	let isValid = validateInputField({
 		inputField: e.target,
 		min: 12,
@@ -340,6 +274,8 @@ export function applyLetterSpacing(e) {
 	// console.log('applyLetterSpacing()', e.target.value)
 	const letterSpacing = e.target.value
 
+	if (onFocusValLetterSpacing == letterSpacing) return
+
 	let isValid = validateInputField({
 		inputField: e.target,
 		min: -30,
@@ -365,15 +301,25 @@ export function applyLetterSpacing(e) {
 }
 
 export function addFontsEventHandlers() {
-	document.querySelector('.gpth-settings #fontFamily').addEventListener('change', applyFontFamily)
-	// document.querySelector('.gpth-settings #fontSize').addEventListener('input', applyFontSize)
-	// document.querySelector('.gpth-settings #letterSpacing').addEventListener('input', applyLetterSpacing)
-	// document.querySelector('.gpth-settings #lineHeight').addEventListener('input', applyLineHeight)
 	document.querySelector('.gpth-settings #resetFont').addEventListener('click', resetToDefaults)
+	document.querySelector('.gpth-settings #fontFamily').addEventListener('change', applyFontFamily)
 
 	document.querySelector('.gpth-settings #fontSize').addEventListener('blur', applyFontSize)
-	document.querySelector('.gpth-settings #letterSpacing').addEventListener('blur', applyLetterSpacing)
 	document.querySelector('.gpth-settings #lineHeight').addEventListener('blur', applyLineHeight)
+	document.querySelector('.gpth-settings #letterSpacing').addEventListener('blur', applyLetterSpacing)
+
+	document.querySelector('.gpth-settings #fontSize').addEventListener('focus', (e) => {
+		console.log(e.target.value)
+		onFocusValFontSize = e.target.value
+	})
+	document.querySelector('.gpth-settings #lineHeight').addEventListener('focus', (e) => {
+		console.log(e.target.value)
+		onFocusValLineHeight = e.target.value
+	})
+	document.querySelector('.gpth-settings #letterSpacing').addEventListener('focus', (e) => {
+		console.log(e.target.value)
+		onFocusValLetterSpacing = e.target.value
+	})
 }
 
 // function validateInputField({ inputField, min, max = 24, defaultVal = 16, cssVarName, propVal }) {
