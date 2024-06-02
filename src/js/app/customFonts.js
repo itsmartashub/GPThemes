@@ -285,7 +285,24 @@ export function applyFontFamily(e) {
 export function applyFontSize(e) {
 	const fontSize = e.target.value
 
-	if (!validateInputField({ inputField: e.target, min: 12, max: 24 })) return
+	let isValid = validateInputField({
+		inputField: e.target,
+		min: 12,
+		max: 24,
+	})
+
+	if (!isValid) {
+		// e.target.addEventListener('blur', () => {
+		setInputField({ inputSelector: '#fontSize', inputVal: defaultFontSize })
+
+		// Apply CSS variables
+		setCSSVar({ varName: '--f-size', varValue: `${pxToRem(defaultFontSize)}` })
+
+		// Save settings to chrome.storage
+		setPropToStorage({ propName: 'fontSize', propVal: defaultFontSize })
+		// })
+		return
+	}
 
 	// Apply CSS variables
 	setCSSVar({ varName: '--f-size', varValue: `${pxToRem(fontSize)}` })
@@ -296,7 +313,22 @@ export function applyFontSize(e) {
 export function applyLineHeight(e) {
 	const lineHeight = e.target.value
 
-	if (!validateInputField({ inputField: e.target, min: 12, max: 60 })) return
+	let isValid = validateInputField({
+		inputField: e.target,
+		min: 12,
+		max: 60,
+	})
+
+	if (!isValid) {
+		setInputField({ inputSelector: '#lineHeight', inputVal: defaultLineHeight })
+
+		// Apply CSS variables
+		setCSSVar({ varName: '--f-line-height', varValue: defaultLineHeight })
+
+		// Save settings to chrome.storage
+		setPropToStorage({ propName: 'lineHeight', propVal: defaultLineHeight })
+		return
+	}
 
 	// Apply CSS variables
 	setCSSVar({ varName: '--f-line-height', varValue: lineHeight })
@@ -308,7 +340,22 @@ export function applyLetterSpacing(e) {
 	// console.log('applyLetterSpacing()', e.target.value)
 	const letterSpacing = e.target.value
 
-	if (!validateInputField({ inputField: e.target, min: -30, max: 30 })) return
+	let isValid = validateInputField({
+		inputField: e.target,
+		min: -30,
+		max: 30,
+	})
+
+	if (!isValid) {
+		setInputField({ inputSelector: '#letterSpacing', inputVal: defaultLetterSpacing })
+
+		// Apply CSS variables
+		setCSSVar({ varName: '--f-letter-spacing', varValue: `${defaultLetterSpacing}px` })
+
+		// Save settings to chrome.storage
+		setPropToStorage({ propName: 'letterSpacing', propVal: defaultLetterSpacing })
+		return
+	}
 
 	// Apply CSS variables
 	setCSSVar({ varName: '--f-letter-spacing', varValue: `${letterSpacing}px` })
@@ -319,22 +366,25 @@ export function applyLetterSpacing(e) {
 
 export function addFontsEventHandlers() {
 	document.querySelector('.gpth-settings #fontFamily').addEventListener('change', applyFontFamily)
-	document.querySelector('.gpth-settings #fontSize').addEventListener('input', applyFontSize)
-	document.querySelector('.gpth-settings #letterSpacing').addEventListener('input', applyLetterSpacing)
-	document.querySelector('.gpth-settings #lineHeight').addEventListener('input', applyLineHeight)
+	// document.querySelector('.gpth-settings #fontSize').addEventListener('input', applyFontSize)
+	// document.querySelector('.gpth-settings #letterSpacing').addEventListener('input', applyLetterSpacing)
+	// document.querySelector('.gpth-settings #lineHeight').addEventListener('input', applyLineHeight)
 	document.querySelector('.gpth-settings #resetFont').addEventListener('click', resetToDefaults)
+
+	document.querySelector('.gpth-settings #fontSize').addEventListener('blur', applyFontSize)
+	document.querySelector('.gpth-settings #letterSpacing').addEventListener('blur', applyLetterSpacing)
+	document.querySelector('.gpth-settings #lineHeight').addEventListener('blur', applyLineHeight)
 }
 
+// function validateInputField({ inputField, min, max = 24, defaultVal = 16, cssVarName, propVal }) {
 function validateInputField({ inputField, min, max = 24 }) {
 	const inputValue = parseFloat(inputField.value)
 
 	if (isNaN(inputValue)) {
-		// alert('Input must be a number.')
-		console.log('Input must be a number.')
-		displayError('Input must be a number.')
+		console.log('Empty input field')
+		displayError('Empty input field')
 		return false
 	} else if (inputValue < min || inputValue > max) {
-		// alert(`Number must be between ${min} and ${max}`)
 		console.log(`Number must be between ${min} and ${max}`)
 		displayError(`Number must be between ${min} and ${max}`)
 		return false
