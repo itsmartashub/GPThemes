@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     font-size: 1.6rem;
+    position: relative;
 
     @include dev(mob) {
         font-size: 1.4rem;
@@ -28,6 +29,59 @@
         transform-origin: center center;
     }
 
+    &::after,
+    &::before {
+        --card-tooltip-gap: 0.5rem;
+        position: absolute;
+        top: var(--card-tooltip-top);
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 70;
+        opacity: 0;
+        pointer-events: none;
+        translate: 0 -0.5rem;
+        transition: 0.3s ease-in-out, translate 0.3s $easeOutBack;
+    }
+
+    &::after {
+        --card-tooltip-top: calc(100% + var(--card-tooltip-gap));
+        content: attr(data-gpth-err);
+        width: max-content;
+        height: clamp(1.5rem, 50%, max-content);
+        font-size: .45em;
+        font-weight: 600;
+        padding: 0.5rem;
+        color: var(--c-on-accent);
+        border-radius: 50vw;
+        background-color: var(--c-accent);
+    }
+
+    &::before {
+        --border-w: 0.5rem;
+        // --card-tooltip-top: calc(100% - var(--card-tooltip-gap) - var(--border-w));
+        --card-tooltip-top: calc(100% - var(--card-tooltip-gap) + 0.1rem);
+        content: "";
+        border-width: var(--border-w);
+        border-style: solid;
+        border-color: transparent transparent var(--c-accent) transparent;
+    }
+
+    &:has(select) {
+
+        &::after,
+        &::before {
+            display: none;
+        }
+    }
+
+    &:has(input:focus) {
+
+        &::after,
+        &::before {
+            opacity: 1 !important;
+            translate: 0 0 !important;
+        }
+    }
 
     &--small {
         label {

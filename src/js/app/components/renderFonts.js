@@ -10,7 +10,7 @@ export function renderFont({
 	unit = 'px',
 }) {
 	return `
-        <div class="${className} card card--small">
+        <div class="${className} card card--small" data-gpth-err="min: ${min}${unit}, max: ${max}${unit}">
             <label for="${inputId}" class="rounded-full flex items-center gap-2 h-full w-full">
                 <input type="${inputType}" id="${inputId}" value="${inputValue}" placeholder="${inputPlaceholder}" class="rounded-full outline-none border-none font-bold" minlength="${min}" maxlength="${max}">
 
@@ -34,7 +34,7 @@ export function renderFontBigCards({
 	unit = 'px',
 }) {
 	return `
-        <div class="${className} fonts__group card card--big h-full">
+        <div class="${className} fonts__group card card--big h-full" data-gpth-err="min: ${min}${unit}, max: ${max}${unit}">
             <label for="${inputId}" class="grid gap-1 h-full w-full">
                 <div>
                     <p class="card__unit card__icon">PX</p>
