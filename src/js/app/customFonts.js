@@ -213,8 +213,8 @@ export function applyFontSize(e) {
 	const fontSize = formatNumber(e.target.value, 4)
 	onFocusValFontSize = formatNumber(onFocusValFontSize, 4)
 
-	console.log('applyFontSize()', fontSize)
-	console.log('applyFontSize()', onFocusValFontSize)
+	// console.log('applyFontSize()', fontSize)
+	// console.log('applyFontSize()', onFocusValFontSize)
 
 	setInputField({ inputSelector: '#fontSize', inputVal: fontSize })
 
@@ -248,7 +248,7 @@ export function applyFontSize(e) {
 export function applyLineHeight(e) {
 	const lineHeight = formatNumber(e.target.value)
 	onFocusValLineHeight = formatNumber(onFocusValLineHeight)
-	console.log('applyLineHeight()', lineHeight, onFocusValLineHeight)
+	// console.log('applyLineHeight()', lineHeight, onFocusValLineHeight)
 
 	setInputField({ inputSelector: '#lineHeight', inputVal: lineHeight })
 
@@ -282,7 +282,7 @@ export function applyLetterSpacing(e) {
 	const letterSpacing = formatNumber(e.target.value)
 	onFocusValLetterSpacing = formatNumber(onFocusValLetterSpacing)
 
-	console.log('applyLetterSpacing()', letterSpacing, onFocusValLetterSpacing)
+	// console.log('applyLetterSpacing()', letterSpacing, onFocusValLetterSpacing)
 
 	setInputField({ inputSelector: '#letterSpacing', inputVal: letterSpacing })
 
@@ -316,10 +316,6 @@ export function addFontsEventHandlers() {
 	document.querySelector('.gpth-settings #resetFont').addEventListener('click', resetToDefaults)
 	document.querySelector('.gpth-settings #fontFamily').addEventListener('change', applyFontFamily)
 
-	document.querySelector('.gpth-settings #fontSize').addEventListener('blur', applyFontSize)
-	document.querySelector('.gpth-settings #lineHeight').addEventListener('blur', applyLineHeight)
-	document.querySelector('.gpth-settings #letterSpacing').addEventListener('blur', applyLetterSpacing)
-
 	document.querySelector('.gpth-settings #fontSize').addEventListener('focus', (e) => {
 		onFocusValFontSize = e.target.value
 	})
@@ -328,6 +324,32 @@ export function addFontsEventHandlers() {
 	})
 	document.querySelector('.gpth-settings #letterSpacing').addEventListener('focus', (e) => {
 		onFocusValLetterSpacing = e.target.value
+	})
+
+	document.querySelector('.gpth-settings #fontSize').addEventListener('blur', applyFontSize)
+	document.querySelector('.gpth-settings #lineHeight').addEventListener('blur', applyLineHeight)
+	document.querySelector('.gpth-settings #letterSpacing').addEventListener('blur', applyLetterSpacing)
+
+	document.querySelector('.gpth-settings #fontSize').addEventListener('keypress', (e) => {
+		if (e.key === 'Enter') {
+			e.preventDefault()
+			applyFontSize(e)
+			e.target.blur()
+		}
+	})
+	document.querySelector('.gpth-settings #lineHeight').addEventListener('keypress', (e) => {
+		if (e.key === 'Enter') {
+			e.preventDefault()
+			applyLineHeight(e)
+			e.target.blur()
+		}
+	})
+	document.querySelector('.gpth-settings #letterSpacing').addEventListener('keypress', (e) => {
+		if (e.key === 'Enter') {
+			e.preventDefault()
+			applyLetterSpacing(e)
+			e.target.blur()
+		}
 	})
 }
 
