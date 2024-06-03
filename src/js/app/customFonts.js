@@ -101,8 +101,6 @@ async function getFontsFromStorage() {
 	try {
 		const data = await browser.storage.sync.get(['fontFamily', 'fontSize', 'letterSpacing', 'lineHeight'])
 
-		// console.log('data: ', data)
-
 		if (data.fontFamily) {
 			setCSSVar({ varName: '--f-family', varValue: `${data.fontFamily}, ${defaultFontFamily}` })
 			setInputField({ inputSelector: '#fontFamily', inputVal: data.fontFamily })
@@ -213,12 +211,9 @@ export function applyFontSize(e) {
 	const fontSize = formatNumber(e.target.value, 4)
 	onFocusValFontSize = formatNumber(onFocusValFontSize, 4)
 
-	// console.log('applyFontSize()', fontSize)
-	// console.log('applyFontSize()', onFocusValFontSize)
-
 	setInputField({ inputSelector: '#fontSize', inputVal: fontSize })
 
-	if (onFocusValFontSize == fontSize) return console.log('onFocusValFontSize()', onFocusValFontSize)
+	if (onFocusValFontSize == fontSize) return
 
 	let isValid = validateInputField({
 		inputValue: fontSize,
@@ -248,7 +243,6 @@ export function applyFontSize(e) {
 export function applyLineHeight(e) {
 	const lineHeight = formatNumber(e.target.value)
 	onFocusValLineHeight = formatNumber(onFocusValLineHeight)
-	// console.log('applyLineHeight()', lineHeight, onFocusValLineHeight)
 
 	setInputField({ inputSelector: '#lineHeight', inputVal: lineHeight })
 
@@ -278,11 +272,8 @@ export function applyLineHeight(e) {
 	setPropToStorage({ propName: 'lineHeight', propVal: lineHeight })
 }
 export function applyLetterSpacing(e) {
-	// const letterSpacing = formatNumber(e.target.value)
 	const letterSpacing = formatNumber(e.target.value)
 	onFocusValLetterSpacing = formatNumber(onFocusValLetterSpacing)
-
-	// console.log('applyLetterSpacing()', letterSpacing, onFocusValLetterSpacing)
 
 	setInputField({ inputSelector: '#letterSpacing', inputVal: letterSpacing })
 
@@ -384,14 +375,6 @@ function displayError(message) {
 		errorMessage.remove()
 	}, 4000)
 }
-/* function formatNumber(inputVal) {
-	// Remove leading zeros from the integer part
-	inputVal = inputVal.replace(/^0+(?=\d*\.)/, '')
-	// Remove trailing zeros from the decimal part
-	inputVal = inputVal.replace(/\.?0+$/, '')
-	// Parse the input as a number and return it
-	return parseFloat(inputVal)
-} */
 function formatNumber(inputVal, toFixedNum = 2) {
 	// Remove leading zeros from the integer part
 	inputVal = inputVal.replace(/^0+(?=\d*\.)/, '')
