@@ -375,7 +375,7 @@ function displayError(message) {
 
 	// Create and insert the new error message
 	const errorMessage = document.createElement('div')
-	errorMessage.className = 'gpth-error-msg fixed rounded-xl bg-red-500 red-500 p-3 font-semibold'
+	errorMessage.className = 'gpth-error-msg fixed rounded-xl bg-red-500 red-500 p-3 font-semibold text-center'
 	errorMessage.textContent = message
 	document.body.appendChild(errorMessage)
 
