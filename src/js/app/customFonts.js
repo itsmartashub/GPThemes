@@ -86,12 +86,9 @@ export let fontHtmlCode = `
 `
 
 function setCSSVar({ varName, varValue }) {
-	console.log('setCSSVar():', varName, varValue)
 	document.documentElement.style.setProperty(varName, varValue)
 }
 function setInputField({ inputSelector, inputVal }) {
-	// console.log('setInputField():', inputSelector, inputVal)
-
 	let inputEl = document.querySelector(`.gpth-settings ${inputSelector}`)
 
 	if (inputVal === 'Default') {
@@ -213,12 +210,18 @@ export function applyFontFamily(e) {
 	setPropToStorage({ propName: 'fontFamily', propVal: fontFamily })
 }
 export function applyFontSize(e) {
-	const fontSize = e.target.value
+	const fontSize = formatNumber(e.target.value, 4)
+	onFocusValFontSize = formatNumber(onFocusValFontSize, 4)
 
-	if (onFocusValFontSize == fontSize) return
+	console.log('applyFontSize()', fontSize)
+	console.log('applyFontSize()', onFocusValFontSize)
+
+	setInputField({ inputSelector: '#fontSize', inputVal: fontSize })
+
+	if (onFocusValFontSize == fontSize) return console.log('onFocusValFontSize()', onFocusValFontSize)
 
 	let isValid = validateInputField({
-		inputField: e.target,
+		inputValue: fontSize,
 		min: 12,
 		max: 24,
 	})
@@ -243,12 +246,16 @@ export function applyFontSize(e) {
 	setPropToStorage({ propName: 'fontSize', propVal: fontSize })
 }
 export function applyLineHeight(e) {
-	const lineHeight = e.target.value
+	const lineHeight = formatNumber(e.target.value)
+	onFocusValLineHeight = formatNumber(onFocusValLineHeight)
+	console.log('applyLineHeight()', lineHeight, onFocusValLineHeight)
+
+	setInputField({ inputSelector: '#lineHeight', inputVal: lineHeight })
 
 	if (onFocusValLineHeight == lineHeight) return
 
 	let isValid = validateInputField({
-		inputField: e.target,
+		inputValue: lineHeight,
 		min: 12,
 		max: 60,
 	})
@@ -271,13 +278,18 @@ export function applyLineHeight(e) {
 	setPropToStorage({ propName: 'lineHeight', propVal: lineHeight })
 }
 export function applyLetterSpacing(e) {
-	// console.log('applyLetterSpacing()', e.target.value)
-	const letterSpacing = e.target.value
+	// const letterSpacing = formatNumber(e.target.value)
+	const letterSpacing = formatNumber(e.target.value)
+	onFocusValLetterSpacing = formatNumber(onFocusValLetterSpacing)
 
-	if (onFocusValLetterSpacing == letterSpacing) return
+	console.log('applyLetterSpacing()', letterSpacing, onFocusValLetterSpacing)
+
+	setInputField({ inputSelector: '#letterSpacing', inputVal: letterSpacing })
+
+	if (formatNumber(onFocusValLetterSpacing) == letterSpacing) return
 
 	let isValid = validateInputField({
-		inputField: e.target,
+		inputValue: letterSpacing,
 		min: -30,
 		max: 30,
 	})
@@ -309,29 +321,22 @@ export function addFontsEventHandlers() {
 	document.querySelector('.gpth-settings #letterSpacing').addEventListener('blur', applyLetterSpacing)
 
 	document.querySelector('.gpth-settings #fontSize').addEventListener('focus', (e) => {
-		console.log(e.target.value)
 		onFocusValFontSize = e.target.value
 	})
 	document.querySelector('.gpth-settings #lineHeight').addEventListener('focus', (e) => {
-		console.log(e.target.value)
 		onFocusValLineHeight = e.target.value
 	})
 	document.querySelector('.gpth-settings #letterSpacing').addEventListener('focus', (e) => {
-		console.log(e.target.value)
 		onFocusValLetterSpacing = e.target.value
 	})
 }
 
 // function validateInputField({ inputField, min, max = 24, defaultVal = 16, cssVarName, propVal }) {
-function validateInputField({ inputField, min, max = 24 }) {
-	const inputValue = parseFloat(inputField.value)
-
+function validateInputField({ inputValue, min, max = 24 }) {
 	if (isNaN(inputValue)) {
-		console.log('Empty input field')
-		displayError('Empty input field')
+		displayError('Empty or invalid input field')
 		return false
 	} else if (inputValue < min || inputValue > max) {
-		console.log(`Number must be between ${min} and ${max}`)
 		displayError(`Number must be between ${min} and ${max}`)
 		return false
 	}
@@ -357,7 +362,24 @@ function displayError(message) {
 		errorMessage.remove()
 	}, 4000)
 }
-
+/* function formatNumber(inputVal) {
+	// Remove leading zeros from the integer part
+	inputVal = inputVal.replace(/^0+(?=\d*\.)/, '')
+	// Remove trailing zeros from the decimal part
+	inputVal = inputVal.replace(/\.?0+$/, '')
+	// Parse the input as a number and return it
+	return parseFloat(inputVal)
+} */
+function formatNumber(inputVal, toFixedNum = 2) {
+	// Remove leading zeros from the integer part
+	inputVal = inputVal.replace(/^0+(?=\d*\.)/, '')
+	// Parse the input as a number and return it with 2 decimal places
+	let formatted = parseFloat(inputVal).toFixed(toFixedNum)
+	// Remove trailing zeros from the decimal part
+	formatted = formatted.replace(/\.?0+$/, '')
+	// Return the formatted number as a string
+	return formatted
+}
 function initFonts() {
 	getFontsFromStorage()
 }
