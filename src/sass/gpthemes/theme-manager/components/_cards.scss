@@ -83,6 +83,30 @@
         }
     }
 
+    /* Hide arrows in Webkit browsers (Chrome, Safari) */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Hide arrows in Firefox */
+    input[type="number"] {
+        -moz-appearance: textfield;
+        /* For Firefox */
+        appearance: textfield;
+    }
+
+    /* Ensure the input field looks consistent across all browsers */
+    input[type="number"] {
+        -webkit-appearance: none;
+        /* For Chrome and Safari */
+        -moz-appearance: textfield;
+        /* For Firefox */
+        appearance: textfield;
+    }
+
+
     &--small {
         label {
             height: 3rem;
