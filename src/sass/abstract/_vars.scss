@@ -4,11 +4,11 @@
 	// 	Noto Sans, sans-serif, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
 	// 	Noto Color Emoji;
 	--fsz-error-404: 3rem;
-	--f-family-default: ui-sans-serif, -apple-system, system-ui, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica, Apple Color Emoji, Arial, Segoe UI Emoji, Segoe UI Symbol;
-	--f-family: var(--f-family-default);
-	--f-size: inherit;
-	--f-letter-spacing: none;
-	--f-line-height: calc(28px / 16px);
+	--fontFamilyDefault: ui-sans-serif, -apple-system, system-ui, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica, Apple Color Emoji, Arial, Segoe UI Emoji, Segoe UI Symbol;
+	--fontFamily: var(--fontFamilyDefault);
+	--fontSize: inherit;
+	--letterSpacing: none;
+	--lineHeight: calc(28px / 16px);
 
 	/* ? --- Widths and Heights --- */
 	--h-header: calc(3.5rem + 0.5rem + 0.375rem);

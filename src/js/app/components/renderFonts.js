@@ -1,4 +1,4 @@
-export function renderFont({
+export function renderFontSmallCard({
 	name,
 	className,
 	inputId,
@@ -22,7 +22,7 @@ export function renderFont({
         </div>`
 }
 
-export function renderFontBigCards({
+export function renderFontBigCard({
 	name,
 	className,
 	inputId,
@@ -45,6 +45,16 @@ export function renderFontBigCards({
             </label>
         </div>`
 }
+
+// export function renderFontSelect() {
+// 	return `
+//         <select id="fontFamily" class="border-none outline-none focus:none font-bold">
+//             ${FONT_NAMES.map(
+// 				(name) => `<option value="${name === 'Default' ? DEFAULTS.fontFamily : name}">${name}</option>`
+// 			).join('')}
+//         </select>
+//     `
+// }
 
 export function renderButton({ name, className, id, content, disabled = false }) {
 	return `

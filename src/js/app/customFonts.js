@@ -160,7 +160,7 @@ function createAndInjectLinkElement(fontFamily) {
 }
 function getAllGoogleFontLinks() {
 	// Select all link elements in the head
-	const linkElements = document.head.querySelectorAll('link')
+	const linkElements = document.head.querySelectorAll("link[rel='stylesheet']")
 
 	// Filter the link elements to find those fetching Google Fonts
 	const googleFontLinks = Array.from(linkElements).filter((link) => link.href.includes('fonts.googleapis.com'))

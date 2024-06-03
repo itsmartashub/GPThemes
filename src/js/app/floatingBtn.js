@@ -1,12 +1,11 @@
 // Use a cross-browser storage API:
 import browser from 'webextension-polyfill'
 
-// import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint, icon_palette } from './icons.js'
 import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './icons.js'
-// import gpthToggleImg from '../../img/gpth-toggle-circled.webp'
 import { hexToHSL } from '../utils/hexToHSL'
 
-import { fontHtmlCode, addFontsEventHandlers } from './customFonts'
+// import { fontHtmlCode, addFontsEventHandlers } from './customFonts'
+import { fontHtmlCode, handleFontsListeners } from './mainFonts'
 // console.log(fontHtmlCode)
 
 // let isOptionsShown = false
@@ -226,7 +225,8 @@ function renderSettings() {
 
 	$settings.querySelector('#resetAllSettings').addEventListener('click', resetAllSettings)
 
-	addFontsEventHandlers()
+	// addFontsEventHandlers()
+	handleFontsListeners()
 }
 
 function openSettings() {
