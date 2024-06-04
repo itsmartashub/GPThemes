@@ -1,7 +1,7 @@
 // Use a cross-browser storage API:
 import browser from 'webextension-polyfill'
 
-import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './icons.js'
+import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './components/icons.js'
 import { hexToHSL } from '../utils/hexToHSL'
 
 // import { fontHtmlCode, addFontsEventHandlers } from './customFonts'

@@ -63,8 +63,8 @@ const letterSpacingData = {
 	inputValue: DEFAULTS.letterSpacing,
 	inputPlaceholder: DEFAULTS.letterSpacing,
 	unit: 'px',
-	min: -5,
-	max: 5,
+	min: -30,
+	max: 30,
 }
 
 // HTML template for font changer popover
@@ -95,18 +95,19 @@ export let fontHtmlCode = `
 `
 
 // Function to set input field values
-function setInputField(inputSelector, inputVal) {
+function setInputFieldValue(inputSelector, inputVal) {
 	const inputEl = document.querySelector(`.gpth-settings #${inputSelector}`)
-	inputEl.value = inputVal === 'Default' ? DEFAULTS[inputSelector] : inputVal
+
+	inputEl.value = inputVal
 }
 
 // Function to apply settings
 function applySettings(settings) {
 	Object.entries(settings).forEach(([key, value]) => {
 		document.documentElement.style.setProperty(`--${key}`, value)
-		setInputField(key, value)
+		setInputFieldValue(key, value)
 
-		console.log('getComputedStyle: ', getComputedStyle(document.documentElement).getPropertyValue(`--${key}`))
+		// console.log('getComputedStyle: ', getComputedStyle(document.documentElement).getPropertyValue(`--${key}`))
 	})
 }
 
@@ -139,6 +140,7 @@ function loadGoogleFont(fontFamily) {
 		' ',
 		'+'
 	)}${GOOGLE_FONT_WEIGHTS}&display=swap`
+
 	const link = document.createElement('link')
 	link.rel = 'stylesheet'
 	link.href = href
@@ -210,7 +212,7 @@ function changeFontSize(e) {
 	if (onFocusValFontSize === newVal) return
 
 	if (!validateInputField(newVal, fontSizeData.min, fontSizeData.max)) {
-		setInputField('fontSize', onFocusValFontSize)
+		setInputFieldValue('fontSize', onFocusValFontSize)
 		applySettings({ fontSize: onFocusValFontSize })
 		saveSettings({ fontSize: onFocusValFontSize })
 		// setInputField('fontSize', DEFAULTS.fontSize)
@@ -231,7 +233,7 @@ function changeLineHeight(e) {
 	if (onFocusValLineHeight === newVal) return
 
 	if (!validateInputField(newVal, lineHeightData.min, lineHeightData.max)) {
-		setInputField('lineHeight', onFocusValLineHeight)
+		setInputFieldValue('lineHeight', onFocusValLineHeight)
 		applySettings({ lineHeight: onFocusValLineHeight })
 		saveSettings({ lineHeight: onFocusValLineHeight })
 		return
@@ -249,7 +251,7 @@ function changeLetterSpacing(e) {
 	if (onFocusValLetterSpacing === newVal) return
 
 	if (!validateInputField(newVal, letterSpacingData.min, letterSpacingData.max)) {
-		setInputField('letterSpacing', onFocusValLetterSpacing)
+		setInputFieldValue('letterSpacing', onFocusValLetterSpacing)
 		applySettings({ letterSpacing: onFocusValLetterSpacing })
 		saveSettings({ letterSpacing: onFocusValLetterSpacing })
 		return
@@ -275,10 +277,10 @@ async function changeFontFamily(e) {
 			console.error('Failed to save font family:', error)
 		}
 	} else {
-		// Apply default font settings
-		applySettings(DEFAULTS)
+		// Apply default font family settings
+		applySettings({ fontFamily: selectedFont })
 		try {
-			await saveSettings(DEFAULTS)
+			await saveSettings({ fontFamily: selectedFont })
 		} catch (error) {
 			console.error('Failed to reset font family:', error)
 		}
