@@ -127,7 +127,8 @@ main [data-testid^='conversation-turn-'] {
 
 	/* @ RIGHT - CHATS BUBBLES - USER  */
 	&:has([data-message-author-role='user']) {
-		line-height: calc(var(--f-line-height) / 16) !important;
+		line-height: calc(var(--lineHeight) / 16) !important;
+		// line-height: calc((var(--lineHeight) / 16) * 1px) !important;
 
 
 		/*  RIGHT - CHATS BUBBLE BG */
@@ -196,7 +197,8 @@ main [data-testid^='conversation-turn-'] {
 	/* @ RIGHT - CHATS BUBBLES - GPT */
 	&:has([data-message-author-role='assistant']) {
 		.markdown {
-			line-height: calc(var(--f-line-height) / 16) !important;
+			// line-height: calc((var(--lineHeight) / 16) * 1px) !important;
+			line-height: calc(var(--lineHeight) / 16) !important;
 			// letter-spacing: var(--f-letter-spacing) !important;
 		}
 
