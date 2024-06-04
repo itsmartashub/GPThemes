@@ -27,6 +27,44 @@ const FONT_NAMES = [
 
 const GOOGLE_FONT_WEIGHTS = `:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900`
 
+let onFocusValFontSize = null,
+	onFocusValLineHeight = null,
+	onFocusValLetterSpacing = null
+
+const fontSizeData = {
+	name: 'Font Size',
+	className: 'fonts__size',
+	inputId: 'fontSize',
+	inputType: 'number',
+	inputValue: DEFAULTS.fontSize,
+	inputPlaceholder: DEFAULTS.fontSize,
+	unit: 'px',
+	min: 12,
+	max: 24,
+}
+const lineHeightData = {
+	name: 'Line Height',
+	className: 'fonts__lineHeight',
+	inputId: 'lineHeight',
+	inputType: 'number',
+	inputValue: DEFAULTS.lineHeight,
+	inputPlaceholder: DEFAULTS.lineHeight,
+	unit: 'px',
+	min: 12,
+	max: 60,
+}
+const letterSpacingData = {
+	name: 'Letter Spacing',
+	className: 'fonts__letterSpacing',
+	inputId: 'letterSpacing',
+	inputType: 'number',
+	inputValue: DEFAULTS.letterSpacing,
+	inputPlaceholder: DEFAULTS.letterSpacing,
+	unit: 'px',
+	min: -5,
+	max: 5,
+}
+
 export let fontHtmlCode = `
 	<section id="fontChangerPopover" class="fonts">
 		<div class="fonts__props">
@@ -44,39 +82,9 @@ export let fontHtmlCode = `
 				</label>
 			</div>
 
-			${renderFontBigCard({
-				name: 'Font Size',
-				className: 'fonts__size',
-				inputId: 'fontSize',
-				inputType: 'number',
-				inputValue: DEFAULTS.fontSize,
-				inputPlaceholder: DEFAULTS.fontSize,
-				unit: 'px',
-				min: 12,
-				max: 24,
-			})}
-			${renderFontSmallCard({
-				name: 'Line Height',
-				className: 'fonts__lineHeight',
-				inputId: 'lineHeight',
-				inputType: 'number',
-				inputValue: DEFAULTS.lineHeight,
-				inputPlaceholder: DEFAULTS.lineHeight,
-				unit: 'px',
-				min: 12,
-				max: 60,
-			})}
-			${renderFontSmallCard({
-				name: 'Letter Spacing',
-				className: 'fonts__letterSpacing',
-				inputId: 'letterSpacing',
-				inputType: 'number',
-				inputValue: DEFAULTS.letterSpacing,
-				inputPlaceholder: DEFAULTS.letterSpacing,
-				unit: 'px',
-				min: -30,
-				max: 30,
-			})}
+			${renderFontBigCard(fontSizeData)}
+			${renderFontSmallCard(lineHeightData)}
+			${renderFontSmallCard(letterSpacingData)}
 		</div>
 
 		<footer class="grid mt-10">
@@ -106,7 +114,6 @@ function applySettings(settings) {
 		console.log('getComputedStyle: ', getComputedStyle(document.documentElement).getPropertyValue(`--${key}`))
 	})
 }
-
 // Function to save settings to Chrome Storage
 async function saveSettings(settings) {
 	// console.log(settings)
@@ -133,7 +140,7 @@ async function loadSettings() {
 }
 
 // Validate input
-function isValidInput(value, type) {
+/* function isValidInput(value, type) {
 	switch (type) {
 		case 'fontSize':
 		case 'lineHeight':
@@ -143,7 +150,7 @@ function isValidInput(value, type) {
 		default:
 			return true
 	}
-}
+} */
 
 // Function to dynamically load Google Fonts
 function loadGoogleFont(fontFamily) {
@@ -172,22 +179,130 @@ function removeAllGoogleFontsLinks() {
 		}
 	}
 }
-/* // Helper function to check if a Google Font is already loaded
-function isGoogleFontLoaded(href) {
-	const links = getAllGoogleFontLinks()
-	console.log(links)
-	return links?.some((link) => link.href.includes(href))
-}
-function clearPreviouslyLoadedGoogleFonts() {
-	// Optionally, clear any previously loaded Google Fonts to avoid conflicts
-	const links = Array.from(document.querySelectorAll("link[rel='stylesheet']"))
+function validateInputField(inputValue, min, max = 24) {
+	if (isNaN(inputValue)) {
+		displayError('Empty or invalid input field')
+		return false
+	} else if (inputValue < min || inputValue > max) {
+		displayError(`Number must be between ${min} and ${max}`)
+		return false
+	}
 
-	links?.forEach((link) => {
-		if (link.href.includes('googleapis.com')) {
-			link.remove()
+	return true
+}
+function displayError(message) {
+	// Remove any previous error messages
+	const existingError = document.querySelector('.gpth-error-msg')
+
+	if (existingError) existingError.remove()
+
+	// Create and insert the new error message
+	const errorMessage = document.createElement('div')
+	errorMessage.className = 'gpth-error-msg fixed rounded-xl bg-red-500 red-500 p-3 font-semibold text-center'
+	errorMessage.textContent = message
+	document.body.appendChild(errorMessage)
+
+	// Remove the error message after 4 seconds
+	setTimeout(() => {
+		errorMessage.remove()
+	}, 4000)
+}
+function formatNumber(inputVal, toFixedNum = 2) {
+	// Remove leading zeros from the integer part
+	inputVal = inputVal.replace(/^0+(?=\d*\.)/, '')
+	// Parse the input as a number and return it with 2 decimal places
+	let formatted = parseFloat(inputVal).toFixed(toFixedNum)
+	// Remove trailing zeros from the decimal part
+	formatted = formatted.replace(/\.?0+$/, '')
+	// Return the formatted number as a string
+	return formatted
+}
+
+function changeFontSize(e) {
+	const newVal = formatNumber(e.target.value)
+	onFocusValFontSize = formatNumber(onFocusValFontSize, 4)
+
+	if (onFocusValFontSize == newVal) return console.log({ newSize: newVal, onFocusValFontSize })
+
+	if (!validateInputField(newVal, fontSizeData.min, fontSizeData.max)) {
+		// setInputField('fontSize', DEFAULTS.fontSize)
+		// applySettings({ fontSize: DEFAULTS.fontSize })
+		// saveSettings({ fontSize: DEFAULTS.fontSize })
+		setInputField('fontSize', onFocusValFontSize)
+		applySettings({ fontSize: onFocusValFontSize })
+		saveSettings({ fontSize: onFocusValFontSize })
+		return
+	}
+
+	applySettings({ fontSize: newVal })
+	saveSettings({ fontSize: newVal })
+}
+
+function changeLineHeight(e) {
+	const newVal = formatNumber(e.target.value)
+	onFocusValLineHeight = formatNumber(onFocusValLineHeight, 4)
+
+	if (onFocusValLineHeight == newVal) return console.log({ newVal, onFocusValLineHeight })
+
+	if (!validateInputField(newVal, lineHeightData.min, lineHeightData.max)) {
+		setInputField('lineHeight', onFocusValLineHeight)
+		applySettings({ lineHeight: onFocusValLineHeight })
+		saveSettings({ lineHeight: onFocusValLineHeight })
+		return
+	}
+
+	applySettings({ lineHeight: newVal })
+	saveSettings({ lineHeight: newVal })
+}
+
+function changeLetterSpacing(e) {
+	const newVal = formatNumber(e.target.value)
+	onFocusValLetterSpacing = formatNumber(onFocusValLetterSpacing, 4)
+
+	if (onFocusValLetterSpacing == newVal) return console.log({ newVal, onFocusValLetterSpacing })
+
+	if (!validateInputField(newVal, letterSpacingData.min, letterSpacingData.max)) {
+		setInputField('letterSpacing', onFocusValLetterSpacing)
+		applySettings({ letterSpacing: onFocusValLetterSpacing })
+		saveSettings({ letterSpacing: onFocusValLetterSpacing })
+		return
+	}
+
+	applySettings({ letterSpacing: newVal })
+	saveSettings({ letterSpacing: newVal })
+}
+
+async function changeFontFamily(e) {
+	const selectedFont = e.target.value
+
+	console.log('selectFontFamily: ', selectedFont)
+
+	// Remove all existing Google Fonts
+	removeAllGoogleFontsLinks()
+
+	if (selectedFont !== DEFAULTS.fontFamily) {
+		// Load the newly selected Google Font
+		loadGoogleFont(selectedFont)
+		applySettings({ fontFamily: selectedFont })
+		try {
+			await saveSettings({ fontFamily: selectedFont })
+		} catch (error) {
+			console.error('Failed to save font family:', error)
 		}
-	})
-} */
+	} else {
+		// Apply default font settings
+		applySettings(DEFAULTS)
+		try {
+			await saveSettings(DEFAULTS)
+		} catch (error) {
+			console.error('Failed to reset font family:', error)
+		}
+	}
+}
+function resetFonts() {
+	applySettings(DEFAULTS)
+	saveSettings(DEFAULTS)
+}
 
 export function handleFontsListeners() {
 	const selectFontFamily = document.querySelector('.gpth-settings #fontFamily')
@@ -196,73 +311,44 @@ export function handleFontsListeners() {
 	const inputLetterSpacing = document.querySelector('.gpth-settings #letterSpacing')
 	const btnResetFont = document.querySelector('.gpth-settings #resetFont')
 
-	// Event listener for font size input field
-	inputFontSize.addEventListener('blur', (e) => {
-		if (!isValidInput(e.target.value, 'fontSize')) {
-			alert('Invalid font size. Please enter a positive number.')
-			return
-		}
-		const newSize = e.target.value
-		saveSettings({ fontSize: newSize })
-		applySettings({ fontSize: newSize })
+	selectFontFamily.addEventListener('change', changeFontFamily)
+	inputFontSize.addEventListener('blur', changeFontSize)
+	inputLineHeight.addEventListener('blur', changeLineHeight)
+	inputLetterSpacing.addEventListener('blur', changeLetterSpacing)
+
+	inputFontSize.addEventListener('focus', (e) => {
+		onFocusValFontSize = e.target.value
+	})
+	inputLineHeight.addEventListener('focus', (e) => {
+		onFocusValLineHeight = e.target.value
+	})
+	inputLetterSpacing.addEventListener('focus', (e) => {
+		onFocusValLetterSpacing = e.target.value
 	})
 
-	// Event listener for line height input field
-	inputLineHeight.addEventListener('blur', (e) => {
-		if (!isValidInput(e.target.value, 'lineHeight')) {
-			alert('Invalid line height. Please enter a positive number.')
-			return
+	inputFontSize.addEventListener('keypress', (e) => {
+		if (e.key === 'Enter') {
+			e.preventDefault()
+			changeFontSize(e)
+			e.target.blur()
 		}
-		const newLineHeight = e.target.value
-		saveSettings({ lineHeight: newLineHeight })
-		applySettings({ lineHeight: newLineHeight })
 	})
-
-	// Event listener for letter spacing input field
-	inputLetterSpacing.addEventListener('blur', (e) => {
-		if (!isValidInput(e.target.value, 'letterSpacing')) {
-			alert('Invalid letter spacing. Please enter a non-negative integer.')
-			return
+	inputLineHeight.addEventListener('keypress', (e) => {
+		if (e.key === 'Enter') {
+			e.preventDefault()
+			changeLineHeight(e)
+			e.target.blur()
 		}
-		const newSpacing = e.target.value
-		saveSettings({ letterSpacing: newSpacing })
-		applySettings({ letterSpacing: newSpacing })
 	})
-
-	// Event listener for font family selection change
-	selectFontFamily.addEventListener('change', async (e) => {
-		const selectedFont = e.target.value
-
-		console.log('selectFontFamily: ', selectedFont)
-
-		// Remove all existing Google Fonts
-		removeAllGoogleFontsLinks()
-
-		if (selectedFont !== DEFAULTS.fontFamily) {
-			// Load the newly selected Google Font
-			loadGoogleFont(selectedFont)
-			applySettings({ fontFamily: selectedFont })
-			try {
-				await saveSettings({ fontFamily: selectedFont })
-			} catch (error) {
-				console.error('Failed to save font family:', error)
-			}
-		} else {
-			// Apply default font settings
-			applySettings(DEFAULTS)
-			try {
-				await saveSettings(DEFAULTS)
-			} catch (error) {
-				console.error('Failed to reset font family:', error)
-			}
+	inputLetterSpacing.addEventListener('keypress', (e) => {
+		if (e.key === 'Enter') {
+			e.preventDefault()
+			changeLetterSpacing(e)
+			e.target.blur()
 		}
 	})
 
-	// Event listener for reset button
-	btnResetFont.addEventListener('click', () => {
-		applySettings(DEFAULTS)
-		saveSettings(DEFAULTS)
-	})
+	btnResetFont.addEventListener('click', resetFonts)
 }
 
 function init() {
