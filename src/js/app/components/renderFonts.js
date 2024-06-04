@@ -46,14 +46,50 @@ export function renderFontBigCard({
         </div>`
 }
 
-// export function renderFontSelect() {
-// 	return `
-//         <select id="fontFamily" class="border-none outline-none focus:none font-bold">
-//             ${FONT_NAMES.map(
-// 				(name) => `<option value="${name === 'Default' ? DEFAULTS.fontFamily : name}">${name}</option>`
-// 			).join('')}
-//         </select>
-//     `
+// export function renderFontCard({ data, cardType = 'small', includeFields = [] }) {
+// 	const { name, className, inputId, inputType, inputValue, inputPlaceholder, min = 0, max = 24, unit = 'px' } = data
+
+// 	let cardHtml
+
+// 	if (cardType === 'small') {
+// 		cardHtml = `
+// 			<div class="${className} card card--small" data-gpth-err="${min}${unit} &hArr; ${max}${unit}">
+// 				<label for="${inputId}" class="rounded-full flex items-center gap-2 h-full w-full">
+// 					${
+// 						includeFields.includes('input')
+// 							? `<input type="${inputType}" id="${inputId}" value="${inputValue}" placeholder="${inputPlaceholder}" class="rounded-full outline-none border-none font-bold" minlength="${min}" maxlength="${max}">`
+// 							: ''
+// 					}
+
+// 					<div class="card__unitname-wrapper">
+// 					<p class="card__unit rounded-full flex items-center justify-center">${unit}</p>
+// 					<p class="card__name uppercase font-semibold">${name}</p>
+// 					</div>
+// 				</label>
+// 			</div>
+// 		`
+// 	} else if (cardType === 'big') {
+// 		cardHtml = `
+// 			<div class="${className} fonts__group card card--big h-full" data-gpth-err="${min}${unit} &hArr; ${max}${unit}">
+// 				<label for="${inputId}" class="grid gap-1 h-full w-full">
+// 					<div>
+// 						<p class="card__unit card__icon">${unit.toUpperCase()}</p>
+// 						<p class="card__name uppercase font-semibold">${name}</p>
+// 					</div>
+
+// 					${
+// 						includeFields.includes('input')
+// 							? `<input type="${inputType}" id="${inputId}" value="${inputValue}" placeholder="${inputPlaceholder}" class="outline-none border-none focus:outline-none focus:border-none font-bold" minlength="${min}" maxlength="${max}">`
+// 							: ''
+// 					}
+// 				</label>
+// 			</div>
+// 		`
+// 	} else {
+// 		throw new Error('Invalid card type specified.')
+// 	}
+
+// 	return cardHtml
 // }
 
 export function renderButton({ name, className, id, content, disabled = false }) {

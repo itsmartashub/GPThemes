@@ -42,6 +42,7 @@ const fontSizeData = {
 	min: 12,
 	max: 24,
 }
+
 const lineHeightData = {
 	name: 'Line Height',
 	className: 'fonts__lineHeight',
@@ -53,6 +54,7 @@ const lineHeightData = {
 	min: 12,
 	max: 60,
 }
+
 const letterSpacingData = {
 	name: 'Letter Spacing',
 	className: 'fonts__letterSpacing',
@@ -65,58 +67,51 @@ const letterSpacingData = {
 	max: 5,
 }
 
+// HTML template for font changer popover
 export let fontHtmlCode = `
-	<section id="fontChangerPopover" class="fonts">
-		<div class="fonts__props">
-			<div class="fonts__family fonts__group card card--big h-full">
-				<label for="fontFamily" class="grid gap-1 h-full w-full">
-					<div>
-						<p class="card__unit card__icon">T</p>
-						<p class="card__name uppercase font-semibold">FONT FAMILY</p>
-					</div>
-					<select id="fontFamily" class="border-none outline-none focus:none font-bold">
-							${FONT_NAMES.map((name) => `<option value="${name === 'Default' ? DEFAULTS.fontFamily : name}">${name}</option>`).join(
-								''
-							)}
-					</select>
-				</label>
-			</div>
-
-			${renderFontBigCard(fontSizeData)}
-			${renderFontSmallCard(lineHeightData)}
-			${renderFontSmallCard(letterSpacingData)}
-		</div>
-
-		<footer class="grid mt-10">
-			${renderButton({ id: 'resetFont', content: 'Reset Fonts', disabled: false, className: 'btn-primary' })}
-		</footer>
-	</section>
+  <section id="fontChangerPopover" class="fonts">
+    <div class="fonts__props">
+      <div class="fonts__family fonts__group card card--big h-full">
+        <label for="fontFamily" class="grid gap-1 h-full w-full">
+          <div>
+            <p class="card__unit card__icon">T</p>
+            <p class="card__name uppercase font-semibold">FONT FAMILY</p>
+          </div>
+          <select id="fontFamily" class="border-none outline-none focus:none font-bold">
+            ${FONT_NAMES.map(
+				(name) => `<option value="${name === 'Default' ? DEFAULTS.fontFamily : name}">${name}</option>`
+			).join('')}
+          </select>
+        </label>
+      </div>
+      ${renderFontBigCard(fontSizeData)}
+      ${renderFontSmallCard(lineHeightData)}
+      ${renderFontSmallCard(letterSpacingData)}
+    </div>
+    <footer class="grid mt-10">
+      ${renderButton({ id: 'resetFont', content: 'Reset Fonts', disabled: false, className: 'btn-primary' })}
+    </footer>
+  </section>
 `
 
+// Function to set input field values
 function setInputField(inputSelector, inputVal) {
-	let inputEl = document.querySelector(`.gpth-settings #${inputSelector}`)
-
-	if (inputVal === 'Default') {
-		inputEl.value = DEFAULTS[inputSelector]
-	} else {
-		inputEl.value = inputVal
-	}
+	const inputEl = document.querySelector(`.gpth-settings #${inputSelector}`)
+	inputEl.value = inputVal === 'Default' ? DEFAULTS[inputSelector] : inputVal
 }
+
 // Function to apply settings
 function applySettings(settings) {
-	// console.log(settings)
-
 	Object.entries(settings).forEach(([key, value]) => {
 		document.documentElement.style.setProperty(`--${key}`, value)
 		setInputField(key, value)
-		// setInputField(`#${key}`, value)
 
 		console.log('getComputedStyle: ', getComputedStyle(document.documentElement).getPropertyValue(`--${key}`))
 	})
 }
+
 // Function to save settings to Chrome Storage
 async function saveSettings(settings) {
-	// console.log(settings)
 	try {
 		await browser.storage.sync.set(settings)
 	} catch (error) {
@@ -128,7 +123,6 @@ async function saveSettings(settings) {
 async function loadSettings() {
 	try {
 		const settings = await browser.storage.sync.get(Object.keys(DEFAULTS))
-		// console.log({ settings })
 
 		if (settings.fontFamily && settings.fontFamily !== DEFAULTS.fontFamily) {
 			loadGoogleFont(settings.fontFamily)
@@ -139,61 +133,49 @@ async function loadSettings() {
 	}
 }
 
-// Validate input
-/* function isValidInput(value, type) {
-	switch (type) {
-		case 'fontSize':
-		case 'lineHeight':
-			return !isNaN(parseFloat(value)) && parseFloat(value) > 0
-		case 'letterSpacing':
-			return !isNaN(parseInt(value)) && parseInt(value) >= 0
-		default:
-			return true
-	}
-} */
-
 // Function to dynamically load Google Fonts
 function loadGoogleFont(fontFamily) {
 	const href = `https://fonts.googleapis.com/css2?family=${fontFamily.replace(
 		' ',
 		'+'
 	)}${GOOGLE_FONT_WEIGHTS}&display=swap`
-
 	const link = document.createElement('link')
 	link.rel = 'stylesheet'
 	link.href = href
 	document.head.appendChild(link)
 }
-function getAllGoogleFontLinks() {
-	let links = document.querySelectorAll("link[rel='stylesheet']")
-	if (links.length) return Array.from(links)
-}
 
+// Function to get all Google Font links
+function getAllHeadLinks() {
+	return Array.from(document.querySelectorAll("link[rel='stylesheet']"))
+}
+// Function to remove all Google Font links
 function removeAllGoogleFontsLinks() {
-	const links = getAllGoogleFontLinks()
+	const links = getAllHeadLinks()
 
-	for (let i = links.length - 1; i >= 0; i--) {
-		const link = links[i]
+	links.forEach((link) => {
 		if (link.href.includes('googleapis.com')) {
-			link.parentNode.removeChild(link)
+			link.remove()
 		}
-	}
+	})
 }
+
+// Function to validate input fields
 function validateInputField(inputValue, min, max = 24) {
 	if (isNaN(inputValue)) {
-		displayError('Empty or invalid input field')
+		displayError('Empty or invalid value')
 		return false
 	} else if (inputValue < min || inputValue > max) {
 		displayError(`Number must be between ${min} and ${max}`)
 		return false
 	}
-
 	return true
 }
+
+// Function to display error messages
 function displayError(message) {
 	// Remove any previous error messages
 	const existingError = document.querySelector('.gpth-error-msg')
-
 	if (existingError) existingError.remove()
 
 	// Create and insert the new error message
@@ -207,6 +189,8 @@ function displayError(message) {
 		errorMessage.remove()
 	}, 4000)
 }
+
+// Function to format numbers
 function formatNumber(inputVal, toFixedNum = 2) {
 	// Remove leading zeros from the integer part
 	inputVal = inputVal.replace(/^0+(?=\d*\.)/, '')
@@ -218,19 +202,20 @@ function formatNumber(inputVal, toFixedNum = 2) {
 	return formatted
 }
 
+// Function to handle font size change
 function changeFontSize(e) {
 	const newVal = formatNumber(e.target.value)
 	onFocusValFontSize = formatNumber(onFocusValFontSize, 4)
 
-	if (onFocusValFontSize == newVal) return console.log({ newSize: newVal, onFocusValFontSize })
+	if (onFocusValFontSize === newVal) return
 
 	if (!validateInputField(newVal, fontSizeData.min, fontSizeData.max)) {
-		// setInputField('fontSize', DEFAULTS.fontSize)
-		// applySettings({ fontSize: DEFAULTS.fontSize })
-		// saveSettings({ fontSize: DEFAULTS.fontSize })
 		setInputField('fontSize', onFocusValFontSize)
 		applySettings({ fontSize: onFocusValFontSize })
 		saveSettings({ fontSize: onFocusValFontSize })
+		// setInputField('fontSize', DEFAULTS.fontSize)
+		// applySettings({ fontSize: DEFAULTS.fontSize })
+		// saveSettings({ fontSize: DEFAULTS.fontSize })
 		return
 	}
 
@@ -238,11 +223,12 @@ function changeFontSize(e) {
 	saveSettings({ fontSize: newVal })
 }
 
+// Function to handle line height change
 function changeLineHeight(e) {
 	const newVal = formatNumber(e.target.value)
 	onFocusValLineHeight = formatNumber(onFocusValLineHeight, 4)
 
-	if (onFocusValLineHeight == newVal) return console.log({ newVal, onFocusValLineHeight })
+	if (onFocusValLineHeight === newVal) return
 
 	if (!validateInputField(newVal, lineHeightData.min, lineHeightData.max)) {
 		setInputField('lineHeight', onFocusValLineHeight)
@@ -255,11 +241,12 @@ function changeLineHeight(e) {
 	saveSettings({ lineHeight: newVal })
 }
 
+// Function to handle letter spacing change
 function changeLetterSpacing(e) {
 	const newVal = formatNumber(e.target.value)
 	onFocusValLetterSpacing = formatNumber(onFocusValLetterSpacing, 4)
 
-	if (onFocusValLetterSpacing == newVal) return console.log({ newVal, onFocusValLetterSpacing })
+	if (onFocusValLetterSpacing === newVal) return
 
 	if (!validateInputField(newVal, letterSpacingData.min, letterSpacingData.max)) {
 		setInputField('letterSpacing', onFocusValLetterSpacing)
@@ -272,14 +259,12 @@ function changeLetterSpacing(e) {
 	saveSettings({ letterSpacing: newVal })
 }
 
+// Function to handle font family change
 async function changeFontFamily(e) {
 	const selectedFont = e.target.value
 
-	console.log('selectFontFamily: ', selectedFont)
-
-	// Remove all existing Google Fonts
+	// Remove all existing Google Fonts links
 	removeAllGoogleFontsLinks()
-
 	if (selectedFont !== DEFAULTS.fontFamily) {
 		// Load the newly selected Google Font
 		loadGoogleFont(selectedFont)
@@ -299,48 +284,53 @@ async function changeFontFamily(e) {
 		}
 	}
 }
+
+// Function to reset fonts to default
 function resetFonts() {
 	applySettings(DEFAULTS)
 	saveSettings(DEFAULTS)
 }
 
+// Function to handle font listeners
 export function handleFontsListeners() {
-	const selectFontFamily = document.querySelector('.gpth-settings #fontFamily')
-	const inputFontSize = document.querySelector('.gpth-settings #fontSize')
-	const inputLineHeight = document.querySelector('.gpth-settings #lineHeight')
-	const inputLetterSpacing = document.querySelector('.gpth-settings #letterSpacing')
-	const btnResetFont = document.querySelector('.gpth-settings #resetFont')
+	const selectors = {
+		selectFontFamily: document.querySelector('.gpth-settings #fontFamily'),
+		inputFontSize: document.querySelector('.gpth-settings #fontSize'),
+		inputLineHeight: document.querySelector('.gpth-settings #lineHeight'),
+		inputLetterSpacing: document.querySelector('.gpth-settings #letterSpacing'),
+		btnResetFont: document.querySelector('.gpth-settings #resetFont'),
+	}
 
-	selectFontFamily.addEventListener('change', changeFontFamily)
-	inputFontSize.addEventListener('blur', changeFontSize)
-	inputLineHeight.addEventListener('blur', changeLineHeight)
-	inputLetterSpacing.addEventListener('blur', changeLetterSpacing)
+	selectors.selectFontFamily.addEventListener('change', changeFontFamily)
+	selectors.inputFontSize.addEventListener('blur', changeFontSize)
+	selectors.inputLineHeight.addEventListener('blur', changeLineHeight)
+	selectors.inputLetterSpacing.addEventListener('blur', changeLetterSpacing)
 
-	inputFontSize.addEventListener('focus', (e) => {
+	selectors.inputFontSize.addEventListener('focus', (e) => {
 		onFocusValFontSize = e.target.value
 	})
-	inputLineHeight.addEventListener('focus', (e) => {
+	selectors.inputLineHeight.addEventListener('focus', (e) => {
 		onFocusValLineHeight = e.target.value
 	})
-	inputLetterSpacing.addEventListener('focus', (e) => {
+	selectors.inputLetterSpacing.addEventListener('focus', (e) => {
 		onFocusValLetterSpacing = e.target.value
 	})
 
-	inputFontSize.addEventListener('keypress', (e) => {
+	selectors.inputFontSize.addEventListener('keypress', (e) => {
 		if (e.key === 'Enter') {
 			e.preventDefault()
 			changeFontSize(e)
 			e.target.blur()
 		}
 	})
-	inputLineHeight.addEventListener('keypress', (e) => {
+	selectors.inputLineHeight.addEventListener('keypress', (e) => {
 		if (e.key === 'Enter') {
 			e.preventDefault()
 			changeLineHeight(e)
 			e.target.blur()
 		}
 	})
-	inputLetterSpacing.addEventListener('keypress', (e) => {
+	selectors.inputLetterSpacing.addEventListener('keypress', (e) => {
 		if (e.key === 'Enter') {
 			e.preventDefault()
 			changeLetterSpacing(e)
@@ -348,9 +338,10 @@ export function handleFontsListeners() {
 		}
 	})
 
-	btnResetFont.addEventListener('click', resetFonts)
+	selectors.btnResetFont.addEventListener('click', resetFonts)
 }
 
+// Function to initialize the settings
 function init() {
 	// Load settings on page load
 	loadSettings()
