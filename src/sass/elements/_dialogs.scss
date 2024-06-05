@@ -85,18 +85,8 @@
 		--main-surface-primary: transparent !important;
 		/* Strange white bg behind ✔️ items - now is:  .bg-token-main-surface-primary */
 		// Change `width: max-content;` to `max-width: max-content;` in `[role="dialog"]:has(a[href="https://openai.com/enterprise"])` because it disables shrinking the content in `Upgrade your plan` popup. But then I have to fix the content
-		max-width: max-content;
 		padding: 0 !important;
 		border: none !important;
-
-		// .bg-token-popover-surface-primary {
-		// 	background-color: var(--c-surface-2) !important;
-		// }
-		/* Strange white bg behind ✔️ items - now is:  .bg-token-main-surface-primary */
-		/* .bg-white,
-		.bg-gray-900 {
-			background-color: var(--c-surface-2) !important;
-		} */
 
 		/* Border radius for "Upgrade your plan" dialog */
 		.rounded-md {
@@ -183,7 +173,7 @@
 				--main-surface-secondary: var(--c-surface-3) !important;
 			}
 
-			&+span {
+			& + span {
 				color: var(--c-accent);
 				background-color: hsla(var(--accent-hsl) / 0.15) !important;
 				padding: 2px 8px;
@@ -304,7 +294,7 @@
 		}
 
 		/* Numbers in "Ratings" svg stars */
-		svg.text-green-500~.text-white {
+		svg.text-green-500 ~ .text-white {
 			color: var(--c-on-accent) !important;
 		}
 
