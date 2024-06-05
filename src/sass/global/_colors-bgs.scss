@@ -214,8 +214,14 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 
 .bg-token-main-surface-secondary {
 	background-color: var(--c-surface-2) !important;
+
+	// &:hover {
+	// 	background-color: var(--c-surface-3) !important;
+	// }
 }
 
 // .bg-token-main-surface-tertiary {
 // 	background-color: var(--c-surface-1) !important;
 // }
+
+// hover:bg-token-main-surface-secondary

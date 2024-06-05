@@ -83,8 +83,6 @@
 		--popover-surface-primary: var(--c-bg-dialog) !important;
 		/* Dialog bg */
 		--main-surface-primary: transparent !important;
-		/* Strange white bg behind ✔️ items - now is:  .bg-token-main-surface-primary */
-		// Change `width: max-content;` to `max-width: max-content;` in `[role="dialog"]:has(a[href="https://openai.com/enterprise"])` because it disables shrinking the content in `Upgrade your plan` popup. But then I have to fix the content
 		padding: 0 !important;
 		border: none !important;
 
@@ -104,12 +102,13 @@
 		}
 	}
 
-	&:has([data-testid^='conversation-turn-']) {
-		[class*='dark:bg-gray-800'] {
-			background-color: var(--c-surface-1) !important;
-			// background-color: lightsalmon !important;
-		}
-	}
+	/* TODO(remove): obrisati, msm da je ovo bio minichat onaj od pre */
+	// &:has([data-testid^='conversation-turn-']) {
+	// 	[class*='dark:bg-gray-800'] {
+	// 		background-color: var(--c-surface-1) !important;
+	// 		// background-color: lightsalmon !important;
+	// 	}
+	// }
 
 	/* DIALOG - textarea ("Custom instructions") */
 	textarea {
@@ -136,8 +135,6 @@
 		input {
 			background-color: inherit !important;
 		}
-
-		// background-color: red !important;
 	}
 
 	/* ___ Dialog - "Share Link to Chat"  */
@@ -236,7 +233,7 @@
 
 	/* ___ DIALOG "Delete account - are you sure?" inputs parents
 	
-	TODO:(delete?) this isn't exist anymore*/
+	TODO:(remove?): this doesnt exist anymore? */
 	div[class*='focus-within:ring-1']:has(input) {
 		padding: 0.8rem !important;
 		background-color: var(--c-surface-3);
@@ -250,13 +247,13 @@
 		}
 	}
 
-	/* "Create Workspace" dialog when clicking "Upgrade plan" > "Team" */
+	/* TODO(remove?): "Create Workspace" dialog when clicking "Upgrade plan" > "Team" */
 	&:has(input#workspace-name) {
 		/* "Workspace name" bg color: .bg-token-main-surface-primary */
 		--main-surface-primary: transparent !important;
 	}
 
-	/* "Select your Team Plan" dialog radio buttons when clicking "Upgrade plan" > "Team" > "Select billing options" */
+	/* TODO(remove?): "Select your Team Plan" dialog radio buttons when clicking "Upgrade plan" > "Team" > "Select billing options" */
 	&:has(input[name='seats']) {
 
 		/* input counter for seats */
@@ -378,6 +375,26 @@
 
 		.bg-token-main-surface-primary:not(.gizmo-shadow-stroke) {
 			--main-surface-primary: var(--c-surface-3) !important;
+		}
+	}
+
+
+	/* "Report [GPTs]" dialog */
+	.divide-y:has(>button[class*='hover:bg-token-main-surface-secondary']) {
+		& > * + * {
+			margin-top: 0.5rem;
+		}
+
+		/* "This GPT doesn't work as it's described", "This GPT is an exact copy of another GPT", and etc report buttons */
+		button[class*='hover:bg-token-main-surface-secondary'] {
+			border-radius: var(--br-btn);
+			background-color: var(--c-surface-3);
+			border: 1px solid transparent !important;
+
+			&:hover {
+				background-color: transparent !important;
+				border-color: var(--c-surface-3) !important;
+			}
 		}
 	}
 }
