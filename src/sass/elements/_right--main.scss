@@ -282,9 +282,11 @@ main [data-testid^='conversation-turn-'] {
 			}
 		}
 
-		/* GPT avatar in its chat bubbles */
+		/* GPT avatar in its chat bubbles: with img is the GPTs Store item avatar, and with svg is gpt logo */
 		@include dev(mob) {
-			.gizmo-bot-avatar:has(svg[role='img']) {
+
+			.gizmo-bot-avatar:has(svg[role='img']),
+			.gizmo-shadow-stroke:has(img) {
 				visibility: hidden;
 			}
 		}
