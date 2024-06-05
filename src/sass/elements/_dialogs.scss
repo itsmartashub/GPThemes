@@ -53,7 +53,7 @@
 	}
 
 	/* Heading "Settings" in Settings Modal */
-	h2[as='h3'] {
+	h2.text-lg.font-semibold {
 		text-transform: uppercase;
 	}
 
@@ -185,23 +185,10 @@
 		--main-surface-primary: transparent !important;
 		/* BG of thead>th ---> .bg-token-main-surface-primary */
 		padding: var(--p-contextmenu) !important;
-		// border-radius: var(--br-contextmenu);
-
-		th,
-		td {
-			padding-top: var(--py-btn) !important;
-			padding-bottom: var(--py-btn) !important;
-		}
 
 		thead {
-			tr {
-				// border-radius: var(--br-btn) !important;
-				// padding: var(--py-btn) var(--px-btn) !important;
-			}
-
 			th {
 				text-transform: uppercase !important;
-				// color: var(--c-accent) !important;
 				color: var(--c-txt) !important;
 			}
 		}
@@ -209,10 +196,10 @@
 		tbody {
 
 			/* Link in table Shared Links/Archived Chats
-            
                 NAME - first column Links
                 "Shared links" & "Archived Chats" links in table, but a[href^="/c/"] is also Conversation SVG in "Shared Links", ahh
             */
+
 			td:first-child a {
 				@extend %link_hover_underless;
 			}
