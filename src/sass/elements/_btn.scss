@@ -1,13 +1,9 @@
 .btn {
-	// background-color: var(--c-bg-btn) !important;
-	// background-color: hsla(var(--accent-hsl) / 0.18);
-
 	color: var(--c-on-accent) !important;
 	border-radius: var(--br-btn) !important;
 	border: none !important;
 
 	&:not(.btn-small) {
-		// padding: 1.5rem !important;
 		padding: var(--p-btn) !important;
 	}
 
@@ -21,23 +17,23 @@
 	}
 
 	&-secondary {
-		// background-color: hsl(var(--accent-h), calc(var(--accent-s) / 1.8), var(--accent-l)) !important;
-		// background-color: hsl(var(--accent-h), calc(var(--accent-s) * 0.5), 50%) !important;
-
-		// background-color: hsl(var(--accent-h), calc(var(--accent-s) * 0.3), 55%) !important;
-		// color: var(--c-txt) !important;
-
-		// background-color: transparent !important;
 		color: var(--c-accent) !important;
 		background-color: hsla(var(--accent-hsl) / 0.15) !important;
 		backdrop-filter: blur(5px);
 
 		svg {
-			// color: var(--c-accent) !important;
 			fill: var(--c-accent) !important;
 		}
+	}
 
-		// outline: 2px solid var(--c-accent);
+	&-ghost {
+		background-color: none !important;
+		color: var(--c-txt) !important;
+		backdrop-filter: blur(5px);
+
+		&:hover {
+			background-color: hsla(var(--accent-hsl) / 0.05) !important;
+		}
 	}
 
 	&-danger {
@@ -49,12 +45,12 @@
 		background-color: var(--c-accent) !important;
 	}
 
-	&:not(&-secondary, &-danger, &-green) {
+	&:not(&-secondary, &-danger, &-green, &-ghost) {
 		background-color: var(--c-accent) !important;
 
-		// &:hover {
-		// 	color: var(--c-accent) !important;
-		// }
+		&:hover {
+			color: var(--c-on-accent) !important;
+		}
 	}
 }
 
