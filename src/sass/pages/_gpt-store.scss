@@ -4,7 +4,7 @@ main:has(.sticky [href='/gpts/editor']),
 .h-full.overflow-y-auto:has(.sticky [href^='/auth/login?next=/gpts']) {
 
 	a.gizmo-link {
-		transition: $easeOutBack 0.35s;
+		transition: ease-in-out 0.25s;
 
 		&:hover {
 			transform: translateY(-0.08rem);
@@ -92,9 +92,9 @@ main:has(.sticky [href='/gpts/editor']),
 
 		/* "See more" full-width buttons */
 		.btn.w-full {
-			// padding: calc(var(--p-btn) * 1.5) !important;
-			padding: 1.8rem !important;
-			border-radius: calc(var(--br-btn) * 1.2) !important;
+			margin: 2rem auto 3rem !important;
+			// width: 50%;
+			// display: block;
 		}
 	}
 }
