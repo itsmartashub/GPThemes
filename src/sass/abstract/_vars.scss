@@ -116,7 +116,7 @@
 	// --c-avatar: var(--avatar-color, #19c37d);
 	--c-avatar: var(--avatar-color, #19c37d);
 
-	@include dev(mob) {
+	@include dev(tab) {
 		// --h-header: 40px;
 		--p-chat-bubble: .8rem;
 		--br-chat-bubble: calc(var(--br) * 1.55);
@@ -132,9 +132,10 @@
 		// --p-sidebar-nav: 0.5rem;
 		// --p-sidebar-nav-a-new-chat: 1.8rem;
 		// --p-sidebar-nav-a: 0.6rem;
-		--p-dialog: .3rem;
+		--p-dialog: 0.3rem;
 		--br-dialog: calc(var(--br) * 1.5);
 		// --br: .7rem;
+		--p-sidebar-nav: 0.3rem;
 	}
 }
 
