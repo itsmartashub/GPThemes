@@ -1,0 +1,271 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.6rem;
+    position: relative;
+
+    @include dev(mob) {
+        font-size: 1.4rem;
+    }
+
+    input,
+    select,
+    label {
+        line-height: 1;
+    }
+
+    label,
+    label > * {
+        cursor: pointer !important;
+    }
+
+    input,
+    select,
+    .card__unitname-wrapper {
+        transition: all 0.45s $easeOutBack;
+    }
+
+    input {
+        transform-origin: center center;
+    }
+
+    &::after,
+    &::before {
+        --card-tooltip-gap: 0.5rem;
+        position: absolute;
+        top: var(--card-tooltip-top);
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 70;
+        opacity: 0;
+        pointer-events: none;
+        translate: 0 -0.5rem;
+        transition: 0.3s ease-in-out, translate 0.3s $easeOutBack;
+    }
+
+    &::after {
+        --card-tooltip-top: calc(100% + var(--card-tooltip-gap));
+        content: attr(data-gpth-err);
+        width: max-content;
+        height: clamp(1.5rem, 50%, max-content);
+        font-size: .45em;
+        font-weight: bold;
+        padding: 0.5rem;
+        color: var(--c-on-accent);
+        border-radius: 50vw;
+        background-color: var(--c-accent);
+    }
+
+    &::before {
+        --border-w: 0.5rem;
+        // --card-tooltip-top: calc(100% - var(--card-tooltip-gap) - var(--border-w));
+        --card-tooltip-top: calc(100% - var(--card-tooltip-gap) + 0.1rem);
+        content: "";
+        border-width: var(--border-w);
+        border-style: solid;
+        border-color: transparent transparent var(--c-accent) transparent;
+    }
+
+    &:has(select) {
+
+        &::after,
+        &::before {
+            display: none;
+        }
+    }
+
+    &:has(input:focus) {
+
+        &::after,
+        &::before {
+            opacity: 1 !important;
+            translate: 0 0 !important;
+        }
+    }
+
+    /* Hide arrows in Webkit browsers (Chrome, Safari) */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Hide arrows in Firefox */
+    input[type="number"] {
+        -moz-appearance: textfield;
+        /* For Firefox */
+        appearance: textfield;
+    }
+
+    /* Ensure the input field looks consistent across all browsers */
+    input[type="number"] {
+        -webkit-appearance: none;
+        /* For Chrome and Safari */
+        -moz-appearance: textfield;
+        /* For Firefox */
+        appearance: textfield;
+    }
+
+
+    &--small {
+        label {
+            height: 3rem;
+            padding: 0.3rem;
+            background-color: var(--c-surface-2);
+        }
+
+        input:is(:focus, :focus-visible, :focus-within) {
+            translate: scale(1.2);
+            font-size: 1em !important;
+        }
+
+        input {
+            --tw-ring-color: transparent !important;
+            aspect-ratio: 1 / 1;
+            height: 100%;
+            background-color: hsla(var(--accent-hsl) / 0.2);
+            color: var(--c-accent);
+            padding: 0 !important;
+            text-align: center;
+            outline: none !important;
+            border: none !important;
+        }
+
+        .card__unit {
+            --px: 0.25rem;
+            background-color: hsla(var(--accent-hsl) / 0.12);
+            color: var(--c-accent);
+            // font-size: 0.72rem;
+            font-size: 0.5em;
+            width: max-content;
+            line-height: 1;
+            padding: 0.1rem var(--px);
+            margin-bottom: 0.25rem;
+            translate: -0.15rem 0;
+        }
+
+        .card__name {
+            font-size: 0.42em;
+        }
+
+        &:has(input:focus) {
+            .card__unitname-wrapper {
+                display: none;
+            }
+
+            label {
+                display: flex !important;
+            }
+
+            input {
+                width: 100%;
+                transform: unset !important;
+                aspect-ratio: unset !important;
+            }
+        }
+
+        &:hover {
+            input {
+                transform: scale(1.1);
+            }
+
+            .card__unitname-wrapper {
+                transform: translatex(3px);
+            }
+        }
+    }
+
+
+    /* _________________   BIG CARDS   _________________ */
+    &--big {
+        // --p-input-select: 0.5rem;
+        --p: .9rem;
+        --p-input-select: 0.2em;
+        border-radius: 1.5rem;
+        background-color: var(--c-surface-2);
+        padding: var(--p) var(--p) calc(var(--p) - var(--p-input-select)) var(--p);
+        // font-size: 1.6rem;
+
+        @include dev(mob) {
+            --p: 0.5rem;
+            font-size: 1.4rem;
+            border-radius: 1rem;
+        }
+
+        .card__icon {
+            --icon-size: 1.8rem;
+            width: var(--icon-size);
+            height: var(--icon-size);
+            display: grid;
+            place-items: center;
+            // font-size: 0.8rem;
+            font-size: 0.5em;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+            margin-left: -0.05rem;
+            border-radius: 8px;
+            color: var(--c-accent);
+            background-color: hsla(var(--accent-hsl) / 0.15);
+
+            @include dev(mob) {
+                --icon-size: 1.5rem;
+            }
+        }
+
+        .card__name {
+            color: var(--c-accent);
+            // font-size: 0.8rem;
+            font-size: 0.5em;
+            margin-bottom: 0.2rem;
+        }
+
+        select,
+        input {
+            line-height: 1;
+            width: 100%;
+            background-color: transparent !important;
+            padding: var(--p-input-select) !important;
+            translate: calc(var(--p-input-select) * -1) 0;
+
+            &:focus {
+                outline: none;
+                border: none;
+                border-radius: 1rem;
+                background-color: hsla(var(--accent-hsl) / 0.15) !important;
+                color: var(--c-accent);
+                translate: 0 0 !important;
+            }
+        }
+
+        input {
+            --p-input-select: 0.06em !important;
+            // font-size: 1.6rem;
+            font-size: 1em;
+        }
+
+        select {
+            // font-size: 1.2rem;
+            font-size: 0.85em;
+            background: none;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+
+            option {
+                font-size: 0.6em !important;
+                // font-size: 0.8rem !important;
+                background-color: var(--c-surface-2) !important;
+            }
+        }
+
+        &:hover {
+            // transform: translateY(2px);
+
+            input,
+            select {
+                transform: translateY(-2px);
+            }
+        }
+    }
+
+}

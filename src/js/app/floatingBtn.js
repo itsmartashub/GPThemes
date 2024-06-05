@@ -1,10 +1,12 @@
 // Use a cross-browser storage API:
 import browser from 'webextension-polyfill'
 
-// import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint, icon_palette } from './icons.js'
-import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './icons.js'
-// import gpthToggleImg from '../../img/gpth-toggle-circled.webp'
+import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './components/icons.js'
 import { hexToHSL } from '../utils/hexToHSL'
+
+// import { fontHtmlCode, addFontsEventHandlers } from './customFonts'
+import { fontHtmlCode, handleFontsListeners } from './mainFonts'
+// console.log(fontHtmlCode)
 
 // let isOptionsShown = false
 
@@ -24,8 +26,41 @@ let defaultColorLight = '#6b4dfe'
 let defaultColorDark = '#ca93fb'
 // let isDisabledResetAll = true
 
+const renderColorsTab = `
+	<section>
+		<div class="colorpicker-container">
+			<div class="colorpicker">
+				<input type="color" id="accentLight" value="#6b4dfe" />
+				<label for="accentLight">Accent <span>Light</span></label>
+			</div>
+			<div class="colorpicker">
+				<input type="color" id="accentDark" value="#ca93fb" />
+				<label for="accentDark">Accent <span>Dark</span></label>
+			</div>
+		</div>
+		<footer class="grid mt-10">
+			<button id="resetAllSettings" class="btn block relative btn-primary text-center" as="button">Reset Accents</button>
+		</footer>
+	</section>
+`
+
 // Initialization
 init()
+
+function tabsSwitching() {
+	const tabs = document.querySelectorAll('.gpth-settings .tab-button')
+	const panes = document.querySelectorAll('.gpth-settings .tab-pane')
+
+	tabs.forEach((tab, index) => {
+		tab.addEventListener('click', () => {
+			document.querySelector('.tab-button.active').classList.remove('active')
+			document.querySelector('.tab-pane:not(.hidden)').classList.add('hidden')
+
+			tab.classList.add('active')
+			panes[index].classList.remove('hidden')
+		})
+	})
+}
 
 async function initTheme() {
 	try {
@@ -133,50 +168,65 @@ function decreiseFloatingBtnSize() {
 /* ______________ THEME CUSTOMIZATION - ACCENT THEME ______________ */
 function renderSettings() {
 	const gpthSettings = document.createElement('div')
-	gpthSettings.className = `gpth-settings fixed grid items-center gap-4`
+	gpthSettings.className = `gpth-settings fixed flex flex-col`
 
 	let htmlCode = `
 		<header class="mb-5">
+			<h2 class="mt-5 text-center font-medium gpth-settings__title"><span class="font-semibold">GPThemes</span> Customization</h2>
 
-				<h3 class="mt-6 text-center font-medium text-xl">Theme Customization</h3>
-
-				<button class="text-token-text-tertiary hover:text-token-text-secondary absolute top-4 right-4" id="gpth-settings-close">
-					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.34315 6.34338L17.6569 17.6571M17.6569 6.34338L6.34315 17.6571" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-				</button>
-
+			<button class="text-token-text-tertiary hover:text-token-text-primary absolute top-4 right-4" id="gpth-settings-close">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.34315 6.34338L17.6569 17.6571M17.6569 6.34338L6.34315 17.6571" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+			</button>
 		</header>
 
-		<main class="mb-10">
-			<section class="colorpicker-container">
-				<div class="colorpicker">
-					<input type="color" id="accentLight" value="#6b4dfe" />
-					<label for="accentLight">Accent <span>Light</span></label>
+		<main >
+			<div class="tabs">
+				<div class="tab-buttons flex items-center rounded-full p-1 font-semibold mb-10">
+					<button class="tab-button py-2 px-4 focus:outline-none text-center rounded-full active">
+						Color
+					</button>
+					<button class="tab-button py-2 px-4 focus:outline-none text-center rounded-full">
+						Font
+					</button>
+					<button class="tab-button py-2 px-4 focus:outline-none text-center rounded-full">
+						Assets
+					</button>
 				</div>
-				<div class="colorpicker">
-					<input type="color" id="accentDark" value="#ca93fb" />
-					<label for="accentDark">Accent <span>Dark</span></label>
+
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab-colors">
+						${renderColorsTab}
+					</div>
+
+					<div class="tab-pane hidden" id="tab-fonts">
+						${fontHtmlCode}
+					</div>
+
+					<div class="tab-pane hidden" id="tab-assets">
+						<p class="text-center text-token-text-tertiary text-sm mb-2 font-weight-200">ooops, such empty</p>
+						<p class="text-center text-token-text-secondary text-md font-semibold">Coming Soon</p>
+					</div>
 				</div>
-			</section>
+			</div>
 		</main>
-
-		<footer class="grid">
-			<button id="resetAllSettings" class="btn block relative btn-primary text-center" as="button">Reset All</button>
-		</footer>
 	`
-	// <div div div class="blur-box" ></div >
-	// <div class="blur-box"></div>
-	// <div class="blur-box"></div>
-
-	// gpthFloatingBtn.innerHTML = htmlCode
 
 	gpthSettings.insertAdjacentHTML('beforeend', htmlCode)
 	document.body.appendChild(gpthSettings)
+
 	document.getElementById('gpth-settings-close').addEventListener('click', closeSettings)
+
 	$settings = gpthSettings
+
+	tabsSwitching()
+
 	$resetAllBtn = $settings.querySelector('#resetAllSettings')
 	$resetAllBtn.disabled = true
 
 	$settings.querySelector('#resetAllSettings').addEventListener('click', resetAllSettings)
+
+	// addFontsEventHandlers()
+	handleFontsListeners()
 }
 
 function openSettings() {
@@ -261,7 +311,7 @@ function updateCSSVars(lightColor, darkColor) {
         }
     `
 
-	console.log(cssVars)
+	// console.log(cssVars)
 
 	styleElement.textContent = cssVars
 }

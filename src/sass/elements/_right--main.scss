@@ -9,7 +9,7 @@ main [role='presentation'] {
 	}
 
 	/* GPT logo in new chat page when no-btns are shown. Its important to make this code before .gizmo-shadow-stroke (main new chat logo in old-ui) because it override its color */
-	.flex.h-full>svg[role='img'] {
+	.flex.h-full > svg[role='img'] {
 		color: var(--c-accent);
 	}
 
@@ -38,13 +38,14 @@ main [role='presentation'] {
 
 /* @ === RIGHT - CHATS BUBBLES ===*/
 main [data-testid^='conversation-turn-'] {
+
 	/* Edit icon in user chat for example. Edit state user chat bg  */
 	--main-surface-tertiary: var(--c-surface-3) !important;
 	// --main-surface-tertiary: hsla(var(--accent-hsl) / 0.5) !important;
 	margin-bottom: var(--mb-chat-bubble) !important;
 
 	/* Horizontal gap from chat bubble to screen-edge */
-	&>div {
+	& > div {
 
 		/* Original is px-4 or 1rem */
 		@include dev(mob) {
@@ -79,7 +80,7 @@ main [data-testid^='conversation-turn-'] {
 			}
 		}
 
-		&>.bg-token-main-surface-primary {
+		& > .bg-token-main-surface-primary {
 			--main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important;
 			// background-color: hsla(var(--accent-hsl) / 0.1) !important;
 			backdrop-filter: blur(8px);
@@ -126,6 +127,9 @@ main [data-testid^='conversation-turn-'] {
 
 	/* @ RIGHT - CHATS BUBBLES - USER  */
 	&:has([data-message-author-role='user']) {
+		line-height: calc(var(--lineHeight) / 16) !important;
+		// line-height: calc((var(--lineHeight) / 16) * 1px) !important;
+
 
 		/*  RIGHT - CHATS BUBBLE BG */
 		// & > div:first-child > div:first-child {
@@ -192,17 +196,22 @@ main [data-testid^='conversation-turn-'] {
 
 	/* @ RIGHT - CHATS BUBBLES - GPT */
 	&:has([data-message-author-role='assistant']) {
+		.markdown {
+			// line-height: calc((var(--lineHeight) / 16) * 1px) !important;
+			line-height: calc(var(--lineHeight) / 16) !important;
+			// letter-spacing: var(--f-letter-spacing) !important;
+		}
 
 		/*   RIGHT - CHATS BUBBLE BG  */
-		&>div:first-child>div:first-child {
+		& > div:first-child > div:first-child {
 			background-color: var(--c-bg-msg-gpt);
 
 			--pt-multiplier: 1.3;
 			padding: calc(var(--p-chat-bubble) * var(--pt-multiplier)) var(--p-chat-bubble) var(--p-chat-bubble) var(--p-chat-bubble) !important;
 			// padding: var(--p-chat-bubble);
 			border-radius: var(--br-chat-bubble) !important;
-			letter-spacing: 0.3px;
-			line-height: 1.8 !important;
+			// letter-spacing: 0.3px;
+			// line-height: 1.8 !important;
 
 			@include dev(mob) {
 				--pt-multiplier: 1.4;
@@ -281,7 +290,7 @@ main [data-testid^='conversation-turn-'] {
 		}
 
 		/* Response 1 or Response 2 chat bubble when we have to choose 1 answer */
-		&>div:first-child button:has([data-message-author-role='assistant']) {
+		& > div:first-child button:has([data-message-author-role='assistant']) {
 			background-color: var(--c-bg-msg-gpt) !important;
 			border-radius: var(--br-chat-bubble) !important;
 			padding: 2rem;

@@ -1,0 +1,16 @@
+.gpth-error-msg {
+    @extend %animFadeIn;
+    top: 3rem;
+    right: 4rem;
+    z-index: calc(var(--z-modal) - 4);
+    backdrop-filter: blur(10px);
+    width: max-content;
+
+    @include dev(mob) {
+        top: 3rem;
+        right: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 90%;
+    }
+}

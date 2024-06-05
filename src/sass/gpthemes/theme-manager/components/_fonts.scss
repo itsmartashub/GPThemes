@@ -1,0 +1,10 @@
+.fonts {
+    &__props {
+        --gap: 0.65rem;
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        gap: calc(var(--gap) * 2) var(--gap);
+    }
+}

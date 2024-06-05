@@ -1,6 +1,9 @@
 @import 'components/_colorpicker';
-// @import 'components/_blur-box';
 @import 'layouts/_header';
+@import 'components/_tabs';
+@import 'components/_cards';
+@import 'components/_fonts';
+@import 'components/_error-msg';
 
 .gpth-settings {
 	overflow: clip;
@@ -11,15 +14,19 @@
 	// @extend [role='dialog'];
 	opacity: 0;
 	pointer-events: none;
-	padding: 1.5rem;
+	padding: 2.2rem 2.8rem;
 	border-radius: var(--br-dialog);
 	top: var(--top);
 	right: var(--right);
-	max-width: 39rem;
-	max-height: 80vh;
+	// width: 26rem;
+	// height: 50vh;
+	// max-width: 30rem;
+	width: clamp(25rem, 25vw, 30rem);
+	max-height: 70vh;
 	transform: translateX(calc(100% + 1.5rem)) !important;
 	z-index: calc(var(--z-modal) + 10);
 	background-color: var(--c-bg-sidebar);
+	overflow-y: scroll;
 
 	// background-image: linear-gradient(
 	// 	135deg,
@@ -32,12 +39,18 @@
 	// backdrop-filter: blur(50px);
 
 	box-shadow: var(--shadow-values) var(--shadow-color);
-	transition: all 0.3s ease;
+	transition: transform 0.3s $easeOutBack, opacity 0.3s ease;
 
 	&--open {
 		opacity: 1 !important;
 		pointer-events: all !important;
 		transform: translateX(0%) !important;
+	}
+
+	@include dev(mob) {
+		width: calc(100% - 2.5rem);
+		max-height: 70vh;
+		padding: 2rem;
 	}
 }
 
