@@ -19,7 +19,6 @@ const FONT_NAMES = [
 	'Reddit Mono',
 	'Poppins',
 	'Noto Sans',
-	'Monospace',
 	'Lato',
 	'Quicksand',
 	'Outfit',
@@ -136,7 +135,7 @@ async function loadSettings() {
 
 // Function to dynamically load Google Fonts
 function loadGoogleFont(fontFamily) {
-	const href = `https://fonts.googleapis.com/css2?family=${fontFamily.replace(
+	/* 	const href = `https://fonts.googleapis.com/css2?family=${fontFamily.replace(
 		' ',
 		'+'
 	)}${GOOGLE_FONT_WEIGHTS}&display=swap`
@@ -144,11 +143,47 @@ function loadGoogleFont(fontFamily) {
 	const link = document.createElement('link')
 	link.rel = 'stylesheet'
 	link.href = href
-	document.head.appendChild(link)
-}
+	document.head.appendChild(link) */
+	const links = [
+		{ rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+		{ rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+		{
+			rel: 'stylesheet',
+			href: `https://fonts.googleapis.com/css2?family=${fontFamily.replace(
+				' ',
+				'+'
+			)}${GOOGLE_FONT_WEIGHTS}&display=swap`,
+		},
+	]
 
+	links.forEach(({ rel, href, crossorigin }) => {
+		const link = document.createElement('link')
+		link.rel = rel
+		link.href = href
+		if (crossorigin !== undefined) {
+			link.crossOrigin = crossorigin
+		}
+		document.head.appendChild(link)
+	})
+}
 // Function to get all Google Font links
-function getAllHeadLinks() {
+function getAllHeadFontsLinks() {
+	// return Array.from(document.querySelectorAll("link[rel='stylesheet'], link[rel='preconnect']"))
+	return Array.from(document.querySelectorAll("head link[href*='fonts.']"))
+}
+// Function to remove all Google Font links
+function removeAllGoogleFontsLinks() {
+	const links = getAllHeadFontsLinks()
+
+	// console.log('links: ', links)
+
+	links.forEach((link) => {
+		if (link.href.includes('fonts.googleapis.com') || link.href.includes('fonts.gstatic.com')) {
+			link.remove()
+		}
+	})
+}
+/* function getAllHeadLinks() {
 	return Array.from(document.querySelectorAll("link[rel='stylesheet']"))
 }
 // Function to remove all Google Font links
@@ -160,7 +195,7 @@ function removeAllGoogleFontsLinks() {
 			link.remove()
 		}
 	})
-}
+} */
 
 // Function to validate input fields
 function validateInputField(inputValue, min, max = 24) {
