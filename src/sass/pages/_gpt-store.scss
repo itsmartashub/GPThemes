@@ -3,6 +3,14 @@
 main:has(.sticky [href='/gpts/editor']),
 .h-full.overflow-y-auto:has(.sticky [href^='/auth/login?next=/gpts']) {
 
+	a.gizmo-link {
+		transition: $easeOutBack 0.35s;
+
+		&:hover {
+			transform: translateY(-0.08rem);
+		}
+	}
+
 	/* Notification on the top of the GPTs Store page (before the sticky header): "GPTs will be coming to free users over the next few weeks. Stay tuned!" */
 	.bg-token-main-surface-tertiary[class*='h-[52px] w-full'] {
 		background-color: hsla(var(--accent-hsl) / 0.07) !important;
@@ -70,6 +78,7 @@ main:has(.sticky [href='/gpts/editor']),
 		.gizmo-link {
 			border-radius: var(--br-btn) !important;
 			margin-bottom: 0.5rem;
+
 
 			svg.text-gray-400 {
 				color: var(--c-on-accent) !important;

@@ -278,7 +278,7 @@
 	}
 
 	/* Dialog - GPTs Store Page - GPT Store product dialog when clicked on any product in store 
-		- Ovaj href je "More info" u "Share Link" dialogu, dakle selektujemo sve koji NEMAJU taj "More info" jer necemo da ovaj style se appluje za ovaj "Share Link" dialog jer sjebe dizajn
+		- Ovaj href je "More info" u "Share Link" dialogu, dakle selektujemo sve koji NEMAJU taj "More info" jer necemo da ovaj style se appluje za ovaj "Share Link" dialog jer sjebe dizajn	
 	*/
 	&:not(&:has([href^='https://help.openai.com/en/articles/7925741-chatgpt-shared-links-faq'])) {
 		.border-token-border-medium {
@@ -310,7 +310,8 @@
 
 			/* "More by [creator_name]" product card element  */
 			.bg-token-main-surface-secondary {
-				--main-surface-secondary: var(--c-surface-3) !important;
+				// --main-surface-secondary: var(--c-surface-3) !important;
+				background-color: var(--c-surface-3) !important;
 			}
 		}
 
