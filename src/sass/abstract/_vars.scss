@@ -343,7 +343,7 @@ html.dark {
 	--c-bg-tooltip: var(--c-accent-light);
 
 	/* ? ========== border colors ========== */
-	--c-border: var(--c-surface-3);
+	--c-border: hsla(var(--txt-hsl) / 0.08);
 	--c-border-accent: hsla(var(--accent-hsl) / 0.05);
 
 	/* ? ========== <pre>/markdown things colors ========== */

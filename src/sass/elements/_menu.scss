@@ -15,6 +15,13 @@
 			// background-color: var(--c-surface-2) !important;
 			background-color: var(--c-bg-contextmenu-item) !important;
 		}
+
+		/* "Delete" when clicked on conversatin 3dots (more options) */
+		&:last-child:has(.text-token-text-error) {
+			&:hover {
+				background-color: hsla(var(--danger-hsl) / 0.15) !important;
+			}
+		}
 	}
 
 	/* Remove padding for menu in sidebar bottom */
@@ -32,6 +39,29 @@
 		a:first-child span {
 			color: var(--c-accent) !important;
 			font-weight: bold;
+		}
+	}
+
+	/* Menu which have "My GPTs" link on it and "Log Out" */
+	&:has([role="menuitem"][href="/gpts/mine"]) {
+		[role='separator'] {
+			--border-light: var(--c-border) !important;
+		}
+
+		[role="menuitem"] {
+
+			/* "Log Out" */
+			&:last-child {
+
+				&,
+				svg {
+					color: var(--c-danger) !important;
+				}
+
+				&:hover {
+					background-color: hsla(var(--danger-hsl) / 0.15) !important;
+				}
+			}
 		}
 	}
 }
@@ -143,7 +173,7 @@
 /*
 	Settings > Language > dropdown which is rendered into body>direct.
 	.absolute.inset-0:has(.fixed.inset-0) is a modal */
-body>.absolute.inset-0:has(.fixed.inset-0)+div:not([data-radix-popper-content-wrapper]):has(> div[role='listbox']) {
+body > .absolute.inset-0:has(.fixed.inset-0) + div:not([data-radix-popper-content-wrapper]):has(> div[role='listbox']) {
 	z-index: calc(var(--z-modal) + 200) !important;
 
 	[role='listbox'] {
