@@ -234,13 +234,13 @@
 		}
 	}
 
-	/* TODO(remove?): "Create Workspace" dialog when clicking "Upgrade plan" > "Team" */
+	/* "Create Workspace" dialog when clicking "Upgrade plan" > "Team" */
 	&:has(input#workspace-name) {
 		/* "Workspace name" bg color: .bg-token-main-surface-primary */
 		--main-surface-primary: transparent !important;
 	}
 
-	/* TODO(remove?): "Select your Team Plan" dialog radio buttons when clicking "Upgrade plan" > "Team" > "Select billing options" */
+	/* "Select your Team Plan" dialog radio buttons when clicking "Upgrade plan" > "Team" > "Select billing options" */
 	&:has(input[name='seats']) {
 
 		/* input counter for seats */
@@ -315,14 +315,20 @@
 
 	// &:has(img[alt='Uploaded image']) {
 	/* Uploaded image dialog (When clicked on image from gpt user chat (alt='Uploaded image'), and on mini attached preview in textarea) (alt='User uploaded image') */
-	&:has(img.h-full.w-full.object-contain) {
+	&:has(img.h-full.w-full.object-contain, iframe) {
 		padding: 0 !important;
 
 		// img[alt='Uploaded image'] {
-		img.h-full.w-full.object-contain {
+		img.h-full.w-full.object-contain,
+		iframe {
 			border-radius: var(--br-contextmenu);
 			outline: 1px solid hsla(var(--accent-hsl) / 0.5);
 			box-shadow: var(--box-shadow);
+		}
+
+		/* iframe is dialog with Google Drive or One Drive preview when we try to attach the file from the one of the accounts (Google, OneDrive). This caused some frame around this dialog, thats bcs of margin and padding */
+		iframe.h-full.w-full {
+			margin: 0 !important;
 		}
 	}
 
