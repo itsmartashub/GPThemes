@@ -150,6 +150,20 @@ main [data-testid^='conversation-turn-'] {
 					background-color: hsla(var(--accent-hsl) / 0.1);
 				}
 			}
+
+			button:has(>img[alt='Uploaded image']) {
+				overflow: hidden;
+
+				img {
+					transition: 0.3s $easeInOutSine;
+				}
+
+				&:hover {
+					img {
+						transform: scale(1.2);
+					}
+				}
+			}
 		}
 
 		/* Reply in msg */

@@ -326,7 +326,7 @@
 		}
 
 		/* iframe is dialog with Google Drive or One Drive preview when we try to attach the file from the one of the accounts (Google, OneDrive). This caused some frame around this dialog, thats bcs of margin and padding */
-		iframe.h-full.w-full {
+		iframe {
 			// margin: 0 !important;
 			border-radius: var(--br-contextmenu);
 		}
