@@ -1,5 +1,5 @@
 .gpth-error-msg {
-    @extend %animFadeIn;
+    @extend %animScaleIn;
     top: 3rem;
     right: 4rem;
     z-index: calc(var(--z-modal) - 4);

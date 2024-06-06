@@ -106,15 +106,7 @@
 	- Sidebar collapse btn
 	- "ChatGPT 3.5 - Fastest" in 4o menu when hover on it in chat bubbles*/
 	--text-quaternary: var(--c-subtext-2) !important;
-
 	--text-error: var(--c-danger) !important;
-
-	// .text-token-text-error {
-	// 	color: var(--text-error);
-	// }
-
-	// --c-avatar: var(--avatar-color, #19c37d);
-	--c-avatar: var(--avatar-color, #19c37d);
 
 	@include dev(tab) {
 		// --h-header: 40px;
@@ -137,6 +129,13 @@
 		// --br: .7rem;
 		--p-sidebar-nav: 0.3rem;
 	}
+
+	--box-shadow-primary: inset 0 -20px 80px -20px #ffffff1f;
+	// --color-warning-hsl: 30 100% 74%;
+	// --color-warning: hsl(var(--color-warning-hsl));
+	// --color-error: #fe8bbb;
+	// --color-three: #9e7aff;
+	// mask-image: radial-gradient(ellipse at center center, #000, transparent 50%);
 }
 
 /* @ ================== LIGHT ================== */
@@ -283,9 +282,6 @@ html.dark {
 	--accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l);
 
 	/* --txt-hsl: 255 86% 92%; */
-	/* 	--txt-h: 255;
-	--txt-s: 86%;
-	--txt-l: 92%; */
 	--txt-h: var(--accent-h);
 	--txt-s: 86%;
 	--txt-l: 94%;

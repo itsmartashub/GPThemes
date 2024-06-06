@@ -11,6 +11,11 @@
 	animation: animFadeIn var(--anim-duration, 0.2s) linear forwards;
 }
 
+%animScaleIn {
+	will-change: opacity, scale;
+	animation: animScaleIn var(--anim-duration, 0.2s) ease forwards;
+}
+
 /* %animFadeOut {
 	will-change: opacity;
 	animation: animFade var(--anim-duration, 0.4s) linear reverse;
