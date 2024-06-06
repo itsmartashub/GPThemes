@@ -1,13 +1,16 @@
 main:has(button[data-testid='send-button']),
 main:has(button[aria-label='Stop generating']) {
+
 	/* @ NEW CHAT BIH BUTTONS */
 	form .grow {
+
 		/* recimo gap izmedju new chat example buttons*/
 		.gap-2 {
 			gap: 0.8rem !important;
 		}
+
 		[class*='grid-cols-[repeat(auto-fit,minmax(250px,1fr))]'] {
-			.btn {
+			button {
 				padding: 1.5rem !important;
 				background-color: var(--c-surface-2) !important;
 				color: var(--c-txt) !important;
@@ -50,6 +53,7 @@ main:has(button[aria-label='Stop generating']) {
 
 					.bg-gradient-to-l {
 						span[data-state] {
+
 							/* Button w/ SVG */
 							// .bg-token-surface-primary {
 							.bg-token-main-surface-primary {

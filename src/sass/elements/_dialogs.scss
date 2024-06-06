@@ -374,6 +374,14 @@
 	}
 
 
+	/* Speech tabpanel in "Settings" */
+	[id*='Speech'][role='tabpanel'] {
+		.border-l {
+			border: none !important;
+		}
+	}
+
+
 	/* "Report [GPTs]" dialog */
 	.divide-y:has(>button[class*='hover:bg-token-main-surface-secondary']) {
 		& > * + * {
