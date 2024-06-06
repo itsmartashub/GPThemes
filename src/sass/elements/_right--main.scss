@@ -195,9 +195,12 @@ main [data-testid^='conversation-turn-'] {
 	/* @ RIGHT - CHATS BUBBLES - GPT */
 	&:has([data-message-author-role='assistant']) {
 
-		/* ! Without this there was strange issue with User's chat overlaping the menu for "GPT-4" or "GPT-3.5" to choose model in gpt's chat bubble' footer - ONLY FOR MOBILE which is even more strange!!! */
-		.agent-turn.relative {
-			z-index: 10;
+		/* ! Without this there was strange issue with User's chat overlaping the menu for "GPT-4" or "GPT-3.5" to choose model in gpt's chat bubble' footer - ONLY FOR MOBILE which is even more strange!!! 
+		Ako neogranicimo ovo samo za mobile, na desktopu ce GPT chat da ide preko sticky headera!! Dok je u mobile ok valjda */
+		@include dev(mob) {
+			.agent-turn.relative {
+				z-index: 10;
+			}
 		}
 
 		.markdown {
