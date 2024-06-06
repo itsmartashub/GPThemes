@@ -317,6 +317,7 @@
 	/* Uploaded image dialog (When clicked on image from gpt user chat (alt='Uploaded image'), and on mini attached preview in textarea) (alt='User uploaded image') */
 	&:has(img.h-full.w-full.object-contain, iframe) {
 		--c-bg-dialog: transparent;
+		--box-shadow: none;
 		// padding: 0 !important;
 
 		// img[alt='Uploaded image'] {
