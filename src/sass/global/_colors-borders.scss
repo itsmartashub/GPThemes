@@ -35,10 +35,12 @@ html.light [class*=':border-white/10'] {
 }
 
 /* TOS - "This content may violate content policy..." (red) & "This content may violate our Terms of Use or usage policies." (orange) warnings */
-[class*='border-red-500'],
-[class*='border-orange-500'] {
-	border-color: var(--c-danger) !important;
+/* [class*='border-red-500'] {
+	border-color: hsla(var(--danger-hsl) / 0.11) !important;
 }
+[class*='border-orange-500'] {
+	border-color: hsla(var(--warning-hsl) / 0.11) !important;
+} */
 
 /* "Share link" mini chat footer 3 dots btn */
 [class*='focus-visible:border-green-500'] {
