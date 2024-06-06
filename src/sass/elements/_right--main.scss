@@ -153,6 +153,7 @@ main [data-testid^='conversation-turn-'] {
 
 			button:has(>img[alt='Uploaded image']) {
 				overflow: hidden;
+				border-radius: calc(var(--br) * 1.35) !important;
 
 				img {
 					transition: 0.3s $easeInOutSine;

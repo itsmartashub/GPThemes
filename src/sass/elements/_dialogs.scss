@@ -318,7 +318,7 @@
 	&:has(img.h-full.w-full.object-contain, iframe) {
 		--c-bg-dialog: transparent;
 		--box-shadow: none;
-		// padding: 0 !important;
+		padding: 0 !important;
 
 		// img[alt='Uploaded image'] {
 		img.h-full.w-full.object-contain {

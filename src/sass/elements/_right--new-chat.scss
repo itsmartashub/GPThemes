@@ -7,6 +7,10 @@ main [role='presentation'] {
 
 		&:hover {
 			background-color: var(--clr) !important;
+
+			.text-gray-600 {
+				--c-subtext-2: var(--c-accent);
+			}
 		}
 	}
 }

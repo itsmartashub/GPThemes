@@ -12,6 +12,15 @@
 		border: 2px solid var(--c-surface-2);
 		padding: var(--p-sidebar-nav-a-new-chat) !important;
 		text-transform: uppercase;
+
+		/* NEW CHAT svg icon */
+		button > svg {
+			visibility: visible !important;
+		}
+
+		&:hover svg {
+			fill: var(--c-accent) !important;
+		}
 	}
 
 	/* "Explore GPTs" link parents - Ne mozemo dodati direkt n ovaj lnk jer kad dodamo vise GPTs producta u ovu listu da bude iznad "Explore GPTs" onda ono nema margin-top vec samo ovaj link, a mi zelimo parent da ima */
@@ -23,7 +32,7 @@
 nav[aria-label='Chat history'] {
 	padding: var(--p-sidebar-nav) !important;
 
-	/* TODO - maybe remove? Parent of "NEW CHAT" btn */
+	/* Parent of "NEW CHAT" btn */
 	.sticky:has(a[href='/']) {
 		background-color: var(--c-bg-sidebar) !important;
 		// backdrop-filter: blur(0px) !important;
