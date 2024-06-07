@@ -71,7 +71,7 @@
 			--border-light: var(--c-border) !important;
 		}
 
-		[role='menuitem']:last-child {
+		[role='menuitem']:last-child:not(:has([aria-label='Temporary'])) {
 
 			&,
 			svg {
