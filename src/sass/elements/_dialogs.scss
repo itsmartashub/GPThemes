@@ -116,7 +116,7 @@
 
 			// Active plan btn 
 			&[aria-checked='true'] {
-				color: var(--c-accent);
+				color: var(--c-on-accent);
 
 				// style for element surround btn (in code its next to btn on the same block level, sibling), simulating the button, jeez...
 				& ~ .bg-token-text-primary {
