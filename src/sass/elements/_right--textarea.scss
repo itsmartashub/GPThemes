@@ -112,7 +112,7 @@ main form {
 	}
 
 	/* @mentions in textarea */
-	.absolute.bottom-16.z-10 {
+	.absolute.bottom-16:has(>.popover) {
 		.popover {
 			backdrop-filter: blur(30px) !important;
 			border: hsla(var(--accent-hsl) / 0.5);
@@ -136,7 +136,7 @@ main form {
 
 		/* @mentions - GPTs list, scrollable product parent */
 		.max-h-40.overflow-y-auto {
-			&>div:not(:last-child) {
+			& > div:not(:last-child) {
 				margin-bottom: 0.5rem;
 			}
 		}
