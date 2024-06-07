@@ -80,7 +80,7 @@
 
 	/* DIALOG - "Upgrade your plan" only */
 	&:has(a[href="https://openai.com/enterprise"]) {
-		--popover-surface-primary: var(--c-bg-dialog) !important; //Dialog bg
+		--popover-surface-primary: var(--c-bg-dialog) !important; // Dialog bg
 		padding: 0 !important;
 		border: none !important;
 
@@ -124,10 +124,13 @@
 				}
 			}
 
-			// [aria-checked='false'] {
-			// 	// background-color: none;
-			// 	color: var(--c-accent);
-			// }
+			[aria-checked='false'] {
+
+				&,
+				&:hover {
+					color: var(--c-accent) !important;
+				}
+			}
 		}
 	}
 
