@@ -109,10 +109,15 @@
 		button[aria-label*='Toggle for switching to Personal plans'],
 		button[aria-label*='Toggle for switching to Business plans'] {
 
-			[aria-checked='true'],
+			&[aria-checked='true'],
 			&:hover {
-				background-color: var(--c-accent) !important;
+				// background-color: var(--c-accent) !important;
 				color: var(--c-on-accent) !important;
+
+				& ~ .bg-token-text-primary {
+					--text-primary: var(--c-accent) !important;
+					// color: var(--c-on-accent) !important;
+				}
 			}
 
 			[aria-checked='false'] {
