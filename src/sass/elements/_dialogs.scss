@@ -63,7 +63,7 @@
 		margin-top: 1rem;
 	}
 
-	/* ???? */
+	/* TODO(remove?) ???? */
 	.bg-token-surface-primary {
 		--surface-primary: transparent !important;
 	}
@@ -81,9 +81,14 @@
 	/* DIALOG - "Upgrade your plan" only */
 	&:has(a[href="https://openai.com/enterprise"]) {
 		--popover-surface-primary: var(--c-bg-dialog) !important; //Dialog bg
-		--main-surface-primary: transparent !important;
 		padding: 0 !important;
 		border: none !important;
+
+		/* Ugly bg behind text in Plans */
+		.bg-token-main-surface-primary {
+			--main-surface-primary: transparent !important;
+			background-color: var(--main-surface-primary);
+		}
 
 		/* Border radius for "Upgrade your plan" dialog */
 		.rounded-md {
@@ -103,27 +108,26 @@
 
 	/* "Upgrade yur plan" verzja koja ima Personal i Bussiness switching buttons */
 	&:has(button[aria-label*='Toggle for switching to Personal plans']) {
-		border-radius: none !important;
-		padding: 0 !important;
+		// border-radius: none !important;
+		// padding: 0 !important;
 
 		button[aria-label*='Toggle for switching to Personal plans'],
 		button[aria-label*='Toggle for switching to Business plans'] {
 
-			&[aria-checked='true'],
-			&:hover {
-				// background-color: var(--c-accent) !important;
-				color: var(--c-on-accent) !important;
+			// Active plan btn 
+			&[aria-checked='true'] {
+				color: var(--c-accent);
 
+				// style for element surround btn (in code its next to btn on the same block level, sibling), simulating the button, jeez...
 				& ~ .bg-token-text-primary {
 					--text-primary: var(--c-accent) !important;
-					// color: var(--c-on-accent) !important;
 				}
 			}
 
-			[aria-checked='false'] {
-				background-color: none;
-				color: var(--c-accent);
-			}
+			// [aria-checked='false'] {
+			// 	// background-color: none;
+			// 	color: var(--c-accent);
+			// }
 		}
 	}
 
