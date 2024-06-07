@@ -80,15 +80,14 @@
 
 	/* DIALOG - "Upgrade your plan" only */
 	&:has(a[href="https://openai.com/enterprise"]) {
-		--popover-surface-primary: var(--c-bg-dialog) !important;
-		/* Dialog bg */
+		--popover-surface-primary: var(--c-bg-dialog) !important; //Dialog bg
 		--main-surface-primary: transparent !important;
 		padding: 0 !important;
 		border: none !important;
 
 		/* Border radius for "Upgrade your plan" dialog */
 		.rounded-md {
-			border-radius: var(--br-chat-bubble) !important;
+			border-radius: var(--br-dialog) !important;
 		}
 
 		/*  Stroke color for ✔️ in "Upgrade your plan" dialog list */
@@ -102,13 +101,48 @@
 		}
 	}
 
-	/* TODO(remove): obrisati, msm da je ovo bio minichat onaj od pre */
-	// &:has([data-testid^='conversation-turn-']) {
-	// 	[class*='dark:bg-gray-800'] {
-	// 		background-color: var(--c-surface-1) !important;
-	// 		// background-color: lightsalmon !important;
-	// 	}
-	// }
+	/* "Upgrade yur plan" verzja koja ima Personal i Bussiness switching buttons */
+	&:has(button[aria-label*='Toggle for switching to Personal plans']) {
+		border-radius: none !important;
+		padding: 0 !important;
+
+		button[aria-label*='Toggle for switching to Personal plans'],
+		button[aria-label*='Toggle for switching to Business plans'] {
+
+			[aria-checked='true'],
+			&:hover {
+				background-color: var(--c-accent) !important;
+				color: var(--c-on-accent) !important;
+			}
+
+			[aria-checked='false'] {
+				background-color: none;
+				color: var(--c-accent);
+			}
+		}
+	}
+
+	/* "CREATE WORKSPACE" dialog when clicked on "Team" for "Upgade your plan" which has input 'Acme Inc.'. */
+	&:has(input[id="workspace-name"]) {
+
+		// grey bg on black theme arround "Workspace name + input" section
+		.bg-token-main-surface-primary:has(input[id="workspace-name"]) {
+			--main-surface-primary: transparent !important;
+		}
+	}
+
+	/* "Select your Team Plan" dialog radio buttons when clicking "Upgrade plan" > "Team" > "Select billing options" */
+	&:has(input[name='seats']) {
+
+		/* input counter for seats */
+		input[name='seats'] {
+			background-color: hsla(var(--accent-hsl) / 0.3) !important;
+			padding: var(--p-btn) !important;
+			height: 100% !important;
+			margin: 0 0.8rem;
+		}
+	}
+
 
 	/* DIALOG - textarea ("Custom instructions") */
 	textarea {
@@ -234,23 +268,6 @@
 		}
 	}
 
-	/* "Create Workspace" dialog when clicking "Upgrade plan" > "Team" */
-	&:has(input#workspace-name) {
-		/* "Workspace name" bg color: .bg-token-main-surface-primary */
-		--main-surface-primary: transparent !important;
-	}
-
-	/* "Select your Team Plan" dialog radio buttons when clicking "Upgrade plan" > "Team" > "Select billing options" */
-	&:has(input[name='seats']) {
-
-		/* input counter for seats */
-		input[name='seats'] {
-			background-color: hsla(var(--accent-hsl) / 0.3) !important;
-			padding: var(--p-btn) !important;
-			height: 100% !important;
-			margin: 0 0.8rem;
-		}
-	}
 
 	/* "Keyboard Shortcuts" keyboard tasters */
 	// this is also the text in "Settings" dialog so we need more special selector
