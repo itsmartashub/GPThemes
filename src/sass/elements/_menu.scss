@@ -6,9 +6,15 @@
 
 	[role='menuitem'] {
 		background-color: inherit !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
 		padding: var(--p-contextmenu-item) !important;
 		border-radius: var(--br-btn) !important;
 		transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+		&:last-child {
+			margin-bottom: 0 !important;
+		}
 
 		/* TODO dark:hover:bg-white/5   ima vec u globalu. Videti da li obrisati ovah hover i ostaviti onaj tamo samo. Rizicno je malo, sta ako se promeni ta klasa */
 		&:hover {
@@ -22,11 +28,6 @@
 				background-color: hsla(var(--danger-hsl) / 0.15) !important;
 			}
 		}
-	}
-
-	/* Remove padding for menu in sidebar bottom */
-	nav {
-		padding: 0 !important;
 	}
 
 	/* Context menu when clicked ❓ on bottom right */
@@ -110,6 +111,15 @@
 		box-shadow: var(--box-shadow-contextmenu) !important;
 		overflow: visible !important; // for what is this? hhh
 		border: none;
+
+		[role='option'] {
+			margin-left: 0 !important;
+			margin-right: 0 !important;
+
+			&:last-child {
+				margin-bottom: 0 !important;
+			}
+		}
 	}
 
 	/* Theme dropdown bg */

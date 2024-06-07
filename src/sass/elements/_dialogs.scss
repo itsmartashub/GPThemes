@@ -108,9 +108,8 @@
 
 	/* "Upgrade yur plan" verzja koja ima Personal i Bussiness switching buttons */
 	&:has(button[aria-label*='Toggle for switching to Personal plans']) {
-		// border-radius: none !important;
-		// padding: 0 !important;
 
+		/* "Personal" and "Business" switching buttons */
 		button[aria-label*='Toggle for switching to Personal plans'],
 		button[aria-label*='Toggle for switching to Business plans'] {
 
