@@ -79,14 +79,14 @@
 	}
 
 	/* DIALOG - "Upgrade your plan" only */
-	&:has(a[href="https://openai.com/enterprise"]) {
+	&:has(a[href="https://openai.com/enterprise"], [data-testid*="-pricing-modal-column"]) {
 		--popover-surface-primary: var(--c-bg-dialog) !important; // Dialog bg
 		padding: 0 !important;
 		border: none !important;
 
 		/* Ugly bg behind text in Plans */
 		.bg-token-main-surface-primary {
-			--main-surface-primary: transparent !important;
+			--main-surface-primary: var(--c-bg-dialog) !important;
 			background-color: var(--main-surface-primary);
 		}
 
@@ -124,12 +124,13 @@
 				}
 			}
 
-			[aria-checked='false'] {
+			&[aria-checked='false'] {
 
 				&,
 				&:hover {
 					color: var(--c-accent) !important;
 				}
+
 			}
 		}
 	}
