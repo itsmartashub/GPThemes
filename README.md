@@ -72,7 +72,7 @@
 ### Developer Mode (Chromium)
 
 1. Download the `gpthemes-chromium-vX.X.X.zip` from the [Releases](https://github.com/itsmartashub/GPThemes/releases) and unzip.
-2. Open prefered Chromium-based browser and go to `chrome://extensions/`
+2. Open preferred Chromium-based browser and go to `chrome://extensions/`
 3. Enable `Developer mode` in the top-right corner.
 4. Click `Load unpacked` and select the `gpthemes-chromium-vX.X.X` folder.
 
