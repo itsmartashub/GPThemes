@@ -28,6 +28,6 @@
 	},
 	"permissions": ["storage"],
 	"content_security_policy": {
-		"extension_pages": "script-src 'self'; object-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;"
+		"extension_pages": "script-src 'self'; style-src 'self' https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com;"
 	}
 }
