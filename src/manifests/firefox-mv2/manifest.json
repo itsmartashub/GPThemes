@@ -1,6 +1,6 @@
 {
 	"manifest_version": 2,
-	"version": "3.0.1",
+	"version": "3.0.2",
 	"name": "GPThemes - ChatGPT Customization",
 	"description": "Transform ChatGPT's user interface with customisable accent colours, modern designs and chat bubbles.",
 	"author": "itsmarta",
@@ -18,7 +18,7 @@
 			"run_at": "document_end"
 		}
 	],
-	"permissions": ["storage", "https://chat.openai.com/*", "https://chatgpt.com/*"],
+	"permissions": ["storage", "notifications", "tabs", "https://chat.openai.com/*", "https://chatgpt.com/*"],
 	"browser_specific_settings": {
 		"gecko": {
 			"id": "gpthemes@itsmarta"

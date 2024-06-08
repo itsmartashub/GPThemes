@@ -7,6 +7,7 @@ release.md
 # extension-prod
 # extension-zips
 # extension-dev
+build/dev
 build/prod
 build/zips
 
