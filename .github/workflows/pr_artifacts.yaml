@@ -1,0 +1,47 @@
+name: Build and Package Extensions
+
+on:
+    pull_request:
+    workflow_dispatch:
+
+jobs:
+    build-zips:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Get code
+              uses: actions/checkout@v4
+
+            - name: Install Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Build extension zips
+              id: run-build-all
+              run: npm run build:all
+
+            - name: Create artifacts
+              run: |
+                  mkdir -p artifacts
+                  cp build/releases/*.zip artifacts/
+
+            - name: Upload artifacts
+              if: success() && steps.run-build-all.outcome == 'success'
+              uses: actions/upload-artifact@v2
+              with:
+                  name: extension-packages
+                  path: artifacts/
+
+    report:
+        needs: [build-zips]
+        if: failure()
+        runs-on: ubuntu-latest
+        steps:
+            - name: Report
+              run: |
+                  echo "Something went wrong"
+                  echo "${{ toJSON(github) }}"
