@@ -23,23 +23,17 @@ jobs:
             - name: Build and Package Extensions
               run: npm run build:all
 
-            - name: Upload Chrome extension artifact
+            - name: Upload prod extension artifact (unzipped)
               uses: actions/upload-artifact@v4
               with:
-                  name: gpthemes-chromium-mv3
-                  path: build/prod/gpthemes-chromium-mv3
-
-            - name: Upload Firefox extension artifact
-              uses: actions/upload-artifact@v4
-              with:
-                  name: gpthemes-firefox-mv2
-                  path: build/prod/gpthemes-firefox-mv2
-
-            - name: Upload Combined extension artifact
-              uses: actions/upload-artifact@v4
-              with:
-                  name: combined-extensions
+                  name: extensions-prod
                   path: build/prod/*
+
+            - name: Upload release extension artifact (zipped)
+              uses: actions/upload-artifact@v4
+              with:
+                  name: extensions-releases
+                  path: build/releases/*
 
     report:
         needs: [build-zips]
