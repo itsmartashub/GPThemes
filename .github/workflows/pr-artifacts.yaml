@@ -43,6 +43,12 @@ jobs:
                   name: gpthemes-firefox-mv2
                   path: build/releases/gpthemes-firefox-mv2-*.zip
 
+            - name: Upload Combined extension artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: combined-extensions
+                  path: build/releases/combined.zip
+
     report:
         needs: [build-zips]
         if: failure()
