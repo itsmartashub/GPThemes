@@ -1,0 +1,55 @@
+name: Build and Package Extensions
+
+on:
+    pull_request:
+    workflow_dispatch:
+
+jobs:
+    build-prod:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Get code
+              uses: actions/checkout@v4
+
+            - name: Install Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Build Chrome extension
+              run: npm run build:chrome
+
+            - name: Build Firefox extension
+              run: npm run build:ff
+
+            - name: Create artifacts
+              run: |
+                  mkdir -p artifacts
+                  cp build/prod/gpthemes-chromium-mv3.zip artifacts/
+                  cp build/prod/gpthemes-firefox-mv2.zip artifacts/
+
+            - name: Upload Chrome extension artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: gpthemes-chromium-mv3
+                  path: artifacts/gpthemes-chromium-mv3.zip
+
+            - name: Upload Firefox extension artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: gpthemes-firefox-mv2
+                  path: artifacts/gpthemes-firefox-mv2.zip
+
+    report:
+        needs: [build-prod]
+        if: failure()
+        runs-on: ubuntu-latest
+        steps:
+            - name: Report
+              run: |
+                  echo "Something went wrong"
+                  echo "${{ toJSON(github) }}"
