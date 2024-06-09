@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"version": "3.1.0",
 	"name": "GPThemes - ChatGPT Customization",
-	"description": "Transform ChatGPT's user interface with customisable accent colours, modern designs and chat bubbles.",
+	"description": "Transform ChatGPT's user interface with customisable accent colours and font styles, modern designs and chat bubbles.",
 	"author": "itsmarta",
 	"homepage_url": "https://github.com/itsmartashub/GPThemes",
 	"icons": {

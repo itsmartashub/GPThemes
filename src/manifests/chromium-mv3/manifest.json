@@ -2,7 +2,7 @@
 	"manifest_version": 3,
 	"version": "3.1.0",
 	"name": "GPThemes - ChatGPT Customization",
-	"description": "Transform ChatGPT's user interface with customisable accent colours, modern designs and chat bubbles.",
+	"description": "Transform ChatGPT's user interface with customisable accent colours and font styles, modern designs and chat bubbles.",
 	"author": "itsmarta",
 	"homepage_url": "https://github.com/itsmartashub/GPThemes",
 	"host_permissions": ["https://chat.openai.com/*", "https://chatgpt.com/*"],
@@ -26,7 +26,7 @@
 		"service_worker": "../../js/background.js",
 		"type": "module"
 	},
-	"permissions": ["storage", "notifications", "tabs", "management"],
+	"permissions": ["storage", "notifications", "tabs"],
 	"content_security_policy": {
 		"extension_pages": "script-src 'self'; style-src 'self' https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com;"
 	}
