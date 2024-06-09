@@ -2,15 +2,35 @@ const fs = require('fs/promises')
 const AdmZip = require('adm-zip')
 const { join } = require('path')
 
-const version = '3.0.1'
+const manifestPathChrome = 'src/manifests/chrome/manifest.json'
+const manifestPathFirefox = 'src/manifests/firefox-mv2/manifest.json'
+// let version = ''
 const inputDir = 'build/prod'
 const outputDir = 'build/releases'
 const filenamePrefix = 'gpthemes-'
 const chromiumFolder = 'chromium-mv3'
 const firefoxFolder = 'firefox-mv2'
 
+// readExtVersionFromManifest()
+async function readExtVersionFromManifest(manifestPath) {
+	try {
+		const manifestContent = await fs.readFile(manifestPath, 'utf8')
+		const manifest = JSON.parse(manifestContent)
+		version = manifest.version
+		// console.log(`Version: ${version}`)
+		return version
+	} catch (error) {
+		throw new Error(`Failed to read version from manifest: ${error.message}`)
+	}
+}
+// console.log(version)
+
 async function createZipFiles() {
 	try {
+		// Read the version from the manifest
+		const versionChrome = await readExtVersionFromManifest(manifestPathChrome)
+		const versionFirefox = await readExtVersionFromManifest(manifestPathFirefox)
+
 		// Check if the output directory exists
 		await ensureDirExists(outputDir)
 
@@ -21,8 +41,8 @@ async function createZipFiles() {
 		await ensureDirExists(chromiumInputPath)
 		await ensureDirExists(firefoxInputPath)
 
-		const chromiumZipPath = join(outputDir, `${filenamePrefix}${chromiumFolder}-v${version}.zip`)
-		const firefoxZipPath = join(outputDir, `${filenamePrefix}${firefoxFolder}-v${version}.zip`)
+		const chromiumZipPath = join(outputDir, `${filenamePrefix}${chromiumFolder}-v${versionChrome}.zip`)
+		const firefoxZipPath = join(outputDir, `${filenamePrefix}${firefoxFolder}-v${versionFirefox}.zip`)
 
 		// Delete existing zip files if they already exist
 		await Promise.all([deleteExistingFile(chromiumZipPath), deleteExistingFile(firefoxZipPath)])
