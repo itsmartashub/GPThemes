@@ -23,6 +23,14 @@ jobs:
             - name: Build and Package Extensions
               run: npm run build:all
 
+            - name: Create Combined Artifact
+              run: |
+                  mkdir -p build/releases/combined
+                  cp build/releases/gpthemes-chromium-mv3-*.zip build/releases/combined/
+                  cp build/releases/gpthemes-firefox-mv2-*.zip build/releases/combined/
+                  cd build/releases
+                  zip -r combined.zip combined
+
             - name: Upload Chrome extension artifact
               uses: actions/upload-artifact@v4
               with:
