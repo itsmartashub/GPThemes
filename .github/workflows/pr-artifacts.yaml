@@ -5,7 +5,7 @@ on:
     workflow_dispatch:
 
 jobs:
-    build-prod:
+    build-zips:
         runs-on: ubuntu-latest
 
         steps:
@@ -29,23 +29,23 @@ jobs:
             - name: Create artifacts
               run: |
                   mkdir -p artifacts
-                  cp build/prod/gpthemes-chromium-mv3.zip artifacts/
-                  cp build/prod/gpthemes-firefox-mv2.zip artifacts/
+                  cp build/prod/gpthemes-chromium-mv3 artifacts/
+                  cp build/prod/gpthemes-firefox-mv2 artifacts/
 
             - name: Upload Chrome extension artifact
               uses: actions/upload-artifact@v4
               with:
                   name: gpthemes-chromium-mv3
-                  path: artifacts/gpthemes-chromium-mv3.zip
+                  path: artifacts/gpthemes-chromium-mv3
 
             - name: Upload Firefox extension artifact
               uses: actions/upload-artifact@v4
               with:
                   name: gpthemes-firefox-mv2
-                  path: artifacts/gpthemes-firefox-mv2.zip
+                  path: artifacts/gpthemes-firefox-mv2
 
     report:
-        needs: [build-prod]
+        needs: [build-zips]
         if: failure()
         runs-on: ubuntu-latest
         steps:
