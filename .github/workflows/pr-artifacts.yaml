@@ -20,29 +20,20 @@ jobs:
             - name: Install dependencies
               run: npm ci
 
-            - name: Build Chrome extension
-              run: npm run build:chrome
-
-            - name: Build Firefox extension
-              run: npm run build:ff
-
-            - name: Create artifacts
-              run: |
-                  mkdir -p artifacts
-                  cp build/prod/gpthemes-chromium-mv3 artifacts/
-                  cp build/prod/gpthemes-firefox-mv2 artifacts/
+            - name: Build and Package Extensions
+              run: npm run build:all
 
             - name: Upload Chrome extension artifact
               uses: actions/upload-artifact@v4
               with:
                   name: gpthemes-chromium-mv3
-                  path: artifacts/gpthemes-chromium-mv3
+                  path: build/releases/gpthemes-chromium-mv3-*.zip
 
             - name: Upload Firefox extension artifact
               uses: actions/upload-artifact@v4
               with:
                   name: gpthemes-firefox-mv2
-                  path: artifacts/gpthemes-firefox-mv2
+                  path: build/releases/gpthemes-firefox-mv2-*.zip
 
     report:
         needs: [build-zips]
