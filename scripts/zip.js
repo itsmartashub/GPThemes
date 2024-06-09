@@ -2,7 +2,7 @@ const fs = require('fs/promises')
 const AdmZip = require('adm-zip')
 const { join } = require('path')
 
-const manifestPathChrome = 'src/manifests/chrome/manifest.json'
+const manifestPathChrome = 'src/manifests/chromium-mv3/manifest.json'
 const manifestPathFirefox = 'src/manifests/firefox-mv2/manifest.json'
 // let version = ''
 const inputDir = 'build/prod'
