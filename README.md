@@ -5,7 +5,7 @@
 </div>
 
 <h1 align="center">GPThemes</h1>
-<h3 align="center">Transform ChatGPT's user interface with customisable accent colours, modern designs and chat bubbles. </h3>
+<h3 align="center">Transform ChatGPT's user interface with customisable accent colours and font styles, modern designs and chat bubbles. </h3>
 <br/><br/>
 
 <div align="center">
