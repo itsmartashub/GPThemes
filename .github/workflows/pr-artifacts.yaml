@@ -39,7 +39,7 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                   name: combined-extensions
-                  path: build/releases/*
+                  path: build/prod/*
 
     report:
         needs: [build-zips]
