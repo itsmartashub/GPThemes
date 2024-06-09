@@ -2,13 +2,10 @@ node_modules
 .parcel-cache
 .env
 
-release.md
-# extension-*
-# extension-prod
-# extension-zips
-# extension-dev
-build/dev
-build/prod
-build/zips
+# build/dev
+# build/prod
+# build/zips
+build
 
+release.md
 release.html

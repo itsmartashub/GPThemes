@@ -16,12 +16,12 @@
 		"clean:prod": "rimraf .parcel-cache build/prod",
 		"clean:zips": "rimraf build/releases",
 		"clean:all": "npm run clean:dev && npm run clean:prod && npm run clean:zips",
-		"dev": "parcel watch src/manifests/chrome/manifest.json --host localhost --dist-dir build/dev/chromium-mv3",
+		"dev:chrome": "parcel watch src/manifests/chrome/manifest.json --host localhost --dist-dir build/dev/chromium-mv3",
 		"dev:ff": "parcel watch src/manifests/firefox-mv2/manifest.json --host localhost --dist-dir build/dev/firefox-mv2",
-		"build": "parcel build src/manifests/chrome/manifest.json --dist-dir build/prod/gpthemes-chromium-mv3 --no-source-maps",
+		"build:chrome": "parcel build src/manifests/chrome/manifest.json --dist-dir build/prod/gpthemes-chromium-mv3 --no-source-maps",
 		"build:ff": "parcel build src/manifests/firefox-mv2/manifest.json --dist-dir build/prod/gpthemes-firefox-mv2 --no-source-maps",
 		"zip": "node ./scripts/zip.js",
-		"build:all": "npm run clean:all && npm run build && npm run build:ff && npm run zip"
+		"build:all": "npm run clean:all && npm run build:chrome && npm run build:ff && npm run zip"
 	},
 	"author": "itsmarta",
 	"keywords": [
