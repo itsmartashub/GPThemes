@@ -1,7 +1,5 @@
 import { EXT_CURRENT_VERSION, CHANGELOG_URL } from '../js/app/config'
-console.log(EXT_CURRENT_VERSION)
 import { closeElement } from '../js/utils/handleElements'
-import logo from '../img/gpth-toggle-circled.webp'
 
 let htmlChangesList = `
 <h3>New Features</h3>
