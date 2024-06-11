@@ -41,13 +41,6 @@ function injectUpdateNotification() {
 	changelogChangesEl.insertAdjacentHTML('beforeend', htmlChangesList)
 	changelogVersionEl.innerText = `v${EXT_CURRENT_VERSION}`
 	changelogVersionEl.href = CHANGELOG_URL
-	handleCloseNotification()
-}
-
-function handleCloseNotification() {
-	document.getElementById('gpth-notification-close').addEventListener('click', () => {
-		closeElement('.gpth-notification', 'gpth-notification--open')
-	})
 }
 
 injectUpdateNotification()
