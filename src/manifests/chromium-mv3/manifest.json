@@ -27,9 +27,7 @@
 		"type": "module"
 	},
 	"permissions": ["storage"],
-	"content_security_policy": {
-		"extension_pages": "script-src 'self'; style-src 'self' https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com;"
-	},
+	"content_security_policy.extension_pages": "script-src 'self'; style-src 'self' https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com;",
 	"action": {
 		"default_popup": "../../popup/popup.html",
 		"default_icon": {
