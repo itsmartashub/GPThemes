@@ -7,8 +7,7 @@ const seeFullChangelog = (version) =>
 let htmlChangesList = `
 <h3>🆕 Highlights</h3>
 <ul>
-    <li><strong>"Read Browsing History" Anx Gone</strong>: Remove "<code>tabs</code>" and "<code>notifications</code>" permissions that cause the creepy <code>"Read browsing history"</code>, but with this, update notifications go away too. <a href="https://github.com/itsmartashub/GPThemes/issues/33" target="_blank" rel="noopener noreferrer">#33</a></li>
-    <li><strong>Add This Popup With Release Notes</strong>: Implement a popup action for informing users about extension updates.</li>
+    <li><strong>"Read Browsing History" Anx Gone</strong>: The previous notification system for informing users about new changes relied on "<code>tabs</code>" and "<code>notifications</code>" permissions, triggering a <code>"Read browsing history"</code> warning for Chromium users. To maintain a seamless update experience without causing unnecessary concerns, I have replaced this with a non-intrusive popup action that informs users about updates without additional permissions. <a href="https://github.com/itsmartashub/GPThemes/issues/33" target="_blank" rel="noopener noreferrer">#33</a></li>
 </ul>
 
 <p>${seeFullChangelog(EXT_CURRENT_VERSION)}</p>
@@ -21,7 +20,7 @@ let htmlChangesList = `
     <li><strong>Tabs in GPThemes Settings</strong>: Introduced a tab-based interface in GPThemes settings for better organization and navigation. Added smooth animations when switching between tabs.</li>
 </ul>
 
-<h3>💪 Improvements</h3>
+<h3>🛠️ Improvements</h3>
 <ul>
     <li><strong>Scrollbar Design</strong>: Enhanced default scrollbar design for a modern and sleek appearance, ensuring cross-browser compatibility.</li>
     <li><strong>Mobile Chat Bubble Overlap Fix</strong>: Resolved overlap between chat text and avatar on mobile devices, improving readability.</li>
