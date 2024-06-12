@@ -1,7 +1,8 @@
-@import 'abstract/_easing';
 @import 'abstract/_mq';
 @import 'abstract/_vars';
+@import 'shared/_easing';
 @import 'abstract/_anims';
+@import 'shared/_extends';
 @import 'abstract/_extends';
 
 // @import 'dev/_mixins';

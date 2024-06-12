@@ -25,10 +25,7 @@
         }
     }
 
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
+
 
     h2,
     strong {
@@ -42,9 +39,10 @@
     &__header,
     &__footer {
         position: sticky;
-        z-index: 100;
+        z-index: 10;
         padding: 1rem 0 0.5rem 0;
         background-color: rgba($bg, 0.1);
+        // background-color: rgba($bg, 1);
         backdrop-filter: blur(1rem);
     }
 
@@ -102,6 +100,26 @@
 
         h2 {
             margin-bottom: 1rem;
+        }
+
+        p {
+            text-align: center
+        }
+
+        a {
+            @extend %link_hover_underlined;
+            color: $accent !important;
+        }
+    }
+
+    &__seefullchangelog {
+        display: inline-block;
+        text-transform: uppercase;
+    }
+
+    p:has(>.changelog__seefullchangelog) {
+        &:not(&:last-child) {
+            margin-bottom: 4rem;
         }
     }
 

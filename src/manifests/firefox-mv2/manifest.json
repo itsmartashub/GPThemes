@@ -28,7 +28,7 @@
 		"scripts": ["../../js/background.js"],
 		"persistent": false
 	},
-	"content_security_policy": "script-src 'self'; style-src 'self' https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com;",
+	"content_security_policy": "script-src 'self'; style-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;",
 	"browser_action": {
 		"default_popup": "../../popup/popup.html",
 		"default_icon": {

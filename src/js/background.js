@@ -2,10 +2,13 @@ console.log('background.js')
 import browser from 'webextension-polyfill'
 
 browser.runtime.onInstalled.addListener((details) => {
+	browser.action.setBadgeBackgroundColor({ color: '#ca93fb' })
+
+	// Listen for updates
 	if (details.reason === 'update') {
-		// browser.action.setBadgeText({ text: 'NEW' })
 		browser.action.setBadgeText({ text: 'NEW' })
-		browser.action.setBadgeBackgroundColor({ color: '#ca93fb' })
+	} else {
+		browser.action.setBadgeText({ text: browser.runtime.getManifest().version })
 	}
 })
 
