@@ -1,3 +1,4 @@
+import browser from 'webextension-polyfill'
 import { EXT_CURRENT_VERSION, CHANGELOG_URL } from '../js/app/config'
 import { closeElement } from '../js/utils/handleElements'
 
@@ -43,4 +44,16 @@ function injectUpdateNotification() {
 	changelogVersionEl.href = CHANGELOG_URL
 }
 
+async function setBadge() {
+	try {
+		const response = await browser.runtime.sendMessage({ action: 'setBadge' })
+		console.log(response.status) // Optional: log the response
+	} catch (error) {
+		console.error('Error clearing badge:', error)
+	}
+}
+
 injectUpdateNotification()
+
+// Call the function to clear the badge when the popup opens
+setBadge()
