@@ -1,0 +1,14 @@
+$bg: rgb(27, 25, 36);
+$fg: rgb(241, 227, 253);
+$accent: rgb(202, 147, 251);
+$on-accent: rgb(27, 2, 49);
+$bg-gradient: linear-gradient(135deg,
+        rgba($accent, 0.45) 0%,
+        rgba($accent, 0.1) 40%,
+        rgba($accent, 0.05) 60%,
+        rgba($accent, 0.45) 100%);
+
+$w-scrollbar: 3px;
+$br-scrollbar: 1rem;
+$c-scrollbar-thumb: rgba(255, 255, 255, 0.2);
+$c-scrollbar-track: rgba(255, 255, 255, 0.05);

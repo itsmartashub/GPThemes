@@ -18,7 +18,7 @@
 			"run_at": "document_end"
 		}
 	],
-	"permissions": ["storage", "notifications", "tabs", "https://chat.openai.com/*", "https://chatgpt.com/*"],
+	"permissions": ["storage", "https://chat.openai.com/*", "https://chatgpt.com/*"],
 	"browser_specific_settings": {
 		"gecko": {
 			"id": "gpthemes@itsmarta"
@@ -28,5 +28,14 @@
 		"scripts": ["../../js/background.js"],
 		"persistent": false
 	},
-	"content_security_policy": "script-src 'self'; style-src 'self' https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com;"
+	"content_security_policy": "script-src 'self'; style-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;",
+	"browser_action": {
+		"default_popup": "../../popup/popup.html",
+		"default_icon": {
+			"16": "../../assets/icons/16.png",
+			"48": "../../assets/icons/48.png",
+			"128": "../../assets/icons/128.png"
+		},
+		"default_title": "ChatGPT Customization"
+	}
 }

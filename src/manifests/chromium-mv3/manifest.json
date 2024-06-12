@@ -26,8 +26,17 @@
 		"service_worker": "../../js/background.js",
 		"type": "module"
 	},
-	"permissions": ["storage", "notifications", "tabs"],
+	"permissions": ["storage"],
 	"content_security_policy": {
-		"extension_pages": "script-src 'self'; style-src 'self' https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com;"
+		"extension_pages": "script-src 'self'; style-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;"
+	},
+	"action": {
+		"default_popup": "../../popup/popup.html",
+		"default_icon": {
+			"16": "../../assets/icons/16.png",
+			"48": "../../assets/icons/48.png",
+			"128": "../../assets/icons/128.png"
+		},
+		"default_title": "GPThemes - ChatGPT Customization"
 	}
 }
