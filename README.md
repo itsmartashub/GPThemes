@@ -90,24 +90,13 @@
 
 -   **Storage**: GPThemes requests permission to access browser storage to save your chosen theme name, custom accent color and custom font properties. This ensures a consistent and personalized experience across ChatGPT website.
 -   **ChatGPT Website Access**: GPThemes requires access to specific URLs to modify the visual appearance of the ChatGPT website. This includes `https://chat.openai.com/` and `https://chatgpt.com/` (new domain). This access is necessary for the extension to function properly and provide a customized interface.
--   **Notifications**: GPThemes uses this permission to notify you when a new update for the extension is available. Clicking on the notification will open the changelog in a new tab, allowing you to easily review the changes.
--   **Tabs**: This permission is used in conjunction with notifications. When you click on an update notification, GPThemes will open a new tab and automatically direct you to the changelog, providing you with information about the latest changes and improvements to the extension.
-
-> [!IMPORTANT]
-> So, you know how you see that super spooky warning about extension having the ability to `read your browsing history`? Boo...
->
-> Let's break it down: All I want to do is **open a single, harmless tab to show you my shiny new changelog**. That's it. Nada. Zilch. But to do that, extension needs the `tabs` permission, which for some mysterious reason **translates to** `READ ALL YOUR BROWSING HISTORY` **in Chrome's language**. I know, it sounds like I'm plotting world domination by snooping on your cat video binge-watching sessions, but trust me, I'm not that interested.
->
-> If only Chrome would say something more accurate like: `This extension can open a tab to this URL: chrome-extension://asfa9s8t20t...`, we'd all sleep better at night. But no, they went full-on Halloween on us with `READING YOUR BROWSING HISTORY`.
-> So, rest easy knowing I'm not lurking in the shadows of your browser history. I'm just excited to show you what’s new. Pinky promise.
->
-> Anyway, if your anxiety is still not reduced, this is open-source, so you can dive into the code abyss. If you don't understand the code, use that ChatGPT and try to copy "spoooooky" parts like `background.js`. Let the AI to break it down for you... and of course, all that while you are already enabled the GPThemes 🥲
 
 ## Supported Versions
 
 > [!WARNING]
-> Please be aware that GPThemes is currently tailored to enhance the experience for `GPT-4o` and `GPT-3.5`. The `GPT Pro` is not fully supported yet! Probably the style is not as intended for certain elements! </br>
-> Exploring and editing all the elements of `GPT Pro` version may be considered in future updates.
+> Please be aware that GPThemes is currently tailored to enhance the experience for `GPT-4o Omnia`, `GPTs Store`, `GPT-3.5` and `Browsing and Data Analysis`.
+> The `GPT-4 Turbo`, `GPT-4 Vision` models, `DALL-E 3` are not fully supported yet! Probably the style is not as intended for certain elements! </br>
+> Exploring and editing all elements of those may be considered in future updates.
 
 ## Disclaimer
 
