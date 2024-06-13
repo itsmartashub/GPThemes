@@ -36,13 +36,15 @@ main [role='presentation'] {
 // 	margin-bottom: var(--mb-chat-txt) !important;
 // }
 
+
 /* @ === RIGHT - CHATS BUBBLES ===*/
 main [data-testid^='conversation-turn-'] {
-
 	/* Edit icon in user chat for example. Edit state user chat bg  */
 	--main-surface-tertiary: var(--c-surface-3) !important;
 	// --main-surface-tertiary: hsla(var(--accent-hsl) / 0.5) !important;
 	margin-bottom: var(--mb-chat-bubble) !important;
+
+
 
 	/* Horizontal gap from chat bubble to screen-edge */
 	& > div {
@@ -393,4 +395,35 @@ html[data-gptheme='oled'] main [data-testid^='conversation-turn-']:has([data-mes
 			background-color: var(--c-surface-2);
 		}
 	}
+}
+
+
+main [data-testid^='conversation-turn-'] {
+
+	.mx-auto.flex.flex-1.text-base,
+	&:has([data-message-author-role='user']) [class*='bg-[#f4f4f4]'] {
+		transition: 0.3s ease-in-out;
+	}
+}
+
+main.gpth-chat-bubble-full-width {
+	[data-testid^='conversation-turn-'] {
+		padding-left: 4vw !important;
+		padding-right: 4vw !important;
+		--max-w-chat-bubble: 100% !important;
+
+		.mx-auto.flex.flex-1.text-base {
+			max-width: var(--max-w-chat-bubble) !important;
+		}
+
+		&:has([data-message-author-role='user']) [class*='bg-[#f4f4f4]'] {
+			width: var(--max-w-chat-bubble) !important;
+			max-width: var(--max-w-chat-bubble) !important;
+		}
+	}
+
+	// &:has(#prompt-textarea) [class*='lg:max-w-[40rem]'] {
+	// 	// --max-w-chat-bubble: 100% !important;
+	// 	max-width: 100% !important;
+	// }
 }
