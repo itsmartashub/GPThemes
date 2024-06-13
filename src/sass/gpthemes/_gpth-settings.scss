@@ -1,26 +1,15 @@
-@import 'components/_colorpicker';
-@import 'layouts/_header';
-@import 'components/_tabs';
-@import 'components/_cards';
-@import 'components/_fonts';
-@import 'components/_error-msg';
-
 .gpth-settings {
 	overflow: clip;
 	--top: calc(var(--h-header) + 0.5rem + 3rem);
 	--right: 1.3rem;
 	--shadow-color: hsla(var(--accent-hsl) / 0.09);
 	--shadow-values: inset 0 0 20px 10px;
-	// @extend [role='dialog'];
 	opacity: 0;
 	pointer-events: none;
 	padding: 2.2rem 2.8rem;
 	border-radius: var(--br-dialog);
 	top: var(--top);
 	right: var(--right);
-	// width: 26rem;
-	// height: 50vh;
-	// max-width: 30rem;
 	width: clamp(25rem, 25vw, 30rem);
 	max-height: 70vh;
 	transform: translateX(calc(100% + 1.5rem)) !important;
@@ -53,10 +42,3 @@
 		padding: 2rem;
 	}
 }
-
-// html.light {
-// 	.gpth-settings {
-// 		// background-color: hsla(var(--accent-h) var(--surface-s) var(--surface-l) / 0.7);
-// 		background-color: hsla(0 0% calc(var(--surface-l) / 1.18) / 0.7);
-// 	}
-// }

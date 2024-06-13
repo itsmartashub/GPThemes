@@ -1,0 +1,96 @@
+.gpth-switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    font-size: 1rem;
+    gap: 0.8rem;
+
+    &__icon {
+        --icon-size: 3rem;
+        width: var(--icon-size);
+        height: var(--icon-size);
+        display: grid;
+        place-items: center;
+        border-radius: 1rem;
+        background-color: hsla(var(--accent-hsl) / 0.2);
+
+        i {
+            font-size: 1em;
+            color: var(--c-accent);
+        }
+    }
+
+    &__text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+
+        .title {
+            font-size: 0.9em;
+            font-weight: bold;
+            color: var(--c-accent);
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 0.8em;
+            line-height: 1.2;
+        }
+    }
+
+    &__checkbox {
+        --chb-w: 3.2rem;
+        --chb-h: 1.8rem;
+        --chb-edge-gap: 0.25rem;
+        --chb-slider-circle-size: calc(var(--chb-h) - 2 * var(--chb-edge-gap));
+        position: relative;
+        display: inline-block;
+        width: var(--chb-w);
+        height: var(--chb-h);
+
+        input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: hsla(var(--accent-hsl) / 0.3);
+            border: 2px solid hsla(var(--accent-hsl) / 0.5);
+            transition: .4s;
+            border-radius: var(--chb-w);
+
+            &::before {
+                position: absolute;
+                content: "";
+                height: var(--chb-slider-circle-size);
+                aspect-ratio: 1/1;
+                left: var(--chb-edge-gap);
+                background-color: hsla(var(--accent-hsl) / 0.5);
+                transition: .4s $easeInOutCirc;
+                border-radius: 50%;
+            }
+        }
+
+        input:checked + .slider {
+            background-color: var(--c-accent);
+            border: transparent !important;
+
+            &::before {
+                transform: translateX(calc(var(--chb-w) - 145%));
+                background-color: var(--c-on-accent);
+            }
+        }
+    }
+}
