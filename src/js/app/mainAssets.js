@@ -15,41 +15,21 @@ let assetsHtmlCode = `
 			icon: '🖥️',
 			textTitle: 'Chat Full Width',
 			textSubtitle: 'Make the chat bubbles to take the full width',
-			// textSubtitle: 'Make the chat',
 		})}
     </section>
 `
 
-/* ${renderSwitchOption({
-    inputId: 'gpth-auto-full-width',
-    isChecked: true,
-    icon: '🚗',
-    textTitle: 'Auto Chat Full Width',
-    // textSubtitle: 'Automatic a',
-    textSubtitle: 'Automatic make chat full width when the sidebar is collapsed, and vice-versa',
-})} */
-
-// function toggleChatFullWidth(e) {
-// 	/* TODO: FIX THIS, this is not good logic when we are not on conversation page, so we need to fix this by editing the CSS var and not adding the class on main */
-// 	const mainConversation = document.querySelector("main:has([data-testid^='conversation-turn-'])")
-
-// 	if (!mainConversation) return alert('No main conversation found')
-
-// 	if (e.target.checked && !mainConversation.classList.contains('gpth-chat-bubble-full-width')) {
-// 		mainConversation?.classList.add('gpth-chat-bubble-full-width')
-// 	} else {
-// 		mainConversation?.classList.remove('gpth-chat-bubble-full-width')
-// 	}
-// }
 function toggleChatFullWidth(e) {
 	console.log('checked', e.target.checked)
 
 	if (e.target.checked) {
 		applySettings({ w_chat_user: '100%', w_chat_gpt: '100%' })
 		saveSettings({ w_chat_user: '100%', w_chat_gpt: '100%' })
+		setInputCheckedValue('gpth-full-width', true)
 	} else {
 		applySettings({ w_chat_user: DEFAULTS.w_chat_user, w_chat_gpt: DEFAULTS.w_chat_gpt })
 		saveSettings({ w_chat_user: DEFAULTS.w_chat_user, w_chat_gpt: DEFAULTS.w_chat_gpt })
+		setInputCheckedValue('gpth-full-width', false)
 	}
 }
 function applySettings(settings) {
@@ -59,11 +39,11 @@ function applySettings(settings) {
 		console.log(key, getComputedStyle(document.documentElement).getPropertyValue(`--${key}`))
 	})
 }
-// function setInputFieldValue(inputSelector, inputVal) {
-// 	const inputEl = document.querySelector(`.gpth-settings #${inputSelector}`)
+function setInputCheckedValue(inputSelector, isChecked) {
+	const inputEl = document.querySelector(`.gpth-settings #${inputSelector}`)
 
-// 	inputEl.value = inputVal
-// }
+	inputEl.checked = isChecked
+}
 // Function to save settings to Chrome Storage
 async function saveSettings(settings) {
 	try {
@@ -77,6 +57,8 @@ async function loadSettings() {
 		const settings = await browser.storage.sync.get(Object.keys(DEFAULTS))
 
 		applySettings(settings)
+		// Set the checked attribute based on the saved settings
+		setInputCheckedValue('gpth-full-width', settings.w_chat_gpt === '100%')
 	} catch (error) {
 		console.error('Failed to load settings:', error)
 	}
@@ -87,7 +69,6 @@ function handleAssetsListeners() {
 
 	const selectors = {
 		chatFullWidth: document.querySelector('.gpth-settings #gpth-full-width'),
-		// gpthAutoFullWidth: document.querySelector('.gpth-settings #gpth-auto-full-width'),
 	}
 
 	selectors.chatFullWidth.addEventListener('change', toggleChatFullWidth)
@@ -98,6 +79,5 @@ function init() {
 	console.log('initAssets() called')
 	loadSettings()
 }
-// init()
 
 export { assetsHtmlCode, handleAssetsListeners, init }
