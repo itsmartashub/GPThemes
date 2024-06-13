@@ -41,23 +41,23 @@ main [role='presentation'] {
 main [data-testid^='conversation-turn-'] {
 	/* Edit icon in user chat for example. Edit state user chat bg  */
 	--main-surface-tertiary: var(--c-surface-3) !important;
-	// --main-surface-tertiary: hsla(var(--accent-hsl) / 0.5) !important;
 	margin-bottom: var(--mb-chat-bubble) !important;
 
 	.mx-auto.flex.flex-1.text-base,
-	&:has([data-message-author-role='user']) [class*='bg-[#f4f4f4]'] {
-		transition: 0.3s ease-in-out;
-	}
-
-	.mx-auto.flex.flex-1.text-base {
-		// width: var(--w_chat_gpt) !important;
+	[class*='xl:max-w-[48rem]'] {
 		max-width: var(--w_chat_gpt) !important;
 	}
 
+	// TODO proveriti ovo sve kad ima #prompt-textarea i kad nema (tipa u shared link layout-u)
+	/* .px-3.text-base.m-auto {
+		padding-left: var(--px-chat-bubble-edge-gap) !important;
+		padding-right: var(--px-chat-bubble-edge-gap) !important;
+	} */
+
 	/* Horizontal gap from chat bubble to screen-edge */
 	& > div {
-		padding-left: var(--px-chat-bubble-edge-gap);
-		padding-right: var(--px-chat-bubble-edge-gap);
+		// padding-left: var(--px-chat-bubble-edge-gap);
+		// padding-right: var(--px-chat-bubble-edge-gap);
 
 		/* Original is px-4 or 1rem */
 		// @include dev(mob) {
@@ -417,33 +417,3 @@ main {
 		transition: 0.3s ease-in-out;
 	}
 }
-
-/* main [data-testid^='conversation-turn-'] {
-
-	.mx-auto.flex.flex-1.text-base,
-	&:has([data-message-author-role='user']) [class*='bg-[#f4f4f4]'] {
-		transition: 0.3s ease-in-out;
-	}
-}
-
-main.gpth-chat-bubble-full-width {
-	[data-testid^='conversation-turn-'] {
-		--w_chat_gpt: 100% !important;
-		padding-left: var(--px-chat-bubble-edge-gap) !important;
-		padding-right: var(--px-chat-bubble-edge-gap) !important;
-
-		.mx-auto.flex.flex-1.text-base {
-			max-width: var(--w_chat_gpt) !important;
-		}
-
-		&:has([data-message-author-role='user']) [class*='bg-[#f4f4f4]'] {
-			width: var(--w_chat_gpt) !important;
-			max-width: var(--w_chat_gpt) !important;
-		}
-	}
-
-	// &:has(#prompt-textarea) [class*='lg:max-w-[40rem]'] {
-	// 	// --w_chat_gpt: 100% !important;
-	// 	max-width: 100% !important;
-	// }
-} */

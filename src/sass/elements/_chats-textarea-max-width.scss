@@ -1,20 +1,36 @@
-main:has(#prompt-textarea) [class*='lg:max-w-[40rem]'] {
-	// border: 1px solid red;
+// main:has(#prompt-textarea) [class*='lg:max-w-[40rem]'] {
+main:has(#prompt-textarea) {
+	.px-3.text-base.m-auto {
+		padding-left: var(--px-chat-bubble-edge-gap) !important;
+		padding-right: var(--px-chat-bubble-edge-gap) !important;
 
-	max-width: var(--w_prompt_textarea) !important;
-
-	@include dev(laptop) {
-		--w_prompt_textarea: 40rem;
-		// border-color: lightblue;
+		/* Textarea and chats wrapper */
+		.mx-auto.flex.flex-1.text-base {
+			max-width: var(--w_prompt_textarea) !important;
+		}
 	}
 
-	// @include dev(tab-land) {
-	// 	--w_prompt_textarea: 40rem;
-	// 	border-color: lightpink;
+	// [class*='xl:max-w-[48rem]'] {
+	// 	// [class*='lg:max-w-[40rem]'] {
+	// 	border: 1px solid greenyellow;
+
+	// 	max-width: var(--w_prompt_textarea) !important;
+	// 	// max-width: var(--w_chat_gpt) !important;
+
+	// 	// @include dev(laptop) {
+	// 	// 	--w_prompt_textarea: 40rem;
+	// 	// 	// border-color: lightblue;
+	// 	// }
+
+	// 	// // @include dev(tab-land) {
+	// 	// // 	--w_prompt_textarea: 40rem;
+	// 	// // 	border-color: lightpink;
+	// 	// // }
+
+	// 	// @include dev(big-desktop) {
+	// 	// 	--w_prompt_textarea: 52rem;
+	// 	// 	// border-color: lightgreen;
+	// 	// }
 	// }
 
-	@include dev(big-desktop) {
-		--w_prompt_textarea: 52rem;
-		// border-color: lightgreen;
-	}
 }

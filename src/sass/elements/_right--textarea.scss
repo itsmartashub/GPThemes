@@ -64,18 +64,6 @@ main form {
 			color: var(--c-accent) !important;
 		}
 
-		/* 📎 "Attach files" button parent oof parent which has items-end */
-		// div:has(& > div[type='button'][aria-haspopup='dialog']:has(button[aria-label='Attach files'])) {
-		// div[type='button'][aria-haspopup='dialog']:has(button[aria-label='Attach files']) {
-		// 	margin-bottom: calc(var(--p-prompt-textarea) / 2);
-		// }
-
-		/* 📎 Attach files svg */
-		// button[aria-label='Attach files'] svg {
-		// 	color: var(--c-accent) !important;
-		// }
-		/* Moram ovako jer imamo dva div[type='button'][aria-haspopup='dialog'] */
-
 		div:has(> input[type='file']) {
 
 			/* 📎 "Attach files" svg */
@@ -92,22 +80,10 @@ main form {
 		/* 🖼️ "Attach Files" - attached image wrapper */
 		div[type='button'][aria-haspopup='dialog'] {
 
-			// border: 2px solid lightgreen !important;
 			/* "Attach Files" attached image */
 			span.bg-cover {
 				border-radius: 10px !important;
 			}
-
-			// div[type='button'][aria-haspopup='dialog']:has(input[type='file']) {
-			// 	// border: 2px solid red !important;
-
-			// 	/* 📎 "Attach files" svg */
-			// 	// button:has(> svg) {
-			// 	// 	svg {
-			// 	// 		color: var(--c-accent) !important;
-			// 	// 	}
-			// 	// }
-			// }
 		}
 	}
 

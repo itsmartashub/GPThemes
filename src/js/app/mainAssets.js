@@ -23,8 +23,9 @@ function toggleChatFullWidth(e) {
 	console.log('checked', e.target.checked)
 
 	if (e.target.checked) {
-		applySettings({ w_chat_user: '100%', w_chat_gpt: '100%' })
-		saveSettings({ w_chat_user: '100%', w_chat_gpt: '100%' })
+		// ! user chat cant be '100%' bcs the edit icon is out of wrapper then and it looks like it doesnt exist !!
+		applySettings({ w_chat_user: '90%', w_chat_gpt: '100%' })
+		saveSettings({ w_chat_user: '90%', w_chat_gpt: '100%' })
 		setInputCheckedValue('gpth-full-width', true)
 	} else {
 		applySettings({ w_chat_user: DEFAULTS.w_chat_user, w_chat_gpt: DEFAULTS.w_chat_gpt })
