@@ -66,6 +66,12 @@
 
 	--z-modal: 100;
 
+	--c-bg-gradient: linear-gradient(135deg,
+			hsla(var(--accent-hsl) / 0.45) 0%,
+			hsla(var(--accent-hsl) / 0.1) 40%,
+			hsla(var(--accent-hsl) / 0.05) 60%,
+			hsla(var(--accent-hsl) / 0.45) 100%);
+
 	/* .bg-token-sidebar-surface-primary
 	- sidebar bg
 	- nav item bg on hover */

@@ -6,19 +6,32 @@
     cursor: pointer;
     font-size: 1rem;
     gap: 0.8rem;
+    border-radius: calc(var(--br-btn) * 1.5);
+    padding: var(--p-btn);
+    border: 1px solid transparent;
+    transition: .25s ease-in;
+
+    &:hover {
+        // background-image: var(--c-bg-gradient);
+        background-color: hsla(var(--accent-hsl) / 0.1);
+        border-color: hsla(var(--accent-hsl) / 0.1) !important;
+        transform: scale(0.98);
+    }
 
     &__icon {
         --icon-size: 3rem;
+        --svg-muliplicator: 0.6;
         width: var(--icon-size);
         height: var(--icon-size);
         display: grid;
         place-items: center;
         border-radius: 1rem;
         background-color: hsla(var(--accent-hsl) / 0.2);
+        color: var(--c-accent);
 
-        i {
-            font-size: 1em;
-            color: var(--c-accent);
+        svg {
+            width: calc(var(--icon-size) * var(--svg-muliplicator));
+            height: calc(var(--icon-size) * var(--svg-muliplicator));
         }
     }
 

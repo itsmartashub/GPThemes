@@ -2,7 +2,7 @@ function renderSwitchOption({ inputId, isChecked = false, icon, textTitle, textS
 	return `
         <label class="gpth-switch" for="${inputId}">
             <div class="gpth-switch__icon">
-                <i class="material-icons">${icon}</i>
+                ${icon}
             </div>
 
             <div class="gpth-switch__text">

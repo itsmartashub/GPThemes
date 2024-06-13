@@ -1,5 +1,6 @@
 import browser from 'webextension-polyfill'
 import { renderSwitchOption } from './components/renderSwitch'
+import { icon_full_width } from './components/icons'
 
 const DEFAULTS = {
 	w_chat_user: 'initial',
@@ -12,9 +13,10 @@ let assetsHtmlCode = `
         ${renderSwitchOption({
 			inputId: 'gpth-full-width',
 			isChecked: false,
-			icon: '🖥️',
+			icon: icon_full_width,
 			textTitle: 'Chat Full Width',
-			textSubtitle: 'Make the chat bubbles to take the full width',
+			// textSubtitle: 'Maximize the chat layout and prompt field to fill the screen',
+			textSubtitle: "Expand chat and prompt field to screen's edge for wider conversation view",
 		})}
     </section>
 `
