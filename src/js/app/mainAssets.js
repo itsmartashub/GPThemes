@@ -42,14 +42,14 @@ let assetsHtmlCode = `
 // 	}
 // }
 function toggleChatFullWidth(e) {
+	console.log('checked', e.target.checked)
+
 	if (e.target.checked) {
 		applySettings({ w_chat_user: '100%', w_chat_gpt: '100%' })
-		// document.documentElement.style.setProperty(`--w_chat_gpt`, '100%')
-		// document.documentElement.style.setProperty(`--w_chat_user`, '100%')
+		saveSettings({ w_chat_user: '100%', w_chat_gpt: '100%' })
 	} else {
-		// document.documentElement.style.setProperty(`--w_chat_gpt`, DEFAULTS.w_chat_gpt)
-		// document.documentElement.style.setProperty(`--w_chat_user`, DEFAULTS.w_chat_user)
 		applySettings({ w_chat_user: DEFAULTS.w_chat_user, w_chat_gpt: DEFAULTS.w_chat_gpt })
+		saveSettings({ w_chat_user: DEFAULTS.w_chat_user, w_chat_gpt: DEFAULTS.w_chat_gpt })
 	}
 }
 function applySettings(settings) {
@@ -59,15 +59,28 @@ function applySettings(settings) {
 		console.log(key, getComputedStyle(document.documentElement).getPropertyValue(`--${key}`))
 	})
 }
+// function setInputFieldValue(inputSelector, inputVal) {
+// 	const inputEl = document.querySelector(`.gpth-settings #${inputSelector}`)
 
-// Function to save settings to Chrome Storage
-// async function saveSettings(settings) {
-// 	try {
-// 		await browser.storage.sync.set(settings)
-// 	} catch (error) {
-// 		console.error('Failed to save settings:', error)
-// 	}
+// 	inputEl.value = inputVal
 // }
+// Function to save settings to Chrome Storage
+async function saveSettings(settings) {
+	try {
+		await browser.storage.sync.set(settings)
+	} catch (error) {
+		console.error('Failed to save settings:', error)
+	}
+}
+async function loadSettings() {
+	try {
+		const settings = await browser.storage.sync.get(Object.keys(DEFAULTS))
+
+		applySettings(settings)
+	} catch (error) {
+		console.error('Failed to load settings:', error)
+	}
+}
 
 function handleAssetsListeners() {
 	console.log('handleAssetsListeners() called')
@@ -80,4 +93,11 @@ function handleAssetsListeners() {
 	selectors.chatFullWidth.addEventListener('change', toggleChatFullWidth)
 }
 
-export { assetsHtmlCode, handleAssetsListeners }
+// Load settings on page load
+function init() {
+	console.log('initAssets() called')
+	loadSettings()
+}
+// init()
+
+export { assetsHtmlCode, handleAssetsListeners, init }

@@ -409,6 +409,14 @@ html[data-gptheme='oled'] main [data-testid^='conversation-turn-']:has([data-mes
 	}
 }
 
+main {
+
+	[data-testid^='conversation-turn-'] .mx-auto.flex.flex-1.text-base,
+	[data-testid^='conversation-turn-']:has([data-message-author-role='user']) [class*='bg-[#f4f4f4]'],
+	&:has(#prompt-textarea) [class*='lg:max-w-[40rem]'] {
+		transition: 0.3s ease-in-out;
+	}
+}
 
 /* main [data-testid^='conversation-turn-'] {
 
