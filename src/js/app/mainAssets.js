@@ -1,6 +1,12 @@
 import browser from 'webextension-polyfill'
 import { renderSwitchOption } from './components/renderSwitch'
 
+const DEFAULTS = {
+	w_chat_user: 'initial',
+	w_chat_gpt: '48rem',
+	w_prompt_textarea: '48rem',
+}
+
 let assetsHtmlCode = `
     <section id="sectionAssets" class="gpth-assets">
         ${renderSwitchOption({
@@ -23,20 +29,45 @@ let assetsHtmlCode = `
     textSubtitle: 'Automatic make chat full width when the sidebar is collapsed, and vice-versa',
 })} */
 
+// function toggleChatFullWidth(e) {
+// 	/* TODO: FIX THIS, this is not good logic when we are not on conversation page, so we need to fix this by editing the CSS var and not adding the class on main */
+// 	const mainConversation = document.querySelector("main:has([data-testid^='conversation-turn-'])")
+
+// 	if (!mainConversation) return alert('No main conversation found')
+
+// 	if (e.target.checked && !mainConversation.classList.contains('gpth-chat-bubble-full-width')) {
+// 		mainConversation?.classList.add('gpth-chat-bubble-full-width')
+// 	} else {
+// 		mainConversation?.classList.remove('gpth-chat-bubble-full-width')
+// 	}
+// }
 function toggleChatFullWidth(e) {
-	const mainConversation = document.querySelector("main:has([data-testid^='conversation-turn-'])")
-
-	console.log(e.target.checked, e.target.id)
-	console.log(mainConversation)
-
-	if (!mainConversation) return
-
-	if (e.target.checked && !mainConversation.classList.contains('gpth-chat-bubble-full-width')) {
-		mainConversation?.classList.add('gpth-chat-bubble-full-width')
+	if (e.target.checked) {
+		applySettings({ w_chat_user: '100%', w_chat_gpt: '100%' })
+		// document.documentElement.style.setProperty(`--w_chat_gpt`, '100%')
+		// document.documentElement.style.setProperty(`--w_chat_user`, '100%')
 	} else {
-		mainConversation?.classList.remove('gpth-chat-bubble-full-width')
+		// document.documentElement.style.setProperty(`--w_chat_gpt`, DEFAULTS.w_chat_gpt)
+		// document.documentElement.style.setProperty(`--w_chat_user`, DEFAULTS.w_chat_user)
+		applySettings({ w_chat_user: DEFAULTS.w_chat_user, w_chat_gpt: DEFAULTS.w_chat_gpt })
 	}
 }
+function applySettings(settings) {
+	Object.entries(settings).forEach(([key, value]) => {
+		document.documentElement.style.setProperty(`--${key}`, value)
+
+		console.log(key, getComputedStyle(document.documentElement).getPropertyValue(`--${key}`))
+	})
+}
+
+// Function to save settings to Chrome Storage
+// async function saveSettings(settings) {
+// 	try {
+// 		await browser.storage.sync.set(settings)
+// 	} catch (error) {
+// 		console.error('Failed to save settings:', error)
+// 	}
+// }
 
 function handleAssetsListeners() {
 	console.log('handleAssetsListeners() called')

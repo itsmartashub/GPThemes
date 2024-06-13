@@ -1,19 +1,20 @@
 main:has(#prompt-textarea) [class*='lg:max-w-[40rem]'] {
 	// border: 1px solid red;
 
-	max-width: var(--max-w-chat-bubble) !important;
+	max-width: var(--w_prompt_textarea) !important;
 
 	@include dev(laptop) {
-		--max-w-chat-bubble: 40rem;
+		--w_prompt_textarea: 40rem;
 		// border-color: lightblue;
 	}
+
 	// @include dev(tab-land) {
-	// 	--max-w-chat-bubble: 40rem;
+	// 	--w_prompt_textarea: 40rem;
 	// 	border-color: lightpink;
 	// }
 
 	@include dev(big-desktop) {
-		--max-w-chat-bubble: 52rem;
+		--w_prompt_textarea: 52rem;
 		// border-color: lightgreen;
 	}
 }
