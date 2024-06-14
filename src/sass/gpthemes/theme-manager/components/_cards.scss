@@ -106,6 +106,7 @@
         appearance: textfield;
     }
 
+    /* _________________   SMALL CARDS   _________________ */
 
     &--small {
         label {
@@ -148,7 +149,7 @@
             font-size: 0.42em;
         }
 
-        &:has(input:focus) {
+        &:has(input:focus):not(&[type="range"]) {
             .card__unitname-wrapper {
                 display: none;
             }
@@ -265,6 +266,46 @@
             select {
                 transform: translateY(-2px);
             }
+        }
+    }
+
+
+    /* _________________   RANGE CARDS   _________________ */
+    &--range {
+        label {
+            height: 5rem;
+            // padding: 0.3rem;
+            background-color: var(--c-surface-2);
+        }
+
+        input {
+            width: 85% !important;
+            margin: 0 auto;
+        }
+
+        .card__unit {
+            --px: 0.5rem;
+            background-color: hsla(var(--accent-hsl) / 0.12);
+            color: var(--c-accent);
+            font-size: 0.5em;
+            width: max-content;
+            line-height: 1;
+            padding: 0.2rem var(--px);
+            translate: -0.15rem 0;
+        }
+
+        .card__name {
+            font-size: 0.42em;
+        }
+
+        .card__output {
+            aspect-ratio: 1 / 1;
+            background-color: hsla(var(--accent-hsl) / 0.2);
+            color: var(--c-accent);
+            font-size: 0.8em;
+            line-height: 1;
+            // border-radius: 50vw;
+            // padding: 0.3rem;
         }
     }
 

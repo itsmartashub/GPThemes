@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { renderSwitchOption } from './components/renderSwitch'
+import { renderSwitchOption, renderSmallCardOption } from './components/renderSwitch'
 import { icon_full_width } from './components/icons'
 
 const FW_DEFAULTS = {
@@ -29,52 +29,77 @@ let assetsHtmlCode = `
 			// textSubtitle: 'Maximize the chat layout and prompt field to fill the screen',
 			textSubtitle: "Expand chat and prompt field to screen's edge for wider conversation view",
 		})}
+
+		<div class="grid items-center gap-2 grid-cols-2">
+			${renderSmallCardOption({
+				name: 'Chat Custom Width',
+				inputId: 'gpth-full-width-custom',
+				inputType: 'range',
+				inputValue: FW_DEFAULTS.w_chat_gpt,
+				inputPlaceholder: '100%',
+				min: 0,
+				max: 100,
+				unit: '%',
+			})}
+			${renderSmallCardOption({
+				name: 'Prompt Field Width',
+				inputId: 'gpth-textarea-width-custom',
+				inputType: 'range',
+				inputValue: FW_DEFAULTS.w_prompt_textarea,
+				inputPlaceholder: '100%',
+				min: 0,
+				max: 100,
+				unit: '%',
+			})}
+		</div>
     </section>
 `
-
+function whenFullWidth() {
+	applySettings({
+		w_chat_user: FW_OPTIONS.w_chat_user,
+		w_chat_gpt: FW_OPTIONS.w_chat_gpt,
+		chat_user_edit_icon_right: FW_OPTIONS.chat_user_edit_icon_right,
+		chat_user_edit_icon_top: FW_OPTIONS.chat_user_edit_icon_top,
+		chat_user_edit_icon_transform: FW_OPTIONS.chat_user_edit_icon_transform,
+	})
+	saveSettings({
+		w_chat_user: FW_OPTIONS.w_chat_user,
+		w_chat_gpt: FW_OPTIONS.w_chat_gpt,
+		chat_user_edit_icon_right: FW_OPTIONS.chat_user_edit_icon_right,
+		chat_user_edit_icon_top: FW_OPTIONS.chat_user_edit_icon_top,
+		chat_user_edit_icon_transform: FW_OPTIONS.chat_user_edit_icon_transform,
+	})
+	setInputCheckedValue('gpth-full-width', true)
+}
+function whenDefaultWidth() {
+	applySettings({
+		w_chat_user: FW_DEFAULTS.w_chat_user,
+		w_chat_gpt: FW_DEFAULTS.w_chat_gpt,
+		chat_user_edit_icon_right: FW_DEFAULTS.chat_user_edit_icon_right,
+		chat_user_edit_icon_top: FW_DEFAULTS.chat_user_edit_icon_top,
+		chat_user_edit_icon_transform: FW_DEFAULTS.chat_user_edit_icon_transform,
+	})
+	saveSettings({
+		w_chat_user: FW_DEFAULTS.w_chat_user,
+		w_chat_gpt: FW_DEFAULTS.w_chat_gpt,
+		chat_user_edit_icon_right: FW_DEFAULTS.chat_user_edit_icon_right,
+		chat_user_edit_icon_top: FW_DEFAULTS.chat_user_edit_icon_top,
+		chat_user_edit_icon_transform: FW_DEFAULTS.chat_user_edit_icon_transform,
+	})
+	setInputCheckedValue('gpth-full-width', false)
+}
 function toggleChatFullWidth(e) {
-	console.log('checked', e.target.checked)
-
 	if (e.target.checked) {
-		// ! user chat cant be '100%' bcs the edit icon is out of wrapper then and it looks like it doesnt exist !!
-		applySettings({
-			w_chat_user: FW_OPTIONS.w_chat_user,
-			w_chat_gpt: FW_OPTIONS.w_chat_gpt,
-			chat_user_edit_icon_right: FW_OPTIONS.chat_user_edit_icon_right,
-			chat_user_edit_icon_top: FW_OPTIONS.chat_user_edit_icon_top,
-			chat_user_edit_icon_transform: FW_OPTIONS.chat_user_edit_icon_transform,
-		})
-		saveSettings({
-			w_chat_user: FW_OPTIONS.w_chat_user,
-			w_chat_gpt: FW_OPTIONS.w_chat_gpt,
-			chat_user_edit_icon_right: FW_OPTIONS.chat_user_edit_icon_right,
-			chat_user_edit_icon_top: FW_OPTIONS.chat_user_edit_icon_top,
-			chat_user_edit_icon_transform: FW_OPTIONS.chat_user_edit_icon_transform,
-		})
-		setInputCheckedValue('gpth-full-width', true)
+		whenFullWidth()
 	} else {
-		applySettings({
-			w_chat_user: FW_DEFAULTS.w_chat_user,
-			w_chat_gpt: FW_DEFAULTS.w_chat_gpt,
-			chat_user_edit_icon_right: FW_DEFAULTS.chat_user_edit_icon_right,
-			chat_user_edit_icon_top: FW_DEFAULTS.chat_user_edit_icon_top,
-			chat_user_edit_icon_transform: FW_DEFAULTS.chat_user_edit_icon_transform,
-		})
-		saveSettings({
-			w_chat_user: FW_DEFAULTS.w_chat_user,
-			w_chat_gpt: FW_DEFAULTS.w_chat_gpt,
-			chat_user_edit_icon_right: FW_DEFAULTS.chat_user_edit_icon_right,
-			chat_user_edit_icon_top: FW_DEFAULTS.chat_user_edit_icon_top,
-			chat_user_edit_icon_transform: FW_DEFAULTS.chat_user_edit_icon_transform,
-		})
-		setInputCheckedValue('gpth-full-width', false)
+		whenDefaultWidth()
 	}
 }
 function applySettings(settings) {
 	Object.entries(settings).forEach(([key, value]) => {
 		document.documentElement.style.setProperty(`--${key}`, value)
 
-		console.log(key, getComputedStyle(document.documentElement).getPropertyValue(`--${key}`))
+		// console.log(key, getComputedStyle(document.documentElement).getPropertyValue(`--${key}`))
 	})
 }
 function setInputCheckedValue(inputSelector, isChecked) {
@@ -102,14 +127,33 @@ async function loadSettings() {
 	}
 }
 
+function handleChatCustomWidth(e) {
+	console.log('handleChatCustomWidth()', e.target.value)
+
+	if (e.target.value === '100') {
+		whenFullWidth()
+		return
+	}
+
+	applySettings({
+		w_chat_gpt: `${e.target.value}%`,
+	})
+	saveSettings({
+		w_chat_gpt: `${e.target.value}%`,
+	})
+	setInputCheckedValue('gpth-full-width', false)
+}
+
 function handleAssetsListeners() {
 	console.log('handleAssetsListeners() called')
 
 	const selectors = {
 		chatFullWidth: document.querySelector('.gpth-settings #gpth-full-width'),
+		chatCustomWidth: document.querySelector('.gpth-settings #gpth-full-width-custom'),
 	}
 
 	selectors.chatFullWidth.addEventListener('change', toggleChatFullWidth)
+	selectors.chatCustomWidth.addEventListener('change', handleChatCustomWidth)
 }
 
 // Load settings on page load
