@@ -5,9 +5,9 @@ main:has(#prompt-textarea) {
 		padding-right: var(--px-chat-bubble-edge-gap) !important;
 
 		/* Textarea and chats wrapper */
-		.mx-auto.flex.flex-1.text-base {
-			max-width: var(--w_prompt_textarea) !important;
-		}
+		// .mx-auto.flex.flex-1.text-base {
+		// 	max-width: var(--w_prompt_textarea) !important;
+		// }
 	}
 
 	// [class*='xl:max-w-[48rem]'] {
