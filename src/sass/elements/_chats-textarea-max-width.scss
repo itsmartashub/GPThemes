@@ -8,6 +8,10 @@ main:has(#prompt-textarea) {
 		// .mx-auto.flex.flex-1.text-base {
 		// 	max-width: var(--w_prompt_textarea) !important;
 		// }
+		/* Only textarea wrapper */
+		.mx-auto.flex.flex-1.text-base:has(>form) {
+			max-width: var(--w_prompt_textarea) !important;
+		}
 	}
 
 	// [class*='xl:max-w-[48rem]'] {

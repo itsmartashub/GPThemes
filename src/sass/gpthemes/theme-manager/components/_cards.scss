@@ -273,7 +273,7 @@
     /* _________________   RANGE CARDS   _________________ */
     &--range {
         label {
-            height: 5rem;
+            // height: 5.5rem;
             // padding: 0.3rem;
             background-color: var(--c-surface-2);
         }
@@ -281,6 +281,7 @@
         input {
             width: 85% !important;
             margin: 0 auto;
+            align-self: flex-end;
         }
 
         .card__unit {
@@ -299,13 +300,14 @@
         }
 
         .card__output {
+            --output-size: 2.5rem;
+            // width: var(--output-size);
+            // height: var(--output-size);
             aspect-ratio: 1 / 1;
             background-color: hsla(var(--accent-hsl) / 0.2);
             color: var(--c-accent);
             font-size: 0.8em;
             line-height: 1;
-            // border-radius: 50vw;
-            // padding: 0.3rem;
         }
     }
 
