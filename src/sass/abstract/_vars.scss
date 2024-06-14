@@ -72,6 +72,15 @@
 			hsla(var(--accent-hsl) / 0.05) 60%,
 			hsla(var(--accent-hsl) / 0.45) 100%);
 
+	/* ? --- OTHERER --- */
+	--chat_user_edit_icon_right: 100%;
+	// --chat_user_edit_icon_top: translateY(100%);
+	--chat_user_edit_icon_top: 0;
+	--chat_user_edit_icon_transform: unset;
+
+	// --chat_user_edit_icon_top: initial;
+
+
 	/* .bg-token-sidebar-surface-primary
 	- sidebar bg
 	- nav item bg on hover */

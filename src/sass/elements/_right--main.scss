@@ -141,6 +141,8 @@ main [data-testid^='conversation-turn-'] {
 	&:has([data-message-author-role='user']) {
 		line-height: calc(var(--lineHeight) / 16) !important;
 
+
+
 		/*  RIGHT - CHATS BUBBLE BG */
 		// & > div:first-child > div:first-child {
 		/* ? gpt4o - User message */
@@ -157,11 +159,19 @@ main [data-testid^='conversation-turn-'] {
 		/* Flex-end the Reply in user chat bubble */
 		[data-message-author-role='user'] {
 			align-items: flex-end !important;
+			/* TODO: Make this only when full-width! See what this can break since the origitnal is overflow-x-hidden, and when i make chats full-width, edit icon for user chat is cut-of so i need to fix it by this and editing the position of the edit icon. BUT HAVE TO TEST THIS!! */
+			overflow: visible !important;
 
 			/* Edit icon in User chat */
 			.absolute.bottom-0.top-0.right-full {
+				/* TODO: Make this only when full-width! - EDIT ICON */
+				right: var(--chat_user_edit_icon_right) !important; // TODO: this
+				top: var(--chat_user_edit_icon_top) !important; // TODO: this
+				transform: var(--chat_user_edit_icon_transform) !important; // TODO: this
+
 				button {
 					background-color: hsla(var(--accent-hsl) / 0.1);
+					backdrop-filter: blur(8px);
 				}
 			}
 
