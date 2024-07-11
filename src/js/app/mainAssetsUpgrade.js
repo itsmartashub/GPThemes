@@ -1,3 +1,5 @@
+/* const keysToRemove = Object.keys(FW_DEFsAULTS) // ? DEV ONLY var - Get the keys from FW_DEFAULTS object */
+
 import browser from 'webextension-polyfill'
 import { renderSwitchOption, renderSmallCardOption } from './components/renderSwitch'
 import { icon_full_width } from './components/icons'
@@ -6,7 +8,8 @@ import { renderButton } from './components/renderButtons'
 const removePercentAndRem = (str) => str?.replace(/%|rem/g, '')
 
 const FW_DEFAULTS = {
-	w_chat_user: 'initial',
+	// w_chat_user: 'initial',
+	w_chat_user: '70%',
 	w_chat_gpt: '48rem',
 	w_prompt_textarea: '48rem',
 	chat_user_edit_icon_right: '100%',
@@ -25,7 +28,7 @@ const FW_OPTIONS = {
 let currentSettings = { ...FW_DEFAULTS }
 let isSyncEnabled = false
 
-const keysToRemove = Object.keys(FW_DEFAULTS)
+const keysToRemove = Object.keys(FW_DEFAULTS) // ? DEV ONLY var - Get the keys from FW_DEFAULTS object
 
 let assetsHtmlCode = `
     <section id="sectionAssets" class="gpth-assets">
@@ -86,23 +89,32 @@ function setInputCheckedValue(inputSelector, isChecked) {
 	if (inputEl) inputEl.checked = isChecked
 }
 
-// Add this helper function
 function ensureValidPercentage(value) {
 	const numValue = parseInt(value, 10)
 	if (isNaN(numValue) || numValue < 0) return '0'
 	if (numValue > 100) return '100'
 	return numValue.toString()
 }
+
 function setRangeOutput(inputSelector, inputVal) {
 	const outputRangeEl = document.querySelector(`.gpth-settings #range-output-${inputSelector}`)
 	if (outputRangeEl) {
 		outputRangeEl.textContent = ensureValidPercentage(inputVal)
 	}
 }
+
 function setInputFieldValue(inputSelector, inputVal) {
 	const inputEl = document.querySelector(`.gpth-settings #${inputSelector}`)
 	if (inputEl) {
 		inputEl.value = ensureValidPercentage(inputVal)
+	}
+}
+
+const debounce = (func, delay) => {
+	let timeoutId
+	return (...args) => {
+		clearTimeout(timeoutId)
+		timeoutId = setTimeout(() => func(...args), delay)
 	}
 }
 
@@ -111,8 +123,11 @@ async function saveSettings(settings) {
 		await browser.storage.sync.set(settings)
 	} catch (error) {
 		console.error('Failed to save settings:', error)
+		// TODO: Show user-friendly error message
 	}
 }
+
+const debouncedSaveSettings = debounce(saveSettings, 300)
 
 async function loadSettings() {
 	try {
@@ -124,6 +139,7 @@ async function loadSettings() {
 		updateUI(currentSettings)
 	} catch (error) {
 		console.error('Failed to load settings:', error)
+		// TODO: Show user-friendly error message
 	}
 }
 
@@ -138,29 +154,46 @@ function updateUI(settings) {
 	setInputFieldValue('gpth-textarea-width-custom', removePercentAndRem(settings.w_prompt_textarea))
 	setRangeOutput('gpth-textarea-width-custom', removePercentAndRem(settings.w_prompt_textarea))
 
-	// Disable textarea width slider when sync is enabled
 	const textareaWidthSlider = document.querySelector('#gpth-textarea-width-custom')
 	if (textareaWidthSlider) {
 		textareaWidthSlider.disabled = isSyncEnabled
 	}
+	updateEditIconPosition(settings.w_chat_gpt)
+}
+
+function updateEditIconPosition(chatWidth) {
+	const chatWidthValue = parseInt(removePercentAndRem(chatWidth))
+	if (chatWidthValue > 48) {
+		// Assuming 48rem is the default width
+		currentSettings.chat_user_edit_icon_right = FW_OPTIONS.chat_user_edit_icon_right
+		currentSettings.chat_user_edit_icon_top = FW_OPTIONS.chat_user_edit_icon_top
+		currentSettings.chat_user_edit_icon_transform = FW_OPTIONS.chat_user_edit_icon_transform
+	} else {
+		currentSettings.chat_user_edit_icon_right = FW_DEFAULTS.chat_user_edit_icon_right
+		currentSettings.chat_user_edit_icon_top = FW_DEFAULTS.chat_user_edit_icon_top
+		currentSettings.chat_user_edit_icon_transform = FW_DEFAULTS.chat_user_edit_icon_transform
+	}
+	applySettings(currentSettings)
 }
 
 function toggleChatFullWidth(e) {
 	const isFullWidth = e.target.checked
 	if (isFullWidth) {
 		currentSettings.w_chat_gpt = '100%'
+		currentSettings.w_chat_user = '100%'
 		if (isSyncEnabled) {
 			currentSettings.w_prompt_textarea = '100%'
 		}
 	} else {
 		currentSettings.w_chat_gpt = FW_DEFAULTS.w_chat_gpt
+		currentSettings.w_chat_user = FW_DEFAULTS.w_chat_user
 		if (isSyncEnabled) {
 			currentSettings.w_prompt_textarea = FW_DEFAULTS.w_chat_gpt
 		}
 	}
 
 	applySettings(currentSettings)
-	saveSettings(currentSettings)
+	debouncedSaveSettings(currentSettings)
 	updateUI(currentSettings)
 }
 
@@ -170,25 +203,25 @@ function toggleSyncTextareaWithChatWidth(e) {
 		currentSettings.w_prompt_textarea = currentSettings.w_chat_gpt
 	}
 	applySettings(currentSettings)
-	saveSettings(currentSettings)
+	debouncedSaveSettings(currentSettings)
 	updateUI(currentSettings)
 }
 
 function handleChatCustomWidth(e) {
 	const value = `${e.target.value}%`
 	currentSettings.w_chat_gpt = value
+	currentSettings.w_chat_user = value
 
 	if (isSyncEnabled) {
 		currentSettings.w_prompt_textarea = value
 	}
 
-	// Uncheck full width if it's not 100%
 	if (e.target.value !== '100') {
 		setInputCheckedValue('gpth-full-width', false)
 	}
 
 	applySettings(currentSettings)
-	saveSettings(currentSettings)
+	debouncedSaveSettings(currentSettings)
 	updateUI(currentSettings)
 }
 
@@ -196,14 +229,13 @@ function handleTextareaCustomWidth(e) {
 	const value = `${e.target.value}%`
 	currentSettings.w_prompt_textarea = value
 
-	// If user manually changes textarea width, disable sync
 	if (isSyncEnabled && value !== currentSettings.w_chat_gpt) {
 		isSyncEnabled = false
 		setInputCheckedValue('gpth-sync-textarea-chat-width', false)
 	}
 
 	applySettings(currentSettings)
-	saveSettings(currentSettings)
+	debouncedSaveSettings(currentSettings)
 	updateUI(currentSettings)
 }
 
@@ -211,7 +243,7 @@ function resetWidths() {
 	currentSettings = { ...FW_DEFAULTS }
 	isSyncEnabled = false
 	applySettings(currentSettings)
-	saveSettings(currentSettings)
+	debouncedSaveSettings(currentSettings)
 	updateUI(currentSettings)
 }
 
@@ -231,19 +263,15 @@ function handleAssetsListeners() {
 	selectors.btnReset?.addEventListener('click', resetWidths)
 }
 
-// Load settings on page load
 function init() {
 	// removeSpecificStorageItems(keysToRemove)
 	loadSettings()
-
 	getAllStorageItems()
-	// removeSpecificStorageItems([...keysToRemove, 'isFullWidth', 'isTextareaSync'])
 }
 
-// Function to get all storage items
+// ? =============== DEV ONLY fn ===============
 async function getAllStorageItems() {
 	try {
-		// Get all items from the local storage
 		const items = await browser.storage.sync.get(null)
 		console.log(items)
 		return items
@@ -251,7 +279,7 @@ async function getAllStorageItems() {
 		console.error('Error getting storage items:', error)
 	}
 }
-
+// ? =============== DEV ONLY fn ===============
 // Function to remove specific named items from sync storage
 async function removeSpecificStorageItems(keys) {
 	try {
