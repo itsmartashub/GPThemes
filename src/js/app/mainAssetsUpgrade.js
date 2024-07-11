@@ -16,7 +16,6 @@ const FW_DEFAULTS = {
 	chat_user_edit_icon_top: '0',
 	chat_user_edit_icon_transform: 'unset',
 }
-
 const FW_OPTIONS = {
 	w_chat_user: '100%',
 	w_chat_gpt: '100%',
@@ -78,36 +77,19 @@ let assetsHtmlCode = `
     </section>
 `
 
-function applySettings(settings) {
+const applySettings = (settings) => {
 	Object.entries(settings).forEach(([key, value]) => {
 		document.documentElement.style.setProperty(`--${key}`, value)
 	})
 }
 
-function setInputCheckedValue(inputSelector, isChecked) {
-	const inputEl = document.querySelector(`.gpth-settings #${inputSelector}`)
-	if (inputEl) inputEl.checked = isChecked
+const setElementProperty = (selector, property, value) => {
+	const element = document.querySelector(selector)
+	if (element) element[property] = value
 }
-
-function ensureValidPercentage(value) {
+const ensureValidPercentage = (value) => {
 	const numValue = parseInt(value, 10)
-	if (isNaN(numValue) || numValue < 0) return '0'
-	if (numValue > 100) return '100'
-	return numValue.toString()
-}
-
-function setRangeOutput(inputSelector, inputVal) {
-	const outputRangeEl = document.querySelector(`.gpth-settings #range-output-${inputSelector}`)
-	if (outputRangeEl) {
-		outputRangeEl.textContent = ensureValidPercentage(inputVal)
-	}
-}
-
-function setInputFieldValue(inputSelector, inputVal) {
-	const inputEl = document.querySelector(`.gpth-settings #${inputSelector}`)
-	if (inputEl) {
-		inputEl.value = ensureValidPercentage(inputVal)
-	}
+	return isNaN(numValue) ? '0' : Math.max(0, Math.min(100, numValue)).toString()
 }
 
 const debounce = (func, delay) => {
@@ -118,7 +100,7 @@ const debounce = (func, delay) => {
 	}
 }
 
-async function saveSettings(settings) {
+const saveSettings = async (settings) => {
 	try {
 		await browser.storage.sync.set(settings)
 	} catch (error) {
@@ -129,7 +111,7 @@ async function saveSettings(settings) {
 
 const debouncedSaveSettings = debounce(saveSettings, 300)
 
-async function loadSettings() {
+const loadSettings = async () => {
 	try {
 		const settings = await browser.storage.sync.get(null)
 		currentSettings = { ...FW_DEFAULTS, ...settings }
@@ -143,61 +125,63 @@ async function loadSettings() {
 	}
 }
 
-function updateUI(settings) {
+const updateUI = (settings) => {
 	const isFullWidth = settings.w_chat_gpt === '100%'
 
-	setInputCheckedValue('gpth-full-width', isFullWidth)
-	setInputFieldValue('gpth-full-width-custom', removePercentAndRem(settings.w_chat_gpt))
-	setRangeOutput('gpth-full-width-custom', removePercentAndRem(settings.w_chat_gpt))
+	setElementProperty('.gpth-settings #gpth-full-width', 'checked', isFullWidth)
+	setElementProperty('.gpth-settings #gpth-full-width-custom', 'value', removePercentAndRem(settings.w_chat_gpt))
+	setElementProperty(
+		'.gpth-settings #range-output-gpth-full-width-custom',
+		'textContent',
+		removePercentAndRem(settings.w_chat_gpt)
+	)
 
-	setInputCheckedValue('gpth-sync-textarea-chat-width', isSyncEnabled)
-	setInputFieldValue('gpth-textarea-width-custom', removePercentAndRem(settings.w_prompt_textarea))
-	setRangeOutput('gpth-textarea-width-custom', removePercentAndRem(settings.w_prompt_textarea))
+	setElementProperty('.gpth-settings #gpth-sync-textarea-chat-width', 'checked', isSyncEnabled)
+	setElementProperty(
+		'.gpth-settings #gpth-textarea-width-custom',
+		'value',
+		removePercentAndRem(settings.w_prompt_textarea)
+	)
+	setElementProperty(
+		'.gpth-settings #range-output-gpth-textarea-width-custom',
+		'textContent',
+		removePercentAndRem(settings.w_prompt_textarea)
+	)
 
-	const textareaWidthSlider = document.querySelector('#gpth-textarea-width-custom')
-	if (textareaWidthSlider) {
-		textareaWidthSlider.disabled = isSyncEnabled
-	}
+	setElementProperty('.gpth-settings #gpth-textarea-width-custom', 'disabled', isSyncEnabled)
+
 	updateEditIconPosition(settings.w_chat_gpt)
 }
 
-function updateEditIconPosition(chatWidth) {
+const updateEditIconPosition = (chatWidth) => {
 	const chatWidthValue = parseInt(removePercentAndRem(chatWidth))
-	if (chatWidthValue > 48) {
-		// Assuming 48rem is the default width
-		currentSettings.chat_user_edit_icon_right = FW_OPTIONS.chat_user_edit_icon_right
-		currentSettings.chat_user_edit_icon_top = FW_OPTIONS.chat_user_edit_icon_top
-		currentSettings.chat_user_edit_icon_transform = FW_OPTIONS.chat_user_edit_icon_transform
-	} else {
-		currentSettings.chat_user_edit_icon_right = FW_DEFAULTS.chat_user_edit_icon_right
-		currentSettings.chat_user_edit_icon_top = FW_DEFAULTS.chat_user_edit_icon_top
-		currentSettings.chat_user_edit_icon_transform = FW_DEFAULTS.chat_user_edit_icon_transform
-	}
+	const iconSettings = chatWidthValue > 48 ? FW_OPTIONS : FW_DEFAULTS
+
+	Object.assign(currentSettings, {
+		chat_user_edit_icon_right: iconSettings.chat_user_edit_icon_right,
+		chat_user_edit_icon_top: iconSettings.chat_user_edit_icon_top,
+		chat_user_edit_icon_transform: iconSettings.chat_user_edit_icon_transform,
+	})
+
 	applySettings(currentSettings)
 }
 
-function toggleChatFullWidth(e) {
+const toggleChatFullWidth = (e) => {
 	const isFullWidth = e.target.checked
-	if (isFullWidth) {
-		currentSettings.w_chat_gpt = '100%'
-		currentSettings.w_chat_user = '100%'
-		if (isSyncEnabled) {
-			currentSettings.w_prompt_textarea = '100%'
-		}
-	} else {
-		currentSettings.w_chat_gpt = FW_DEFAULTS.w_chat_gpt
-		currentSettings.w_chat_user = FW_DEFAULTS.w_chat_user
-		if (isSyncEnabled) {
-			currentSettings.w_prompt_textarea = FW_DEFAULTS.w_chat_gpt
-		}
-	}
+	const width = isFullWidth ? '100%' : FW_DEFAULTS.w_chat_gpt
+
+	Object.assign(currentSettings, {
+		w_chat_gpt: width,
+		w_chat_user: width,
+		w_prompt_textarea: isSyncEnabled ? width : currentSettings.w_prompt_textarea,
+	})
 
 	applySettings(currentSettings)
 	debouncedSaveSettings(currentSettings)
 	updateUI(currentSettings)
 }
 
-function toggleSyncTextareaWithChatWidth(e) {
+const toggleSyncTextareaWithChatWidth = (e) => {
 	isSyncEnabled = e.target.checked
 	if (isSyncEnabled) {
 		currentSettings.w_prompt_textarea = currentSettings.w_chat_gpt
@@ -207,31 +191,20 @@ function toggleSyncTextareaWithChatWidth(e) {
 	updateUI(currentSettings)
 }
 
-function handleChatCustomWidth(e) {
-	const value = `${e.target.value}%`
-	currentSettings.w_chat_gpt = value
-	currentSettings.w_chat_user = value
+// function handleChatCustomWidth(e) {
+const handleWidthChange = (key, e) => {
+	const value = `${ensureValidPercentage(e.target.value)}%`
+	currentSettings[key] = value
 
-	if (isSyncEnabled) {
-		currentSettings.w_prompt_textarea = value
-	}
-
-	if (e.target.value !== '100') {
-		setInputCheckedValue('gpth-full-width', false)
-	}
-
-	applySettings(currentSettings)
-	debouncedSaveSettings(currentSettings)
-	updateUI(currentSettings)
-}
-
-function handleTextareaCustomWidth(e) {
-	const value = `${e.target.value}%`
-	currentSettings.w_prompt_textarea = value
-
-	if (isSyncEnabled && value !== currentSettings.w_chat_gpt) {
+	if (key === 'w_chat_gpt') {
+		currentSettings.w_chat_user = value
+		if (isSyncEnabled) {
+			currentSettings.w_prompt_textarea = value
+		}
+		setElementProperty('.gpth-settings #gpth-full-width', 'checked', e.target.value === '100')
+	} else if (key === 'w_prompt_textarea' && isSyncEnabled && value !== currentSettings.w_chat_gpt) {
 		isSyncEnabled = false
-		setInputCheckedValue('gpth-sync-textarea-chat-width', false)
+		setElementProperty('.gpth-settings #gpth-sync-textarea-chat-width', 'checked', false)
 	}
 
 	applySettings(currentSettings)
@@ -239,7 +212,7 @@ function handleTextareaCustomWidth(e) {
 	updateUI(currentSettings)
 }
 
-function resetWidths() {
+const resetWidths = () => {
 	currentSettings = { ...FW_DEFAULTS }
 	isSyncEnabled = false
 	applySettings(currentSettings)
@@ -247,23 +220,21 @@ function resetWidths() {
 	updateUI(currentSettings)
 }
 
-function handleAssetsListeners() {
-	const selectors = {
-		chatFullWidth: document.querySelector('.gpth-settings #gpth-full-width'),
-		syncTextareaWithChats: document.querySelector('.gpth-settings #gpth-sync-textarea-chat-width'),
-		chatCustomWidth: document.querySelector('.gpth-settings #gpth-full-width-custom'),
-		textareaCustomWidth: document.querySelector('.gpth-settings #gpth-textarea-width-custom'),
-		btnReset: document.querySelector('.gpth-settings #resetWidths'),
-	}
-
-	selectors.chatFullWidth?.addEventListener('change', toggleChatFullWidth)
-	selectors.syncTextareaWithChats?.addEventListener('change', toggleSyncTextareaWithChatWidth)
-	selectors.chatCustomWidth?.addEventListener('input', handleChatCustomWidth)
-	selectors.textareaCustomWidth?.addEventListener('input', handleTextareaCustomWidth)
-	selectors.btnReset?.addEventListener('click', resetWidths)
+const handleAssetsListeners = () => {
+	document.querySelector('.gpth-settings #gpth-full-width')?.addEventListener('change', toggleChatFullWidth)
+	document
+		.querySelector('.gpth-settings #gpth-sync-textarea-chat-width')
+		?.addEventListener('change', toggleSyncTextareaWithChatWidth)
+	document
+		.querySelector('.gpth-settings #gpth-full-width-custom')
+		?.addEventListener('input', (e) => handleWidthChange('w_chat_gpt', e))
+	document
+		.querySelector('.gpth-settings #gpth-textarea-width-custom')
+		?.addEventListener('input', (e) => handleWidthChange('w_prompt_textarea', e))
+	document.querySelector('.gpth-settings #resetWidths')?.addEventListener('click', resetWidths)
 }
 
-function init() {
+const init = () => {
 	// removeSpecificStorageItems(keysToRemove)
 	loadSettings()
 	getAllStorageItems()
