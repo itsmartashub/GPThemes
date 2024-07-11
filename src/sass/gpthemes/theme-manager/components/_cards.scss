@@ -309,6 +309,53 @@
             font-size: 0.8em;
             line-height: 1;
         }
+
+        &.is-locked {
+            position: relative;
+            cursor: not-allowed !important;
+
+            label {
+                pointer-events: none !important;
+                opacity: 0.6 !important;
+                filter: blur(0.5px);
+            }
+
+
+            // .icon-lock-wrapper {
+            //     display: block;
+            //     position: absolute;
+            //     top: 50%;
+            //     left: 50%;
+            //     transform: translate(-50%, -50%);
+            //     background-color: hsla(var(--accent-hsl) / 0.5);
+            //     width: 100%;
+            //     height: 100%;
+            //     display: grid;
+            //     place-items: center;
+            //     z-index: 10;
+            //     border-radius: inherit;
+
+            //     .icon-lock {
+            //         width: 1.5rem;
+            //         height: 1.5rem;
+            //         color: var(--c-accent);
+            //     }
+            // }
+
+            .icon-lock {
+                position: absolute;
+                top: 6%;
+                right: 7%;
+                // transform: translateY(-50%);
+                width: 1.5rem;
+                height: 1.5rem;
+                color: var(--c-accent);
+            }
+        }
+
+        &:not(.is-locked) .icon-lock {
+            display: none;
+        }
     }
 
 }

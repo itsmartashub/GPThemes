@@ -98,7 +98,7 @@
 
         input:checked + .slider {
             background-color: var(--c-accent);
-            border: transparent !important;
+            border-color: transparent !important;
 
             &::before {
                 transform: translateX(calc(var(--chb-w) - 145%));

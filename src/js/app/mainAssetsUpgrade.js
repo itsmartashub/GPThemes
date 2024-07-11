@@ -51,6 +51,7 @@ let assetsHtmlCode = `
 				min: 0,
 				max: 100,
 				unit: '%',
+				isLocked: true,
 			})}
         </div>
 
@@ -127,6 +128,8 @@ const loadSettings = async () => {
 
 const updateUI = (settings) => {
 	const isFullWidth = settings.w_chat_gpt === '100%'
+	const textareaWidthSlider = document.querySelector('#gpth-textarea-width-custom')
+	const textareaWidthCard = textareaWidthSlider?.closest('.card')
 
 	setElementProperty('.gpth-settings #gpth-full-width', 'checked', isFullWidth)
 	setElementProperty('.gpth-settings #gpth-full-width-custom', 'value', removePercentAndRem(settings.w_chat_gpt))
@@ -148,7 +151,14 @@ const updateUI = (settings) => {
 		removePercentAndRem(settings.w_prompt_textarea)
 	)
 
-	setElementProperty('.gpth-settings #gpth-textarea-width-custom', 'disabled', isSyncEnabled)
+	if (textareaWidthSlider) {
+		textareaWidthSlider.disabled = isSyncEnabled
+	}
+	if (textareaWidthCard) {
+		textareaWidthCard.classList.toggle('is-locked', isSyncEnabled)
+	}
+
+	// setElementProperty('.gpth-settings #gpth-textarea-width-custom', 'disabled', isSyncEnabled)
 
 	updateEditIconPosition(settings.w_chat_gpt)
 }

@@ -21,9 +21,9 @@
 
         &:hover,
         &:focus {
-            --track-height: 0.8rem;
+            // --track-height: 0.8rem;
             --thumb-size-multiplier: 1.4;
-            --track-outline: 2px solid transparent;
+            --track-outline: 3px solid transparent;
         }
 
         &:focus {

@@ -1,3 +1,5 @@
+import { icon_lock } from './icons'
+
 function renderSwitchOption({ inputId, isChecked = false, icon, textTitle, textSubtitle }) {
 	return `
         <label class="gpth-switch" for="${inputId}">
@@ -26,9 +28,12 @@ function renderSmallCardOption({
 	min = 10,
 	max = 100,
 	unit = '%',
+	isLocked = false,
 }) {
+	const lockIcon = isLocked ? icon_lock : ''
+
 	return `
-        <div class="card card--range" data-gpth-err="${min}${unit} &hArr; ${max}${unit}">
+        <div class="card card--range ${isLocked ? 'is-locked' : ''}" data-gpth-err="${min}${unit} &hArr; ${max}${unit}">
             <label for="${inputId}" class="grid justify-center content-space-between p-2 gap-4 h-full w-full rounded-xl">
                 <div class="flex items-center gap-2 w-full">
                     <div class="card__output flex-none h-10 w-10 font-semibold rounded-full grid items-center justify-center" id="range-output-${inputId}">
@@ -43,7 +48,9 @@ function renderSmallCardOption({
                 </div>
 
                 <input type="${inputType}" id="${inputId}" value="${inputValue}" placeholder="${inputPlaceholder}" class="outline-none border-none" minlength="${min}" maxlength="${max}">
+
             </label>
+            ${lockIcon}
         </div>`
 }
 
