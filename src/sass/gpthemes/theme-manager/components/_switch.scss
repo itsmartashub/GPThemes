@@ -1,6 +1,7 @@
 .gpth-switch {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 0.5rem;
     cursor: pointer;
@@ -19,7 +20,7 @@
     }
 
     &__icon {
-        --icon-size: 3rem;
+        --icon-size: 2.8em;
         --svg-muliplicator: 0.6;
         width: var(--icon-size);
         height: var(--icon-size);
@@ -39,23 +40,25 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        gap: 0.3rem;
+        gap: 0.1rem;
 
         .title {
-            font-size: 0.9em;
+            font-size: 0.8em;
             font-weight: bold;
             color: var(--c-accent);
             text-transform: uppercase;
+            line-height: 1;
         }
 
         .subtitle {
-            font-size: 0.8em;
-            line-height: 1.2;
+            font-size: 0.7em;
+            line-height: 1.1;
+            font-weight: 500;
         }
     }
 
     &__checkbox {
-        --chb-w: 3.2rem;
+        --chb-w: 3rem;
         --chb-h: 1.8rem;
         --chb-edge-gap: 0.25rem;
         --chb-slider-circle-size: calc(var(--chb-h) - 2 * var(--chb-edge-gap));

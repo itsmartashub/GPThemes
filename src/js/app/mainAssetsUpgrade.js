@@ -2,7 +2,7 @@
 
 import browser from 'webextension-polyfill'
 import { renderSwitchOption, renderSmallCardOption } from './components/renderSwitch'
-import { icon_full_width } from './components/icons'
+import { icon_full_width, icon_sync } from './components/icons'
 import { renderButton } from './components/renderButtons'
 
 const removePercentAndRem = (str) => str?.replace(/%|rem/g, '')
@@ -43,7 +43,7 @@ let assetsHtmlCode = `
 				unit: '%',
 			})}
             ${renderSmallCardOption({
-				name: 'Message Width',
+				name: 'Prompt Width',
 				inputId: 'gpth-textarea-width-custom',
 				inputType: 'range',
 				inputValue: removePercentAndRem(FW_DEFAULTS.w_prompt_textarea),
@@ -66,8 +66,8 @@ let assetsHtmlCode = `
             ${renderSwitchOption({
 				inputId: 'gpth-sync-textarea-chat-width',
 				isChecked: false,
-				icon: icon_full_width,
-				textTitle: 'Sync Width',
+				icon: icon_sync,
+				textTitle: 'Sync Prompt Width',
 				textSubtitle: 'Adjust prompt field to match the chat width for a more streamlined and consistent view',
 			})}
         </div>
@@ -247,7 +247,7 @@ const handleAssetsListeners = () => {
 const init = () => {
 	// removeSpecificStorageItems(keysToRemove)
 	loadSettings()
-	getAllStorageItems()
+	// getAllStorageItems()
 }
 
 // ? =============== DEV ONLY fn ===============

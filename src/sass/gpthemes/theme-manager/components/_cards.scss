@@ -315,9 +315,38 @@
             cursor: not-allowed !important;
 
             label {
+                transform: .3s ease;
                 pointer-events: none !important;
-                opacity: 0.6 !important;
-                filter: blur(0.5px);
+                opacity: 0.7 !important;
+
+                &::after {
+                    will-change: backdrop-filter;
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-image: radial-gradient(circle at 100% 0%, hsla(var(--accent-hsl) / 0.02) 5%, hsla(var(--accent-hsl) / 0.4) 100%);
+                    z-index: 8;
+                    border-radius: inherit;
+                    backdrop-filter: blur(2px);
+                    /*  font-size: .5em;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    text-align: center;
+                    vertical-align: center;
+                    display: grid;
+                    place-items: center; */
+                }
+            }
+
+            &:hover {
+                label::after {
+                    // content: '' !important;
+                    backdrop-filter: blur(0px) !important;
+                    background-image: radial-gradient(circle at 100% 0%, hsla(var(--accent-hsl) / 0.4) 5%, hsla(var(--accent-hsl) / 0.02) 42%) !important;
+                }
             }
 
 
@@ -342,18 +371,18 @@
             //     }
             // }
 
-            .icon-lock {
+            .icon-locked {
                 position: absolute;
                 top: 6%;
                 right: 7%;
-                // transform: translateY(-50%);
-                width: 1.5rem;
-                height: 1.5rem;
+                width: 1.8rem;
                 color: var(--c-accent);
+                @extend %animScaleIn;
+                z-index: 10;
             }
         }
 
-        &:not(.is-locked) .icon-lock {
+        &:not(.is-locked) .icon-locked {
             display: none;
         }
     }
