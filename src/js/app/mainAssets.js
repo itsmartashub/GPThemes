@@ -1,5 +1,3 @@
-/* const keysToRemove = Object.keys(FW_DEFsAULTS) // ? DEV ONLY var - Get the keys from FW_DEFAULTS object */
-
 import browser from 'webextension-polyfill'
 import { renderSwitchOption, renderSmallCardOption } from './components/renderSwitch'
 import { icon_full_width, icon_sync } from './components/icons'
@@ -13,7 +11,8 @@ const removePercentAndRem = (str) => str?.replace(/%|rem/g, '')
 
 const FW_DEFAULTS = {
 	// w_chat_user: 'initial',
-	w_chat_user: '70%',
+	w_chat_user: 'max-content',
+	max_w_chat_user: '70%',
 	w_chat_gpt: '49rem',
 	w_prompt_textarea: '48rem',
 	chat_user_edit_icon_right: '100%',
@@ -21,8 +20,9 @@ const FW_DEFAULTS = {
 	chat_user_edit_icon_transform: 'unset',
 }
 const FW_OPTIONS = {
-	w_chat_user: '100%',
 	w_chat_gpt: '100%',
+	w_chat_user: '100%',
+	max_w_chat_user: '100%',
 	chat_user_edit_icon_right: 'calc(0% + 2rem)',
 	chat_user_edit_icon_top: '100%',
 	chat_user_edit_icon_transform: 'translateY(-1.25rem)',
@@ -31,7 +31,7 @@ const FW_OPTIONS = {
 let currentSettings = { ...FW_DEFAULTS }
 let isSyncEnabled = false
 
-// const keysToRemove = Object.keys(FW_DEFAULTS) // ? DEV ONLY var - Get the keys from FW_DEFAULTS object
+// const assetsStorageKeys = Object.keys(FW_DEFAULTS) // ? DEV ONLY var - Get the keys from FW_DEFAULTS object
 
 let assetsHtmlCode = `
     <section id="sectionAssets" class="gpth-assets">
@@ -183,17 +183,32 @@ const updateEditIconPosition = (chatWidth) => {
 
 const toggleChatFullWidth = (e) => {
 	const isFullWidth = e.target.checked
-	const width = isFullWidth ? '100%' : FW_DEFAULTS.w_chat_gpt
+	let widthGpt, widthUser, maxWidthUser
+	// const width = isFullWidth ? '100%' : FW_DEFAULTS.w_chat_gpt
+	// const widthUser = isFullWidth ? '100%' : FW_DEFAULTS.w_chat_user
+
+	if (isFullWidth) {
+		widthGpt = '100%'
+		widthUser = '100%'
+		maxWidthUser = '100%'
+	} else {
+		widthGpt = FW_DEFAULTS.w_chat_gpt
+		widthUser = FW_DEFAULTS.w_chat_user
+		maxWidthUser = FW_DEFAULTS.max_w_chat_user
+	}
 
 	Object.assign(currentSettings, {
-		w_chat_gpt: width,
-		w_chat_user: width,
-		w_prompt_textarea: isSyncEnabled ? width : currentSettings.w_prompt_textarea,
+		w_chat_gpt: widthGpt,
+		w_chat_user: widthUser,
+		max_w_chat_user: maxWidthUser,
+		w_prompt_textarea: isSyncEnabled ? widthGpt : currentSettings.w_prompt_textarea,
 	})
 
 	applySettings(currentSettings)
 	debouncedSaveSettings(currentSettings)
 	updateUI(currentSettings)
+
+	console.log('toggleChatFullWidth', currentSettings)
 }
 
 const toggleSyncTextareaWithChatWidth = (e) => {
@@ -214,6 +229,7 @@ const handleWidthChange = (key, e) => {
 
 	if (key === 'w_chat_gpt') {
 		currentSettings.w_chat_user = value
+		currentSettings.max_w_chat_user = value
 		if (isSyncEnabled) {
 			currentSettings.w_prompt_textarea = value
 		}
@@ -228,6 +244,8 @@ const handleWidthChange = (key, e) => {
 	applySettings(currentSettings)
 	debouncedSaveSettings(currentSettings)
 	updateUI(currentSettings)
+
+	console.log('handleWidthChange', currentSettings)
 }
 
 const resetWidths = () => {
@@ -240,28 +258,35 @@ const resetWidths = () => {
 
 const handleAssetsListeners = () => {
 	document.querySelector('.gpth-settings #gpth-full-width')?.addEventListener('change', toggleChatFullWidth)
+
 	document
 		.querySelector('.gpth-settings #gpth-sync-textarea-chat-width')
 		?.addEventListener('change', toggleSyncTextareaWithChatWidth)
+
 	document
 		.querySelector('.gpth-settings #gpth-full-width-custom')
 		?.addEventListener('input', (e) => handleWidthChange('w_chat_gpt', e))
+
 	document
 		.querySelector('.gpth-settings #gpth-textarea-width-custom')
 		?.addEventListener('input', (e) => handleWidthChange('w_prompt_textarea', e))
+
 	document.querySelector('.gpth-settings #resetWidths')?.addEventListener('click', resetWidths)
 }
 
-const init = () => {
-	// removeSpecificStorageItems(keysToRemove)
+/* const init = () => {
 	loadSettings()
-	// getAllStorageItems()
 }
 
-/* // ? =============== DEV ONLY fn ===============
-async function getAllStorageItems() {
+export { assetsHtmlCode, handleAssetsListeners, init } */
+
+// ? =============== DEV ONLY fn ===============
+const assetsStorageKeys = Object.keys(FW_DEFAULTS) // ? DEV ONLY var - Get the keys from FW_DEFAULTS object
+
+async function getAllStorageItems(itemsToGet = null) {
+	//assetsStorageKeys
 	try {
-		const items = await browser.storage.sync.get(null)
+		const items = await browser.storage.sync.get(itemsToGet)
 		console.log(items)
 		return items
 	} catch (error) {
@@ -278,6 +303,12 @@ async function removeSpecificStorageItems(keys) {
 	} catch (error) {
 		console.error('Error removing storage items:', error)
 	}
-} */
+}
 
+const init = () => {
+	// removeSpecificStorageItems(assetsStorageKeys)
+	loadSettings()
+	// getAllStorageItems()
+	// getAllStorageItems(assetsStorageKeys)
+}
 export { assetsHtmlCode, handleAssetsListeners, init }

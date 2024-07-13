@@ -16,7 +16,8 @@
 	--h-header: calc(3.5rem + 0.5rem + 0.375rem);
 	--w-scrollbar: 0.22rem;
 	// --max-w-chat-bubble: 48rem;
-	--w_chat_user: initial;
+	--w_chat_user: max-content;
+	--max_w_chat_user: 70%; // 70%
 	--w_chat_gpt: 48rem;
 	// --w_prompt_textarea: var(--w_chat_gpt);
 	--w_prompt_textarea: initial;

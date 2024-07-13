@@ -150,7 +150,9 @@ main [data-testid^='conversation-turn-'] {
 			background-color: var(--c-bg-msg-user);
 			padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.2);
 			border-radius: var(--br-chat-bubble) !important;
-			width: var(--w_chat_user) !important;
+			// width: var(--w_chat_user) !important;
+			// width: max-content !important;
+			width: var(--max_w_chat_user) !important;
 			max-width: var(--w_chat_user) !important;
 		}
 
