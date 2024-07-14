@@ -219,8 +219,8 @@ main [data-testid^='conversation-turn-'] {
 
 	/* User chat bubble - Edit state.
 	There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario */
-	div:has(> textarea) {
-		// @extend %animFadeIn;
+	div:has(>.grid > textarea) {
+		@extend %animFadeIn;
 		// .bg-token-main-surface-tertiary:has(> textarea) {
 		--main-surface-tertiary: hsla(var(--accent-hsl) / 0.03) !important;
 		padding: var(--p-chat-bubble) !important;
