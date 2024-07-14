@@ -5,9 +5,7 @@ import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from '
 import { hexToHSL } from '../utils/hexToHSL'
 
 import { fontHtmlCode, handleFontsListeners } from './mainFonts'
-// import { assetsHtmlCode, handleAssetsListeners } from './mainAssets'
-// import { assetsHtmlCode, handleAssetsListeners } from './mainAssetsResize'
-import { assetsHtmlCode, handleAssetsListeners } from './mainAssetsRefactor'
+import { assetsHtmlCode, handleAssetsListeners } from './mainAssets'
 // console.log(fontHtmlCode)
 
 // let isOptionsShown = false
