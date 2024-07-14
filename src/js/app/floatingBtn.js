@@ -6,7 +6,8 @@ import { hexToHSL } from '../utils/hexToHSL'
 
 import { fontHtmlCode, handleFontsListeners } from './mainFonts'
 // import { assetsHtmlCode, handleAssetsListeners } from './mainAssets'
-import { assetsHtmlCode, handleAssetsListeners } from './mainAssetsResize'
+// import { assetsHtmlCode, handleAssetsListeners } from './mainAssetsResize'
+import { assetsHtmlCode, handleAssetsListeners } from './mainAssetsRefactor'
 // console.log(fontHtmlCode)
 
 // let isOptionsShown = false
