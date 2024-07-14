@@ -4,9 +4,9 @@ import browser from 'webextension-polyfill'
 import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './components/icons.js'
 import { hexToHSL } from '../utils/hexToHSL'
 
-// import { fontHtmlCode, addFontsEventHandlers } from './customFonts'
 import { fontHtmlCode, handleFontsListeners } from './mainFonts'
-import { assetsHtmlCode, handleAssetsListeners } from './mainAssets'
+// import { assetsHtmlCode, handleAssetsListeners } from './mainAssets'
+import { assetsHtmlCode, handleAssetsListeners } from './mainAssetsResize'
 // console.log(fontHtmlCode)
 
 // let isOptionsShown = false

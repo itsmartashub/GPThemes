@@ -29,6 +29,8 @@ const FW_OPTIONS = {
 
 let currentSettings = { ...FW_DEFAULTS }
 let isSyncEnabled = false
+let userHasResized = false
+const RESIZING_BREAKPOINT = '768' // tablet 1024 | mob 768
 
 // const assetsStorageKeys = Object.keys(FW_DEFAULTS) // ? DEV ONLY var - Get the keys from FW_DEFAULTS object
 
@@ -82,9 +84,15 @@ let assetsHtmlCode = `
 `
 
 const applySettings = (settings) => {
-	Object.entries(settings).forEach(([key, value]) => {
-		document.documentElement.style.setProperty(`--${key}`, value)
-	})
+	if (userHasResized && window.innerWidth <= RESIZING_BREAKPOINT) {
+		Object.entries(FW_OPTIONS).forEach(([key, value]) => {
+			document.documentElement.style.setProperty(`--${key}`, value)
+		})
+	} else {
+		Object.entries(settings).forEach(([key, value]) => {
+			document.documentElement.style.setProperty(`--${key}`, value)
+		})
+	}
 }
 
 const setElementProperty = (selector, property, value) => {
@@ -207,7 +215,7 @@ const toggleChatFullWidth = (e) => {
 	debouncedSaveSettings(currentSettings)
 	updateUI(currentSettings)
 
-	console.log('toggleChatFullWidth', currentSettings)
+	// console.log('toggleChatFullWidth', currentSettings)
 }
 
 const toggleSyncTextareaWithChatWidth = (e) => {
@@ -244,7 +252,7 @@ const handleWidthChange = (key, e) => {
 	debouncedSaveSettings(currentSettings)
 	updateUI(currentSettings)
 
-	console.log('handleWidthChange', currentSettings)
+	// console.log('handleWidthChange', currentSettings)
 }
 
 const resetWidths = () => {
@@ -275,6 +283,15 @@ const handleAssetsListeners = () => {
 
 const init = () => {
 	loadSettings()
+
+	let resizeTimer
+	window.addEventListener('resize', () => {
+		clearTimeout(resizeTimer)
+		resizeTimer = setTimeout(() => {
+			userHasResized = true
+			applySettings(currentSettings)
+		}, 250)
+	})
 }
 
 export { assetsHtmlCode, handleAssetsListeners, init }
