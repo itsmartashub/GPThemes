@@ -49,7 +49,9 @@ function renderSmallCardOption({
 	return `
     <div 
       class="card card--range ${isLocked ? 'is-locked' : ''}" 
-      data-gpth-err="${min}${unit} &hArr; ${max}${unit}"
+      data-gpth-err="${min}${inputPlaceholder === '100%' ? '%' : unit} &hArr; ${max}${
+		inputPlaceholder === '100%' ? '%' : unit
+	}"
     >
       <label 
         for="${sanitizedInputId}" 
