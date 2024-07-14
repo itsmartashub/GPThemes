@@ -29,7 +29,7 @@ const FW_OPTIONS = {
 
 let currentSettings = { ...FW_DEFAULTS }
 let isSyncEnabled = false
-let userHasResized = false
+const isChatWidthModified = (settings) => settings.w_chat_gpt !== FW_DEFAULTS.w_chat_gpt
 const RESIZING_BREAKPOINT = '768' // tablet 1024 | mob 768
 
 // const assetsStorageKeys = Object.keys(FW_DEFAULTS) // ? DEV ONLY var - Get the keys from FW_DEFAULTS object
@@ -84,7 +84,7 @@ let assetsHtmlCode = `
 `
 
 const applySettings = (settings) => {
-	if (userHasResized && window.innerWidth <= RESIZING_BREAKPOINT) {
+	if (isChatWidthModified(settings) && window.innerWidth <= RESIZING_BREAKPOINT) {
 		Object.entries(FW_OPTIONS).forEach(([key, value]) => {
 			document.documentElement.style.setProperty(`--${key}`, value)
 		})
@@ -117,6 +117,16 @@ const saveSettings = async (settings) => {
 	}
 }
 
+const addResizeListener = () => {
+	if (!window.resizeListenerAdded) {
+		window.resizeListener = debounce(() => {
+			applySettings(currentSettings)
+		}, 250)
+		window.addEventListener('resize', window.resizeListener)
+		window.resizeListenerAdded = true
+	}
+}
+
 const debouncedSaveSettings = debounce(saveSettings, 300)
 
 const loadSettings = async () => {
@@ -124,6 +134,10 @@ const loadSettings = async () => {
 		const settings = await browser.storage.sync.get(null)
 		currentSettings = { ...FW_DEFAULTS, ...settings }
 		isSyncEnabled = currentSettings.w_chat_gpt === currentSettings.w_prompt_textarea
+
+		if (isChatWidthModified(currentSettings)) {
+			addResizeListener()
+		}
 
 		applySettings(currentSettings)
 		updateUI(currentSettings)
@@ -191,8 +205,6 @@ const updateEditIconPosition = (chatWidth) => {
 const toggleChatFullWidth = (e) => {
 	const isFullWidth = e.target.checked
 	let widthGpt, widthUser, maxWidthUser
-	// const width = isFullWidth ? '100%' : FW_DEFAULTS.w_chat_gpt
-	// const widthUser = isFullWidth ? '100%' : FW_DEFAULTS.w_chat_user
 
 	if (isFullWidth) {
 		widthGpt = '100%'
@@ -211,11 +223,18 @@ const toggleChatFullWidth = (e) => {
 		w_prompt_textarea: isSyncEnabled ? widthGpt : currentSettings.w_prompt_textarea,
 	})
 
+	if (isChatWidthModified(currentSettings)) {
+		addResizeListener()
+	} else if (window.resizeListenerAdded) {
+		window.removeEventListener('resize', window.resizeListener)
+		window.resizeListenerAdded = false
+	}
+
 	applySettings(currentSettings)
 	debouncedSaveSettings(currentSettings)
 	updateUI(currentSettings)
 
-	// console.log('toggleChatFullWidth', currentSettings)
+	console.log('toggleChatFullWidth', currentSettings)
 }
 
 const toggleSyncTextareaWithChatWidth = (e) => {
@@ -229,9 +248,8 @@ const toggleSyncTextareaWithChatWidth = (e) => {
 	updateUI(currentSettings)
 }
 
-// function handleChatCustomWidth(e) {
 const handleWidthChange = (key, e) => {
-	const value = `${ensureValidPercentage(e.target.value)}%`
+	const value = `${ensureValidPercentage(e.target.value)}${e.target.dataset.unit || '%'}`
 	currentSettings[key] = value
 
 	if (key === 'w_chat_gpt') {
@@ -246,18 +264,24 @@ const handleWidthChange = (key, e) => {
 		setElementProperty('.gpth-settings #gpth-sync-textarea-chat-width', 'checked', false)
 	}
 
-	setElementProperty(`.gpth-settings #unit-${key}`, 'textContent', '%')
+	setElementProperty(`.gpth-settings #unit-${e.target.id}`, 'textContent', e.target.dataset.unit || '%')
+
+	if (isChatWidthModified(currentSettings)) {
+		addResizeListener()
+	}
 
 	applySettings(currentSettings)
 	debouncedSaveSettings(currentSettings)
 	updateUI(currentSettings)
-
-	// console.log('handleWidthChange', currentSettings)
 }
 
 const resetWidths = () => {
 	currentSettings = { ...FW_DEFAULTS }
 	isSyncEnabled = false
+	if (window.resizeListenerAdded) {
+		window.removeEventListener('resize', window.resizeListener)
+		window.resizeListenerAdded = false
+	}
 	applySettings(currentSettings)
 	debouncedSaveSettings(currentSettings)
 	updateUI(currentSettings)
@@ -283,15 +307,6 @@ const handleAssetsListeners = () => {
 
 const init = () => {
 	loadSettings()
-
-	let resizeTimer
-	window.addEventListener('resize', () => {
-		clearTimeout(resizeTimer)
-		resizeTimer = setTimeout(() => {
-			userHasResized = true
-			applySettings(currentSettings)
-		}, 250)
-	})
 }
 
 export { assetsHtmlCode, handleAssetsListeners, init }
