@@ -4,8 +4,8 @@ import browser from 'webextension-polyfill'
 import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './components/icons.js'
 import { hexToHSL } from '../utils/hexToHSL'
 
-// import { fontHtmlCode, addFontsEventHandlers } from './customFonts'
 import { fontHtmlCode, handleFontsListeners } from './mainFonts'
+import { assetsHtmlCode, handleAssetsListeners } from './mainAssets'
 // console.log(fontHtmlCode)
 
 // let isOptionsShown = false
@@ -203,8 +203,7 @@ function renderSettings() {
 					</div>
 
 					<div class="tab-pane hidden" id="tab-assets">
-						<p class="text-center text-token-text-tertiary text-sm mb-2 font-weight-200">ooops, such empty</p>
-						<p class="text-center text-token-text-secondary text-md font-semibold">Coming Soon</p>
+						${assetsHtmlCode}
 					</div>
 				</div>
 			</div>
@@ -225,8 +224,8 @@ function renderSettings() {
 
 	$settings.querySelector('#resetAllSettings').addEventListener('click', resetAllSettings)
 
-	// addFontsEventHandlers()
 	handleFontsListeners()
+	handleAssetsListeners()
 }
 
 function openSettings() {

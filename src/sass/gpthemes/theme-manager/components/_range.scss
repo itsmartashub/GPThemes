@@ -1,0 +1,74 @@
+.gpth-settings {
+    input[type="range"] {
+        --track-bg: hsla(var(--accent-hsl) / 0.5);
+        --thumb-bg: var(--c-accent);
+        --thumb-focus-outline: var(--c-accent);
+        --track-height: 0.75rem;
+        --track-radius: 50vw;
+        --track-outline: 3px solid hsla(var(--accent-hsl) / 0.8);
+        --thumb-size-multiplier: 0.8;
+        --thumb-size: calc(var(--track-height) * var(--thumb-size-multiplier));
+        --thumb-radius: 50vw;
+        --thumb-margin-top: calc((var(--track-height) - var(--thumb-size)) / 2);
+        --focus-outline-size: 3px;
+        --focus-outline-offset: 0.125rem;
+
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: transparent;
+        cursor: pointer;
+        // width: var(--input-width)
+
+        &:hover,
+        &:focus {
+            // --track-height: 0.8rem;
+            --thumb-size-multiplier: 1.4;
+            --track-outline: 3px solid transparent;
+        }
+
+        &:focus {
+
+            &::-webkit-slider-thumb,
+            &::-moz-range-thumb {
+                outline: var(--focus-outline-size) solid var(--thumb-focus-outline);
+                outline-offset: var(--focus-outline-offset);
+                // outline: var(--focus-outline-size) solid var(--thumb-focus-outline);
+                // outline-offset: var(--focus-outline-offset);
+            }
+        }
+
+        &::-webkit-slider-runnable-track {
+            background-color: var(--track-bg);
+            border-radius: var(--track-radius);
+            height: var(--track-height);
+            width: 100%;
+            transition: .25s;
+            outline: var(--track-outline);
+            // outline-offset: 2px;
+        }
+
+        &::-webkit-slider-thumb,
+        &::-moz-range-thumb {
+            background-color: var(--thumb-bg);
+            border-radius: var(--thumb-radius);
+            height: var(--thumb-size);
+            width: var(--thumb-size);
+            transition: .25s;
+
+            // &:focus {
+            //     outline: var(--focus-outline-size) solid var(--thumb-focus-outline);
+            //     outline-offset: var(--focus-outline-offset);
+            // }
+        }
+
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            margin-top: var(--thumb-margin-top);
+        }
+
+        &::-moz-range-thumb {
+            border: none;
+        }
+    }
+}

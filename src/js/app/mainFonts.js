@@ -1,6 +1,7 @@
 // main.js
 import browser from 'webextension-polyfill'
 import { renderFontSmallCard, renderFontBigCard, renderButton } from './components/renderFonts'
+import { renderButton } from './components/renderButtons'
 
 // Constants
 const DEFAULTS = {

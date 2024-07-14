@@ -12,9 +12,15 @@
 	--lineHeight: 28;
 
 	/* ? --- Widths and Heights --- */
+	--min-w-btn: 5.5rem;
 	--h-header: calc(3.5rem + 0.5rem + 0.375rem);
-	--max-w-chat-bubble: 48rem;
 	--w-scrollbar: 0.22rem;
+	// --max-w-chat-bubble: 48rem;
+	--w_chat_user: max-content;
+	--max_w_chat_user: 70%; // 70%
+	--w_chat_gpt: 48rem;
+	// --w_prompt_textarea: var(--w_chat_gpt);
+	--w_prompt_textarea: initial;
 
 	/* ? --- Border-radius --- */
 	--br: 1rem;
@@ -32,6 +38,7 @@
 
 	/* ? --- Paddings --- */
 	--p-chat-bubble: 1.2rem;
+	--px-chat-bubble-edge-gap: 4vw;
 	--p-contextmenu: 0.8rem;
 	--p-contextmenu-item: 0.9rem 1rem;
 	--p-prompt-textarea: 0.7rem;
@@ -56,13 +63,25 @@
 	--blur-sticky: 20px;
 	--blur-modal: 8px;
 
-	/* ? --- Width --- */
-	--min-w-btn: 5.5rem;
-
 	/* ? --- Shadow things --- */
 	--box-shadow-values: 0px 0px 100px 0px;
 
 	--z-modal: 100;
+
+	--c-bg-gradient: linear-gradient(135deg,
+			hsla(var(--accent-hsl) / 0.45) 0%,
+			hsla(var(--accent-hsl) / 0.1) 40%,
+			hsla(var(--accent-hsl) / 0.05) 60%,
+			hsla(var(--accent-hsl) / 0.45) 100%);
+
+	/* ? --- OTHERER --- */
+	--chat_user_edit_icon_right: 100%;
+	// --chat_user_edit_icon_top: translateY(100%);
+	--chat_user_edit_icon_top: 0;
+	--chat_user_edit_icon_transform: unset;
+
+	// --chat_user_edit_icon_top: initial;
+
 
 	/* .bg-token-sidebar-surface-primary
 	- sidebar bg
@@ -109,30 +128,22 @@
 	- "ChatGPT 3.5 - Fastest" in 4o menu when hover on it in chat bubbles*/
 	--text-quaternary: var(--c-subtext-2) !important;
 	--text-error: var(--c-danger) !important;
+	--box-shadow-primary: inset 0 -20px 80px -20px #ffffff1f;
 
 	@include dev(tab) {
-		// --h-header: 40px;
 		--p-chat-bubble: .8rem;
 		--br-chat-bubble: calc(var(--br) * 1.55);
-
 		--p-contextmenu: .5rem;
-		// --p-contextmenu-item: 0.9rem 1rem;
 		--p-prompt-textarea: 0.5rem;
-		// --p-tooltips: 0.2rem;
-		// --p-btn: 0.7rem;
-		// --py-btn: 1rem;
-		// --px-btn: 1rem;
-
-		// --p-sidebar-nav: 0.5rem;
-		// --p-sidebar-nav-a-new-chat: 1.8rem;
-		// --p-sidebar-nav-a: 0.6rem;
 		--p-dialog: 0.3rem;
 		--br-dialog: calc(var(--br) * 1.5);
-		// --br: .7rem;
 		--p-sidebar-nav: 0.3rem;
 	}
 
-	--box-shadow-primary: inset 0 -20px 80px -20px #ffffff1f;
+	@include dev(mob) {
+		--px-chat-bubble-edge-gap: 0.45rem;
+	}
+
 
 	// --color-error: #fe8bbb;
 	// --color-three: #9e7aff;
