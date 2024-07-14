@@ -53,17 +53,6 @@ const setElementProperty = (selector, property, value) => {
 	if (element) element[property] = value
 }
 
-/* const applySettings = (settings) => {
-	if (isChatWidthModified(settings) && window.innerWidth <= CONFIG.RESIZING_BREAKPOINT) {
-		Object.entries(CONFIG.FW_OPTIONS).forEach(([key, value]) => {
-			document.documentElement.style.setProperty(`--${key}`, value)
-		})
-	} else {
-		Object.entries(settings).forEach(([key, value]) => {
-			document.documentElement.style.setProperty(`--${key}`, value)
-		})
-	}
-} */
 const applySettings = (settings) => {
 	const isNarrowScreen = window.innerWidth <= CONFIG.RESIZING_BREAKPOINT
 
@@ -191,18 +180,6 @@ const handleWidthChange = (key, e) => {
 	updateUI(currentSettings)
 }
 
-/* const resetWidths = () => {
-	currentSettings = { ...CONFIG.FW_DEFAULTS }
-	isSyncEnabled = false
-	if (window.resizeListenerAdded) {
-		window.removeEventListener('resize', window.resizeListener)
-		window.resizeListenerAdded = false
-	}
-	applySettings(currentSettings)
-	debouncedSaveSettings(currentSettings)
-	updateUI(currentSettings)
-} */
-
 // Update the resetWidths function
 const resetWidths = async () => {
 	try {
@@ -246,22 +223,6 @@ const saveSettings = async (settings) => {
 }
 
 const debouncedSaveSettings = debounce(saveSettings, 300)
-
-/* const loadSettings = async () => {
-	try {
-		const settings = await browser.storage.sync.get(null)
-		currentSettings = { ...CONFIG.FW_DEFAULTS, ...settings }
-		isSyncEnabled = currentSettings.w_chat_gpt === currentSettings.w_prompt_textarea
-
-		if (isChatWidthModified(currentSettings)) addResizeListener()
-
-		applySettings(currentSettings)
-		updateUI(currentSettings)
-	} catch (error) {
-		console.error('Failed to load settings:', error)
-		// TODO: Implement user-friendly error message
-	}
-} */
 
 const loadSettings = async () => {
 	try {
@@ -379,14 +340,14 @@ const assetsHtmlCode = `
   </section>
 `
 
-/* // Initialization
+// Initialization
 const init = () => {
 	loadSettings()
 }
 
-export { assetsHtmlCode, handleAssetsListeners, init } */
+export { assetsHtmlCode, handleAssetsListeners, init }
 
-// ? =============== DEV ONLY fn ===============
+/* // ? =============== DEV ONLY fn ===============
 const assetsStorageKeys = Object.keys(CONFIG.FW_DEFAULTS) // ? DEV ONLY var - Get the keys from FW_DEFAULTS object
 
 async function getAllStorageItems(itemsToGet = null) {
@@ -418,4 +379,4 @@ const init = () => {
 	// getAllStorageItems()
 	getAllStorageItems(assetsStorageKeys)
 }
-export { assetsHtmlCode, handleAssetsListeners, init }
+export { assetsHtmlCode, handleAssetsListeners, init } */
