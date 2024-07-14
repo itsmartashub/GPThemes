@@ -191,7 +191,7 @@ const handleWidthChange = (key, e) => {
 	updateUI(currentSettings)
 }
 
-const resetWidths = () => {
+/* const resetWidths = () => {
 	currentSettings = { ...CONFIG.FW_DEFAULTS }
 	isSyncEnabled = false
 	if (window.resizeListenerAdded) {
@@ -201,6 +201,38 @@ const resetWidths = () => {
 	applySettings(currentSettings)
 	debouncedSaveSettings(currentSettings)
 	updateUI(currentSettings)
+} */
+
+// Update the resetWidths function
+const resetWidths = async () => {
+	try {
+		// Get keys from FW_DEFAULTS
+		const resettableKeys = Object.keys(CONFIG.FW_DEFAULTS)
+
+		// Remove resettable items from storage
+		await browser.storage.sync.remove(resettableKeys)
+
+		// Reset current settings in memory
+		currentSettings = { ...CONFIG.FW_DEFAULTS }
+		isSyncEnabled = false
+
+		// Remove resize listener if it exists
+		if (window.resizeListenerAdded) {
+			window.removeEventListener('resize', window.resizeListener)
+			window.resizeListenerAdded = false
+		}
+
+		// Apply default settings
+		applySettings(currentSettings)
+
+		// Update UI
+		updateUI(currentSettings)
+
+		console.log('Settings reset successfully', currentSettings)
+	} catch (error) {
+		console.error('Failed to reset settings:', error)
+		// TODO: Implement user-friendly error message
+	}
 }
 
 // Storage management
@@ -215,13 +247,37 @@ const saveSettings = async (settings) => {
 
 const debouncedSaveSettings = debounce(saveSettings, 300)
 
-const loadSettings = async () => {
+/* const loadSettings = async () => {
 	try {
 		const settings = await browser.storage.sync.get(null)
 		currentSettings = { ...CONFIG.FW_DEFAULTS, ...settings }
 		isSyncEnabled = currentSettings.w_chat_gpt === currentSettings.w_prompt_textarea
 
 		if (isChatWidthModified(currentSettings)) addResizeListener()
+
+		applySettings(currentSettings)
+		updateUI(currentSettings)
+	} catch (error) {
+		console.error('Failed to load settings:', error)
+		// TODO: Implement user-friendly error message
+	}
+} */
+
+const loadSettings = async () => {
+	try {
+		const settings = await browser.storage.sync.get(null)
+
+		// Only load settings for keys that are in FW_DEFAULTS
+		const filteredSettings = Object.fromEntries(
+			Object.entries(settings).filter(([key]) => key in CONFIG.FW_DEFAULTS)
+		)
+
+		currentSettings = { ...CONFIG.FW_DEFAULTS, ...filteredSettings }
+		isSyncEnabled = currentSettings.w_chat_gpt === currentSettings.w_prompt_textarea
+
+		if (isChatWidthModified(currentSettings)) {
+			addResizeListener()
+		}
 
 		applySettings(currentSettings)
 		updateUI(currentSettings)
@@ -241,20 +297,36 @@ const addResizeListener = () => {
 		window.resizeListenerAdded = true
 	}
 }
+/* const confirmReset = () => {
+	return new Promise((resolve) => {
+		const confirmed = window.confirm('Are you sure you want to reset all width and layout settings to default?')
+		resolve(confirmed)
+	})
+} */
 
 // Event listeners
 const handleAssetsListeners = () => {
 	document.querySelector('.gpth-settings #gpth-full-width')?.addEventListener('change', toggleChatFullWidth)
+
 	document
 		.querySelector('.gpth-settings #gpth-sync-textarea-chat-width')
 		?.addEventListener('change', toggleSyncTextareaWithChatWidth)
 	document
 		.querySelector('.gpth-settings #gpth-full-width-custom')
 		?.addEventListener('input', (e) => handleWidthChange('w_chat_gpt', e))
+
 	document
 		.querySelector('.gpth-settings #gpth-textarea-width-custom')
 		?.addEventListener('input', (e) => handleWidthChange('w_prompt_textarea', e))
+
 	document.querySelector('.gpth-settings #resetWidths')?.addEventListener('click', resetWidths)
+
+	// Then update the click handler for the reset button
+	/* document.querySelector('.gpth-settings #resetWidths')?.addEventListener('click', async () => {
+		if (await confirmReset()) {
+			resetWidths()
+		}
+	}) */
 }
 
 // HTML template
@@ -307,9 +379,43 @@ const assetsHtmlCode = `
   </section>
 `
 
-// Initialization
+/* // Initialization
 const init = () => {
 	loadSettings()
 }
 
+export { assetsHtmlCode, handleAssetsListeners, init } */
+
+// ? =============== DEV ONLY fn ===============
+const assetsStorageKeys = Object.keys(CONFIG.FW_DEFAULTS) // ? DEV ONLY var - Get the keys from FW_DEFAULTS object
+
+async function getAllStorageItems(itemsToGet = null) {
+	//assetsStorageKeys
+	try {
+		const items = await browser.storage.sync.get(itemsToGet)
+		console.log(items)
+		return items
+	} catch (error) {
+		console.error('Error getting storage items:', error)
+	}
+}
+// ? =============== DEV ONLY fn ===============
+// Function to remove specific named items from sync storage
+async function removeSpecificStorageItems(keys) {
+	try {
+		// Remove the items by keys from the sync storage
+		await browser.storage.sync.remove(keys)
+		console.log('Specified items removed from sync storage:', keys)
+	} catch (error) {
+		console.error('Error removing storage items:', error)
+	}
+}
+
+const init = () => {
+	// removeSpecificStorageItems(assetsStorageKeys)
+	getAllStorageItems(assetsStorageKeys)
+	loadSettings()
+	// getAllStorageItems()
+	getAllStorageItems(assetsStorageKeys)
+}
 export { assetsHtmlCode, handleAssetsListeners, init }
