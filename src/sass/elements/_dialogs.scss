@@ -14,6 +14,32 @@
 		}
 	}
 
+	&.popover {
+
+		/*
+		- close button in dialogs
+		- "Speech" -> "Voice" -> "Cove"  dropdown on hover
+		- GPTs page - item dialog -> "Conversation Starters" bubble comments on hvoer */
+		[class*="hover:bg-token-main-surface-secondary"] {
+			&:hover {
+				--main-surface-secondary: var(--c-surface-3) !important;
+				--main-surface-tertiary: var(--c-surface-3) !important;
+			}
+		}
+
+		/* "Memory updated" small dialog. Fix bg color when hover: "Manage memories" */
+		&.max-w-96 {
+			padding: var(--p-contextmenu) !important;
+			border-radius: var(--br-contextmenu) !important;
+
+			[class*="hover:bg-token-main-surface-secondary"] {
+				--main-surface-secondary: var(--c-surface-2) !important;
+			}
+		}
+
+
+	}
+
 	.border-token-border-light,
 	.border-white,
 	.border-black {
@@ -431,12 +457,6 @@
 	}
 
 
-	/* "Memory updated" small dialog. Fix bg color when hover: "Manage memories" */
-	&.popover.max-w-96 {
-		--main-surface-secondary: var(--c-surface-2) !important;
-		padding: var(--p-contextmenu) !important;
-		border-radius: var(--br-contextmenu) !important;
-	}
 }
 
 /* ! NOT WORKING - CANNOT OVERWRITE THIS WTF */
