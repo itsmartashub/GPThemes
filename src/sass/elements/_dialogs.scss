@@ -429,6 +429,14 @@
 			}
 		}
 	}
+
+
+	/* "Memory updated" small dialog. Fix bg color when hover: "Manage memories" */
+	&.popover.max-w-96 {
+		--main-surface-secondary: var(--c-surface-2) !important;
+		padding: var(--p-contextmenu) !important;
+		border-radius: var(--br-contextmenu) !important;
+	}
 }
 
 /* ! NOT WORKING - CANNOT OVERWRITE THIS WTF */
@@ -486,5 +494,16 @@
 	--text-tertiary: red !important;
 	--text-quaternary: red !important;
 	--sidebar-surface-primary: red !important;
-}
- */
+} */
+
+
+/* .dark .popover, .dark.popover, .popover .dark {
+	--main-surface-primary: var(--gray-750) !important;
+	--main-surface-secondary: var(--gray-700) !important;
+	--main-surface-tertiary: var(--gray-600) !important;
+	--text-primary: var(--gray-50) !important;
+	--text-secondary: var(--gray-200) !important;
+	--text-tertiary: var(--gray-400) !important;
+	--text-quaternary: var(--gray-500) !important;
+	--sidebar-surface-primary: var(--gray-750) !important;	
+} */
