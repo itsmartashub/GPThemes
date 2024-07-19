@@ -86,6 +86,12 @@ nav[aria-label='Chat history'] {
 				color: var(--c-on-accent) !important;
 			}
 		}
+
+		/* Remove too much/vertical space padding from "Explore GPTs" */
+		&[href^='/gpts'] {
+			// margin: 0 !important;
+			padding: 0 !important;
+		}
 	}
 
 	li {
