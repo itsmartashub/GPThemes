@@ -37,6 +37,7 @@
             }
         }
 
+        &::-moz-range-track,
         &::-webkit-slider-runnable-track {
             background-color: var(--track-bg);
             border-radius: var(--track-radius);
