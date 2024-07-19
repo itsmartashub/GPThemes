@@ -394,3 +394,19 @@ html.light {
 		color: var(--c-txt);
 	}
 }
+
+
+
+body:has(.h-full.overflow-y-auto .sticky img[alt='User']) {
+
+	@include dev(tab-land) {
+		// box-shadow: inset 0 0 0 10px red !important;
+
+		.gpth {
+			&__floating {
+				--top: calc(var(--h-header) * 2);
+				// --top: calc(var(--h-header)/4);
+			}
+		}
+	}
+}
