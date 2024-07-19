@@ -1,6 +1,6 @@
 <div align="center">
     <div>
-      <img src="https://github.com/itsmartashub/gpthemes/blob/master/gh/circle-3d-dark.png" alt="logo-for-gpthemes-chrome-extension" width="300" height="300"  />
+      <img src="https://github.com/itsmartashub/gpthemes/blob/main/gh/circle-3d-dark.png" alt="logo-for-gpthemes-chrome-extension" width="300" height="300"  />
     </div>
 </div>
 
@@ -10,7 +10,7 @@
 
 <div align="center">
     <div>
-      <img src="https://github.com/itsmartashub/gpthemes/blob/master/gh/gpthemes-dark.png" alt="" width="100%"  />
+      <img src="https://github.com/itsmartashub/gpthemes/blob/main/gh/gpthemes-dark.png" alt="" width="100%"  />
     </div>
 </div>
 
@@ -22,21 +22,21 @@
     <h3>New UI</h3>
     <div>
       <div>
-        <img src="https://github.com/itsmartashub/gpthemes/blob/master/gh/gpthemes-amoled.png" alt="" width="100%"  />
+        <img src="https://github.com/itsmartashub/gpthemes/blob/main/gh/gpthemes-amoled.png" alt="" width="100%"  />
       </div>
         </br>
       <div>
-        <img src="https://github.com/itsmartashub/gpthemes/blob/master/gh/gpthemes-light.png" alt="" width="100%"  />
+        <img src="https://github.com/itsmartashub/gpthemes/blob/main/gh/gpthemes-light.png" alt="" width="100%"  />
       </div>
     </div></br></br>
     <h3>Old Ui</h3>
     <div>
       <div>
-        <img src="https://github.com/itsmartashub/gpthemes/blob/master/gh/gpthemes-dark-oldui.png" alt="" width="100%"  />
+        <img src="https://github.com/itsmartashub/gpthemes/blob/main/gh/gpthemes-dark-oldui.png" alt="" width="100%"  />
       </div>
         </br>
       <div>
-        <img src="https://github.com/itsmartashub/gpthemes/blob/master/gh/gpthemes-light-oldui.png" alt="" width="100%"  />
+        <img src="https://github.com/itsmartashub/gpthemes/blob/main/gh/gpthemes-light-oldui.png" alt="" width="100%"  />
       </div>
     </div>
 </div>
