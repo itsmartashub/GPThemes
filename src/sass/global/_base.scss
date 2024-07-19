@@ -63,7 +63,12 @@ code.hljs {
 /* WebKit/Blink browsers (Chrome, Edge, Safari, etc.) */
 ::-webkit-scrollbar {
 	width: var(--w-scrollbar); // desired scrollbar width 
-	height: 0 !important; // desired scrollbar height
+	// height: 0 !important; // desired scrollbar height
+	transition: .3s ease-in;
+
+	&:hover {
+		--w-scrollbar: .5rem !important;
+	}
 }
 
 /* scrollbar thumb */
