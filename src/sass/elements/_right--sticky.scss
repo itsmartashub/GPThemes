@@ -26,7 +26,7 @@ main .sticky,
 	}
 
 	/* "ChatGPT" button in sticky header */
-	[type='button'][aria-haspopup='menu'],
+	// [type='button'][aria-haspopup='menu'],
 	[type='button'][aria-haspopup='menu'] {
 		transition: 0.25s color ease-in-out, 0.25s background-color ease-in-out;
 		border-radius: var(--br-btn) !important;
