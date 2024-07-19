@@ -154,9 +154,13 @@
 html.light {
 	/* ? ========== HSL ========== */
 	/* --accent-hsl: 250 99% 65%; */
-	--accent-h: 250;
-	--accent-s: 99%;
-	--accent-l: 65%;
+	// --accent-h: 250;
+	// --accent-s: 99%;
+	// --accent-l: 65%;
+	--cl: #7e3e47;
+	--accent-h: 352;
+	--accent-s: 34%;
+	--accent-l: 37%;
 	--accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l);
 
 	/* --txt-hsl: 0 0% 0%; */

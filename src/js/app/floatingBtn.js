@@ -22,7 +22,7 @@ let $resetAllBtn
 // let isSettingsOpen = false
 let styleElement = null // Declare the styleElement variable
 
-let defaultColorLight = '#6b4dfe'
+let defaultColorLight = '#7e3e47'
 let defaultColorDark = '#ca93fb'
 // let isDisabledResetAll = true
 
@@ -30,7 +30,7 @@ const renderColorsTab = `
 	<section>
 		<div class="colorpicker-container">
 			<div class="colorpicker">
-				<input type="color" id="accentLight" value="#6b4dfe" />
+				<input type="color" id="accentLight" value="#7e3e47" />
 				<label for="accentLight">Accent <span>Light</span></label>
 			</div>
 			<div class="colorpicker">

@@ -5,48 +5,35 @@ const seeFullChangelog = (version) =>
 	`<a href="https://github.com/itsmartashub/GPThemes/releases/tag/v${version}" target="_blank" rel="noopener noreferrer" class="changelog__seefullchangelog">🚀 See full release notes</a>`
 
 let htmlChangesList = `
-<h3>🆕 Highlights</h3>
+<h2>✨ New Features</h2>
 <ul>
-    <li><strong>"Read Browsing History" Anx Gone</strong>: The previous notification system for informing users about new changes relied on "<code>tabs</code>" and "<code>notifications</code>" permissions, triggering a <code>"Read browsing history"</code> warning for Chromium users. To maintain a seamless update experience without causing unnecessary concerns, I have replaced this with a non-intrusive popup action that informs users about updates without additional permissions. <a href="https://github.com/itsmartashub/GPThemes/issues/33" target="_blank" rel="noopener noreferrer">#33</a></li>
+  <li><strong>Chat Full Width Feature (<a href="https://github.com/itsmartashub/GPThemes/issues/1">#1</a>)</strong>: Implemented a new feature allowing users to toggle full-width chat bubbles, enhancing the chat interface.</li>
+  <li><strong>Chat Custom Width Slider</strong>: Added range input sliders for customizing chat bubble width, providing users with more control over the chat layout.</li>
+  <li><strong>Prompt Textarea Width Slider</strong>: Implemented a custom width slider for the prompt-textarea, allowing independent width adjustment.</li>
+  <li><strong>Textarea Sync/Lock Indicator</strong>: Added a lock icon indicator on the textarea message sync switch to show when it's locked to chat widths.</li>
+  <li><strong>Responsive Width Adjustment (<a href="https://github.com/itsmartashub/GPThemes/issues/39">#39</a>)</strong>: Implemented automatic width adjustment for chat bubbles and prompt textarea based on screen size.</li>
 </ul>
+
+<h2>🐛 Bug Fixes</h2>
+<ul>
+    <li><strong>Chat Bubbles Fix</strong>: Removed outdated UI styles to fix broken chat bubbles (<a href="https://github.com/itsmartashub/GPThemes/issues/41">#41</a>).</li>
+    <li><strong>Attach Icon Visibility</strong>: Removed background color around the attach icon in the prompt field for better visibility (<a href="https://github.com/itsmartashub/GPThemes/issues/40">#40</a>).</li>
+    <li><strong>Edit State Design</strong>: Addressed issues with the edit state design for user chat bubbles after ChatGPT UI changes (<a href="https://github.com/itsmartashub/GPThemes/issues/36">#36</a>).</li>
+    <li><strong>Dialog Styling</strong>: Resolved inconsistencies in background color and sizing for small dialogs and hover effects.</li>
+    <li><strong>Mobile Header Styling</strong>: Resolved issues with the sticky header style on mobile screens.</li>
+    <li><strong>Firefox Compatibility</strong>: Fixed range sliders not being visible in Firefox browsers.</li>
+    <li><strong>Floating Button Position</strong>: Adjusted GPThemes floating button position to prevent overlap with user account image on smaller devices.</li>
+</ul>
+
+<h2>❗ BREAKING CHANGE</h2>
+<ul>
+    <li>Removal of Old UI Styles (<a href="https://github.com/itsmartashub/GPThemes/issues/41">#41</a>)</li>
+    <li>To address issues with chat bubbles and improve overall performance, I have removed styles related to the outdated UI.</br>
+    While this fix ensures smoother operation for most users, those still using the old UI version may experience some visual inconsistencies!</li>
+</ul>
+
 
 <p>${seeFullChangelog(EXT_CURRENT_VERSION)}</p>
-
-<h2>FROM PREVIOUS (<code>v3.1.0</code>)</h2>
-
-<h3>✨ New Features</h3>
-<ul>
-    <li><strong>Custom Fonts</strong>: Dedicated settings for font customization, dynamic loading, persistent preferences, input validation, and animations. Reset options, letter spacing, and line height adjustments included. Ensured fallback font for content readability.</li>
-    <li><strong>Tabs in GPThemes Settings</strong>: Introduced a tab-based interface in GPThemes settings for better organization and navigation. Added smooth animations when switching between tabs.</li>
-</ul>
-
-<h3>🛠️ Improvements</h3>
-<ul>
-    <li><strong>Scrollbar Design</strong>: Enhanced default scrollbar design for a modern and sleek appearance, ensuring cross-browser compatibility.</li>
-    <li><strong>Mobile Chat Bubble Overlap Fix</strong>: Resolved overlap between chat text and avatar on mobile devices, improving readability.</li>
-    <li><strong>Iframe Dialog Optimization</strong>: Optimized dialogs with iframes for improved preview experience, specifically for GDrive and OneDrive previews.</li>
-    <li><strong>Alert Colors</strong>: Updated alert colors, using red for errors and orange for warnings, providing clear visual distinction.</li>
-    <li><strong>Standardized Upgrade Dialog</strong>: Standardized the design of the 'Upgrade Your Plan' dialog across different profiles, addressing full-width and styling inconsistencies.</li>
-</ul>
-
-<h3>🐛 Bug Fixes</h3>
-<ul>
-    <li><strong>Google Fonts URL Optimization</strong>: Optimized the Google Fonts URL by removing unused font styles, improving performance and reducing unnecessary requests.</li>
-    <li><strong>Mobile Sidebar Design</strong>: Resolved design issues with the mobile sidebar, ensuring proper padding, background color, and border radius.</li>
-    <li><strong>Dialog Width</strong>: Modified the width of the 'Upgrade Your Plan' dialog to fit content properly, addressing layout issues.</li>
-    <li><strong>GPTs Store Layout</strong>: Improved the layout and styling of the GPTs Store page, including adjustments to padding, margins, and hover animations for a better user experience.</li>
-</ul>
-
-<h3>👷 Development Workflow</h3>
-<ul>
-    <li><strong>Performance Optimizations</strong>: Removed unused code and build files to enhance performance.</li>
-    <li><strong>Content Security Policy Updates</strong>: Updated manifests with Content Security Policy, allowing Google Fonts while maintaining security. Restricted script, object, style, and font sources to trusted origins.</li>
-    <li><strong>Automated ZIP Creation</strong>: Automated the ZIP creation process by dynamically reading the extension version from Chrome and Firefox manifest files.</li>
-    <li><strong>Update Announcements</strong>: Implemented automated web extension update announcements, linking to GitHub release notes.</li>
-    <li><strong>Manifest Permissions</strong>: Included necessary permissions (notifications and tabs) in the manifest for update notifications.</li>
-</ul>
-
-<p>${seeFullChangelog('3.1.0')}</p>
 `
 const changelogChangesEl = document.querySelector('.changelog__changes')
 const changelogVersionEl = document.querySelector('.changelog__version')

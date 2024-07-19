@@ -212,10 +212,10 @@ html.light pre button:has(svg):hover {
 /* ___ Scroll down button 
 [class*='-translate-y-1/2'] je btn ❌ u attached image */
 main [role='presentation'] button.absolute.rounded-full:not([class*='-translate-y-1/2']) {
-	transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out;
+	transition: translate 0.4s $easeOutBack, opacity 0.3s ease-in-out;
 
 	&:hover {
-		transform: translateY(10%);
+		translate: 0 10%;
 		opacity: 1 !important;
 	}
 }

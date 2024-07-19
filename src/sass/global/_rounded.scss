@@ -16,16 +16,17 @@
 - General profile pic: "NEWCHAT", "Upgrade Plan", user profile in sidebar.
 - Check switch btn
 - Close sidebar btn */
-.rounded-full {
-	// @include borderBoxShadow(rgb(2, 0, 139));
-}
+// .rounded-full {
+// 	// @include borderBoxShadow(rgb(2, 0, 139));
+// }
 
 /* 
 - GPTs - pill tags in sticky header */
-.rounded-3xl {
-	// border-radius: var(--br-btn-big) !important;
-	// @include borderBoxShadow(purple);
-}
+// .rounded-3xl {
+// 	// border-radius: var(--br-btn-big) !important;
+// 	// @include borderBoxShadow(purple);
+// }
+
 /* 
 - Dialogs
 - ChatGPT 3.5 btn in sticky header
@@ -76,6 +77,7 @@
 	border-top-left-radius: var(--br-btn) !important;
 	border-top-right-radius: var(--br-btn) !important;
 }
+
 .rounded-b-md {
 	// overflow: clip !important;
 	border-bottom-left-radius: var(--br-btn) !important;
