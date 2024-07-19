@@ -30,10 +30,8 @@ main form {
 		}
 
 		/* Send button */
-		// guest/3.5 send button
-		button[data-testid='send-button'],
-		// 4o send button 
-		button.rounded-full {
+		// guest/3.5 send button, 4o send button 
+		button[data-testid='send-button'] {
 			background-color: var(--c-accent) !important;
 			color: var(--c-txt) !important;
 			border-color: var(--c-accent) !important;
@@ -68,7 +66,6 @@ main form {
 
 			/* 📎 "Attach files" svg */
 			button:has(> svg) {
-				// border: 2px solid red !important;
 				margin-bottom: calc(var(--p-prompt-textarea) / 2);
 
 				svg {
