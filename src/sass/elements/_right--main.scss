@@ -60,7 +60,7 @@ main [data-testid^='conversation-turn-'] {
 		// padding-right: var(--px-chat-bubble-edge-gap);
 
 		/* Original is px-4 or 1rem */
-		// @include dev(mob) {
+		// @include dev('sm') {
 		// 	padding-left: 0.45rem;
 		// 	padding-right: 0.45rem;
 		// }
@@ -243,7 +243,7 @@ main [data-testid^='conversation-turn-'] {
 
 		/* ! Without this there was strange issue with User's chat overlaping the menu for "GPT-4" or "GPT-3.5" to choose model in gpt's chat bubble' footer - ONLY FOR MOBILE which is even more strange!!! 
 		Ako neogranicimo ovo samo za mobile, na desktopu ce GPT chat da ide preko sticky headera!! Dok je u mobile ok valjda */
-		@include dev(mob) {
+		@include dev('sm') {
 			.agent-turn.relative {
 				z-index: 10;
 			}
@@ -261,7 +261,7 @@ main [data-testid^='conversation-turn-'] {
 			padding: calc(var(--p-chat-bubble) * var(--pt-multiplier)) var(--p-chat-bubble) var(--p-chat-bubble) var(--p-chat-bubble) !important;
 			border-radius: var(--br-chat-bubble) !important;
 
-			@include dev(mob) {
+			@include dev('sm') {
 				--pt-multiplier: 1.4;
 			}
 
@@ -280,42 +280,20 @@ main [data-testid^='conversation-turn-'] {
 		```    } */
 			/* There are more elements with the same class like the "Tell us more" parent when we click on dislike button in GPT chat */
 			.agent-turn.relative.flex.w-full.flex-col {
-				--svg-w: 2.25rem;
-				--svg-gap: 0.75rem;
+				--svg-w: 2.85rem;
+				--svg-gap: 1.5rem; // lg-gap-6 (1.5rem), md-gap-5 (1.25rem)
 
-				width: calc(100% - var(--svg-w) - var(--svg-gap) - var(--p-chat-bubble)) !important; // more consistent width (right chat bubble spacing = left spacing)
+				width: calc(100% - var(--svg-w) - var(--svg-gap) - var(--p-chat-bubble) - var(--p-chat-bubble)) !important; // more consistent width (right chat bubble spacing = left spacing)
 
-				/* This break links in markdown making them wrapped */
-				/* span[data-state] {
-					display: flex;
-					place-items: center;
-				} */
 
-				@include dev(mob) {
-					--svg-w: 24px;
-					// --moveToLeft: var(--svg-gap);
-					// --moveToLeft: var(--svg-w);
-					--moveToLeft: calc(var(--svg-w) + (var(--svg-gap) / 1.5));
+				@include dev('md') {
+					--svg-gap: 1.25rem !important; // md-gap-5 (1.25rem)
+				}
 
-					/* Markdown parent - actually message content, without logo and User/ChatGPT name */
-					.flex-col.gap-1.md\:gap-3 {
-						transform: translateX(calc(var(--moveToLeft) * -1));
-						width: calc(100% + var(--moveToLeft) + var(--p-chat-bubble)) !important;
-					}
+				@include dev('sm') {
+					width: 100% !important;
 				}
 			}
-
-			/* "Tell us more" example buttons when clicked on 👎 in GPT chat bubble  - MOVED TO _btn.scss */
-			/* button.border-token-border-light {
-				// border: 1px solid var(--c-subtext-2) !important;
-				border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
-				color: var(--c-accent) !important;
-
-				&:hover {
-					transform: translateY(-1px);
-					background-color: hsla(var(--accent-hsl) / 0.1) !important;
-				}
-			} */
 
 			/* Parent of "Tell us more" example buttons when clicked on 👎 in GPT chat bubble*/
 			[class*='min-h-[96px] w-full'] {
@@ -329,13 +307,17 @@ main [data-testid^='conversation-turn-'] {
 			}
 		}
 
-		/* GPT avatar in its chat bubbles: with img is the GPTs Store item avatar, and with svg is gpt logo */
-		@include dev(mob) {
-
-			.gizmo-bot-avatar:has(svg[role='img']),
-			.gizmo-shadow-stroke:has(img) {
-				visibility: hidden;
+		/* GPT avatar in its chat bubbles: with img is the GPTs Store item avatar (.gizmo-shadow-stroke), and with svg is gpt logo (.gizmo-bot-avatar	) */
+		@include dev('sm') {
+			.flex-shrink-0.flex.flex-col.items-end:has(.gizmo-bot-avatar, .gizmo-shadow-stroke) {
+				// background-color: red !important;
+				display: none !important;
 			}
+
+			// .gizmo-bot-avatar:has(svg[role='img']),
+			// .gizmo-shadow-stroke:has(img) {
+			// 	visibility: hidden;
+			// }
 		}
 
 		/* Response 1 or Response 2 chat bubble when we have to choose 1 answer */

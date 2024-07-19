@@ -1,0 +1,60 @@
+// Tailwind CSS breakpoints converted to em units
+$sm: 40em; // 640px
+$md: 48em; // 768px
+$lg: 64em; // 1024px
+$xl: 80em; // 1280px
+$xxl: 96em; // 1536px
+
+// Mixins using Tailwind's breakpoints
+@mixin dev($bp) {
+    @if $bp =='sm' {
+        @media (max-width: #{$sm}) {
+            @content;
+        }
+    }
+
+    @if $bp =='md' {
+        @media (max-width: #{$md}) {
+            @content;
+        }
+    }
+
+    @if $bp =='lg' {
+        @media (max-width: #{$lg}) {
+            @content;
+        }
+    }
+
+    @if $bp =='xl' {
+        @media (max-width: #{$xl}) {
+            @content;
+        }
+    }
+
+    @if $bp =='xxl' {
+        @media (min-width: #{$xxl}) {
+            @content;
+        }
+    }
+}
+
+/* // Usage example
+@include dev('sm') {
+    // Your styles for small screens (min-width: 640px)
+}
+
+@include dev('md') {
+    // Your styles for medium screens (min-width: 768px)
+}
+
+@include dev('lg') {
+    // Your styles for large screens (min-width: 1024px)
+}
+
+@include dev('xl') {
+    // Your styles for extra-large screens (min-width: 1280px)
+}
+
+@include dev('xxl') {
+    // Your styles for 2x extra-large screens (min-width: 1536px)
+} */

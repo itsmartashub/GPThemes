@@ -1,4 +1,5 @@
-@import 'abstract/_mq';
+// @import 'abstract/_mq';
+@import 'abstract/_bp';
 @import 'abstract/_vars';
 @import 'shared/_easing';
 @import 'abstract/_anims';
@@ -43,7 +44,5 @@
 @import 'elements/_transitions';
 @import 'elements/_chats-textarea-max-width';
 
-// @import 'layouts/_old-ui';
-// @import 'layouts/_old-ui-index';
 
 @import 'gpthemes/gpth-index';

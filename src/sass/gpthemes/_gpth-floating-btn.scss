@@ -21,7 +21,7 @@
 			--right: 0.95rem;
 		}
 
-		@include dev(mob) {
+		@include dev('sm') {
 			--right: 5%;
 			--floating-icon-size: 1.8rem;
 		}
@@ -70,7 +70,7 @@
 				transform: translate(-110%, -50%) scale(0);
 				transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 
-				@include dev(mob) {
+				@include dev('sm') {
 					padding: 0.4rem 0.6rem;
 				}
 			}
@@ -122,7 +122,7 @@
 		transition: clip-path 0.3s $easeInOutCirc, opacity 0.3s ease-in-out;
 		backdrop-filter: blur(5px);
 
-		@include dev(mob) {
+		@include dev('sm') {
 			padding: 0.65rem;
 		}
 
@@ -397,15 +397,16 @@ html.light {
 
 
 
+/* GPTs page */
 body:has(.h-full.overflow-y-auto .sticky img[alt='User']) {
 
-	@include dev(tab-land) {
+	@include dev('md') {
 		// box-shadow: inset 0 0 0 10px red !important;
 
 		.gpth {
 			&__floating {
-				--top: calc(var(--h-header) * 2);
-				// --top: calc(var(--h-header)/4);
+				// --top: calc(var(--h-header) * 2);
+				--top: calc(var(--h-header)/4);
 			}
 		}
 	}

@@ -130,7 +130,7 @@
 	--text-error: var(--c-danger) !important;
 	--box-shadow-primary: inset 0 -20px 80px -20px #ffffff1f;
 
-	@include dev(tab) {
+	@include dev('md') {
 		--p-chat-bubble: .8rem;
 		--br-chat-bubble: calc(var(--br) * 1.55);
 		--p-contextmenu: .5rem;
@@ -140,7 +140,7 @@
 		--p-sidebar-nav: 0.3rem;
 	}
 
-	@include dev(mob) {
+	@include dev('sm') {
 		--px-chat-bubble-edge-gap: 0.45rem;
 	}
 

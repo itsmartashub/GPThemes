@@ -63,7 +63,7 @@
 	--text-tertiary: var(--c-subtext-2) !important;
 	--c-avatar: var(--avatar-color, #19c37d);
 
-	@include dev(mob) {
+	@include dev('sm') {
 		// --h-header: 40px;
 		--p-chat-bubble: 1.2rem;
 		--br-chat-bubble: calc(var(--br) * 2);

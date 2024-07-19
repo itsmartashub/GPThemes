@@ -73,7 +73,7 @@
 	[role='tabpanel'][data-orientation='horizontal'] {
 		padding: 1rem !important;
 
-		@include dev(mob) {
+		@include dev('sm') {
 			padding: 0rem !important;
 		}
 	}

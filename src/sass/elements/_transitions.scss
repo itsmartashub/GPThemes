@@ -177,7 +177,7 @@ button[role='switch'] {
 // 				}
 // 			}
 
-// 			@include dev(mob) {
+// 			@include dev('sm') {
 // 				.self-end {
 // 					transform: translateY(0%) !important;
 // 					opacity: 1 !important;

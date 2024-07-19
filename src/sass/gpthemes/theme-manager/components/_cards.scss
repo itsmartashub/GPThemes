@@ -4,7 +4,7 @@
     font-size: 1.6rem;
     position: relative;
 
-    @include dev(mob) {
+    @include dev('sm') {
         font-size: 1.4rem;
     }
 
@@ -187,7 +187,7 @@
         padding: var(--p) var(--p) calc(var(--p) - var(--p-input-select)) var(--p);
         // font-size: 1.6rem;
 
-        @include dev(mob) {
+        @include dev('sm') {
             --p: 0.5rem;
             font-size: 1.4rem;
             border-radius: 1rem;
@@ -208,7 +208,7 @@
             color: var(--c-accent);
             background-color: hsla(var(--accent-hsl) / 0.15);
 
-            @include dev(mob) {
+            @include dev('sm') {
                 --icon-size: 1.5rem;
             }
         }

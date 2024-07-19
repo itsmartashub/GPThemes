@@ -6,7 +6,7 @@
     backdrop-filter: blur(10px);
     width: max-content;
 
-    @include dev(mob) {
+    @include dev('sm') {
         top: 3rem;
         right: 0;
         left: 50%;
