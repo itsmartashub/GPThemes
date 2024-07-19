@@ -1,14 +1,18 @@
 main:has(button[data-testid='send-button']),
 main:has(button[aria-label='Stop generating']) {
+
 	/* @ CHAT BUBBLES  */
 	[data-testid^='conversation-turn-'] {
+
 		[data-message-author-role='user'],
 		[data-message-author-role='assistant'] {
 			margin-top: var(--mt-chat-txt) !important;
 			margin-bottom: var(--mb-chat-txt) !important;
 		}
+
 		/* Horizontal gap from chat bubble to screen-edge */
 		& > div {
+
 			/* Original is px-4 or 1rem */
 			@include dev(mob) {
 				padding-left: 0.45rem;
@@ -19,8 +23,7 @@ main:has(button[aria-label='Stop generating']) {
 		/* Chat bubbles - BOTH and user and gpt */
 		& > div:first-child > div:first-child {
 			--pt-multiplier: 1.2;
-			padding: calc(var(--p-chat-bubble) * var(--pt-multiplier)) var(--p-chat-bubble) var(--p-chat-bubble)
-				var(--p-chat-bubble) !important;
+			padding: calc(var(--p-chat-bubble) * var(--pt-multiplier)) var(--p-chat-bubble) var(--p-chat-bubble) var(--p-chat-bubble) !important;
 			border-radius: var(--br-chat-bubble) !important;
 			letter-spacing: 0.3px;
 			line-height: 1.8 !important;
@@ -38,9 +41,7 @@ main:has(button[aria-label='Stop generating']) {
 				--svg-w: 2.25rem;
 				--svg-gap: 0.75rem;
 
-				width: calc(
-					100% - var(--svg-w) - var(--svg-gap) - var(--p-chat-bubble)
-				) !important; // more consistent width (right chat bubble spacing = left spacing)
+				width: calc(100% - var(--svg-w) - var(--svg-gap) - var(--p-chat-bubble)) !important; // more consistent width (right chat bubble spacing = left spacing)
 
 				@include dev(mob) {
 					--svg-w: 24px;
@@ -54,6 +55,7 @@ main:has(button[aria-label='Stop generating']) {
 				}
 			}
 		}
+
 		&:has([data-message-author-role='user']) {
 			/* Chat bubble */
 
@@ -74,10 +76,12 @@ main:has(button[aria-label='Stop generating']) {
 			/* Uploaded image parent */
 			.w-full.mt-1 {
 				margin: 0 !important;
+
 				.bg-token-main-surface-secondary {
 					border-radius: var(--br-contextmenu) !important;
 				}
 			}
+
 			/* Uploaded image */
 			button:has(img[alt='Uploaded image']) {
 				img[alt='Uploaded image'] {
@@ -99,6 +103,7 @@ main:has(button[aria-label='Stop generating']) {
 		}
 
 		&:has([data-message-author-role='assistant']) {
+
 			/* GPT avatar in its chat bubbles */
 			@include dev(mob) {
 				.gizmo-bot-avatar:has(svg[role='img']) {
@@ -109,6 +114,7 @@ main:has(button[aria-label='Stop generating']) {
 
 		/* User chat bubble - Edit state. There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select like this for that case scenario */
 		[class^='group/conversation-turn']:has(textarea) {
+
 			/* === User/ChatGPT name === */
 			.font-semibold.select-none + div .max-w-full {
 				background-color: var(--c-bg-chats-container) !important;
@@ -146,13 +152,16 @@ main:has([data-testid^='conversation-turn-'] .font-semibold.select-none) {
 	// border: 20px solid red !important;
 
 	[data-testid^='conversation-turn-'] {
+
 		[data-message-author-role='user'],
 		[data-message-author-role='assistant'] {
 			margin-top: var(--mt-chat-txt) !important;
 			margin-bottom: var(--mb-chat-txt) !important;
 		}
+
 		/* Horizontal gap from chat bubble to screen-edge */
 		& > div {
+
 			/* Original is px-4 or 1rem */
 			@include dev(mob) {
 				padding-left: 0.45rem;
@@ -163,8 +172,7 @@ main:has([data-testid^='conversation-turn-'] .font-semibold.select-none) {
 		/* Chat bubbles - BOTH and user and gpt */
 		& > div:first-child > div:first-child {
 			--pt-multiplier: 1.2;
-			padding: calc(var(--p-chat-bubble) * var(--pt-multiplier)) var(--p-chat-bubble) var(--p-chat-bubble)
-				var(--p-chat-bubble) !important;
+			padding: calc(var(--p-chat-bubble) * var(--pt-multiplier)) var(--p-chat-bubble) var(--p-chat-bubble) var(--p-chat-bubble) !important;
 			border-radius: var(--br-chat-bubble) !important;
 			letter-spacing: 0.3px;
 			line-height: 1.8 !important;
@@ -182,9 +190,7 @@ main:has([data-testid^='conversation-turn-'] .font-semibold.select-none) {
 				--svg-w: 2.25rem;
 				--svg-gap: 0.75rem;
 
-				width: calc(
-					100% - var(--svg-w) - var(--svg-gap) - var(--p-chat-bubble)
-				) !important; // more consistent width (right chat bubble spacing = left spacing)
+				width: calc(100% - var(--svg-w) - var(--svg-gap) - var(--p-chat-bubble)) !important; // more consistent width (right chat bubble spacing = left spacing)
 
 				@include dev(mob) {
 					--svg-w: 24px;
@@ -198,6 +204,7 @@ main:has([data-testid^='conversation-turn-'] .font-semibold.select-none) {
 				}
 			}
 		}
+
 		&:has([data-message-author-role='user']) {
 			/* Chat bubble */
 
@@ -218,10 +225,12 @@ main:has([data-testid^='conversation-turn-'] .font-semibold.select-none) {
 			/* Uploaded image parent */
 			.w-full.mt-1 {
 				margin: 0 !important;
+
 				.bg-token-main-surface-secondary {
 					border-radius: var(--br-contextmenu) !important;
 				}
 			}
+
 			/* Uploaded image */
 			button:has(img[alt='Uploaded image']) {
 				img[alt='Uploaded image'] {
@@ -233,6 +242,7 @@ main:has([data-testid^='conversation-turn-'] .font-semibold.select-none) {
 
 		/* User chat bubble - Edit state. There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select like this for that case scenario */
 		[class^='group/conversation-turn']:has(textarea) {
+
 			/* === User/ChatGPT name === */
 			.font-semibold.select-none + div .max-w-full {
 				background-color: var(--c-bg-chats-container) !important;
@@ -262,6 +272,7 @@ main:has([data-testid^='conversation-turn-'] .font-semibold.select-none) {
 		}
 
 		&:has([data-message-author-role='assistant']) {
+
 			/* GPT avatar in its chat bubbles */
 			@include dev(mob) {
 				.gizmo-bot-avatar:has(svg[role='img']) {
