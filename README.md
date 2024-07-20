@@ -5,7 +5,7 @@
 </div>
 
 <h1 align="center">GPThemes</h1>
-<h3 align="center">Transform ChatGPT's user interface with customisable accent colours and font styles, modern designs and chat bubbles. </h3>
+<h3 align="center">Transform ChatGPT's user interface with customisable accent colours and font styles, modern designs and custom chat bubbles width. </h3>
 <br/><br/>
 
 <div align="center">
@@ -45,6 +45,7 @@
 
 ## Main Features
 
+-   **Custom/full chat and prompt field width**: Adjust the width of chat bubbles and prompt textarea to your preference, including full-width options for an immersive experience.
 -   **Custom fonts**: Personalize your ChatGPT interface with custom fonts, including **font family**, **size**, **line height**, and **letter spacing**.
 -   **Custom theming**: Personalize ChatGPT with **your preferred accent colors** and see a live preview.
 -   **Modern themes**: **Light**, **Dark**, and **Black** (AMOLED) options for a stylish look.
@@ -74,21 +75,21 @@
 
 #### Chromium
 
-1. Download the `gpthemes-chromium-vX.X.X.zip` from the [Releases](https://github.com/itsmartashub/GPThemes/releases) and unzip.
+1. Download the `gpthemes-chromium-mv3-vX.X.X.zip` from the [Releases](https://github.com/itsmartashub/GPThemes/releases) and unzip.
 2. Open Chrome, go to `chrome://extensions/`
 3. Enable `Developer mode` in the top-right corner.
-4. Click `Load unpacked` and select the `gpthemes-chromium-vX.X.X` folder.
+4. Click `Load unpacked` and select the `gpthemes-chromium-mv3-vX.X.X` folder.
 
 #### Firefox
 
-1. Download the `gpthemes-firefox-vX.X.X.zip` from the [Releases](https://github.com/itsmartashub/GPThemes/releases) and unzip.
+1. Download the `gpthemes-firefox-mv2-vX.X.X.zip` from the [Releases](https://github.com/itsmartashub/GPThemes/releases) and unzip.
 2. Open Firefox, go to `about:debugging`
 3. Enable `Add-on debugging` in `This Firefox`
-4. Click `Load Temporary Add-on` and select `manifest.json` in `gpthemes-firefox-vX.X.X` folder.
+4. Click `Load Temporary Add-on` and select `manifest.json` in `gpthemes-firefox-mv2-vX.X.X` folder.
 
 ## Permissions
 
--   **Storage**: GPThemes requests permission to access browser storage to save your chosen theme name, custom accent color and custom font properties. This ensures a consistent and personalized experience across ChatGPT website.
+-   **Storage**: GPThemes requests permission to access browser storage to save your chosen theme name, custom accent color, custom font properties and custom chat/prompt width. This ensures a consistent and personalized experience across ChatGPT website.
 -   **ChatGPT Website Access**: GPThemes requires access to specific URLs to modify the visual appearance of the ChatGPT website. This includes `https://chat.openai.com/` and `https://chatgpt.com/` (new domain). This access is necessary for the extension to function properly and provide a customized interface.
 
 ## Supported Versions
