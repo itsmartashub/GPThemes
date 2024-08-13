@@ -457,6 +457,49 @@
 	}
 
 
+	/* DALLE huge dialog when opening DALLE image - desktop only*/
+	// &.divide-x:has(button[aria-label="Toggle Sidebar"]) {
+	&.h-\[100dvh\].divide-x {
+		// &[class*="h-[100dvh]"] {
+		// &:has(img[src^="https://files.oaiusercontent.com"]) {
+		border-radius: 0 !important;
+		border-color: hsla(var(--accent-hsl) / 0.15) !important;
+
+		img[src^="https://files.oaiusercontent.com"] {
+			border-radius: calc(var(--br) * 1.5) !important;
+		}
+
+		/* DALLE image prompt sidebar visible when click on ℹ️ */
+		.bg-gray-900.hidden {
+			// background-color: red !important;
+			background-color: hsla(var(--accent-hsl) / 0.15) !important;
+			// border-radius: calc(var(--br) * 1.7) !important;
+			border-radius: var(--br-chat-bubble) !important;
+		}
+
+		// [class*="w-[25vw] min-w-[25vw]"] {
+		.text-sm.text-gray-300 {
+			color: var(--c-accent) !important;
+			font-weight: bold;
+		}
+
+		// border: 2px solid red !important;
+		.overflow-y-auto {
+			--c-scrollbar-thumb: hsla(var(--accent-hsl) / 0.4) !important;
+		}
+
+		// }
+
+		// &.divide-x {
+		// 	border-color: hsla(var(--accent-hsl) / 0.15) !important;
+		// }
+
+		// &.divide-white\/10>:not([hidden])~:not([hidden]) {
+		// 	border-color: hsla(0, 0%, 100%, .1);
+		// }
+	}
+
+
 }
 
 /* ! NOT WORKING - CANNOT OVERWRITE THIS WTF */
