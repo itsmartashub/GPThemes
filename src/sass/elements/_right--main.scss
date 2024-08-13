@@ -254,7 +254,9 @@ main [data-testid^='conversation-turn-'] {
 		}
 
 		/*   RIGHT - CHATS BUBBLE BG  */
-		& > div:first-child > div:first-child {
+		// & > div:first-child > div:first-child {
+		// & > div.m-auto > div:first-child {
+		& > div.text-base > div:first-child {
 			background-color: var(--c-bg-msg-gpt);
 
 			--pt-multiplier: 1.3;
