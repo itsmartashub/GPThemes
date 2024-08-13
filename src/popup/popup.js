@@ -6,32 +6,21 @@ const seeFullChangelog = (version) =>
 
 let htmlChangesList = `
 
-<h2>💔 Breaking Change</h2>
+<h2>🛠️ Improvements</h2>
 <ul>
-    <li>Removal of Old UI Styles (<a href="https://github.com/itsmartashub/GPThemes/issues/41">#41</a>)</li>
-    <li>To address issues with chat bubbles and improve overall performance, I have removed styles related to the outdated UI.</br>
-    While this fix ensures smoother operation for most users, those still using the old UI version may experience some visual inconsistencies!</li>
-</ul>
-
-<h2>✨ New Features</h2>
-<ul>
-  <li><strong>Chat Full Width Feature (<a href="https://github.com/itsmartashub/GPThemes/issues/1">#1</a>)</strong>: Implemented a new feature allowing users to toggle full-width chat bubbles.</li>
-  <li><strong>Chat Custom Width Slider</strong>: Added range input sliders for customizing chat bubble width, providing users with more control over the chat layout.</li>
-  <li><strong>Prompt Field Width Slider</strong>: Implemented a custom width slider for the prompt field, allowing independent width adjustment.</li>
-  <li><strong>Prompt Field Sync/Lock Indicator</strong>: Added a lock icon indicator on the prompt message sync switch to show when it's locked to chat widths.</li>
-  <li><strong>Responsive Width Adjustment (<a href="https://github.com/itsmartashub/GPThemes/issues/39">#39</a>)</strong>: Implemented automatic width adjustment for chat bubbles and prompt field based on screen size.</li>
-  <li><strong>UI Accent Color Update</strong>: Changed the default accent color for the light theme. </li>
+	<li>
+		<strong>Enhanced DALLE UI</strong>: Streamlined the image generation experience with a redesigned prompt preview layout and DALLE prompt sidebar. Restyled DALLE image hover buttons to match the GPThemes.
+	</li>
 </ul>
 
 <h2>🐛 Bug Fixes</h2>
 <ul>
-    <li><strong>Chat Bubbles Fix</strong>: Removed Old UI styles to fix broken chat bubbles (<a href="https://github.com/itsmartashub/GPThemes/issues/41">#41</a>).</li>
-    <li><strong>Attach Icon Visibility</strong>: Removed background color around the attach icon in the prompt field for better visibility (<a href="https://github.com/itsmartashub/GPThemes/issues/40">#40</a>).</li>
-    <li><strong>Edit State Design</strong>: Addressed issues with the edit state design for user chat bubbles after ChatGPT UI changes (<a href="https://github.com/itsmartashub/GPThemes/issues/36">#36</a>).</li>
-    <li><strong>Dialog Styling</strong>: Resolved inconsistencies in background color and sizing for small dialogs and hover effects.</li>
-    <li><strong>Mobile Header Styling</strong>: Resolved issues with the sticky header style on mobile screens.</li>
-    <li><strong>Floating Button Position</strong>: Adjusted GPThemes floating button position to prevent overlap with user account image on smaller devices.</li>
-    <li><strong>Scroll Down Button Fix</strong>: Addressed an issue with the "Scroll Down" button position on hover, ensuring it remains accessible.</li>
+	<li>
+		<strong>Assistant Chat Bubble Background (
+	<a href="https://github.com/itsmartashub/GPThemes/issues/42">#42</a>)</strong>: Fixed an issue where the assistant's chat
+		bubble background was not visible due to recent ChatGPT changes, improving readability and visual
+		clarity.
+	</li>
 </ul>
 
 
