@@ -224,13 +224,23 @@ main [data-testid^='conversation-turn-'] {
 
 	/* User chat bubble - Edit state.
 	There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario */
-	div:has(>.grid > textarea) {
-		@extend %animFadeIn;
-		// .bg-token-main-surface-tertiary:has(> textarea) {
-		--main-surface-tertiary: hsla(var(--accent-hsl) / 0.03) !important;
+	.rounded-3xl.bg-token-main-surface-tertiary:has(.grid > textarea) {
+		// background-color: transparent !important;
+		--main-surface-tertiary: hsla(var(--accent-hsl) / 0.08) !important;
 		padding: var(--p-chat-bubble) !important;
-		border: 1px solid hsla(var(--accent-hsl) / 0.1);
+		border: 1px solid hsla(var(--accent-hsl) / 0.2);
 		caret-color: var(--c-accent);
+		@extend %animFadeIn;
+	}
+
+	div:has(>.grid > textarea) {
+		// @extend %animFadeIn;
+		// .bg-token-main-surface-tertiary:has(> textarea) {
+		// --main-surface-tertiary: hsla(var(--accent-hsl) / 0.03) !important;
+		// padding: var(--p-chat-bubble) !important;
+		// border: 1px solid hsla(var(--accent-hsl) / 0.1);
+		// caret-color: var(--c-accent);
+		border: none !important;
 
 		/* Make the text in edit textarea to be the full-width */
 		textarea {
