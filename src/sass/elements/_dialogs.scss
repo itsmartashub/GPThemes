@@ -104,36 +104,14 @@
 		font-size: 0.68rem !important;
 	}
 
-	/* DIALOG - "Upgrade your plan" only */
-	&:has(a[href="https://openai.com/enterprise"], [data-testid*="-pricing-modal-column"]) {
-		--popover-surface-primary: var(--c-bg-dialog) !important; // Dialog bg
-		padding: 0 !important;
-		border: none !important;
+	/* ___ Dialog - "Upgrade your plan"  */
+	// &.bg-payment-modal {
+	&:has(a[href="https://openai.com/enterprise"]) {
+		border-radius: 0 !important;
 
-		/* Ugly bg behind text in Plans */
-		.bg-token-main-surface-primary {
-			--main-surface-primary: var(--c-bg-dialog) !important;
-			background-color: var(--main-surface-primary);
+		[aria-label="Toggle for switching between Personal and Business plans"] {
+			background-color: hsla(var(--accent-hsl) / 0.1) !important;
 		}
-
-		/* Border radius for "Upgrade your plan" dialog */
-		.rounded-md {
-			border-radius: var(--br-dialog) !important;
-		}
-
-		/*  Stroke color for ✔️ in "Upgrade your plan" dialog list */
-		svg[stroke='currentColor']:has(polyline) {
-			stroke: var(--c-accent) !important;
-		}
-
-		/* See "ChatGPT Enterprise" */
-		a[href="https://openai.com/enterprise"] {
-			color: var(--c-accent) !important;
-		}
-	}
-
-	/* "Upgrade yur plan" verzja koja ima Personal i Bussiness switching buttons */
-	&:has(button[aria-label*='Toggle for switching to Personal plans']) {
 
 		/* "Personal" and "Business" switching buttons */
 		button[aria-label*='Toggle for switching to Personal plans'],
@@ -144,8 +122,8 @@
 				color: var(--c-on-accent);
 
 				// style for element surround btn (in code its next to btn on the same block level, sibling), simulating the button, jeez...
-				& ~ .bg-token-text-primary {
-					--text-primary: var(--c-accent) !important;
+				& ~ .absolute.inset-0 {
+					--main-surface-primary: var(--c-accent) !important;
 				}
 			}
 
@@ -155,8 +133,27 @@
 				&:hover {
 					color: var(--c-accent) !important;
 				}
-
 			}
+		}
+
+		/* Free and Plus plans */
+		[data-testid*="-pricing-modal-column"] {
+			margin: 0.3rem !important;
+			box-shadow: var(--box-shadow);
+			background-color: hsla(var(--accent-hsl) / 0.1) !important;
+			backdrop-filter: blur(10px);
+			border: 1px solid hsla(var(--accent-hsl) / 0.12) !important;
+
+			/* Ugly bg behind text in Plans */
+			.bg-token-main-surface-primary {
+				--main-surface-primary: transparent !important;
+				// background-color: transparent !important;
+			}
+		}
+
+		/* See "ChatGPT Enterprise" */
+		a[href="https://openai.com/enterprise"] {
+			color: var(--c-accent) !important;
 		}
 	}
 

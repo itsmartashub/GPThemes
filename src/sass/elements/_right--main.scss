@@ -257,7 +257,9 @@ main [data-testid^='conversation-turn-'] {
 			line-height: calc(var(--lineHeight) / 16) !important;
 		}
 
-		/*   RIGHT - CHATS BUBBLE BG  */
+		/*   RIGHT - CHATS BUBBLE BG 
+		- Adding .markdown here fix flash background of user chat bubble on first message
+		TODO I need to check if his also fix th "Which response do you prefer" wrapper design */
 		& > div.text-base > div:first-child:has(.markdown) {
 			background-color: var(--c-bg-msg-gpt);
 
