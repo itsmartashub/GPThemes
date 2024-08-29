@@ -43,34 +43,25 @@
 		}
 	}
 
-	/* ! GPT once again make shit of its website and remove this selector: /gpts/mine.
-		Menu which have "My GPTs" link on it and "Log Out" */
-	// &:has([role="menuitem"][href="/gpts/mine"]) {
-	// 	[role='separator'] {
-	// 		--border-light: var(--c-border) !important;
-	// 	}
+	.bg-token-border-light:has([role="separator"]) {
+		// display: block !important;
+		// --border-light: red !important;
+		// // --border-light: var(--c-border) !important;
+		// background-color: red !important;
+	}
 
-	// 	[role="menuitem"] {
+	/* Separator/divider in menus ([role="separator"]) */
+	.h-px {
+		display: block !important;
+		--border-light: var(--c-border) !important;
+		// background-color: red !important;
+	}
 
-	// 		/* "Log Out" */
-	// 		&:last-child {
-
-	// 			&,
-	// 			svg {
-	// 				color: var(--c-danger) !important;
-	// 			}
-
-	// 			&:hover {
-	// 				background-color: hsla(var(--danger-hsl) / 0.15) !important;
-	// 			}
-	// 		}
-	// 	}
-	// }
 	/* Menu koji ima separator koji je pre poslednjeg menuitem-a u tom menu - "Log Out" */
 	&:has([role='separator'] ~ [role='menuitem']:last-child) {
-		[role='separator'] {
-			--border-light: var(--c-border) !important;
-		}
+		// [role='separator'] {
+		// 	--border-light: var(--c-border) !important;
+		// }
 
 		[role='menuitem']:last-child:not(:has([aria-label='Temporary'])) {
 
@@ -84,6 +75,7 @@
 			}
 		}
 	}
+
 }
 
 /* __ MODAL - Choose theme context menu & tooltips?  */
@@ -199,7 +191,7 @@
 	z-index: calc(var(--z-modal) + 200) !important;
 } */
 
-/*
+/* ___ Choose language 
 	Settings > Language > dropdown which is rendered into body>direct.
 	.absolute.inset-0:has(.fixed.inset-0) is a modal */
 body > .absolute.inset-0:has(.fixed.inset-0) + div:not([data-radix-popper-content-wrapper]):has(> div[role='listbox']) {

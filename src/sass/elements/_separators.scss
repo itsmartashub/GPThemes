@@ -1,3 +1,5 @@
-[role="separator"] {
-    border-color: var(--c-border) !important;
+.bg-token-border-light:has([role="separator"]) {
+    --border-light: red !important;
+    // --border-light: var(--c-border) !important;
+    background-color: red !important;
 }
