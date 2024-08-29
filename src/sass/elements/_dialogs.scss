@@ -211,6 +211,11 @@
 	// "PUBLIC LINK UPDATED"
 	&:has(input[value^="https://chat.openai.com/share/"]) {
 
+		/* "Copy Link" btn */
+		button.rounded-full {
+			border-radius: 9999px !important;
+		}
+
 		// --main-surface-primary: var(--c-surface-3) !important; // bg of link preview and "🔗 Create Link" btn
 		// // mozda i ukloniti, nije lose i bez ovog ustvari tj da input bude iste boje kao i dialog
 		.bg-token-main-surface-primary {
@@ -220,7 +225,6 @@
 		// bg-gradient of link preview
 		.from-token-main-surface-primary {
 			display: none;
-			// --gradient-color-from: var(--main-surface-primary);
 		}
 
 		/* PUBLIC LINK UPDATED - Social platforms in show in footer after the  "🔗 Copy Link" btn */
