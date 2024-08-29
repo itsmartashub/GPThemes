@@ -29,14 +29,6 @@ main [role='presentation'] {
 	}
 }
 
-/* === RIGHT - Chats - Gap from heading and svg icons ===*/
-// main [data-message-author-role='user'],
-// main [data-message-author-role='assistant'] {
-// 	margin-top: var(--mt-chat-txt) !important;
-// 	margin-bottom: var(--mb-chat-txt) !important;
-// }
-
-
 /* @ === RIGHT - CHATS BUBBLES ===*/
 main [data-testid^='conversation-turn-'] {
 	/* Edit icon in user chat for example. Edit state user chat bg  */
@@ -47,28 +39,6 @@ main [data-testid^='conversation-turn-'] {
 	[class*='xl:max-w-[48rem]'] {
 		max-width: var(--w_chat_gpt) !important;
 	}
-
-	// TODO proveriti ovo sve kad ima #prompt-textarea i kad nema (tipa u shared link layout-u)
-	/* .px-3.text-base.m-auto {
-		padding-left: var(--px-chat-bubble-edge-gap) !important;
-		padding-right: var(--px-chat-bubble-edge-gap) !important;
-	} */
-
-	/* Horizontal gap from chat bubble to screen-edge */
-	& > div {
-		// padding-left: var(--px-chat-bubble-edge-gap);
-		// padding-right: var(--px-chat-bubble-edge-gap);
-
-		/* Original is px-4 or 1rem */
-		// @include dev('sm') {
-		// 	padding-left: 0.45rem;
-		// 	padding-right: 0.45rem;
-		// }
-	}
-
-	/* RIGHT - CHATS BUBBLES DIV */
-	// & > div:first-child > div:first-child {
-	// }
 
 	/*  Chat bubble footer SVG icons - edit, read aloud, copy, regenerate, bad response */
 	[class*='empty:hidden'] {
@@ -87,8 +57,6 @@ main [data-testid^='conversation-turn-'] {
 				svg {
 					color: var(--c-on-accent) !important;
 				}
-
-				// background-color: hsla(var(--accent-hsl) / 0.18);
 			}
 		}
 
@@ -146,10 +114,7 @@ main [data-testid^='conversation-turn-'] {
 	&:has([data-message-author-role='user']) {
 		line-height: calc(var(--lineHeight) / 16) !important;
 
-
-
 		/*  RIGHT - CHATS BUBBLE BG */
-		// & > div:first-child > div:first-child {
 		/* ? gpt4o - User message */
 		[class*='bg-[#f4f4f4]'] {
 			background-color: var(--c-bg-msg-user);
@@ -161,7 +126,6 @@ main [data-testid^='conversation-turn-'] {
 			max-width: var(--w_chat_user) !important;
 		}
 
-		// }
 
 		/* Flex-end the Reply in user chat bubble */
 		[data-message-author-role='user'] {
@@ -230,11 +194,11 @@ main [data-testid^='conversation-turn-'] {
 		padding: var(--p-chat-bubble) !important;
 		border: 1px solid hsla(var(--accent-hsl) / 0.2);
 		caret-color: var(--c-accent);
-		@extend %animFadeIn;
 	}
 
 	div:has(>.grid > textarea) {
 		border: none !important;
+		@extend %animFadeIn;
 
 		/* Make the text in edit textarea to be the full-width */
 		textarea {

@@ -4,23 +4,24 @@ import { EXT_CURRENT_VERSION, CHANGELOG_URL } from '../js/app/config'
 const seeFullChangelog = (version) =>
 	`<a href="https://github.com/itsmartashub/GPThemes/releases/tag/v${version}" target="_blank" rel="noopener noreferrer" class="changelog__seefullchangelog">🚀 See full release notes</a>`
 
+// <a href="https://github.com/itsmartashub/GPThemes/issues/42">#42</a>
+
 let htmlChangesList = `
 
 <h2>🛠️ Improvements</h2>
 <ul>
-	<li>
-		<strong>Enhanced DALLE UI</strong>: Streamlined the image generation experience with a redesigned prompt preview layout and DALLE prompt sidebar. Restyled DALLE image hover buttons to match the GPThemes.
-	</li>
+	<li>Redesigned example button cards in new chat layout</li>
+	<li>Revamped <strong>"Upgrade Your Plan"</strong> dialog (<a href="https://github.com/itsmartashub/GPThemes/issues/44">#44</a>)</li>
+	<li>Adjusted gap for the new chat button from other link in sidebar</li>
+	<li>Enhanced <strong>"Create Link"</strong> button style in <strong>"Share Link"</strong> dialogs</li>
 </ul>
 
 <h2>🐛 Bug Fixes</h2>
 <ul>
-	<li>
-		<strong>Assistant Chat Bubble Background (
-	<a href="https://github.com/itsmartashub/GPThemes/issues/42">#42</a>)</strong>: Fixed an issue where the assistant's chat
-		bubble background was not visible due to recent ChatGPT changes, improving readability and visual
-		clarity.
-	</li>
+	<li>Improved user chat edit state design (<a href="https://github.com/itsmartashub/GPThemes/issues/43">#43</a>)</li>
+	<li>Fixed chat bubble background flash in new chats (<a href="https://github.com/itsmartashub/GPThemes/issues/46">#46</a>)</li>
+	<li>Restored visibility of menu separators</li>
+	<li>Enhanced active tag appearance in feedback dialog</li>
 </ul>
 
 
