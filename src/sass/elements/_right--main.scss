@@ -234,12 +234,6 @@ main [data-testid^='conversation-turn-'] {
 	}
 
 	div:has(>.grid > textarea) {
-		// @extend %animFadeIn;
-		// .bg-token-main-surface-tertiary:has(> textarea) {
-		// --main-surface-tertiary: hsla(var(--accent-hsl) / 0.03) !important;
-		// padding: var(--p-chat-bubble) !important;
-		// border: 1px solid hsla(var(--accent-hsl) / 0.1);
-		// caret-color: var(--c-accent);
 		border: none !important;
 
 		/* Make the text in edit textarea to be the full-width */
@@ -264,9 +258,7 @@ main [data-testid^='conversation-turn-'] {
 		}
 
 		/*   RIGHT - CHATS BUBBLE BG  */
-		// & > div:first-child > div:first-child {
-		// & > div.m-auto > div:first-child {
-		& > div.text-base > div:first-child {
+		& > div.text-base > div:first-child:has(.markdown) {
 			background-color: var(--c-bg-msg-gpt);
 
 			--pt-multiplier: 1.3;
@@ -312,10 +304,6 @@ main [data-testid^='conversation-turn-'] {
 				border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
 				border-radius: var(--br-contextmenu);
 				background-color: hsla(var(--accent-hsl) / 0.05);
-
-				// .relative.flex.w-full.flex-col {
-				// 	width: 100% !important;
-				// }
 			}
 		}
 
