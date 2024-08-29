@@ -43,26 +43,14 @@
 		}
 	}
 
-	.bg-token-border-light:has([role="separator"]) {
-		// display: block !important;
-		// --border-light: red !important;
-		// // --border-light: var(--c-border) !important;
-		// background-color: red !important;
-	}
-
 	/* Separator/divider in menus ([role="separator"]) */
 	.h-px {
 		display: block !important;
 		--border-light: var(--c-border) !important;
-		// background-color: red !important;
 	}
 
 	/* Menu koji ima separator koji je pre poslednjeg menuitem-a u tom menu - "Log Out" */
 	&:has([role='separator'] ~ [role='menuitem']:last-child) {
-		// [role='separator'] {
-		// 	--border-light: var(--c-border) !important;
-		// }
-
 		[role='menuitem']:last-child:not(:has([aria-label='Temporary'])) {
 
 			&,
@@ -75,7 +63,6 @@
 			}
 		}
 	}
-
 }
 
 /* __ MODAL - Choose theme context menu & tooltips?  */
@@ -117,9 +104,6 @@
 	/* Theme dropdown bg */
 	.popover {
 		background-color: var(--c-bg-contextmenu) !important;
-		/* --main-surface-primary: var(--white)!important; */
-		// --main-surface-secondary: var(--gray-100)!important;
-		// --main-surface-tertiary: var(--gray-200)!important;
 	}
 
 	[data-radix-collection-item] {

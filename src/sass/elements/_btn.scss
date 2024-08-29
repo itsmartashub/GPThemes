@@ -152,7 +152,16 @@ button[class*='bg-brand-purple'] {
 button.border-token-border-light[class*='hover:bg-token-main-surface-secondary'] {
 	border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
 	color: var(--c-accent) !important;
-	backdrop-filter: blur(14px);
+	// backdrop-filter: blur(14px);
+
+	&.\!bg-token-text-primary {
+		background-color: var(--c-accent) !important;
+		color: var(--c-on-accent) !important;
+
+		&:hover {
+			color: var(--c-accent) !important;
+		}
+	}
 
 	&:hover {
 		transform: translateY(-1px);
