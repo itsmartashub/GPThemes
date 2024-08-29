@@ -1,16 +1,34 @@
 // /* === RIGHT - NEW CHAT - 4 BIG BTNS === */
 /* New chat prompt examples - card buttons with prompt pregenerated */
 main [role='presentation'] {
-	button.relative.flex.w-40.flex-col.rounded-2xl.border-token-border-light {
+
+	button.relative.flex.w-40.flex-col.rounded-2xl.border-token-border-light,
+	button.relative.whitespace-nowrap.rounded-2xl.border-token-border-light.text-start.align-top.shadow-xxs.transition.enabled\:hover\:bg-token-main-surface-secondary.disabled\:cursor-not-allowed {
+
 		--clr: hsla(var(--accent-hsl) / 0.08);
 		border: 1px solid var(--clr) !important;
+		background-color: var(--clr) !important;
+		color: var(--c-accent);
+		transition: background-color 0.3s ease, color 0.3s ease;
+
+		.text-gray-600 {
+			--c-subtext-2: currentColor;
+		}
+
+		svg {
+			color: currentColor !important;
+			transition: none;
+		}
 
 		&:hover {
-			background-color: var(--clr) !important;
+			background-color: var(--c-accent) !important;
+			color: var(--c-on-accent) !important;
 
 			.text-gray-600 {
-				--c-subtext-2: var(--c-accent);
+				--c-subtext-2: var(--c-on-accent) !important;
 			}
 		}
 	}
 }
+
+// .text-[15px]
