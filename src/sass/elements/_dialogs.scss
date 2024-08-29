@@ -206,12 +206,11 @@
 		}
 	}
 
-	/* ___ Dialog - "Share Link to Chat"  */
-	&:has(input[value^="https://chatgpt.com/share/"]),
-	// "PUBLIC LINK UPDATED"
-	&:has(input[value^="https://chat.openai.com/share/"]) {
+	/* ___ Dialog - "Share Link to Chat" & "Public Link Updated" */
+	// &:has(input[value^="https://chat.openai.com/share/"]),
+	&:has(input[value^="https://chatgpt.com/share/"]) {
 
-		/* "Copy Link" btn */
+		/* "🔗 Copy Link" btn */
 		button.rounded-full {
 			border-radius: 9999px !important;
 		}
