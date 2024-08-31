@@ -1,6 +1,9 @@
 /* ===  RIGHT - TEXTAREA PARENT, message type and send button */
 // main form [class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea) {
 main form {
+	// textarea prompt on some profiles and guest - waiting for composer gpt version
+	div[class*='bg-token-composer-surface']:has(textarea#prompt-textarea),
+
 	// gpt4o textarea prompt
 	div[class*='bg-[#f4f4f4]']:has(textarea#prompt-textarea),
 

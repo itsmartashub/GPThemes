@@ -26,19 +26,15 @@ let elements = {
 }
 
 // Initialize the application
-async function init() {
-	console.log(await browser.storage.sync.get('gptheme'))
+function init() {
+	initTheme()
 	createAndAppendSVGStickyBtn()
 	renderSettings()
-	cacheElements()
-	initTheme().then(async () => {
-		handleAccentsStorage()
-		handleColorInput()
-		decreaseFloatingBtnSize()
-		addEventListeners()
-		console.log(await browser.storage.sync.get('gptheme'))
-	})
+	decreaseFloatingBtnSize()
+	handleAccentsStorage()
+	handleColorInput()
 }
+
 // Theme initialization and management
 async function initTheme() {
 	try {

@@ -4,37 +4,19 @@ main:has(#prompt-textarea) {
 		padding-left: var(--px-chat-bubble-edge-gap) !important;
 		padding-right: var(--px-chat-bubble-edge-gap) !important;
 
-		/* Textarea and chats wrapper */
-		// .mx-auto.flex.flex-1.text-base {
-		// 	max-width: var(--w_prompt_textarea) !important;
-		// }
 		/* Only textarea wrapper */
 		.mx-auto.flex.flex-1.text-base:has(>form) {
 			max-width: var(--w_prompt_textarea) !important;
 		}
 	}
 
-	// [class*='xl:max-w-[48rem]'] {
-	// 	// [class*='lg:max-w-[40rem]'] {
-	// 	border: 1px solid greenyellow;
 
-	// 	max-width: var(--w_prompt_textarea) !important;
-	// 	// max-width: var(--w_chat_gpt) !important;
+	.composer-parent {
 
-	// 	// @include dev(laptop) {
-	// 	// 	--w_prompt_textarea: 40rem;
-	// 	// 	// border-color: lightblue;
-	// 	// }
+		/* Textarea parent and its parent wrapper - --composer-bar_skeleton */
+		.mx-auto.flex.max-w-3xl.flex-1.flex-col:has(.bg-thread--header) {
+			max-width: var(--w_prompt_textarea) !important;
+		}
 
-	// 	// // @include dev(tab-land) {
-	// 	// // 	--w_prompt_textarea: 40rem;
-	// 	// // 	border-color: lightpink;
-	// 	// // }
-
-	// 	// @include dev(big-desktop) {
-	// 	// 	--w_prompt_textarea: 52rem;
-	// 	// 	// border-color: lightgreen;
-	// 	// }
-	// }
-
+	}
 }
