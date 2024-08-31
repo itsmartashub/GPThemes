@@ -12,7 +12,7 @@ function renderSwitchOption({ inputId, isChecked = false, icon, textTitle, textS
       </div>
 
       <div class="gpth-switch__text">
-        <div class="title">${sanitizedTextTitle}</div>
+        <div class="title mb-1">${sanitizedTextTitle}</div>
         <div class="subtitle">${sanitizedTextSubtitle}</div>
       </div>
 

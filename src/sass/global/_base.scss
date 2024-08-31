@@ -66,6 +66,7 @@ code.hljs {
 	width: var(--w-scrollbar); // desired scrollbar width 
 	// height: 0 !important; // desired scrollbar height
 	height: var(--w-scrollbar) !important; // desired scrollbar height
+	cursor: grab;
 }
 
 /* scrollbar thumb */
@@ -73,6 +74,7 @@ code.hljs {
 scrollbar-thumb {
 	background-color: var(--c-scrollbar-thumb); // scrollbar thumb color
 	border-radius: var(--br-scrollbar); // roundness of the thumb
+	cursor: grab;
 }
 
 /* scrollbar track */
