@@ -1,4 +1,5 @@
 .colorpicker {
+
 	// --colorpicker_shadow_color: hsla(0 0% var(--surface-l) / 0.8);
 	&-container {
 		display: flex;
@@ -7,30 +8,28 @@
 		gap: 1rem;
 	}
 
-	// --shadow-color: hsla(var(--accent-hsl) / 0.1);
-	// --shadow-values: 0 0 0 1px;
-	display: grid;
-	place-content: center;
-	place-items: center;
-	gap: 1rem;
-	padding: 1rem;
-	border-radius: 1rem;
-	font-size: 0.6rem;
-	text-transform: uppercase;
-	aspect-ratio: 1;
-	// box-shadow: var(--shadow-values) var(--shadow-color);
-	transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
-	cursor: pointer;
+	& {
+		display: grid;
+		place-content: center;
+		place-items: center;
+		gap: 1rem;
+		padding: 1rem;
+		border-radius: 1rem;
+		font-size: 0.6rem;
+		text-transform: uppercase;
+		aspect-ratio: 1;
+		// box-shadow: var(--shadow-values) var(--shadow-color);
+		transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+		cursor: pointer;
 
-	background-image: linear-gradient(
-		135deg,
-		hsla(var(--accent-hsl) / 0.2) 0%,
-		hsla(var(--accent-hsl) / 0.03) 40%,
-		hsla(var(--accent-hsl) / 0.03) 60%,
-		hsla(var(--accent-hsl) / 0.1) 100%
-	);
-	border: 1px solid hsla(var(--accent-hsl) / 0.1);
-	backdrop-filter: blur(5px);
+		background-image: linear-gradient(135deg,
+				hsla(var(--accent-hsl) / 0.2) 0%,
+				hsla(var(--accent-hsl) / 0.03) 40%,
+				hsla(var(--accent-hsl) / 0.03) 60%,
+				hsla(var(--accent-hsl) / 0.1) 100%);
+		border: 1px solid hsla(var(--accent-hsl) / 0.1);
+		backdrop-filter: blur(5px);
+	}
 
 	input[type='color'] {
 		--input_color_size: 2.4rem;
@@ -49,6 +48,7 @@
 			// border: none;
 			// outline: none;
 		}
+
 		&::-webkit-color-swatch {
 			border: none;
 			outline: none;
