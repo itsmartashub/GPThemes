@@ -203,7 +203,9 @@ html.light {
 	/* ? ========== Layout colors ========== */
 	--c-bg-sidebar: var(--c-surface-1);
 	--c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025));
-	--c-bg-chats-sticky: hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 0.02);
+	// --c-bg-chats-sticky: hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 0.02);
+	// --c-bg-chats-sticky: linear-gradient(to bottom, var(--c-bg-chats-container) 40%, transparent 100%);
+	--c-bg-chats-sticky: linear-gradient(to bottom, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 1) 50%, transparent);
 
 	/* ? ========== Chat bubbles colors ========== */
 	--c-bg-msg-user: hsla(var(--accent-hsl) / 0.08);
@@ -333,7 +335,8 @@ html.dark {
 	/* ? ========== Layout colors ========== */
 	--c-bg-sidebar: var(--c-surface-1);
 	--c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.076));
-	--c-bg-chats-sticky: hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.076) / 0.02);
+	// --c-bg-chats-sticky: hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.076) / 0.02);
+	--c-bg-chats-sticky: linear-gradient(to bottom, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 1) 50%, transparent);
 
 	/* ? ========== Chat bubbles colors ========== */
 	--c-bg-msg-user: hsla(var(--accent-hsl) / 0.04);
