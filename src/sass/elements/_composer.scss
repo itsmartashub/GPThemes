@@ -1,4 +1,7 @@
 .bg-thread--header,
 .bg-thread--footer {
     --main-surface-primary: var(--c-bg-chats-container) !important;
+    // --main-surface-primary: transparent !important;
+    // backdrop-filter: blur(1.5rem) !important;
+    // background: none !important;
 }
