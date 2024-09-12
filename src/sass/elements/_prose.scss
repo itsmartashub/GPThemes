@@ -47,6 +47,7 @@
 
 	/* Markdown Lists/bullers. Center them, they were on top, not centered */
 	ul > li {
+
 		/* Bullets before checkboxes */
 		&:has(input[type='checkbox']) {
 			&::before {
@@ -73,6 +74,7 @@
 		&[href] {
 			@extend %link_hover_underlined;
 		}
+
 		// color: var(--c-accent) !important;
 	}
 
@@ -121,6 +123,11 @@
 			background-color: hsla(var(--txt-hsl) / 0.03) !important;
 		}
 	}
+
+	code:not(pre) {
+		background-color: hsla(var(--accent-hsl) / 0.12) !important;
+		color: var(--c-accent);
+	}
 }
 
 /* Thead color for Dark theme */
@@ -131,6 +138,8 @@ html.dark .prose {
 		// background-color: var(--c-accent-light) !important;
 	}
 }
+
+
 
 /* Code-snippets markdown and markdown header */
 // html.dark[data-gptheme='oled'] {
