@@ -11,16 +11,12 @@ main:has(#prompt-textarea) {
 	}
 
 
-	.composer-parent {
-
-		/* Textarea parent and its parent wrapper - --composer-bar_skeleton */
-		.mx-auto.flex.max-w-3xl.flex-1.flex-col:has(.bg-thread--header) > .absolute.inset-0,
-		.mx-auto.flex.max-w-3xl.flex-1.flex-col:has(.bg-thread--header) {
-			max-width: 100% !important;
-		}
-
-		// .mx-auto.flex.max-w-3xl.flex-1.flex-col:has(.bg-thread--header) {
-		// 	max-width: var(--w_prompt_textarea) !important;
-		// }
-	}
+	/* OpenAI removed this A/B testing code for now... */
+	// .composer-parent {
+	// 	/* Textarea parent and its parent wrapper - --composer-bar_skeleton */
+	// 	// .mx-auto.flex.max-w-3xl.flex-1.flex-col:has(.bg-thread--header) > .absolute.inset-0,
+	// 	.mx-auto.flex.max-w-3xl.flex-1.flex-col:has(.bg-thread--header) {
+	// 		max-width: 100% !important;
+	// 	}
+	// }
 }

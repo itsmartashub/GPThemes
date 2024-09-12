@@ -5,13 +5,14 @@ But adding this "main" blocked this style to smaller screens so I have to add it
  - .h-full.overflow-y-auto:has(.sticky [href^='/auth/login?next=/gpts']) is for Guest mode on GPTs Store
  - .sticky.border-token-border-medium je za small devices
  - .sticky.bg-token-main-surface-primary je za small devices
+ - no(th) means to not include style on table headings in dialogs
  */
 // .sticky.border-token-border-medium,
-.sticky.bg-token-main-surface-primary,
-main .sticky,
+.sticky.bg-token-main-surface-primary:not(th),
+main .sticky:not(th),
 .h-full.overflow-y-auto:has(.sticky [href^='/auth/login?next=/gpts']) .sticky {
-	// background-color: var(--c-bg-chats-sticky) !important;
 	background: var(--c-bg-chats-sticky) !important;
+	// background-color: var(--c-bg-chats-sticky) !important;
 	// backdrop-filter: blur(var(--blur-sticky));
 
 
@@ -20,7 +21,7 @@ main .sticky,
 	&:has([href='/gpts/editor']),
 	&.top-14 {
 		--c-bg-chats-sticky: var(--c-bg-chats-container) !important;
-		--blur-sticky: 0 !important;
+		// --blur-sticky: 0 !important;
 	}
 
 	&.top-14 {

@@ -1,17 +1,16 @@
 /* ===  RIGHT - TEXTAREA PARENT, message type and send button */
-// main form [class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea) {
 main form {
 	// textarea prompt on some profiles and guest - waiting for composer gpt version
-	div[class*='bg-token-composer-surface']:has(textarea#prompt-textarea),
+	// div[class*='bg-token-composer-surface']:has(#prompt-textarea),
 
 	// gpt4o textarea prompt
-	div[class*='bg-[#f4f4f4]']:has(textarea#prompt-textarea),
+	div[class*='bg-[#f4f4f4]']:has(#prompt-textarea),
 
 	// Guest/3.5 textarea prompt
-	div[class*='[&:has(textarea:focus)]']:has(textarea#prompt-textarea),
+	div[class*='[&:has(textarea:focus)]']:has(#prompt-textarea),
 
 	// Textare when clicked on "Temporary Chat" toggle
-	div[class*='bg-black']:has(textarea#prompt-textarea) {
+	div[class*='bg-black']:has(#prompt-textarea) {
 		padding: var(--p-prompt-textarea) !important;
 		background-color: var(--c-bg-textarea) !important;
 		border-radius: var(--br-prompt-textarea) !important;
@@ -19,9 +18,6 @@ main form {
 		// box-shadow: var(--box-shadow-textarea);
 		transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
-		// &:has(textarea#prompt-textarea:focus) {
-		// 	box-shadow: none !important;
-		// }
 		/* In "temporary chat" textarea is black so the color and caret-color are white, so this fix that */
 		textarea {
 			color: var(--c-txt);
@@ -149,7 +145,7 @@ main div[role='presentation'] div.w-full:has(form) {
 	margin-top: 0.5rem !important;
 }
 
-html.dark[data-gptheme='oled'] main form div[class*='bg-[#f4f4f4]']:has(textarea#prompt-textarea) {
+html.dark[data-gptheme='oled'] main form div[class*='bg-[#f4f4f4]']:has(#prompt-textarea) {
 
 	/* "Reply" in msg textarea */
 	.bg-token-main-surface-primary {

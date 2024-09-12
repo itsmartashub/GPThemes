@@ -14,7 +14,7 @@
 	/* ? --- Widths and Heights --- */
 	--min-w-btn: 5.5rem;
 	--h-header: calc(3.5rem + 0.5rem + 0.375rem);
-	--w-scrollbar: 0.35rem;
+	--w-scrollbar: 0.365rem;
 	// --max-w-chat-bubble: 48rem;
 	--w_chat_user: max-content;
 	--max_w_chat_user: 70%; // 70%
@@ -204,7 +204,6 @@ html.light {
 	--c-bg-sidebar: var(--c-surface-1);
 	--c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025));
 	// --c-bg-chats-sticky: hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 0.02);
-	// --c-bg-chats-sticky: linear-gradient(to bottom, var(--c-bg-chats-container) 40%, transparent 100%);
 	--c-bg-chats-sticky: linear-gradient(to bottom, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 1) 50%, transparent);
 
 	/* ? ========== Chat bubbles colors ========== */
