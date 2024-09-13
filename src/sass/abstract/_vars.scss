@@ -74,6 +74,8 @@
 			hsla(var(--accent-hsl) / 0.05) 60%,
 			hsla(var(--accent-hsl) / 0.45) 100%);
 
+	--c-bg-chats-sticky: linear-gradient(to bottom, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 1), transparent);
+
 	/* ? --- OTHERER --- */
 	--chat_user_edit_icon_right: 100%;
 	// --chat_user_edit_icon_top: translateY(100%);
@@ -144,7 +146,7 @@
 		--px-chat-bubble-edge-gap: 0.45rem;
 	}
 
-	--c-bg-chats-sticky: linear-gradient(to bottom, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 1), transparent);
+
 	// --box-shadow-sticky: 0 10px 40px 5px hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 0.85);
 
 
