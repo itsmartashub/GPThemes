@@ -8,20 +8,31 @@ But adding this "main" blocked this style to smaller screens so I have to add it
  - no(th) means to not include style on table headings in dialogs
  */
 // .sticky.border-token-border-medium,
-.sticky.bg-token-main-surface-primary:not(th),
-main .sticky:not(th),
-.h-full.overflow-y-auto:has(.sticky [href^='/auth/login?next=/gpts']) .sticky {
-	background: var(--c-bg-chats-sticky) !important;
-	box-shadow: var(--box-shadow-sticky);
-	// background-color: var(--c-bg-chats-sticky) !important;
-	// backdrop-filter: blur(var(--blur-sticky));
+// .sticky.bg-token-main-surface-primary:not(th),
+// main .sticky:not(th),
+// .h-full.overflow-y-auto:has(.sticky [href^='/auth/login?next=/gpts']) .sticky {
+.sticky {
 
+	&.h-header-height,
+	&.bg-token-main-surface-primary:not(th) {
+		// .h-full.overflow-y-auto:has(.sticky [href^='/auth/login?next=/gpts']) .sticky {
+		background: var(--c-bg-chats-sticky) !important;
+		// background-color: var(--c-bg-chats-sticky) !important;
+		// backdrop-filter: blur(var(--blur-sticky));
+	}
+
+	&.h-header-height {
+		box-shadow: var(--box-shadow-sticky);
+		// box-shadow: 0 10px 40px 10px red;
+	}
 
 	/*  "My GPTs" page sticky headers w/ +CREATE btn (.top-0 and .top-14) */
 	&:has([href^='/auth/login?next=/gpts']),
 	&:has([href='/gpts/editor']),
 	&.top-14 {
 		--c-bg-chats-sticky: var(--c-bg-chats-container) !important;
+		--box-shadow-sticky: none;
+
 		// --blur-sticky: 0 !important;
 	}
 
