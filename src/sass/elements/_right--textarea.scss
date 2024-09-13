@@ -6,26 +6,19 @@ main form {
 	// gpt4o textarea prompt
 	div[class*='bg-[#f4f4f4]']:has(#prompt-textarea),
 
-	// Guest/3.5 textarea prompt
-	div[class*='[&:has(textarea:focus)]']:has(#prompt-textarea),
-
 	// Textare when clicked on "Temporary Chat" toggle
 	div[class*='bg-black']:has(#prompt-textarea) {
 		padding: var(--p-prompt-textarea) !important;
 		background-color: var(--c-bg-textarea) !important;
 		border-radius: var(--br-prompt-textarea) !important;
 		border: none !important;
-		// box-shadow: var(--box-shadow-textarea);
 		transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+		caret-color: var(--c-accent);
 
 		/* In "temporary chat" textarea is black so the color and caret-color are white, so this fix that */
-		textarea {
-			color: var(--c-txt);
-			caret-color: currentColor;
-		}
-
-		textarea::placeholder {
-			color: var(--c-placeholder-textarea) !important;
+		// [data-placeholder="Message ChatGPT"] {
+		[data-placeholder] {
+			--text-secondary: var(--c-placeholder-textarea); // overwriting its ::after color
 		}
 
 		/* Send button */
