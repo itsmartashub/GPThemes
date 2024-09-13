@@ -23,35 +23,38 @@
                 left: -0.8em; // Adjust position to align bullets
             }
         }
+
+        code {
+            color: $accent;
+            font-weight: 500;
+            padding: .1rem .3rem;
+            border-radius: .4rem;
+            background-color: rgba($accent, 0.2);
+        }
     }
 
-
-
     h2,
-    strong,
-    code {
+    strong {
         color: $accent;
     }
 
-    code {
-        font-weight: 500;
-        padding: .1rem .3rem;
-        border-radius: .4rem;
-        background-color: rgba($accent, 0.2);
-    }
+
 
     &__header,
     &__footer {
         position: sticky;
         z-index: 10;
         padding: 1rem 0 0.5rem 0;
-        background-color: rgba($bg, 0.1);
-        // background-color: rgba($bg, 1);
-        backdrop-filter: blur(1rem);
+
     }
 
     &__header {
         top: 0;
+        // background-color: rgba($bg, 0.1);
+        // backdrop-filter: blur(1rem);
+
+        background: linear-gradient(180deg, rgba($bg, 1) 70%, rgba($bg, 0.6));
+        box-shadow: 0 10px 20px 20px rgba($bg, 0.6);
 
         h1 {
             display: flex;
@@ -135,6 +138,7 @@
     &__footer {
         bottom: 0;
         text-align: center;
+        background: linear-gradient(to bottom, rgba($bg, 0.1), rgba($bg, 1) 75%);
 
         a {
             // background-image: $bg-gradient;
