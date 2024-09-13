@@ -108,7 +108,7 @@
 	// &.bg-payment-modal {
 	// &:has(a[href="https://openai.com/enterprise"]) {
 	// &:has(a[href="https://openai.com/enterprise"], [aria-label^="Toggle for switching to plans for"]) {
-	&:has([aria-label^="Toggle for switching to plans for"]) {
+	&:has([aria-label^="Toggle for switching"]) {
 		border-radius: 0 !important;
 
 		[aria-label="Toggle for switching between Personal and Business plans"] {
