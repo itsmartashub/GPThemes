@@ -144,6 +144,9 @@
 		--px-chat-bubble-edge-gap: 0.45rem;
 	}
 
+	--c-bg-chats-sticky: linear-gradient(to bottom, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 1), hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 0.85));
+	--box-shadow-sticky: 0 10px 30px 20px hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 0.85);
+
 
 	// --color-error: #fe8bbb;
 	// --color-three: #9e7aff;
@@ -204,7 +207,10 @@ html.light {
 	--c-bg-sidebar: var(--c-surface-1);
 	--c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025));
 	// --c-bg-chats-sticky: hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 0.02);
-	--c-bg-chats-sticky: linear-gradient(to bottom, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 1) 50%, transparent);
+
+	// --c-bg-chats-sticky: linear-gradient(to bottom, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 1) 40%, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 0.7), transparent);
+
+
 
 	/* ? ========== Chat bubbles colors ========== */
 	--c-bg-msg-user: hsla(var(--accent-hsl) / 0.08);
@@ -335,7 +341,11 @@ html.dark {
 	--c-bg-sidebar: var(--c-surface-1);
 	--c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.076));
 	// --c-bg-chats-sticky: hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.076) / 0.02);
-	--c-bg-chats-sticky: linear-gradient(to bottom, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 1) 50%, transparent);
+	// --c-bg-chats-sticky: linear-gradient(to bottom, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 1) 50%, transparent);
+	// --c-bg-chats-sticky: linear-gradient(to bottom, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 1) 30%, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 0.8), transparent);
+
+	// --c-bg-chats-sticky: linear-gradient(to bottom, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 1), hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 0.9));
+	// --box-shadow-sticky: 0 10px 30px 10px hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 0.9);
 
 	/* ? ========== Chat bubbles colors ========== */
 	--c-bg-msg-user: hsla(var(--accent-hsl) / 0.04);
