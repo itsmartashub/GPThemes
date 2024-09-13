@@ -1,7 +1,6 @@
-/* href="/auth/login?next=/gpts is for Guest mode on GPTs Store */
-
+/* .h-full.overflow-y-auto:has(> .sticky > [href='/']) is for Guest mode on GPTs Store */
 main:has(.sticky [href='/gpts/editor']),
-.h-full.overflow-y-auto:has(.sticky [href^='/auth/login?next=/gpts']) {
+.h-full.overflow-y-auto:has(> .sticky > [href='/']) {
 
 	a.gizmo-link {
 		transition: ease-in-out 0.25s;

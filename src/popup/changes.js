@@ -2,9 +2,9 @@ const RELEASE_CHANGES = `
 
 <h3>🛠️ Improvements</h3>
 <ul>
-    <li>Replace blur effects from sticky headers with subtle gradient shadow</li>
     <li>Increased scrollbar width for better usability</li>
     <li>Add style to <code>code</code> text in chat bubbles to match the GPThemes</li>
+    <li>Many minor enhancements</li>
 </ul>
 
 <h3>🐛 Bug Fixes</h3>
