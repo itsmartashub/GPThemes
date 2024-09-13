@@ -1,5 +1,6 @@
 import browser from 'webextension-polyfill'
 import { EXT_CURRENT_VERSION, CHANGELOG_URL } from '../js/app/config'
+import { RELEASE_CHANGES } from './changes'
 
 const seeFullChangelog = (version) =>
 	`<a href="https://github.com/itsmartashub/GPThemes/releases/tag/v${version}" target="_blank" rel="noopener noreferrer" class="changelog__seefullchangelog">🚀 See full release notes</a>`
@@ -8,24 +9,9 @@ const seeFullChangelog = (version) =>
 
 let htmlChangesList = `
 
-<h2>🛠️ Improvements</h2>
-<ul>
-	<li>Redesigned example button cards in new chat layout</li>
-	<li>Revamped <strong>"Upgrade Your Plan"</strong> dialog (<a href="https://github.com/itsmartashub/GPThemes/issues/44">#44</a>)</li>
-	<li>Adjusted gap for the new chat button from other link in sidebar</li>
-	<li>Enhanced <strong>"Create Link"</strong> button style in <strong>"Share Link"</strong> dialogs</li>
-</ul>
+	${RELEASE_CHANGES}
 
-<h2>🐛 Bug Fixes</h2>
-<ul>
-	<li>Improved user chat edit state design (<a href="https://github.com/itsmartashub/GPThemes/issues/43">#43</a>)</li>
-	<li>Fixed chat bubble background flash in new chats (<a href="https://github.com/itsmartashub/GPThemes/issues/46">#46</a>)</li>
-	<li>Restored visibility of menu separators</li>
-	<li>Enhanced active tag appearance in feedback dialog</li>
-</ul>
-
-
-<p>${seeFullChangelog(EXT_CURRENT_VERSION)}</p>
+	<p>${seeFullChangelog(EXT_CURRENT_VERSION)}</p>
 `
 const changelogChangesEl = document.querySelector('.changelog__changes')
 const changelogVersionEl = document.querySelector('.changelog__version')

@@ -106,7 +106,9 @@
 
 	/* ___ Dialog - "Upgrade your plan"  */
 	// &.bg-payment-modal {
-	&:has(a[href="https://openai.com/enterprise"]) {
+	// &:has(a[href="https://openai.com/enterprise"]) {
+	// &:has(a[href="https://openai.com/enterprise"], [aria-label^="Toggle for switching to plans for"]) {
+	&:has([aria-label^="Toggle for switching to plans for"]) {
 		border-radius: 0 !important;
 
 		[aria-label="Toggle for switching between Personal and Business plans"] {
@@ -114,8 +116,10 @@
 		}
 
 		/* "Personal" and "Business" switching buttons */
-		button[aria-label*='Toggle for switching to Personal plans'],
-		button[aria-label*='Toggle for switching to Business plans'] {
+		button[aria-label*='Toggle for switching to'] {
+			// button[aria-label*='Toggle for switching to plans for'] {
+			// button[aria-label*='Toggle for switching to Personal plans'],
+			// button[aria-label*='Toggle for switching to Business plans'] {
 
 			// Active plan btn 
 			&[aria-checked='true'] {

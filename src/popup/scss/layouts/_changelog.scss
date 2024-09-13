@@ -28,12 +28,16 @@
 
 
     h2,
-    strong {
+    strong,
+    code {
         color: $accent;
     }
 
-    h3 {
-        font-size: 1.2em;
+    code {
+        font-weight: 500;
+        padding: .1rem .3rem;
+        border-radius: .4rem;
+        background-color: rgba($accent, 0.2);
     }
 
     &__header,
@@ -99,7 +103,12 @@
         padding: 1rem;
 
         h2 {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            margin-bottom: 0.2rem;
         }
 
         p {
