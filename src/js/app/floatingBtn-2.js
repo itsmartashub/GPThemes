@@ -1,9 +1,10 @@
 // Use a cross-browser storage API:
 import browser from 'webextension-polyfill'
 import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './components/icons.js'
-import { hexToHSL } from '../utils/hexToHSL'
-import { fontHtmlCode, handleFontsListeners } from './mainFonts'
-import { assetsHtmlCode, handleAssetsListeners } from './mainAssets'
+import { hexToHSL } from '../utils/hexToHSL.js'
+// import { renderColorsTab, handleColorsListeners } from './mainColors.js'
+import { renderFontsTab, handleFontsListeners } from './mainFonts.js'
+import { renderAssetsTab, handleAssetsListeners } from './mainAssets.js'
 
 // Constants
 const THEMES = {
@@ -36,54 +37,45 @@ const elements = {
 	floatingOptions: null,
 	floatingBtnsContainer: null,
 	settings: null,
-	resetAllBtn: null,
+	resetAllAccentsBtn: null,
 }
 
-// Initialize the application
+const renderColorsTab = `
+    <section>
+      <div class="colorpicker-container">
+        <div class="colorpicker">
+          <input type="color" id="accentLight" value="${DEFAULT_COLORS.LIGHT}" />
+          <label for="accentLight">Accent <span>Light</span></label>
+        </div>
+        <div class="colorpicker">
+          <input type="color" id="accentDark" value="${DEFAULT_COLORS.DARK}" />
+          <label for="accentDark">Accent <span>Dark</span></label>
+        </div>
+      </div>
+      <footer class="grid mt-10">
+        <button id="resetAllAccents" class="btn block relative btn-primary text-center" as="button">Reset Accents</button>
+      </footer>
+    </section>
+  `
+
+// ___ Initialize the application
 async function init() {
 	try {
-		await createAndAppendSVGStickyBtn()
-		await renderSettings()
+		await createAndAppendFloatingBtn()
+		await createAndAppendSettings()
 		await initTheme()
 		await handleAccentsStorage()
 		handleColorInput()
 		decreaseFloatingBtnSize()
-		addEventListeners()
+		addFloatingListeners()
+		console.log(await browser.storage.sync.get('gptheme'))
 	} catch (error) {
 		console.error('Initialization error:', error)
 	}
 }
 
-// Theme initialization and management
-async function initTheme() {
-	try {
-		const { [STORAGE_KEYS.THEME]: storedTheme } = await browser.storage.sync.get(STORAGE_KEYS.THEME)
-		const theme =
-			storedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? THEMES.LIGHT : THEMES.DARK)
-		applyTheme(theme)
-	} catch (error) {
-		console.error('Error initializing theme:', error)
-	}
-}
-
-async function setTheme(theme) {
-	try {
-		await browser.storage.sync.set({ [STORAGE_KEYS.THEME]: theme })
-		applyTheme(theme)
-		toggleOptions()
-	} catch (error) {
-		console.error('Error setting theme:', error)
-	}
-}
-
-function applyTheme(theme) {
-	elements.htmlTag.dataset.gptheme = theme === THEMES.OLED ? theme : ''
-	elements.htmlTag.style.colorScheme = theme === THEMES.OLED ? THEMES.DARK : theme
-	elements.htmlTag.className = theme === THEMES.OLED ? THEMES.DARK : theme
-}
-
-// UI Components
-async function createAndAppendSVGStickyBtn() {
+// ___ Create and append the floating button? - UI Components
+async function createAndAppendFloatingBtn() {
 	const gpthFloatingBtn = document.createElement('div')
 	gpthFloatingBtn.className = 'gpth__floating'
 
@@ -102,20 +94,67 @@ async function createAndAppendSVGStickyBtn() {
 	gpthFloatingBtn.insertAdjacentHTML('beforeend', htmlCode)
 	document.body.appendChild(gpthFloatingBtn)
 
-	cacheElements()
+	cacheFloatingElements(gpthFloatingBtn)
 }
-
-function cacheElements() {
-	elements.floatingBtn = document.querySelector('.gpth__floating')
-	elements.floatingOptions = document.querySelector('.gpth__options')
-	elements.floatingBtnsContainer = document.querySelector('.gpth__options-btns')
+function cacheFloatingElements(gpthFloatingBtn) {
+	elements.floatingBtn = gpthFloatingBtn
+	elements.floatingOptions = gpthFloatingBtn.querySelector('.gpth__options')
+	elements.floatingBtnsContainer = gpthFloatingBtn.querySelector('.gpth__options-btns')
 }
-
-function addEventListeners() {
+function addFloatingListeners() {
 	elements.floatingBtn.addEventListener('click', toggleOptions)
 	elements.floatingBtnsContainer.addEventListener('click', handleChangeTheme)
 }
+// __ Options and Settings
+function toggleOptions() {
+	state.isOptionsShown = !state.isOptionsShown
+	elements.floatingOptions.classList.toggle('gpth__options--shown', state.isOptionsShown)
 
+	if (state.isOptionsShown) {
+		document.body.addEventListener('click', hideOptions)
+	} else {
+		document.body.removeEventListener('click', hideOptions)
+	}
+}
+function hideOptions(e) {
+	if (!elements.floatingBtn.contains(e.target) && !elements.floatingOptions.contains(e.target)) {
+		toggleOptions()
+	}
+}
+function decreaseFloatingBtnSize() {
+	setTimeout(() => elements.floatingBtn.classList.add('gpth__floating--small'), 3000)
+}
+
+// __ Theme initialization and management
+async function initTheme() {
+	try {
+		const { [STORAGE_KEYS.THEME]: storedTheme } = await browser.storage.sync.get(STORAGE_KEYS.THEME)
+
+		console.log({ storedTheme })
+
+		const theme =
+			storedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? THEMES.LIGHT : THEMES.DARK)
+		applyTheme(theme)
+	} catch (error) {
+		console.error('Error initializing theme:', error)
+	}
+}
+async function setTheme(theme) {
+	try {
+		await browser.storage.sync.set({ [STORAGE_KEYS.THEME]: theme })
+		applyTheme(theme)
+		toggleOptions()
+	} catch (error) {
+		console.error('Error setting theme:', error)
+	}
+}
+function applyTheme(theme) {
+	console.log('Applying theme:', theme)
+
+	elements.htmlTag.dataset.gptheme = theme === THEMES.OLED ? theme : ''
+	elements.htmlTag.style.colorScheme = theme === THEMES.OLED ? THEMES.DARK : theme
+	elements.htmlTag.className = theme === THEMES.OLED ? THEMES.DARK : theme
+}
 function handleChangeTheme(e) {
 	const themeButton = e.target.closest('button')
 	if (!themeButton) return
@@ -129,30 +168,8 @@ function handleChangeTheme(e) {
 	}
 }
 
-// Options and Settings
-function toggleOptions() {
-	state.isOptionsShown = !state.isOptionsShown
-	elements.floatingOptions.classList.toggle('gpth__options--shown', state.isOptionsShown)
-
-	if (state.isOptionsShown) {
-		document.body.addEventListener('click', hideOptions)
-	} else {
-		document.body.removeEventListener('click', hideOptions)
-	}
-}
-
-function hideOptions(e) {
-	if (!elements.floatingBtn.contains(e.target) && !elements.floatingOptions.contains(e.target)) {
-		toggleOptions()
-	}
-}
-
-function decreaseFloatingBtnSize() {
-	setTimeout(() => elements.floatingBtn.classList.add('gpth__floating--small'), 3000)
-}
-
-// Settings UI
-async function renderSettings() {
+// ___ Settings UI
+async function createAndAppendSettings() {
 	const gpthSettings = document.createElement('div')
 	gpthSettings.className = 'gpth-settings fixed flex flex-col'
 
@@ -171,9 +188,9 @@ async function renderSettings() {
           <button class="tab-button py-2 px-4 focus:outline-none text-center rounded-full">Assets</button>
         </div>
         <div class="tab-content">
-          <div class="tab-pane active" id="tab-colors">${renderColorsTab()}</div>
-          <div class="tab-pane hidden" id="tab-fonts">${fontHtmlCode}</div>
-          <div class="tab-pane hidden" id="tab-assets">${assetsHtmlCode}</div>
+          <div class="tab-pane active" id="tab-colors">${renderColorsTab}</div>
+          <div class="tab-pane hidden" id="tab-fonts">${renderFontsTab}</div>
+          <div class="tab-pane hidden" id="tab-assets">${renderAssetsTab}</div>
         </div>
       </div>
     </main>
@@ -181,40 +198,24 @@ async function renderSettings() {
 
 	gpthSettings.insertAdjacentHTML('beforeend', htmlCode)
 	document.body.appendChild(gpthSettings)
+	cacheSettingsElements(gpthSettings)
+	addSettingsListeners()
+}
 
-	document.getElementById('gpth-settings-close').addEventListener('click', closeSettings)
-
+function cacheSettingsElements(gpthSettings) {
 	elements.settings = gpthSettings
-	elements.resetAllBtn = elements.settings.querySelector('#resetAllSettings')
-	elements.resetAllBtn.disabled = true
-
-	tabsSwitching()
-	elements.resetAllBtn.addEventListener('click', resetAllSettings)
+	elements.resetAllAccentsBtn = elements.settings.querySelector('#resetAllAccents')
+	elements.resetAllAccentsBtn.disabled = true
+}
+function addSettingsListeners() {
+	document.getElementById('gpth-settings-close').addEventListener('click', closeSettings)
+	handleTabsSwitchingListeners()
 	handleFontsListeners()
 	handleAssetsListeners()
+	elements.resetAllAccentsBtn.addEventListener('click', resetAllAccents)
 }
 
-function renderColorsTab() {
-	return `
-    <section>
-      <div class="colorpicker-container">
-        <div class="colorpicker">
-          <input type="color" id="accentLight" value="${DEFAULT_COLORS.LIGHT}" />
-          <label for="accentLight">Accent <span>Light</span></label>
-        </div>
-        <div class="colorpicker">
-          <input type="color" id="accentDark" value="${DEFAULT_COLORS.DARK}" />
-          <label for="accentDark">Accent <span>Dark</span></label>
-        </div>
-      </div>
-      <footer class="grid mt-10">
-        <button id="resetAllSettings" class="btn block relative btn-primary text-center" as="button">Reset Accents</button>
-      </footer>
-    </section>
-  `
-}
-
-function tabsSwitching() {
+function handleTabsSwitchingListeners() {
 	const tabs = document.querySelectorAll('.gpth-settings .tab-button')
 	const panes = document.querySelectorAll('.gpth-settings .tab-pane')
 
@@ -229,31 +230,26 @@ function tabsSwitching() {
 	})
 }
 
-// Settings management
+// ___ Settings management
 function openSettings() {
 	elements.settings.classList.add('gpth-settings--open')
 	elements.settings.addEventListener('transitionend', handleSettingsOpened)
-	elements.resetAllBtn.disabled = false
+	elements.resetAllAccentsBtn.disabled = false
 }
-
 function handleSettingsOpened() {
 	document.body.addEventListener('click', handleClickOutsideSettings)
 	elements.settings.removeEventListener('transitionend', handleSettingsOpened)
 }
-
 function closeSettings() {
 	elements.settings.classList.remove('gpth-settings--open')
 	document.body.removeEventListener('click', handleClickOutsideSettings)
-	elements.resetAllBtn.disabled = true
+	elements.resetAllAccentsBtn.disabled = true
 }
-
 function handleClickOutsideSettings(e) {
-	if (!elements.settings.contains(e.target) && e.target.id !== 'gpth-open-settings') {
-		closeSettings()
-	}
+	if (!elements.settings.contains(e.target) && e.target.id !== 'gpth-open-settings') closeSettings()
 }
 
-// Color management
+// __ Color management
 function handleColorInput() {
 	const accentLight = elements.settings.querySelector('#accentLight')
 	const accentDark = elements.settings.querySelector('#accentDark')
@@ -335,7 +331,7 @@ async function handleAccentsStorage() {
 	}
 }
 
-async function resetAllSettings() {
+async function resetAllAccents() {
 	if (!state.styleElement) injectStyleElement()
 
 	const accentLight = hexToHSL(DEFAULT_COLORS.LIGHT)
