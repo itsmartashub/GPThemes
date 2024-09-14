@@ -385,4 +385,6 @@ function init() {
 	// Load settings on page load
 	loadSettings()
 }
-init()
+
+export { init }
+// init()

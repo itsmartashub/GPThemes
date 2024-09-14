@@ -1,9 +1,9 @@
 // Use a cross-browser storage API:
 import browser from 'webextension-polyfill'
 import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './components/icons.js'
-import { hexToHSL } from '../utils/hexToHSL.js'
-import { fontHtmlCode, handleFontsListeners } from './mainFonts.js'
-import { assetsHtmlCode, handleAssetsListeners } from './mainAssets.js'
+import { hexToHSL } from '../utils/hexToHSL'
+import { fontHtmlCode, handleFontsListeners } from './mainFonts'
+import { assetsHtmlCode, handleAssetsListeners } from './mainAssets'
 
 // Constants
 const THEMES = {
@@ -49,7 +49,6 @@ async function init() {
 		handleColorInput()
 		decreaseFloatingBtnSize()
 		addEventListeners()
-		console.log(await browser.storage.sync.get('gptheme'))
 	} catch (error) {
 		console.error('Initialization error:', error)
 	}
@@ -59,9 +58,6 @@ async function init() {
 async function initTheme() {
 	try {
 		const { [STORAGE_KEYS.THEME]: storedTheme } = await browser.storage.sync.get(STORAGE_KEYS.THEME)
-
-		console.log({ storedTheme })
-
 		const theme =
 			storedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? THEMES.LIGHT : THEMES.DARK)
 		applyTheme(theme)
@@ -81,8 +77,6 @@ async function setTheme(theme) {
 }
 
 function applyTheme(theme) {
-	console.log('Applying theme:', theme)
-
 	elements.htmlTag.dataset.gptheme = theme === THEMES.OLED ? theme : ''
 	elements.htmlTag.style.colorScheme = theme === THEMES.OLED ? THEMES.DARK : theme
 	elements.htmlTag.className = theme === THEMES.OLED ? THEMES.DARK : theme

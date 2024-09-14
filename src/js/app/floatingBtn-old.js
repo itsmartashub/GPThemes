@@ -6,32 +6,18 @@ import { fontHtmlCode, handleFontsListeners } from './mainFonts.js'
 import { assetsHtmlCode, handleAssetsListeners } from './mainAssets.js'
 
 // Constants
-const THEMES = {
-	LIGHT: 'light',
-	DARK: 'dark',
-	OLED: 'oled',
-}
-
-const DEFAULT_COLORS = {
-	LIGHT: '#7e3e47',
-	DARK: '#ca93fb',
-}
-
-const STORAGE_KEYS = {
-	THEME: 'gptheme',
-	ACCENT_LIGHT: 'accent_light',
-	ACCENT_DARK: 'accent_dark',
-}
+const DEFAULT_COLOR_LIGHT = '#7e3e47'
+const DEFAULT_COLOR_DARK = '#ca93fb'
 
 // State
-const state = {
+let state = {
 	isOptionsShown: false,
 	styleElement: null,
 }
 
 // DOM Elements
-const elements = {
-	htmlTag: document.documentElement,
+let elements = {
+	htmlTag: null,
 	floatingBtn: null,
 	floatingOptions: null,
 	floatingBtnsContainer: null,
@@ -41,29 +27,24 @@ const elements = {
 
 // Initialize the application
 async function init() {
-	try {
-		await createAndAppendSVGStickyBtn()
-		await renderSettings()
-		await initTheme()
-		await handleAccentsStorage()
+	console.log(await browser.storage.sync.get('gptheme'))
+	createAndAppendSVGStickyBtn()
+	renderSettings()
+	cacheElements()
+	initTheme().then(async () => {
+		handleAccentsStorage()
 		handleColorInput()
 		decreaseFloatingBtnSize()
 		addEventListeners()
 		console.log(await browser.storage.sync.get('gptheme'))
-	} catch (error) {
-		console.error('Initialization error:', error)
-	}
+	})
 }
-
 // Theme initialization and management
 async function initTheme() {
 	try {
-		const { [STORAGE_KEYS.THEME]: storedTheme } = await browser.storage.sync.get(STORAGE_KEYS.THEME)
-
+		const { gptheme: storedTheme } = await browser.storage.sync.get('gptheme')
 		console.log({ storedTheme })
-
-		const theme =
-			storedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? THEMES.LIGHT : THEMES.DARK)
+		const theme = storedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
 		applyTheme(theme)
 	} catch (error) {
 		console.error('Error initializing theme:', error)
@@ -72,7 +53,7 @@ async function initTheme() {
 
 async function setTheme(theme) {
 	try {
-		await browser.storage.sync.set({ [STORAGE_KEYS.THEME]: theme })
+		await browser.storage.sync.set({ gptheme: theme })
 		applyTheme(theme)
 		toggleOptions()
 	} catch (error) {
@@ -82,14 +63,15 @@ async function setTheme(theme) {
 
 function applyTheme(theme) {
 	console.log('Applying theme:', theme)
+	elements.htmlTag.dataset.gptheme = theme
+	elements.htmlTag.style.colorScheme = theme === 'oled' ? 'dark' : theme
+	elements.htmlTag.className = theme === 'oled' ? 'dark' : theme
 
-	elements.htmlTag.dataset.gptheme = theme === THEMES.OLED ? theme : ''
-	elements.htmlTag.style.colorScheme = theme === THEMES.OLED ? THEMES.DARK : theme
-	elements.htmlTag.className = theme === THEMES.OLED ? THEMES.DARK : theme
+	if (theme !== 'oled') elements.htmlTag.removeAttribute('data-gptheme')
 }
 
 // UI Components
-async function createAndAppendSVGStickyBtn() {
+function createAndAppendSVGStickyBtn() {
 	const gpthFloatingBtn = document.createElement('div')
 	gpthFloatingBtn.className = 'gpth__floating'
 
@@ -97,9 +79,9 @@ async function createAndAppendSVGStickyBtn() {
     <div class="gpth__floating-icon">${icon_paint}</div>
     <div class="gpth__options">
       <div class="gpth__options-btns">
-        <button id="${THEMES.LIGHT}" data-gpth-theme="${THEMES.LIGHT}">${icon_sun}</button>
-        <button id="${THEMES.DARK}" data-gpth-theme="${THEMES.DARK}">${icon_moon}</button>
-        <button id="${THEMES.OLED}" data-gpth-theme="black">${icon_moon_full}</button>
+        <button id="light" data-gpth-theme="light">${icon_sun}</button>
+        <button id="dark" data-gpth-theme="dark">${icon_moon}</button>
+        <button id="oled" data-gpth-theme="black">${icon_moon_full}</button>
         <button id="gpth-open-settings" data-gpth-theme="more">${icon_settings}</button>
       </div>
     </div>
@@ -109,9 +91,11 @@ async function createAndAppendSVGStickyBtn() {
 	document.body.appendChild(gpthFloatingBtn)
 
 	cacheElements()
+	addEventListeners()
 }
 
 function cacheElements() {
+	elements.htmlTag = document.documentElement
 	elements.floatingBtn = document.querySelector('.gpth__floating')
 	elements.floatingOptions = document.querySelector('.gpth__options')
 	elements.floatingBtnsContainer = document.querySelector('.gpth__options-btns')
@@ -148,17 +132,22 @@ function toggleOptions() {
 }
 
 function hideOptions(e) {
-	if (!elements.floatingBtn.contains(e.target) && !elements.floatingOptions.contains(e.target)) {
+	const isClickInsideFloatingBtn = elements.floatingBtn.contains(e.target)
+	const isClickInsideFloatingOptions = elements.floatingOptions.contains(e.target)
+
+	if (!isClickInsideFloatingBtn && !isClickInsideFloatingOptions) {
 		toggleOptions()
 	}
 }
 
 function decreaseFloatingBtnSize() {
-	setTimeout(() => elements.floatingBtn.classList.add('gpth__floating--small'), 3000)
+	setTimeout(() => {
+		elements.floatingBtn.classList.add('gpth__floating--small')
+	}, 3000)
 }
 
 // Settings UI
-async function renderSettings() {
+function renderSettings() {
 	const gpthSettings = document.createElement('div')
 	gpthSettings.className = 'gpth-settings fixed flex flex-col'
 
@@ -195,7 +184,7 @@ async function renderSettings() {
 	elements.resetAllBtn.disabled = true
 
 	tabsSwitching()
-	elements.resetAllBtn.addEventListener('click', resetAllSettings)
+	elements.settings.querySelector('#resetAllSettings').addEventListener('click', resetAllSettings)
 	handleFontsListeners()
 	handleAssetsListeners()
 }
@@ -205,11 +194,11 @@ function renderColorsTab() {
     <section>
       <div class="colorpicker-container">
         <div class="colorpicker">
-          <input type="color" id="accentLight" value="${DEFAULT_COLORS.LIGHT}" />
+          <input type="color" id="accentLight" value="${DEFAULT_COLOR_LIGHT}" />
           <label for="accentLight">Accent <span>Light</span></label>
         </div>
         <div class="colorpicker">
-          <input type="color" id="accentDark" value="${DEFAULT_COLORS.DARK}" />
+          <input type="color" id="accentDark" value="${DEFAULT_COLOR_DARK}" />
           <label for="accentDark">Accent <span>Dark</span></label>
         </div>
       </div>
@@ -254,34 +243,40 @@ function closeSettings() {
 }
 
 function handleClickOutsideSettings(e) {
-	if (!elements.settings.contains(e.target) && e.target.id !== 'gpth-open-settings') {
-		closeSettings()
-	}
+	const isOpenSettingsButton = e.target.id === 'gpth-settings-open'
+	if (!elements.settings.contains(e.target) && !isOpenSettingsButton) closeSettings()
 }
 
 // Color management
 function handleColorInput() {
-	const accentLight = elements.settings.querySelector('#accentLight')
-	const accentDark = elements.settings.querySelector('#accentDark')
+	elements.settings.addEventListener('click', (e) => {
+		if (e.target.id === 'accentLight') {
+			e.target.addEventListener('input', (e) => updateCSSVars(e.target.value, null))
+			e.target.addEventListener('change', (e) => {
+				setAccentToStorage('accent_light', e.target.value)
+				closeSettings()
+			})
+		}
 
-	accentLight.addEventListener('input', (e) => updateCSSVars(e.target.value, null))
-	accentLight.addEventListener('change', (e) => {
-		setAccentToStorage(STORAGE_KEYS.ACCENT_LIGHT, e.target.value)
-		closeSettings()
-	})
-
-	accentDark.addEventListener('input', (e) => updateCSSVars(null, e.target.value))
-	accentDark.addEventListener('change', (e) => {
-		setAccentToStorage(STORAGE_KEYS.ACCENT_DARK, e.target.value)
-		closeSettings()
+		if (e.target.id === 'accentDark') {
+			e.target.addEventListener('input', (e) => updateCSSVars(null, e.target.value))
+			e.target.addEventListener('change', (e) => {
+				setAccentToStorage('accent_dark', e.target.value)
+				closeSettings()
+			})
+		}
 	})
 }
 
 function updateCSSVars(lightColor, darkColor) {
 	if (!state.styleElement) injectStyleElement()
 
-	const lightHSL = hexToHSL(lightColor || elements.settings.querySelector('#accentLight').value)
-	const darkHSL = hexToHSL(darkColor || elements.settings.querySelector('#accentDark').value)
+	const lightHSL = lightColor
+		? hexToHSL(lightColor)
+		: hexToHSL(elements.settings.querySelector('.colorpicker #accentLight').value)
+	const darkHSL = darkColor
+		? hexToHSL(darkColor)
+		: hexToHSL(elements.settings.querySelector('.colorpicker #accentDark').value)
 
 	const cssVars = `
     html.light {
@@ -315,24 +310,26 @@ async function setAccentToStorage(storageColorProperty, accentValue) {
 }
 
 function setColorInputValue({ accentLight, accentDark }) {
-	elements.settings.querySelector('#accentLight').value = accentLight
-	elements.settings.querySelector('#accentDark').value = accentDark
+	elements.settings.querySelector('.colorpicker #accentLight').value = accentLight
+	elements.settings.querySelector('.colorpicker #accentDark').value = accentDark
 }
 
 async function handleAccentsStorage() {
 	try {
-		const { [STORAGE_KEYS.ACCENT_LIGHT]: accentLight, [STORAGE_KEYS.ACCENT_DARK]: accentDark } =
-			await browser.storage.sync.get([STORAGE_KEYS.ACCENT_LIGHT, STORAGE_KEYS.ACCENT_DARK])
+		const { accent_light: accentLight, accent_dark: accentDark } = await browser.storage.sync.get([
+			'accent_light',
+			'accent_dark',
+		])
 
 		if (!accentLight || !accentDark) {
 			await browser.storage.sync.set({
-				[STORAGE_KEYS.ACCENT_LIGHT]: DEFAULT_COLORS.LIGHT,
-				[STORAGE_KEYS.ACCENT_DARK]: DEFAULT_COLORS.DARK,
+				accent_light: DEFAULT_COLOR_LIGHT,
+				accent_dark: DEFAULT_COLOR_DARK,
 			})
 		}
 
-		const accentColorLight = accentLight || DEFAULT_COLORS.LIGHT
-		const accentColorDark = accentDark || DEFAULT_COLORS.DARK
+		const accentColorLight = accentLight || DEFAULT_COLOR_LIGHT
+		const accentColorDark = accentDark || DEFAULT_COLOR_DARK
 
 		updateCSSVars(accentColorLight, accentColorDark)
 		setColorInputValue({ accentLight: accentColorLight, accentDark: accentColorDark })
@@ -344,8 +341,8 @@ async function handleAccentsStorage() {
 async function resetAllSettings() {
 	if (!state.styleElement) injectStyleElement()
 
-	const accentLight = hexToHSL(DEFAULT_COLORS.LIGHT)
-	const accentDark = hexToHSL(DEFAULT_COLORS.DARK)
+	const accentLight = hexToHSL(DEFAULT_COLOR_LIGHT)
+	const accentDark = hexToHSL(DEFAULT_COLOR_DARK)
 
 	const cssVars = `
     html.light {
@@ -362,14 +359,13 @@ async function resetAllSettings() {
 
 	state.styleElement.textContent = cssVars
 
-	setColorInputValue({ accentLight: DEFAULT_COLORS.LIGHT, accentDark: DEFAULT_COLORS.DARK })
+	setColorInputValue({ accentLight: DEFAULT_COLOR_LIGHT, accentDark: DEFAULT_COLOR_DARK })
 
 	await browser.storage.sync.set({
-		[STORAGE_KEYS.ACCENT_LIGHT]: DEFAULT_COLORS.LIGHT,
-		[STORAGE_KEYS.ACCENT_DARK]: DEFAULT_COLORS.DARK,
+		accent_light: DEFAULT_COLOR_LIGHT,
+		accent_dark: DEFAULT_COLOR_DARK,
 	})
 }
 
 // Initialize the application
-// init()
-export { init }
+init()
