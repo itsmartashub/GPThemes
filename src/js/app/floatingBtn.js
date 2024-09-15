@@ -12,8 +12,6 @@ const elements = {
 	floatingBtn: null,
 	floatingOptions: null,
 	floatingBtnsContainer: null,
-	// settings: null,
-	// resetAllAccentsBtn: null,
 }
 
 // ___ Initialize the application
@@ -21,10 +19,6 @@ async function init() {
 	try {
 		createFloatingBtn()
 		createSettings()
-
-		// await initTheme()
-
-		addFloatingListeners()
 		decreaseFloatingBtnSize()
 		console.log(await browser.storage.sync.get('gptheme'))
 	} catch (error) {
@@ -51,6 +45,7 @@ async function createFloatingBtn() {
 
 	document.body.appendChild(gpthFloatingBtn)
 	cacheFloatingElements(gpthFloatingBtn)
+	addFloatingListeners()
 }
 function cacheFloatingElements(gpthFloatingBtn) {
 	elements.floatingBtn = gpthFloatingBtn

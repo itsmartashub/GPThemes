@@ -12,9 +12,7 @@ const STORAGE_KEYS = {
 	ACCENT_DARK: 'accent_dark',
 }
 
-const state = {
-	styleElement: null,
-}
+let styleElement = null
 
 const renderColorsTab = `
     <section>
@@ -51,7 +49,7 @@ function handleColorInput() {
 }
 
 function updateCSSVars(lightColor, darkColor) {
-	if (!state.styleElement) injectStyleElement()
+	if (!styleElement) injectStyleElement()
 
 	const lightHSL = hexToHSL(lightColor || $settings.querySelector('#accentLight').value)
 	const darkHSL = hexToHSL(darkColor || $settings.querySelector('#accentDark').value)
@@ -69,13 +67,13 @@ function updateCSSVars(lightColor, darkColor) {
     }
   `
 
-	state.styleElement.textContent = cssVars
+	styleElement.textContent = cssVars
 }
 
 function injectStyleElement() {
-	state.styleElement = document.createElement('style')
-	state.styleElement.type = 'text/css'
-	document.head.appendChild(state.styleElement)
+	styleElement = document.createElement('style')
+	styleElement.type = 'text/css'
+	document.head.appendChild(styleElement)
 }
 
 // Storage management
@@ -115,7 +113,7 @@ async function handleAccentsStorage() {
 }
 
 async function resetAllAccents() {
-	if (!state.styleElement) injectStyleElement()
+	if (!styleElement) injectStyleElement()
 
 	const accentLight = hexToHSL(DEFAULT_COLORS.LIGHT)
 	const accentDark = hexToHSL(DEFAULT_COLORS.DARK)
@@ -133,7 +131,7 @@ async function resetAllAccents() {
     }
   `
 
-	state.styleElement.textContent = cssVars
+	styleElement.textContent = cssVars
 
 	setColorInputValue({ accentLight: DEFAULT_COLORS.LIGHT, accentDark: DEFAULT_COLORS.DARK })
 

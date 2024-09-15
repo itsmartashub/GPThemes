@@ -1,6 +1,6 @@
 import { renderColorsTab, resetAllAccents } from './mainColors.js'
 import { renderFontsTab, handleFontsListeners } from './mainFonts.js'
-import { renderAssetsTab, handleAssetsListeners } from './mainAssets.js'
+import { renderWidthsTab, handleWidthsListeners } from './mainWidths.js'
 
 let $settings = null
 let $resetAllAccentsBtn = null
@@ -23,12 +23,12 @@ async function createSettings() {
         <div class="tab-buttons flex items-center rounded-full p-1 font-semibold mb-10">
           <button class="tab-button py-2 px-4 focus:outline-none text-center rounded-full active">Color</button>
           <button class="tab-button py-2 px-4 focus:outline-none text-center rounded-full">Font</button>
-          <button class="tab-button py-2 px-4 focus:outline-none text-center rounded-full">Assets</button>
+          <button class="tab-button py-2 px-4 focus:outline-none text-center rounded-full">Width</button>
         </div>
         <div class="tab-content">
           <div class="tab-pane active" id="tab-colors">${renderColorsTab}</div>
           <div class="tab-pane hidden" id="tab-fonts">${renderFontsTab}</div>
-          <div class="tab-pane hidden" id="tab-assets">${renderAssetsTab}</div>
+          <div class="tab-pane hidden" id="tab-assets">${renderWidthsTab}</div>
         </div>
       </div>
     </main>
@@ -48,7 +48,7 @@ function addListeners() {
 	document.getElementById('gpth-settings-close').addEventListener('click', closeSettings)
 	handleTabsSwitching()
 	handleFontsListeners()
-	handleAssetsListeners()
+	handleWidthsListeners()
 	$resetAllAccentsBtn.addEventListener('click', resetAllAccents)
 }
 // ___ Settings management
