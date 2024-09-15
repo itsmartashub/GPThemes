@@ -1,5 +1,6 @@
 import browser from 'webextension-polyfill'
-import { toggleOptions, openSettings } from './floatingBtn.js'
+import { closeFloatingOptions } from './floatingBtn.js'
+import { openSettings } from './settingsManager-old.js'
 
 const THEMES = {
 	LIGHT: 'light',
@@ -17,7 +18,7 @@ async function initTheme() {
 	try {
 		const { [STORAGE_KEYS.THEME]: storedTheme } = await browser.storage.sync.get(STORAGE_KEYS.THEME)
 
-		console.log({ storedTheme })
+		// console.log({ storedTheme })
 
 		const theme =
 			storedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? THEMES.LIGHT : THEMES.DARK)
@@ -30,7 +31,7 @@ async function setTheme(theme) {
 	try {
 		await browser.storage.sync.set({ [STORAGE_KEYS.THEME]: theme })
 		applyTheme(theme)
-		toggleOptions()
+		closeFloatingOptions()
 	} catch (error) {
 		console.error('Error setting theme:', error)
 	}
@@ -46,11 +47,17 @@ function handleChangeTheme(e) {
 	const themeButton = e.target.closest('button')
 	if (!themeButton) return
 
-	const theme = themeButton.id
+	const themeButtonID = themeButton.id // light | dark | oled | gpth-open-settings
 
-	if (theme !== 'gpth-open-settings') {
-		setTheme(theme)
-	} else {
+	console.log({ themeButtonID })
+
+	if (themeButtonID === THEMES.LIGHT || themeButtonID === THEMES.DARK || themeButtonID === THEMES.OLED) {
+		setTheme(themeButtonID)
+		return
+	}
+
+	/* If clicked on "⚙️ Open Settings" */
+	if (themeButtonID === 'gpth-open-settings') {
 		openSettings()
 	}
 }

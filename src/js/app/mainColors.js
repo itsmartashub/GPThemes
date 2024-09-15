@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { elements, closeSettings } from './floatingBtn.js'
+import { closeSettings, $settings } from './settingsManager-old.js'
 import { hexToHSL } from '../utils/hexToHSL.js'
 
 const DEFAULT_COLORS = {
@@ -34,8 +34,8 @@ const renderColorsTab = `
     </section>
 `
 function handleColorInput() {
-	const accentLight = elements.settings.querySelector('#accentLight')
-	const accentDark = elements.settings.querySelector('#accentDark')
+	const accentLight = $settings.querySelector('#accentLight')
+	const accentDark = $settings.querySelector('#accentDark')
 
 	accentLight.addEventListener('input', (e) => updateCSSVars(e.target.value, null))
 	accentLight.addEventListener('change', (e) => {
@@ -53,8 +53,8 @@ function handleColorInput() {
 function updateCSSVars(lightColor, darkColor) {
 	if (!state.styleElement) injectStyleElement()
 
-	const lightHSL = hexToHSL(lightColor || elements.settings.querySelector('#accentLight').value)
-	const darkHSL = hexToHSL(darkColor || elements.settings.querySelector('#accentDark').value)
+	const lightHSL = hexToHSL(lightColor || $settings.querySelector('#accentLight').value)
+	const darkHSL = hexToHSL(darkColor || $settings.querySelector('#accentDark').value)
 
 	const cssVars = `
     html.light {
@@ -88,8 +88,8 @@ async function setAccentToStorage(storageColorProperty, accentValue) {
 }
 
 function setColorInputValue({ accentLight, accentDark }) {
-	elements.settings.querySelector('#accentLight').value = accentLight
-	elements.settings.querySelector('#accentDark').value = accentDark
+	$settings.querySelector('#accentLight').value = accentLight
+	$settings.querySelector('#accentDark').value = accentDark
 }
 
 async function handleAccentsStorage() {
