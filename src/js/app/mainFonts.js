@@ -69,7 +69,7 @@ const letterSpacingData = {
 }
 
 // HTML template for font changer popover
-export let fontHtmlCode = `
+let renderFontsTab = `
   <section id="fontChangerPopover" class="fonts">
     <div class="fonts__props">
       <div class="fonts__family fonts__group card card--big h-full">
@@ -331,7 +331,7 @@ function resetFonts() {
 }
 
 // Function to handle font listeners
-export function handleFontsListeners() {
+function handleFontsListeners() {
 	const selectors = {
 		selectFontFamily: document.querySelector('.gpth-settings #fontFamily'),
 		inputFontSize: document.querySelector('.gpth-settings #fontSize'),
@@ -385,4 +385,6 @@ function init() {
 	// Load settings on page load
 	loadSettings()
 }
-init()
+
+export { init, renderFontsTab, handleFontsListeners }
+// init()

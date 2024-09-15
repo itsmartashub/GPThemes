@@ -15,7 +15,7 @@
 			"matches": ["https://chat.openai.com/*", "https://chatgpt.com/*"],
 			"js": ["../../js/content.js"],
 			"css": ["../../sass/index.scss"],
-			"run_at": "document_end"
+			"run_at": "document_idle"
 		}
 	],
 	"permissions": ["storage", "https://chat.openai.com/*", "https://chatgpt.com/*"],

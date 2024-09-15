@@ -266,7 +266,7 @@ const addResizeListener = () => {
 } */
 
 // Event listeners
-const handleAssetsListeners = () => {
+const handleWidthsListeners = () => {
 	document.querySelector('.gpth-settings #gpth-full-width')?.addEventListener('change', toggleChatFullWidth)
 
 	document
@@ -291,7 +291,7 @@ const handleAssetsListeners = () => {
 }
 
 // HTML template
-const assetsHtmlCode = `
+const renderWidthsTab = `
   <section id="sectionAssets" class="gpth-assets">
     <div class="gpth-assets__custom-width mb-4">
       ${renderSmallCardOption({
@@ -345,7 +345,7 @@ const init = () => {
 	loadSettings()
 }
 
-export { assetsHtmlCode, handleAssetsListeners, init }
+export { renderWidthsTab, handleWidthsListeners, init }
 
 /* // ? =============== DEV ONLY fn ===============
 const assetsStorageKeys = Object.keys(CONFIG.FW_DEFAULTS) // ? DEV ONLY var - Get the keys from FW_DEFAULTS object
@@ -379,4 +379,4 @@ const init = () => {
 	// getAllStorageItems()
 	getAllStorageItems(assetsStorageKeys)
 }
-export { assetsHtmlCode, handleAssetsListeners, init } */
+export { renderAssetsTab, handleAssetsListeners, init } */

@@ -1,5 +1,11 @@
-import './app/floatingBtn'
-import './app/mainFonts'
-import { init as initAssets } from './app/mainAssets'
+import { init as initThemes } from './app/themeManager'
+import { init as initFloating } from './app/floatingBtn'
+import { init as initColors } from './app/mainColors'
+import { init as initFonts } from './app/mainFonts'
+import { init as initWidths } from './app/mainWidths'
 
-initAssets()
+initThemes()
+initFloating()
+initColors()
+initFonts()
+initWidths()

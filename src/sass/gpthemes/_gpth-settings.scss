@@ -10,7 +10,7 @@
 	border-radius: var(--br-dialog);
 	top: var(--top);
 	right: var(--right);
-	width: clamp(25rem, 25vw, 30rem);
+	width: clamp(26rem, 25vw, 30rem);
 	max-height: 70vh;
 	transform: translateX(calc(100% + 1.5rem)) !important;
 	z-index: calc(var(--z-modal) + 10);
