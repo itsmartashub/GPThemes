@@ -2,7 +2,7 @@
 import browser from 'webextension-polyfill'
 import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './components/icons.js'
 import { handleChangeTheme } from './themeManager.js'
-import { createSettings } from './settingsManager-old.js'
+import { createSettings } from './settingsManager.js'
 
 // State
 let isOptionsShown = false

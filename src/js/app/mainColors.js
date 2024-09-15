@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { closeSettings, $settings } from './settingsManager-old.js'
+import { closeSettings, $settings } from './settingsManager.js'
 import { hexToHSL } from '../utils/hexToHSL.js'
 
 const DEFAULT_COLORS = {

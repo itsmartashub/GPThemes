@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill'
 import { closeFloatingOptions } from './floatingBtn.js'
-import { openSettings } from './settingsManager-old.js'
+import { openSettings } from './settingsManager.js'
 
 const THEMES = {
 	LIGHT: 'light',

@@ -2,16 +2,12 @@ import { renderColorsTab, resetAllAccents } from './mainColors.js'
 import { renderFontsTab, handleFontsListeners } from './mainFonts.js'
 import { renderAssetsTab, handleAssetsListeners } from './mainAssets.js'
 
-const elements = {
-	settings: null,
-	resetAllAccentsBtn: null,
-	tabButtons: null,
-	tabPanes: null,
-}
+let $settings = null
+let $resetAllAccentsBtn = null
 
 const SETTINGS_OPEN_CLASS = 'gpth-settings--open'
 
-function createSettings() {
+async function createSettings() {
 	const gpthSettings = document.createElement('div')
 	gpthSettings.className = 'gpth-settings fixed flex flex-col'
 
@@ -30,9 +26,9 @@ function createSettings() {
           <button class="tab-button py-2 px-4 focus:outline-none text-center rounded-full">Assets</button>
         </div>
         <div class="tab-content">
-          <div class="tab-pane active" id="tab-colors">${renderColorsTab()}</div>
-          <div class="tab-pane hidden" id="tab-fonts">${renderFontsTab()}</div>
-          <div class="tab-pane hidden" id="tab-assets">${renderAssetsTab()}</div>
+          <div class="tab-pane active" id="tab-colors">${renderColorsTab}</div>
+          <div class="tab-pane hidden" id="tab-fonts">${renderFontsTab}</div>
+          <div class="tab-pane hidden" id="tab-assets">${renderAssetsTab}</div>
         </div>
       </div>
     </main>
@@ -40,61 +36,53 @@ function createSettings() {
 
 	document.body.appendChild(gpthSettings)
 	cacheElements(gpthSettings)
-	addEventListeners()
+	addListeners()
 }
 
 function cacheElements(gpthSettings) {
-	elements.settings = gpthSettings
-	elements.resetAllAccentsBtn = gpthSettings.querySelector('#resetAllAccents')
-	elements.tabButtons = gpthSettings.querySelectorAll('.tab-button')
-	elements.tabPanes = gpthSettings.querySelectorAll('.tab-pane')
-	elements.resetAllAccentsBtn.disabled = true
+	$settings = gpthSettings
+	$resetAllAccentsBtn = $settings.querySelector('#resetAllAccents')
+	$resetAllAccentsBtn.disabled = true
 }
-
-function addEventListeners() {
-	elements.settings.querySelector('#gpth-settings-close').addEventListener('click', closeSettings)
-	elements.resetAllAccentsBtn.addEventListener('click', resetAllAccents)
+function addListeners() {
+	document.getElementById('gpth-settings-close').addEventListener('click', closeSettings)
 	handleTabsSwitching()
 	handleFontsListeners()
 	handleAssetsListeners()
+	$resetAllAccentsBtn.addEventListener('click', resetAllAccents)
 }
-
+// ___ Settings management
 function openSettings() {
-	elements.settings.classList.add(SETTINGS_OPEN_CLASS)
-	elements.settings.addEventListener(
-		'transitionend',
-		() => {
-			document.body.addEventListener('click', handleClickOutsideSettings)
-		},
-		{ once: true }
-	)
-	elements.resetAllAccentsBtn.disabled = false
+	$settings.classList.add(SETTINGS_OPEN_CLASS)
+	$settings.addEventListener('transitionend', handleSettingsOpened)
+	$resetAllAccentsBtn.disabled = false
 }
-
+function handleSettingsOpened() {
+	document.body.addEventListener('click', handleClickOutsideSettings)
+	$settings.removeEventListener('transitionend', handleSettingsOpened)
+}
 function closeSettings() {
-	elements.settings.classList.remove(SETTINGS_OPEN_CLASS)
+	$settings.classList.remove(SETTINGS_OPEN_CLASS)
 	document.body.removeEventListener('click', handleClickOutsideSettings)
-	elements.resetAllAccentsBtn.disabled = true
+	$resetAllAccentsBtn.disabled = true
 }
-
 function handleClickOutsideSettings(e) {
-	if (!elements.settings.contains(e.target) && e.target.id !== 'gpth-open-settings') {
-		closeSettings()
-	}
+	if (!$settings.contains(e.target) && e.target.id !== 'gpth-open-settings') closeSettings()
 }
 
 function handleTabsSwitching() {
-	elements.tabButtons.forEach((tab, index) => {
+	const tabs = document.querySelectorAll('.gpth-settings .tab-button')
+	const panes = document.querySelectorAll('.gpth-settings .tab-pane')
+
+	tabs.forEach((tab, index) => {
 		tab.addEventListener('click', () => {
 			document.querySelector('.tab-button.active').classList.remove('active')
 			document.querySelector('.tab-pane:not(.hidden)').classList.add('hidden')
 
 			tab.classList.add('active')
-			elements.tabPanes[index].classList.remove('hidden')
+			panes[index].classList.remove('hidden')
 		})
 	})
 }
-
-const $settings = elements.settings
 
 export { createSettings, openSettings, closeSettings, $settings }
