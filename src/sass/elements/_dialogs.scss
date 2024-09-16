@@ -508,6 +508,15 @@
 
 }
 
+html.dark[data-gptheme='oled'] [role='dialog'] {
+	&:not(&:has([href^='https://help.openai.com/en/articles/7925741-chatgpt-shared-links-faq'])) {
+		.from-token-main-surface-primary {
+			--main-surface-primary: var(--c-surface-1) !important;
+		}
+
+	}
+}
+
 /* ! NOT WORKING - CANNOT OVERWRITE THIS WTF */
 /* .dark .popover,
 .light .popover,
