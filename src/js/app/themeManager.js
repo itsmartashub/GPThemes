@@ -25,7 +25,7 @@ function setTheme(theme, isOLED = false) {
 }
 
 function applyTheme(theme, isOLED) {
-	console.log('Applying theme:', theme, 'OLED:', isOLED)
+	// console.log('Applying theme:', theme, 'OLED:', isOLED)
 	const htmlTag = document.documentElement
 	let appliedTheme = theme
 
