@@ -51,7 +51,10 @@ function handleChangeTheme(e) {
 
 	const themeButtonID = themeButton.id
 
-	if (themeButtonID === 'light' || themeButtonID === 'dark' || themeButtonID === 'system') {
+	// console.log('Changing theme:', { themeButtonID })
+
+	// if (themeButtonID === 'light' || themeButtonID === 'dark' || themeButtonID === 'system') {
+	if (Object.values(THEMES).includes(themeButtonID)) {
 		setTheme(themeButtonID, false)
 	} else if (themeButtonID === 'oled') {
 		setTheme(THEMES.DARK, true)
