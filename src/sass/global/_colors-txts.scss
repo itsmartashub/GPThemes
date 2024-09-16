@@ -29,6 +29,12 @@
 	color: var(--c-subtext-1) !important;
 }
 
+/* Temp textarea text */
+.text-token-text-primary {
+	--text-primary: var(--c-txt) !important;
+	// color: var(--text-primary);
+}
+
 /* 
 - GPTs Page - "Discover and create custom versions of ChatGPT that combine instructions, extra knowledge, and any - combination of skills.
 - Footer - "ChatGPT can make mistakes. Consider checking important information."

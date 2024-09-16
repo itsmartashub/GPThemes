@@ -77,6 +77,8 @@ main form {
 		}
 	}
 
+
+
 	/* @mentions in textarea */
 	.absolute.bottom-16:has(>.popover) {
 		.popover {
@@ -123,7 +125,6 @@ main form {
 			}
 		}
 	}
-
 
 	/* In DALLE there are random button examples above the textarea: ➕ Mosaic, ➕ 3D Wireframe, ➕ Claymation and shuffle btn, and arround that is some ugly gradient */
 	.absolute:has(.bg-gradient-to-t) {
