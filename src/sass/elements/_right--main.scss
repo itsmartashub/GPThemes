@@ -36,7 +36,6 @@ main [data-testid^='conversation-turn-'] {
 	margin-bottom: var(--mb-chat-bubble) !important;
 
 	div[data-message-author-role],
-	.text-base,
 	.prose {
 		line-height: calc(var(--lineHeight) / 16) !important;
 		font-size: calc((var(--fontSize) / 16) * 1rem) !important;
@@ -119,7 +118,6 @@ main [data-testid^='conversation-turn-'] {
 
 	/* @ RIGHT - CHATS BUBBLES - USER  */
 	&:has([data-message-author-role='user']) {
-		// line-height: calc(var(--lineHeight) / 16) !important;
 
 		/*  RIGHT - CHATS BUBBLE BG */
 		/* ? gpt4o - User message */
@@ -223,10 +221,6 @@ main [data-testid^='conversation-turn-'] {
 				z-index: 10;
 			}
 		}
-
-		// .markdown {
-		// 	line-height: calc(var(--lineHeight) / 16) !important;
-		// }
 
 		/*   RIGHT - CHATS BUBBLE BG 
 		- Adding .markdown here fix flash background of user chat bubble on first message
