@@ -35,6 +35,12 @@ main [data-testid^='conversation-turn-'] {
 	--main-surface-tertiary: var(--c-surface-3) !important;
 	margin-bottom: var(--mb-chat-bubble) !important;
 
+	div[data-message-author-role],
+	.prose {
+		line-height: calc(var(--lineHeight) / 16) !important;
+		font-size: calc((var(--fontSize) / 16) * 1rem) !important;
+	}
+
 	.mx-auto.flex.flex-1.text-base,
 	[class*='xl:max-w-[48rem]'] {
 		max-width: var(--w_chat_gpt) !important;
@@ -112,7 +118,6 @@ main [data-testid^='conversation-turn-'] {
 
 	/* @ RIGHT - CHATS BUBBLES - USER  */
 	&:has([data-message-author-role='user']) {
-		line-height: calc(var(--lineHeight) / 16) !important;
 
 		/*  RIGHT - CHATS BUBBLE BG */
 		/* ? gpt4o - User message */
@@ -215,10 +220,6 @@ main [data-testid^='conversation-turn-'] {
 			.agent-turn.relative {
 				z-index: 10;
 			}
-		}
-
-		.markdown {
-			line-height: calc(var(--lineHeight) / 16) !important;
 		}
 
 		/*   RIGHT - CHATS BUBBLE BG 
