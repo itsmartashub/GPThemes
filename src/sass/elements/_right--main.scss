@@ -209,6 +209,7 @@ main [role='presentation'] {
 		@extend %animFadeIn;
 
 		/* Make the text in edit textarea to be the full-width */
+		span.invisible,
 		textarea {
 			line-height: calc(var(--lineHeight) / 16) !important;
 			font-size: calc((var(--fontSize) / 16) * 1rem) !important;
