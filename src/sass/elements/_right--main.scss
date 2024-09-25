@@ -210,6 +210,8 @@ main [role='presentation'] {
 
 		/* Make the text in edit textarea to be the full-width */
 		textarea {
+			line-height: calc(var(--lineHeight) / 16) !important;
+			font-size: calc((var(--fontSize) / 16) * 1rem) !important;
 			width: 100%;
 		}
 	}

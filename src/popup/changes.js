@@ -4,34 +4,24 @@ let issue = (hashNumber) =>
 const RELEASE_CHANGES = `
 <h3>🛠️ Improvements</h3>
 <ul>
-    <li><strong>Theme Sync Fixed: </strong> Theme changes made in GPT settings are now reflected in the GPThemes theme, and vice versa, to maintain consistency across the board ${issue(
-		48
+    <li><strong>Chat Bubble Fonts: </strong>Limit font adjustments <code>font-size</code> and <code>line-height</code> to chat bubbles only ${issue(
+		56
 	)}</li>
-    <li><strong>Consistency Enhanced: </strong>The application of themes across the extension has been enhanced to ensure consistency, which was previously broken due to new OpenAI's code loading techniques ${issue(
-		48
-	)}</li>
+	<li><strong>GPThemes Settings Enhancement: </strong>Improved layout and scrolling behavior ${issue(54)}</li>
 </ul>
 
 <h3>🐛 Bug Fixes</h3>
 <ul>
-    <li><strong>Scrollbar Fixed: </strong>Scrollbar styling issues caused by recent OpenAI changes have been resolved ${issue(
-		50
+	<li><strong>Font Tab Fixed: </strong>Resolved broken styling in the <code>Font</code> tab section of GPThemes settings ${issue(
+		53
 	)}</li>
-    <li><strong>OLED Theme Fix: </strong>The OLED theme display has been fixed in dialogs and GPT Stores.</li>
-    <li><strong>Temporary Chat Text Color: </strong>Fix the text color in the prompt textarea for temporary chats in light themes.</li>
-</ul>
-
-<h3>🔧 Under the Hood</h3>
-<ul>
-    <li><strong>Storage Optimized: </strong>Storage management has been optimized for better efficiency ${issue(
-		49
+    <li><strong>Mobile Layout Improved: </strong>Fixed GPThemes Customization tabs overlapping issues on very small mobile screens ${issue(
+		53
 	)}</li>
-    <li><strong>DRY: </strong>Significant code improvements have been made to enhance maintanability ${issue(49)}</li>
-</ul>
-
-<h3>⚠️ Known Issue</h3>
-<ul>
-    <li><strong>Share Page Theme Inconsistency: </strong>A minor theme inconsistency remains on shared chat pages due to recent ChatGPT updates. Custom accent colors are not applied due to OpenAI's new dynamic code loading, which overrides some extension code.</li>
+    <li><strong>Share Link Page: </strong>Fixed chat bubble styles not being applied, ensuring consistent styling across all pages. ${issue(
+		57
+	)}</li>
+    <li><strong>Prompt Textarea: </strong>Removed extra padding from the <code>Reply</code> element in the prompt textarea</li>
 </ul>
 `
 
