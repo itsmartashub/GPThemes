@@ -1,21 +1,26 @@
 .gpth-settings {
-	overflow: clip;
+	--w-scrollbar: 0.2rem;
+
 	--top: calc(var(--h-header) + 0.5rem + 3rem);
 	--right: 1.3rem;
+	--p: 2.2rem 2.8rem;
+	--max-h: 75vh;
 	--shadow-color: hsla(var(--accent-hsl) / 0.09);
 	--shadow-values: inset 0 0 20px 10px;
 	opacity: 0;
 	pointer-events: none;
-	padding: 2.2rem 2.8rem;
+	padding: var(--p);
 	border-radius: var(--br-dialog);
 	top: var(--top);
 	right: var(--right);
 	width: clamp(25rem, 25vw, 30rem);
-	max-height: 75vh;
+	// max-height: 75vh;
+	max-height: var(--max-h);
+
 	transform: translateX(calc(100% + 1.5rem)) !important;
 	z-index: calc(var(--z-modal) + 10);
 	background-color: var(--c-bg-sidebar);
-	overflow-y: scroll;
+	overflow: clip scroll;
 
 	// background-image: linear-gradient(
 	// 	135deg,
@@ -36,19 +41,24 @@
 		transform: translateX(0%) !important;
 	}
 
-
-
-	@include dev('xxs') {
-		padding: 4vw;
-		border: 2px salmon solid;
+	@include dev('xs') {
+		--p: 5.5vw;
+		--max-h: 70vh;
+		width: calc(100% - 2.5rem);
 	}
 
-	@include dev('xs') {
-		width: calc(100% - 2.5rem);
-		max-height: 70vh;
-		// padding: 2rem;
-		padding: 5.5vw;
-		border: 2px salmon greenyellow;
+	@include dev('xxs') {
+		--p: 4vw;
+	}
 
+	// section {
+	.tab-content {
+		overflow-y: scroll;
+		// max-height: 50vh;
+		max-height: calc(var(--max-h) / 1.7);
+
+		.tab-pane {
+			margin-inline: 0.2rem; // simulate space from the scrollbar
+		}
 	}
 }
