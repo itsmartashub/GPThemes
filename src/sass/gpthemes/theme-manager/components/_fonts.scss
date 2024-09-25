@@ -1,10 +1,17 @@
 .fonts {
     &__props {
+        display: grid;
+        gap: 1.5rem;
+    }
+
+    &__bigcards-wrapper,
+    &__smallcards-wrapper {
         --gap: 0.65rem;
 
+        grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
         align-items: center;
-        gap: calc(var(--gap) * 2) var(--gap);
+        // gap: calc(var(--gap) * 2) var(--gap);
+        gap: var(--gap);
     }
 }

@@ -1,4 +1,6 @@
 // Tailwind CSS breakpoints converted to em units
+$xxs: 20em; // px
+$xs: 31.25em; // px
 $sm: 40em; // 640px
 $md: 48em; // 768px
 $lg: 64em; // 1024px
@@ -7,6 +9,18 @@ $xxl: 96em; // 1536px
 
 // Mixins using Tailwind's breakpoints
 @mixin dev($bp) {
+    @if $bp =='xxs' {
+        @media (max-width: #{$xxs}) {
+            @content;
+        }
+    }
+
+    @if $bp =='xs' {
+        @media (max-width: #{$xs}) {
+            @content;
+        }
+    }
+
     @if $bp =='sm' {
         @media (max-width: #{$sm}) {
             @content;
