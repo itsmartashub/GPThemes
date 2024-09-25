@@ -1,28 +1,22 @@
-// .tab-pane {
-//     display: none;
-// }
-
-// .tab-pane.active {
-//     display: block;
-// }
-
-// .tab-pane:target {
-//     display: block;
-//     @extend %animFadeIn;
-// }
-
-// .tab-button.active {
-//     background-color: var(--c-accent);
-//     color: var(--c-on-accent);
-// }
-
 .tab-buttons {
     background-color: hsla(var(--accent-hsl) / 0.15);
     color: var(--c-accent);
+    display: flex;
+    align-items: center;
+    border-radius: 100vw;
+
+    @include dev('xxs') {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        border-radius: 1rem;
+    }
+
 }
 
 .tab-button {
     flex: 1;
+    border-radius: inherit;
 
     &.active {
         background-color: var(--c-accent);

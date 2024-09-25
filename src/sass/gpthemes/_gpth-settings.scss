@@ -14,7 +14,6 @@
 	top: var(--top);
 	right: var(--right);
 	width: clamp(25rem, 25vw, 30rem);
-	// max-height: 75vh;
 	max-height: var(--max-h);
 
 	transform: translateX(calc(100% + 1.5rem)) !important;
@@ -54,7 +53,6 @@
 	// section {
 	.tab-content {
 		overflow-y: scroll;
-		// max-height: 50vh;
 		max-height: calc(var(--max-h) / 1.7);
 
 		.tab-pane {
