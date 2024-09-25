@@ -38,7 +38,6 @@ main [data-testid^='conversation-turn-'] {
 	div[data-message-author-role],
 	.text-base,
 	.prose {
-		letter-spacing: calc((var(--letterSpacing) / 16) * 1px) !important;
 		line-height: calc(var(--lineHeight) / 16) !important;
 		font-size: calc((var(--fontSize) / 16) * 1rem) !important;
 	}

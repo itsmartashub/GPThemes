@@ -10,9 +10,7 @@ html {
 html,
 body {
 	--text-primary: var(--c-txt) !important;
-
-	// font-size: calc((var(--fontSize) / 16) * 1rem) !important;
-	// letter-spacing: calc((var(--letterSpacing) / 16) * 1px) !important;
+	letter-spacing: calc((var(--letterSpacing) / 16) * 1px) !important;
 	color: var(--c-txt) !important;
 	background-color: var(--c-bg-chats-container) !important;
 	// background-image: radial-gradient(circle at 80% 30%, #72509833 0, #72509800 30%), radial-gradient(circle at 60% 40%, #3e6cb026 0, #3e6cb000 20%), radial-gradient(ellipse at 35% 80%, #0088ff26 0, #08f0 45%) !important;
@@ -31,19 +29,7 @@ button {
 	display: none !important;
 }
 
-/* .markdown {
-    [type="checkbox"]:checked {
-        background-color: var(--c-accent);
-        --svg: escape('<svg viewBox="0 0 16 16" fill="@{base}" xmlns="http://www.w3.org/2000/svg"><path d="M12.207 4.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L6.5 9.086l4.293-4.293a1 1 0 0 1 1.414 0z"/></svg>'
-        );
-        // background-image: "~url('data:image/svg+xml;charset=utf-8,@{svg}')";
-        background-image: "~url('data:image/svg+xml;charset=utf-8,#{var(--svg)}}')";
-    }
-} */
-
 code.hljs {
-	// font-size: .85rem !important;
-	// font-family: 'JetBrains Mono', monospace !important;
 	letter-spacing: -0.2px;
 }
 
