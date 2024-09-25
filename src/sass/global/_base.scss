@@ -11,9 +11,8 @@ html,
 body {
 	--text-primary: var(--c-txt) !important;
 
-	font-size: calc((var(--fontSize) / 16) * 1rem) !important;
-	letter-spacing: calc((var(--letterSpacing) / 16) * 1px) !important;
-	;
+	// font-size: calc((var(--fontSize) / 16) * 1rem) !important;
+	// letter-spacing: calc((var(--letterSpacing) / 16) * 1px) !important;
 	color: var(--c-txt) !important;
 	background-color: var(--c-bg-chats-container) !important;
 	// background-image: radial-gradient(circle at 80% 30%, #72509833 0, #72509800 30%), radial-gradient(circle at 60% 40%, #3e6cb026 0, #3e6cb000 20%), radial-gradient(ellipse at 35% 80%, #0088ff26 0, #08f0 45%) !important;
