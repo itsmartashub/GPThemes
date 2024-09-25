@@ -57,7 +57,7 @@ const lineHeightData = {
 }
 
 const letterSpacingData = {
-	name: 'Letter Spacing',
+	name: 'Letter Space',
 	className: 'fonts__letterSpacing',
 	inputId: 'letterSpacing',
 	inputType: 'number',
@@ -72,22 +72,25 @@ const letterSpacingData = {
 let renderFontsTab = `
   <section id="fontChangerPopover" class="fonts">
     <div class="fonts__props">
-      <div class="fonts__family fonts__group card card--big h-full">
-        <label for="fontFamily" class="grid gap-1 h-full w-full">
-          <div>
-            <p class="card__unit card__icon">T</p>
-            <p class="card__name uppercase font-semibold">FONT FAMILY</p>
-          </div>
-          <select id="fontFamily" class="border-none outline-none focus:none font-bold">
-            ${FONT_NAMES.map(
-				(name) => `<option value="${name === 'Default' ? DEFAULTS.fontFamily : name}">${name}</option>`
-			).join('')}
-          </select>
-        </label>
-      </div>
-      ${renderFontBigCard(fontSizeData)}
-      ${renderFontSmallCard(lineHeightData)}
-      ${renderFontSmallCard(letterSpacingData)}
+	<div class="fonts__bigcards-wrapper">
+		<div class="fonts__family fonts__group card card--big h-full">
+			<label for="fontFamily" class="grid gap-1 h-full w-full">
+			<div>
+				<p class="card__unit card__icon">T</p>
+				<p class="card__name uppercase font-semibold">FONT FAMILY</p>
+			</div>
+			<select id="fontFamily" class="border-none outline-none focus:none font-bold">
+				${FONT_NAMES.map((name) => `<option value="${name === 'Default' ? DEFAULTS.fontFamily : name}">${name}</option>`).join(
+					''
+				)}
+			</select>
+			</label>
+		</div>
+		${renderFontBigCard(fontSizeData)}</div>
+	<div class="fonts__smallcards-wrapper">
+		${renderFontSmallCard(lineHeightData)}
+		${renderFontSmallCard(letterSpacingData)}
+	</div>
     </div>
     <footer class="grid mt-10">
       ${renderButton({ id: 'resetFont', content: 'Reset Fonts', disabled: false, className: 'btn-primary' })}

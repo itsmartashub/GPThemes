@@ -12,12 +12,21 @@
     border: 1px solid transparent;
     transition: .25s ease-in;
 
+    @include dev('xxs') {
+        display: grid;
+        gap: 1rem 0.5rem;
+        grid-template-areas:
+            'icon . checkbox'
+            'text text text';
+    }
+
     &:hover {
         // background-image: var(--c-bg-gradient);
         background-color: hsla(var(--accent-hsl) / 0.1);
         border-color: hsla(var(--accent-hsl) / 0.1) !important;
         transform: scale(0.98);
     }
+
 
     &__icon {
         --icon-size: 2.8em;
@@ -33,6 +42,10 @@
         svg {
             width: calc(var(--icon-size) * var(--svg-muliplicator));
             height: calc(var(--icon-size) * var(--svg-muliplicator));
+        }
+
+        @include dev('xxs') {
+            grid-area: icon;
         }
     }
 
@@ -54,6 +67,10 @@
             font-size: 0.7em;
             line-height: 1.25;
             font-weight: 400;
+        }
+
+        @include dev('xxs') {
+            grid-area: text;
         }
     }
 
@@ -107,6 +124,10 @@
                 transform: translateX(calc(var(--chb-w) - 145%));
                 background-color: var(--c-on-accent);
             }
+        }
+
+        @include dev('xxs') {
+            grid-area: checkbox;
         }
     }
 }

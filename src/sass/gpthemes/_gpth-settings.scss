@@ -10,8 +10,8 @@
 	border-radius: var(--br-dialog);
 	top: var(--top);
 	right: var(--right);
-	width: clamp(24rem, 25vw, 30rem);
-	max-height: 70vh;
+	width: clamp(25rem, 25vw, 30rem);
+	max-height: 75vh;
 	transform: translateX(calc(100% + 1.5rem)) !important;
 	z-index: calc(var(--z-modal) + 10);
 	background-color: var(--c-bg-sidebar);
@@ -36,9 +36,19 @@
 		transform: translateX(0%) !important;
 	}
 
-	@include dev('sm') {
+
+
+	@include dev('xxs') {
+		padding: 4vw;
+		border: 2px salmon solid;
+	}
+
+	@include dev('xs') {
 		width: calc(100% - 2.5rem);
 		max-height: 70vh;
-		padding: 2rem;
+		// padding: 2rem;
+		padding: 5.5vw;
+		border: 2px salmon greenyellow;
+
 	}
 }
