@@ -229,8 +229,7 @@ main [role='presentation'] {
 		}
 
 		/*   RIGHT - CHATS BUBBLE BG 
-		- Adding .markdown here fix flash background of user chat bubble on first message
-		TODO I need to check if his also fix th "Which response do you prefer" wrapper design */
+		- Adding .markdown here fix flash background of user chat bubble on first message */
 		& > div.text-base > div:first-child:has(.markdown) {
 			background-color: var(--c-bg-msg-gpt);
 
@@ -294,29 +293,21 @@ main [role='presentation'] {
 		}
 
 		/* Response 1 or Response 2 chat bubble when we have to choose 1 answer */
-		& > div:first-child button:has([data-message-author-role='assistant']) {
-			background-color: var(--c-bg-msg-gpt) !important;
-			border-radius: var(--br-chat-bubble) !important;
-			padding: 2rem;
-			box-shadow: 0 0 0px 0px transparent;
-			transition: transform 0.3s $easeInOutSine, border 0.3s $easeInOutSine;
+		&:has(.snap-mandatory.snap-x.overflow-x-auto) {
 
-			&:hover {
-				box-shadow: var(--box-shadow-contextmenu);
-				transform: translateY(-5px);
+			/* Wrapper of Response 1 vs Response 3 */
+			.relative:has(.snap-mandatory.snap-x.overflow-x-auto) {
+
+				&,
+				/* "You're giving feedback on a new version of ChatGPT" heading */
+				.sticky.text-pretty.bg-token-main-surface-primary,
+				/* Some empty div */
+				.sticky.from-token-main-surface-primary {
+					--main-surface-primary: transparent !important;
+					background: none !important;
+				}
 			}
 
-			/* GPT logo */
-			// .rounded-full svg {
-			// 	color: var(--c-surface-1) !important;
-			// }
-
-			/* "Response 1", "Response 2" txt */
-			.text-sm.text-token-text-tertiary {
-				text-transform: uppercase;
-				color: var(--c-accent) !important; // iliti zelena kao i svg
-				font-weight: bold;
-			}
 		}
 
 		.overflow-hidden:has(> .divide-y) {
