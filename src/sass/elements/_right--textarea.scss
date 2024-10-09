@@ -82,9 +82,8 @@ main form {
 			margin-top: 0.2rem;
 			padding: 0 !important;
 			border-radius: var(--br-btn-big);
-			background-color: hsla(var(--accent-hsl) / 0.1) !important;
+			background-color: hsla(var(--accent-hsl) / 0.08) !important;
 			backdrop-filter: blur(20px);
-
 
 			/* List of examples when clicked some of the cards below prompt field: "Summarize notes from a meeting", "Summarize my lease agreemen", etc */
 			ul > li > button {
