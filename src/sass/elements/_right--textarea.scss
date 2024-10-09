@@ -65,6 +65,11 @@ main form {
 					color: var(--c-accent) !important;
 				}
 			}
+
+			/* 📎 "Attach files" svg with blue bg when clicked on new prompt action cards like "Summarize text", "Analyze code */
+			button:has(svg.text-brand-blue-800) {
+				background-color: hsla(var(--accent-hsl) / 0.1) !important;
+			}
 		}
 
 		/* 🖼️ "Attach Files" - attached image wrapper */
