@@ -65,11 +65,6 @@ main form {
 					color: var(--c-accent) !important;
 				}
 			}
-
-			/* 📎 "Attach files" svg with blue bg when clicked on new prompt action cards like "Summarize text", "Analyze code */
-			button:has(svg.text-brand-blue-800) {
-				background-color: hsla(var(--accent-hsl) / 0.1) !important;
-			}
 		}
 
 		/* 🖼️ "Attach Files" - attached image wrapper */
@@ -89,7 +84,6 @@ main form {
 			border-radius: var(--br-btn-big);
 			background-color: hsla(var(--accent-hsl) / 0.1) !important;
 			backdrop-filter: blur(20px);
-			// border: 1px solid hsla(var(--accent-hsl) / 0.1);
 
 
 			/* List of examples when clicked some of the cards below prompt field: "Summarize notes from a meeting", "Summarize my lease agreemen", etc */
@@ -136,8 +130,6 @@ main form {
 			padding: var(--p-btn) !important;
 		}
 
-		// .bg-token-main-surface-primary {
-		// }
 
 		/* @mentions - GPTs list, scrollable product parent */
 		.max-h-40.overflow-y-auto {

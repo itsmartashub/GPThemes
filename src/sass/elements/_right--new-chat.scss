@@ -7,15 +7,15 @@ main [role='presentation'] {
 			hsla(var(--accent-hsl) / 0.16) 100%);
 
 	/* New "New Chat" layout prompt action cards */
-	div.w-full:has(> form #prompt-textarea) + div.hidden ul > li > button,
+	// div.w-full:has(> form #prompt-textarea) + div.hidden ul > li > button,
 	/* Classic big "New Chat" layout prompt example cards */
 	button.relative.flex.w-40.flex-col.rounded-2xl.border-token-border-light,
 	button.relative.whitespace-nowrap.rounded-2xl.border-token-border-light.text-start.align-top.shadow-xxs.transition.enabled\:hover\:bg-token-main-surface-secondary.disabled\:cursor-not-allowed {
 
-		--clr: hsla(var(--accent-hsl) / 0.08);
+		--clr: hsla(var(--accent-hsl) / 0.1);
+		// --clr: hsla(var(--accent-hsl) / 0.2);
 		border: 1px solid var(--clr) !important;
 		background-image: var(--c-bg-gradient) !important;
-
 		color: var(--c-accent) !important;
 		transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s;
 
@@ -45,9 +45,36 @@ main [role='presentation'] {
 	}
 }
 
+/* New "New Chat" layout prompt action cards */
+main [role='presentation'] div.w-full:has(> form #prompt-textarea) + div.hidden ul > li > button {
+	/* --c-bg-gradient: transparent !important;
+	--clr: hsla(var(--accent-hsl) / 0.2) !important; */
+	border: 1px solid hsla(var(--accent-hsl) / 0.12) !important;
 
-// main div.w-full:has(> form #prompt-textarea) + div.hidden ul > li > button {
-// 	border: 2px solid green !important;
-// }
+	&:hover {
+		color: var(--c-accent) !important;
+		transform: scale(0.97);
 
-// + div.hidden ul > li > button
+		.text-gray-600 {
+			--c-subtext-2: var(--c-accent) !important;
+		}
+
+		svg {
+			color: currentColor !important;
+			transition: none;
+		}
+	}
+}
+
+html.light main [role='presentation'] div.w-full:has(> form #prompt-textarea) + div.hidden ul > li > button {
+	color: var(--c-accent) !important;
+
+	.text-gray-600 {
+		--c-subtext-2: currentColor;
+	}
+
+	svg {
+		color: currentColor !important;
+		transition: none;
+	}
+}
