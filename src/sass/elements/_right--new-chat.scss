@@ -39,8 +39,9 @@ main [role='presentation'] {
 		}
 	}
 
-	h1 {
-		color: var(--c-accent);
+	h1,
+	.text-token-text-primary > div.flex-shrink-0 > svg[role='img'] {
+		color: var(--c-accent) !important;
 	}
 }
 
