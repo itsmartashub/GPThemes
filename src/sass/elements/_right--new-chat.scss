@@ -6,16 +6,18 @@ main [role='presentation'] {
 			hsla(var(--accent-hsl) / 0.04) 40% 60%,
 			hsla(var(--accent-hsl) / 0.16) 100%);
 
-
+	/* New "New Chat" layout prompt action cards */
+	div.w-full:has(> form #prompt-textarea) + div.hidden ul > li > button,
+	/* Classic big "New Chat" layout prompt example cards */
 	button.relative.flex.w-40.flex-col.rounded-2xl.border-token-border-light,
 	button.relative.whitespace-nowrap.rounded-2xl.border-token-border-light.text-start.align-top.shadow-xxs.transition.enabled\:hover\:bg-token-main-surface-secondary.disabled\:cursor-not-allowed {
 
 		--clr: hsla(var(--accent-hsl) / 0.08);
 		border: 1px solid var(--clr) !important;
-		background-image: var(--c-bg-gradient);
+		background-image: var(--c-bg-gradient) !important;
 
-		color: var(--c-accent);
-		transition: background-color 0.3s ease, color 0.3s ease;
+		color: var(--c-accent) !important;
+		transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s;
 
 		.text-gray-600 {
 			--c-subtext-2: currentColor;
@@ -29,6 +31,7 @@ main [role='presentation'] {
 		&:hover {
 			background-color: var(--c-accent) !important;
 			color: var(--c-on-accent) !important;
+			transform: scale(0.97);
 
 			.text-gray-600 {
 				--c-subtext-2: var(--c-on-accent) !important;
@@ -37,4 +40,9 @@ main [role='presentation'] {
 	}
 }
 
-// .text-[15px]
+
+// main div.w-full:has(> form #prompt-textarea) + div.hidden ul > li > button {
+// 	border: 2px solid green !important;
+// }
+
+// + div.hidden ul > li > button
