@@ -73,3 +73,8 @@
 [class*='text-[#FE7600]'] {
 	color: var(--c-accent) !important;
 }
+
+/* "Attach files" svg background circled div when clicked some of the new "New Chat" layout prompt action cards (Like "Summarize text", "Analyze images", etc. */
+.bg-brand-blue-800\/20 {
+	background-color: hsla(var(--accent-hsl) / 0.12) !important;
+}
