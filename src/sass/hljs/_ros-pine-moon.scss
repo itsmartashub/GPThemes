@@ -4,18 +4,29 @@
 	--hljs-color: #262528;
 	--hljs-selection-bg: hsla(var(--accent-hsl) / 0.2);
 	--hljs-selection-color: var(--hljs-color);
-	--hljs-comment: #87818c; /* Comments, Invisibles, Line Highlighting */
-	--hljs-tag: #41396e; /* Dark Foreground (Used for status bars) */
-	--hljs-operators: #3f4c78; /* Default Foreground, Caret, Delimiters, Operators */
-	--hljs-bullets: #8f6b78; /* Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted */
-	--hljs-link: #8a2b52; /* Integers, Boolean, Constants, XML Attributes, Markup Link Url */
-	--hljs-classes-strong: #a4627a; /* Classes, Markup Bold, Search Text Background */
-	--hljs-string: #875266; /* Strings, Inherited Class, Markup Code, Diff Inserted */
+	--hljs-comment: #87818c;
+	/* Comments, Invisibles, Line Highlighting */
+	--hljs-tag: #41396e;
+	/* Dark Foreground (Used for status bars) */
+	--hljs-operators: #3f4c78;
+	/* Default Foreground, Caret, Delimiters, Operators */
+	--hljs-bullets: #8f6b78;
+	/* Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted */
+	--hljs-link: #8a2b52;
+	/* Integers, Boolean, Constants, XML Attributes, Markup Link Url */
+	--hljs-classes-strong: #a4627a;
+	/* Classes, Markup Bold, Search Text Background */
+	--hljs-string: #875266;
+	/* Strings, Inherited Class, Markup Code, Diff Inserted */
 	// --hljs-regexp: #254f60; /* Support, Regular Expressions, Escape Characters, Markup Quotes */
-	--hljs-regexp: #8171d2; /* Support, Regular Expressions, Escape Characters, Markup Quotes */
-	--hljs-function: #3a789f; /* Functions, Methods, Attribute IDs, Headings */
-	--hljs-selectors-keywords: #7d4db8; /* Keywords, Storage, Selector, Markup Italic, Diff Changed */
-	--hljs-meta-string: #5a4f67; /*  Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?> */
+	--hljs-regexp: #8171d2;
+	/* Support, Regular Expressions, Escape Characters, Markup Quotes */
+	--hljs-function: #3a789f;
+	/* Functions, Methods, Attribute IDs, Headings */
+	--hljs-selectors-keywords: #7d4db8;
+	/* Keywords, Storage, Selector, Markup Italic, Diff Changed */
+	--hljs-meta-string: #5a4f67;
+	/*  Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?> */
 	// --hljs-meta-string: #4545b3; /*  Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?> */
 
 	pre code.hljs {
@@ -23,10 +34,16 @@
 		// overflow-x: auto;
 	}
 
-	pre .bg-token-main-surface-secondary, /* markdown pre header */
+	// pre .bg-token-main-surface-secondary, /* markdown pre header */
+	pre .bg-token-sidebar-surface-primary {
+		background-color: var(--c-bg-pre);
+	}
+
+	/* markdown pre header */
 	.hljs {
 		color: var(--hljs-color) !important;
 		background: var(--hljs-bg) !important;
+		padding: 0.5rem;
 	}
 
 	.hljs::selection,
@@ -36,10 +53,9 @@
 	}
 
 	/* purposely do not highlight these things */
-	.hljs-formula,
+	/* 	.hljs-formula,
 	.hljs-params,
-	.hljs-property {
-	}
+	.hljs-property {} */
 
 	/* base03 - #59546d -  Comments, Invisibles, Line Highlighting */
 	.hljs-comment {
@@ -146,6 +162,7 @@
 	.hljs-meta .hljs-string {
 		color: var(--hljs-meta-string) !important;
 	}
+
 	.hljs-strong,
 	.hljs-meta .hljs-keyword,
 	/* for v10 compatible themes */
@@ -162,16 +179,27 @@ html.dark {
 		--hljs-color: #e0def4;
 		--hljs-selection-bg: #393552;
 		--hljs-selection-color: var(--hljs-color);
-		--hljs-comment: #59546d; /* Comments, Invisibles, Line Highlighting */
-		--hljs-tag: #817c9c; /* Dark Foreground (Used for status bars) */
-		--hljs-operators: #e0def4; /* Default Foreground, Caret, Delimiters, Operators */
-		--hljs-bullets: #ecebf0; /* Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted */
-		--hljs-link: #eb6fc0; /* Integers, Boolean, Constants, XML Attributes, Markup Link Url */
-		--hljs-classes-strong: #f6c177; /* Classes, Markup Bold, Search Text Background */
-		--hljs-string: #ea9a97; /* Strings, Inherited Class, Markup Code, Diff Inserted */
-		--hljs-regexp: #3e8fb0; /* Support, Regular Expressions, Escape Characters, Markup Quotes */
-		--hljs-function: #9ccfd8; /* Functions, Methods, Attribute IDs, Headings */
-		--hljs-selectors-keywords: #c4a7e7; /* Keywords, Storage, Selector, Markup Italic, Diff Changed */
-		--hljs-meta-string: #b9b9bc; /*  Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?> */
+		--hljs-comment: #59546d;
+		/* Comments, Invisibles, Line Highlighting */
+		--hljs-tag: #817c9c;
+		/* Dark Foreground (Used for status bars) */
+		--hljs-operators: #e0def4;
+		/* Default Foreground, Caret, Delimiters, Operators */
+		--hljs-bullets: #ecebf0;
+		/* Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted */
+		--hljs-link: #eb6fc0;
+		/* Integers, Boolean, Constants, XML Attributes, Markup Link Url */
+		--hljs-classes-strong: #f6c177;
+		/* Classes, Markup Bold, Search Text Background */
+		--hljs-string: #ea9a97;
+		/* Strings, Inherited Class, Markup Code, Diff Inserted */
+		--hljs-regexp: #3e8fb0;
+		/* Support, Regular Expressions, Escape Characters, Markup Quotes */
+		--hljs-function: #9ccfd8;
+		/* Functions, Methods, Attribute IDs, Headings */
+		--hljs-selectors-keywords: #c4a7e7;
+		/* Keywords, Storage, Selector, Markup Italic, Diff Changed */
+		--hljs-meta-string: #b9b9bc;
+		/*  Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?> */
 	}
 }
