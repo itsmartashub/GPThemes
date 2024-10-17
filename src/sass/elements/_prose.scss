@@ -71,11 +71,19 @@
 	a {
 		color: var(--c-accent) !important;
 
-		&[href] {
+		&[href]:not(&[class*='bg-[#f4f4f4]']) {
 			@extend %link_hover_underlined;
 		}
 
-		// color: var(--c-accent) !important;
+		/* Search Links pills in GPT Chat Bubble */
+		&[class*='bg-[#f4f4f4]'][class*='hover:bg-token-text-primary'] {
+			background-color: hsla(var(--accent-hsl) / 0.12);
+
+			&:hover {
+				background-color: var(--c-accent) !important;
+				color: var(--c-on-accent);
+			}
+		}
 	}
 
 	/* Style Markdown Checkboxes */
