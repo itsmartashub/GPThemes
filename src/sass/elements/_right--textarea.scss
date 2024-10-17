@@ -100,7 +100,8 @@ main form {
 					font-weight: 500;
 				}
 
-				&:hover {
+				/* autocomplete suggestion on hover/select by keyboard arrows */
+				&.bg-token-main-surface-secondary {
 					background-color: hsla(var(--accent-hsl) / 0.12) !important;
 					transform: translateY(-2px);
 				}
