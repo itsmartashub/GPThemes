@@ -76,8 +76,9 @@ main form {
 			}
 		}
 
-		/* new NEW CHAT layout - Element when clicked example cards below prompt textarea: "Create image", "Summarize text", "Analyze data", "Analyze images", and more... */
-		& + .absolute.left-0.top-full:has(ul) {
+		/* new NEW CHAT layout - Autocomplete suggestions - Element when clicked example cards below prompt textarea: "Create image", "Summarize text", "Analyze data", "Analyze images", and more... */
+		// & + .absolute.left-0.top-full:has(ul) {
+		& + .absolute.left-0.bg-token-main-surface-primary:has(ul) {
 			// background-color: var(--c-bg-chats-container);
 			margin-top: 0.2rem;
 			padding: 0 !important;
