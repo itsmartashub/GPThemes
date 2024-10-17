@@ -122,6 +122,14 @@ nav[aria-label='Chat history'] {
 			/* Active-link 3-dots and archive btns wrapper */
 			& > div.absolute {
 				@extend %sidebar_link_item_btns_bg;
+
+				&:has(>.rounded-full.bg-blue-selection) {
+					background-color: transparent !important;
+
+					.bg-blue-selection {
+						background-color: var(--c-accent);
+					}
+				}
 			}
 
 			// a[href^='/c/'] {
