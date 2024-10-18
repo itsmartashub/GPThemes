@@ -1,6 +1,7 @@
 import browser from 'webextension-polyfill'
 import { closeSettings, $settings } from './settingsManager.js'
 import { hexToHSL } from '../utils/hexToHSL.js'
+import { renderButton } from './components/renderButtons'
 
 const DEFAULT_COLORS = {
 	LIGHT: '#7e3e47',
@@ -26,8 +27,8 @@ const renderColorsTab = `
           <label for="accentDark">Accent <span>Dark</span></label>
         </div>
       </div>
-      <footer class="grid mt-10">
-        <button id="resetAllAccents" class="btn block relative btn-primary text-center" as="button">Reset Accents</button>
+      <footer class="flex justify-center mt-10">
+		${renderButton({ id: 'resetAllAccents', content: 'Reset Fonts', disabled: false, className: 'btn-primary' })}
       </footer>
     </section>
 `

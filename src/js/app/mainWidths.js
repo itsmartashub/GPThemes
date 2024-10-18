@@ -334,7 +334,7 @@ const renderWidthsTab = `
 		})}
     </div>
 
-    <footer class="grid mt-10">
+    <footer class="flex justify-center mt-10">
       ${renderButton({ id: 'resetWidths', content: 'Reset All', disabled: false, className: 'btn-primary' })}
     </footer>
   </section>
