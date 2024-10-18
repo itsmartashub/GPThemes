@@ -95,8 +95,8 @@
 ## Supported Versions
 
 > [!WARNING]
-> Please be aware that GPThemes is currently tailored to enhance the experience for `GPT-4o Omnia`, `GPTs Store`, `GPT-3.5` and `Browsing and Data Analysis`.
-> The `GPT-4 Turbo`, `GPT-4 Vision` models, `DALL-E 3` are not fully supported yet! Probably the style is not as intended for certain elements! </br>
+> Please be aware that GPThemes is currently tailored to enhance the experience for `GPT-4o`, `GPT-4o mini`, `GPTs Store`, `DALLE` and `Browsing and Data Analysis`.
+> The `o1-preview`, `o1-mini` models are not fully supported yet! Probably the style is not as intended for certain elements! </br>
 > Exploring and editing all elements of those may be considered in future updates.
 
 ## Disclaimer
