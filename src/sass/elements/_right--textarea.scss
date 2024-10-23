@@ -59,7 +59,7 @@ main form {
 
 			/* 📎 "Attach files" svg */
 			button:has(> svg) {
-				margin-bottom: calc(var(--p-prompt-textarea) / 2);
+				// margin-bottom: calc(var(--p-prompt-textarea) / 2);
 
 				svg {
 					color: var(--c-accent) !important;
