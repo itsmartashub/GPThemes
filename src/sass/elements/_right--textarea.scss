@@ -114,7 +114,8 @@ main form {
 
 
 	/* @mentions in textarea */
-	.absolute.bottom-16:has(>.popover) {
+	// [placeholder^="Search recent and pinned GPTs"]
+	.absolute.bottom-3:has(>.popover) {
 		.popover {
 			backdrop-filter: blur(30px) !important;
 			border: hsla(var(--accent-hsl) / 0.5);
