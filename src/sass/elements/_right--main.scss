@@ -124,7 +124,8 @@ main [role='presentation'] {
 
 		/*  RIGHT - CHATS BUBBLE BG */
 		/* ? gpt4o - User message */
-		[class*='bg-[#f4f4f4]'] {
+		// [class*='bg-[#f4f4f4]'] {
+		[class*='bg-token-message-surface'] {
 			background-color: var(--c-bg-msg-user);
 			padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.2);
 			border-radius: var(--br-chat-bubble) !important;
