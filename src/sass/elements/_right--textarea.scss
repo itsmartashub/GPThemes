@@ -59,6 +59,8 @@ main form {
 
 			/* 📎 "Attach files" svg */
 			button:has(> svg) {
+				background-color: hsla(var(--accent-hsl) / 0.15) !important;
+
 				// margin-bottom: calc(var(--p-prompt-textarea) / 2);
 
 				svg {
