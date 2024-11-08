@@ -3,5 +3,5 @@
 .fixed.inset-0[class*='bg-black/90'] {
 	background-color: var(--c-bg-modal) !important;
 	backdrop-filter: blur(var(--blur-modal)) !important;
-	z-index: var(--z-modal);
+	// z-index: var(--z-modal);
 }

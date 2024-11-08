@@ -1,9 +1,11 @@
+[role='listbox'],
 [role='menu'] {
 	background-color: var(--c-bg-contextmenu) !important;
 	border-radius: var(--br-contextmenu) !important;
 	padding: var(--p-contextmenu) !important;
 	box-shadow: var(--box-shadow-contextmenu) !important;
 
+	[role='option'],
 	[role='menuitem'] {
 		background-color: inherit !important;
 		margin-left: 0 !important;
@@ -18,7 +20,6 @@
 
 		/* TODO dark:hover:bg-white/5   ima vec u globalu. Videti da li obrisati ovah hover i ostaviti onaj tamo samo. Rizicno je malo, sta ako se promeni ta klasa */
 		&:hover {
-			// background-color: var(--c-surface-2) !important;
 			background-color: var(--c-bg-contextmenu-item) !important;
 		}
 
@@ -67,7 +68,7 @@
 
 /* __ MODAL - Choose theme context menu & tooltips?  */
 [data-radix-popper-content-wrapper] {
-	z-index: calc(var(--z-modal) + 50) !important;
+	// z-index: calc(var(--z-modal) + 50) !important;
 
 	/* "Custom Instructions" dialog */
 	&:has([role='dialog']) {
@@ -85,9 +86,10 @@
 
 	/* Context menu bg */
 	[role='listbox'] {
-		padding: var(--p-contextmenu) !important;
-		border-radius: var(--br-contextmenu) !important;
-		box-shadow: var(--box-shadow-contextmenu) !important;
+		// @extend [role='menu'];
+		// padding: var(--p-contextmenu) !important;
+		// border-radius: var(--br-contextmenu) !important;
+		// box-shadow: var(--box-shadow-contextmenu) !important;
 		overflow: visible !important; // for what is this? hhh
 		border: none;
 
@@ -169,31 +171,17 @@
 	// --text-tertiary: var(--gray-300)!important;
 }
 
-/* Settings > Language > dropdown which is rendered into body>direct  */
-/* div:has(> div[role='listbox']:has(data-radix-select-viewport[role='presentation']:has([role='option']))) {
-	border: 3px solid red !important;
-	z-index: calc(var(--z-modal) + 200) !important;
-} */
 
 /* ___ Choose language 
-	Settings > Language > dropdown which is rendered into body>direct.
-	.absolute.inset-0:has(.fixed.inset-0) is a modal */
-body > .absolute.inset-0:has(.fixed.inset-0) + div:not([data-radix-popper-content-wrapper]):has(> div[role='listbox']) {
-	z-index: calc(var(--z-modal) + 200) !important;
+	Settings > Language > dropdown which is rendered into body>direct*/
+// body div:not([data-radix-popper-content-wrapper]):has(> div[role='listbox']) {
+// body div:not([data-radix-popper-content-wrapper]) {
 
-	[role='listbox'] {
-		@extend [role='menu'];
+// 	[role='listbox'] {
+// 		@extend [role='menu'];
 
-		[role='option'] {
-			background-color: inherit !important;
-			padding: var(--p-contextmenu-item) !important;
-			border-radius: var(--br-btn) !important;
-			transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-			outline: none !important;
-
-			&:hover {
-				background-color: var(--c-bg-contextmenu-item) !important;
-			}
-		}
-	}
-}
+// 		[role='option'] {
+// 			@extend [role='menuitem'];
+// 		}
+// 	}
+// }

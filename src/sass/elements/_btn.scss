@@ -131,10 +131,7 @@ button[role='combobox'] {
 }
 
 /* === ❓ circle btn on bottom right */
-// button[id*='headlessui-menu-button'][class*='rounded-full'] {
 button[data-testid="undefined-button"] {
-	// color: var(--c-accent) !important;
-	// --border-light: currentColor !important;
 	background-color: var(--c-surface-3) !important;
 }
 
@@ -170,8 +167,3 @@ button.border-token-border-light[class*='hover:bg-token-main-surface-secondary']
 	}
 
 }
-
-/* Question mark button on the bottom right ? */
-// button[data-testid="undefined-button"] {
-// 	border-color: red !important;
-// }
