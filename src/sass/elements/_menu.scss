@@ -14,19 +14,39 @@
 		border-radius: var(--br-btn) !important;
 		transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
-		&:last-child {
-			margin-bottom: 0 !important;
-		}
-
-		/* TODO dark:hover:bg-white/5   ima vec u globalu. Videti da li obrisati ovah hover i ostaviti onaj tamo samo. Rizicno je malo, sta ako se promeni ta klasa */
 		&:hover {
 			background-color: var(--c-bg-contextmenu-item) !important;
 		}
 
+		&:last-child {
+			margin-bottom: 0 !important;
+		}
+
+		/* "Log Out" menuitem */
+		&[data-testid="log-out-menu-item"] {
+
+			&,
+			svg {
+				color: var(--c-danger) !important;
+			}
+		}
+
+		/* TODO dark:hover:bg-white/5   ima vec u globalu. Videti da li obrisati ovah hover i ostaviti onaj tamo samo. Rizicno je malo, sta ako se promeni ta klasa */
+
+
 		/* "Delete" when clicked on conversatin 3dots (more options) */
-		&:last-child:has(.text-token-text-error) {
+		&:last-child:has(.text-token-text-error),
+		&[data-testid="log-out-menu-item"] {
 			&:hover {
 				background-color: hsla(var(--danger-hsl) / 0.15) !important;
+			}
+		}
+
+		span.rounded-full.h-7.w-7:has(>svg) {
+			background-color: hsla(var(--accent-hsl) / 0.15) !important;
+
+			svg {
+				color: var(--c-accent) !important;
 			}
 		}
 	}
@@ -51,104 +71,28 @@
 	}
 
 	/* Menu koji ima separator koji je pre poslednjeg menuitem-a u tom menu - "Log Out" */
-	&:has([role='separator'] ~ [role='menuitem']:last-child) {
-		[role='menuitem']:last-child:not(:has([aria-label='Temporary'])) {
-
-			&,
-			svg {
-				color: var(--c-danger) !important;
-			}
-
-			&:hover {
-				background-color: hsla(var(--danger-hsl) / 0.15) !important;
-			}
-		}
-	}
 }
 
 /* __ MODAL - Choose theme context menu & tooltips?  */
-[data-radix-popper-content-wrapper] {
+// [data-radix-popper-content-wrapper] {
+[data-radix-select-viewport] {
 	// z-index: calc(var(--z-modal) + 50) !important;
-
-	/* "Custom Instructions" dialog */
-	&:has([role='dialog']) {
-
-		/* "Custom Instructions" dialog context menu visible on textarea focus */
-		[role='dialog'] {
-			--box-shadow: var(--box-shadow-contextmenu) !important;
-		}
-
-		/* Small div rotated to simulate chevron on notification bubbles */
-		// .h-3.w-3.rotate-45.transform.rounded-br-sm.bg-gray-900 {
-		// 	background-color: var(--c-surface-3) !important;
-		// }
-	}
-
-	/* Context menu bg */
-	[role='listbox'] {
-		// @extend [role='menu'];
-		// padding: var(--p-contextmenu) !important;
-		// border-radius: var(--br-contextmenu) !important;
-		// box-shadow: var(--box-shadow-contextmenu) !important;
-		overflow: visible !important; // for what is this? hhh
-		border: none;
-
-		[role='option'] {
-			margin-left: 0 !important;
-			margin-right: 0 !important;
-
-			&:last-child {
-				margin-bottom: 0 !important;
-			}
-		}
-	}
-
-	/* Theme dropdown bg */
-	.popover {
-		background-color: var(--c-bg-contextmenu) !important;
-	}
 
 	[data-radix-collection-item] {
 		border-radius: var(--br-btn);
-		// padding: var(--p-contextmenu-item) !important;
 		height: auto !important;
 		margin-bottom: 4px;
 		overflow: visible !important;
 		outline: none !important;
-
-		/* MODAL - Choose theme context menuitem hover */
-		&[data-state='unchecked'] {
-			&:hover {
-				// background-color: var(--c-surface-2) !important;
-				background-color: var(--c-bg-contextmenu-item) !important;
-				outline: none !important; // TODO this is temp fix. This ecause there were somewhite uglu outline on hover. But this also breaks :focus-visible accessibility style...
-			}
-		}
 	}
 
 	/* MODAL - Choose theme context menuitem hover active */
 	[data-state='checked'] {
-		background-color: var(--c-accent) !important;
-		color: var(--c-on-accent) !important;
-	}
 
-	/* "Parent of "Models ℹ️" heading in contextmenu in ChatGPT 3.5" */
-	[data-radix-menu-content]:has(a[href^="https://help.openai.com/"]) {
-
-		/* "Models ℹ️ heading in contextmenu in ChatGPT 3.5" */
-		div:has(>a[href^="https://help.openai.com/"]) {
-			margin-bottom: 0.5rem;
-		}
-
-		/* ChatGPT 3.5 contextmenu item */
-		[role='menuitem'] {
-			span:has(> svg) {
-				background-color: hsla(var(--accent-hsl) / 0.11) !important;
-
-				svg {
-					color: var(--c-accent);
-				}
-			}
+		&,
+		&:hover {
+			background-color: var(--c-accent) !important;
+			color: var(--c-on-accent) !important;
 		}
 	}
 }
@@ -175,7 +119,7 @@
 /* ___ Choose language 
 	Settings > Language > dropdown which is rendered into body>direct*/
 // body div:not([data-radix-popper-content-wrapper]):has(> div[role='listbox']) {
-// body div:not([data-radix-popper-content-wrapper]) {
+// body > div:not([data-radix-popper-content-wrapper]) {
 
 // 	[role='listbox'] {
 // 		@extend [role='menu'];

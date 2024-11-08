@@ -188,21 +188,6 @@ nav[aria-label='Chat history'] {
 				color: var(--c-txt) !important;
 			}
 		}
-
-		/* Sidebar bottom - Log Out  */
-		[role='menu'] {
-			// animation: none !important;
-			// transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-			transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-
-			[role='menuitem']:last-child {
-				color: var(--c-danger) !important;
-
-				svg {
-					color: var(--c-danger) !important;
-				}
-			}
-		}
 	}
 
 	/*  Border-radius for all elements that have .rounded-lg class in <nav> of sidebar. ALi on zezne border-radiusu i contextmenu u bottom sidebar jer i on ima ovu klasu. Zato sad dodajem <li> */
