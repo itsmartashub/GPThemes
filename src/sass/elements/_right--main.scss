@@ -1,6 +1,10 @@
 /* === RIGHT - CONVERSATION CONTAINER === */
 /* .grow.overflow-auto.bg-token-main-surface-primary:has(article) - is for the targeting "Share Link" page */
 .grow.overflow-auto.bg-token-main-surface-primary:has([data-testid^='conversation-turn-']),
+.grow.overflow-auto.bg-token-main-surface-primary:has(.conversation-container),
+.grow.overflow-auto.bg-token-main-surface-primary:has([data-testid^='conversation-turn-']),
+main [role='presentation'],
+main .conversation-container {
 main [role='presentation'] {
 
 	/* Main Page chat-container  Bg*/
@@ -34,12 +38,18 @@ main [role='presentation'] {
 
 /* @ === RIGHT - CHATS BUBBLES ===*/
 // main [data-testid^='conversation-turn-'] {
+[data-testid^='conversation-turn-'],
+.conversation-item {
 [data-testid^='conversation-turn-'] {
 	/* Edit icon in user chat for example. Edit state user chat bg  */
 	--main-surface-tertiary: var(--c-surface-3) !important;
 	margin-bottom: var(--mb-chat-bubble) !important;
 
+div[data-message-author-role],
+.message-content,
 	div[data-message-author-role],
+.prose,
+.message-body {
 	.prose {
 		line-height: calc(var(--lineHeight) / 16) !important;
 		font-size: calc((var(--fontSize) / 16) * 1rem) !important;
@@ -121,6 +131,8 @@ main [role='presentation'] {
 	}
 
 	/* @ RIGHT - CHATS BUBBLES - USER  */
+&:has([data-message-author-role='user']),
+&.user-message {
 	&:has([data-message-author-role='user']) {
 
 		/*  RIGHT - CHATS BUBBLE BG */
@@ -220,6 +232,8 @@ main [role='presentation'] {
 	}
 
 	/* @ RIGHT - CHATS BUBBLES - GPT */
+&:has([data-message-author-role='assistant']),
+&.assistant-message {
 	&:has([data-message-author-role='assistant']) {
 
 		/* ! Without this there was strange issue with User's chat overlaping the menu for "GPT-4" or "GPT-3.5" to choose model in gpt's chat bubble' footer - ONLY FOR MOBILE which is even more strange!!! 

@@ -7,6 +7,8 @@ main form {
 	// div[class*='bg-[#f4f4f4]']:has(#prompt-textarea),
 	// // Textare when clicked on "Temporary Chat" toggle
 	// div[class*='bg-black']:has(#prompt-textarea) {
+#composer-background,
+.composer-wrapper {
 	#composer-background {
 		padding: var(--p-prompt-textarea) !important;
 		background-color: var(--c-bg-textarea) !important;
@@ -23,6 +25,9 @@ main form {
 
 		/* Send button */
 		// guest/3.5 send button, 4o send button 
+button[data-testid='send-button'],
+button[data-testid='stop-button'],
+.send-button {
 		button[data-testid='send-button'],
 		button[data-testid='stop-button'] {
 			background-color: var(--c-accent) !important;
@@ -115,6 +120,8 @@ main form {
 
 	/* @mentions in textarea */
 	// [placeholder^="Search recent and pinned GPTs"]
+.absolute.bottom-3:has(>.popover),
+.mentions-wrapper {
 	.absolute.bottom-3:has(>.popover) {
 		.popover {
 			backdrop-filter: blur(30px) !important;

@@ -9,6 +9,9 @@ main [role='presentation'] {
 	/* New "New Chat" layout prompt action cards */
 	// div.w-full:has(> form #prompt-textarea) + div.hidden ul > li > button,
 	/* Classic big "New Chat" layout prompt example cards */
+button.relative.flex.w-40.flex-col.rounded-2xl.border-token-border-light,
+button.relative.whitespace-nowrap.rounded-2xl.border-token-border-light.text-start.align-top.shadow-xxs.transition.enabled\:hover\:bg-token-main-surface-secondary.disabled\:cursor-not-allowed,
+.new-chat-button {
 	button.relative.flex.w-40.flex-col.rounded-2xl.border-token-border-light,
 	button.relative.whitespace-nowrap.rounded-2xl.border-token-border-light.text-start.align-top.shadow-xxs.transition.enabled\:hover\:bg-token-main-surface-secondary.disabled\:cursor-not-allowed {
 

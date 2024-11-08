@@ -11,6 +11,8 @@ But adding this "main" blocked this style to smaller screens so I have to add it
 // .sticky.bg-token-main-surface-primary:not(th),
 // main .sticky:not(th),
 // .h-full.overflow-y-auto:has(.sticky [href^='/auth/login?next=/gpts']) .sticky {
+.sticky,
+.sticky-header {
 .sticky {
 
 	&.h-header-height,
@@ -41,6 +43,8 @@ But adding this "main" blocked this style to smaller screens so I have to add it
 
 	/* "ChatGPT" button in sticky header */
 	// [type='button'][aria-haspopup='menu'],
+[type='button'][aria-haspopup='menu'],
+.menu-button {
 	[type='button'][aria-haspopup='menu'] {
 		transition: 0.25s color ease-in-out, 0.25s background-color ease-in-out;
 		border-radius: var(--br-btn) !important;
