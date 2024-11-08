@@ -1,13 +1,5 @@
 /* ===  RIGHT - TEXTAREA PARENT, message type and send button */
-main form {
-	// textarea prompt on some profiles and guest - waiting for composer gpt version
-	// div[class*='bg-token-composer-surface']:has(#prompt-textarea),
-
-	// gpt4o textarea prompt
-	// div[class*='bg-[#f4f4f4]']:has(#prompt-textarea),
-	// // Textare when clicked on "Temporary Chat" toggle
-	// div[class*='bg-black']:has(#prompt-textarea) {
-	#composer-background {
+#composer-background {
 		padding: var(--p-prompt-textarea) !important;
 		background-color: var(--c-bg-textarea) !important;
 		border-radius: var(--br-prompt-textarea) !important;
@@ -16,14 +8,12 @@ main form {
 		caret-color: var(--c-accent);
 
 		/* In "temporary chat" textarea is black so the color and caret-color are white, so this fix that */
-		// [data-placeholder="Message ChatGPT"] {
-		[data-placeholder] {
+#prompt-textarea {
 			--text-secondary: var(--c-placeholder-textarea); // overwriting its ::after color
 		}
 
 		/* Send button */
-		// guest/3.5 send button, 4o send button 
-		button[data-testid='send-button'],
+button[data-testid='send-button'],
 		button[data-testid='stop-button'] {
 			background-color: var(--c-accent) !important;
 			color: var(--c-txt) !important;
