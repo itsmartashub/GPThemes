@@ -391,7 +391,7 @@ html[data-gptheme='oled'] main [data-testid^='conversation-turn-']:has([data-mes
 main {
 
 	[data-testid^='conversation-turn-'] .mx-auto.flex.flex-1.text-base,
-	[data-testid^='conversation-turn-']:has([data-message-author-role='user']) [class*='bg-[#f4f4f4]'],
+	[data-testid^='conversation-turn-']:has([data-message-author-role='user']) [class*='bg-token-message-surface'],
 	&:has(#prompt-textarea) [class*='lg:max-w-[40rem]'],
 	&:has(#prompt-textarea) .px-3.text-base.m-auto .mx-auto.flex.flex-1.text-base:has(>form) {
 		transition: 0.3s ease-in-out;

@@ -4,10 +4,10 @@ main form {
 	// div[class*='bg-token-composer-surface']:has(#prompt-textarea),
 
 	// gpt4o textarea prompt
-	div[class*='bg-[#f4f4f4]']:has(#prompt-textarea),
-
-	// Textare when clicked on "Temporary Chat" toggle
-	div[class*='bg-black']:has(#prompt-textarea) {
+	// div[class*='bg-[#f4f4f4]']:has(#prompt-textarea),
+	// // Textare when clicked on "Temporary Chat" toggle
+	// div[class*='bg-black']:has(#prompt-textarea) {
+	#composer-background {
 		padding: var(--p-prompt-textarea) !important;
 		background-color: var(--c-bg-textarea) !important;
 		border-radius: var(--br-prompt-textarea) !important;
@@ -180,7 +180,8 @@ main div[role='presentation'] div.w-full:has(form) {
 	margin-top: 0.5rem !important;
 }
 
-html.dark[data-gptheme='oled'] main form div[class*='bg-[#f4f4f4]']:has(#prompt-textarea) {
+// html.dark[data-gptheme='oled'] main form div[class*='bg-[#f4f4f4]']:has(#prompt-textarea) {
+html.dark[data-gptheme='oled'] main form #composer-background:has(#prompt-textarea) {
 
 	/* "Reply" in msg textarea */
 	.bg-token-main-surface-primary {
