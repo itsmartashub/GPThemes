@@ -68,8 +68,6 @@ button:not(.btn,
 		color 0.3s ease-in-out !important;
 
 	/* [class*='-translate-y-1/2']) je btn ❌ u attached image*/
-	// &:is(:hover, :active):not(.absolute.right-1.top-1.rounded-full) {
-	// &:is(:hover, :active):not([class*='-translate-y-1/2']) {
 	&:is(:hover, :active) {
 		transform: translateY(-2px);
 		opacity: 0.8;
@@ -86,106 +84,6 @@ button[role='switch'] {
 		transition: transform 0.4s $easeInOutBack, background-color 0.3s ease-in-out;
 	}
 }
-
-/* TODO REMOVED due to GPT4o! New Chat big buttons */
-// main form .grow .btn {
-// 	// transition: .4s $easeOutBack, background-color .3s ease-in-out opacity .3s ease-in-out;
-
-// 	/* Gradient bg visible on hover */
-// 	.bg-gradient-to-l {
-// 		transition: all 0.3s ease-in-out;
-
-// 		/* Button SVG parent wrapper */
-// 		span[data-state] {
-// 			overflow: hidden;
-// 			padding: 4px; // because svg btn looks cut off in firefox, so add a little space around
-
-// 			/* Button w/ SVG */
-// 			// .bg-token-surface-primary { this class doesnt exist anymore...
-// 			.bg-token-main-surface-primary {
-// 				transform: translateY(120%) scale(0.5);
-// 				transition: transform 0.5s $easeOutBack;
-// 			}
-// 		}
-// 	}
-
-// 	&:hover {
-// 		background-color: var(--c-surface-3) !important;
-// 		transform: translateY(-4px);
-
-// 		.bg-gradient-to-l {
-// 			span[data-state] {
-// 				/* Button w/ SVG */
-// 				// .bg-token-surface-primary {
-// 				.bg-token-main-surface-primary {
-// 					transform: translateY(0%) scale(1);
-// 					opacity: 1 !important;
-// 				}
-// 			}
-// 		}
-// 	}
-// }
-
-/* TODO REMOVED due to GPT4o! Textarea send message send-button */
-/* [data-testid='send-button']:not([disabled]) {
-	transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out;
-
-	&:hover {
-		transform: translateY(-10%);
-	}
-} */
-
-/* TODO - See if this still exists, i think there is no more .self-end ___ Chat Bubbles */
-// main [data-testid^='conversation-turn-'] {
-// 	// .group {
-// 	& > div:first-child > div:first-child {
-// 		&:hover {
-// 			/* Bubble message footer (icons wrapper) */
-// 			div[class*='empty:hidden'] {
-// 				.self-end {
-// 					transform: translateY(0);
-// 					opacity: 1;
-
-// 					/* Bubble message footer (svg icons) */
-// 					button svg {
-// 						transform: scale(1);
-// 					}
-// 				}
-// 			}
-// 		}
-
-// 		/* Bubble message footer */
-// 		div[class*='empty:hidden'] {
-// 			overflow-y: clip;
-// 			// padding-inline: 10px; // to make counter answer (<2/4>) visible when this is overflow-hidden, we need to add padding-inline, or we can use overflow-y: clip; And overflow is "important" for translate transition
-
-// 			/* Bubble message footer (icons wrapper) */
-// 			.self-end {
-// 				transform: translateY(100%);
-// 				opacity: 0;
-// 				transition: transform 0.4s $easeOutBack, opacity 0.3s ease;
-
-// 				/* Bubble message footer (svg icons) */
-// 				button svg {
-// 					transform: translateY(0px);
-// 					transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out;
-
-// 					&:hover {
-// 						opacity: 0.7;
-// 						transform: translateY(-2px);
-// 					}
-// 				}
-// 			}
-
-// 			@include dev('sm') {
-// 				.self-end {
-// 					transform: translateY(0%) !important;
-// 					opacity: 1 !important;
-// 				}
-// 			}
-// 		}
-// 	}
-// }
 
 /* "Copy code" btn */
 pre {
@@ -237,15 +135,37 @@ main [role='presentation'] button.absolute.rounded-full:not([class*='-translate-
 				}
 			}
 		}
+
+		tr {
+			position: relative;
+
+			&::after {
+				content: '';
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				position: absolute;
+				background-color: transparent;
+				border-radius: calc(var(--br) / 1.5);
+				transition: background-color .25s;
+				z-index: -1;
+			}
+
+			&:hover::after {
+				// background-color: hsla(var(--accent-hsl) / 0.12);
+				background-color: var(--c-surface-3);
+			}
+		}
 	}
 }
 
 /* === ❓ circle btn on bottom right */
-button[id*='headlessui-menu-button'][class*='rounded-full'] {
-	transition: transform 0.3s $easeOutCirc;
+main button[data-testid="undefined-button"].rounded-full {
+	transition: transform 0.3s $easeInQuart;
 
 	&:hover {
-		transform: scale(1.06);
+		transform: scale(1.1);
 	}
 }
 

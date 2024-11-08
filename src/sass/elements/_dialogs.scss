@@ -190,12 +190,6 @@
 		background-color: var(--c-surface-3) !important; // [class*='dark:bg-gray-800']
 		opacity: 0.7;
 
-		/* Textarea feedback when click on like btn in gpt answers
-		TODO(remove): there is no "👍 like" btn anymore */
-		&#feedback-other {
-			padding: 1.5rem;
-		}
-
 		&:focus {
 			border-color: var(--c-surface-3) !important;
 			opacity: 1;
@@ -211,7 +205,6 @@
 	}
 
 	/* ___ Dialog - "Share Link to Chat" & "Public Link Updated" */
-	// &:has(input[value^="https://chat.openai.com/share/"]),
 	&:has(input[value^="https://chatgpt.com/share/"]) {
 
 		/* "🔗 Copy Link" btn */
@@ -219,13 +212,12 @@
 			border-radius: 9999px !important;
 		}
 
-		// --main-surface-primary: var(--c-surface-3) !important; // bg of link preview and "🔗 Create Link" btn
-		// // mozda i ukloniti, nije lose i bez ovog ustvari tj da input bude iste boje kao i dialog
+		/*  bg of link preview and "🔗 Create Link" btn */
 		.bg-token-main-surface-primary {
-			--main-surface-primary: var(--c-surface-3) !important; // bg of link preview and "🔗 Create Link" btn
+			--main-surface-primary: var(--c-surface-3) !important;
 		}
 
-		// bg-gradient of link preview
+		/* bg-gradient of link preview */
 		.from-token-main-surface-primary {
 			display: none;
 		}
@@ -288,28 +280,6 @@
 				display: flex;
 				align-items: center;
 				justify-items: center;
-			}
-
-			tr {
-				position: relative;
-
-				&::after {
-					content: '';
-					width: 100%;
-					height: 100%;
-					top: 0;
-					left: 0;
-					position: absolute;
-					background-color: transparent;
-					border-radius: calc(var(--br) / 1.5);
-					transition: background-color .25s;
-					z-index: -1;
-				}
-
-				&:hover::after {
-					// background-color: hsla(var(--accent-hsl) / 0.12);
-					background-color: var(--c-surface-3);
-				}
 			}
 		}
 

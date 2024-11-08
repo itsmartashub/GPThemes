@@ -164,3 +164,8 @@ button.border-token-border-light[class*='hover:bg-token-main-surface-secondary']
 	}
 
 }
+
+/* === ❓ circle btn on bottom right */
+main button[data-testid="undefined-button"].rounded-full {
+	background-color: var(--c-surface-3) !important;
+}
