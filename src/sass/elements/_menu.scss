@@ -66,8 +66,8 @@
 }
 
 /* __ MODAL - Choose theme context menu & tooltips?  */
+  z-index: calc(var(--z-modal) + 100) !important;
 [data-radix-popper-content-wrapper] {
-	z-index: calc(var(--z-modal) + 50) !important;
 
 	/* "Custom Instructions" dialog */
 	&:has([role='dialog']) {
@@ -178,22 +178,16 @@
 /* ___ Choose language 
 	Settings > Language > dropdown which is rendered into body>direct.
 	.absolute.inset-0:has(.fixed.inset-0) is a modal */
-body > .absolute.inset-0:has(.fixed.inset-0) + div:not([data-radix-popper-content-wrapper]):has(> div[role='listbox']) {
-	z-index: calc(var(--z-modal) + 200) !important;
+body > div:not([data-radix-popper-content-wrapper]):has(> div[role='listbox']) {
+  z-index: calc(var(--z-modal) + 200) !important;
+
+  [role='listbox'] {
+    @extend [role='menu'];
+
+    [role='option'] {
+      @extend [role='menuitem'];
+    }
+  }
+}
 
 	[role='listbox'] {
-		@extend [role='menu'];
-
-		[role='option'] {
-			background-color: inherit !important;
-			padding: var(--p-contextmenu-item) !important;
-			border-radius: var(--br-btn) !important;
-			transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-			outline: none !important;
-
-			&:hover {
-				background-color: var(--c-bg-contextmenu-item) !important;
-			}
-		}
-	}
-}
