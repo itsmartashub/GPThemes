@@ -29,6 +29,11 @@ main [role='presentation'] {
 	.gizmo-bot-avatar {
 		--main-surface-tertiary: var(--c-accent) !important;
 	}
+
+	/* === ❓ circle btn on bottom right */
+	button[data-testid="undefined-button"] {
+		background-color: var(--c-surface-3) !important;
+	}
 }
 
 /* @ === RIGHT - CHATS BUBBLES ===*/
