@@ -335,16 +335,24 @@ main [role='presentation'] {
 			}
 		}
 
-		/* "Analysis" markdown code */
+		/* "Analysis" wrapper markdown code: ugly black color above the whole markdown part, especcialy visible on light mode */
 		.bg-black:has(> .markdown) {
-			background-color: var(--c-bg-pre) !important;
+			// background-color: var(--c-bg-pre) !important;
+			background-color: transparent !important;
+		}
 
-			.bg-gray-700 {
-				background-color: inherit !important;
-				// background-color: transparent !important;
-				border: 1px solid var(--c-border);
-				border-radius: var(--br-contextmenu) !important;
-			}
+
+		/* "Analysis" code: remove border-top */
+		.border-t:has(.border-red-500) {
+			border-top: unset !important;
+		}
+
+		/* "Analysis" <pre> code parents */
+		.border-l-4.border-red-500 {
+			background-color: hsla(var(--accent-hsl) / 0.12);
+			color: var(--c-accent);
+			border-color: currentColor !important;
+			border-radius: var(--br-btn);
 		}
 
 

@@ -95,7 +95,7 @@ pre {
 		}
 
 		&:hover {
-			--c-bg-pre-header-btn: hsla(var(--accent-hsl) / 0.225);
+			--c-bg-pre-header-btn: hsla(var(--accent-hsl) / 0.225) !important;
 			--c-bg-pre-header-btn-color: var(--c-accent) !important;
 			transform: translateY(2px);
 		}

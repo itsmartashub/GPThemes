@@ -55,11 +55,11 @@
 
 /*
 - Small btns in chat footer.
-- <pre>
+- <pre> and <pre> elements like code content, thats why i put :not(pre .contain-inline-size) because this overiding the <pre> radius
 - Tab btns in dialog.
 - contextmenu-items in "Theme" ddl
 - "Was this response better or worse? 👍👎" el when clicked on regenerate answer btn and its inner buttons */
-.rounded-md {
+.rounded-md:not(pre .contain-inline-size) {
 	border-radius: var(--br-btn) !important;
 	// @include borderBoxShadow(yellow);
 }

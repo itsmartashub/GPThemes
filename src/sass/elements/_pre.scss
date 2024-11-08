@@ -1,48 +1,47 @@
 /* === RIGHT - <pre> - MARKDOWN CODE IN CHATS ===*/
 
-pre {
-	border-radius: var(--br-pre) !important;
+/* Dont use pre directly bcs in the "Analysis" code there is also <pre> */
+.prose pre {
+	border-radius: var(--br-chat-bubble) !important;
 	margin: var(--my-pre) auto !important;
-	// border: 3px solid pink;
 
 	/* Whole code block hljs element */
-	.bg-gray-950 {
+	// [class*='bg-gray-950']:has(.sticky button svg) {
+
+	& > div {
 		background-color: var(--c-bg-pre) !important;
 		border-radius: inherit !important;
-		padding: 1.8rem !important;
-		// border: 2px solid red;
-	}
+		padding: var(--p-chat-bubble) !important;
 
-	/* pre header */
-	.bg-token-main-surface-secondary {
-		padding: 0 !important;
-	}
+		/* 
+		- pre header
+		- wrapper div of "Copy code" button
+		- main code wrapper */
+		[class*="bg-token-sidebar-surface-primary"] {
+			background-color: transparent !important;
+		}
 
-	/* Code name in pre header (html, php, css, etc) */
-	& > div > div > span:not([data-state]) {
-		color: var(--c-subtext-1) !important;
-		font-weight: bold;
+		/* pre header. Code name in pre header (html, php, css, etc) */
+		.font-sans.select-none {
+			padding: 0 !important;
+			font-weight: bold;
+			color: var(--c-accent) !important;
+		}
 	}
 
 	/* "Copy Code" btn in pre header */
-	button:has(svg) {
-		text-transform: uppercase !important;
+	.sticky button:has(svg) {
 		background-color: var(--c-bg-pre-header-btn);
-		backdrop-filter: blur(5px);
 		color: var(--c-bg-pre-header-btn-color);
-		padding: var(--p-btn);
+		text-transform: uppercase !important;
+		backdrop-filter: blur(5px);
 		border-radius: var(--br-btn) !important;
+		padding: var(--p-btn);
 		font-weight: bold;
 
 		/* SVG icons before 'Copy code' btn in md */
 		svg {
 			color: currentColor !important;
 		}
-	}
-
-	/* Code snippets without (after) pre-header (code name and "Copy Code" btn */
-	.overflow-y-auto:has(> code) {
-		// border: 2px solid lavenderblush;
-		padding: 1rem 0 0 0 !important;
 	}
 }
