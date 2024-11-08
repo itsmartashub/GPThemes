@@ -1,5 +1,5 @@
 .markdown {
-	--c-bg-pre: var(--c-surface-2);
+	// --c-bg-pre: var(--c-surface-2);
 	--hljs-bg: transparent;
 	--hljs-color: #262528;
 	--hljs-selection-bg: hsla(var(--accent-hsl) / 0.2);
@@ -170,7 +170,7 @@
 html.dark {
 	.markdown {
 		// --c-bg-pre: #281f34;
-		--c-bg-pre: hsla(var(--accent-h) var(--surface-s) var(--surface-l) / 0.6);
+		// --c-bg-pre: hsla(var(--accent-h) var(--surface-s) var(--surface-l) / 0.6);
 		--hljs-bg: transparent;
 		--hljs-color: #e0def4;
 		--hljs-selection-bg: #393552;

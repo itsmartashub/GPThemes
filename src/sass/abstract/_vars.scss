@@ -373,6 +373,7 @@ html.dark {
 	--c-border-accent: hsla(var(--accent-hsl) / 0.05);
 
 	/* ? ========== <pre>/markdown things colors ========== */
+	--c-bg-pre: hsla(var(--accent-h) var(--surface-s) var(--surface-l) / 0.8);
 	--c-bg-pre-header-btn: var(--c-accent);
 	--c-bg-pre-header-btn-color: var(--c-on-accent);
 	--c-markdown-a: var(--c-accent);

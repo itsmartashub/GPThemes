@@ -387,25 +387,6 @@
 		}
 	}
 
-	/* "Analysis" dialog with markdown code 
-	- .bg-gray-700 je boja pozadine za "Results" ovog analysis koda */
-	&:has(.markdown) {
-
-		.bg-black,
-		.bg-gray-950,
-		.bg-gray-700 {
-			background-color: var(--c-bg-pre);
-			border-radius: var(--br-dialog);
-		}
-
-		/* "Analysis" Results code snippets */
-		.bg-gray-700 {
-			border: 1px solid var(--c-border);
-			border-radius: var(--br-contextmenu) !important;
-			margin-bottom: 1.5rem;
-		}
-	}
-
 	.gizmo-shadow-stroke {
 		background-color: var(--c-accent) !important;
 
