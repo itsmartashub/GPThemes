@@ -8,7 +8,7 @@
 		position: fixed;
 		top: var(--top);
 		right: var(--right);
-		z-index: 10;
+		// z-index: 1;
 		transform: scale(var(--floating-scale)) rotate(var(--floating-rotate));
 		transition: transform 0.8s $easeInOutCirc;
 
