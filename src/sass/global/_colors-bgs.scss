@@ -230,3 +230,8 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 // }
 
 // hover:bg-token-main-surface-secondary
+
+/* Blue indicator of unread messages*/
+.bg-blue-selection {
+	background-color: var(--c-accent) !important;
+}

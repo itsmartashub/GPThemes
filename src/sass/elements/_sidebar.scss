@@ -120,10 +120,6 @@ nav[aria-label='Chat history'] {
 
 				&:has(>.rounded-full.bg-blue-selection) {
 					background-color: transparent !important;
-
-					.bg-blue-selection {
-						background-color: var(--c-accent);
-					}
 				}
 			}
 
