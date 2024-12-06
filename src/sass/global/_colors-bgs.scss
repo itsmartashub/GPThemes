@@ -90,10 +90,10 @@
 }
 
 /* Shared chats PAGE - green button "Upgrade to Plus to create your own GPT" */
-[class*='bg-green-600'] {
-	background-color: var(--c-accent) !important;
-	color: var(--c-on-accent) !important;
-}
+// [class*='bg-green-600'] {
+// 	background-color: var(--c-accent) !important;
+// 	color: var(--c-on-accent) !important;
+// }
 
 /* Errors and TOS - "This content may violate content policy..." (red) & "This content may violate our Terms of Use or usage policies." (orange) warnings. Also alert in "Share Link to Chat" dialog shown sometimes.
 This content may violate our Terms of Use or usage policies. is bg-orange-400 now !!!

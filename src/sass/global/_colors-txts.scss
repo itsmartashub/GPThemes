@@ -79,6 +79,8 @@
 	background-color: hsla(var(--accent-hsl) / 0.12) !important;
 }
 
-.hint-pill {
+.hint-pill,
+// "Upgrade your plan" dialog, Plus plan "POPULAR" badge
+.text-green-600 {
 	color: var(--c-accent) !important;
 }

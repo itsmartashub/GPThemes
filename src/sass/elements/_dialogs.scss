@@ -105,10 +105,9 @@
 	}
 
 	/* ___ Dialog - "Upgrade your plan"  */
-	// &.bg-payment-modal {
-	// &:has(a[href="https://openai.com/enterprise"]) {
-	// &:has(a[href="https://openai.com/enterprise"], [aria-label^="Toggle for switching to plans for"]) {
-	&:has([aria-label^="Toggle for switching"]) {
+	// I has to add in here and: [data-testid*="-pricing-modal-column"] to support and mobile because there is no [aria-label^="Toggle for switching"] element
+	// &:has([aria-label^="Toggle for switching"], [data-testid*="-pricing-modal-column"]) {
+	&:has([data-testid*="-pricing-modal-column"]) {
 		border-radius: 0 !important;
 
 		[aria-label="Toggle for switching between Personal and Business plans"] {
@@ -140,7 +139,7 @@
 			}
 		}
 
-		/* Free and Plus plans */
+		/* Free and Plus plans cards */
 		[data-testid*="-pricing-modal-column"] {
 			margin: 0.3rem !important;
 			box-shadow: var(--box-shadow);
@@ -152,6 +151,15 @@
 			.bg-token-main-surface-primary {
 				--main-surface-primary: transparent !important;
 				// background-color: transparent !important;
+			}
+		}
+
+		/* Only PLUS plan card */
+		[data-testid*="plus-pricing-modal-column"] {
+			border: 1px solid hsla(var(--accent-hsl) / 0.3) !important;
+
+			.border-green-600 {
+				border-color: var(--c-accent) !important;
 			}
 		}
 
