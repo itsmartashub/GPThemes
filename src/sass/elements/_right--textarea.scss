@@ -113,9 +113,10 @@ main form {
 		/* New Advanced Voice Mode button */
 		.rounded-full:has(>[data-testid="composer-speech-button"]) {
 			--shadow: 0 0 2px 2px hsla(var(--accent-hsl) / 0.3) inset;
-			--c-bg-gradient: linear-gradient(-45deg,
-					hsla(var(--accent-hsl) / 0.02) 0%,
-					hsla(var(--accent-hsl) / 0.25) 50%,
+			--c-bg-gradient: linear-gradient(-35deg,
+					hsla(var(--accent-hsl) / 0.001) 0%,
+					hsla(var(--accent-hsl) / 0.35) 38%,
+					hsla(var(--accent-hsl) / 0.85) 78%,
 					hsla(var(--accent-hsl) / 1) 100%);
 			background: var(--c-bg-gradient) !important;
 			color: var(--c-on-accent) !important;
@@ -129,13 +130,17 @@ main form {
 
 			[data-testid="composer-speech-button"] {
 				background: inherit !important;
-				color: inherit;
+				color: currentColor;
 
 				/* Voice svg icon */
 				.absolute {
 					color: currentColor !important;
-				}
 
+					/* svg 🛞 spinning voice icon when clicked on voice btn */
+					svg.animate-spin {
+						color: var(--c-accent) !important;
+					}
+				}
 			}
 
 			&:has([data-testid="composer-speech-button"]:disabled) {
