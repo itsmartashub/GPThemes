@@ -397,3 +397,13 @@ main {
 		transition: 0.3s ease-in-out;
 	}
 }
+
+
+/* ChatGPT's answer notification on the top right, next to the GPThemes floating button */
+body > .fixed.top-8.right-4 {
+	.rounded-full:has(>svg[role='img']) {
+		--main-surface-primary: var(--c-accent) !important;
+		--text-primary: var(--c-on-accent) !important;
+		border-color: var(--c-accent) !important;
+	}
+}
