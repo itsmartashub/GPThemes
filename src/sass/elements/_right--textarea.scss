@@ -10,7 +10,7 @@ main form {
 	#composer-background {
 		padding: var(--p-prompt-textarea) !important;
 		background-color: var(--c-bg-textarea) !important;
-		border-radius: var(--br-prompt-textarea) !important;
+		border-radius: calc(var(--br) * 1.7) !important;
 		border: none !important;
 		transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 		caret-color: var(--c-accent);
