@@ -109,6 +109,41 @@ main form {
 				}
 			}
 		}
+
+		/* New Advanced Voice Mode button */
+		.rounded-full:has(>[data-testid="composer-speech-button"]) {
+			--shadow: 0 0 2px 2px hsla(var(--accent-hsl) / 0.3) inset;
+			--c-bg-gradient: linear-gradient(-45deg,
+					hsla(var(--accent-hsl) / 0.02) 0%,
+					hsla(var(--accent-hsl) / 0.25) 50%,
+					hsla(var(--accent-hsl) / 1) 100%);
+			background: var(--c-bg-gradient) !important;
+			color: var(--c-on-accent) !important;
+			box-shadow: var(--shadow);
+			transition: transform 0.3s $easeInOutSine;
+
+			&:hover {
+				--shadow: 0 0 3px 2px hsla(var(--accent-hsl) / 0.6) inset;
+				transform: scale(1.1);
+			}
+
+			[data-testid="composer-speech-button"] {
+				background: inherit !important;
+				color: inherit;
+
+				/* Voice svg icon */
+				.absolute {
+					color: currentColor !important;
+				}
+
+			}
+
+			&:has([data-testid="composer-speech-button"]:disabled) {
+				background: hsla(var(--accent-hsl) / 0.12) !important;
+				color: var(--c-accent);
+			}
+
+		}
 	}
 
 	/* @ popover showed when typed / in textarea-prompt with "Picture" and "Search" */
