@@ -111,22 +111,33 @@ main form {
 		}
 	}
 
-
+	/* @ popover showed when typed / in textarea-prompt with "Picture" and "Search" */
+	.absolute:has(>.popover.bg-token-main-surface-primary) {
+		& > .bg-token-main-surface-primary {
+			// background-color: var(--c-surface-3) !important;
+			--main-surface-primary: var(--c-surface-3) !important;
+		}
+	}
 
 	/* @mentions in textarea */
 	// [placeholder^="Search recent and pinned GPTs"]
-	.absolute.bottom-3:has(>.popover) {
+	.absolute:has(>.popover input[placeholder*='GPTs']) {
+
 		.popover {
 			backdrop-filter: blur(30px) !important;
 			border: hsla(var(--accent-hsl) / 0.5);
 			background-color: hsla(var(--accent-hsl) / 0.12) !important;
 			box-shadow: var(--box-shadow-textarea);
+
+			.overflow-y-auto {
+				--c-scrollbar-thumb: hsla(var(--accent-hsl) / 0.3) !important;
+			}
 		}
 
 		/* @mentions - Search GPTs */
 		input {
-			// background-color: hsla(var(--accent-hsl) / 0.1) !important;
-			background-color: transparent !important;
+			background-color: hsla(var(--accent-hsl) / 0.1) !important;
+			// background-color: transparent !important;
 			border: 1px solid hsla(var(--accent-hsl) / 0.4) !important;
 			border-radius: var(--br-btn) !important;
 			color: var(--c-accent) !important;
@@ -156,14 +167,6 @@ main form {
 			&:hover {
 				background-color: hsla(var(--accent-hsl) / 0.1) !important;
 			}
-		}
-	}
-
-	/* @ popover showed when typed / in textarea-prompt with "Picture" and "Search" */
-	.absolute.bottom-3:has(>.popover) {
-		& > .bg-token-main-surface-primary {
-			// background-color: var(--c-surface-3) !important;
-			--main-surface-primary: var(--c-surface-3) !important;
 		}
 	}
 
