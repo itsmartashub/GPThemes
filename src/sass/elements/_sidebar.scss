@@ -56,20 +56,10 @@ nav[aria-label='Chat history'] {
 
 	/* Parent of time heading (of Today, Yesterday) in sidebar */
 	span:has(> h3) {
-		margin-top: 1.5rem !important;
-		margin-bottom: 0.3rem !important;
 
 		/* Today, Yesterday - Time heading in sidebar */
 		h3 {
-			display: inline-block !important;
-			color: var(--c-accent) !important;
-			background-color: hsl(var(--accent-hsl) / 0.2) !important;
-			border-radius: 100vw;
-			text-transform: uppercase;
-			font-weight: bold;
-			padding: 0.5rem 1rem !important;
-			height: auto !important;
-			line-height: 1 !important;
+			@extend %date-pill;
 		}
 	}
 

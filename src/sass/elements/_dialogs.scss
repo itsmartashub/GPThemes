@@ -489,6 +489,27 @@
 	}
 
 
+	&:has(input[placeholder="Search chats..."]) {
+
+		ol > li {
+			.cursor-pointer {
+				[class*='bg-[#f4f4f4]'] {
+					background-color: var(--c-surface-3) !important;
+				}
+			}
+
+			.group.text-xs.text-token-text-secondary {
+				@extend %date-pill;
+				// padding: 0.3rem 0.6rem !important;
+			}
+
+			.loading-results-shimmer {
+				--main-surface-secondary: var(--c-surface-2) !important;
+				--main-surface-tertiary: var(--c-surface-3) !important;
+			}
+		}
+	}
+
 }
 
 html.dark[data-gptheme='oled'] [role='dialog'] {
