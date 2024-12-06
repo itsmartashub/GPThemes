@@ -335,9 +335,6 @@ main [role='presentation'] {
 			}
 		}
 
-
-
-
 		/* DALLE Image hover buttons - 👍👎  */
 		.group\/dalle-image.aspect-square {
 
@@ -358,6 +355,37 @@ main [role='presentation'] {
 						color: var(--c-on-accent) !important;
 					}
 				}
+			}
+		}
+
+		/* "Voice chat ended" feedback in GPT chat bubble footer - 👍👎 | ❌  */
+		.border-gray-100:has(>div>button[aria-label="Thumbs up"]) {
+			--main-surface-primary-inverse: var(--c-accent) !important;
+			background-color: hsla(var(--accent-hsl) / 0.1);
+			border-color: hsla(var(--accent-hsl) / 0.1) !important;
+
+			/* Buttons: ❌ 👍 👎 */
+			button[aria-label="Dismiss"],
+			button[aria-label="Thumbs up"],
+			button[aria-label="Thumbs down"] {
+				padding: 0.25rem !important;
+			}
+
+			/* ❌ button */
+			button[aria-label="Dismiss"] {
+				background-color: var(--c-accent) !important;
+				margin: auto 0;
+				height: min-content;
+				margin-right: 0.5rem;
+
+				svg {
+					color: var(--c-on-accent) !important;
+				}
+			}
+
+			/* Vertical separator from 👍👎 and ❌ button in  */
+			.w-px.flex-1.self-stretch.bg-token-main-surface-tertiary {
+				background-color: transparent !important;
 			}
 		}
 	}

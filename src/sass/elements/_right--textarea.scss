@@ -1,12 +1,5 @@
 /* ===  RIGHT - TEXTAREA PARENT, message type and send button */
 main form {
-	// textarea prompt on some profiles and guest - waiting for composer gpt version
-	// div[class*='bg-token-composer-surface']:has(#prompt-textarea),
-
-	// gpt4o textarea prompt
-	// div[class*='bg-[#f4f4f4]']:has(#prompt-textarea),
-	// // Textare when clicked on "Temporary Chat" toggle
-	// div[class*='bg-black']:has(#prompt-textarea) {
 	#composer-background {
 		padding: var(--p-prompt-textarea) !important;
 		background-color: var(--c-bg-textarea) !important;
@@ -113,9 +106,9 @@ main form {
 		/* New Advanced Voice Mode button */
 		.rounded-full:has(>[data-testid="composer-speech-button"]) {
 			--shadow: 0 0 2px 2px hsla(var(--accent-hsl) / 0.3) inset;
-			--c-bg-gradient: linear-gradient(-35deg,
+			--c-bg-gradient: linear-gradient(-40deg,
 					hsla(var(--accent-hsl) / 0.001) 0%,
-					hsla(var(--accent-hsl) / 0.35) 38%,
+					hsla(var(--accent-hsl) / 0.35) 28%,
 					hsla(var(--accent-hsl) / 0.85) 78%,
 					hsla(var(--accent-hsl) / 1) 100%);
 			background: var(--c-bg-gradient) !important;
