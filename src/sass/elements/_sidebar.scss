@@ -3,9 +3,9 @@
 	color: var(--c-txt) !important;
 
 	/* Fix white txt on "NEW CHAT" in sidebar for light especially */
-	nav a > * {
-		color: var(--c-txt) !important;
-	}
+	// nav a > * {
+	// 	color: var(--c-txt) !important;
+	// }
 
 	/* "New Chat" link (first in nav in sidebar) */
 	nav a[href='/'] {
@@ -14,14 +14,19 @@
 		text-transform: uppercase;
 		margin-bottom: 1rem !important;
 
-		/* NEW CHAT svg icon */
+		/* "NEW CHAT" ChatGPT logo */
+		.gizmo-shadow-stroke svg {
+			color: var(--c-on-accent) !important;
+		}
+
+		/* NEW CHAT svg icon on the right */
 		button > svg {
 			visibility: visible !important;
 		}
 
-		&:hover svg {
-			fill: var(--c-accent) !important;
-		}
+		// &:hover svg {
+		// 	fill: var(--c-accent) !important;
+		// }
 	}
 
 	/* "Explore GPTs" link parents - Ne mozemo dodati direkt n ovaj lnk jer kad dodamo vise GPTs producta u ovu listu da bude iznad "Explore GPTs" onda ono nema margin-top vec samo ovaj link, a mi zelimo parent da ima */
