@@ -488,7 +488,7 @@
 		// }
 	}
 
-
+	/* "Search chats" showed when clicked on 🔍 in sidebar */
 	&:has(input[placeholder="Search chats..."]) {
 
 		ol > li {
@@ -507,6 +507,35 @@
 				--main-surface-secondary: var(--c-surface-2) !important;
 				--main-surface-tertiary: var(--c-surface-3) !important;
 			}
+		}
+	}
+
+	/* Searched Link "SOURCES" showed when clicked on "Sources" in chat bubble sometimes triggered when using /Search prompt */
+	&:has(div.h-\[60vh\].max-h-\[700px\].overflow-y-auto div[class*="var(--screen-thread-header-min-height"]) {
+		// border: 2px solid red !important;
+
+		/* HEader with "Links" and X button */
+		.border-b[class*="dark:border-gray-700"] {
+
+			/* "Links" main header with border-bottom */
+			span:has(> [class*="!text-token-text-primary"]) {
+				// padding: 0.8rem 0;
+
+				& > [class*="!text-token-text-primary"] {
+					--text-primary: var(--c-accent) !important;
+					text-transform: uppercase;
+					// padding: 0.3rem 1rem !important;
+					// background-color: hsla(var(--accent-hsl) / 0.15);
+					// border-radius: var(--br-btn);
+					// border-bottom: none !important;
+				}
+			}
+		}
+
+		/* Sticky header of sources link category */
+		.sticky[class*="var(--screen-thread-header-min-height"] {
+			--text-primary: var(--c-accent) !important;
+			text-transform: uppercase;
 		}
 	}
 
