@@ -84,3 +84,7 @@
 .text-green-600 {
 	color: var(--c-accent) !important;
 }
+
+.text-token-link {
+	--link: var(--c-accent) !important;
+}

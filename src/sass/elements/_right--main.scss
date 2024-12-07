@@ -281,20 +281,55 @@ main [role='presentation'] {
 			}
 		}
 
+		/* Links listed from sources listed when using "/Search" */
+		a[class*="group/nav-list"] {
+			& > .absolute.bottom-0.left-0.top-0.bg-black\/10 {
+				background-color: hsla(var(--accent-hsl) / 0.2) !important;
+				border-radius: var(--br);
+			}
+		}
+
+		/* "SOURCES" button */
+		.absolute[class*="h-[60px]"]:has(>button.not-prose.group\/footnote.bg-token-main-surface-primary) {
+
+			.bg-token-main-surface-primary {
+				text-transform: uppercase;
+				--main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important;
+			}
+		}
+
 		/* GPT avatar in its chat bubbles: with img is the GPTs Store item avatar (.gizmo-shadow-stroke), and with svg is gpt logo (.gizmo-bot-avatar	) */
 		@include dev('sm') {
 			.flex-shrink-0.flex.flex-col.items-end:has(.gizmo-bot-avatar, .gizmo-shadow-stroke) {
 				// background-color: red !important;
 				display: none !important;
 			}
-
-			// .gizmo-bot-avatar:has(svg[role='img']),
-			// .gizmo-shadow-stroke:has(img) {
-			// 	visibility: hidden;
-			// }
 		}
 
-		/* Response 1 or Response 2 chat bubble when we have to choose 1 answer */
+
+		// /* ___ Response 1 or Response 2 chat bubble when we have to choose 1 answer */
+		// &:has([data-paragen-root="true"]) {}
+
+		// /* Wrapper of Response 1 vs Response 3 */
+		// /* "You're giving feedback on a new version of ChatGPT" heading */
+		// .relative:has(>[data-testid="paragen-feedback-title"]) {
+
+		// 	/* GPT bubble response */
+		// 	[data-paragen-root="true"] {
+		// 		a[class*="group/nav-list"] {
+
+		// 			// @extend %link_hover_underlined;
+		// 			& > .absolute.bottom-0.left-0.top-0 {
+		// 				background-color: hsla(var(--accent-hsl) / 0.2) !important;
+		// 				border-radius: 1rem;
+		// 			}
+		// 		}
+		// 	}
+
+		// 	/* "I prefer this response" button */
+		// 	// &:has([data-testid="paragen-prefer-response-button"]) {}
+		// }
+
 		&:has(.snap-mandatory.snap-x.overflow-x-auto) {
 
 			/* Wrapper of Response 1 vs Response 3 */
@@ -308,8 +343,14 @@ main [role='presentation'] {
 					--main-surface-primary: transparent !important;
 					background: none !important;
 				}
-			}
 
+				/* GPT bubble response */
+				// 	[data-paragen-root="true"] {
+
+				// 	}
+				// }
+
+			}
 		}
 
 		.overflow-hidden:has(> .divide-y) {

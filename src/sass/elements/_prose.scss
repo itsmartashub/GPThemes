@@ -71,7 +71,7 @@
 	a {
 		color: var(--c-accent) !important;
 
-		&[href]:not(&[class*='bg-[#f4f4f4]']) {
+		&[href]:not(&[class*='bg-[#f4f4f4]'], &[class*="group/nav-list"]) {
 			@extend %link_hover_underlined;
 		}
 
