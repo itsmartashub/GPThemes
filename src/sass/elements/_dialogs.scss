@@ -511,10 +511,9 @@
 	}
 
 	/* Searched Link "SOURCES" showed when clicked on "Sources" in chat bubble sometimes triggered when using /Search prompt */
-	&:has(div.h-\[60vh\].max-h-\[700px\].overflow-y-auto div[class*="var(--screen-thread-header-min-height"]) {
-		// border: 2px solid red !important;
+	&:has(.h-\[60vh\].max-h-\[700px\].overflow-y-auto div[class*="var(--screen-thread-header-min-height"]) {
 
-		/* HEader with "Links" and X button */
+		/* Header with "Links" and X button */
 		.border-b[class*="dark:border-gray-700"] {
 
 			/* "Links" main header with border-bottom */
@@ -532,11 +531,20 @@
 			}
 		}
 
-		/* Sticky header of sources link category */
-		.sticky[class*="var(--screen-thread-header-min-height"] {
-			--text-primary: var(--c-accent) !important;
-			text-transform: uppercase;
+		/* Wrapper for sticky category subheader and link list */
+		.h-\[60vh\].max-h-\[700px\].overflow-y-auto {
+			.bg-token-main-surface-primary {
+				--main-surface-primary: var(--c-bg-dialog) !important;
+			}
+
+			/* Sticky category subheader of source links */
+			.sticky[class*="var(--screen-thread-header-min-height"] {
+				--text-primary: var(--c-accent) !important;
+				// --main-surface-primary: var(--c-bg-dialog) !important;
+				text-transform: uppercase;
+			}
 		}
+
 	}
 
 }
