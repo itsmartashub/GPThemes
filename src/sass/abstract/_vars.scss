@@ -219,6 +219,7 @@ html.light {
 	/* ? ========== Chat bubbles colors ========== */
 	--c-bg-msg-user: hsla(var(--accent-hsl) / 0.08);
 	--c-bg-msg-gpt: hsl(0 0% 84%);
+	// --c-bg-msg-gpt: red;
 
 	/* ? ========== Type message textarea colors ========== */
 	--c-bg-textarea: hsla(0, 0%, calc(var(--surface-l) / 1.05));

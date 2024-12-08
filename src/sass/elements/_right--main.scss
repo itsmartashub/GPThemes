@@ -33,7 +33,6 @@ main [role='presentation'] {
 }
 
 /* @ === RIGHT - CHATS BUBBLES ===*/
-// main [data-testid^='conversation-turn-'] {
 [data-testid^='conversation-turn-'] {
 	/* Edit icon in user chat for example. Edit state user chat bg  */
 	--main-surface-tertiary: var(--c-surface-3) !important;
@@ -123,9 +122,8 @@ main [role='presentation'] {
 	/* @ RIGHT - CHATS BUBBLES - USER  */
 	&:has([data-message-author-role='user']) {
 
-		/*  RIGHT - CHATS BUBBLE BG */
-		/* ? gpt4o - User message */
-		// [class*='bg-[#f4f4f4]'] {
+		/* RIGHT - CHATS BUBBLE BG */
+		/* User message */
 		[class*='bg-token-message-surface'] {
 			background-color: var(--c-bg-msg-user);
 			padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.2);
@@ -181,18 +179,6 @@ main [role='presentation'] {
 			color: var(--c-accent);
 			border-radius: var(--br-btn);
 			border-left: 5px solid var(--c-accent);
-
-			/* &::after {
-				content: '';
-				position: absolute;
-				height: 50%;
-				width: 3px;
-				background-color: var(--c-accent);
-				left: 8px;
-				border-radius: 5px;
-				top: 50%;
-				transform: translate(-50%, -50%);
-			} */
 		}
 	}
 
@@ -232,16 +218,18 @@ main [role='presentation'] {
 
 		/*   RIGHT - CHATS BUBBLE BG 
 		- Adding .markdown here fix flash background of user chat bubble on first message */
+		// & > div.text-base > div[class*="xl:max-w-[48rem]"] {
 		& > div.text-base > div:first-child:has(.markdown) {
-			background-color: var(--c-bg-msg-gpt);
 
 			--pt-multiplier: 1.3;
+			background-color: var(--c-bg-msg-gpt);
 			padding: calc(var(--p-chat-bubble) * var(--pt-multiplier)) var(--p-chat-bubble) var(--p-chat-bubble) var(--p-chat-bubble) !important;
 			border-radius: var(--br-chat-bubble) !important;
 
 			@include dev('sm') {
 				--pt-multiplier: 1.4;
 			}
+
 
 			/* Left chat content parent 
 		! Adding fixed width prevent content overflowing on the right side of chat bubble when there is some markdown (<pre>) element shown with scrolling horizontally */
@@ -376,8 +364,7 @@ main [role='presentation'] {
 			}
 		}
 
-		/* DALLE Image hover buttons - 👍👎  */
-
+		/* DALLE Image hover buttons - 👍👎 */
 		button[aria-label="Show Image"] {
 
 			.group\/dalle-image {
@@ -461,13 +448,15 @@ html[data-gptheme='oled'] main [data-testid^='conversation-turn-']:has([data-mes
 	}
 }
 
+/* Animations when changing custom width */
 main {
 
 	[data-testid^='conversation-turn-'] .mx-auto.flex.flex-1.text-base,
 	[data-testid^='conversation-turn-']:has([data-message-author-role='user']) [class*='bg-token-message-surface'],
 	&:has(#prompt-textarea) [class*='lg:max-w-[40rem]'],
 	&:has(#prompt-textarea) .px-3.text-base.m-auto .mx-auto.flex.flex-1.text-base:has(>form) {
-		transition: 0.3s ease-in-out;
+		will-change: width;
+		transition: width 0.2s ease-in-out;
 	}
 }
 
