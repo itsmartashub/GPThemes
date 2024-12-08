@@ -21,6 +21,12 @@
 			background-color: transparent !important;
 		}
 
+		/* "Always show details" with "Copy code" wrapper in Analyzed markdown */
+		[class*="bg-token-sidebar-surface-primary"]:has(label[for="ada-always-show"]) {
+			background-color: var(--c-bg-pre) !important;
+			backdrop-filter: blur(5px) !important
+		}
+
 		/* pre header. Code name in pre header (html, php, css, etc) */
 		.font-sans.select-none {
 			padding: 0 !important;
