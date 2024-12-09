@@ -9,7 +9,7 @@ const CONFIG = {
 	FW_DEFAULTS: {
 		w_chat_user: 'max-content',
 		max_w_chat_user: '70%',
-		w_chat_gpt: '49rem',
+		w_chat_gpt: '49rem', // its cant be 48rem like w_prompt_textarea because that would make the sync true. IMPROVE THIS IN FUTURE
 		w_prompt_textarea: '48rem',
 		chat_user_edit_icon_right: '100%',
 		chat_user_edit_icon_top: '0',
