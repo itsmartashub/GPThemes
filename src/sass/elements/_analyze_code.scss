@@ -23,9 +23,9 @@
 .markdown.prose ~ ,
 [role="dialog"] .bg-black {
     & .bg-gray-700:has(>.text-gray-400 ~ .prose) {
-        border-radius: var(--br-btn);
+        border-radius: var(--br-btn) !important;
         background-color: hsla(var(--accent-hsl) / 0.12) !important;
-        color: var(--c-accent);
+        color: var(--c-accent) !important;
         border-left: 4px solid currentColor;
 
         pre {
