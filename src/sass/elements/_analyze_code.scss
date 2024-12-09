@@ -18,7 +18,7 @@
     }
 }
 
-/* Alanysis "Result" next to .markdown.prose (sony acc) */
+/* Analysis "Result" next to .markdown.prose (sony acc) */
 // .markdown.prose ~ .bg-gray-700:has(>.text-gray-400 > .prose) {
 .markdown.prose ~ ,
 [role="dialog"] .bg-black {
@@ -27,5 +27,10 @@
         background-color: hsla(var(--accent-hsl) / 0.12) !important;
         color: var(--c-accent);
         border-left: 4px solid currentColor;
+
+        pre {
+            white-space: pre-wrap;
+            border-radius: 0 !important;
+        }
     }
 }
