@@ -44,8 +44,11 @@ main [role='presentation'] {
 		font-size: calc((var(--fontSize) / 16) * 1rem) !important;
 	}
 
-	.mx-auto.flex.flex-1.text-base,
-	[class*='xl:max-w-[48rem]'] {
+	/* TODO: check if this [class*='xl:max-w-[48rem]'] can be removed 
+	.mx-auto.flex.flex-1.text-base[class*="md:max-w-3xl"] is GPT chat bubble */
+	// [class*='xl:max-w-[48rem]'], 
+	/* Necu da stavim direkt na chat bubble jer nece biti dobro kad imamo double response prikazan */
+	.mx-auto.flex.flex-1.text-base[class*="md:max-w-3xl"] {
 		max-width: var(--w_chat_gpt) !important;
 	}
 
@@ -448,17 +451,20 @@ html[data-gptheme='oled'] main [data-testid^='conversation-turn-']:has([data-mes
 	}
 }
 
+/* TODO: see this in the future to properly animate custom chat and prompt width. For now i turn it of  */
 /* Animations when changing custom width */
-main {
+// main {
 
-	[data-testid^='conversation-turn-'] .mx-auto.flex.flex-1.text-base,
-	[data-testid^='conversation-turn-']:has([data-message-author-role='user']) [class*='bg-token-message-surface'],
-	&:has(#prompt-textarea) [class*='lg:max-w-[40rem]'],
-	&:has(#prompt-textarea) .px-3.text-base.m-auto .mx-auto.flex.flex-1.text-base:has(>form) {
-		will-change: width;
-		transition: width 0.2s ease-in-out;
-	}
-}
+// 	/* We cant use trasition for all props ecause its make chat bubble flash on first user prompt, but now when specifte width is set, it doesnt tranistioning chats on changing custom width, because CSS cant transition vars, so we would need to use calc(var(--width)) where ever we suse this anim custom width */
+// 	// [data-testid^='conversation-turn-']:has([data-message-author-role='user']) [class*='bg-token-message-surface'],
+// 	// &:has(#prompt-textarea) [class*='lg:max-w-[40rem]'],
+// 	[data-testid^='conversation-turn-'] .mx-auto.flex.flex-1.text-base,
+// 	&:has(#prompt-textarea) .px-3.text-base.m-auto .mx-auto.flex.flex-1.text-base:has(>form) {
+// 		will-change: width;
+// 		transition: width 0.2s ease-in-out;
+// 		// transition: 0.2s ease-in-out;
+// 	}
+// }
 
 
 /* ChatGPT's answer notification on the top right, next to the GPThemes floating button */

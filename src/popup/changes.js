@@ -32,6 +32,9 @@ const RELEASE_CHANGES = `
 <h3>🐛 Bug Fixes</h3>
 <ul>
 	<li><strong>Chat Bubbles Flashing: </strong>Fixed flash bubble on first User prompt, finally</li>
+	<li><strong>Prompt Field Full Width Flash: </strong>Fix width issues like full width flash on page refresh ${issue(
+		84
+	)}</li>
 	<li><strong>Prompt Field Misalignment: </strong>Resolved misalignment with chats caused by empty element ${issue(
 		81
 	)}</li>
