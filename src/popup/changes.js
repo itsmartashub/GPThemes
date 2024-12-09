@@ -11,7 +11,7 @@ const RELEASE_CHANGES = `
 		<strong>Prompt Field Reply: </strong>Improve <code>Reply</code> ballons, and adjust edge radius ${issue(80)}
 	</li>
 	<li>
-		<strong>Voice & Feedback: </strong>Refreshed mic and close buttons, improved <code>Voice</code>layout overall and voice chat ended feedback UI ${issue(
+		<strong>Voice & Feedback: </strong>Refreshed mic and close buttons, improved <code>Voice</code> layout overall and voice chat ended feedback UI ${issue(
 			79
 		)}
 	</li>
@@ -22,7 +22,7 @@ const RELEASE_CHANGES = `
 		83
 	)}</li>
 	<li><strong>Chat Bubbles Gap: </strong>Decreise spacing between chats ${issue(82)}</li>
-	<li><strong>Analysis & Code: </strong>Improved <code>Result</code> design in bubbles and dialogs</li>
+	<li><strong>Analysis & Code: </strong>Improved <code>Result</code> code design in bubbles and dialogs ${issue(80)}</li>
 	<li>
 		<strong>Sidebar Elements: </strong>
 		Updated unread GPT message indicators and ChatGPT logo color to match theme. Make date pills more compact ${issue(80)}
@@ -32,7 +32,7 @@ const RELEASE_CHANGES = `
 <h3>🐛 Bug Fixes</h3>
 <ul>
 	<li><strong>Chat Bubbles Flashing: </strong>Fixed flash bubble on first User prompt, finally</li>
-	<li><strong>Prompt Field Full Width Flash: </strong>Fix width issues like full width flash on page refresh ${issue(
+	<li><strong>Prompt Field Full Width Flash: </strong>Fixed width issues like full width flash on page refresh ${issue(
 		84
 	)}</li>
 	<li><strong>Prompt Field Misalignment: </strong>Resolved misalignment with chats caused by empty element ${issue(
@@ -44,8 +44,12 @@ const RELEASE_CHANGES = `
 	<li><strong>Upgrade Plus Dialog: </strong>Fixed styling issues in <code>Plus</code> upgrade pricing plan card ${issue(
 		80
 	)}</li>
-	<li><strong>Analysis & Code: Fixed <code>Always show details</code> transparency with <code>Copy code</code> wrapper</li>
-	<li><strong>DALLE: </strong>Fixed styling of action buttons within chat bubble's generated image hover states</li>
+	<li><strong>Analysis & Code: </strong>Fixed <code>Always show details</code> transparency with <code>Copy code</code> wrapper ${issue(
+		80
+	)}</li>
+	<li><strong>DALLE: </strong>Fixed styling of action buttons within chat bubble's generated image hover states ${issue(
+		80
+	)}</li>
 </ul>
 `
 
