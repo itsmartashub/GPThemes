@@ -81,7 +81,12 @@
                 }
             }
 
-
+            /* Action drag buttons like Y-sliders*/
+            /* Draggable slider btn like: "Adjust the length" and "Reading level" in ProseMirror (text canvas) */
+            .cursor-grab.rounded-full.bg-token-main-surface-primary[draggable] {
+                background-color: hsla(var(--accent-hsl) / .2);
+                color: var(--c-accent) !important;
+            }
         }
     }
 }
