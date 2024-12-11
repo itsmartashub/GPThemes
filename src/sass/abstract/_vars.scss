@@ -245,6 +245,10 @@ html.light {
 	--c-bg-pre-header-btn-color: var(--c-txt);
 	--c-markdown-a: var(--c-accent);
 
+	/* ========== CodeMirror Editor ========== */
+	--c-bg-cm: var(--c-surface-1);
+
+
 	/* ? ========== Scrollbar colors ========== */
 	--c-scrollbar-thumb: var(--c-surface-3);
 	--c-scrollbar-track: transparent;
@@ -380,6 +384,10 @@ html.dark {
 	--c-bg-pre-header-btn: var(--c-accent);
 	--c-bg-pre-header-btn-color: var(--c-on-accent);
 	--c-markdown-a: var(--c-accent);
+
+	/* ========== CodeMirror Editor ========== */
+	// --c-bg-cm: var(--c-bg-pre); // surface-1
+	--c-bg-cm: var(--c-surface-1); // surface-1
 
 	/* ? ========== Scrollbar colors ========== */
 	--c-scrollbar-thumb: var(--c-surface-3);

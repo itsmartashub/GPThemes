@@ -1,0 +1,57 @@
+/* ______ Canvas in chat bubble */
+.agent-turn:has([id^="textdoc-message"]) {
+    // --c-bg-pre: var(--c-surface-1);
+    // --c-bg-pre: var(--c-surface-2);
+
+    .popover {
+        --main-surface-primary: var(--c-bg-cm) !important;
+    }
+
+    [id^="textdoc-message"] {
+        will-change: border-color;
+        border: 2px solid hsla(var(--accent-hsl) / .12) !important;
+        transition: border-color .2s;
+
+        /* Gradient on the bottom of code */
+        .absolute.bottom-0.z-20.h-24.w-full.transition-colors {
+            background: linear-gradient(rgba(0, 0, 0, 0), var(--c-bg-cm)) !important;
+        }
+
+        &:hover {
+            border-color: hsla(var(--accent-hsl) / .3) !important;
+        }
+    }
+
+    /* Chat bubble - "Typing" btn when canvas creating */
+    [role="button"].absolute.bottom-3:has(>.loading-shimmer-pure-text) {
+        // --main-surface-primary: red !important;
+    }
+}
+
+/* ______ CM CodeMirror EDITOR */
+.cm-editor {
+
+    &,
+    .cm-gutters {
+        background-color: var(--c-bg-cm) !important;
+    }
+
+    .cm-activeLineGutter {
+        background-color: hsla(var(--accent-hsl) / .2) !important;
+        color: var(--c-accent) !important;
+    }
+}
+
+/* Canvas with cm-editor showed on the left (when open canvas) */
+.absolute.z-20.h-full.transition-shadow.overflow-hidden.left-0:has(.cm-editor) {
+
+    /* Has to add for the bg of canvas (visible gap or when drag the separator) */
+    section.popover.h-full.w-full {
+        background-color: var(--c-bg-cm) !important;
+
+        /* Header of canvas with title, coppy btn */
+        header[class*="@container"] {
+            background-color: var(--c-bg-cm);
+        }
+    }
+}
