@@ -65,5 +65,23 @@
                 background-color: var(--c-bg-cm);
             }
         }
+
+
+        /*  Canvas Edit floating button on bottom right */
+        main .absolute[class*="z-[70]"].overflow-visible.border.border-token-border-light.transition-colors {
+
+            /* Wrapper */
+            &.bg-token-main-surface-primary {
+                background-color: hsla(var(--accent-hsl) / .2) !important;
+                color: var(--c-accent) !important;
+                backdrop-filter: blur(10px);
+
+                .bg-gray-300 {
+                    background-color: var(--c-accent) !important;
+                }
+            }
+
+
+        }
     }
 }
