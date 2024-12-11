@@ -79,19 +79,29 @@ main form {
 			}
 		}
 
-		div:has(> input[type='file']) {
+		/* "Attach files" and "Use a tool" buttons, and all others that have that class */
+		span > button.h-8.rounded-lg[aria-label]:has(svg) {
+			background-color: hsla(var(--accent-hsl) / 0.15) !important;
 
-			/* 📎 "Attach files" svg */
-			button:has(> svg) {
-				background-color: hsla(var(--accent-hsl) / 0.15) !important;
-
-				// margin-bottom: calc(var(--p-prompt-textarea) / 2);
-
-				svg {
-					color: var(--c-accent) !important;
-				}
+			svg {
+				color: var(--c-accent) !important;
 			}
 		}
+
+
+		// div:has(> input[type='file']) {
+
+		// 	/* 📎 "Attach files" svg */
+		// 	button:has(> svg) {
+		// 		background-color: hsla(var(--accent-hsl) / 0.15) !important;
+
+		// 		// margin-bottom: calc(var(--p-prompt-textarea) / 2);
+
+		// 		svg {
+		// 			color: var(--c-accent) !important;
+		// 		}
+		// 	}
+		// }
 
 		/* 🖼️ "Attach Files" - attached image wrapper */
 		div[type='button'][aria-haspopup='dialog'] {
