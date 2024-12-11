@@ -28,7 +28,7 @@
     }
 }
 
-/* ______ CM CodeMirror EDITOR */
+/* ______ CODE CANVAS: CM CodeMirror EDITOR */
 .cm-editor {
 
     &,
@@ -71,21 +71,34 @@
         main .absolute[class*="z-[70]"].overflow-visible.border.border-token-border-light.transition-colors {
 
             /* Wrapper */
-            &.bg-token-main-surface-primary {
-                background-color: hsla(var(--accent-hsl) / .2) !important;
+            &.bg-token-main-surface-primary,
+            /* .bg-token-main-surface-secondary is for another step, for sliders floating wrappers */
+            &.bg-token-main-surface-secondary {
                 color: var(--c-accent) !important;
-                backdrop-filter: blur(10px);
 
                 .bg-gray-300 {
                     background-color: var(--c-accent) !important;
                 }
             }
 
-            /* Action drag buttons like Y-sliders*/
-            /* Draggable slider btn like: "Adjust the length" and "Reading level" in ProseMirror (text canvas) */
+            &.bg-token-main-surface-primary {
+                background-color: hsla(var(--accent-hsl) / .2) !important;
+                backdrop-filter: blur(10px);
+            }
+
+            &.bg-token-main-surface-secondary {
+                background-color: var(--c-accent-light);
+                // background-color: var(--c-surface-2) !important;
+                // box-shadow: 0 0 5px 2px hsla(var(--accent-hsl) / .2) inset !important;
+            }
+
+            /* Draggable Y-slider btn like: "Adjust the length" and "Reading level" in ProseMirror (text canvas) */
             .cursor-grab.rounded-full.bg-token-main-surface-primary[draggable] {
-                background-color: hsla(var(--accent-hsl) / .2);
+                background-color: hsla(var(--accent-hsl) / .35) !important;
                 color: var(--c-accent) !important;
+                // background-color: hsla(var(--accent-hsl) / .3);
+                // box-shadow: 0 0 0px 2px hsla(var(--accent-hsl) / .3) !important;
+                // color: var(--c-on-accent) !important;
             }
 
             /* SUBMIT CHANGE BUTTONS IN GENERAL */
