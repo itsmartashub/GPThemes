@@ -79,13 +79,21 @@ main form {
 			}
 		}
 
-		/* "Attach files" and "Use a tool" buttons, and all others that have that class */
+		/* "Attach files", "Use a tool", "Open in canvas" buttons, and all others that have that class */
 		span > button.h-8.rounded-lg[aria-label]:has(svg) {
-			background-color: hsla(var(--accent-hsl) / 0.15) !important;
+			background-color: transparent;
 
 			svg {
 				color: var(--c-accent) !important;
 			}
+
+			&:hover {
+				background-color: hsla(var(--accent-hsl) / 0.13) !important;
+			}
+		}
+
+		span > button[aria-label="Open in canvas"]:has(svg) {
+			background-color: hsla(var(--accent-hsl) / 0.13) !important;
 		}
 
 
