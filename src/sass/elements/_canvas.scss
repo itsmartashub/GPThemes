@@ -87,6 +87,17 @@
                 background-color: hsla(var(--accent-hsl) / .2);
                 color: var(--c-accent) !important;
             }
+
+            /* SUBMIT CHANGE BUTTONS IN GENERAL */
+            /* Submit btn for draggable slider btn */
+            .rounded-full.bg-black[draggable],
+            // .rounded-full.bg-black.h-8.w-8,
+            // .rounded-full.bg-black.h-6.w-6,
+            /* Submit on main button "Suggest edits" in Text Canvas or "Code review" in Code Canvas */
+            .rounded-full.bg-black:has(>svg) {
+                background-color: var(--c-accent) !important;
+                color: var(--c-on-accent) !important;
+            }
         }
     }
 }
