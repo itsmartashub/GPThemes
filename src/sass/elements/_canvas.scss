@@ -42,8 +42,10 @@
     }
 }
 
-/* Canvas with cm-editor showed on the left (when open canvas) */
-.absolute.z-20.h-full.transition-shadow.overflow-hidden.left-0:has(.cm-editor) {
+/* Canvas with cm-editor showed on the left (when open canvas) 
+- .fixed.inset-0.z-40.overflow-hidden:has(section.popover main #codemirror) is for smaller screens (width <= 1000px) */
+.absolute.left-0.z-20.h-full.transition-shadow.left-0.overflow-hidden:has(section.popover main #codemirror),
+.fixed.inset-0.z-40.overflow-hidden:has(section.popover main #codemirror) {
 
     /* Has to add for the bg of canvas (visible gap or when drag the separator) */
     section.popover.h-full.w-full {
