@@ -68,7 +68,8 @@
 
 
         /*  Canvas Edit floating button on bottom right */
-        main .absolute[class*="z-[70]"].overflow-visible.border.border-token-border-light.transition-colors {
+        // main .absolute[class*="z-[70]"].overflow-visible.border.border-token-border-light.transition-colors {
+        .absolute[class*="z-[70]"].overflow-visible.border.border-token-border-light.transition-colors {
 
             /* Wrapper */
             &.bg-token-main-surface-primary,
@@ -81,24 +82,28 @@
                 }
             }
 
+            /* Main state floating bg */
             &.bg-token-main-surface-primary {
                 background-color: hsla(var(--accent-hsl) / .2) !important;
                 backdrop-filter: blur(10px);
             }
 
-            &.bg-token-main-surface-secondary {
-                background-color: var(--c-accent-light);
-                // background-color: var(--c-surface-2) !important;
-                // box-shadow: 0 0 5px 2px hsla(var(--accent-hsl) / .2) inset !important;
-            }
+            /* Slider state floating bg: when go into "Adjust the length" and "Reading level" */
+            // &.bg-token-main-surface-secondary {
+            //     background-color: var(--c-accent-light);
+            //     // background-color: var(--c-surface-2) !important;
+            //     // box-shadow: 0 0 5px 2px hsla(var(--accent-hsl) / .2) inset !important;
+            // }
 
             /* Draggable Y-slider btn like: "Adjust the length" and "Reading level" in ProseMirror (text canvas) */
             .cursor-grab.rounded-full.bg-token-main-surface-primary[draggable] {
-                background-color: hsla(var(--accent-hsl) / .35) !important;
+                // background-color: hsla(var(--accent-hsl) / .35) !important;
+                background-color: var(--c-accent-light) !important;
                 color: var(--c-accent) !important;
-                // background-color: hsla(var(--accent-hsl) / .3);
-                // box-shadow: 0 0 0px 2px hsla(var(--accent-hsl) / .3) !important;
-                // color: var(--c-on-accent) !important;
+                // box-shadow: 0 0 20px 10px hsla(var(--accent-hsl) / .4) inset !important;
+                // box-shadow: 0 0 2px 5px hsla(var(--accent-hsl) / .5) !important;
+                box-shadow: 0 0 0 0.65rem hsla(var(--accent-hsl) / 1) !important;
+                // outline: 7px solid hsla(var(--accent-hsl) / .5) !important;
             }
 
             /* SUBMIT CHANGE BUTTONS IN GENERAL */
