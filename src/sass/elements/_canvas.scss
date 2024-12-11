@@ -77,6 +77,7 @@
             &.bg-token-main-surface-secondary {
                 color: var(--c-accent) !important;
 
+                /* dots level in slider */
                 .bg-gray-300 {
                     background-color: var(--c-accent) !important;
                 }
@@ -97,13 +98,7 @@
 
             /* Draggable Y-slider btn like: "Adjust the length" and "Reading level" in ProseMirror (text canvas) */
             .cursor-grab.rounded-full.bg-token-main-surface-primary[draggable] {
-                // background-color: hsla(var(--accent-hsl) / .35) !important;
-                background-color: var(--c-accent-light) !important;
-                color: var(--c-accent) !important;
-                // box-shadow: 0 0 20px 10px hsla(var(--accent-hsl) / .4) inset !important;
-                // box-shadow: 0 0 2px 5px hsla(var(--accent-hsl) / .5) !important;
                 box-shadow: 0 0 0 0.65rem hsla(var(--accent-hsl) / 1) !important;
-                // outline: 7px solid hsla(var(--accent-hsl) / .5) !important;
             }
 
             /* SUBMIT CHANGE BUTTONS IN GENERAL */
@@ -117,10 +112,21 @@
                 color: var(--c-on-accent) !important;
             }
 
-            /* "Port to a language" list */
-            .content-center.overflow-x-hidden [class*="hover:bg-gray-100/"] {
-                background-color: hsla(var(--accent-hsl) / .2) !important;
+            /* "Port to a language" and "Add emoji" list */
+            .content-center.overflow-x-hidden {
+                [class*="dark:hover:bg-gray-700"] {
+
+                    &[class*="dark:bg-gray-700/50"],
+                    &:hover {
+                        background-color: hsla(var(--accent-hsl) / .2) !important;
+                    }
+                }
             }
         }
     }
 }
+
+
+
+/* hover\:bg-gray-100\/75 .dark\:hover\:bg-gray-700 .bg-gray-100\/50 .dark\:bg-gray-700\/50 */
+// hover:bg-gray-100/75 .dark:hover:bg-gray-700
