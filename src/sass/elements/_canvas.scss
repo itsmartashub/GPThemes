@@ -42,18 +42,28 @@
     }
 }
 
-/* Canvas with cm-editor showed on the left (when open canvas) 
-- .fixed.inset-0.z-40.overflow-hidden:has(section.popover main #codemirror) is for smaller screens (width <= 1000px) */
-.absolute.left-0.z-20.h-full.transition-shadow.left-0.overflow-hidden:has(section.popover main #codemirror),
-.fixed.inset-0.z-40.overflow-hidden:has(section.popover main #codemirror) {
+/* Canvas with CodeMirror (for code) and ProseMirror (for text) showed on the left (when open canvas) 
+- .fixed.inset-0.z-40.overflow-hidden is for smaller screens (width <= 1000px) */
+.absolute.left-0.z-20.h-full.overflow-hidden,
+.fixed.inset-0.z-40.overflow-hidden {
 
-    /* Has to add for the bg of canvas (visible gap or when drag the separator) */
-    section.popover.h-full.w-full {
-        background-color: var(--c-bg-cm) !important;
+    &:has(section.popover main #codemirror, section.popover main #prosemirror-editor-container) {
 
-        /* Header of canvas with title, coppy btn */
-        header[class*="@container"] {
-            background-color: var(--c-bg-cm);
+        /* 
+        - Edit Canvas floating action button warapper on the bottom right
+        - "Ask GPT" floating wrapper */
+        // .bg-token-main-surface-primary {
+        //     background-color: red !important;
+        // }
+
+        /* Has to add for the bg of canvas (visible gap or when drag the separator) */
+        section.popover.h-full.w-full {
+            background-color: var(--c-bg-cm) !important;
+
+            /* Header of canvas with title, coppy btn */
+            header[class*="@container"] {
+                background-color: var(--c-bg-cm);
+            }
         }
     }
 }
