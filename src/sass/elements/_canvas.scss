@@ -202,9 +202,20 @@
             /* Selected text for commenting, when we click on comment icon in Text Canvas and "Edit or explain" prompt showed */
             .selection-highlight.bg-\[Highlight\],
             // blue highlight of current line when code rewwriting
-            .cm-editor .cm-line.\!bg-\[Highlight\] {
+            .cm-editor .cm-line.\!bg-\[Highlight\],
+            // blue highlight of current selected and about to prompt lines
+            .cm-editor .cm-line span.bg-\[Highlight\] {
                 background-color: var(--c-accent) !important;
                 color: var(--c-on-accent) !important;
+            }
+
+            .cm-editor .cm-line span.bg-\[Highlight\] {
+                // background-color: var(--c-accent) !important;
+
+                &,
+                span {
+                    color: var(--c-on-accent) !important;
+                }
             }
 
             /* Comment section on the right of the text where add comment btn is */
