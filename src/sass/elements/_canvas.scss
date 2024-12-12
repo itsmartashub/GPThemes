@@ -53,8 +53,13 @@
             color: var(--c-on-accent) !important;
         }
 
-        /* Has to add for the bg of canvas (visible gap or when drag the separator) */
+        /* TODO: Has to add for the bg of Canvas (visible gap or when drag the separator). Btw, when opening canvas, when there is skeleton waiting, the bg is not --c-bg-cm for this section.bg-token-main-surface-primary */
         section.popover.h-full.w-full {
+            // &.bg-token-main-surface-primary {
+            //     --main-surface-primary: var(--c-bg-cm) !important;
+            //     // background-color: var(--c-bg-cm) !important;
+            // }
+
             background-color: var(--c-bg-cm) !important;
 
             /* Header of canvas with title, coppy btn */
@@ -164,6 +169,21 @@
                 border-color: hsla(var(--accent-hsl) / .1) !important;
                 color: var(--c-accent) !important;
                 backdrop-filter: blur(10px);
+            }
+
+
+            /* Blue Highlight when hover text to add a comment in Text Canvas */
+            [class*="dark:after:bg-[Highlight]"] {
+                &::after {
+                    background-color: hsla(var(--accent-hsl) / .12) !important;
+                    border: 1px solid hsla(var(--accent-hsl) / .12) !important;
+                }
+            }
+
+            /* Selected text for commenting, when we click on comment icon in Text Canvas and "Edit or explain" prompt showed */
+            .selection-highlight.bg-\[Highlight\] {
+                background-color: var(--c-accent) !important;
+                color: var(--c-on-accent) !important;
             }
         }
     }
