@@ -29,6 +29,7 @@
 }
 
 /* ______ CODE CANVAS: CM CodeMirror EDITOR */
+
 .cm-editor {
 
     // .ͼ1p.cm-focused .cm-selectionBackground, .ͼ1p .cm-line::selection, .ͼ1p .cm-selectionLayer .cm-selectionBackground, .ͼ1p .cm-content ::selection {
@@ -63,6 +64,18 @@
         [class^="_modelCursor"]::after {
             color: var(--c-accent);
         }
+    }
+}
+
+/* ______ TEXT CANVAS: ProseMirror EDITOR */
+#prosemirror-editor-container {
+
+    & > div.bg-token-main-surface-primary.ProseMirror {
+        --main-surface-primary: var(--c-bg-cm) !important;
+    }
+
+    .from-token-main-surface-primary {
+        --main-surface-primary: var(--c-bg-cm) !important;
     }
 }
 
