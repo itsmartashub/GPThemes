@@ -31,6 +31,24 @@
 /* ______ CODE CANVAS: CM CodeMirror EDITOR */
 .cm-editor {
 
+    // .ͼ1p.cm-focused .cm-selectionBackground, .ͼ1p .cm-line::selection, .ͼ1p .cm-selectionLayer .cm-selectionBackground, .ͼ1p .cm-content ::selection {
+    //     background: #6199ff2f !important;
+    // }
+    .cm-content {
+        caret-color: var(--c-accent) !important;
+
+        ::selection,
+        .cm-selectionLayer .cm-selectionBackground,
+        .cm-line span.cm-focused .cm-selectionBackground,
+        .cm-line > span::selection,
+        .cm-line::selection {
+            // background: var(--c-accent) !important;
+            // color: var(--c-on-accent) !important;
+            background: hsla(var(--accent-hsl) / .14) !important;
+            color: var(--c-accent) !important;
+        }
+    }
+
     &,
     .cm-gutters {
         background-color: var(--c-bg-cm) !important;
@@ -59,6 +77,7 @@
             //     --main-surface-primary: var(--c-bg-cm) !important;
             //     // background-color: var(--c-bg-cm) !important;
             // }
+
 
             background-color: var(--c-bg-cm) !important;
 
@@ -181,7 +200,9 @@
             }
 
             /* Selected text for commenting, when we click on comment icon in Text Canvas and "Edit or explain" prompt showed */
-            .selection-highlight.bg-\[Highlight\] {
+            .selection-highlight.bg-\[Highlight\],
+            // blue highlight of current line when code rewwriting
+            .cm-editor .cm-line.\!bg-\[Highlight\] {
                 background-color: var(--c-accent) !important;
                 color: var(--c-on-accent) !important;
             }
@@ -191,6 +212,17 @@
                 .text-gray-400 {
                     svg {
                         color: var(--c-accent) !important;
+                    }
+                }
+            }
+
+            .cm-editor {
+
+                /* Code Canvas while code rewriting */
+                .streaming-line-overlay {
+                    .before\:bg-white\/50:before {
+                        background-color: var(--c-bg-cm) !important;
+                        opacity: 0.6;
                     }
                 }
             }
