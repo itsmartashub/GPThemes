@@ -145,8 +145,10 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 - Checkbox circle
 - GPTs Store PAGE - Search query section
 - GPTs Store PAGE - Search query section link-on-hover - CHANGE IT !!
+
+- .streaming-line-overlay are lines during the processing edit in Code Canvas (like add logs etc)
  */
-[class*='bg-white'],
+[class*='bg-white']:not(.streaming-line-overlay),
 .bg-token-sidebar-surface-secondary {
 	background-color: var(--c-surface-2) !important;
 	// @include borderBoxShadow(red);
