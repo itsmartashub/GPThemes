@@ -157,6 +157,14 @@
                     }
                 }
             }
+
+            /* Floating balloons, like "1 more edit" */
+            .bg-token-main-surface-primary.border-token-main-surface-tertiary[aria-label="Button to scroll the next edit into view"] {
+                --main-surface-primary: hsla(var(--accent-hsl) / .12) !important;
+                border-color: hsla(var(--accent-hsl) / .1) !important;
+                color: var(--c-accent) !important;
+                backdrop-filter: blur(10px);
+            }
         }
     }
 }
@@ -188,6 +196,7 @@
 .hover\:bg-gray-100\/75 .dark\:hover\:bg-gray-700 .bg-gray-100\/50 .dark\:bg-gray-700\/50
 .hover:bg-gray-100/75 .dark:hover:bg-gray-700 */
 
+/* Select a "Text style" dialog: Heading 1 | Heading 2 | Heading 3 | Body radix dialog */
 [role="dialog"]:has(div.flex.flex-col.items-stretch.rounded-xl.bg-token-main-surface-primary.shadow-xl > button[class*="hover:bg-token-main-surface-secondary"] > .text-5xl.font-semibold) {
     padding: calc(var(--p-dialog) * 0.3) !important;
     border-radius: calc(var(--br-dialog) * 0.5) !important;
