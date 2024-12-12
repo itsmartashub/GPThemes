@@ -126,33 +126,58 @@
             }
         }
 
-        /* ___________ "Ask a ChatGPT" and "Edit or expain..." floating wrapper */
-        main .absolute.z-50 {
+        main {
 
-            /* "Ask a ChatGPT" and toolbar wrapper */
-            &:has(> .h-10[role="toolbar"]) {
-                .h-10[role="toolbar"] {
+            /* ___________ "Ask a ChatGPT" and "Edit or expain..." floating wrapper */
+            .absolute.z-50 {
 
-                    &.bg-token-main-surface-primary {
-                        --main-surface-primary: var(--c-surface-2) !important;
-                        border: 1px solid hsla(var(--accent-hsl) / .14) !important;
+                /* "Ask a ChatGPT" and toolbar wrapper */
+                &:has(> .h-10[role="toolbar"]) {
+                    .h-10[role="toolbar"] {
 
-                        /* "Ask a ChatGPT" and toolbar buttons hover states */
-                        button[class*="hover:bg-[#f5f5f5]"]:hover {
-                            background-color: var(--c-surface-3) !important;
+                        &.bg-token-main-surface-primary {
+                            --main-surface-primary: var(--c-surface-2) !important;
+                            border: 1px solid hsla(var(--accent-hsl) / .14) !important;
+
+                            /* "Ask a ChatGPT" and toolbar buttons hover states */
+                            button[class*="hover:bg-[#f5f5f5]"]:hover {
+                                background-color: var(--c-surface-3) !important;
+                            }
                         }
                     }
                 }
+
+                /* "Edit or explain" wrapper */
+                .relative.bg-token-main-surface-primary:has(>textarea[aria-placeholder^="Edit or explain"]) {
+                    background-color: hsla(var(--accent-hsl) / .1) !important;
+
+                    /* "Edit or explain" field overlay */
+                    .backdrop-saturate-25 {
+                        background-color: hsla(var(--accent-hsl) / .1) !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Width less then 1000px */
+.fixed.inset-0.z-40.overflow-hidden {
+
+    /* "Ask a ChatGPT to edit" on full-width screen less then 1000px width */
+    [class*="bg-[#f4f4f4]"]:has([placeholder="Ask ChatGPT to edit"]) {
+        background-color: var(--c-bg-textarea) !important;
+
+        /* Submit btn */
+        button.rounded-full.bg-token-main-surface-primary {
+            background-color: var(--c-accent) !important;
+
+            svg {
+                color: var(--c-on-accent) !important;
             }
 
-            /* "Edit or explain" wrapper */
-            .relative.bg-token-main-surface-primary:has(>textarea[aria-placeholder^="Edit or explain"]) {
-                background-color: hsla(var(--accent-hsl) / .1) !important;
-
-                /* "Edit or explain" field overlay */
-                .backdrop-saturate-25 {
-                    background-color: hsla(var(--accent-hsl) / .1) !important;
-                }
+            &:disabled {
+                background-color: hsla(var(--accent-hsl) / .12) !important;
             }
         }
     }
