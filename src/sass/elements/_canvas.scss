@@ -48,18 +48,10 @@
 .fixed.inset-0.z-40.overflow-hidden {
 
     &:has(section.popover main #codemirror, section.popover main #prosemirror-editor-container) {
-
         .bg-black {
             background-color: var(--c-accent) !important;
             color: var(--c-on-accent) !important;
         }
-
-        /* 
-        - Edit Canvas floating action button warapper on the bottom right
-        - "Ask GPT" floating wrapper */
-        // .bg-token-main-surface-primary {
-        //     background-color: red !important;
-        // }
 
         /* Has to add for the bg of canvas (visible gap or when drag the separator) */
         section.popover.h-full.w-full {
@@ -71,9 +63,7 @@
             }
         }
 
-
         /* @@@@@@@@@ Canvas Edit floating button on bottom right */
-        // main .absolute[class*="z-[70]"].overflow-visible.border.border-token-border-light.transition-colors {
         .absolute.z-\[70\].overflow-visible.border.border-token-border-light.transition-colors {
 
             /* Wrapper */
@@ -136,7 +126,6 @@
             }
         }
 
-
         /* ___________ "Ask a ChatGPT" and "Edit or expain..." floating wrapper */
         main .absolute.z-50 {
 
@@ -147,20 +136,11 @@
                     &.bg-token-main-surface-primary {
                         --main-surface-primary: var(--c-surface-2) !important;
                         border: 1px solid hsla(var(--accent-hsl) / .14) !important;
-                        // background-color: hsla(var(--accent-hsl) / .2) !important;
-                        // background-color: var(--c-accent-light)!important;
 
                         /* "Ask a ChatGPT" and toolbar buttons hover states */
                         button[class*="hover:bg-[#f5f5f5]"]:hover {
                             background-color: var(--c-surface-3) !important;
-                            // background-color: var(--c-accent) !important;
-                            // color: var(--c-on-accent) !important;
                         }
-
-                        /* Toolbar buttons like: "Bold", "Italic", "Text style" */
-                        // button.bg-token-main-surface-secondary:has(svg) {
-                        //     // color: var(--c-accent) !important;
-                        // }
                     }
                 }
             }
@@ -182,3 +162,20 @@
 "Port to a language" classes:
 .hover\:bg-gray-100\/75 .dark\:hover\:bg-gray-700 .bg-gray-100\/50 .dark\:bg-gray-700\/50
 .hover:bg-gray-100/75 .dark:hover:bg-gray-700 */
+
+[role="dialog"]:has(div.flex.flex-col.items-stretch.rounded-xl.bg-token-main-surface-primary.shadow-xl > button[class*="hover:bg-token-main-surface-secondary"] > .text-5xl.font-semibold) {
+    padding: calc(var(--p-dialog) * 0.3) !important;
+    border-radius: calc(var(--br-dialog) * 0.5) !important;
+
+    /* Wrapper of the Heading 1, Heading 2, Heading 3 and Body buttons */
+    & > div.rounded-xl.bg-token-main-surface-primary.shadow-xl {
+        box-shadow: none !important;
+    }
+
+    /* "Text style" dialog of: Headings and body text style */
+    button[class*="hover:bg-token-main-surface-secondary"] {
+        &:hover {
+            --main-surface-secondary: var(--c-surface-3) !important;
+        }
+    }
+}
