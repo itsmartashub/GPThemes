@@ -49,6 +49,11 @@
 
     &:has(section.popover main #codemirror, section.popover main #prosemirror-editor-container) {
 
+        .bg-black {
+            background-color: var(--c-accent) !important;
+            color: var(--c-on-accent) !important;
+        }
+
         /* 
         - Edit Canvas floating action button warapper on the bottom right
         - "Ask GPT" floating wrapper */
@@ -67,7 +72,7 @@
         }
 
 
-        /*  Canvas Edit floating button on bottom right */
+        /* @@@@@@@@@ Canvas Edit floating button on bottom right */
         // main .absolute[class*="z-[70]"].overflow-visible.border.border-token-border-light.transition-colors {
         .absolute.z-\[70\].overflow-visible.border.border-token-border-light.transition-colors {
 
@@ -130,10 +135,50 @@
                 }
             }
         }
+
+
+        /* ___________ "Ask a ChatGPT" and "Edit or expain..." floating wrapper */
+        main .absolute.z-50 {
+
+            /* "Ask a ChatGPT" and toolbar wrapper */
+            &:has(> .h-10[role="toolbar"]) {
+                .h-10[role="toolbar"] {
+
+                    &.bg-token-main-surface-primary {
+                        --main-surface-primary: var(--c-surface-2) !important;
+                        border: 1px solid hsla(var(--accent-hsl) / .14) !important;
+                        // background-color: hsla(var(--accent-hsl) / .2) !important;
+                        // background-color: var(--c-accent-light)!important;
+
+                        /* "Ask a ChatGPT" and toolbar buttons hover states */
+                        button[class*="hover:bg-[#f5f5f5]"]:hover {
+                            background-color: var(--c-surface-3) !important;
+                            // background-color: var(--c-accent) !important;
+                            // color: var(--c-on-accent) !important;
+                        }
+
+                        /* Toolbar buttons like: "Bold", "Italic", "Text style" */
+                        // button.bg-token-main-surface-secondary:has(svg) {
+                        //     // color: var(--c-accent) !important;
+                        // }
+                    }
+                }
+            }
+
+            /* "Edit or explain" wrapper */
+            .relative.bg-token-main-surface-primary:has(>textarea[aria-placeholder^="Edit or explain"]) {
+                background-color: hsla(var(--accent-hsl) / .1) !important;
+
+                /* "Edit or explain" field overlay */
+                .backdrop-saturate-25 {
+                    background-color: hsla(var(--accent-hsl) / .1) !important;
+                }
+            }
+        }
     }
 }
 
-
-
-/* hover\:bg-gray-100\/75 .dark\:hover\:bg-gray-700 .bg-gray-100\/50 .dark\:bg-gray-700\/50 */
-// hover:bg-gray-100/75 .dark:hover:bg-gray-700
+/* 
+"Port to a language" classes:
+.hover\:bg-gray-100\/75 .dark\:hover\:bg-gray-700 .bg-gray-100\/50 .dark\:bg-gray-700\/50
+.hover:bg-gray-100/75 .dark:hover:bg-gray-700 */
