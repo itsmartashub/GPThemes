@@ -175,8 +175,8 @@
             /* Blue Highlight when hover text to add a comment in Text Canvas */
             [class*="dark:after:bg-[Highlight]"] {
                 &::after {
-                    background-color: hsla(var(--accent-hsl) / .12) !important;
-                    border: 1px solid hsla(var(--accent-hsl) / .12) !important;
+                    background-color: hsla(var(--accent-hsl) / .15) !important;
+                    border: 1px solid hsla(var(--accent-hsl) / .15) !important;
                 }
             }
 
@@ -184,6 +184,15 @@
             .selection-highlight.bg-\[Highlight\] {
                 background-color: var(--c-accent) !important;
                 color: var(--c-on-accent) !important;
+            }
+
+            /* Comment section on the right of the text where add comment btn is */
+            [data-block-comment-launcher] button {
+                .text-gray-400 {
+                    svg {
+                        color: var(--c-accent) !important;
+                    }
+                }
             }
         }
     }
