@@ -69,7 +69,7 @@
 
         /*  Canvas Edit floating button on bottom right */
         // main .absolute[class*="z-[70]"].overflow-visible.border.border-token-border-light.transition-colors {
-        .absolute[class*="z-[70]"].overflow-visible.border.border-token-border-light.transition-colors {
+        .absolute.z-\[70\].overflow-visible.border.border-token-border-light.transition-colors {
 
             /* Wrapper */
             &.bg-token-main-surface-primary,
@@ -83,7 +83,8 @@
                 }
             }
 
-            /* Pause primary floating btn while processing */
+            /* Pause primary floating btn while processing: !bg-black !text-white is for light themes, !bg-white, !text-black is for dark */
+            &[class*="!bg-black !text-white"],
             &[class*="!bg-white !text-black"] {
                 background-color: var(--c-accent) !important;
                 color: var(--c-on-accent) !important;
