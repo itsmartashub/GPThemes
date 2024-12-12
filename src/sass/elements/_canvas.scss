@@ -39,8 +39,8 @@
 
         ::selection,
         .cm-selectionLayer .cm-selectionBackground,
-        .cm-line span.cm-focused .cm-selectionBackground,
-        .cm-line > span::selection,
+        // .cm-line span.cm-focused .cm-selectionBackground,
+        .cm-line > *::selection,
         .cm-line::selection {
             // background: var(--c-accent) !important;
             // color: var(--c-on-accent) !important;
