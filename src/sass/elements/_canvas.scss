@@ -337,6 +337,22 @@
                     }
                 }
             }
+
+            /* width <= 1000px: User chat in Code Canvas when "Ask GPT" */
+            /* width <= 1000px: Gradient oko chata na light temi */
+            .bg-vert-light-gradient {
+                background-image: linear-gradient(180deg, #fff0 13.94%, var(--c-bg-cm) 54.73%);
+            }
+
+            /* width <= 1000px: Gradient oko chata na dark temi */
+            [class*="dark:from-token-main-surface-primary"] {
+                --main-surface-primary: var(--c-bg-cm) !important;
+            }
+
+            /* width <= 1000px: Poruke usera u Code Canvas */
+            .bg-token-message-surface {
+                background-color: var(--c-bg-msg-user) !important;
+            }
         }
     }
 }
