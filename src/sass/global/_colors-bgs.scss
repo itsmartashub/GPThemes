@@ -148,7 +148,7 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 
 - .streaming-line-overlay are lines during the processing edit in Code Canvas (like add logs etc)
  */
-[class*='bg-white']:not(.streaming-line-overlay),
+[class*='bg-white']:not(.streaming-line-overlay, [role="combobox"]),
 .bg-token-sidebar-surface-secondary {
 	background-color: var(--c-surface-2) !important;
 	// @include borderBoxShadow(red);

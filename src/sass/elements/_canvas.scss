@@ -183,157 +183,157 @@
                     }
                 }
             }
-        }
 
-        /* @@@@@@@@@ Canvas Edit floating button on bottom right */
-        .absolute.z-\[70\].overflow-visible.border.border-token-border-light.transition-colors {
+            /* @@@@@@@@@ Canvas Edit floating button on bottom right */
+            .absolute.z-\[70\].overflow-visible.border.border-token-border-light.transition-colors {
 
-            /* Wrapper */
-            &.bg-token-main-surface-primary,
-            /* .bg-token-main-surface-secondary is for another step, for sliders floating wrappers */
-            &.bg-token-main-surface-secondary {
-                color: var(--c-accent) !important;
+                /* Wrapper */
+                &.bg-token-main-surface-primary,
+                /* .bg-token-main-surface-secondary is for another step, for sliders floating wrappers */
+                &.bg-token-main-surface-secondary {
+                    color: var(--c-accent) !important;
 
-                /* dots level in slider */
-                .bg-gray-300 {
-                    background-color: var(--c-accent) !important;
+                    /* dots level in slider */
+                    .bg-gray-300 {
+                        background-color: var(--c-accent) !important;
+                    }
                 }
-            }
 
-            /* Pause primary floating btn while processing: !bg-black !text-white is for light themes, !bg-white, !text-black is for dark */
-            &[class*="!bg-black !text-white"],
-            &[class*="!bg-white !text-black"] {
-                background-color: var(--c-accent) !important;
-                color: var(--c-on-accent) !important;
-            }
+                /* Pause primary floating btn while processing: !bg-black !text-white is for light themes, !bg-white, !text-black is for dark */
+                &[class*="!bg-black !text-white"],
+                &[class*="!bg-white !text-black"] {
+                    background-color: var(--c-accent) !important;
+                    color: var(--c-on-accent) !important;
+                }
 
-            /* Main state floating bg */
-            &.bg-token-main-surface-primary {
-                background-color: hsla(var(--accent-hsl) / .2) !important;
-                backdrop-filter: blur(10px);
-            }
+                /* Main state floating bg */
+                &.bg-token-main-surface-primary {
+                    background-color: hsla(var(--accent-hsl) / .2) !important;
+                    backdrop-filter: blur(10px);
+                }
 
-            /* Draggable Y-slider btn like: "Adjust the length" and "Reading level" in ProseMirror (text canvas) */
-            .cursor-grab.rounded-full.bg-token-main-surface-primary[draggable] {
-                box-shadow: 0 0 0 0.65rem hsla(var(--accent-hsl) / 1) !important;
-            }
+                /* Draggable Y-slider btn like: "Adjust the length" and "Reading level" in ProseMirror (text canvas) */
+                .cursor-grab.rounded-full.bg-token-main-surface-primary[draggable] {
+                    box-shadow: 0 0 0 0.65rem hsla(var(--accent-hsl) / 1) !important;
+                }
 
-            /* SUBMIT CHANGE BUTTONS IN GENERAL */
-            /* Submit btn for draggable slider btn */
-            .rounded-full.bg-black[draggable],
-            // .rounded-full.bg-black.h-8.w-8,
-            // .rounded-full.bg-black.h-6.w-6,
-            /* Submit on main button "Suggest edits" in Text Canvas or "Code review" in Code Canvas */
-            .rounded-full.bg-black:has(>svg) {
-                background-color: var(--c-accent) !important;
-                color: var(--c-on-accent) !important;
-            }
+                /* SUBMIT CHANGE BUTTONS IN GENERAL */
+                /* Submit btn for draggable slider btn */
+                .rounded-full.bg-black[draggable],
+                // .rounded-full.bg-black.h-8.w-8,
+                // .rounded-full.bg-black.h-6.w-6,
+                /* Submit on main button "Suggest edits" in Text Canvas or "Code review" in Code Canvas */
+                .rounded-full.bg-black:has(>svg) {
+                    background-color: var(--c-accent) !important;
+                    color: var(--c-on-accent) !important;
+                }
 
-            /* "Port to a language" and "Add emoji" list */
-            .content-center.overflow-x-hidden {
-                [class*="dark:hover:bg-gray-700"] {
+                /* "Port to a language" and "Add emoji" list */
+                .content-center.overflow-x-hidden {
+                    [class*="dark:hover:bg-gray-700"] {
 
-                    &[class*="dark:bg-gray-700/50"],
-                    &:hover {
-                        background-color: hsla(var(--accent-hsl) / .2) !important;
+                        &[class*="dark:bg-gray-700/50"],
+                        &:hover {
+                            background-color: hsla(var(--accent-hsl) / .2) !important;
+                        }
                     }
                 }
             }
-        }
 
-        main {
+            main {
 
-            /* ___________ "Ask a ChatGPT" and "Edit or expain..." floating wrapper */
-            .absolute.z-50 {
+                /* ___________ "Ask a ChatGPT" and "Edit or expain..." floating wrapper */
+                .absolute.z-50 {
 
-                /* "Ask a ChatGPT" and toolbar wrapper */
-                &:has(> .h-10[role="toolbar"]) {
-                    .h-10[role="toolbar"] {
+                    /* "Ask a ChatGPT" and toolbar wrapper */
+                    &:has(> .h-10[role="toolbar"]) {
+                        .h-10[role="toolbar"] {
 
-                        &.bg-token-main-surface-primary {
-                            --main-surface-primary: var(--c-surface-2) !important;
-                            border: 1px solid hsla(var(--accent-hsl) / .14) !important;
+                            &.bg-token-main-surface-primary {
+                                --main-surface-primary: var(--c-surface-2) !important;
+                                border: 1px solid hsla(var(--accent-hsl) / .14) !important;
 
-                            /* "Ask a ChatGPT" and toolbar buttons hover states */
-                            button[class*="hover:bg-[#f5f5f5]"]:hover {
-                                background-color: var(--c-surface-3) !important;
+                                /* "Ask a ChatGPT" and toolbar buttons hover states */
+                                button[class*="hover:bg-[#f5f5f5]"]:hover {
+                                    background-color: var(--c-surface-3) !important;
+                                }
                             }
+                        }
+                    }
+
+                    /* "Edit or explain" wrapper */
+                    .relative.bg-token-main-surface-primary:has(>textarea[aria-placeholder^="Edit or explain"]) {
+                        background-color: hsla(var(--accent-hsl) / .1) !important;
+
+                        /* "Edit or explain" field overlay */
+                        .backdrop-saturate-25 {
+                            background-color: hsla(var(--accent-hsl) / .1) !important;
                         }
                     }
                 }
 
-                /* "Edit or explain" wrapper */
-                .relative.bg-token-main-surface-primary:has(>textarea[aria-placeholder^="Edit or explain"]) {
-                    background-color: hsla(var(--accent-hsl) / .1) !important;
+                /* Floating balloons, like "1 more edit" */
+                .bg-token-main-surface-primary.border-token-main-surface-tertiary[aria-label="Button to scroll the next edit into view"] {
+                    --main-surface-primary: hsla(var(--accent-hsl) / .12) !important;
+                    border-color: hsla(var(--accent-hsl) / .1) !important;
+                    color: var(--c-accent) !important;
+                    backdrop-filter: blur(10px);
+                }
 
-                    /* "Edit or explain" field overlay */
-                    .backdrop-saturate-25 {
-                        background-color: hsla(var(--accent-hsl) / .1) !important;
+
+                /* Blue Highlight when hover text to add a comment in Text Canvas */
+                [class*="dark:after:bg-[Highlight]"] {
+                    &::after {
+                        background-color: hsla(var(--accent-hsl) / .15) !important;
+                        border: 1px solid hsla(var(--accent-hsl) / .15) !important;
                     }
                 }
-            }
 
-            /* Floating balloons, like "1 more edit" */
-            .bg-token-main-surface-primary.border-token-main-surface-tertiary[aria-label="Button to scroll the next edit into view"] {
-                --main-surface-primary: hsla(var(--accent-hsl) / .12) !important;
-                border-color: hsla(var(--accent-hsl) / .1) !important;
-                color: var(--c-accent) !important;
-                backdrop-filter: blur(10px);
-            }
+                /* Selected text for commenting, when we click on comment icon in Text Canvas and "Edit or explain" prompt showed */
+                .selection-highlight.bg-\[Highlight\],
+                // Text Canvas: blue highlight when text started to proccesing "Apply" from GPT comment
+                .selection-highlight.\!bg-\[Highlight\],
+                // Code Canvas: blue highlight of current line when code rewwriting
+                .cm-editor .cm-line.\!bg-\[Highlight\],
 
-
-            /* Blue Highlight when hover text to add a comment in Text Canvas */
-            [class*="dark:after:bg-[Highlight]"] {
-                &::after {
-                    background-color: hsla(var(--accent-hsl) / .15) !important;
-                    border: 1px solid hsla(var(--accent-hsl) / .15) !important;
-                }
-            }
-
-            /* Selected text for commenting, when we click on comment icon in Text Canvas and "Edit or explain" prompt showed */
-            .selection-highlight.bg-\[Highlight\],
-            // Text Canvas: blue highlight when text started to proccesing "Apply" from GPT comment
-            .selection-highlight.\!bg-\[Highlight\],
-            // Code Canvas: blue highlight of current line when code rewwriting
-            .cm-editor .cm-line.\!bg-\[Highlight\],
-
-            // Code Canvas: blue highlight of current selected and about to prompt lines
-            .cm-editor .cm-line span.bg-\[Highlight\] {
-                background-color: var(--c-accent) !important;
-                color: var(--c-on-accent) !important;
-            }
-
-            .cm-editor .cm-line span.bg-\[Highlight\],
-            // Code Canvas: Hc-blue line of current processing line
-            .cm-editor .cm-line.\!bg-\[Highlight\] span {
-                // background-color: var(--c-accent) !important;
-
-                &,
-                span {
+                // Code Canvas: blue highlight of current selected and about to prompt lines
+                .cm-editor .cm-line span.bg-\[Highlight\] {
+                    background-color: var(--c-accent) !important;
                     color: var(--c-on-accent) !important;
                 }
-            }
 
-            /* Comment section on the right of the text where add comment btn is */
-            [data-block-comment-launcher] button {
-                .text-gray-400 {
-                    svg {
-                        color: var(--c-accent) !important;
+                .cm-editor .cm-line span.bg-\[Highlight\],
+                // Code Canvas: Hc-blue line of current processing line
+                .cm-editor .cm-line.\!bg-\[Highlight\] span {
+                    // background-color: var(--c-accent) !important;
+
+                    &,
+                    span {
+                        color: var(--c-on-accent) !important;
                     }
                 }
-            }
 
-            .cm-editor {
-
-                /* Code Canvas of yet non-edited lines while code is rewriting ("Add logs", "Add comments") */
-                .streaming-line-overlay {
-                    &.before\:bg-white\/50:before {
-                        background-color: var(--c-bg-cm) !important;
-                        opacity: 0.85;
+                /* Comment section on the right of the text where add comment btn is */
+                [data-block-comment-launcher] button {
+                    .text-gray-400 {
+                        svg {
+                            color: var(--c-accent) !important;
+                        }
                     }
+                }
 
-                    &.\:bg-white\/50 {
-                        background-color: var(--c-bg-cm) !important;
+                .cm-editor {
+
+                    /* Code Canvas of yet non-edited lines while code is rewriting ("Add logs", "Add comments") */
+                    .streaming-line-overlay {
+                        &.before\:bg-white\/50:before {
+                            background-color: var(--c-bg-cm) !important;
+                            opacity: 0.85;
+                        }
+
+                        &.\:bg-white\/50 {
+                            background-color: var(--c-bg-cm) !important;
+                        }
                     }
                 }
             }
