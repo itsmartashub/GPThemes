@@ -560,6 +560,17 @@ html.dark[data-gptheme='oled'] [role='dialog'] {
 	}
 }
 
+
+/* popover with autoplay video showed once when used Canvas for the first time. Probably could be removed after some time in future, "Got it" btn
+"Refine and debug on the spot"
+"Refactor code. Translate to Python. Check for bugs. ChatGPT can do it all, right on the canvas."
+*/
+.popover.fixed.max-w-sm:has(video) {
+	.bg-token-main-surface-secondary.text-token-text-secondary:has(>video) ~ .flex.px-10.py-8 {
+		background-color: var(--c-surface-2) !important;
+	}
+}
+
 /* ! NOT WORKING - CANNOT OVERWRITE THIS WTF */
 /* .dark .popover,
 .light .popover,
