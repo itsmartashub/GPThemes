@@ -87,6 +87,11 @@
 .absolute.left-0.z-20.h-full.overflow-hidden,
 .fixed.inset-0.z-40.overflow-hidden {
 
+    /* Loading screen for Canvas when there is no #codemirror or #prosemirror-editor-container loaded yet */
+    section.popover:has(main [class*="absolute left-0 top-0 h-full w-full rotate-45 bg-gradient-to-r from-transparent via-black/20 to-transparent opacity-50 dark:via-white/5"]) {
+        background-color: var(--c-bg-cm) !important;
+    }
+
     &:has(section.popover main #codemirror, section.popover main #prosemirror-editor-container) {
         .bg-black {
             background-color: var(--c-accent) !important;
