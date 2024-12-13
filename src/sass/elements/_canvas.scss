@@ -30,39 +30,42 @@
 
 /* ______ CODE CANVAS: CM CodeMirror EDITOR */
 
-.cm-editor {
+#codemirror {
 
-    // .ͼ1p.cm-focused .cm-selectionBackground, .ͼ1p .cm-line::selection, .ͼ1p .cm-selectionLayer .cm-selectionBackground, .ͼ1p .cm-content ::selection {
-    //     background: #6199ff2f !important;
-    // }
-    .cm-content {
-        caret-color: var(--c-accent) !important;
+    .cm-editor {
 
-        ::selection,
-        .cm-selectionLayer .cm-selectionBackground,
-        // .cm-line span.cm-focused .cm-selectionBackground,
-        .cm-line > *::selection,
-        .cm-line::selection {
-            // background: var(--c-accent) !important;
-            // color: var(--c-on-accent) !important;
-            background: hsla(var(--accent-hsl) / .14) !important;
+        // .ͼ1p.cm-focused .cm-selectionBackground, .ͼ1p .cm-line::selection, .ͼ1p .cm-selectionLayer .cm-selectionBackground, .ͼ1p .cm-content ::selection {
+        //     background: #6199ff2f !important;
+        // }
+        .cm-content {
+            caret-color: var(--c-accent) !important;
+
+            ::selection,
+            .cm-selectionLayer .cm-selectionBackground,
+            // .cm-line span.cm-focused .cm-selectionBackground,
+            .cm-line > *::selection,
+            .cm-line::selection {
+                // background: var(--c-accent) !important;
+                // color: var(--c-on-accent) !important;
+                background: hsla(var(--accent-hsl) / .14) !important;
+                color: var(--c-accent) !important;
+            }
+        }
+
+        &,
+        .cm-gutters {
+            background-color: var(--c-bg-cm) !important;
+        }
+
+        .cm-activeLineGutter {
+            background-color: hsla(var(--accent-hsl) / .2) !important;
             color: var(--c-accent) !important;
         }
-    }
 
-    &,
-    .cm-gutters {
-        background-color: var(--c-bg-cm) !important;
-    }
-
-    .cm-activeLineGutter {
-        background-color: hsla(var(--accent-hsl) / .2) !important;
-        color: var(--c-accent) !important;
-    }
-
-    .cm-line {
-        [class^="_modelCursor"]::after {
-            color: var(--c-accent);
+        .cm-line {
+            [class^="_modelCursor"]::after {
+                color: var(--c-accent);
+            }
         }
     }
 }
@@ -92,17 +95,29 @@
 
         /* TODO: Has to add for the bg of Canvas (visible gap or when drag the separator). Btw, when opening canvas, when there is skeleton waiting, the bg is not --c-bg-cm for this section.bg-token-main-surface-primary */
         section.popover.h-full.w-full {
-            // &.bg-token-main-surface-primary {
-            //     --main-surface-primary: var(--c-bg-cm) !important;
-            //     // background-color: var(--c-bg-cm) !important;
-            // }
-
-
             background-color: var(--c-bg-cm) !important;
+
+            /* Canvas wrapper, this is also bg color for the console */
+            /* &,
+            .bg-token-main-surface-primary {
+                --main-surface-primary: var(--c-bg-cm) !important;
+                // background-color: var(--c-bg-cm) !important;
+            } */
+
+            /* Resizing line */
+            .cursor-ns-resize.bg-token-text-quaternary {
+                background-color: hsla(var(--accent-hsl) / .4) !important;
+            }
 
             /* Header of canvas with title, coppy btn */
             header[class*="@container"] {
                 background-color: var(--c-bg-cm);
+            }
+
+            /* Borders in console */
+            .border-token-border-xlight {
+                --border-xlight: hsla(var(--accent-hsl) / .05) !important;
+                // border-color: var(--border-xlight);
             }
         }
 
@@ -133,13 +148,6 @@
                 background-color: hsla(var(--accent-hsl) / .2) !important;
                 backdrop-filter: blur(10px);
             }
-
-            /* Slider state floating bg: when go into "Adjust the length" and "Reading level" */
-            // &.bg-token-main-surface-secondary {
-            //     background-color: var(--c-accent-light);
-            //     // background-color: var(--c-surface-2) !important;
-            //     // box-shadow: 0 0 5px 2px hsla(var(--accent-hsl) / .2) inset !important;
-            // }
 
             /* Draggable Y-slider btn like: "Adjust the length" and "Reading level" in ProseMirror (text canvas) */
             .cursor-grab.rounded-full.bg-token-main-surface-primary[draggable] {
@@ -261,6 +269,42 @@
                     &.\:bg-white\/50 {
                         background-color: var(--c-bg-cm) !important;
                     }
+                }
+            }
+        }
+
+
+        /* Code Canvas: Console when "Run" Python code */
+        section > .relative:has(>.cursor-ns-resize) {
+
+            // Console bg
+            .bg-token-main-surface-primary {
+                --main-surface-primary: var(--c-bg-cm) !important;
+                // background-color: var(--c-bg-cm) !important;
+            }
+
+            /* Da obrisemo border za "Console" header jer je bila neka ruzna bela samo za njega */
+            // .border-token-border-xlight:not(.font-mono) {
+            //     border: none !important;
+            // }
+
+            .sticky.top-0.z-10.font-mono.text-sm[class*="dark:hover:bg-gray-700"] {
+                &:hover {
+                    background-color: var(--c-surface-2) !important;
+                }
+            }
+
+            button[as="button"].btn.btn-ghost.btn-small.aspect-square.\!p-1:has(svg) {
+                color: var(--c-accent) !important;
+            }
+
+            /* Error output in consoles */
+            .font-mono[class*="hover:bg-red-500/10"] {
+                background-color: transparent !important;
+                border: none !important;
+
+                &:hover {
+                    background-color: hsla(var(--danger-hsl) / .11) !important;
                 }
             }
         }

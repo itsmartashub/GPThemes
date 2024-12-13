@@ -6,11 +6,12 @@ But adding this "main" blocked this style to smaller screens so I have to add it
  - .sticky.border-token-border-medium je za small devices
  - .sticky.bg-token-main-surface-primary je za small devices
  - not(th) means to not include style on table headings in dialogs
- - not(div[class*="var(--screen-thread-header-min-height"]) means to not include sticky headers in search link sources dialog when clicked on "SOURCES" in chat bubbles */
+ - not(div[class*="var(--screen-thread-header-min-height"]) means to not include sticky headers in search link sources dialog when clicked on "SOURCES" in chat bubbles 
+ - not(.font-mono) je "Run" sticky header u python consoli u Code Canvasu */
 .sticky {
 
 	&.h-header-height,
-	&.bg-token-main-surface-primary:not(th, div[class*="var(--screen-thread-header-min-height"]) {
+	&.bg-token-main-surface-primary:not(th, div[class*="var(--screen-thread-header-min-height"], .font-mono) {
 		// .h-full.overflow-y-auto:has(.sticky [href^='/auth/login?next=/gpts']) .sticky {
 		background: var(--c-bg-chats-sticky) !important;
 		backdrop-filter: blur(var(--blur-sticky));
