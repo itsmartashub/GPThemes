@@ -406,3 +406,14 @@
         }
     }
 }
+
+
+/* Hide the floating button when Canvas is opened */
+body:has(.absolute.z-20.h-full.transition-shadow.overflow-hidden.left-0 section.popover main #codemirror),
+body:has(.absolute.z-20.h-full.transition-shadow.overflow-hidden.left-0 section.popover main #prosemirror-editor-container),
+body:has(.absolute.z-20.h-full.transition-shadow.overflow-hidden.left-0 section.popover main [class*="absolute left-0 top-0 h-full w-full rotate-45 bg-gradient-to-r from-transparent via-black/20 to-transparent opacity-50 dark:via-white/5"]) {
+    .gpth__floating {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
