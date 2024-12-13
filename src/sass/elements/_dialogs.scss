@@ -1,7 +1,7 @@
 /* ===================== DIAOGS ====================  
-not(> [data-comment-id]) - dialog without code comment like in "Run" python code console	
+not(> [data-comment-id]) - dialog without code comment like in "Run" python code console ("Fix bug")
 */
-[role='dialog']:not(> [data-comment-id]) {
+[role='dialog']:not(> div[data-comment-id]) {
 	padding: var(--p-dialog) !important;
 	background-color: var(--c-bg-dialog) !important;
 	border-radius: var(--br-dialog) !important;
@@ -548,8 +548,6 @@ not(> [data-comment-id]) - dialog without code comment like in "Run" python code
 		}
 
 	}
-
-	&:has(> [data-comment-id]) {}
 
 }
 

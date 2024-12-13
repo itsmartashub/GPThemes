@@ -100,6 +100,47 @@
             /* Header of canvas with title, coppy btn */
             header[class*="@container"] {
                 background-color: var(--c-bg-cm);
+
+                /* Main Canvas title */
+                h2.truncate.text-lg.text-gray-700 {
+                    color: var(--c-accent) !important;
+                }
+
+                /* Previous, Before, Copy btns in header */
+                button.h-10[class*="enabled:hover:bg-token-main-surface-secondary"] {
+                    --main-surface-secondary: var(--c-surface-3) !important;
+
+                    &:disabled {
+                        color: var(--c-subtext-2) !important;
+
+                        svg {
+                            transition: none !important;
+                        }
+
+                        &:hover {
+                            background-color: none !important;
+
+                            svg {
+                                transform: none !important;
+                            }
+                        }
+                    }
+                }
+
+                /* History of changes btn when active/clicked  */
+                button.h-10[class*="bg-blue-400/15"] {
+                    @extend .btn-primary;
+                }
+
+                /* "Run" code button */
+                button.rounded-full.bg-token-main-surface-primary {
+                    @extend .btn-secondary;
+                }
+
+                /* User Profile btn */
+                button[aria-label="Open Profile Menu"] {
+                    --main-surface-secondary: var(--c-surface-3) !important
+                }
             }
 
             /* Resizing line */
