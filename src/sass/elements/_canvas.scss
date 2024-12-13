@@ -292,6 +292,8 @@
 
             /* Selected text for commenting, when we click on comment icon in Text Canvas and "Edit or explain" prompt showed */
             .selection-highlight.bg-\[Highlight\],
+            // Text Canvas: blue highlight when text started to proccesing "Apply" from GPT comment
+            .selection-highlight.\!bg-\[Highlight\],
             // Code Canvas: blue highlight of current line when code rewwriting
             .cm-editor .cm-line.\!bg-\[Highlight\],
 
