@@ -97,14 +97,14 @@
         section.popover.h-full.w-full {
             background-color: var(--c-bg-cm) !important;
 
-            /* Resizing line */
-            .cursor-ns-resize.bg-token-text-quaternary {
-                background-color: hsla(var(--accent-hsl) / .5) !important;
-            }
-
             /* Header of canvas with title, coppy btn */
             header[class*="@container"] {
                 background-color: var(--c-bg-cm);
+            }
+
+            /* Resizing line */
+            .cursor-ns-resize.bg-token-text-quaternary {
+                background-color: hsla(var(--accent-hsl) / .5) !important;
             }
 
             /* Borders in console */

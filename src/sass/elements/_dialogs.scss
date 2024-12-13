@@ -1,5 +1,7 @@
-/* Dialogs - Settings  */
-[role='dialog'] {
+/* ===================== DIAOGS ====================  
+not(> [data-comment-id]) - dialog without code comment like in "Run" python code console	
+*/
+[role='dialog']:not(> [data-comment-id]) {
 	padding: var(--p-dialog) !important;
 	background-color: var(--c-bg-dialog) !important;
 	border-radius: var(--br-dialog) !important;
@@ -83,7 +85,7 @@
 		text-transform: uppercase;
 	}
 
-	/* "Your invite is valid until December X, 2023" in "YOU'RE INVITED TO PLUS" footer */
+	/* TODO(remove?) ???? "Your invite is valid until December X, 2023" in "YOU'RE INVITED TO PLUS" footer */
 	.text-gizmo-gray-500 {
 		text-align: center;
 		margin-top: 1rem;
@@ -546,6 +548,8 @@
 		}
 
 	}
+
+	&:has(> [data-comment-id]) {}
 
 }
 
