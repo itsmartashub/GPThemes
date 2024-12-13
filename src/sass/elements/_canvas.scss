@@ -97,16 +97,9 @@
         section.popover.h-full.w-full {
             background-color: var(--c-bg-cm) !important;
 
-            /* Canvas wrapper, this is also bg color for the console */
-            /* &,
-            .bg-token-main-surface-primary {
-                --main-surface-primary: var(--c-bg-cm) !important;
-                // background-color: var(--c-bg-cm) !important;
-            } */
-
             /* Resizing line */
             .cursor-ns-resize.bg-token-text-quaternary {
-                background-color: hsla(var(--accent-hsl) / .4) !important;
+                background-color: hsla(var(--accent-hsl) / .5) !important;
             }
 
             /* Header of canvas with title, coppy btn */
@@ -116,8 +109,38 @@
 
             /* Borders in console */
             .border-token-border-xlight {
-                --border-xlight: hsla(var(--accent-hsl) / .05) !important;
+                --border-xlight: hsla(var(--accent-hsl) / .1) !important;
                 // border-color: var(--border-xlight);
+            }
+
+            /* Code Canvas: Console when "Run" Python code */
+            & > .relative:has(>.cursor-ns-resize) {
+
+                /* Console bg */
+                .bg-token-main-surface-primary {
+                    --main-surface-primary: var(--c-bg-cm) !important;
+                }
+
+                .sticky.top-0.z-10.font-mono.text-sm[class*="dark:hover:bg-gray-700"] {
+                    &:hover {
+                        background-color: var(--c-surface-2) !important;
+                    }
+                }
+
+                /* "Clear console" and "Cancel" btns in Console header */
+                button[as="button"].btn.btn-ghost.btn-small.aspect-square.\!p-1:has(svg) {
+                    color: var(--c-accent) !important;
+                }
+
+                /* Error output in consoles: this is applied from my global bg-red style so we have to reset it */
+                .font-mono[class*="hover:bg-red-500"] {
+                    background-color: transparent !important;
+                    border: none !important;
+
+                    &:hover {
+                        background-color: hsla(var(--danger-hsl) / .11) !important;
+                    }
+                }
             }
         }
 
@@ -269,42 +292,6 @@
                     &.\:bg-white\/50 {
                         background-color: var(--c-bg-cm) !important;
                     }
-                }
-            }
-        }
-
-
-        /* Code Canvas: Console when "Run" Python code */
-        section > .relative:has(>.cursor-ns-resize) {
-
-            // Console bg
-            .bg-token-main-surface-primary {
-                --main-surface-primary: var(--c-bg-cm) !important;
-                // background-color: var(--c-bg-cm) !important;
-            }
-
-            /* Da obrisemo border za "Console" header jer je bila neka ruzna bela samo za njega */
-            // .border-token-border-xlight:not(.font-mono) {
-            //     border: none !important;
-            // }
-
-            .sticky.top-0.z-10.font-mono.text-sm[class*="dark:hover:bg-gray-700"] {
-                &:hover {
-                    background-color: var(--c-surface-2) !important;
-                }
-            }
-
-            button[as="button"].btn.btn-ghost.btn-small.aspect-square.\!p-1:has(svg) {
-                color: var(--c-accent) !important;
-            }
-
-            /* Error output in consoles */
-            .font-mono[class*="hover:bg-red-500/10"] {
-                background-color: transparent !important;
-                border: none !important;
-
-                &:hover {
-                    background-color: hsla(var(--danger-hsl) / .11) !important;
                 }
             }
         }
