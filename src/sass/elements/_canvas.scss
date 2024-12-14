@@ -245,9 +245,10 @@
                 }
 
                 /* Floating balloons, like "1 more edit" */
-                .bg-token-main-surface-primary.border-token-main-surface-tertiary[aria-label="Button to scroll the next edit into view"] {
-                    --main-surface-primary: hsla(var(--accent-hsl) / .12) !important;
-                    border-color: hsla(var(--accent-hsl) / .1) !important;
+                .bg-token-main-surface-primary.border-token-main-surface-tertiary[aria-label^="Button to scroll the next edit into view"] {
+                    --main-surface-primary: hsla(var(--accent-hsl) / .15) !important;
+                    --main-surface-secondary: hsla(var(--accent-hsl) / .3) !important;
+                    border-color: hsla(var(--accent-hsl) / .12) !important;
                     color: var(--c-accent) !important;
                     backdrop-filter: blur(10px);
                 }
