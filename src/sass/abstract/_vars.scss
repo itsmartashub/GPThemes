@@ -37,7 +37,7 @@
 
 	/* ? --- Paddings --- */
 	--p-chat-bubble: 1.2rem;
-	--px-chat-bubble-edge-gap: 4vw;
+	// --px-chat-bubble-edge-gap: 4vw;
 	--p-contextmenu: 0.8rem;
 	--p-contextmenu-item: 0.9rem 1rem;
 	--p-prompt-textarea: 0.7rem;
@@ -133,6 +133,16 @@
 
 	--link: var(--c-accent) !important;
 
+	@include container('md') {
+		// --px-chat-bubble-edge-gap: 1vw;
+		--p-chat-bubble: .8rem;
+		--br-chat-bubble: calc(var(--br) * 1.1);
+	}
+
+	@include container('sm') {
+		--br-chat-bubble: var(--br) !important;
+	}
+
 	@include dev('md') {
 		--p-chat-bubble: .8rem;
 		--br-chat-bubble: calc(var(--br) * 1.55);
@@ -143,9 +153,9 @@
 		--p-sidebar-nav: 0.3rem;
 	}
 
-	@include dev('sm') {
-		--px-chat-bubble-edge-gap: 0.45rem;
-	}
+	// @include dev('sm') {
+	// 	--px-chat-bubble-edge-gap: 0.45rem;
+	// }
 
 
 	// --box-shadow-sticky: 0 10px 40px 5px hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 0.85);
