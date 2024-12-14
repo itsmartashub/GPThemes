@@ -57,6 +57,35 @@ main [role='presentation'] {
 		font-size: calc((var(--fontSize) / 16) * 1rem) !important;
 	}
 
+	/* _________ CANVAS in chat bubbles */
+	&:has([id^="textdoc-message"]) {
+		.popover {
+			--main-surface-primary: var(--c-bg-cm) !important;
+		}
+
+		[id^="textdoc-message"] {
+			--main-surface-primary: var(--c-bg-cm) !important;
+			will-change: border-color;
+			border: 2px solid hsla(var(--accent-hsl) / .12) !important;
+			transition: border-color .2s;
+
+			/* Gradient on the bottom of code */
+			.absolute.bottom-0.z-20.h-24.w-full.transition-colors {
+				background: linear-gradient(rgba(0, 0, 0, 0), var(--c-bg-cm)) !important;
+			}
+		}
+
+		&:hover {
+			border-color: hsla(var(--accent-hsl) / .3) !important;
+		}
+
+
+		/* Chat bubble - "Typing" btn when canvas creating */
+		[role="button"].absolute.bottom-3:has(>.loading-shimmer-pure-text) {
+			// --main-surface-primary: red !important;
+		}
+	}
+
 	/* Right chat content parent
 	.mx-auto.flex.flex-1.text-base[class*="md:max-w-3xl"] is GPT chat bubble */
 	// [class*='xl:max-w-[48rem]'], 
