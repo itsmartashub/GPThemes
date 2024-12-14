@@ -168,13 +168,22 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 - Prompt textarea send button
 - GPTs - active pill ("Top Picks")
  */
-// .bg-black,
-[class*='bg-black'],
+.bg-black,
+// [class*='bg-black'],// @@@@@ THIS MAKES CHATS NOT VISIBLE IN FIREFOX ON LIGHT THEME
 .bg-token-sidebar-surface-primary {
 	background-color: var(--c-surface-1);
+	// background-color: orange;
 	// @include borderBoxShadow(lightgreen);
 	// background-color: lightgreen;
 }
+
+/* @@@@@ DEBUG FIREFOX -  THIS MAKES CHATS NOT VISIBLE IN FIREFOX ON LIGHT THEME */
+/* [class*='bg-black'] {
+	outline: 2px solid red !important;
+	border: 2px solid red !important;
+	background: red !important;
+	box-shadow: 0 0 0 4px red !important;
+} */
 
 /* 
 - Builder profile "PlaceholderGPT" - var(--c-surface-3)
