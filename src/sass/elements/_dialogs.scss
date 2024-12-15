@@ -1,5 +1,7 @@
-/* Dialogs - Settings  */
-[role='dialog'] {
+/* ===================== DIAOGS ====================  
+not(> [data-comment-id]) - dialog without code comment like in "Run" python code console ("Fix bug")
+*/
+[role='dialog']:not(:has(>[data-comment-id])) {
 	padding: var(--p-dialog) !important;
 	background-color: var(--c-bg-dialog) !important;
 	border-radius: var(--br-dialog) !important;
@@ -83,7 +85,7 @@
 		text-transform: uppercase;
 	}
 
-	/* "Your invite is valid until December X, 2023" in "YOU'RE INVITED TO PLUS" footer */
+	/* TODO(remove?) ???? "Your invite is valid until December X, 2023" in "YOU'RE INVITED TO PLUS" footer */
 	.text-gizmo-gray-500 {
 		text-align: center;
 		margin-top: 1rem;
@@ -555,6 +557,17 @@ html.dark[data-gptheme='oled'] [role='dialog'] {
 			--main-surface-primary: var(--c-surface-1) !important;
 		}
 
+	}
+}
+
+
+/* popover with autoplay video showed once when used Canvas for the first time. Probably could be removed after some time in future, "Got it" btn
+"Refine and debug on the spot"
+"Refactor code. Translate to Python. Check for bugs. ChatGPT can do it all, right on the canvas."
+*/
+.popover.fixed.max-w-sm:has(video) {
+	.bg-token-main-surface-secondary.text-token-text-secondary:has(>video) ~ .flex.px-10.py-8 {
+		background-color: var(--c-surface-2) !important;
 	}
 }
 

@@ -1,0 +1,391 @@
+/* ______ CODE CANVAS: CM CodeMirror EDITOR */
+
+
+.cm-editor {
+
+    // .ͼ1p.cm-focused .cm-selectionBackground, .ͼ1p .cm-line::selection, .ͼ1p .cm-selectionLayer .cm-selectionBackground, .ͼ1p .cm-content ::selection {
+    //     background: #6199ff2f !important;
+    // }
+    .cm-content {
+        caret-color: var(--c-accent) !important;
+
+        ::selection,
+        .cm-selectionLayer .cm-selectionBackground,
+        // .cm-line span.cm-focused .cm-selectionBackground,
+        .cm-line > *::selection,
+        .cm-line::selection {
+            // background: var(--c-accent) !important;
+            // color: var(--c-on-accent) !important;
+            background: hsla(var(--accent-hsl) / .14) !important;
+            color: var(--c-accent) !important;
+        }
+    }
+
+    &,
+    .cm-gutters {
+        background-color: var(--c-bg-cm) !important;
+    }
+
+    .cm-activeLineGutter {
+        background-color: hsla(var(--accent-hsl) / .2) !important;
+        color: var(--c-accent) !important;
+    }
+
+    .cm-line {
+        [class^="_modelCursor"]::after {
+            color: var(--c-accent);
+        }
+    }
+}
+
+/* ______ TEXT CANVAS: ProseMirror EDITOR */
+#prosemirror-editor-container {
+
+    & > div.bg-token-main-surface-primary.ProseMirror,
+    .from-token-main-surface-primary {
+        --main-surface-primary: var(--c-bg-cm) !important;
+    }
+
+    .cm-editor {
+        background-color: var(--c-surface-2) !important;
+        border-radius: var(--br);
+        border: 1px solid var(--c-border);
+    }
+}
+
+/* Canvas with CodeMirror (for code) and ProseMirror (for text) showed on the left (when open canvas) 
+- .fixed.inset-0.z-40.overflow-hidden is for smaller screens (width <= 1000px) */
+.absolute.left-0.z-20.h-full.overflow-hidden,
+.fixed.inset-0.z-40.overflow-hidden {
+
+    /* Loading screen for Canvas when there is no #codemirror or #prosemirror-editor-container loaded yet */
+    section.popover:has(main [class*="absolute left-0 top-0 h-full w-full rotate-45 bg-gradient-to-r from-transparent via-black/20 to-transparent opacity-50 dark:via-white/5"]) {
+        background-color: var(--c-bg-cm) !important;
+    }
+
+    &:has(section.popover main #codemirror, section.popover main #prosemirror-editor-container) {
+        .bg-black {
+            background-color: var(--c-accent) !important;
+            color: var(--c-on-accent) !important;
+        }
+
+        /* TODO: Has to add for the bg of Canvas (visible gap or when drag the separator). Btw, when opening canvas, when there is skeleton waiting, the bg is not --c-bg-cm for this section.bg-token-main-surface-primary */
+        section.popover.h-full.w-full {
+            background-color: var(--c-bg-cm) !important;
+
+            /* Header of canvas with title, coppy btn */
+            header[class*="@container"] {
+                background-color: var(--c-bg-cm);
+
+                /* Main Canvas title */
+                h2.truncate.text-lg.text-gray-700 {
+                    color: var(--c-accent) !important;
+                }
+
+                /* Previous, Before, Copy btns in header */
+                button.h-10[class*="enabled:hover:bg-token-main-surface-secondary"] {
+                    --main-surface-secondary: var(--c-surface-3) !important;
+
+                    &:disabled {
+                        color: var(--c-subtext-2) !important;
+
+                        svg {
+                            transition: none !important;
+                        }
+
+                        &:hover {
+                            background-color: none !important;
+
+                            svg {
+                                transform: none !important;
+                            }
+                        }
+                    }
+                }
+
+                /* History of changes btn when active/clicked  */
+                button.h-10[class*="bg-blue-400/15"] {
+                    @extend .btn-primary;
+                }
+
+                /* "Run" code button */
+                button.rounded-full.bg-token-main-surface-primary {
+                    @extend .btn-secondary;
+                }
+
+                /* User Profile btn */
+                button[aria-label="Open Profile Menu"] {
+                    --main-surface-secondary: var(--c-surface-3) !important
+                }
+            }
+
+            /* Resizing line */
+            .cursor-ns-resize.bg-token-text-quaternary {
+                background-color: hsla(var(--accent-hsl) / .5) !important;
+            }
+
+            /* Borders in console */
+            .border-token-border-xlight {
+                --border-xlight: hsla(var(--accent-hsl) / .1) !important;
+                // border-color: var(--border-xlight);
+            }
+
+            /* Code Canvas: Console when "Run" Python code */
+            & > .relative:has(>.cursor-ns-resize) {
+
+                /* Console bg */
+                .bg-token-main-surface-primary {
+                    --main-surface-primary: var(--c-bg-cm) !important;
+                }
+
+                .sticky.top-0.z-10.font-mono.text-sm[class*="dark:hover:bg-gray-700"] {
+                    &:hover {
+                        background-color: var(--c-surface-2) !important;
+                    }
+                }
+
+                /* "Clear console" and "Cancel" btns in Console header */
+                button[as="button"].btn.btn-ghost.btn-small.aspect-square.\!p-1:has(svg) {
+                    color: var(--c-accent) !important;
+                }
+
+                /* Error output in consoles: this is applied from my global bg-red style so we have to reset it */
+                .font-mono[class*="hover:bg-red-500"] {
+                    background-color: transparent !important;
+                    border: none !important;
+
+                    &:hover {
+                        background-color: hsla(var(--danger-hsl) / .11) !important;
+                    }
+                }
+            }
+
+            /* @@@@@@@@@ Canvas Edit floating button on bottom right */
+            .absolute.z-\[70\].overflow-visible.border.border-token-border-light.transition-colors {
+
+                /* Wrapper */
+                &.bg-token-main-surface-primary,
+                /* .bg-token-main-surface-secondary is for another step, for sliders floating wrappers */
+                &.bg-token-main-surface-secondary {
+                    color: var(--c-accent) !important;
+
+                    /* dots level in slider */
+                    .bg-gray-300 {
+                        background-color: var(--c-accent) !important;
+                    }
+                }
+
+                /* Pause primary floating btn while processing: !bg-black !text-white is for light themes, !bg-white, !text-black is for dark */
+                &[class*="!bg-black !text-white"],
+                &[class*="!bg-white !text-black"] {
+                    background-color: var(--c-accent) !important;
+                    color: var(--c-on-accent) !important;
+                }
+
+                /* Main state floating bg */
+                &.bg-token-main-surface-primary {
+                    background-color: hsla(var(--accent-hsl) / .2) !important;
+                    backdrop-filter: blur(10px);
+                }
+
+                /* Draggable Y-slider btn like: "Adjust the length" and "Reading level" in ProseMirror (text canvas) */
+                .cursor-grab.rounded-full.bg-token-main-surface-primary[draggable] {
+                    box-shadow: 0 0 0 0.65rem hsla(var(--accent-hsl) / 1) !important;
+                }
+
+                /* SUBMIT CHANGE BUTTONS IN GENERAL */
+                /* Submit btn for draggable slider btn */
+                .rounded-full.bg-black[draggable],
+                // .rounded-full.bg-black.h-8.w-8,
+                // .rounded-full.bg-black.h-6.w-6,
+                /* Submit on main button "Suggest edits" in Text Canvas or "Code review" in Code Canvas */
+                .rounded-full.bg-black:has(>svg) {
+                    background-color: var(--c-accent) !important;
+                    color: var(--c-on-accent) !important;
+                }
+
+                /* "Port to a language" and "Add emoji" list */
+                .content-center.overflow-x-hidden {
+                    [class*="dark:hover:bg-gray-700"] {
+
+                        &[class*="dark:bg-gray-700/50"],
+                        &:hover {
+                            background-color: hsla(var(--accent-hsl) / .2) !important;
+                        }
+                    }
+                }
+            }
+
+            main {
+
+                /* ___________ "Ask a ChatGPT" and "Edit or expain..." floating wrapper */
+                .absolute.z-50 {
+
+                    /* "Ask a ChatGPT" and toolbar wrapper */
+                    &:has(> .h-10[role="toolbar"]) {
+                        .h-10[role="toolbar"] {
+
+                            &.bg-token-main-surface-primary {
+                                --main-surface-primary: var(--c-surface-2) !important;
+                                border: 1px solid hsla(var(--accent-hsl) / .14) !important;
+
+                                /* "Ask a ChatGPT" and toolbar buttons hover states */
+                                button[class*="hover:bg-[#f5f5f5]"]:hover {
+                                    background-color: var(--c-surface-3) !important;
+                                }
+                            }
+                        }
+                    }
+
+                    /* "Edit or explain" wrapper */
+                    .relative.bg-token-main-surface-primary:has(>textarea[aria-placeholder^="Edit or explain"]) {
+                        background-color: hsla(var(--accent-hsl) / .1) !important;
+
+                        /* "Edit or explain" field overlay */
+                        .backdrop-saturate-25 {
+                            background-color: hsla(var(--accent-hsl) / .1) !important;
+                        }
+                    }
+                }
+
+                /* Floating balloons, like "1 more edit" */
+                .bg-token-main-surface-primary.border-token-main-surface-tertiary[aria-label^="Button to scroll the next edit into view"] {
+                    --main-surface-primary: hsla(var(--accent-hsl) / .15) !important;
+                    --main-surface-secondary: hsla(var(--accent-hsl) / .3) !important;
+                    border-color: hsla(var(--accent-hsl) / .12) !important;
+                    color: var(--c-accent) !important;
+                    backdrop-filter: blur(10px);
+                }
+
+
+                /* Blue Highlight when hover text to add a comment in Text Canvas */
+                [class*="dark:after:bg-[Highlight]"] {
+                    &::after {
+                        background-color: hsla(var(--accent-hsl) / .15) !important;
+                        border: 1px solid hsla(var(--accent-hsl) / .15) !important;
+                    }
+                }
+
+                /* Selected text for commenting, when we click on comment icon in Text Canvas and "Edit or explain" prompt showed */
+                .selection-highlight.bg-\[Highlight\],
+                // Text Canvas: blue highlight when text started to proccesing "Apply" from GPT comment
+                .selection-highlight.\!bg-\[Highlight\],
+                // Code Canvas: blue highlight of current line when code rewwriting
+                .cm-editor .cm-line.\!bg-\[Highlight\],
+
+                // Code Canvas: blue highlight of current selected and about to prompt lines
+                .cm-editor .cm-line span.bg-\[Highlight\] {
+                    background-color: var(--c-accent) !important;
+                    color: var(--c-on-accent) !important;
+                }
+
+                .cm-editor .cm-line span.bg-\[Highlight\],
+                // Code Canvas: Hc-blue line of current processing line
+                .cm-editor .cm-line.\!bg-\[Highlight\] span {
+                    // background-color: var(--c-accent) !important;
+
+                    &,
+                    span {
+                        color: var(--c-on-accent) !important;
+                    }
+                }
+
+                /* Comment section on the right of the text where add comment btn is */
+                [data-block-comment-launcher] button {
+                    .text-gray-400 {
+                        svg {
+                            color: var(--c-accent) !important;
+                        }
+                    }
+                }
+
+                .cm-editor {
+
+                    /* Code Canvas of yet non-edited lines while code is rewriting ("Add logs", "Add comments") */
+                    .streaming-line-overlay {
+                        &.before\:bg-white\/50:before {
+                            background-color: var(--c-bg-cm) !important;
+                            opacity: 0.85;
+                        }
+
+                        &.\:bg-white\/50 {
+                            background-color: var(--c-bg-cm) !important;
+                        }
+                    }
+                }
+            }
+
+            /* width <= 1000px: User chat in Code Canvas when "Ask GPT" */
+            /* width <= 1000px: Gradient oko chata na light temi */
+            .bg-vert-light-gradient {
+                background-image: linear-gradient(180deg, #fff0 13.94%, var(--c-bg-cm) 54.73%);
+            }
+
+            /* width <= 1000px: Gradient oko chata na dark temi */
+            [class*="dark:from-token-main-surface-primary"] {
+                --main-surface-primary: var(--c-bg-cm) !important;
+            }
+
+            /* width <= 1000px: Poruke usera u Code Canvas */
+            .bg-token-message-surface {
+                background-color: var(--c-bg-msg-user) !important;
+            }
+        }
+    }
+}
+
+/* Width less then 1000px */
+.fixed.inset-0.z-40.overflow-hidden {
+
+    /* "Ask a ChatGPT to edit" on full-width screen less then 1000px width */
+    [class*="bg-[#f4f4f4]"]:has([placeholder="Ask ChatGPT to edit"]) {
+        background-color: var(--c-bg-textarea) !important;
+
+        /* Submit btn */
+        button.rounded-full.bg-token-main-surface-primary {
+            background-color: var(--c-accent) !important;
+
+            svg {
+                color: var(--c-on-accent) !important;
+            }
+
+            &:disabled {
+                background-color: hsla(var(--accent-hsl) / .12) !important;
+            }
+        }
+    }
+}
+
+/* 
+"Port to a language" classes:
+.hover\:bg-gray-100\/75 .dark\:hover\:bg-gray-700 .bg-gray-100\/50 .dark\:bg-gray-700\/50
+.hover:bg-gray-100/75 .dark:hover:bg-gray-700 */
+
+/* Select a "Text style" dialog: Heading 1 | Heading 2 | Heading 3 | Body radix dialog */
+[role="dialog"]:has(div.flex.flex-col.items-stretch.rounded-xl.bg-token-main-surface-primary.shadow-xl > button[class*="hover:bg-token-main-surface-secondary"] > .text-5xl.font-semibold) {
+    padding: calc(var(--p-dialog) * 0.3) !important;
+    border-radius: calc(var(--br-dialog) * 0.5) !important;
+
+    /* Wrapper of the Heading 1, Heading 2, Heading 3 and Body buttons */
+    & > div.rounded-xl.bg-token-main-surface-primary.shadow-xl {
+        box-shadow: none !important;
+    }
+
+    /* "Text style" dialog of: Headings and body text style */
+    button[class*="hover:bg-token-main-surface-secondary"] {
+        &:hover {
+            --main-surface-secondary: var(--c-surface-3) !important;
+        }
+    }
+}
+
+
+/* Hide the floating button when Canvas is opened */
+body:has(.absolute.z-20.h-full.transition-shadow.overflow-hidden.left-0 section.popover main #codemirror),
+body:has(.absolute.z-20.h-full.transition-shadow.overflow-hidden.left-0 section.popover main #prosemirror-editor-container),
+body:has(.absolute.z-20.h-full.transition-shadow.overflow-hidden.left-0 section.popover main [class*="absolute left-0 top-0 h-full w-full rotate-45 bg-gradient-to-r from-transparent via-black/20 to-transparent opacity-50 dark:via-white/5"]) {
+    .gpth__floating {
+        opacity: 0;
+        pointer-events: none;
+    }
+}

@@ -72,3 +72,92 @@ $xxl: 96em; // 1536px
 @include dev('xxl') {
     // Your styles for 2x extra-large screens (min-width: 1536px)
 } */
+
+
+/* @mixin container($bp) {
+    @if $bp =='xxs' {
+        @container (max-width: #{$xxs}) {
+            @content;
+        }
+    }
+
+    @if $bp =='xs' {
+        @container (max-width: #{$xs}) {
+            @content;
+        }
+    }
+
+    @if $bp =='sm' {
+        @container (max-width: #{$sm}) {
+            @content;
+        }
+    }
+
+    @if $bp =='md' {
+        @container (max-width: #{$md}) {
+            @content;
+        }
+    }
+
+    @if $bp =='lg' {
+        @container (max-width: #{$lg}) {
+            @content;
+        }
+    }
+
+    @if $bp =='xl' {
+        @container (max-width: #{$xl}) {
+            @content;
+        }
+    }
+
+    @if $bp =='xxl' {
+        @container (min-width: #{$xxl}) {
+            @content;
+        }
+    }
+} */
+
+@mixin container($bp, $name: main) {
+    @if $bp =='xxs' {
+        @container #{$name} (max-width: #{$xxs}) {
+            @content;
+        }
+    }
+
+    @if $bp =='xs' {
+        @container #{$name} (max-width: #{$xs}) {
+            @content;
+        }
+    }
+
+    @if $bp =='sm' {
+        @container #{$name} (max-width: #{$sm}) {
+            @content;
+        }
+    }
+
+    @if $bp =='md' {
+        @container #{$name} (max-width: #{$md}) {
+            @content;
+        }
+    }
+
+    @if $bp =='lg' {
+        @container #{$name} (max-width: #{$lg}) {
+            @content;
+        }
+    }
+
+    @if $bp =='xl' {
+        @container #{$name} (max-width: #{$xl}) {
+            @content;
+        }
+    }
+
+    @if $bp =='xxl' {
+        @container #{$name} (min-width: #{$xxl}) {
+            @content;
+        }
+    }
+}

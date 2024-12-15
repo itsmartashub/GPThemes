@@ -79,19 +79,37 @@ main form {
 			}
 		}
 
-		div:has(> input[type='file']) {
+		/* "Attach files", "Use a tool", "Open in canvas" buttons, and all others that have that class */
+		span > button.h-8.rounded-lg[aria-label]:has(svg) {
+			background-color: transparent;
 
-			/* 📎 "Attach files" svg */
-			button:has(> svg) {
-				background-color: hsla(var(--accent-hsl) / 0.15) !important;
+			svg {
+				color: var(--c-accent) !important;
+			}
 
-				// margin-bottom: calc(var(--p-prompt-textarea) / 2);
-
-				svg {
-					color: var(--c-accent) !important;
-				}
+			&:hover {
+				background-color: hsla(var(--accent-hsl) / 0.13) !important;
 			}
 		}
+
+		span > button[aria-label="Open in canvas"]:has(svg) {
+			background-color: hsla(var(--accent-hsl) / 0.13) !important;
+		}
+
+
+		// div:has(> input[type='file']) {
+
+		// 	/* 📎 "Attach files" svg */
+		// 	button:has(> svg) {
+		// 		background-color: hsla(var(--accent-hsl) / 0.15) !important;
+
+		// 		// margin-bottom: calc(var(--p-prompt-textarea) / 2);
+
+		// 		svg {
+		// 			color: var(--c-accent) !important;
+		// 		}
+		// 	}
+		// }
 
 		/* 🖼️ "Attach Files" - attached image wrapper */
 		div[type='button'][aria-haspopup='dialog'] {
