@@ -28,7 +28,7 @@ const renderColorsTab = `
         </div>
       </div>
       <footer class="flex justify-center mt-10">
-		${renderButton({ id: 'resetAllAccents', content: 'Reset Fonts', disabled: false, className: 'btn-primary' })}
+		${renderButton({ id: 'resetAllAccents', content: 'Reset Colors', disabled: false, className: 'btn-primary' })}
       </footer>
     </section>
 `
