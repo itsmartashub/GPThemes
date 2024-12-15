@@ -18,14 +18,33 @@ function initTheme() {
 }
 
 function setTheme(theme, isOLED = false) {
+	const currentTheme = localStorage.getItem('theme')
+	if (currentTheme === theme && localStorage.getItem('isOLED') === String(isOLED)) return // Skip redundant updates
+
 	localStorage.setItem('theme', theme)
 	localStorage.setItem('isOLED', isOLED)
+
+	// Show loader during theme change
+	// showLoader()
+
 	applyTheme(theme, isOLED)
+
+	// Simulate a `storage` event to ensure other components react
+	const event = new StorageEvent('storage', {
+		key: 'theme',
+		newValue: theme,
+		oldValue: currentTheme,
+		storageArea: localStorage,
+	})
+	window.dispatchEvent(event)
+
 	closeFloatingOptions()
+
+	// Hide loader after applying theme
+	// setTimeout(hideLoader, 100) // Adjust delay as needed for smoothness
 }
 
 function applyTheme(theme, isOLED) {
-	// console.log('Applying theme:', theme, 'OLED:', isOLED)
 	const htmlTag = document.documentElement
 	let appliedTheme = theme
 
@@ -51,9 +70,6 @@ function handleChangeTheme(e) {
 
 	const themeButtonID = themeButton.id
 
-	// console.log('Changing theme:', { themeButtonID })
-
-	// if (themeButtonID === 'light' || themeButtonID === 'dark' || themeButtonID === 'system') {
 	if (Object.values(THEMES).includes(themeButtonID)) {
 		setTheme(themeButtonID, false)
 	} else if (themeButtonID === 'oled') {
@@ -65,11 +81,39 @@ function handleChangeTheme(e) {
 
 function init() {
 	initTheme()
-	window.matchMedia('(prefers-color-scheme: light)').addListener(() => {
+	window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
 		if (localStorage.getItem('theme') === THEMES.SYSTEM) {
 			initTheme() // Re-init to apply correct system theme
 		}
 	})
 }
+
+/* function showLoader() {
+	let loader = document.getElementById('theme-loader')
+	if (!loader) {
+		loader = document.createElement('div')
+		loader.id = 'theme-loader'
+		loader.style.position = 'fixed'
+		loader.style.top = '0'
+		loader.style.left = '0'
+		loader.style.width = '100%'
+		loader.style.height = '100%'
+		loader.style.backgroundColor = 'rgba(0, 0, 0, 0.5)' // Semi-transparent background
+		loader.style.zIndex = '9999'
+		loader.style.display = 'flex'
+		loader.style.alignItems = 'center'
+		loader.style.justifyContent = 'center'
+		loader.innerHTML = '<div class="spinner"></div>' // Customize spinner as needed
+		document.body.appendChild(loader)
+	}
+	loader.style.display = 'flex'
+}
+
+function hideLoader() {
+	const loader = document.getElementById('theme-loader')
+	if (loader) {
+		loader.style.display = 'none'
+	}
+} */
 
 export { init, handleChangeTheme }
