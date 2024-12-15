@@ -1,41 +1,39 @@
 /* ______ CODE CANVAS: CM CodeMirror EDITOR */
 
-#codemirror {
 
-    .cm-editor {
+.cm-editor {
 
-        // .ͼ1p.cm-focused .cm-selectionBackground, .ͼ1p .cm-line::selection, .ͼ1p .cm-selectionLayer .cm-selectionBackground, .ͼ1p .cm-content ::selection {
-        //     background: #6199ff2f !important;
-        // }
-        .cm-content {
-            caret-color: var(--c-accent) !important;
+    // .ͼ1p.cm-focused .cm-selectionBackground, .ͼ1p .cm-line::selection, .ͼ1p .cm-selectionLayer .cm-selectionBackground, .ͼ1p .cm-content ::selection {
+    //     background: #6199ff2f !important;
+    // }
+    .cm-content {
+        caret-color: var(--c-accent) !important;
 
-            ::selection,
-            .cm-selectionLayer .cm-selectionBackground,
-            // .cm-line span.cm-focused .cm-selectionBackground,
-            .cm-line > *::selection,
-            .cm-line::selection {
-                // background: var(--c-accent) !important;
-                // color: var(--c-on-accent) !important;
-                background: hsla(var(--accent-hsl) / .14) !important;
-                color: var(--c-accent) !important;
-            }
-        }
-
-        &,
-        .cm-gutters {
-            background-color: var(--c-bg-cm) !important;
-        }
-
-        .cm-activeLineGutter {
-            background-color: hsla(var(--accent-hsl) / .2) !important;
+        ::selection,
+        .cm-selectionLayer .cm-selectionBackground,
+        // .cm-line span.cm-focused .cm-selectionBackground,
+        .cm-line > *::selection,
+        .cm-line::selection {
+            // background: var(--c-accent) !important;
+            // color: var(--c-on-accent) !important;
+            background: hsla(var(--accent-hsl) / .14) !important;
             color: var(--c-accent) !important;
         }
+    }
 
-        .cm-line {
-            [class^="_modelCursor"]::after {
-                color: var(--c-accent);
-            }
+    &,
+    .cm-gutters {
+        background-color: var(--c-bg-cm) !important;
+    }
+
+    .cm-activeLineGutter {
+        background-color: hsla(var(--accent-hsl) / .2) !important;
+        color: var(--c-accent) !important;
+    }
+
+    .cm-line {
+        [class^="_modelCursor"]::after {
+            color: var(--c-accent);
         }
     }
 }
@@ -46,6 +44,12 @@
     & > div.bg-token-main-surface-primary.ProseMirror,
     .from-token-main-surface-primary {
         --main-surface-primary: var(--c-bg-cm) !important;
+    }
+
+    .cm-editor {
+        background-color: var(--c-surface-2) !important;
+        border-radius: var(--br);
+        border: 1px solid var(--c-border);
     }
 }
 
