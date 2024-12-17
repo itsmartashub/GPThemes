@@ -25,7 +25,7 @@ function setTheme(theme, isOLED = false) {
 	localStorage.setItem('isOLED', isOLED)
 
 	// Show loader during theme change
-	// showLoader()
+	showLoader()
 
 	applyTheme(theme, isOLED)
 
@@ -41,7 +41,7 @@ function setTheme(theme, isOLED = false) {
 	closeFloatingOptions()
 
 	// Hide loader after applying theme
-	// setTimeout(hideLoader, 100) // Adjust delay as needed for smoothness
+	setTimeout(hideLoader, 100) // Adjust delay as needed for smoothness
 }
 
 function applyTheme(theme, isOLED) {
@@ -88,32 +88,29 @@ function init() {
 	})
 }
 
-/* function showLoader() {
-	let loader = document.getElementById('theme-loader')
+function showLoader() {
+	let loader = document.getElementById('gpth-theme-loader')
 	if (!loader) {
 		loader = document.createElement('div')
-		loader.id = 'theme-loader'
-		loader.style.position = 'fixed'
-		loader.style.top = '0'
-		loader.style.left = '0'
-		loader.style.width = '100%'
-		loader.style.height = '100%'
-		loader.style.backgroundColor = 'rgba(0, 0, 0, 0.5)' // Semi-transparent background
-		loader.style.zIndex = '9999'
-		loader.style.display = 'flex'
-		loader.style.alignItems = 'center'
-		loader.style.justifyContent = 'center'
-		loader.innerHTML = '<div class="spinner"></div>' // Customize spinner as needed
+		loader.id = 'gpth-theme-loader'
+		loader.innerHTML = `
+		<div class="gpth-theme-loader__content">
+			<p class="gpth-theme-loader__title"><span>theme</span> <span>changing</span></p>
+			
+			<div class="gpth-theme-loader__card">
+				<p><span>LOAD</span><span>ING...</span></p>
+			</div>
+		</div>` // Customize spinner as needed
 		document.body.appendChild(loader)
 	}
 	loader.style.display = 'flex'
 }
 
 function hideLoader() {
-	const loader = document.getElementById('theme-loader')
+	const loader = document.getElementById('gpth-theme-loader')
 	if (loader) {
 		loader.style.display = 'none'
 	}
-} */
+}
 
 export { init, handleChangeTheme }
