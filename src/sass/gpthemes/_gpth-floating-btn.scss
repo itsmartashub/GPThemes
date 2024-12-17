@@ -46,7 +46,7 @@
 			backdrop-filter: blur(10px);
 
 			border-radius: 50vw;
-			transition: transform 0.15s $easeOutCubic, background-color 0.3s $easeOutCubic;
+			transition: transform 0.15s $easeOutCubic, background-color 0.3s $easeOutCubic, color 0.3s $easeOutCubic;
 			cursor: pointer;
 
 			&::after {

@@ -1,17 +1,18 @@
 /* ___ General */
 button,
 li,
-a,
+a:not([href^="/c/"], [href^="/gpts"]),
 svg,
 [class*=':hover'],
 [role='switch'] span[data-state] {
-	transition: all 0.25s ease-in-out;
+	// transition: all 0.25s ease-in-out;
 
-	// transition:
-	//     all .35s var(--ease-default),
-	//     opacity .3 ease-in-out,
-	//     background-color .3 ease-in-out,
-	//     color .3 ease-in-out;
+	transition:
+		transform .2s ease,
+		opacity .2s ease,
+		background-color .2s ease,
+		color .2s ease,
+		opacity .2s ease;
 
 	/*     transition:
         transform .25s var(--ease-default),
@@ -42,6 +43,7 @@ svg,
     - [aria-label^="Delete"])  | "Delete" icon in "Shared links" and "Archived Chats" 
     - [aria-label="Unarchive conversation"])  | "Unarchive" icon in "Archived Chats"
    */
+
 button:not(.btn,
 	[role='tab'],
 	[role='combobox'],
