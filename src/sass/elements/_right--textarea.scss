@@ -200,63 +200,64 @@ main form {
 	}
 
 	/* @ popover showed when typed / in textarea-prompt with "Picture" and "Search" */
-	.absolute:has(>.popover.bg-token-main-surface-primary) {
+	/* 	.absolute:has(>.popover.bg-token-main-surface-primary) {
 		& > .bg-token-main-surface-primary {
 			// background-color: var(--c-surface-3) !important;
 			--main-surface-primary: var(--c-surface-3) !important;
 		}
-	}
+	} */
 
 	/* @mentions in textarea */
 	// [placeholder^="Search recent and pinned GPTs"]
-	.absolute:has(>.popover input[placeholder*='GPTs']) {
+	// TODO: REMOVED TO RADIX DIALOGS DUE TO RECENT GPT CHANGES
+	// .absolute:has(>.popover input[placeholder*='GPTs']) {
 
-		.popover {
-			backdrop-filter: blur(30px) !important;
-			border: hsla(var(--accent-hsl) / 0.5);
-			background-color: hsla(var(--accent-hsl) / 0.12) !important;
-			box-shadow: var(--box-shadow-textarea);
+	// 	.popover {
+	// 		backdrop-filter: blur(30px) !important;
+	// 		border: hsla(var(--accent-hsl) / 0.5);
+	// 		background-color: hsla(var(--accent-hsl) / 0.12) !important;
+	// 		box-shadow: var(--box-shadow-textarea);
 
-			.overflow-y-auto {
-				--c-scrollbar-thumb: hsla(var(--accent-hsl) / 0.3) !important;
-			}
-		}
+	// 		.overflow-y-auto {
+	// 			--c-scrollbar-thumb: hsla(var(--accent-hsl) / 0.3) !important;
+	// 		}
+	// 	}
 
-		/* @mentions - Search GPTs */
-		input {
-			background-color: hsla(var(--accent-hsl) / 0.1) !important;
-			// background-color: transparent !important;
-			border: 1px solid hsla(var(--accent-hsl) / 0.4) !important;
-			border-radius: var(--br-btn) !important;
-			color: var(--c-accent) !important;
-			margin-bottom: 1rem;
-			padding: var(--p-btn) !important;
-		}
+	// 	/* @mentions - Search GPTs */
+	// 	input {
+	// 		background-color: hsla(var(--accent-hsl) / 0.1) !important;
+	// 		// background-color: transparent !important;
+	// 		border: 1px solid hsla(var(--accent-hsl) / 0.4) !important;
+	// 		border-radius: var(--br-btn) !important;
+	// 		color: var(--c-accent) !important;
+	// 		margin-bottom: 1rem;
+	// 		padding: var(--p-btn) !important;
+	// 	}
 
 
-		/* @mentions - GPTs list, scrollable product parent */
-		.max-h-40.overflow-y-auto {
-			& > div:not(:last-child) {
-				margin-bottom: 0.5rem;
-			}
-		}
+	// 	/* @mentions - GPTs list, scrollable product parent */
+	// 	.max-h-40.overflow-y-auto {
+	// 		& > div:not(:last-child) {
+	// 			margin-bottom: 0.5rem;
+	// 		}
+	// 	}
 
-		/* @mentions - Active GPTs item */
-		.bg-token-main-surface-secondary {
-			background-color: var(--c-accent) !important;
-			color: var(--c-on-accent) !important;
+	// 	/* @mentions - Active GPTs item */
+	// 	.bg-token-main-surface-secondary {
+	// 		background-color: var(--c-accent) !important;
+	// 		color: var(--c-on-accent) !important;
 
-			[class*='text-'] {
-				color: currentColor !important;
-			}
-		}
+	// 		[class*='text-'] {
+	// 			color: currentColor !important;
+	// 		}
+	// 	}
 
-		[class*='hover:bg-token-main-surface-secondary']:not(.bg-token-main-surface-secondary) {
-			&:hover {
-				background-color: hsla(var(--accent-hsl) / 0.1) !important;
-			}
-		}
-	}
+	// 	[class*='hover:bg-token-main-surface-secondary']:not(.bg-token-main-surface-secondary) {
+	// 		&:hover {
+	// 			background-color: hsla(var(--accent-hsl) / 0.1) !important;
+	// 		}
+	// 	}
+	// }
 
 	/* In DALLE there are random button examples above the textarea: ➕ Mosaic, ➕ 3D Wireframe, ➕ Claymation and shuffle btn, and arround that is some ugly gradient */
 	.absolute:has(.bg-gradient-to-t) {
