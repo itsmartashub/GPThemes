@@ -654,6 +654,7 @@
 	[role='dialog'] {
 
 		/* This fix and bg of radix dialogs like when type "/" and "@" in prompt field */
+		&.bg-token-main-surface-primary,
 		.bg-token-main-surface-primary {
 			--main-surface-primary: var(--c-surface-3) !important;
 			// background-color: var(--main-surface-primary);
