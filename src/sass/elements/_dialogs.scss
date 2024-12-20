@@ -1,7 +1,7 @@
 /* ===================== DIAOGS ====================  
 not(> [data-comment-id]) - dialog without code comment like in "Run" python code console ("Fix bug")
 */
-[role='dialog']:not(:has(>[data-comment-id])) {
+[role='dialog']:not(:has(>[data-comment-id]), :empty) {
 	padding: var(--p-dialog) !important;
 	background-color: var(--c-bg-dialog) !important;
 	border-radius: var(--br-dialog) !important;
