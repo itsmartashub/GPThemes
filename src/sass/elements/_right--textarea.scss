@@ -120,37 +120,7 @@ main form {
 			}
 		}
 
-		/* new NEW CHAT layout - Autocomplete suggestions - Element when clicked example cards below prompt textarea: "Create image", "Summarize text", "Analyze data", "Analyze images", and more... */
-		// & + .absolute.left-0.top-full:has(ul) {
-		& + .absolute.left-0.bg-token-main-surface-primary:has(ul) {
-			// background-color: var(--c-bg-chats-container);
-			margin-top: 0.2rem;
-			padding: 0 !important;
-			border-radius: var(--br-btn-big);
-			background-color: hsla(var(--accent-hsl) / 0.08) !important;
-			backdrop-filter: blur(20px);
 
-			/* List of examples when clicked some of the cards below prompt field: "Summarize notes from a meeting", "Summarize my lease agreemen", etc */
-			ul > li > button {
-				background: transparent !important;
-
-				/* "Summarize" or "Analyze" etc */
-				span.text-token-text-tertiary {
-					--text-tertiary: var(--c-accent) !important;
-				}
-
-				/* The rest of the sentence after the word "Summarize", "Analyze" etc */
-				span.text-token-text-primary {
-					font-weight: 500;
-				}
-
-				/* autocomplete suggestion on hover/select by keyboard arrows */
-				&.bg-token-main-surface-secondary {
-					background-color: hsla(var(--accent-hsl) / 0.12) !important;
-					transform: translateY(-2px);
-				}
-			}
-		}
 
 		// hsla(var(--accent-hsl) / 1) 100%);
 
@@ -193,6 +163,39 @@ main form {
 				color: var(--c-accent);
 			}
 
+		}
+	}
+
+
+	/* new NEW CHAT layout - Autocomplete suggestions - Element when clicked example cards below prompt textarea: "Create image", "Summarize text", "Analyze data", "Analyze images", and more... */
+	// & + .absolute.left-0.top-full:has(ul) {
+	.group .absolute.left-0.bg-token-main-surface-primary:has(ul) {
+		// background-color: var(--c-bg-chats-container);
+		margin-top: 0.2rem;
+		padding: 0 !important;
+		border-radius: var(--br-btn-big);
+		background-color: hsla(var(--accent-hsl) / 0.08) !important;
+		backdrop-filter: blur(20px);
+
+		/* List of examples when clicked some of the cards below prompt field: "Summarize notes from a meeting", "Summarize my lease agreemen", etc */
+		ul > li > button {
+			background: transparent !important;
+
+			/* "Summarize" or "Analyze" etc */
+			span.text-token-text-tertiary {
+				--text-tertiary: var(--c-accent) !important;
+			}
+
+			/* The rest of the sentence after the word "Summarize", "Analyze" etc */
+			span.text-token-text-primary {
+				font-weight: 500;
+			}
+
+			/* autocomplete suggestion on hover/select by keyboard arrows */
+			&.bg-token-main-surface-secondary {
+				background-color: hsla(var(--accent-hsl) / 0.12) !important;
+				transform: translateY(-2px);
+			}
 		}
 	}
 
