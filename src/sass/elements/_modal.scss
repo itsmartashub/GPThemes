@@ -3,7 +3,6 @@
 .fixed.inset-0[class*='bg-black/90'] {
 	background-color: var(--c-bg-modal) !important;
 	backdrop-filter: blur(var(--blur-modal)) !important;
-	// z-index: var(--z-modal);
 
 	/* ===================== DIALOGS ====================  */
 	[role='dialog'] {
@@ -263,6 +262,11 @@
 				padding: var(--p-btn) !important;
 				height: 100% !important;
 				margin: 0 0.8rem;
+			}
+
+			/* "Flexible plan" and "Annual plan" radio buttons */
+			button[role="radio"][aria-checked="false"]:not(:hover) {
+				background-color: hsla(var(--accent-hsl) / 0.3);
 			}
 		}
 
