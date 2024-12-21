@@ -413,6 +413,53 @@
 			}
 		}
 
+		/* ___ Web Searched Images with links*/
+		&:has(img.h-full.object-contain[class*="max-w-[100vw]"]) {
+			a[rel="noopener"].min-h-20.w-full {
+				width: max-content;
+				max-width: 100%;
+				background-color: hsla(var(--accent-hsl) / .12);
+				border: 1px solid hsla(var(--accent-hsl) / 0.14);
+				border-radius: var(--br-btn);
+				color: var(--c-accent);
+				padding: 1rem;
+				margin: 1rem;
+
+				// .truncate {
+				// 	color: var(--c-accent) !important;
+				// }
+
+				/* Link source */
+				.text-token-text-tertiary:has(img[alt="Favicon"]) {
+					color: var(--c-accent) !important;
+					font-weight: bold;
+					text-transform: uppercase;
+
+					img[alt="Favicon"] {
+						border: 1px solid hsla(var(--accent-hsl) / 0.5);
+					}
+				}
+
+				&:hover {
+					transform: translatex(2px);
+				}
+			}
+
+			/* Image counter parent */
+			.absolute.right-4.top-4 {
+
+				/* Image counter that have the close button next to it */
+				.text-token-text-tertiary:has(~ button.h-9.w-9) {
+					color: var(--c-accent);
+					background-color: hsla(var(--accent-hsl) / .12);
+					border: 1px solid hsla(var(--accent-hsl) / 0.14);
+					border-radius: 50vw;
+					padding: 0.2rem 1rem !important;
+					font-weight: 500;
+				}
+			}
+		}
+
 		/* ___ DALLE huge dialog when opening DALLE image - desktop only*/
 		// &.divide-x:has(button[aria-label="Toggle Sidebar"]) {
 		&.h-\[100dvh\].divide-x {
