@@ -79,8 +79,9 @@ main form {
 			}
 		}
 
-		/* "Attach files", "Use a tool", "Open in canvas" buttons, and all others that have that class */
-		span > button.h-8.rounded-lg[aria-label]:has(svg) {
+		/* "Attach files", "Use a tool", "Open in canvas" buttons, and all others that have that class 
+		- not([aria-pressed="true"]) is for the "Search the web" button when selected which is defined in global bg with: [class*="bg-blue-250"]  */
+		span > button.h-8.rounded-lg[aria-label]:has(svg):not([aria-pressed="true"]) {
 			background-color: transparent;
 
 			svg {
@@ -95,6 +96,12 @@ main form {
 		span > button[aria-label="Open in canvas"]:has(svg) {
 			background-color: hsla(var(--accent-hsl) / 0.13) !important;
 		}
+
+		// span > button[aria-pressed="true"][aria-label="Search the web"]:has(svg) {
+		// 	svg {
+		// 		color: currentColor !important;
+		// 	}
+		// }
 
 
 		// div:has(> input[type='file']) {
