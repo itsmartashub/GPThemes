@@ -26,14 +26,23 @@ function createLoader() {
 	loader.id = LOADER_CONFIG.ID
 
 	loader.innerHTML = `
-      <div class="${LOADER_CONFIG.CLASSES.CONTENT}">
-        <p class="${LOADER_CONFIG.CLASSES.TITLE}">
+	  <div class="${LOADER_CONFIG.CLASSES.CONTENT}">
+	    <p class="${LOADER_CONFIG.CLASSES.TITLE}">
+	      <span>changing</span>
+	      <span>theme</span>
+	    </p>
+	    <div class="${LOADER_CONFIG.CLASSES.SPINNER}"></div>
+	  </div>
+	`
+	/* 	loader.innerHTML = `
+      <div class="gpth-theme-loader__content">
+        <p class="gpth-theme-loader__title">
           <span>changing</span>
           <span>theme</span>
         </p>
-        <div class="${LOADER_CONFIG.CLASSES.SPINNER}"></div>
+        <div class="gpth-theme-loader__spinner"></div>
       </div>
-    `
+    ` */
 
 	loader.style.display = 'none'
 	document.body.appendChild(loader)
@@ -54,11 +63,25 @@ function showLoader() {
 	const loader = loaderElement || createLoader()
 	loader.style.display = 'grid'
 
-	// Force reflow for animation
-	loader.offsetHeight
+	// Use requestAnimationFrame for proper timing
+	requestAnimationFrame(() => {
+		loader.style.animation = 'none'
+		loader.offsetHeight
+		loader.style.animation = 'fadeIn 0.2s ease-out'
+
+		const spinner = loader.querySelector('.gpth-theme-loader__spinner')
+		spinner.style.animation = 'none'
+		spinner.offsetHeight
+		spinner.style.animation = 'spin 1s linear infinite'
+	})
+
+	// Debugging output
+	console.log('[Loader element] ', loader)
+	console.log('[Loader animation] ', getComputedStyle(loader).animation)
+	console.log('[Spinner animation] ', getComputedStyle(spinner).animation)
 
 	return new Promise((resolve) => {
-		setTimeout(resolve, LOADER_CONFIG.FADE_DURATION)
+		loader.addEventListener('animationend', () => resolve(), { once: true })
 	})
 }
 
@@ -113,6 +136,7 @@ async function setTheme(theme, isOLED = false) {
 	const currentTheme = localStorage.getItem('theme')
 	const currentOLED = localStorage.getItem('isOLED')
 
+	console.log('currentTheme: ', currentTheme)
 	// Skip if no changes
 	if (currentTheme === theme && currentOLED === String(isOLED)) {
 		return

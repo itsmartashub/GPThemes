@@ -9,14 +9,34 @@ const THEMES = {
 
 const LOADER_TIMEOUT = Number(getComputedStyle(document.documentElement).getPropertyValue('--loader_timeout')) || 300
 
-function getSystemTheme() {
-	return window.matchMedia('(prefers-color-scheme: light)').matches ? THEMES.LIGHT : THEMES.DARK
+function showLoader() {
+	let loader = document.getElementById('gpth-theme-loader')
+	if (!loader) {
+		loader = document.createElement('div')
+		loader.id = 'gpth-theme-loader'
+		loader.innerHTML = `
+            <div class="gpth-theme-loader__content">
+                <p class="gpth-theme-loader__title"><span>changing</span> <span>theme...</span></p>
+                <div class="gpth-theme-loader__spinner"></div>
+            </div>`
+		document.body.appendChild(loader)
+	}
+	loader.classList.add('show-loader')
 }
 
-function initTheme() {
-	const storedTheme = localStorage.getItem('theme') || THEMES.SYSTEM
-	const isOLED = localStorage.getItem('isOLED') === 'true'
-	applyTheme(storedTheme, isOLED)
+function hideLoader() {
+	const loader = document.getElementById('gpth-theme-loader')
+	if (loader) {
+		loader.classList.remove('show-loader')
+		loader.addEventListener('transitionend', () => loader.remove(), { once: true })
+
+		// Optional: Handle timeout if transitionend doesn't occur within a certain time
+		// setTimeout(() => loader.remove(), LOADER_TIMEOUT);
+	}
+}
+
+function getSystemTheme() {
+	return window.matchMedia('(prefers-color-scheme: light)').matches ? THEMES.LIGHT : THEMES.DARK
 }
 
 function setTheme(theme, isOLED = false) {
@@ -74,6 +94,11 @@ function handleChangeTheme(e) {
 	}
 }
 
+function initTheme() {
+	const storedTheme = localStorage.getItem('theme') || THEMES.SYSTEM
+	const isOLED = localStorage.getItem('isOLED') === 'true'
+	applyTheme(storedTheme, isOLED)
+}
 function init() {
 	initTheme()
 	window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
@@ -81,32 +106,6 @@ function init() {
 			initTheme() // Re-init to apply correct system theme
 		}
 	})
-}
-
-function showLoader() {
-	let loader = document.getElementById('gpth-theme-loader')
-	if (!loader) {
-		loader = document.createElement('div')
-		loader.id = 'gpth-theme-loader'
-		loader.innerHTML = `
-            <div class="gpth-theme-loader__content">
-                <p class="gpth-theme-loader__title"><span>changing</span> <span>theme...</span></p>
-                <div class="gpth-theme-loader__spinner"></div>
-            </div>`
-		document.body.appendChild(loader)
-	}
-	loader.classList.add('show-loader')
-}
-
-function hideLoader() {
-	const loader = document.getElementById('gpth-theme-loader')
-	if (loader) {
-		loader.classList.remove('show-loader')
-		loader.addEventListener('transitionend', () => loader.remove(), { once: true })
-
-		// Optional: Handle timeout if transitionend doesn't occur within a certain time
-		// setTimeout(() => loader.remove(), LOADER_TIMEOUT);
-	}
 }
 
 export { init, handleChangeTheme }

@@ -16,7 +16,46 @@ $loader: '.gpth-theme-loader' !default;
 $spinner-size: 5rem !default;
 $spinner-border: 3px !default;
 $title-size: 4rem !default;
-$gap: 2rem !default;
+$gap: 1rem !default;
+
+// ANIMATIONS
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes gradient-shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 300% 50%;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
 
 // Mixins
 @mixin text-gradient($direction: 90deg, $color1, $color2) {
@@ -25,18 +64,17 @@ $gap: 2rem !default;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: gradientFlow 4s linear infinite;
+    animation: gradientFlow 4s linear infinite !important;
 }
 
 @mixin spinner($size, $border-width) {
     width: $size;
     height: $size;
-    border: $border-width solid var(--loader-border-color, hsla(var(--accent-hsl) / 0.14));
-    border-top-color: var(--loader-accent-color, var(--c-accent));
+    border: $border-width solid hsla(var(--accent-hsl) / 0.14);
+    border-top-color: var(--c-accent);
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite !important;
 }
-
 
 
 // Main Styles
@@ -48,17 +86,22 @@ $gap: 2rem !default;
     z-index: 9999;
     display: grid;
     place-items: center;
+    width: 100vw;
+    height: 100dvh;
     background-color: var(--c-bg-sidebar);
-    animation: animFadeIn 0.2s ease-out;
+    animation: fadeIn 0.2s ease-out;
+    // @extend %animFadeIn;
 }
 
 #{$loader} {
     &__content {
         display: grid;
         place-items: center;
+        justify-content: center;
+        align-content: center;
         gap: $gap;
-        // background-color: red !important;
-
+        width: 100%;
+        height: 100%;
         // Prevent layout shift during animation
         contain: layout style;
     }
@@ -66,7 +109,6 @@ $gap: 2rem !default;
     &__title {
         font-size: $title-size;
         font-weight: 300;
-        // line-height: 1.2;
         text-align: center;
 
         // Optimize text rendering
@@ -74,9 +116,7 @@ $gap: 2rem !default;
         -webkit-font-smoothing: antialiased;
 
         span {
-            @include text-gradient(135deg,
-                var(--loader-gradient-start, var(--c-accent)),
-                var(--loader-gradient-end, hsla(var(--accent-hsl) / 0.2)));
+            @include text-gradient(135deg, var(--c-accent), hsla(var(--accent-hsl) / 0.2));
 
             // Prevent layout shift during animation
             display: inline-block;
@@ -84,14 +124,25 @@ $gap: 2rem !default;
     }
 
     &__spinner {
-        @include spinner($spinner-size, $spinner-border);
+        // @include spinner($spinner-size, $spinner-border);
+
+        width: $spinner-size;
+        height: $spinner-size;
+        border: $spinner-border solid hsla(var(--accent-hsl) / 0.14);
+        border-top-color: var(--c-accent);
+        border-radius: 50%;
+        animation: spin 1s linear infinite !important;
 
         // Optimize performance
         will-change: transform;
         contain: layout style;
 
+        backface-visibility: hidden;
+        perspective: 1000;
+        transform: translate3d(0, 0, 0);
+
         // Force GPU acceleration
-        transform: translateZ(0);
+        // transform: translateZ(0);
     }
 
     // Responsive adjustments
@@ -118,11 +169,3 @@ $gap: 2rem !default;
         }
     }
 }
-
-// Optional: Dark mode adjustments
-// @media (prefers-color-scheme: dark) {
-//     #gpth-theme-loader {
-//         --loader-border-color: hsla(var(--accent-hsl) / 0.2);
-//         --loader-bg-transparent: rgba(var(--c-bg-sidebar-rgb), 0.9);
-//     }
-// }
