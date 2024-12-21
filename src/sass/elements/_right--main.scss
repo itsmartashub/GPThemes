@@ -334,6 +334,22 @@ main [role='presentation'] {
 			}
 		}
 
+		/* [class*="group-hover/navigation"] je veliki source link u chat bubble kao onaj "ChatGPT Release Note" na sony */
+		// .not-prose .text-token-link:has(a [class*="bg-[#1D53BF0D]"]) {
+		.not-prose .text-token-link:has(a [class*="group-hover/navigation:"]) {
+			background-color: hsla(var(--accent-hsl) / .1) !important;
+			border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
+
+			/* Circle with light blue which should represents link logo/img? */
+			[class*="bg-[#1D53BF0D]"] {
+				background-color: hsla(var(--accent-hsl) / .4) !important;
+			}
+
+			&:hover {
+				background-color: hsla(var(--accent-hsl) / .2) !important;
+			}
+		}
+
 		/* Links listed from sources listed when using "/Search" */
 		a[class*="group/nav-list"] {
 			& > .absolute.bottom-0.left-0.top-0.bg-black\/10 {

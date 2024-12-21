@@ -267,3 +267,16 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 		color: var(--c-on-accent) !important;
 	}
 }
+
+/* Searched big link in Chat Bubbles */
+/* [class*="group-hover/navigation"] je veliki source link u chat bubble kao onaj "ChatGPT Release Note" na sony */
+.dark\:bg-token-main-surface-secondary:is(.dark *) {
+	--main-surface-secondary: var(--c-surface-2) !important;
+	// background-color: var(--main-surface-secondary);
+}
+
+/* [class*="group-hover/navigation"] je veliki source link u chat bubble kao onaj "ChatGPT Release Note" na sony (hover) */
+.hover\:dark\:bg-token-main-surface-tertiary:is(.dark *):hover {
+	--main-surface-tertiary: var(--c-surface-3) !important;
+	// background-color: var(--main-surface-tertiary);
+}
