@@ -97,6 +97,22 @@ main form {
 			background-color: hsla(var(--accent-hsl) / 0.13) !important;
 		}
 
+		/* Disabled Attach files btn in Temporary chat */
+		button.h-8.rounded-lg[aria-disabled="true"]:has(svg) {
+			background-color: transparent;
+
+			// svg.text-white {
+			// color: orange !important;
+			// }
+
+			svg {
+				color: var(--c-txt) !important;
+				transition: none !important;
+				// color: red !important;
+			}
+		}
+
+
 		// span > button[aria-pressed="true"][aria-label="Search the web"]:has(svg) {
 		// 	svg {
 		// 		color: currentColor !important;
