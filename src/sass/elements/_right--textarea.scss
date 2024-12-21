@@ -79,8 +79,9 @@ main form {
 			}
 		}
 
-		/* "Attach files", "Use a tool", "Open in canvas" buttons, and all others that have that class */
-		span > button.h-8.rounded-lg[aria-label]:has(svg) {
+		/* "Attach files", "Use a tool", "Open in canvas" buttons, and all others that have that class 
+		- not([aria-pressed="true"]) is for the "Search the web" button when selected which is defined in global bg with: [class*="bg-blue-250"]  */
+		span > button.h-8.rounded-lg[aria-label]:has(svg):not([aria-pressed="true"]) {
 			background-color: transparent;
 
 			svg {
@@ -95,6 +96,28 @@ main form {
 		span > button[aria-label="Open in canvas"]:has(svg) {
 			background-color: hsla(var(--accent-hsl) / 0.13) !important;
 		}
+
+		/* Disabled Attach files btn in Temporary chat */
+		button.h-8.rounded-lg[aria-disabled="true"]:has(svg) {
+			background-color: transparent;
+
+			// svg.text-white {
+			// color: orange !important;
+			// }
+
+			svg {
+				color: var(--c-txt) !important;
+				transition: none !important;
+				// color: red !important;
+			}
+		}
+
+
+		// span > button[aria-pressed="true"][aria-label="Search the web"]:has(svg) {
+		// 	svg {
+		// 		color: currentColor !important;
+		// 	}
+		// }
 
 
 		// div:has(> input[type='file']) {
@@ -120,37 +143,7 @@ main form {
 			}
 		}
 
-		/* new NEW CHAT layout - Autocomplete suggestions - Element when clicked example cards below prompt textarea: "Create image", "Summarize text", "Analyze data", "Analyze images", and more... */
-		// & + .absolute.left-0.top-full:has(ul) {
-		& + .absolute.left-0.bg-token-main-surface-primary:has(ul) {
-			// background-color: var(--c-bg-chats-container);
-			margin-top: 0.2rem;
-			padding: 0 !important;
-			border-radius: var(--br-btn-big);
-			background-color: hsla(var(--accent-hsl) / 0.08) !important;
-			backdrop-filter: blur(20px);
 
-			/* List of examples when clicked some of the cards below prompt field: "Summarize notes from a meeting", "Summarize my lease agreemen", etc */
-			ul > li > button {
-				background: transparent !important;
-
-				/* "Summarize" or "Analyze" etc */
-				span.text-token-text-tertiary {
-					--text-tertiary: var(--c-accent) !important;
-				}
-
-				/* The rest of the sentence after the word "Summarize", "Analyze" etc */
-				span.text-token-text-primary {
-					font-weight: 500;
-				}
-
-				/* autocomplete suggestion on hover/select by keyboard arrows */
-				&.bg-token-main-surface-secondary {
-					background-color: hsla(var(--accent-hsl) / 0.12) !important;
-					transform: translateY(-2px);
-				}
-			}
-		}
 
 		// hsla(var(--accent-hsl) / 1) 100%);
 
@@ -196,64 +189,98 @@ main form {
 		}
 	}
 
+
+	/* new NEW CHAT layout - Autocomplete suggestions - Element when clicked example cards below prompt textarea: "Create image", "Summarize text", "Analyze data", "Analyze images", and more... */
+	// & + .absolute.left-0.top-full:has(ul) {
+	.group .absolute.left-0.bg-token-main-surface-primary:has(ul) {
+		// background-color: var(--c-bg-chats-container);
+		margin-top: 0.2rem;
+		padding: 0 !important;
+		border-radius: var(--br-btn-big);
+		background-color: hsla(var(--accent-hsl) / 0.08) !important;
+		backdrop-filter: blur(20px);
+
+		/* List of examples when clicked some of the cards below prompt field: "Summarize notes from a meeting", "Summarize my lease agreemen", etc */
+		ul > li > button {
+			background: transparent !important;
+
+			/* "Summarize" or "Analyze" etc */
+			span.text-token-text-tertiary {
+				--text-tertiary: var(--c-accent) !important;
+			}
+
+			/* The rest of the sentence after the word "Summarize", "Analyze" etc */
+			span.text-token-text-primary {
+				font-weight: 500;
+			}
+
+			/* autocomplete suggestion on hover/select by keyboard arrows */
+			&.bg-token-main-surface-secondary {
+				background-color: hsla(var(--accent-hsl) / 0.12) !important;
+				transform: translateY(-2px);
+			}
+		}
+	}
+
 	/* @ popover showed when typed / in textarea-prompt with "Picture" and "Search" */
-	.absolute:has(>.popover.bg-token-main-surface-primary) {
+	/* 	.absolute:has(>.popover.bg-token-main-surface-primary) {
 		& > .bg-token-main-surface-primary {
 			// background-color: var(--c-surface-3) !important;
 			--main-surface-primary: var(--c-surface-3) !important;
 		}
-	}
+	} */
 
 	/* @mentions in textarea */
 	// [placeholder^="Search recent and pinned GPTs"]
-	.absolute:has(>.popover input[placeholder*='GPTs']) {
+	// TODO: REMOVED TO RADIX DIALOGS DUE TO RECENT GPT CHANGES
+	// .absolute:has(>.popover input[placeholder*='GPTs']) {
 
-		.popover {
-			backdrop-filter: blur(30px) !important;
-			border: hsla(var(--accent-hsl) / 0.5);
-			background-color: hsla(var(--accent-hsl) / 0.12) !important;
-			box-shadow: var(--box-shadow-textarea);
+	// 	.popover {
+	// 		backdrop-filter: blur(30px) !important;
+	// 		border: hsla(var(--accent-hsl) / 0.5);
+	// 		background-color: hsla(var(--accent-hsl) / 0.12) !important;
+	// 		box-shadow: var(--box-shadow-textarea);
 
-			.overflow-y-auto {
-				--c-scrollbar-thumb: hsla(var(--accent-hsl) / 0.3) !important;
-			}
-		}
+	// 		.overflow-y-auto {
+	// 			--c-scrollbar-thumb: hsla(var(--accent-hsl) / 0.3) !important;
+	// 		}
+	// 	}
 
-		/* @mentions - Search GPTs */
-		input {
-			background-color: hsla(var(--accent-hsl) / 0.1) !important;
-			// background-color: transparent !important;
-			border: 1px solid hsla(var(--accent-hsl) / 0.4) !important;
-			border-radius: var(--br-btn) !important;
-			color: var(--c-accent) !important;
-			margin-bottom: 1rem;
-			padding: var(--p-btn) !important;
-		}
+	// 	/* @mentions - Search GPTs */
+	// 	input {
+	// 		background-color: hsla(var(--accent-hsl) / 0.1) !important;
+	// 		// background-color: transparent !important;
+	// 		border: 1px solid hsla(var(--accent-hsl) / 0.4) !important;
+	// 		border-radius: var(--br-btn) !important;
+	// 		color: var(--c-accent) !important;
+	// 		margin-bottom: 1rem;
+	// 		padding: var(--p-btn) !important;
+	// 	}
 
 
-		/* @mentions - GPTs list, scrollable product parent */
-		.max-h-40.overflow-y-auto {
-			& > div:not(:last-child) {
-				margin-bottom: 0.5rem;
-			}
-		}
+	// 	/* @mentions - GPTs list, scrollable product parent */
+	// 	.max-h-40.overflow-y-auto {
+	// 		& > div:not(:last-child) {
+	// 			margin-bottom: 0.5rem;
+	// 		}
+	// 	}
 
-		/* @mentions - Active GPTs item */
-		.bg-token-main-surface-secondary {
-			background-color: var(--c-accent) !important;
-			color: var(--c-on-accent) !important;
+	// 	/* @mentions - Active GPTs item */
+	// 	.bg-token-main-surface-secondary {
+	// 		background-color: var(--c-accent) !important;
+	// 		color: var(--c-on-accent) !important;
 
-			[class*='text-'] {
-				color: currentColor !important;
-			}
-		}
+	// 		[class*='text-'] {
+	// 			color: currentColor !important;
+	// 		}
+	// 	}
 
-		[class*='hover:bg-token-main-surface-secondary']:not(.bg-token-main-surface-secondary) {
-			&:hover {
-				background-color: hsla(var(--accent-hsl) / 0.1) !important;
-			}
-		}
-	}
+	// 	[class*='hover:bg-token-main-surface-secondary']:not(.bg-token-main-surface-secondary) {
+	// 		&:hover {
+	// 			background-color: hsla(var(--accent-hsl) / 0.1) !important;
+	// 		}
+	// 	}
+	// }
 
 	/* In DALLE there are random button examples above the textarea: ➕ Mosaic, ➕ 3D Wireframe, ➕ Claymation and shuffle btn, and arround that is some ugly gradient */
 	.absolute:has(.bg-gradient-to-t) {

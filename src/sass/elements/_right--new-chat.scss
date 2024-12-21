@@ -39,7 +39,7 @@ main [role='presentation'] {
 }
 
 /* New "New Chat" layout prompt action cards */
-main [role='presentation'] div.w-full:has(> form #prompt-textarea) + div.hidden ul > li > button {
+main [role='presentation'] div.w-full:has(> form #composer-background) + div.hidden ul > li > button {
 	/* --c-bg-gradient: transparent !important;
 	--clr: hsla(var(--accent-hsl) / 0.2) !important; */
 	border: 1px solid hsla(var(--accent-hsl) / 0.12) !important;
@@ -59,7 +59,7 @@ main [role='presentation'] div.w-full:has(> form #prompt-textarea) + div.hidden 
 	}
 }
 
-html.light main [role='presentation'] div.w-full:has(> form #prompt-textarea) + div.hidden ul > li > button {
+html.light main [role='presentation'] div.w-full:has(> form #composer-background) + div.hidden ul > li > button {
 	color: var(--c-accent) !important;
 
 	.text-gray-600 {

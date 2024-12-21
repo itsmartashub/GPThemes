@@ -34,7 +34,7 @@
 @import 'elements/_tooltips';
 @import 'elements/_logo';
 @import 'elements/_modal';
-@import 'elements/_dialogs';
+@import 'elements/_radix-dialogs';
 @import 'elements/_right--main';
 @import 'elements/_canvas';
 @import 'elements/_right--new-chat';
@@ -46,6 +46,7 @@
 @import 'pages/_gpt-store';
 @import 'elements/_transitions';
 @import 'elements/_chats-textarea-max-width';
+@import 'elements/_search';
 
 /* ChatGPT A/B Testing */
 @import 'elements/_composer';

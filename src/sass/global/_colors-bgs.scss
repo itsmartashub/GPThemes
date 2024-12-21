@@ -236,6 +236,11 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 	// }
 }
 
+// [class*="dark:hover:bg-token-main-surface-secondary"]:hover {
+// 	// background-color: var(--c-surface-3) !important;
+// 	background-color: orange;
+// }
+
 // .bg-token-main-surface-tertiary {
 // 	background-color: var(--c-surface-1) !important;
 // }
@@ -245,4 +250,33 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 /* Blue indicator of unread messages*/
 .bg-blue-selection {
 	background-color: var(--c-accent) !important;
+}
+
+/* "🌐 Search" btn in prompt field */
+[class*="bg-blue-250"] {
+	background-color: hsla(var(--accent-hsl) / 0.2) !important;
+	color: var(--c-accent) !important;
+
+	svg {
+		color: currentColor !important;
+		transition: none !important;
+	}
+
+	&:hover {
+		background-color: var(--c-accent) !important;
+		color: var(--c-on-accent) !important;
+	}
+}
+
+/* Searched big link in Chat Bubbles */
+/* [class*="group-hover/navigation"] je veliki source link u chat bubble kao onaj "ChatGPT Release Note" na sony */
+.dark\:bg-token-main-surface-secondary:is(.dark *) {
+	--main-surface-secondary: var(--c-surface-2) !important;
+	// background-color: var(--main-surface-secondary);
+}
+
+/* [class*="group-hover/navigation"] je veliki source link u chat bubble kao onaj "ChatGPT Release Note" na sony (hover) */
+.hover\:dark\:bg-token-main-surface-tertiary:is(.dark *):hover {
+	--main-surface-tertiary: var(--c-surface-3) !important;
+	// background-color: var(--main-surface-tertiary);
 }
