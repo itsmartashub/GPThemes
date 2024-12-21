@@ -2,38 +2,29 @@ let issue = (hashNumber) =>
 	`<a href="https://github.com/itsmartashub/GPThemes/issues/${hashNumber}" target="_blank" rel="noopener noreferrer" class="changelog__seefullchangelog">#${hashNumber}</a>`
 
 const RELEASE_CHANGES = `
-<h1>🆕 Features </h1>
+
+<h3>🪄 Improvements</h3>
 <ul>
-	<li>
-		<strong>Add Canvas Code and Text support</strong> ${issue(84)}
-	</li>
+    <li><strong>Web Search Feature: </strong>Redesigned search experience with improved sources display and all related to web search feature ${issue(
+		96
+	)}</li>
+    <li><strong>Pop-up and Dialog Boxes: </strong>Added consistent backgrounds and hover effects to dialogs ${issue(
+		95
+	)}</li>
 </ul>
-<h3>🪄 Key Highlights</h3>
+
+<h3>🐛 Bug Fixes</h3>
 <ul>
-	<li>
-		Complete theme integration across Canvas components ${issue(86)}
-	</li>
-	<li>
-		Enhanced Canvas <code>code</code> and <code>text</code> editor experiences ${issue(89)}
-	</li>
-	<li>
-		Improved interactive controls and editing tools  ${issue(88)}
-	</li>
-	<li>
-		Refined Canvas dev environment and <code>console</code> ${issue(91)}
-	</li>
-	<li>
-		Optimized chat interface for Canvas integration ${issue(92)}
-	</li>
-	<li>
-		Add styling to <code>Use a tool</code> and <code>Open in canvas</code> button to match the theme ${issue(87)}
-	</li>
-	<li>
-		Hide the GPThemes floating btn when Canvas is opened ${issue(86)}
-	</li>
-	<li>
-		Fix overlay over chats when Canvas opened only in <code>Light</code> theme for <code>Firefox</code> ${issue(93)}
-	</li>
+    <li><strong>Pop-up and Dialog Boxes: </strong>Fixed various styling issues including empty dialogs which caused random circles and double spacing in menu ${issue(
+		95
+	)}</li>
+	<li><strong>Autocomplete Suggestions: </strong>Restored proper styling for autocomplete suggestion lists ${issue(
+		95
+	)}</li>
+	<li><strong>Tools Menu and GPTs Mentions: </strong>Restored proper styling for tools menus whhen typed <code>/</code> and GPTs mentions when typed <code>@</code> ${issue(
+		95
+	)}</li>
+    <li><strong>Text Canvas: </strong>Fixed code blocks appearance in edit history view</li>
 </ul>
 
 <h3>🚨 Known Issues</h3>
