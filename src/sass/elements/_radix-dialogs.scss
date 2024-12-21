@@ -651,7 +651,7 @@
 /* @ ===================== NEW DIALOGS ===================== */
 
 [data-radix-popper-content-wrapper] {
-	[role='dialog'] {
+	[role='dialog']:not(:empty) {
 
 		/* This fix and bg of radix dialogs like when type "/" and "@" in prompt field */
 		&.bg-token-main-surface-primary,

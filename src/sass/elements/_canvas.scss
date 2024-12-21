@@ -356,30 +356,6 @@
     }
 }
 
-/* 
-"Port to a language" classes:
-.hover\:bg-gray-100\/75 .dark\:hover\:bg-gray-700 .bg-gray-100\/50 .dark\:bg-gray-700\/50
-.hover:bg-gray-100/75 .dark:hover:bg-gray-700 */
-
-/* Select a "Text style" dialog: Heading 1 | Heading 2 | Heading 3 | Body radix dialog */
-[role="dialog"]:has(div.flex.flex-col.items-stretch.rounded-xl.bg-token-main-surface-primary.shadow-xl > button[class*="hover:bg-token-main-surface-secondary"] > .text-5xl.font-semibold) {
-    padding: calc(var(--p-dialog) * 0.3) !important;
-    border-radius: calc(var(--br-dialog) * 0.5) !important;
-
-    /* Wrapper of the Heading 1, Heading 2, Heading 3 and Body buttons */
-    & > div.rounded-xl.bg-token-main-surface-primary.shadow-xl {
-        box-shadow: none !important;
-    }
-
-    /* "Text style" dialog of: Headings and body text style */
-    button[class*="hover:bg-token-main-surface-secondary"] {
-        &:hover {
-            --main-surface-secondary: var(--c-surface-3) !important;
-        }
-    }
-}
-
-
 /* Hide the floating button when Canvas is opened */
 body:has(.absolute.z-20.h-full.transition-shadow.overflow-hidden.left-0 section.popover main #codemirror),
 body:has(.absolute.z-20.h-full.transition-shadow.overflow-hidden.left-0 section.popover main #prosemirror-editor-container),

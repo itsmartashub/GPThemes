@@ -397,14 +397,14 @@
 			// }
 		}
 
-		// &:has(img[alt='Uploaded image']) {
+		// &:has(img[alt='User uploaded image']) (when opened from attached file in prompt field) and &:has(img[alt='Uploaded image']) (when opened from conversation) {
 		/* ___ Uploaded image dialog (When clicked on image from gpt user chat (alt='Uploaded image'), and on mini attached preview in textarea) (alt='User uploaded image') */
 		&:has(img.h-full.w-full.object-contain, iframe) {
 			--c-bg-dialog: transparent;
 			--box-shadow: none;
 			// padding: 0 !important;
 
-			// img[alt='Uploaded image'] {
+			// img[alt='Uploaded image'] and img[alt='User uploaded image']
 			img.h-full.w-full.object-contain,
 			//iframe is dialog with Google Drive or One Drive preview when we try to attach the file from the one of the accounts (Google, OneDrive). This caused some frame around this dialog, thats bcs of margin and padding 
 			iframe {
