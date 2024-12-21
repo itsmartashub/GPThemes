@@ -365,3 +365,13 @@ body:has(.absolute.z-20.h-full.transition-shadow.overflow-hidden.left-0 section.
         pointer-events: none;
     }
 }
+
+
+/* Text Canvas: Code block when selected History view of edits. In that state it has unmatched bg with accent theme */
+// [class*="_main_"].ProseMirror:is(.dark *) pre:has(>code),
+[class*="_main_"].ProseMirror pre:has(>code) {
+    background-color: transparent !important;
+    // background-color: red !important;
+    border: 2px solid hsla(var(--accent-hsl) / .3) !important;
+    border-radius: var(--br-btn) !important;
+}
