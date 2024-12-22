@@ -45,10 +45,10 @@ function setTheme(theme, isOLED = false) {
 		localStorage.setItem('theme', theme)
 		localStorage.setItem('isOLED', isOLED)
 
+		showLoader()
+
 		applyTheme(theme, isOLED)
 		closeFloatingOptions()
-
-		showLoader()
 
 		window.dispatchEvent(
 			new StorageEvent('storage', {

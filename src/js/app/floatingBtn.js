@@ -1,7 +1,10 @@
 // Use a cross-browser storage API:
 // import browser from 'webextension-polyfill'
 import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './components/icons.js'
-import { handleChangeTheme } from './themeManager.js'
+// import { handleChangeTheme } from './themeManager.js'
+// import { handleChangeTheme } from './themeManager-2.js'
+import { handleChangeTheme } from './themeManager-2b.js'
+// import { handleChangeTheme } from './themeManager-3.js'
 import { createSettings } from './settingsManager.js'
 
 // State

@@ -8,16 +8,6 @@
 //     --loader-gradient-end: rgba(0, 122, 255, 0.2);
 // }
 
-// Import the loader styles
-// @import 'theme-loader';
-
-// Variables
-$loader: '.gpth-theme-loader' !default;
-$spinner-size: 5rem !default;
-$spinner-border: 3px !default;
-$title-size: 4rem !default;
-$gap: 1rem !default;
-
 // ANIMATIONS
 @keyframes spin {
     to {
@@ -55,7 +45,12 @@ $gap: 1rem !default;
     }
 }
 
-
+// Variables
+$loader: '.gpth-theme-loader' !default;
+$spinner-size: 5rem !default;
+$spinner-border: 3px !default;
+$title-size: 4rem !default;
+$gap: 2rem !default;
 
 // Mixins
 @mixin text-gradient($direction: 90deg, $color1, $color2) {
@@ -64,17 +59,18 @@ $gap: 1rem !default;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: gradientFlow 4s linear infinite !important;
+    animation: gradientFlow 4s linear infinite;
 }
 
 @mixin spinner($size, $border-width) {
     width: $size;
     height: $size;
-    border: $border-width solid hsla(var(--accent-hsl) / 0.14);
-    border-top-color: var(--c-accent);
+    border: $border-width solid var(--loader-border-color, hsla(var(--accent-hsl) / 0.14));
+    border-top-color: var(--loader-accent-color, var(--c-accent));
     border-radius: 50%;
-    animation: spin 1s linear infinite !important;
+    animation: spin 1s linear infinite;
 }
+
 
 
 // Main Styles
@@ -86,22 +82,17 @@ $gap: 1rem !default;
     z-index: 9999;
     display: grid;
     place-items: center;
-    width: 100vw;
-    height: 100dvh;
     background-color: var(--c-bg-sidebar);
     animation: fadeIn 0.2s ease-out;
-    // @extend %animFadeIn;
 }
 
 #{$loader} {
     &__content {
         display: grid;
         place-items: center;
-        justify-content: center;
-        align-content: center;
         gap: $gap;
-        width: 100%;
-        height: 100%;
+        // background-color: red !important;
+
         // Prevent layout shift during animation
         contain: layout style;
     }
@@ -109,6 +100,7 @@ $gap: 1rem !default;
     &__title {
         font-size: $title-size;
         font-weight: 300;
+        // line-height: 1.2;
         text-align: center;
 
         // Optimize text rendering
@@ -116,7 +108,9 @@ $gap: 1rem !default;
         -webkit-font-smoothing: antialiased;
 
         span {
-            @include text-gradient(135deg, var(--c-accent), hsla(var(--accent-hsl) / 0.2));
+            @include text-gradient(135deg,
+                var(--loader-gradient-start, var(--c-accent)),
+                var(--loader-gradient-end, hsla(var(--accent-hsl) / 0.2)));
 
             // Prevent layout shift during animation
             display: inline-block;
@@ -124,24 +118,14 @@ $gap: 1rem !default;
     }
 
     &__spinner {
-        // @include spinner($spinner-size, $spinner-border);
-
-        width: $spinner-size;
-        height: $spinner-size;
-        border: $spinner-border solid hsla(var(--accent-hsl) / 0.14);
-        border-top-color: var(--c-accent);
-        border-radius: 50%;
-        animation: spin 1s linear infinite !important;
+        display: inline-block;
+        @include spinner($spinner-size, $spinner-border);
 
         // Optimize performance
         will-change: transform;
-        contain: layout style;
+        // contain: layout style;
 
-        backface-visibility: hidden;
-        perspective: 1000;
-        transform: translate3d(0, 0, 0);
-
-        // Force GPU acceleration
+        // // Force GPU acceleration
         // transform: translateZ(0);
     }
 
@@ -169,3 +153,11 @@ $gap: 1rem !default;
         }
     }
 }
+
+// Optional: Dark mode adjustments
+// @media (prefers-color-scheme: dark) {
+//     #gpth-theme-loader {
+//         --loader-border-color: hsla(var(--accent-hsl) / 0.2);
+//         --loader-bg-transparent: rgba(var(--c-bg-sidebar-rgb), 0.9);
+//     }
+// }
