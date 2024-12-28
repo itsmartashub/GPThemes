@@ -1,76 +1,152 @@
-#gpth-theme-loader {
-    // Use CSS custom property for timing
-    --loader-duration: 300ms;
+// $loader: 'gpth-theme-loader' !default;
+// $spinnerSize: clamp(3rem, 5vw, 5rem) !default;
+// $spinnerBorderWidth: 3px !default;
 
-    // Optimize transitions
-    will-change: opacity;
-    backface-visibility: hidden;
-    transform: translateZ(0);
+// ##{$loader} {
+//     // Use CSS custom property for timing
+//     --loader-duration: calc(var(--loader_timeout) * 1ms);
 
-    // Base styles
+//     // Optimize transitions
+//     will-change: opacity;
+//     backface-visibility: hidden;
+//     transform: translateZ(0);
+
+//     // Base styles
+//     position: fixed;
+//     inset: 0;
+//     width: 100%;
+//     height: 100%;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     background-color: var(--c-bg-sidebar);
+//     z-index: 9999;
+
+//     // Initial state
+//     opacity: 0;
+//     pointer-events: none;
+
+//     // transition: opacity var(--loader-duration) cubic-bezier(0.4, 0, 0.2, 1);
+//     transition: opacity var(--loader-duration) linear;
+
+//     &.#{$loader}--show {
+//         opacity: 1;
+//         pointer-events: auto;
+
+//         .#{$loader}__spinner {
+//             animation-play-state: running !important;
+//             // animation: spin 0.5s infinite cubic-bezier(0.4, 0, 0.2, 1) forwards;
+//         }
+
+//         // .#{$loader}__title {
+//         //     animation-play-state: running !important;
+//         //     // animation: animShimmer 0.3s linear infinite forwards;
+//         // }
+//     }
+// }
+
+// .#{$loader} {
+//     &__content {
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//         gap: 2rem;
+//         transform: translateZ(0); // Force GPU acceleration
+//     }
+
+//     &__title {
+//         will-change: background-position;
+
+//         font-size: 4rem;
+//         font-weight: 200;
+//         position: relative;
+//         display: inline-block;
+//         color: transparent; // Hide the base text
+//         background: linear-gradient(90deg,
+//                 var(--c-accent) 0%,
+//                 var(--c-bg-sidebar) 50%,
+//                 var(--c-accent) 100%);
+//         background-size: 200% 100%;
+//         -webkit-background-clip: text;
+//         background-clip: text;
+//         text-align: center;
+
+//         // Optimize text rendering
+//         text-rendering: optimizeLegibility;
+//         -webkit-font-smoothing: antialiased;
+
+//         // animation: animShimmer 0.3s linear infinite forwards;
+//         // animation: animShimmer 0.3s linear infinite forwards paused;
+
+//         &::before {
+//             content: attr(data-text);
+//             position: absolute;
+//             top: 0;
+//             left: 0;
+//             right: 0;
+//             bottom: 0;
+//             color: var(--c-accent); // Fallback text color
+//             z-index: -1;
+//         }
+
+//     }
+
+//     &__spinner {
+//         will-change: transform;
+//         width: $spinnerSize;
+//         height: $spinnerSize;
+//         border: $spinnerBorderWidth solid hsla(var(--accent-hsl) / 0.2);
+//         border-top-color: var(--c-accent);
+//         border-radius: 50%;
+//         // animation: spin 0.5s infinite cubic-bezier(0.4, 0, 0.2, 1) forwards;
+//         animation: spin 0.5s infinite cubic-bezier(0.4, 0, 0.2, 1) forwards paused;
+//     }
+// }
+
+
+
+
+$loader: 'gpth-theme-loader' !default;
+$spinnerSize: clamp(3rem, 5vw, 5rem) !default;
+
+##{$loader} {
     position: fixed;
-    inset: 0; // More performant than setting individual positions
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--c-bg-sidebar);
+    inset: 0;
     z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--c-bg-sidebar);
 
-    // Initial state
+    // Improved performance
     opacity: 0;
-    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 0.2s ease-out, visibility 0s linear 0.2s;
 
-    // Smooth transitions
-    transition: opacity var(--loader-duration) cubic-bezier(0.4, 0, 0.2, 1);
+    // Better GPU utilization
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
 
-    @keyframes gradientFlow {
-        0% {
-            background-position: 0% 50%;
-        }
-
-        100% {
-            background-position: 300% 50%;
-        }
-    }
-
-    // @keyframes spin {
-    //     from {
-    //         transform: rotate(0deg);
-    //     }
-
-    //     to {
-    //         transform: rotate(360deg);
-    //     }
-    // }
-
-    &.show-loader {
+    &.#{$loader}--show {
         opacity: 1;
-        pointer-events: auto;
+        visibility: visible;
+        transition-delay: 0s;
 
-        .gpth-theme-loader__spinner {
-            animation: spin 1s infinite cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .gpth-theme-loader__title {
-            animation: animShimmer 1s linear infinite;
+        .#{$loader}__spinner {
+            animation-play-state: running;
         }
     }
 }
 
-.gpth-theme-loader {
+.#{$loader} {
     &__content {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 2rem;
-        transform: translateZ(0); // Force GPU acceleration
     }
 
     &__title {
-        will-change: background-position;
-
         font-size: 4rem;
         font-weight: 200;
         position: relative;
@@ -83,27 +159,26 @@
         background-size: 200% 100%;
         -webkit-background-clip: text;
         background-clip: text;
+        text-align: center;
 
-        &::before {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            color: var(--c-accent); // Fallback text color
-            z-index: -1;
-        }
-
+        // Optimize text rendering
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
     }
 
     &__spinner {
         will-change: transform;
-        width: clamp(3rem, 5vw, 5rem);
-        height: clamp(3rem, 5vw, 5rem);
+        width: $spinnerSize;
+        height: $spinnerSize;
         border: 3px solid hsla(var(--accent-hsl) / 0.2);
         border-top-color: var(--c-accent);
         border-radius: 50%;
-        // transition: border-color var(--loader-duration) ease;
+        animation: spin 0.5s cubic-bezier(0.4, 0, 0.2, 1) infinite paused;
     }
 }
+
+// @keyframes spin {
+//     to {
+//         transform: rotate(360deg);
+//     }
+// }
