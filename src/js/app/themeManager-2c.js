@@ -115,37 +115,15 @@ function setRootTheme(theme, isOLED) {
 	root.dataset.gptheme = effectiveTheme === THEMES.DARK && isOLED ? 'oled' : effectiveTheme
 }
 
-/* function applyRootClassAndScheme(theme) {
-	const root = document.documentElement
-	const appliedTheme = theme === THEMES.SYSTEM ? getSystemTheme() : theme
-
-	root.className = appliedTheme
-	root.style.colorScheme = appliedTheme
-}
-function applyRootDataAttr(theme, isOLED) {
-	const root = document.documentElement
-	const appliedTheme = theme === THEMES.SYSTEM ? getSystemTheme() : theme
-
-	root.dataset.gptheme = appliedTheme === THEMES.DARK && isOLED ? 'oled' : appliedTheme
-}
-function setRootTheme(theme, isOLED) {
-	applyRootClassAndScheme(theme)
-	applyRootDataAttr(theme, isOLED)
-} */
-
 function updateTheme(newTheme, isOLED = false) {
 	const { theme: currentTheme } = getStoredThemeState()
-	// const isCM = document.querySelector('section main .cm-editor')
 
 	if (currentTheme === newTheme && String(isOLED) === localStorage.getItem('isOLED')) return
 
 	// Update storage and DOM in a single operation
 	localStorage.setItem('theme', newTheme)
 	localStorage.setItem('isOLED', isOLED)
-	// applyRootDataAttr(newTheme, isOLED)
 	setRootTheme(newTheme, isOLED)
-
-	// if (!isCM) return
 
 	// Notify other tabs/windows
 	window.dispatchEvent(

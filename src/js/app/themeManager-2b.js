@@ -335,8 +335,13 @@ const waitForCodeMirror = () => {
 	return new Promise((resolve) => {
 		const observer = new MutationObserver(() => {
 			// Check if the className has changed
-			if (editor.className !== initialClassName) {
-				observer.disconnect() // Stop observing once the className changes
+			// if (editor.className !== initialClassName) {
+			// 	observer.disconnect() // Stop observing once the className changes
+			// 	resolve()
+			// }
+
+			if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+				observer.disconnect()
 				resolve()
 			}
 		})
@@ -344,13 +349,14 @@ const waitForCodeMirror = () => {
 		observer.observe(editor, {
 			attributes: true,
 			attributeFilter: ['class'], // Only observe class changes
+			subtree: true,
 		})
 
 		// Fallback timeout to avoid infinite waiting
 		setTimeout(() => {
 			observer.disconnect()
 			resolve()
-		}, 5000) // Adjust the timeout duration as needed
+		}, 1000) // Adjust the timeout duration as needed
 	})
 }
 
@@ -367,7 +373,7 @@ const applyTheme = async (theme, isOLED) => {
 		htmlTag.className = appliedTheme
 		htmlTag.style.colorScheme = appliedTheme
 		htmlTag.setAttribute('data-gptheme', isOLED ? 'oled' : appliedTheme)
-		isOLED ? htmlTag.setAttribute('data-oled', '') : htmlTag.removeAttribute('data-oled')
+		// isOLED ? htmlTag.setAttribute('data-oled', '') : htmlTag.removeAttribute('data-oled')
 	})
 
 	if (hasEditor) {
