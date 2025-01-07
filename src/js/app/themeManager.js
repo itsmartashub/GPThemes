@@ -1,3 +1,5 @@
+import { openSettings } from './settingsManager.js'
+
 // Constants for theme management
 const THEMES = {
 	LIGHT: 'light',
