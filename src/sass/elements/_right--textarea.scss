@@ -8,6 +8,14 @@ main form {
 		// transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 		caret-color: var(--c-accent);
 
+		&.bg-black {
+			background-color: transparent !important;
+			box-shadow: 0 0 0px 1px hsla(var(--accent-hsl) / 0.15) !important;
+			// background-image: linear-gradient(125deg, hsla(var(--accent-hsl) / 0.2) 0%, var(--c-bg-textarea) 20%, transparent 100%) !important;
+			background-image: linear-gradient(150deg, hsla(var(--accent-hsl) / 0.2) 0%, hsla(var(--accent-hsl) / 0.08) 20%, hsla(var(--accent-hsl) / 0.08) 70%, hsla(var(--accent-hsl) / 0.25) 100%) !important;
+			// background-image: linear-gradient(125deg, hsla(var(--accent-hsl) / 0.2) 0%, hsla(var(--accent-hsl) / 0.05) 20%) !important;
+		}
+
 		/* In "temporary chat" textarea is black so the color and caret-color are white, so this fix that */
 		// [data-placeholder="Message ChatGPT"] {
 		[data-placeholder] {
