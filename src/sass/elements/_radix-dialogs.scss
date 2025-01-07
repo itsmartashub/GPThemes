@@ -651,6 +651,14 @@
 /* @ ===================== NEW DIALOGS ===================== */
 
 [data-radix-popper-content-wrapper] {
+
+	/* This fix strange small accent square after prompt field because OpenAI focus the empty radix dialog on default, instead of prompt field... */
+	[role='dialog']:empty {
+		// opacity: 0;
+		// border: none !important;
+		outline: none !important;
+	}
+
 	[role='dialog']:not(:empty) {
 
 		/* This fix and bg of radix dialogs like when type "/" and "@" in prompt field */
