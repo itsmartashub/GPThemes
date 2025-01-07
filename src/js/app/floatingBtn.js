@@ -1,7 +1,11 @@
 // Use a cross-browser storage API:
 // import browser from 'webextension-polyfill'
 import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './components/icons.js'
-import { handleChangeTheme } from './themeManager.js'
+// import { handleChangeTheme } from './themeManager.js'
+// import { handleChangeTheme } from './themeManager-2.js'
+// import { handleChangeTheme } from './themeManager-2b.js'
+import { handleChangeTheme } from './themeManager-2c.js'
+// import { handleChangeTheme } from './themeManager-3.js'
 import { createSettings } from './settingsManager.js'
 
 // State
@@ -19,8 +23,6 @@ async function init() {
 	try {
 		createFloatingBtn()
 		createSettings()
-		decreaseFloatingBtnSize()
-		// console.log(await browser.storage.sync.get('gptheme'))
 	} catch (error) {
 		console.error('Initialization error:', error)
 	}
@@ -83,10 +85,5 @@ function closeFloatingOptions() {
 	document.body.removeEventListener('click', hideFloatingOptions)
 	// console.log('closeFloatingOptions: ', { isOptionsShown })
 }
-function decreaseFloatingBtnSize() {
-	setTimeout(() => elements.floatingBtn.classList.add('gpth__floating--small'), 3000)
-}
-
-// ___ Settings UI
 
 export { init, closeFloatingOptions }

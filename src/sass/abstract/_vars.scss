@@ -10,6 +10,8 @@
 	--letterSpacing: none;
 	--lineHeight: 28;
 
+	--loader_timeout: 300;
+
 	/* ? --- Widths and Heights --- */
 	--min-w-btn: 5.5rem;
 	--h-header: calc(3.5rem + 0.5rem + 0.375rem);
@@ -174,7 +176,7 @@ html.light {
 	// --accent-h: 250;
 	// --accent-s: 99%;
 	// --accent-l: 65%;
-	--cl: #7e3e47;
+	// --cl: #7e3e47;
 	--accent-h: 352;
 	--accent-s: 34%;
 	--accent-l: 37%;

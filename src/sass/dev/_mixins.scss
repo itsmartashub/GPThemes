@@ -2,3 +2,33 @@
 	border: 2px solid $color !important;
 	box-shadow: 0px 0px 0px 2px $color !important;
 }
+
+
+@mixin shimmer($color: var(--c-accent),
+	$shine-color: hsla(var(--accent-hsl) / 0.1),
+	$duration: 1.5s) {
+	position: relative;
+	display: inline-block;
+	color: transparent; // Hide the base text
+	background: linear-gradient(90deg, $color 0%, $shine-color 50%, $color 100%);
+	background-size: 200% 100%;
+	-webkit-background-clip: text;
+	background-clip: text;
+	animation: animShimmer $duration infinite;
+
+	&::before {
+		content: attr(data-text);
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		color: $color; // Fallback text color
+		z-index: -1;
+	}
+}
+
+/* Usage */
+// .shimmer-text {
+// 	@include shimmer(var(--c-accent), hsla(var(--accent-hsl) / 0.1), 1.2s);
+// }

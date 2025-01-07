@@ -3,13 +3,9 @@
 		--floating-icon-size: 2.8rem;
 		--top: calc(var(--h-header) + 0.5rem);
 		--right: 1rem;
-		--floating-scale: 1.2;
-		--floating-rotate: 0;
 		position: fixed;
 		top: var(--top);
 		right: var(--right);
-		transform: scale(var(--floating-scale)) rotate(var(--floating-rotate));
-		transition: transform 0.8s $easeInOutCirc;
 
 		font-family: Söhne, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans',
 			sans-serif, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
@@ -25,15 +21,6 @@
 			--floating-icon-size: 1.8rem;
 		}
 
-		&--small {
-			--floating-scale: 1;
-			--floating-rotate: 360deg;
-
-			.gpth__floating-icon {
-				border: 1px solid hsla(var(--accent-hsl) / 0.2);
-			}
-		}
-
 		&-icon {
 			position: relative;
 			display: grid;
@@ -42,11 +29,11 @@
 			height: var(--floating-icon-size);
 			color: var(--c-accent);
 			background-image: var(--c-bg-gradient);
-			// border: 1px solid hsla(var(--accent-hsl) / 0.2);
+			border: 1px solid hsla(var(--accent-hsl) / 0.2);
 			backdrop-filter: blur(10px);
 
 			border-radius: 50vw;
-			transition: transform 0.15s $easeOutCubic, background-color 0.3s $easeOutCubic;
+			transition: transform 0.15s $easeOutCubic, background-color 0.3s $easeOutCubic, color 0.3s $easeOutCubic;
 			cursor: pointer;
 
 			&::after {
