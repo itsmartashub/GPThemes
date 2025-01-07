@@ -1,130 +1,90 @@
-import { closeFloatingOptions } from './floatingBtn.js'
-import { openSettings } from './settingsManager.js'
-
-const THEMES = Object.freeze({
+// Constants for theme management
+const THEMES = {
 	LIGHT: 'light',
 	DARK: 'dark',
 	SYSTEM: 'system',
-})
+	OLED: 'oled',
+}
 
-const STORAGE_KEYS = Object.freeze({
-	THEME: 'theme',
-	IS_OLED: 'isOLED',
-})
+const mediaQuery = window.matchMedia('(prefers-color-scheme: light)')
 
-// Cached elements and state
-const systemThemeQuery = window.matchMedia('(prefers-color-scheme: light)')
-let themeLoader = null
-
+// Core theme management
 function getSystemTheme() {
-	return systemThemeQuery.matches ? THEMES.LIGHT : THEMES.DARK
+	return mediaQuery.matches ? THEMES.LIGHT : THEMES.DARK
 }
-
-function createLoader() {
-	const loader = document.createElement('div')
-	loader.id = 'gpth-theme-loader'
-	loader.innerHTML = `
-    <div class="gpth-theme-loader__content">
-      <p class="gpth-theme-loader__title"><span>changing</span> <span>theme...</span></p>
-      <div class="gpth-theme-loader__spinner"></div>
-    </div>`
-	document.body.appendChild(loader)
-	return loader
-}
-
-function showLoader() {
-	if (!themeLoader) {
-		themeLoader = createLoader()
-	}
-	themeLoader.style.display = 'flex'
-}
-
-function hideLoader() {
-	if (themeLoader) {
-		themeLoader.style.display = 'none'
+// Theme state management
+function getStoredThemeState() {
+	return {
+		theme: localStorage.getItem('theme') || THEMES.SYSTEM,
+		isOLED: localStorage.getItem('isOLED') === 'true',
 	}
 }
 
-function applyTheme(theme, isOLED) {
-	const htmlTag = document.documentElement
-	const appliedTheme = theme === THEMES.SYSTEM ? getSystemTheme() : theme
+function setRootTheme(theme, isOLED) {
+	const root = document.documentElement
+	const effectiveTheme = theme === THEMES.SYSTEM ? getSystemTheme() : theme
 
-	htmlTag.className = appliedTheme
-	htmlTag.style.colorScheme = appliedTheme
-
-	if (appliedTheme === THEMES.DARK && isOLED) {
-		htmlTag.dataset.gptheme = 'oled'
-		htmlTag.dataset.oled = ''
-	} else {
-		htmlTag.dataset.gptheme = appliedTheme
-		delete htmlTag.dataset.oled
-	}
+	// Single source of truth for theme application
+	root.className = effectiveTheme
+	root.style.colorScheme = effectiveTheme
+	root.dataset.gptheme = effectiveTheme === THEMES.DARK && isOLED ? 'oled' : effectiveTheme
 }
 
-async function setTheme(theme, isOLED = false) {
-	const currentTheme = localStorage.getItem(STORAGE_KEYS.THEME)
-	const currentOLED = localStorage.getItem(STORAGE_KEYS.IS_OLED)
+function updateTheme(newTheme, isOLED = false) {
+	const { theme: currentTheme } = getStoredThemeState()
 
-	// Skip if no changes
-	if (currentTheme === theme && currentOLED === String(isOLED)) {
-		return
-	}
+	if (currentTheme === newTheme && String(isOLED) === localStorage.getItem('isOLED')) return
 
-	try {
-		showLoader()
+	// Update storage and DOM in a single operation
+	localStorage.setItem('theme', newTheme)
+	localStorage.setItem('isOLED', isOLED)
 
-		localStorage.setItem(STORAGE_KEYS.THEME, theme)
-		localStorage.setItem(STORAGE_KEYS.IS_OLED, isOLED)
+	setRootTheme(newTheme, isOLED)
 
-		applyTheme(theme, isOLED)
-
-		// Notify other components about theme change
-		window.dispatchEvent(
-			new StorageEvent('storage', {
-				key: STORAGE_KEYS.THEME,
-				newValue: theme,
-				oldValue: currentTheme,
-				storageArea: localStorage,
-			})
-		)
-
-		closeFloatingOptions()
-
-		// Wait for transitions to complete
-		await new Promise((resolve) => setTimeout(resolve, 200))
-	} finally {
-		hideLoader()
-	}
+	// Notify other tabs/windows
+	window.dispatchEvent(
+		new StorageEvent('storage', {
+			key: 'theme',
+			newValue: newTheme,
+			// oldValue: currentTheme,
+			storageArea: localStorage,
+		})
+	)
 }
 
-function initTheme() {
-	const storedTheme = localStorage.getItem(STORAGE_KEYS.THEME) || THEMES.SYSTEM
-	const isOLED = localStorage.getItem(STORAGE_KEYS.IS_OLED) === 'true'
-	applyTheme(storedTheme, isOLED)
-}
+// Event handlers
+function handleChangeTheme(e) {
+	const themeBtn = e.target.closest('button')
+	if (!themeBtn) return
 
-function handleChangeTheme(event) {
-	const themeButton = event.target.closest('button')
-	if (!themeButton) return
+	const themeId = themeBtn.id
 
-	const { id } = themeButton
+	console.log(themeId)
 
-	if (Object.values(THEMES).includes(id)) {
-		setTheme(id, false)
-	} else if (id === 'oled') {
-		setTheme(THEMES.DARK, true)
-	} else if (id === 'gpth-open-settings') {
-		openSettings()
+	switch (themeId) {
+		case THEMES.LIGHT:
+		case THEMES.DARK:
+		case THEMES.SYSTEM:
+			updateTheme(themeId, false)
+			break
+		case 'oled':
+			updateTheme(THEMES.DARK, true)
+			break
+		case 'gpth-open-settings':
+			openSettings()
+			break
 	}
 }
 
 function init() {
-	initTheme()
+	const { theme, isOLED } = getStoredThemeState()
 
-	// Listen for system theme changes
-	systemThemeQuery.addEventListener('change', () => {
-		if (localStorage.getItem(STORAGE_KEYS.THEME) === THEMES.SYSTEM) {
-			initTheme()
+	setRootTheme(theme, isOLED)
+
+	mediaQuery.addEventListener('change', () => {
+		const { theme, isOLED } = getStoredThemeState()
+		if (theme === THEMES.SYSTEM) {
+			setRootTheme(THEMES.SYSTEM, isOLED)
 		}
 	})
 }
