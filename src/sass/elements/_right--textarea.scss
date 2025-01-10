@@ -8,6 +8,7 @@ main form {
 		// transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 		caret-color: var(--c-accent);
 
+		/* Prompt text field for Temporary chat */
 		&.bg-black {
 			background-color: transparent !important;
 			box-shadow: 0 0 0px 1px hsla(var(--accent-hsl) / 0.15) !important;
@@ -151,49 +152,22 @@ main form {
 			}
 		}
 
-
-
-		// hsla(var(--accent-hsl) / 1) 100%);
-
 		/* New Advanced Voice Mode button */
-		.rounded-full:has(>[data-testid="composer-speech-button"]) {
-			// --shadow: 0 0 2px 2px hsla(var(--accent-hsl) / 0.8) inset;
-			--shadow: 0 0 2px 2px hsla(var(--accent-hsl) / 0.8) inset, 0 2px 1px 2px #fff inset;
+		[data-testid="composer-speech-button"] {
+			--shadow: 0 0 2px 2px hsla(var(--accent-hsl) / 0.8) inset, -1px -1px 5px 0px #fff inset;
 			--c-bg-gradient: linear-gradient(-25deg,
 					hsla(var(--accent-hsl) / 0.001) 0%,
-					hsla(var(--accent-hsl) / 0.35) 28%,
+					hsla(var(--accent-hsl) / 0.35) 18%,
 					hsla(var(--accent-hsl) / 0.85) 58%,
 					hsla(var(--accent-hsl) / 1) 90%);
 			background: var(--c-bg-gradient) !important;
 			color: var(--c-on-accent) !important;
-			box-shadow: var(--shadow);
-			transition: transform 0.3s $easeInOutSine;
+			box-shadow: var(--shadow) !important;
 
-			&:hover {
-				--shadow: 0 0 3px 2px hsla(var(--accent-hsl) / 0.6) inset;
-				transform: scale(1.1);
-			}
-
-			[data-testid="composer-speech-button"] {
-				background: inherit !important;
-				color: currentColor;
-
-				/* Voice svg icon */
-				.absolute {
-					color: currentColor !important;
-
-					/* svg 🛞 spinning voice icon when clicked on voice btn */
-					svg.animate-spin {
-						color: var(--c-accent) !important;
-					}
-				}
-			}
-
-			&:has([data-testid="composer-speech-button"]:disabled) {
+			&:disabled {
 				background: hsla(var(--accent-hsl) / 0.12) !important;
-				color: var(--c-accent);
+				color: var(--c-accent) !important;
 			}
-
 		}
 	}
 
