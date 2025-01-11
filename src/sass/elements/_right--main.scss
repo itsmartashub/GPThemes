@@ -342,6 +342,18 @@ main [role='presentation'] {
 					.absolute.text-black {
 						color: var(--c-txt) !important;
 					}
+
+					/* Info icon on top left in Map */
+					.absolute.left-3.top-3 {
+						button:has(>svg[class*="hover:text-token-text-secondary"]) {
+							background-color: transparent !important;
+							color: var(--c-accent) !important;
+
+							svg[class*="hover:text-token-text-secondary"] {
+								color: currentColor !important;
+							}
+						}
+					}
 				}
 
 				/* Search - Maps, review cards when hover it in Maps view */
