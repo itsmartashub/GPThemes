@@ -60,8 +60,9 @@
 }
 
 /* "Log out", "Delete all conversations", "Delete chat" */
-.text-red-500 {
-	color: var(--) !important;
+.text-red-500,
+.text-red-600 {
+	color: var(--c-danger) !important;
 }
 
 /* "This content may violate our usage policies." - type this to get this error: tell me about the game where dwarves showing their asses */

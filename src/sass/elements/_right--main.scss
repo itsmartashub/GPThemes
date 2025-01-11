@@ -326,6 +326,57 @@ main [role='presentation'] {
 				}
 			}
 
+			/* Search - Maps wrapper */
+			.not-prose > .-mt-2.bg-token-main-surface-primary:has(.mapboxgl-map) {
+
+				&,
+				& > .bg-token-main-surface-primary {
+					--main-surface-primary: var(--c-bg-msg-gpt) !important;
+
+					.absolute.text-black {
+						color: var(--c-txt) !important;
+					}
+
+					.bg-black {
+						background-color: var(--c-accent) !important;
+						color: var(--c-on-accent) !important;
+
+						&.border-white {
+							border-color: var(--c-accent-light) !important;
+						}
+					}
+				}
+
+				/* Search - Maps */
+				.mapboxgl-map {
+
+					/* Location counter bubbles in maps */
+					.mapboxgl-marker {
+
+						/* Change the text color for selected location counter bubbles in the maps */
+						&:has(svg > [fill="#282828"]) {
+							.absolute.text-white {
+								color: var(--c-on-accent) !important;
+							}
+						}
+
+						/* Location counter bubbles in the maps - when not selected */
+						svg > [fill="white"] {
+							fill: var(--c-surface-2) !important;
+						}
+
+						/* Location counter bubbles in the maps - when selected */
+						svg > [fill="#282828"] {
+							fill: var(--c-accent) !important;
+						}
+					}
+				}
+
+				// .from-token-main-surface-primary {
+				// 	--
+				// }
+			}
+
 			/* Parent of "Tell us more" example buttons when clicked on 👎 in GPT chat bubble*/
 			[class*='min-h-[96px] w-full'] {
 				border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
