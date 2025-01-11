@@ -328,22 +328,20 @@ main [role='presentation'] {
 
 			/* Search - Maps wrapper */
 			.not-prose > .-mt-2.bg-token-main-surface-primary:has(.mapboxgl-map) {
+				--main-surface-primary: transparent !important;
 
-				&,
+				.bg-gradient-to-b {
+					background: transparent !important;
+				}
+
+
+				/* Elements present when Maps are in maps view */
 				& > .bg-token-main-surface-primary {
 					--main-surface-primary: var(--c-bg-msg-gpt) !important;
+					border-radius: var(--br-btn-big) !important;
 
 					.absolute.text-black {
 						color: var(--c-txt) !important;
-					}
-
-					.bg-black {
-						background-color: var(--c-accent) !important;
-						color: var(--c-on-accent) !important;
-
-						&.border-white {
-							border-color: var(--c-accent-light) !important;
-						}
 					}
 				}
 
@@ -372,10 +370,46 @@ main [role='presentation'] {
 					}
 				}
 
-				// .from-token-main-surface-primary {
-				// 	--
-				// }
+				/* Circle location order bubbles in review cards za Maps i List views */
+				&,
+				& ~ div:has(a[href*="google.com/maps"]) {
+					.bg-black {
+						background-color: var(--c-accent) !important;
+						color: var(--c-on-accent) !important;
+
+						&.border-white {
+							border-color: var(--c-accent) !important;
+						}
+					}
+
+					/* Image placeholder for non-image for review cards */
+					.h-full.w-full.bg-gray-100 {
+						background-color: transparent !important;
+						background-image: linear-gradient(135deg, hsla(var(--accent-hsl) / 0.05), hsla(var(--accent-hsl) / 0.3)) !important;
+					}
+				}
+
+				/* Elements present when Maps are in List view. Ovo je link of "Uputstva"*/
+				& ~ div:has(a[href*="google.com/maps"]) {
+					gap: 1rem !important;
+
+					/* Review cards in List view */
+					button.rounded-xl:has(> .text-left) {
+						border: 1px solid hsla(var(--accent-hsl) / 0.15) !important;
+
+						&.bg-token-main-surface-tertiary {
+							--main-surface-tertiary: hsla(var(--accent-hsl) / .12) !important;
+						}
+
+						&:hover {
+							background-color: hsla(var(--accent-hsl) / .15) !important;
+							color: var(--c-txt) !important;
+							transform: translateY(-2px) !important;
+						}
+					}
+				}
 			}
+
 
 			/* Parent of "Tell us more" example buttons when clicked on 👎 in GPT chat bubble*/
 			[class*='min-h-[96px] w-full'] {
