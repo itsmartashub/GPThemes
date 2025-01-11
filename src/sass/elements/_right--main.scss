@@ -334,7 +334,6 @@ main [role='presentation'] {
 					background: transparent !important;
 				}
 
-
 				/* Elements present when Maps are in maps view */
 				& > .bg-token-main-surface-primary {
 					--main-surface-primary: var(--c-bg-msg-gpt) !important;
@@ -342,6 +341,15 @@ main [role='presentation'] {
 
 					.absolute.text-black {
 						color: var(--c-txt) !important;
+					}
+				}
+
+				/* Search - Maps, review cards when hover it in Maps view */
+				.swiper-slide {
+					&:hover {
+						.rounded-xl.bg-token-main-surface-primary {
+							--main-surface-primary: var(--c-surface-3) !important;
+						}
 					}
 				}
 
