@@ -432,12 +432,6 @@ main [role='presentation'] {
 						--main-surface-tertiary: hsla(var(--accent-hsl) / .12) !important;
 					}
 
-					/* "Closed" text in review cards */
-					.text-red-600,
-					.text-green-600 {
-						font-weight: bold;
-					}
-
 					/* Line between review cards in mobile view */
 					.my-4.border-t.border-token-border-xlight {
 						display: none;
@@ -451,9 +445,17 @@ main [role='presentation'] {
 				}
 
 				/* Image placeholder for non-image for review cards */
-				.text-left:has(a[href*="google.com/maps"]) .h-full.w-full.bg-gray-100 {
-					background-color: transparent !important;
-					background-image: linear-gradient(135deg, hsla(var(--accent-hsl) / 0.05), hsla(var(--accent-hsl) / 0.3)) !important;
+				.text-left:has(a[href*="google.com/maps"]) {
+					.h-full.w-full.bg-gray-100 {
+						background-color: transparent !important;
+						background-image: linear-gradient(135deg, hsla(var(--accent-hsl) / 0.05), hsla(var(--accent-hsl) / 0.3)) !important;
+					}
+
+					/* "Closed" text in review cards */
+					.text-red-600,
+					.text-green-600 {
+						font-weight: bold;
+					}
 				}
 			}
 
