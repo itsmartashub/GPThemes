@@ -381,12 +381,17 @@ main [role='presentation'] {
 								}
 							}
 
-							/* Location counter bubbles in the maps - when not selected */
+							/* Location counter bubble markers in the maps - when not selected */
 							svg > [fill="white"] {
 								fill: var(--c-surface-2) !important;
 							}
 
-							/* Location counter bubbles in the maps - when selected */
+							/* Kao neki svg border od neaktivnih location bubble markers */
+							svg > [fill="black"] {
+								fill: hsla(var(--accent-hsl) / .2) !important;
+							}
+
+							/* Location counter bubble markers in the maps - when selected/active */
 							svg > [fill="#282828"] {
 								fill: var(--c-accent) !important;
 							}
@@ -401,19 +406,15 @@ main [role='presentation'] {
 							color: var(--c-on-accent) !important;
 
 							&.border-white {
-								border-color: var(--c-accent) !important;
+								// border-color: var(--c-bg-msg-gpt) !important;
+								border-color: var(--main-surface-primary) !important;
 							}
 						}
 					}
-
-					/* Elements present when Maps are in List view. Ovo je link of "Uputstva"*/
-					// & ~ div:has(a[href*="google.com/maps"]) {
-					// 	gap: 2rem !important;
-					// }
 				}
 
 				/* Elements present when Maps are in List view or for mobile screens: wrappper of review cards.
-				- a[href*="google.com/maps"] - Ovo je link of "Uputstva"*/
+				- a[href*="google.com/maps"] - Ovo je link of "Directions"*/
 				& > div.mt-4.gap-1:has(> button.rounded-xl > div.text-left a[href*="google.com/maps"]) {
 					gap: 1rem !important;
 				}
@@ -432,7 +433,8 @@ main [role='presentation'] {
 					}
 
 					/* "Closed" text in review cards */
-					.text-red-600 {
+					.text-red-600,
+					.text-green-600 {
 						font-weight: bold;
 					}
 
