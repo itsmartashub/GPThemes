@@ -327,111 +327,131 @@ main [role='presentation'] {
 			}
 
 			/* Search - Maps wrapper */
-			.not-prose > .-mt-2.bg-token-main-surface-primary:has(.mapboxgl-map) {
-				--main-surface-primary: transparent !important;
+			.not-prose {
 
-				.bg-gradient-to-b {
-					background: transparent !important;
-				}
+				/* DESKTOP */
+				& > .-mt-2.bg-token-main-surface-primary:has(.mapboxgl-map) {
+					--main-surface-primary: transparent !important;
 
-				/* Elements present when Maps are in maps view */
-				& > .bg-token-main-surface-primary {
-					--main-surface-primary: var(--c-bg-msg-gpt) !important;
-					border-radius: var(--br-btn-big) !important;
-
-					.absolute.text-black {
-						color: var(--c-txt) !important;
+					.bg-gradient-to-b {
+						background: transparent !important;
 					}
 
-					/* Info icon on top left in Map */
-					.absolute.left-3.top-3 {
-						button:has(>svg[class*="hover:text-token-text-secondary"]) {
-							background-color: transparent !important;
-							color: var(--c-accent) !important;
+					/* Elements present when Maps are in maps view */
+					& > .bg-token-main-surface-primary {
+						--main-surface-primary: var(--c-bg-msg-gpt) !important;
+						border-radius: var(--br-btn-big) !important;
 
-							svg[class*="hover:text-token-text-secondary"] {
-								color: currentColor !important;
+						.absolute.text-black {
+							color: var(--c-txt) !important;
+						}
+
+						/* Info icon on top left in Map */
+						.absolute.left-3.top-3 {
+							button:has(>svg[class*="hover:text-token-text-secondary"]) {
+								background-color: transparent !important;
+								color: var(--c-accent) !important;
+
+								svg[class*="hover:text-token-text-secondary"] {
+									color: currentColor !important;
+								}
 							}
 						}
 					}
-				}
 
-				/* Search - Maps, review cards when hover it in Maps view */
-				.swiper-slide {
-					&:hover {
-						.rounded-xl.bg-token-main-surface-primary {
-							--main-surface-primary: var(--c-surface-3) !important;
-						}
-					}
-				}
-
-				/* Search - Maps */
-				.mapboxgl-map {
-
-					/* Location counter bubbles in maps */
-					.mapboxgl-marker {
-
-						/* Change the text color for selected location counter bubbles in the maps */
-						&:has(svg > [fill="#282828"]) {
-							.absolute.text-white {
-								color: var(--c-on-accent) !important;
+					/* Search - Maps, review cards when hover it in Maps view */
+					.swiper-slide {
+						&:hover {
+							.rounded-xl.bg-token-main-surface-primary {
+								--main-surface-primary: var(--c-surface-3) !important;
 							}
 						}
+					}
 
-						/* Location counter bubbles in the maps - when not selected */
-						svg > [fill="white"] {
-							fill: var(--c-surface-2) !important;
-						}
+					/* Search - Maps */
+					.mapboxgl-map {
 
-						/* Location counter bubbles in the maps - when selected */
-						svg > [fill="#282828"] {
-							fill: var(--c-accent) !important;
+						/* Location counter bubbles in maps */
+						.mapboxgl-marker {
+
+							/* Change the text color for selected location counter bubbles in the maps */
+							&:has(svg > [fill="#282828"]) {
+								.absolute.text-white {
+									color: var(--c-on-accent) !important;
+								}
+							}
+
+							/* Location counter bubbles in the maps - when not selected */
+							svg > [fill="white"] {
+								fill: var(--c-surface-2) !important;
+							}
+
+							/* Location counter bubbles in the maps - when selected */
+							svg > [fill="#282828"] {
+								fill: var(--c-accent) !important;
+							}
 						}
 					}
+
+					/* Circle location order bubbles in review cards za Maps i List views */
+					&,
+					& ~ div:has(a[href*="google.com/maps"]) {
+						.bg-black {
+							background-color: var(--c-accent) !important;
+							color: var(--c-on-accent) !important;
+
+							&.border-white {
+								border-color: var(--c-accent) !important;
+							}
+						}
+					}
+
+					/* Elements present when Maps are in List view. Ovo je link of "Uputstva"*/
+					// & ~ div:has(a[href*="google.com/maps"]) {
+					// 	gap: 2rem !important;
+					// }
 				}
 
-				/* Circle location order bubbles in review cards za Maps i List views */
-				&,
-				& ~ div:has(a[href*="google.com/maps"]) {
-					.bg-black {
-						background-color: var(--c-accent) !important;
-						color: var(--c-on-accent) !important;
+				/* Elements present when Maps are in List view or for mobile screens: wrappper of review cards.
+				- a[href*="google.com/maps"] - Ovo je link of "Uputstva"*/
+				& > div.mt-4.gap-1:has(> button.rounded-xl > div.text-left a[href*="google.com/maps"]) {
+					gap: 1rem !important;
+				}
 
-						&.border-white {
-							border-color: var(--c-accent) !important;
-						}
+				/* Review cards fr mobile and desktop (List view only in Desktop) */
+				button.rounded-xl:has(> div.text-left a[href*="google.com/maps"]) {
+					border: 1px solid hsla(var(--accent-hsl) / 0.15) !important;
+
+					/* Add some spacing from borders on mobile screens */
+					@include dev('sm') {
+						padding: 0.5rem !important;
 					}
 
-					/* Image placeholder for non-image for review cards */
-					.h-full.w-full.bg-gray-100 {
-						background-color: transparent !important;
-						background-image: linear-gradient(135deg, hsla(var(--accent-hsl) / 0.05), hsla(var(--accent-hsl) / 0.3)) !important;
+					&.bg-token-main-surface-tertiary {
+						--main-surface-tertiary: hsla(var(--accent-hsl) / .12) !important;
 					}
 
 					/* "Closed" text in review cards */
 					.text-red-600 {
 						font-weight: bold;
 					}
+
+					/* Line between review cards in mobile view */
+					.my-4.border-t.border-token-border-xlight {
+						display: none;
+					}
+
+					&:hover {
+						background-color: hsla(var(--accent-hsl) / .15) !important;
+						color: var(--c-txt) !important;
+						transform: translateY(-2px) !important;
+					}
 				}
 
-				/* Elements present when Maps are in List view. Ovo je link of "Uputstva"*/
-				& ~ div:has(a[href*="google.com/maps"]) {
-					gap: 1rem !important;
-
-					/* Review cards in List view */
-					button.rounded-xl:has(> .text-left) {
-						border: 1px solid hsla(var(--accent-hsl) / 0.15) !important;
-
-						&.bg-token-main-surface-tertiary {
-							--main-surface-tertiary: hsla(var(--accent-hsl) / .12) !important;
-						}
-
-						&:hover {
-							background-color: hsla(var(--accent-hsl) / .15) !important;
-							color: var(--c-txt) !important;
-							transform: translateY(-2px) !important;
-						}
-					}
+				/* Image placeholder for non-image for review cards */
+				.text-left:has(a[href*="google.com/maps"]) .h-full.w-full.bg-gray-100 {
+					background-color: transparent !important;
+					background-image: linear-gradient(135deg, hsla(var(--accent-hsl) / 0.05), hsla(var(--accent-hsl) / 0.3)) !important;
 				}
 			}
 
@@ -490,30 +510,6 @@ main [role='presentation'] {
 			}
 		}
 
-
-		// /* ___ Response 1 or Response 2 chat bubble when we have to choose 1 answer */
-		// &:has([data-paragen-root="true"]) {}
-
-		// /* Wrapper of Response 1 vs Response 3 */
-		// /* "You're giving feedback on a new version of ChatGPT" heading */
-		// .relative:has(>[data-testid="paragen-feedback-title"]) {
-
-		// 	/* GPT bubble response */
-		// 	[data-paragen-root="true"] {
-		// 		a[class*="group/nav-list"] {
-
-		// 			// @extend %link_hover_underlined;
-		// 			& > .absolute.bottom-0.left-0.top-0 {
-		// 				background-color: hsla(var(--accent-hsl) / 0.2) !important;
-		// 				border-radius: 1rem;
-		// 			}
-		// 		}
-		// 	}
-
-		// 	/* "I prefer this response" button */
-		// 	// &:has([data-testid="paragen-prefer-response-button"]) {}
-		// }
-
 		&:has(.snap-mandatory.snap-x.overflow-x-auto) {
 
 			/* Wrapper of Response 1 vs Response 3 */
@@ -527,13 +523,6 @@ main [role='presentation'] {
 					--main-surface-primary: transparent !important;
 					background: none !important;
 				}
-
-				/* GPT bubble response */
-				// 	[data-paragen-root="true"] {
-
-				// 	}
-				// }
-
 			}
 		}
 

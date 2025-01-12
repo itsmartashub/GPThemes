@@ -74,7 +74,7 @@
 		/* [class*="group-hover/navigation"] je veliki source link u chat bubble kao onaj "ChatGPT Release Note" na sony */
 		// &[href]:not(&[class*='bg-[#f4f4f4]'], &[class*="group/nav-list"], & > [class*="group-hover/navigation:"]) {
 		// &[href]:not(&[class*='bg-[#f4f4f4]'], &[class*="group/nav-list"], &:has([class*="bg-[#1D53BF0D]"])) {
-		&[href]:not(&[class*='bg-[#f4f4f4]'], &[class*="group/nav-list"], &:has([class*="group-hover/navigation:"])) {
+		&[href]:not(&[class*='bg-[#f4f4f4]'], &[class*="group/nav-list"], &:has([class*="group-hover/navigation:"]), &[href*="google.com/maps"], &[href^="tel:"]) {
 			@extend %link_hover_underlined;
 		}
 
