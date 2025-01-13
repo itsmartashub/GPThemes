@@ -100,16 +100,14 @@ nav[aria-label='Chat history'] {
 			// 	opacity: 1 !important;
 			// }
 
-			/* 3dots btn */
-			button {
-				color: var(--c-txt) !important;
+			&:hover {
+				--item-background-color: var(--main-surface-secondary-selected);
+
 			}
 
-			/* Archive btn */
-			span {
-				button {
-					color: var(--c-subtext-1) !important;
-				}
+			/* 3dots btn wrapper - inherit means inherit it from the parent (.group) when hovered or not */
+			.absolute.bottom-0.top-0.hidden:has(button>svg) {
+				background-color: inherit !important;
 			}
 
 			/* Active-link 3-dots and archive btns wrapper */
