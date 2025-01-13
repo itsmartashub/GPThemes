@@ -8,26 +8,22 @@
 	// }
 
 	/* "New Chat" link (first in nav in sidebar) */
-	nav a[href='/'] {
-		border: 2px solid var(--c-surface-2);
-		padding: var(--p-sidebar-nav-a-new-chat) !important;
-		text-transform: uppercase;
-		margin-bottom: 1rem !important;
+	// nav a[href='/'] {
+	// 	border: 2px solid var(--c-surface-2);
+	// 	padding: var(--p-sidebar-nav-a-new-chat) !important;
+	// 	text-transform: uppercase;
+	// 	margin-bottom: 1rem !important;
 
-		/* "NEW CHAT" ChatGPT logo */
-		.gizmo-shadow-stroke svg {
-			color: var(--c-on-accent) !important;
-		}
+	// 	/* "NEW CHAT" ChatGPT logo */
+	// 	.gizmo-shadow-stroke svg {
+	// 		color: var(--c-on-accent) !important;
+	// 	}
 
-		/* NEW CHAT svg icon on the right */
-		button > svg {
-			visibility: visible !important;
-		}
-
-		// &:hover svg {
-		// 	fill: var(--c-accent) !important;
-		// }
-	}
+	// 	/* NEW CHAT svg icon on the right */
+	// 	button > svg {
+	// 		visibility: visible !important;
+	// 	}
+	// }
 
 	/* "Explore GPTs" link parents - Ne mozemo dodati direkt n ovaj lnk jer kad dodamo vise GPTs producta u ovu listu da bude iznad "Explore GPTs" onda ono nema margin-top vec samo ovaj link, a mi zelimo parent da ima */
 	nav .sticky + div:has(a[href^='/gpts']) {
