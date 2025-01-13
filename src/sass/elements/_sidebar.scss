@@ -66,9 +66,7 @@ nav[aria-label='Chat history'] {
 	a {
 		color: var(--c-txt) !important;
 		padding: var(--p-sidebar-nav-a) !important;
-		// font-family: var(--f-fm) !important;
-		border-radius: var(--br-nav-a) !important;
-		// border-radius: inherit !important;
+		// border-radius: var(--br-nav-a) !important;
 
 		/* "Upgrade" link in nav bg */
 		span.rounded-full.border-token-border-light {
@@ -110,31 +108,13 @@ nav[aria-label='Chat history'] {
 				background-color: inherit !important;
 			}
 
-			/* Active-link 3-dots and archive btns wrapper */
-			// & > div.absolute {
-			// 	// @extend %sidebar_link_item_btns_bg;
-
-			// 	&:has(>.rounded-full.bg-blue-selection) {
-			// 		background-color: transparent !important;
-			// 	}
-			// }
-
-			// a {
-			// 	/* 3 dots btn bg-gradient - <div> u <a> i <div> u <button> */
-			// 	.bg-gradient-to-l {
-			// 		display: none !important;
-			// 	}
-			// }
-
 			/* 3 dots > "Rename" clicked - style of input parent and input  - this is <div> next to <a> */
 			&:has(input) {
-				// outline: 1px solid hsl(var(--accent-hsl) / 0.3);
-				outline: 2px solid var(--c-surface-2);
+				outline: 2px solid hsl(var(--accent-hsl) / 0.2);
 
 				&,
 				& .bg-token-sidebar-surface-secondary {
 					background-color: var(--c-bg-sidebar) !important;
-					// color: var(--c-on-accent) !important;
 				}
 
 				input {
@@ -147,37 +127,6 @@ nav[aria-label='Chat history'] {
 				}
 			}
 		}
-
-		// .group.active\:90 {
-
-		// 	/* Active sidebar list item */
-		// 	&.bg-token-sidebar-surface-tertiary {
-		// 		// background-color: var(--c-surface-2) !important;
-		// 		opacity: 1 !important;
-		// 	}
-		// }
-	}
-
-	// TODO add better styling to this btn
-	/* User profile btn in sidebar bottom */
-	.group[data-headlessui-state] {
-
-		/* User profile btn in sidebar bottom */
-		button[aria-haspopup='true'] {
-			border-radius: var(--br-nav-a);
-			margin-top: 1rem;
-
-			/* Username div */
-			.font-semibold {
-				color: var(--c-txt) !important;
-			}
-		}
-	}
-
-	/*  Border-radius for all elements that have .rounded-lg class in <nav> of sidebar. ALi on zezne border-radiusu i contextmenu u bottom sidebar jer i on ima ovu klasu. Zato sad dodajem <li> */
-	// TODO mozda mogu obrisati, ako global ostane ista ova
-	.rounded-lg {
-		border-radius: var(--br-nav-a) !important;
 	}
 }
 
