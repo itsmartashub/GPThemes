@@ -6,13 +6,14 @@ svg,
 [class*=':hover'],
 [role='switch'] span[data-state] {
 	// transition: all 0.25s ease-in-out;
+	$duration: 0.25s;
 
 	transition:
-		transform .2s ease,
-		opacity .2s ease,
-		background-color .2s ease,
-		color .2s ease,
-		opacity .2s ease;
+		transform $duration ease,
+		opacity $duration ease,
+		background-color $duration ease,
+		color $duration ease,
+		opacity $duration ease;
 
 	/*     transition:
         transform .25s var(--ease-default),
@@ -44,7 +45,7 @@ svg,
     - [aria-label="Unarchive conversation"])  | "Unarchive" icon in "Archived Chats"
    */
 
-button:not(.btn,
+/* button:not(.btn,
 	[role='tab'],
 	[role='combobox'],
 	[data-testid='send-button'],
@@ -59,7 +60,7 @@ button:not(.btn,
 	svg:hover {
 		transform: scale(1.12);
 	}
-}
+} */
 
 /* .btn that IS NOT DISABLED, like "Create" on GPTs page */
 .btn:not(.cursor-not-allowed) {
@@ -132,7 +133,8 @@ main [role='presentation'] button.absolute.rounded-full:not([class*='-translate-
 			/* SVG parent wrapper */
 			span[data-state]:hover {
 				svg {
-					transform: translateY(2px) scale(1) !important;
+					// transform: translateY(2px) scale(1) !important;
+					transform: scale(1.1) !important;
 				}
 			}
 		}
