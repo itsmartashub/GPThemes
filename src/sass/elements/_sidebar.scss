@@ -88,19 +88,17 @@ nav[aria-label='Chat history'] {
 		.group {
 			overflow: hidden;
 
-			/* Active sidebar list item */
-			// &.bg-token-sidebar-surface-tertiary {
-			// 	// background-color: var(--c-surface-2) !important;
-			// 	opacity: 1 !important;
-			// }
 
+			/* Active sidebar list item 
+			- &:has(a ~ .absolute.bottom-0.top-0:not(.invisible)) je za active/selected sidebar list item tj kada 3dots wrapper nema klasu .invisible, onda je taj item selektovan */
+			&:has(a ~ .absolute.bottom-0.top-0:not(.invisible)),
 			&:hover {
-				--item-background-color: var(--main-surface-secondary-selected);
-
+				background-color: var(--c-surface-2) !important;
+				// --item-background-color: var(--main-surface-secondary-selected);
 			}
 
 			/* 3dots btn wrapper - inherit means inherit it from the parent (.group) when hovered or not */
-			.absolute.bottom-0.top-0.hidden:has(button>svg) {
+			.absolute.bottom-0.top-0:has([aria-label="Open conversation options"]) {
 				background-color: inherit !important;
 			}
 
@@ -119,7 +117,6 @@ nav[aria-label='Chat history'] {
 					caret-color: var(--c-txt);
 					border: none !important;
 					outline: none !important;
-					// box-shadow: none !important;
 				}
 			}
 		}
