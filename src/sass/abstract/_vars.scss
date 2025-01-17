@@ -252,8 +252,6 @@ html.light {
 	--c-border-accent: hsla(var(--accent-hsl) / 0.1);
 
 	/* ? ========== <pre>/markdown things colors ========== */
-	--c-bg-pre-header-btn: hsla(var(--accent-hsl) / 0.15);
-	--c-bg-pre-header-btn-color: var(--c-txt);
 	--c-markdown-a: var(--c-accent);
 
 	/* ========== CodeMirror Editor ========== */
@@ -392,8 +390,6 @@ html.dark {
 
 	/* ? ========== <pre>/markdown things colors ========== */
 	--c-bg-pre: hsla(var(--accent-h) var(--surface-s) var(--surface-l) / 0.8);
-	--c-bg-pre-header-btn: var(--c-accent);
-	--c-bg-pre-header-btn-color: var(--c-on-accent);
 	--c-markdown-a: var(--c-accent);
 
 	/* ========== CodeMirror Editor ========== */
@@ -531,11 +527,6 @@ html.dark[data-gptheme='oled'] {
 	/* ? ========== border colors ========== */
 	--c-border: var(--c-surface-2);
 	--c-border-accent: hsla(var(--accent-hsl) / 0.05);
-
-	/* ? ========== <pre>/markdown things colors ========== */
-	// --c-bg-pre-header-btn: var(--c-accent);
-	// --c-bg-pre-header-btn-color: var(--c-on-accent);
-	// --c-markdown-a: var(--c-accent);
 
 	/* ? ========== Scrollbar colors ========== */
 	--c-scrollbar-thumb: var(--c-surface-3);

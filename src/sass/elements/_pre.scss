@@ -36,18 +36,77 @@
 	}
 
 	/* "Copy Code" btn in pre header */
-	.sticky button:has(svg) {
-		background-color: var(--c-bg-pre-header-btn);
-		color: var(--c-bg-pre-header-btn-color);
-		text-transform: uppercase !important;
-		backdrop-filter: blur(5px);
-		border-radius: var(--br-btn) !important;
-		padding: var(--p-btn);
-		font-weight: bold;
+	// .sticky button:has(svg) {
+	.sticky:has(button svg) {
 
-		/* SVG icons before 'Copy code' btn in md */
-		svg {
-			color: currentColor !important;
+		/* Buttons parent, add gas between "Copy code" and "Edit" */
+		.font-sans:not(#ada-always-show) {
+			gap: 0.5rem;
+		}
+
+		/* "Copy Code", "Edit" buttons, switch in Analyses */
+		button:has(svg) {
+			$dur: 0.3s;
+			background-color: var(--c-accent);
+			color: var(--c-on-accent) !important;
+			text-transform: uppercase !important;
+			border-radius: calc(var(--br) * 0.7) !important;
+			padding: calc(var(--p-btn) * 0.8) var(--p-btn);
+			font-weight: bold;
+			transition: opacity $dur ease,
+				background-color $dur ease-in-out,
+				color $dur ease transform $dur ease !important;
+
+			/* SVG icons before 'Copy code' btn in md */
+			svg {
+				color: currentColor !important;
+				transition: color 0s ease !important;
+			}
+
+			&:hover {
+				background-color: hsla(var(--accent-hsl) / 0.2) !important;
+				color: var(--c-accent) !important;
+				transform: scale(0.98);
+
+				svg {
+					color: currentColor !important;
+				}
+			}
 		}
 	}
+
+	/* "Copy code" and "Edit" buttons */
+	// .sticky:has(button svg) {
+	// 	.absolute.bottom-0.right-2 {
+	// 		backdrop-filter: blur(5px);
+
+	// 		/* Buttons parent, add gas between Copy code and Edit */
+	// 		.font-sans {
+	// 			gap: 0.5rem;
+	// 		}
+
+	// 		button {
+	// 			$dur: 0.3s;
+	// 			background-color: var(--c-accent);
+	// 			color: var(--c-on-accent);
+	// 			text-transform: uppercase !important;
+	// 			border-radius: calc(var(--br) * 0.8) !important;
+	// 			padding: calc(var(--p-btn) * 0.9) var(--p-btn);
+	// 			font-weight: bold;
+	// 			transition: opacity $dur ease, background-color $dur ease-in-out, color $dur ease !important;
+
+	// 			svg {
+	// 				color: currentColor !important;
+	// 				transition: color 0s ease !important;
+	// 			}
+
+	// 			&:hover {
+	// 				background-color: hsla(var(--accent-hsl) / 0.2) !important;
+	// 				color: var(--c-accent) !important;
+	// 				// transform: scale(0.98);
+	// 			}
+	// 		}
+
+	// 	}
+	// }
 }

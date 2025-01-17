@@ -88,27 +88,6 @@ button[role='switch'] {
 	}
 }
 
-/* "Copy code" btn */
-.prose pre .sticky button:has(svg) {
-	transition: transform 0.4s $easeOutBack, opacity 0.2s ease, background-color 0.2s ease-in-out, color 0.3s ease !important;
-
-	svg {
-		transition: color 0s ease !important;
-	}
-
-	&:hover {
-		--c-bg-pre-header-btn: hsla(var(--accent-hsl) / 0.225) !important;
-		--c-bg-pre-header-btn-color: var(--c-accent) !important;
-		transform: translateY(2px);
-	}
-}
-
-/* "Copy code" btn on light mode */
-html.light .prose pre .sticky button:has(svg):hover {
-	--c-bg-pre-header-btn: var(--c-accent) !important;
-	--c-bg-pre-header-btn-color: var(--c-on-accent) !important;
-}
-
 /* ___ Scroll down button 
 [class*='-translate-y-1/2'] je btn ❌ u attached image */
 main [role='presentation'] button.absolute.rounded-full:not([class*='-translate-y-1/2']) {
