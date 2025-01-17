@@ -71,10 +71,10 @@
 	a {
 		color: var(--c-accent) !important;
 
-		/* [class*="group-hover/navigation"] je veliki source link u chat bubble kao onaj "ChatGPT Release Note" na sony */
-		// &[href]:not(&[class*='bg-[#f4f4f4]'], &[class*="group/nav-list"], & > [class*="group-hover/navigation:"]) {
-		// &[href]:not(&[class*='bg-[#f4f4f4]'], &[class*="group/nav-list"], &:has([class*="bg-[#1D53BF0D]"])) {
-		&[href]:not(&[class*='bg-[#f4f4f4]'], &[class*="group/nav-list"], &:has([class*="group-hover/navigation:"]), &[href*="google.com/maps"], &[href^="tel:"]) {
+		/* 
+		- [class*="group-hover/navigation"] je veliki source link u chat bubble kao onaj "ChatGPT Release Note" na sony
+		- .btn-secondary se odnosi na sve linkove sto imaju style kao btn-secondary, recimo "Directions", "Website", "Call" u Search/Maps-List za mobile */
+		&[href]:not(&[class*='bg-[#f4f4f4]'], &[class*="group/nav-list"], &:has([class*="group-hover/navigation:"]), &.btn-secondary) {
 			@extend %link_hover_underlined;
 		}
 
