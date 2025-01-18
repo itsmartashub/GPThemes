@@ -121,6 +121,15 @@ main form {
 			}
 		}
 
+		/* Canvas file-tile */
+		.group\/file-tile:has([id^="textdoc-message-temp-"]) {
+			[id^="textdoc-message-temp"] {
+				.absolute.bottom-0.z-20[style*="background: linear-gradient"] {
+					background: none !important;
+				}
+			}
+		}
+
 
 		// span > button[aria-pressed="true"][aria-label="Search the web"]:has(svg) {
 		// 	svg {
