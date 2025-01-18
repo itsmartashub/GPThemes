@@ -271,10 +271,21 @@
 		}
 
 		/* ___ "Custom Instructios", now "Customize ChatGPT" */
-		&:has(textarea[placeholder="Describe or select traits"]) {
-			/* There are 2 scrollbars: one for main content and one for textarea and inputs part */
-			// --w-scrollbar: 0 !important;
+		// &:has(textarea[placeholder="Describe or select traits"]) {
+		// 	/* There are 2 scrollbars: one for main content and one for textarea and inputs part */
+		// 	// --w-scrollbar: 0 !important;
 
+		// 	.flex-grow.overflow-y-auto.p-4:has(.overflow-y-auto[class*="max-h-[60vh]"]) {
+		// 		padding: 0 !important;
+
+		// 		@include dev('md') {
+		// 			padding: 1rem !important;
+		// 		}
+		// 	}
+		// }
+
+		/* ___ "Custom Instructios", now "Customize ChatGPT" */
+		&:has(textarea) {
 			.flex-grow.overflow-y-auto.p-4:has(.overflow-y-auto[class*="max-h-[60vh]"]) {
 				padding: 0 !important;
 
@@ -289,26 +300,15 @@
 				margin: 0 !important;
 			}
 
-		}
+			textarea {
+				background-color: var(--c-surface-3) !important; // [class*='dark:bg-gray-800']
+				opacity: 0.7;
 
-		/* ___ "Custom Instructios", now "Customize ChatGPT" */
-		textarea {
-			background-color: var(--c-surface-3) !important; // [class*='dark:bg-gray-800']
-			opacity: 0.7;
-
-			&:focus {
-				opacity: 1;
+				&:focus {
+					opacity: 1;
+				}
 			}
 		}
-
-		/* TODO: check whats this */
-		// & [class*='dark:bg-gray-700']:has(input[id]) {
-		// 	background-color: var(--c-surface-3) !important;
-
-		// 	input {
-		// 		background-color: inherit !important;
-		// 	}
-		// }
 
 		/* ___ Dialog - "Share Link to Chat" & "Public Link Updated" */
 		&:has(input[value^="https://chatgpt.com/share/"]) {
