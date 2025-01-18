@@ -100,10 +100,15 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 - bg-token-surface-error is a error: "We are sorry, but you do not have access to GPT interactions." shown when we do not have access to GPTs products */
 // [class*='bg-red-500/10'],
 [class*='bg-red-500'],
+[class*='bg-red-100'],
 [class*='bg-token-surface-error'] {
 	background-color: hsla(var(--danger-hsl) / 0.11) !important;
 	color: var(--c-danger) !important;
 	border: 1px solid hsla(var(--danger-hsl) / 0.11) !important;
+
+	svg {
+		color: currentColor !important;
+	}
 }
 
 [class*='bg-orange-400']:not(.bg-opacity-0) {
