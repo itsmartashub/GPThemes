@@ -106,7 +106,7 @@ nav[aria-label='Chat history'] {
 			&:has(input) {
 				outline: 2px solid hsl(var(--accent-hsl) / 0.2);
 
-				&,
+				& a[href^='/'],
 				& .bg-token-sidebar-surface-secondary {
 					background-color: var(--c-bg-sidebar) !important;
 				}
