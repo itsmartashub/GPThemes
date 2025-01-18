@@ -3,36 +3,41 @@ let issue = (hashNumber) =>
 
 const RELEASE_CHANGES = `
 
-<h3>🪄 Improvements</h3>
+<h3>🛠️ Improvements</h3>
+
 <ul>
-    <li><strong>Web Search Feature: </strong>Redesigned search experience with improved sources display and all related to web search feature ${issue(
-		96
+	<li><strong>Search & Maps UI: </strong>Enhanced location markers, review cards, and counter bubbles to match accent theme ${issue(
+		99
 	)}</li>
-    <li><strong>Pop-up and Dialog Boxes: </strong>Added consistent backgrounds and hover effects to dialogs ${issue(
-		95
+	<li><strong>Voice Button: </strong>Restored styles after OpenAI updates ${issue(98)}</li>
+	<li><strong>Sidebar Chat List: </strong>Enhanced selected chat appearance and hover interactions ${issue(100)}</li>
+	<li><strong>New Customize ChatGPT: </strong>Support the styles for the latest <code>Customize ChatGPT</code> (Instructions)</li>
+	<li><strong>Copy code and Edit Buttons: </strong>Refine code snippet button styling</li>
+	<li><strong>Temporary Prompt Field: </strong>Added distinct background for <code>Temporary</code> conversations ${issue(
+		98
 	)}</li>
 </ul>
 
 <h3>🐛 Bug Fixes</h3>
+
 <ul>
-    <li><strong>Pop-up and Dialog Boxes: </strong>Fixed various styling issues including empty dialogs which caused random circles and double spacing in menu ${issue(
-		95
+	<li><strong>Canvas Code Syntax Synchronization: </strong>Fixed Canvas syntax highlighting not syncing with theme changes ${issue(
+		97
 	)}</li>
-	<li><strong>Autocomplete Suggestions: </strong>Restored proper styling for autocomplete suggestion lists ${issue(
-		95
-	)}</li>
-	<li><strong>Tools Menu and GPTs Mentions: </strong>Restored proper styling for tools menus whhen typed <code>/</code> and GPTs mentions when typed <code>@</code> ${issue(
-		95
-	)}</li>
-    <li><strong>Text Canvas: </strong>Fixed code blocks appearance in edit history view</li>
+	<li><strong>Dialog Display: </strong>Removed unwanted outline below prompt field</li>
+	<li><strong>Business Hours: </strong>Fixed inconsistent display in map view ${issue(99)}</li>
+	<li><strong>GPThemes Floating Button: </strong>Make floating btn always visible for now due to ${issue(102)}, ${issue(
+	103
+)}</li>
 </ul>
 
 <h3>🚨 Known Issues</h3>
 <ul>
-	<li><strong>Canvas Code Syntax Synchronization ${issue(94)}: </strong></br></br> 
-	When changing themes using the <code>GPThemes floating button</code>, the Canvas <code>CodeMirror</code> editor's syntax highlighting doesn't update immediately, remaining in the previous theme's syntax style, while the app theme changes. This creates a temporary visual inconsistency that can be resolved by <code>refreshing the page</code>.
-	<li>Note that changing themes through <code>ChatGPT Settings</code> works correctly without need for page refresh.</li>
-	<li>I'm working on a solution to avoid the need for page refresh.</li>
+	<li><strong>Conversation Scrolling Blocked by Invisible Canvas: </strong>After using the new <code>Edit in Canvas</code> button and closing Canvas, an invisible skeleton element remains in the <code>DOM</code>, blocking conversation scroll ${issue(
+		102
+	)}</li>
+	<li>Note that this behavior is consistent even when the browser extension is turned off, indicating that the issue originates from the original ChatGPT website.</li>
+	<li>That being said, I will wait for the OpenAI team to address this.</li>
 </ul>
 `
 
