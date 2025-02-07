@@ -289,43 +289,6 @@ main [role='presentation'] {
 				--pt-multiplier: 1.4;
 			}
 
-			/* Left chat content parent 
-		! Adding fixed width prevent content overflowing on the right side of chat bubble when there is some markdown (<pre>) element shown with scrolling horizontally */
-			/* 
-			0.75rem = gap-3 = gap between profile svg/img and right content
-			2.25rem = w-9 = gpt profile svg parent width */
-
-			/* ! TODO - BY COMMENTING THIS WE FIX MUPLIPLE BUGS IN GPT CHAT LIKE LINKS WRAPPED IN MANY ROWS AND TOOLTIP FOR "REPLY" OR LINK PREVIEW TOOLTIP NOT POSITIONING CORRECTLY. BUT IF WE REMOVE THIS, THEN GPT CHAT'S BUBBLE WIDTH LOOKS SO ODD!!! WITH MARKDOWN/<PRE> ELEMENTS RENDERED THO
-			This mostly happend bcs of this:
-
-		````  span[data-state] {
-		```		  display: flex;
-		````	  place-items: center;
-		```    } */
-			/* There are more elements with the same class like the "Tell us more" parent when we click on dislike button in GPT chat */
-			.agent-turn.relative.flex.w-full.flex-col {
-				--svg-w: 2.85rem;
-				--svg-gap: 1.5rem; // lg-gap-6 (1.5rem), md-gap-5 (1.25rem)
-
-				width: calc(100% - var(--svg-w) - var(--svg-gap) - var(--p-chat-bubble) - var(--p-chat-bubble)) !important; // more consistent width (right chat bubble spacing = left spacing)
-
-				@include container('md') {
-					--svg-gap: 1.25rem;
-				}
-
-				@include container('sm') {
-					width: 100% !important;
-				}
-
-				@include dev('md') {
-					--svg-gap: 1.25rem; // md-gap-5 (1.25rem)
-				}
-
-				@include dev('sm') {
-					width: 100% !important;
-				}
-			}
-
 			/* Search - Maps wrapper */
 			.not-prose {
 
