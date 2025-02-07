@@ -131,8 +131,15 @@
 	--box-shadow-primary: inset 0 -20px 80px -20px #ffffff1f;
 
 	--link: var(--c-accent) !important;
+	--tag-blue: var(--c-accent) !important;
+	// --tag-blue-light: #0af;
+	--hint-text: var(--c-accent) !important;
+	--hint-bg: hsla(var(--accent-hsl) / 0.12) !important;
 
 	--surface-hover: hsla(var(--accent-hsl) / 0.12) !important;
+	--text-error: var(--c-danger) !important;
+	--icon-secondary: var(--c-subtext-2) !important;
+	--dot-color: var(--c-txt) !important;
 
 	@include container('md') {
 		// --px-chat-bubble-edge-gap: 1vw;

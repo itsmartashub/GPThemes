@@ -8,10 +8,15 @@ main form {
 		caret-color: var(--c-accent);
 
 		/* Prompt text field for Temporary chat */
-		&.bg-black {
+		// &.bg-black {
+		&[class*="bg-[#303030]"] {
 			background-color: transparent !important;
 			box-shadow: 0 0 0px 1px hsla(var(--accent-hsl) / 0.15) !important;
 			background-image: linear-gradient(150deg, hsla(var(--accent-hsl) / 0.2) 0%, hsla(var(--accent-hsl) / 0.08) 20%, hsla(var(--accent-hsl) / 0.08) 70%, hsla(var(--accent-hsl) / 0.25) 100%) !important;
+
+			svg.text-white {
+				color: var(--c-accent) !important;
+			}
 		}
 
 		/* In "temporary chat" textarea is black so the color and caret-color are white, so this fix that */

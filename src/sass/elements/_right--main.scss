@@ -260,7 +260,7 @@ main [role='presentation'] {
 	// &:has([data-message-author-role='assistant']) {
 	// ! I HAVE TO CHANGE THE ASSISTENT SELECTOR to ".agent-turn" BCS IT DOESNT EXIST AT SOME SCENARIOS (e.g. when there is canvas only ([id^="textdoc-message"]), without markdown too, when the user stop py Code canvas editing, etc...
 	&:has(.agent-turn) {
-		// border: 2px solid red !important;
+
 
 		/* ! Without this there was strange issue with User's chat overlaping the menu for "GPT-4" or "GPT-3.5" to choose model in gpt's chat bubble' footer - ONLY FOR MOBILE which is even more strange!!! 
 		Ako neogranicimo ovo samo za mobile, na desktopu ce GPT chat da ide preko sticky headera!! Dok je u mobile ok valjda */
@@ -279,6 +279,7 @@ main [role='presentation'] {
 			--pt-multiplier: 1.3;
 			background-color: var(--c-bg-msg-gpt);
 			padding: calc(var(--p-chat-bubble) * var(--pt-multiplier)) var(--p-chat-bubble) var(--p-chat-bubble) var(--p-chat-bubble) !important;
+			padding: var(--p-chat-bubble) !important;
 			border-radius: var(--br-chat-bubble) !important;
 
 			@include container('sm') {
@@ -438,7 +439,7 @@ main [role='presentation'] {
 
 				/* Border on the left of reasoning process in chat bubble */
 				.absolute.bottom-4.left-0.top-4.w-1.rounded-full.bg-token-border-light {
-					--border-light: var(--c-subtext-2) !important;
+					--border-light: var(--c-subtext-1) !important;
 					/* Circle with light blue which should represents link logo/img? */
 				}
 			}

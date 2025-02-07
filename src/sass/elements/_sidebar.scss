@@ -74,7 +74,7 @@ nav[aria-label='Chat history'] {
 				// --item-background-color: var(--main-surface-secondary-selected);
 			}
 
-			&:hover {
+			&:not(:has(a ~ .absolute.bottom-0.top-0:not(.invisible))):hover {
 				transform: translateY(-0.08rem);
 				// --item-background-color: var(--main-surface-secondary-selected);
 			}
@@ -120,4 +120,8 @@ nav[aria-label='Chat history'] {
 	--p-dialog: 0.5rem;
 	background-color: var(--c-bg-sidebar) !important;
 	border-radius: var(--br-contextmenu) !important;
+}
+
+[fill="#0285FF"] {
+	fill: var(--c-accent) !important;
 }
