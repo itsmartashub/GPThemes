@@ -1,20 +1,17 @@
 /* ===  RIGHT - TEXTAREA PARENT, message type and send button */
 main form {
 	#composer-background {
-		padding: var(--p-prompt-textarea) !important;
+		// padding: var(--p-prompt-textarea) !important;
 		background-color: var(--c-bg-textarea) !important;
-		border-radius: calc(var(--br) * 1.7) !important;
+		// border-radius: calc(var(--br) * 1.7) !important;
 		border: none !important;
-		// transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 		caret-color: var(--c-accent);
 
 		/* Prompt text field for Temporary chat */
 		&.bg-black {
 			background-color: transparent !important;
 			box-shadow: 0 0 0px 1px hsla(var(--accent-hsl) / 0.15) !important;
-			// background-image: linear-gradient(125deg, hsla(var(--accent-hsl) / 0.2) 0%, var(--c-bg-textarea) 20%, transparent 100%) !important;
 			background-image: linear-gradient(150deg, hsla(var(--accent-hsl) / 0.2) 0%, hsla(var(--accent-hsl) / 0.08) 20%, hsla(var(--accent-hsl) / 0.08) 70%, hsla(var(--accent-hsl) / 0.25) 100%) !important;
-			// background-image: linear-gradient(125deg, hsla(var(--accent-hsl) / 0.2) 0%, hsla(var(--accent-hsl) / 0.05) 20%) !important;
 		}
 
 		/* In "temporary chat" textarea is black so the color and caret-color are white, so this fix that */
@@ -44,11 +41,13 @@ main form {
 
 		/* "Reply" in msg textarea */
 		#reply-regions {
-			.bg-token-main-surface-primary.divide-y {
+			.bg-token-main-surface-secondary {
+				background-color: var(--c-surface-3) !important;
+
 				// background-color: hsla(var(--accent-hsl) / 0.12);
-				background-color: var(--c-surface-3);
-				color: var(--c-accent);
-				border-radius: calc(var(--br) * 1.2) !important;
+				// background-color: var(--c-surface-3);
+				// color: var(--c-accent);
+				// border-radius: calc(var(--br) * 1.2) !important;
 
 				/* Reply btn icon */
 				.w-7.h-6,

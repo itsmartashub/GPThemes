@@ -132,6 +132,8 @@
 
 	--link: var(--c-accent) !important;
 
+	--surface-hover: hsla(var(--accent-hsl) / 0.12) !important;
+
 	@include container('md') {
 		// --px-chat-bubble-edge-gap: 1vw;
 		--p-chat-bubble: .8rem;
