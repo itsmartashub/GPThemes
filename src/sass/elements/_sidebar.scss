@@ -92,6 +92,11 @@ nav[aria-label='Chat history'] {
 			&:has(input) {
 				outline: 2px solid hsl(var(--accent-hsl) / 0.2);
 
+				& a[href^='/'] {
+					// --sidebar-mask: linear-gradient(90deg, var(--c-bg-sidebar), var(--c-bg-sidebar) 84%, transparent 89%, transparent);
+					mask-image: none !important;
+				}
+
 				& a[href^='/'],
 				& .bg-token-sidebar-surface-secondary {
 					background-color: var(--c-bg-sidebar) !important;
