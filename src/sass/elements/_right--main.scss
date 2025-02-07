@@ -429,6 +429,19 @@ main [role='presentation'] {
 				border-radius: var(--br-contextmenu);
 				background-color: hsla(var(--accent-hsl) / 0.05);
 			}
+
+
+
+			/* REASONING: "Reasoned about [topic] for [X] seconds" */
+			div:has(~ [data-message-author-role="assistant"]) {
+				// outline: 1px solid red !important;
+
+				/* Border on the left of reasoning process in chat bubble */
+				.absolute.bottom-4.left-0.top-4.w-1.rounded-full.bg-token-border-light {
+					--border-light: var(--c-subtext-2) !important;
+					/* Circle with light blue which should represents link logo/img? */
+				}
+			}
 		}
 
 		/* [class*="group-hover/navigation"] je veliki source link u chat bubble kao onaj "ChatGPT Release Note" na sony */
