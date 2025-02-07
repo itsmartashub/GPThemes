@@ -2,29 +2,6 @@
 .bg-token-sidebar-surface-primary:has(nav[aria-label='Chat history']) {
 	color: var(--c-txt) !important;
 
-	/* Fix white txt on "NEW CHAT" in sidebar for light especially */
-	// nav a > * {
-	// 	color: var(--c-txt) !important;
-	// }
-
-	/* "New Chat" link (first in nav in sidebar) */
-	// nav a[href='/'] {
-	// 	border: 2px solid var(--c-surface-2);
-	// 	padding: var(--p-sidebar-nav-a-new-chat) !important;
-	// 	text-transform: uppercase;
-	// 	margin-bottom: 1rem !important;
-
-	// 	/* "NEW CHAT" ChatGPT logo */
-	// 	.gizmo-shadow-stroke svg {
-	// 		color: var(--c-on-accent) !important;
-	// 	}
-
-	// 	/* NEW CHAT svg icon on the right */
-	// 	button > svg {
-	// 		visibility: visible !important;
-	// 	}
-	// }
-
 	/* "Explore GPTs" link parents - Ne mozemo dodati direkt n ovaj lnk jer kad dodamo vise GPTs producta u ovu listu da bude iznad "Explore GPTs" onda ono nema margin-top vec samo ovaj link, a mi zelimo parent da ima */
 	nav .sticky + div:has(a[href^='/gpts']) {
 		margin-top: 0.8rem;
@@ -37,7 +14,6 @@ nav[aria-label='Chat history'] {
 	/* Parent of "NEW CHAT" btn */
 	.sticky:has(a[href='/']) {
 		background-color: var(--c-bg-sidebar) !important;
-		// backdrop-filter: blur(0px) !important;
 	}
 
 	/* NEW CHAT + LIST of chats in nav. Adding padding-left prevent :focus-visible style in those elements to be cropped from the left because of the overflow-hidden */
@@ -87,6 +63,7 @@ nav[aria-label='Chat history'] {
 
 		.group {
 			overflow: hidden;
+			transition: transform 0.25s ease;
 
 
 			/* Active sidebar list item 
@@ -95,6 +72,15 @@ nav[aria-label='Chat history'] {
 			&:hover {
 				background-color: var(--c-surface-2) !important;
 				// --item-background-color: var(--main-surface-secondary-selected);
+			}
+
+			&:hover {
+				transform: translateY(-0.08rem);
+				// --item-background-color: var(--main-surface-secondary-selected);
+			}
+
+			&:has(a ~ .absolute.bottom-0.top-0:not(.invisible)) {
+				box-shadow: 0 0 2px 1.5px hsl(var(--accent-hsl) / 0.15) !important;
 			}
 
 			/* 3dots btn wrapper - inherit means inherit it from the parent (.group) when hovered or not */
