@@ -136,7 +136,19 @@
 		}
 	}
 
-	code:not(pre) {
+	// code:not(pre) {
+	// 	background-color: hsla(var(--accent-hsl) / 0.12) !important;
+	// 	color: var(--c-accent);
+	// }
+
+	// &:not([class*="hljs"]) {
+	// 	code:not(pre) {
+	// 		background-color: hsla(var(--accent-hsl) / 0.12) !important;
+	// 		color: var(--c-accent);
+	// 	}
+	// }
+
+	code:not(pre code) {
 		background-color: hsla(var(--accent-hsl) / 0.12) !important;
 		color: var(--c-accent);
 	}
