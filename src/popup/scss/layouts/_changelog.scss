@@ -152,6 +152,7 @@
             &:hover {
                 background-color: rgba($accent, .2);
                 color: $accent;
+                backdrop-filter: blur(1rem);
             }
         }
     }
