@@ -43,7 +43,10 @@
 	/* Markdown Blockquotes border-left */
 	blockquote {
 		// border-color: var(--c-subtext-2) !important;
-		border-color: var(--tw-prose-quote-borders) !important;
+		// border-color: var(--tw-prose-quote-borders) !important;
+		background-color: hsla(var(--accent-hsl) / 0.12);
+		border-left: 5px solid var(--tw-prose-quote-borders) !important;
+		border-radius: var(--br-btn);
 	}
 
 	/* Markdown Lists/bullers. Center them, they were on top, not centered */
@@ -135,18 +138,6 @@
 			background-color: hsla(var(--txt-hsl) / 0.03) !important;
 		}
 	}
-
-	// code:not(pre) {
-	// 	background-color: hsla(var(--accent-hsl) / 0.12) !important;
-	// 	color: var(--c-accent);
-	// }
-
-	// &:not([class*="hljs"]) {
-	// 	code:not(pre) {
-	// 		background-color: hsla(var(--accent-hsl) / 0.12) !important;
-	// 		color: var(--c-accent);
-	// 	}
-	// }
 
 	code:not(pre code) {
 		background-color: hsla(var(--accent-hsl) / 0.12) !important;
