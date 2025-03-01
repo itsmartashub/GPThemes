@@ -88,6 +88,9 @@
 
 	/* MODAL - Choose theme context menuitem hover active */
 	[data-state='checked'] {
+		span[class*="text-token-text-"] {
+			color: var(--c-on-accent) !important;
+		}
 
 		&,
 		&:hover {
