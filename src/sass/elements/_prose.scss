@@ -116,7 +116,9 @@
 
 			border-collapse: collapse !important;
 			border-spacing: 0 !important;
-			background-color: hsla(var(--txt-hsl) / 0.15) !important;
+			// background-color: hsla(var(--txt-hsl) / 0.15) !important;
+			background-color: var(--c-surface-3) !important;
+
 			// background-color: hsla(var(--accent-hsl) / .15) !important;
 			text-transform: uppercase;
 			font-size: 0.8rem !important;
@@ -145,15 +147,9 @@
 	}
 }
 
-/* Thead color for Dark theme */
-html.dark .prose {
-	table thead {
-		--tw-prose-headings: var(--c-on-accent) !important;
-		background-color: hsla(var(--accent-hsl) / 0.7) !important;
-		// background-color: var(--c-accent-light) !important;
-	}
+.markdown th {
+	background-color: unset !important;
 }
-
 
 
 /* Code-snippets markdown and markdown header */
