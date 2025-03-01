@@ -257,16 +257,37 @@
 		&:has(input[name='seats']) {
 
 			/* input counter for seats */
-			input[name='seats'] {
-				background-color: hsla(var(--accent-hsl) / 0.3) !important;
-				padding: var(--p-btn) !important;
-				height: 100% !important;
-				margin: 0 0.8rem;
+			input[name='seats'],
+			button[role="radio"] {
+				border: 1px solid var(--c-border) !important;
+			}
+
+			.text-\[\#10A37F\] {
+				color: var(--c-accent) !important;
 			}
 
 			/* "Flexible plan" and "Annual plan" radio buttons */
-			button[role="radio"][aria-checked="false"]:not(:hover) {
-				background-color: hsla(var(--accent-hsl) / 0.3);
+			button[role="radio"] {
+				border: 1px solid var(--c-border) !important;
+
+				&[aria-checked="true"] {
+					background-color: var(--c-surface-3) !important;
+				}
+
+				& > .absolute.left-3.top-0.-translate-y-1\/2 {
+					border-radius: 50vw !important;
+					background-color: var(--c-accent) !important;
+					color: var(--c-on-accent) !important;
+				}
+
+				& > div > span[data-state="checked"] {
+					background-color: var(--c-accent) !important;
+
+					svg {
+						color: var(--c-on-accent) !important;
+					}
+				}
+
 			}
 		}
 
