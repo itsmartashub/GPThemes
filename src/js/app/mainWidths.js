@@ -229,9 +229,7 @@ const loadSettings = async () => {
 		const settings = await browser.storage.sync.get(null)
 
 		// Only load settings for keys that are in FW_DEFAULTS
-		const filteredSettings = Object.fromEntries(
-			Object.entries(settings).filter(([key]) => key in CONFIG.FW_DEFAULTS)
-		)
+		const filteredSettings = Object.fromEntries(Object.entries(settings).filter(([key]) => key in CONFIG.FW_DEFAULTS))
 
 		currentSettings = { ...CONFIG.FW_DEFAULTS, ...filteredSettings }
 		isSyncEnabled = currentSettings.w_chat_gpt === currentSettings.w_prompt_textarea
@@ -295,47 +293,47 @@ const renderWidthsTab = `
   <section id="sectionAssets" class="gpth-assets">
     <div class="gpth-assets__custom-width mb-4">
       ${renderSmallCardOption({
-			name: 'Chats Width',
-			inputId: 'gpth-full-width-custom',
-			inputType: 'range',
-			inputValue: removePercentAndRem(CONFIG.FW_DEFAULTS.w_chat_gpt),
-			inputPlaceholder: '100%',
-			min: 0,
-			max: 100,
-			unit: 'REM',
-		})}
+				name: 'Chats Width',
+				inputId: 'gpth-full-width-custom',
+				inputType: 'range',
+				inputValue: removePercentAndRem(CONFIG.FW_DEFAULTS.w_chat_gpt),
+				inputPlaceholder: '100%',
+				min: 0,
+				max: 100,
+				unit: 'REM',
+			})}
       ${renderSmallCardOption({
-			name: 'Prompt Width',
-			inputId: 'gpth-textarea-width-custom',
-			inputType: 'range',
-			inputValue: removePercentAndRem(CONFIG.FW_DEFAULTS.w_prompt_textarea),
-			inputPlaceholder: '100%',
-			min: 0,
-			max: 100,
-			unit: 'REM',
-			isLocked: true,
-		})}
+				name: 'Prompt Width',
+				inputId: 'gpth-textarea-width-custom',
+				inputType: 'range',
+				inputValue: removePercentAndRem(CONFIG.FW_DEFAULTS.w_prompt_textarea),
+				inputPlaceholder: '100%',
+				min: 0,
+				max: 100,
+				unit: 'REM',
+				isLocked: true,
+			})}
     </div>
 
     <div>
       ${renderSwitchOption({
-			inputId: 'gpth-full-width',
-			isChecked: false,
-			icon: icon_full_width,
-			textTitle: 'Chat Full Width',
-			textSubtitle: "Expand chats to screen's edge for wider conversation view",
-		})}
+				inputId: 'gpth-full-width',
+				isChecked: false,
+				icon: icon_full_width,
+				textTitle: 'Chat Full Width',
+				textSubtitle: "Expand chats to screen's edge for wider conversation view",
+			})}
       ${renderSwitchOption({
-			inputId: 'gpth-sync-textarea-chat-width',
-			isChecked: false,
-			icon: icon_sync,
-			textTitle: 'Sync Prompt Width',
-			textSubtitle: 'Adjust prompt field to match the chat width for a more streamlined and consistent view',
-		})}
+				inputId: 'gpth-sync-textarea-chat-width',
+				isChecked: false,
+				icon: icon_sync,
+				textTitle: 'Sync Prompt Width',
+				textSubtitle: 'Adjust prompt field to match the chat width for a more streamlined and consistent view',
+			})}
     </div>
 
     <footer class="flex justify-center mt-10">
-      ${renderButton({ id: 'resetWidths', content: 'Reset All', disabled: false, className: 'btn-primary' })}
+      ${renderButton({ id: 'resetWidths', content: 'Reset Widths', disabled: false, className: 'btn-primary' })}
     </footer>
   </section>
 `
