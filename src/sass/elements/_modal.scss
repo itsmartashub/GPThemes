@@ -186,7 +186,7 @@
 					color: var(--c-on-accent);
 
 					// style for element surround btn (in code its next to btn on the same block level, sibling), simulating the button, jeez...
-					& ~ .absolute.inset-0 {
+					&~.absolute.inset-0 {
 						--main-surface-primary: var(--c-accent) !important;
 					}
 				}
@@ -262,6 +262,10 @@
 				border: 1px solid var(--c-border) !important;
 			}
 
+			input[name='seats'] {
+				background-color: var(--c-surface-3) !important;
+			}
+
 			.text-\[\#10A37F\] {
 				color: var(--c-accent) !important;
 			}
@@ -272,15 +276,20 @@
 
 				&[aria-checked="true"] {
 					background-color: var(--c-surface-3) !important;
+
+					/* for old design radio buttons */
+					&.h-5.w-5 {
+						background-color: var(--c-accent) !important;
+					}
 				}
 
-				& > .absolute.left-3.top-0.-translate-y-1\/2 {
+				&>.absolute.left-3.top-0.-translate-y-1\/2 {
 					border-radius: 50vw !important;
 					background-color: var(--c-accent) !important;
 					color: var(--c-on-accent) !important;
 				}
 
-				& > div > span[data-state="checked"] {
+				&>div>span[data-state="checked"] {
 					background-color: var(--c-accent) !important;
 
 					svg {
@@ -366,7 +375,7 @@
 					--main-surface-secondary: var(--c-surface-3) !important;
 				}
 
-				& + span {
+				&+span {
 					color: var(--c-accent);
 					background-color: hsla(var(--accent-hsl) / 0.15) !important;
 					padding: 2px 8px;
@@ -403,7 +412,7 @@
 			}
 
 			/* Numbers in "Ratings" svg stars */
-			svg.text-green-500 ~ .text-white {
+			svg.text-green-500~.text-white {
 				color: var(--c-on-accent) !important;
 			}
 
@@ -534,7 +543,7 @@
 
 		/* ___ "Report [GPTs]" dialog */
 		.divide-y:has(>button[class*='hover:bg-token-main-surface-secondary']) {
-			& > * + * {
+			&>*+* {
 				margin-top: 0.5rem;
 			}
 
@@ -554,7 +563,7 @@
 		/* ___ "Search chats" showed when clicked on 🔍 in sidebar */
 		&:has(input[placeholder="Search chats..."]) {
 
-			ol > li {
+			ol>li {
 				.cursor-pointer {
 					[class*='bg-[#f4f4f4]'] {
 						background-color: var(--c-surface-3) !important;
@@ -583,7 +592,7 @@
 				span:has(> [class*="!text-token-text-primary"]) {
 					// padding: 0.8rem 0;
 
-					& > [class*="!text-token-text-primary"] {
+					&>[class*="!text-token-text-primary"] {
 						--text-primary: var(--c-accent) !important;
 						text-transform: uppercase;
 						// padding: 0.3rem 1rem !important;

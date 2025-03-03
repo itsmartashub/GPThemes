@@ -19,7 +19,7 @@ main .composer-parent {
 		}
 
 		/* TODO This element causes weird empty space before prompt field which makes prompt fields visually unshifted or misaligned. The best would be to display:none, but idk if that would be filled with some important content in the future. So I use :empty to remove it only when this element is without any content. */
-		& > div.flex.justify-center:has(~form):empty {
+		&>div.flex.justify-center:has(~form):empty {
 			// border: 4px solid orange !important;
 			display: none !important;
 		}
