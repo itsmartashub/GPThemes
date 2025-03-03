@@ -60,7 +60,7 @@ main form {
 		}
 
 		/* Action buttons in textarea footer ("Search", "Reason", "+") */
-		span > button.h-9.rounded-full[aria-label]:has(svg):not([data-testid]) {
+		span>button.h-9.rounded-full[aria-label]:not([data-testid]) {
 
 			&,
 			svg {
@@ -83,7 +83,7 @@ main form {
 			}
 		}
 
-		span > button[aria-label="Open in canvas"]:has(svg) {
+		span>button[aria-label="Open in canvas"] {
 			background-color: hsla(var(--accent-hsl) / 0.13) !important;
 		}
 
@@ -162,7 +162,7 @@ main form {
 		backdrop-filter: blur(20px);
 
 		/* List of examples when clicked some of the cards below prompt field: "Summarize notes from a meeting", "Summarize my lease agreemen", etc */
-		ul > li > button {
+		ul>li>button {
 			background: transparent !important;
 
 			/* "Summarize" or "Analyze" etc */
@@ -192,15 +192,18 @@ main form {
 }
 
 /* === RIGHT - TEXTAREA part wrapper, margin-top ===*/
-main div[role='presentation'] div.w-full:has(form) {
-	margin-top: 0.5rem !important;
-}
+// main div[role='presentation'] div.w-full:has(form) {
+// 	margin-top: 0.5rem !important;
+// }
 
 // html.dark[data-gptheme='oled'] main form div[class*='bg-[#f4f4f4]']:has(#prompt-textarea) {
-html.dark[data-gptheme='oled'] main form #composer-background:has(#prompt-textarea) {
+html.dark[data-gptheme='oled'] main form #composer-background {
 
 	/* "Reply" in msg textarea */
-	.bg-token-main-surface-primary {
-		background-color: var(--c-surface-2);
+	#reply-regions {
+		.bg-token-main-surface-secondary {
+			background-color: var(--c-surface-2) !important;
+			// background-color: red !important;
+		}
 	}
 }

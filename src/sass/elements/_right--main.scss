@@ -1,31 +1,26 @@
 /* === RIGHT - CONVERSATION CONTAINER === */
-/* .grow.overflow-auto.bg-token-main-surface-primary:has(article) - is for the targeting "Share Link" page */
-.grow.overflow-auto.bg-token-main-surface-primary:has([data-testid^='conversation-turn-']),
+// .grow.overflow-auto.bg-token-main-surface-primary:has([data-testid^='conversation-turn-']) - outdated: "Share Link" page not exists anymore like separated page. Its now part of the chat,
 main [role='presentation'] {
 	container: main / inline-size;
 
 	/* Main Page chat-container  Bg*/
-	&,
-	/* Shared Link Page Bg */
-	.bg-token-main-surface-primary.h-full.overflow-auto {
-		background-color: var(--c-bg-chats-container) !important;
-	}
+	background-color: var(--c-bg-chats-container) !important;
 
 	/* GPT logo in new chat page when no-btns are shown. Its important to make this code before .gizmo-shadow-stroke (main new chat logo in old-ui) because it override its color */
-	.flex.h-full > svg[role='img'] {
+	.flex.h-full>svg[role='img'] {
 		color: var(--c-accent);
 	}
 
-	/* GPT logo in chat bubble */
-	.gizmo-bot-avatar div,
-	/* GPT logo in "New Chat" main chat-container in old-ui */
-	.gizmo-shadow-stroke {
-		background-color: var(--c-accent) !important;
+	// /* GPT logo in chat bubble */
+	// .gizmo-bot-avatar div,
+	// /* GPT logo in "New Chat" main chat-container in old-ui */
+	// .gizmo-shadow-stroke {
+	// 	background-color: var(--c-accent) !important;
 
-		svg {
-			color: var(--c-on-accent) !important;
-		}
-	}
+	// 	svg {
+	// 		color: var(--c-on-accent) !important;
+	// 	}
+	// }
 
 	.gizmo-bot-avatar {
 		--main-surface-tertiary: var(--c-accent) !important;
@@ -125,7 +120,7 @@ main [role='presentation'] {
 			border-radius: var(--br);
 		}
 
-		& > .bg-token-main-surface-primary {
+		&>.bg-token-main-surface-primary {
 			--main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important;
 			// background-color: hsla(var(--accent-hsl) / 0.1) !important;
 			backdrop-filter: blur(8px);
@@ -274,7 +269,7 @@ main [role='presentation'] {
 		& > div.text-base > div[class*="xl:max-w-[48rem]"] { // ovo ne moze jer za mobile nema ove klase vec samo md:max-w-3xl
 		& > div.text-base > div[class*="md:max-w-3xl"] {
 		// ? Adding .markdown here fix flash background of user chat bubble on first message */
-		& > div.text-base > div:first-child:has(.markdown, [id^="textdoc-message"]) {
+		&>div.text-base>div:first-child:has(.markdown, [id^="textdoc-message"]) {
 
 			--pt-multiplier: 1.3;
 			background-color: var(--c-bg-msg-gpt);
@@ -294,7 +289,7 @@ main [role='presentation'] {
 			.not-prose {
 
 				/* DESKTOP */
-				& > .-mt-2.bg-token-main-surface-primary:has(.mapboxgl-map) {
+				&>.-mt-2.bg-token-main-surface-primary:has(.mapboxgl-map) {
 					--main-surface-primary: transparent !important;
 
 					.bg-gradient-to-b {
@@ -302,7 +297,7 @@ main [role='presentation'] {
 					}
 
 					/* Elements present when Maps are in maps view */
-					& > .bg-token-main-surface-primary {
+					&>.bg-token-main-surface-primary {
 						--main-surface-primary: var(--c-bg-msg-gpt) !important;
 						border-radius: var(--br-btn-big) !important;
 
@@ -346,17 +341,17 @@ main [role='presentation'] {
 							}
 
 							/* Location counter bubble markers in the maps - when not selected */
-							svg > [fill="white"] {
+							svg>[fill="white"] {
 								fill: var(--c-surface-2) !important;
 							}
 
 							/* Kao neki svg border od neaktivnih location bubble markers */
-							svg > [fill="black"] {
+							svg>[fill="black"] {
 								fill: hsla(var(--accent-hsl) / .2) !important;
 							}
 
 							/* Location counter bubble markers in the maps - when selected/active */
-							svg > [fill="#282828"] {
+							svg>[fill="#282828"] {
 								fill: var(--c-accent) !important;
 							}
 						}
@@ -364,7 +359,7 @@ main [role='presentation'] {
 
 					/* Circle location order bubbles in review cards za Maps i List views */
 					&,
-					& ~ div:has(a[href*="google.com/maps"]) {
+					&~div:has(a[href*="google.com/maps"]) {
 						.bg-black {
 							background-color: var(--c-accent) !important;
 							color: var(--c-on-accent) !important;
@@ -379,7 +374,7 @@ main [role='presentation'] {
 
 				/* Elements present when Maps are in List view or for mobile screens: wrappper of review cards.
 				- a[href*="google.com/maps"] - Ovo je link of "Directions"*/
-				& > div.mt-4.gap-1:has(> button.rounded-xl > div.text-left a[href*="google.com/maps"]) {
+				&>div.mt-4.gap-1:has(> button.rounded-xl > div.text-left a[href*="google.com/maps"]) {
 					gap: 1rem !important;
 				}
 
@@ -463,7 +458,7 @@ main [role='presentation'] {
 
 		/* Links listed from sources listed when using "/Search" */
 		a[class*="group/nav-list"] {
-			& > .absolute.bottom-0.left-0.top-0.bg-black\/10 {
+			&>.absolute.bottom-0.left-0.top-0.bg-black\/10 {
 				background-color: hsla(var(--accent-hsl) / 0.2) !important;
 				border-radius: var(--br);
 			}
@@ -478,18 +473,18 @@ main [role='presentation'] {
 			}
 		}
 
-		/* GPT avatar in its chat bubbles: with img is the GPTs Store item avatar (.gizmo-shadow-stroke), and with svg is gpt logo (.gizmo-bot-avatar	) */
-		@include container('sm') {
-			.flex-shrink-0.flex.flex-col.items-end:has(.gizmo-bot-avatar, .gizmo-shadow-stroke) {
-				display: none !important;
-			}
-		}
+		// /* GPT avatar in its chat bubbles: with img is the GPTs Store item avatar (.gizmo-shadow-stroke), and with svg is gpt logo (.gizmo-bot-avatar	) */
+		// @include container('sm') {
+		// 	.flex-shrink-0.flex.flex-col.items-end:has(.gizmo-bot-avatar, .gizmo-shadow-stroke) {
+		// 		display: none !important;
+		// 	}
+		// }
 
-		@include dev('sm') {
-			.flex-shrink-0.flex.flex-col.items-end:has(.gizmo-bot-avatar, .gizmo-shadow-stroke) {
-				display: none !important;
-			}
-		}
+		// @include dev('sm') {
+		// 	.flex-shrink-0.flex.flex-col.items-end:has(.gizmo-bot-avatar, .gizmo-shadow-stroke) {
+		// 		display: none !important;
+		// 	}
+		// }
 
 		&:has(.snap-mandatory.snap-x.overflow-x-auto) {
 
@@ -631,10 +626,10 @@ html[data-gptheme='oled'] main [data-testid^='conversation-turn-']:has([data-mes
 
 
 /* ChatGPT's answer notification on the top right, next to the GPThemes floating button */
-body > .fixed.top-8.right-4 {
-	.rounded-full:has(>svg[role='img']) {
-		--main-surface-primary: var(--c-accent) !important;
-		--text-primary: var(--c-on-accent) !important;
-		border-color: var(--c-accent) !important;
-	}
-}
+// body>.fixed.top-8.right-4 {
+// 	.rounded-full:has(>svg[role='img']) {
+// 		--main-surface-primary: var(--c-accent) !important;
+// 		--text-primary: var(--c-on-accent) !important;
+// 		border-color: var(--c-accent) !important;
+// 	}
+// }
