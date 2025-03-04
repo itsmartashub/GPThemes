@@ -19,9 +19,8 @@ main form {
 		}
 
 		/* In "temporary chat" textarea is black so the color and caret-color are white, so this fix that */
-		// [data-placeholder="Message ChatGPT"] {
 		[data-placeholder] {
-			--text-secondary: var(--c-placeholder-textarea); // overwriting its ::after color
+			--text-tertiary: var(--c-placeholder-textarea); // overwriting its ::after color
 		}
 
 		/* "Reply" in msg textarea */

@@ -12,7 +12,7 @@
         ::selection,
         .cm-selectionLayer .cm-selectionBackground,
         // .cm-line span.cm-focused .cm-selectionBackground,
-        .cm-line > *::selection,
+        .cm-line>*::selection,
         .cm-line::selection {
             // background: var(--c-accent) !important;
             // color: var(--c-on-accent) !important;
@@ -41,7 +41,7 @@
 /* ______ TEXT CANVAS: ProseMirror EDITOR */
 #prosemirror-editor-container {
 
-    & > div.bg-token-main-surface-primary.ProseMirror,
+    &>div.bg-token-main-surface-primary.ProseMirror,
     .from-token-main-surface-primary {
         --main-surface-primary: var(--c-bg-cm) !important;
     }
@@ -114,7 +114,7 @@
                 }
 
                 /* User Profile btn */
-                button[aria-label="Open Profile Menu"] {
+                button[data-testid="profile-button"] {
                     --main-surface-secondary: var(--c-surface-3) !important
                 }
             }
@@ -131,7 +131,7 @@
             }
 
             /* Code Canvas: Console when "Run" Python code */
-            & > .relative:has(>.cursor-ns-resize) {
+            &>.relative:has(>.cursor-ns-resize) {
 
                 /* Console bg */
                 .bg-token-main-surface-primary {
@@ -145,7 +145,7 @@
                 }
 
                 /* "Clear console" and "Cancel" btns in Console header */
-                button[as="button"].btn.btn-ghost.btn-small.aspect-square.\!p-1:has(svg) {
+                button[as="button"].btn.btn-ghost.btn-small.aspect-square.\!p-1 {
                     color: var(--c-accent) !important;
                 }
 
@@ -238,7 +238,8 @@
                     }
 
                     /* "Edit or explain" wrapper */
-                    .relative.bg-token-main-surface-primary:has(>textarea[aria-placeholder^="Edit or explain"]) {
+                    // .relative.bg-token-main-surface-primary:has(>textarea[aria-placeholder^="Edit or explain"]) {
+                    .relative.bg-token-main-surface-primary:has(>textarea[aria-placeholder]) {
                         background-color: hsla(var(--accent-hsl) / .1) !important;
 
                         /* "Edit or explain" field overlay */
@@ -338,8 +339,10 @@
 .fixed.inset-0.z-40.overflow-hidden {
 
     /* "Ask a ChatGPT to edit" on full-width screen less then 1000px width */
-    [class*="bg-[#f4f4f4]"]:has([placeholder="Ask ChatGPT to edit"]) {
+    // [class*="bg-[#f4f4f4]"]:has([placeholder="Ask ChatGPT to edit"]) {
+    [class*="bg-[#f4f4f4]"]:has(textarea[placeholder*="ChatGPT"]) {
         background-color: var(--c-bg-textarea) !important;
+        // background-color: var(--c-surface-2) !important;
 
         /* Submit btn */
         button.rounded-full.bg-token-main-surface-primary {

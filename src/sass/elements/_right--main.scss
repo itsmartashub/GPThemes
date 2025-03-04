@@ -7,20 +7,20 @@ main [role='presentation'] {
 	background-color: var(--c-bg-chats-container) !important;
 
 	/* GPT logo in new chat page when no-btns are shown. Its important to make this code before .gizmo-shadow-stroke (main new chat logo in old-ui) because it override its color */
-	.flex.h-full>svg[role='img'] {
-		color: var(--c-accent);
-	}
+	// .flex.h-full>svg[role='img'] {
+	// 	color: var(--c-accent);
+	// }
 
 	// /* GPT logo in chat bubble */
-	// .gizmo-bot-avatar div,
-	// /* GPT logo in "New Chat" main chat-container in old-ui */
-	// .gizmo-shadow-stroke {
-	// 	background-color: var(--c-accent) !important;
+	.gizmo-bot-avatar div,
+	/* GPT logo in "New Chat" main chat-container in old-ui */
+	.gizmo-shadow-stroke {
+		background-color: var(--c-accent) !important;
 
-	// 	svg {
-	// 		color: var(--c-on-accent) !important;
-	// 	}
-	// }
+		svg {
+			color: var(--c-on-accent) !important;
+		}
+	}
 
 	.gizmo-bot-avatar {
 		--main-surface-tertiary: var(--c-accent) !important;

@@ -1,11 +1,12 @@
 /* Sidebar bg-color */
-.bg-token-sidebar-surface-primary:has(nav[aria-label='Chat history']) {
+// .bg-token-sidebar-surface-primary:has(nav[aria-label='Chat history']) {
+.bg-token-sidebar-surface-primary {
 	color: var(--c-txt) !important;
 
 	/* "Explore GPTs" link parents - Ne mozemo dodati direkt n ovaj lnk jer kad dodamo vise GPTs producta u ovu listu da bude iznad "Explore GPTs" onda ono nema margin-top vec samo ovaj link, a mi zelimo parent da ima */
-	nav .sticky + div:has(a[href^='/gpts']) {
-		margin-top: 0.8rem;
-	}
+	// nav .sticky+div:has(a[href^='/gpts']) {
+	// 	margin-top: 0.8rem;
+	// }
 }
 
 nav[aria-label='Chat history'] {
@@ -46,7 +47,7 @@ nav[aria-label='Chat history'] {
 			background-color: var(--c-accent) !important;
 
 			/* SVG icon in "Upgrade" link in nav */
-			& > svg {
+			&>svg {
 				color: var(--c-on-accent) !important;
 			}
 		}
