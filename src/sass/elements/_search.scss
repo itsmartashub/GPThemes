@@ -1,5 +1,6 @@
 /* ___ Search list of sources showed on the right h-full of the chats container */
-[data-testid="screen-threadFlyOut"]:has([data-testid="bar-search-sources-header"]) {
+// [data-testid="screen-threadFlyOut"]:has([data-testid="bar-search-sources-header"]) {
+[data-testid="screen-threadFlyOut"] {
 
     /* Add hover state for searched items */
     a[class*="hover:bg-token-main-surface-secondary"] {
@@ -7,5 +8,11 @@
             --main-surface-secondary: var(--c-surface-3) !important;
             transform: translateY(-2px);
         }
+    }
+
+    /* "SOURCES" sidebar sticky headers: "Links", "Citations", "More" */
+    [class*="h-[calc(var(--screen-thread-header-min-height"] {
+        color: var(--c-accent);
+        text-transform: uppercase;
     }
 }
