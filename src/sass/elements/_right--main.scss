@@ -448,7 +448,7 @@ main [role='presentation'] {
 
 			/* Circle with light blue which should represents link logo/img? */
 			[class*="bg-[#1D53BF0D]"] {
-				background-color: hsla(var(--accent-hsl) / .4) !important;
+				background-color: hsla(var(--accent-hsl) / .25) !important;
 			}
 
 			&:hover {

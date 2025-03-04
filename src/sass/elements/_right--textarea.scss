@@ -121,12 +121,28 @@ main form {
 			}
 		}
 
-		/* 🖼️ "Attach Files" - attached image wrapper */
-		div[type='button'][aria-haspopup='dialog'] {
 
-			/* "Attach Files" attached image */
-			span.bg-cover {
-				border-radius: 10px !important;
+
+		/* 🖼️ "Attach Files" - attached file wrapper */
+		.-ml-1\.5.flex-nowrap {
+			.bg-token-main-surface-primary {
+				--main-surface-primary: hsla(var(--accent-hsl) / 0.12) !important;
+
+				/* Close button */
+				&~button.bg-black.absolute.right-1.top-1.-translate-y-1\/2.translate-x-1\/2.rounded-full {
+					background-color: var(--c-danger) !important;
+					color: var(--c-on-accent) !important;
+					border-color: var(--c-bg-textarea) !important;
+				}
+
+				/* 🖼️ "Attach Files" - attached image button */
+				button[type='button'][aria-haspopup='dialog'] {
+
+					/* "Attach Files" attached image */
+					span.bg-cover {
+						border-radius: 10px !important;
+					}
+				}
 			}
 		}
 
@@ -183,10 +199,8 @@ main form {
 	}
 
 	/* In DALLE there are random button examples above the textarea: ➕ Mosaic, ➕ 3D Wireframe, ➕ Claymation and shuffle btn, and arround that is some ugly gradient */
-	.absolute:has(.bg-gradient-to-t) {
-		.from-token-main-surface-primary {
-			--main-surface-primary: transparent !important;
-		}
+	.absolute.bottom-full.left-0.right-0 .bg-gradient-to-t.from-token-main-surface-primary {
+		--main-surface-primary: transparent !important;
 	}
 }
 
