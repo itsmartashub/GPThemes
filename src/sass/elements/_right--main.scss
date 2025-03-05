@@ -147,9 +147,9 @@ main [role='presentation'] {
 			/* Edit icon in User chat */
 			.absolute.bottom-0.top-0.right-full {
 				/* TODO: Make this only when full-width! - EDIT ICON */
-				right: var(--chat_user_edit_icon_right) !important; // TODO: this
-				top: var(--chat_user_edit_icon_top) !important; // TODO: this
-				transform: var(--chat_user_edit_icon_transform) !important; // TODO: this
+				// right: var(--chat_user_edit_icon_right) !important; // TODO: this
+				// top: var(--chat_user_edit_icon_top) !important; // TODO: this
+				// transform: var(--chat_user_edit_icon_transform) !important; // TODO: this
 
 				button {
 					background-color: hsla(var(--accent-hsl) / 0.1);

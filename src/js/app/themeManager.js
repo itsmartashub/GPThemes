@@ -61,7 +61,7 @@ function handleChangeTheme(e) {
 
 	const themeId = themeBtn.id
 
-	console.log(themeId)
+	// console.log(themeId)
 
 	switch (themeId) {
 		case THEMES.LIGHT:

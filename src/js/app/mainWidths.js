@@ -11,17 +11,17 @@ const CONFIG = {
 		max_w_chat_user: '70%',
 		w_chat_gpt: '49rem', //TODO its cant be 48rem like w_prompt_textarea because that would make the sync true. IMPROVE THIS IN FUTURE
 		w_prompt_textarea: '48rem',
-		chat_user_edit_icon_right: '100%',
-		chat_user_edit_icon_top: '0',
-		chat_user_edit_icon_transform: 'unset',
+		// chat_user_edit_icon_right: '100%',
+		// chat_user_edit_icon_top: '0',
+		// chat_user_edit_icon_transform: 'unset',
 	},
 	FW_OPTIONS: {
 		w_chat_gpt: '100%',
 		w_chat_user: '100%',
 		max_w_chat_user: '100%',
-		chat_user_edit_icon_right: 'calc(0% + 1rem)',
-		chat_user_edit_icon_top: '100%',
-		chat_user_edit_icon_transform: 'translateY(-1.7rem)',
+		// chat_user_edit_icon_right: 'calc(0% + 1rem)',
+		// chat_user_edit_icon_top: '100%',
+		// chat_user_edit_icon_transform: 'translateY(-1.7rem)',
 	},
 }
 
@@ -58,6 +58,7 @@ const applySettings = (settings) => {
 
 	if (isChatWidthModified(settings) && isNarrowScreen) {
 		Object.entries(CONFIG.FW_OPTIONS).forEach(([key, value]) => {
+			// console.log(key, value)
 			document.documentElement.style.setProperty(`--${key}`, value)
 		})
 		// Ensure textarea is full width on narrow screens
@@ -105,21 +106,21 @@ const updateUI = (settings) => {
 
 	if (textareaWidthCard) textareaWidthCard.classList.toggle('is-locked', isSyncEnabled)
 
-	updateEditIconPosition(settings.w_chat_gpt)
+	// updateEditIconPosition(settings.w_chat_gpt)
 }
 
-const updateEditIconPosition = (chatWidth) => {
-	const chatWidthValue = parseInt(removePercentAndRem(chatWidth))
-	const iconSettings = chatWidthValue > 48 ? CONFIG.FW_OPTIONS : CONFIG.FW_DEFAULTS
+// const updateEditIconPosition = (chatWidth) => {
+// 	const chatWidthValue = parseInt(removePercentAndRem(chatWidth))
+// 	const iconSettings = chatWidthValue > 48 ? CONFIG.FW_OPTIONS : CONFIG.FW_DEFAULTS
 
-	Object.assign(currentSettings, {
-		chat_user_edit_icon_right: iconSettings.chat_user_edit_icon_right,
-		chat_user_edit_icon_top: iconSettings.chat_user_edit_icon_top,
-		chat_user_edit_icon_transform: iconSettings.chat_user_edit_icon_transform,
-	})
+// 	Object.assign(currentSettings, {
+// 		chat_user_edit_icon_right: iconSettings.chat_user_edit_icon_right,
+// 		chat_user_edit_icon_top: iconSettings.chat_user_edit_icon_top,
+// 		chat_user_edit_icon_transform: iconSettings.chat_user_edit_icon_transform,
+// 	})
 
-	applySettings(currentSettings)
-}
+// 	applySettings(currentSettings)
+// }
 
 // Event handlers
 const toggleChatFullWidth = (e) => {
