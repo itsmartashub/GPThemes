@@ -19,9 +19,9 @@ const CONFIG = {
 		w_chat_gpt: '100%',
 		w_chat_user: '100%',
 		max_w_chat_user: '100%',
-		chat_user_edit_icon_right: 'calc(0% + 2rem)',
+		chat_user_edit_icon_right: 'calc(0% + 1rem)',
 		chat_user_edit_icon_top: '100%',
-		chat_user_edit_icon_transform: 'translateY(-1.25rem)',
+		chat_user_edit_icon_transform: 'translateY(-1.7rem)',
 	},
 }
 
