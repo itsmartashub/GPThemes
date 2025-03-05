@@ -44,18 +44,6 @@
 		cursor: pointer;
 		// transition: border-color 0.3s ease-in-out;
 
-		// &::-webkit-color-swatch-wrapper {
-		// 	padding: 0;
-		// 	// border: none;
-		// 	// outline: none;
-		// }
-
-		// &::-webkit-color-swatch {
-		// 	border: none;
-		// 	outline: none;
-		// 	border-radius: var(--br_colorpicker);
-		// }
-
 		&::-webkit-color-swatch-wrapper,
 		&::-moz-color-swatch-wrapper {
 			padding: 0;
