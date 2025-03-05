@@ -257,6 +257,11 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 	background-color: var(--c-accent) !important;
 }
 
+/* Blue indicator of unread messages for mobile */
+[fill="#007AFF"] {
+	fill: var(--c-accent) !important;
+}
+
 /* "🌐 Search" btn in prompt field */
 [class*="bg-blue-250"] {
 	background-color: hsla(var(--accent-hsl) / 0.2) !important;

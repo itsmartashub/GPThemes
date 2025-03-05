@@ -118,50 +118,6 @@ main [role='presentation'] {
 	// 	}
 	// }
 
-	/* Is this conversation helpful so far? 👍 👎 | ✖️ */
-	// button[class*='hover:text-token-text-primary']:has(svg) {
-	// 	border-radius: var(--br);
-	// }
-
-	// /* "Was this response better or worse? 👍👎" el when clicked on regenerate answer btn  */
-	// .bg-token-main-surface-secondary:has(button[title^='This response was']) {
-	// 	background-color: transparent !important;
-	// 	color: var(--c-subtext-2) !important;
-	// 	border: 1px solid var(--c-border);
-	// 	border-radius: var(--br-contextmenu);
-
-	// 	/* 👍👎 */
-	// 	button[title] {
-	// 		border-radius: var(--br-btn) !important;
-	// 		border: 1px solid transparent;
-	// 		transition: transform 0.2s $easeInOutSine;
-
-	// 		/* "Better", "Worse", "Same" svg */
-	// 		svg {
-	// 			color: var(--c-accent) !important;
-
-	// 			/* "Same" svg, fix white border for visualy consistency */
-	// 			&.rounded-full {
-	// 				border-color: currentColor;
-	// 			}
-	// 		}
-
-	// 		/* "Better", "Worse", "Same" */
-	// 		span {
-	// 			transition: color 0.2s $easeInOutSine;
-	// 			color: currentColor !important;
-	// 		}
-
-	// 		&:hover {
-	// 			color: var(--c-accent) !important;
-	// 			background-color: transparent !important;
-	// 			border-color: currentColor !important;
-	// 			transform: translateY(-4%);
-	// 		}
-	// 	}
-	// }
-	// }
-
 	/* @ RIGHT - CHATS BUBBLES - USER  */
 	&:has([data-message-author-role='user']) {
 
