@@ -21,6 +21,7 @@ main form {
 		/* In "temporary chat" textarea is black so the color and caret-color are white, so this fix that */
 		[data-placeholder] {
 			--text-tertiary: var(--c-placeholder-textarea); // overwriting its ::after color
+			--text-secondary: var(--c-placeholder-textarea); // overwriting its ::before color in ff
 		}
 
 		/* "Reply" in msg textarea */
