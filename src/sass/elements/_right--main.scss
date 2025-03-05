@@ -26,6 +26,10 @@ main [role='presentation'] {
 		--main-surface-tertiary: var(--c-accent) !important;
 	}
 
+	/* Header statusbar for new chat layout only */
+	.draggable.no-draggable-children.absolute.top-0.left-0.right-0.h-header-height.bg-token-main-surface-primary.max-md\:hidden {
+		@extend %header-style;
+	}
 }
 
 /* @ === RIGHT - CHATS BUBBLES ===*/
