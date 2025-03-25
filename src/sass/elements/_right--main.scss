@@ -99,29 +99,6 @@ main [role='presentation'] {
 		}
 	}
 
-	/*  Chat bubble footer SVG icons - edit, read aloud, copy, regenerate, bad response */
-	// [class*='empty:hidden'] {
-	// .bg-token-main-surface-primary[class*='screen-arch:']:has(button[data-testid="copy-turn-action-button"]) {
-
-	// 	--main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important;
-	// 	backdrop-filter: blur(8px);
-
-	// 	button {
-	// 		svg {
-	// 			color: var(--c-accent);
-	// 		}
-
-	// 		&:hover {
-	// 			background-color: var(--c-accent) !important;
-	// 			color: var(--c-on-accent) !important;
-
-	// 			svg {
-	// 				color: var(--c-on-accent) !important;
-	// 			}
-	// 		}
-	// 	}
-	// }
-
 	/* @ RIGHT - CHATS BUBBLES - USER  */
 	&:has([data-message-author-role='user']) {
 
@@ -215,80 +192,6 @@ main [role='presentation'] {
 	// &:has([data-message-author-role='assistant']) {
 	// ! I HAVE TO CHANGE THE ASSISTENT SELECTOR to ".agent-turn" BCS IT DOESNT EXIST AT SOME SCENARIOS (e.g. when there is canvas only ([id^="textdoc-message"]), without markdown too, when the user stop py Code canvas editing, etc...
 	&:has(.agent-turn) {
-		.agent-turn {
-
-			/* Footer */
-			[tabindex="0"].mb-2.flex.gap-3.-ml-2 {
-
-				/* GPT bubble - footer action buttons wrapper */
-				.bg-token-main-surface-primary.-mt-1[class*='md:absolute'] {
-					backdrop-filter: blur(5px);
-
-					&:not(&:empty) {
-
-						// &:has(button[data-testid="copy-turn-action-button"]) {}
-						--main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important;
-					}
-
-					/* Colored small circle bubble in gpt footer */
-					&:empty {
-						--main-surface-primary: transparent !important;
-					}
-				}
-
-				/* Parent of the "Is this conversation helpful so far? 👍 👎 | ✖️" etc */
-				&~.mt-3.w-full[class*="empty:hidden"] {
-
-					.border-gray-100 {
-						border-color: var(--c-border) !important;
-					}
-
-					/* Is this conversation helpful so far? 👍 👎 | ✖️ */
-					// button[class*='hover:text-token-text-primary']:has(svg) {
-					// 	border-radius: var(--br);
-					// }
-
-					// /* "Was this response better or worse? 👍👎" el when clicked on regenerate answer btn  */
-
-					// .bg-token-main-surface-secondary:has(button[title^='This response was']) {
-					// 	background-color: transparent !important;
-					// 	color: var(--c-subtext-2) !important;
-					// 	border: 1px solid var(--c-border);
-					// 	border-radius: var(--br-contextmenu);
-
-					// 	/* 👍👎 */
-					// 	button[title] {
-					// 		border-radius: var(--br-btn) !important;
-					// 		border: 1px solid transparent;
-					// 		transition: transform 0.2s $easeInOutSine;
-
-					// 		/* "Better", "Worse", "Same" svg */
-					// 		svg {
-					// 			color: var(--c-accent) !important;
-
-					// 			/* "Same" svg, fix white border for visualy consistency */
-					// 			&.rounded-full {
-					// 				border-color: currentColor;
-					// 			}
-					// 		}
-
-					// 		/* "Better", "Worse", "Same" */
-					// 		span {
-					// 			transition: color 0.2s $easeInOutSine;
-					// 			color: currentColor !important;
-					// 		}
-
-					// 		&:hover {
-					// 			color: var(--c-accent) !important;
-					// 			background-color: transparent !important;
-					// 			border-color: currentColor !important;
-					// 			transform: translateY(-4%);
-					// 		}
-					// 	}
-					// }
-				}
-			}
-		}
 
 		/*   RIGHT - CHATS BUBBLE BG 
 		& > div.text-base > div[class*="xl:max-w-[48rem]"] { // ovo ne moze jer za mobile nema ove klase vec samo md:max-w-3xl
@@ -451,8 +354,6 @@ main [role='presentation'] {
 				background-color: hsla(var(--accent-hsl) / 0.05);
 			}
 
-
-
 			/* REASONING: "Reasoned about [topic] for [X] seconds" */
 			div:has(~ [data-message-author-role="assistant"]) {
 				// outline: 1px solid red !important;
@@ -596,22 +497,31 @@ main [role='presentation'] {
 	}
 
 
-	/* User and GPT chats */
-	.bg-token-message-surface,
-	.agent-turn {
+	/* User and GPT chats footer */
+	[class*="group/conversation-turn"] .flex.absolute.left-0.right-0 {
 
 		/* Footer action buttons for User and GPT chats */
-		button[class*="hover:bg-token-main-surface-secondary"].text-token-text-secondary {
-			svg {
-				color: var(--c-accent);
-			}
+		&>[class*="has-[[data-state=open]]:[mask-position:var(--mask-to-pos)]"] {
+			background: hsla(var(--accent-hsl) / .12) !important;
+			border-radius: 50vw;
+			backdrop-filter: blur(10px);
+			color: var(--c-accent) !important;
 
-			&:hover {
-				background-color: var(--c-accent) !important;
-				color: var(--c-on-accent) !important;
+			button {
+				color: var(--c-accent) !important;
 
 				svg {
+					color: currentColor !important;
+				}
+
+
+				&:hover {
+					background-color: var(--c-accent) !important;
 					color: var(--c-on-accent) !important;
+
+					svg {
+						color: currentColor !important;
+					}
 				}
 			}
 		}
