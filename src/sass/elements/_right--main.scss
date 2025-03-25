@@ -1,6 +1,7 @@
 /* === RIGHT - CONVERSATION CONTAINER === */
 // .grow.overflow-auto.bg-token-main-surface-primary:has([data-testid^='conversation-turn-']) - outdated: "Share Link" page not exists anymore like separated page. Its now part of the chat,
-main [role='presentation'] {
+// main [role='presentation'] {
+.composer-parent[role='presentation'] {
 	container: main / inline-size;
 
 	/* Main Page chat-container  Bg*/
@@ -451,30 +452,32 @@ main [role='presentation'] {
 		}
 
 		/* DALLE Image hover buttons - 👍👎 */
-		button[aria-label="Show Image"] {
+		// button[aria-label="Show Image"] {
 
-			.group\/dalle-image {
+		/* DALLE Image hover buttons - 👍👎 */
+		.group\/dalle-image {
 
-				.group-hover\/dalle-image\:visible.absolute {
-					button {
-						background-color: var(--c-on-accent) !important;
-						color: var(--c-accent) !important;
-						opacity: .8;
+			.group-hover\/dalle-image\:visible.absolute {
+				button {
+					background-color: var(--c-on-accent) !important;
+					color: var(--c-accent) !important;
+					opacity: .8;
 
-						svg {
-							color: currentColor !important;
-							transition: none !important;
-						}
+					svg {
+						color: currentColor !important;
+						transition: none !important;
+					}
 
-						&:hover {
-							opacity: 1 !important;
-							background-color: var(--c-accent) !important;
-							color: var(--c-on-accent) !important;
-						}
+					&:hover {
+						opacity: 1 !important;
+						background-color: var(--c-accent) !important;
+						color: var(--c-on-accent) !important;
 					}
 				}
 			}
 		}
+
+		// }
 
 		/* "Voice chat ended" feedback in GPT chat bubble footer - 👍👎 | ❌  */
 		.border-gray-100:has(>div>button[aria-label="Thumbs up"]) {
