@@ -58,28 +58,56 @@ main form {
 		}
 
 		/* Action buttons in textarea footer ("Search", "Reason", "+") */
-		span>button.h-9.rounded-full[aria-label]:not([data-testid]) {
+		.h-9.rounded-full:not([data-testid]) {
+			border: 1px solid hsla(var(--accent-hsl) / 0.15) !important;
 
 			&,
 			svg {
 				color: var(--c-accent) !important;
 			}
 
-			/* Action buttons in textarea footer when in NOT-SELECTED state ("Search", "Reason", "+") */
-			&[aria-pressed="false"] {
+			&:has([aria-pressed="false"]) {
+				// --c-surface-2: transparent !important;
 				background-color: transparent !important;
 			}
 
 			/* Action buttons in textarea footer when in SELECTED state ("Search", "Reason", "+") */
-			&[aria-pressed="true"] {
-				background-color: hsla(var(--accent-hsl) / 0.13) !important;
+			&:has([aria-pressed="true"]) {
+				background-color: hsla(var(--accent-hsl) / 0.15) !important;
+				// background: red !important;
 			}
 
 			&:hover {
-				// background-color: hsla(var(--accent-hsl) / 0.25) !important;
 				background-color: hsla(var(--accent-hsl) / 0.25) !important;
 			}
 		}
+
+		/* Action buttons in textarea footer ("Search", "Reason", "+") */
+		// span>.h-9.rounded-full:not([data-testid]) {
+
+		// 	border: 1px solid hsla(var(--accent-hsl) / 0.2) !important;
+
+		// 	&,
+		// 	svg {
+		// 		color: var(--c-accent) !important;
+		// 	}
+
+		// 	/* Action buttons in textarea footer when in NOT-SELECTED state ("Search", "Reason", "+") */
+		// 	&:has(button[aria-pressed="false"]) {
+		// 		background-color: transparent !important;
+		// 	}
+
+		// 	/* Action buttons in textarea footer when in SELECTED state ("Search", "Reason", "+") */
+		// 	&:has(button[aria-pressed="true"]) {
+		// 		background-color: hsla(var(--accent-hsl) / 0.15) !important;
+		// 		// background: red !important;
+		// 	}
+
+		// 	&:hover {
+		// 		// background-color: hsla(var(--accent-hsl) / 0.25) !important;
+		// 		background-color: hsla(var(--accent-hsl) / 0.25) !important;
+		// 	}
+		// }
 
 		span>button[aria-label="Open in canvas"] {
 			background-color: hsla(var(--accent-hsl) / 0.13) !important;
