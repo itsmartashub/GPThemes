@@ -1,6 +1,7 @@
 // main:has(#prompt-textarea) [class*='lg:max-w-[40rem]'] {
 // main:has(#prompt-textarea) [class*="xl:max-w-[48rem]"] {
 // main:has(#composer-background) {
+// main .composer-parent {
 main .composer-parent {
 	// container: inline-size;
 
@@ -9,7 +10,8 @@ main .composer-parent {
 	// padding-right: var(--px-chat-bubble-edge-gap) !important;
 
 	/* Only textarea wrapper */
-	[class*="md:max-w-3xl"].mx-auto.flex.flex-1.text-base:has(>form) {
+	// [class*="md:max-w-3xl"].mx-auto.flex.flex-1.text-base:has(form #prompt-textarea) {
+	[class*="md:max-w-3xl"].mx-auto.flex.flex-1.text-base:has(form #prompt-textarea) {
 		will-change: width, max-width;
 		max-width: var(--w_prompt_textarea);
 
