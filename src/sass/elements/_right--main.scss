@@ -127,7 +127,7 @@ main [role='presentation'] {
 
 		/* RIGHT - CHATS BUBBLE BG */
 		/* User message */
-		[class*='bg-token-message-surface'] {
+		.bg-token-message-surface {
 			background-color: var(--c-bg-msg-user);
 			padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.2);
 			border-radius: var(--br-chat-bubble) !important;
@@ -171,42 +171,45 @@ main [role='presentation'] {
 					}
 				}
 			}
-		}
 
-		/* Reply in msg */
-		div:has(> svg + .line-clamp-3) {
-			position: relative;
-			align-items: flex-end !important;
-			padding: 5px 10px;
-			background-color: hsla(var(--accent-hsl) / 0.15);
-			color: var(--c-accent);
-			border-radius: var(--br-btn);
-			border-left: 5px solid var(--c-accent);
+			/* Reply in msg */
+			// div (> svg + .line-clamp-3) {
+			// & >.text-token-text-tertiary (> svg + .line-clamp-3) {
+			&>.text-token-text-tertiary {
+				position: relative;
+				align-items: flex-end !important;
+				padding: 5px 10px;
+				background-color: hsla(var(--accent-hsl) / 0.15);
+				color: var(--c-accent);
+				border-radius: var(--br-btn);
+				border-left: 5px solid var(--c-accent);
+			}
 		}
 	}
 
 	/* User chat bubble - Edit state.
 	There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario */
-	.rounded-3xl.bg-token-main-surface-tertiary:has(.grid > textarea) {
+	.rounded-3xl.bg-token-main-surface-tertiary:has(.max-h-\[25dvh\] > .grid > textarea) {
 		// background-color: transparent !important;
 		--main-surface-tertiary: hsla(var(--accent-hsl) / 0.08) !important;
 		padding: var(--p-chat-bubble) !important;
 		border: 1px solid hsla(var(--accent-hsl) / 0.2);
 		caret-color: var(--c-accent);
-	}
 
-	div:has(>.grid > textarea) {
-		border: none !important;
-		@extend %animFadeIn;
+		.max-h-\[25dvh\] {
+			// @extend %animFadeIn;
 
-		/* Make the text in edit textarea to be the full-width */
-		span.invisible,
-		textarea {
-			line-height: calc(var(--lineHeight) / 16) !important;
-			font-size: calc((var(--fontSize) / 16) * 1rem) !important;
-			width: 100%;
+			/* Make the text in edit textarea to be the full-width */
+			span.invisible,
+			textarea {
+				line-height: calc(var(--lineHeight) / 16) !important;
+				font-size: calc((var(--fontSize) / 16) * 1rem) !important;
+				width: 100%;
+			}
 		}
 	}
+
+
 
 	/* @ RIGHT - CHATS BUBBLES - GPT */
 	// &:has([data-message-author-role='assistant']) {
@@ -218,9 +221,19 @@ main [role='presentation'] {
 			[tabindex="0"].mb-2.flex.gap-3.-ml-2 {
 
 				/* GPT bubble - footer action buttons wrapper */
-				.bg-token-main-surface-primary[class*='screen-arch:']:has(button[data-testid="copy-turn-action-button"]) {
-					--main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important;
-					backdrop-filter: blur(8px);
+				.bg-token-main-surface-primary.-mt-1[class*='md:absolute'] {
+					backdrop-filter: blur(5px);
+
+					&:not(&:empty) {
+
+						// &:has(button[data-testid="copy-turn-action-button"]) {}
+						--main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important;
+					}
+
+					/* Colored small circle bubble in gpt footer */
+					&:empty {
+						--main-surface-primary: transparent !important;
+					}
 				}
 
 				/* Parent of the "Is this conversation helpful so far? 👍 👎 | ✖️" etc */
