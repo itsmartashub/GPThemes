@@ -2,16 +2,17 @@
 
 /* Dont use pre directly bcs in the "Analysis" code there is also <pre> */
 .prose pre {
-	border-radius: var(--br-chat-bubble) !important;
+	border-radius: calc(var(--br-chat-bubble) * 0.5) !important;
 	margin: var(--my-pre) auto !important;
+	box-shadow: 0 0 0 1px color-mix(in srgb, var(--c-bg-pre) 50%, black 5%);
 
 	/* Whole code block hljs element */
 	// [class*='bg-gray-950']:has(.sticky button svg) {
 
-	& > div {
+	&>div {
 		background-color: var(--c-bg-pre) !important;
 		border-radius: inherit !important;
-		padding: var(--p-chat-bubble) !important;
+		padding: calc(var(--p-chat-bubble) * 0.5) !important;
 
 		/* 
 		- pre header
@@ -75,39 +76,4 @@
 			}
 		}
 	}
-
-	/* "Copy code" and "Edit" buttons */
-	// .sticky:has(button svg) {
-	// 	.absolute.bottom-0.right-2 {
-	// 		backdrop-filter: blur(5px);
-
-	// 		/* Buttons parent, add gas between Copy code and Edit */
-	// 		.font-sans {
-	// 			gap: 0.5rem;
-	// 		}
-
-	// 		button {
-	// 			$dur: 0.3s;
-	// 			background-color: var(--c-accent);
-	// 			color: var(--c-on-accent);
-	// 			text-transform: uppercase !important;
-	// 			border-radius: calc(var(--br) * 0.8) !important;
-	// 			padding: calc(var(--p-btn) * 0.9) var(--p-btn);
-	// 			font-weight: bold;
-	// 			transition: opacity $dur ease, background-color $dur ease-in-out, color $dur ease !important;
-
-	// 			svg {
-	// 				color: currentColor !important;
-	// 				transition: color 0s ease !important;
-	// 			}
-
-	// 			&:hover {
-	// 				background-color: hsla(var(--accent-hsl) / 0.2) !important;
-	// 				color: var(--c-accent) !important;
-	// 				// transform: scale(0.98);
-	// 			}
-	// 		}
-
-	// 	}
-	// }
 }

@@ -213,7 +213,8 @@ html.light {
 	--c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) * 0.3), 75%);
 	--c-on-accent: hsl(var(--accent-h), var(--accent-s), 88%);
 
-	--c-bg-pre: var(--c-surface-2);
+	// --c-bg-pre: var(--c-surface-2);
+	--c-bg-pre: color-mix(in srgb, var(--c-accent) 5%, transparent 100%);
 
 	/* ? ========== Text colors ========== */
 	--c-txt: hsl(var(--txt-hsl));
