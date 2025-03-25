@@ -503,6 +503,7 @@ main [role='presentation'] {
 		/* Footer action buttons for User and GPT chats */
 		&>[class*="has-[[data-state=open]]:[mask-position:var(--mask-to-pos)]"] {
 			background: hsla(var(--accent-hsl) / .12) !important;
+			border: 1px solid hsla(var(--accent-hsl) / .08) !important;
 			border-radius: 50vw;
 			backdrop-filter: blur(10px);
 			color: var(--c-accent) !important;
