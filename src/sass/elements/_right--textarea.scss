@@ -1,11 +1,20 @@
 /* ===  RIGHT - TEXTAREA PARENT, message type and send button */
 main form {
-	#composer-background {
+
+	// &>[class*='bg-[#303030]']:has(#prompt-textarea) {
+	/* TODO(remove): REMOVE the #composer-background selector when this selector is removed for all user profiles */
+	#composer-background,
+	.contain-inline-size.overflow-clip[class*='bg-[#303030]'] {
+
+
+		// }
+		// #composer-background {
 		--c-bg-textarea: linear-gradient(150deg, hsla(var(--accent-hsl) / 0.2) 0%, hsla(var(--accent-hsl) / 0.08) 20%, hsla(var(--accent-hsl) / 0.08) 70%, hsla(var(--accent-hsl) / 0.25) 100%);
 
-		// border: var() !important;
 		background: var(--c-bg-textarea) !important;
 		caret-color: var(--c-accent);
+		box-shadow: none !important;
+		border: none !important;
 
 		/* Prompt text field for "Temporary chat" */
 		&.bg-\[\#303030\] {
@@ -22,10 +31,47 @@ main form {
 			--text-secondary: var(--c-placeholder-textarea); // overwriting its ::before color in ff
 		}
 
+		/* "Reply" in msg textarea - NEW SELECTOR after #reply-regions has been removed */
+		.divide-y.divide-token-border-light.bg-token-main-surface-primary {
+			background-color: transparent !important;
+
+			.bg-token-main-surface-secondary.dark\:bg-token-main-surface-tertiary.text-sm.text-token-text-secondary {
+				background-color: hsla(var(--accent-hsl) / 0.12) !important;
+				border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
+				// color: var
+
+				/* Reply btn icon */
+				.w-7.h-6,
+				/* Cancel btn icon */
+				button.text-token-text-secondary {
+					&:has(>svg) {
+						// background-color: var(--c-accent) !important;
+						// color: var(--c-on-accent) !important;
+						border-radius: 50vw;
+					}
+				}
+
+				/* Reply btn icon */
+				.w-7.h-6:has(>svg) {
+					color: var(--c-accent) !important;
+					background-color: hsla(var(--accent-hsl) / 0.2) !important;
+				}
+
+				/* Cancel btn icon */
+				button.text-token-text-secondary:has(>svg) {
+					color: var(--c-on-accent) !important;
+					background-color: var(--c-accent) !important;
+				}
+			}
+		}
+
+		/* TODO(remove): REMOVE if or when this selector is removed for all user profiles */
 		/* "Reply" in msg textarea */
 		#reply-regions {
 			.bg-token-main-surface-secondary {
-				background-color: var(--c-surface-3) !important;
+				background-color: hsla(var(--accent-hsl) / 0.15) !important;
+				border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
+
 
 				// background-color: hsla(var(--accent-hsl) / 0.12);
 				// background-color: var(--c-surface-3);
@@ -59,7 +105,7 @@ main form {
 
 		/* Action buttons in textarea footer ("Search", "Reason", "+") */
 		.h-9.rounded-full:not([data-testid]) {
-			border: 1px solid hsla(var(--accent-hsl) / 0.15) !important;
+			border: 1px solid hsla(var(--accent-hsl) / 0.12) !important;
 
 			&,
 			svg {
@@ -78,39 +124,13 @@ main form {
 			}
 
 			&:hover {
-				background-color: hsla(var(--accent-hsl) / 0.25) !important;
+				background-color: hsla(var(--accent-hsl) / 0.2) !important;
 			}
 		}
 
-		/* Action buttons in textarea footer ("Search", "Reason", "+") */
-		// span>.h-9.rounded-full:not([data-testid]) {
-
-		// 	border: 1px solid hsla(var(--accent-hsl) / 0.2) !important;
-
-		// 	&,
-		// 	svg {
-		// 		color: var(--c-accent) !important;
-		// 	}
-
-		// 	/* Action buttons in textarea footer when in NOT-SELECTED state ("Search", "Reason", "+") */
-		// 	&:has(button[aria-pressed="false"]) {
-		// 		background-color: transparent !important;
-		// 	}
-
-		// 	/* Action buttons in textarea footer when in SELECTED state ("Search", "Reason", "+") */
-		// 	&:has(button[aria-pressed="true"]) {
-		// 		background-color: hsla(var(--accent-hsl) / 0.15) !important;
-		// 		// background: red !important;
-		// 	}
-
-		// 	&:hover {
-		// 		// background-color: hsla(var(--accent-hsl) / 0.25) !important;
-		// 		background-color: hsla(var(--accent-hsl) / 0.25) !important;
-		// 	}
-		// }
-
 		span>button[aria-label="Open in canvas"] {
-			background-color: hsla(var(--accent-hsl) / 0.13) !important;
+			background-color: hsla(var(--accent-hsl) / 0.15) !important;
+			color: var(--c-accent) !important;
 		}
 
 		button[data-testid='send-button'],
@@ -149,7 +169,6 @@ main form {
 		}
 
 
-
 		/* 🖼️ "Attach Files" - attached file wrapper */
 		.-ml-1\.5.flex-nowrap {
 			.bg-token-main-surface-primary {
@@ -170,6 +189,15 @@ main form {
 						border-radius: 10px !important;
 					}
 				}
+			}
+		}
+
+		/* Voice mode button when there is no [data-testid="composer-speech-button"] selector loaded. So on page loads */
+		.dark\:bg-white.h-9.bg-black.rounded-full {
+			background-color: var(--c-accent);
+
+			svg {
+				color: var(--c-on-accent) !important;
 			}
 		}
 
