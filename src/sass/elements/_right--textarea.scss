@@ -1,17 +1,15 @@
 /* ===  RIGHT - TEXTAREA PARENT, message type and send button */
 main form {
 	#composer-background {
-		// padding: var(--p-prompt-textarea) !important;
-		background-color: var(--c-bg-textarea) !important;
-		// border-radius: calc(var(--br) * 1.7) !important;
-		border: none !important;
+		--c-bg-textarea: linear-gradient(150deg, hsla(var(--accent-hsl) / 0.2) 0%, hsla(var(--accent-hsl) / 0.08) 20%, hsla(var(--accent-hsl) / 0.08) 70%, hsla(var(--accent-hsl) / 0.25) 100%);
+
+		// border: var() !important;
+		background: var(--c-bg-textarea) !important;
 		caret-color: var(--c-accent);
 
 		/* Prompt text field for "Temporary chat" */
 		&.bg-\[\#303030\] {
-			background-color: transparent !important;
-			box-shadow: 0 0 0px 1px hsla(var(--accent-hsl) / 0.15) !important;
-			background-image: linear-gradient(150deg, hsla(var(--accent-hsl) / 0.2) 0%, hsla(var(--accent-hsl) / 0.08) 20%, hsla(var(--accent-hsl) / 0.08) 70%, hsla(var(--accent-hsl) / 0.25) 100%) !important;
+			--c-bg-textarea: var(--c-surface-2);
 
 			svg.text-white {
 				color: var(--c-accent) !important;
