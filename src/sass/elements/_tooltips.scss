@@ -5,7 +5,7 @@
 	- Tooltip when hover on ❌ in attached images in prompt textarea
 */
 div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
-	@extend %animFadeIn;
+	// @extend %animFadeIn;
 	padding: var(--p-tooltips) !important;
 
 	/* Basic tooltip & tooltip with searched links in GPT chat bubble */
@@ -29,6 +29,17 @@ div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
 			color: var(--c-txt) !important;
 			// color: red !important;
 		}
+	}
+
+	.text-gray-100.text-sm .bg-token-main-surface-secondary.dark\:bg-token-main-surface-tertiary,
+	.text-gray-100.text-sm .dark\:bg-token-main-surface-secondary {
+		background-color: transparent !important;
+	}
+
+	.shadow-xs,
+	.shadow-lg {
+		// --tw-shadow: none !important;
+		box-shadow: none !important;
 	}
 
 	/* Links in tooltips shown when hovered on some search "Link" in GPT chat bubble */

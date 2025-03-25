@@ -89,3 +89,8 @@
 .text-token-link {
 	--link: var(--c-accent) !important;
 }
+
+/* +1 txt in source link in chat bubble */
+.text-\[\#8F8F8F\] {
+	color: currentColor !important;
+}

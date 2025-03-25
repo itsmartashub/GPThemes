@@ -497,12 +497,8 @@ html.dark[data-gptheme='oled'] {
 	--c-subtext-2: hsl(var(--accent-h) calc(var(--accent-s) / 2) var(--accent-l)) !important;
 
 	/* ? ========== Surface colors ========== */
-	// --c-surface-1: black; // darkest
 	--c-surface-1: black; // darkest
-	// --c-surface-2: #191c1e; // darker
-	// --c-surface-3: #262229; // dark
 	--c-surface-2: hsl(var(--accent-h), calc(var(--surface-s) + 15%), calc(var(--surface-l) + 12%)); // darker
-	// --c-surface-2: rgb(49, 220, 74); // darker
 	--c-surface-3: hsl(var(--accent-h), calc(var(--surface-s) + 15%), calc(var(--surface-l) + 8%)); // dark
 
 	/* ? ========== Layout colors ========== */
@@ -513,8 +509,6 @@ html.dark[data-gptheme='oled'] {
 	// --c-bg-chats-sticky: rgba(0, 0, 0, 0.02);
 
 	/* ? ========== Chat bubbles colors ========== */
-	// --c-bg-msg-user: hsla(var(--accent-hsl) / 0.04);
-	// --c-bg-msg-gpt: hsla(var(--accent-hsl) / 0.08);
 	--c-bg-msg-user: hsl(var(--accent-h), calc(var(--surface-s) + 15%), calc(var(--surface-l) + 4%));
 	--c-bg-msg-gpt: hsl(var(--accent-h), calc(var(--surface-s) + 20%), calc(var(--surface-l) + 6%));
 

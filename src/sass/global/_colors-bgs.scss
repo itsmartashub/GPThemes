@@ -10,6 +10,10 @@
 	// background-color: red !important;
 }
 
+// .dark\:bg-white {
+// 	background-color: var(--c-accent);
+// }
+
 /* 
 // ``` .bg-gray-50
 		- "❓" btn 
@@ -153,12 +157,11 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 
 - .streaming-line-overlay are lines during the processing edit in Code Canvas (like add logs etc)
  */
-[class*='bg-white']:not(.streaming-line-overlay, [role="combobox"]),
-.bg-token-sidebar-surface-secondary {
-	background-color: var(--c-surface-2) !important;
-	// @include borderBoxShadow(red);
-	// background-color: red;
-}
+// [class*='bg-white ']:not(.streaming-line-overlay, [role="combobox"]),
+// .bg-white:not(.streaming-line-overlay, [role="combobox"]),
+// .bg-token-sidebar-surface-secondary {
+// 	background-color: var(--c-surface-2) !important;
+// }
 
 /* 
 - Sidebar
@@ -289,4 +292,13 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 .hover\:dark\:bg-token-main-surface-tertiary:is(.dark *):hover {
 	--main-surface-tertiary: var(--c-surface-3) !important;
 	// background-color: var(--main-surface-tertiary);
+}
+
+
+/* Highlighted orang-ish text when hover source link in chat-bubble */
+.bg-\[#FCECC1\],
+.dark\:bg-\[\#64572A\] {
+	background-color: hsla(var(--accent-hsl) / 0.15) !important;
+	color: var(--c-accent) !important;
+	box-shadow: inset 0px 0px 0px 1px hsla(var(--accent-hsl) / 0.15) !important;
 }

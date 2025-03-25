@@ -213,7 +213,7 @@ main [role='presentation'] {
 				--pt-multiplier: 1.4;
 			}
 
-			/* Search - Maps wrapper */
+			/* * Search - Maps wrapper */
 			.not-prose {
 
 				/* DESKTOP */
@@ -388,6 +388,19 @@ main [role='presentation'] {
 				border-radius: var(--br);
 			}
 		}
+
+		/* Sources links in chat bubble wth bubble on mouseover - basic state */
+		a.h-6.rounded-xl.font-medium.\!bg-\[\#F4F4F4\].\!text-token-text-secondary.dark\:\!bg-\[\#303030\] {
+			background-color: hsla(var(--accent-hsl) / .12) !important;
+			color: var(--c-accent) !important;
+		}
+
+		/* Sources links in chat bubble wth bubble on mouseover - mouseover state */
+		a.h-6.rounded-xl.font-medium.\!bg-token-text-primary.\!text-token-main-surface-primary {
+			background-color: var(--c-accent) !important;
+			color: var(--c-on-accent) !important;
+		}
+
 
 		/* "SOURCES" button */
 		.absolute[class*="h-[60px]"]:has(>button.not-prose.group\/footnote.bg-token-main-surface-primary) {
