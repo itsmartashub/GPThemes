@@ -33,41 +33,42 @@ main [role='presentation'] {
 	}
 
 	h1,
-	.text-token-text-primary > div.flex-shrink-0 > svg[role='img'] {
+	.text-token-text-primary>div.flex-shrink-0>svg[role='img'] {
 		color: var(--c-accent) !important;
 	}
 }
 
+// TODO(remove): REMOVE this when #composer-background is removed for all user profiles
 /* New "New Chat" layout prompt action cards */
-main [role='presentation'] div.w-full:has(> form #composer-background) + div.hidden ul > li > button {
-	/* --c-bg-gradient: transparent !important;
-	--clr: hsla(var(--accent-hsl) / 0.2) !important; */
-	border: 1px solid hsla(var(--accent-hsl) / 0.12) !important;
+// main [role='presentation'] div.w-full:has(> form #composer-background) + div.hidden ul > li > button {
+// 	/* --c-bg-gradient: transparent !important;
+// 	--clr: hsla(var(--accent-hsl) / 0.2) !important; */
+// 	border: 1px solid hsla(var(--accent-hsl) / 0.12) !important;
 
-	&:hover {
-		color: var(--c-accent) !important;
-		transform: scale(0.97);
+// 	&:hover {
+// 		color: var(--c-accent) !important;
+// 		transform: scale(0.97);
 
-		.text-gray-600 {
-			--c-subtext-2: currentColor;
-		}
+// 		.text-gray-600 {
+// 			--c-subtext-2: currentColor;
+// 		}
 
-		svg {
-			color: currentColor !important;
-			transition: none;
-		}
-	}
-}
+// 		svg {
+// 			color: currentColor !important;
+// 			transition: none;
+// 		}
+// 	}
+// }
 
-html.light main [role='presentation'] div.w-full:has(> form #composer-background) + div.hidden ul > li > button {
-	color: var(--c-accent) !important;
+// html.light main [role='presentation'] div.w-full:has(> form #composer-background) + div.hidden ul > li > button {
+// 	color: var(--c-accent) !important;
 
-	.text-gray-600 {
-		--c-subtext-2: currentColor;
-	}
+// 	.text-gray-600 {
+// 		--c-subtext-2: currentColor;
+// 	}
 
-	svg {
-		color: currentColor !important;
-		transition: none;
-	}
-}
+// 	svg {
+// 		color: currentColor !important;
+// 		transition: none;
+// 	}
+// }

@@ -265,13 +265,13 @@ main form {
 // }
 
 // html.dark[data-gptheme='oled'] main form div[class*='bg-[#f4f4f4]']:has(#prompt-textarea) {
-html.dark[data-gptheme='oled'] main form #composer-background {
+// html.dark[data-gptheme='oled'] main form #composer-background {
 
-	/* "Reply" in msg textarea */
-	#reply-regions {
-		.bg-token-main-surface-secondary {
-			background-color: var(--c-surface-2) !important;
-			// background-color: red !important;
-		}
-	}
-}
+// 	/* "Reply" in msg textarea */
+// 	#reply-regions {
+// 		.bg-token-main-surface-secondary {
+// 			background-color: var(--c-surface-2) !important;
+// 			// background-color: red !important;
+// 		}
+// 	}
+// }
