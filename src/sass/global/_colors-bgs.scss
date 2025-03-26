@@ -294,6 +294,11 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 	// background-color: var(--main-surface-tertiary);
 }
 
+/* "Attach files" svg background circled div when clicked some of the new "New Chat" layout prompt action cards (Like "Summarize text", "Analyze images", etc. */
+.bg-brand-blue-800\/20 {
+	background-color: hsla(var(--accent-hsl) / 0.12) !important;
+}
+
 
 /* Highlighted orang-ish text when hover source link in chat-bubble */
 .bg-\[#FCECC1\],

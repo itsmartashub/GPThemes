@@ -558,6 +558,7 @@ html.dark main [data-testid^='conversation-turn-']:has([data-message-author-role
 	}
 }
 
+/* "Searched x sites" Links wrapper! */
 html[data-gptheme='oled'] main [data-testid^='conversation-turn-']:has([data-message-author-role='assistant']) {
 	.overflow-hidden:has(> .divide-y) {
 		.from-token-main-surface-secondary {

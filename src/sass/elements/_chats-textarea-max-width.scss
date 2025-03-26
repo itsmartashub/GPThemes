@@ -2,7 +2,8 @@
 // main:has(#prompt-textarea) [class*="xl:max-w-[48rem]"] {
 // main:has(#composer-background) {
 // main .composer-parent {
-main .composer-parent {
+// main .composer-parent {
+[role="presentation"].composer-parent {
 	// container: inline-size;
 
 	// .px-3.text-base.m-auto {
@@ -11,7 +12,7 @@ main .composer-parent {
 
 	/* Only textarea wrapper */
 	// [class*="md:max-w-3xl"].mx-auto.flex.flex-1.text-base:has(form #prompt-textarea) {
-	[class*="md:max-w-3xl"].mx-auto.flex.flex-1.text-base:has(form #prompt-textarea) {
+	[class*="md:max-w-3xl"].mx-auto.flex.flex-1.text-base:has(form[data-type="unified-composer"] #prompt-textarea) {
 		will-change: width, max-width;
 		max-width: var(--w_prompt_textarea);
 
@@ -21,9 +22,9 @@ main .composer-parent {
 		}
 
 		/* TODO This element causes weird empty space before prompt field which makes prompt fields visually unshifted or misaligned. The best would be to display:none, but idk if that would be filled with some important content in the future. So I use :empty to remove it only when this element is without any content. */
-		&>div.flex.justify-center:has(~form):empty {
-			// border: 4px solid orange !important;
-			display: none !important;
-		}
+		// &>div.flex.justify-center:has(~form):empty {
+		// 	// border: 4px solid orange !important;
+		// 	display: none !important;
+		// }
 	}
 }
