@@ -104,7 +104,7 @@ let renderFontsTab = `
         </label>
       </div>	
 
-    <footer class="flex justify-center mt-6">
+    <footer class="flex justify-center mt-8">
       ${renderButton({ id: 'resetFont', content: 'Reset Fonts', disabled: false, className: 'btn-primary' })}
     </footer>
   </section>

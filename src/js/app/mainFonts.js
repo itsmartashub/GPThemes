@@ -13,24 +13,28 @@ const DEFAULTS = {
 
 const FONT_NAMES = [
 	'Default',
-	'Share Tech Mono',
-	'JetBrains Mono',
-	'Work Sans',
-	'Lora',
-	'Manrope',
-	'Inter',
-	'Roboto',
-	'Roboto Mono',
-	'Roboto Serif',
-	'DM Sans',
-	'Reddit Mono',
-	'Poppins',
-	'Raleway',
-	'Noto Sans',
-	'Lato',
-	'Quicksand',
-	'Outfit',
+	...[
+		'Share Tech Mono',
+		'JetBrains Mono',
+		'Work Sans',
+		'Lora',
+		'Manrope',
+		'Inter',
+		'Roboto',
+		'Roboto Mono',
+		'Roboto Serif',
+		'DM Sans',
+		'Reddit Mono',
+		'Poppins',
+		'Raleway',
+		'Noto Sans',
+		'Lato',
+		'Quicksand',
+		'Outfit',
+	].sort(),
 ]
+
+// Add "Default" back to the beginning
 // FONT_NAMES.sort()
 
 // const GOOGLE_FONT_WEIGHTS = `:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900`
@@ -76,6 +80,10 @@ const letterSpacingData = {
 	max: 30,
 }
 
+const sortedFonts = FONT_NAMES.filter((font) => font !== 'Default') // Remove "Default" from the list
+	.sort() // Sort the remaining fonts alphabetically
+	.unshift('Default')
+
 // HTML template for font changer popover
 let renderFontsTab = `
   <section id="fontChangerPopover" class="fonts">
@@ -88,9 +96,9 @@ let renderFontsTab = `
 				<p class="card__name uppercase font-semibold">FONT FAMILY</p>
 			</div>
 			<select id="fontFamily" class="border-none outline-none focus:none font-bold">
-				${FONT_NAMES.sort()
-					.map((name) => `<option value="${name === 'Default' ? DEFAULTS.fontFamily : name}">${name}</option>`)
-					.join('')}
+				${FONT_NAMES.map((name) => `<option value="${name === 'Default' ? DEFAULTS.fontFamily : name}">${name}</option>`).join(
+					''
+				)}
 			</select>
 			</label>
 		</div>
@@ -100,7 +108,7 @@ let renderFontsTab = `
 		${renderFontSmallCard(letterSpacingData)}
 	</div>
     </div>
-    <footer class="flex justify-center mt-6">
+    <footer class="flex justify-center mt-8">
       ${renderButton({ id: 'resetFont', content: 'Reset Fonts', disabled: false, className: 'btn-primary' })}
     </footer>
   </section>
