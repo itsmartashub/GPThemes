@@ -27,7 +27,7 @@ const renderColorsTab = `
           <label for="accentDark">Accent <span>Dark</span></label>
         </div>
       </div>
-      <footer class="flex justify-center mt-10">
+      <footer class="flex justify-center mt-6">
 		${renderButton({ id: 'resetAllAccents', content: 'Reset Colors', disabled: false, className: 'btn-primary' })}
       </footer>
     </section>

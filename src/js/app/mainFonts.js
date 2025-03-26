@@ -100,7 +100,7 @@ let renderFontsTab = `
 		${renderFontSmallCard(letterSpacingData)}
 	</div>
     </div>
-    <footer class="flex justify-center mt-10">
+    <footer class="flex justify-center mt-6">
       ${renderButton({ id: 'resetFont', content: 'Reset Fonts', disabled: false, className: 'btn-primary' })}
     </footer>
   </section>

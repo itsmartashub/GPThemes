@@ -81,8 +81,8 @@ let renderFontsTab = `
             </div>
             <select id="fontFamily" class="border-none outline-none font-bold">
               ${FONT_NAMES.map(
-					(name) => `<option value="${name === 'Default' ? DEFAULTS.fontFamily : name}">${name}</option>`
-				).join('')}
+								(name) => `<option value="${name === 'Default' ? DEFAULTS.fontFamily : name}">${name}</option>`
+							).join('')}
             </select>
           </label>
         </div>
@@ -104,7 +104,7 @@ let renderFontsTab = `
         </label>
       </div>	
 
-    <footer class="flex justify-center mt-10">
+    <footer class="flex justify-center mt-6">
       ${renderButton({ id: 'resetFont', content: 'Reset Fonts', disabled: false, className: 'btn-primary' })}
     </footer>
   </section>

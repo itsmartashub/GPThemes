@@ -20,7 +20,7 @@ async function createSettings() {
     </header>
     <main>
       <div class="tabs">
-        <div class="tab-buttons p-1 font-semibold mb-10">
+        <div class="tab-buttons p-1 font-semibold mb-5">
           <button class="tab-button py-2 px-4 focus:outline-none text-center active">Color</button>
           <button class="tab-button py-2 px-4 focus:outline-none text-center">Font</button>
           <button class="tab-button py-2 px-4 focus:outline-none text-center">Width</button>
