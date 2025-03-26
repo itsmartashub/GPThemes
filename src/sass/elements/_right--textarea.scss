@@ -265,10 +265,11 @@ form[data-type="unified-composer"] {
 		}
 	}
 
+	/* TODO(remove): Hard to target this since its not in form anymore, but out of it. And its not even important... */
 	/* In DALLE there are random button examples above the textarea: ➕ Mosaic, ➕ 3D Wireframe, ➕ Claymation and shuffle btn, and arround that is some ugly gradient */
-	.absolute.bottom-full.left-0.right-0 .bg-gradient-to-t.from-token-main-surface-primary {
+	/* .absolute.bottom-full.left-0.right-0 .bg-gradient-to-t.from-token-main-surface-primary {
 		--main-surface-primary: transparent !important;
-	}
+	} */
 }
 
 /* === RIGHT - TEXTAREA part wrapper, margin-top ===*/

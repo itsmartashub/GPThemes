@@ -1,15 +1,28 @@
 /* "Analysis" wrapper markdown code: ugly black color above the whole markdown part, especcialy visible on light mode */
-.bg-black:has(.markdown) {
-    // background-color: var(--c-bg-pre) !important;
-    background-color: transparent !important;
+// .bg-black:has(.markdown) {
+// .agent-turn {
+//     .mb-3.overflow-hidden.rounded-b-xl.bg-token-main-surface-primary:has(.markdown.prose .bg-black .border-l-4.border-red-500) {
+//         background-color: transparent !important;
+//     }
+// }
 
-    /* "Analysis" code: remove border-top */
-    .border-t:has(.border-l-4.border-red-500) {
-        border-top: unset !important;
-        border-radius: var(--br-btn);
-        background-color: hsla(var(--accent-hsl) / 0.12);
-        margin-bottom: 1rem;
+// .bg-black .border-l-4.border-red-500 
+
+.agent-turn {
+    [class*="mt-0.5"].mb-3.overflow-hidden.rounded-b-xl.bg-token-main-surface-primary:has(>.markdown.prose) {
+        background-color: transparent !important;
+        // border: 2px solid red !important;
     }
+}
+
+/*
+- [role="dialog"] .bg-black.border-t:has(.border-l-4.border-red-500): Analysis in dialogs
+- .agent-turn .markdown.prose~.bg-black.border-t:has(.border-l-4.border-red-500): Analysis in chat-bubbles */
+.agent-turn .markdown.prose~.bg-black.border-t:has(.border-l-4.border-red-500),
+[role="dialog"] .bg-black.border-t:has(.border-l-4.border-red-500) {
+    border-top: unset !important;
+    border-radius: var(--br-btn);
+    background-color: hsla(var(--accent-hsl) / 0.12);
 
     /* "Analysis" <pre> code parents */
     .border-l-4.border-red-500 {
@@ -20,18 +33,18 @@
 
 /* Analysis "Result" next to .markdown.prose (sony acc) */
 // .markdown.prose ~ .bg-gray-700:has(>.text-gray-400 > .prose) {
-.markdown.prose ~ ,
-[role="dialog"] .bg-black {
-    & .bg-gray-700:has(>.text-gray-400 ~ .prose) {
-        border-radius: var(--br-btn) !important;
-        background-color: hsla(var(--accent-hsl) / 0.12) !important;
-        color: var(--c-accent) !important;
-        border-left: 4px solid currentColor;
+// .markdown.prose~,
+// [role="dialog"] .bg-black {
+//     & .bg-gray-700:has(>.text-gray-400 ~ .prose) {
+//         border-radius: var(--br-btn) !important;
+//         background-color: hsla(var(--accent-hsl) / 0.12) !important;
+//         color: var(--c-accent) !important;
+//         border-left: 4px solid currentColor;
 
-        pre {
-            white-space: pre-wrap;
-            border-radius: 0 !important;
-            margin: 0 !important;
-        }
-    }
-}
+//         pre {
+//             white-space: pre-wrap;
+//             border-radius: 0 !important;
+//             margin: 0 !important;
+//         }
+//     }
+// }
