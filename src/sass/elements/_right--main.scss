@@ -119,21 +119,8 @@
 		/* Flex-end the Reply in user chat bubble */
 		[data-message-author-role='user'] {
 			align-items: flex-end !important;
-			/* TODO: Make this only when full-width! See what this can break since the origitnal is overflow-x-hidden, and when i make chats full-width, edit icon for user chat is cut-of so i need to fix it by this and editing the position of the edit icon. BUT HAVE TO TEST THIS!! */
-			overflow: visible !important;
-
-			/* Edit icon in User chat */
-			.absolute.bottom-0.top-0.right-full {
-				/* TODO: Make this only when full-width! - EDIT ICON */
-				// right: var(--chat_user_edit_icon_right) !important; // TODO: this
-				// top: var(--chat_user_edit_icon_top) !important; // TODO: this
-				// transform: var(--chat_user_edit_icon_transform) !important; // TODO: this
-
-				button {
-					background-color: hsla(var(--accent-hsl) / 0.1);
-					backdrop-filter: blur(8px);
-				}
-			}
+			// /* TODO: Make this only when full-width! See what this can break since the origitnal is overflow-x-hidden, and when i make chats full-width, edit icon for user chat is cut-of so i need to fix it by this and editing the position of the edit icon. BUT HAVE TO TEST THIS!! */
+			// overflow: visible !important;
 
 			button:has(>img[alt='Uploaded image']) {
 				overflow: hidden;
@@ -151,16 +138,20 @@
 			}
 
 			/* Reply in msg */
-			// div (> svg + .line-clamp-3) {
-			// & >.text-token-text-tertiary (> svg + .line-clamp-3) {
-			&>.text-token-text-tertiary {
-				position: relative;
-				align-items: flex-end !important;
-				padding: 5px 10px;
-				background-color: hsla(var(--accent-hsl) / 0.15);
+			&>.w-full>.text-token-text-tertiary.mb-1.ml-6.mt-1 {
+				background-color: hsla(var(--accent-hsl) / 0.05);
+				border: 1px solid hsla(var(--accent-hsl) / 0.15);
+				padding: 0.5rem;
 				color: var(--c-accent);
-				border-radius: var(--br-btn);
-				border-left: 5px solid var(--c-accent);
+				border-radius: var(--br);
+				border-left: 0.35rem solid var(--c-accent);
+				// border-radius: 50vw;
+				// opacity: 0.8;
+
+				svg {
+					border-radius: 50vw;
+					background-color: hsla(var(--accent-hsl) / 0.2);
+				}
 			}
 		}
 	}
