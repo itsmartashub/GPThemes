@@ -10,11 +10,12 @@ form[data-type="unified-composer"] {
 
 		// }
 		// #composer-background {
-		--c-bg-textarea: linear-gradient(150deg, hsla(var(--accent-hsl) / 0.2) 0%, hsla(var(--accent-hsl) / 0.08) 20%, hsla(var(--accent-hsl) / 0.08) 70%, hsla(var(--accent-hsl) / 0.25) 100%);
+		--c-bg-textarea: linear-gradient(150deg, hsla(var(--accent-hsl) / 0.15) 0%, hsla(var(--accent-hsl) / 0.08) 20%, hsla(var(--accent-hsl) / 0.08) 70%, hsla(var(--accent-hsl) / 0.2) 100%);
 
 		background: var(--c-bg-textarea) !important;
+		// border: 1px solid hsla(var(--accent-hsl) / 0.08) !important;
 		caret-color: var(--c-accent);
-		box-shadow: none !important;
+		box-shadow: inset 0 0 1px 1px hsla(var(--accent-hsl) / 0.08) !important;
 		border: none !important;
 
 		/* Prompt text field for "Temporary chat" */
