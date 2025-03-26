@@ -333,6 +333,12 @@
 				background-color: var(--c-surface-3) !important; // [class*='dark:bg-gray-800']
 				opacity: 0.7;
 
+				&.border-red-500 {
+					background: color-mix(in srgb, var(--c-danger) 10%, transparent 98%) !important;
+					border-color: color-mix(in srgb, var(--c-danger) 15%, transparent 95%) !important;
+					color: var(--c-danger) !important;
+				}
+
 				&:focus {
 					opacity: 1;
 				}

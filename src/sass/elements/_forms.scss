@@ -28,6 +28,12 @@ input,
 textarea {
 	outline: none !important;
 
+	&.border-red-500 {
+		background: color-mix(in srgb, var(--c-danger) 10%, transparent 98%) !important;
+		border-color: color-mix(in srgb, var(--c-danger) 15%, transparent 95%) !important;
+		color: var(--c-danger) !important;
+	}
+
 	&::placeholder {
 		opacity: 0.6 !important;
 		color: var(--c-subtext-2) !important;
