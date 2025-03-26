@@ -182,9 +182,9 @@ html.light {
 	// --accent-hsl: 335 21% 35%;
 
 	// --cl: #7e3e47;
-	--accent-h: 352;
-	--accent-s: 34%;
-	--accent-l: 37%;
+	--accent-h: 335;
+	--accent-s: 21%;
+	--accent-l: 35%;
 	--accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l);
 
 	/* --txt-hsl: 0 0% 0%; */
@@ -321,12 +321,12 @@ html.light {
 html.dark {
 	/* ? ========== HSL ========== */
 	// --accent-hsl: #bba4f9;
-	/* --accent-hsl: 256 88% 81%; */
+	// --accent-hsl: hsl(256 100% 83%);
 
 	/* --accent-hsl: 272 93% 78%; */
-	--accent-h: 272;
-	--accent-s: 93%;
-	--accent-l: 78%;
+	--accent-h: 256;
+	--accent-s: 100%;
+	--accent-l: 83%;
 	--accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l);
 
 	/* --txt-hsl: 255 86% 92%; */
