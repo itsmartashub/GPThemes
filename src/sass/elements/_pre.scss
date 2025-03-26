@@ -7,8 +7,6 @@
 	box-shadow: 0 0 0 1px color-mix(in srgb, var(--c-bg-pre) 50%, black 5%);
 
 	/* Whole code block hljs element */
-	// [class*='bg-gray-950']:has(.sticky button svg) {
-
 	&>div {
 		background-color: var(--c-bg-pre) !important;
 		border-radius: inherit !important;
@@ -20,12 +18,12 @@
 		- main code wrapper */
 		[class*="bg-token-sidebar-surface-primary"] {
 			background-color: transparent !important;
-		}
 
-		/* "Always show details" with "Copy code" wrapper in Analyzed markdown */
-		[class*="bg-token-sidebar-surface-primary"]:has(label[for="ada-always-show"]) {
-			background-color: var(--c-bg-pre) !important;
-			backdrop-filter: blur(5px) !important
+			/* "Always show details" with "Copy code" wrapper in Analyzed markdown */
+			&:has(label[for="ada-always-show"]) {
+				background-color: var(--c-bg-pre) !important;
+				backdrop-filter: blur(5px) !important
+			}
 		}
 
 		/* pre header. Code name in pre header (html, php, css, etc) */
@@ -48,8 +46,12 @@
 		/* "Copy Code", "Edit" buttons, switch in Analyses */
 		button:has(svg) {
 			$dur: 0.3s;
-			background-color: var(--c-accent);
-			color: var(--c-on-accent) !important;
+			// background-color: var(--c-accent);
+			// color: var(--c-on-accent) !important;
+			background-color: hsla(var(--accent-hsl) / 0.15) !important;
+			color: var(--c-accent) !important;
+			border: 1px solid color-mix(in srgb, var(--c-accent) 10%, transparent 98%) !important;
+			backdrop-filter: blur(5px) !important;
 			text-transform: uppercase !important;
 			border-radius: calc(var(--br) * 0.7) !important;
 			padding: calc(var(--p-btn) * 0.8) var(--p-btn);
@@ -65,10 +67,12 @@
 			}
 
 			&:hover {
-				background-color: hsla(var(--accent-hsl) / 0.2) !important;
-				color: var(--c-accent) !important;
+				// background-color: hsla(var(--accent-hsl) / 0.2) !important;
+				// color: var(--c-accent) !important;
+				// backdrop-filter: blur(5px) !important;
+				background-color: var(--c-accent) !important;
+				color: var(--c-on-accent) !important;
 				transform: scale(0.98);
-				backdrop-filter: blur(5px) !important;
 
 				svg {
 					color: currentColor !important;
