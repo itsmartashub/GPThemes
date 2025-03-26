@@ -46,12 +46,10 @@
 		/* "Copy Code", "Edit" buttons, switch in Analyses */
 		button:has(svg) {
 			$dur: 0.3s;
-			// background-color: var(--c-accent);
-			// color: var(--c-on-accent) !important;
 			background-color: hsla(var(--accent-hsl) / 0.15) !important;
 			color: var(--c-accent) !important;
-			border: 1px solid color-mix(in srgb, var(--c-accent) 10%, transparent 98%) !important;
-			backdrop-filter: blur(5px) !important;
+			border: 1px solid hsla(var(--accent-hsl) / 0.15) !important;
+			backdrop-filter: blur(20px) !important;
 			text-transform: uppercase !important;
 			border-radius: calc(var(--br) * 0.7) !important;
 			padding: calc(var(--p-btn) * 0.8) var(--p-btn);
