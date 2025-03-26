@@ -31,6 +31,22 @@
     }
 }
 
+
+/* Analysis "Result" next to .markdown.prose, and in dialogs */
+.agent-turn .markdown.prose~.bg-gray-700:has(>.text-gray-400 ~ .prose),
+[role="dialog"] .bg-gray-700:has(>.text-gray-400 ~ .prose) {
+    border-radius: var(--br-btn) !important;
+    background-color: hsla(var(--accent-hsl) / 0.12) !important;
+    color: var(--c-accent) !important;
+    border-left: 4px solid currentColor;
+
+    pre {
+        white-space: pre-wrap;
+        border-radius: 0 !important;
+        margin: 0 !important;
+    }
+}
+
 /* Analysis "Result" next to .markdown.prose (sony acc) */
 // .markdown.prose ~ .bg-gray-700:has(>.text-gray-400 > .prose) {
 // .markdown.prose~,
