@@ -100,7 +100,7 @@
 		}
 	}
 
-	/* @ RIGHT - CHATS BUBBLES - USER  */
+	/* @ ======================== RIGHT - CHATS BUBBLES - USER ======================== */
 	&:has([data-message-author-role='user']) {
 
 		/* RIGHT - CHATS BUBBLE BG */
@@ -189,7 +189,7 @@
 
 
 
-	/* @ RIGHT - CHATS BUBBLES - GPT */
+	/* @ @======================== RIGHT - CHATS BUBBLES - GPT @======================== */
 	// &:has([data-message-author-role='assistant']) {
 	// ! I HAVE TO CHANGE THE ASSISTENT SELECTOR to ".agent-turn" BCS IT DOESNT EXIST AT SOME SCENARIOS (e.g. when there is canvas only ([id^="textdoc-message"]), without markdown too, when the user stop py Code canvas editing, etc...
 	&:has(.agent-turn) {
@@ -516,8 +516,18 @@
 	/* User and GPT chats footer */
 	[class*="group/conversation-turn"] .flex.absolute.left-0.right-0 {
 
+		/* USER footer
+		-me-1 -ms-2.5 flex select-none items-center p-1 touch:-me-2 touch:-ms-3.5 focus-within:transition-none hover:transition-none duration-300 group-hover/turn-messages:delay-300 pointer-events-none opacity-0 motion-safe:transition-opacity group-hover/turn-messages:pointer-events-auto group-hover/turn-messages:opacity-100 group-focus-within/turn-messages:pointer-events-auto group-focus-within/turn-messages:opacity-100 has-[[data-state=open]]:pointer-events-auto has-[[data-state=open]]:opacity-100
+
+		GPT footer
+		-me-1 -ms-2.5 flex select-none items-center p-1 touch:-me-2 touch:-ms-3.5 -mt-1 duration-[1.5s] focus-within:transition-none hover:transition-none pointer-events-none [mask-image:linear-gradient(to_right,black_33%,transparent_66%)] [mask-position:100%_0%] [mask-size:300%_100%] motion-safe:transition-[mask-position] group-hover/turn-messages:pointer-events-auto group-hover/turn-messages:[mask-position:0_0] group-focus-within/turn-messages:pointer-events-auto group-focus-within/turn-messages:[mask-position:0_0] has-[[data-state=open]]:pointer-events-auto has-[[data-state=open]]:[mask-position:0_0]
+
+		[class*="group-hover/turn-message"].-me-1.-ms-2.5 - selector to select and last GPT message footer, its parent doesn't have this -> .flex.absolute.left-0.right-0 */
+
 		/* Footer action buttons for User and GPT chats */
-		&>[class*="has-[[data-state=open]]:[mask-position:var(--mask-to-pos)]"] {
+		// &>[class*="has-[[data-state=open]]"]:has([data-testid="copy-turn-action-button"]) {
+		/* With this, the last GPT message doesn't hav this styling (see the code above)  */
+		&>[class*="has-[[data-state=open]]"] {
 			background: hsla(var(--accent-hsl) / .12) !important;
 			border: 1px solid hsla(var(--accent-hsl) / .08) !important;
 			border-radius: 50vw;
