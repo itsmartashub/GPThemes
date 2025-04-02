@@ -91,6 +91,16 @@ function applyPosition(position = DEFAULT_POSITION, btnContainer) {
 	savePositionPreference(position)
 }
 
+async function loadPositionPreference() {
+	try {
+		const result = await browser.storage.sync.get('scrollButtonPosition')
+		return result.scrollButtonPosition || DEFAULT_POSITION
+	} catch (error) {
+		console.error('Failed to load position preference:', error)
+		return DEFAULT_POSITION
+	}
+}
+
 function addScrollDownListeners() {
 	const btnContainer = document.querySelector('.gpth-scrolldown__tabs')
 	if (!btnContainer) return
@@ -103,6 +113,11 @@ function addScrollDownListeners() {
 		const position = btn.dataset.position
 
 		// console.log('position: ', position)
+		applyPosition(position, btnContainer)
+	})
+
+	// Load and apply saved preferences
+	loadPositionPreference().then((position) => {
 		applyPosition(position, btnContainer)
 	})
 }
