@@ -58,7 +58,15 @@ function generateScrollDownHTML() {
     `
 }
 
-function applyPosition(position, btnContainer) {
+function setCssVars(cssVars) {
+	const root = document.documentElement
+
+	Object.entries(cssVars).forEach(([key, value]) => {
+		root.style.setProperty(`--${key}`, value)
+	})
+}
+
+function applyPosition(position = DEFAULT_POSITION, btnContainer) {
 	if (!POSITION_CONFIG[position]) {
 		position = DEFAULT_POSITION
 	}
@@ -70,6 +78,8 @@ function applyPosition(position, btnContainer) {
 	})
 
 	// 2. Apply CSS variables
+	setCssVars(POSITION_CONFIG[position].cssVars)
+
 	// 3. Save preference in storage
 }
 
