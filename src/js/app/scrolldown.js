@@ -65,6 +65,13 @@ function setCssVars(cssVars) {
 		root.style.setProperty(`--${key}`, value)
 	})
 }
+async function savePositionPreference(position) {
+	try {
+		await browser.storage.sync.set({ scrollButtonPosition: position })
+	} catch (error) {
+		console.error('Failed to save position preference:', error)
+	}
+}
 
 function applyPosition(position = DEFAULT_POSITION, btnContainer) {
 	if (!POSITION_CONFIG[position]) {
@@ -81,6 +88,7 @@ function applyPosition(position = DEFAULT_POSITION, btnContainer) {
 	setCssVars(POSITION_CONFIG[position].cssVars)
 
 	// 3. Save preference in storage
+	savePositionPreference(position)
 }
 
 function addScrollDownListeners() {
