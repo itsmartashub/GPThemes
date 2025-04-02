@@ -24,7 +24,8 @@ const POSITION_CONFIG = {
 		icon: icon_align_right,
 		cssVars: {
 			scrollBtnLeft: 'unset',
-			scrollBtnRight: '3%',
+			// scrollBtnRight: '1.5rem',
+			scrollBtnRight: '2rem',
 		},
 	},
 }

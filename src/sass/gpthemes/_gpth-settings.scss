@@ -3,7 +3,7 @@
 
 	--top: calc(var(--h-header) + 0.5rem + 3rem);
 	--right: 1.3rem;
-	--p: 2.2rem 2.8rem;
+	--p: 2rem;
 	--max-h: 75vh;
 	--shadow-color: hsla(var(--accent-hsl) / 0.09);
 	--shadow-values: inset 0 0 20px 10px;
@@ -20,7 +20,7 @@
 	pointer-events: none;
 	transform: translateX(calc(100% + 1.5rem)) !important;
 	z-index: calc(var(--z-modal) + 10);
-	overflow: clip scroll;
+	overflow: clip auto;
 	transition: transform 0.3s $easeOutBack, opacity 0.3s ease;
 
 	&--open {
@@ -30,7 +30,7 @@
 	}
 
 	@include dev('xs') {
-		--p: 5.5vw;
+		--p: 5vw;
 		--max-h: 70vh;
 		width: calc(100% - 2.5rem);
 	}
@@ -41,8 +41,8 @@
 
 	// section {
 	.tab-content {
-		overflow-y: scroll;
-		max-height: calc(var(--max-h) / 1.7);
+		overflow-y: auto;
+		max-height: calc(var(--max-h) * 0.7);
 
 		.tab-pane {
 			margin-inline: 0.2rem; // simulate space from the scrollbar
