@@ -37,14 +37,14 @@ function generateScrollDownHTML() {
 			const isActive = position === DEFAULT_POSITION ? 'active' : ''
 
 			return `
-        <button 
-          id="scroll-btn-${position}" 
-          class="gpth-scrolldown__tab flex items-center justify-center gap-1 ${isActive}" 
-          data-position="${position}"
-        >
-          ${config.icon} ${config.label}
-        </button>
-      `
+                <button 
+                    id="scroll-btn-${position}" 
+                    class="gpth-scrolldown__tab flex items-center justify-center gap-1 ${isActive}" 
+                    data-position="${position}"
+                >
+                    ${config.icon} ${config.label}
+                </button>
+            `
 		})
 		.join('')
 
@@ -58,18 +58,34 @@ function generateScrollDownHTML() {
     `
 }
 
+function applyPosition(position, btnContainer) {
+	if (!POSITION_CONFIG[position]) {
+		position = DEFAULT_POSITION
+	}
+
+	// 1. Update active button
+	const btns = btnContainer.querySelectorAll('.gpth-scrolldown__tab')
+	btns.forEach((btn) => {
+		btn.classList.toggle('active', btn.dataset.position === position)
+	})
+
+	// 2. Apply CSS variables
+	// 3. Save preference in storage
+}
+
 function addScrollDownListeners() {
 	const btnContainer = document.querySelector('.gpth-scrolldown__tabs')
 	if (!btnContainer) return
 
 	// Use event delegation for better performance
 	btnContainer.addEventListener('click', (e) => {
-		const button = e.target.closest('.gpth-scrolldown__tab')
-		if (!button) return
+		const btn = e.target.closest('.gpth-scrolldown__tab')
+		if (!btn) return
 
-		const position = button.dataset.position
+		const position = btn.dataset.position
 
-		console.log('position: ', position)
+		// console.log('position: ', position)
+		applyPosition(position, btnContainer)
 	})
 }
 
