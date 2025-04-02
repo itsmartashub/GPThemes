@@ -1,0 +1,16 @@
+/* === MAIN RIGHT - Scroll Down arrow but and Close button for uploaded attachments in prompt textarea */
+[role="presentation"].composer-parent div[style*="opacity: 1;"]>button[class*="right-1/2 translate-x-1/2"].absolute.rounded-full.w-8.h-8.z-10 {
+    will-change: right, left;
+    background-color: var(--c-accent) !important;
+
+
+    /* RIGHT - Scroll Down arrow SVG Color === */
+    svg {
+        color: var(--c-on-accent) !important;
+    }
+
+    left: var(--scrollBtnLeft, unset) !important;
+    right: var(--scrollBtnRight, 50%) !important;
+    transition: var(--scrollBtnLeft) 0.3s ease,
+    var(--scrollBtnRight) 0.3s ease;
+}

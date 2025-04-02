@@ -1,0 +1,42 @@
+.gpth-scrolldown {
+    $border: 1px solid hsla(var(--accent-hsl) / 0.1);
+
+    h4 {
+        color: var(--c-accent);
+        text-transform: uppercase;
+        font-size: 0.8em;
+        font-weight: bold;
+        line-height: 1;
+    }
+
+    &__tabs {
+        background-color: hsla(var(--accent-hsl) / 0.1);
+        border: $border;
+        overflow: hidden;
+    }
+
+    &__tab {
+        color: var(--c-accent);
+        padding: 0.5rem 0;
+
+        width: 100%;
+
+        &#scroll-btn-center {
+            border-right: $border;
+            border-left: $border;
+        }
+
+        &:hover {
+            background-color: hsla(var(--accent-hsl) / 0.12);
+        }
+
+        &.active {
+            background-color: hsla(var(--accent-hsl) / 0.15) !important;
+        }
+
+        svg {
+            width: 1rem;
+            height: 1rem;
+        }
+    }
+}

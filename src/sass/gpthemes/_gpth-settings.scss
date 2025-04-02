@@ -48,4 +48,9 @@
 			margin-inline: 0.2rem; // simulate space from the scrollbar
 		}
 	}
+
+	[role="separator"] {
+		display: block !important;
+		--border-light: var(--c-border) !important;
+	}
 }
