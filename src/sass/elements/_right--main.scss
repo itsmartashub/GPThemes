@@ -518,7 +518,8 @@
 		/* Footer action buttons for User and GPT chats */
 		// &>[class*="has-[[data-state=open]]"]:has([data-testid="copy-turn-action-button"]) {
 		/* With this, the last GPT message doesn't hav this styling (see the code above)  */
-		&>[class*="has-[[data-state=open]]"] {
+
+		&>[class*="has-data-[state=open]"] {
 			background: hsla(var(--accent-hsl) / .12) !important;
 			border: 1px solid hsla(var(--accent-hsl) / .08) !important;
 			border-radius: 50vw;
