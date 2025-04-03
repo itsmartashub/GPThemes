@@ -1,0 +1,40 @@
+*,
+html {
+    scrollbar-color: unset !important;
+    scrollbar-width: unset !important;
+    /*     scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important;
+    scrollbar-width: thin !important; */
+}
+
+/* WebKit/Blink browsers (Chrome, Edge, Safari, etc.) */
+::-webkit-scrollbar {
+    width: var(--w-scrollbar) !important; // desired scrollbar width 
+    // height: 0 !important; // desired scrollbar height
+    height: var(--w-scrollbar) !important; // desired scrollbar height
+    cursor: grab;
+}
+
+/* scrollbar thumb */
+::-webkit-scrollbar-thumb,
+scrollbar-thumb {
+    background-color: var(--c-scrollbar-thumb) !important; // scrollbar thumb color
+    border-radius: var(--br-scrollbar) !important; // roundness of the thumb
+    cursor: grab;
+}
+
+/* scrollbar track */
+::-webkit-scrollbar-track,
+scrollbar-track-piece {
+    background-color: var(--c-scrollbar-track) !important; // scrollbar track color
+    border-radius: var(--br-scrollbar) !important;
+}
+
+/* scrollbar-color for For Firefox */
+@-moz-document url-prefix() {
+
+    html,
+    * {
+        scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important; // second parameter (transparent) is for bg-thumb
+        scrollbar-width: thin !important;
+    }
+}

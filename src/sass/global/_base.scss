@@ -1,28 +1,14 @@
-*,
-html {
-	// scrollbar-color: var(--main-surface-tertiary) transparent;
-	// scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important;
-	// scrollbar-width: thin !important;
-	scrollbar-color: unset !important;
-	scrollbar-width: unset !important;
-}
-
 html,
 body {
 	--text-primary: var(--c-txt) !important;
 	letter-spacing: calc((var(--letterSpacing) / 16) * 1px) !important;
 	color: var(--c-txt) !important;
 	background-color: var(--c-bg-chats-container) !important;
-	// background-image: radial-gradient(circle at 80% 30%, #72509833 0, #72509800 30%), radial-gradient(circle at 60% 40%, #3e6cb026 0, #3e6cb000 20%), radial-gradient(ellipse at 35% 80%, #0088ff26 0, #08f0 45%) !important;
 }
 
 :host,
 html {
 	font-family: var(--fontFamily), var(--fontFamilyDefault) !important;
-}
-
-button {
-	--text-primary: var(--c-txt) !important;
 }
 
 .h-px {
@@ -46,44 +32,8 @@ code.hljs {
 	font-weight: 600 !important;
 }
 
-
 ::selection {
 	background-color: hsla(var(--accent-hsl) / 0.5) !important;
 	color: var(--c-txt) !important;
 	// color: var(--c-on-accent) !important;
-}
-
-
-/* __________ SCROLLBARS __________ */
-/* WebKit/Blink browsers (Chrome, Edge, Safari, etc.) */
-::-webkit-scrollbar {
-	width: var(--w-scrollbar) !important; // desired scrollbar width 
-	// height: 0 !important; // desired scrollbar height
-	height: var(--w-scrollbar) !important; // desired scrollbar height
-	cursor: grab;
-}
-
-/* scrollbar thumb */
-::-webkit-scrollbar-thumb,
-scrollbar-thumb {
-	background-color: var(--c-scrollbar-thumb) !important; // scrollbar thumb color
-	border-radius: var(--br-scrollbar) !important; // roundness of the thumb
-	cursor: grab;
-}
-
-/* scrollbar track */
-::-webkit-scrollbar-track,
-scrollbar-track-piece {
-	background-color: var(--c-scrollbar-track) !important; // scrollbar track color
-	border-radius: var(--br-scrollbar) !important;
-}
-
-/* scrollbar-color for For Firefox */
-@-moz-document url-prefix() {
-
-	html,
-	* {
-		scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important; // second parameter (transparent) is for bg-thumb
-		scrollbar-width: thin !important;
-	}
 }
