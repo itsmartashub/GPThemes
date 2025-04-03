@@ -202,6 +202,12 @@ form[data-type="unified-composer"] {
 			}
 		}
 
+		/* "Dictate button" - whisper button next to advanced voice */
+		[class*="var(--vt-composer-whisper-button)"] {
+			background-color: transparent !important;
+			border-radius: 50vw !important;
+		}
+
 		/* Voice mode button when there is no [data-testid="composer-speech-button"] selector loaded. So on page loads */
 		.dark\:bg-white.h-9.bg-black.rounded-full {
 			background-color: var(--c-accent);
