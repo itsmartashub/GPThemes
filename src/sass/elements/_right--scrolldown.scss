@@ -6,14 +6,15 @@
 - [style*="bottom:"] is when element above textarea prompt */
     &.bottom-5,
     &[style*="bottom:"] {
-        will-change: right, left, translate;
+        will-change: right, left;
         left: var(--scrollBtnLeft, unset) !important;
         right: var(--scrollBtnRight, 50%) !important;
         background-color: var(--c-accent) !important;
-        transition: translate 0.3s $easeInCirc;
+        transition: opacity 0.25s ease, scale 0.25s ease;
 
         &:hover {
-            translate: 0 0.2rem;
+            scale: 1.05;
+            opacity: 0.8;
         }
 
 
