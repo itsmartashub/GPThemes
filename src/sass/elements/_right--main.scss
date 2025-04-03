@@ -209,10 +209,11 @@
 			.not-prose {
 
 				/* DESKTOP */
-				&>.-mt-2.bg-token-main-surface-primary:has(.mapboxgl-map) {
-					--main-surface-primary: transparent !important;
+				// Small space above map where we could see scrolled review card items in List mode
+				&>.pt-2.bg-token-main-surface-primary:has(.mapboxgl-map) {
+					--main-surface-primary: var(--c-bg-msg-gpt) !important;
 
-					.bg-gradient-to-b {
+					.bg-linear-to-b {
 						background: transparent !important;
 					}
 
@@ -390,22 +391,20 @@
 		a.h-6.rounded-xl.font-medium.text-token-text-secondary\!.bg-\[\#F4F4F4\]\!.dark\:bg-\[\#303030\]\!,
 		a.h-6.rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! {
 			--c-gradient: var(--c-surface-2);
+			--c-span-txt: var(--c-accent);
 			background: linear-gradient(var(--c-gradient, var(--c-surface-3))) !important;
 			border: 1px solid hsla(var(--accent-hsl) / 0.3);
 			box-shadow: inset 0 0 1rem 2rem hsla(var(--accent-hsl) / 0.15);
 
 			span {
-				color: var(--c-accent) !important;
+				color: var(--c-span-txt) !important;
 			}
 		}
 
 		/* Sources pill links in chat bubble wth bubble on mouseover - mouseover state */
 		a.h-6.rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! {
 			--c-gradient: var(--c-accent) !important;
-
-			span {
-				color: var(--c-on-accent) !important;
-			}
+			--c-span-txt: var(--c-on-accent) !important;
 		}
 
 		/* "SOURCES" button */
