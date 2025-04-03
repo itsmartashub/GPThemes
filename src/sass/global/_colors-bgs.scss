@@ -107,12 +107,16 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 [class*='bg-red-100'],
 [class*='bg-token-surface-error'] {
 	background-color: hsla(var(--danger-hsl) / 0.11) !important;
-	color: var(--c-danger) !important;
 	border: 1px solid hsla(var(--danger-hsl) / 0.11) !important;
+	color: var(--c-danger) !important;
 
 	svg {
 		color: currentColor !important;
 	}
+}
+
+[class*="after:bg-red-500"]::after {
+	background-color: var(--c-danger) !important;
 }
 
 [class*='bg-orange-400']:not(.bg-opacity-0) {
