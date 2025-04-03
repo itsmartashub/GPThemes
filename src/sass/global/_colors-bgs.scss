@@ -310,3 +310,10 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 	color: var(--c-accent) !important;
 	box-shadow: inset 0px 0px 0px 1px hsla(var(--accent-hsl) / 0.15) !important;
 }
+
+/* E.g. btn close ("Remove file") of attached file */
+.text-white.bg-black.dark\:bg-white.dark\:text-black {
+	background-color: var(--c-accent) !important;
+	color: var(--c-on-accent) !important;
+	border: none !important;
+}

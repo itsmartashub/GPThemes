@@ -2,6 +2,8 @@ import browser from 'webextension-polyfill'
 import { renderSwitchOption, renderSmallCardOption } from './components/renderSwitch'
 import { icon_full_width, icon_sync } from './components/icons'
 import { renderButton } from './components/renderButtons'
+import { renderSeparator } from './components/renderUtils'
+import { renderCustomScrollDown } from './scrolldown'
 
 // Configuration object
 const CONFIG = {
@@ -332,6 +334,9 @@ const renderWidthsTab = `
 				textSubtitle: 'Adjust prompt field to match the chat width for a more streamlined and consistent view',
 			})}
     </div>
+
+	${renderSeparator}
+	${renderCustomScrollDown()}
 
     <footer class="flex justify-center mt-8">
       ${renderButton({ id: 'resetWidths', content: 'Reset Widths', disabled: false, className: 'btn-primary' })}

@@ -1,27 +1,10 @@
 :root {
-	/* ? --- Fonts --- */
-	// --f-fm: 'Inter', sans-serif, Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
-	// 	Noto Sans, sans-serif, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
-	// 	Noto Color Emoji;
 	--fsz-error-404: 3rem;
-	--fontFamilyDefault: ui-sans-serif, -apple-system, system-ui, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica, Apple Color Emoji, Arial, Segoe UI Emoji, Segoe UI Symbol;
-	--fontFamily: var(--fontFamilyDefault);
-	--fontSize: inherit;
-	--letterSpacing: none;
-	--lineHeight: 28;
-
-	--loader_timeout: 300;
 
 	/* ? --- Widths and Heights --- */
 	--min-w-btn: 5.5rem;
 	--h-header: 60px;
 	--w-scrollbar: 0.365rem;
-	// --max-w-chat-bubble: 48rem;
-	--w_chat_user: max-content;
-	--max_w_chat_user: 70%; // 70%
-	--w_chat_gpt: 49rem;
-	// --w_prompt_textarea: var(--w_chat_gpt);
-	--w_prompt_textarea: 48rem;
 
 	/* ? --- Border-radius --- */
 	--br: 1rem;

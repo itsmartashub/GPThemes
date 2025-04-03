@@ -59,17 +59,6 @@
 	}
 }
 
-/* === MAIN RIGHT - Scroll Down arrow but and Close button for uploaded attachments in prompt textarea */
-main [role='presentation'] button.absolute.rounded-full.w-8.h-8.bottom-5 {
-	background-color: var(--c-accent) !important;
-	box-shadow: var(--box-shadow-contextmenu);
-
-	/* RIGHT - Scroll Down arrow SVG Color === */
-	svg {
-		color: var(--c-on-accent) !important;
-	}
-}
-
 /* === All the .btn inside dialogs not having svg icon inside */
 [role='dialog'] {
 	.btn:not(.btn:has(svg)) {
