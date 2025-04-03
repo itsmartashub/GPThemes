@@ -317,3 +317,15 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 	color: var(--c-on-accent) !important;
 	border: none !important;
 }
+
+// .bg-\[\#F4F4F4\]\!:not(._),
+// .dark\:bg-\[\#303030\]\!:not(._) {
+// 	background-color: hsla(var(--accent-hsl) / 0.12) !important;
+// 	background: hsla(var(--accent-hsl) / 0.12) !important;
+// 	color: var(--c-accent) !important;
+// 	border: 1px solid red !important;
+// }
+
+// a.dark\:bg-\[\#303030\]\!:is(.dark *) {
+//     background-color: #303030 !important;
+// }

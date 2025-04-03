@@ -381,18 +381,23 @@
 			}
 		}
 
-		/* Sources links in chat bubble wth bubble on mouseover - basic state */
-		a.h-6.rounded-xl.font-medium.\!bg-\[\#F4F4F4\].\!text-token-text-secondary.dark\:\!bg-\[\#303030\] {
-			background-color: hsla(var(--accent-hsl) / .12) !important;
-			color: var(--c-accent) !important;
+
+		/* SOURCE PILL LINKS IN CHAT BUBBLE
+		! Problem sa obim je sto ne mogu da overwriujem background-color jer OpenAI koristi !important na ovim utilities klasala, i ond amoram da koristin gradient. ali, ne smeme transparentis boju jer se onda vidi ispod ova OpenAI's, i onda izgleda cudno 
+		- a.h-6.rounded-xl.font-medium.text-token-text-secondary\!.bg-\[\#F4F4F4\]\!.dark\:bg-\[\#303030\]\! - Sources links in chat bubble wth bubble on mouseover - basic state
+		- a.h-6.rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! - Sources links in chat bubble wth bubble on mouseover - mouseover state */
+
+		a.h-6.rounded-xl.font-medium.text-token-text-secondary\!.bg-\[\#F4F4F4\]\!.dark\:bg-\[\#303030\]\!,
+		a.h-6.rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! {
+			--c-gradient: var(--c-surface-3);
+			background: linear-gradient(var(--c-gradient, var(--c-surface-3))) !important;
+			border: 1px solid hsla(var(--accent-hsl) / 0.15);
 		}
 
-		/* Sources links in chat bubble wth bubble on mouseover - mouseover state */
-		a.h-6.rounded-xl.font-medium.\!bg-token-text-primary.\!text-token-main-surface-primary {
-			background-color: var(--c-accent) !important;
-			color: var(--c-on-accent) !important;
+		/* Sources pill links in chat bubble wth bubble on mouseover - mouseover state */
+		a.h-6.rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! {
+			--c-gradient: var(--c-accent) !important;
 		}
-
 
 		/* "SOURCES" button */
 		.absolute[class*="h-[60px]"]:has(>button.not-prose.group\/footnote.bg-token-main-surface-primary) {
