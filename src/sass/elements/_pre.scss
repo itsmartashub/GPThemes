@@ -4,7 +4,8 @@
 .prose pre {
 	border-radius: calc(var(--br-chat-bubble) * 0.5) !important;
 	margin: var(--my-pre) auto !important;
-	box-shadow: 0 0 0 1px color-mix(in srgb, var(--c-bg-pre) 50%, black 5%);
+	// box-shadow: color-mix(in srgb, var(--c-bg-pre) 50%, black 10%) 0 0 0 1px, color-mix(in srgb, hsla(var(--accent-hsl) / 0.5) 50%, black 5%) 0px 6px 14px 0px; // on hover: 0 12 32 0
+	box-shadow: color-mix(in srgb, hsla(var(--accent-hsl) / 0.1) 50%, black 2%) 0 0 0px 1px, color-mix(in srgb, var(--c-bg-pre) 50%, black 5%) 0px 6px 14px 0px; // on hover: 0 12 32 0
 
 	/* Whole code block hljs element */
 	&>div {

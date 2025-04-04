@@ -200,9 +200,6 @@ html.light {
 	--c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) * 0.3), 75%);
 	--c-on-accent: hsl(var(--accent-h), var(--accent-s), 88%);
 
-	// --c-bg-pre: var(--c-surface-2);
-	--c-bg-pre: color-mix(in srgb, var(--c-accent) 5%, transparent 100%);
-
 	/* ? ========== Text colors ========== */
 	--c-txt: hsl(var(--txt-hsl));
 	--c-subtext-1: hsla(0, 0%, 20%);
@@ -246,12 +243,16 @@ html.light {
 	--c-border: hsla(var(--txt-hsl) / 0.08);
 	--c-border-accent: hsla(var(--accent-hsl) / 0.1);
 
-	/* ? ========== <pre>/markdown things colors ========== */
-	--c-markdown-a: var(--c-accent);
-
 	/* ========== CodeMirror Editor ========== */
 	--c-bg-cm: var(--c-surface-1);
 
+	/* ========== Code block (<pre> bg) ========== */
+	--c-bg-pre: var(--c-surface-1);
+	// --c-bg-pre: hsla(var(--accent-hsl) / 0.05);
+
+
+	/* ? ========== <pre>/markdown things colors ========== */
+	--c-markdown-a: var(--c-accent);
 
 	/* ? ========== Scrollbar colors ========== */
 	--c-scrollbar-thumb: var(--c-surface-3);

@@ -81,8 +81,6 @@
 		&[href]:not(&[class*='bg-[#f4f4f4]'], &[class*="group/nav-list"], &:has([class*="group-hover/navigation:"]), &.btn-secondary) {
 			@extend %link_hover_underlined;
 		}
-
-
 	}
 
 	/* Style Markdown Checkboxes */
@@ -105,13 +103,9 @@
 
 		thead {
 			--tw-prose-headings: var(--c-txt) !important;
-
 			border-collapse: collapse !important;
 			border-spacing: 0 !important;
-			// background-color: hsla(var(--txt-hsl) / 0.15) !important;
 			background-color: var(--c-surface-3) !important;
-
-			// background-color: hsla(var(--accent-hsl) / .15) !important;
 			text-transform: uppercase;
 			font-size: 0.8rem !important;
 		}
@@ -142,18 +136,3 @@
 .markdown th {
 	background-color: unset !important;
 }
-
-
-/* Code-snippets markdown and markdown header */
-// html.dark[data-gptheme='oled'] {
-// .prose {
-// 	.bg-black {
-// 		background-color: #000 !important;
-
-// 		/* Markdown code-snippets (prose) header */
-// 		.bg-token-surface-primary {
-// 			background-color: #000 !important;
-// 		}
-// 	}
-// }
-// }
