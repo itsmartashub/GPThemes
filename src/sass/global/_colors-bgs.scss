@@ -272,8 +272,12 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 	fill: var(--c-accent) !important;
 }
 
-/* "🌐 Search" btn in prompt field */
-[class*="bg-blue-250"] {
+/* 
+.bg-blue-250 - "🌐 Search" btn in prompt field 
+.text-blue-1000.bg-\[\#DAEEFF\] - "Selection" in Create Image prompt textarea
+*/
+[class*="bg-blue-250"],
+.text-blue-1000.bg-\[\#DAEEFF\] {
 	background-color: hsla(var(--accent-hsl) / 0.2) !important;
 	color: var(--c-accent) !important;
 
