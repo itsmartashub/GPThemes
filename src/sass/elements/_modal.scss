@@ -319,7 +319,7 @@
 
 		/* ___ "Custom Instructios", now "Customize ChatGPT" */
 		&:has(textarea) {
-			.flex-grow.overflow-y-auto.p-4:has(.overflow-y-auto[class*="max-h-[60vh]"]) {
+			.grow.overflow-y-auto.p-4:has(>.overflow-y-auto[class*="max-h-[60vh]"]) {
 				padding: 0 !important;
 
 				@include dev('md') {
@@ -328,7 +328,7 @@
 			}
 
 			/* Border separator from footer where are "Enable for new chats", "Cancel" and "Save" buttons are */
-			.-ml-6.-mr-6.border-t {
+			.-ms-6.-me-6.border-t {
 				border-color: var(--c-border) !important;
 				margin: 0 !important;
 			}
