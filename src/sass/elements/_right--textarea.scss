@@ -34,20 +34,18 @@ form[data-type="unified-composer"] {
 		}
 
 		/* "Reply" in msg textarea - NEW SELECTOR after #reply-regions has been removed */
-		.divide-y.divide-token-border-light.bg-token-main-surface-primary {
+		.divide-y.divide-token-border-light.bg-token-main-surface-primary.rounded-b-lg {
 			background-color: transparent !important;
 
 			.bg-token-main-surface-secondary.dark\:bg-token-main-surface-tertiary.text-sm {
+				background-color: hsla(var(--accent-hsl) / 0.12) !important;
+				border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
 
 				/* 
 				- &.text-token-text-secondary:  Reply in classic textarea
 				- &.text-blue-selection:  Reply in DALLE textarea when selecting something to remove on image  */
 				&.text-token-text-secondary,
 				&.text-blue-selection {
-
-					background-color: hsla(var(--accent-hsl) / 0.12) !important;
-					border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
-					// color: var
 
 					/* Reply btn icon */
 					.w-7.h-6,
@@ -82,19 +80,11 @@ form[data-type="unified-composer"] {
 				background-color: hsla(var(--accent-hsl) / 0.15) !important;
 				border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
 
-
-				// background-color: hsla(var(--accent-hsl) / 0.12);
-				// background-color: var(--c-surface-3);
-				// color: var(--c-accent);
-				// border-radius: calc(var(--br) * 1.2) !important;
-
 				/* Reply btn icon */
 				.w-7.h-6,
 				/* Cancel btn icon */
 				button.text-token-text-secondary {
 					&:has(>svg) {
-						// background-color: var(--c-accent) !important;
-						// color: var(--c-on-accent) !important;
 						border-radius: 50vw;
 					}
 				}
@@ -200,6 +190,12 @@ form[data-type="unified-composer"] {
 					}
 				}
 			}
+		}
+
+		/* "Dictate button" - whisper button next to advanced voice */
+		[class*="var(--vt-composer-whisper-button)"] {
+			background-color: transparent !important;
+			border-radius: 50vw !important;
 		}
 
 		/* Voice mode button when there is no [data-testid="composer-speech-button"] selector loaded. So on page loads */

@@ -161,7 +161,7 @@
             }
 
             /* @@@@@@@@@ Canvas Edit floating button on bottom right */
-            .absolute.z-\[70\].overflow-visible.border.border-token-border-light.transition-colors {
+            .absolute.z-70.overflow-visible.border.border-token-border-light.transition-colors {
 
                 /* Wrapper */
                 &.bg-token-main-surface-primary,
@@ -175,11 +175,18 @@
                     }
                 }
 
-                /* Pause primary floating btn while processing: !bg-black !text-white is for light themes, !bg-white, !text-black is for dark */
-                &[class*="!bg-black !text-white"],
-                &[class*="!bg-white !text-black"] {
-                    background-color: var(--c-accent) !important;
-                    color: var(--c-on-accent) !important;
+                /* Pause primary floating btn while processing: !bg-black !text-white is for light themes, !bg-white, !text-black is for dark
+                I think i cant override this tw !important class via css only... */
+                &[class*="bg-black! text-white!"],
+                &[class*="bg-white! text-black!"] {
+                    // background-color: var(--c-accent) !important;
+                    // color: var(--c-on-accent) !important;
+                    --c-simulator-bg: var(--c-accent) !important;
+                    @extend %simulator_bg;
+
+                    svg {
+                        color: var(--c-on-accent) !important;
+                    }
                 }
 
                 /* Main state floating bg */
@@ -267,20 +274,41 @@
                     }
                 }
 
-                /* Selected text for commenting, when we click on comment icon in Text Canvas and "Edit or explain" prompt showed */
-                .selection-highlight.bg-\[Highlight\],
-                // Text Canvas: blue highlight when text started to proccesing "Apply" from GPT comment
-                .selection-highlight.\!bg-\[Highlight\],
-                // Code Canvas: blue highlight of current line when code rewwriting
-                .cm-editor .cm-line.\!bg-\[Highlight\],
+                // /* Selected text for commenting, when we click on comment icon in Text Canvas and "Edit or explain" prompt showed */
+                // // Text Canvas: blue highlight when text started to proccesing "Apply" from GPT comment
+                // .selection-highlight.bg-\[Highlight\]\!,
+                // // Code Canvas: blue highlight of current line when code rewwriting
+                // .cm-editor .cm-line.bg-\[Highlight\]\!,
+                // // Code Canvas: blue highlight of current selected and about to prompt lines
+                // .cm-editor .cm-line span.bg-\[Highlight\]\! {
 
-                // Code Canvas: blue highlight of current selected and about to prompt lines
-                .cm-editor .cm-line span.bg-\[Highlight\] {
-                    background-color: var(--c-accent) !important;
-                    color: var(--c-on-accent) !important;
+                //     // background-color: var(--c-accent) !important;
+                //     // background: linear-gradient(var(--c-surface-2)) !important;
+                //     // color: var(--c-on-accent) !important;
+                //     @extend %simulator_bg;
+                //     // background: linear-gradient(var(--c-gradient, var(--c-surface-3))) !important;
+                //     // border: 1px solid hsla(var(--accent-hsl) / 0.3);
+                //     // box-shadow: inset 0 0 1rem 2rem hsla(var(--accent-hsl) / 0.15);
+                // }
+
+                /*
+                 - Selected text for commenting, when we click on comment icon in Text Canvas and "Edit or explain" prompt showed
+                 - Text Canvas: blue highlight when text started to proccesing "Apply" from GPT comment
+                 - Code Canvas: blue highlight of current line when code rewwriting
+                 - Code Canvas: blue highlight of current selected and about to prompt lines  */
+                // [class*="bg-[Highlight]"] {
+                .bg-\[Highlight\]\!,
+                .bg-\[Highlight\] {
+                    --c-simulator-bg: var(--c-accent);
+                    @extend %simulator_bg;
+
+                    &,
+                    span {
+                        color: var(--c-on-accent) !important;
+                    }
                 }
 
-                .cm-editor .cm-line span.bg-\[Highlight\],
+                /*  .cm-editor .cm-line span.bg-\[Highlight\],
                 // Code Canvas: Hc-blue line of current processing line
                 .cm-editor .cm-line.\!bg-\[Highlight\] span {
                     // background-color: var(--c-accent) !important;
@@ -289,7 +317,7 @@
                     span {
                         color: var(--c-on-accent) !important;
                     }
-                }
+                } */
 
                 /* Comment section on the right of the text where add comment btn is */
                 [data-block-comment-launcher] button {
@@ -379,3 +407,5 @@ body:has(.absolute.z-20.h-full.transition-shadow.overflow-hidden.left-0 section.
     border: 2px solid hsla(var(--accent-hsl) / .3) !important;
     border-radius: var(--br-btn) !important;
 }
+
+#prosemirror-context-children {}

@@ -209,10 +209,11 @@
 			.not-prose {
 
 				/* DESKTOP */
-				&>.-mt-2.bg-token-main-surface-primary:has(.mapboxgl-map) {
-					--main-surface-primary: transparent !important;
+				// Small space above map where we could see scrolled review card items in List mode
+				&>.pt-2.bg-token-main-surface-primary:has(.mapboxgl-map) {
+					--main-surface-primary: var(--c-bg-msg-gpt) !important;
 
-					.bg-gradient-to-b {
+					.bg-linear-to-b {
 						background: transparent !important;
 					}
 
@@ -381,18 +382,48 @@
 			}
 		}
 
-		/* Sources links in chat bubble wth bubble on mouseover - basic state */
-		a.h-6.rounded-xl.font-medium.\!bg-\[\#F4F4F4\].\!text-token-text-secondary.dark\:\!bg-\[\#303030\] {
-			background-color: hsla(var(--accent-hsl) / .12) !important;
-			color: var(--c-accent) !important;
+
+		/* SOURCE PILL LINKS IN CHAT BUBBLE
+		! Problem sa obim je sto ne mogu da overwriujem background-color jer OpenAI koristi !important na ovim utilities klasala, i ond amoram da koristin gradient. ali, ne smeme transparentis boju jer se onda vidi ispod ova OpenAI's, i onda izgleda cudno 
+		- a.h-6.rounded-xl.font-medium.text-token-text-secondary\!.bg-\[\#F4F4F4\]\!.dark\:bg-\[\#303030\]\! - Sources links in chat bubble wth bubble on mouseover - basic state
+		- a.h-6.rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! - Sources links in chat bubble wth bubble on mouseover - mouseover state */
+
+		a.h-6.rounded-xl.font-medium.text-token-text-secondary\!.bg-\[\#F4F4F4\]\!.dark\:bg-\[\#303030\]\!,
+		a.h-6.rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! {
+			// --c-simulator-bg: var(--c-surface-2);
+			--c-simulator-txt: var(--c-accent);
+			@extend %simulator_bg;
+			// background: linear-gradient(var(--c-gradient, var(--c-surface-3))) !important;
+			// border: 1px solid hsla(var(--accent-hsl) / 0.3);
+			// box-shadow: inset 0 0 1rem 2rem hsla(var(--accent-hsl) / 0.15);
+
+			span {
+				color: var(--c-simulator-txt) !important;
+			}
 		}
 
-		/* Sources links in chat bubble wth bubble on mouseover - mouseover state */
-		a.h-6.rounded-xl.font-medium.\!bg-token-text-primary.\!text-token-main-surface-primary {
-			background-color: var(--c-accent) !important;
-			color: var(--c-on-accent) !important;
+		/* Sources pill links in chat bubble wth bubble on mouseover - mouseover state */
+		a.h-6.rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! {
+			--c-simulator-bg: var(--c-accent) !important;
+			--c-simulator-txt: var(--c-on-accent) !important;
 		}
 
+		/* Search Links pills in GPT Chat Bubble. ovo je .h[20px] i nije mouseover vec hover */
+		a.rounded-xl.font-medium.bg-\[\#F4F4F4\][class*='hover:bg-token-text-primary'] {
+			background-color: hsla(var(--accent-hsl) / 0.12);
+
+			span {
+				color: var(--c-accent) !important;
+			}
+
+			&:hover {
+				background-color: var(--c-accent) !important;
+
+				span {
+					color: var(--c-on-accent) !important;
+				}
+			}
+		}
 
 		/* "SOURCES" button */
 		.absolute[class*="h-[60px]"]:has(>button.not-prose.group\/footnote.bg-token-main-surface-primary) {
@@ -518,7 +549,8 @@
 		/* Footer action buttons for User and GPT chats */
 		// &>[class*="has-[[data-state=open]]"]:has([data-testid="copy-turn-action-button"]) {
 		/* With this, the last GPT message doesn't hav this styling (see the code above)  */
-		&>[class*="has-[[data-state=open]]"] {
+
+		&>[class*="has-data-[state=open]"] {
 			background: hsla(var(--accent-hsl) / .12) !important;
 			border: 1px solid hsla(var(--accent-hsl) / .08) !important;
 			border-radius: 50vw;

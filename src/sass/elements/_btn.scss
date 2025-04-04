@@ -1,3 +1,7 @@
+button {
+	--text-primary: var(--c-txt) !important;
+}
+
 .btn {
 	color: var(--c-on-accent) !important;
 	border-radius: var(--br-btn) !important;

@@ -56,3 +56,13 @@
 	// background: var(--c-bg-chats-sticky) !important;
 	// backdrop-filter: blur(var(--blur-sticky));
 }
+
+%simulator_bg {
+	// --c-simulator-bg: var(--c-surface-2);
+	// --c-simulator-shadow: hsla(var(--accent-hsl) / 0.15);
+	// --c-simulator-border: hsla(var(--accent-hsl) / 0.2);
+	background: linear-gradient(var(--c-simulator-bg, var(--c-surface-2))) !important;
+	box-shadow:
+		0 0 0 1px var(--c-simulator-border, hsla(var(--accent-hsl) / 0.24)),
+		inset 0 0 1rem 2rem var(--c-simulator-shadow, hsla(var(--accent-hsl) / 0.12));
+}
