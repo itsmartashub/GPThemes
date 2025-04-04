@@ -138,12 +138,12 @@
 			}
 
 			/* Reply in msg */
-			&>.w-full>.text-token-text-tertiary.mb-1.ml-6.mt-1 {
-				background-color: hsla(var(--accent-hsl) / 0.05);
-				border: 1px solid hsla(var(--accent-hsl) / 0.15);
+			&>.w-full>.text-sm.text-token-text-tertiary.mt-1.ms-6 {
+				background-color: hsla(var(--accent-hsl) / 0.2);
+				// border: 1px solid hsla(var(--accent-hsl) / 0.15);
 				padding: 0.5rem;
 				color: var(--c-accent);
-				border-radius: var(--br);
+				border-radius: calc(var(--br) * 1.35);
 				border-left: 0.35rem solid var(--c-accent);
 				// border-radius: 50vw;
 				// opacity: 0.8;
