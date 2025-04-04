@@ -408,6 +408,23 @@
 			--c-simulator-txt: var(--c-on-accent) !important;
 		}
 
+		/* Search Links pills in GPT Chat Bubble. ovo je .h[20px] i nije mouseover vec hover */
+		a.rounded-xl.font-medium.bg-\[\#F4F4F4\][class*='hover:bg-token-text-primary'] {
+			background-color: hsla(var(--accent-hsl) / 0.12);
+
+			span {
+				color: var(--c-accent) !important;
+			}
+
+			&:hover {
+				background-color: var(--c-accent) !important;
+
+				span {
+					color: var(--c-on-accent) !important;
+				}
+			}
+		}
+
 		/* "SOURCES" button */
 		.absolute[class*="h-[60px]"]:has(>button.not-prose.group\/footnote.bg-token-main-surface-primary) {
 
