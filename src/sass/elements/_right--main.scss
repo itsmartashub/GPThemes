@@ -500,13 +500,26 @@
 		/* New "Create Image" image wrapper */
 		.group\/imagegen-image {
 
-			button[class*="hover:bg-token-icon-surface\/10"]:is(:hover, :focus) {
-				background-color: hsla(var(--accent-hsl) / .5) !important;
+			button[class*="hover:bg-token-icon-surface\/10"] {
+				background-color: var(--c-accent-light) !important;
+				scale: 0.94;
+				transition: scale 0.15s ease;
+
+				&:is(&:hover, &:focus) {
+					scale: 1 !important;
+				}
 			}
 
 			// Text and buttons showed over image on image hover: download, like, dislike and image name
 			.text-white {
-				color: var(--c-accent-light) !important;
+				color: black !important;
+
+				&.ps-4.font-semibold {
+					background-color: var(--c-accent-light);
+					padding-inline: 0.4rem !important;
+					margin-left: 0.5rem;
+					border-radius: 50vw;
+				}
 			}
 		}
 
