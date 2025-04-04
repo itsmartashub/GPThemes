@@ -10,13 +10,6 @@ main:has(.sticky [href='/gpts/editor']),
 		}
 	}
 
-	/* Notification on the top of the GPTs Store page (before the sticky header): "GPTs will be coming to free users over the next few weeks. Stay tuned!" */
-	.bg-token-main-surface-tertiary[class*='h-[52px] w-full'] {
-		background-color: hsla(var(--accent-hsl) / 0.07) !important;
-		border-bottom: 1px solid hsla(var(--accent-hsl) / 0.04);
-		color: var(--c-accent);
-	}
-
 	/* Sticky header tags aka "Top Picks", "DALLE", "Writing", etc */
 	.sticky {
 
@@ -45,7 +38,9 @@ main:has(.sticky [href='/gpts/editor']),
 		}
 
 		/* Left/right arrows in tags track */
-		[class*='bg-gradient-to-'] {
+		[class*='bg-linear-to-'] {
+			--tw-gradient-from: var(--c-bg-chats-container) !important;
+
 			button {
 				background-color: var(--c-accent) !important;
 				color: var(--c-on-accent) !important;
