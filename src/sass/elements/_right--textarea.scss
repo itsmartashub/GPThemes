@@ -192,14 +192,17 @@ form {
 			}
 		}
 
-		/* "Dictate button" - whisper button next to advanced voice */
-		[class*="var(--vt-composer-whisper-button)"] {
-			background-color: transparent !important;
+		/* "Dictate button" - whisper button next to advanced voice and cancel when activate the Dictate btn */
+		.h-9.btn-primary.btn-small.rounded-full {
+			&:not(&:hover) {
+				background-color: transparent !important;
+			}
+
 			border-radius: 50vw !important;
 		}
 
 		/* Voice mode button when there is no [data-testid="composer-speech-button"] selector loaded. So on page loads */
-		.dark\:bg-white.h-9.bg-black.rounded-full {
+		.h-9.rounded-full.bg-black.dark\:bg-white {
 			background-color: var(--c-accent);
 
 			svg {
