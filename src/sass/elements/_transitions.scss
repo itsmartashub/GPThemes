@@ -14,53 +14,7 @@ svg,
 		background-color $duration ease,
 		color $duration ease,
 		opacity $duration ease;
-
-	/*     transition:
-        transform .25s var(--ease-default),
-        opacity .3s ease-in-out,
-        background-color .3s ease-in-out,
-        color .3s ease-in-out,
-        border-color .3s ease-in-out,
-        box-shadow .3s ease-in-out,
-        scale .3s ease-in-out,
-        rotate .3s ease-in-out,
-        translate .3s ease-in-out,
-        filter .3s ease-in-out,
-        border-radius .3s ease-in-out, inset .3s ease-in-out; */
 }
-
-/* ___ BUTTON SVG icon which ARE NOT in:
-    - in .btn <button>
-    - Theme choosing <button>
-    - in active tab <button>
-    - in send message btn <button>
-    - btns in message bubble footer <button> ([class*="[.final-completion]"]) 
-------------------------------
-    - .btn  |  Button
-    - [role="tab"]  |  Active tab
-    - [role="combobox"]  |  Theme choosing
-    - [data-testid="send-button"]  |  Send Message Button
-    - [class*="[.final-completion]"]  |  Btns in Message bubble footer
-    - [aria-label^="Delete"])  | "Delete" icon in "Shared links" and "Archived Chats" 
-    - [aria-label="Unarchive conversation"])  | "Unarchive" icon in "Archived Chats"
-   */
-
-/* button:not(.btn,
-	[role='tab'],
-	[role='combobox'],
-	[data-testid='send-button'],
-	[class*='[.final-completion]'],
-	[aria-label^='Delete'],
-	[aria-label='Unarchive conversation']) {
-	svg {
-		transform-origin: center center;
-		// border: 1px solid red !important;
-	}
-
-	svg:hover {
-		transform: scale(1.12);
-	}
-} */
 
 /* .btn that IS NOT DISABLED, like "Create" on GPTs page */
 .btn:not(.cursor-not-allowed) {

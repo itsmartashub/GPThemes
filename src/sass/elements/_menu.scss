@@ -5,17 +5,23 @@
 	padding: var(--p-contextmenu) !important;
 	box-shadow: var(--box-shadow-contextmenu) !important;
 
+	/* Some spacing top and bottom of contextmenu child menuitem wrapper */
+	&>[class*="max-h-[var(--radix-dropdown-menu-content-available-height)]"].overflow-y-auto.py-2 {
+		padding: 0 !important;
+	}
+
 	[role='option'],
 	[role='menuitem'] {
 		background-color: inherit !important;
 		margin-left: 0 !important;
 		margin-right: 0 !important;
-		padding: var(--p-contextmenu-item) !important;
+		padding: calc(var(--p-contextmenu) * 1.25) !important;
 		border-radius: var(--br-btn) !important;
 		transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
-		&:hover {
+		:is(&:hover, &:focus) {
 			background-color: var(--c-bg-contextmenu-item) !important;
+			box-shadow: 0px 0px 0px 1px color-mix(in srgb, var(--c-bg-contextmenu-item), black 5%);
 		}
 
 		&:last-child {

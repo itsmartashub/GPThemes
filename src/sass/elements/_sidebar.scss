@@ -1,20 +1,24 @@
 /* Sidebar bg-color */
 // .bg-token-sidebar-surface-primary:has(nav[aria-label='Chat history']) {
 .bg-token-sidebar-surface-primary {
+	background-color: var(--c-bg-sidebar) !important;
 	color: var(--c-txt) !important;
-
-	/* "Explore GPTs" link parents - Ne mozemo dodati direkt n ovaj lnk jer kad dodamo vise GPTs producta u ovu listu da bude iznad "Explore GPTs" onda ono nema margin-top vec samo ovaj link, a mi zelimo parent da ima */
-	// nav .sticky+div:has(a[href^='/gpts']) {
-	// 	margin-top: 0.8rem;
-	// }
 }
 
+// nav .group\/sidebar {
 nav[aria-label='Chat history'] {
-	padding: var(--p-sidebar-nav) !important;
 
-	/* Parent of "NEW CHAT" btn */
-	.sticky:has(a[href='/']) {
-		background-color: var(--c-bg-sidebar) !important;
+	/* List item for GPTs and for chats-list item */
+	[class*='bg-[var(--item-background-color)]'] {
+		opacity: 1 !important;
+		transition: transform 0.25s ease;
+
+		&:is(:hover, :focus) {
+			transform: translateY(-0.08rem);
+		}
+
+		/* Active item */
+		// &[style*="var(--sidebar-surface-tertiary)"] {}
 	}
 
 	/* NEW CHAT + LIST of chats in nav. Adding padding-left prevent :focus-visible style in those elements to be cropped from the left because of the overflow-hidden */
@@ -38,11 +42,9 @@ nav[aria-label='Chat history'] {
 
 	a {
 		color: var(--c-txt) !important;
-		padding: var(--p-sidebar-nav-a) !important;
-		// border-radius: var(--br-nav-a) !important;
 
 		/* "Upgrade" link in nav bg */
-		span.rounded-full.border-token-border-light {
+		span.h-7.w-7.rounded-full.border-token-border-light {
 			border-color: transparent !important;
 			background-color: var(--c-accent) !important;
 
@@ -51,57 +53,51 @@ nav[aria-label='Chat history'] {
 				color: var(--c-on-accent) !important;
 			}
 		}
-
-		/* Remove too much/vertical space padding from "Explore GPTs" */
-		&[href^='/gpts'] {
-			// margin: 0 !important;
-			padding: 0 !important;
-		}
 	}
 
 	li {
 		margin-bottom: var(--mb-sidebar-nav-li) !important;
 
 		.group {
-			overflow: hidden;
-			transition: transform 0.25s ease;
+			// overflow: hidden;
+			// transition: transform 0.25s ease;
 
 
 			/* Active sidebar list item 
 			- &:has(a ~ .absolute.bottom-0.top-0:not(.invisible)) je za active/selected sidebar list item tj kada 3dots wrapper nema klasu .invisible, onda je taj item selektovan */
-			&:has(a ~ .absolute.bottom-0.top-0:not(.invisible)),
-			&:hover {
-				background-color: var(--c-surface-2) !important;
-				// --item-background-color: var(--main-surface-secondary-selected);
-			}
+			// &:has(a ~ .absolute.bottom-0.top-0:not(.invisible)),
+			// &:hover {
+			// 	background-color: var(--c-surface-2) !important;
+			// 	// --item-background-color: var(--main-surface-secondary-selected);
+			// }
 
-			&:not(:has(a ~ .absolute.bottom-0.top-0:not(.invisible))):hover {
-				transform: translateY(-0.08rem);
-				// --item-background-color: var(--main-surface-secondary-selected);
-			}
+			// &:not(:has(a ~ .absolute.bottom-0.top-0:not(.invisible))):hover {
+			// 	transform: translateY(-0.08rem);
+			// 	// --item-background-color: var(--main-surface-secondary-selected);
+			// }
 
-			&:has(a ~ .absolute.bottom-0.top-0:not(.invisible)) {
-				box-shadow: 0 0 2px 1.5px hsl(var(--accent-hsl) / 0.15) !important;
-			}
+			// &:has(a ~ .absolute.bottom-0.top-0:not(.invisible)) {
+			// 	box-shadow: 0 0 2px 1.5px hsl(var(--accent-hsl) / 0.15) !important;
+			// }
 
 			/* 3dots btn wrapper - inherit means inherit it from the parent (.group) when hovered or not */
-			.absolute.bottom-0.top-0:has([aria-label="Open conversation options"]) {
-				background-color: inherit !important;
-			}
+			// .absolute.bottom-0.top-0:has([aria-label="Open conversation options"]) {
+			// 	background-color: inherit !important;
+			// }
 
 			/* 3 dots > "Rename" clicked - style of input parent and input  - this is <div> next to <a> */
 			&:has(input) {
 				outline: 2px solid hsl(var(--accent-hsl) / 0.2);
 
-				& a[href^='/'] {
-					// --sidebar-mask: linear-gradient(90deg, var(--c-bg-sidebar), var(--c-bg-sidebar) 84%, transparent 89%, transparent);
-					mask-image: none !important;
-				}
+				// & a[href^='/'] {
+				// 	// --sidebar-mask: linear-gradient(90deg, var(--c-bg-sidebar), var(--c-bg-sidebar) 84%, transparent 89%, transparent);
+				// 	mask-image: none !important;
+				// }
 
-				& a[href^='/'],
-				& .bg-token-sidebar-surface-secondary {
-					background-color: var(--c-bg-sidebar) !important;
-				}
+				// & a[href^='/'],
+				// & .bg-token-sidebar-surface-secondary {
+				// 	background-color: var(--c-bg-sidebar) !important;
+				// }
 
 				input {
 					// input rename border color on focused
@@ -117,10 +113,11 @@ nav[aria-label='Chat history'] {
 
 
 /* SIDEBAR for mobile */
-.bg-token-sidebar-surface-primary[role='dialog']:has(nav[aria-label='Chat history']) {
+// .bg-token-sidebar-surface-primary[role='dialog']:has(nav[aria-label='Chat history']) {
+.bg-token-sidebar-surface-primary[role='dialog'][class*="--sidebar-width"] {
 	--p-dialog: 0.5rem;
 	background-color: var(--c-bg-sidebar) !important;
-	border-radius: var(--br-contextmenu) !important;
+	// border-radius: var(--br-contextmenu) !important;
 }
 
 [fill="#0285FF"] {

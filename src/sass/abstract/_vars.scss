@@ -9,8 +9,6 @@
 	/* ? --- Border-radius --- */
 	--br: 1rem;
 	--br-chat-bubble: calc(var(--br) * 1.9);
-	// --br-chat-bubble: 30px;
-	// --br-prompt-textarea: calc(var(--br) * 0.2);
 	--br-btn: calc(var(--br) / 1.1);
 	--br-btn-big: calc(var(--br) * 1.2);
 	--br-dialog: calc(var(--br) * 2.5);
@@ -21,23 +19,13 @@
 
 	/* ? --- Paddings --- */
 	--p-chat-bubble: 1.2rem;
-	// --px-chat-bubble-edge-gap: 4vw;
-	--p-contextmenu: 0.8rem;
-	--p-contextmenu-item: 0.9rem 1rem;
+	--p-contextmenu: 0.7rem;
 	--p-prompt-textarea: 0.7rem;
 	--p-tooltips: 0.2rem;
 	--p-btn: 0.7rem;
-	--py-btn: 1rem;
-	--px-btn: 1rem;
-
-	--p-sidebar-nav: 0.5rem;
-	--p-sidebar-nav-a: 0.6rem;
 	--p-dialog: 2rem;
 
 	/* ? --- Margins --- */
-	--mt-chat-txt: 0.5rem;
-	--mb-chat-txt: 1rem;
-	// --mb-chat-bubble: 2rem;
 	--mb-sidebar-nav-li: 0.2rem;
 	--my-pre: 1.5rem;
 
@@ -56,15 +44,7 @@
 			hsla(var(--accent-hsl) / 0.05) 60%,
 			hsla(var(--accent-hsl) / 0.45) 100%);
 
-	--c-bg-chats-sticky: linear-gradient(to bottom, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 1), transparent);
-
-	/* ? --- OTHER --- */
-	// --chat_user_edit_icon_top: translateY(100%);
-	/* --chat_user_edit_icon_right: 100%;
-	--chat_user_edit_icon_top: 0;
-	--chat_user_edit_icon_transform: unset; */
-
-	// --chat_user_edit_icon_top: initial;
+	// --c-bg-chats-sticky: linear-gradient(to bottom, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 1), transparent);
 
 
 	/* .bg-token-sidebar-surface-primary
@@ -207,11 +187,14 @@ html.light {
 
 	/* ? ========== Surface colors ========== */
 	--c-surface-1: hsl(0, 0%, var(--surface-l)); // dark
-	--c-surface-2: hsl(0, 0%, calc(var(--surface-l) / 1.089)); // darker - 78.05
-	--c-surface-3: hsl(0, 0%, calc(var(--surface-l) / 1.18)); // darkest - 72.03
+	// --c-surface-2: hsl(0, 0%, calc(var(--surface-l) * 0.9183)); // darker - 78.05
+	// --c-surface-3: hsl(0, 0%, calc(var(--surface-l) * 0.8475)); // darkest - 72.03
+	--c-surface-2: hsl(0, 0%, calc(var(--surface-l) * 0.95)); // darker - 78.05
+	--c-surface-3: hsl(0, 0%, calc(var(--surface-l) * 0.9)); // darkest - 72.03
 
 	/* ? ========== Layout colors ========== */
 	--c-bg-sidebar: var(--c-surface-1);
+	// --c-bg-sidebar: hsla(var(--accent-hsl) / 0.1);
 	--c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025));
 	// --c-bg-chats-sticky: hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 0.02);
 
@@ -302,7 +285,7 @@ html.light {
 	/* ? ========== BOX-SHADOW ==========*/
 	--box-shadow: var(--box-shadow-values) hsla(var(--accent-hsl) / 0.1);
 	// --box-shadow-contextmenu: 0px 0px 5px -2px hsla(0, 0%, 0%, 0.18);
-	--box-shadow-contextmenu: inset 0px 0px 10px 2px hsla(0, 0%, 0%, 0.1);
+	--box-shadow-contextmenu: 0px 0px 0px 1px color-mix(in srgb, var(--c-bg-contextmenu), black 1%);
 	--box-shadow-textarea: inset 0px 0px 15px 1px hsla(0, 0%, 0%, 0.1) !important;
 }
 
