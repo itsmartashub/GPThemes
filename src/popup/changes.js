@@ -1,37 +1,83 @@
-let issue = (hashNumber) =>
-	`<a href="https://github.com/itsmartashub/GPThemes/issues/${hashNumber}" target="_blank" rel="noopener noreferrer" class="changelog__seefullchangelog">#${hashNumber}</a>`
+const links = {
+	issue: (issueNumber) =>
+		`<a href="https://github.com/itsmartashub/GPThemes/issues/${issueNumber}" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="changelog__issue-link">
+        #${issueNumber}
+      </a>`,
+	pr: (prNumber) =>
+		`<a href="https://github.com/itsmartashub/GPThemes/pull/${prNumber}" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="changelog__pr-link">
+        PR #${prNumber}
+      </a>`,
+}
 
-const RELEASE_CHANGES = `
-<h3>🚀 New Features</h3>
-<ul>
-    <li><strong>New Fonts: </strong>Added 7 font families ${issue(109)}</li>
-    <li><strong>Font Sorting: </strong>Alphabetical order with <code>Default</code> always first</li>
-</ul>
+const SECTION_TYPES = {
+	features: { emoji: '🆕', title: 'Features' },
+	improvements: { emoji: '⚡', title: 'Improvements' },
+	fixes: { emoji: '🩹', title: 'Fixes' },
+	other: { emoji: '🧵', title: 'Other' },
+	// Can easily add more section types as needed
+}
 
-<h3>🛠️ Improvements</h3>
-<ul>
-    <li><strong>Prompt Textarea: </strong>Inversed background colors for basic/temporary modes</li>
-    <li><strong>Accent Colors: </strong>Softened default colors for better visual harmony</li>
-    <li><strong>DALL·E Layout: </strong>Supported latest UI with image editing ${issue(112)}</li>
-    <li><strong>Markdown: </strong>Refined code-block styles for light/dark modes ${issue(111)}</li>
-    <li><strong>Markdown Buttons: </strong>Invert <code>Copy/Edit</code> colors ${issue(111)}</li>
-    <li><strong>Custom Settings UI: </strong>Reduced spacing in <code>GPThemes Settings</code></li>
-    <li><strong>Custom Instructions: </strong>Improved error textarea styling</li>
-</ul>
+const currentReleaseChanges = {
+	// Example data - in a real scenario, you'd only include sections with actual content
+	features: [
+		{
+			description: 'Custom Scrolldown Align:',
+			details:
+				'Added options to position the scroll down button to the <code>left</code>, <code>center</code>, or <code>right</code> of the screen',
+			issueRef: 113,
+		},
+	],
+	other: [
+		{
+			details:
+				'Thanks for using GPThemes! This release brings many other improvements and bug fixes to enhance your experience. For all the details, check out the full release notes on GitHub.',
+		},
+	],
+	// Add other sections as needed for each release
+	// Omit sections that don't have changes
+}
 
-<h3>🐛 Bug Fixes</h3>
-<ul>
-    <li><strong>Prompt Textarea Width: </strong>Fixed custom width application</li>
-    <li><strong>Prompt Textarea Selector: </strong>Streamlined element targeting</li>
-    <li><strong>Autocomplete: </strong>Fixed across different profiles ${issue(110)}</li>
-    <li><strong>Voice Button: </strong>Restored styles after OpenAI changes ${issue(110)}</li>
-    <li><strong>Chat Footer Icons: </strong>Fixed <code>Copy/Edit/Like</code> buttons (3x fixes)</li>
-    <li><strong>Source Links Balloons: </strong>Improved visibility to match accent theme</li>
-    <li><strong>Reply Quotes: </strong>Fixed broken styling above user messages</li>
-    <li><strong>Advanced Data Analysis: </strong>Fixed design in chat bubbles/dialogs</li>
-    <li><strong>ADA Results: </strong>Repaired <code>&lt;pre&gt;</code> formatting</li>
-    <li><strong>Sticky Header: </strong>Removed box-shadow (border bottom alike)</li>
-</ul>
-`
+const generateChangelogItem = (item) => {
+	const issueLink = item.issueRef ? ` ${links.issue(item.issueRef)}` : ''
+	const prLink = item.prRef ? ` ${links.pr(item.prRef)}` : ''
 
-export { RELEASE_CHANGES }
+	return `
+      <li>
+        ${item.description ? `<strong>${item.description}</strong> ` : ''}
+        ${item.details}
+        ${issueLink}${prLink}
+      </li>
+    `
+}
+
+const generateChangelog = () => {
+	// Get only sections that have content
+	const sectionsWithContent = Object.entries(currentReleaseChanges).filter(([_, items]) => items && items.length > 0)
+
+	if (sectionsWithContent.length === 0) {
+		return '<p>No changes in this release.</p>'
+	}
+
+	return sectionsWithContent
+		.map(([sectionKey, items]) => {
+			const section = SECTION_TYPES[sectionKey]
+			return `
+          <h3>${section.emoji} ${section.title}</h3>
+          <ul>
+            ${items.map(generateChangelogItem).join('')}
+          </ul>
+        `
+		})
+		.join('\n')
+}
+
+// Generate the final changelog HTML
+const RELEASE_CHANGES = generateChangelog()
+
+export { RELEASE_CHANGES, links }

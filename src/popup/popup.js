@@ -2,36 +2,44 @@ import browser from 'webextension-polyfill'
 import { EXT_CURRENT_VERSION, CHANGELOG_URL } from '../js/app/config'
 import { RELEASE_CHANGES } from './changes'
 
-const seeFullChangelog = (version) =>
+const createFullChangelogLink = (version) =>
 	`<a href="https://github.com/itsmartashub/GPThemes/releases/tag/v${version}" target="_blank" rel="noopener noreferrer" class="changelog__seefullchangelog">🚀 See full release notes</a>`
 
-// <a href="https://github.com/itsmartashub/GPThemes/issues/42">#42</a>
+const initChangelogUI = () => {
+	const changelogChangesEl = document.querySelector('.changelog__changes')
+	const changelogVersionEl = document.querySelector('.changelog__version')
 
-let htmlChangesList = `
+	// Ensure elements exist to prevent errors
+	if (!changelogChangesEl || !changelogVersionEl) {
+		console.error('Changelog elements not found in the DOM')
+		return
+	}
 
-	${RELEASE_CHANGES}
+	// Construct the changes HTML once
+	const htmlChangesList = `
+		  ${RELEASE_CHANGES}
+		  <p>${createFullChangelogLink(EXT_CURRENT_VERSION)}</p>
+		`
 
-	<p>${seeFullChangelog(EXT_CURRENT_VERSION)}</p>
-`
-const changelogChangesEl = document.querySelector('.changelog__changes')
-const changelogVersionEl = document.querySelector('.changelog__version')
-
-function injectUpdateNotification() {
-	changelogChangesEl.insertAdjacentHTML('beforeend', htmlChangesList)
-	changelogVersionEl.innerText = `v${EXT_CURRENT_VERSION}`
+	// Update the DOM
+	changelogChangesEl.innerHTML = htmlChangesList
+	changelogVersionEl.textContent = `v${EXT_CURRENT_VERSION}`
 	changelogVersionEl.href = CHANGELOG_URL
 }
 
-async function setBadge() {
+async function updateBadge() {
 	try {
-		const response = await browser.runtime.sendMessage({ action: 'setBadge' })
-		console.log(response.status) // Optional: log the response
+		const response = await browser.runtime.sendMessage({ action: 'updateBadge ' })
+		console.log('Badge update status:', response.status)
 	} catch (error) {
-		console.error('Error clearing badge:', error)
+		console.error('Failed to update badge:', error)
 	}
 }
 
-injectUpdateNotification()
+const initPopup = () => {
+	initChangelogUI()
+	updateBadge()
+}
 
-// Call the function to clear the badge when the popup opens
-setBadge()
+// Start the initialization process
+initPopup()
