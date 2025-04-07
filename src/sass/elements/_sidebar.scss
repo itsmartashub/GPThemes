@@ -10,15 +10,26 @@ nav[aria-label='Chat history'] {
 
 	/* List item for GPTs and for chats-list item */
 	[class*='bg-[var(--item-background-color)]'] {
+		// --sidebar-surface-tertiary: var(--c-bg-sidebar-item, var(--c-surface-2));
 		opacity: 1 !important;
 		transition: transform 0.25s ease;
 
 		&:is(:hover, :focus) {
+			// --item-background-color: var(--c-bg-sidebar-item, var(--c-surface-2)) !important;
+			background-color: var(--c-bg-sidebar-item, var(--c-surface-2)) !important;
 			transform: translateY(-0.08rem);
 		}
 
 		/* Active item */
-		// &[style*="var(--sidebar-surface-tertiary)"] {}
+		// &[style*="var(--sidebar-surface-tertiary)"] {
+
+		// 	a {
+		// 		color: var(--c-accent) !important;
+		// 	}
+
+		// 	// background-color: var(--c-bg-sidebar-item, var(--c-surface-2)) !important;
+		// 	// --item-background-color: var(--c-bg-sidebar-item, var(--c-surface-2)) !important;
+		// }
 	}
 
 	/* NEW CHAT + LIST of chats in nav. Adding padding-left prevent :focus-visible style in those elements to be cropped from the left because of the overflow-hidden */
@@ -42,6 +53,11 @@ nav[aria-label='Chat history'] {
 
 	a {
 		color: var(--c-txt) !important;
+
+
+		&.hover\:bg-token-sidebar-surface-secondary:hover {
+			background-color: var(--c-bg-sidebar-item, var(--c-surface-2)) !important;
+		}
 
 		/* "Upgrade" link in nav bg */
 		span.h-7.w-7.rounded-full.border-token-border-light {

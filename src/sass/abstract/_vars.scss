@@ -54,11 +54,11 @@
 
 	/* .bg-token-sidebar-surface-secondary
 	- GPT's variable in  nav item bg on hover */
-	--sidebar-surface-secondary: var(--c-surface-2) !important;
+	--sidebar-surface-secondary: var(--c-bg-sidebar-item, var(--c-surface-2)) !important;
 
 	/* .bg-token-sidebar-surface-tertiary
 	- GPT's variable in  nav item bg on hover */
-	--sidebar-surface-tertiary: var(--c-surface-2) !important;
+	--sidebar-surface-tertiary: var(--c-bg-sidebar-item, var(--c-surface-2)) !important;
 
 	/* 
 	- header of tables in "Shared links" and "Archived chats"
@@ -108,6 +108,10 @@
 	--text-error: var(--c-danger) !important;
 	--icon-secondary: var(--c-subtext-2) !important;
 	--dot-color: var(--c-txt) !important;
+
+	/* ? ========== Scrollbar colors ========== */
+	--c-scrollbar-thumb: hsla(var(--accent-hsl) / 0.25);
+	--c-scrollbar-track: transparent;
 
 	@include container('md') {
 		// --px-chat-bubble-edge-gap: 1vw;
@@ -193,7 +197,11 @@ html.light {
 	--c-surface-3: hsl(0, 0%, calc(var(--surface-l) * 0.9)); // darkest - 72.03
 
 	/* ? ========== Layout colors ========== */
-	--c-bg-sidebar: var(--c-surface-1);
+	// --c-bg-sidebar: var(--c-surface-1);
+	// --c-bg-sidebar: hsla(var(--accent-hsl) / 0.1);
+	--c-bg-sidebar: hsl(var(--accent-h), calc(var(--accent-s) * 0.1), 84.5%);
+	// --c-bg-sidebar-active-item: hsla(var(--accent-hsl) / 0.1);
+	--c-bg-sidebar-item: hsl(var(--accent-h), calc(var(--accent-s) * 0.2), 72%);
 	// --c-bg-sidebar: hsla(var(--accent-hsl) / 0.1);
 	--c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025));
 	// --c-bg-chats-sticky: hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 0.02);
@@ -237,9 +245,7 @@ html.light {
 	/* ? ========== <pre>/markdown things colors ========== */
 	--c-markdown-a: var(--c-accent);
 
-	/* ? ========== Scrollbar colors ========== */
-	--c-scrollbar-thumb: var(--c-surface-3);
-	--c-scrollbar-track: transparent;
+
 	// --c-scrollbar-track: var(--c-surface-2);
 
 	/* ? ========== OpenAI surface colors ========== */
@@ -378,8 +384,8 @@ html.dark {
 	--c-bg-cm: var(--c-surface-1); // surface-1
 
 	/* ? ========== Scrollbar colors ========== */
-	--c-scrollbar-thumb: var(--c-surface-3);
-	--c-scrollbar-track: transparent;
+	// --c-scrollbar-thumb: var(--c-surface-3);
+	// --c-scrollbar-track: transparent;
 	// --c-scrollbar-track: var(--c-surface-2);
 
 	/* ? ========== OpenAI surface colors ========== */
@@ -504,8 +510,8 @@ html.dark[data-gptheme='oled'] {
 	--c-border-accent: hsla(var(--accent-hsl) / 0.05);
 
 	/* ? ========== Scrollbar colors ========== */
-	--c-scrollbar-thumb: var(--c-surface-3);
-	--c-scrollbar-track: transparent;
+	// --c-scrollbar-thumb: var(--c-surface-3);
+	// --c-scrollbar-track: transparent;
 
 	/* ? ========== OpenAI surface colors ========== */
 	/* btn u biranju teme kad nema nikake pozadine */

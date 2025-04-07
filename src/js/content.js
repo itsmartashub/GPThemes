@@ -5,9 +5,13 @@ import { init as initFonts } from './app/mainFonts'
 import { init as initWidths } from './app/mainWidths'
 import { init as initScrolldown } from './app/scrolldown'
 
-initThemes()
-initFloating()
-initColors()
-initFonts()
-initWidths()
-initScrolldown()
+initExtension()
+
+function initExtension() {
+	initThemes()
+	initFloating()
+	initColors()
+	initFonts()
+	initWidths()
+	initScrolldown()
+}
