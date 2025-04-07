@@ -27,10 +27,15 @@ const initChangelogUI = () => {
 	changelogVersionEl.href = CHANGELOG_URL
 }
 
-async function updateBadge() {
+const updateBadge = async () => {
 	try {
-		const response = await browser.runtime.sendMessage({ action: 'updateBadge ' })
-		console.log('Badge update status:', response.status)
+		// Send message to background script
+		const response = await browser.runtime.sendMessage({ action: 'setBadge' })
+
+		// Background script now always returns a response with status
+		if (response && response.status) {
+			console.log('Badge status:', response.status)
+		}
 	} catch (error) {
 		console.error('Failed to update badge:', error)
 	}

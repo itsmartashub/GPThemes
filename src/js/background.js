@@ -1,30 +1,70 @@
-console.log("background.js");
-import browser from "webextension-polyfill";
+import browser from 'webextension-polyfill'
 
-browser.runtime.onInstalled.addListener(async (details) => {
-	browser.action.setBadgeBackgroundColor({ color: "#ca93fb" });
-	const currentVersion = browser.runtime.getManifest().version;
+// Constants
+const BADGE_COLOR = '#ca93fb'
+const NEW_BADGE_TEXT = 'NEW'
 
-	// Get previously stored version
-	const { lastVersion } = await browser.storage.sync.get("lastVersion");
+const handleInstallation = async (details) => {
+	try {
+		// Set badge background color once
+		await browser.action.setBadgeBackgroundColor({ color: BADGE_COLOR })
 
-	if (details.reason === "update" && lastVersion !== currentVersion) {
-		browser.action.setBadgeText({ text: "NEW" });
-		browser.storage.sync.remove("gptheme");
-	}
+		const currentVersion = browser.runtime.getManifest().version
+		// Get previously stored version
+		const { lastVersion } = await browser.storage.sync.get('lastVersion')
 
-	// Store the current version to prevent repeat triggers
-	await browser.storage.sync.set({ lastVersion: currentVersion });
-});
-
-// Ensure onMessage listener is added only once
-if (!globalThis.hasSetBadgeListener) {
-	browser.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
-		if (message.action === "setBadge") {
-			await browser.action.setBadgeText({ text: browser.runtime.getManifest().version });
-			sendResponse({ status: "Badge set" });
-			return true;
+		// Handle update scenario - show NEW badge and reset theme
+		if (details.reason === 'update' && lastVersion !== currentVersion) {
+			await browser.action.setBadgeText({ text: NEW_BADGE_TEXT })
+			await browser.storage.sync.remove('gptheme')
+			console.log(`Extension updated from ${lastVersion} to ${currentVersion}`)
 		}
-	});
-	globalThis.hasSetBadgeListener = true;
+
+		// Store the current version to track updates
+		await browser.storage.sync.set({ lastVersion: currentVersion })
+		console.log(`Installation event: ${details.reason}, version: ${currentVersion}`)
+	} catch (error) {
+		console.error('Error handling installation:', error)
+	}
 }
+
+const handleBadgeUpdate = async () => {
+	try {
+		const version = browser.runtime.getManifest().version
+		await browser.action.setBadgeText({ text: version })
+		return { status: 'Badge updated successfully' }
+	} catch (error) {
+		console.error('Error updating badge:', error)
+		return { status: 'Badge update failed', error: error.message }
+	}
+}
+
+const handleMessage = async (message, sender, sendResponse) => {
+	try {
+		if (message.action === 'setBadge') {
+			const response = await handleBadgeUpdate()
+			sendResponse(response)
+		}
+	} catch (error) {
+		console.error('Error handling message:', error)
+		sendResponse({ status: 'error', message: error.message })
+	}
+	return true // Keep message channel open for async response
+}
+
+// Initialize listeners
+const initBackgroundScript = () => {
+	console.log('Initializing GPThemes background script')
+
+	// Register installation handler
+	browser.runtime.onInstalled.addListener(handleInstallation)
+
+	// Register message handler (ensuring it's only added once)
+	if (!globalThis.hasSetBadgeListener) {
+		browser.runtime.onMessage.addListener(handleMessage)
+		globalThis.hasSetBadgeListener = true
+	}
+}
+
+// Start the background script
+initBackgroundScript()
