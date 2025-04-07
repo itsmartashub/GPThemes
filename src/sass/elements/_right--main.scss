@@ -44,10 +44,23 @@
 		--p-chat-bubble: 1rem;
 		--br-chat-bubble: calc(var(--br) * 1.2);
 
-		.m-auto.text-base:has(>.mx-auto.flex.flex-1.text-base[class*="md:max-w-3xl"]) {
-			// border: 2px solid red !important;
-			padding-left: 0.8rem !important;
-			padding-right: 0.8rem !important;
+		/* Wrapper of each chat-bubbles msg, decreise padding-inline */
+		.text-base.my-auto.mx-auto.px-6.py-5 {
+			padding-inline: 2vw !important;
+		}
+	}
+
+	/* Right chat content parent
+	.mx-auto.flex.flex-1.text-base[class*="md:max-w-3xl"] is GPT chat bubble */
+	// [class*='xl:max-w-[48rem]'], 
+	/* Necu da stavim direkt na chat bubble jer nece biti dobro kad imamo double response prikazan */
+	// .mx-auto.flex.flex-1.text-base[class*="md:max-w-3xl"] {
+	.mx-auto.flex.flex-1.text-base[class*="md:max-w-3xl"] {
+		max-width: var(--w_chat_gpt) !important;
+
+		@include container('md') {
+			--w_chat_gpt: 100%;
+			width: var(--w_chat_gpt);
 		}
 	}
 
@@ -86,19 +99,7 @@
 		}
 	}
 
-	/* Right chat content parent
-	.mx-auto.flex.flex-1.text-base[class*="md:max-w-3xl"] is GPT chat bubble */
-	// [class*='xl:max-w-[48rem]'], 
-	/* Necu da stavim direkt na chat bubble jer nece biti dobro kad imamo double response prikazan */
-	// .mx-auto.flex.flex-1.text-base[class*="md:max-w-3xl"] {
-	.mx-auto.flex.flex-1.text-base[class*="md:max-w-3xl"] {
-		max-width: var(--w_chat_gpt) !important;
 
-		@include container('md') {
-			--w_chat_gpt: 100%;
-			width: var(--w_chat_gpt);
-		}
-	}
 
 	/* @ ======================== RIGHT - CHATS BUBBLES - USER ======================== */
 	&:has([data-message-author-role='user']) {
