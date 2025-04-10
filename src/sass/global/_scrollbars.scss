@@ -38,3 +38,7 @@ scrollbar-track-piece {
         scrollbar-width: thin !important;
     }
 }
+
+[class*="scrollbar-width:none"] {
+    --w-scrollbar: 0 !important;
+}
