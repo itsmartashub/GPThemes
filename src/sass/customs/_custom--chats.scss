@@ -1,0 +1,30 @@
+/* Chats msgs: <article> */
+[data-testid^='conversation-turn-'] {
+
+    /* ! ========== GPT msg width ========== */
+    /* Right chat content parent
+    /* Necu da stavim direkt na chat bubble jer nece biti dobro kad imamo double response prikazan */
+    // .mx-auto.flex.flex-1.text-base[class*="md:max-w-3xl"] {
+    /* New selector: 2025-04-10 */
+    .group\/turn-messages[class*="max-w-(--thread-content-max-width)"] {
+        will-change: width, max-width;
+        max-width: var(--w_chat_gpt) !important;
+        // @include dev_high(red);
+
+        @include container('md') {
+            --w_chat_gpt: 100%;
+            width: var(--w_chat_gpt);
+        }
+    }
+
+    /* ! ========== USER msg width ========== */
+    &:has([data-message-author-role='user']) {
+
+        /* New selector: 2025-04-10 */
+        // .bg-token-message-surface[class*="max-w-[var(--user-chat-width,70%)]"] {
+        .bg-token-message-surface {
+            width: var(--max_w_chat_user) !important;
+            max-width: var(--w_chat_user) !important;
+        }
+    }
+}
