@@ -9,35 +9,19 @@ But adding this "main" blocked this style to smaller screens so I have to add it
  - not(div[class*="var(--screen-thread-header-min-height"]) means to not include sticky headers in search link sources dialog when clicked on "SOURCES" in chat bubbles 
  - not(.font-mono) je "Run" sticky header u python consoli u Code Canvasu
  - not(.-mt-2) je gradeint headercic oko Mape u chat bubbles kada je tu Searchovana Mapa */
+
+/* Header on: New chat layout, on chats layout, on mobile too, but not on GPTs where pill tags are */
+.h-header-height.top-0 {
+	@extend %header-style;
+}
+
 .sticky {
 
-	&.h-header-height {
-		@extend %header-style;
-	}
-
-	/* "My GPTs" page - sticky header with scrollable tags and LR arrows */
+	/* "My GPTs" page - sticky header with scrollable pill tags and LR arrows */
 	&.top-14.w-screen.bg-token-main-surface-primary {
 		background-color: var(--c-bg-chats-container) !important;
 		padding-bottom: 0.6rem !important;
 	}
-
-	/* Header fr smaller screens */
-	@include dev('md') {
-		&.top-0.draggable.bg-token-main-surface-primary:has(>div>[data-testid="open-sidebar-button"]) {
-			// @extend %header-style;
-			// --c-bg-chats-sticky: var(--c-bg-chats-container) !important;
-			background-color: var(--c-bg-chats-container) !important;
-		}
-	}
-
-	/*  "My GPTs" page sticky headers w/ +CREATE btn (.top-0 and .top-14) */
-	// &.h-header-height:has([href^='/auth/login?next=/gpts']),
-	// &.h-header-height:has([href='/gpts/editor']),
-	/* &.h-header-height:has([data-testid="create-gpt-discovery-button"]),
-	&.top-14.w-screen {
-		--c-bg-chats-sticky: var(--c-bg-chats-container) !important;
-		--blur-sticky: 0 !important;
-	} */
 
 	/* "ChatGPT" button in sticky header */
 	[data-testid="model-switcher-dropdown-button"][type='button'][aria-haspopup='menu'] {
