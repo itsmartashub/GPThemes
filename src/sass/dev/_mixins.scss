@@ -1,6 +1,6 @@
-@mixin borderBoxShadow($color) {
-	border: 2px solid $color !important;
-	box-shadow: 0px 0px 0px 2px $color !important;
+@mixin dev_high($color) {
+	box-shadow: 0px 0px 0px 4px $color !important;
+	background: linear-gradient($color, color-mix($color, transparent 50%)) !important;
 }
 
 

@@ -1,0 +1,18 @@
+[role="presentation"].composer-parent {
+
+    [class*="max-w-(--thread-content-max-width)"].text-base.mx-auto.flex.flex-1:has(form[data-type="unified-composer"] #prompt-textarea) {
+        will-change: width, max-width;
+        max-width: var(--w_prompt_textarea);
+        // @include dev_high(orange);
+
+        @include container('md') {
+            --w_prompt_textarea: 100%;
+        }
+
+        /* TODO This element causes weird empty space before prompt field which makes prompt fields visually unshifted or misaligned. The best would be to display:none, but idk if that would be filled with some important content in the future. So I use :empty to remove it only when this element is without any content. */
+        // &>div.flex.justify-center:has(~form):empty {
+        // 	// border: 4px solid orange !important;
+        // 	display: none !important;
+        // }
+    }
+}

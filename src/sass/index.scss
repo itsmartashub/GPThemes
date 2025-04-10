@@ -7,7 +7,7 @@
 @import 'shared/_extends';
 @import 'abstract/_extends';
 
-// @import 'dev/_mixins';
+@import 'dev/_mixins'; // TODO: REMOVE THIS FOR PRODUCTION!
 
 @import 'global/_base';
 @import 'global/_scrollbars';
@@ -48,8 +48,10 @@
 @import 'pages/_shared-links';
 @import 'pages/_gpt-store';
 @import 'elements/_transitions';
-@import 'elements/_chats-textarea-max-width';
+// @import 'elements/_chats-textarea-max-width';
 @import 'elements/_search';
+@import 'customs/_custom--chats';
+@import 'customs/_custom--textarea';
 
 /* ChatGPT A/B Testing */
 @import 'elements/_composer';
