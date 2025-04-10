@@ -19,6 +19,13 @@
             background: hsla(var(--accent-hsl) / .14) !important;
             color: var(--c-accent) !important;
         }
+
+        /* |...| code truncated when line collapsed */
+        .cm-foldPlaceholder {
+            background-color: var(--c-accent) !important;
+            color: var(--c-on-accent) !important;
+            border-color: var(--c-accent) !important;
+        }
     }
 
     &,
@@ -55,13 +62,13 @@
 
 /* Canvas with CodeMirror (for code) and ProseMirror (for text) showed on the left (when open canvas) 
 - .fixed.inset-0.z-40.overflow-hidden is for smaller screens (width <= 1000px) */
-.absolute.left-0.z-20.h-full.overflow-hidden,
+.absolute.start-0.z-20.h-full.overflow-hidden,
 .fixed.inset-0.z-40.overflow-hidden {
 
     /* Loading screen for Canvas when there is no #codemirror or #prosemirror-editor-container loaded yet */
-    section.popover:has(main [class*="absolute left-0 top-0 h-full w-full rotate-45 bg-gradient-to-r from-transparent via-black/20 to-transparent opacity-50 dark:via-white/5"]) {
-        background-color: var(--c-bg-cm) !important;
-    }
+    // section.popover:has(main [class*="absolute left-0 top-0 h-full w-full rotate-45 bg-gradient-to-r from-transparent via-black/20 to-transparent opacity-50 dark:via-white/5"]) {
+    //     background-color: var(--c-bg-cm) !important;
+    // }
 
     &:has(section.popover main #codemirror, section.popover main #prosemirror-editor-container) {
         .bg-black {
@@ -73,12 +80,12 @@
         section.popover.h-full.w-full {
             background-color: var(--c-bg-cm) !important;
 
-            /* Header of canvas with title, coppy btn */
+            /* Header of canvas with title, copy btn */
             header[class*="@container"] {
-                background-color: var(--c-bg-cm);
+                // background-color: var(--c-bg-cm);
 
                 /* Main Canvas title */
-                h2.truncate.text-lg.text-gray-700 {
+                h2.truncate.text-lg {
                     color: var(--c-accent) !important;
                 }
 
@@ -126,7 +133,7 @@
 
             /* Borders in console */
             .border-token-border-xlight {
-                --border-xlight: hsla(var(--accent-hsl) / .1) !important;
+                --border-xlight: hsla(var(--accent-hsl) / .2) !important;
                 // border-color: var(--border-xlight);
             }
 
@@ -145,7 +152,7 @@
                 }
 
                 /* "Clear console" and "Cancel" btns in Console header */
-                button[as="button"].btn.btn-ghost.btn-small.aspect-square.\!p-1 {
+                button[as="button"].btn.btn-ghost.btn-small.aspect-square.p-1\! {
                     color: var(--c-accent) !important;
                 }
 
@@ -363,29 +370,34 @@
     }
 }
 
-/* Width less then 1000px */
-.fixed.inset-0.z-40.overflow-hidden {
+/* Width less then 1024px */
+@include dev('lg') {
+    .fixed.inset-0.z-40.overflow-hidden {
 
-    /* "Ask a ChatGPT to edit" on full-width screen less then 1000px width */
-    // [class*="bg-[#f4f4f4]"]:has([placeholder="Ask ChatGPT to edit"]) {
-    [class*="bg-[#f4f4f4]"]:has(textarea[placeholder*="ChatGPT"]) {
-        background-color: var(--c-bg-textarea) !important;
-        // background-color: var(--c-surface-2) !important;
+        /* "Ask a ChatGPT to edit" on full-width screen less then 1000px width */
+        // [class*="bg-[#f4f4f4]"]:has([placeholder="Ask ChatGPT to edit"]) {
+        [class*="bg-[#f4f4f4]"]:has(textarea[placeholder*="ChatGPT"]) {
+            background-color: var(--c-bg-textarea) !important;
+            box-shadow: red 0 0 0 5px inset;
+            border: red 2px solid;
+            // background-color: var(--c-surface-2) !important;
 
-        /* Submit btn */
-        button.rounded-full.bg-token-main-surface-primary {
-            background-color: var(--c-accent) !important;
+            /* Submit btn */
+            button.rounded-full.bg-token-main-surface-primary {
+                background-color: var(--c-accent) !important;
 
-            svg {
-                color: var(--c-on-accent) !important;
-            }
+                svg {
+                    color: var(--c-on-accent) !important;
+                }
 
-            &:disabled {
-                background-color: hsla(var(--accent-hsl) / .12) !important;
+                &:disabled {
+                    background-color: hsla(var(--accent-hsl) / .12) !important;
+                }
             }
         }
     }
 }
+
 
 /* TODO: removed due to recent GPT changes when introduced `Edit` button in Canvas and block scroll in Conversation after closing the Canvas previously opened from this `Edit` button (the button next to `Copy Code` in markdown code snippets header */
 /* Hide the floating button when Canvas is opened */
@@ -408,4 +420,4 @@ body:has(.absolute.z-20.h-full.transition-shadow.overflow-hidden.left-0 section.
     border-radius: var(--br-btn) !important;
 }
 
-#prosemirror-context-children {}
+// #prosemirror-context-children {}

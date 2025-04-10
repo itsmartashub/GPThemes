@@ -96,6 +96,20 @@
 		}
 	}
 
+	/* Markdown table parent of parent - caused overflow-x and scrollbards in X-axios */
+	.relative.left-\[50\%\].flex.w-\[100cqw\].translate-x-\[-50\%\].justify-center:has(>.tableContainer.horzScrollShadows) {
+		left: unset !important;
+		translate: unset !important;
+		width: auto !important;
+	}
+
+	/* Markdown table parent - caused overflow-x and scrollbards in X-axios  */
+	.tableContainer.horzScrollShadows {
+		background: none !important;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
 	table {
 		/* TODO - this overflow cause cutting the border edges of latest <tr> child, wtf. So I have to add border to <table> also (down where <th>, <td> are) */
 		overflow: hidden;

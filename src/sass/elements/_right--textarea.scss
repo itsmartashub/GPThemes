@@ -151,8 +151,12 @@ form {
 		}
 
 		/* Canvas file-tile */
-		div.group\/file-tile:has([id^="textdoc-message-temp-"]) {
+		// div.group\/file-tile:has([id^="textdoc-message-temp-"]) {
+		div.group\/file-tile {
 			[id^="textdoc-message-temp"] {
+				border-color: hsla(var(--accent-hsl) / 0.1) !important;
+				background-color: hsla(var(--accent-hsl) / 0.1) !important;
+				color: var(--c-accent) !important;
 
 				/* Ugly gradients on the Canvas edit file attached edges */
 				.absolute.bottom-0.z-20[style*="background: linear-gradient"] {
@@ -164,22 +168,21 @@ form {
 			button[class*="group-hover/file-tile:block"].absolute.-left-1.-top-1.rounded-full {
 				background-color: var(--c-accent) !important;
 				color: var(--c-on-accent) !important;
-				border: 1px solid var(--c-surface-2) !important;
 			}
 		}
 
 
 		/* 🖼️ "Attach Files" - attached file wrapper */
-		.-ml-1\.5.flex-nowrap {
+		.w-fit .-ms-1\.5.flex-nowrap.no-scrollbar.overflow-x-auto {
 			.bg-token-main-surface-primary {
 				--main-surface-primary: hsla(var(--accent-hsl) / 0.12) !important;
 
 				/* Close button */
-				&~button.bg-black.absolute.right-1.top-1.-translate-y-1\/2.translate-x-1\/2.rounded-full {
-					background-color: var(--c-danger) !important;
-					color: var(--c-on-accent) !important;
-					border-color: var(--c-bg-textarea) !important;
-				}
+				// &~button.bg-black.absolute.end-1.top-1.-translate-y-1\/2.translate-x-1\/2.rounded-full {
+				// 	background-color: var(--c-danger) !important;
+				// 	color: var(--c-on-accent) !important;
+				// 	border-color: var(--c-bg-textarea) !important;
+				// }
 
 				/* 🖼️ "Attach Files" - attached image button */
 				button[type='button'][aria-haspopup='dialog'] {
@@ -232,10 +235,10 @@ form {
 
 	/* Autocomplete suggestions - Element when clicked example cards below prompt textarea: "Create image", "Summarize text", "Analyze data", "Analyze images", and more...
 	
-	- &+.absolute.left-0.lg\:top-full.bg-token-main-surface-primary:has(ul) - selector introduced when #composer-background selector is removed
-	- .group .absolute.left-0.bg-token-main-surface-primary:has(ul) - selector when #composer-background selector is present */
-	&+.absolute.left-0.lg\:top-full.bg-token-main-surface-primary:has(ul),
-	.group .absolute.left-0.bg-token-main-surface-primary:has(ul) {
+	- &+.absolute.start-0.lg\:top-full.bg-token-main-surface-primary:has(ul) - selector introduced when #composer-background selector is removed
+	- .group .absolute.start-0.bg-token-main-surface-primary:has(ul) - selector when #composer-background selector is present */
+	&+.absolute.start-0.lg\:top-full.bg-token-main-surface-primary:has(ul),
+	.group .absolute.start-0.bg-token-main-surface-primary:has(ul) {
 		// background-color: var(--c-bg-chats-container);
 		margin-top: 0.2rem;
 		padding: 0 !important;
@@ -264,27 +267,4 @@ form {
 			}
 		}
 	}
-
-	/* TODO(remove): Hard to target this since its not in form anymore, but out of it. And its not even important... */
-	/* In DALLE there are random button examples above the textarea: ➕ Mosaic, ➕ 3D Wireframe, ➕ Claymation and shuffle btn, and arround that is some ugly gradient */
-	/* .absolute.bottom-full.left-0.right-0 .bg-gradient-to-t.from-token-main-surface-primary {
-		--main-surface-primary: transparent !important;
-	} */
 }
-
-/* === RIGHT - TEXTAREA part wrapper, margin-top ===*/
-// main div[role='presentation'] div.w-full:has(form) {
-// 	margin-top: 0.5rem !important;
-// }
-
-// html.dark[data-gptheme='oled'] main form div[class*='bg-[#f4f4f4]']:has(#prompt-textarea) {
-// html.dark[data-gptheme='oled'] main form #composer-background {
-
-// 	/* "Reply" in msg textarea */
-// 	#reply-regions {
-// 		.bg-token-main-surface-secondary {
-// 			background-color: var(--c-surface-2) !important;
-// 			// background-color: red !important;
-// 		}
-// 	}
-// }

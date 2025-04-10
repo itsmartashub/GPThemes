@@ -1,12 +1,16 @@
-main [role='presentation'] {
-	.absolute.bottom-full.left-0.right-0 {
-		// border: 2px solid red !important;
+[role='presentation'].composer-parent .isolate {
 
-		.flex.w-full.items-start.rounded-2xl.border.border-token-border-light.bg-token-main-surface-primary.text-token-text-primary:has(
-				button
-			) {
-			background-color: hsla(var(--accent-hsl) / 0.1) !important;
-			backdrop-filter: blur(30px);
+	.absolute.bottom-full.start-0.end-0.z-20,
+	// for new chat layout 
+	.block.flex-1.z-20 {
+
+		/* "You’ve hit the Free plan limit for GPT-4o" */
+		.bg-token-main-surface-primary.text-token-text-primary.flex.w-full.items-start.pe-3.rounded-3xl.border-token-border-light.text-sm:has(button[data-testid="close-button"]) {
+			--main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important; // for light mode
+			--main-surface-secondary: hsla(var(--accent-hsl) / 0.1) !important; // for dark mode
+
+			// background-color: hsla(var(--accent-hsl) / 0.1) !important;
+			backdrop-filter: blur(2rem);
 			border-color: hsla(var(--accent-hsl) / 0.1) !important;
 		}
 	}
