@@ -1,7 +1,8 @@
 [role='presentation'].composer-parent .isolate {
-	.max-w-full .absolute.bottom-full.start-0.end-0.z-20 {
-		// border: 2px solid red !important;
-		/* class="flex w-full items-start gap-4 rounded-3xl border py-4 ps-5 pe-3 text-sm [text-wrap:pretty] lg:mx-auto dark:border-transparent shadow-xxs md:items-center border-token-border-light bg-token-main-surface-primary text-token-text-primary dark:bg-token-main-surface-secondary" */
+
+	.absolute.bottom-full.start-0.end-0.z-20,
+	// for new chat layout 
+	.block.flex-1.z-20 {
 
 		/* "You’ve hit the Free plan limit for GPT-4o" */
 		.bg-token-main-surface-primary.text-token-text-primary.flex.w-full.items-start.pe-3.rounded-3xl.border-token-border-light.text-sm:has(button[data-testid="close-button"]) {
