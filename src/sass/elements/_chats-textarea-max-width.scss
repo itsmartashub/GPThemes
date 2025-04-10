@@ -12,9 +12,12 @@
 
 	/* Only textarea wrapper */
 	// [class*="md:max-w-3xl"].mx-auto.flex.flex-1.text-base:has(form #prompt-textarea) {
-	[class*="md:max-w-3xl"].mx-auto.flex.flex-1.text-base:has(form[data-type="unified-composer"] #prompt-textarea) {
+	/* New selector: 2025-04-10 */
+	[class*="max-w-(--thread-content-max-width)"].text-base.mx-auto.flex.flex-1:has(form[data-type="unified-composer"] #prompt-textarea) {
 		will-change: width, max-width;
 		max-width: var(--w_prompt_textarea);
+		// background: orange;
+		// outline: 2px solid orange;
 
 		@include container('md') {
 			--w_prompt_textarea: 100%;

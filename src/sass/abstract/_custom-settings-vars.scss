@@ -30,4 +30,8 @@
     --w_chat_gpt: 49rem;
     // --w_prompt_textarea: var(--w_chat_gpt);
     --w_prompt_textarea: 48rem;
+
+    // --thread-content-max-width: 48rem;
+
+    // [--thread-content-max-width:32rem] @[34rem]:[--thread-content-max-width:40rem] @[64rem]:[--thread-content-max-width:48rem] mx-auto flex max-w-(--thread-content-max-width) flex-1 text-base gap-4 md:gap-5 lg:gap-6 group/turn-messages focus-visible:outline-hidden
 }

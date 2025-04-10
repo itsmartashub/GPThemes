@@ -55,8 +55,11 @@
 	// [class*='xl:max-w-[48rem]'], 
 	/* Necu da stavim direkt na chat bubble jer nece biti dobro kad imamo double response prikazan */
 	// .mx-auto.flex.flex-1.text-base[class*="md:max-w-3xl"] {
-	.mx-auto.flex.flex-1.text-base[class*="md:max-w-3xl"] {
+	/* New selector: 2025-04-10 */
+	.group\/turn-messages[class*="max-w-(--thread-content-max-width)"] {
 		max-width: var(--w_chat_gpt) !important;
+		// background: red !important;
+		// outline: 2px solid red !important;
 
 		@include container('md') {
 			--w_chat_gpt: 100%;
@@ -105,7 +108,7 @@
 	&:has([data-message-author-role='user']) {
 
 		/* RIGHT - CHATS BUBBLE BG */
-		/* User message */
+		/*NEW SELECTOR: 2025-04-10 - User message - max-w-[var(--user-chat-width,70%)] */
 		.bg-token-message-surface {
 			background-color: var(--c-bg-msg-user);
 			padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.2);
