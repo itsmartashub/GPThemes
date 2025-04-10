@@ -385,22 +385,33 @@
 		- a.h-6.rounded-xl.font-medium.text-token-text-secondary\!.bg-\[\#F4F4F4\]\!.dark\:bg-\[\#303030\]\! - Sources links in chat bubble wth bubble on mouseover - basic state
 		- a.h-6.rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! - Sources links in chat bubble wth bubble on mouseover - mouseover state */
 
-		a.h-6.rounded-xl.font-medium.text-token-text-secondary\!.bg-\[\#F4F4F4\]\!.dark\:bg-\[\#303030\]\!,
-		a.h-6.rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! {
-			// --c-simulator-bg: var(--c-surface-2);
+		// a.h-6.rounded-xl.font-medium.text-token-text-secondary\!.bg-\[\#F4F4F4\]\!.dark\:bg-\[\#303030\]\!,
+		// a.h-6.rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! {
+		// 	--c-simulator-txt: var(--c-accent);
+		// 	@extend %simulator_bg;
+
+		// 	span {
+		// 		color: var(--c-simulator-txt) !important;
+		// 	}
+		// }
+
+		// /* Sources pill links in chat bubble wth bubble on mouseover - mouseover state */
+		// a.h-6.rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! {
+		// 	--c-simulator-bg: var(--c-accent) !important;
+		// 	--c-simulator-txt: var(--c-on-accent) !important;
+		// }
+
+		a.h-6.rounded-xl.font-medium.\!text-token-text-secondary.\!bg-\[\#F4F4F4\].dark\:\!bg-\[\#303030\],
+		a.h-6.rounded-xl.font-medium.\!text-token-main-surface-primary.\!bg-token-text-primary {
 			--c-simulator-txt: var(--c-accent);
 			@extend %simulator_bg;
-			// background: linear-gradient(var(--c-gradient, var(--c-surface-3))) !important;
-			// border: 1px solid hsla(var(--accent-hsl) / 0.3);
-			// box-shadow: inset 0 0 1rem 2rem hsla(var(--accent-hsl) / 0.15);
 
 			span {
 				color: var(--c-simulator-txt) !important;
 			}
 		}
 
-		/* Sources pill links in chat bubble wth bubble on mouseover - mouseover state */
-		a.h-6.rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! {
+		a.h-6.rounded-xl.font-medium.\!text-token-main-surface-primary.\!bg-token-text-primary {
 			--c-simulator-bg: var(--c-accent) !important;
 			--c-simulator-txt: var(--c-on-accent) !important;
 		}
