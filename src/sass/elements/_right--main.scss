@@ -569,7 +569,7 @@
 
 
 	/* User and GPT chats footer */
-	[class*="group/conversation-turn"] .flex.absolute.left-0.right-0 {
+	[class*="group/conversation-turn"] .flex.absolute.start-0.end-0 {
 
 		/* USER footer
 		-me-1 -ms-2.5 flex select-none items-center p-1 touch:-me-2 touch:-ms-3.5 focus-within:transition-none hover:transition-none duration-300 group-hover/turn-messages:delay-300 pointer-events-none opacity-0 motion-safe:transition-opacity group-hover/turn-messages:pointer-events-auto group-hover/turn-messages:opacity-100 group-focus-within/turn-messages:pointer-events-auto group-focus-within/turn-messages:opacity-100 has-[[data-state=open]]:pointer-events-auto has-[[data-state=open]]:opacity-100
