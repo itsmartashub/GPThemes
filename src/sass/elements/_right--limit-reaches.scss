@@ -5,7 +5,8 @@
 
 		/* "You’ve hit the Free plan limit for GPT-4o" */
 		.bg-token-main-surface-primary.text-token-text-primary.flex.w-full.items-start.pe-3.rounded-3xl.border-token-border-light.text-sm:has(button[data-testid="close-button"]) {
-			--main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important;
+			--main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important; // for light mode
+			--main-surface-secondary: hsla(var(--accent-hsl) / 0.1) !important; // for dark mode
 
 			// background-color: hsla(var(--accent-hsl) / 0.1) !important;
 			backdrop-filter: blur(2rem);
