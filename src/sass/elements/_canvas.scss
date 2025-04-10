@@ -55,7 +55,7 @@
 
 /* Canvas with CodeMirror (for code) and ProseMirror (for text) showed on the left (when open canvas) 
 - .fixed.inset-0.z-40.overflow-hidden is for smaller screens (width <= 1000px) */
-.absolute.left-0.z-20.h-full.overflow-hidden,
+.absolute.start-0.z-20.h-full.overflow-hidden,
 .fixed.inset-0.z-40.overflow-hidden {
 
     /* Loading screen for Canvas when there is no #codemirror or #prosemirror-editor-container loaded yet */
