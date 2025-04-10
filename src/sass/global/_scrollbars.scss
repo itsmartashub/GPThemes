@@ -39,6 +39,7 @@ scrollbar-track-piece {
     }
 }
 
-[class*="scrollbar-width:none"] {
+[class*="scrollbar-width:none"],
+.no-scrollbar {
     --w-scrollbar: 0 !important;
 }

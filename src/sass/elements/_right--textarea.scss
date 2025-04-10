@@ -156,6 +156,7 @@ form {
 			[id^="textdoc-message-temp"] {
 				border-color: hsla(var(--accent-hsl) / 0.1) !important;
 				background-color: hsla(var(--accent-hsl) / 0.1) !important;
+				color: var(--c-accent) !important;
 
 				/* Ugly gradients on the Canvas edit file attached edges */
 				.absolute.bottom-0.z-20[style*="background: linear-gradient"] {
@@ -172,16 +173,16 @@ form {
 
 
 		/* 🖼️ "Attach Files" - attached file wrapper */
-		.-ml-1\.5.flex-nowrap {
+		.w-fit .-ms-1\.5.flex-nowrap.no-scrollbar.overflow-x-auto {
 			.bg-token-main-surface-primary {
 				--main-surface-primary: hsla(var(--accent-hsl) / 0.12) !important;
 
 				/* Close button */
-				&~button.bg-black.absolute.right-1.top-1.-translate-y-1\/2.translate-x-1\/2.rounded-full {
-					background-color: var(--c-danger) !important;
-					color: var(--c-on-accent) !important;
-					border-color: var(--c-bg-textarea) !important;
-				}
+				// &~button.bg-black.absolute.end-1.top-1.-translate-y-1\/2.translate-x-1\/2.rounded-full {
+				// 	background-color: var(--c-danger) !important;
+				// 	color: var(--c-on-accent) !important;
+				// 	border-color: var(--c-bg-textarea) !important;
+				// }
 
 				/* 🖼️ "Attach Files" - attached image button */
 				button[type='button'][aria-haspopup='dialog'] {
