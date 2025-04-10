@@ -347,16 +347,7 @@
 				background-color: hsla(var(--accent-hsl) / 0.05);
 			}
 
-			/* REASONING: "Reasoned about [topic] for [X] seconds" */
-			div:has(~ [data-message-author-role="assistant"]) {
-				// outline: 1px solid red !important;
 
-				/* Border on the left of reasoning process in chat bubble */
-				.absolute.bottom-4.left-0.top-4.w-1.rounded-full.bg-token-border-light {
-					--border-light: var(--c-subtext-1) !important;
-					/* Circle with light blue which should represents link logo/img? */
-				}
-			}
 		}
 
 		/* [class*="group-hover/navigation"] je veliki source link u chat bubble kao onaj "ChatGPT Release Note" na sony */
@@ -374,11 +365,25 @@
 			}
 		}
 
-		/* Links listed from sources listed when using "/Search" */
+		/* Link cards listed from sources listed when using "Search" */
 		a[class*="group/nav-list"] {
-			&>.absolute.bottom-0.left-0.top-0.bg-black\/10 {
-				background-color: hsla(var(--accent-hsl) / 0.2) !important;
-				border-radius: var(--br);
+			background-color: hsla(var(--accent-hsl) / 0.1) !important;
+			border-color: hsla(var(--accent-hsl) / 0.1) !important;
+			border-radius: var(--br);
+			transition: translate 0.25s $easeInOutSine;
+
+			.text-token-text-primary.decoration-token-link.line-clamp-5 {
+				// color: var(--c-accent) !important;
+				transition: color 0.18s ease-in-out;
+
+			}
+
+			&:is(:hover, :focus) {
+				translate: 0 -0.1rem;
+
+				.text-token-text-primary.decoration-token-link.line-clamp-5 {
+					color: var(--c-accent) !important;
+				}
 			}
 		}
 
@@ -567,6 +572,16 @@
 			.w-px.flex-1.self-stretch.bg-token-main-surface-tertiary {
 				background-color: transparent !important;
 			}
+		}
+	}
+
+	.agent-turn {
+		// outline: 1px solid red !important;
+
+		/* REASONING: "Reasoned about [topic] for [X] seconds" */
+		/* Border on the left of reasoning process in chat bubble */
+		.whitespace-pre-wrap>.absolute.bottom-4.start-0.top-4.w-1.rounded-full.bg-token-border-light {
+			--border-light: var(--c-subtext-1) !important;
 		}
 	}
 
