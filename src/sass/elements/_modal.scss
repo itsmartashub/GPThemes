@@ -522,33 +522,33 @@
 
 		/* ___ DALLE huge dialog when opening DALLE image - desktop only*/
 		// &.divide-x:has(button[aria-label="Toggle Sidebar"]) {
-		&.h-\[100dvh\].divide-x {
-			// &[class*="h-[100dvh]"] {
-			// &:has(img[src^="https://files.oaiusercontent.com"]) {
-			// border-radius: 0 !important;
-			// border-color: hsla(var(--accent-hsl) / 0.15) !important;
+		// &.h-\[100dvh\].divide-x {
+		// 	// &[class*="h-[100dvh]"] {
+		// 	// &:has(img[src^="https://files.oaiusercontent.com"]) {
+		// 	// border-radius: 0 !important;
+		// 	// border-color: hsla(var(--accent-hsl) / 0.15) !important;
 
-			img[src^="https://files.oaiusercontent.com"] {
-				border-radius: calc(var(--br) * 1.5) !important;
-			}
+		// 	img[src^="https://files.oaiusercontent.com"] {
+		// 		border-radius: calc(var(--br) * 1.5) !important;
+		// 	}
 
-			/* DALLE image prompt sidebar visible when click on ℹ️ */
-			.bg-gray-900.hidden {
-				background-color: hsla(var(--accent-hsl) / 0.15) !important;
-				border-radius: var(--br-chat-bubble) !important;
-			}
+		// 	/* DALLE image prompt sidebar visible when click on ℹ️ */
+		// 	// .bg-gray-900.hidden {
+		// 	// 	background-color: hsla(var(--accent-hsl) / 0.15) !important;
+		// 	// 	border-radius: var(--br-chat-bubble) !important;
+		// 	// }
 
-			// [class*="w-[25vw] min-w-[25vw]"] {
-			.text-sm.text-gray-300 {
-				color: var(--c-accent) !important;
-				font-weight: bold;
-				text-transform: uppercase;
-			}
+		// 	// [class*="w-[25vw] min-w-[25vw]"] {
+		// 	.text-sm.text-gray-300 {
+		// 		color: var(--c-accent) !important;
+		// 		font-weight: bold;
+		// 		text-transform: uppercase;
+		// 	}
 
-			.overflow-y-auto {
-				--c-scrollbar-thumb: hsla(var(--accent-hsl) / 0.4) !important;
-			}
-		}
+		// 	.overflow-y-auto {
+		// 		--c-scrollbar-thumb: hsla(var(--accent-hsl) / 0.4) !important;
+		// 	}
+		// }
 
 		/* ___ "Report [GPTs]" dialog */
 		.divide-y:has(>button[class*='hover:bg-token-main-surface-secondary']) {
@@ -636,3 +636,30 @@ html.dark[data-gptheme='oled'] [role='dialog'] {
 		}
 	}
 }
+
+/* TODO(add):  improve this and add in future DALLE image when opened */
+// body>div>.absolute.inset-0.flex.flex-col {
+// 	// border: 3px solid red !important;
+
+// 	/* Like bg, overlay */
+// 	&>.bg-token-main-surface-secondary.h-full.w-full {}
+
+// 	/* Wrapper */
+// 	&>.absolute.inset-0.flex {
+// 		@include dev_high(red);
+
+// 		/* DALLE image when opened - image wrapper on the left */
+// 		// &>.grow.overflow-auto {}
+
+
+// 		/* DALLE image when opened - chat conversation aside on the right */
+// 		&>.border-token-border-medium.bg-token-main-surface-primary.relative.shrink-0.border-l {
+// 			@include dev_high(orange);
+
+// 			[class^="h-[100vh] pb-4"] {
+// 				// border: 3px solid orange !important;
+// 				padding-bottom: 0 !important;
+// 			}
+// 		}
+// 	}
+// }

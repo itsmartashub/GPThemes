@@ -187,19 +187,20 @@
 	&:has(.agent-turn) {
 
 		.text-base.group\/turn-messages[class*="max-w-(--thread-content-max-width)"] {
-			--pt-multiplier: 1.3;
+			// --pt-multiplier: 1.3;
 			background-color: var(--c-bg-msg-gpt);
-			padding: calc(var(--p-chat-bubble) * var(--pt-multiplier)) var(--p-chat-bubble) var(--p-chat-bubble) var(--p-chat-bubble) !important;
+			// padding: calc(var(--p-chat-bubble) * var(--pt-multiplier)) var(--p-chat-bubble) var(--p-chat-bubble) var(--p-chat-bubble) !important;
+			padding: var(--p-chat-bubble) !important;
 			// padding: var(--p-chat-bubble) !important;
 			border-radius: var(--br-chat-bubble) !important;
 
-			@include container('sm') {
-				--pt-multiplier: 1;
-			}
+			// @include container('sm') {
+			// 	--pt-multiplier: 1;
+			// }
 
-			@include dev('sm') {
-				--pt-multiplier: 1.4;
-			}
+			// @include dev('sm') {
+			// 	--pt-multiplier: 1.4;
+			// }
 
 			/* * Search - Maps wrapper */
 			.not-prose {
