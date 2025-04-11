@@ -1,0 +1,35 @@
+.gpth-bubbles {
+    h4 {
+        color: var(--c-accent);
+        text-transform: uppercase;
+        font-size: 0.8em;
+        font-weight: bold;
+        line-height: 1;
+    }
+
+    &__toggles {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    &__toggle {
+        // padding: 0.5rem;
+        border-radius: calc(var(--br) * 1.5);
+        background-color: var(--c-surface-2);
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &.active {
+            background-color: hsla(var(--accent-hsl) / 0.3);
+        }
+    }
+
+    &__item {
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        background: hsla(var(--accent-hsl) / 0.1);
+    }
+}

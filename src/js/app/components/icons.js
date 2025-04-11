@@ -34,6 +34,9 @@ const icon_align_right = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2
   <line x1="3" y1="18" x2="21" y2="18"></line>
 </svg>`
 
+const icon_toggle_on = `🟢`
+const icon_toggle_off = `🔴`
+
 export {
 	icon_sun,
 	icon_moon,
@@ -47,4 +50,6 @@ export {
 	icon_align_left,
 	icon_align_center,
 	icon_align_right,
+	icon_toggle_on,
+	icon_toggle_off,
 }

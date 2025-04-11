@@ -4,6 +4,7 @@ import { icon_full_width, icon_sync } from './components/icons'
 import { renderButton } from './components/renderButtons'
 import { renderSeparator } from './components/renderUtils'
 import { renderCustomScrollDown } from './scrolldown'
+import { renderChatBackground } from './toggleChatsBg'
 
 // Configuration object
 const CONFIG = {
@@ -334,6 +335,9 @@ const renderWidthsTab = `
 				textSubtitle: 'Adjust prompt field to match the chat width for a more streamlined and consistent view',
 			})}
     </div>
+
+	${renderSeparator}
+	${renderChatBackground()}
 
 	${renderSeparator}
 	${renderCustomScrollDown()}
