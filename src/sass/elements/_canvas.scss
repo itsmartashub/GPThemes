@@ -378,8 +378,6 @@
         // [class*="bg-[#f4f4f4]"]:has([placeholder="Ask ChatGPT to edit"]) {
         [class*="bg-[#f4f4f4]"]:has(textarea[placeholder*="ChatGPT"]) {
             background-color: var(--c-bg-textarea) !important;
-            box-shadow: red 0 0 0 5px inset;
-            border: red 2px solid;
             // background-color: var(--c-surface-2) !important;
 
             /* Submit btn */
