@@ -14,17 +14,24 @@ const CONFIG = {
 
 // Track number of attempts
 let retryCount = 0
+let retryTimeout = null // For cleanup
 
 // Main initialization function
 function initExtension() {
-	console.log(`[🎨GPThemes]: Initializing components (attempt ${retryCount + 1})`)
+	console.log(`[🎨GPThemes]: Initializing components (attempt ${retryCount + 1}/${CONFIG.MAX_RETRIES})`)
 
-	initThemes()
-	initFloating()
-	initColors()
-	initFonts()
-	initWidths()
-	initScrolldown()
+	try {
+		initThemes()
+		initFloating()
+		initColors()
+		initFonts()
+		initWidths()
+		initScrolldown()
+	} catch (error) {
+		console.error('[🎨GPThemes]: Critical initialization error:', error)
+		return false
+	}
+	return true
 }
 
 // Schedule retries with exponential backoff
@@ -36,30 +43,46 @@ function scheduleRetry() {
 
 		console.log(`[🎨GPThemes]: Scheduling retry ${retryCount}/${CONFIG.MAX_RETRIES} in ${delay}ms`)
 
-		setTimeout(() => {
+		retryTimeout = setTimeout(() => {
 			// Check if our components exist before retrying
 			if (document.querySelector(CONFIG.TARGET_SELECTOR)) {
-				console.log('[🎨GPThemes]: Components already present, no need to retry')
+				console.log('[🎨GPThemes]: Components already present, stopping retries')
+				cleanup()
 				return
 			}
 
 			console.info(
-				'[🎨GPThemes]: Re-initializing extension because there is probably "Minified React error #" above this...'
+				'[🎨GPThemes]: Re-initializing extension (possible React hydration issue: "Minified React error #XXX;" above?)'
 			)
 
-			// Retry initialization
-			initExtension()
-
-			// Schedule next retry if needed
-			scheduleRetry()
+			if (initExtension()) {
+				console.log('[🎨GPThemes]: Injection successful')
+				cleanup()
+			} else {
+				scheduleRetry()
+			}
 		}, delay)
 	} else {
 		console.log('[🎨GPThemes]: Maximum retries reached')
 	}
 }
 
-// Initial run
-initExtension()
+// Cleanup function
+function cleanup() {
+	if (retryTimeout) {
+		clearTimeout(retryTimeout)
+		retryTimeout = null
+	}
+}
 
-// Start retry sequence
-scheduleRetry()
+// Initial run
+if (!document.querySelector(CONFIG.TARGET_SELECTOR)) {
+	initExtension()
+	scheduleRetry()
+} else {
+	console.log('[🎨GPThemes]: Components already present on first check')
+}
+
+// Emergency cleanup if script re-runs
+if (window._gpthCleanup) window._gpthCleanup()
+window._gpthCleanup = cleanup
