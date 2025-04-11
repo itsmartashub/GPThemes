@@ -98,9 +98,12 @@
 
 	/* Markdown table parent of parent - caused overflow-x and scrollbards in X-axios */
 	.relative.left-\[50\%\].flex.w-\[100cqw\].translate-x-\[-50\%\].justify-center:has(>.tableContainer.horzScrollShadows) {
-		left: unset !important;
-		translate: unset !important;
+		left: 0 !important;
+		translate: 0 !important;
 		width: auto !important;
+		justify-content: start !important; // da ne bude centriran vec ulevo
+		overflow-x: auto !important; // da ne overlapuje chat
+		pointer-events: all !important; // da mozesmo da dohvatimo skrollbar
 	}
 
 	/* Markdown table parent - caused overflow-x and scrollbards in X-axios  */
