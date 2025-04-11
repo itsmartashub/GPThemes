@@ -213,7 +213,7 @@
 						}
 
 						/* Info icon on top left in Map */
-						.absolute.left-3.top-3 {
+						.absolute.start-3.top-3 {
 							button:has(>svg[class*="hover:text-token-text-secondary"]) {
 								background-color: transparent !important;
 								color: var(--c-accent) !important;

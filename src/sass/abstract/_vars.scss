@@ -59,7 +59,7 @@
 
 	/* .bg-token-sidebar-surface-tertiary
 	- GPT's variable in  nav item bg on hover */
-	--sidebar-surface-tertiary: var(--c-surface-2) !important;
+	--sidebar-surface-tertiary: var(--c-surface-3) !important;
 
 	/* 
 	- header of tables in "Shared links" and "Archived chats"
@@ -162,23 +162,6 @@ html.light {
 	--txt-l: 0%;
 	--txt-hsl: var(--txt-h) var(--txt-s) var(--txt-l);
 
-	// color: hsl(335, 39%, 88%);
-	// --suface-hsl: hsl(48, 25%, 92%); // msg bubble
-	// --suface-hsl: hsl(50, 21%, 89%); // sidebar item on hover
-	// --suface-hsl: hsl(53, 29%, 95%); // sidebar
-	// --suface-hsl: #faf9f5; // chats-bg
-
-
-	// --surface-h: 0;
-	// --surface-s: 0%;
-	// --surface-l: 85%;
-
-	// --surface-h: var(--accent-h);
-	// --surface-s: 20%;
-	// // --surface-s: 25%;
-	// --surface-l: 92%;
-	// --surface-hsl: hsl(var(--surface-h) var(--surface-s) var(--surface-l));
-
 	--surface-h: var(--accent-h); // Inherit accent hue
 	--surface-s: 9%; // Drastically reduced saturation (near-gray)
 	--surface-l: 90%; // Base lightness
@@ -204,27 +187,16 @@ html.light {
 	--c-subtext-2: hsl(var(--accent-h), 0%, 40%);
 
 	/* ? ========== Surface colors ========== */
-	// --c-surface-1: hsl(0, 0%, var(--surface-l)); // dark
-	// --c-surface-2: hsl(0, 0%, calc(var(--surface-l) * 0.95)); // darker - 78.05
-	// --c-surface-3: hsl(0, 0%, calc(var(--surface-l) * 0.9)); // darkest - 72.03
-
-	// --c-surface-1: var(--surface-hsl);
-	// --c-surface-2: hsl(var(--surface-h) var(--surface-s) calc(var(--surface-l) * 0.95));
-	// --c-surface-3: hsl(var(--surface-h) var(--surface-s) calc(var(--surface-l) * 0.92));
-
 	--c-surface-1: var(--surface-hsl);
-	--c-surface-2: hsl(var(--surface-h) var(--surface-s) calc(var(--surface-l) * 0.94));
-	--c-surface-3: hsl(var(--surface-h) var(--surface-s) calc(var(--surface-l) * 0.89));
+	--c-surface-2: hsl(var(--surface-h) var(--surface-s) calc(var(--surface-l) * 0.945));
+	--c-surface-3: hsl(var(--surface-h) var(--surface-s) calc(var(--surface-l) * 0.905));
 
 	/* ? ========== Layout colors ========== */
 	--c-bg-sidebar: var(--c-surface-1);
-	// --c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025));
 	--c-bg-chats-container: hsl(var(--surface-h) var(--surface-s) calc(var(--surface-l) * 1.02));
-
 
 	/* ? ========== Chat bubbles colors ========== */
 	--c-bg-msg-user: hsla(var(--accent-hsl) / 0.08);
-	// --c-bg-msg-gpt: hsl(0 0% 84%);
 	--c-bg-msg-gpt: hsl(var(--surface-h), calc(var(--surface-s) * 1), calc(var(--surface-l) * 0.97));
 
 	/* ? ========== Type message textarea colors ========== */
@@ -359,17 +331,10 @@ html.dark {
 	/* ? ========== Layout colors ========== */
 	--c-bg-sidebar: var(--c-surface-1);
 	--c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.076));
-	// --c-bg-chats-sticky: hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.076) / 0.02);
-	// --c-bg-chats-sticky: linear-gradient(to bottom, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 1) 50%, transparent);
-	// --c-bg-chats-sticky: linear-gradient(to bottom, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 1) 30%, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 0.8), transparent);
-
-	// --c-bg-chats-sticky: linear-gradient(to bottom, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 1), hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 0.9));
-	// --box-shadow-sticky: 0 10px 30px 10px hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 0.9);
 
 	/* ? ========== Chat bubbles colors ========== */
 	--c-bg-msg-user: hsla(var(--accent-hsl) / 0.04);
 	--c-bg-msg-gpt: hsla(var(--accent-hsl) / 0.08);
-	// --c-msg-name-gpt: var(--c-green);
 
 	/* ? ========== Type message textarea colors ========== */
 	--c-bg-textarea: var(--c-surface-2);
