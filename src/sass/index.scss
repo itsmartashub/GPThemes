@@ -7,7 +7,7 @@
 @import 'shared/_extends';
 @import 'abstract/_extends';
 
-@import 'dev/_mixins'; // TODO: REMOVE THIS FOR PRODUCTION!
+// @import 'dev/_mixins'; // TODO: REMOVE THIS FOR PRODUCTION!
 
 @import 'global/_base';
 @import 'global/_scrollbars';
@@ -52,9 +52,5 @@
 @import 'elements/_search';
 @import 'customs/_custom--chats';
 @import 'customs/_custom--textarea';
-
-/* ChatGPT A/B Testing */
-@import 'elements/_composer';
-
 
 @import 'gpthemes/gpth-index';

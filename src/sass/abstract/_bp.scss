@@ -7,6 +7,14 @@ $lg: 64em; // 1024px
 $xl: 80em; // 1280px
 $xxl: 96em; // 1536px
 
+// $xxs: 320px; // 20em * 16px
+// $xs: 500px; // 31.25em * 16px
+// $sm: 640px; // 40em * 16px
+// $md: 768px; // 48em * 16px
+// $lg: 1024px; // 64em * 16px
+// $xl: 1280px; // 80em * 16px
+// $xxl: 1536px; // 96em * 16px
+
 // Mixins using Tailwind's breakpoints
 @mixin dev($bp) {
     @if $bp =='xxs' {
