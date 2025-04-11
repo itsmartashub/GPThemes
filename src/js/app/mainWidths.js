@@ -4,7 +4,7 @@ import { icon_full_width, icon_sync } from './components/icons'
 import { renderButton } from './components/renderButtons'
 import { renderSeparator } from './components/renderUtils'
 import { renderCustomScrollDown } from './scrolldown'
-import { renderChatBackground } from './toggleChatsBg'
+import { renderChatBubbles } from './toggleChatsBg'
 
 // Configuration object
 const CONFIG = {
@@ -337,7 +337,7 @@ const renderWidthsTab = `
     </div>
 
 	${renderSeparator}
-	${renderChatBackground()}
+	${renderChatBubbles()}
 
 	${renderSeparator}
 	${renderCustomScrollDown()}

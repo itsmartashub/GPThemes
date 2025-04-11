@@ -1,14 +1,6 @@
 .gpth-scrolldown {
     $border: 1px solid hsla(var(--accent-hsl) / 0.1);
 
-    h4 {
-        color: var(--c-accent);
-        text-transform: uppercase;
-        font-size: 0.8em;
-        font-weight: bold;
-        line-height: 1;
-    }
-
     &__tabs {
         background-color: hsla(var(--accent-hsl) / 0.05);
         border: $border;

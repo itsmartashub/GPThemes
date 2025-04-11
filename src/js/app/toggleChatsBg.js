@@ -1,137 +1,140 @@
 import browser from 'webextension-polyfill'
-import { icon_toggle_on, icon_toggle_off } from './components/icons'
 
-// Configuration object
+// Configuration object with all bubble types and their properties
 const BG_CONFIG = {
 	user: {
-		label: 'User',
-		icon: icon_toggle_on,
+		label: 'USER',
 		toggleVar: '--toggleBgUser',
 		originalVar: '--c-bg-msg-user',
 	},
 	gpt: {
 		label: 'GPT',
-		icon: icon_toggle_on,
 		toggleVar: '--toggleBgGpt',
 		originalVar: '--c-bg-msg-gpt',
 	},
 }
 
+// Default state for bubble visibility
 const DEFAULT_STATE = {
 	user: true,
 	gpt: true,
 }
 
-function generateChatBackgroundHTML() {
-	const toggleButtons = Object.entries(BG_CONFIG)
-		.map(([type, config]) => {
-			return `
-        <div class="gpth-bubbles__item">
-          <span>${config.label}</span>
-          <button 
-            id="bg-toggle-${type}" 
-            class="gpth-bubbles__toggle active" 
+// Storage key for preferences
+const STORAGE_KEY = 'chatBubblesState'
+
+// Create HTML for chat background toggles
+const generateChatBackgroundHTML = () => {
+	const toggleItems = Object.entries(BG_CONFIG)
+		.map(
+			([type, config]) => `
+      <label class="gpth-bubbles__item cursor-pointer" for="id-${config.label}">
+        <span class="gpth-checkbox__text">${config.label}</span>
+        <div class="gpth-checkbox">
+          <input 
+            type="checkbox" 
+            id="id-${config.label}"
             data-type="${type}"
-            aria-pressed="true"
+            ${DEFAULT_STATE[type] ? 'checked' : ''}
+            aria-label="Toggle ${config.label} bubbles"
+            class="gpth-checkbox__input"
           >
-            ${config.icon}
-          </button>
+          <span class="gpth-checkbox__slider"></span>
         </div>
-      `
-		})
+      </label>
+    `
+		)
 		.join('')
 
 	return `
     <section class="gpth-bubbles">
-      <h4 class="mb-3 ml-2">Chat Bubbles</h4>
-      <div class="gpth-bubbles__toggles">
-        ${toggleButtons}
+      <h4 class="gpth-subheading">Chat Bubbles Toggle</h4>
+      <div class="gpth-bubbles__items">
+        ${toggleItems}
       </div>
     </section>
   `
 }
 
-function updateRootVariables(state) {
+// Update CSS variables based on state
+const updateRootVariables = (state) => {
 	const root = document.documentElement
 
-	Object.entries(state).forEach(([type, isEnabled]) => {
-		const config = BG_CONFIG[type]
-		root.style.setProperty(config.toggleVar, isEnabled ? `var(${config.originalVar})` : 'transparent')
-
-		getComputedStyle(root).getPropertyValue(config.toggleVar)
+	// Use a DocumentFragment for batched style updates
+	requestAnimationFrame(() => {
+		Object.entries(state).forEach(([type, isEnabled]) => {
+			const { toggleVar, originalVar } = BG_CONFIG[type]
+			root.style.setProperty(toggleVar, isEnabled ? `var(${originalVar})` : 'transparent')
+		})
 	})
 }
 
-async function saveBackgroundPreference(state) {
+// Save preferences to browser storage
+const saveBackgroundPreference = async (state) => {
 	try {
-		await browser.storage.sync.set({ chatBackgroundState: state })
+		await browser.storage.sync.set({ [STORAGE_KEY]: state })
+		return true
 	} catch (error) {
-		console.error('Failed to save background preference:', error)
+		console.error('Failed to save preference:', error)
+		return false
 	}
 }
 
-async function loadBackgroundPreference() {
+// Load preferences from browser storage
+const loadBackgroundPreference = async () => {
 	try {
-		const result = await browser.storage.sync.get('chatBackgroundState')
-		return result.chatBackgroundState || DEFAULT_STATE
+		const result = await browser.storage.sync.get(STORAGE_KEY)
+		return result[STORAGE_KEY] || DEFAULT_STATE
 	} catch (error) {
-		console.error('Failed to load background preference:', error)
+		console.error('Failed to load preference:', error)
 		return DEFAULT_STATE
 	}
 }
 
-function applyBackgroundState(state = DEFAULT_STATE) {
-	Object.entries(state).forEach(([type, isEnabled]) => {
-		const btn = document.querySelector(`#bg-toggle-${type}`)
-		if (btn) {
-			btn.classList.toggle('active', isEnabled)
-			btn.setAttribute('aria-pressed', isEnabled.toString())
-			btn.innerHTML = isEnabled ? BG_CONFIG[type].icon : icon_toggle_off
+// Apply state to DOM elements and update CSS
+const applyBackgroundState = (state) => {
+	// Query all checkboxes at once and filter for better performance
+	const checkboxes = document.querySelectorAll('.gpth-bubbles .gpth-checkbox__input')
+	checkboxes.forEach((input) => {
+		const type = input.dataset.type
+		if (type in state) {
+			input.checked = state[type]
 		}
 	})
 
 	updateRootVariables(state)
 }
 
-function addBackgroundListeners() {
-	console.log('addBackgroundListeners')
-	const toggleContainer = document.querySelector('.gpth-bubbles__toggles')
-	if (!toggleContainer) return
+// Set up event delegation for better performance
+const setupBubblesListeners = () => {
+	const container = document.querySelector('.gpth-bubbles__items')
+	if (!container) return
 
-	toggleContainer.addEventListener('click', async (e) => {
-		console.log('toggleContainer: ', e.target)
-		const btn = e.target.closest('.gpth-bubbles__toggle')
-		if (!btn) return
+	container.addEventListener('change', async (event) => {
+		const input = event.target
+		if (input.classList.contains('gpth-checkbox__input')) {
+			const type = input.dataset.type
+			const currentState = await loadBackgroundPreference()
 
-		const type = btn.dataset.type
-		const isActive = btn.getAttribute('aria-pressed') === 'true'
-		const newState = !isActive
+			// Create new state object (immutable pattern)
+			const updatedState = {
+				...currentState,
+				[type]: input.checked,
+			}
 
-		// Update UI immediately
-		btn.classList.toggle('active', newState)
-		btn.setAttribute('aria-pressed', newState.toString())
-		btn.innerHTML = newState ? BG_CONFIG[type].icon : icon_toggle_off
-
-		// Get current state and update
-		const currentState = await loadBackgroundPreference()
-		const updatedState = {
-			...currentState,
-			[type]: newState,
+			updateRootVariables(updatedState)
+			saveBackgroundPreference(updatedState)
 		}
-
-		// Update variables and save
-		updateRootVariables(updatedState)
-		await saveBackgroundPreference(updatedState)
 	})
-
-	// Load and apply saved preferences
-	loadBackgroundPreference().then(applyBackgroundState)
 }
 
-function init() {
-	// Initialize variables on root
-	updateRootVariables(DEFAULT_STATE)
-	addBackgroundListeners()
+// Initialize the module
+const init = async () => {
+	// Load and apply preferences in one go
+	const state = await loadBackgroundPreference()
+	applyBackgroundState(state)
+	setupBubblesListeners()
 }
 
-export { generateChatBackgroundHTML as renderChatBackground, init }
+// Export named functions for external use
+export { generateChatBackgroundHTML as renderChatBubbles, init }

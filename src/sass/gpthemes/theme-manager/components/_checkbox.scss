@@ -1,4 +1,4 @@
-.gpth-chb {
+.gpth-checkbox {
     --chb-w: 3rem;
     --chb-h: 1.8rem;
     --chb-edge-gap: 0.25rem;
@@ -8,13 +8,23 @@
     width: var(--chb-w);
     height: var(--chb-h);
 
-    input {
+    &__input {
         opacity: 0;
         width: 0;
         height: 0;
+
+        &:checked+.gpth-checkbox__slider {
+            background-color: var(--c-accent);
+            border-color: transparent !important;
+
+            &::before {
+                transform: translateX(calc(var(--chb-w) - 145%));
+                background-color: var(--c-on-accent);
+            }
+        }
     }
 
-    .slider {
+    &__slider {
         display: flex;
         align-items: center;
         position: absolute;
@@ -40,13 +50,4 @@
         }
     }
 
-    input:checked+.slider {
-        background-color: var(--c-accent);
-        border-color: transparent !important;
-
-        &::before {
-            transform: translateX(calc(var(--chb-w) - 145%));
-            background-color: var(--c-on-accent);
-        }
-    }
 }
