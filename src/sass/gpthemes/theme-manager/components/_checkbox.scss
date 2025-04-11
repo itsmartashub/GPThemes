@@ -1,0 +1,53 @@
+.gpth-checkbox {
+    --chb-w: 3rem;
+    --chb-h: 1.8rem;
+    --chb-edge-gap: 0.25rem;
+    --chb-slider-circle-size: calc(var(--chb-h) - 2 * var(--chb-edge-gap));
+    position: relative;
+    display: inline-block;
+    width: var(--chb-w);
+    height: var(--chb-h);
+
+    &__input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+
+        &:checked+.gpth-checkbox__slider {
+            background-color: var(--c-accent);
+            border-color: transparent !important;
+
+            &::before {
+                transform: translateX(calc(var(--chb-w) - 145%));
+                background-color: var(--c-on-accent);
+            }
+        }
+    }
+
+    &__slider {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: hsla(var(--accent-hsl) / 0.3);
+        border: 2px solid hsla(var(--accent-hsl) / 0.5);
+        transition: .4s;
+        border-radius: var(--chb-w);
+
+        &::before {
+            position: absolute;
+            content: "";
+            height: var(--chb-slider-circle-size);
+            aspect-ratio: 1/1;
+            left: var(--chb-edge-gap);
+            background-color: hsla(var(--accent-hsl) / 0.5);
+            transition: .4s $easeInOutCirc;
+            border-radius: 50%;
+        }
+    }
+
+}

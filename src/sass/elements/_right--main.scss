@@ -112,7 +112,7 @@
 		/* RIGHT - CHATS BUBBLE BG */
 		/*NEW SELECTOR: 2025-04-10 - User message - max-w-[var(--user-chat-width,70%)] */
 		.bg-token-message-surface {
-			background-color: var(--c-bg-msg-user);
+			background-color: var(--toggleBgUser);
 			padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.2);
 			border-radius: var(--br-chat-bubble) !important;
 			// width: var(--max_w_chat_user) !important;
@@ -187,7 +187,7 @@
 	&:has(.agent-turn) {
 
 		.text-base.group\/turn-messages[class*="max-w-(--thread-content-max-width)"] {
-			background-color: var(--c-bg-msg-gpt);
+			background-color: var(--toggleBgGpt);
 			padding: var(--p-chat-bubble) !important;
 			border-radius: var(--br-chat-bubble) !important;
 
@@ -197,7 +197,7 @@
 				/* DESKTOP */
 				// Small space above map where we could see scrolled review card items in List mode
 				&>.pt-2.bg-token-main-surface-primary:has(.mapboxgl-map) {
-					--main-surface-primary: var(--c-bg-msg-gpt) !important;
+					--main-surface-primary: var(--toggleBgGpt) !important;
 
 					.bg-linear-to-b {
 						background: transparent !important;
@@ -205,7 +205,7 @@
 
 					/* Elements present when Maps are in maps view */
 					&>.bg-token-main-surface-primary {
-						--main-surface-primary: var(--c-bg-msg-gpt) !important;
+						--main-surface-primary: var(--toggleBgGpt) !important;
 						border-radius: var(--br-btn-big) !important;
 
 						.absolute.text-black {
@@ -213,7 +213,7 @@
 						}
 
 						/* Info icon on top left in Map */
-						.absolute.left-3.top-3 {
+						.absolute.start-3.top-3 {
 							button:has(>svg[class*="hover:text-token-text-secondary"]) {
 								background-color: transparent !important;
 								color: var(--c-accent) !important;

@@ -51,7 +51,7 @@ function generateScrollDownHTML() {
 
 	return `
         <section class="gpth-scrolldown">
-            <h4 class="mb-3 ml-2">Scrolldown Button Align</h4>
+            <h4 class="gpth-subheading">Scrolldown Button Align</h4>
             <div class="gpth-scrolldown__tabs flex justify-center rounded-full">
                 ${positionBtns}
             </div>

@@ -269,10 +269,6 @@
 				background-color: var(--c-surface-3) !important;
 			}
 
-			.text-\[\#10A37F\] {
-				color: var(--c-accent) !important;
-			}
-
 			/* "Flexible plan" and "Annual plan" radio buttons */
 			button[role="radio"] {
 				border: 1px solid var(--c-border) !important;
@@ -286,10 +282,15 @@
 					}
 				}
 
-				&>.absolute.left-3.top-0.-translate-y-1\/2 {
-					border-radius: 50vw !important;
-					background-color: var(--c-accent) !important;
-					color: var(--c-on-accent) !important;
+				&>.absolute.start-3.top-0.-translate-y-1\/2 {
+
+					/* "Annual" % badge */
+					&.text-\[\#10A37F\],
+					&.bg-\[\#10A37F\] {
+						background-color: var(--c-accent) !important;
+						color: var(--c-on-accent) !important;
+						border-radius: 50vw;
+					}
 				}
 
 				&>div>span[data-state="checked"] {
@@ -444,17 +445,6 @@
 					background-color: var(--c-surface-3) !important;
 				}
 			}
-
-			/* TODO: remove? */
-			/* GPTs Store - Close btn in product dialog */
-			// .fixed.left-4.right-4 {
-			// 	.btn-secondary {
-			// 		background-color: transparent !important;
-			// 		padding: 0px !important;
-			// 		transform: none !important;
-			// 		height: 2.25rem; // GPT's 3-dots height
-			// 	}
-			// }
 		}
 
 		// &:has(img[alt='User uploaded image']) (when opened from attached file in prompt field) and &:has(img[alt='Uploaded image']) (when opened from conversation) {

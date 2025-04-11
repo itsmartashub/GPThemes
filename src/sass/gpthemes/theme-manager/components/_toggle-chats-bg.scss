@@ -1,0 +1,43 @@
+.gpth-bubbles {
+    &__items {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    &__item {
+        // cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+        flex: 1 0 0;
+        padding: 0.8rem;
+        background-color: hsla(var(--accent-hsl) / 0.1);
+        border: 1px solid hsla(var(--accent-hsl) / 0.1);
+        border-radius: var(--br);
+        transition: background-color 0.25s ease, color 0.25s ease, scale 0.25s ease;
+
+        @include dev('xxs') {
+            padding: 0.3rem;
+            display: grid;
+            place-items: center;
+            justify-content: center;
+
+            span {
+                font-size: 0.8em;
+            }
+        }
+
+        span {
+            font-weight: 500;
+        }
+
+        &:is(:hover, :focus) {
+            color: var(--c-accent);
+            scale: 0.99;
+        }
+    }
+}
