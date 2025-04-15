@@ -21,12 +21,9 @@ const COLOR_CONFIG = {
 
 // For efficient access to default colors
 const DEFAULT_COLORS = Object.entries(COLOR_CONFIG).reduce((acc, [theme, config]) => {
-	console.log('acc: ', acc)
 	acc[theme.toUpperCase()] = config.default
-	console.log('[theme.toUpperCase()]: ', [theme.toUpperCase()])
 	return acc
 }, {})
-console.log({ DEFAULT_COLORS })
 
 // For efficient access to storage keys
 const STORAGE_KEYS = Object.entries(COLOR_CONFIG).reduce((acc, [theme, config]) => {
@@ -36,10 +33,6 @@ const STORAGE_KEYS = Object.entries(COLOR_CONFIG).reduce((acc, [theme, config]) 
 
 let styleElement = null
 
-/**
- * Generates HTML for the colors tab
- * @returns {string} HTML string for the colors tab
- */
 const generateColorsTabHTML = () => {
 	// Generate color pickers dynamically
 	const colorPickers = Object.values(COLOR_CONFIG)
@@ -70,10 +63,6 @@ const generateColorsTabHTML = () => {
 	`
 }
 
-/**
- * Creates and injects a style element if it doesn't exist yet
- * @returns {HTMLStyleElement} The style element
- */
 const getOrCreateStyleElement = () => {
 	if (!styleElement) {
 		styleElement = document.createElement('style')
@@ -83,10 +72,6 @@ const getOrCreateStyleElement = () => {
 	return styleElement
 }
 
-/**
- * Updates CSS variables based on color values
- * @param {Object} colors - Object containing theme names as keys and color values
- */
 const updateCSSVars = (colors = {}) => {
 	const styleEl = getOrCreateStyleElement()
 
@@ -119,10 +104,6 @@ const updateCSSVars = (colors = {}) => {
 	styleEl.textContent = cssRules
 }
 
-/**
- * Sets the color input values in the DOM
- * @param {Object} colors - Object with theme names as keys and color values
- */
 const setColorInputValues = (colors) => {
 	Object.entries(colors).forEach(([theme, value]) => {
 		const config = COLOR_CONFIG[theme.toLowerCase()]
@@ -133,12 +114,6 @@ const setColorInputValues = (colors) => {
 	})
 }
 
-/**
- * Saves a color value to browser storage
- * @param {string} key - Storage key
- * @param {string} value - Color value
- * @returns {Promise} Storage operation promise
- */
 const saveColorToStorage = async (key, value) => {
 	try {
 		await browser.storage.sync.set({ [key]: value })
@@ -149,9 +124,6 @@ const saveColorToStorage = async (key, value) => {
 	}
 }
 
-/**
- * Handles color input events
- */
 const handleColorInputs = () => {
 	// Use event delegation for better performance and future-proofing
 	const container = $settings.querySelector('.colorpicker-container')
@@ -160,9 +132,7 @@ const handleColorInputs = () => {
 	// Handle input events (live preview)
 	container.addEventListener('input', (e) => {
 		if (e.target.type === 'color') {
-			console.log(e.target.id)
 			const themeKey = Object.entries(COLOR_CONFIG).find(([_, config]) => config.id === e.target.id)?.[0]
-			console.log(Object.entries(COLOR_CONFIG).find(([_, config]) => config.id === e.target.id))
 
 			if (themeKey) {
 				updateCSSVars({ [themeKey]: e.target.value })
@@ -183,15 +153,11 @@ const handleColorInputs = () => {
 
 	// Setup for custom color picker (preparation for future implementation)
 	// This will be expanded when the custom picker is implemented
-	container.querySelectorAll('.colorpicker').forEach((picker) => {
+	/* container.querySelectorAll('.colorpicker').forEach((picker) => {
 		picker.setAttribute('data-custom-picker-ready', 'false')
-	})
+	}) */
 }
 
-/**
- * Loads color values from storage
- * @returns {Promise<Object>} Object with theme names as keys and color values
- */
 const loadColorValuesFromStorage = async () => {
 	try {
 		// Create an array of storage keys to retrieve
@@ -218,9 +184,6 @@ const loadColorValuesFromStorage = async () => {
 	}
 }
 
-/**
- * Initializes the color storage with default values if needed
- */
 const initializeColorStorage = async () => {
 	try {
 		const keys = Object.values(COLOR_CONFIG).map((config) => config.storageKey)
@@ -243,9 +206,6 @@ const initializeColorStorage = async () => {
 	}
 }
 
-/**
- * Resets all accent colors to their default values
- */
 const resetAllAccents = async () => {
 	try {
 		// Create an object of default values for storage
@@ -271,9 +231,6 @@ const resetAllAccents = async () => {
 	}
 }
 
-/**
- * Initializes the color manager functionality
- */
 const init = async () => {
 	try {
 		await initializeColorStorage()
