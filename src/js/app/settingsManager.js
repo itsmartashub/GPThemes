@@ -1,19 +1,34 @@
-import { renderColorsTab, resetAllAccents } from './mainColors.js'
-import { renderFontsTab, handleFontsListeners } from './mainFonts.js'
-import { renderWidthsTab, handleWidthsListeners } from './mainWidths.js'
+import { renderColorsTab, resetAllAccents, init as initColors } from './mainColors.js'
+import { renderFontsTab, handleFontsListeners, init as initFonts } from './mainFonts.js'
+import { renderWidthsTab, handleWidthsListeners, init as initWidths } from './mainWidths.js'
 
+// Elements cache
 let $settings = null
 let $resetAllAccentsBtn = null
+let $tabButtons = null
+let $tabPanes = null
 
+// Constants
 const SETTINGS_OPEN_CLASS = 'gpth-settings--open'
+const ACTIVE_CLASS = 'active'
+const HIDDEN_CLASS = 'hidden'
 
+/**
+ * Creates the settings panel and adds it to the DOM
+ */
 async function createSettings() {
+	// Create settings element if it doesn't exist
+	if ($settings) return
+
 	const gpthSettings = document.createElement('div')
 	gpthSettings.className = 'gpth-settings fixed flex flex-col'
 
+	// Render settings HTML
 	gpthSettings.innerHTML = `
     <header class="mb-5">
-      <h2 class="text-center font-medium gpth-settings__title"><span class="font-semibold">GPThemes</span> Customization</h2>
+      <h2 class="text-center font-medium gpth-settings__title">
+        <span class="font-semibold">GPThemes</span> Customization
+      </h2>
     </header>
     <main>
       <div class="tabs">
@@ -24,67 +39,94 @@ async function createSettings() {
         </div>
         <div class="tab-content">
           <div class="tab-pane active" id="tab-colors">${renderColorsTab()}</div>
-          <div class="tab-pane hidden" id="tab-fonts">${renderFontsTab}</div>
+          <div class="tab-pane hidden" id="tab-fonts">${renderFontsTab()}</div>
           <div class="tab-pane hidden" id="tab-assets">${renderWidthsTab}</div>
         </div>
       </div>
     </main>
   `
 
+	// Add to DOM and set up listeners
 	document.body.appendChild(gpthSettings)
 	cacheElements(gpthSettings)
+
+	// Initialize modules
+	await Promise.all([initColors(), initFonts(), initWidths()])
+
+	// Add listeners after initialization
 	addListeners()
 }
 
 function cacheElements(gpthSettings) {
 	$settings = gpthSettings
 	$resetAllAccentsBtn = $settings.querySelector('#resetAllAccents')
-	$resetAllAccentsBtn.disabled = true
+	$tabButtons = Array.from($settings.querySelectorAll('.tab-button'))
+	$tabPanes = Array.from($settings.querySelectorAll('.tab-pane'))
+
+	// Initially disable accent reset button
+	if ($resetAllAccentsBtn) {
+		$resetAllAccentsBtn.disabled = true
+	}
 }
+
 function addListeners() {
-	// document.getElementById('gpth-settings-close').addEventListener('click', closeSettings)
 	handleTabsSwitching()
 	handleFontsListeners()
 	handleWidthsListeners()
-	$resetAllAccentsBtn.addEventListener('click', resetAllAccents)
+
+	if ($resetAllAccentsBtn) {
+		$resetAllAccentsBtn.addEventListener('click', resetAllAccents)
+	}
 }
-// ___ Settings management
+
 function openSettings() {
 	$settings.classList.add(SETTINGS_OPEN_CLASS)
-	$settings.addEventListener('transitionend', handleSettingsOpened)
-	$resetAllAccentsBtn.disabled = false
+	$settings.addEventListener('transitionend', handleSettingsOpened, { once: true })
+
+	if ($resetAllAccentsBtn) {
+		$resetAllAccentsBtn.disabled = false
+	}
 }
+
 function handleSettingsOpened() {
 	document.body.addEventListener('click', handleClickOutsideSettings)
-	$settings.removeEventListener('transitionend', handleSettingsOpened)
 }
+
 function closeSettings() {
+	if (!$settings) return
+
 	$settings.classList.remove(SETTINGS_OPEN_CLASS)
 	document.body.removeEventListener('click', handleClickOutsideSettings)
-	$resetAllAccentsBtn.disabled = true
+
+	if ($resetAllAccentsBtn) {
+		$resetAllAccentsBtn.disabled = true
+	}
 }
+
 function handleClickOutsideSettings(e) {
-	if (!$settings.contains(e.target) && e.target.id !== 'gpth-open-settings') closeSettings()
+	if (!$settings.contains(e.target) && e.target.id !== 'gpth-open-settings') {
+		closeSettings()
+	}
 }
 
 function handleTabsSwitching() {
-	const tabs = document.querySelectorAll('.gpth-settings .tab-button')
-	const panes = document.querySelectorAll('.gpth-settings .tab-pane')
+	if (!$tabButtons || !$tabButtons.length) return
 
-	// Cache the query results outside the event handler to avoid repeated DOM queries
-	tabs.forEach((tab, index) => {
+	// Use cached elements instead of querying on each click
+	$tabButtons.forEach((tab, index) => {
 		tab.addEventListener('click', () => {
-			const activeTab = document.querySelector('.tab-button.active')
-			const activePane = document.querySelector('.tab-pane:not(.hidden)')
+			const activeTabIndex = $tabButtons.findIndex((t) => t.classList.contains(ACTIVE_CLASS))
 
-			// Only do DOM updates if necessary
-			if (activeTab !== tab) {
-				activeTab.classList.remove('active')
-				activePane.classList.add('hidden')
+			// Skip if the clicked tab is already active
+			if (activeTabIndex === index) return
 
-				tab.classList.add('active')
-				panes[index].classList.remove('hidden')
-			}
+			// Update tab buttons
+			$tabButtons[activeTabIndex].classList.remove(ACTIVE_CLASS)
+			tab.classList.add(ACTIVE_CLASS)
+
+			// Update tab panes
+			$tabPanes[activeTabIndex].classList.add(HIDDEN_CLASS)
+			$tabPanes[index].classList.remove(HIDDEN_CLASS)
 		})
 	})
 }
