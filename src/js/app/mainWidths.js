@@ -11,7 +11,7 @@ const CONFIG = {
 	RESIZING_BREAKPOINT: 768,
 	FW_DEFAULTS: {
 		w_chat_user: 'max-content',
-		max_w_chat_user: '70%',
+		max_w_chat_user: 'auto',
 		w_chat_gpt: '49rem', //TODO its cant be 48rem like w_prompt_textarea because that would make the sync true. IMPROVE THIS IN FUTURE
 		w_prompt_textarea: '48rem',
 		// chat_user_edit_icon_right: '100%',
@@ -165,8 +165,6 @@ const handleWidthChange = (key, e) => {
 
 	if (key === 'w_chat_gpt') {
 		currentSettings.w_chat_user = value
-		currentSettings.max_w_chat_user = value
-
 		if (isSyncEnabled) currentSettings.w_prompt_textarea = value
 
 		setElementProperty('.gpth-settings #gpth-full-width', 'checked', e.target.value === '100')
