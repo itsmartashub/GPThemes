@@ -13,12 +13,9 @@ const SETTINGS_OPEN_CLASS = 'gpth-settings--open'
 const ACTIVE_CLASS = 'active'
 const HIDDEN_CLASS = 'hidden'
 
-/**
- * Creates the settings panel and adds it to the DOM
- */
 async function createSettings() {
 	// Create settings element if it doesn't exist
-	if ($settings) return
+	// if ($settings) return
 
 	const gpthSettings = document.createElement('div')
 	gpthSettings.className = 'gpth-settings fixed flex flex-col'
@@ -40,7 +37,7 @@ async function createSettings() {
         <div class="tab-content">
           <div class="tab-pane active" id="tab-colors">${renderColorsTab()}</div>
           <div class="tab-pane hidden" id="tab-fonts">${renderFontsTab()}</div>
-          <div class="tab-pane hidden" id="tab-assets">${renderWidthsTab}</div>
+		  <div class="tab-pane hidden" id="tab-assets">${renderWidthsTab()}</div>
         </div>
       </div>
     </main>
@@ -51,7 +48,7 @@ async function createSettings() {
 	cacheElements(gpthSettings)
 
 	// Initialize modules
-	await Promise.all([initColors(), initFonts(), initWidths()])
+	// await Promise.all([initColors(), initFonts(), initWidths()])
 
 	// Add listeners after initialization
 	addListeners()

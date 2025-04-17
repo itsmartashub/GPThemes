@@ -23,8 +23,10 @@
         /* New selector: 2025-04-10 */
         // .bg-token-message-surface[class*="max-w-[var(--user-chat-width,70%)]"] {
         .bg-token-message-surface {
-            width: var(--max_w_chat_user) !important;
-            max-width: var(--w_chat_user) !important;
+            // width: var(--max_w_chat_user) !important;
+            // max-width: var(--w_chat_user) !important;
+            width: var(--w_chat_user, auto) !important;
+            max-width: var(--max_w_chat_user, var(--user-chat-width)) !important;
         }
     }
 }
