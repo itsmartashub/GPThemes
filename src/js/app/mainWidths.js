@@ -191,7 +191,7 @@ async function saveState(state) {
 	}
 }
 
-function handleWidthChange(e, key, syncKey, shouldSave = false) {
+/* function handleWidthChange(e, key, syncKey, shouldSave = false) {
 	const val = formatWithUnit(e.target.value, e.target.dataset.unit || '%')
 	currentState.settings[key] = val
 	currentState.pendingChanges = true
@@ -216,9 +216,34 @@ function handleWidthChange(e, key, syncKey, shouldSave = false) {
 	if (shouldSave) {
 		saveState(currentState)
 	}
+} */
+
+function handleWidthChange({ event, key, syncKey = null, shouldSave = false }) {
+	const val = formatWithUnit(event.target.value, event.target.dataset.unit || '%')
+	currentState.settings[key] = val
+	currentState.pendingChanges = true
+
+	if (key === 'w_chat_gpt' && currentState.fullWidthEnabled && val !== '100%') {
+		currentState.fullWidthEnabled = false
+	}
+
+	if (syncKey && currentState.syncEnabled) {
+		currentState.settings[syncKey] = val
+	}
+
+	if (key === 'w_prompt_textarea' && currentState.syncEnabled && val !== currentState.settings.w_chat_gpt) {
+		currentState.syncEnabled = false
+	}
+
+	applyCssVariables(currentState.settings)
+	updateUI(currentState)
+
+	if (shouldSave) {
+		saveState(currentState)
+	}
 }
 
-function toggleFlag(flagKey, settingsUpdater) {
+/* function toggleFlag(flagKey, settingsUpdater) {
 	const willBeEnabled = !currentState[flagKey] // This is the future state
 	currentState[flagKey] = willBeEnabled
 	Object.assign(currentState.settings, settingsUpdater(willBeEnabled))
@@ -227,6 +252,16 @@ function toggleFlag(flagKey, settingsUpdater) {
 	applyCssVariables(currentState.settings)
 	updateUI(currentState)
 	saveState(currentState) // Save immediately on toggle changes
+} */
+function toggleFlag({ flagKey, settingsUpdater }) {
+	const willBeEnabled = !currentState[flagKey]
+	currentState[flagKey] = willBeEnabled
+	Object.assign(currentState.settings, settingsUpdater(willBeEnabled))
+	currentState.pendingChanges = true
+
+	applyCssVariables(currentState.settings)
+	updateUI(currentState)
+	saveState(currentState)
 }
 
 async function resetWidths() {
@@ -245,7 +280,7 @@ async function resetWidths() {
 function handleWidthsListeners() {
 	// Fixed Full Width Toggle
 	$(UI_SELECTORS.fullWidth)?.addEventListener('change', () =>
-		toggleFlag('fullWidthEnabled', (willBeEnabled) => {
+		/* toggleFlag('fullWidthEnabled', (willBeEnabled) => {
 			if (willBeEnabled) {
 				return {
 					...WIDTH_CONFIG.fullWidth,
@@ -260,12 +295,31 @@ function handleWidthsListeners() {
 					? WIDTH_CONFIG.defaults.w_chat_gpt
 					: WIDTH_CONFIG.defaults.w_prompt_textarea,
 			}
+		}) */
+		toggleFlag({
+			flagKey: 'fullWidthEnabled',
+			settingsUpdater: (willBeEnabled) => {
+				if (willBeEnabled) {
+					return {
+						...WIDTH_CONFIG.fullWidth,
+						w_prompt_textarea: currentState.syncEnabled
+							? WIDTH_CONFIG.fullWidth.w_chat_gpt
+							: WIDTH_CONFIG.defaults.w_prompt_textarea,
+					}
+				}
+				return {
+					...WIDTH_CONFIG.defaults,
+					w_prompt_textarea: currentState.syncEnabled
+						? WIDTH_CONFIG.defaults.w_chat_gpt
+						: WIDTH_CONFIG.defaults.w_prompt_textarea,
+				}
+			},
 		})
 	)
 
 	// Fixed Sync Toggle
 	$(UI_SELECTORS.sync)?.addEventListener('change', () =>
-		toggleFlag('syncEnabled', (willBeEnabled) => {
+		/* toggleFlag('syncEnabled', (willBeEnabled) => {
 			if (willBeEnabled) {
 				return {
 					w_prompt_textarea: currentState.settings.w_chat_gpt,
@@ -274,31 +328,51 @@ function handleWidthsListeners() {
 			return {
 				w_prompt_textarea: WIDTH_CONFIG.defaults.w_prompt_textarea,
 			}
+		}) */
+		toggleFlag({
+			flagKey: 'syncEnabled',
+			settingsUpdater: (willBeEnabled) => {
+				if (willBeEnabled) {
+					return {
+						w_prompt_textarea: currentState.settings.w_chat_gpt,
+					}
+				}
+				return {
+					w_prompt_textarea: WIDTH_CONFIG.defaults.w_prompt_textarea,
+				}
+			},
 		})
 	)
 
 	// Chat slider input - update UI only (no storage)
 	$(UI_SELECTORS.chatSlider)?.addEventListener('input', (e) =>
-		handleWidthChange(e, 'w_chat_gpt', 'w_prompt_textarea', false)
+		// handleWidthChange(e, 'w_chat_gpt', 'w_prompt_textarea', false)
+		handleWidthChange({
+			event: e,
+			key: 'w_chat_gpt',
+			syncKey: 'w_prompt_textarea',
+			shouldSave: false,
+		})
 	)
 
 	// Chat slider blur - save to storage
 	$(UI_SELECTORS.chatSlider)?.addEventListener('blur', (e) => {
-		if (currentState.pendingChanges) {
-			saveState(currentState)
-		}
+		if (currentState.pendingChanges) saveState(currentState)
 	})
 
 	// Textarea slider input - update UI only (no storage)
 	$(UI_SELECTORS.textareaSlider)?.addEventListener('input', (e) =>
-		handleWidthChange(e, 'w_prompt_textarea', null, false)
+		// handleWidthChange(e, 'w_prompt_textarea', null, false)
+		handleWidthChange({
+			event: e,
+			key: 'w_prompt_textarea',
+			shouldSave: false,
+		})
 	)
 
 	// Textarea slider blur - save to storage
 	$(UI_SELECTORS.textareaSlider)?.addEventListener('blur', (e) => {
-		if (currentState.pendingChanges) {
-			saveState(currentState)
-		}
+		if (currentState.pendingChanges) saveState(currentState)
 	})
 
 	// Reset button
