@@ -7,26 +7,22 @@ import { renderCustomScrollDown } from './scrolldown'
 import { renderChatBubbles } from './toggleChatsBg'
 
 const WIDTH_CONFIG = {
-	// Default settings when not using full width
 	defaults: {
 		w_chat_user: 'auto',
 		max_w_chat_user: 'var(--user-chat-width, 70%)',
 		w_chat_gpt: '48rem',
 		w_prompt_textarea: '48rem',
 	},
-	// Settings when full width is enabled
 	fullWidth: {
 		w_chat_user: '100%',
 		max_w_chat_user: '100%',
 		w_chat_gpt: '100%',
 	},
-	// UI settings
 	ui: {
 		resizingBreakpoint: 768,
 		minWidth: 0,
 		maxWidth: 100,
 	},
-	// Storage key for preferences
 	storageKeys: {
 		widthSettings: 'widthSettings',
 		syncEnabled: 'widthSyncEnabled',
@@ -34,156 +30,129 @@ const WIDTH_CONFIG = {
 	},
 }
 
-// State (with defaults)
 let currentState = {
 	settings: { ...WIDTH_CONFIG.defaults },
 	syncEnabled: false,
 	fullWidthEnabled: false,
+	pendingChanges: false,
 }
 
-function generateWidthsHTML() {
+const $ = (s) => document.querySelector(s)
+
+const UI_SELECTORS = {
+	fullWidth: '#gpth-full-width',
+	sync: '#gpth-sync-textarea-chat-width',
+	chatSlider: '#gpth-chat-width-custom',
+	textareaSlider: '#gpth-textarea-width-custom',
+	resetBtn: '#resetWidths',
+	chatOutput: '#range-output-gpth-chat-width-custom',
+	chatUnit: '#unit-gpth-chat-width-custom',
+	textareaOutput: '#range-output-gpth-textarea-width-custom',
+	textareaUnit: '#unit-gpth-textarea-width-custom',
+}
+
+export function renderWidthsTab() {
+	const chatUnit = getUnitFromValue(WIDTH_CONFIG.defaults.w_chat_gpt)
+	const promptUnit = getUnitFromValue(WIDTH_CONFIG.defaults.w_prompt_textarea)
 	return `
-    <section id="sectionLayouts" class="gpth-layouts">
-        <div class="gpth-layouts__custom-width mb-4">
-            ${renderSmallCardOption({
-							name: 'Chats Width',
-							inputId: 'gpth-chat-width-custom',
-							inputType: 'range',
-							inputValue: removePercentSign(WIDTH_CONFIG.defaults.w_chat_gpt),
-							inputPlaceholder: '100%',
-							min: WIDTH_CONFIG.ui.minWidth,
-							max: WIDTH_CONFIG.ui.maxWidth,
-							unit: getUnitFromValue(WIDTH_CONFIG.defaults.w_chat_gpt),
-						})}
-            ${renderSmallCardOption({
-							name: 'Prompt Width',
-							inputId: 'gpth-textarea-width-custom',
-							inputType: 'range',
-							inputValue: removePercentSign(WIDTH_CONFIG.defaults.w_prompt_textarea),
-							inputPlaceholder: '100%',
-							min: WIDTH_CONFIG.ui.minWidth,
-							max: WIDTH_CONFIG.ui.maxWidth,
-							unit: getUnitFromValue(WIDTH_CONFIG.defaults.w_prompt_textarea),
-							isLocked: false,
-						})}
-        </div>
-
-        <div>
-            ${renderSwitchOption({
-							inputId: 'gpth-full-width',
-							isChecked: false,
-							icon: icon_full_width,
-							textTitle: 'Chat Full Width',
-							textSubtitle: "Expand chats to screen's edge for wider conversation view",
-						})}
-            ${renderSwitchOption({
-							inputId: 'gpth-sync-textarea-chat-width',
-							isChecked: false,
-							icon: icon_sync,
-							textTitle: 'Sync Prompt Width',
-							textSubtitle: 'Adjust prompt field to match the chat width for a more streamlined and consistent view',
-						})}
-        </div>
-
-        ${renderSeparator}
-        ${renderChatBubbles()}
-
-        ${renderSeparator}
-        ${renderCustomScrollDown()}
-
-        <footer class="flex justify-center mt-8">
-            ${renderButton({ id: 'resetWidths', content: 'Reset Widths', disabled: false, className: 'btn-primary' })}
-        </footer>
-    </section>
-    `
+	<section id="sectionLayouts" class="gpth-layouts">
+		<div class="gpth-layouts__custom-width mb-4">
+			${renderSmallCardOption({
+				name: 'Chats Width',
+				inputId: 'gpth-chat-width-custom',
+				inputType: 'range',
+				inputValue: removeUnit(WIDTH_CONFIG.defaults.w_chat_gpt),
+				min: WIDTH_CONFIG.ui.minWidth,
+				max: WIDTH_CONFIG.ui.maxWidth,
+				unit: chatUnit,
+			})}
+			${renderSmallCardOption({
+				name: 'Prompt Width',
+				inputId: 'gpth-textarea-width-custom',
+				inputType: 'range',
+				inputValue: removeUnit(WIDTH_CONFIG.defaults.w_prompt_textarea),
+				min: WIDTH_CONFIG.ui.minWidth,
+				max: WIDTH_CONFIG.ui.maxWidth,
+				unit: promptUnit,
+			})}
+		</div>
+		<div>
+			${renderSwitchOption({
+				inputId: 'gpth-full-width',
+				isChecked: false,
+				icon: icon_full_width,
+				textTitle: 'Chat Full Width',
+				textSubtitle: "Expand chats to screen's edge for wider conversation view",
+			})}
+			${renderSwitchOption({
+				inputId: 'gpth-sync-textarea-chat-width',
+				isChecked: false,
+				icon: icon_sync,
+				textTitle: 'Sync Prompt Width',
+				textSubtitle: 'Adjust prompt field to match the chat width for a more consistent view',
+			})}
+		</div>
+		${renderSeparator}
+		${renderChatBubbles()}
+		${renderSeparator}
+		${renderCustomScrollDown()}
+		<footer class="flex justify-center mt-8">
+			${renderButton({ id: 'resetWidths', content: 'Reset Widths', className: 'btn-primary' })}
+		</footer>
+	</section>
+	`
 }
 
-function removePercentSign(value) {
-	return value?.replace(/%|rem/g, '') || '0'
-}
+const removeUnit = (v) => v?.replace(/%|rem/g, '') || '0'
+const getUnitFromValue = (v) => (v?.includes('rem') ? 'REM' : '%')
+const validateValue = (v, min = WIDTH_CONFIG.ui.minWidth, max = WIDTH_CONFIG.ui.maxWidth) =>
+	isNaN(+v) ? min.toString() : Math.max(min, Math.min(max, +v)).toString()
 
-function getUnitFromValue(value) {
-	return value?.includes('rem') ? 'REM' : '%'
-}
-
-function validateNumericValue(value, min = WIDTH_CONFIG.ui.minWidth, max = WIDTH_CONFIG.ui.maxWidth) {
-	const numValue = parseInt(value, 10)
-	return isNaN(numValue) ? min.toString() : Math.max(min, Math.min(max, numValue)).toString()
-}
-
-function formatWithUnit(value, unit) {
-	return `${validateNumericValue(value)}${unit}`
-}
+const formatWithUnit = (val, unit) => `${validateValue(val)}${unit}`
 
 function applyCssVariables(settings) {
-	const root = document.documentElement
-	const isNarrowScreen = window.innerWidth <= WIDTH_CONFIG.ui.resizingBreakpoint
-
-	// Batch DOM updates for better performance
 	requestAnimationFrame(() => {
-		// Handle responsive behavior
-		if (isNarrowScreen) {
-			// Always use 100% width on narrow screens
-			root.style.setProperty('--w_chat_gpt', '100%')
-			root.style.setProperty('--w_chat_user', '100%')
-			root.style.setProperty('--max_w_chat_user', '100%')
-			root.style.setProperty('--w_prompt_textarea', '100%')
-		} else {
-			// Apply stored settings on wider screens
-			Object.entries(settings).forEach(([key, value]) => {
-				root.style.setProperty(`--${key}`, value)
-			})
+		const root = document.documentElement
+		for (const [k, v] of Object.entries(settings)) {
+			root.style.setProperty(`--${k}`, v)
 		}
 	})
 }
 
-function updateUI(state) {
-	const { settings, syncEnabled, fullWidthEnabled } = state
-
-	// Elements
-	const fullWidthCheckbox = document.querySelector('#gpth-full-width')
-	const syncCheckbox = document.querySelector('#gpth-sync-textarea-chat-width')
-	const chatWidthSlider = document.querySelector('#gpth-chat-width-custom')
-	const textareaWidthSlider = document.querySelector('#gpth-textarea-width-custom')
-	const textareaWidthCard = textareaWidthSlider?.closest('.card')
-	const chatWidthWidthCard = chatWidthSlider?.closest('.card')
-
-	// Chat width output elements
-	const chatWidthOutput = document.querySelector('#range-output-gpth-chat-width-custom')
-	const chatWidthUnit = document.querySelector('#unit-gpth-chat-width-custom')
-
-	// Textarea width output elements
-	const textareaWidthOutput = document.querySelector('#range-output-gpth-textarea-width-custom')
-	const textareaWidthUnit = document.querySelector('#unit-gpth-textarea-width-custom')
-
-	// Update checkboxes (ensure they reflect current state)
-	if (fullWidthCheckbox) fullWidthCheckbox.checked = fullWidthEnabled
-	if (syncCheckbox) syncCheckbox.checked = syncEnabled
-
-	// Update chat width slider and output
-	if (chatWidthSlider) {
-		chatWidthSlider.value = removePercentSign(settings.w_chat_gpt)
-		// Only disable slider if fullWidthEnabled AND width is 100%
-		chatWidthSlider.disabled = fullWidthEnabled && settings.w_chat_gpt === '100%'
+function updateSlider(id, outputId, unitId, value, disabled = false) {
+	const slider = $(id)
+	if (slider) {
+		slider.value = removeUnit(value)
+		slider.disabled = disabled
 	}
-
-	if (chatWidthOutput) chatWidthOutput.textContent = removePercentSign(settings.w_chat_gpt)
-	if (chatWidthUnit) chatWidthUnit.textContent = getUnitFromValue(settings.w_chat_gpt)
-
-	// Update textarea width slider and output
-	if (textareaWidthSlider) {
-		textareaWidthSlider.value = removePercentSign(settings.w_prompt_textarea)
-		textareaWidthSlider.disabled = syncEnabled
-	}
-
-	if (textareaWidthOutput) textareaWidthOutput.textContent = removePercentSign(settings.w_prompt_textarea)
-	if (textareaWidthUnit) textareaWidthUnit.textContent = getUnitFromValue(settings.w_prompt_textarea)
-
-	// Toggle locked state for textarea card
-	if (textareaWidthCard) textareaWidthCard.classList.toggle('is-locked', syncEnabled)
-	if (chatWidthWidthCard) chatWidthWidthCard.classList.toggle('is-locked', fullWidthEnabled)
+	if ($(outputId)) $(outputId).textContent = removeUnit(value)
+	if ($(unitId)) $(unitId).textContent = getUnitFromValue(value)
 }
 
+function updateUI({ settings, syncEnabled, fullWidthEnabled }) {
+	updateSlider(
+		UI_SELECTORS.chatSlider,
+		UI_SELECTORS.chatOutput,
+		UI_SELECTORS.chatUnit,
+		settings.w_chat_gpt,
+		fullWidthEnabled && settings.w_chat_gpt === '100%'
+	)
+	updateSlider(
+		UI_SELECTORS.textareaSlider,
+		UI_SELECTORS.textareaOutput,
+		UI_SELECTORS.textareaUnit,
+		settings.w_prompt_textarea,
+		syncEnabled
+	)
+
+	$(UI_SELECTORS.fullWidth).checked = fullWidthEnabled
+	$(UI_SELECTORS.sync).checked = syncEnabled
+
+	$(UI_SELECTORS.chatSlider)?.closest('.card')?.classList.toggle('is-locked', fullWidthEnabled)
+	$(UI_SELECTORS.textareaSlider)?.closest('.card')?.classList.toggle('is-locked', syncEnabled)
+}
+
+// Save state to storage (now a direct function instead of debounced)
 async function saveState(state) {
 	try {
 		await browser.storage.sync.set({
@@ -191,181 +160,134 @@ async function saveState(state) {
 			[WIDTH_CONFIG.storageKeys.syncEnabled]: state.syncEnabled,
 			[WIDTH_CONFIG.storageKeys.fullWidthEnabled]: state.fullWidthEnabled,
 		})
-		return true
-	} catch (error) {
-		console.error('[GPThemes] Failed to save width settings:', error)
-		return false
+		state.pendingChanges = false
+		console.log('[GPThemes] Settings saved')
+	} catch (err) {
+		console.error('[GPThemes] Save failed:', err)
 	}
 }
 
-function debounce(func, delay = 300) {
-	let timeoutId
-	return (...args) => {
-		clearTimeout(timeoutId)
-		timeoutId = setTimeout(() => func(...args), delay)
-	}
-}
+function handleWidthChange(e, key, syncKey, shouldSave = false) {
+	const val = formatWithUnit(e.target.value, e.target.dataset.unit || '%')
+	currentState.settings[key] = val
+	currentState.pendingChanges = true
 
-// Create debounced version of save function
-const debouncedSaveState = debounce(saveState, 300)
-
-async function loadState() {
-	try {
-		const result = await browser.storage.sync.get([
-			WIDTH_CONFIG.storageKeys.widthSettings,
-			WIDTH_CONFIG.storageKeys.syncEnabled,
-			WIDTH_CONFIG.storageKeys.fullWidthEnabled,
-		])
-
-		return {
-			settings: result[WIDTH_CONFIG.storageKeys.widthSettings] || { ...WIDTH_CONFIG.defaults },
-			syncEnabled: result[WIDTH_CONFIG.storageKeys.syncEnabled] || false,
-			fullWidthEnabled: result[WIDTH_CONFIG.storageKeys.fullWidthEnabled] || false,
-		}
-	} catch (error) {
-		console.error('[GPThemes] Failed to load width settings:', error)
-		return {
-			settings: { ...WIDTH_CONFIG.defaults },
-			syncEnabled: false,
-			fullWidthEnabled: false,
-		}
-	}
-}
-
-async function resetWidths() {
-	// Prepare default state
-	const defaultState = {
-		settings: { ...WIDTH_CONFIG.defaults },
-		syncEnabled: false,
-		fullWidthEnabled: false,
-	}
-
-	// Update current state
-	currentState = { ...defaultState }
-
-	// Apply default settings to DOM
-	applyCssVariables(currentState.settings)
-
-	// Update UI
-	updateUI(currentState)
-
-	// Save to storage
-	try {
-		await browser.storage.sync.remove([
-			WIDTH_CONFIG.storageKeys.widthSettings,
-			WIDTH_CONFIG.storageKeys.syncEnabled,
-			WIDTH_CONFIG.storageKeys.fullWidthEnabled,
-		])
-		console.log('[GPThemes] Width settings reset successfully')
-	} catch (error) {
-		console.error('[GPThemes] Failed to reset width settings:', error)
-	}
-}
-
-function handleFullWidthToggle(e) {
-	const isFullWidth = e.target.checked
-
-	// Update state
-	currentState.fullWidthEnabled = isFullWidth
-
-	// Apply appropriate width settings
-	if (isFullWidth) {
-		currentState.settings = {
-			...currentState.settings,
-			...WIDTH_CONFIG.fullWidth,
-		}
-
-		// If sync is enabled, also update textarea width
-		if (currentState.syncEnabled) {
-			currentState.settings.w_prompt_textarea = WIDTH_CONFIG.fullWidth.w_chat_gpt
-		}
-	} else {
-		// Restore defaults for chat width
-		currentState.settings.w_chat_gpt = WIDTH_CONFIG.defaults.w_chat_gpt
-		currentState.settings.w_chat_user = WIDTH_CONFIG.defaults.w_chat_user
-		currentState.settings.max_w_chat_user = WIDTH_CONFIG.defaults.max_w_chat_user
-
-		// If sync is enabled, also restore textarea width
-		if (currentState.syncEnabled) {
-			currentState.settings.w_prompt_textarea = WIDTH_CONFIG.defaults.w_chat_gpt
-		}
-	}
-
-	// Apply settings and update UI
-	applyCssVariables(currentState.settings)
-	updateUI(currentState)
-
-	// Save state
-	debouncedSaveState(currentState)
-}
-
-function handleSyncToggle(e) {
-	const isSyncEnabled = e.target.checked
-
-	// Update state
-	currentState.syncEnabled = isSyncEnabled
-
-	// If sync is enabled, match textarea width to chat width
-	if (isSyncEnabled) {
-		currentState.settings.w_prompt_textarea = currentState.settings.w_chat_gpt
-	} else {
-		// If sync disabled, restore default textarea width
-		currentState.settings.w_prompt_textarea = WIDTH_CONFIG.defaults.w_prompt_textarea
-	}
-
-	// Apply settings and update UI
-	applyCssVariables(currentState.settings)
-	updateUI(currentState)
-
-	// Save state
-	debouncedSaveState(currentState)
-}
-
-function handleChatWidthChange(e) {
-	const value = e.target.value
-	const unit = e.target.dataset.unit || '%'
-	const formattedValue = formatWithUnit(value, unit)
-
-	// Update chat width setting
-	currentState.settings.w_chat_gpt = formattedValue
-
-	// If full width is enabled and value is not 100%, disable full width
-	if (currentState.fullWidthEnabled && value !== '100') {
+	if (key === 'w_chat_gpt' && currentState.fullWidthEnabled && val !== '100%') {
 		currentState.fullWidthEnabled = false
 	}
 
-	// If sync is enabled, also update textarea width
-	if (currentState.syncEnabled) {
-		currentState.settings.w_prompt_textarea = formattedValue
+	if (syncKey && currentState.syncEnabled) {
+		currentState.settings[syncKey] = val
 	}
 
-	// Apply settings and update UI
-	applyCssVariables(currentState.settings)
-	updateUI(currentState)
-
-	// Save state
-	debouncedSaveState(currentState)
-}
-
-function handleTextareaWidthChange(event) {
-	const value = event.target.value
-	const unit = event.target.dataset.unit || '%'
-	const formattedValue = formatWithUnit(value, unit)
-
-	// Update textarea width setting
-	currentState.settings.w_prompt_textarea = formattedValue
-
-	// If sync is enabled and textarea width changed, disable sync
-	if (currentState.syncEnabled && formattedValue !== currentState.settings.w_chat_gpt) {
+	if (key === 'w_prompt_textarea' && currentState.syncEnabled && val !== currentState.settings.w_chat_gpt) {
 		currentState.syncEnabled = false
 	}
 
-	// Apply settings and update UI
+	// Always apply CSS and update UI for immediate feedback
 	applyCssVariables(currentState.settings)
 	updateUI(currentState)
 
-	// Save state
-	debouncedSaveState(currentState)
+	// Only save to storage if explicitly requested (on blur/change, not input)
+	if (shouldSave) {
+		saveState(currentState)
+	}
+}
+
+function toggleFlag(flagKey, settingsUpdater) {
+	const willBeEnabled = !currentState[flagKey] // This is the future state
+	currentState[flagKey] = willBeEnabled
+	Object.assign(currentState.settings, settingsUpdater(willBeEnabled))
+	currentState.pendingChanges = true
+
+	applyCssVariables(currentState.settings)
+	updateUI(currentState)
+	saveState(currentState) // Save immediately on toggle changes
+}
+
+async function resetWidths() {
+	currentState = {
+		settings: { ...WIDTH_CONFIG.defaults },
+		syncEnabled: false,
+		fullWidthEnabled: false,
+		pendingChanges: false,
+	}
+	applyCssVariables(currentState.settings)
+	updateUI(currentState)
+	await browser.storage.sync.remove(Object.values(WIDTH_CONFIG.storageKeys))
+	console.log('[GPThemes] Width settings reset.')
+}
+
+export function handleWidthsListeners() {
+	// Fixed Full Width Toggle
+	$(UI_SELECTORS.fullWidth)?.addEventListener('change', () =>
+		toggleFlag('fullWidthEnabled', (willBeEnabled) => {
+			if (willBeEnabled) {
+				return {
+					...WIDTH_CONFIG.fullWidth,
+					w_prompt_textarea: currentState.syncEnabled
+						? WIDTH_CONFIG.fullWidth.w_chat_gpt
+						: WIDTH_CONFIG.defaults.w_prompt_textarea,
+				}
+			}
+			return {
+				...WIDTH_CONFIG.defaults,
+				w_prompt_textarea: currentState.syncEnabled
+					? WIDTH_CONFIG.defaults.w_chat_gpt
+					: WIDTH_CONFIG.defaults.w_prompt_textarea,
+			}
+		})
+	)
+
+	// Fixed Sync Toggle
+	$(UI_SELECTORS.sync)?.addEventListener('change', () =>
+		toggleFlag('syncEnabled', (willBeEnabled) => {
+			if (willBeEnabled) {
+				return {
+					w_prompt_textarea: currentState.settings.w_chat_gpt,
+				}
+			}
+			return {
+				w_prompt_textarea: WIDTH_CONFIG.defaults.w_prompt_textarea,
+			}
+		})
+	)
+
+	// Chat slider input - update UI only (no storage)
+	$(UI_SELECTORS.chatSlider)?.addEventListener('input', (e) =>
+		handleWidthChange(e, 'w_chat_gpt', 'w_prompt_textarea', false)
+	)
+
+	// Chat slider blur - save to storage
+	$(UI_SELECTORS.chatSlider)?.addEventListener('blur', (e) => {
+		if (currentState.pendingChanges) {
+			saveState(currentState)
+		}
+	})
+
+	// Textarea slider input - update UI only (no storage)
+	$(UI_SELECTORS.textareaSlider)?.addEventListener('input', (e) =>
+		handleWidthChange(e, 'w_prompt_textarea', null, false)
+	)
+
+	// Textarea slider blur - save to storage
+	$(UI_SELECTORS.textareaSlider)?.addEventListener('blur', (e) => {
+		if (currentState.pendingChanges) {
+			saveState(currentState)
+		}
+	})
+
+	// Reset button
+	$(UI_SELECTORS.resetBtn)?.addEventListener('click', resetWidths)
+
+	// Save on tab switch or window blur to ensure no pending changes are lost
+	window.addEventListener('blur', () => {
+		if (currentState.pendingChanges) {
+			saveState(currentState)
+		}
+	})
+
+	setupResizeListener()
 }
 
 function setupResizeListener() {
@@ -373,71 +295,44 @@ function setupResizeListener() {
 		window.widthsResizeListener = debounce(() => {
 			applyCssVariables(currentState.settings)
 		}, 250)
-
 		window.addEventListener('resize', window.widthsResizeListener)
-		return true
 	}
-	return false
 }
 
-function handleWidthsListeners() {
-	// Fullwidth toggle
-	document.querySelector('#gpth-full-width')?.addEventListener('change', handleFullWidthToggle)
-
-	// Sync toggle
-	document.querySelector('#gpth-sync-textarea-chat-width')?.addEventListener('change', handleSyncToggle)
-
-	// Chat width slider
-	document.querySelector('#gpth-chat-width-custom')?.addEventListener('input', handleChatWidthChange)
-
-	// Textarea width slider
-	document.querySelector('#gpth-textarea-width-custom')?.addEventListener('input', handleTextareaWidthChange)
-
-	// Reset button
-	document.querySelector('#resetWidths')?.addEventListener('click', resetWidths)
-
-	// Set up resize listener for responsive behavior
-	setupResizeListener()
+// Keep the debounce function for resize handling
+const debounce = (fn, delay = 300) => {
+	let id
+	return (...args) => {
+		clearTimeout(id)
+		id = setTimeout(() => fn(...args), delay)
+	}
 }
 
-async function init() {
+export async function init() {
 	try {
-		// Load saved state
-		currentState = await loadState()
+		const result = await browser.storage.sync.get(Object.values(WIDTH_CONFIG.storageKeys))
 
-		// Handle fullwidth state
+		currentState = {
+			settings: result[WIDTH_CONFIG.storageKeys.widthSettings] || { ...WIDTH_CONFIG.defaults },
+			syncEnabled: result[WIDTH_CONFIG.storageKeys.syncEnabled] || false,
+			fullWidthEnabled: result[WIDTH_CONFIG.storageKeys.fullWidthEnabled] || false,
+			pendingChanges: false,
+		}
+
 		if (currentState.fullWidthEnabled) {
-			// Ensure fullwidth settings are applied
-			currentState.settings = {
-				...currentState.settings,
-				...WIDTH_CONFIG.fullWidth,
-			}
-
-			// If sync is enabled, match textarea width
+			Object.assign(currentState.settings, WIDTH_CONFIG.fullWidth)
 			if (currentState.syncEnabled) {
 				currentState.settings.w_prompt_textarea = WIDTH_CONFIG.fullWidth.w_chat_gpt
 			}
 		} else if (currentState.syncEnabled) {
-			// If sync is enabled but not fullwidth, match textarea to chat width
 			currentState.settings.w_prompt_textarea = currentState.settings.w_chat_gpt
 		}
 
-		// Apply settings to DOM
 		applyCssVariables(currentState.settings)
-
-		// Set up resize listener
 		setupResizeListener()
-
-		// Update UI after settings are loaded (important for correct checkbox state)
-		setTimeout(() => {
-			// Using a small timeout to ensure DOM is ready
-			updateUI(currentState)
-		}, 50)
-
+		setTimeout(() => updateUI(currentState), 50)
 		console.log('[GPThemes] Width settings initialized:', currentState)
-	} catch (error) {
-		console.error('[GPThemes] Error initializing width settings:', error)
+	} catch (err) {
+		console.error('[GPThemes] Init error:', err)
 	}
 }
-
-export { generateWidthsHTML as renderWidthsTab, handleWidthsListeners, init }
