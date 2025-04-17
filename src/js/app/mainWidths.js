@@ -9,7 +9,7 @@ import { renderChatBubbles } from './toggleChatsBg'
 const WIDTH_CONFIG = {
 	defaults: {
 		w_chat_user: 'auto',
-		max_w_chat_user: 'var(--user-chat-width, 70%)',
+		max_w_chat_user: 'var(--user-chat-width,70%)',
 		w_chat_gpt: '48rem',
 		w_prompt_textarea: '48rem',
 	},
@@ -51,7 +51,7 @@ const UI_SELECTORS = {
 	textareaUnit: '#unit-gpth-textarea-width-custom',
 }
 
-export function renderWidthsTab() {
+function renderWidthsTab() {
 	const chatUnit = getUnitFromValue(WIDTH_CONFIG.defaults.w_chat_gpt)
 	const promptUnit = getUnitFromValue(WIDTH_CONFIG.defaults.w_prompt_textarea)
 	return `
@@ -119,8 +119,17 @@ function applyCssVariables(settings) {
 	})
 }
 
-function updateSlider(id, outputId, unitId, value, disabled = false) {
+/* function updateSlider(id, outputId, unitId, value, disabled = false) {
 	const slider = $(id)
+	if (slider) {
+		slider.value = removeUnit(value)
+		slider.disabled = disabled
+	}
+	if ($(outputId)) $(outputId).textContent = removeUnit(value)
+	if ($(unitId)) $(unitId).textContent = getUnitFromValue(value)
+} */
+function updateSlider({ sliderId, outputId, unitId, value, disabled = false }) {
+	const slider = $(sliderId)
 	if (slider) {
 		slider.value = removeUnit(value)
 		slider.disabled = disabled
@@ -130,7 +139,7 @@ function updateSlider(id, outputId, unitId, value, disabled = false) {
 }
 
 function updateUI({ settings, syncEnabled, fullWidthEnabled }) {
-	updateSlider(
+	/* 	updateSlider(
 		UI_SELECTORS.chatSlider,
 		UI_SELECTORS.chatOutput,
 		UI_SELECTORS.chatUnit,
@@ -143,7 +152,22 @@ function updateUI({ settings, syncEnabled, fullWidthEnabled }) {
 		UI_SELECTORS.textareaUnit,
 		settings.w_prompt_textarea,
 		syncEnabled
-	)
+	) */
+	updateSlider({
+		sliderId: UI_SELECTORS.chatSlider,
+		outputId: UI_SELECTORS.chatOutput,
+		unitId: UI_SELECTORS.chatUnit,
+		value: settings.w_chat_gpt,
+		disabled: fullWidthEnabled && settings.w_chat_gpt === '100%',
+	})
+
+	updateSlider({
+		sliderId: UI_SELECTORS.textareaSlider,
+		outputId: UI_SELECTORS.textareaOutput,
+		unitId: UI_SELECTORS.textareaUnit,
+		value: settings.w_prompt_textarea,
+		disabled: syncEnabled,
+	})
 
 	$(UI_SELECTORS.fullWidth).checked = fullWidthEnabled
 	$(UI_SELECTORS.sync).checked = syncEnabled
@@ -218,7 +242,7 @@ async function resetWidths() {
 	console.log('[GPThemes] Width settings reset.')
 }
 
-export function handleWidthsListeners() {
+function handleWidthsListeners() {
 	// Fixed Full Width Toggle
 	$(UI_SELECTORS.fullWidth)?.addEventListener('change', () =>
 		toggleFlag('fullWidthEnabled', (willBeEnabled) => {
@@ -308,7 +332,7 @@ const debounce = (fn, delay = 300) => {
 	}
 }
 
-export async function init() {
+async function init() {
 	try {
 		const result = await browser.storage.sync.get(Object.values(WIDTH_CONFIG.storageKeys))
 
@@ -336,3 +360,5 @@ export async function init() {
 		console.error('[GPThemes] Init error:', err)
 	}
 }
+
+export { handleWidthsListeners, renderWidthsTab, init }
