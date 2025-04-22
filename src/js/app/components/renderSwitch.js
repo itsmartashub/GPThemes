@@ -1,6 +1,6 @@
 import { icon_lock } from './icons'
 
-function renderSwitchOption({ inputId, isChecked = false, icon, textTitle, textSubtitle }) {
+function renderToggleCard({ inputId, isChecked = false, icon, textTitle, textSubtitle, disabled = false }) {
 	const sanitizedInputId = sanitizeString(inputId)
 	const sanitizedTextTitle = sanitizeString(textTitle)
 	const sanitizedTextSubtitle = sanitizeString(textSubtitle)
@@ -21,6 +21,7 @@ function renderSwitchOption({ inputId, isChecked = false, icon, textTitle, textS
           type="checkbox" 
           id="${sanitizedInputId}" 
           ${isChecked ? 'checked' : ''}
+          ${disabled ? 'disabled' : ''}
           aria-labelledby="${sanitizedInputId}-label"
         >
         <span class="slider" aria-hidden="true"></span>
@@ -28,12 +29,14 @@ function renderSwitchOption({ inputId, isChecked = false, icon, textTitle, textS
     </label>`
 }
 
-function renderSmallCardOption({
+function renderSliderCard({
 	name,
 	inputId,
 	inputType,
 	inputValue,
 	inputPlaceholder,
+	displayValue,
+	displayUnit,
 	min = 10,
 	max = 100,
 	unit = '%',
@@ -58,15 +61,14 @@ function renderSmallCardOption({
         <div class="flex items-center gap-2 w-full">
           <div 
             class="card__output flex-none h-10 w-10 font-semibold rounded-full grid items-center justify-center" 
-            id="range-output-${sanitizedInputId}"
-            aria-live="polite"
+            id="${displayValue}"
           >
             ${sanitizedInputValue}
           </div>
           <div class="card__unitname-wrapper grid">
             <p 
               class="card__unit rounded-full flex items-center justify-center mb-2 font-semibold" 
-              id="unit-${sanitizedInputId}"
+              id="${displayUnit}"
             >
               ${unit}
             </p>
@@ -100,4 +102,4 @@ function sanitizeString(str) {
 	return div.innerHTML
 }
 
-export { renderSwitchOption, renderSmallCardOption }
+export { renderToggleCard, renderSliderCard }

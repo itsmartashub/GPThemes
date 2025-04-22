@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { renderSwitchOption, renderSmallCardOption } from './components/renderSwitch'
+import { renderToggleCard, renderSliderCard } from './components/renderSwitch'
 import { icon_full_width, icon_sync } from './components/icons'
 import { renderButton } from './components/renderButtons'
 import { renderSeparator } from './components/renderUtils'
@@ -48,16 +48,35 @@ let isSmallContainer = false
 
 // const $ = (s) => document.querySelector(s)
 
+// const UI_SELECTORS = {
+// 	toggleFullWidth: '#gpth-full-width',
+// 	toggleSyncWidths: '#gpth-sync-textarea-chat-width',
+// 	sliderChatWidth: '#gpth-chat-width-custom',
+// 	sliderTextareaWidth: '#gpth-textarea-width-custom',
+// 	btnResetWidths: '#resetWidths',
+// 	displayChatWidthValue: '#range-output-gpth-chat-width-custom',
+// 	displayChatWidthUnit: '#unit-gpth-chat-width-custom',
+// 	displayTextareaWidthValue: '#range-output-gpth-textarea-width-custom',
+// 	displayTextareaWidthUnit: '#unit-gpth-textarea-width-custom',
+// }
+
 const UI_SELECTORS = {
-	fullWidth: '#gpth-full-width',
-	sync: '#gpth-sync-textarea-chat-width',
-	chatSlider: '#gpth-chat-width-custom',
-	textareaSlider: '#gpth-textarea-width-custom',
-	resetBtn: '#resetWidths',
-	chatOutput: '#range-output-gpth-chat-width-custom',
-	chatUnit: '#unit-gpth-chat-width-custom',
-	textareaOutput: '#range-output-gpth-textarea-width-custom',
-	textareaUnit: '#unit-gpth-textarea-width-custom',
+	// Feature toggles
+	toggleFullWidth: '#toggle-full-width',
+	toggleSyncWidths: '#toggle-sync-chat-textarea',
+
+	// Sliders
+	sliderChatWidth: '#slider-chat-width',
+	sliderTextareaWidth: '#slider-textarea-width',
+
+	// Button
+	btnResetWidths: '#resetWidths',
+
+	// Output displays
+	displayChatWidthValue: '#display-chat-width-value',
+	displayChatWidthUnit: '#display-chat-width-unit',
+	displayTextareaWidthValue: '#display-textarea-width-value',
+	displayTextareaWidthUnit: '#display-textarea-width-unit',
 }
 
 // ======================
@@ -69,6 +88,7 @@ const extractUnit = (v) => (v?.includes('rem') ? 'REM' : '%')
 const validateValue = (v, min = WIDTH_CONFIG.ui.minWidth, max = WIDTH_CONFIG.ui.maxWidth) =>
 	isNaN(+v) ? min.toString() : Math.max(min, Math.min(max, +v)).toString()
 const formatWithUnit = (val, unit) => `${validateValue(val)}${unit}`
+const getIdFromSelector = (selector) => selector.substring(1) // removes the '#' prefix
 
 // ======================
 // MAIN FUNCTIONS
@@ -79,47 +99,55 @@ function renderWidthsTab() {
 	return `
 	<section id="sectionLayouts" class="gpth-layouts">
 		<div class="gpth-layouts__custom-width mb-4">
-			${renderSmallCardOption({
+			${renderSliderCard({
 				name: 'Chats Width',
-				inputId: 'gpth-chat-width-custom',
 				inputType: 'range',
+				inputId: getIdFromSelector(UI_SELECTORS.sliderChatWidth),
 				inputValue: extractNumber(WIDTH_CONFIG.defaults.w_chat_gpt),
+				displayValue: getIdFromSelector(UI_SELECTORS.displayChatWidthValue),
+				displayUnit: getIdFromSelector(UI_SELECTORS.displayChatWidthUnit),
 				min: WIDTH_CONFIG.ui.minWidth,
 				max: WIDTH_CONFIG.ui.maxWidth,
 				unit: chatUnit,
 			})}
-			${renderSmallCardOption({
+			${renderSliderCard({
 				name: 'Prompt Width',
-				inputId: 'gpth-textarea-width-custom',
 				inputType: 'range',
+				inputId: getIdFromSelector(UI_SELECTORS.sliderTextareaWidth),
 				inputValue: extractNumber(WIDTH_CONFIG.defaults.w_prompt_textarea),
+				displayValue: getIdFromSelector(UI_SELECTORS.displayTextareaWidthValue),
+				displayUnit: getIdFromSelector(UI_SELECTORS.displayTextareaWidthUnit),
 				min: WIDTH_CONFIG.ui.minWidth,
 				max: WIDTH_CONFIG.ui.maxWidth,
 				unit: promptUnit,
 			})}
 		</div>
 		<div>
-			${renderSwitchOption({
-				inputId: 'gpth-full-width',
-				isChecked: false,
-				icon: icon_full_width,
-				textTitle: 'Chat Full Width',
-				textSubtitle: "Expand chats to screen's edge for wider conversation view",
-			})}
-			${renderSwitchOption({
-				inputId: 'gpth-sync-textarea-chat-width',
-				isChecked: false,
-				icon: icon_sync,
-				textTitle: 'Sync Prompt Width',
-				textSubtitle: 'Adjust prompt field to match the chat width for a more consistent view',
-			})}
+		${renderToggleCard({
+			inputId: getIdFromSelector(UI_SELECTORS.toggleFullWidth),
+			isChecked: false,
+			icon: icon_full_width,
+			textTitle: 'Chat Full Width',
+			textSubtitle: "Expand chats to screen's edge for wider conversation view",
+		})}
+		${renderToggleCard({
+			inputId: getIdFromSelector(UI_SELECTORS.toggleSyncWidths),
+			isChecked: false,
+			icon: icon_sync,
+			textTitle: 'Sync Prompt Width',
+			textSubtitle: 'Adjust prompt field to match the chat width for a more consistent view',
+		})}
 		</div>
 		${renderSeparator}
 		${renderChatBubbles()}
 		${renderSeparator}
 		${renderCustomScrollDown()}
 		<footer class="flex justify-center mt-8">
-			${renderButton({ id: 'resetWidths', content: 'Reset Widths', className: 'btn-primary' })}
+			${renderButton({
+				id: getIdFromSelector(UI_SELECTORS.btnResetWidths),
+				content: 'Reset Widths',
+				className: 'btn-primary',
+			})}
 		</footer>
 	</section>
 	`
@@ -159,35 +187,35 @@ function updateUI({ settings, syncEnabled, fullWidthEnabled }) {
 	const textareaSliderDisabled = isSmallContainer || syncEnabled
 
 	updateSlider({
-		sliderId: UI_SELECTORS.chatSlider,
-		outputId: UI_SELECTORS.chatOutput,
-		unitId: UI_SELECTORS.chatUnit,
+		sliderId: UI_SELECTORS.sliderChatWidth,
+		outputId: UI_SELECTORS.displayChatWidthValue,
+		unitId: UI_SELECTORS.displayChatWidthUnit,
 		value: settings.w_chat_gpt,
 		disabled: chatSliderDisabled,
 	})
 
 	updateSlider({
-		sliderId: UI_SELECTORS.textareaSlider,
-		outputId: UI_SELECTORS.textareaOutput,
-		unitId: UI_SELECTORS.textareaUnit,
+		sliderId: UI_SELECTORS.sliderTextareaWidth,
+		outputId: UI_SELECTORS.displayTextareaWidthValue,
+		unitId: UI_SELECTORS.displayTextareaWidthUnit,
 		value: settings.w_prompt_textarea,
 		disabled: textareaSliderDisabled,
 	})
 
 	// Update toggle states - FIXED: Only force sync checked when in small screen mode
-	$(UI_SELECTORS.fullWidth).checked = fullWidthEnabled
+	$(UI_SELECTORS.toggleFullWidth).checked = fullWidthEnabled
 
 	// FIX: Only force check sync toggle in small screen mode
-	if (isSmallContainer) $(UI_SELECTORS.sync).checked = true
-	else $(UI_SELECTORS.sync).checked = syncEnabled
+	if (isSmallContainer) $(UI_SELECTORS.toggleSyncWidths).checked = true
+	else $(UI_SELECTORS.toggleSyncWidths).checked = syncEnabled
 
 	// Disable toggles in small screen mode
-	$(UI_SELECTORS.fullWidth).disabled = false // always enabled
-	$(UI_SELECTORS.sync).disabled = isSmallContainer // disabled on small screens
+	$(UI_SELECTORS.toggleFullWidth).disabled = false // always enabled
+	$(UI_SELECTORS.toggleSyncWidths).disabled = isSmallContainer // disabled on small screens
 
 	// Add is-locked class to cards
-	const chatCard = $(UI_SELECTORS.chatSlider)?.closest('.card')
-	const textareaCard = $(UI_SELECTORS.textareaSlider)?.closest('.card')
+	const chatCard = $(UI_SELECTORS.sliderChatWidth)?.closest('.card')
+	const textareaCard = $(UI_SELECTORS.sliderTextareaWidth)?.closest('.card')
 
 	if (chatCard) chatCard.classList.toggle('is-locked', chatSliderDisabled)
 	if (textareaCard) textareaCard.classList.toggle('is-locked', textareaSliderDisabled)
@@ -253,7 +281,7 @@ function handleWidthChange({ event, key, syncKey = null, shouldSave = false }) {
 
 function handleWidthsListeners() {
 	// Fixed Full Width Toggle
-	$(UI_SELECTORS.fullWidth)?.addEventListener('change', () =>
+	$(UI_SELECTORS.toggleFullWidth)?.addEventListener('change', () =>
 		toggleFlag({
 			flagKey: 'fullWidthEnabled',
 			settingsUpdater: (willBeEnabled) => {
@@ -276,7 +304,7 @@ function handleWidthsListeners() {
 	)
 
 	// Fixed Sync Toggle
-	$(UI_SELECTORS.sync)?.addEventListener('change', () =>
+	$(UI_SELECTORS.toggleSyncWidths)?.addEventListener('change', () =>
 		toggleFlag({
 			flagKey: 'syncEnabled',
 			settingsUpdater: (willBeEnabled) => {
@@ -293,7 +321,7 @@ function handleWidthsListeners() {
 	)
 
 	// Chat slider input - update UI only (no storage)
-	$(UI_SELECTORS.chatSlider)?.addEventListener('input', (e) =>
+	$(UI_SELECTORS.sliderChatWidth)?.addEventListener('input', (e) =>
 		handleWidthChange({
 			event: e,
 			key: 'w_chat_gpt',
@@ -303,12 +331,12 @@ function handleWidthsListeners() {
 	)
 
 	// Chat slider blur - save to storage
-	$(UI_SELECTORS.chatSlider)?.addEventListener('blur', (e) => {
+	$(UI_SELECTORS.sliderChatWidth)?.addEventListener('blur', (e) => {
 		if (currentState.pendingChanges) saveState(currentState)
 	})
 
 	// Textarea slider input - update UI only (no storage)
-	$(UI_SELECTORS.textareaSlider)?.addEventListener('input', (e) =>
+	$(UI_SELECTORS.sliderTextareaWidth)?.addEventListener('input', (e) =>
 		// handleWidthChange(e, 'w_prompt_textarea', null, false)
 		handleWidthChange({
 			event: e,
@@ -318,12 +346,12 @@ function handleWidthsListeners() {
 	)
 
 	// Textarea slider blur - save to storage
-	$(UI_SELECTORS.textareaSlider)?.addEventListener('blur', (e) => {
+	$(UI_SELECTORS.sliderTextareaWidth)?.addEventListener('blur', (e) => {
 		if (currentState.pendingChanges) saveState(currentState)
 	})
 
 	// Reset button
-	$(UI_SELECTORS.resetBtn)?.addEventListener('click', resetWidths)
+	$(UI_SELECTORS.btnResetWidths)?.addEventListener('click', resetWidths)
 
 	// Save on tab switch or window blur to ensure no pending changes are lost
 	/* 	window.addEventListener('blur', () => {
