@@ -105,6 +105,7 @@ function renderWidthsTab() {
 				unit: promptUnit,
 			})}
 		</div>
+
 		<div>
 		${renderToggleCard({
 			inputId: getIdFromSelector(UI_SELECTORS.toggleFullWidth),
@@ -121,17 +122,18 @@ function renderWidthsTab() {
 			textSubtitle: 'Adjust prompt field to match the chat width for a more consistent view',
 		})}
 		</div>
-		${renderSeparator}
-		${renderChatBubbles()}
-		${renderSeparator}
-		${renderCustomScrollDown()}
-		<footer class="flex justify-center mt-8">
+		<div class="flex justify-center mt-8">
 			${renderButton({
 				id: getIdFromSelector(UI_SELECTORS.btnResetWidths),
 				content: 'Reset Widths',
 				className: 'btn-primary',
 			})}
-		</footer>
+		</div>
+		${renderSeparator}
+		${renderChatBubbles()}
+		${renderSeparator}
+		${renderCustomScrollDown()}
+
 	</section>
 	`
 }
