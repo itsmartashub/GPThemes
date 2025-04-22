@@ -346,59 +346,60 @@ function handleWidthsListeners() {
 }
 
 // Resize observer setup to handle responsive layout changes
-function setupResizeObserver() {
-	const resizeObserver = new ResizeObserver((entries) => {
-		for (const entry of entries) {
-			const containerWidth = entry.contentRect.width
-			const wasSmallContainer = isSmallContainer
-			isSmallContainer = containerWidth <= WIDTH_CONFIG.ui.resizingBreakpoint
+// function setupResizeObserver() {
+// 	const resizeObserver = new ResizeObserver((entries) => {
+// 		for (const entry of entries) {
+// 			const containerWidth = entry.contentRect.width
+// 			const wasSmallContainer = isSmallContainer
+// 			isSmallContainer = containerWidth <= WIDTH_CONFIG.ui.resizingBreakpoint
 
-			// If screen size state changed, we need to update UI
-			if (wasSmallContainer !== isSmallContainer) {
-				console.log(
-					`[↔️ GPThemes] Screen size changed: ${isSmallContainer ? 'small' : 'normal'} screen (${containerWidth}px)`
-				)
+// 			// If screen size state changed, we need to update UI
+// 			if (wasSmallContainer !== isSmallContainer) {
+// 				console.log(
+// 					`[↔️ GPThemes] Screen size changed: ${isSmallContainer ? 'small' : 'normal'} screen (${containerWidth}px)`
+// 				)
 
-				// Apply changes and update UI based on new size
-				applyCssVariables(currentState.settings)
-				updateUI(currentState)
-			}
-		}
-	})
+// 				// Apply changes and update UI based on new size
+// 				applyCssVariables(currentState.settings)
+// 				updateUI(currentState)
+// 			}
+// 		}
+// 	})
 
-	// Start observing the container element with improved error handling
-	function attachObserver() {
-		const targetElement = document.querySelector(".composer-parent[role='presentation']")
-		if (targetElement) {
-			resizeObserver.observe(targetElement)
-			console.log('[↔️ GPThemes] ResizeObserver attached to composer parent')
+// 	// Start observing the container element with improved error handling
+// 	function attachObserver() {
+// 		// const targetElement = document.querySelector(".composer-parent[role='presentation']")
+// 		const targetElement = document.querySelector('#thread')
+// 		if (targetElement) {
+// 			resizeObserver.observe(targetElement)
+// 			console.log('[↔️ GPThemes] ResizeObserver attached to composer parent')
 
-			// Immediately check size to set initial state
-			isSmallContainer = targetElement.offsetWidth <= WIDTH_CONFIG.ui.resizingBreakpoint
+// 			// Immediately check size to set initial state
+// 			isSmallContainer = targetElement.offsetWidth <= WIDTH_CONFIG.ui.resizingBreakpoint
 
-			applyCssVariables(currentState.settings)
-			setTimeout(() => updateUI(currentState), 50)
+// 			applyCssVariables(currentState.settings)
+// 			setTimeout(() => updateUI(currentState), 50)
 
-			return true
-		}
-		return false
-	}
+// 			return true
+// 		}
+// 		return false
+// 	}
 
-	// Try to attach immediately
-	if (!attachObserver()) {
-		// If element doesn't exist yet, set up mutation observer
-		const documentObserver = new MutationObserver((mutations, observer) => {
-			if (attachObserver()) {
-				observer.disconnect()
-			}
-		})
+// 	// Try to attach immediately
+// 	if (!attachObserver()) {
+// 		// If element doesn't exist yet, set up mutation observer
+// 		const documentObserver = new MutationObserver((mutations, observer) => {
+// 			if (attachObserver()) {
+// 				observer.disconnect()
+// 			}
+// 		})
 
-		documentObserver.observe(document.body, { childList: true, subtree: true })
-		console.log('[↔️ GPThemes] Waiting for composer parent element to appear in DOM')
-	}
+// 		documentObserver.observe(document.body, { childList: true, subtree: true })
+// 		console.log('[↔️ GPThemes] Waiting for composer parent element to appear in DOM')
+// 	}
 
-	return resizeObserver
-}
+// 	return resizeObserver
+// }
 
 async function resetWidths() {
 	currentState = {
@@ -444,7 +445,7 @@ async function init() {
 		applyCssVariables(currentState.settings)
 
 		// Set up the ResizeObserver
-		window.resizeObserver = setupResizeObserver()
+		// window.resizeObserver = setupResizeObserver()
 
 		console.log('[↔️ GPThemes] Width settings initialized:', currentState)
 	} catch (err) {
