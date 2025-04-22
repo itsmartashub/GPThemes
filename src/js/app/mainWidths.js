@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { renderToggleCard, renderSliderCard } from './components/renderSwitch'
+import { renderSliderCard, renderToggleCard } from './components/renderSwitch'
 import { icon_full_width, icon_sync } from './components/icons'
 import { renderButton } from './components/renderButtons'
 import { renderSeparator } from './components/renderUtils'
@@ -7,7 +7,6 @@ import { renderCustomScrollDown } from './scrolldown'
 import { renderChatBubbles } from './toggleChatsBg'
 import { $ } from '../utils/handleElements'
 
-// console.log($)
 // ======================
 // CONSTANTS
 // ======================
@@ -42,23 +41,8 @@ let currentState = {
 	pendingChanges: false,
 }
 
-// Add this to store the original sync preference when in small screen mode
-let originalSyncPreference = false
+// Track small screen/@container state preference
 let isSmallContainer = false
-
-// const $ = (s) => document.querySelector(s)
-
-// const UI_SELECTORS = {
-// 	toggleFullWidth: '#gpth-full-width',
-// 	toggleSyncWidths: '#gpth-sync-textarea-chat-width',
-// 	sliderChatWidth: '#gpth-chat-width-custom',
-// 	sliderTextareaWidth: '#gpth-textarea-width-custom',
-// 	btnResetWidths: '#resetWidths',
-// 	displayChatWidthValue: '#range-output-gpth-chat-width-custom',
-// 	displayChatWidthUnit: '#unit-gpth-chat-width-custom',
-// 	displayTextareaWidthValue: '#range-output-gpth-textarea-width-custom',
-// 	displayTextareaWidthUnit: '#unit-gpth-textarea-width-custom',
-// }
 
 const UI_SELECTORS = {
 	// Feature toggles
@@ -82,7 +66,6 @@ const UI_SELECTORS = {
 // ======================
 // UTILITIES
 // ======================
-// const extractNumber = (v) => v?.replace(/%|rem/g, '') || '0'
 const extractNumber = (v) => parseFloat(v) || 0
 const extractUnit = (v) => (v?.includes('rem') ? 'REM' : '%')
 const validateValue = (v, min = WIDTH_CONFIG.ui.minWidth, max = WIDTH_CONFIG.ui.maxWidth) =>
@@ -183,7 +166,7 @@ function updateSlider({ sliderId, outputId, unitId, value, disabled = false }) {
 function updateUI({ settings, syncEnabled, fullWidthEnabled }) {
 	// For chat slider: disable if in small screen mode OR (fullWidth is enabled AND width is 100%)
 	const chatSliderDisabled = isSmallContainer || (fullWidthEnabled && settings.w_chat_gpt === '100%')
-	// Disable if sync is enabled OR if in small screen mode
+	// Disable textarea slider if sync is enabled OR if in small screen mode
 	const textareaSliderDisabled = isSmallContainer || syncEnabled
 
 	updateSlider({
@@ -202,14 +185,11 @@ function updateUI({ settings, syncEnabled, fullWidthEnabled }) {
 		disabled: textareaSliderDisabled,
 	})
 
-	// Update toggle states - FIXED: Only force sync checked when in small screen mode
+	// Update toggle states - preserve user's actual preferences
 	$(UI_SELECTORS.toggleFullWidth).checked = fullWidthEnabled
+	$(UI_SELECTORS.toggleSyncWidths).checked = syncEnabled // Keep user's preference
 
-	// FIX: Only force check sync toggle in small screen mode
-	if (isSmallContainer) $(UI_SELECTORS.toggleSyncWidths).checked = true
-	else $(UI_SELECTORS.toggleSyncWidths).checked = syncEnabled
-
-	// Disable toggles in small screen mode
+	// Disable sync toggle in small screen mode but don't change its checked state
 	$(UI_SELECTORS.toggleFullWidth).disabled = false // always enabled
 	$(UI_SELECTORS.toggleSyncWidths).disabled = isSmallContainer // disabled on small screens
 
@@ -221,7 +201,7 @@ function updateUI({ settings, syncEnabled, fullWidthEnabled }) {
 	if (textareaCard) textareaCard.classList.toggle('is-locked', textareaSliderDisabled)
 }
 
-// Save state to storage (now a direct function instead of debounced)
+// Save state to storage
 async function saveState(state) {
 	try {
 		await browser.storage.sync.set({
@@ -236,37 +216,32 @@ async function saveState(state) {
 	}
 }
 
-function toggleFlag({ flagKey, settingsUpdater }) {
-	// For sync toggle, prevent toggling in small screen mode
-	if (flagKey === 'syncEnabled' && isSmallContainer) {
-		console.log(`[↔️ GPThemes] Cannot toggle sync in small screen mode`)
-		updateUI(currentState)
-		return
+// Function to synchronize textarea width with chat width
+function syncTextareaWithChatWidth() {
+	if (currentState.syncEnabled) {
+		currentState.settings.w_prompt_textarea = currentState.settings.w_chat_gpt
 	}
-
-	const willBeEnabled = !currentState[flagKey]
-	currentState[flagKey] = willBeEnabled
-	Object.assign(currentState.settings, settingsUpdater(willBeEnabled))
-	currentState.pendingChanges = true
-
-	applyCssVariables(currentState.settings)
-	updateUI(currentState)
-	saveState(currentState)
 }
 
-function handleWidthChange({ event, key, syncKey = null, shouldSave = false }) {
+// Handle width changes from sliders
+function handleWidthChange({ event, key, shouldSave = false }) {
 	const val = formatWithUnit(event.target.value, event.target.dataset.unit || '%')
 	currentState.settings[key] = val
 	currentState.pendingChanges = true
 
+	// If changing chat width and fullWidth is enabled but value isn't 100%,
+	// disable fullWidth toggle
 	if (key === 'w_chat_gpt' && currentState.fullWidthEnabled && val !== '100%') {
 		currentState.fullWidthEnabled = false
 	}
 
-	if (syncKey && currentState.syncEnabled) {
-		currentState.settings[syncKey] = val
+	// If changing chat width and sync is enabled, sync textarea width
+	if (key === 'w_chat_gpt') {
+		syncTextareaWithChatWidth()
 	}
 
+	// If changing textarea width and it's different from chat width while sync is enabled,
+	// disable sync
 	if (key === 'w_prompt_textarea' && currentState.syncEnabled && val !== currentState.settings.w_chat_gpt) {
 		currentState.syncEnabled = false
 	}
@@ -280,52 +255,67 @@ function handleWidthChange({ event, key, syncKey = null, shouldSave = false }) {
 }
 
 function handleWidthsListeners() {
-	// Fixed Full Width Toggle
-	$(UI_SELECTORS.toggleFullWidth)?.addEventListener('change', () =>
-		toggleFlag({
-			flagKey: 'fullWidthEnabled',
-			settingsUpdater: (willBeEnabled) => {
-				if (willBeEnabled) {
-					return {
-						...WIDTH_CONFIG.fullWidth,
-						w_prompt_textarea: currentState.syncEnabled
-							? WIDTH_CONFIG.fullWidth.w_chat_gpt
-							: WIDTH_CONFIG.defaults.w_prompt_textarea,
-					}
-				}
-				return {
-					...WIDTH_CONFIG.defaults,
-					w_prompt_textarea: currentState.syncEnabled
-						? WIDTH_CONFIG.defaults.w_chat_gpt
-						: WIDTH_CONFIG.defaults.w_prompt_textarea,
-				}
-			},
-		})
-	)
+	// Full Width Toggle
+	$(UI_SELECTORS.toggleFullWidth)?.addEventListener('change', () => {
+		// Toggle the flag
+		currentState.fullWidthEnabled = !currentState.fullWidthEnabled
 
-	// Fixed Sync Toggle
-	$(UI_SELECTORS.toggleSyncWidths)?.addEventListener('change', () =>
-		toggleFlag({
-			flagKey: 'syncEnabled',
-			settingsUpdater: (willBeEnabled) => {
-				if (willBeEnabled) {
-					return {
-						w_prompt_textarea: currentState.settings.w_chat_gpt,
-					}
-				}
-				return {
-					w_prompt_textarea: WIDTH_CONFIG.defaults.w_prompt_textarea,
-				}
-			},
-		})
-	)
+		// Update chat width settings based on full width toggle state
+		if (currentState.fullWidthEnabled) {
+			// Apply full width settings to chat only
+			currentState.settings.w_chat_user = WIDTH_CONFIG.fullWidth.w_chat_user
+			currentState.settings.max_w_chat_user = WIDTH_CONFIG.fullWidth.max_w_chat_user
+			currentState.settings.w_chat_gpt = WIDTH_CONFIG.fullWidth.w_chat_gpt
+		} else {
+			// Restore default chat width settings
+			currentState.settings.w_chat_user = WIDTH_CONFIG.defaults.w_chat_user
+			currentState.settings.max_w_chat_user = WIDTH_CONFIG.defaults.max_w_chat_user
+			currentState.settings.w_chat_gpt = WIDTH_CONFIG.defaults.w_chat_gpt
+		}
+
+		// Synchronize textarea width if sync is enabled
+		syncTextareaWithChatWidth()
+
+		// Mark changes as pending
+		currentState.pendingChanges = true
+
+		// Apply changes and update UI
+		applyCssVariables(currentState.settings)
+		updateUI(currentState)
+		saveState(currentState)
+	})
+
+	// Sync Toggle
+	$(UI_SELECTORS.toggleSyncWidths)?.addEventListener('change', () => {
+		// Don't toggle if in small screen mode
+		if (isSmallContainer) {
+			console.log(`[↔️ GPThemes] Cannot toggle sync in small screen mode`)
+			updateUI(currentState)
+			return
+		}
+
+		// Toggle the sync state
+		currentState.syncEnabled = !currentState.syncEnabled
+
+		// If enabling sync, update textarea width to match chat width
+		if (currentState.syncEnabled) {
+			currentState.settings.w_prompt_textarea = currentState.settings.w_chat_gpt
+		}
+
+		// Mark changes as pending
+		currentState.pendingChanges = true
+
+		// Apply changes and update UI
+		applyCssVariables(currentState.settings)
+		updateUI(currentState)
+		saveState(currentState)
+	})
 
 	// Chat slider input - update UI only (no storage)
 	$(UI_SELECTORS.sliderChatWidth)?.addEventListener('input', (e) =>
 		handleWidthChange({
 			event: e,
 			key: 'w_chat_gpt',
-			syncKey: 'w_prompt_textarea',
 			shouldSave: false,
 		})
 	)
@@ -337,7 +327,6 @@ function handleWidthsListeners() {
 
 	// Textarea slider input - update UI only (no storage)
 	$(UI_SELECTORS.sliderTextareaWidth)?.addEventListener('input', (e) =>
-		// handleWidthChange(e, 'w_prompt_textarea', null, false)
 		handleWidthChange({
 			event: e,
 			key: 'w_prompt_textarea',
@@ -352,18 +341,9 @@ function handleWidthsListeners() {
 
 	// Reset button
 	$(UI_SELECTORS.btnResetWidths)?.addEventListener('click', resetWidths)
-
-	// Save on tab switch or window blur to ensure no pending changes are lost
-	/* 	window.addEventListener('blur', () => {
-		if (currentState.pendingChanges) {
-			saveState(currentState)
-		}
-	}) */
 }
 
-// Keep the debounce function for resize handling
-
-// Add this function to your module
+// Resize observer setup to handle responsive layout changes
 function setupResizeObserver() {
 	const resizeObserver = new ResizeObserver((entries) => {
 		for (const entry of entries) {
@@ -377,31 +357,9 @@ function setupResizeObserver() {
 					`[↔️ GPThemes] Screen size changed: ${isSmallContainer ? 'small' : 'normal'} screen (${containerWidth}px)`
 				)
 
-				if (isSmallContainer) {
-					// FIX: Store the original sync state before forcing it to true
-					originalSyncPreference = currentState.syncEnabled
-
-					// Force sync enabled for small screens but preserve full width setting
-					currentState.syncEnabled = true
-
-					// Apply changes
-					applyCssVariables(currentState.settings)
-					updateUI(currentState)
-				} else {
-					// FIX: Restore the original sync state when returning to normal screen size
-					currentState.syncEnabled = originalSyncPreference
-
-					// If sync is enabled still, ensure proper prompt width
-					if (currentState.syncEnabled) {
-						currentState.settings.w_prompt_textarea = currentState.settings.w_chat_gpt
-					}
-
-					// Apply CSS changes with restored settings
-					applyCssVariables(currentState.settings)
-
-					// Update UI with restored state
-					updateUI(currentState)
-				}
+				// Apply changes and update UI based on new size
+				applyCssVariables(currentState.settings)
+				updateUI(currentState)
 			}
 		}
 	})
@@ -415,17 +373,9 @@ function setupResizeObserver() {
 
 			// Immediately check size to set initial state
 			isSmallContainer = targetElement.offsetWidth <= WIDTH_CONFIG.ui.resizingBreakpoint
-			if (isSmallContainer) {
-				console.log('[↔️ GPThemes] Starting in small screen mode')
-				// Store original sync state
-				originalSyncPreference = currentState.syncEnabled
 
-				// Force sync enabled for small screens
-				currentState.syncEnabled = true
-
-				applyCssVariables(currentState.settings)
-				setTimeout(() => updateUI(currentState), 50)
-			}
+			applyCssVariables(currentState.settings)
+			setTimeout(() => updateUI(currentState), 50)
 
 			return true
 		}
@@ -448,7 +398,21 @@ function setupResizeObserver() {
 	return resizeObserver
 }
 
-// Update the init function to call setupResizeObserver
+async function resetWidths() {
+	currentState = {
+		settings: { ...WIDTH_CONFIG.defaults },
+		syncEnabled: false,
+		fullWidthEnabled: false,
+		pendingChanges: false,
+	}
+
+	applyCssVariables(currentState.settings)
+	updateUI(currentState)
+	await browser.storage.sync.remove(Object.values(WIDTH_CONFIG.storageKeys))
+	console.log('[↔️ GPThemes] Width settings reset.')
+}
+
+// Initialize the module
 async function init() {
 	try {
 		const result = await browser.storage.sync.get(Object.values(WIDTH_CONFIG.storageKeys))
@@ -460,15 +424,18 @@ async function init() {
 			pendingChanges: false,
 		}
 
-		// Store the original sync preference on initialization
-		originalSyncPreference = currentState.syncEnabled
-
 		if (currentState.fullWidthEnabled) {
-			Object.assign(currentState.settings, WIDTH_CONFIG.fullWidth)
+			// Apply full width settings to chat
+			currentState.settings.w_chat_user = WIDTH_CONFIG.fullWidth.w_chat_user
+			currentState.settings.max_w_chat_user = WIDTH_CONFIG.fullWidth.max_w_chat_user
+			currentState.settings.w_chat_gpt = WIDTH_CONFIG.fullWidth.w_chat_gpt
+
+			// If sync is enabled, match textarea width to chat width
 			if (currentState.syncEnabled) {
 				currentState.settings.w_prompt_textarea = WIDTH_CONFIG.fullWidth.w_chat_gpt
 			}
 		} else if (currentState.syncEnabled) {
+			// Ensure textarea width matches chat width if sync is enabled
 			currentState.settings.w_prompt_textarea = currentState.settings.w_chat_gpt
 		}
 
@@ -477,44 +444,11 @@ async function init() {
 		// Set up the ResizeObserver
 		window.resizeObserver = setupResizeObserver()
 
-		// Initial UI update will be called after size is determined
-		setTimeout(() => {
-			if (!isSmallContainer) {
-				updateUI(currentState)
-			}
-		}, 50)
-
 		console.log('[↔️ GPThemes] Width settings initialized:', currentState)
 	} catch (err) {
 		console.error('[↔️ GPThemes] Init error:', err)
 	}
 }
 
-// Add cleanup function to prevent memory leaks
-/* function cleanup() {
-	if (window.resizeObserver) {
-		window.resizeObserver.disconnect()
-		window.resizeObserver = null
-		console.log('[↔️ GPThemes] ResizeObserver disconnected')
-	}
-} */
-
-async function resetWidths() {
-	currentState = {
-		settings: { ...WIDTH_CONFIG.defaults },
-		syncEnabled: false,
-		fullWidthEnabled: false,
-		pendingChanges: false,
-	}
-
-	// Reset original sync preference as well
-	originalSyncPreference = false
-
-	applyCssVariables(currentState.settings)
-	updateUI(currentState)
-	await browser.storage.sync.remove(Object.values(WIDTH_CONFIG.storageKeys))
-	console.log('[↔️ GPThemes] Width settings reset.')
-}
-
-// Export the cleanup function if needed for component unmounting
+// Export public functions
 export { handleWidthsListeners, renderWidthsTab, init }

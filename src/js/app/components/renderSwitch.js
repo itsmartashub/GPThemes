@@ -50,9 +50,7 @@ function renderSliderCard({
 	return `
     <div 
       class="card card--range ${isLocked ? 'is-locked' : ''}" 
-      data-gpth-err="${min}${inputPlaceholder === '100%' ? '%' : unit} &hArr; ${max}${
-		inputPlaceholder === '100%' ? '%' : unit
-	}"
+      data-gpth-err="${min}% &hArr; ${max}%"
     >
       <label 
         for="${sanitizedInputId}" 
