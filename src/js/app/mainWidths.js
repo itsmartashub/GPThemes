@@ -23,7 +23,7 @@ const WIDTH_CONFIG = {
 		w_chat_gpt: '100%',
 	},
 	ui: {
-		resizingBreakpoint: 768,
+		// resizingBreakpoint: 768,
 		minWidth: 0,
 		maxWidth: 100,
 	},
@@ -106,7 +106,7 @@ function renderWidthsTab() {
 			})}
 		</div>
 
-		<div>
+		<div class="gpth-layouts__toggle-widths">
 		${renderToggleCard({
 			inputId: getIdFromSelector(UI_SELECTORS.toggleFullWidth),
 			isChecked: false,
@@ -400,6 +400,20 @@ function handleWidthsListeners() {
 
 // 	return resizeObserver
 // }
+
+/* function resizeObserver() {
+	const container = document.querySelector('#thread')
+	const observer = new ResizeObserver(([entry]) => {
+		const width = entry.contentRect.width
+		const newMode = width < 768 ? 'small' : 'normal'
+
+		// Check if mode has actually changed before updating
+		document.documentElement.style.setProperty('--chats-container-mode', newMode)
+		document.documentElement.dataset.chatsContainerMode = newMode
+	})
+
+	if (container) observer.observe(container)
+} */
 
 async function resetWidths() {
 	currentState = {

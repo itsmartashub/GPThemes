@@ -3,5 +3,37 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
         gap: 1rem 0.5rem;
+
+        @include dev('md') {
+            .card--range {
+                @include isLockedIcon;
+            }
+        }
+    }
+
+    &__toggle-widths {
+        @include dev('md') {
+            label[for="toggle-sync-chat-textarea"] {
+                opacity: 0.5 !important;
+                pointer-events: none !important;
+            }
+        }
     }
 }
+
+/* html[data-chats-container-mode="small"] {
+    .gpth-layouts {
+        &__custom-width {
+            .card--range {
+                @include isLockedIcon;
+            }
+        }
+
+        &__toggle-widths {
+            label[for="toggle-sync-chat-textarea"] {
+                opacity: 0.5 !important;
+                pointer-events: none !important;
+            }
+        }
+    }
+} */
