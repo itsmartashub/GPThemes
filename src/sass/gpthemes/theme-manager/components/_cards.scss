@@ -325,6 +325,10 @@
             color: var(--c-accent);
             @extend %animScaleIn;
             z-index: 10;
+            // opacity: 0;
+            // transition-property: display opacity;
+            // transition-duration: 0.3s;
+            // transition-behavior: allow-discrete;
         }
 
         &.is-locked {

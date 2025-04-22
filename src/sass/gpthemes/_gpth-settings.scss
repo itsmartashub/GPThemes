@@ -21,7 +21,9 @@
 	transform: translateX(calc(100% + 1.5rem)) !important;
 	z-index: calc(var(--z-modal) + 10);
 	overflow: clip auto;
+	// overflow: clip;
 	transition: transform 0.3s $easeOutBack, opacity 0.3s ease;
+	// overscroll-behavior: contain;
 
 	&--open {
 		opacity: 1 !important;
@@ -42,7 +44,7 @@
 	// section {
 	.tab-content {
 		overflow-y: auto;
-		max-height: calc(var(--max-h) * 0.7);
+		max-height: calc(var(--max-h) * 0.625);
 
 		.tab-pane {
 			margin-inline: 0.2rem; // simulate space from the scrollbar
