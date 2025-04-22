@@ -44,8 +44,6 @@ function renderSmallCardOption({
 	const sanitizedInputValue = sanitizeString(inputValue)
 	const sanitizedInputPlaceholder = sanitizeString(inputPlaceholder)
 
-	const lockIcon = isLocked ? icon_lock : ''
-
 	return `
     <div 
       class="card card--range ${isLocked ? 'is-locked' : ''}" 
@@ -92,7 +90,7 @@ function renderSmallCardOption({
           ${isLocked ? 'disabled' : ''}
         >
       </label>
-      ${lockIcon}
+      ${icon_lock}
     </div>`
 }
 

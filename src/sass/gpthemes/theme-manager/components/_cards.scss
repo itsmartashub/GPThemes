@@ -21,7 +21,7 @@
     }
 
     label,
-    label > * {
+    label>* {
         cursor: pointer !important;
     }
 
@@ -316,6 +316,17 @@
             line-height: 1;
         }
 
+        .icon-locked {
+            display: none;
+            position: absolute;
+            top: 6%;
+            right: 7%;
+            width: 1.8rem;
+            color: var(--c-accent);
+            @extend %animScaleIn;
+            z-index: 10;
+        }
+
         &.is-locked {
             position: relative;
             cursor: not-allowed !important;
@@ -337,60 +348,19 @@
                     z-index: 8;
                     border-radius: inherit;
                     backdrop-filter: blur(2px);
-                    /*  font-size: .5em;
-                    font-weight: bold;
-                    text-transform: uppercase;
-                    text-align: center;
-                    vertical-align: center;
-                    display: grid;
-                    place-items: center; */
                 }
             }
 
             &:hover {
                 label::after {
-                    // content: '' !important;
                     backdrop-filter: blur(0px) !important;
                     background-image: radial-gradient(circle at 100% 0%, hsla(var(--accent-hsl) / 0.4) 5%, hsla(var(--accent-hsl) / 0.02) 42%) !important;
                 }
             }
 
-
-            // .icon-lock-wrapper {
-            //     display: block;
-            //     position: absolute;
-            //     top: 50%;
-            //     left: 50%;
-            //     transform: translate(-50%, -50%);
-            //     background-color: hsla(var(--accent-hsl) / 0.5);
-            //     width: 100%;
-            //     height: 100%;
-            //     display: grid;
-            //     place-items: center;
-            //     z-index: 10;
-            //     border-radius: inherit;
-
-            //     .icon-lock {
-            //         width: 1.5rem;
-            //         height: 1.5rem;
-            //         color: var(--c-accent);
-            //     }
-            // }
-
             .icon-locked {
-                position: absolute;
-                top: 6%;
-                right: 7%;
-                width: 1.8rem;
-                color: var(--c-accent);
-                @extend %animScaleIn;
-                z-index: 10;
+                display: block !important;
             }
         }
-
-        &:not(.is-locked) .icon-locked {
-            display: none;
-        }
     }
-
 }
