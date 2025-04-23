@@ -110,15 +110,32 @@
 	}
 
 	/* Markdown table parent - caused overflow-x and scrollbards in X-axios  */
+	span.pointer-events-none.absolute.start-full.top-4.z-10.h-full.w-fit.ps-2 {
+		button.rounded-lg[class*="hover:bg-token-main-surface-secondary"] {
+			background-color: var(--c-accent) !important;
+			color: var(--c-on-accent) !important;
+
+			// &:hover {
+			// 	color: var(--c-accent) !important;
+			// 	background-color: hsla(var(--accent-hsl) / 0.12) !important;
+			// 	backdrop-filter: blur(10px);
+			// }
+		}
+	}
+
 	.tableContainer.horzScrollShadows {
 		background: none !important;
-		margin: 0 !important;
-		padding: 0 !important;
+		// --main-surface-primary: var(--c-bg-msg-gpt) !important;
+		// width: var(--w_chat_gpt) !important;
+		min-width: 70% !important;
+		max-width: 100% !important;
+		flex: 1;
+		margin-inline: 0 !important;
 	}
 
 	table {
 		/* TODO - this overflow cause cutting the border edges of latest <tr> child, wtf. So I have to add border to <table> also (down where <th>, <td> are) */
-		overflow: hidden;
+		// overflow: hidden;
 		border-radius: var(--br-btn) !important;
 
 		thead {
