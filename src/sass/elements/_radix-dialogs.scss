@@ -28,13 +28,13 @@
 				background-color: transparent !important;
 			}
 
-			.rounded-full.border-token-border-light:has(input[placeholder^='https://chatgpt.com/canvas/shared']) {
+			.rounded-full.border-token-border-default:has(input[placeholder^='https://chatgpt.com/canvas/shared']) {
 				border-color: var(--border-medium) !important;
 				border-radius: var(--br-btn) !important;
 
 				/* Canvas > Share Link input field */
 				input:has(~ .bg-gradient-to-l.from-token-main-surface-primary) {
-					& ~ .bg-gradient-to-l.from-token-main-surface-primary {
+					&~.bg-gradient-to-l.from-token-main-surface-primary {
 						--gradient-color-from: var(--c-surface-3) !important;
 					}
 				}
@@ -71,7 +71,7 @@
 
 			/* @mentions - GPTs list, scrollable product parent */
 			.max-h-40.overflow-y-auto {
-				& > div:not(:last-child) {
+				&>div:not(:last-child) {
 					margin-bottom: 0.5rem;
 				}
 			}

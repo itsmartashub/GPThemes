@@ -41,7 +41,7 @@
 			}
 		}
 
-		.border-token-border-light:not([role='separator']),
+		.border-token-border-default:not([role='separator']),
 		.border-white,
 		.border-black {
 			border-color: transparent !important;
@@ -400,8 +400,8 @@
 		// this is also the text in "Settings" dialog so we need more special selector
 		&:has(.truncate) {
 
-			// .border-token-border-light:has(span.text-xs) {
-			.border-token-border-light:not(:has(button)) {
+			// .border-token-border-default:has(span.text-xs) {
+			.border-token-border-default:not(:has(button)) {
 				color: var(--c-accent) !important;
 				border-color: hsla(var(--accent-hsl) / 0.3) !important;
 				border-radius: 10px !important;

@@ -44,7 +44,7 @@ nav[aria-label='Chat history'] {
 		color: var(--c-txt) !important;
 
 		/* "Upgrade" link in nav bg */
-		span.h-7.w-7.rounded-full.border-token-border-light {
+		span.h-7.w-7.rounded-full.border-token-border-default {
 			border-color: transparent !important;
 			background-color: var(--c-accent) !important;
 
