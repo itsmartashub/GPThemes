@@ -376,24 +376,8 @@
 		- a.h-6.rounded-xl.font-medium.text-token-text-secondary\!.bg-\[\#F4F4F4\]\!.dark\:bg-\[\#303030\]\! - Sources links in chat bubble wth bubble on mouseover - basic state
 		- a.h-6.rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! - Sources links in chat bubble wth bubble on mouseover - mouseover state */
 
-		// a.h-6.rounded-xl.font-medium.text-token-text-secondary\!.bg-\[\#F4F4F4\]\!.dark\:bg-\[\#303030\]\!,
-		// a.h-6.rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! {
-		// 	--c-simulator-txt: var(--c-accent);
-		// 	@extend %simulator_bg;
-
-		// 	span {
-		// 		color: var(--c-simulator-txt) !important;
-		// 	}
-		// }
-
-		// /* Sources pill links in chat bubble wth bubble on mouseover - mouseover state */
-		// a.h-6.rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! {
-		// 	--c-simulator-bg: var(--c-accent) !important;
-		// 	--c-simulator-txt: var(--c-on-accent) !important;
-		// }
-
-		a.h-6.rounded-xl.font-medium.\!text-token-text-secondary.\!bg-\[\#F4F4F4\].dark\:\!bg-\[\#303030\],
-		a.h-6.rounded-xl.font-medium.\!text-token-main-surface-primary.\!bg-token-text-primary {
+		a[target="_blank"].rounded-xl.font-medium.text-token-text-secondary\!.bg-\[\#F4F4F4\]\!.dark\:bg-\[\#303030\]\!,
+		a[target="_blank"].rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! {
 			--c-simulator-txt: var(--c-accent);
 			@extend %simulator_bg;
 
@@ -402,10 +386,26 @@
 			}
 		}
 
-		a.h-6.rounded-xl.font-medium.\!text-token-main-surface-primary.\!bg-token-text-primary {
+		// /* Sources pill links in chat bubble wth bubble on mouseover - mouseover state */
+		a[target="_blank"].rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! {
 			--c-simulator-bg: var(--c-accent) !important;
 			--c-simulator-txt: var(--c-on-accent) !important;
 		}
+
+		// a.h-6.rounded-xl.font-medium.\!text-token-text-secondary.\!bg-\[\#F4F4F4\].dark\:\!bg-\[\#303030\],
+		// a.h-6.rounded-xl.font-medium.\!text-token-main-surface-primary.\!bg-token-text-primary {
+		// 	--c-simulator-txt: var(--c-accent);
+		// 	@extend %simulator_bg;
+
+		// 	span {
+		// 		color: var(--c-simulator-txt) !important;
+		// 	}
+		// }
+
+		// a.h-6.rounded-xl.font-medium.\!text-token-main-surface-primary.\!bg-token-text-primary {
+		// 	--c-simulator-bg: var(--c-accent) !important;
+		// 	--c-simulator-txt: var(--c-on-accent) !important;
+		// }
 
 		/* 
 		ms-1 inline-flex h-[22px] items-center rounded-xl bg-[#f4f4f4] px-2 text-[0.5em] font-medium text-token-text-secondary dark:bg-token-main-surface-secondary text-token-text-secondary! uppercase hover:bg-token-text-primary hover:text-token-main-surface-secondary! dark:hover:bg-token-text-primary group */
