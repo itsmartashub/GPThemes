@@ -42,11 +42,14 @@
 
 	/* Markdown Blockquotes border-left */
 	blockquote {
-		// border-color: var(--c-subtext-2) !important;
-		// border-color: var(--tw-prose-quote-borders) !important;
 		background-color: hsla(var(--accent-hsl) / 0.12);
-		border-left: 5px solid var(--tw-prose-quote-borders) !important;
 		border-radius: var(--br-btn);
+
+		&::after {
+			border-radius: inherit;
+			left: 0.5rem !important;
+			background-color: var(--tw-prose-quote-borders) !important;
+		}
 	}
 
 	/* Markdown Lists/bullers. Center them, they were on top, not centered */
