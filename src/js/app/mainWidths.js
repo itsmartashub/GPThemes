@@ -168,6 +168,14 @@ function updateUI({ settings, syncEnabled, fullWidthEnabled }) {
 	const chatSliderDisabled = fullWidthEnabled && settings.w_chat_gpt === '100%'
 	const textareaSliderDisabled = syncEnabled
 
+	// Cache DOM elements once
+	const elements = {
+		chatSlider: $(UI_SELECTORS.sliderChatWidth),
+		textareaSlider: $(UI_SELECTORS.sliderTextareaWidth),
+		fullWidthToggle: $(UI_SELECTORS.toggleFullWidth),
+		syncWidthsToggle: $(UI_SELECTORS.toggleSyncWidths),
+	}
+
 	const sliderData = [
 		{
 			sliderId: UI_SELECTORS.sliderChatWidth,
@@ -187,31 +195,30 @@ function updateUI({ settings, syncEnabled, fullWidthEnabled }) {
 
 	sliderData.forEach(updateSlider)
 
-	// updateSlider({
-	// 	sliderId: UI_SELECTORS.sliderChatWidth,
-	// 	outputId: UI_SELECTORS.displayChatWidthValue,
-	// 	unitId: UI_SELECTORS.displayChatWidthUnit,
-	// 	value: settings.w_chat_gpt,
-	// 	disabled: chatSliderDisabled,
-	// })
-
-	// updateSlider({
-	// 	sliderId: UI_SELECTORS.sliderTextareaWidth,
-	// 	outputId: UI_SELECTORS.displayTextareaWidthValue,
-	// 	unitId: UI_SELECTORS.displayTextareaWidthUnit,
-	// 	value: settings.w_prompt_textarea,
-	// 	disabled: textareaSliderDisabled,
-	// })
-
 	// Update toggle states - preserve user's actual preferences
-	$(UI_SELECTORS.toggleFullWidth).checked = fullWidthEnabled
-	$(UI_SELECTORS.toggleSyncWidths).checked = syncEnabled
+	// $(UI_SELECTORS.toggleFullWidth).checked = fullWidthEnabled
+	// $(UI_SELECTORS.toggleSyncWidths).checked = syncEnabled
+
+	if (elements.fullWidthToggle) elements.fullWidthToggle.checked = fullWidthEnabled
+	if (elements.syncWidthsToggle) elements.syncWidthsToggle.checked = syncEnabled
 
 	// Add is-locked class to cards
-	const chatCard = $(UI_SELECTORS.sliderChatWidth)?.closest('.card')
-	const textareaCard = $(UI_SELECTORS.sliderTextareaWidth)?.closest('.card')
-	if (chatCard) chatCard.classList.toggle('is-locked', chatSliderDisabled)
-	if (textareaCard) textareaCard.classList.toggle('is-locked', textareaSliderDisabled)
+	// const chatCard = $(UI_SELECTORS.sliderChatWidth)?.closest('.card')
+	// const textareaCard = $(UI_SELECTORS.sliderTextareaWidth)?.closest('.card')
+	// if (chatCard) chatCard.classList.toggle('is-locked', chatSliderDisabled)
+	// if (textareaCard) textareaCard.classList.toggle('is-locked', textareaSliderDisabled)
+
+	// Add is-locked class to cards - batch these operations
+	requestAnimationFrame(() => {
+		// const chatSlider = $(UI_SELECTORS.sliderChatWidth)
+		// const textareaSlider = $(UI_SELECTORS.sliderTextareaWidth)
+
+		const chatCard = elements.chatSlider?.closest('.card')
+		const textareaCard = elements.textareaSlider?.closest('.card')
+
+		if (chatCard) chatCard.classList.toggle('is-locked', chatSliderDisabled)
+		if (textareaCard) textareaCard.classList.toggle('is-locked', textareaSliderDisabled)
+	})
 }
 
 // Save state to storage
@@ -265,82 +272,112 @@ function handleWidthChange({ event, key, shouldSave = false }) {
 	}
 }
 
-function handleWidthsListeners() {
-	// Full Width Toggle
-	$(UI_SELECTORS.toggleFullWidth)?.addEventListener('change', () => {
-		// Toggle the flag
-		currentState.fullWidthEnabled = !currentState.fullWidthEnabled
+// Set up event listeners with proper cleanup
+let eventListeners = []
 
-		// Update chat width settings based on full width toggle state
-		if (currentState.fullWidthEnabled) {
-			// Apply full width settings to chat only
-			currentState.settings.w_chat_user = WIDTH_CONFIG.fullWidth.w_chat_user
-			currentState.settings.max_w_chat_user = WIDTH_CONFIG.fullWidth.max_w_chat_user
-			currentState.settings.w_chat_gpt = WIDTH_CONFIG.fullWidth.w_chat_gpt
-		} else {
-			// Restore default chat width settings
-			currentState.settings.w_chat_user = WIDTH_CONFIG.defaults.w_chat_user
-			currentState.settings.max_w_chat_user = WIDTH_CONFIG.defaults.max_w_chat_user
-			currentState.settings.w_chat_gpt = WIDTH_CONFIG.defaults.w_chat_gpt
-		}
+function addListener(element, event, handler) {
+	if (!element) return
+	element.addEventListener(event, handler)
+	eventListeners.push({ element, event, handler })
+}
 
-		// Synchronize textarea width if sync is enabled
-		syncTextareaWithChatWidth()
-
-		// Apply changes and update UI
-		applyCssVariables(currentState.settings)
-		updateUI(currentState)
-		saveState(currentState)
+function removeAllListeners() {
+	eventListeners.forEach(({ element, event, handler }) => {
+		element.removeEventListener(event, handler)
 	})
+	eventListeners = []
+}
+function handleToggleFullWidth() {
+	currentState.fullWidthEnabled = !currentState.fullWidthEnabled
+
+	// Update chat width settings based on full width toggle state
+	if (currentState.fullWidthEnabled) {
+		// Apply full width settings to chat only
+		// currentState.settings.w_chat_user = WIDTH_CONFIG.fullWidth.w_chat_user
+		// currentState.settings.max_w_chat_user = WIDTH_CONFIG.fullWidth.max_w_chat_user
+		// currentState.settings.w_chat_gpt = WIDTH_CONFIG.fullWidth.w_chat_gpt
+		Object.assign(currentState.settings, {
+			w_chat_user: WIDTH_CONFIG.fullWidth.w_chat_user,
+			max_w_chat_user: WIDTH_CONFIG.fullWidth.max_w_chat_user,
+			w_chat_gpt: WIDTH_CONFIG.fullWidth.w_chat_gpt,
+		})
+	} else {
+		// Restore default chat width settings
+		// currentState.settings.w_chat_user = WIDTH_CONFIG.defaults.w_chat_user
+		// currentState.settings.max_w_chat_user = WIDTH_CONFIG.defaults.max_w_chat_user
+		// currentState.settings.w_chat_gpt = WIDTH_CONFIG.defaults.w_chat_gpt
+		Object.assign(currentState.settings, {
+			w_chat_user: WIDTH_CONFIG.defaults.w_chat_user,
+			max_w_chat_user: WIDTH_CONFIG.defaults.max_w_chat_user,
+			w_chat_gpt: WIDTH_CONFIG.defaults.w_chat_gpt,
+		})
+	}
+
+	// Synchronize textarea width if sync is enabled
+	syncTextareaWithChatWidth()
+
+	// Apply changes and update UI
+	applyCssVariables(currentState.settings)
+	updateUI(currentState)
+	saveState(currentState)
+}
+
+function handleToggleSyncWidths() {
+	// Toggle the sync state
+	currentState.syncEnabled = !currentState.syncEnabled
+
+	// If enabling sync, update textarea width to match chat width
+	// if (currentState.syncEnabled) {
+	// 	currentState.settings.w_prompt_textarea = currentState.settings.w_chat_gpt
+	// } else {
+	// 	currentState.settings.w_prompt_textarea = WIDTH_CONFIG.defaults.w_prompt_textarea
+	// }
+
+	currentState.settings.w_prompt_textarea = currentState.syncEnabled
+		? currentState.settings.w_chat_gpt
+		: WIDTH_CONFIG.defaults.w_prompt_textarea
+
+	// Apply changes and update UI
+	applyCssVariables(currentState.settings)
+	updateUI(currentState)
+	saveState(currentState)
+}
+
+function setupSliderListeners(selector, key) {
+	const slider = $(selector)
+	if (slider) {
+		// slider.addEventListener('input', (e) => handleWidthChange({ event: e, key, shouldSave: false }))
+		// slider.addEventListener('blur', () => saveState(currentState))
+
+		// Input event for live updates
+		addListener(slider, 'input', (e) => handleWidthChange({ event: e, key, shouldSave: false }))
+		// Change event for when the slider stops
+		addListener(slider, 'change', () => saveState(currentState))
+	}
+}
+
+function handleWidthsListeners() {
+	// Remove any existing listeners to prevent duplicates
+	removeAllListeners()
+
+	// // Full Width Toggle
+	// $(UI_SELECTORS.toggleFullWidth)?.addEventListener('change', handleToggleFullWidth)
+
+	// // Sync Toggle
+	// $(UI_SELECTORS.toggleSyncWidths)?.addEventListener('change', handleToggleSyncWidths)
+
+	// Full Width Toggle
+	addListener($(UI_SELECTORS.toggleFullWidth), 'change', handleToggleFullWidth)
 
 	// Sync Toggle
-	$(UI_SELECTORS.toggleSyncWidths)?.addEventListener('change', () => {
-		// Toggle the sync state
-		currentState.syncEnabled = !currentState.syncEnabled
+	addListener($(UI_SELECTORS.toggleSyncWidths), 'change', handleToggleSyncWidths)
 
-		// If enabling sync, update textarea width to match chat width
-		if (currentState.syncEnabled) {
-			currentState.settings.w_prompt_textarea = currentState.settings.w_chat_gpt
-		} else {
-			currentState.settings.w_prompt_textarea = WIDTH_CONFIG.defaults.w_prompt_textarea
-		}
-
-		// Apply changes and update UI
-		applyCssVariables(currentState.settings)
-		updateUI(currentState)
-		saveState(currentState)
-	})
-
-	// Chat slider input - update UI only (no storage)
-	$(UI_SELECTORS.sliderChatWidth)?.addEventListener('input', (e) =>
-		handleWidthChange({
-			event: e,
-			key: 'w_chat_gpt',
-			shouldSave: false,
-		})
-	)
-
-	// Chat slider blur - save to storage
-	$(UI_SELECTORS.sliderChatWidth)?.addEventListener('blur', (e) => {
-		saveState(currentState)
-	})
-
-	// Textarea slider input - update UI only (no storage)
-	$(UI_SELECTORS.sliderTextareaWidth)?.addEventListener('input', (e) =>
-		handleWidthChange({
-			event: e,
-			key: 'w_prompt_textarea',
-			shouldSave: false,
-		})
-	)
-
-	// Textarea slider blur - save to storage
-	$(UI_SELECTORS.sliderTextareaWidth)?.addEventListener('blur', (e) => {
-		saveState(currentState)
-	})
+	setupSliderListeners(UI_SELECTORS.sliderChatWidth, 'w_chat_gpt')
+	setupSliderListeners(UI_SELECTORS.sliderTextareaWidth, 'w_prompt_textarea')
 
 	// Reset button
-	$(UI_SELECTORS.btnResetWidths)?.addEventListener('click', resetWidths)
+	// $(UI_SELECTORS.btnResetWidths)?.addEventListener('click', resetWidths)
+	addListener($(UI_SELECTORS.btnResetWidths), 'click', resetWidths)
 }
 
 async function resetWidths() {
@@ -368,10 +405,16 @@ async function init() {
 		}
 
 		if (currentState.fullWidthEnabled) {
+			// // Apply full width settings to chat
+			// currentState.settings.w_chat_user = WIDTH_CONFIG.fullWidth.w_chat_user
+			// currentState.settings.max_w_chat_user = WIDTH_CONFIG.fullWidth.max_w_chat_user
+			// currentState.settings.w_chat_gpt = WIDTH_CONFIG.fullWidth.w_chat_gpt
 			// Apply full width settings to chat
-			currentState.settings.w_chat_user = WIDTH_CONFIG.fullWidth.w_chat_user
-			currentState.settings.max_w_chat_user = WIDTH_CONFIG.fullWidth.max_w_chat_user
-			currentState.settings.w_chat_gpt = WIDTH_CONFIG.fullWidth.w_chat_gpt
+			Object.assign(currentState.settings, {
+				w_chat_user: WIDTH_CONFIG.fullWidth.w_chat_user,
+				max_w_chat_user: WIDTH_CONFIG.fullWidth.max_w_chat_user,
+				w_chat_gpt: WIDTH_CONFIG.fullWidth.w_chat_gpt,
+			})
 
 			// If sync is enabled, match textarea width to chat width
 			if (currentState.syncEnabled) {
