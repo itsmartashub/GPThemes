@@ -20,10 +20,10 @@
 	/* ? --- Paddings --- */
 	--p-chat-bubble: 1.2rem;
 	--p-contextmenu: 0.7rem;
-	--p-prompt-textarea: 0.7rem;
+	// --p-prompt-textarea: 0.7rem;
 	--p-tooltips: 0.2rem;
 	--p-btn: 0.7rem;
-	--p-dialog: 2rem;
+	--p-dialog: 1.4rem;
 	--p-between-chats: 1rem;
 
 	/* ? --- Margins --- */
@@ -126,7 +126,7 @@
 		--p-chat-bubble: .8rem;
 		--br-chat-bubble: calc(var(--br) * 1.55);
 		--p-contextmenu: .5rem;
-		--p-prompt-textarea: 0.5rem;
+		// --p-prompt-textarea: 0.5rem;
 		--p-dialog: 0.3rem;
 		--br-dialog: calc(var(--br) * 1.5);
 		--p-sidebar-nav: 0.3rem;

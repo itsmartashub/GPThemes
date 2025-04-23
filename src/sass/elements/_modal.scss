@@ -63,10 +63,11 @@
 		}
 
 		[role='tablist'] {
-			/* ___ DIALOG - "Settings" on smaller devices then deskop */
 
-			&:has([data-orientation='horizontal']) {
-				flex-wrap: wrap;
+			/* ___ DIALOG - "Settings" on smaller devices then deskop */
+			&[data-orientation='vertical'] {
+				flex-wrap: nowrap !important;
+				overflow-y: auto;
 			}
 
 			&[data-orientation='horizontal'] {
