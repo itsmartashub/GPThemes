@@ -18,14 +18,14 @@
 /*
 - [role="dialog"] .bg-black.border-t:has(.border-l-4.border-red-500): Analysis in dialogs
 - .agent-turn .markdown.prose~.bg-black.border-t:has(.border-l-4.border-red-500): Analysis in chat-bubbles */
-.agent-turn .markdown.prose~.bg-black.border-t:has(.border-l-4.border-red-500),
-[role="dialog"] .bg-black.border-t:has(.border-l-4.border-red-500) {
+.agent-turn .markdown.prose~.bg-black.border-t:has(.border-s-4.border-red-500),
+[role="dialog"] .bg-black.border-t:has(.border-s-4.border-red-500) {
     border-top: unset !important;
     border-radius: var(--br-btn);
     background-color: hsla(var(--accent-hsl) / 0.12);
 
     /* "Analysis" <pre> code parents */
-    .border-l-4.border-red-500 {
+    .border-s-4.border-red-500 {
         color: var(--c-accent);
         border-color: currentColor !important;
     }
@@ -33,8 +33,8 @@
 
 
 /* Analysis "Result" next to .markdown.prose, and in dialogs */
-.agent-turn .markdown.prose~.bg-gray-700:has(>.text-gray-400 ~ .prose),
-[role="dialog"] .bg-gray-700:has(>.text-gray-400 ~ .prose) {
+.agent-turn .markdown.prose~.bg-token-sidebar-surface-primary:has(>.text-gray-400 ~ .prose),
+[role="dialog"] .bg-token-sidebar-surface-primary:has(>.text-gray-400 ~ .prose) {
     border-radius: var(--br-btn) !important;
     background-color: hsla(var(--accent-hsl) / 0.12) !important;
     color: var(--c-accent) !important;
