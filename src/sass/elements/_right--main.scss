@@ -142,7 +142,8 @@
 			}
 
 			/* ↪️ Reply in msg */
-			&>.w-full>.text-sm.text-token-text-tertiary.mt-1.ms-6 {
+			// &>.w-full>.text-sm.text-token-text-tertiary.mt-1.ms-6 {
+			&>.text-token-text-tertiary.mx-2.my-1.flex.items-start.justify-end.text-sm.font-normal {
 				background-color: hsla(var(--accent-hsl) / 0.2);
 				padding: 0.5rem;
 				color: var(--c-accent);
