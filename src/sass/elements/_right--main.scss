@@ -434,6 +434,7 @@
 			.bg-token-main-surface-primary {
 				text-transform: uppercase;
 				--main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important;
+				--main-surface-secondary: hsla(var(--accent-hsl) / 0.25) !important;
 			}
 		}
 
