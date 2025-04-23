@@ -1,5 +1,6 @@
 /* ===  RIGHT - TEXTAREA PARENT, message type and send button */
 // main form {
+// #thread-bottom form {
 form {
 
 	// &>[class*='bg-[#303030]']:has(#prompt-textarea) {
@@ -35,7 +36,7 @@ form {
 		}
 
 		/* "Reply" in msg textarea - NEW SELECTOR after #reply-regions has been removed */
-		.divide-y.divide-token-border-light.bg-token-main-surface-primary.rounded-b-lg {
+		.divide-y.bg-token-main-surface-primary.rounded-b-lg {
 			background-color: transparent !important;
 
 			.bg-token-main-surface-secondary.dark\:bg-token-main-surface-tertiary.text-sm {
