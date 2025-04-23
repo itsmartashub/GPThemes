@@ -11,14 +11,15 @@ But adding this "main" blocked this style to smaller screens so I have to add it
  - not(.-mt-2) je gradeint headercic oko Mape u chat bubbles kada je tu Searchovana Mapa */
 
 /* Header on: New chat layout, on chats layout, on mobile too, but not on GPTs where pill tags are */
-.h-header-height.top-0 {
-	@extend %header-style;
+.h-header-height {
+	background-color: var(--c-bg-chats-container) !important;
+	box-shadow: none !important;
 }
 
 .sticky {
 
 	/* "My GPTs" page - sticky header with scrollable pill tags and LR arrows */
-	&.top-14.w-screen.bg-token-main-surface-primary {
+	&.top-14.bg-token-main-surface-primary {
 		background-color: var(--c-bg-chats-container) !important;
 		padding-bottom: 0.6rem !important;
 	}

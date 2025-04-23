@@ -110,6 +110,8 @@
 	--icon-secondary: var(--c-subtext-2) !important;
 	--dot-color: var(--c-txt) !important;
 
+	--bg-primary: var(--c-bg-chats-container) !important;
+
 	--c-bg-textarea: linear-gradient(145deg, hsla(var(--accent-hsl) / 0.3) 0%, hsla(var(--accent-hsl) / 0.1) 25%, hsla(var(--accent-hsl) / 0.1) 65%, hsla(var(--accent-hsl) / 0.3) 100%);
 
 	@include container('md') {
