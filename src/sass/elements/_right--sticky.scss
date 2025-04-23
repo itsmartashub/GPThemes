@@ -11,7 +11,7 @@ But adding this "main" blocked this style to smaller screens so I have to add it
  - not(.-mt-2) je gradeint headercic oko Mape u chat bubbles kada je tu Searchovana Mapa */
 
 /* Header on: New chat layout, on chats layout, on mobile too, but not on GPTs where pill tags are */
-.h-header-height {
+.h-header-height.top-0 {
 	background-color: var(--c-bg-chats-container) !important;
 	box-shadow: none !important;
 }

@@ -1,12 +1,16 @@
 /* Sidebar bg-color */
 // .bg-token-sidebar-surface-primary:has(nav[aria-label='Chat history']) {
-.bg-token-sidebar-surface-primary {
+// .bg-token-sidebar-surface-primary {}
+
+/* Sidebar bg-color */
+.bg-token-sidebar-surface-primary[class*="var(--sidebar-slideover)"] {
 	background-color: var(--c-bg-sidebar) !important;
 	color: var(--c-txt) !important;
 }
 
 // nav .group\/sidebar {
-nav[aria-label='Chat history'] {
+// nav[aria-label='Chat history'] {
+#sidebar {
 
 	/* List item for GPTs and for chats-list item */
 	[class*='bg-[var(--item-background-color)]'] {
@@ -42,17 +46,6 @@ nav[aria-label='Chat history'] {
 
 	a {
 		color: var(--c-txt) !important;
-
-		/* "Upgrade" link in nav bg */
-		span.h-7.w-7.rounded-full.border-token-border-default {
-			border-color: transparent !important;
-			background-color: var(--c-accent) !important;
-
-			/* SVG icon in "Upgrade" link in nav */
-			&>svg {
-				color: var(--c-on-accent) !important;
-			}
-		}
 	}
 
 	li {
@@ -114,7 +107,7 @@ nav[aria-label='Chat history'] {
 
 /* SIDEBAR for mobile */
 // .bg-token-sidebar-surface-primary[role='dialog']:has(nav[aria-label='Chat history']) {
-.bg-token-sidebar-surface-primary[role='dialog'][class*="--sidebar-width"] {
+.h-full.bg-token-sidebar-surface-primary[role='dialog'][class*="--sidebar-width"] {
 	--p-dialog: 0.5rem;
 	background-color: var(--c-bg-sidebar) !important;
 	// border-radius: var(--br-contextmenu) !important;
@@ -122,4 +115,18 @@ nav[aria-label='Chat history'] {
 
 [fill="#0285FF"] {
 	fill: var(--c-accent) !important;
+}
+
+nav[aria-label].h-full {
+
+	/* "Upgrade" link in nav bg */
+	span.h-7.w-7.rounded-full.border-token-border-default {
+		border-color: transparent !important;
+		background-color: var(--c-accent) !important;
+
+		/* SVG icon in "Upgrade" link in nav */
+		&>svg {
+			color: var(--c-on-accent) !important;
+		}
+	}
 }

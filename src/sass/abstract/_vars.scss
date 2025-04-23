@@ -45,9 +45,6 @@
 			hsla(var(--accent-hsl) / 0.05) 60%,
 			hsla(var(--accent-hsl) / 0.45) 100%);
 
-	// --c-bg-chats-sticky: linear-gradient(to bottom, hsla(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.025) / 1), transparent);
-
-
 	/* .bg-token-sidebar-surface-primary
 	- sidebar bg
 	- nav item bg on hover */
@@ -111,6 +108,7 @@
 	--dot-color: var(--c-txt) !important;
 
 	--bg-primary: var(--c-bg-chats-container) !important;
+	--icon-tertiary: var(--c-subtext-2) !important;
 
 	--c-bg-textarea: linear-gradient(145deg, hsla(var(--accent-hsl) / 0.3) 0%, hsla(var(--accent-hsl) / 0.1) 25%, hsla(var(--accent-hsl) / 0.1) 65%, hsla(var(--accent-hsl) / 0.3) 100%);
 
