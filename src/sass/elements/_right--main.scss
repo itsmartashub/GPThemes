@@ -180,7 +180,6 @@
 	}
 
 
-
 	/* @ @======================== RIGHT - CHATS BUBBLES - GPT @======================== */
 	// &:has([data-message-author-role='assistant']) {
 	// ! I HAVE TO CHANGE THE ASSISTENT SELECTOR to ".agent-turn" BCS IT DOESNT EXIST AT SOME SCENARIOS (e.g. when there is canvas only ([id^="textdoc-message"]), without markdown too, when the user stop py Code canvas editing, etc...
@@ -370,12 +369,10 @@
 			}
 		}
 
-
 		/* SOURCE PILL LINKS IN CHAT BUBBLE
 		! Problem sa obim je sto ne mogu da overwriujem background-color jer OpenAI koristi !important na ovim utilities klasala, i ond amoram da koristin gradient. ali, ne smeme transparentis boju jer se onda vidi ispod ova OpenAI's, i onda izgleda cudno 
 		- a.h-6.rounded-xl.font-medium.text-token-text-secondary\!.bg-\[\#F4F4F4\]\!.dark\:bg-\[\#303030\]\! - Sources links in chat bubble wth bubble on mouseover - basic state
 		- a.h-6.rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! - Sources links in chat bubble wth bubble on mouseover - mouseover state */
-
 		a[target="_blank"].rounded-xl.font-medium.text-token-text-secondary\!.bg-\[\#F4F4F4\]\!.dark\:bg-\[\#303030\]\!,
 		a[target="_blank"].rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! {
 			--c-simulator-txt: var(--c-accent);
@@ -407,9 +404,6 @@
 		// 	--c-simulator-txt: var(--c-on-accent) !important;
 		// }
 
-		/* 
-		ms-1 inline-flex h-[22px] items-center rounded-xl bg-[#f4f4f4] px-2 text-[0.5em] font-medium text-token-text-secondary dark:bg-token-main-surface-secondary text-token-text-secondary! uppercase hover:bg-token-text-primary hover:text-token-main-surface-secondary! dark:hover:bg-token-text-primary group */
-
 		/* Search Links pills in GPT Chat Bubble. ovo je .h[22px] i nije mouseover vec hover */
 		a.rounded-xl.font-medium.bg-\[\#f4f4f4\][class*="hover:bg-token-text-primary"] {
 			background: hsla(var(--accent-hsl) / 0.12);
@@ -438,22 +432,6 @@
 			}
 		}
 
-		&:has(.snap-mandatory.snap-x.overflow-x-auto) {
-
-			/* Wrapper of Response 1 vs Response 3 */
-			.relative:has(.snap-mandatory.snap-x.overflow-x-auto) {
-
-				&,
-				/* "You're giving feedback on a new version of ChatGPT" heading */
-				.sticky.text-pretty.bg-token-main-surface-primary,
-				/* Some empty div */
-				.sticky.from-token-main-surface-primary {
-					--main-surface-primary: transparent !important;
-					background: none !important;
-				}
-			}
-		}
-
 		.overflow-hidden:has(> .divide-y) {
 			.from-token-main-surface-secondary {
 				--gradient-color-from: var(--c-surface-2) !important;
@@ -467,7 +445,6 @@
 				border-radius: var(--br-btn);
 			}
 		}
-
 
 		/* Terminal svg icon: View analysis */
 		.markdown {
@@ -567,6 +544,16 @@
 		.whitespace-pre-wrap>.absolute.bottom-4.start-0.top-4.w-1.rounded-full.bg-token-border-light {
 			--border-light: var(--c-subtext-1) !important;
 		}
+	}
+
+	/* Dual Responses (paragen) title */
+	[data-testid="paragen-feedback-title"] {
+		background: none !important;
+	}
+
+	/* Dual Responses */
+	[data-paragen-root="true"] {
+		background-color: var(--c-bg-msg-gpt) !important;
 	}
 
 
