@@ -168,7 +168,7 @@
             }
 
             /* @@@@@@@@@ Canvas Edit floating button on bottom right */
-            .absolute.z-70.overflow-visible.border.border-token-border-light.transition-colors {
+            .absolute.z-70.overflow-visible.border.border-token-border-default.transition-colors {
 
                 /* Wrapper */
                 &.bg-token-main-surface-primary,
@@ -377,7 +377,7 @@
         /* "Ask a ChatGPT to edit" on full-width screen less then 1000px width */
         // [class*="bg-[#f4f4f4]"]:has([placeholder="Ask ChatGPT to edit"]) {
         [class*="bg-[#f4f4f4]"]:has(textarea[placeholder*="ChatGPT"]) {
-            background-color: var(--c-bg-textarea) !important;
+            background: var(--c-bg-textarea) !important;
             // background-color: var(--c-surface-2) !important;
 
             /* Submit btn */

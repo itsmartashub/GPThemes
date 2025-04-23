@@ -110,6 +110,8 @@
 	--icon-secondary: var(--c-subtext-2) !important;
 	--dot-color: var(--c-txt) !important;
 
+	--c-bg-textarea: linear-gradient(145deg, hsla(var(--accent-hsl) / 0.3) 0%, hsla(var(--accent-hsl) / 0.1) 25%, hsla(var(--accent-hsl) / 0.1) 65%, hsla(var(--accent-hsl) / 0.3) 100%);
+
 	@include container('md') {
 		// --px-chat-bubble-edge-gap: 1vw;
 		--p-chat-bubble: .8rem;
@@ -200,7 +202,6 @@ html.light {
 	--c-bg-msg-gpt: hsl(var(--surface-h), calc(var(--surface-s) * 1), calc(var(--surface-l) * 0.97));
 
 	/* ? ========== Type message textarea colors ========== */
-	--c-bg-textarea: hsla(0, 0%, calc(var(--surface-l) / 1.05));
 	--c-border-textarea: var(--c-bg-textarea);
 	--c-placeholder-textarea: hsla(var(--txt-hsl) / 0.6);
 
@@ -337,7 +338,6 @@ html.dark {
 	--c-bg-msg-gpt: hsla(var(--accent-hsl) / 0.08);
 
 	/* ? ========== Type message textarea colors ========== */
-	--c-bg-textarea: var(--c-surface-2);
 	--c-border-textarea: var(--c-surface-2);
 	--c-placeholder-textarea: hsl(var(--accent-hsl) / 0.8);
 
@@ -472,7 +472,6 @@ html.dark[data-gptheme='oled'] {
 	--c-bg-msg-gpt: hsl(var(--accent-h), calc(var(--surface-s) + 20%), calc(var(--surface-l) + 6%));
 
 	/* ? ========== Type message textarea colors ========== */
-	--c-bg-textarea: var(--c-surface-3);
 	--c-placeholder-textarea: hsl(var(--accent-hsl) / 0.8);
 
 	/* ? ========== modal, dialog, contextmenu bg ========== */
