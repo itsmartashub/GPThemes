@@ -116,7 +116,7 @@
             }
         }
 
-        input:checked + .slider {
+        input:checked+.slider {
             background-color: var(--c-accent);
             border-color: transparent !important;
 
@@ -124,6 +124,11 @@
                 transform: translateX(calc(var(--chb-w) - 145%));
                 background-color: var(--c-on-accent);
             }
+        }
+
+        input:disabled+.slider {
+            // background-color: hsla(var(--accent-hsl) / 0.1);
+            opacity: 0.25 !important;
         }
 
         @include dev('xxs') {
