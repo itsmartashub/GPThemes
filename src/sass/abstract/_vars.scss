@@ -84,7 +84,8 @@
 	- border oko "Uprade" btn-a
 	- border oko inputa u GPTs page
 	- border u "Keyboard shortcuts" oko kao tastera */
-	--border-light: transparent !important;
+	--border-default: var(--c-border) !important;
+	--border-light: var(--c-border-accent) !important;
 
 	--text-primary: var(--c-txt) !important;
 	--text-secondary: var(--c-subtext-1) !important;

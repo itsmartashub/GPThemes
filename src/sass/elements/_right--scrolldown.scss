@@ -4,7 +4,7 @@
     /* 
 - .bottom-5 is when no element above textarea prompt
 - [style*="bottom:"] is when element above textarea prompt */
-    &.bottom-5,
+    &[class*="bottom-"],
     &[style*="bottom:"] {
         will-change: right, left;
         left: var(--scrollBtnLeft, unset) !important;
