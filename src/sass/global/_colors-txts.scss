@@ -80,7 +80,7 @@
 - .text-blue-400: Blue text in reply in prompt textarea when DALLE image is open
 - .text-\[\#0285ff\: Blue deepsearch "X sources"
 - .text-black: maps marker text of inactive marker and 'Map' or 'List' tab in map (inactive tab)*/
-// .text-\[\#0285ff\],
+.text-\[\#0285ff\],
 .text-black,
 .text-green-600,
 .text-blue-400,
@@ -89,9 +89,10 @@
 	color: var(--c-accent) !important;
 }
 
-// [class*="hover:text-[#0285ff]"]:hover {
-// 	color: hsla(var(--accent-hsl) / 0.2) !important;
-// }
+/* Blue deepsearch "X sources" on hover */
+[class*="hover:text-[#0285ff]"]:hover {
+	color: hsla(var(--accent-hsl) / 0.2) !important;
+}
 
 .text-token-link {
 	--link: var(--c-accent) !important;
