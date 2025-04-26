@@ -24,8 +24,11 @@ TODO rewrite this to add border-color in "Is this conversation helpful so far? ð
 	// border-color: red !important;
 }
 
-/* Border in dialogs after main heading - DARK */
-html.dark [class*=':border-white/10'] {
+/*
+-  html.dark [class*=':border-white/10']: Border in dialogs after main heading - DARK,
+- .border-white - counter of review cards border */
+html.dark [class*=':border-white/10'],
+.border-white {
 	border-color: var(--c-border-accent) !important;
 }
 

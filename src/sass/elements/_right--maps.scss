@@ -1,0 +1,109 @@
+[role="presentation"].composer-parent {
+    [data-message-author-role="assistant"] {
+        .markdown .not-prose {
+
+            /* TODO: REMOVED DUE TO OVERKILL (over use :has() and the style is not so terrible actually. But its better with this down). If OpenAI will add some better classes or ids for targetting this, I will readd this style */
+            // &>.bg-primary.pt-2:has(.mapboxgl-map) {
+            //     --bg-primary: var(--toggleBgGpt) !important;
+
+            //     /* Elements present when Maps are in maps view */
+            //     &>.bg-primary {
+            //         border-radius: var(--br-btn-big) !important;
+
+            //         /* Info icon on top left in Map */
+            //         .absolute.start-3.top-3 {
+            //             button:has(>svg[class*="hover:text-token-text-secondary"]) {
+            //                 background-color: transparent !important;
+            //                 color: var(--c-accent) !important;
+
+            //                 svg[class*="hover:text-token-text-secondary"] {
+            //                     color: currentColor !important;
+            //                 }
+            //             }
+            //         }
+            //     }
+
+            //     /* Search - Maps, review cards when hover it in Maps view */
+            //     .swiper-slide {
+            //         &:hover {
+            //             .rounded-xl.bg-token-main-surface-primary {
+            //                 --main-surface-primary: var(--c-surface-3) !important;
+            //             }
+            //         }
+            //     }
+            // }
+
+            // /* Review cards fr mobile and desktop (List view only in Desktop) */
+            // button.rounded-xl:has(> div.text-start a[href*="google.com/maps"]) {
+            //     border: 1px solid hsla(var(--accent-hsl) / 0.15) !important;
+            //     margin-bottom: 0.5rem; // simulate gap between cards
+
+            //     /* Add some spacing from borders on mobile screens */
+            //     @include dev('sm') {
+            //         padding: 0.5rem !important;
+            //     }
+
+            //     &.bg-token-main-surface-tertiary {
+            //         --main-surface-tertiary: hsla(var(--accent-hsl) / .12) !important;
+            //     }
+
+            //     /* Line between review cards in mobile view */
+            //     .my-4.border-t.border-token-border-xlight {
+            //         display: none;
+            //     }
+
+            //     &:hover {
+            //         background-color: hsla(var(--accent-hsl) / .15) !important;
+            //         color: var(--c-txt) !important;
+            //         transform: translateY(-2px) !important;
+            //     }
+            // }
+
+            // /* Image placeholder for non-image for review cards */
+            // .text-start:has(a[href*="google.com/maps"]) {
+            //     .h-full.w-full.bg-gray-100 {
+            //         background-color: transparent !important;
+            //         background-image: linear-gradient(135deg, hsla(var(--accent-hsl) / 0.05), hsla(var(--accent-hsl) / 0.3)) !important;
+            //     }
+
+            //     /* "Closed" text in review cards */
+            //     .text-red-600,
+            //     .text-green-600 {
+            //         font-weight: bold;
+            //     }
+            // }
+
+            .bg-linear-to-b {
+                background: none !important;
+            }
+
+            /* Search - Maps */
+            .mapboxgl-map {
+
+                /* Location counter bubbles in maps */
+                .mapboxgl-marker {
+
+                    /* Change the text color for selected location counter bubbles in the maps */
+                    .text-white.absolute {
+                        color: var(--c-on-accent) !important;
+                    }
+
+                    /* Location counter bubble markers in the maps - when not selected */
+                    svg>[fill="white"] {
+                        fill: var(--c-on-accent) !important;
+                    }
+
+                    /* Kao neki svg border od neaktivnih location bubble markers */
+                    svg>[fill="black"] {
+                        fill: hsla(var(--accent-hsl) / .2) !important;
+                    }
+
+                    /* Location counter bubble markers in the maps - when selected/active */
+                    svg>[fill="#282828"] {
+                        fill: var(--c-accent) !important;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -171,24 +171,32 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 // }
 
 /* 
-- Sidebar
-- Sidebar sticky behind NEWCHAT btn
-- Sidebar "Today", "Yesterday"... time headings 
-- Sidebar user profile picture
-- Tooltip
-- ChatGPT 3.5 btn in sticky header
-- Context menu items in 3dots
-- Context menu items in ChatGPT 3.5
-- Markdown <pre>
-- Prompt textarea send button
-- GPTs - active pill ("Top Picks")
+// - Sidebar
+// - Sidebar sticky behind NEWCHAT btn
+// - Sidebar "Today", "Yesterday"... time headings 
+// - Sidebar user profile picture
+// - Tooltip
+// - ChatGPT 3.5 btn in sticky header
+// - Context menu items in 3dots
+// - Context menu items in ChatGPT 3.5
+// - Markdown <pre>
+// - Prompt textarea send button
+// - GPTs - active pill ("Top Picks")
+
+- Maps: markers, counter bubbles in card review, active tab in "List | Map"
+- ADA: code analysis wrapper bg
+- GPTs: Active pill tag
  */
-.bg-black,
+.bg-black {
+	background-color: var(--c-accent) !important;
+	color: var(--c-on-accent) !important;
+	// @include dev_high(lightgreen);
+}
+
 // [class*='bg-black'],// @@@@@ THIS MAKES CHATS NOT VISIBLE IN FIREFOX ON LIGHT THEME
 .bg-token-sidebar-surface-primary {
 	background-color: var(--c-surface-1);
 	// background-color: orange;
-	// @include dev_high(lightgreen);
 	// background-color: lightgreen;
 }
 
