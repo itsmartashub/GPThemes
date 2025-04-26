@@ -77,11 +77,11 @@
 
 /* 
 - .text-green-600: "Upgrade your plan" dialog, Plus plan "POPULAR" badge
-- .text-blue-selection: Blue text in reply in prompt textarea when DALLE image is open
+- .text-blue-400: Blue text in reply in prompt textarea when DALLE image is open
 - ..text-\[\#0285ff\: Blue deepsearch "X sources" */
 // .text-\[\#0285ff\],
 .text-green-600,
-.text-blue-selection,
+.text-blue-400,
 .text-token-link,
 .hint-pill {
 	color: var(--c-accent) !important;

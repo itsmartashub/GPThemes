@@ -278,10 +278,10 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 
 /* 
 .bg-blue-250 - "🌐 Search" btn in prompt field 
-.text-blue-1000.bg-\[\#DAEEFF\] - "Selection" in Create Image prompt textarea
+.text-blue-500.bg-\[\#DAEEFF\] - "Selection" in Create Image prompt textarea
 */
 [class*="bg-blue-250"],
-.text-blue-1000.bg-\[\#DAEEFF\] {
+.bg-\[\#DAEEFF\] {
 	background-color: hsla(var(--accent-hsl) / 0.2) !important;
 	color: var(--c-accent) !important;
 
