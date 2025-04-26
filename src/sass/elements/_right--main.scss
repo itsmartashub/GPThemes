@@ -409,6 +409,20 @@
 		.whitespace-pre-wrap>.absolute.bottom-4.start-0.top-4.w-1.rounded-full.bg-token-border-light {
 			--border-light: var(--c-subtext-1) !important;
 		}
+
+
+		/* DeepSearch: strange boder */
+		[class*="@container"].border-token-border-sharp.mx-\[-16px\].contain-inline-size {
+			border: none !important;
+
+			[data-message-author-role="assistant"] {
+				border-radius: var(--br-chat-bubble);
+				padding: 0.75rem;
+				// border: 1px solid hsla(var(--accent-hsl) / .12) !important;
+				box-shadow: color-mix(in srgb, var(--c-bg-pre) 90%, black 10%) 0px 7px 16px 0px; // on hover: 0 12 32 0
+				border: color-mix(in srgb, hsla(var(--accent-hsl) / 0.12) 50%, black 2%) 1px solid;
+			}
+		}
 	}
 
 	/* Dual Responses (paragen) title */
