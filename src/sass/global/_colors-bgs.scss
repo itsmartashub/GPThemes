@@ -338,6 +338,12 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 	border: none !important;
 }
 
+/* "Share Link" button in DeepSearch preview radix dialog */
+.bg-token-text-primary {
+	background-color: var(--c-accent) !important;
+	color: var(--c-on-accent) !important;
+}
+
 // .bg-token-bg-primary {
 // 	background-color: var(--c-bg-chats-container);
 // }

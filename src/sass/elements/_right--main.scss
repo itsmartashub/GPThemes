@@ -234,59 +234,6 @@
 			}
 		}
 
-		/* SOURCE PILL LINKS IN CHAT BUBBLE
-		! Problem sa obim je sto ne mogu da overwriujem background-color jer OpenAI koristi !important na ovim utilities klasala, i ond amoram da koristin gradient. ali, ne smeme transparentis boju jer se onda vidi ispod ova OpenAI's, i onda izgleda cudno 
-		- a.h-6.rounded-xl.font-medium.text-token-text-secondary\!.bg-\[\#F4F4F4\]\!.dark\:bg-\[\#303030\]\! - Sources links in chat bubble wth bubble on mouseover - basic state
-		- a.h-6.rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! - Sources links in chat bubble wth bubble on mouseover - mouseover state */
-		a[target="_blank"].rounded-xl.font-medium.text-token-text-secondary\!.bg-\[\#F4F4F4\]\!.dark\:bg-\[\#303030\]\!,
-		a[target="_blank"].rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! {
-			--c-simulator-txt: var(--c-accent);
-			@extend %simulator_bg;
-
-			span {
-				color: var(--c-simulator-txt) !important;
-			}
-		}
-
-		// /* Sources pill links in chat bubble wth bubble on mouseover - mouseover state */
-		a[target="_blank"].rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! {
-			--c-simulator-bg: var(--c-accent) !important;
-			--c-simulator-txt: var(--c-on-accent) !important;
-		}
-
-		// a.h-6.rounded-xl.font-medium.\!text-token-text-secondary.\!bg-\[\#F4F4F4\].dark\:\!bg-\[\#303030\],
-		// a.h-6.rounded-xl.font-medium.\!text-token-main-surface-primary.\!bg-token-text-primary {
-		// 	--c-simulator-txt: var(--c-accent);
-		// 	@extend %simulator_bg;
-
-		// 	span {
-		// 		color: var(--c-simulator-txt) !important;
-		// 	}
-		// }
-
-		// a.h-6.rounded-xl.font-medium.\!text-token-main-surface-primary.\!bg-token-text-primary {
-		// 	--c-simulator-bg: var(--c-accent) !important;
-		// 	--c-simulator-txt: var(--c-on-accent) !important;
-		// }
-
-		/* Search Links pills in GPT Chat Bubble. ovo je .h[22px] i nije mouseover vec hover */
-		a.rounded-xl.font-medium.bg-\[\#f4f4f4\][class*="hover:bg-token-text-primary"] {
-			background: hsla(var(--accent-hsl) / 0.12);
-
-			span {
-				color: var(--c-accent) !important;
-			}
-
-			&:hover {
-				background-color: var(--c-accent) !important;
-
-				span {
-					color: var(--c-on-accent) !important;
-				}
-			}
-		}
-
-
 		/* "SOURCES" button */
 		.absolute[class*="h-[60px]"]:has(>button.not-prose.group\/footnote.bg-token-main-surface-primary) {
 
