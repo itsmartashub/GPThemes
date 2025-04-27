@@ -10,7 +10,8 @@
 
 // nav .group\/sidebar {
 // nav[aria-label='Chat history'] {
-#sidebar {
+#sidebar,
+#history {
 
 	/* List item for GPTs and for chats-list item */
 	[class*='bg-[var(--item-background-color)]'] {
