@@ -377,7 +377,7 @@
 
 	/* Dual Responses (paragen) title */
 	[data-testid="paragen-feedback-title"] {
-		background: none !important;
+		background: var(--c-bg-chats-container) !important;
 	}
 
 	/* Dual Responses */
