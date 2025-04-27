@@ -1,8 +1,4 @@
 /* Sidebar bg-color */
-// .bg-token-sidebar-surface-primary:has(nav[aria-label='Chat history']) {
-// .bg-token-sidebar-surface-primary {}
-
-/* Sidebar bg-color */
 .bg-token-sidebar-surface-primary[class*="var(--sidebar-slideover)"] {
 	background-color: var(--c-bg-sidebar) !important;
 	color: var(--c-txt) !important;
@@ -53,50 +49,19 @@
 		margin-bottom: var(--mb-sidebar-nav-li) !important;
 
 		.group {
-			// overflow: hidden;
-			// transition: transform 0.25s ease;
-
-
-			/* Active sidebar list item 
-			- &:has(a ~ .absolute.bottom-0.top-0:not(.invisible)) je za active/selected sidebar list item tj kada 3dots wrapper nema klasu .invisible, onda je taj item selektovan */
-			// &:has(a ~ .absolute.bottom-0.top-0:not(.invisible)),
-			// &:hover {
-			// 	background-color: var(--c-surface-2) !important;
-			// 	// --item-background-color: var(--main-surface-secondary-selected);
-			// }
-
-			// &:not(:has(a ~ .absolute.bottom-0.top-0:not(.invisible))):hover {
-			// 	transform: translateY(-0.08rem);
-			// 	// --item-background-color: var(--main-surface-secondary-selected);
-			// }
-
-			// &:has(a ~ .absolute.bottom-0.top-0:not(.invisible)) {
-			// 	box-shadow: 0 0 2px 1.5px hsl(var(--accent-hsl) / 0.15) !important;
-			// }
-
-			/* 3dots btn wrapper - inherit means inherit it from the parent (.group) when hovered or not */
-			// .absolute.bottom-0.top-0:has([aria-label="Open conversation options"]) {
-			// 	background-color: inherit !important;
-			// }
 
 			/* 3 dots > "Rename" clicked - style of input parent and input  - this is <div> next to <a> */
-			&:has(input) {
-				outline: 2px solid hsl(var(--accent-hsl) / 0.2);
+			.absolute.bg-token-sidebar-surface-secondary {
+				border-radius: var(--br-btn);
+				box-shadow: inset 0 0 0 1px hsla(var(--accent-hsl) / 0.05);
+				// box-shadow: inset 0 0 20px 10px hsla(var(--accent-hsl) / 0.1);
+				// outline: 2px solid hsl(var(--accent-hsl) / 0.2);
 
-				// & a[href^='/'] {
-				// 	// --sidebar-mask: linear-gradient(90deg, var(--c-bg-sidebar), var(--c-bg-sidebar) 84%, transparent 89%, transparent);
-				// 	mask-image: none !important;
-				// }
-
-				// & a[href^='/'],
-				// & .bg-token-sidebar-surface-secondary {
-				// 	background-color: var(--c-bg-sidebar) !important;
-				// }
-
-				input {
+				&>input {
 					// input rename border color on focused
 					--tw-ring-color: transparent !important;
-					caret-color: var(--c-txt);
+					color: var(--c-accent);
+					caret-color: currentColor;
 					border: none !important;
 					outline: none !important;
 				}
@@ -107,13 +72,12 @@
 
 
 /* SIDEBAR for mobile */
-// .bg-token-sidebar-surface-primary[role='dialog']:has(nav[aria-label='Chat history']) {
-.h-full.bg-token-sidebar-surface-primary[role='dialog'][class*="--sidebar-width"] {
-	--p-dialog: 0.5rem;
-	background-color: var(--c-bg-sidebar) !important;
-	// border-radius: var(--br-contextmenu) !important;
-}
+// .h-full.bg-token-sidebar-surface-primary[role='dialog'][class*="--sidebar-width"] {
+// 	--p-dialog: 0.5rem;
+// 	background-color: var(--c-bg-sidebar) !important;
+// }
 
+/* Unread indicator on toggle sidebar icon */
 [fill="#0285FF"] {
 	fill: var(--c-accent) !important;
 }
