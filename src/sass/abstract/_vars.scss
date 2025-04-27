@@ -516,7 +516,8 @@ html.dark[data-gptheme='oled'] {
 	// --c-bg-chats-sticky: rgba(0, 0, 0, 0.02);
 
 	/* ? ========== Chat bubbles colors ========== */
-	--c-bg-msg-user: hsl(var(--accent-h), calc(var(--surface-s) + 15%), calc(var(--surface-l) + 4%));
+	// --c-bg-msg-user: hsl(var(--accent-h), calc(var(--accent-s) * 1.4), 10%);
+	--c-bg-msg-user: hsla(var(--accent-hsl) / 0.14);
 	--c-bg-msg-gpt: hsl(var(--accent-h), calc(var(--surface-s) + 20%), calc(var(--surface-l) + 6%));
 
 	/* ? ========== Type message textarea colors ========== */

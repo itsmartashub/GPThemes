@@ -25,47 +25,48 @@ const SECTION_TYPES = {
 
 const currentReleaseChanges = {
 	// Example data - in a real scenario, you'd only include sections with actual content
-	features: [
-		{
-			description: 'Toggle Chat Bubbles:',
-			details: 'Added a new setting to turn on and off chat bubbles for both, user and assistant',
-			issueRef: 129,
-		},
-	],
+	// features: [
+	// 	{
+	// 		description: 'Toggle Chat Bubbles:',
+	// 		details: 'Added a new setting to turn on and off chat bubbles for both, user and assistant',
+	// 		issueRef: 129,
+	// 	},
+	// ],
 	improvements: [
 		{
-			description: 'Revamp Light Theme:',
-			details: 'Replace harsh gray shades with subtle accent-inspired colors in the light theme',
+			description: 'DeepSearch:',
+			details: 'Updated all the broken styles related to the new DeepSearch feature.',
+			issueRef: 119,
+		},
+		{
+			description: 'Custom Widths:',
+			details:
+				'Numerous improvements related to width sliders, toggle functions, state handling, especially for mobile.',
 			issueRef: 119,
 		},
 	],
 	fixes: [
 		{
-			description: 'Custom Width:',
-			details:
-				"Updated selectors to address OpenAI's changes, restoring the functionality of custom widths for chats and prompt fields",
-			issueRef: 120,
-		},
-		{
-			description: 'Custom Scrolldown Position:',
-			details:
-				"Updated the selector for the custom scroll down button to fix alignment issues caused by recent changes to OpenAI's classes.",
+			description: 'Scroll Down Button:',
+			details: 'Updated selector for custom alignment due the recent OpenAI changes',
 			issueRef: 121,
 		},
 		{
-			description: 'Chats and Prompt Fields Overlapping:',
-			details: 'Resolved visual overlap with chats behind the message input field.',
+			description: 'Chats Elements:',
+			details:
+				'Fixes and improvements related to Chats, Markdown elements, Tables, Reply, Maps, DALLE, Create Image, Canvas, Dual Responses Layout, etc.',
 			issueRef: 127,
 		},
 		{
-			description: 'First User Message:',
-			details: 'Prevent the first user message from being half cut from top on some screen sizes and zooms',
+			description: 'Modal and Dialogs:',
+			details: "Reduced excessive padding and prevented tab buttons overlap when there isn't enough space",
+			issueRef: 127,
 		},
 	],
 	other: [
 		{
 			details:
-				'Thanks for using GPThemes! This release brings many other improvements and bug fixes to enhance your experience. For all the details, check out the full release notes on GitHub.',
+				'Thanks for using <code>GPThemes</code>! This release brings many other improvements and bug fixes to enhance your experience. For all the details, check out the full release notes on GitHub.',
 		},
 	],
 	// Add other sections as needed for each release
