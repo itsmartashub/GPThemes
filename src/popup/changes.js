@@ -17,7 +17,7 @@ const links = {
 
 const SECTION_TYPES = {
 	features: { emoji: '🆕', title: 'Features' },
-	improvements: { emoji: '⚡', title: 'Improvements' },
+	improvements: { emoji: '🚀', title: 'Enhancements' },
 	fixes: { emoji: '🩹', title: 'Fixes' },
 	other: { emoji: '🧵', title: 'Other' },
 	// Can easily add more section types as needed
@@ -36,31 +36,34 @@ const currentReleaseChanges = {
 		{
 			description: 'DeepSearch:',
 			details: 'Updated all the broken styles related to the new DeepSearch feature.',
-			issueRef: 119,
+			issueRef: 138,
 		},
 		{
 			description: 'Custom Widths:',
 			details:
 				'Numerous improvements related to width sliders, toggle functions, state handling, especially for mobile.',
-			issueRef: 119,
+			prRef: 135,
+		},
+		{
+			description: 'OLED User Message:',
+			details: 'Made the user message background more accent-like in OLED theme',
 		},
 	],
 	fixes: [
 		{
 			description: 'Scroll Down Button:',
 			details: 'Updated selector for custom alignment due the recent OpenAI changes',
-			issueRef: 121,
 		},
 		{
 			description: 'Chats Elements:',
 			details:
 				'Fixes and improvements related to Chats, Markdown elements, Tables, Reply, Maps, DALLE, Create Image, Canvas, Dual Responses Layout, etc.',
-			issueRef: 127,
+			issueRef: 136,
 		},
 		{
 			description: 'Modal and Dialogs:',
 			details: "Reduced excessive padding and prevented tab buttons overlap when there isn't enough space",
-			issueRef: 127,
+			issueRef: 131,
 		},
 	],
 	other: [

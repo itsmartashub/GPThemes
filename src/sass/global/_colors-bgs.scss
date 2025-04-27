@@ -186,8 +186,10 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 - Maps: markers, counter bubbles in card review, active tab in "List | Map"
 - ADA: code analysis wrapper bg
 - GPTs: Active pill tag
+- Create Image Dialog: Bg of modal when image open [data-testid^="modal-image-gen-"]
+
  */
-.bg-black {
+.bg-black:not([data-testid^="modal-image-gen-"], .border-t.border-gray-500) {
 	background-color: var(--c-accent) !important;
 	color: var(--c-on-accent) !important;
 	// @include dev_high(lightgreen);

@@ -61,8 +61,6 @@ const UI_SELECTORS = {
 
 const UI_IDS = Object.fromEntries(Object.entries(UI_SELECTORS).map(([k, v]) => [k, v.slice(1)]))
 
-console.log(UI_IDS)
-
 // ==========================================
 // UTILITIES
 // ==========================================
@@ -377,7 +375,7 @@ async function resetWidths() {
 	updateUI(currentState)
 
 	await browser.storage.sync.remove(Object.values(WIDTH_CONFIG.storageKeys))
-	console.log('[↔️ GPThemes] Width settings reset.')
+	// console.log('[↔️ GPThemes] Width settings reset.')
 }
 
 // ==========================================
@@ -414,7 +412,7 @@ async function init() {
 		applyCssVariables(currentState.settings)
 		updateUI(currentState)
 
-		console.log('[↔️ GPThemes] Width settings initialized:', currentState)
+		// console.log('[↔️ GPThemes] Width settings initialized:', currentState)
 	} catch (err) {
 		console.error('[↔️ GPThemes] Init error:', err)
 	}
