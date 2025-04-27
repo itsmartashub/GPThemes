@@ -57,11 +57,11 @@ const currentReleaseChanges = {
 		{
 			description: 'Chats Elements:',
 			details:
-				'Fixes and improvements related to Chats, Markdown elements, Tables, Reply, Maps, DALLE, Create Image, Canvas, Dual Responses Layout, etc.',
+				'Style fixes and improvements related to Chats, Source Links, Markdown Elements, Tables, Reply, Maps, DALLE, Create Image, Canvas, Dual Responses Layout, etc.',
 			issueRef: 136,
 		},
 		{
-			description: 'Modal and Dialogs:',
+			description: 'ChatGPT Settings:',
 			details: "Reduced excessive padding and prevented tab buttons overlap when there isn't enough space",
 			issueRef: 131,
 		},
