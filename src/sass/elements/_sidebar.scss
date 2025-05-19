@@ -32,10 +32,6 @@
 		}
 	}
 
-	// .bg-token-bg-elevated-secondary.top-header-height.sticky {
-	// 	background-color: var(--c-bg-sidebar);
-	// }
-
 	/* Parent of time heading (of Today, Yesterday) in sidebar */
 	span:has(> h3) {
 
@@ -87,9 +83,6 @@
 }
 
 nav[aria-label].h-full {
-	.bg-token-bg-elevated-secondary.sticky {
-		background-color: var(--c-bg-sidebar);
-	}
 
 	/* "Upgrade" link in nav bg */
 	span.h-7.w-7.rounded-full.border-token-border-default {

@@ -345,3 +345,8 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 // .bg-token-bg-primary {
 // 	background-color: var(--c-bg-chats-container);
 // }
+
+/* Sidebar - bg around date headers ("Today", "Yesterday", etc) and ChatGPT item in sidebar */
+.bg-token-bg-elevated-secondary {
+	background-color: var(--c-bg-sidebar) !important;
+}
