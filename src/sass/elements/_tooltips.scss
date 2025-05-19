@@ -4,66 +4,6 @@
 	- Tooltip when hover on "Attach Files" button in prompt textarea
 	- Tooltip when hover on ❌ in attached images in prompt textarea
 */
-// div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
-// 	// @extend %animFadeIn;
-// 	padding: var(--p-tooltips) !important;
-
-// 	/* Basic tooltip & tooltip with searched links in GPT chat bubble */
-// 	.bg-black {
-// 		background-color: var(--c-bg-tooltip) !important;
-// 		// border: 2px solid greenyellow !important;
-
-// 		[class*='text-'] {
-// 			color: var(--c-txt) !important;
-// 			// color: greenyellow !important;
-// 		}
-// 	}
-
-// 	/* Tooltip with small buttons (when hover on "Attach Files" button in prompt textarea) */
-// 	.bg-token-main-surface-primary {
-// 		// border: 2px solid red !important;
-// 		--main-surface-primary: var(--c-surface-3) !important;
-// 		// background-color: var(--main-surface-primary) !important;
-
-// 		[class*='text-'] {
-// 			color: var(--c-txt) !important;
-// 			// color: red !important;
-// 		}
-// 	}
-
-// 	.text-gray-100.text-sm .bg-token-main-surface-secondary.dark\:bg-token-main-surface-tertiary,
-// 	.text-gray-100.text-sm .dark\:bg-token-main-surface-secondary {
-// 		background-color: transparent !important;
-// 	}
-
-// 	.shadow-xs,
-// 	.shadow-lg {
-// 		// --tw-shadow: none !important;
-// 		box-shadow: none !important;
-// 	}
-
-// 	/* Links in tooltips shown when hovered on some search "Link" in GPT chat bubble */
-// 	// &:has(a[href^='http']) {
-// 	// 	a[href^='http'] {
-// 	// 		color: currentColor !important;
-// 	// 	}
-// 	// }
-// }
-
-// html.dark div[data-radix-popper-content-wrapper]:has([role='tooltip']) {
-// 	.bg-gray-950 {
-// 		[class*='text-'] {
-// 			color: var(--c-on-accent) !important;
-// 		}
-// 	}
-
-// 	// &:has(a[href^='http']) {
-// 	// 	a[href^='http'] {
-// 	// 		color: var(--c-on-accent) !important;
-// 	// 	}
-// 	// }
-// }
-
 div[data-radix-popper-content-wrapper] div[style*='--radix-tooltip-content'] {
 
 	&,
@@ -78,5 +18,4 @@ div[data-radix-popper-content-wrapper] div[style*='--radix-tooltip-content'] {
 	.text-gray-400 {
 		opacity: 0.75;
 	}
-
 }

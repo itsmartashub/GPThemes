@@ -99,39 +99,73 @@
 		}
 	}
 
-	/* Markdown table parent of parent - caused overflow-x and scrollbards in X-axios */
-	.relative.left-\[50\%\].flex.w-\[100cqw\].translate-x-\[-50\%\].justify-center:has(>.tableContainer.horzScrollShadows) {
-		left: 0 !important;
-		translate: 0 !important;
-		width: auto !important;
-		justify-content: start !important; // da ne bude centriran vec ulevo
-		overflow-x: auto !important; // da ne overlapuje chat
-		pointer-events: all !important; // da mozesmo da dohvatimo skrollbar
-	}
+	/* new Markdown table - NEW STYLE AGAIN... */
+	div[class*='_tableContainer'] {
+		--thread-content-width: var(--w_chat_gpt) !important;
+		max-width: 100% !important;
+		margin-inline: auto !important;
 
-	/* Markdown table parent - caused overflow-x and scrollbards in X-axios  */
-	span.pointer-events-none.absolute.start-full.top-4.z-10.h-full.w-fit.ps-2 {
-		button.rounded-lg[class*="hover:bg-token-main-surface-secondary"] {
-			background-color: var(--c-accent) !important;
-			color: var(--c-on-accent) !important;
+		div[class*='_tableWrapper'] {
+			margin-inline: auto !important;
 
-			// &:hover {
-			// 	color: var(--c-accent) !important;
-			// 	background-color: hsla(var(--accent-hsl) / 0.12) !important;
-			// 	backdrop-filter: blur(10px);
-			// }
+			table {
+				// max-width: var(--w_chat_gpt) !important;
+				// min-width: var(--w_chat_gpt) !important;
+
+				&~div.sticky {
+					right: 0 !important;
+
+					// .sticky[class*="end-(--thread-content-margin)"] {
+					// }
+
+					.bg-token-bg-primary {
+						background-color: var(--c-accent) !important;
+						color: var(--c-on-accent) !important;
+						border-radius: 50vw !important;
+
+						&:hover {
+							background-color: var(--c-on-accent) !important;
+							color: var(--c-accent) !important;
+						}
+					}
+				}
+			}
 		}
 	}
 
-	.tableContainer.horzScrollShadows {
-		background: none !important;
-		// --main-surface-primary: var(--c-bg-msg-gpt) !important;
-		// width: var(--w_chat_gpt) !important;
-		min-width: 70% !important;
-		max-width: 100% !important;
-		flex: 1;
-		margin-inline: 0 !important;
-	}
+	/* Markdown table parent of parent - caused overflow-x and scrollbards in X-axios */
+	// .relative.left-\[50\%\].flex.w-\[100cqw\].translate-x-\[-50\%\].justify-center:has(>.tableContainer.horzScrollShadows) {
+	// 	left: 0 !important;
+	// 	translate: 0 !important;
+	// 	width: auto !important;
+	// 	justify-content: start !important; // da ne bude centriran vec ulevo
+	// 	overflow-x: auto !important; // da ne overlapuje chat
+	// 	pointer-events: all !important; // da mozesmo da dohvatimo skrollbar
+	// }
+
+	// /* Markdown table parent - caused overflow-x and scrollbards in X-axios  */
+	// span.pointer-events-none.absolute.start-full.top-4.z-10.h-full.w-fit.ps-2 {
+	// 	button.rounded-lg[class*="hover:bg-token-main-surface-secondary"] {
+	// 		background-color: var(--c-accent) !important;
+	// 		color: var(--c-on-accent) !important;
+
+	// 		// &:hover {
+	// 		// 	color: var(--c-accent) !important;
+	// 		// 	background-color: hsla(var(--accent-hsl) / 0.12) !important;
+	// 		// 	backdrop-filter: blur(10px);
+	// 		// }
+	// 	}
+	// }
+
+	// .tableContainer.horzScrollShadows {
+	// 	background: none !important;
+	// 	// --main-surface-primary: var(--c-bg-msg-gpt) !important;
+	// 	// width: var(--w_chat_gpt) !important;
+	// 	min-width: 70% !important;
+	// 	max-width: 100% !important;
+	// 	flex: 1;
+	// 	margin-inline: 0 !important;
+	// }
 
 	table {
 		/* TODO - this overflow cause cutting the border edges of latest <tr> child, wtf. So I have to add border to <table> also (down where <th>, <td> are) */
