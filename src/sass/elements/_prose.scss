@@ -102,13 +102,16 @@
 	/* new Markdown table - NEW STYLE AGAIN... */
 	div[class*='_tableContainer'] {
 		--thread-content-width: var(--w_chat_gpt) !important;
-		max-width: 100% !important;
-		margin-inline: auto !important;
+		width: 100% !important;
+		margin-inline: unset !important;
 
 		div[class*='_tableWrapper'] {
-			margin-inline: auto !important;
+			margin-inline: unset !important;
+			// width: 100% !important;
 
 			table {
+				max-width: 100% !important;
+				min-width: fit-content !important;
 				// max-width: var(--w_chat_gpt) !important;
 				// min-width: var(--w_chat_gpt) !important;
 
@@ -171,6 +174,8 @@
 		/* TODO - this overflow cause cutting the border edges of latest <tr> child, wtf. So I have to add border to <table> also (down where <th>, <td> are) */
 		// overflow: hidden;
 		border-radius: var(--br-btn) !important;
+		// --thread-content-width: var(--w_chat_gpt) !important;
+		// width: 100% !important;
 
 		thead {
 			--tw-prose-headings: var(--c-txt) !important;
