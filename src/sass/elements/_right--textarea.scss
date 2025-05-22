@@ -75,63 +75,12 @@ form {
 			}
 		}
 
-		/* TODO(remove): REMOVE if or when this selector is removed for all user profiles */
-		/* "Reply" in msg textarea */
-		#reply-regions {
-			.bg-token-main-surface-secondary {
-				background-color: hsla(var(--accent-hsl) / 0.15) !important;
-				border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
-
-				/* Reply btn icon */
-				.w-7.h-6,
-				/* Cancel btn icon */
-				button.text-token-text-secondary {
-					&:has(>svg) {
-						border-radius: 50vw;
-					}
-				}
-
-				/* Reply btn icon */
-				.w-7.h-6:has(>svg) {
-					color: var(--c-accent) !important;
-					background-color: hsla(var(--accent-hsl) / 0.2) !important;
-				}
-
-				/* Cancel btn icon */
-				button.text-token-text-secondary:has(>svg) {
-					color: var(--c-on-accent) !important;
-					background-color: var(--c-accent) !important;
-				}
-			}
-		}
-
-		/* Action buttons in textarea footer ("Search", "Reason", "+") */
-		.h-9.rounded-full:not([data-testid]) {
-			border: 1px solid hsla(var(--accent-hsl) / 0.12) !important;
-
-			&,
-			svg {
-				color: var(--c-accent) !important;
-			}
-
-			&:has([aria-pressed="false"]) {
-				// --c-surface-2: transparent !important;
-				background-color: transparent !important;
-			}
-
-			/* Action buttons in textarea footer when in SELECTED state ("Search", "Reason", "+") */
-			&:has([aria-pressed="true"]) {
-				background-color: hsla(var(--accent-hsl) / 0.15) !important;
-				// background: red !important;
-			}
-
-			&:hover {
-				background-color: hsla(var(--accent-hsl) / 0.2) !important;
-			}
-		}
-
 		span>button[aria-label="Open in canvas"] {
 			background-color: hsla(var(--accent-hsl) / 0.15) !important;
+			color: var(--c-accent) !important;
+		}
+
+		button[type="button"][aria-label] {
 			color: var(--c-accent) !important;
 		}
 
@@ -149,6 +98,24 @@ form {
 
 			svg {
 				color: var(--c-on-accent) !important;
+			}
+		}
+
+		/* New Advanced Voice Mode button */
+		[data-testid="composer-speech-button"] {
+			--shadow: 0 0 2px 2px hsla(var(--accent-hsl) / 0.8) inset, -1px -1px 5px 0px #fff inset;
+			--c-bg-gradient: linear-gradient(-25deg,
+					hsla(var(--accent-hsl) / 0.001) 0%,
+					hsla(var(--accent-hsl) / 0.35) 18%,
+					hsla(var(--accent-hsl) / 0.85) 58%,
+					hsla(var(--accent-hsl) / 1) 90%);
+			background: var(--c-bg-gradient) !important;
+			color: var(--c-on-accent) !important;
+			box-shadow: var(--shadow) !important;
+
+			&:disabled {
+				background: hsla(var(--accent-hsl) / 0.12) !important;
+				color: var(--c-accent) !important;
 			}
 		}
 
@@ -194,42 +161,6 @@ form {
 						border-radius: 10px !important;
 					}
 				}
-			}
-		}
-
-		/* "Dictate button" - whisper button next to advanced voice and cancel when activate the Dictate btn */
-		.h-9.btn-primary.btn-small.rounded-full {
-			&:not(&:hover) {
-				background-color: transparent !important;
-			}
-
-			border-radius: 50vw !important;
-		}
-
-		/* Voice mode button when there is no [data-testid="composer-speech-button"] selector loaded. So on page loads */
-		.h-9.rounded-full.bg-black.dark\:bg-white {
-			background-color: var(--c-accent);
-
-			svg {
-				color: var(--c-on-accent) !important;
-			}
-		}
-
-		/* New Advanced Voice Mode button */
-		[data-testid="composer-speech-button"] {
-			--shadow: 0 0 2px 2px hsla(var(--accent-hsl) / 0.8) inset, -1px -1px 5px 0px #fff inset;
-			--c-bg-gradient: linear-gradient(-25deg,
-					hsla(var(--accent-hsl) / 0.001) 0%,
-					hsla(var(--accent-hsl) / 0.35) 18%,
-					hsla(var(--accent-hsl) / 0.85) 58%,
-					hsla(var(--accent-hsl) / 1) 90%);
-			background: var(--c-bg-gradient) !important;
-			color: var(--c-on-accent) !important;
-			box-shadow: var(--shadow) !important;
-
-			&:disabled {
-				background: hsla(var(--accent-hsl) / 0.12) !important;
-				color: var(--c-accent) !important;
 			}
 		}
 	}

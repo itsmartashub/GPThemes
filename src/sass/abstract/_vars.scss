@@ -192,6 +192,12 @@ html,
 	- contextmenu in theme dropdown chooser
 	- "Upgrade ur plan" dialog bg */
 	--popover-surface-primary: var(--c-bg-contextmenu) !important;
+
+	--interactive-bg-secondary-hover: hsla(var(--accent-hsl) / 0.12) !important; // when hover action btns in prompt-textarea
+	--interactive-bg-secondary-press: hsla(var(--accent-hsl) / 0.2) !important; // when pressed action btns in prompt-textarea
+	--interactive-bg-accent-muted-hover: hsla(var(--accent-hsl) / 0.12) !important; // when hover on action btn in prompt-textarea like: Think, Search, Canvas etc
+	--interactive-bg-accent-muted-press: hsla(var(--accent-hsl) / 0.3) !important; // when holding pressed on action btn in prompt-textarea like: Think, Search, Canvas etc
+	--interactive-label-accent-default: var(--c-accent) !important;
 }
 
 // }
