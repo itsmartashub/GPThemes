@@ -68,6 +68,33 @@
 	// --gray-800: #212121;
 	// --gray-900: #171717;
 	// --gray-950: #0d0d0d;
+
+
+	@include container('md') {
+		// --px-chat-bubble-edge-gap: 1vw;
+		--p-chat-bubble: .8rem;
+		--br-chat-bubble: calc(var(--br) * 1.1);
+	}
+
+	@include container('sm') {
+		--br-chat-bubble: var(--br) !important;
+	}
+
+	@include dev('md') {
+		--p-chat-bubble: .8rem;
+		--br-chat-bubble: calc(var(--br) * 1.55);
+		--p-contextmenu: .5rem;
+		// --p-prompt-textarea: 0.5rem;
+		--p-dialog: 0.3rem;
+		--br-dialog: calc(var(--br) * 1.5);
+		--p-sidebar-nav: 0.3rem;
+	}
+}
+
+html,
+.light,
+.dark {
+
 	--red-500: var(--c-danger) !important;
 	// --red-700: #911e1b;
 	--brand-purple: var(--c-accent) !important;
@@ -105,30 +132,6 @@
 	--icon-status-warning: var(--c-warning) !important;
 	--icon-status-error: var(--c-danger) !important;
 
-	@include container('md') {
-		// --px-chat-bubble-edge-gap: 1vw;
-		--p-chat-bubble: .8rem;
-		--br-chat-bubble: calc(var(--br) * 1.1);
-	}
-
-	@include container('sm') {
-		--br-chat-bubble: var(--br) !important;
-	}
-
-	@include dev('md') {
-		--p-chat-bubble: .8rem;
-		--br-chat-bubble: calc(var(--br) * 1.55);
-		--p-contextmenu: .5rem;
-		// --p-prompt-textarea: 0.5rem;
-		--p-dialog: 0.3rem;
-		--br-dialog: calc(var(--br) * 1.5);
-		--p-sidebar-nav: 0.3rem;
-	}
-}
-
-html,
-.light,
-.dark {
 	/* 
 	- Sidebar collapse btn
 	- "ChatGPT 3.5 - Fastest" in 4o menu when hover on it in chat bubbles*/

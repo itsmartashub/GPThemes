@@ -1,7 +1,4 @@
-/* .h-full.overflow-y-auto:has(> .sticky > [href='/']) is for Guest mode on GPTs Store */
-main:has(.sticky [href='/gpts/editor']),
-.h-full.overflow-y-auto:has(> .sticky > [href='/']) {
-
+main.h-full#main {
 	a.gizmo-link {
 		transition: ease-in-out 0.25s;
 
@@ -11,34 +8,22 @@ main:has(.sticky [href='/gpts/editor']),
 	}
 
 	/* Sticky header tags aka "Top Picks", "DALLE", "Writing", etc */
-	.sticky {
+	.sticky.top-14.z-10.-ms-4.w-screen.py-2.text-sm {
+		.no-scrollbar.flex.scroll-m-5 {
 
-		[class*='md:rounded-none'],
-		[class*='md:rounded-lg'] {
-			border-radius: 100vw !important;
-			padding-inline: 1rem !important;
-		}
+			[class*='md:rounded-none'],
+			[class*='md:rounded-lg'] {
+				border-radius: 50vw !important;
+				padding-inline: 1rem !important;
 
-		/* Active tag aka "Top Picks" */
-		[class*='md:rounded-none'] {
-			border: none !important;
-			background-color: var(--c-accent) !important;
-			color: var(--c-on-accent) !important;
-
-			/* Fix active pill tag bg be overwritten by global [class*='bg-black'] */
-			&[class*='bg-black'] {
-				background-color: var(--c-accent) !important;
+				&[class*="border-b-2"] {
+					border: none !important;
+				}
 			}
 		}
 
-		/* No-active tags aka "DALLE", "Writing", etc */
-		[class*='md:rounded-lg'] {
-			background-color: hsla(var(--accent-hsl) / 0.2) !important;
-			color: var(--c-accent) !important;
-		}
-
 		/* Left/right arrows in tags track */
-		[class*='bg-linear-to-'] {
+		.absolute[class*='bg-linear-to-'] {
 			--tw-gradient-from: var(--c-bg-chats-container) !important;
 
 			button {
@@ -47,109 +32,4 @@ main:has(.sticky [href='/gpts/editor']),
 			}
 		}
 	}
-
-	/* All the cards hover bg (on search query list and on main big ones)
-	BUT it is also and "🌐 Global View on/off" btn in .sticky header so we have to use: not(button)*/
-	[class*='dark:hover:bg-white/10']:not(button) {
-		&:hover {
-			background-color: var(--c-surface-3) !important;
-		}
-	}
-
-	/* Section visible on search query */
-	[id*='headlessui-popover-panel-'] {
-		// border: 1px solid red !important;
-		// --main-surface-primary: var(--c-surface-2) !important;
-		--br-search-query-section: calc(var(--br-btn) * 1.2) !important;
-
-		/* Added to visually remove unstickness search query section from input search */
-		transform: translateY(-3px);
-		padding-top: 10px;
-
-		border-radius: 0 0 var(--br-search-query-section) var(--br-search-query-section) !important;
-
-		/* Search query section items/cards */
-		.gizmo-link {
-			border-radius: var(--br-btn) !important;
-			margin-bottom: 0.5rem;
-
-
-			svg.text-gray-400 {
-				color: var(--c-on-accent) !important;
-				// color: red !important;
-			}
-		}
-	}
-
-	/* All the card items in GPTs Store main page */
-	.h-fit {
-
-		/* "See more" full-width buttons */
-		.btn.w-full {
-			margin: 2rem auto 3rem !important;
-			// width: 50%;
-			// display: block;
-		}
-	}
 }
-
-/* 
-? Active tag classes ("Top Picks") vs no-active tag classes ("DALLE", "Writing", etc)
-```border-token-text-primary bg-black text-white dark:bg-gray-100 dark:text-gray-800 md:rounded-none md:border-b-2 md:text-black dark:md:text-white
-cursor-pointer scroll-mx-5 whitespace-nowrap rounded-3xl px-3 py-2 first:ml-4 last:mr-4 md:px-2 md:first:ml-0 md:last:mr-0 border-token-text-primary bg-black text-white dark:bg-gray-100 dark:text-gray-800 md:rounded-none md:border-b-2 md:bg-transparent md:text-black dark:md:bg-transparent dark:md:text-white
-
-```bg-gray-50, dark:bg-gray-700 md:rounded-lg md:text-token-text-tertiary md:hover:bg-gray-50 dark:md:hover:bg-gray-700
-cursor-pointer scroll-mx-5 whitespace-nowrap rounded-3xl px-3 py-2 first:ml-4 last:mr-4 md:px-2 md:first:ml-0 md:last:mr-0 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 md:rounded-lg md:bg-transparent md:text-token-text-tertiary md:hover:bg-gray-50 dark:md:bg-transparent dark:md:hover:bg-gray-700
-*/
-
-div[data-radix-popper-content-wrapper]:has(.bg-blue-400.rotate-45) {
-	// border: 2px solid red !important;
-	overflow: visible !important;
-
-	.bg-blue-400 {
-		background-color: var(--c-accent) !important;
-		color: var(--c-on-accent) !important;
-	}
-
-	.bg-white {
-		background-color: var(--c-on-accent) !important;
-		color: var(--c-accent);
-	}
-}
-
-/* ? MOVED INTO "_dialog.scss" !!!! */
-/* TODO check if some of those style can go into global!!! */
-/* GPT Store product dialog when clicked on any product in store */
-// [role='dialog'] {
-// 	/* Gradient in header where "x" close btn is */
-// 	// .from-token-main-surface-primary {
-// 	// 	--main-surface-primary: var(--c-surface-2) !important;
-// 	// }
-
-// 	// .bg-token-main-surface-secondary {
-// 	// 	--main-surface-secondary: var(--c-surface-3) !important;
-// 	// }
-
-// 	/* "Conversation Starters" bubbles */
-// 	.border-token-border-medium {
-// 		--border-medium: transparent !important;
-// 	}
-
-// 	/* Numbers in "Ratings" svg stars */
-// 	svg.text-green-500 ~ .text-white {
-// 		color: var(--c-on-accent) !important;
-// 	}
-
-// 	// &:has([href^='/g/g-']) {
-// 	// 	/* "Conversation Starters" example bubbles */
-// 	// 	.bg-token-main-surface-primary[href^='/g/g-'] {
-// 	// 		--main-surface-primary: var(--c-surface-3) !important;
-// 	// 		--main-surface-secondary: hsla(var(--accent-hsl) / 0.4) !important;
-
-// 	// 		/* "Conversation Starters" shape on bottom left */
-// 	// 		.bg-token-main-surface-primary {
-// 	// 			display: none;
-// 	// 		}
-// 	// 	}
-// 	// }
-// }
