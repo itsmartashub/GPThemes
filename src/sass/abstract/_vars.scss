@@ -307,28 +307,6 @@ html.light {
 	--surface-tertiary: var(--c-bg-msg-gpt) !important;
 
 	/* ? ========== OpenAI text colors ========== */
-	// /*``` --text-primary
-	//     - body txt
-	//     - ??
-	// */
-	// --text-primary: var(--c-txt) !important;
-
-	// /*``` --text-secondary
-	//     - txt ispod "Upgrade"
-	//     - txt ispod "Chat history & training" u Settingsu
-	//     - txt "3.5" u sticky pored "ChatGPT 3.5"
-	//     - kad je recimo focused sa tabom Dark u "Themes"
-	//     - text kad se ode na "Upgrade" pa ono "Have an existing plan? See billing help"
-	// */
-	// --text-secondary: var(--c-subtext-1) !important;
-
-	// /*``` --text-tertiary
-	//     - strelica na dole pored 3.5 u sticky pored ChatGPT 3.5
-	//     - kad je nesto focused sa tabom - accessibility - npr Clear u clear all chats
-	//     - text u contextmenu kad se klikne na ChatGPT 3.5
-	//     - text kad odemo u  UPgrade pa ono USD $0/month i USD $20/month
-	// */
-	// --text-tertiary: var(--c-subtext-2) !important;
 
 	/* ? ========== PROVERITI - gray ========== */
 	--gray-300: var(--text-secondary) !important;
@@ -437,30 +415,6 @@ html.dark {
 	/* Selected button/link/list in settings: "General", "Data controls" */
 	--surface-tertiary: var(--c-bg-msg-gpt) !important;
 
-	// /* ? ========== OpenAI text colors ========== */
-	// /*``` --text-primary
-	//     - body txt
-	//     - ??
-	// */
-	// --text-primary: var(--c-txt) !important;
-
-	// /*``` --text-secondary
-	//     - txt ispod "Upgrade"
-	//     - txt ispod "Chat history & training" u Settingsu
-	//     - txt "3.5" u sticky pored "ChatGPT 3.5"
-	//     - kad je recimo focused sa tabom Dark u "Themes"
-	//     - text kad se ode na "Upgrade" pa ono "Have an existing plan? See billing help"
-	// */
-	// --text-secondary: var(--c-subtext-1) !important;
-
-	// /*``` --text-tertiary
-	//     - strelica na dole pored 3.5 u sticky pored ChatGPT 3.5
-	//     - kad je nesto focused sa tabom - accessibility - npr Clear u clear all chats
-	//     - text u contextmenu kad se klikne na ChatGPT 3.5
-	//     - text kad odemo u  UPgrade pa ono USD $0/month i USD $20/month
-	// */
-	// --text-tertiary: var(--c-subtext-2) !important;
-
 	/* ? ========== PROVERITI - gray ========== */
 	--gray-300: var(--text-secondary) !important;
 
@@ -561,30 +515,6 @@ html.dark[data-gptheme='oled'] {
 
 	/* Selected button/link/list in settings: "General", "Data controls" */
 	--surface-tertiary: var(--c-bg-msg-gpt) !important;
-
-	// /* ? ========== OpenAI text colors ========== */
-	// /*``` --text-primary
-	//     - body txt
-	//     - ??
-	// */
-	// --text-primary: var(--c-txt) !important;
-
-	// /*``` --text-secondary
-	//     - txt ispod "Upgrade"
-	//     - txt ispod "Chat history & training" u Settingsu
-	//     - txt "3.5" u sticky pored "ChatGPT 3.5"
-	//     - kad je recimo focused sa tabom Dark u "Themes"
-	//     - text kad se ode na "Upgrade" pa ono "Have an existing plan? See billing help"
-	// */
-	// --text-secondary: var(--c-subtext-1) !important;
-
-	// /*``` --text-tertiary
-	//     - strelica na dole pored 3.5 u sticky pored ChatGPT 3.5
-	//     - kad je nesto focused sa tabom - accessibility - npr Clear u clear all chats
-	//     - text u contextmenu kad se klikne na ChatGPT 3.5
-	//     - text kad odemo u  UPgrade pa ono USD $0/month i USD $20/month
-	// */
-	// --text-tertiary: var(--c-subtext-2) !important;
 
 	/* ? ========== PROVERITI - gray ========== */
 	--gray-300: var(--text-secondary) !important;

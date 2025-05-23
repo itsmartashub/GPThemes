@@ -18,12 +18,6 @@ But adding this "main" blocked this style to smaller screens so I have to add it
 
 .sticky {
 
-	/* "My GPTs" page - sticky header with scrollable pill tags and LR arrows */
-	&.top-14.bg-token-main-surface-primary {
-		background-color: var(--c-bg-chats-container) !important;
-		padding-bottom: 0.6rem !important;
-	}
-
 	/* "ChatGPT" button in sticky header */
 	[data-testid="model-switcher-dropdown-button"][type='button'][aria-haspopup='menu'] {
 		transition: 0.25s color ease-in-out, 0.25s background-color ease-in-out;

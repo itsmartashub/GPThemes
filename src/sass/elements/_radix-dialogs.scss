@@ -15,83 +15,11 @@
 		&.bg-token-main-surface-primary,
 		.bg-token-main-surface-primary {
 			--main-surface-primary: var(--c-surface-3) !important;
-			// background-color: var(--main-surface-primary);
 		}
 
 		[class*="hover:bg-token-main-surface-secondary"]:hover {
-			--main-surface-secondary: var(--c-surface-1) !important;
+			// --main-surface-secondary: var(--c-surface-3) !important;
+			--main-surface-secondary: var(--c-bg-contextmenu-item) !important;
 		}
-
-		/* Canvas > Share Link - the footer where "Only you can view" and "Private" button are */
-		&:has(input[placeholder^='https://chatgpt.com/canvas/shared']) {
-			.bg-white[class*="dark:transparent"][role="combobox"] {
-				background-color: transparent !important;
-			}
-
-			.rounded-full.border-token-border-default:has(input[placeholder^='https://chatgpt.com/canvas/shared']) {
-				border-color: var(--border-medium) !important;
-				border-radius: var(--br-btn) !important;
-
-				/* Canvas > Share Link input field */
-				input:has(~ .bg-gradient-to-l.from-token-main-surface-primary) {
-					&~.bg-gradient-to-l.from-token-main-surface-primary {
-						--gradient-color-from: var(--c-surface-3) !important;
-					}
-				}
-			}
-		}
-
-
-		/* ___ @mentions in textarea */
-		// [placeholder^="Search recent and pinned GPTs"]
-		&:has(>.popover input[placeholder*='GPTs']) {
-
-			.popover {
-				backdrop-filter: blur(30px) !important;
-				border: hsla(var(--accent-hsl) / 0.5);
-				background-color: hsla(var(--accent-hsl) / 0.12) !important;
-				box-shadow: var(--box-shadow-textarea);
-
-				.overflow-y-auto {
-					--c-scrollbar-thumb: hsla(var(--accent-hsl) / 0.3) !important;
-				}
-			}
-
-			/* @mentions - Search GPTs */
-			input {
-				background-color: hsla(var(--accent-hsl) / 0.1) !important;
-				// background-color: transparent !important;
-				border: 1px solid hsla(var(--accent-hsl) / 0.4) !important;
-				border-radius: var(--br-btn) !important;
-				color: var(--c-accent) !important;
-				margin-bottom: 1rem;
-				padding: var(--p-btn) !important;
-			}
-
-
-			/* @mentions - GPTs list, scrollable product parent */
-			.max-h-40.overflow-y-auto {
-				&>div:not(:last-child) {
-					margin-bottom: 0.5rem;
-				}
-			}
-
-			/* @mentions - Active GPTs item */
-			.bg-token-main-surface-secondary {
-				background-color: var(--c-accent) !important;
-				color: var(--c-on-accent) !important;
-
-				[class*='text-'] {
-					color: currentColor !important;
-				}
-			}
-
-			[class*='hover:bg-token-main-surface-secondary']:not(.bg-token-main-surface-secondary) {
-				&:hover {
-					background-color: hsla(var(--accent-hsl) / 0.1) !important;
-				}
-			}
-		}
-
 	}
 }

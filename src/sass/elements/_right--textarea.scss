@@ -142,16 +142,11 @@ form {
 
 
 		/* 🖼️ "Attach Files" - attached file wrapper */
-		.w-fit .-ms-1\.5.flex-nowrap.no-scrollbar.overflow-x-auto {
-			.bg-token-main-surface-primary {
-				--main-surface-primary: hsla(var(--accent-hsl) / 0.12) !important;
+		.no-scrollbar[data-fullbleed].-ms-1\.5.flex-nowrap {
 
-				/* Close button */
-				// &~button.bg-black.absolute.end-1.top-1.-translate-y-1\/2.translate-x-1\/2.rounded-full {
-				// 	background-color: var(--c-danger) !important;
-				// 	color: var(--c-on-accent) !important;
-				// 	border-color: var(--c-bg-textarea) !important;
-				// }
+			/* Attached file */
+			.bg-primary.border-token-border-default {
+				background-color: hsla(var(--accent-hsl) / 0.12) !important;
 
 				/* 🖼️ "Attach Files" - attached image button */
 				button[type='button'][aria-haspopup='dialog'] {

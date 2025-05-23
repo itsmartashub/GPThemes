@@ -42,36 +42,9 @@ button[role='switch'] {
 	}
 }
 
-/* ___ Scroll down button 
-[class*='-translate-y-1/2'] je btn ❌ u attached image */
-/* main [role='presentation'] button.absolute.rounded-full:not([class*='-translate-y-1/2']) {
-	transition: translate 0.4s $easeOutBack, opacity 0.3s ease-in-out;
-
-	&:hover {
-		translate: 0 10%;
-		opacity: 1 !important;
-	}
-} */
-
 /* ___ Table "Archived Chats" or "Shared Links" */
 [role='dialog'] table {
 	tbody {
-
-		/* Table column that contains "Delete" svg icon */
-		td:has(button[aria-label^='Delete']) {
-			svg {
-				transition: transform 0.4s $easeOutBack;
-			}
-
-			/* SVG parent wrapper */
-			span[data-state]:hover {
-				svg {
-					// transform: translateY(2px) scale(1) !important;
-					transform: scale(1.1) !important;
-				}
-			}
-		}
-
 		tr {
 			position: relative;
 
@@ -91,66 +64,6 @@ button[role='switch'] {
 			&:hover::after {
 				// background-color: hsla(var(--accent-hsl) / 0.12);
 				background-color: var(--c-surface-3);
-			}
-		}
-	}
-}
-
-/* === ❓ circle btn on bottom right */
-main button[data-testid="undefined-button"].rounded-full {
-	transition: transform 0.3s $easeInQuart;
-
-	&:hover {
-		transform: scale(1.1);
-	}
-}
-
-/* GPTs Store page - All the card items */
-main:has(.sticky [href='/gpts/editor']) {
-	.sticky {
-
-		/* Sticky header with tags aka "Top Picks", "DALLE", "Writing", etc */
-		[class*='md:rounded-none'],
-		[class*='md:rounded-lg'] {
-			// transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s $easeInCirc;
-			transition: background-color 0.3s $easeInOutSine, color 0.3s $easeInOutSine, transform 0.3s $easeInOutSine;
-		}
-
-		/* Non-active pill-tag */
-		[class*='md:rounded-lg']:hover {
-			transform: scale(0.955);
-			background-color: var(--c-accent) !important;
-			color: var(--c-on-accent) !important;
-		}
-
-		/* Left/right arrows in tags track */
-		[class*='bg-gradient-to-'] button {
-			transition: transform 0.3s $easeInQuart;
-		}
-
-		/* Right tags arrow */
-		[class*='bg-gradient-to-l'] button {
-			&:hover {
-				transform: translateX(3px);
-			}
-		}
-
-		/* Left tags arrow */
-		[class*='bg-gradient-to-r'] button {
-			&:hover {
-				transform: translateX(-3px);
-			}
-		}
-	}
-
-	/* All the card items in GPTs Store main page */
-	.h-fit {
-		a[href*='/g/g-'] {
-			// border: 1px solid red !important;
-			transition: transform 0.3s $easeInOutSine, background-color 0.3s ease-in-out;
-
-			&:hover {
-				transform: translateY(-3px);
 			}
 		}
 	}

@@ -1,8 +1,8 @@
-/* Footer tj wrapper for green btn "Upgrade to Plus to create your own GPT"  */
-main [role="presentation"] [class*="empty:hidden"]:has(> a[href="/gpts/discovery"]) {
-    padding: 1.5rem;
+// /* Footer tj wrapper for green btn "Upgrade to Plus to create your own GPT"  */
+// main [role="presentation"] [class*="empty:hidden"]:has(> a[href="/gpts/discovery"]) {
+//     padding: 1.5rem;
 
-    .bg-green-600 {
-        @extend .btn;
-    }
-}
+//     .bg-green-600 {
+//         @extend .btn;
+//     }
+// }

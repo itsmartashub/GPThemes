@@ -133,12 +133,6 @@ button[class*='bg-[#3C46FF] text-[#fff]'] {
 	@extend .btn;
 }
 
-/* "Upgrade to Plus" btn in ChatGPT 3.5 contextmenu */
-button[class*='bg-brand-purple'] {
-	background-color: var(--c-accent) !important;
-	color: var(--c-on-accent) !important;
-}
-
 /* "Tell us more" example buttons when clicked on 👎 in GPT chat bubble and the same buttons in "Provide Additional Feedback" when clicked on "More" */
 button.border-token-border-default[class*='hover:bg-token-main-surface-secondary'] {
 	border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
@@ -159,9 +153,4 @@ button.border-token-border-default[class*='hover:bg-token-main-surface-secondary
 		background-color: hsla(var(--accent-hsl) / 0.1) !important;
 	}
 
-}
-
-/* === ❓ circle btn on bottom right */
-main button[data-testid="undefined-button"].rounded-full {
-	background-color: var(--c-surface-3) !important;
 }

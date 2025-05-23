@@ -37,38 +37,3 @@ main [role='presentation'] {
 		color: var(--c-accent) !important;
 	}
 }
-
-// TODO(remove): REMOVE this when #composer-background is removed for all user profiles
-/* New "New Chat" layout prompt action cards */
-// main [role='presentation'] div.w-full:has(> form #composer-background) + div.hidden ul > li > button {
-// 	/* --c-bg-gradient: transparent !important;
-// 	--clr: hsla(var(--accent-hsl) / 0.2) !important; */
-// 	border: 1px solid hsla(var(--accent-hsl) / 0.12) !important;
-
-// 	&:hover {
-// 		color: var(--c-accent) !important;
-// 		transform: scale(0.97);
-
-// 		.text-gray-600 {
-// 			--c-subtext-2: currentColor;
-// 		}
-
-// 		svg {
-// 			color: currentColor !important;
-// 			transition: none;
-// 		}
-// 	}
-// }
-
-// html.light main [role='presentation'] div.w-full:has(> form #composer-background) + div.hidden ul > li > button {
-// 	color: var(--c-accent) !important;
-
-// 	.text-gray-600 {
-// 		--c-subtext-2: currentColor;
-// 	}
-
-// 	svg {
-// 		color: currentColor !important;
-// 		transition: none;
-// 	}
-// }

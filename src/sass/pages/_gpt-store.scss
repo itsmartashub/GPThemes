@@ -8,7 +8,11 @@ main.h-full#main {
 	}
 
 	/* Sticky header tags aka "Top Picks", "DALLE", "Writing", etc */
-	.sticky.top-14.z-10.-ms-4.w-screen.py-2.text-sm {
+	.sticky.top-14.bg-token-main-surface-primary.z-10.-ms-4.w-screen.py-2.text-sm {
+		/* "My GPTs" page - sticky header with scrollable pill tags and LR arrows */
+		background-color: var(--c-bg-chats-container) !important;
+		padding-bottom: 0.6rem !important;
+
 		.no-scrollbar.flex.scroll-m-5 {
 
 			[class*='md:rounded-none'],

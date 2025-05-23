@@ -15,9 +15,6 @@
 // }
 
 /* 
-// ``` .bg-gray-50
-		- "❓" btn 
-
 // ``` .bg-gray-100
 		- Line | in "Is this conversation helpful so far?
 👍 👎 | ✖️" */
@@ -157,7 +154,6 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 - Sidebar Circled gpt logo - NEWCHAT/CLEAR CHAT
 - Circled gpt logo "How can I help you today
 - Scrolldown btn
-- ❓ btn on bottom right
 - Checkbox circle
 - GPTs Store PAGE - Search query section
 - GPTs Store PAGE - Search query section link-on-hover - CHANGE IT !!
@@ -171,23 +167,10 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 // }
 
 /* 
-// - Sidebar
-// - Sidebar sticky behind NEWCHAT btn
-// - Sidebar "Today", "Yesterday"... time headings 
-// - Sidebar user profile picture
-// - Tooltip
-// - ChatGPT 3.5 btn in sticky header
-// - Context menu items in 3dots
-// - Context menu items in ChatGPT 3.5
-// - Markdown <pre>
-// - Prompt textarea send button
-// - GPTs - active pill ("Top Picks")
-
 - Maps: markers, counter bubbles in card review, active tab in "List | Map"
 - ADA: code analysis wrapper bg
 - GPTs: Active pill tag
 - Create Image Dialog: Bg of modal when image open [data-testid^="modal-image-gen-"]
-
  */
 .bg-black:not([data-testid^="modal-image-gen-"], .border-t.border-gray-500) {
 	background-color: var(--c-accent) !important;

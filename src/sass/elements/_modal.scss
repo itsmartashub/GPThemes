@@ -472,55 +472,6 @@
 			}
 		}
 
-		/* ___ DALLE huge dialog when opening DALLE image - desktop only*/
-		// &.divide-x:has(button[aria-label="Toggle Sidebar"]) {
-		// &.h-\[100dvh\].divide-x {
-		// 	// &[class*="h-[100dvh]"] {
-		// 	// &:has(img[src^="https://files.oaiusercontent.com"]) {
-		// 	// border-radius: 0 !important;
-		// 	// border-color: hsla(var(--accent-hsl) / 0.15) !important;
-
-		// 	img[src^="https://files.oaiusercontent.com"] {
-		// 		border-radius: calc(var(--br) * 1.5) !important;
-		// 	}
-
-		// 	/* DALLE image prompt sidebar visible when click on ℹ️ */
-		// 	// .bg-gray-900.hidden {
-		// 	// 	background-color: hsla(var(--accent-hsl) / 0.15) !important;
-		// 	// 	border-radius: var(--br-chat-bubble) !important;
-		// 	// }
-
-		// 	// [class*="w-[25vw] min-w-[25vw]"] {
-		// 	.text-sm.text-gray-300 {
-		// 		color: var(--c-accent) !important;
-		// 		font-weight: bold;
-		// 		text-transform: uppercase;
-		// 	}
-
-		// 	.overflow-y-auto {
-		// 		--c-scrollbar-thumb: hsla(var(--accent-hsl) / 0.4) !important;
-		// 	}
-		// }
-
-		/* ___ "Report [GPTs]" dialog */
-		.divide-y:has(>button[class*='hover:bg-token-main-surface-secondary']) {
-			&>*+* {
-				margin-top: 0.5rem;
-			}
-
-			/* "This GPT doesn't work as it's described", "This GPT is an exact copy of another GPT", and etc report buttons */
-			button[class*='hover:bg-token-main-surface-secondary'] {
-				border-radius: var(--br-btn);
-				background-color: var(--c-surface-3);
-				border: 1px solid transparent !important;
-
-				&:hover {
-					background-color: transparent !important;
-					border-color: var(--c-surface-3) !important;
-				}
-			}
-		}
-
 		/* ___ "Search chats" showed when clicked on 🔍 in sidebar */
 		&:has(input[placeholder="Search chats..."]) {
 
