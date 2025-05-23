@@ -5,10 +5,23 @@
 	padding: var(--p-contextmenu) calc(var(--p-contextmenu) * 0.5) !important;
 	box-shadow: var(--box-shadow-contextmenu) !important;
 
-	/* Some spacing top and bottom of contextmenu child menuitem wrapper */
-	&>[class*="max-h-[var(--radix-dropdown-menu-content-available-height)]"].overflow-y-auto.py-2 {
-		padding: 0 !important;
+	&.popover {
+		// --main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important;
+		backdrop-filter: var(--blur-menu) var(--brightness-menu) !important;
+		background-color: hsla(var(--accent-hsl) / 0.2) !important;
+		// background-color: color-mix(in srgb, var(--c-accent), transparent 90%) !important;
+
 	}
+
+	// &.bg-token-main-surface-primary {
+	// 	--main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important;
+	// 	backdrop-filter: blur(18px) !important;
+	// }
+
+	// /* Some spacing top and bottom of contextmenu child menuitem wrapper */
+	// &>[class*="max-h-[var(--radix-dropdown-menu-content-available-height)]"].overflow-y-auto.py-2 {
+	// 	padding: 0 !important;
+	// }
 
 	.__menu-item {
 		// padding-block: calc(var(--p-contextmenu) * 0.8) !important;
@@ -53,10 +66,10 @@
 
 /* [role='menu'] for contextmenu */
 .popover {
-	--main-surface-primary: var(--c-surface-2) !important;
-	--main-surface-secondary: var(--c-surface-2) !important;
-	--main-surface-tertiary: var(--c-surface-3) !important;
-	--sidebar-surface-primary: var(--c-surface-2) !important;
+	// --main-surface-primary: var(--c-surface-2) !important;
+	// --main-surface-secondary: var(--c-surface-2) !important;
+	// --main-surface-tertiary: var(--c-surface-3) !important;
+	// --sidebar-surface-primary: var(--c-surface-2) !important;
 }
 
 .__menu-item {

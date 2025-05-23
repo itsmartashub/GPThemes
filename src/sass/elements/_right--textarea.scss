@@ -18,7 +18,8 @@ form {
 		caret-color: var(--c-accent);
 		box-shadow: inset 0 0 1px 1px hsla(var(--accent-hsl) / 0.08) !important;
 		border: none !important;
-		backdrop-filter: blur(2rem);
+		backdrop-filter: blur(18px);
+
 
 		/* Prompt text field for "Temporary chat" */
 		&.bg-\[\#303030\] {

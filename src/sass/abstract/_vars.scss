@@ -32,6 +32,8 @@
 	/* ? --- Blurs --- */
 	// --blur-sticky: 20px;
 	--blur-modal: 2rem;
+	--blur-menu: blur(18px);
+
 
 	/* ? --- Shadow things --- */
 	--box-shadow-values: 0px 0px 100px 0px;
@@ -318,6 +320,8 @@ html.light {
 	// --box-shadow-contextmenu: 0px 0px 5px -2px hsla(0, 0%, 0%, 0.18);
 	--box-shadow-contextmenu: 0px 0px 0px 1px color-mix(in srgb, var(--c-bg-contextmenu), black 1%);
 	--box-shadow-textarea: inset 0px 0px 15px 1px hsla(0, 0%, 0%, 0.1) !important;
+
+	--brightness-menu: brightness(1);
 }
 
 /* @ ================== DARK ================== */
@@ -428,6 +432,7 @@ html.dark {
 
 	/* sidebar collapse btn;"ChatGPT 3.5 - Fastest" in 4o menu when hover on it in chat bubbles */
 	--text-quaternary: var(--c-subtext-2) !important;
+	--brightness-menu: brightness(0.75);
 }
 
 /* @ ================== OLED ================== */
