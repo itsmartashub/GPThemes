@@ -15,6 +15,9 @@ a[target="_blank"].rounded-xl.font-medium.bg-token-text-primary\!.text-token-mai
     --c-simulator-txt: var(--c-on-accent) !important;
 }
 
+/* 
+text-token-text-secondary inline-flex items-center rounded-full bg-[#f4f4f4] select-none dark:bg-token-main-surface-secondary h-[25px] px-3 text-xs group relative max-w-full overflow-hidden hover:bg-token-main-surface-primary-inverse hover:text-token-text-inverted dark:hover:bg-token-text-primary */
+
 /* Search Links pills in GPT Chat Bubble. ovo je .h[22px] i nije mouseover vec hover */
 a[target="_blank"].rounded-xl.font-medium.bg-\[\#f4f4f4\][class*="hover:bg-token-text-primary"] {
     background: hsla(var(--accent-hsl) / 0.12);
@@ -27,6 +30,29 @@ a[target="_blank"].rounded-xl.font-medium.bg-\[\#f4f4f4\][class*="hover:bg-token
         background-color: var(--c-accent) !important;
 
         span {
+            color: var(--c-on-accent) !important;
+        }
+    }
+}
+
+
+/* 💡 Reasoning pill links/btns in chat bubble
+- span.bg-\[\#f4f4f4\].rounded-full.text-xs - Reasoning 🔍 pill title
+- a[target="_blank"].bg-\[\#f4f4f4\][class*="hover:bg-token-main-surface-primary-inverse"].rounded-full - Reasoning  pill link
+- button.bg-\[\#f4f4f4\][class*="hover:bg-token-main-surface-primary-inverse"].rounded-full - Reasoning  pill link btn (X more) */
+button.bg-\[\#f4f4f4\][class*="hover:bg-token-main-surface-primary-inverse"].rounded-full,
+a[target="_blank"].bg-\[\#f4f4f4\][class*="hover:bg-token-main-surface-primary-inverse"].rounded-full,
+span.bg-\[\#f4f4f4\].rounded-full.text-xs {
+    background: hsla(var(--accent-hsl) / 0.12);
+
+    &.text-token-text-secondary {
+        color: var(--c-accent) !important;
+    }
+
+    &:hover {
+        background-color: var(--c-accent) !important;
+
+        &.text-token-text-secondary {
             color: var(--c-on-accent) !important;
         }
     }
