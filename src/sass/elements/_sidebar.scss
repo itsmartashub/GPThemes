@@ -4,94 +4,54 @@
 	color: var(--c-txt) !important;
 }
 
-// nav .group\/sidebar {
-// nav[aria-label='Chat history'] {
+
+
 #sidebar,
 #history {
 
 	/* List item for GPTs and for chats-list item */
-	[class*='bg-[var(--item-background-color)]'] {
-		opacity: 1 !important;
+	.__menu-item {
 		transition: transform 0.25s ease;
 
 		&:is(:hover, :focus) {
 			transform: translateY(-0.08rem);
 		}
 
-		/* Active item */
-		// &[style*="var(--sidebar-surface-tertiary)"] {}
-	}
-
-	/* NEW CHAT + LIST of chats in nav. Adding padding-left prevent :focus-visible style in those elements to be cropped from the left because of the overflow-hidden */
-	.overflow-y-auto {
-		padding-left: 0.3rem !important;
-
-		/* Your Firefox-specific styles here */
-		@-moz-document url-prefix() {
-			padding-right: 0.8rem !important; // this add only for Firefox
+		&[data-active] {
+			box-shadow: 0 0 2px 1px hsla(var(--accent-hsl) / 0.075) inset;
 		}
 	}
 
-	/* Parent of time heading (of Today, Yesterday) in sidebar */
-	span:has(> h3) {
-
-		/* Today, Yesterday - Time heading in sidebar */
-		h3 {
-			@extend %date-pill;
-		}
+	/* Today, Yesterday - Time heading in sidebar */
+	h2.__menu-label {
+		@extend %date-pill;
 	}
 
 	a {
 		color: var(--c-txt) !important;
 	}
-
-	li {
-		margin-bottom: var(--mb-sidebar-nav-li) !important;
-
-		.group {
-
-			/* 3 dots > "Rename" clicked - style of input parent and input  - this is <div> next to <a> */
-			.absolute.bg-token-sidebar-surface-secondary {
-				border-radius: var(--br-btn);
-				box-shadow: inset 0 0 0 1px hsla(var(--accent-hsl) / 0.05);
-				// box-shadow: inset 0 0 20px 10px hsla(var(--accent-hsl) / 0.1);
-				// outline: 2px solid hsl(var(--accent-hsl) / 0.2);
-
-				&>input {
-					// input rename border color on focused
-					--tw-ring-color: transparent !important;
-					color: var(--c-accent);
-					caret-color: currentColor;
-					border: none !important;
-					outline: none !important;
-				}
-			}
-		}
-	}
-}
-
-
-/* SIDEBAR for mobile */
-// .h-full.bg-token-sidebar-surface-primary[role='dialog'][class*="--sidebar-width"] {
-// 	--p-dialog: 0.5rem;
-// 	background-color: var(--c-bg-sidebar) !important;
-// }
-
-/* Unread indicator on toggle sidebar icon */
-[fill="#0285FF"] {
-	fill: var(--c-accent) !important;
 }
 
 nav[aria-label].h-full {
 
 	/* "Upgrade" link in nav bg */
-	span.h-7.w-7.rounded-full.border-token-border-default {
-		border-color: transparent !important;
-		background-color: var(--c-accent) !important;
+	.sticky.bottom-0 .__menu-item {
 
-		/* SVG icon in "Upgrade" link in nav */
-		&>svg {
-			color: var(--c-on-accent) !important;
+		/* "Upgrade" link svg */
+		.h-7.w-7.rounded-full.border-token-border-default {
+			border-color: transparent !important;
+			background-color: var(--c-accent) !important;
+
+			/* SVG icon in "Upgrade" link in nav */
+			&>svg {
+				color: var(--c-on-accent) !important;
+			}
 		}
+
 	}
+}
+
+/* Unread indicator on toggle sidebar icon */
+[fill="#0285FF"] {
+	fill: var(--c-accent) !important;
 }

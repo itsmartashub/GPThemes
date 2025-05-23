@@ -19,9 +19,9 @@
 		border-radius: var(--br-btn) !important;
 		transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
-		:is(&:hover, &:focus) {
+		&:hover {
 			background-color: var(--c-bg-contextmenu-item) !important;
-			box-shadow: 0px 0px 0px 1px color-mix(in srgb, var(--c-bg-contextmenu-item), black 5%);
+			// box-shadow: 0px 0px 0px 1px color-mix(in srgb, var(--c-bg-contextmenu-item), black 5%);
 		}
 
 		&:last-child {
@@ -127,3 +127,20 @@
 // 		}
 // 	}
 // }
+
+
+.__menu-item {
+	--menu-item-active: hsla(var(--accent-hsl) / 0.16) !important;
+	--menu-item-hover: hsla(var(--accent-hsl) / 0.12) !important;
+	--menu-item-highlighted: hsla(var(--accent-hsl) / 0.13) !important;
+	--menu-item-open: hsla(var(--accent-hsl) / 0.22) !important;
+
+
+	// data-testid="delete-chat-menu-item"
+	&[data-color="danger"] {
+		--menu-item-highlighted: hsla(var(--danger-hsl) / .13) !important;
+		--menu-item-hover: hsla(var(--danger-hsl) / .12) !important;
+		--menu-item-active: hsla(var(--danger-hsl) / .1) !important;
+		--menu-item-open: hsla(var(--danger-hsl) / .22) !important;
+	}
+}
