@@ -4,18 +4,29 @@
 	- Tooltip when hover on "Attach Files" button in prompt textarea
 	- Tooltip when hover on ❌ in attached images in prompt textarea
 */
-div[data-radix-popper-content-wrapper] div[style*='--radix-tooltip-content'] {
+div[data-radix-popper-content-wrapper] {
 
-	&,
-	.text-white,
-	.text-token-text-tertiary,
-	.text-gray-400 {
-		color: var(--c-on-accent) !important;
+	// This not take affect on tooltip when hover attached file in chats. Ive add .rounded-xl.border-token-border-default to not affect the chat pill link card tooltip when hover pill link in chats
+	// div[style*='--radix-tooltip-content'].select-none.max-w-xs.rounded-lg {
+	div[style*='--radix-tooltip-content']:not(.rounded-xl.border-token-border-default) {
+
+		&,
+		.text-white,
+		.text-token-text-tertiary,
+		.text-gray-400 {
+			color: var(--c-on-accent) !important;
+		}
+
+		/* "Ctrl + K" etc */
+		.text-token-text-tertiary,
+		.text-gray-400 {
+			opacity: 0.75;
+		}
 	}
 
-	/* "Ctrl + K" etc */
-	.text-token-text-tertiary,
-	.text-gray-400 {
-		opacity: 0.75;
-	}
+
+	/* Pill links card tooltips wit searched link */
+	// div[style*='--radix-tooltip-content'].select-none.max-w-sm.rounded-xl.border-token-border-default {
+	// 	border: 1px solid hsla(var(--accent-hsl) / 0.2) !important;
+	// }
 }
