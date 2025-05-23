@@ -11,6 +11,7 @@
 
 	/* List item for GPTs and for chats-list item */
 	.__menu-item {
+		// color: var(--c-txt) !important;
 		transition: transform 0.25s ease;
 
 		&:is(:hover, :focus) {
@@ -26,13 +27,13 @@
 	h2.__menu-label {
 		@extend %date-pill;
 	}
-
-	a {
-		color: var(--c-txt) !important;
-	}
 }
 
 nav[aria-label].h-full {
+	.__menu-item {
+		padding-block: 0.5rem !important;
+		border-radius: calc(var(--br) * 0.8) !important;
+	}
 
 	/* "Upgrade" link in nav bg */
 	.sticky.bottom-0 .__menu-item {

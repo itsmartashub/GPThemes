@@ -1,8 +1,8 @@
 [role='listbox'],
 [role='menu'] {
-	background-color: var(--c-bg-contextmenu) !important;
+	// background-color: var(--c-bg-contextmenu) !important;
 	border-radius: var(--br-contextmenu) !important;
-	padding: var(--p-contextmenu) !important;
+	padding: var(--p-contextmenu) calc(var(--p-contextmenu) * 0.5) !important;
 	box-shadow: var(--box-shadow-contextmenu) !important;
 
 	/* Some spacing top and bottom of contextmenu child menuitem wrapper */
@@ -10,51 +10,11 @@
 		padding: 0 !important;
 	}
 
-	[role='option'],
-	[role='menuitem'] {
-		background-color: inherit !important;
-		margin-left: 0 !important;
-		margin-right: 0 !important;
-		padding: calc(var(--p-contextmenu) * 1.25) !important;
-		border-radius: var(--br-btn) !important;
-		transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-
-		&:hover {
-			background-color: var(--c-bg-contextmenu-item) !important;
-			// box-shadow: 0px 0px 0px 1px color-mix(in srgb, var(--c-bg-contextmenu-item), black 5%);
-		}
-
-		&:last-child {
-			margin-bottom: 0 !important;
-		}
-
-		/* "Log Out" menuitem */
-		&[data-testid="log-out-menu-item"] {
-
-			&,
-			svg {
-				color: var(--c-danger) !important;
-			}
-		}
-
-		/* TODO dark:hover:bg-white/5   ima vec u globalu. Videti da li obrisati ovah hover i ostaviti onaj tamo samo. Rizicno je malo, sta ako se promeni ta klasa */
-
-
-		/* "Delete" when clicked on conversatin 3dots (more options) */
-		&:last-child:has(.text-token-text-error),
-		&[data-testid="log-out-menu-item"] {
-			&:hover {
-				background-color: hsla(var(--danger-hsl) / 0.15) !important;
-			}
-		}
-
-		span.rounded-full.h-7.w-7:has(>svg) {
-			background-color: hsla(var(--accent-hsl) / 0.15) !important;
-
-			svg {
-				color: var(--c-accent) !important;
-			}
-		}
+	.__menu-item {
+		// padding-block: calc(var(--p-contextmenu) * 0.8) !important;
+		padding-block: calc(var(--p-contextmenu) * 0.8) !important;
+		// border-radius: calc(var(--br-contextmenu) * 0.6) !important;
+		border-radius: 0.9em !important;
 	}
 
 	/* Separator/divider in menus ([role="separator"]) */
@@ -62,8 +22,6 @@
 		display: block !important;
 		--border-light: var(--c-border) !important;
 	}
-
-	/* Menu koji ima separator koji je pre poslednjeg menuitem-a u tom menu - "Log Out" */
 }
 
 /* __ MODAL - Choose theme context menu & tooltips?  */
@@ -99,35 +57,7 @@
 	--main-surface-secondary: var(--c-surface-2) !important;
 	--main-surface-tertiary: var(--c-surface-3) !important;
 	--sidebar-surface-primary: var(--c-surface-2) !important;
-
-	// --main-surface-primary: var(--white) !important;
-	// --main-surface-secondary: var(--gray-100) !important;
-	// --main-surface-tertiary: var(--gray-200) !important;
-
-	/* [role='dialog'] */
-	// --main-surface-primary: var(--gray-700)!important;
-	// --main-surface-secondary: var(--gray-600)!important;
-	// --main-surface-tertiary: var(--gray-500)!important;
-	// --text-primary: var(--white)!important;
-	// --text-secondary: var(--gray-200)!important;
-	// --text-tertiary: var(--gray-300)!important;
 }
-
-
-/* ___ Choose language 
-	Settings > Language > dropdown which is rendered into body>direct*/
-// body div:not([data-radix-popper-content-wrapper]):has(> div[role='listbox']) {
-// body > div:not([data-radix-popper-content-wrapper]) {
-
-// 	[role='listbox'] {
-// 		@extend [role='menu'];
-
-// 		[role='option'] {
-// 			@extend [role='menuitem'];
-// 		}
-// 	}
-// }
-
 
 .__menu-item {
 	--menu-item-active: hsla(var(--accent-hsl) / 0.16) !important;
@@ -135,12 +65,16 @@
 	--menu-item-highlighted: hsla(var(--accent-hsl) / 0.13) !important;
 	--menu-item-open: hsla(var(--accent-hsl) / 0.22) !important;
 
-
 	// data-testid="delete-chat-menu-item"
-	&[data-color="danger"] {
+	&[data-color="danger"],
+	&[data-testid="log-out-menu-item"] {
 		--menu-item-highlighted: hsla(var(--danger-hsl) / .13) !important;
 		--menu-item-hover: hsla(var(--danger-hsl) / .12) !important;
 		--menu-item-active: hsla(var(--danger-hsl) / .1) !important;
 		--menu-item-open: hsla(var(--danger-hsl) / .22) !important;
+	}
+
+	&[data-testid="log-out-menu-item"] {
+		color: var(--c-danger) !important;
 	}
 }

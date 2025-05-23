@@ -102,3 +102,8 @@
 .text-\[\#8F8F8F\] {
 	color: currentColor !important;
 }
+
+/* ChatGPT in header, subtext in menu item: "Great for everyday use" */
+.not-group-data-disabled\:text-token-text-tertiary {
+	color: var(--c-subtext-2) !important;
+}
