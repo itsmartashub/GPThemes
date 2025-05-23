@@ -350,3 +350,12 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 .bg-token-bg-elevated-secondary {
 	background-color: var(--c-bg-sidebar) !important;
 }
+
+/* e.g. Tools > Menu > Hover on menuitem */
+[class*="--menu-item-highlighted"] {
+	--menu-item-highlighted: var(--interactive-bg-secondary-hover) !important;
+}
+
+[class*="--menu-item-active"] {
+	--menu-item-active: var(--interactive-bg-secondary-press) !important;
+}

@@ -198,6 +198,9 @@ html,
 	--interactive-bg-accent-muted-hover: hsla(var(--accent-hsl) / 0.12) !important; // when hover on action btn in prompt-textarea like: Think, Search, Canvas etc
 	--interactive-bg-accent-muted-press: hsla(var(--accent-hsl) / 0.3) !important; // when holding pressed on action btn in prompt-textarea like: Think, Search, Canvas etc
 	--interactive-label-accent-default: var(--c-accent) !important;
+
+	--menu-item-highlighted: var(--interactive-bg-secondary-hover) !important;
+	--menu-item-active: var(--interactive-bg-secondary-press) !important;
 }
 
 // }
