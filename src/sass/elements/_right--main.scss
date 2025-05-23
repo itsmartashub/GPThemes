@@ -351,10 +351,18 @@
 	.agent-turn {
 		// outline: 1px solid red !important;
 
-		/* REASONING: "Reasoned about [topic] for [X] seconds" */
-		/* Border on the left of reasoning process in chat bubble */
-		.whitespace-pre-wrap>.absolute.bottom-4.start-0.top-4.w-1.rounded-full.bg-token-border-light {
-			--border-light: var(--c-subtext-1) !important;
+		/* REASONING: "Reasoned about [topic] for [X] seconds" title */
+		.relative.my-1.min-h-6 {
+
+			/* REASONING: "Reasoned about [topic] for [X] seconds" content */
+			.relative.z-0 {
+				.origin-left.start-0.end-0.top-0 {
+					._markdown_1frq2_10.text-sm.markdown.prose.break-words {
+						font-size: calc(calc((var(--fontSize) / 16) * 1rem) * 0.9) !important;
+						line-height: calc(calc(var(--lineHeight) / 16) * 0.85) !important;
+					}
+				}
+			}
 		}
 
 
