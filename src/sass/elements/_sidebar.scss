@@ -11,12 +11,6 @@
 
 	/* List item for GPTs and for chats-list item */
 	.__menu-item {
-		// color: var(--c-txt) !important;
-		transition: transform 0.25s ease;
-
-		&:is(:hover, :focus) {
-			transform: translateY(-0.08rem);
-		}
 
 		&[data-active] {
 			box-shadow: 0 0 2px 1px hsla(var(--accent-hsl) / 0.075) inset;
@@ -33,6 +27,12 @@ nav[aria-label].h-full {
 	.__menu-item {
 		padding-block: 0.5rem !important;
 		border-radius: calc(var(--br) * 0.8) !important;
+
+		transition: transform 0.25s ease;
+
+		&:is(:hover, :focus) {
+			transform: translateY(-0.08rem);
+		}
 	}
 
 	/* "Upgrade" link in nav bg */
