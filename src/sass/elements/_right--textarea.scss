@@ -81,6 +81,14 @@ form {
 			color: var(--c-accent) !important;
 		}
 
+		/* Tools, Dictate icon, Canvas, Search, Think */
+		button.composer-btn:not(#upload-file-btn) {
+			// border: 1px solid red;
+			background-color: hsla(var(--accent-hsl) / 0.1) !important;
+			color: var(--c-accent) !important;
+			border-radius: 50vw;
+		}
+
 		button[type="button"][aria-label] {
 			color: var(--c-accent) !important;
 		}

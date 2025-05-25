@@ -23,12 +23,10 @@ button {
 	&-secondary {
 		background-color: hsla(var(--accent-hsl) / 0.15) !important;
 		color: var(--c-accent) !important;
-		backdrop-filter: blur(5px);
+		backdrop-filter: blur(10px);
 
 		svg {
-			// fill: var(--c-accent) !important;
 			fill: currentColor !important;
-			// color: currentColor !important;
 		}
 	}
 
