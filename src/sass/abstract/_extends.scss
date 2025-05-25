@@ -42,12 +42,13 @@
 	display: inline-block !important;
 	color: var(--c-accent) !important;
 	background-color: hsl(var(--accent-hsl) / 0.2) !important;
-	border-radius: 100vw;
-	text-transform: uppercase;
 	font-weight: bold;
-	height: auto !important;
+	text-transform: uppercase;
 	line-height: 1 !important;
-	padding: 0.32rem 0.6rem !important;
+	border-radius: 50vw;
+	// font-size: 0.75rem !important;
+	// height: auto !important;
+	padding: 0.3rem 0.6rem !important;
 }
 
 %simulator_bg {

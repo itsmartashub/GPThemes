@@ -256,14 +256,19 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 // hover:bg-token-main-surface-secondary
 
 /*
-.bg-blue-400 - "Update" pill badge in "Create Image" menu item; Blue indicator of unread messages in sidebar nav chat-item */
-.bg-blue-400 {
+.bg-blue-400 - "Update" pill badge in "Create Image" menu item; Blue indicator of unread messages in sidebar nav chat-item
+.bg-blue-500 - Blue indicator of unread messages in sidebar nav menu item */
+.bg-blue-400,
+.bg-blue-500 {
 	background-color: var(--c-accent) !important;
 	color: var(--c-on-accent) !important;
 }
 
-/* Blue indicator of unread messages for mobile in sidebar collapse/expand icon */
-[fill="#007AFF"] {
+/* 
+[fill="#007AFF"] - Blue indicator of unread messages for mobile in sidebar collapse/expand icon
+[fill="#0285FF"] - Blue indicator of unread messages for desktop in sidebar collapse/expand icon */
+[fill="#007AFF"],
+[fill="#0285FF"] {
 	fill: var(--c-accent) !important;
 }
 
