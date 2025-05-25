@@ -253,14 +253,14 @@
 
                     /* "Edit or explain" wrapper */
                     // .relative.bg-token-main-surface-primary:has(>textarea[aria-placeholder^="Edit or explain"]) {
-                    .relative.bg-token-main-surface-primary:has(>textarea[aria-placeholder]) {
-                        background-color: hsla(var(--accent-hsl) / .1) !important;
+                    // .relative.bg-token-main-surface-primary:has(>textarea[aria-placeholder]) {
+                    //     background-color: hsla(var(--accent-hsl) / .1) !important;
 
-                        /* "Edit or explain" field overlay */
-                        .backdrop-saturate-25 {
-                            background-color: hsla(var(--accent-hsl) / .1) !important;
-                        }
-                    }
+                    //     /* "Edit or explain" field overlay */
+                    //     .backdrop-saturate-25 {
+                    //         background-color: hsla(var(--accent-hsl) / .1) !important;
+                    //     }
+                    // }
                 }
 
                 /* Floating balloons, like "1 more edit" */

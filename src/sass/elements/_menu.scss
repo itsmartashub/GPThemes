@@ -3,31 +3,16 @@
 	// background-color: var(--c-bg-contextmenu) !important;
 	border-radius: var(--br-contextmenu) !important;
 	padding: var(--p-contextmenu) calc(var(--p-contextmenu) * 0.5) !important;
-	box-shadow: var(--box-shadow-contextmenu) !important;
+	// box-shadow: var(--box-shadow-contextmenu) !important;
 
 	&.popover {
-		// --main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important;
-		backdrop-filter: var(--blur-menu) var(--brightness-menu) !important;
-		background-color: hsla(var(--accent-hsl) / 0.2) !important;
-		// background-color: color-mix(in srgb, var(--c-accent), transparent 90%) !important;
-
+		@include menuBg;
 	}
 
-	// &.bg-token-main-surface-primary {
-	// 	--main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important;
-	// 	backdrop-filter: blur(18px) !important;
-	// }
-
-	// /* Some spacing top and bottom of contextmenu child menuitem wrapper */
-	// &>[class*="max-h-[var(--radix-dropdown-menu-content-available-height)]"].overflow-y-auto.py-2 {
-	// 	padding: 0 !important;
-	// }
-
 	.__menu-item {
-		// padding-block: calc(var(--p-contextmenu) * 0.8) !important;
 		padding-block: calc(var(--p-contextmenu) * 0.8) !important;
-		// border-radius: calc(var(--br-contextmenu) * 0.6) !important;
 		border-radius: 0.9em !important;
+		@include scaleIn;
 	}
 
 	/* Separator/divider in menus ([role="separator"]) */
@@ -40,7 +25,6 @@
 /* __ MODAL - Choose theme context menu & tooltips?  */
 // [data-radix-popper-content-wrapper] {
 [data-radix-select-viewport] {
-	// z-index: calc(var(--z-modal) + 50) !important;
 
 	[data-radix-collection-item] {
 		border-radius: var(--br-btn);
@@ -65,25 +49,29 @@
 }
 
 /* [role='menu'] for contextmenu */
-.popover {
-	// --main-surface-primary: var(--c-surface-2) !important;
-	// --main-surface-secondary: var(--c-surface-2) !important;
-	// --main-surface-tertiary: var(--c-surface-3) !important;
-	// --sidebar-surface-primary: var(--c-surface-2) !important;
-}
+// .popover {
+// --main-surface-primary: var(--c-surface-2) !important;
+// --main-surface-secondary: var(--c-surface-2) !important;
+// --main-surface-tertiary: var(--c-surface-3) !important;
+// --sidebar-surface-primary: var(--c-surface-2) !important;
+// }
 
 .__menu-item {
 	--menu-item-active: hsla(var(--accent-hsl) / 0.16) !important;
-	--menu-item-hover: hsla(var(--accent-hsl) / 0.12) !important;
-	--menu-item-highlighted: hsla(var(--accent-hsl) / 0.13) !important;
+	--menu-item-hover: hsla(var(--accent-hsl) / 0.14) !important;
+	--menu-item-highlighted: hsla(var(--accent-hsl) / 0.15) !important;
 	--menu-item-open: hsla(var(--accent-hsl) / 0.22) !important;
+
+	// @include lift;
+	// @include scaleIn;
+
 
 	// data-testid="delete-chat-menu-item"
 	&[data-color="danger"],
 	&[data-testid="log-out-menu-item"] {
-		--menu-item-highlighted: hsla(var(--danger-hsl) / .13) !important;
-		--menu-item-hover: hsla(var(--danger-hsl) / .12) !important;
-		--menu-item-active: hsla(var(--danger-hsl) / .1) !important;
+		--menu-item-active: hsla(var(--danger-hsl) / .16) !important;
+		--menu-item-hover: hsla(var(--danger-hsl) / .14) !important;
+		--menu-item-highlighted: hsla(var(--danger-hsl) / .15) !important;
 		--menu-item-open: hsla(var(--danger-hsl) / .22) !important;
 	}
 

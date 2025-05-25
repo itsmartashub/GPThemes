@@ -1,38 +1,58 @@
 /* ___ General */
-button,
-li,
-a:not([href^="/c/"], [href^="/gpts"]),
-svg,
-[class*=':hover'],
-[role='switch'] span[data-state] {
-	// transition: all 0.25s ease-in-out;
-	$duration: 0.25s;
+// button,
+// li,
+// a:not([href^="/c/"], [href^="/gpts"]),
+// svg,
+// [class*=':hover'] {
+// 	// transition: all 0.25s ease-in-out;
+// 	$duration: 0.25s;
 
-	transition:
-		transform $duration ease,
-		opacity $duration ease,
-		background-color $duration ease,
-		color $duration ease,
-		opacity $duration ease;
+// 	transition:
+// 		transform $duration ease,
+// 		opacity $duration ease,
+// 		background-color $duration ease,
+// 		color $duration ease,
+// 		opacity $duration ease;
+// }
+
+li {
+
+	&,
+	& button {
+
+		$duration: 0.25s;
+
+		transition:
+			transform $duration ease,
+			opacity $duration ease,
+			background-color $duration ease,
+			color $duration ease,
+			opacity $duration ease;
+	}
+}
+
+[role="listbox"] {
+	li {
+		@include lift;
+	}
 }
 
 /* .btn that IS NOT DISABLED, like "Create" on GPTs page */
 .btn:not(.cursor-not-allowed) {
 	will-change: transform, opacity;
-
-	// transition: transform 0.4s $easeOutBack, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out !important;
 	transition: transform 0.2s $easeInOutQuad, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out,
 		color 0.3s ease-in-out !important;
 
-	/* [class*='-translate-y-1/2']) je btn ❌ u attached image*/
 	&:is(:hover, :active) {
 		transform: translateY(-2px);
 		opacity: 0.8;
 	}
+}
 
-	// &:not(&-secondary, &-danger, &-green):is(:hover, :active) {
-	// 	color: var(--c-accent) !important;
-	// }
+.btn.btn-secondary {
+	&:is(:hover, :active) {
+		opacity: 1 !important;
+	}
 }
 
 /* ___ Switch button circle hover. Ovde ne moze :focus, ostane style kao da je checked ili obrnuto i kad se unhoveruje */

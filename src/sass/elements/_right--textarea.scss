@@ -17,6 +17,7 @@ form {
 		// border: 1px solid hsla(var(--accent-hsl) / 0.08) !important;
 		caret-color: var(--c-accent);
 		box-shadow: inset 0 0 1px 1px hsla(var(--accent-hsl) / 0.08) !important;
+		// box-shadow: 0 0 transparent, 0 0 transparent, 0 12px 48px hsla(var(--accent-hsl) / 0.08);
 		border: none !important;
 		backdrop-filter: blur(18px);
 
@@ -83,14 +84,26 @@ form {
 
 		/* Tools, Dictate icon, Canvas, Search, Think */
 		button.composer-btn:not(#upload-file-btn) {
-			// border: 1px solid red;
 			background-color: hsla(var(--accent-hsl) / 0.1) !important;
+		}
+
+		button.composer-btn {
 			color: var(--c-accent) !important;
 			border-radius: 50vw;
 		}
 
-		button[type="button"][aria-label] {
-			color: var(--c-accent) !important;
+		// button[type="button"][aria-label] {
+		// 	color: var(--c-accent) !important;
+		// }
+
+		/* Voice and dictate wrapper */
+		#imagegen-voice-controls {
+
+			/* Dictate btn */
+			.btn.btn-primary.btn-small {
+				@extend .btn-secondary;
+				border-radius: 50vw !important;
+			}
 		}
 
 		button[data-testid='send-button'],

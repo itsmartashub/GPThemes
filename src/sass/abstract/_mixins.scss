@@ -34,3 +34,24 @@
         // opacity: 1 !important;
     }
 }
+
+@mixin lift {
+    transition: translate 0.25s ease;
+
+    &:is(:hover, :focus) {
+        translate: 0 -0.08rem;
+    }
+}
+
+@mixin scaleIn {
+    transition: scale 0.25s ease;
+
+    &:is(:hover, :focus) {
+        scale: 0.985;
+    }
+}
+
+@mixin menuBg {
+    backdrop-filter: var(--blur-menu) var(--brightness-menu) !important;
+    background-color: hsla(var(--accent-hsl) / 0.15) !important;
+}

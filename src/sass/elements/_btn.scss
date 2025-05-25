@@ -21,9 +21,9 @@ button {
 	}
 
 	&-secondary {
-		background-color: hsla(var(--accent-hsl) / 0.15) !important;
+		background-color: hsla(var(--accent-hsl) / 0.12) !important;
 		color: var(--c-accent) !important;
-		backdrop-filter: blur(10px);
+		backdrop-filter: blur(1rem);
 
 		svg {
 			fill: currentColor !important;

@@ -5,6 +5,14 @@
 }
 
 
+#sidebar-header {
+
+	/* ChatGPT home logo and sidebar collapse icon */
+	a.text-token-text-primary,
+	button.text-token-text-tertiary {
+		color: var(--c-subtext-1) !important;
+	}
+}
 
 #sidebar,
 #history {
@@ -27,12 +35,7 @@ nav[aria-label].h-full {
 	.__menu-item {
 		padding-block: 0.5rem !important;
 		border-radius: calc(var(--br) * 0.8) !important;
-
-		transition: transform 0.25s ease;
-
-		&:is(:hover, :focus) {
-			transform: translateY(-0.08rem);
-		}
+		@include lift;
 	}
 
 	/* "Upgrade" link in nav bg */

@@ -197,10 +197,17 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 - Builder profile "PlaceholderGPT" - var(--c-surface-3)
 - GPTs - Search input and search query bg - var(--c-surface-2)
 - "Create Link" dialog input wrapper bg - var(--c-surface-3) */
-.bg-token-main-surface-primary:not([role="menu"]) {
-	// --main-surface-primary: red;
-	--main-surface-primary: var(--c-surface-2);
-	// background-color: var(--c-surface-3) !important;
+// .bg-token-main-surface-primary:not([role="menu"]) {
+// 	--main-surface-primary: var(--c-surface-2);
+// }
+/*
+- GPTs - Search input and search query bg - var(--c-surface-2) */
+.hover\:bg-gray-50,
+.dark\:hover\:bg-white\/10 {
+
+	&:hover {
+		background-color: var(--c-surface-3) !important;
+	}
 }
 
 /* TODO - NE RADI JEBENO */
@@ -210,50 +217,9 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 }
 
 
-/* 
-- Gradient before "Create Link" in "Share Link to Public" dialog
-- Gradient before "Open link" icon in "Search x sites" dropdown link items in GPT's chat
-- Gradient in dialog header when clicked on GPTs product, but if we add this style here it broke the gradient in "Create Link" dialog bcs there is var(--c-surface-3) (or var(--main-surface-primary)
- */
-// .from-token-main-surface-primary {
-// 	--main-surface-primary: var(--c-surface-2) !important;
-// }
-
-/* .bg-token-main-surface-tertiary {
-	&:hover {
-		--main-surface-tertiary: greenyellow !important;
-		background-color: red !important;
-	}
-} */
-/* 
-- When clicked on dropdown in Settings > Language list
-- "Conversation Starters" example bubbles in dialog in GPTs page when clicked on product */
-// .bg-token-main-surface-primary {
-// 	background-color: var(--c-surface-3) !important;
-
-// 	&:hover {
-// 		background-color: var(--c-surface-2) !important;
-// 	}
-// }
-
 .bg-token-main-surface-secondary {
 	background-color: var(--c-surface-2) !important;
-
-	// &:hover {
-	// 	background-color: var(--c-surface-3) !important;
-	// }
 }
-
-// [class*="dark:hover:bg-token-main-surface-secondary"]:hover {
-// 	// background-color: var(--c-surface-3) !important;
-// 	background-color: orange;
-// }
-
-// .bg-token-main-surface-tertiary {
-// 	background-color: var(--c-surface-1) !important;
-// }
-
-// hover:bg-token-main-surface-secondary
 
 /*
 .bg-blue-400 - "Update" pill badge in "Create Image" menu item; Blue indicator of unread messages in sidebar nav chat-item
@@ -299,6 +265,11 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 
 /* [class*="group-hover/navigation"] je veliki source link u chat bubble kao onaj "ChatGPT Release Note" na sony (hover) */
 .hover\:dark\:bg-token-main-surface-tertiary:is(.dark *):hover {
+	--main-surface-tertiary: var(--c-surface-3) !important;
+	// background-color: var(--main-surface-tertiary);
+}
+
+.hover\:bg-token-main-surface-tertiary:hover {
 	--main-surface-tertiary: var(--c-surface-3) !important;
 	// background-color: var(--main-surface-tertiary);
 }

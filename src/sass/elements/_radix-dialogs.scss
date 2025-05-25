@@ -4,8 +4,6 @@
 
 	/* This fix strange small accent square after prompt field because OpenAI focus the empty radix dialog on default, instead of prompt field... */
 	[role='dialog']:empty {
-		// opacity: 0;
-		// border: none !important;
 		outline: none !important;
 	}
 
@@ -14,12 +12,19 @@
 		/* This fix and bg of radix dialogs like when type "/" and "@" in prompt field */
 		&.bg-token-main-surface-primary,
 		.bg-token-main-surface-primary {
-			--main-surface-primary: var(--c-surface-3) !important;
+			// --main-surface-primary: var(--c-surface-3) !important;
+			@include menuBg;
+		}
+
+		/* When typed `@` GPTs mentions in prompt-textarea: input "Search recent and pinned GPT" */
+		.popover>input.bg-token-main-surface-primary {
+			border-radius: var(--br-btn);
+			background-color: transparent !important;
 		}
 
 		[class*="hover:bg-token-main-surface-secondary"]:hover {
-			// --main-surface-secondary: var(--c-surface-3) !important;
-			--main-surface-secondary: var(--c-bg-contextmenu-item) !important;
+			// --main-surface-secondary: var(--c-bg-contextmenu-item) !important;
+			--main-surface-secondary: hsla(var(--accent-hsl) / 0.14) !important;
 		}
 	}
 }
