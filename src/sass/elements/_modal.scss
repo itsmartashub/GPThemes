@@ -4,6 +4,11 @@
 	background-color: var(--c-bg-modal) !important;
 	backdrop-filter: blur(var(--blur-modal)) !important;
 
+	.from-token-main-surface-primary {
+		--main-surface-primary: var(--c-bg-dialog) !important;
+		// --tw-gradient-from: var(--c-bg-dialog) !important;
+	}
+
 	/* ===================== DIALOGS ====================  */
 	[role='dialog'] {
 		background-color: var(--c-bg-dialog) !important;
@@ -311,20 +316,6 @@
 		}
 
 		/* ___ "Custom Instructios", now "Customize ChatGPT" */
-		// &:has(textarea[placeholder="Describe or select traits"]) {
-		// 	/* There are 2 scrollbars: one for main content and one for textarea and inputs part */
-		// 	// --w-scrollbar: 0 !important;
-
-		// 	.flex-grow.overflow-y-auto.p-4:has(.overflow-y-auto[class*="max-h-[60vh]"]) {
-		// 		padding: 0 !important;
-
-		// 		@include dev('md') {
-		// 			padding: 1rem !important;
-		// 		}
-		// 	}
-		// }
-
-		/* ___ "Custom Instructios", now "Customize ChatGPT" */
 		&:has(textarea) {
 			.grow.overflow-y-auto.p-4:has(>.overflow-y-auto[class*="max-h-[60vh]"]) {
 				padding: 0 !important;
@@ -537,13 +528,13 @@
 	}
 }
 
-html.dark[data-gptheme='oled'] [role='dialog'] {
-	&:not(&:has([href^='https://help.openai.com/en/articles/7925741-chatgpt-shared-links-faq'])) {
-		.from-token-main-surface-primary {
-			--main-surface-primary: var(--c-surface-1) !important;
-		}
-	}
-}
+// html.dark[data-gptheme='oled'] [role='dialog'] {
+// 	&:not(&:has([href^='https://help.openai.com/en/articles/7925741-chatgpt-shared-links-faq'])) {
+// 		.from-token-main-surface-primary {
+// 			--main-surface-primary: var(--c-surface-1) !important;
+// 		}
+// 	}
+// }
 
 /* TODO(add):  improve this and add in future DALLE image when opened */
 // body>div>.absolute.inset-0.flex.flex-col {
@@ -571,3 +562,13 @@ html.dark[data-gptheme='oled'] [role='dialog'] {
 // 		}
 // 	}
 // }
+
+
+/* Dialog with links from sources for mobile */
+[role='dialog']:not(:empty) {
+	@include dev('md') {
+		.bg-token-bg-primary {
+			--bg-primary: var(--c-bg-dialog) !important;
+		}
+	}
+}

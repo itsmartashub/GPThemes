@@ -22,9 +22,11 @@
 			background-color: transparent !important;
 		}
 
-		.from-token-main-surface-primary {
-			--tw-gradient-from: var(--c-bg-dialog) !important;
-			--main-surface-primary: var(--c-bg-dialog) !important;
+
+
+		a.group.bg-token-main-surface-primary {
+			--main-surface-primary: var(--c-surface-1) !important;
+			// background-color: var(--main-surface-primary);
 		}
 
 		// .bg-linear-to-b {}
@@ -34,14 +36,5 @@
 			--main-surface-secondary: hsla(var(--accent-hsl) / 0.14) !important;
 		}
 
-	}
-}
-
-/* Dialog with links from sources for mobile */
-[role='dialog']:not(:empty) {
-	@include dev('md') {
-		.bg-token-bg-primary {
-			--bg-primary: var(--c-bg-dialog) !important;
-		}
 	}
 }

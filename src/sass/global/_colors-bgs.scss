@@ -332,6 +332,12 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 	--menu-item-active: var(--interactive-bg-secondary-press) !important;
 }
 
+/* GPTs - bubble comments in dialogs when open GPTs item */
+a.bg-token-main-surface-primary.group {
+	--main-surface-primary: var(--c-surface-1) !important;
+	// background-color: var(--main-surface-primary);
+}
+
 // .bg-token-bg-primary {
 // 	--bg-primary: var(--c-bg-chats-container) !important;
 // 	background-color: var(--bg-primary);

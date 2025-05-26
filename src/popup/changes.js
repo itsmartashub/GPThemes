@@ -32,40 +32,40 @@ const currentReleaseChanges = {
 	// 		issueRef: 129,
 	// 	},
 	// ],
-	improvements: [
-		{
-			description: 'DeepSearch:',
-			details: 'Updated all the broken styles related to the new DeepSearch feature.',
-			issueRef: 138,
-		},
-		{
-			description: 'Custom Widths:',
-			details:
-				'Numerous improvements related to width sliders, toggle functions, state handling, especially for mobile.',
-			prRef: 135,
-		},
-		{
-			description: 'OLED User Message:',
-			details: 'Made the user message background more accent-like in OLED theme',
-		},
-	],
-	fixes: [
-		{
-			description: 'Scroll Down Button:',
-			details: 'Updated selector for custom alignment due the recent OpenAI changes',
-		},
-		{
-			description: 'Chats Elements:',
-			details:
-				'Style fixes and improvements related to Chats, Source Links, Markdown Elements, Tables, Reply, Maps, DALLE, Create Image, Canvas, Dual Responses Layout, etc.',
-			issueRef: 136,
-		},
-		{
-			description: 'ChatGPT Settings:',
-			details: "Reduced excessive padding and prevented tab buttons overlap when there isn't enough space",
-			issueRef: 131,
-		},
-	],
+	// improvements: [
+	// 	{
+	// 		description: 'DeepSearch:',
+	// 		details: 'Updated all the broken styles related to the new DeepSearch feature.',
+	// 		issueRef: 138,
+	// 	},
+	// 	{
+	// 		description: 'Custom Widths:',
+	// 		details:
+	// 			'Numerous improvements related to width sliders, toggle functions, state handling, especially for mobile.',
+	// 		prRef: 135,
+	// 	},
+	// 	{
+	// 		description: 'OLED User Message:',
+	// 		details: 'Made the user message background more accent-like in OLED theme',
+	// 	},
+	// ],
+	// fixes: [
+	// 	{
+	// 		description: 'Scroll Down Button:',
+	// 		details: 'Updated selector for custom alignment due the recent OpenAI changes',
+	// 	},
+	// 	{
+	// 		description: 'Chats Elements:',
+	// 		details:
+	// 			'Style fixes and improvements related to Chats, Source Links, Markdown Elements, Tables, Reply, Maps, DALLE, Create Image, Canvas, Dual Responses Layout, etc.',
+	// 		issueRef: 136,
+	// 	},
+	// 	{
+	// 		description: 'ChatGPT Settings:',
+	// 		details: "Reduced excessive padding and prevented tab buttons overlap when there isn't enough space",
+	// 		issueRef: 131,
+	// 	},
+	// ],
 	other: [
 		{
 			details:
