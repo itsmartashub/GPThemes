@@ -68,6 +68,10 @@
 			&[data-orientation='vertical'] {
 				flex-wrap: nowrap !important;
 				overflow-y: auto;
+
+				[role="tab"] {
+					@include lift;
+				}
 			}
 
 			&[data-orientation='horizontal'] {
@@ -78,6 +82,7 @@
 					color: var(--c-on-accent);
 				}
 			}
+
 		}
 
 		/* Add padding y to tabpanel in "Settings" (Where "Theme","Archived chats", "Delete All chats", etc are. Added because Theme dropdown was cutted on hover on smaller devices, because of OpenAI's `overflow-y: auto` */
