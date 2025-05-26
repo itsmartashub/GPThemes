@@ -34,6 +34,16 @@
 		// background-color: var(--c-accent) !important;
 		// }
 	}
+
+	/* Product/items list in chat bubbles (when search something) */
+	.context-list {
+		box-shadow: 0 0 0 1px hsla(var(--accent-hsl) / 0.15);
+		// background-color: hsla(var(--accent-hsl) / 0.1);
+		background-color: var(--c-surface-2);
+		padding-inline: 0.5rem;
+		border-radius: var(--br-btn-big);
+		@include lift;
+	}
 }
 
 /* @ === RIGHT - CHATS BUBBLES ===*/

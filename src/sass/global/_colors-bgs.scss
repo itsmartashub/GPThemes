@@ -216,10 +216,16 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 	// background-color: var(--c-surface-3) !important;
 }
 
-
 .bg-token-main-surface-secondary {
 	background-color: var(--c-surface-2) !important;
 }
+
+// .bg-token-main-surface-primary {
+// 	// --main-surface-primary: var(--c-bg-cm) !important;
+// 	// --main-surface-primary: var(--c-surface-1) !important;
+// 	--main-surface-primary: var(--c-bg-chats-container) !important;
+// 	// background-color: var(--c-surface-2) !important;
+// }
 
 /*
 .bg-blue-400 - "Update" pill badge in "Create Image" menu item; Blue indicator of unread messages in sidebar nav chat-item

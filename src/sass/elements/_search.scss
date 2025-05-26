@@ -18,15 +18,12 @@
 
     /* Add hover state for searched items */
     a[class*="hover:bg-token-main-surface-secondary"] {
+
+        // transition: transform 0.25 ease, background-color 0.25 ease !important;
+
         &:hover {
             --main-surface-secondary: var(--c-surface-3) !important;
             transform: translateY(-2px);
         }
-    }
-
-    /* "SOURCES" sidebar sticky headers: "Links", "Citations", "More" */
-    [class*="h-[calc(var(--screen-thread-header-min-height"] {
-        color: var(--c-accent);
-        text-transform: uppercase;
     }
 }

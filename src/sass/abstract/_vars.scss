@@ -55,7 +55,7 @@
 	// --sidebar-width: 260px;
 	// --sidebar-inline-padding: 12px;
 	// --header-height: 60px;
-	--white: var(--c-on-accent) !important;
+	--white: var(--c-surface-1) !important;
 	--black: var(--c-accent) !important;
 	// --gray-50: #f9f9f9;
 	// --gray-100: #ececec;
@@ -113,7 +113,8 @@ html,
 	- border oko "Uprade" btn-a
 	- border oko inputa u GPTs page
 	- border u "Keyboard shortcuts" oko kao tastera */
-	--border-default: var(--c-border) !important;
+	// --border-default: var(--c-border) !important;
+	--border-default: var(--c-border-accent) !important;
 	--border-light: var(--c-border-accent) !important;
 	// --border-heavy: #fff3;
 	--border-status-warning: hsla(var(--warning-hsl) / 0.11);
@@ -270,7 +271,8 @@ html.light {
 	/* ? ========== modal, dialog, contextmenu bg ========== */
 	--c-bg-modal: hsla(var(--txt-hsl) / 0.3);
 	--c-bg-dialog: var(--c-surface-2);
-	--c-bg-contextmenu: var(--c-surface-3);
+	// --c-bg-contextmenu: var(--c-surface-3);
+	--c-bg-menu: hsla(var(--accent-h), calc(var(--accent-s) * 0.5), 75%, 0.5);
 	--c-bg-contextmenu-item: var(--c-surface-2);
 	// --c-bg-contextmenu: hsl(0, 0%, calc(var(--surface-l) / 1.1));
 
@@ -386,6 +388,8 @@ html.dark {
 	--c-bg-modal: hsla(var(--accent-hsl) / 0.22);
 	--c-bg-dialog: var(--c-surface-2);
 	--c-bg-contextmenu: var(--c-surface-3);
+	// --c-bg-menu: hsla(var(--accent-hsl) / 0.15);
+	--c-bg-menu: hsla(var(--accent-h), calc(var(--accent-s) * 0.25), calc(var(--accent-l) * 0.65), 0.35);
 	--c-bg-contextmenu-item: var(--c-surface-2);
 
 	/* ? ========== Tooltip bg ========== */
@@ -432,7 +436,8 @@ html.dark {
 
 	/* sidebar collapse btn;"ChatGPT 3.5 - Fastest" in 4o menu when hover on it in chat bubbles */
 	--text-quaternary: var(--c-subtext-2) !important;
-	--brightness-menu: brightness(0.75);
+	--brightness-menu: brightness(0.8);
+	// --brightness-menu: brightness(1);
 }
 
 /* @ ================== OLED ================== */

@@ -53,5 +53,5 @@
 
 @mixin menuBg {
     backdrop-filter: var(--blur-menu) var(--brightness-menu) !important;
-    background-color: hsla(var(--accent-hsl) / 0.15) !important;
+    background-color: var(--c-bg-menu) !important;
 }

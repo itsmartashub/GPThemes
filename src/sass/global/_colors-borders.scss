@@ -56,11 +56,12 @@ html.light [class*=':border-white/10'] {
 	border: none !important;
 }
 
-[class*='border-blue-'] {
-	border-color: hsla(var(--accent-hsl) / 0.2) !important;
+[class*='border-blue-'],
+[class*='dark:border-[#00000030]'] {
+	border-color: hsla(var(--accent-hsl) / 0.08) !important;
 }
 
-/* div[role='separator'] {
-	// --border-light: var(--c-border) !important;
-	--border-light: red !important;
-} */
+// .bg-token-border-default {
+// 	// --border-default: var(--c-border-accent) !important;
+// 	// background-color: var(--border-default);
+// }

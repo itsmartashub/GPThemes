@@ -22,9 +22,26 @@
 			background-color: transparent !important;
 		}
 
+		.from-token-main-surface-primary {
+			--tw-gradient-from: var(--c-bg-dialog) !important;
+			--main-surface-primary: var(--c-bg-dialog) !important;
+		}
+
+		// .bg-linear-to-b {}
+
 		[class*="hover:bg-token-main-surface-secondary"]:hover {
 			// --main-surface-secondary: var(--c-bg-contextmenu-item) !important;
 			--main-surface-secondary: hsla(var(--accent-hsl) / 0.14) !important;
+		}
+
+	}
+}
+
+/* Dialog with links from sources for mobile */
+[role='dialog']:not(:empty) {
+	@include dev('md') {
+		.bg-token-bg-primary {
+			--bg-primary: var(--c-bg-dialog) !important;
 		}
 	}
 }
