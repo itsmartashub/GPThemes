@@ -271,10 +271,13 @@ html.light {
 	/* ? ========== modal, dialog, contextmenu bg ========== */
 	--c-bg-modal: hsla(var(--txt-hsl) / 0.3);
 	--c-bg-dialog: var(--c-surface-2);
-	// --c-bg-contextmenu: var(--c-surface-3);
-	--c-bg-menu: hsla(var(--accent-h), calc(var(--accent-s) * 0.5), 75%, 0.5);
-	--c-bg-contextmenu-item: var(--c-surface-2);
 	// --c-bg-contextmenu: hsl(0, 0%, calc(var(--surface-l) / 1.1));
+	// --c-bg-contextmenu: var(--c-surface-3);
+	// --c-bg-contextmenu-item: var(--c-surface-2);
+	--c-bg-menu: hsla(var(--accent-h), calc(var(--accent-s) * 0.35), 75%, 0.5);
+	--brightness-menu: brightness(0.98);
+	// --brightness-menu: brightness(1);
+
 
 	/* ? ========== Tooltip bg ========== */
 	--c-bg-tooltip: var(--c-accent-light);
@@ -320,10 +323,10 @@ html.light {
 	/* ? ========== BOX-SHADOW ==========*/
 	--box-shadow: var(--box-shadow-values) hsla(var(--accent-hsl) / 0.1);
 	// --box-shadow-contextmenu: 0px 0px 5px -2px hsla(0, 0%, 0%, 0.18);
-	--box-shadow-contextmenu: 0px 0px 0px 1px color-mix(in srgb, var(--c-bg-contextmenu), black 1%);
+	// --box-shadow-contextmenu: 0px 0px 0px 1px color-mix(in srgb, var(--c-bg-contextmenu), black 1%);
 	--box-shadow-textarea: inset 0px 0px 15px 1px hsla(0, 0%, 0%, 0.1) !important;
 
-	--brightness-menu: brightness(0.98);
+
 }
 
 /* @ ================== DARK ================== */
@@ -387,10 +390,12 @@ html.dark {
 	/* ? ========== modal, dialog, contextmenu bg ========== */
 	--c-bg-modal: hsla(var(--accent-hsl) / 0.22);
 	--c-bg-dialog: var(--c-surface-2);
-	--c-bg-contextmenu: var(--c-surface-3);
+	// --c-bg-contextmenu: var(--c-surface-3);
+	// --c-bg-contextmenu-item: var(--c-surface-2);
 	// --c-bg-menu: hsla(var(--accent-hsl) / 0.15);
-	--c-bg-menu: hsla(var(--accent-h), calc(var(--accent-s) * 0.25), calc(var(--accent-l) * 0.65), 0.35);
-	--c-bg-contextmenu-item: var(--c-surface-2);
+	--c-bg-menu: hsla(var(--accent-h), calc(var(--accent-s) * 0.3), calc(var(--accent-l) * 0.75), 0.3);
+	--brightness-menu: brightness(0.8);
+	// --brightness-menu: brightness(1);
 
 	/* ? ========== Tooltip bg ========== */
 	--c-bg-tooltip: var(--c-accent-light);
@@ -431,13 +436,12 @@ html.dark {
 	/* ? ========== BOX-SHADOW ==========*/
 	--box-shadow: var(--box-shadow-values) hsla(var(--accent-hsl) / 0.1);
 	// --box-shadow-contextmenu: 0px 0px 30px -10px hsla(var(--accent-hsl) / 0.18);
-	--box-shadow-contextmenu: inset 0px 0px 12px 1px hsla(var(--accent-hsl) / 0.13);
+	// --box-shadow-contextmenu: inset 0px 0px 12px 1px hsla(var(--accent-hsl) / 0.13);
 	--box-shadow-textarea: inset 0px 0px 15px 1px hsla(var(--accent-hsl) / 0.05) !important;
 
 	/* sidebar collapse btn;"ChatGPT 3.5 - Fastest" in 4o menu when hover on it in chat bubbles */
 	--text-quaternary: var(--c-subtext-2) !important;
-	--brightness-menu: brightness(0.8);
-	// --brightness-menu: brightness(1);
+
 }
 
 /* @ ================== OLED ================== */
@@ -501,8 +505,8 @@ html.dark[data-gptheme='oled'] {
 	/* ? ========== modal, dialog, contextmenu bg ========== */
 	--c-bg-modal: hsla(var(--accent-hsl) / 0.09);
 	--c-bg-dialog: var(--c-surface-1);
-	--c-bg-contextmenu: var(--c-surface-3);
-	--c-bg-contextmenu-item: var(--c-surface-2);
+	// --c-bg-contextmenu: var(--c-surface-3);
+	// --c-bg-contextmenu-item: var(--c-surface-2);
 
 	/* ? ========== Tooltip bg ========== */
 	--c-bg-tooltip: var(--c-accent-light);
@@ -535,7 +539,7 @@ html.dark[data-gptheme='oled'] {
 	--box-shadow: var(--box-shadow-values) hsla(var(--accent-hsl) / 0.1);
 	// --box-shadow-contextmenu: 0px 0px 30px 0px hsla(var(--accent-hsl) / 0.1);
 	// --box-shadow-contextmenu: 0px 0px 30px 0px red;
-	--box-shadow-contextmenu: inset 0px 0px 15px 1px hsla(var(--accent-hsl) / 0.08);
+	// --box-shadow-contextmenu: inset 0px 0px 15px 1px hsla(var(--accent-hsl) / 0.08);
 	--box-shadow-textarea: inset 0px 0px 15px 1px hsla(var(--accent-hsl) / 0.05) !important;
 	// --box-shadow-contextmenu: 0px 0px 30px 0px red;
 

@@ -1,16 +1,13 @@
-*,
-:after,
-:before {
-	--tw-ring-color: hsl(var(--accent-h),
-			calc(var(--accent-s) / 1.5),
-			var(--accent-l)) !important; // out border (box-shadow) on dialog btns color
-	--tw-ring-offset-color: var(--c-bg-dialog) !important; // inner border on dialog btns color
-}
+// *,
+// :after,
+// :before {
+// 	--tw-ring-color: hsl(var(--accent-h),
+// 			calc(var(--accent-s) / 1.5),
+// 			var(--accent-l)) !important; // out border (box-shadow) on dialog btns color
+// 	--tw-ring-offset-color: var(--c-bg-dialog) !important; // inner border on dialog btns color
+// }
 
-/* 
-Theme dropdown deo ima zeleni border za :focus-visible.
-  - [aria-label="Delete shared link"] is recycle svg icon in "Shared link" table
-*/
+
 :focus-visible:not(.btn-primary,
 	.btn-danger,
 	.btn-secondary:not([role='combobox'], .bg-token-surface-tertiary input),

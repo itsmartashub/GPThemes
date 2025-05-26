@@ -7,16 +7,18 @@
 	--max-h: 75vh;
 	--shadow-color: hsla(var(--accent-hsl) / 0.09);
 	--shadow-values: inset 0 0 20px 10px;
+	--c-scrollbar-thumb: hsla(var(--accent-hsl) / 0.3) !important;
 	top: var(--top);
 	right: var(--right);
 	width: clamp(25rem, 25vw, 30rem);
 	max-height: var(--max-h);
 	padding: var(--p);
 	opacity: 0;
-	background-color: var(--c-bg-sidebar);
+	// background-color: var(--c-bg-sidebar);
+	// box-shadow: var(--shadow-values) var(--shadow-color);
+	@include menuBg;
+	border: 1px solid hsla(var(--accent-hsl) / 0.1);
 	border-radius: var(--br-dialog);
-	border: 1px solid hsla(var(--accent-hsl) / 0.18);
-	box-shadow: var(--shadow-values) var(--shadow-color);
 	pointer-events: none;
 	transform: translateX(calc(100% + 1.5rem)) !important;
 	z-index: calc(var(--z-modal) + 10);
@@ -55,4 +57,8 @@
 		display: block !important;
 		--border-light: var(--c-border) !important;
 	}
+}
+
+html.dark .gpth-settings {
+	--c-bg-menu: hsla(var(--accent-h), calc(var(--accent-s) * 0.2), calc(var(--accent-l) * 0.5), 0.3);
 }

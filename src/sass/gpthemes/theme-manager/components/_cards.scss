@@ -4,6 +4,16 @@
     font-size: 1.6rem;
     position: relative;
 
+    &--small,
+    &--big,
+    &--range label {
+        // background-color: var(--c-surface-2);
+        // box-shadow: 0 0 0 1px hsla(var(--accent-hsl) / 0.2);
+        background-color: hsla(var(--accent-hsl) / 0.1);
+        border: 1px solid hsla(var(--accent-hsl) / 0.12);
+        backdrop-filter: blur(10px) contrast(1.5);
+    }
+
 
     @include dev('sm') {
         font-size: 1.4rem;
@@ -115,10 +125,11 @@
     /* _________________   SMALL CARDS   _________________ */
 
     &--small {
+        border-radius: 50vw;
+
         label {
             height: 3rem;
             padding: 0.3rem;
-            background-color: var(--c-surface-2);
         }
 
         input:is(:focus, :focus-visible, :focus-within) {
@@ -189,7 +200,6 @@
         --p: .9rem;
         --p-input-select: 0.2em;
         border-radius: 1.5rem;
-        background-color: var(--c-surface-2);
         padding: var(--p) var(--p) calc(var(--p) - var(--p-input-select)) var(--p);
         // font-size: 1.6rem;
 
@@ -278,12 +288,6 @@
 
     /* _________________   RANGE CARDS   _________________ */
     &--range {
-        label {
-            // height: 5.5rem;
-            // padding: 0.3rem;
-            background-color: var(--c-surface-2);
-        }
-
         input {
             width: 85% !important;
             margin: 0 auto;
@@ -325,10 +329,6 @@
             color: var(--c-accent);
             @extend %animScaleIn;
             z-index: 10;
-            // opacity: 0;
-            // transition-property: display opacity;
-            // transition-duration: 0.3s;
-            // transition-behavior: allow-discrete;
         }
 
         &.is-locked {
