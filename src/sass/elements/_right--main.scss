@@ -244,17 +244,22 @@
 			}
 		}
 
-		/* "SOURCES" button */
-		.absolute[class*="h-[60px]"]:has(>button.not-prose.group\/footnote.bg-token-main-surface-primary) {
+		/* "SOURCES" button, style for footer icons affects this too!! */
+		button.group\/footnote.bg-token-bg-primary.w-fit.rounded-3xl {
+			text-transform: uppercase;
+			--bg-primary: hsla(var(--accent-hsl) / 0.1) !important;
 
-			.bg-token-main-surface-primary {
-				text-transform: uppercase;
-				--main-surface-primary: hsla(var(--accent-hsl) / 0.1) !important;
-				--main-surface-secondary: hsla(var(--accent-hsl) / 0.25) !important;
+			&:hover {
+				background-color: hsla(var(--accent-hsl) / 0.25) !important;
+				color: var(--c-on-accent) !important;
+
+				.text-token-text-secondary {
+					color: var(--c-on-accent) !important;
+				}
 			}
 		}
 
-		.overflow-hidden:has(> .divide-y) {
+		/* .overflow-hidden:has(> .divide-y) {
 			.from-token-main-surface-secondary {
 				--gradient-color-from: var(--c-surface-2) !important;
 
@@ -266,7 +271,7 @@
 			a {
 				border-radius: var(--br-btn);
 			}
-		}
+		} */
 
 		/* Terminal svg icon: View analysis */
 		.markdown {
@@ -405,12 +410,15 @@
 
 
 	/* User and GPT chats footer */
-	[class*="group/conversation-turn"] .flex.absolute.start-0.end-0 {
+	// [class*="group/conversation-turn"] .flex.absolute.start-0.end-0 {
+	[class*="group/conversation-turn"] .flex.max-w-full.flex-col.grow~.flex[class*="justify-"] {
+
+		/* And User's and GPT's footer icons */
 		&>[class*="has-data-[state=open]"] {
-			background: hsla(var(--accent-hsl) / .12) !important;
-			border: 1px solid hsla(var(--accent-hsl) / .08) !important;
+			// backdrop-filter: blur(10px);
+			// background: hsla(var(--accent-hsl) / .12) !important;
+			// border: 1px solid hsla(var(--accent-hsl) / .08) !important;
 			border-radius: 50vw;
-			backdrop-filter: blur(10px);
 			color: var(--c-accent) !important;
 
 			button {
@@ -431,6 +439,26 @@
 				}
 			}
 		}
+
+		/* Only user's footer icons */
+		&.justify-end {
+			&>[class*="has-data-[state=open]"] {
+				backdrop-filter: blur(10px);
+				background: hsla(var(--accent-hsl) / .12) !important;
+				border: 1px solid hsla(var(--accent-hsl) / .08) !important;
+			}
+		}
+
+		/* Only GPT's footer icons */
+		// &.justify-start {
+		// 	&>[class*="has-data-[state=open]"] {
+
+		// 		/* SOURCES btn */
+		// 		// button.group\/footnote:hover .text-token-text-secondary {
+		// 		// 	color: var(--c-on-accent) !important;
+		// 		// }
+		// 	}
+		// }
 	}
 }
 
