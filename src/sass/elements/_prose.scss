@@ -79,9 +79,9 @@
 		color: var(--c-accent) !important;
 
 		/* 
-		- [class*="group-hover/navigation"] je veliki source link u chat bubble kao onaj "ChatGPT Release Note" na sony
+		- [class*="group-hover/navigation"] je veliki source link u chat bubble kao onaj "ChatGPT Release Note" na sony, ali on je sad &.border-token-border-light
 		- .btn-secondary se odnosi na sve linkove sto imaju style kao btn-secondary, recimo "Directions", "Website", "Call" u Search/Maps-List za mobile */
-		&[href]:not(&[class*='bg-[#f4f4f4]'], &[class*="group/nav-list"], &:has([class*="group-hover/navigation:"]), &.btn-secondary) {
+		&[href]:not(&[class*='bg-[#f4f4f4]'], &[class*="group/nav-list"], &.border-token-border-light, &.btn-secondary) {
 			@extend %link_hover_underlined;
 		}
 	}

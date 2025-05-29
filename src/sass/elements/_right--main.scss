@@ -259,6 +259,8 @@
 			}
 		}
 
+		/* "Searched x sites" Links wrapper! */
+		// TODO(remove?): check whats this is
 		/* .overflow-hidden:has(> .divide-y) {
 			.from-token-main-surface-secondary {
 				--gradient-color-from: var(--c-surface-2) !important;
@@ -462,8 +464,9 @@
 	}
 }
 
+// TODO(remove?): check whats this is
 /* "Searched x sites" Links wrapper! */
-html.dark main [data-testid^='conversation-turn-']:has([data-message-author-role='assistant']) {
+/* html.dark main [data-testid^='conversation-turn-']:has([data-message-author-role='assistant']) {
 	.overflow-hidden:has(> .divide-y) {
 		.from-token-main-surface-secondary {
 			--gradient-color-from: var(--c-surface-3) !important;
@@ -473,10 +476,11 @@ html.dark main [data-testid^='conversation-turn-']:has([data-message-author-role
 			background-color: var(--c-surface-3);
 		}
 	}
-}
+} */
 
+// TODO(remove?): check whats this is
 /* "Searched x sites" Links wrapper! */
-html[data-gptheme='oled'] main [data-testid^='conversation-turn-']:has([data-message-author-role='assistant']) {
+/* html[data-gptheme='oled'] main [data-testid^='conversation-turn-']:has([data-message-author-role='assistant']) {
 	.overflow-hidden:has(> .divide-y) {
 		.from-token-main-surface-secondary {
 			--gradient-color-from: var(--c-surface-2) !important;
@@ -486,29 +490,4 @@ html[data-gptheme='oled'] main [data-testid^='conversation-turn-']:has([data-mes
 			background-color: var(--c-surface-2);
 		}
 	}
-}
-
-/* TODO: see this in the future to properly animate custom chat and prompt width. For now i turn it off  */
-/* Animations when changing custom width */
-// main {
-
-// 	/* We cant use trasition for all props ecause its make chat bubble flash on first user prompt, but now when specifte width is set, it doesnt tranistioning chats on changing custom width, because CSS cant transition vars, so we would need to use calc(var(--width)) where ever we suse this anim custom width */
-// 	// [data-testid^='conversation-turn-']:has([data-message-author-role='user']) [class*='bg-token-message-surface'],
-// 	// &:has(#prompt-textarea) [class*='lg:max-w-[40rem]'],
-// 	[data-testid^='conversation-turn-'] .mx-auto.flex.flex-1.text-base,
-// 	&:has(#prompt-textarea) .px-3.text-base.m-auto .mx-auto.flex.flex-1.text-base:has(>form) {
-// 		will-change: width;
-// 		transition: width 0.2s ease-in-out;
-// 		// transition: 0.2s ease-in-out;
-// 	}
-// }
-
-
-/* ChatGPT's answer notification on the top right, next to the GPThemes floating button */
-// body>.fixed.top-8.right-4 {
-// 	.rounded-full:has(>svg[role='img']) {
-// 		--main-surface-primary: var(--c-accent) !important;
-// 		--text-primary: var(--c-on-accent) !important;
-// 		border-color: var(--c-accent) !important;
-// 	}
-// }
+} */
