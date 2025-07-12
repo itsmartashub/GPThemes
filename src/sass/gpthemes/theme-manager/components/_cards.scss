@@ -41,6 +41,15 @@
         transition: all 0.45s $easeOutBack;
     }
 
+    input,
+    select {
+
+        &:focus {
+            outline: none !important;
+            border: none !important;
+        }
+    }
+
     input {
         transform-origin: center center;
     }
@@ -242,7 +251,7 @@
             width: 100%;
             background-color: transparent !important;
             padding: var(--p-input-select) !important;
-            translate: calc(var(--p-input-select) * -1) 0;
+            // translate: calc(var(--p-input-select) * -1) 0;
 
             &:focus {
                 outline: none;
@@ -250,19 +259,18 @@
                 border-radius: 1rem;
                 background-color: hsla(var(--accent-hsl) / 0.15) !important;
                 color: var(--c-accent);
-                translate: 0 0 !important;
+                // translate: 0 0 !important;
             }
         }
 
         input {
             --p-input-select: 0.06em !important;
-            // font-size: 1.6rem;
             font-size: 1em;
         }
 
         select {
-            // font-size: 1.2rem;
-            font-size: 0.85em;
+            font-size: 1.2rem;
+            // font-size: 0.85em;
             background: none;
             appearance: none;
             -webkit-appearance: none;
@@ -280,7 +288,8 @@
 
             input,
             select {
-                transform: translateY(-2px);
+                // transform: translateY(-2px);
+                color: var(--c-accent);
             }
         }
     }
