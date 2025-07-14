@@ -47,10 +47,11 @@
 
 	header#page-header {
 
-		/* "Get Plus" pill sticky button on "New Chat" page */
+		/* "Get Plus" and "Create a Workspace" pill sticky button on "New Chat" page */
 		[class*="dark:bg-[#373669]"] {
 			background-color: hsla(var(--accent-hsl) / .1) !important;
 			color: var(--c-accent) !important;
+			backdrop-filter: blur(10px);
 		}
 	}
 }

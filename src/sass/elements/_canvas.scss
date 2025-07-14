@@ -70,7 +70,7 @@
     //     background-color: var(--c-bg-cm) !important;
     // }
 
-    &:has(section.popover main #codemirror, section.popover main #prosemirror-editor-container) {
+    &:has(section.popover #codemirror, section.popover #prosemirror-editor-container) {
         .bg-black {
             background-color: var(--c-accent) !important;
             color: var(--c-on-accent) !important;
@@ -78,7 +78,18 @@
 
         /* TODO: Has to add for the bg of Canvas (visible gap or when drag the separator). Btw, when opening canvas, when there is skeleton waiting, the bg is not --c-bg-cm for this section.bg-token-main-surface-primary */
         section.popover.h-full.w-full {
-            background-color: var(--c-bg-cm) !important;
+            background: var(--c-bg-cm) !important;
+            --main-surface-primary: var(--c-bg-cm) !important;
+
+            /*             dark :not(.light).popover,
+            .dark.popover,
+            .popover .dark {
+                --main-surface-primary: var(--gray-750);
+                -surface-secondary: var(--gray-700);
+                --main-surface-tertiary: var(--gray-600);
+                --sidebar-surface-primary: var(--gray-750);
+            }
+ */
 
             /* Header of canvas with title, copy btn */
             header[class*="@container"] {
@@ -168,7 +179,14 @@
             }
 
             /* @@@@@@@@@ Canvas Edit floating button on bottom right */
-            .absolute.z-70.overflow-visible.border.border-token-border-default.transition-colors {
+            section .absolute.z-70.overflow-visible.border.border-token-border-default.transition-colors {
+
+                /* Main state floating bg */
+                &.bg-token-main-surface-primary {
+                    // background-image: var(--c-bg-gradient) !important;
+                    border: 1px solid hsla(var(--accent-hsl) / .14) !important;
+                    background-color: hsla(var(--accent-hsl) / .18) !important;
+                }
 
                 /* Wrapper */
                 &.bg-token-main-surface-primary,
@@ -196,11 +214,7 @@
                     }
                 }
 
-                /* Main state floating bg */
-                &.bg-token-main-surface-primary {
-                    background-color: hsla(var(--accent-hsl) / .2) !important;
-                    backdrop-filter: blur(10px);
-                }
+
 
                 /* Draggable Y-slider btn like: "Adjust the length" and "Reading level" in ProseMirror (text canvas) */
                 .cursor-grab.rounded-full.bg-token-main-surface-primary[draggable] {
@@ -230,37 +244,25 @@
                 }
             }
 
-            main {
+            section.relative.flex.min-h-0 {
 
                 /* ___________ "Ask a ChatGPT" and "Edit or expain..." floating wrapper */
                 .absolute.z-50 {
 
                     /* "Ask a ChatGPT" and toolbar wrapper */
-                    &:has(> .h-10[role="toolbar"]) {
-                        .h-10[role="toolbar"] {
+                    // &:has(> .h-10[role="toolbar"]) {
+                    .h-10[role="toolbar"] {
 
-                            &.bg-token-main-surface-primary {
-                                --main-surface-primary: var(--c-surface-2) !important;
-                                border: 1px solid hsla(var(--accent-hsl) / .14) !important;
+                        &.bg-token-main-surface-primary {
+                            --main-surface-primary: var(--c-surface-2) !important;
+                            border: 1px solid hsla(var(--accent-hsl) / .14) !important;
 
-                                /* "Ask a ChatGPT" and toolbar buttons hover states */
-                                button[class*="hover:bg-[#f5f5f5]"]:hover {
-                                    background-color: var(--c-surface-3) !important;
-                                }
+                            /* "Ask a ChatGPT" and toolbar buttons hover states */
+                            button[class*="hover:bg-[#f5f5f5]"]:hover {
+                                background-color: var(--c-surface-3) !important;
                             }
                         }
                     }
-
-                    /* "Edit or explain" wrapper */
-                    // .relative.bg-token-main-surface-primary:has(>textarea[aria-placeholder^="Edit or explain"]) {
-                    // .relative.bg-token-main-surface-primary:has(>textarea[aria-placeholder]) {
-                    //     background-color: hsla(var(--accent-hsl) / .1) !important;
-
-                    //     /* "Edit or explain" field overlay */
-                    //     .backdrop-saturate-25 {
-                    //         background-color: hsla(var(--accent-hsl) / .1) !important;
-                    //     }
-                    // }
                 }
 
                 /* Floating balloons, like "1 more edit" */
@@ -372,7 +374,7 @@
 
 /* Width less then 1024px */
 @include dev('lg') {
-    .fixed.inset-0.z-40.overflow-hidden {
+    dialog.fixed.inset-0.z-50 {
 
         /* "Ask a ChatGPT to edit" on full-width screen less then 1000px width */
         // [class*="bg-[#f4f4f4]"]:has([placeholder="Ask ChatGPT to edit"]) {
