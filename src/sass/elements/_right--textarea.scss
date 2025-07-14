@@ -77,18 +77,22 @@ form {
 		}
 
 		/* Tools, Dictate icon, Canvas, Search, Think */
-		button.composer-btn:not(#upload-file-btn) {
+		button.composer-btn:not(#upload-file-btn),
+		[data-testid="system-hint-search"] .h-9.rounded-full.border.border-token-border-default[class*="bg-token-composer-blue-bg"] {
 			background-color: hsla(var(--accent-hsl) / 0.1) !important;
 		}
 
-		button.composer-btn {
+		button.composer-btn,
+		// "Search" for guest mode
+		button[data-testid="composer-button-search"] {
 			color: var(--c-accent) !important;
 			border-radius: 50vw;
 		}
 
-		// button[type="button"][aria-label] {
-		// 	color: var(--c-accent) !important;
-		// }
+		// "Search" for guest mode when hover
+		[data-testid="system-hint-search"] .h-9.rounded-full[class*="bg-token-composer-blue-bg"]:hover {
+			background-color: hsla(var(--accent-hsl) / 0.15) !important;
+		}
 
 		/* Voice and dictate wrapper */
 		#imagegen-voice-controls {
@@ -136,7 +140,6 @@ form {
 		}
 
 		/* Canvas file-tile */
-		// div.group\/file-tile:has([id^="textdoc-message-temp-"]) {
 		div.group\/file-tile {
 			[id^="textdoc-message-temp"] {
 				border-color: hsla(var(--accent-hsl) / 0.1) !important;
