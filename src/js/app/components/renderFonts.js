@@ -35,13 +35,13 @@ export function renderFontBigCard({
 }) {
 	return `
         <div class="${className} fonts__group card card--big h-full" data-gpth-err="${min}${unit} &hArr; ${max}${unit}">
-            <label for="${inputId}" class="grid gap-1 h-full w-full">
+            <label for="${inputId}" class="flex flex-col gap-1 h-full w-full">
                 <div>
                     <p class="card__unit card__icon">PX</p>
                     <p class="card__name uppercase font-semibold">${name}</p>
                 </div>
 
-                <input type="${inputType}" id="${inputId}" value="${inputValue}" placeholder="${inputPlaceholder}" class="outline-none border-none focus:outline-none focus:border-none font-bold" minlength="${min}" maxlength="${max}">
+                <input type="${inputType}" id="${inputId}" value="${inputValue}" placeholder="${inputPlaceholder}" class="flex-1 outline-none border-none focus:outline-none focus:border-none font-bold" minlength="${min}" maxlength="${max}">
             </label>
         </div>`
 }

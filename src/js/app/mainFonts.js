@@ -95,65 +95,65 @@ const renderFontsTab = () => {
       <div class="fonts__props">
         <div class="fonts__bigcards-wrapper">
           <div class="fonts__family fonts__group card card--big h-full">
-            <label for="fontFamily" class="grid gap-1 h-full w-full">
+            <label for="fontFamily" class="flex flex-col gap-1 h-full w-full">
               <div>
                 <p class="card__unit card__icon">T</p>
                 <p class="card__name uppercase font-semibold">FONT FAMILY</p>
               </div>
-              <select id="fontFamily" class="border-none outline-none focus:none font-bold">
+              <select id="fontFamily" class="flex-1 border-none outline-none focus:none font-bold">
                 ${FONT_CONFIG.fontFamily.options
-									.map((name) => {
-										const value = name === 'Default' ? FONT_CONFIG.fontFamily.default : name
-										return `<option value="${value}">${name}</option>`
-									})
-									.join('')}
+					.map((name) => {
+						const value = name === 'Default' ? FONT_CONFIG.fontFamily.default : name
+						return `<option value="${value}">${name}</option>`
+					})
+					.join('')}
               </select>
             </label>
           </div>
           ${renderFontBigCard({
-						name: FONT_CONFIG.fontSize.label,
-						className: 'fonts__size',
-						inputId: FONT_CONFIG.fontSize.id,
-						inputType: 'number',
-						inputValue: FONT_CONFIG.fontSize.default,
-						inputPlaceholder: FONT_CONFIG.fontSize.default,
-						unit: FONT_CONFIG.fontSize.unit,
-						min: FONT_CONFIG.fontSize.min,
-						max: FONT_CONFIG.fontSize.max,
-					})}
+				name: FONT_CONFIG.fontSize.label,
+				className: 'fonts__size',
+				inputId: FONT_CONFIG.fontSize.id,
+				inputType: 'number',
+				inputValue: FONT_CONFIG.fontSize.default,
+				inputPlaceholder: FONT_CONFIG.fontSize.default,
+				unit: FONT_CONFIG.fontSize.unit,
+				min: FONT_CONFIG.fontSize.min,
+				max: FONT_CONFIG.fontSize.max,
+			})}
         </div>
         <div class="fonts__smallcards-wrapper">
           ${renderFontSmallCard({
-						name: FONT_CONFIG.lineHeight.label,
-						className: 'fonts__lineHeight',
-						inputId: FONT_CONFIG.lineHeight.id,
-						inputType: 'number',
-						inputValue: FONT_CONFIG.lineHeight.default,
-						inputPlaceholder: FONT_CONFIG.lineHeight.default,
-						unit: FONT_CONFIG.lineHeight.unit,
-						min: FONT_CONFIG.lineHeight.min,
-						max: FONT_CONFIG.lineHeight.max,
-					})}
+				name: FONT_CONFIG.lineHeight.label,
+				className: 'fonts__lineHeight',
+				inputId: FONT_CONFIG.lineHeight.id,
+				inputType: 'number',
+				inputValue: FONT_CONFIG.lineHeight.default,
+				inputPlaceholder: FONT_CONFIG.lineHeight.default,
+				unit: FONT_CONFIG.lineHeight.unit,
+				min: FONT_CONFIG.lineHeight.min,
+				max: FONT_CONFIG.lineHeight.max,
+			})}
           ${renderFontSmallCard({
-						name: FONT_CONFIG.letterSpacing.label,
-						className: 'fonts__letterSpacing',
-						inputId: FONT_CONFIG.letterSpacing.id,
-						inputType: 'number',
-						inputValue: FONT_CONFIG.letterSpacing.default,
-						inputPlaceholder: FONT_CONFIG.letterSpacing.default,
-						unit: FONT_CONFIG.letterSpacing.unit,
-						min: FONT_CONFIG.letterSpacing.min,
-						max: FONT_CONFIG.letterSpacing.max,
-					})}
+				name: FONT_CONFIG.letterSpacing.label,
+				className: 'fonts__letterSpacing',
+				inputId: FONT_CONFIG.letterSpacing.id,
+				inputType: 'number',
+				inputValue: FONT_CONFIG.letterSpacing.default,
+				inputPlaceholder: FONT_CONFIG.letterSpacing.default,
+				unit: FONT_CONFIG.letterSpacing.unit,
+				min: FONT_CONFIG.letterSpacing.min,
+				max: FONT_CONFIG.letterSpacing.max,
+			})}
         </div>
       </div>
       <footer class="flex justify-center mt-8">
         ${renderButton({
-					id: 'resetFont',
-					content: 'Reset Fonts',
-					disabled: false,
-					className: 'btn-primary',
-				})}
+			id: 'resetFont',
+			content: 'Reset Fonts',
+			disabled: false,
+			className: 'btn-primary',
+		})}
       </footer>
     </section>
   `
