@@ -65,3 +65,11 @@ html.light [class*=':border-white/10'] {
 // 	// --border-default: var(--c-border-accent) !important;
 // 	// background-color: var(--border-default);
 // }
+
+.border-b {
+
+	&.border-token-border-default,
+	&.border-token-border-light {
+		border: none !important;
+	}
+}

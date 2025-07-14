@@ -15,7 +15,6 @@
 
 		&.popover {
 			padding: var(--p-dialog) !important;
-			// background-color: var(--c-bg-dialog) !important;
 			box-shadow: var(--box-shadow);
 
 			/* Add border radius only to dialogs that have border radius. For example "Create Image" dialog is full vw and vh and it doesnt have radius */
@@ -68,6 +67,10 @@
 		}
 
 		[role='tablist'] {
+			&.bg-token-bg-elevated-secondary {
+				background-color: hsla(var(--accent-hsl) / .05) !important;
+				border-radius: calc(var(--br-dialog) / 2) !important;
+			}
 
 			/* ___ DIALOG - "Settings" on smaller devices then deskop */
 			&[data-orientation='vertical'] {
@@ -99,8 +102,8 @@
 			}
 		}
 
-		/* "Build Profile" content */
-		[id*='BuilderProfile'][role='tabpanel'] {
+		/* "GPT builder profile" content */
+		[id*='content-Account'][role='tabpanel'] {
 
 			/* "PlaceholderGPT - By community builder" preview - this is bcs of OLED theme */
 			.bg-token-main-surface-primary.relative:has(.gizmo-shadow-stroke svg) {
