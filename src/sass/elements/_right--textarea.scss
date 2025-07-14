@@ -184,8 +184,7 @@ form {
 	
 	- &+.absolute.start-0.lg\:top-full.bg-token-main-surface-primary:has(ul) - selector introduced when #composer-background selector is removed
 	- .group .absolute.start-0.bg-token-main-surface-primary:has(ul) - selector when #composer-background selector is present */
-	&+.absolute.start-0.lg\:top-full.bg-token-main-surface-primary:has(ul),
-	.group .absolute.start-0.bg-token-main-surface-primary:has(ul) {
+	&+.absolute.start-0.top-full.bg-token-bg-primary:has(ul) {
 		// background-color: var(--c-bg-chats-container);
 		margin-top: 0.2rem;
 		padding: 0 !important;
