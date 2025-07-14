@@ -224,7 +224,7 @@
 
 					// style for element surround btn (in code its next to btn on the same block level, sibling), simulating the button, jeez...
 					&~.absolute.inset-0 {
-						--main-surface-primary: var(--c-accent) !important;
+						--bg-primary: var(--c-accent) !important;
 					}
 				}
 
