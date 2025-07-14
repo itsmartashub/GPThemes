@@ -44,6 +44,15 @@
 		border-radius: var(--br-btn-big);
 		@include lift;
 	}
+
+	header#page-header {
+
+		/* "Get Plus" pill sticky button on "New Chat" page */
+		[class*="dark:bg-[#373669]"] {
+			background-color: hsla(var(--accent-hsl) / .1) !important;
+			color: var(--c-accent) !important;
+		}
+	}
 }
 
 /* @ === RIGHT - CHATS BUBBLES ===*/
