@@ -64,11 +64,21 @@
 		[id*='-content-'] {
 			--anim-duration: 0.18s;
 			@extend %animFadeIn;
+
+			/* Main title in settings dialogs */
+			section:nth-of-type(1) {
+				h3.min-h-header-height {
+					&>.truncate {
+						@extend %date-pill;
+					}
+				}
+			}
 		}
 
 		[role='tablist'] {
 			&.bg-token-bg-elevated-secondary {
-				background-color: hsla(var(--accent-hsl) / .05) !important;
+				background-color: hsla(var(--accent-hsl) / .04) !important;
+				border: 1px solid hsla(var(--accent-hsl) / .055) !important;
 				border-radius: calc(var(--br-dialog) / 2) !important;
 			}
 
@@ -100,6 +110,15 @@
 			@include dev('sm') {
 				padding: 0rem !important;
 			}
+		}
+
+		/* Memory 100% full */
+		[id*='content-Personalization'][role='tabpanel'] {
+			[class*="dark:text-[#DC2626]"] {
+				background-color: hsla(var(--danger-hsl) / 0.11) !important;
+				color: var(--c-danger) !important;
+			}
+
 		}
 
 		/* "GPT builder profile" content */
