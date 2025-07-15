@@ -1,0 +1,37 @@
+/* Created image in chat bubbles and in "Library" */
+/* New "Create Image" image wrapper */
+.group\/imagegen-image {
+    border-radius: var(--br-contextmenu) !important;
+    transition: 0.3s $easeInOutCubic scale;
+
+    img {
+        transition: 0.3s $easeInOutCubic scale;
+    }
+
+    &:hover {
+        scale: 0.97;
+
+        img {
+            scale: 1.1;
+        }
+    }
+
+    button[class*="bg-white/15"] {
+        // background-color: var(--c-accent-light) !important;
+        // background-color: hsla(var(--accent-hsl) / .5);
+        background-color: rgba(white, 0.3);
+        backdrop-filter: blur(18px) !important;
+    }
+
+    // Text and buttons showed over image on image hover: download, like, dislike and image name
+    // .text-white {
+    //     color: black !important;
+
+    //     &.ps-4.font-semibold {
+    //         background-color: var(--c-accent-light);
+    //         padding-inline: 0.4rem !important;
+    //         margin-left: 0.5rem;
+    //         border-radius: 50vw;
+    //     }
+    // }
+}
