@@ -55,3 +55,19 @@
     backdrop-filter: var(--blur-menu) var(--brightness-menu) !important;
     background-color: var(--c-bg-menu) !important;
 }
+
+@mixin imgTrans {
+    transition: 0.3s $easeInOutCubic scale;
+
+    & img {
+        transition: 0.3s $easeInOutCubic scale;
+    }
+
+    &:is(:hover, :focus) {
+        scale: 0.97;
+
+        img {
+            scale: 1.1;
+        }
+    }
+}

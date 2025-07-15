@@ -4,27 +4,32 @@
 .composer-parent[role='presentation'] {
 	container: main / inline-size;
 
-	/* Main Page chat-container  Bg*/
+	/* Main Page chat-container  Bg */
 	background-color: var(--c-bg-chats-container) !important;
 
-	/* GPT logo in new chat page when no-btns are shown. Its important to make this code before .gizmo-shadow-stroke (main new chat logo in old-ui) because it override its color */
-	// .flex.h-full>svg[role='img'] {
-	// 	color: var(--c-accent);
+	// /* GPT logo in chat bubble */
+	// .gizmo-bot-avatar div,
+	/* GPT logo in "New Chat" main chat-container in old-ui */
+	// .gizmo-shadow-stroke {
+	// 	background-color: var(--c-accent) !important;
+
+	// 	svg {
+	// 		color: var(--c-on-accent) !important;
+	// 	}
 	// }
 
-	// /* GPT logo in chat bubble */
-	.gizmo-bot-avatar div,
-	/* GPT logo in "New Chat" main chat-container in old-ui */
-	.gizmo-shadow-stroke {
-		background-color: var(--c-accent) !important;
+	/* GTP logo in Dual Response chat bubbles */
+	.gizmo-bot-avatar {
+
+		&,
+		&>div.bg-token-main-surface-primary {
+			background-color: var(--c-accent) !important;
+		}
 
 		svg {
 			color: var(--c-on-accent) !important;
 		}
-	}
 
-	.gizmo-bot-avatar {
-		--main-surface-tertiary: var(--c-accent) !important;
 	}
 
 	/* Chats <article> wrapper on XL screens (huge full width when sidebar collapsed) - with this cutted first user message is being fixed */
@@ -295,6 +300,7 @@
 
 		/* DALLE Image hover buttons - 👍👎 */
 		.group\/dalle-image {
+			@include imgTrans;
 
 			.group-hover\/dalle-image\:visible.absolute {
 				button {

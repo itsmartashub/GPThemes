@@ -2,24 +2,25 @@
 /* New "Create Image" image wrapper */
 .group\/imagegen-image {
     border-radius: var(--br-contextmenu) !important;
-    transition: 0.3s $easeInOutCubic scale;
+    @include imgTrans;
+    // transition: 0.3s $easeInOutCubic scale;
 
-    img {
-        transition: 0.3s $easeInOutCubic scale;
-    }
+    // img {
+    //     transition: 0.3s $easeInOutCubic scale;
+    // }
 
-    &:hover {
-        scale: 0.97;
+    // &:is(:hover, :focus) {
+    //     scale: 0.97;
 
-        img {
-            scale: 1.1;
-        }
-    }
+    //     img {
+    //         scale: 1.1;
+    //     }
+    // }
 
     button[class*="bg-white/15"] {
         // background-color: var(--c-accent-light) !important;
         // background-color: hsla(var(--accent-hsl) / .5);
-        background-color: rgba(white, 0.3);
+        background-color: rgba(#fff, 0.3);
         backdrop-filter: blur(18px) !important;
     }
 
