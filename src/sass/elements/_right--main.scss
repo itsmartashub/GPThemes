@@ -400,18 +400,13 @@
 		background-color: var(--c-bg-msg-gpt) !important;
 	}
 
-
 	/* User and GPT chats footer */
-	// [class*="group/conversation-turn"] .flex.absolute.start-0.end-0 {
-	[class*="group/conversation-turn"] .flex.max-w-full.flex-col.grow~.flex[class*="justify-"] {
+	[class*="group/conversation-turn"] [class*="mx-[var(--mini-thread-content-inset)]"]>.flex[class*="justify-"] {
 
 		/* And User's and GPT's footer icons */
+		// [class*="group-hover/turn-messages:"]
 		&>[class*="has-data-[state=open]"] {
-			// backdrop-filter: blur(10px);
-			// background: hsla(var(--accent-hsl) / .12) !important;
-			// border: 1px solid hsla(var(--accent-hsl) / .08) !important;
 			border-radius: 50vw;
-			color: var(--c-accent) !important;
 
 			button {
 				color: var(--c-accent) !important;
@@ -420,8 +415,7 @@
 					color: currentColor !important;
 				}
 
-
-				&:hover {
+				&:is(:hover, :focus) {
 					background-color: var(--c-accent) !important;
 					color: var(--c-on-accent) !important;
 
@@ -432,7 +426,7 @@
 			}
 		}
 
-		/* Only user's footer icons */
+		// /* Only user's footer icons */
 		&.justify-end {
 			&>[class*="has-data-[state=open]"] {
 				backdrop-filter: blur(10px);
