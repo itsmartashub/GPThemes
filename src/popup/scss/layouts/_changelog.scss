@@ -38,63 +38,28 @@
         color: $accent;
     }
 
-
-
-    &__header,
     &__footer {
         position: sticky;
         z-index: 10;
         padding: 1rem 0 0.5rem 0;
-
     }
 
     &__header {
-        top: 0;
-        // background-color: rgba($bg, 0.1);
-        // backdrop-filter: blur(1rem);
-
-        background: linear-gradient(180deg, rgba($bg, 1) 70%, rgba($bg, 0.6));
-        box-shadow: 0 10px 20px 20px rgba($bg, 0.6);
-
-        h1 {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
-    }
-
-    &__logo {
-        --img-size: 2.8rem;
         display: flex;
         align-items: center;
-        gap: 1rem;
-        font-weight: 500;
-        background-image: linear-gradient(135deg, $accent 30%, rgba($accent, 0.5));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-fill-color: transparent;
-        transition: all 0.25s ease-in-out;
-
-        img {
-            width: var(--img-size);
-            aspect-ratio: 1/1;
-        }
-
-        &:hover {
-            gap: 0.8rem;
-        }
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1.4rem 1.4rem 0 1.4rem;
     }
 
     &__version {
         background-image: $bg-gradient;
+        backdrop-filter: blur(1rem);
         color: $accent !important;
         padding: 0.2rem 0.8rem;
-        border-radius: 0.6rem;
-        font-size: 0.6em;
-        backdrop-filter: blur(1rem);
-        // font-weight: normal;
+        border-radius: 0.7rem;
+        font-size: 1.2em;
+        font-weight: bold;
         transition: .3s ease-in-out;
 
         &:hover {
@@ -103,7 +68,7 @@
     }
 
     &__changes {
-        padding: 1rem;
+        // padding: 1rem;
 
         h2 {
             margin-bottom: 1.5rem;
@@ -138,7 +103,7 @@
     &__footer {
         bottom: 0;
         text-align: center;
-        background: linear-gradient(to bottom, rgba($bg, 0.1), rgba($bg, 1) 75%);
+        // background: linear-gradient(to bottom, rgba($bg, 0.1), rgba($bg, 1) 75%);
 
         a {
             // background-image: $bg-gradient;

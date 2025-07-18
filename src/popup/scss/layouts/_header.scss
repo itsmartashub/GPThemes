@@ -1,0 +1,26 @@
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+
+    .logo {
+        --img-size: 2.35rem;
+        transition: scale 0.25s ease;
+
+        img {
+            width: var(--img-size);
+            aspect-ratio: 1/1;
+            // backdrop-filter: drop-shadow(0 0 1rem $accent);
+        }
+
+        &:hover {
+            scale: 1.1;
+        }
+    }
+
+
+}
