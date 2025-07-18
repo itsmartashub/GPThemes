@@ -106,6 +106,11 @@ const setupBubblesListeners = () => {
 		const input = event.target
 		if (input.classList.contains('gpth-checkbox__input')) {
 			const type = input.dataset.type
+
+			if (!type || !(type in BG_CONFIG)) {
+				console.warn('Unknown or missing type for chat bubble toggle:', type, input)
+				return // Prevents the destructuring error
+			}
 			const currentState = await loadBackgroundPreference()
 
 			// Create new state object (immutable pattern)
