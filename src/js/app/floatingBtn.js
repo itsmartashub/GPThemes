@@ -6,10 +6,10 @@ import { createSettings, closeSettings, SETTINGS_OPEN_CLASS } from './settingsMa
 import { FLOATING_BTN_VISIBLE_KEY } from './config'
 import { setupExtensionMessaging } from './messaging'
 
-import { init as initThemes } from './themeManager'
+/* import { init as initThemes } from './themeManager'
 import { init as initColors } from './mainColors'
 import { init as initFonts } from './mainFonts'
-import { init as initWidths } from './mainWidths'
+import { init as initWidths } from './mainWidths' */
 
 // State
 let isOptionsShown = false
@@ -109,6 +109,7 @@ async function setInitialFloatingBtnVisibility() {
 }
 // Show/hide floating button
 function toggleFloatingBtnVisibility(isVisible) {
+	/* TODO: Add better toggle toggle card in popup: when floatingBtn not exists then show re-init ext, when floatingBtn exists then show toggle floating btn card */
 	// if (!elements.floatingBtn) return initExtension()
 	if (!elements.floatingBtn) return
 

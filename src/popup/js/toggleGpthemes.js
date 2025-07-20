@@ -25,8 +25,6 @@ async function setupFloatingBtnToggle() {
 	// Get current state
 	const { [FLOATING_BTN_VISIBLE_KEY]: isVisible = true } = await browser.storage.sync.get(FLOATING_BTN_VISIBLE_KEY)
 
-	console.log(isVisible)
-
 	container.innerHTML = renderFloatingBtnToggle(!isVisible)
 
 	// Just update storage - sync will handle the rest
