@@ -6,36 +6,28 @@
 		position: fixed;
 		top: var(--top);
 		right: var(--right);
-
-		font-family: Söhne, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans',
-			sans-serif, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-			'Noto Color Emoji';
+		font-family: var(--fontFamily);
+		transition: scale 0.2s, opacity 0.2s;
 
 		// this add only for Firefox
 		@-moz-document url-prefix() {
 			--right: 0.95rem;
 		}
 
-		/* On GPTs page floating is overlaping user image in sticky header so i need to move it down */
-		@include dev('md') {
-			// --top: calc(var(--h-header) + 2.8rem);
-			// --top: calc(var(--h-header) / 4);
-			// --top: calc(var(--floating-icon-size) / 2);
-			top: calc(var(--h-header) / 2);
-			translate: 0 -50%;
-			--floating-icon-size: 2.2rem;
-			// translate: 0 calc(var(--floating-icon-size) / 5);
-			// translate: 0 calc(var(--h-header) / 2);
-			// transform: translateY(var(--floating-icon-size) / 2);
-			--right: 4rem;
+		&--hidden {
+			// visibility: hidden;
+			scale: 0;
+			pointer-events: none;
+			opacity: 0;
 		}
 
-		// @include dev('sm') {
-		// --right: 5%;
-		// transform: translateY(-50%);
-		// --floating-icon-size: 1.8rem;
-		// translate: 0 calc(var(--floating-icon-size) / 2);
-		// }
+		/* On GPTs page floating is overlaping user image in sticky header so i need to move it down */
+		@include dev('md') {
+			--floating-icon-size: 2.2rem;
+			--right: 4rem;
+			top: calc(var(--h-header) / 2);
+			translate: 0 -50%;
+		}
 
 		&-icon {
 			position: relative;
@@ -67,10 +59,11 @@
 				background-color: var(--c-bg-tooltip);
 				color: var(--c-on-accent);
 				// color: var(--c-on-accent);
-				// opacity: 0;
+				opacity: 0;
 				transform-origin: right center;
 				transform: translate(-110%, -50%) scale(0);
 				transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+				// z-index: -1;
 
 				@include dev('sm') {
 					padding: 0.4rem 0.6rem;
@@ -87,7 +80,7 @@
 				}
 
 				&::after {
-					// opacity: 1;
+					opacity: 1 !important;
 					transform: translate(-115%, -50%) scale(1);
 				}
 			}

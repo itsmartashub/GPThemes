@@ -1,6 +1,7 @@
 import browser from 'webextension-polyfill'
-import { EXT_CURRENT_VERSION, CHANGELOG_URL } from '../js/app/config'
+import { EXT_CURRENT_VERSION, CHANGELOG_URL } from '../../js/app/config'
 import { RELEASE_CHANGES } from './changes'
+import { setupFloatingBtnToggle } from './toggleGpthemes'
 
 const createFullChangelogLink = (version) =>
 	`<a href="https://github.com/itsmartashub/GPThemes/releases/tag/v${version}" target="_blank" rel="noopener noreferrer" class="changelog__seefullchangelog">🚀 See full release notes</a>`
@@ -44,6 +45,7 @@ const updateBadge = async () => {
 const initPopup = () => {
 	initChangelogUI()
 	updateBadge()
+	setupFloatingBtnToggle()
 }
 
 // Start the initialization process

@@ -1,11 +1,19 @@
 // Use a cross-browser storage API:
-// import browser from 'webextension-polyfill'
+import browser from 'webextension-polyfill'
 import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './components/icons.js'
 import { handleChangeTheme } from './themeManager.js'
-import { createSettings } from './settingsManager.js'
+import { createSettings, closeSettings, SETTINGS_OPEN_CLASS } from './settingsManager.js'
+import { FLOATING_BTN_VISIBLE_KEY } from './config'
+import { setupExtensionMessaging } from './messaging'
+
+/* import { init as initThemes } from './themeManager'
+import { init as initColors } from './mainColors'
+import { init as initFonts } from './mainFonts'
+import { init as initWidths } from './mainWidths' */
 
 // State
 let isOptionsShown = false
+const FLOATING_CLASS_NAME = 'gpth__floating'
 
 // DOM Elements
 const elements = {
@@ -14,11 +22,19 @@ const elements = {
 	floatingBtnsContainer: null,
 }
 
+// Listen for storage changes (for multi-tab sync)
+browser.storage.onChanged.addListener((changes, area) => {
+	if (area === 'sync' && changes[FLOATING_BTN_VISIBLE_KEY]) {
+		toggleFloatingBtnVisibility(changes[FLOATING_BTN_VISIBLE_KEY].newValue !== false)
+	}
+})
+
 // ___ Initialize the application
 async function init() {
 	try {
-		createFloatingBtn()
+		await createFloatingBtn()
 		createSettings()
+		setupExtensionMessaging()
 	} catch (error) {
 		console.error('Initialization error:', error)
 	}
@@ -27,10 +43,10 @@ async function init() {
 // ___ Create and append the floating button? - UI Components
 async function createFloatingBtn() {
 	const gpthFloatingBtn = document.createElement('div')
-	gpthFloatingBtn.className = 'gpth__floating'
+	gpthFloatingBtn.className = FLOATING_CLASS_NAME
 
 	gpthFloatingBtn.innerHTML = `
-    <div class="gpth__floating-icon">${icon_paint}</div>
+    <div class="${FLOATING_CLASS_NAME}-icon">${icon_paint}</div>
     <div class="gpth__options">
       <div class="gpth__options-btns">
         <button id="light" data-gpth-theme="light">${icon_sun}</button>
@@ -44,6 +60,9 @@ async function createFloatingBtn() {
 	document.body.appendChild(gpthFloatingBtn)
 	cacheFloatingElements(gpthFloatingBtn)
 	addFloatingListeners()
+
+	// Set initial visibility from storage (popup.js)
+	await setInitialFloatingBtnVisibility()
 }
 function cacheFloatingElements(gpthFloatingBtn) {
 	elements.floatingBtn = gpthFloatingBtn
@@ -82,4 +101,30 @@ function closeFloatingOptions() {
 	// console.log('closeFloatingOptions: ', { isOptionsShown })
 }
 
-export { init, closeFloatingOptions }
+/* Toggle flaoting button logic */
+async function setInitialFloatingBtnVisibility() {
+	const result = await browser.storage.sync.get(FLOATING_BTN_VISIBLE_KEY)
+	const isVisible = result[FLOATING_BTN_VISIBLE_KEY]
+	toggleFloatingBtnVisibility(isVisible !== false) // default true
+}
+// Show/hide floating button
+function toggleFloatingBtnVisibility(isVisible) {
+	/* TODO: Add better toggle toggle card in popup: when floatingBtn not exists then show re-init ext, when floatingBtn exists then show toggle floating btn card */
+	// if (!elements.floatingBtn) return initExtension()
+	if (!elements.floatingBtn) return
+
+	elements.floatingBtn.classList.toggle(`${FLOATING_CLASS_NAME}--hidden`, !isVisible)
+
+	// Close settings too if it's open
+	if (!isVisible && document.querySelector(`.${SETTINGS_OPEN_CLASS}`)) closeSettings()
+}
+
+/* function initExtension() {
+	initThemes()
+	init()
+	initColors()
+	initFonts()
+	initWidths()
+}
+ */
+export { init, closeFloatingOptions, toggleFloatingBtnVisibility, FLOATING_CLASS_NAME }

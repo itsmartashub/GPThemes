@@ -1,5 +1,6 @@
 import browser from 'webextension-polyfill'
-import { renderSliderCard, renderToggleCard } from './components/renderSwitch'
+import { renderSliderCard } from './components/renderSwitch'
+import { renderToggle } from './components/renderToggles'
 import { icon_full_width, icon_sync } from './components/icons'
 import { renderButton } from './components/renderButtons'
 import { renderSeparator } from './components/renderUtils'
@@ -104,19 +105,23 @@ function renderWidthsTab() {
 		</div>
 
 		<div class="gpth-layouts__toggle-widths">
-			${renderToggleCard({
-				inputId: UI_IDS.toggleFullWidth,
-				isChecked: false,
+			${renderToggle({
+				id: UI_IDS.toggleFullWidth,
+				checked: false,
+				label: 'Chat Full Width',
+				subtitle: "Expand chats to screen's edge for wider conversation view",
 				icon: icon_full_width,
-				textTitle: 'Chat Full Width',
-				textSubtitle: "Expand chats to screen's edge for wider conversation view",
+				card: true,
+				className: '',
 			})}
-			${renderToggleCard({
-				inputId: UI_IDS.toggleSyncWidths,
-				isChecked: false,
+			${renderToggle({
+				id: UI_IDS.toggleSyncWidths,
+				checked: false,
+				label: 'Sync Prompt Width',
+				subtitle: 'Adjust prompt field to match the chat width for a more consistent view',
 				icon: icon_sync,
-				textTitle: 'Sync Prompt Width',
-				textSubtitle: 'Adjust prompt field to match the chat width for a more consistent view',
+				card: true,
+				className: '',
 			})}
 		</div>
 		<div class="flex justify-center mt-8">

@@ -1,4 +1,5 @@
 import browser from 'webextension-polyfill'
+import { renderToggle } from './components/renderToggles'
 
 // Configuration object with all bubble types and their properties
 const BG_CONFIG = {
@@ -26,23 +27,14 @@ const STORAGE_KEY = 'chatBubblesState'
 // Create HTML for chat background toggles
 const generateChatBackgroundHTML = () => {
 	const toggleItems = Object.entries(BG_CONFIG)
-		.map(
-			([type, config]) => `
-      <label class="gpth-bubbles__item cursor-pointer" for="id-${config.label}">
-        <span class="gpth-checkbox__text">${config.label}</span>
-        <div class="gpth-checkbox">
-          <input 
-            type="checkbox" 
-            id="id-${config.label}"
-            data-type="${type}"
-            ${DEFAULT_STATE[type] ? 'checked' : ''}
-            aria-label="Toggle ${config.label} bubbles"
-            class="gpth-checkbox__input"
-          >
-          <span class="gpth-checkbox__slider"></span>
-        </div>
-      </label>
-    `
+		.map(([type, config]) =>
+			renderToggle({
+				id: `id-${config.label}`,
+				checked: DEFAULT_STATE[type],
+				label: config.label,
+				className: 'gpth-bubbles__item cursor-pointer',
+				dataType: type,
+			})
 		)
 		.join('')
 
@@ -114,6 +106,11 @@ const setupBubblesListeners = () => {
 		const input = event.target
 		if (input.classList.contains('gpth-checkbox__input')) {
 			const type = input.dataset.type
+
+			if (!type || !(type in BG_CONFIG)) {
+				console.warn('Unknown or missing type for chat bubble toggle:', type, input)
+				return // Prevents the destructuring error
+			}
 			const currentState = await loadBackgroundPreference()
 
 			// Create new state object (immutable pattern)

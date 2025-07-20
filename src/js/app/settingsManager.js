@@ -22,26 +22,26 @@ async function createSettings() {
 
 	// Render settings HTML
 	gpthSettings.innerHTML = `
-    <header class="mb-5">
-      <h2 class="text-center font-medium gpth-settings__title">
-        <span class="font-semibold">GPThemes</span> Customization
-      </h2>
-    </header>
-    <main>
-      <div class="tabs">
-        <div class="tab-buttons p-1 font-semibold mb-5">
-          <button class="tab-button py-2 px-4 focus:outline-none text-center active">Color</button>
-          <button class="tab-button py-2 px-4 focus:outline-none text-center">Font</button>
-          <button class="tab-button py-2 px-4 focus:outline-none text-center">Layout</button>
-        </div>
-        <div class="tab-content">
-          <div class="tab-pane active" id="tab-colors">${renderColorsTab()}</div>
-          <div class="tab-pane hidden" id="tab-fonts">${renderFontsTab()}</div>
-		  <div class="tab-pane hidden" id="tab-assets">${renderWidthsTab()}</div>
-        </div>
-      </div>
-    </main>
-  `
+		<header class="mb-5">
+			<h2 class="text-center font-medium gpth-settings__title">
+				<span class="font-semibold">GPThemes</span> Customization
+			</h2>
+		</header>
+		<main>
+			<div class="tabs">
+				<div class="tab-buttons p-1 font-semibold mb-5">
+					<button class="tab-button py-2 px-4 focus:outline-none text-center active">Color</button>
+					<button class="tab-button py-2 px-4 focus:outline-none text-center">Font</button>
+					<button class="tab-button py-2 px-4 focus:outline-none text-center">Layout</button>
+				</div>
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab-colors">${renderColorsTab()}</div>
+					<div class="tab-pane hidden" id="tab-fonts">${renderFontsTab()}</div>
+					<div class="tab-pane hidden" id="tab-assets">${renderWidthsTab()}</div>
+				</div>
+			</div>
+		</main>
+	`
 
 	// Add to DOM and set up listeners
 	document.body.appendChild(gpthSettings)
@@ -128,4 +128,4 @@ function handleTabsSwitching() {
 	})
 }
 
-export { createSettings, openSettings, closeSettings, $settings }
+export { createSettings, openSettings, closeSettings, $settings, SETTINGS_OPEN_CLASS }
