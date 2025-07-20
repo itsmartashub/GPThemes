@@ -1,9 +1,8 @@
 import browser from 'webextension-polyfill'
 import { renderToggle } from '../../js/app/components/renderToggles'
+import { FLOATING_BTN_VISIBLE_KEY } from '../../js/app/config'
 
-// Config for popup toggle
 const CONFIG = {
-	storageKey: 'floatingBtnVisible',
 	toggleId: 'toggle-floating-btn-visibility',
 	containerId: 'floating-btn-toggle-container',
 	label: 'Hide GPThemes',
@@ -23,15 +22,18 @@ async function setupFloatingBtnToggle() {
 	const container = document.getElementById(CONFIG.containerId)
 	if (!container) return
 
-	const result = await browser.storage.sync.get(CONFIG.storageKey)
-	const isHidden = result[CONFIG.storageKey] === false ? false : true
-	container.innerHTML = renderFloatingBtnToggle(!isHidden) // checked means hidden
+	// Get current state
+	const { [FLOATING_BTN_VISIBLE_KEY]: isVisible = true } = await browser.storage.sync.get(FLOATING_BTN_VISIBLE_KEY)
 
-	const toggle = document.getElementById(CONFIG.toggleId)
-	toggle.addEventListener('change', async (e) => {
-		const isVisible = !e.target.checked // checked means hidden
-		await browser.storage.sync.set({ [CONFIG.storageKey]: isVisible })
-		await broadcastFloatingBtnVisibility(isVisible)
+	console.log(isVisible)
+
+	container.innerHTML = renderFloatingBtnToggle(!isVisible)
+
+	// Just update storage - sync will handle the rest
+	document.getElementById(CONFIG.toggleId)?.addEventListener('change', async (e) => {
+		await browser.storage.sync.set({
+			[FLOATING_BTN_VISIBLE_KEY]: !e.target.checked,
+		})
 	})
 }
 
