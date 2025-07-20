@@ -59,10 +59,11 @@
 				background-color: var(--c-bg-tooltip);
 				color: var(--c-on-accent);
 				// color: var(--c-on-accent);
-				// opacity: 0;
+				opacity: 0;
 				transform-origin: right center;
 				transform: translate(-110%, -50%) scale(0);
 				transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+				// z-index: -1;
 
 				@include dev('sm') {
 					padding: 0.4rem 0.6rem;
@@ -79,7 +80,7 @@
 				}
 
 				&::after {
-					// opacity: 1;
+					opacity: 1 !important;
 					transform: translate(-115%, -50%) scale(1);
 				}
 			}

@@ -6,6 +6,11 @@ import { createSettings, closeSettings, SETTINGS_OPEN_CLASS } from './settingsMa
 import { FLOATING_BTN_VISIBLE_KEY } from './config'
 import { setupExtensionMessaging } from './messaging'
 
+import { init as initThemes } from './themeManager'
+import { init as initColors } from './mainColors'
+import { init as initFonts } from './mainFonts'
+import { init as initWidths } from './mainWidths'
+
 // State
 let isOptionsShown = false
 const FLOATING_CLASS_NAME = 'gpth__floating'
@@ -104,6 +109,7 @@ async function setInitialFloatingBtnVisibility() {
 }
 // Show/hide floating button
 function toggleFloatingBtnVisibility(isVisible) {
+	// if (!elements.floatingBtn) return initExtension()
 	if (!elements.floatingBtn) return
 
 	elements.floatingBtn.classList.toggle(`${FLOATING_CLASS_NAME}--hidden`, !isVisible)
@@ -112,4 +118,12 @@ function toggleFloatingBtnVisibility(isVisible) {
 	if (!isVisible && document.querySelector(`.${SETTINGS_OPEN_CLASS}`)) closeSettings()
 }
 
+/* function initExtension() {
+	initThemes()
+	init()
+	initColors()
+	initFonts()
+	initWidths()
+}
+ */
 export { init, closeFloatingOptions, toggleFloatingBtnVisibility, FLOATING_CLASS_NAME }
