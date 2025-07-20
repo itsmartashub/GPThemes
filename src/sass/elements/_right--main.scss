@@ -138,7 +138,8 @@
 		/*NEW SELECTOR: 2025-04-10 - User message - max-w-[var(--user-chat-width,70%)] */
 		.bg-token-message-surface {
 			background-color: var(--toggleBgUser);
-			padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.2);
+			// padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.2);
+			padding: var(--p-chat-bubble);
 			border-radius: var(--br-chat-bubble) !important;
 			// width: var(--max_w_chat_user) !important;
 			// max-width: var(--w_chat_user) !important;
