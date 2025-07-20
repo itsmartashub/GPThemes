@@ -82,6 +82,10 @@
 				border-radius: calc(var(--br-dialog) / 2) !important;
 			}
 
+			button[data-state='inactive']:is(:hover, :focus) {
+				@extend .btn-secondary;
+			}
+
 			/* ___ DIALOG - "Settings" on smaller devices then deskop */
 			&[data-orientation='vertical'] {
 				flex-wrap: nowrap !important;
@@ -99,6 +103,8 @@
 					background-color: var(--c-accent) !important;
 					color: var(--c-on-accent);
 				}
+
+
 			}
 
 		}
