@@ -103,32 +103,27 @@
 	}
 
 	/* _________ CANVAS in chat bubbles */
-	&:has([id^="textdoc-message"]) {
-		.popover {
-			--main-surface-primary: var(--c-bg-cm) !important;
+	[id^="textdoc-message"] {
+		--bg-primary: var(--c-bg-cm) !important;
+		--main-surface-primary: var(--c-bg-cm) !important;
+		background-color: var(--c-bg-cm) !important;
+		will-change: border-color;
+		border: 2px solid hsla(var(--accent-hsl) / .12) !important;
+		transition: border-color .2s;
+
+		// .popover {
+		// 	--bg-primary: var(--c-bg-cm) !important;
+		// }
+
+		/* Gradient on the bottom of code */
+		.absolute.bottom-0.z-20.h-24.w-full.transition-colors {
+			background: linear-gradient(rgba(0, 0, 0, 0), var(--c-bg-cm)) !important;
 		}
 
-		[id^="textdoc-message"] {
-			--main-surface-primary: var(--c-bg-cm) !important;
-			will-change: border-color;
-			border: 2px solid hsla(var(--accent-hsl) / .12) !important;
-			transition: border-color .2s;
-
-			/* Gradient on the bottom of code */
-			.absolute.bottom-0.z-20.h-24.w-full.transition-colors {
-				background: linear-gradient(rgba(0, 0, 0, 0), var(--c-bg-cm)) !important;
-			}
-		}
 
 		&:hover {
 			border-color: hsla(var(--accent-hsl) / .3) !important;
 		}
-
-
-		/* Chat bubble - "Typing" btn when canvas creating */
-		// [role="button"].absolute.bottom-3:has(>.loading-shimmer-pure-text) {
-		// 	// --main-surface-primary: red !important;
-		// }
 	}
 
 	/* @ ======================== RIGHT - CHATS BUBBLES - USER ======================== */
@@ -261,15 +256,15 @@
 
 		/* "SOURCES" button, style for footer icons affects this too!! */
 		button.group\/footnote.bg-token-bg-primary.w-fit.rounded-3xl {
-			text-transform: uppercase;
 			--bg-primary: hsla(var(--accent-hsl) / 0.1) !important;
+			text-transform: uppercase;
 
 			&:hover {
-				background-color: hsla(var(--accent-hsl) / 0.25) !important;
-				color: var(--c-accent) !important;
+				// background-color: hsla(var(--accent-hsl) / 0.25) !important;
+				// color: var(--c-accent) !important;
 
 				.text-token-text-secondary {
-					color: var(--c-accent) !important;
+					color: var(--c-on-accent) !important;
 				}
 			}
 		}
@@ -356,7 +351,6 @@
 	}
 
 	.agent-turn {
-		// outline: 1px solid red !important;
 
 		/* REASONING: "Reasoned about [topic] for [X] seconds" title */
 		.relative.my-1.min-h-6 {
@@ -382,10 +376,6 @@
 				padding: 0.7rem 3%;
 				box-shadow: 0 0 0 1px hsla(var(--accent-hsl) / .12) !important;
 				background-image: var(--c-bg-gradient);
-				// border: 1px solid hsla(var(--accent-hsl) / .12) !important;
-				// box-shadow: color-mix(in srgb, var(--c-bg-pre) 90%, black 10%) 0px 7px 16px 0px; // on hover: 0 12 32 0
-				// border: color-mix(in srgb, hsla(var(--accent-hsl) / 0.12) 50%, black 2%) 1px solid;
-
 			}
 		}
 	}
@@ -447,31 +437,3 @@
 		// }
 	}
 }
-
-// TODO(remove?): check whats this is
-/* "Searched x sites" Links wrapper! */
-/* html.dark main [data-testid^='conversation-turn-']:has([data-message-author-role='assistant']) {
-	.overflow-hidden:has(> .divide-y) {
-		.from-token-main-surface-secondary {
-			--gradient-color-from: var(--c-surface-3) !important;
-		}
-
-		a:hover {
-			background-color: var(--c-surface-3);
-		}
-	}
-} */
-
-// TODO(remove?): check whats this is
-/* "Searched x sites" Links wrapper! */
-/* html[data-gptheme='oled'] main [data-testid^='conversation-turn-']:has([data-message-author-role='assistant']) {
-	.overflow-hidden:has(> .divide-y) {
-		.from-token-main-surface-secondary {
-			--gradient-color-from: var(--c-surface-2) !important;
-		}
-
-		a:hover {
-			background-color: var(--c-surface-2);
-		}
-	}
-} */
