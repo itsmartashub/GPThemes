@@ -33,14 +33,18 @@
 		transform: translateX(0%) !important;
 	}
 
+	@include dev('sm') {
+		--p: 4vw;
+	}
+
 	@include dev('xs') {
-		--p: 5vw;
+		// --p: 5vw;
 		--max-h: 70vh;
 		width: calc(100% - 2.5rem);
 	}
 
 	@include dev('xxs') {
-		--p: 4vw;
+		--p: 2vw;
 	}
 
 	// section {

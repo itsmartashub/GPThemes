@@ -36,3 +36,36 @@
     //     }
     // }
 }
+
+/* Dialog when opened image from library (created image) */
+[data-testid="modal-lightbox-new"] {
+
+    button[role="option"] {
+        transition: transform .15s $easeOutBack, opacity .15s linear;
+        border-color: hsla(var(--accent-hsl) / .25) !important;
+        background-color: hsla(var(--accent-hsl) / .25) !important;
+
+        &[aria-selected="false"]:hover {
+            opacity: 1 !important;
+            // transform: scale(1) !important;
+        }
+    }
+
+    [role="listbox"] {
+        padding: 0 !important;
+    }
+
+    /* pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-white via-white/90 to-transparent dark:from-[#212121] dark:via-[#212121]/60 dark:to-transparent */
+    /* aside right, vertical aka slider with small library images */
+    .absolute.pointer-events-none {
+
+        &.bg-gradient-to-l,
+        &.bg-gradient-to-r,
+        &.bg-gradient-to-b,
+        &.bg-gradient-to-t {
+            --tw-gradient-via: var(--c-bg-dialog) !important;
+            --tw-gradient-from: var(--c-bg-dialog) !important;
+            --tw-gradient-to: transparent !important;
+        }
+    }
+}
