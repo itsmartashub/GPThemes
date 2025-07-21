@@ -259,7 +259,7 @@
 			--bg-primary: hsla(var(--accent-hsl) / 0.1) !important;
 			text-transform: uppercase;
 
-			&:hover {
+			&:is(:hover, :focus) {
 				// background-color: hsla(var(--accent-hsl) / 0.25) !important;
 				// color: var(--c-accent) !important;
 

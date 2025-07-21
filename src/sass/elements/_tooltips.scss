@@ -8,7 +8,14 @@ div[data-radix-popper-content-wrapper] {
 
 	// This not take affect on tooltip when hover attached file in chats. Ive add .rounded-xl.border-token-border-default to not affect the chat pill link card tooltip when hover pill link in chats
 	// div[style*='--radix-tooltip-content'].select-none.max-w-xs.rounded-lg {
-	div[style*='--radix-tooltip-content']:not(.rounded-xl.border-token-border-default) {
+
+	/* TOOLTIP
+	relative z-50 transition-opacity select-none overflow-hidden dark bg-black rounded-lg max-w-xs px-2 py-1 
+	*/
+	/* MAP CARD WHEN HOVER PIN IN MAPS
+	relative z-50 transition-opacity select-none overflow-hidden dark bg-black rounded-xl max-w-sm p-0 animate-show
+	*/
+	div[style*='--radix-tooltip-content'][class*="bg-black"]:not(.rounded-xl.border-token-border-default, .p-0) {
 
 		&,
 		.text-white,
@@ -18,16 +25,10 @@ div[data-radix-popper-content-wrapper] {
 			color: var(--c-on-accent) !important;
 		}
 
-		/* "Ctrl + K" etc */
+		// /* "Ctrl + K" etc */
 		.text-token-text-tertiary,
 		.text-gray-400 {
 			opacity: 0.75;
 		}
 	}
-
-
-	/* Pill links card tooltips wit searched link */
-	// div[style*='--radix-tooltip-content'].select-none.max-w-sm.rounded-xl.border-token-border-default {
-	// 	border: 1px solid hsla(var(--accent-hsl) / 0.2) !important;
-	// }
 }
