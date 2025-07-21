@@ -4,7 +4,7 @@ import { renderToggle } from './components/renderToggles'
 import { icon_full_width, icon_sync } from './components/icons'
 import { renderButton } from './components/renderButtons'
 import { renderSeparator } from './components/renderUtils'
-import { renderCustomScrollDown } from './scrolldown'
+import { renderCustomScrollDown, init as initScrolldown } from './scrolldown'
 import { renderChatBubbles } from './toggleChatsBg'
 import { $ } from '../utils/handleElements'
 

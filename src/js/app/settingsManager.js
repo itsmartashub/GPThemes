@@ -1,6 +1,7 @@
 import { renderColorsTab, resetAllAccents, init as initColors } from './mainColors.js'
 import { renderFontsTab, handleFontsListeners, init as initFonts } from './mainFonts.js'
 import { renderWidthsTab, handleWidthsListeners, init as initWidths } from './mainWidths.js'
+import { handleScrolldownListeners, init as initScrolldown } from './scrolldown.js'
 
 // Elements cache
 let $settings = null
@@ -48,7 +49,7 @@ async function createSettings() {
 	cacheElements(gpthSettings)
 
 	// Initialize modules
-	// await Promise.all([initColors(), initFonts(), initWidths()])
+	// await Promise.all([initColors(), initFonts(), initWidths(), initScrolldown()])
 
 	// Add listeners after initialization
 	addListeners()
@@ -70,6 +71,7 @@ function addListeners() {
 	handleTabsSwitching()
 	handleFontsListeners()
 	handleWidthsListeners()
+	handleScrolldownListeners()
 
 	if ($resetAllAccentsBtn) {
 		$resetAllAccentsBtn.addEventListener('click', resetAllAccents)

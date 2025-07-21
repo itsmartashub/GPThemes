@@ -100,7 +100,7 @@ const renderFontsTab = () => {
                 <p class="card__unit card__icon">T</p>
                 <p class="card__name uppercase font-semibold">FONT FAMILY</p>
               </div>
-              <select id="fontFamily" class="flex-1 border-none outline-none focus:none font-bold">
+              <select id="fontFamily" class="flex-1 border-none outline-none focus:none font-bold" role="listbox">
                 ${FONT_CONFIG.fontFamily.options
 					.map((name) => {
 						const value = name === 'Default' ? FONT_CONFIG.fontFamily.default : name

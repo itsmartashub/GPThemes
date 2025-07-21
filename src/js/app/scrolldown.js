@@ -102,8 +102,11 @@ async function loadPositionPreference() {
 	}
 }
 
-function addScrollDownListeners() {
+function handleScrolldownListeners() {
+	console.log('[🎨GPThemes]: addScrollDownListeners')
+
 	const btnContainer = document.querySelector('.gpth-scrolldown__tabs')
+	console.log(btnContainer)
 	if (!btnContainer) return
 
 	// Use event delegation for better performance
@@ -124,7 +127,8 @@ function addScrollDownListeners() {
 }
 
 function init() {
-	addScrollDownListeners()
+	handleScrolldownListeners()
+	console.log('[🎨GPThemes]: Scrolldown initialized')
 }
 
-export { generateScrollDownHTML as renderCustomScrollDown, init }
+export { generateScrollDownHTML as renderCustomScrollDown, init, handleScrolldownListeners }
