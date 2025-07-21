@@ -269,11 +269,11 @@
             appearance: none;
             -webkit-appearance: none;
             -moz-appearance: none;
+            border: none !important;
 
             option {
                 font-size: 0.6em !important;
-                // font-size: 0.8rem !important;
-                // background-color: var(--c-surface-2) !important;
+                background-color: var(--c-surface-2) !important;
             }
         }
 

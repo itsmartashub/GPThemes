@@ -3,7 +3,7 @@ import { init as initFloating } from './app/floatingBtn'
 import { init as initColors } from './app/mainColors'
 import { init as initFonts } from './app/mainFonts'
 import { init as initWidths } from './app/mainWidths'
-import { init as initScrolldown } from './app/scrolldown'
+// import { init as initScrolldown } from './app/scrolldown'
 import { init as initToggleChatsBg } from './app/toggleChatsBg'
 
 // Configuration
@@ -27,7 +27,7 @@ function initExtension() {
 		initColors()
 		initFonts()
 		initWidths()
-		initScrolldown()
+		// initScrolldown()
 		initToggleChatsBg()
 	} catch (error) {
 		console.error('[🎨GPThemes]: Critical initialization error:', error)
