@@ -7,6 +7,9 @@
 	/* Main Page chat-container  Bg */
 	background-color: var(--c-bg-chats-container) !important;
 
+
+
+
 	// /* GPT logo in chat bubble */
 	// .gizmo-bot-avatar div,
 	/* GPT logo in "New Chat" main chat-container in old-ui */
@@ -65,36 +68,29 @@
 [data-testid^='conversation-turn-'] {
 	/* Edit icon in user chat for example. Edit state user chat bg  */
 	--main-surface-tertiary: var(--c-surface-3) !important;
-	// margin-bottom: var(--mb-chat-bubble) !important;
 
-	@include container('sm') {
-		// --px-chat-bubble-edge-gap: 0.45rem;
-		--p-chat-bubble: 1rem;
-		--br-chat-bubble: calc(var(--br) * 1.2);
-
-		/* Wrapper of each chat-bubbles msg, decreise padding-inline */
-		.text-base.my-auto.mx-auto.py-5[class*="px-(--thread-content-margin)"] {
-			padding-inline: 3% !important;
-			padding-block: calc(var(--p-between-chats) * 0.5) !important
-		}
+	@include container('md') {
+		--p-chat-bubble: .8rem;
+		--br-chat-bubble: calc(var(--br) * 1.5);
 	}
 
-	/* Right chat content parent
-	.mx-auto.flex.flex-1.text-base[class*="md:max-w-3xl"] is GPT chat bubble */
-	// [class*='xl:max-w-[48rem]'], 
-	/* Necu da stavim direkt na chat bubble jer nece biti dobro kad imamo double response prikazan */
-	// .mx-auto.flex.flex-1.text-base[class*="md:max-w-3xl"] {
-	/* New selector: 2025-04-10 */
-	// .group\/turn-messages[class*="max-w-(--thread-content-max-width)"] {
-	// 	max-width: var(--w_chat_gpt) !important;
-	// 	// background: red !important;
-	// 	// outline: 2px solid red !important;
+	@include container('sm') {
+		// --br-chat-bubble: var(--br);
 
-	// 	@include container('md') {
-	// 		--w_chat_gpt: 100%;
-	// 		width: var(--w_chat_gpt);
-	// 	}
-	// }
+		/* Wrapper of each chat-bubbles msg, decreise padding-inline. Spacing from chat bubbles to screen edge */
+		.text-base.my-auto.mx-auto[class*="[--thread-content-margin:"] {
+			--thread-content-margin: calc(var(--spacing)*2) !important;
+
+			/* Remove bigger spacing from top on user messages */
+			&.pt-12 {
+				padding-top: calc(var(--spacing)*10) !important;
+			}
+
+			// padding-inline: 3% !important;
+			// padding-block: calc(var(--p-between-chats) * 0.5) !important
+		}
+
+	}
 
 	div[data-message-author-role],
 	.prose {

@@ -71,24 +71,17 @@
 	// --gray-950: #0d0d0d;
 
 
-	@include container('md') {
-		// --px-chat-bubble-edge-gap: 1vw;
-		--p-chat-bubble: .8rem;
-		--br-chat-bubble: calc(var(--br) * 1.1);
-	}
-
-	@include container('sm') {
-		--br-chat-bubble: var(--br) !important;
-	}
-
 	@include dev('md') {
 		--p-chat-bubble: .8rem;
-		--br-chat-bubble: calc(var(--br) * 1.55);
+		--br-chat-bubble: calc(var(--br) * 1.5);
 		--p-contextmenu: .5rem;
-		// --p-prompt-textarea: 0.5rem;
 		--p-dialog: 0.3rem;
 		--br-dialog: calc(var(--br) * 1.5);
 		--p-sidebar-nav: 0.3rem;
+	}
+
+	@include dev('sm') {
+		--br-chat-bubble: var(--br);
 	}
 }
 
