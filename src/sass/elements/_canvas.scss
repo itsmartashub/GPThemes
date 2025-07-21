@@ -421,3 +421,13 @@ body:has(.absolute.z-20.h-full.transition-shadow.overflow-hidden.left-0 section.
 }
 
 // #prosemirror-context-children {}
+
+/* Canvas on screens smaller then 1000px */
+dialog.fixed.inset-0.w-full.h-full {
+    // add this to fix white/black color for header and footer
+    background: var(--c-bg-cm) !important;
+
+    // header.h-header-height {
+    //     background: var(--c-bg-chats-container) !important;
+    // }
+}
