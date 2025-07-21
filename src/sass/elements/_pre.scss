@@ -9,7 +9,6 @@
 	/* To strictly select chat-bubble main code-block <pre> and not that "Result" in Analysis */
 	&.overflow-visible\! {
 		margin: var(--my-pre) auto !important;
-		// box-shadow: color-mix(in srgb, var(--c-bg-pre) 50%, black 10%) 0 0 0 1px, color-mix(in srgb, hsla(var(--accent-hsl) / 0.5) 50%, black 5%) 0px 6px 14px 0px; // on hover: 0 12 32 0
 		box-shadow: color-mix(in srgb, var(--c-bg-pre) 90%, black 10%) 0px 7px 16px 0px; // on hover: 0 12 32 0
 		border: color-mix(in srgb, hsla(var(--accent-hsl) / 0.12) 50%, black 2%) 1px solid;
 	}

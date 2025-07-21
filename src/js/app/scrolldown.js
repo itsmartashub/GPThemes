@@ -103,10 +103,9 @@ async function loadPositionPreference() {
 }
 
 function handleScrolldownListeners() {
-	console.log('[🎨GPThemes]: addScrollDownListeners')
+	console.log('[🎨GPThemes]: handleScrolldownListeners')
 
 	const btnContainer = document.querySelector('.gpth-scrolldown__tabs')
-	console.log(btnContainer)
 	if (!btnContainer) return
 
 	// Use event delegation for better performance
