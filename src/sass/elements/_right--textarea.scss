@@ -6,173 +6,206 @@ form {
 	// &>[class*='bg-[#303030]']:has(#prompt-textarea) {
 	/* TODO(remove): REMOVE the #composer-background selector when this selector is removed for all user profiles */
 	#composer-background,
-	&[data-type="unified-composer"] .contain-inline-size.overflow-clip[class*='bg-[#303030]'] {
-		background: var(--c-bg-textarea) !important;
-		caret-color: var(--c-accent);
-		box-shadow: inset 0 0 1px 1px hsla(var(--accent-hsl) / 0.08) !important;
-		// box-shadow: 0 0 transparent, 0 0 transparent, 0 12px 48px hsla(var(--accent-hsl) / 0.08);
-		border: none !important;
-		backdrop-filter: blur(18px);
+	&[data-type="unified-composer"] {
+		.contain-inline-size.overflow-clip[class*='bg-[#303030]'] {
+			background: var(--c-bg-textarea) !important;
+			caret-color: var(--c-accent);
+			box-shadow: inset 0 0 1px 1px hsla(var(--accent-hsl) / 0.08) !important;
+			// box-shadow: 0 0 transparent, 0 0 transparent, 0 12px 48px hsla(var(--accent-hsl) / 0.08);
+			border: none !important;
+			backdrop-filter: blur(18px);
 
-		/* Prompt text field for "Temporary chat" */
-		&.dark\:bg-\[\#303030\].dark {
-			--c-bg-textarea: var(--c-surface-2);
-		}
-
-		#upload-file-btn {
-			svg.text-white {
-				color: var(--c-accent) !important;
+			/* Prompt text field for "Temporary chat" */
+			&.dark\:bg-\[\#303030\].dark {
+				--c-bg-textarea: var(--c-surface-2);
 			}
-		}
 
-		/* In "temporary chat" textarea is black so the color and caret-color are white, so this fix that */
-		[data-placeholder] {
-			--text-tertiary: var(--c-placeholder-textarea); // overwriting its ::after color
-			--text-secondary: var(--c-placeholder-textarea); // overwriting its ::before color in ff
-		}
+			#upload-file-btn {
+				svg.text-white {
+					color: var(--c-accent) !important;
+				}
+			}
 
-		/* "Reply" in msg textarea - NEW SELECTOR after #reply-regions has been removed */
-		.divide-y.bg-token-main-surface-primary.rounded-b-lg {
-			background-color: transparent !important;
+			/* In "temporary chat" textarea is black so the color and caret-color are white, so this fix that */
+			[data-placeholder] {
+				--text-tertiary: var(--c-placeholder-textarea); // overwriting its ::after color
+				--text-secondary: var(--c-placeholder-textarea); // overwriting its ::before color in ff
+			}
 
-			.bg-token-main-surface-secondary.dark\:bg-token-main-surface-tertiary.text-sm {
-				background-color: hsla(var(--accent-hsl) / 0.12) !important;
-				border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
+			/* "Reply" in msg textarea - NEW SELECTOR after #reply-regions has been removed */
+			.divide-y.bg-token-main-surface-primary.rounded-b-lg {
+				background-color: transparent !important;
 
-				/* 
+				.bg-token-main-surface-secondary.dark\:bg-token-main-surface-tertiary.text-sm {
+					background-color: hsla(var(--accent-hsl) / 0.12) !important;
+					border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
+
+					/* 
 				- &.text-token-text-secondary:  Reply in classic textarea
 				- &.text-blue-400:  Reply in DALLE textarea when selecting something to remove on image  */
-				&.text-token-text-secondary,
-				&.text-blue-400 {
+					&.text-token-text-secondary,
+					&.text-blue-400 {
 
-					/* Reply btn icon */
-					.w-7.h-6,
-					/* Cancel btn icon */
-					button.text-token-text-secondary {
-						&:has(>svg) {
-							// background-color: var(--c-accent) !important;
-							// color: var(--c-on-accent) !important;
-							border-radius: 50vw;
+						/* Reply btn icon */
+						.w-7.h-6,
+						/* Cancel btn icon */
+						button.text-token-text-secondary {
+							&:has(>svg) {
+								// background-color: var(--c-accent) !important;
+								// color: var(--c-on-accent) !important;
+								border-radius: 50vw;
+							}
+						}
+
+						/* Reply btn icon */
+						.w-7.h-6:has(>svg) {
+							color: var(--c-accent) !important;
+							background-color: hsla(var(--accent-hsl) / 0.2) !important;
+						}
+
+						/* Cancel btn icon */
+						button.text-token-text-secondary:has(>svg) {
+							color: var(--c-on-accent) !important;
+							background-color: var(--c-accent) !important;
 						}
 					}
-
-					/* Reply btn icon */
-					.w-7.h-6:has(>svg) {
-						color: var(--c-accent) !important;
-						background-color: hsla(var(--accent-hsl) / 0.2) !important;
-					}
-
-					/* Cancel btn icon */
-					button.text-token-text-secondary:has(>svg) {
-						color: var(--c-on-accent) !important;
-						background-color: var(--c-accent) !important;
-					}
 				}
 			}
-		}
 
-		span>button[aria-label="Open in canvas"] {
-			background-color: hsla(var(--accent-hsl) / 0.15) !important;
-			color: var(--c-accent) !important;
-		}
-
-		/* Tools, Dictate icon, Canvas, Search, Think */
-		button.composer-btn:not(#upload-file-btn),
-		[data-testid="system-hint-search"] .h-9.rounded-full.border.border-token-border-default[class*="bg-token-composer-blue-bg"] {
-			background-color: hsla(var(--accent-hsl) / 0.1) !important;
-		}
-
-		button.composer-btn,
-		// "Search" for guest mode
-		button[data-testid="composer-button-search"] {
-			color: var(--c-accent) !important;
-			border-radius: 50vw;
-		}
-
-		// "Search" for guest mode when hover
-		[data-testid="system-hint-search"] .h-9.rounded-full[class*="bg-token-composer-blue-bg"]:hover {
-			background-color: hsla(var(--accent-hsl) / 0.15) !important;
-		}
-
-		/* Voice and dictate wrapper */
-		#imagegen-voice-controls {
-
-			/* Dictate btn */
-			.btn.btn-primary.btn-small {
-				@extend .btn-secondary;
-				border-radius: 50vw !important;
-			}
-		}
-
-		button[data-testid='send-button'],
-		button[data-testid='stop-button'] {
-			background-color: var(--c-accent) !important;
-			color: var(--c-txt) !important;
-			border-color: var(--c-accent) !important;
-			border-radius: 100vw !important;
-			padding: 2px;
-
-			&[disabled] {
-				opacity: 0.5 !important;
-			}
-
-			svg {
-				color: var(--c-on-accent) !important;
-			}
-		}
-
-		/* New Advanced Voice Mode button */
-		[data-testid="composer-speech-button"] {
-			--shadow: 0 0 2px 2px hsla(var(--accent-hsl) / 0.8) inset, -1px -1px 5px 0px #fff inset;
-			--c-bg-gradient: linear-gradient(-25deg,
-					hsla(var(--accent-hsl) / 0.001) 0%,
-					hsla(var(--accent-hsl) / 0.35) 18%,
-					hsla(var(--accent-hsl) / 0.85) 58%,
-					hsla(var(--accent-hsl) / 1) 90%);
-			background: var(--c-bg-gradient) !important;
-			color: var(--c-on-accent) !important;
-			box-shadow: var(--shadow) !important;
-
-			&:disabled {
-				background: hsla(var(--accent-hsl) / 0.12) !important;
+			span>button[aria-label="Open in canvas"] {
+				background-color: hsla(var(--accent-hsl) / 0.15) !important;
 				color: var(--c-accent) !important;
 			}
-		}
 
-		/* Canvas file-tile */
-		div.group\/file-tile {
-			[id^="textdoc-message-temp"] {
-				border-color: hsla(var(--accent-hsl) / 0.1) !important;
+			/* Tools, Dictate icon, Canvas, Search, Think */
+			button.composer-btn:not(#upload-file-btn),
+			[data-testid="system-hint-search"] .h-9.rounded-full.border.border-token-border-default[class*="bg-token-composer-blue-bg"] {
 				background-color: hsla(var(--accent-hsl) / 0.1) !important;
-				color: var(--c-accent) !important;
+			}
 
-				/* Ugly gradients on the Canvas edit file attached edges */
-				.absolute.bottom-0.z-20[style*="background: linear-gradient"] {
-					background: none !important;
+			button.composer-btn,
+			// "Search" for guest mode
+			button[data-testid="composer-button-search"] {
+				color: var(--c-accent) !important;
+				border-radius: 50vw;
+			}
+
+			// "Search" for guest mode when hover
+			[data-testid="system-hint-search"] .h-9.rounded-full[class*="bg-token-composer-blue-bg"]:hover {
+				background-color: hsla(var(--accent-hsl) / 0.15) !important;
+			}
+
+			/* Voice and dictate wrapper */
+			#imagegen-voice-controls {
+
+				/* Dictate btn */
+				.btn.btn-primary.btn-small {
+					@extend .btn-secondary;
+					border-radius: 50vw !important;
 				}
 			}
 
-			/* Close btn for edit Canvas file-tile attached */
-			button[class*="group-hover/file-tile:block"].absolute.-left-1.-top-1.rounded-full {
+			button[data-testid='send-button'],
+			button[data-testid='stop-button'] {
 				background-color: var(--c-accent) !important;
+				color: var(--c-txt) !important;
+				border-color: var(--c-accent) !important;
+				border-radius: 100vw !important;
+				padding: 2px;
+
+				&[disabled] {
+					opacity: 0.5 !important;
+				}
+
+				svg {
+					color: var(--c-on-accent) !important;
+				}
+			}
+
+			/* New Advanced Voice Mode button */
+			[data-testid="composer-speech-button"] {
+				--shadow: 0 0 2px 2px hsla(var(--accent-hsl) / 0.8) inset, -1px -1px 5px 0px #fff inset;
+				--c-bg-gradient: linear-gradient(-25deg,
+						hsla(var(--accent-hsl) / 0.001) 0%,
+						hsla(var(--accent-hsl) / 0.35) 18%,
+						hsla(var(--accent-hsl) / 0.85) 58%,
+						hsla(var(--accent-hsl) / 1) 90%);
+				background: var(--c-bg-gradient) !important;
 				color: var(--c-on-accent) !important;
+				box-shadow: var(--shadow) !important;
+
+				&:disabled {
+					background: hsla(var(--accent-hsl) / 0.12) !important;
+					color: var(--c-accent) !important;
+				}
+			}
+
+			/* Canvas file-tile */
+			div.group\/file-tile {
+				[id^="textdoc-message-temp"] {
+					border-color: hsla(var(--accent-hsl) / 0.1) !important;
+					background-color: hsla(var(--accent-hsl) / 0.1) !important;
+					color: var(--c-accent) !important;
+
+					/* Ugly gradients on the Canvas edit file attached edges */
+					.absolute.bottom-0.z-20[style*="background: linear-gradient"] {
+						background: none !important;
+					}
+				}
+
+				/* Close btn for edit Canvas file-tile attached */
+				button[class*="group-hover/file-tile:block"].absolute.-left-1.-top-1.rounded-full {
+					background-color: var(--c-accent) !important;
+					color: var(--c-on-accent) !important;
+				}
+			}
+
+
+			/* 🖼️ "Attach Files" - attached file wrapper */
+			.no-scrollbar[data-fullbleed].-ms-1\.5.flex-nowrap {
+
+				/* Attached file */
+				.bg-primary.border-token-border-default {
+					background-color: hsla(var(--accent-hsl) / 0.12) !important;
+
+					/* 🖼️ "Attach Files" - attached image button */
+					button[type='button'][aria-haspopup='dialog'] {
+
+						/* "Attach Files" attached image */
+						span.bg-cover {
+							border-radius: 10px !important;
+						}
+					}
+				}
 			}
 		}
 
+		/* Menu when type "/" in prompt field, and when type `@` */
+		// .popover[class*="radix-side"][class*="dark:bg-[#353535]"] {
+		.popover {
+			@include menuBg;
 
-		/* 🖼️ "Attach Files" - attached file wrapper */
-		.no-scrollbar[data-fullbleed].-ms-1\.5.flex-nowrap {
+			/* Search field when typed `@` */
+			input[placeholder] {
+				border-radius: var(--br-btn);
+				background-color: transparent !important;
+				box-shadow: 0 0 0 1px hsla(var(--accent-hsl) / 0.1);
+				margin-bottom: 0.5rem;
 
-			/* Attached file */
-			.bg-primary.border-token-border-default {
-				background-color: hsla(var(--accent-hsl) / 0.12) !important;
+				/* List of GPTs wrapper */
+				&~.max-h-40.overflow-y-auto {
 
-				/* 🖼️ "Attach Files" - attached image button */
-				button[type='button'][aria-haspopup='dialog'] {
+					/* List of GPTs - item */
+					.group.h-10 {
 
-					/* "Attach Files" attached image */
-					span.bg-cover {
-						border-radius: 10px !important;
+						/* Active item */
+						&.bg-token-main-surface-secondary {
+							background-color: hsla(var(--accent-hsl) / 0.18) !important;
+						}
+
+						&:hover {
+							background-color: hsla(var(--accent-hsl) / 0.1) !important;
+						}
 					}
 				}
 			}
