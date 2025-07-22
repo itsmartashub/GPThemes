@@ -389,7 +389,8 @@
 	}
 
 	/* User and GPT chats footer */
-	[class*="group/conversation-turn"] [class*="mx-[var(--mini-thread-content-inset)]"]>.flex[class*="justify-"] {
+	[class*="mx-[var(--mini-thread-content-inset)]"]>.flex[class*="justify-"] {
+		// border: 2px solid red !important;
 
 		/* And User's and GPT's footer icons */
 		// [class*="group-hover/turn-messages:"]
