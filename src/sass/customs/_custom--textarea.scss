@@ -1,6 +1,7 @@
 [role="presentation"].composer-parent {
 
-    [class*="max-w-(--thread-content-max-width)"].text-base.mx-auto.flex.flex-1:has(form[data-type="unified-composer"] #prompt-textarea) {
+    #thread-bottom [class*="(--thread-content-max-width)"].flex-1:has(form[data-type="unified-composer"] #prompt-textarea) {
+        // border: 1px solid red !important;
         will-change: width, max-width;
         max-width: var(--w_prompt_textarea);
         // @include dev_high(orange);
