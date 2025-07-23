@@ -362,6 +362,23 @@
 			}
 		}
 
+		[data-message-author-role="assistant"] {
+
+			/* Source link big cards with image and text that overlaps rigth the chat bubble */
+			.w-50.shrink-0.snap-start[class*="@5xl/thread:w-61"] {
+
+				.h-full.w-full.bg-clip-padding.bg-token-bg-primary.cursor-pointer.overflow-hidden {
+					background-color: hsla(var(--accent-hsl) / .08) !important;
+					backdrop-filter: blur(0.25rem);
+					border-color: hsla(var(--accent-hsl) / .1) !important;
+					transition: translate 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+
+					&:hover {
+						translate: 0 -2px;
+					}
+				}
+			}
+		}
 
 		/* DeepSearch: strange boder */
 		[class*="@container"].border-token-border-sharp.mx-\[-16px\].contain-inline-size {
