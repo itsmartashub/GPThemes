@@ -5,9 +5,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.5rem;
-    padding: 0.5rem 0;
-    backdrop-filter: blur(0.5rem);
+    // margin-bottom: 0.5rem;
+    padding: 1rem;
+    backdrop-filter: blur(2rem);
+    border-radius: 0 0 1.2rem 1.2rem;
 
     .logo {
         --img-size: 2.35rem;

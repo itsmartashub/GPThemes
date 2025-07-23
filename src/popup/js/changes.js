@@ -28,20 +28,25 @@ const currentReleaseChanges = {
 	features: [
 		{
 			description: 'Hide GPThemes Floating Button:',
-			details: `You can now easily show or hide the GPThemes floating button directly from the extension popup. Click the extension icon in your browser's toolbar, then toggle the <code>HIDE GPTHEMES</code> switch at the top right to show/hide the floating button.`,
+			details: `You can now easily toggle the GPThemes floating button directly from the extension popup (here) using the <code>HIDE GPTHEMES</code> switch at the top right.`,
 			issueRef: 146,
+		},
+		{
+			description: 'New Fonts Types:',
+			details: `Added new fonts and 🆕 label in the font selection list for improving discoverability of recent font additions. <br/>Which Google font would you like to see?`,
+			issueRef: 154,
 		},
 	],
 	improvements: [
 		{
 			description: 'Chat Bubbles Spacing:',
 			details:
-				'Both, assistant and user chat, bubbles now should have same spacing, making them more visually aligned.',
+				'Both, assistant and user chat bubbles now should have same spacing, making them more visually aligned.',
 			issueRef: 143,
 		},
 		{
 			description: 'Created Images Animations:',
-			details: 'Created images (including DALL-E) now have smooth hover animations for a more dynamic feel.',
+			details: 'Created images now have smooth hover animations for a more dynamic feel.',
 			issueRef: 143,
 		},
 		{

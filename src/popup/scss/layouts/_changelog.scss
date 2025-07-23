@@ -2,26 +2,42 @@
     display: grid;
     gap: 1rem;
     position: relative;
+    padding: 0.8rem;
 
     ul {
         list-style-type: none;
-        padding: 0.5rem;
-        padding-left: 1.5rem;
-        margin-bottom: 1rem;
+        padding-left: 1.7rem;
+        margin-bottom: 2rem;
 
         li {
-            padding: 0.2rem 0;
             position: relative;
+            padding: 0.5rem;
+            border-radius: 0.8rem;
+            font-size: 0.956em;
+            transition: background-color 0.2s ease, scale 0.2s ease;
+
 
             // Add custom bullets using pseudo-elements
             &::before {
-                content: '•'; // Bullet character
+                content: '•';
                 position: absolute;
-                color: $accent; // Your custom color
-                font-size: 1.2em; // Adjust size if needed
+                color: $accent;
+                font-size: 1.2em;
                 line-height: 1;
-                left: -0.8em; // Adjust position to align bullets
+                top: 0.6rem;
+                left: -0.4em;
+                transition: scale 0.2s ease;
             }
+
+            &:hover {
+                background-color: rgba($accent, 0.1);
+                scale: 1.02;
+
+                &::before {
+                    scale: 0;
+                }
+            }
+
         }
 
         code {
@@ -49,7 +65,12 @@
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
-        padding: 1.4rem 1.4rem 0 1.4rem;
+        // padding: 1.4rem 1.4rem 0 1.4rem;
+        padding: 1rem;
+
+        h2 {
+            font-size: 1.8em;
+        }
     }
 
     &__version {
@@ -68,11 +89,7 @@
     }
 
     &__changes {
-        // padding: 1rem;
-
-        h2 {
-            margin-bottom: 1.5rem;
-        }
+        padding: 0.1rem;
 
         h3 {
             font-size: 1.5em;
