@@ -269,6 +269,12 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 	}
 }
 
+/* e.g. Search chats dialog active/hover item */
+.bg-\[\#f4f4f4\] {
+	// background-color: hsla(var(--accent-hsl) / 0.1) !important;
+	background-color: var(--c-surface-3) !important;
+}
+
 /* Searched big link in Chat Bubbles */
 /* [class*="group-hover/navigation"] je veliki source link u chat bubble kao onaj "ChatGPT Release Note" na sony */
 .dark\:bg-token-main-surface-secondary:is(.dark *) {

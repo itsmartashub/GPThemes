@@ -186,6 +186,7 @@
                     // background-image: var(--c-bg-gradient) !important;
                     border: 1px solid hsla(var(--accent-hsl) / .14) !important;
                     background-color: hsla(var(--accent-hsl) / .18) !important;
+                    backdrop-filter: blur(19px) !important;
                 }
 
                 /* Wrapper */

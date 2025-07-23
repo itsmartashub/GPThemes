@@ -497,100 +497,29 @@
 		}
 
 		/* ___ "Search chats" showed when clicked on 🔍 in sidebar */
-		&:has(input[placeholder="Search chats..."]) {
+		// &:has(input[placeholder="Search chats..."]) {
 
-			ol>li {
-				.cursor-pointer {
-					[class*='bg-[#f4f4f4]'] {
-						background-color: var(--c-surface-3) !important;
-					}
-				}
+		// 	ol>li {
+		// 		// Moved to global bgs
+		// 		// .cursor-pointer {
+		// 		// 	[class*='bg-[#f4f4f4]'] {
+		// 		// 		background-color: var(--c-surface-3) !important;
+		// 		// 	}
+		// 		// }
 
-				/* Dates in "Search chats" */
-				.group.text-xs.text-token-text-secondary {
-					@extend %date-pill;
-				}
+		// 		/* Dates in "Search chats" */
+		// 		.group.text-xs.text-token-text-tertiary {
+		// 			@extend %date-pill;
+		// 		}
 
-				.loading-results-shimmer {
-					--main-surface-secondary: var(--c-surface-2) !important;
-					--main-surface-tertiary: var(--c-surface-3) !important;
-				}
-			}
-		}
-
-		/* ___ Searched Link "SOURCES" showed when clicked on "Sources" in chat bubble sometimes triggered when using /Search prompt */
-		&:has(.h-\[60vh\].max-h-\[700px\].overflow-y-auto div[class*="var(--screen-thread-header-min-height"]) {
-
-			/* Header with "Links" and X button */
-			.border-b[class*="dark:border-gray-700"] {
-
-				/* "Links" main header with border-bottom */
-				span:has(> [class*="!text-token-text-primary"]) {
-					// padding: 0.8rem 0;
-
-					&>[class*="!text-token-text-primary"] {
-						--text-primary: var(--c-accent) !important;
-						text-transform: uppercase;
-						// padding: 0.3rem 1rem !important;
-						// background-color: hsla(var(--accent-hsl) / 0.15);
-						// border-radius: var(--br-btn);
-						// border-bottom: none !important;
-					}
-				}
-			}
-
-			/* Wrapper for sticky category subheader and link list */
-			.h-\[60vh\].max-h-\[700px\].overflow-y-auto {
-				.bg-token-main-surface-primary {
-					--main-surface-primary: var(--c-bg-dialog) !important;
-				}
-
-				/* Sticky category subheader of source links */
-				.sticky[class*="var(--screen-thread-header-min-height"] {
-					--text-primary: var(--c-accent) !important;
-					// --main-surface-primary: var(--c-bg-dialog) !important;
-					text-transform: uppercase;
-				}
-			}
-		}
+		// 		.loading-results-shimmer {
+		// 			--main-surface-secondary: var(--c-surface-2) !important;
+		// 			--main-surface-tertiary: var(--c-surface-3) !important;
+		// 		}
+		// 	}
+		// }
 	}
 }
-
-// html.dark[data-gptheme='oled'] [role='dialog'] {
-// 	&:not(&:has([href^='https://help.openai.com/en/articles/7925741-chatgpt-shared-links-faq'])) {
-// 		.from-token-main-surface-primary {
-// 			--main-surface-primary: var(--c-surface-1) !important;
-// 		}
-// 	}
-// }
-
-/* TODO(add):  improve this and add in future DALLE image when opened */
-// body>div>.absolute.inset-0.flex.flex-col {
-// 	// border: 3px solid red !important;
-
-// 	/* Like bg, overlay */
-// 	&>.bg-token-main-surface-secondary.h-full.w-full {}
-
-// 	/* Wrapper */
-// 	&>.absolute.inset-0.flex {
-// 		@include dev_high(red);
-
-// 		/* DALLE image when opened - image wrapper on the left */
-// 		// &>.grow.overflow-auto {}
-
-
-// 		/* DALLE image when opened - chat conversation aside on the right */
-// 		&>.border-token-border-medium.bg-token-main-surface-primary.relative.shrink-0.border-l {
-// 			@include dev_high(orange);
-
-// 			[class^="h-[100vh] pb-4"] {
-// 				// border: 3px solid orange !important;
-// 				padding-bottom: 0 !important;
-// 			}
-// 		}
-// 	}
-// }
-
 
 /* Dialog with links from sources for mobile */
 [role='dialog']:not(:empty) {
