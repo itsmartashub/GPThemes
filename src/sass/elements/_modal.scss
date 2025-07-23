@@ -529,3 +529,14 @@
 		}
 	}
 }
+
+/* DeepSearch dialog */
+[data-testid="modal-deep-research-share"] {
+	[role="dialog"] {
+
+		/* Remove bg of deepsearch element */
+		&>.bg-token-bg-primary.max-w-4xl.overflow-x-scroll {
+			background-color: transparent !important;
+		}
+	}
+}
