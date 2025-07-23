@@ -17,59 +17,88 @@ const links = {
 
 const SECTION_TYPES = {
 	features: { emoji: '🆕', title: 'Features' },
-	improvements: { emoji: '🚀', title: 'Enhancements' },
-	fixes: { emoji: '🩹', title: 'Fixes' },
+	improvements: { emoji: '🚀', title: 'Key Enhancements' },
+	fixes: { emoji: '🩹', title: 'Key Fixes' },
 	other: { emoji: '🧵', title: 'Other' },
 	// Can easily add more section types as needed
 }
 
 const currentReleaseChanges = {
 	// Example data - in a real scenario, you'd only include sections with actual content
-	// features: [
-	// 	{
-	// 		description: 'Toggle Chat Bubbles:',
-	// 		details: 'Added a new setting to turn on and off chat bubbles for both, user and assistant',
-	// 		issueRef: 129,
-	// 	},
-	// ],
-	// improvements: [
-	// 	{
-	// 		description: 'DeepSearch:',
-	// 		details: 'Updated all the broken styles related to the new DeepSearch feature.',
-	// 		issueRef: 138,
-	// 	},
-	// 	{
-	// 		description: 'Custom Widths:',
-	// 		details:
-	// 			'Numerous improvements related to width sliders, toggle functions, state handling, especially for mobile.',
-	// 		prRef: 135,
-	// 	},
-	// 	{
-	// 		description: 'OLED User Message:',
-	// 		details: 'Made the user message background more accent-like in OLED theme',
-	// 	},
-	// ],
-	// fixes: [
-	// 	{
-	// 		description: 'Scroll Down Button:',
-	// 		details: 'Updated selector for custom alignment due the recent OpenAI changes',
-	// 	},
-	// 	{
-	// 		description: 'Chats Elements:',
-	// 		details:
-	// 			'Style fixes and improvements related to Chats, Source Links, Markdown Elements, Tables, Reply, Maps, DALLE, Create Image, Canvas, Dual Responses Layout, etc.',
-	// 		issueRef: 136,
-	// 	},
-	// 	{
-	// 		description: 'ChatGPT Settings:',
-	// 		details: "Reduced excessive padding and prevented tab buttons overlap when there isn't enough space",
-	// 		issueRef: 131,
-	// 	},
-	// ],
+	features: [
+		{
+			description: 'Hide GPThemes Floating Button:',
+			details: `You can now easily show or hide the GPThemes floating button directly from the extension popup. Click the extension icon in your browser's toolbar, then toggle the <code>HIDE GPTHEMES</code> switch at the top right to show/hide the floating button.`,
+			issueRef: 146,
+		},
+	],
+	improvements: [
+		{
+			description: 'Chat Bubbles Spacing:',
+			details:
+				'Both, assistant and user chat, bubbles now should have same spacing, making them more visually aligned.',
+			issueRef: 143,
+		},
+		{
+			description: 'Created Images Animations:',
+			details: 'Created images (including DALL-E) now have smooth hover animations for a more dynamic feel.',
+			issueRef: 143,
+		},
+		{
+			description: 'Created Images Carousel:',
+			details: 'Enhanced the vertical carousel for created images.',
+			issueRef: 143,
+		},
+		{
+			description: 'Settings Dialog Styles:',
+			details: 'Improved GPT settings dialog, new sidebar and tab content styles.',
+			issueRef: 143,
+		},
+		{
+			description: 'Mobile Chat Adjustments:',
+			details:
+				'Chat bubbles on mobile devices have improved padding, spacing, and edge margins for a better look.',
+			issueRef: 143,
+		},
+	],
+	fixes: [
+		{
+			description: 'Assistant Chat Bubbles:',
+			details: 'Fixed toggle GPT chat bubble feature and missing background due to recent OpenAI changes.',
+			issueRef: 150,
+		},
+		{
+			description: 'Prompt Custom Width:',
+			details: 'Fixed custom prompt textarea width feature',
+			issueRef: 152,
+		},
+		{
+			description: 'Scroll Down Button Alignment:',
+			details: 'Fixed custom scrolldown button alignment feature',
+			issueRef: 148,
+		},
+		{
+			description: 'Font Family Select Width:',
+			details: "Fixed font family select list's width increasing on in/out hover spams.",
+			issueRef: 142,
+		},
+		{
+			description: 'Canvas & Chat Styling:',
+			details:
+				'Addressed numerous broken styles in Canvas components, chat footers, Maps, and Markdown code blocks.',
+			issueRef: 143,
+		},
+		{
+			description: 'Tooltip & Prompt Textarea:',
+			details:
+				'Fixed tooltip text visibility. Resolved styling for search autocomplete and command menus: <code>/</code> & <code>@</code>. Restore different prompt textarea styles for temporary vs basic state.',
+			issueRef: 143,
+		},
+	],
 	other: [
 		{
 			details:
-				'Thanks for using <code>GPThemes</code>! This release brings many other improvements and bug fixes to enhance your experience. For all the details, check out the full release notes on GitHub.',
+				'Hey, there 👋 Thanks for using the <code>GPTHEMES</code> <br/> This release brings a range of additional improvements and bug fixes to enhance your experience. For all the details, check out the full release notes on GitHub.',
 		},
 	],
 	// Add other sections as needed for each release
