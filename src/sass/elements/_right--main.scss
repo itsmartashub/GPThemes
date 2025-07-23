@@ -39,15 +39,16 @@
 		@include lift;
 	}
 
-	header#page-header {
+	// Moved to global bgs because on mobile its not into header#page-header
+	// header#page-header {
 
-		/* "Get Plus" and "Create a Workspace" pill sticky button on "New Chat" page */
-		[class*="dark:bg-[#373669]"] {
-			background-color: hsla(var(--accent-hsl) / .1) !important;
-			color: var(--c-accent) !important;
-			backdrop-filter: blur(10px);
-		}
-	}
+	// 	/* "Get Plus" and "Create a Workspace" pill sticky button on "New Chat" page */
+	// 	[class*="dark:bg-[#373669]"] {
+	// 		background-color: hsla(var(--accent-hsl) / .1) !important;
+	// 		color: var(--c-accent) !important;
+	// 		backdrop-filter: blur(10px);
+	// 	}
+	// }
 }
 
 /* @ === RIGHT - CHATS BUBBLES ===*/

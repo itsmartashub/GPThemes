@@ -358,6 +358,17 @@ a.bg-token-main-surface-primary.group {
 	}
 }
 
+/* "Get Plus" and "Create a Workspace" pill sticky button on "New Chat" page */
+[class*="dark:bg-[#373669]"] {
+	background-color: hsla(var(--accent-hsl) / .1) !important;
+	color: var(--c-accent) !important;
+	backdrop-filter: blur(10px);
+
+	&:hover {
+		background-color: hsla(var(--accent-hsl) / .2) !important;
+	}
+}
+
 // .bg-token-bg-primary {
 // 	--bg-primary: var(--c-bg-chats-container) !important;
 // 	background-color: var(--bg-primary);
