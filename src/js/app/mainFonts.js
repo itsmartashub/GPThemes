@@ -11,33 +11,33 @@ const FONT_CONFIG = {
 		default: getComputedStyle(document.documentElement).getPropertyValue('--fontFamilyDefault').trim(),
 		storageKey: 'fontFamily',
 		options: [
-			'Default',
+			{ name: 'Default', label: 'Default' },
 			...[
-				'Inter',
-				'Roboto',
-				'Roboto Mono',
-				'Roboto Serif',
-				'DM Sans',
-				'Reddit Mono',
-				'Poppins',
-				'Raleway',
-				'Noto Sans',
-				'Lato',
-				'Quicksand',
-				'Outfit',
-				'Share Tech Mono',
-				'JetBrains Mono',
-				'Work Sans',
-				'Lora',
-				'Manrope',
-				'Libre Baskerville',
-				'Bricolage Grotesque',
-				'Hedvig Letters Serif',
-				'Literata',
-				'Syne',
-				'Sora',
-				'Golos Text',
-			].sort(),
+				{ name: 'Inter', label: 'Inter' },
+				{ name: 'Roboto', label: 'Roboto' },
+				{ name: 'Roboto Mono', label: 'Roboto Mono' },
+				{ name: 'Roboto Serif', label: 'Roboto Serif' },
+				{ name: 'DM Sans', label: 'DM Sans' },
+				{ name: 'Reddit Mono', label: 'Reddit Mono' },
+				{ name: 'Poppins', label: 'Poppins' },
+				{ name: 'Raleway', label: 'Raleway' },
+				{ name: 'Noto Sans', label: 'Noto Sans' },
+				{ name: 'Lato', label: 'Lato' },
+				{ name: 'Quicksand', label: 'Quicksand' },
+				{ name: 'Outfit', label: 'Outfit' },
+				{ name: 'Share Tech Mono', label: 'Share Tech Mono' },
+				{ name: 'JetBrains Mono', label: 'JetBrains Mono' },
+				{ name: 'Work Sans', label: 'Work Sans' },
+				{ name: 'Lora', label: 'Lora' },
+				{ name: 'Manrope', label: 'Manrope' },
+				{ name: 'Libre Baskerville', label: 'Libre Baskervill 🆕' },
+				{ name: 'Bricolage Grotesque', label: 'Bricolage Grotesque 🆕' },
+				{ name: 'Hedvig Letters Serif', label: 'Hedvig Letters Serif 🆕' },
+				{ name: 'Literata', label: 'Literata 🆕' },
+				{ name: 'Syne', label: 'Syne 🆕' },
+				{ name: 'Sora', label: 'Sora 🆕' },
+				{ name: 'Golos Text', label: 'Golos Text 🆕' },
+			].sort((a, b) => a.label.localeCompare(b.label)),
 		],
 		type: 'select',
 	},
@@ -109,9 +109,9 @@ const renderFontsTab = () => {
               </div>
               <select id="fontFamily" class="flex-1 border-none outline-none focus:none font-bold" role="listbox">
                 ${FONT_CONFIG.fontFamily.options
-					.map((name) => {
-						const value = name === 'Default' ? FONT_CONFIG.fontFamily.default : name
-						return `<option value="${value}">${name}</option>`
+					.map((font) => {
+						const value = font.name === 'Default' ? FONT_CONFIG.fontFamily.default : font.name
+						return `<option value="${value}">${font.label}</option>`
 					})
 					.join('')}
               </select>
