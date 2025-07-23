@@ -3,23 +3,10 @@
 // main [role='presentation'] {
 .composer-parent[role='presentation'] {
 	container: main / inline-size;
+	--p-chat-bubble-multiply: 1.35;
 
 	/* Main Page chat-container  Bg */
 	background-color: var(--c-bg-chats-container) !important;
-
-
-
-
-	// /* GPT logo in chat bubble */
-	// .gizmo-bot-avatar div,
-	/* GPT logo in "New Chat" main chat-container in old-ui */
-	// .gizmo-shadow-stroke {
-	// 	background-color: var(--c-accent) !important;
-
-	// 	svg {
-	// 		color: var(--c-on-accent) !important;
-	// 	}
-	// }
 
 	/* GTP logo in Dual Response chat bubbles */
 	.gizmo-bot-avatar {
@@ -32,16 +19,15 @@
 		svg {
 			color: var(--c-on-accent) !important;
 		}
-
 	}
 
 	/* Chats <article> wrapper on XL screens (huge full width when sidebar collapsed) - with this cutted first user message is being fixed */
-	.\@thread-xl\/thread\:pt-header-height {
-		// @include container('xxl') {
-		margin-top: calc(var(--p-chat-bubble) * 2) !important; // to cover user msg padding top and bottom, thats why is * 2
-		// background-color: var(--c-accent) !important;
-		// }
-	}
+	// .\@thread-xl\/thread\:pt-header-height {
+	// 	// @include container('xxl') {
+	// 	margin-top: calc(var(--p-chat-bubble) * 2) !important; // to cover user msg padding top and bottom, thats why is * 2
+	// 	// background-color: var(--c-accent) !important;
+	// 	// }
+	// }
 
 	/* Product/items list in chat bubbles (when search something) */
 	.context-list {
@@ -81,10 +67,10 @@
 		.text-base.my-auto.mx-auto[class*="[--thread-content-margin:"] {
 			--thread-content-margin: calc(var(--spacing)*2) !important;
 
-			/* Remove bigger spacing from top on user messages */
-			&.pt-12 {
-				padding-top: calc(var(--spacing)*10) !important;
-			}
+			// /* Remove bigger spacing from top on user messages */
+			// &.pt-12 {
+			// 	padding-top: calc(var(--spacing)*10) !important;
+			// }
 
 			// padding-inline: 3% !important;
 			// padding-block: calc(var(--p-between-chats) * 0.5) !important
@@ -125,11 +111,20 @@
 	/* @ ======================== RIGHT - CHATS BUBBLES - USER ======================== */
 	&:has([data-message-author-role='user']) {
 
+		/* Wrapper of user chat-bubbles msg, reduce padding-top */
+		.text-base.my-auto.mx-auto[class*="[--thread-content-margin:"] {
+
+			/* Remove bigger spacing from top on user messages */
+			&.pt-12 {
+				padding-top: calc(var(--spacing)*10) !important;
+			}
+		}
+
 		/* RIGHT - CHATS BUBBLE BG */
 		/*NEW SELECTOR: 2025-04-10 - User message - max-w-[var(--user-chat-width,70%)] */
 		.bg-token-message-surface {
 			background-color: var(--toggleBgUser);
-			padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.3);
+			padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply));
 			// padding: var(--p-chat-bubble) !important;
 			border-radius: var(--br-chat-bubble) !important;
 			// width: var(--max_w_chat_user) !important;
@@ -180,7 +175,7 @@
 	.rounded-3xl.bg-token-main-surface-tertiary:has(.max-h-\[25dvh\] > .grid > textarea) {
 		// background-color: transparent !important;
 		--main-surface-tertiary: hsla(var(--accent-hsl) / 0.08) !important;
-		// padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.3);
+		// padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply));
 		// padding: var(--p-chat-bubble) !important;
 		border: 1px solid hsla(var(--accent-hsl) / 0.2);
 		caret-color: var(--c-accent);
@@ -208,7 +203,7 @@
 		// .text-base[class*="(--thread-content-margin)"] {
 		.group\/turn-messages[class*="(--thread-content-max-width)"] {
 			background-color: var(--toggleBgGpt);
-			padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * 1.3);
+			padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply));
 			// padding: var(--p-chat-bubble) !important;
 			border-radius: var(--br-chat-bubble) !important;
 
@@ -399,6 +394,8 @@
 		// [class*="group-hover/turn-messages:"]
 		&>[class*="has-data-[state=open]"] {
 			border-radius: 50vw;
+			/* 			background: hsla(var(--accent-hsl) / .12) !important;
+			border: 1px solid hsla(var(--accent-hsl) / .08) !important; */
 
 			button {
 				color: var(--c-accent) !important;
@@ -426,6 +423,13 @@
 				border: 1px solid hsla(var(--accent-hsl) / .08) !important;
 			}
 		}
+
+		/* &.justify-start {
+			&>[class*="has-data-[state=open]"] {
+				max-width: max-content !important;
+				height: max-content !important;
+			}
+		} */
 
 		/* Only GPT's footer icons */
 		// &.justify-start {
