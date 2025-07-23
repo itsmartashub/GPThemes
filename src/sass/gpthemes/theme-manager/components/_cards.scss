@@ -252,10 +252,10 @@
             position: relative;
             line-height: 1;
             width: 100%;
-            height: min-content !important;
+            height: max-content !important;
             background-color: transparent !important;
             padding: 4px 0px !important;
-            border-radius: 0.8rem;
+            border-radius: 50vw;
 
             &:focus {
                 background-color: hsla(var(--accent-hsl) / 0.15) !important;
@@ -278,15 +278,12 @@
         }
 
         &:hover {
-            // transform: translateY(2px);
-
             .card__name {
                 translate: 0 2px;
             }
 
             input,
             select {
-                // transform: translateY(-2px);
                 color: var(--c-accent);
             }
         }
