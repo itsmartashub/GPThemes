@@ -6,10 +6,13 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0.5rem;
+    padding: 0.5rem 0;
+    backdrop-filter: blur(0.5rem);
 
     .logo {
         --img-size: 2.35rem;
-        transition: scale 0.25s ease;
+        filter: drop-shadow(0 0 50px rgba($accent, 1)) drop-shadow(-2px 4px 0px rgba($accent, 0.4)) drop-shadow(0 0 1px rgba($accent, 0.4));
+        transition: scale 0.25s ease, filter 0.2s ease;
 
         img {
             width: var(--img-size);
@@ -19,8 +22,7 @@
 
         &:hover {
             scale: 1.1;
+            filter: drop-shadow(0 0 50px rgba($accent, 1));
         }
     }
-
-
 }
