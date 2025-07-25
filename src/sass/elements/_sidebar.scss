@@ -1,5 +1,8 @@
 /* Sidebar bg-color */
-.bg-token-sidebar-surface-primary[class*="var(--sidebar-slideover)"] {
+// .bg-token-sidebar-surface-primary[class*="var(--sidebar-slideover)"] {
+/* #stage-popover-sidebar is selector for smaller screen */
+#stage-slideover-sidebar,
+#stage-popover-sidebar {
 	background-color: var(--c-bg-sidebar) !important;
 	color: var(--c-txt) !important;
 }
@@ -14,7 +17,6 @@
 	}
 }
 
-#sidebar,
 #history {
 
 	/* List item for GPTs and for chats-list item */
@@ -36,21 +38,5 @@ nav[aria-label].h-full {
 		padding-block: 0.5rem !important;
 		border-radius: calc(var(--br) * 0.8) !important;
 		@include lift;
-	}
-
-	/* "Upgrade" link in nav bg */
-	.sticky.bottom-0 .__menu-item {
-
-		/* "Upgrade" link svg */
-		.h-7.w-7.rounded-full.border-token-border-default {
-			border-color: transparent !important;
-			background-color: var(--c-accent) !important;
-
-			/* SVG icon in "Upgrade" link in nav */
-			&>svg {
-				color: var(--c-on-accent) !important;
-			}
-		}
-
 	}
 }
