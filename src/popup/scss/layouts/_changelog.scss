@@ -1,13 +1,13 @@
 .changelog {
     display: grid;
-    gap: 1rem;
+    gap: 2.5rem;
     position: relative;
     padding: 0.8rem;
 
     ul {
         list-style-type: none;
         padding-left: 1.7rem;
-        margin-bottom: 2rem;
+        // margin-bottom: 2rem;
 
         li {
             position: relative;
@@ -65,11 +65,20 @@
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
-        // padding: 1.4rem 1.4rem 0 1.4rem;
-        padding: 1rem;
 
         h2 {
             font-size: 1.8em;
+            font-weight: 700;
+            // background: linear-gradient(120deg, $accent 15%, rgba($accent, 0.6), $accent 80%);
+            // // background: linear-gradient(90deg, $accent, rgba($accent, 0.4), $accent);
+            // -webkit-background-clip: text;
+            // background-clip: text;
+            // color: transparent;
+            color: $accent;
+
+            span {
+                font-weight: 300;
+            }
         }
     }
 
@@ -90,10 +99,12 @@
 
     &__changes {
         padding: 0.1rem;
+        display: grid;
+        gap: 2rem;
 
         h3 {
             font-size: 1.5em;
-            margin-bottom: 0.2rem;
+            // margin-bottom: 0.2rem;
         }
 
         p {
@@ -136,6 +147,49 @@
                 color: $accent;
                 backdrop-filter: blur(1rem);
             }
+        }
+    }
+
+    &__new-fixes-section {
+        background-color: rgba($accent, 0.1);
+        border-left: 4px solid $accent;
+        padding: 0.8rem 1rem;
+        border-radius: 1.5rem;
+
+        li:is(:hover, :focus) {
+            scale: 1 !important;
+            background-color: transparent !important;
+        }
+    }
+
+    &__previous-separator {
+        margin: 0 auto;
+        margin-block: 0.5rem;
+        padding: 0.5rem 1.2rem;
+        background-image: $bg-gradient;
+        border-radius: 50vw;
+        // border-top: 2px dashed rgba($accent, 0.5);
+        border-top: 2px solid rgba($accent, 0.15);
+
+        h3 {
+            text-align: center;
+            text-transform: uppercase;
+            color: $accent;
+            font-size: 0.95em;
+
+            background: linear-gradient(90deg, $accent, rgba($accent, 0.4), $accent);
+            -webkit-background-clip: text;
+            /* Safari/WebKit */
+            background-clip: text;
+            color: transparent;
+            /* Hide the original text color */
+        }
+
+        &__separator-text {
+            // color: #777;
+            font-style: italic;
+            margin: 8px 0 0 0;
+            opacity: 0.7;
         }
     }
 }

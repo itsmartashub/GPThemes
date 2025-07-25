@@ -16,15 +16,36 @@ const links = {
 }
 
 const SECTION_TYPES = {
-	features: { emoji: '🆕', title: 'Features' },
-	improvements: { emoji: '🚀', title: 'Key Enhancements' },
-	fixes: { emoji: '🩹', title: 'Key Fixes' },
-	other: { emoji: '🧵', title: 'Other' },
-	// Can easily add more section types as needed
+	// Critical hotfix section - will appear first if present
+	critical: { emoji: '🚨', title: 'Critical Fixes', priority: 0 },
+	newFixes: { emoji: '🔧', title: 'New Fixes', priority: 1 },
+	// Separator for previous version content
+	previousSeparator: { emoji: '📜', title: 'From Previous Version', priority: 2, isSeparator: true },
+	features: { emoji: '🆕', title: 'Features', priority: 3 },
+	improvements: { emoji: '🚀', title: 'Key Enhancements', priority: 4 },
+	fixes: { emoji: '🩹', title: 'Key Fixes', priority: 5 },
+	other: { emoji: '🧵', title: 'Other', priority: 6 },
 }
 
 const currentReleaseChanges = {
-	// Example data - in a real scenario, you'd only include sections with actual content
+	// New fixes specific to this release
+	newFixes: [
+		{
+			description: 'User Chat Bubbles:',
+			details:
+				'Fixed user chat bubble display issues, restored <code>USER</code> bubble toggle functionality, and fixed user widths for full-width chats.',
+			issueRef: 156,
+		},
+	],
+
+	// This acts as a visual separator
+	previousSeparator: [
+		{
+			details: '',
+		},
+	],
+
+	// All the regular features and improvements from the previous planned release
 	features: [
 		{
 			description: 'Hide GPThemes Floating Button:',
@@ -103,11 +124,9 @@ const currentReleaseChanges = {
 	other: [
 		{
 			details:
-				'Hey, there 👋 Thanks for using the <code>GPTHEMES</code> <br/> This release brings a range of additional improvements and bug fixes to enhance your experience. For all the details, check out the full release notes on GitHub.',
+				'Hey, there 👋 Thanks for using the <code>GPTHEMES</code> <br/> This is a follow-up release that includes some additional fixes plus all the great features from our previous update. For all the details, check out the full release notes on GitHub.',
 		},
 	],
-	// Add other sections as needed for each release
-	// Omit sections that don't have changes
 }
 
 const generateChangelogItem = (item) => {
@@ -124,8 +143,10 @@ const generateChangelogItem = (item) => {
 }
 
 const generateChangelog = () => {
-	// Get only sections that have content
-	const sectionsWithContent = Object.entries(currentReleaseChanges).filter(([_, items]) => items && items.length > 0)
+	// Get only sections that have content and sort by priority
+	const sectionsWithContent = Object.entries(currentReleaseChanges)
+		.filter(([_, items]) => items && items.length > 0)
+		.sort(([a], [b]) => (SECTION_TYPES[a]?.priority || 999) - (SECTION_TYPES[b]?.priority || 999))
 
 	if (sectionsWithContent.length === 0) {
 		return '<p>No changes in this release.</p>'
@@ -134,11 +155,29 @@ const generateChangelog = () => {
 	return sectionsWithContent
 		.map(([sectionKey, items]) => {
 			const section = SECTION_TYPES[sectionKey]
+			const sectionClass = ['critical', 'newFixes'].includes(sectionKey)
+				? `changelog__${sectionKey.replace(/([A-Z])/g, '-$1').toLowerCase()}-section`
+				: sectionKey === 'previousSeparator'
+				? 'changelog__previous-separator'
+				: ''
+
+			// Special handling for separator section
+			if (section.isSeparator) {
+				return `
+          <div class="${sectionClass}">
+            <h3>${section.emoji} ${section.title}</h3>
+            <p class="changelog__separator-text">${items[0].details}</p>
+          </div>
+        `
+			}
+
 			return `
-          <h3>${section.emoji} ${section.title}</h3>
-          <ul>
-            ${items.map(generateChangelogItem).join('')}
-          </ul>
+          <div class="${sectionClass}">
+            <h3>${section.emoji} ${section.title}</h3>
+            <ul>
+              ${items.map(generateChangelogItem).join('')}
+            </ul>
+          </div>
         `
 		})
 		.join('\n')

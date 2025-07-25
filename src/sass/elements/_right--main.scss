@@ -23,10 +23,7 @@
 
 	/* Chats <article> wrapper on XL screens (huge full width when sidebar collapsed) - with this cutted first user message is being fixed */
 	// .\@thread-xl\/thread\:pt-header-height {
-	// 	// @include container('xxl') {
-	// 	margin-top: calc(var(--p-chat-bubble) * 2) !important; // to cover user msg padding top and bottom, thats why is * 2
-	// 	// background-color: var(--c-accent) !important;
-	// 	// }
+	// 	margin-top: calc(var(--p-chat-bubble) * 2.5) !important; // to cover user msg padding top and bottom, thats why is * 2
 	// }
 
 	/* Product/items list in chat bubbles (when search something) */
