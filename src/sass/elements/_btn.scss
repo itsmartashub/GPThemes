@@ -48,11 +48,17 @@ button {
 		color: var(--c-bg-chats-container) !important;
 	}
 
+	&-danger-outline {
+		background-color: hsla(var(--danger-hsl) / 0.11) !important;
+		color: var(--c-danger) !important;
+	}
+
+
 	&-green {
 		background-color: var(--c-accent) !important;
 	}
 
-	&:not(&-secondary, &-danger, &-green, &-ghost) {
+	&:not(&-secondary, &-danger, &-danger-outline, &-green, &-ghost) {
 		background-color: var(--c-accent) !important;
 
 		&:hover {
@@ -62,37 +68,19 @@ button {
 }
 
 /* === All the .btn inside dialogs not having svg icon inside */
-[role='dialog'] {
-	.btn:not(.btn:has(svg)) {
-		min-width: var(--min-w-btn);
-	}
-}
-
-/* === Settings > Tabs === */
-[role='tablist'] button {
-	padding: var(--p-btn);
-	background-color: transparent !important;
-
-	svg {
-		transition: none !important;
-	}
-
-	&[data-state='active'],
-	&:hover {
-		// TODO Ovo je ok za desktop, ali za manje je bolje surface-1. Takodje dodati horiz gap izmedju
-		// background-color: var(--c-surface-3) !important;
-		// @extend .btn-secondary;
-		background-color: var(--c-accent) !important;
-		color: var(--c-on-accent) !important;
-	}
-}
+// [role='dialog'] {
+// .btn:not(.btn:has(svg)) {
+// 	.btn:not(svg) {
+// 		min-width: var(--min-w-btn);
+// 	}
+// }
 
 /* === Checkbox button - switcher. In "Chat history & training: and "Custom instructions" */
 button[role='switch'] {
 	border: 1px solid hsla(var(--accent-hsl) / 0.5) !important;
 
 	/* Checkbox ON */
-	&:has([data-state='checked']) {
+	&[data-state='checked'] {
 		background-color: var(--c-accent) !important;
 
 		/* Chb bullet/circle checked */
@@ -102,7 +90,7 @@ button[role='switch'] {
 	}
 
 	/* Checkbox OFF */
-	&:has([data-state='unchecked']) {
+	&[data-state='unchecked'] {
 		background-color: var(--c-surface-3) !important;
 
 		/* Chb bullet/circle unchecked */
@@ -124,31 +112,24 @@ button[role='combobox'] {
 	line-height: inherit;
 }
 
-
-
-/* Intro page (before Login or Register) */
-button[class*='bg-[#3C46FF] text-[#fff]'] {
-	@extend .btn;
-}
-
+/* TODO(remove?): Does this still exist? 2025-07-26 */
 /* "Tell us more" example buttons when clicked on 👎 in GPT chat bubble and the same buttons in "Provide Additional Feedback" when clicked on "More" */
-button.border-token-border-default[class*='hover:bg-token-main-surface-secondary'] {
-	border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
-	color: var(--c-accent) !important;
-	// backdrop-filter: blur(14px);
+// button.border-token-border-default[class*='hover:bg-token-main-surface-secondary'] {
+// 	border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
+// 	color: var(--c-accent) !important;
+// 	// backdrop-filter: blur(14px);
 
-	&.\!bg-token-text-primary {
-		background-color: var(--c-accent) !important;
-		color: var(--c-on-accent) !important;
+// 	&.\!bg-token-text-primary {
+// 		background-color: var(--c-accent) !important;
+// 		color: var(--c-on-accent) !important;
 
-		&:hover {
-			color: var(--c-accent) !important;
-		}
-	}
+// 		&:hover {
+// 			color: var(--c-accent) !important;
+// 		}
+// 	}
 
-	&:hover {
-		transform: translateY(-1px);
-		background-color: hsla(var(--accent-hsl) / 0.1) !important;
-	}
-
-}
+// 	&:hover {
+// 		transform: translateY(-1px);
+// 		background-color: hsla(var(--accent-hsl) / 0.1) !important;
+// 	}
+// }

@@ -59,7 +59,86 @@
 			}
 		}
 
-		/* ===================== Settings START ==================== */
+
+
+		/* ___ DIALOG - "SHARED LINKS" or "ARCHIVED CHATS" - Table  */
+		table {
+			/* BG of thead>th ---> .bg-token-main-surface-primary */
+			// --main-surface-primary: transparent !important;
+			// padding: var(--p-contextmenu) !important;
+
+			thead {
+
+				th {
+					--main-surface-primary: var(--c-bg-dialog) !important;
+					text-transform: uppercase !important;
+					color: var(--c-txt) !important;
+					// background-color: transparent !important;
+				}
+			}
+
+			tbody {
+
+				/* Link in table Shared Links/Archived Chats
+						NAME - first column Links
+						"Shared links" & "Archived Chats" links in table, but a[href^="/c/"] is also Conversation SVG in "Shared Links", ahh
+					*/
+
+				td:first-child a {
+					@extend %link_hover_underless;
+				}
+
+				// /* Center the vertically svg icons next to each other in table */
+				// td:has(button[aria-label^='Delete']) span[data-state] {
+				// 	display: flex;
+				// 	align-items: center;
+				// 	justify-items: center;
+				// }
+			}
+
+			/* "Delete shared link" in Shared Links and "Delete conversation" in Archived Chats svg color */
+			button[aria-label^='Delete'] {
+				color: var(--c-danger) !important;
+			}
+		}
+
+		// &:has(img[alt='User uploaded image']) (when opened from attached file in prompt field) and &:has(img[alt='Uploaded image']) (when opened from conversation) {
+		/* ___ Uploaded image dialog (When clicked on image from gpt user chat (alt='Uploaded image'), and on mini attached preview in textarea) (alt='User uploaded image') */
+		&:has(img.h-full.w-full.object-contain, iframe) {
+			--c-bg-dialog: transparent;
+			--box-shadow: none;
+			// padding: 0 !important;
+
+			// img[alt='Uploaded image'] and img[alt='User uploaded image']
+			img.h-full.w-full.object-contain,
+			//iframe is dialog with Google Drive or One Drive preview when we try to attach the file from the one of the accounts (Google, OneDrive). This caused some frame around this dialog, thats bcs of margin and padding 
+			iframe {
+				border-radius: var(--br-contextmenu);
+				// box-shadow: var(--box-shadow);
+			}
+		}
+	}
+}
+
+/* Dialog with links from sources for mobile */
+[role='dialog']:not(:empty) {
+	@include dev('md') {
+		.bg-token-bg-primary {
+			--bg-primary: var(--c-bg-dialog) !important;
+		}
+	}
+}
+
+
+/* Modal Settings dialog */
+[data-testid="modal-settings"] {
+	[role="dialog"] {
+
+		/* === All the .btn inside dialogs not having svg icon inside */
+		.btn:not(svg) {
+			min-width: var(--min-w-btn);
+		}
+
 		/* Tab view transitions - In tab dialog part which is changing on tabpanel click (on right side) */
 		[id*='-content-'] {
 			--anim-duration: 0.18s;
@@ -73,6 +152,13 @@
 					}
 				}
 			}
+
+			button[type="button"][aria-haspopup="menu"] {
+				@extend .btn-secondary;
+				min-width: var(--min-w-btn);
+				border-radius: var(--br-btn) !important;
+				font-weight: 500 !important;
+			}
 		}
 
 		[role='tablist'] {
@@ -82,9 +168,25 @@
 				border-radius: calc(var(--br-dialog) / 2) !important;
 			}
 
-			button[data-state='inactive']:is(:hover, :focus) {
-				@extend .btn-secondary;
+			button {
+				padding: var(--p-btn);
+				background-color: transparent !important;
+
+				svg {
+					transition: none !important;
+				}
+
+				&[data-state='active'] {
+					// background-color: var(--c-accent) !important;
+					// color: var(--c-on-accent) !important;
+					@extend .btn-primary;
+				}
+
+				&[data-state='inactive']:is(:hover, :focus) {
+					@extend .btn-secondary;
+				}
 			}
+
 
 			/* ___ DIALOG - "Settings" on smaller devices then deskop */
 			&[data-orientation='vertical'] {
@@ -103,10 +205,7 @@
 					background-color: var(--c-accent) !important;
 					color: var(--c-on-accent);
 				}
-
-
 			}
-
 		}
 
 		/* Add padding y to tabpanel in "Settings" (Where "Theme","Archived chats", "Delete All chats", etc are. Added because Theme dropdown was cutted on hover on smaller devices, because of OpenAI's `overflow-y: auto` */
@@ -155,98 +254,7 @@
 
 		/* "Enabled" btn for 2fa in "Settings" > "General" */
 		span.bg-green-50.text-green-700 {
-			/* background-color: hsla(var(--accent-hsl) / 0.15) !important;
-			color: var(--c-accent) !important;
-			padding: 0.3rem 0.8rem !important;
-			font-weight: bold;
-			text-transform: uppercase;
-			font-size: 0.68rem !important; */
 			@extend %date-pill;
-		}
-
-		/* ___ DIALOG - "SHARED LINKS" or "ARCHIVED CHATS" - Table  */
-		table {
-			/* BG of thead>th ---> .bg-token-main-surface-primary */
-			// --main-surface-primary: transparent !important;
-			// padding: var(--p-contextmenu) !important;
-
-			thead {
-
-				th {
-					--main-surface-primary: var(--c-bg-dialog) !important;
-					text-transform: uppercase !important;
-					color: var(--c-txt) !important;
-					// background-color: transparent !important;
-				}
-			}
-
-			tbody {
-
-				/* Link in table Shared Links/Archived Chats
-						NAME - first column Links
-						"Shared links" & "Archived Chats" links in table, but a[href^="/c/"] is also Conversation SVG in "Shared Links", ahh
-					*/
-
-				td:first-child a {
-					@extend %link_hover_underless;
-				}
-
-				/* Center the vertically svg icons next to each other in table */
-				td:has(button[aria-label^='Delete']) span[data-state] {
-					display: flex;
-					align-items: center;
-					justify-items: center;
-				}
-			}
-
-			/* "Delete shared link" in Shared Links and "Delete conversation" in Archived Chats svg color */
-			button[aria-label^='Delete'] {
-				color: var(--c-danger) !important;
-			}
-		}
-
-		/* ===================== Settings END ==================== *
-
-
-
-
-
-
-		/* "Keyboard Shortcuts" keyboard tasters */
-		// this is also the text in "Settings" dialog so we need more special selector
-		&:has(.truncate) {
-
-			// .border-token-border-default:has(span.text-xs) {
-			.border-token-border-default:not(:has(button)) {
-				color: var(--c-accent) !important;
-				border-color: hsla(var(--accent-hsl) / 0.3) !important;
-				border-radius: 10px !important;
-			}
-		}
-
-		// &:has(img[alt='User uploaded image']) (when opened from attached file in prompt field) and &:has(img[alt='Uploaded image']) (when opened from conversation) {
-		/* ___ Uploaded image dialog (When clicked on image from gpt user chat (alt='Uploaded image'), and on mini attached preview in textarea) (alt='User uploaded image') */
-		&:has(img.h-full.w-full.object-contain, iframe) {
-			--c-bg-dialog: transparent;
-			--box-shadow: none;
-			// padding: 0 !important;
-
-			// img[alt='Uploaded image'] and img[alt='User uploaded image']
-			img.h-full.w-full.object-contain,
-			//iframe is dialog with Google Drive or One Drive preview when we try to attach the file from the one of the accounts (Google, OneDrive). This caused some frame around this dialog, thats bcs of margin and padding 
-			iframe {
-				border-radius: var(--br-contextmenu);
-				// box-shadow: var(--box-shadow);
-			}
-		}
-	}
-}
-
-/* Dialog with links from sources for mobile */
-[role='dialog']:not(:empty) {
-	@include dev('md') {
-		.bg-token-bg-primary {
-			--bg-primary: var(--c-bg-dialog) !important;
 		}
 	}
 }
