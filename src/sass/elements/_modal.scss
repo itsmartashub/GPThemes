@@ -239,53 +239,7 @@
 			}
 		}
 
-		/* ___ "Select your Team Plan" dialog radio buttons when clicking "Upgrade plan" > "Team" > "Select billing options" */
-		&:has(input[name='seats']) {
 
-			/* input counter for seats */
-			input[name='seats'],
-			button[role="radio"] {
-				border: 1px solid var(--c-border) !important;
-			}
-
-			input[name='seats'] {
-				background-color: var(--c-surface-3) !important;
-			}
-
-			/* "Flexible plan" and "Annual plan" radio buttons */
-			button[role="radio"] {
-				border: 1px solid var(--c-border) !important;
-
-				&[aria-checked="true"] {
-					background-color: var(--c-surface-3) !important;
-
-					/* for old design radio buttons */
-					&.h-5.w-5 {
-						background-color: var(--c-accent) !important;
-					}
-				}
-
-				&>.absolute.start-3.top-0.-translate-y-1\/2 {
-
-					/* "Annual" % badge */
-					&.text-\[\#10A37F\],
-					&.bg-\[\#10A37F\] {
-						background-color: var(--c-accent) !important;
-						color: var(--c-on-accent) !important;
-						border-radius: 50vw;
-					}
-				}
-
-				&>div>span[data-state="checked"] {
-					background-color: var(--c-accent) !important;
-
-					svg {
-						color: var(--c-on-accent) !important;
-					}
-				}
-
-			}
-		}
 
 		/* ___ "Custom Instructios", now "Customize ChatGPT" */
 		&:has(textarea) {
@@ -472,8 +426,49 @@
 	}
 }
 
-/* Modal dialog when clicked on `Upgrade > Teams card plan` */
-[data-testid="modal-select-team-plan"] {}
+/* Modal dialog when clicked on `Upgrade > Bussines toggle > Teams card plan` */
+[data-testid="modal-select-team-plan"] {
+
+	/* ___ "Select your Team Plan" dialog radio buttons when clicking "Upgrade plan" > "Team" > "Select billing options" */
+	[role="dialog"] {
+
+		/* input counter for seats */
+		input[type="number"],
+		button[role="radio"] {
+			border: 1px solid hsla(var(--accent-hsl) / .12) !important;
+		}
+
+		input[type="number"] {
+			background-color: var(--c-surface-3) !important;
+		}
+
+		/* "Flexible plan" and "Annual plan" radio buttons */
+		button[role="radio"] {
+			border: 1px solid hsla(var(--accent-hsl) / .12) !important;
+
+			&[aria-checked="true"] {
+				background-color: var(--c-surface-3) !important;
+			}
+
+			/* Checked svg icon */
+			&>div>span[data-state="checked"] {
+				background-color: var(--c-accent) !important;
+
+				svg {
+					color: var(--c-on-accent) !important;
+				}
+			}
+		}
+
+		/* "Annual" % badge and discount text */
+		.text-\[\#10A37F\],
+		.bg-\[\#10A37F\] {
+			background-color: var(--c-accent) !important;
+			color: var(--c-on-accent) !important;
+			border-radius: 50vw;
+		}
+	}
+}
 
 /* Modal dialog when clicked on `Upgrade` */
 [data-testid="modal-account-payment"] {
