@@ -214,62 +214,6 @@
 		&:has([data-testid*="-pricing-modal-column"]) {
 			border-radius: 0 !important;
 
-			[aria-label="Toggle for switching between Personal and Business plans"] {
-				background-color: hsla(var(--accent-hsl) / 0.1) !important;
-			}
-
-			/* "Personal" and "Business" switching buttons */
-			button[aria-label*='Toggle for switching to'] {
-				// button[aria-label*='Toggle for switching to plans for'] {
-				// button[aria-label*='Toggle for switching to Personal plans'],
-				// button[aria-label*='Toggle for switching to Business plans'] {
-
-				// Active plan btn 
-				&[aria-checked='true'] {
-					color: var(--c-on-accent);
-
-					// style for element surround btn (in code its next to btn on the same block level, sibling), simulating the button, jeez...
-					&~.absolute.inset-0 {
-						--bg-primary: var(--c-accent) !important;
-					}
-				}
-
-				&[aria-checked='false'] {
-
-					&,
-					&:hover {
-						color: var(--c-accent) !important;
-					}
-				}
-			}
-
-			/* Free and Plus plans cards */
-			[data-testid*="-pricing-modal-column"] {
-				margin: 0.3rem !important;
-				box-shadow: var(--box-shadow);
-				background-color: hsla(var(--accent-hsl) / 0.1) !important;
-				border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
-
-				/* Ugly bg behind text in Plans */
-				.bg-token-main-surface-primary {
-					--main-surface-primary: transparent !important;
-					// background-color: transparent !important;
-				}
-			}
-
-			/* Only PLUS plan card */
-			[data-testid*="plus-pricing-modal-column"] {
-				border: 1px solid hsla(var(--accent-hsl) / 0.3) !important;
-
-				.border-green-600 {
-					border-color: var(--c-accent) !important;
-				}
-			}
-
-			/* See "ChatGPT Enterprise" */
-			a[href="https://openai.com/enterprise"] {
-				color: var(--c-accent) !important;
-			}
 		}
 
 		/* "CREATE WORKSPACE" dialog when clicked on "Team" for "Upgade your plan" which has input 'Acme Inc.'. */
@@ -479,51 +423,111 @@
 		&::before {
 			display: none !important;
 		}
+	}
 
-		[role="dialog"] {
-			a[rel="noopener"].min-h-20.w-full {
-				width: max-content;
-				max-width: 100%;
+	[role="dialog"] {
+		a[rel="noopener"].min-h-20.w-full {
+			width: max-content;
+			max-width: 100%;
+			background-color: hsla(var(--accent-hsl) / .12);
+			border: 1px solid hsla(var(--accent-hsl) / 0.14);
+			border-radius: var(--br-btn);
+			color: var(--c-accent);
+			padding: 1rem;
+			margin: 1rem;
+
+			// .truncate {
+			// 	color: var(--c-accent) !important;
+			// }
+
+			/* Link source */
+			.text-token-text-tertiary:has(img[alt="Favicon"]) {
+				color: var(--c-accent) !important;
+				font-weight: bold;
+				text-transform: uppercase;
+
+				img[alt="Favicon"] {
+					border: 1px solid hsla(var(--accent-hsl) / 0.5);
+				}
+			}
+
+			&:hover {
+				transform: translatex(2px);
+			}
+		}
+
+		/* Image counter parent */
+		.absolute.right-4.top-4 {
+
+			/* Image counter that have the close button next to it */
+			.text-token-text-tertiary:has(~ button.h-9.w-9) {
+				color: var(--c-accent);
 				background-color: hsla(var(--accent-hsl) / .12);
 				border: 1px solid hsla(var(--accent-hsl) / 0.14);
-				border-radius: var(--br-btn);
-				color: var(--c-accent);
-				padding: 1rem;
-				margin: 1rem;
+				border-radius: 50vw;
+				padding: 0.2rem 1rem !important;
+				font-weight: 500;
+			}
+		}
+	}
+}
 
-				// .truncate {
-				// 	color: var(--c-accent) !important;
-				// }
+/* Modal dialog when clicked on `Upgrade > Teams card plan` */
+[data-testid="modal-select-team-plan"] {}
 
-				/* Link source */
-				.text-token-text-tertiary:has(img[alt="Favicon"]) {
-					color: var(--c-accent) !important;
-					font-weight: bold;
-					text-transform: uppercase;
+/* Modal dialog when clicked on `Upgrade` */
+[data-testid="modal-account-payment"] {
 
-					img[alt="Favicon"] {
-						border: 1px solid hsla(var(--accent-hsl) / 0.5);
+	[role="dialog"] {
+		[role="group"][aria-label].bg-token-main-surface-tertiary.rounded-full {
+			background-color: hsla(var(--accent-hsl) / 0.1) !important;
+
+			/* "Personal" and "Business" switching buttons */
+			button[aria-label][role="radio"] {
+
+				// Active plan btn 
+				&[data-state="on"] {
+					color: var(--c-on-accent);
+
+					// Style for element surround btn (in code its next to btn on the same block level, sibling), simulating the button, jeez...
+					&~.absolute.inset-0 {
+						--bg-primary: var(--c-accent) !important;
 					}
 				}
 
-				&:hover {
-					transform: translatex(2px);
+				&[data-state="off"] {
+
+					color: var(--c-accent) !important;
 				}
 			}
+		}
 
-			/* Image counter parent */
-			.absolute.right-4.top-4 {
+		/* Free and Plus plans cards */
+		[data-testid*="-pricing-modal-column"] {
+			margin: 0.3rem !important;
+			box-shadow: var(--box-shadow);
+			background-color: hsla(var(--accent-hsl) / 0.1) !important;
+			border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
 
-				/* Image counter that have the close button next to it */
-				.text-token-text-tertiary:has(~ button.h-9.w-9) {
-					color: var(--c-accent);
-					background-color: hsla(var(--accent-hsl) / .12);
-					border: 1px solid hsla(var(--accent-hsl) / 0.14);
-					border-radius: 50vw;
-					padding: 0.2rem 1rem !important;
-					font-weight: 500;
-				}
+			/* Ugly bg behind text in Plans */
+			.bg-token-main-surface-primary {
+				--main-surface-primary: transparent !important;
+				// background-color: transparent !important;
 			}
+		}
+
+		/* Only PLUS plan card */
+		[data-testid*="plus-pricing-modal-column"] {
+			border: 1px solid hsla(var(--accent-hsl) / 0.3) !important;
+
+			.border-green-600 {
+				border-color: var(--c-accent) !important;
+			}
+		}
+
+		/* See "ChatGPT Enterprise" */
+		a[href="https://openai.com/enterprise"] {
+			color: var(--c-accent) !important;
 		}
 	}
 }
