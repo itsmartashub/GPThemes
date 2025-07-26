@@ -448,9 +448,39 @@
 				// box-shadow: var(--box-shadow);
 			}
 		}
+	}
+}
 
-		/* ___ Web Searched Images with links*/
-		&:has(img.h-full.object-contain[class*="max-w-[100vw]"]) {
+/* Dialog with links from sources for mobile */
+[role='dialog']:not(:empty) {
+	@include dev('md') {
+		.bg-token-bg-primary {
+			--bg-primary: var(--c-bg-dialog) !important;
+		}
+	}
+}
+
+/* DeepSearch dialog */
+[data-testid="modal-deep-research-share"] {
+	[role="dialog"] {
+
+		/* Remove bg of deepsearch element */
+		&>.bg-token-bg-primary.max-w-4xl.overflow-x-scroll {
+			background-color: transparent !important;
+		}
+	}
+}
+
+/* ___ Web Searched Images with links*/
+[data-testid="modal-image-result"] {
+	.fixed.inset-0[class*="before:backdrop-blur"] {
+
+		/* Strange overlay that blured the source links in dialog Web Searched Images with the link below left. It also block the clicking on that link. On the original (w/o extension) its still like that... */
+		&::before {
+			display: none !important;
+		}
+
+		[role="dialog"] {
 			a[rel="noopener"].min-h-20.w-full {
 				width: max-content;
 				max-width: 100%;
@@ -494,26 +524,6 @@
 					font-weight: 500;
 				}
 			}
-		}
-	}
-}
-
-/* Dialog with links from sources for mobile */
-[role='dialog']:not(:empty) {
-	@include dev('md') {
-		.bg-token-bg-primary {
-			--bg-primary: var(--c-bg-dialog) !important;
-		}
-	}
-}
-
-/* DeepSearch dialog */
-[data-testid="modal-deep-research-share"] {
-	[role="dialog"] {
-
-		/* Remove bg of deepsearch element */
-		&>.bg-token-bg-primary.max-w-4xl.overflow-x-scroll {
-			background-color: transparent !important;
 		}
 	}
 }
