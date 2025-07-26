@@ -495,29 +495,6 @@
 				}
 			}
 		}
-
-		/* ___ "Search chats" showed when clicked on 🔍 in sidebar */
-		// &:has(input[placeholder="Search chats..."]) {
-
-		// 	ol>li {
-		// 		// Moved to global bgs
-		// 		// .cursor-pointer {
-		// 		// 	[class*='bg-[#f4f4f4]'] {
-		// 		// 		background-color: var(--c-surface-3) !important;
-		// 		// 	}
-		// 		// }
-
-		// 		/* Dates in "Search chats" */
-		// 		.group.text-xs.text-token-text-tertiary {
-		// 			@extend %date-pill;
-		// 		}
-
-		// 		.loading-results-shimmer {
-		// 			--main-surface-secondary: var(--c-surface-2) !important;
-		// 			--main-surface-tertiary: var(--c-surface-3) !important;
-		// 		}
-		// 	}
-		// }
 	}
 }
 

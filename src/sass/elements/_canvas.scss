@@ -100,40 +100,9 @@
                     color: var(--c-accent) !important;
                 }
 
-                /* Previous, Before, Copy btns in header */
-                button.h-10[class*="enabled:hover:bg-token-main-surface-secondary"] {
-                    --main-surface-secondary: var(--c-surface-3) !important;
-
-                    &:disabled {
-                        color: var(--c-subtext-2) !important;
-
-                        svg {
-                            transition: none !important;
-                        }
-
-                        &:hover {
-                            background-color: none !important;
-
-                            svg {
-                                transform: none !important;
-                            }
-                        }
-                    }
-                }
-
-                /* History of changes btn when active/clicked  */
-                button.h-10[class*="bg-blue-400/15"] {
-                    @extend .btn-primary;
-                }
-
                 /* "Run" code button */
-                button.rounded-full.bg-token-main-surface-primary {
+                button.btn.rounded-full.bg-transparent {
                     @extend .btn-secondary;
-                }
-
-                /* User Profile btn */
-                button[data-testid="profile-button"] {
-                    --main-surface-secondary: var(--c-surface-3) !important
                 }
             }
 
@@ -149,34 +118,34 @@
             }
 
             /* Code Canvas: Console when "Run" Python code */
-            &>.relative:has(>.cursor-ns-resize) {
+            // &>.relative:has(>.cursor-ns-resize) {
 
-                /* Console bg */
-                .bg-token-main-surface-primary {
-                    --main-surface-primary: var(--c-bg-cm) !important;
-                }
+            //     /* Console bg */
+            //     .bg-token-main-surface-primary {
+            //         --main-surface-primary: var(--c-bg-cm) !important;
+            //     }
 
-                .sticky.top-0.z-10.font-mono.text-sm[class*="dark:hover:bg-gray-700"] {
-                    &:hover {
-                        background-color: var(--c-surface-2) !important;
-                    }
-                }
+            //     .sticky.top-0.z-10.font-mono.text-sm[class*="dark:hover:bg-gray-700"] {
+            //         &:hover {
+            //             background-color: var(--c-surface-2) !important;
+            //         }
+            //     }
 
-                /* "Clear console" and "Cancel" btns in Console header */
-                button[as="button"].btn.btn-ghost.btn-small.aspect-square.p-1\! {
-                    color: var(--c-accent) !important;
-                }
+            //     /* "Clear console" and "Cancel" btns in Console header */
+            //     button[as="button"].btn.btn-ghost.btn-small.aspect-square.p-1\! {
+            //         color: var(--c-accent) !important;
+            //     }
 
-                /* Error output in consoles: this is applied from my global bg-red style so we have to reset it */
-                .font-mono[class*="hover:bg-red-500"] {
-                    background-color: transparent !important;
-                    border: none !important;
+            //     /* Error output in consoles: this is applied from my global bg-red style so we have to reset it */
+            //     .font-mono[class*="hover:bg-red-500"] {
+            //         background-color: transparent !important;
+            //         border: none !important;
 
-                    &:hover {
-                        background-color: hsla(var(--danger-hsl) / .11) !important;
-                    }
-                }
-            }
+            //         &:hover {
+            //             background-color: hsla(var(--danger-hsl) / .11) !important;
+            //         }
+            //     }
+            // }
 
             /* @@@@@@@@@ Canvas Edit floating button on bottom right */
             section .absolute.z-70.overflow-visible.border.border-token-border-default.transition-colors {

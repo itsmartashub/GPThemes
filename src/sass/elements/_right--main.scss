@@ -263,30 +263,6 @@
 			}
 		}
 
-		/* "Searched x sites" Links wrapper! */
-		// TODO(remove?): check whats this is
-		/* .overflow-hidden:has(> .divide-y) {
-			.from-token-main-surface-secondary {
-				--gradient-color-from: var(--c-surface-2) !important;
-
-				svg {
-					color: var(--c-accent) !important;
-				}
-			}
-
-			a {
-				border-radius: var(--br-btn);
-			}
-		} */
-
-		/* Terminal svg icon: View analysis */
-		.markdown {
-			button:has(> svg[class*='hover:text-token-link-hover']) {
-				border-radius: 5px;
-				padding-inline: 5px;
-			}
-		}
-
 		/* DALLE Image hover buttons - 👍👎 */
 		.group\/dalle-image {
 			@include imgTrans;
