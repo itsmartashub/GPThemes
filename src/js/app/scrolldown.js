@@ -1,5 +1,6 @@
 import browser from 'webextension-polyfill'
 import { icon_align_left, icon_align_center, icon_align_right } from './components/icons'
+import { setCssVars } from '../utils/setCssVar'
 
 // Configuration object - single source of truth
 const POSITION_CONFIG = {
@@ -59,13 +60,13 @@ function generateScrollDownHTML() {
     `
 }
 
-function setCssVars(cssVars) {
-	const root = document.documentElement
+// function setCssVars(cssVars) {
+// 	const root = document.documentElement
 
-	Object.entries(cssVars).forEach(([key, value]) => {
-		root.style.setProperty(`--${key}`, value)
-	})
-}
+// 	Object.entries(cssVars).forEach(([key, value]) => {
+// 		root.style.setProperty(`--${key}`, value)
+// 	})
+// }
 async function savePositionPreference(position) {
 	try {
 		await browser.storage.sync.set({ scrollButtonPosition: position })
