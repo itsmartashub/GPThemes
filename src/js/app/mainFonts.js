@@ -2,6 +2,7 @@ import browser from 'webextension-polyfill'
 import { closeSettings, $settings } from './settingsManager.js'
 import { renderFontSmallCard, renderFontBigCard } from './components/renderFonts'
 import { renderButton } from './components/renderButtons'
+import { setCssVars } from '../utils/setCssVar'
 
 // Font Configuration object - single source of truth
 const FONT_CONFIG = {
@@ -192,9 +193,10 @@ const updateCSSVars = (values = {}) => {
 	// console.log(finalValues)
 
 	// Update CSS variables
-	Object.entries(finalValues).forEach(([prop, value]) => {
+	setCssVars(finalValues)
+	/* Object.entries(finalValues).forEach(([prop, value]) => {
 		document.documentElement.style.setProperty(`--${prop}`, value)
-	})
+	}) */
 }
 
 // Helper function to save value to storage
