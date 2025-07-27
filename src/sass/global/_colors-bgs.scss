@@ -269,8 +269,10 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 	}
 }
 
-/* e.g. Search chats dialog active/hover item */
-.bg-\[\#f4f4f4\] {
+/* .bg-\[\#f4f4f4\] - Search chats dialog active/hover item
+	[class*="dark:bg-[#353535]"] - menu with "Keyboard shortcuts" shown when hold `Ctrl` */
+.bg-\[\#f4f4f4\],
+[class*="dark:bg-[#353535]"] {
 	// background-color: hsla(var(--accent-hsl) / 0.1) !important;
 	background-color: var(--c-surface-3) !important;
 }
