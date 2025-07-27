@@ -1,5 +1,6 @@
 import browser from 'webextension-polyfill'
 import { renderToggle } from './components/renderToggles'
+import { setCssVars } from '../utils/setCssVar'
 
 // Configuration object with all bubble types and their properties
 const BG_CONFIG = {
@@ -49,7 +50,7 @@ const generateChatBackgroundHTML = () => {
 }
 
 // Update CSS variables based on state
-const updateRootVariables = (state) => {
+/* const updateRootVariables = (state) => {
 	const root = document.documentElement
 
 	// Use a DocumentFragment for batched style updates
@@ -58,6 +59,15 @@ const updateRootVariables = (state) => {
 			const { toggleVar, originalVar } = BG_CONFIG[type]
 			root.style.setProperty(toggleVar, isEnabled ? `var(${originalVar})` : 'transparent')
 		})
+	})
+} */
+
+const updateRootVariables = (state) => {
+	console.log('updateRootVariables: ', state)
+
+	setCssVars({
+		toggleBgUser: state.user ? 'var(--c-bg-msg-user)' : 'transparent',
+		toggleBgGpt: state.gpt ? 'var(--c-bg-msg-gpt)' : 'transparent',
 	})
 }
 
