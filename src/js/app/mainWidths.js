@@ -7,6 +7,7 @@ import { renderSeparator } from './components/renderUtils'
 import { renderCustomScrollDown, init as initScrolldown } from './scrolldown'
 import { renderChatBubbles } from './toggleChatsBg'
 import { $ } from '../utils/handleElements'
+import { setCssVars } from '../utils/setCssVar'
 
 // ==========================================
 // CONSTANTS
@@ -143,14 +144,14 @@ function renderWidthsTab() {
 // ==========================================
 // SETUP DOM AND CSS FN UPDATES
 // ==========================================
-function applyCssVariables(settings) {
+/* function applyCssVariables(settings) {
 	requestAnimationFrame(() => {
 		const root = document.documentElement
 		for (const [k, v] of Object.entries(settings)) {
 			root.style.setProperty(`--${k}`, v)
 		}
 	})
-}
+} */
 
 function updateSlider({ sliderId, outputId, unitId, value, disabled = false }) {
 	const numericValue = extractNumber(value)
@@ -256,7 +257,7 @@ function handleWidthChange({ event, key, shouldSave = false }) {
 		currentState.syncEnabled = false
 	}
 
-	applyCssVariables(currentState.settings)
+	setCssVars(currentState.settings)
 	updateUI(currentState)
 
 	if (shouldSave) {
@@ -297,7 +298,7 @@ function handleToggleFullWidth() {
 	syncTextareaWithChatWidth()
 
 	// Apply changes and update UI
-	applyCssVariables(currentState.settings)
+	setCssVars(currentState.settings)
 	updateUI(currentState)
 	saveState(currentState)
 }
@@ -312,7 +313,7 @@ function handleToggleSyncWidths() {
 		: WIDTH_CONFIG.defaults.w_prompt_textarea
 
 	// Apply changes and update UI
-	applyCssVariables(currentState.settings)
+	setCssVars(currentState.settings)
 	updateUI(currentState)
 	saveState(currentState)
 }
@@ -376,7 +377,7 @@ async function resetWidths() {
 		fullWidthEnabled: false,
 	}
 
-	applyCssVariables(currentState.settings)
+	setCssVars(currentState.settings)
 	updateUI(currentState)
 
 	await browser.storage.sync.remove(Object.values(WIDTH_CONFIG.storageKeys))
@@ -414,7 +415,7 @@ async function init() {
 			currentState.settings.w_prompt_textarea = currentState.settings.w_chat_gpt
 		}
 
-		applyCssVariables(currentState.settings)
+		setCssVars(currentState.settings)
 		updateUI(currentState)
 
 		// console.log('[↔️ GPThemes] Width settings initialized:', currentState)
