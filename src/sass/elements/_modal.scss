@@ -59,7 +59,58 @@
 			}
 		}
 
-		/* ===================== Settings START ==================== */
+
+
+		/* ___ DIALOG - "SHARED LINKS" or "ARCHIVED CHATS" - Table  */
+		table {
+			thead {
+
+				th {
+					--main-surface-primary: var(--c-bg-dialog) !important;
+					text-transform: uppercase !important;
+					color: var(--c-txt) !important;
+					// background-color: transparent !important;
+				}
+			}
+
+			tbody {
+
+				/* Link in table Shared Links/Archived Chats
+						NAME - first column Links
+						"Shared links" & "Archived Chats" links in table, but a[href^="/c/"] is also Conversation SVG in "Shared Links", ahh
+					*/
+
+				td:first-child a {
+					@extend %link_hover_underless;
+				}
+
+				// /* Center the vertically svg icons next to each other in table */
+				// td:has(button[aria-label^='Delete']) span[data-state] {
+				// 	display: flex;
+				// 	align-items: center;
+				// 	justify-items: center;
+				// }
+			}
+
+			/* "Delete shared link" in Shared Links and "Delete conversation" in Archived Chats svg color */
+			button[aria-label^='Delete'] {
+				color: var(--c-danger) !important;
+			}
+		}
+	}
+}
+
+
+
+/* Modal Settings dialog */
+[data-testid="modal-settings"] {
+	[role="dialog"] {
+
+		/* === All the .btn inside dialogs not having svg icon inside */
+		.btn:not(svg) {
+			min-width: var(--min-w-btn);
+		}
+
 		/* Tab view transitions - In tab dialog part which is changing on tabpanel click (on right side) */
 		[id*='-content-'] {
 			--anim-duration: 0.18s;
@@ -73,6 +124,13 @@
 					}
 				}
 			}
+
+			button[type="button"][aria-haspopup="menu"] {
+				@extend .btn-secondary;
+				min-width: var(--min-w-btn);
+				border-radius: var(--br-btn) !important;
+				font-weight: 500 !important;
+			}
 		}
 
 		[role='tablist'] {
@@ -82,9 +140,25 @@
 				border-radius: calc(var(--br-dialog) / 2) !important;
 			}
 
-			button[data-state='inactive']:is(:hover, :focus) {
-				@extend .btn-secondary;
+			button {
+				padding: var(--p-btn);
+				background-color: transparent !important;
+
+				svg {
+					transition: none !important;
+				}
+
+				&[data-state='active'] {
+					// background-color: var(--c-accent) !important;
+					// color: var(--c-on-accent) !important;
+					@extend .btn-primary;
+				}
+
+				&[data-state='inactive']:is(:hover, :focus) {
+					@extend .btn-secondary;
+				}
 			}
+
 
 			/* ___ DIALOG - "Settings" on smaller devices then deskop */
 			&[data-orientation='vertical'] {
@@ -103,10 +177,7 @@
 					background-color: var(--c-accent) !important;
 					color: var(--c-on-accent);
 				}
-
-
 			}
-
 		}
 
 		/* Add padding y to tabpanel in "Settings" (Where "Theme","Archived chats", "Delete All chats", etc are. Added because Theme dropdown was cutted on hover on smaller devices, because of OpenAI's `overflow-y: auto` */
@@ -155,354 +226,7 @@
 
 		/* "Enabled" btn for 2fa in "Settings" > "General" */
 		span.bg-green-50.text-green-700 {
-			/* background-color: hsla(var(--accent-hsl) / 0.15) !important;
-			color: var(--c-accent) !important;
-			padding: 0.3rem 0.8rem !important;
-			font-weight: bold;
-			text-transform: uppercase;
-			font-size: 0.68rem !important; */
 			@extend %date-pill;
-		}
-
-		/* ___ DIALOG - "SHARED LINKS" or "ARCHIVED CHATS" - Table  */
-		table {
-			/* BG of thead>th ---> .bg-token-main-surface-primary */
-			// --main-surface-primary: transparent !important;
-			// padding: var(--p-contextmenu) !important;
-
-			thead {
-
-				th {
-					--main-surface-primary: var(--c-bg-dialog) !important;
-					text-transform: uppercase !important;
-					color: var(--c-txt) !important;
-					// background-color: transparent !important;
-				}
-			}
-
-			tbody {
-
-				/* Link in table Shared Links/Archived Chats
-						NAME - first column Links
-						"Shared links" & "Archived Chats" links in table, but a[href^="/c/"] is also Conversation SVG in "Shared Links", ahh
-					*/
-
-				td:first-child a {
-					@extend %link_hover_underless;
-				}
-
-				/* Center the vertically svg icons next to each other in table */
-				td:has(button[aria-label^='Delete']) span[data-state] {
-					display: flex;
-					align-items: center;
-					justify-items: center;
-				}
-			}
-
-			/* "Delete shared link" in Shared Links and "Delete conversation" in Archived Chats svg color */
-			button[aria-label^='Delete'] {
-				color: var(--c-danger) !important;
-			}
-		}
-
-		/* ===================== Settings END ==================== */
-
-
-		/* ___ Dialog - "Upgrade your plan"  */
-		// I has to add in here and: [data-testid*="-pricing-modal-column"] to support and mobile because there is no [aria-label^="Toggle for switching"] element
-		// &:has([aria-label^="Toggle for switching"], [data-testid*="-pricing-modal-column"]) {
-		&:has([data-testid*="-pricing-modal-column"]) {
-			border-radius: 0 !important;
-
-			[aria-label="Toggle for switching between Personal and Business plans"] {
-				background-color: hsla(var(--accent-hsl) / 0.1) !important;
-			}
-
-			/* "Personal" and "Business" switching buttons */
-			button[aria-label*='Toggle for switching to'] {
-				// button[aria-label*='Toggle for switching to plans for'] {
-				// button[aria-label*='Toggle for switching to Personal plans'],
-				// button[aria-label*='Toggle for switching to Business plans'] {
-
-				// Active plan btn 
-				&[aria-checked='true'] {
-					color: var(--c-on-accent);
-
-					// style for element surround btn (in code its next to btn on the same block level, sibling), simulating the button, jeez...
-					&~.absolute.inset-0 {
-						--bg-primary: var(--c-accent) !important;
-					}
-				}
-
-				&[aria-checked='false'] {
-
-					&,
-					&:hover {
-						color: var(--c-accent) !important;
-					}
-				}
-			}
-
-			/* Free and Plus plans cards */
-			[data-testid*="-pricing-modal-column"] {
-				margin: 0.3rem !important;
-				box-shadow: var(--box-shadow);
-				background-color: hsla(var(--accent-hsl) / 0.1) !important;
-				border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
-
-				/* Ugly bg behind text in Plans */
-				.bg-token-main-surface-primary {
-					--main-surface-primary: transparent !important;
-					// background-color: transparent !important;
-				}
-			}
-
-			/* Only PLUS plan card */
-			[data-testid*="plus-pricing-modal-column"] {
-				border: 1px solid hsla(var(--accent-hsl) / 0.3) !important;
-
-				.border-green-600 {
-					border-color: var(--c-accent) !important;
-				}
-			}
-
-			/* See "ChatGPT Enterprise" */
-			a[href="https://openai.com/enterprise"] {
-				color: var(--c-accent) !important;
-			}
-		}
-
-		/* "CREATE WORKSPACE" dialog when clicked on "Team" for "Upgade your plan" which has input 'Acme Inc.'. */
-		&:has(input[id="workspace-name"]) {
-
-			// grey bg on black theme arround "Workspace name + input" section
-			.bg-token-main-surface-primary:has(input[id="workspace-name"]) {
-				--main-surface-primary: transparent !important;
-			}
-		}
-
-		/* ___ DIALOG "Delete account - are you sure?" inputs parents and dialog when cliced on Team upgrade plan whwere "Acme Inc." input is */
-		div[class*='focus-within:ring-1']:has(input) {
-			padding: 0.8rem !important;
-			background-color: var(--c-surface-3);
-
-			input {
-				background-color: var(--c-surface-3);
-
-				&::placeholder {
-					color: var(--c-subtext-1) !important;
-				}
-			}
-		}
-
-		/* ___ "Select your Team Plan" dialog radio buttons when clicking "Upgrade plan" > "Team" > "Select billing options" */
-		&:has(input[name='seats']) {
-
-			/* input counter for seats */
-			input[name='seats'],
-			button[role="radio"] {
-				border: 1px solid var(--c-border) !important;
-			}
-
-			input[name='seats'] {
-				background-color: var(--c-surface-3) !important;
-			}
-
-			/* "Flexible plan" and "Annual plan" radio buttons */
-			button[role="radio"] {
-				border: 1px solid var(--c-border) !important;
-
-				&[aria-checked="true"] {
-					background-color: var(--c-surface-3) !important;
-
-					/* for old design radio buttons */
-					&.h-5.w-5 {
-						background-color: var(--c-accent) !important;
-					}
-				}
-
-				&>.absolute.start-3.top-0.-translate-y-1\/2 {
-
-					/* "Annual" % badge */
-					&.text-\[\#10A37F\],
-					&.bg-\[\#10A37F\] {
-						background-color: var(--c-accent) !important;
-						color: var(--c-on-accent) !important;
-						border-radius: 50vw;
-					}
-				}
-
-				&>div>span[data-state="checked"] {
-					background-color: var(--c-accent) !important;
-
-					svg {
-						color: var(--c-on-accent) !important;
-					}
-				}
-
-			}
-		}
-
-		/* ___ "Custom Instructios", now "Customize ChatGPT" */
-		&:has(textarea) {
-			.grow.overflow-y-auto.p-4:has(>.overflow-y-auto[class*="max-h-[60vh]"]) {
-				padding: 0 !important;
-
-				@include dev('md') {
-					padding: 1rem !important;
-				}
-			}
-
-			/* Border separator from footer where are "Enable for new chats", "Cancel" and "Save" buttons are */
-			.-ms-6.-me-6.border-t {
-				border-color: var(--c-border) !important;
-				margin: 0 !important;
-			}
-
-			textarea {
-				background-color: var(--c-surface-3) !important; // [class*='dark:bg-gray-800']
-				opacity: 0.7;
-
-				&.border-red-500 {
-					background: color-mix(in srgb, var(--c-danger) 10%, transparent 98%) !important;
-					border-color: color-mix(in srgb, var(--c-danger) 15%, transparent 95%) !important;
-					color: var(--c-danger) !important;
-				}
-
-				&:focus {
-					opacity: 1;
-				}
-			}
-		}
-
-		/* ___ Dialog - "Share Link to Chat" & "Public Link Updated" */
-		&:has(input[value^="https://chatgpt.com/share/"]) {
-
-			/* "🔗 Copy Link" btn */
-			button.rounded-full {
-				border-radius: 9999px !important;
-			}
-
-			/*  bg of link preview and "🔗 Create Link" btn */
-			.bg-token-main-surface-primary {
-				--main-surface-primary: var(--c-surface-3) !important;
-			}
-
-			/* bg-gradient of link preview */
-			.from-token-main-surface-primary {
-				--tw-gradient-from: var(--c-surface-3) !important;
-				// display: none;
-			}
-
-			/* PUBLIC LINK UPDATED - Social platforms in show in footer after the  "🔗 Copy Link" btn */
-			a[href*='linkedin'],
-			a[href*='facebook'],
-			a[href*='reddit'],
-			a[href*='twitter'] {
-				transform: scale(0.9);
-				margin-bottom: 5px !important;
-
-				&:hover {
-					transform: scale(1);
-				}
-
-				svg {
-					--main-surface-secondary: var(--c-surface-3) !important;
-				}
-
-				&+span {
-					color: var(--c-accent);
-					background-color: hsla(var(--accent-hsl) / 0.15) !important;
-					padding: 2px 8px;
-					border-radius: 50vw;
-					font-weight: 600;
-				}
-			}
-		}
-
-
-		/* "Keyboard Shortcuts" keyboard tasters */
-		// this is also the text in "Settings" dialog so we need more special selector
-		&:has(.truncate) {
-
-			// .border-token-border-default:has(span.text-xs) {
-			.border-token-border-default:not(:has(button)) {
-				color: var(--c-accent) !important;
-				border-color: hsla(var(--accent-hsl) / 0.3) !important;
-				border-radius: 10px !important;
-			}
-		}
-
-		// &:has(img[alt='User uploaded image']) (when opened from attached file in prompt field) and &:has(img[alt='Uploaded image']) (when opened from conversation) {
-		/* ___ Uploaded image dialog (When clicked on image from gpt user chat (alt='Uploaded image'), and on mini attached preview in textarea) (alt='User uploaded image') */
-		&:has(img.h-full.w-full.object-contain, iframe) {
-			--c-bg-dialog: transparent;
-			--box-shadow: none;
-			// padding: 0 !important;
-
-			// img[alt='Uploaded image'] and img[alt='User uploaded image']
-			img.h-full.w-full.object-contain,
-			//iframe is dialog with Google Drive or One Drive preview when we try to attach the file from the one of the accounts (Google, OneDrive). This caused some frame around this dialog, thats bcs of margin and padding 
-			iframe {
-				border-radius: var(--br-contextmenu);
-				// box-shadow: var(--box-shadow);
-			}
-		}
-
-		/* ___ Web Searched Images with links*/
-		&:has(img.h-full.object-contain[class*="max-w-[100vw]"]) {
-			a[rel="noopener"].min-h-20.w-full {
-				width: max-content;
-				max-width: 100%;
-				background-color: hsla(var(--accent-hsl) / .12);
-				border: 1px solid hsla(var(--accent-hsl) / 0.14);
-				border-radius: var(--br-btn);
-				color: var(--c-accent);
-				padding: 1rem;
-				margin: 1rem;
-
-				// .truncate {
-				// 	color: var(--c-accent) !important;
-				// }
-
-				/* Link source */
-				.text-token-text-tertiary:has(img[alt="Favicon"]) {
-					color: var(--c-accent) !important;
-					font-weight: bold;
-					text-transform: uppercase;
-
-					img[alt="Favicon"] {
-						border: 1px solid hsla(var(--accent-hsl) / 0.5);
-					}
-				}
-
-				&:hover {
-					transform: translatex(2px);
-				}
-			}
-
-			/* Image counter parent */
-			.absolute.right-4.top-4 {
-
-				/* Image counter that have the close button next to it */
-				.text-token-text-tertiary:has(~ button.h-9.w-9) {
-					color: var(--c-accent);
-					background-color: hsla(var(--accent-hsl) / .12);
-					border: 1px solid hsla(var(--accent-hsl) / 0.14);
-					border-radius: 50vw;
-					padding: 0.2rem 1rem !important;
-					font-weight: 500;
-				}
-			}
-		}
-	}
-}
-
-/* Dialog with links from sources for mobile */
-[role='dialog']:not(:empty) {
-	@include dev('md') {
-		.bg-token-bg-primary {
-			--bg-primary: var(--c-bg-dialog) !important;
 		}
 	}
 }
@@ -514,6 +238,251 @@
 		/* Remove bg of deepsearch element */
 		&>.bg-token-bg-primary.max-w-4xl.overflow-x-scroll {
 			background-color: transparent !important;
+		}
+	}
+}
+
+/* ___ Web Searched Images with links*/
+[data-testid="modal-image-result"] {
+	.fixed.inset-0[class*="before:backdrop-blur"] {
+
+		/* Strange overlay that blured the source links in dialog Web Searched Images with the link below left. It also block the clicking on that link. On the original (w/o extension) its still like that... */
+		&::before {
+			display: none !important;
+		}
+	}
+
+	[role="dialog"] {
+		a[rel="noopener"].min-h-20.w-full {
+			width: max-content;
+			max-width: 100%;
+			background-color: hsla(var(--accent-hsl) / .12);
+			border: 1px solid hsla(var(--accent-hsl) / 0.14);
+			border-radius: var(--br-btn);
+			color: var(--c-accent);
+			padding: 1rem;
+			margin: 1rem;
+
+			// .truncate {
+			// 	color: var(--c-accent) !important;
+			// }
+
+			/* Link source */
+			.text-token-text-tertiary:has(img[alt="Favicon"]) {
+				color: var(--c-accent) !important;
+				font-weight: bold;
+				text-transform: uppercase;
+
+				img[alt="Favicon"] {
+					border: 1px solid hsla(var(--accent-hsl) / 0.5);
+				}
+			}
+
+			&:hover {
+				transform: translatex(2px);
+			}
+		}
+
+		/* Image counter parent */
+		.absolute.right-4.top-4 {
+
+			/* Image counter that have the close button next to it */
+			.text-token-text-tertiary:has(~ button.h-9.w-9) {
+				color: var(--c-accent);
+				background-color: hsla(var(--accent-hsl) / .12);
+				border: 1px solid hsla(var(--accent-hsl) / 0.14);
+				border-radius: 50vw;
+				padding: 0.2rem 1rem !important;
+				font-weight: 500;
+			}
+		}
+	}
+}
+
+/* Modal dialog when clicked on `Upgrade > Bussines toggle > Teams card plan` */
+[data-testid="modal-select-team-plan"] {
+
+	/* ___ "Select your Team Plan" dialog radio buttons when clicking "Upgrade plan" > "Team" > "Select billing options" */
+	[role="dialog"] {
+
+		/* input counter for seats */
+		input[type="number"],
+		button[role="radio"] {
+			border: 1px solid hsla(var(--accent-hsl) / .12) !important;
+		}
+
+		input[type="number"] {
+			background-color: var(--c-surface-3) !important;
+		}
+
+		/* "Flexible plan" and "Annual plan" radio buttons */
+		button[role="radio"] {
+			border: 1px solid hsla(var(--accent-hsl) / .12) !important;
+
+			&[aria-checked="true"] {
+				background-color: var(--c-surface-3) !important;
+			}
+
+			/* Checked svg icon */
+			&>div>span[data-state="checked"] {
+				background-color: var(--c-accent) !important;
+
+				svg {
+					color: var(--c-on-accent) !important;
+				}
+			}
+		}
+
+		/* "Annual" % badge and discount text */
+		.text-\[\#10A37F\],
+		.bg-\[\#10A37F\] {
+			background-color: var(--c-accent) !important;
+			color: var(--c-on-accent) !important;
+			border-radius: 50vw;
+		}
+	}
+}
+
+/* Modal dialog when clicked on `Upgrade` */
+[data-testid="modal-account-payment"] {
+
+	[role="dialog"] {
+		[role="group"][aria-label].bg-token-main-surface-tertiary.rounded-full {
+			background-color: hsla(var(--accent-hsl) / 0.1) !important;
+
+			/* "Personal" and "Business" switching buttons */
+			button[aria-label][role="radio"] {
+
+				// Active plan btn 
+				&[data-state="on"] {
+					color: var(--c-on-accent);
+
+					// Style for element surround btn (in code its next to btn on the same block level, sibling), simulating the button, jeez...
+					&~.absolute.inset-0 {
+						--bg-primary: var(--c-accent) !important;
+					}
+				}
+
+				&[data-state="off"] {
+
+					color: var(--c-accent) !important;
+				}
+			}
+		}
+
+		/* Free and Plus plans cards */
+		[data-testid*="-pricing-modal-column"] {
+			margin: 0.3rem !important;
+			box-shadow: var(--box-shadow);
+			background-color: hsla(var(--accent-hsl) / 0.1) !important;
+			border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
+
+			/* Ugly bg behind text in Plans */
+			.bg-token-main-surface-primary {
+				--main-surface-primary: transparent !important;
+				// background-color: transparent !important;
+			}
+		}
+
+		/* Only PLUS plan card */
+		[data-testid*="plus-pricing-modal-column"] {
+			border: 1px solid hsla(var(--accent-hsl) / 0.3) !important;
+
+			.border-green-600 {
+				border-color: var(--c-accent) !important;
+			}
+		}
+
+		/* See "ChatGPT Enterprise" */
+		a[href="https://openai.com/enterprise"] {
+			color: var(--c-accent) !important;
+		}
+	}
+}
+
+/* ___ "Custom Instructios", now "Customize ChatGPT" */
+[data-testid="modal-user-context"] {
+	[role="dialog"] {
+
+		/* Border separator from footer where are "Enable for new chats", "Cancel" and "Save" buttons are. Margin caused horizontal-scroll */
+		.-ms-6.-me-6.border-t {
+			margin: 0 !important;
+		}
+
+		textarea {
+			background-color: var(--c-surface-3) !important; // [class*='dark:bg-gray-800']
+			opacity: 0.7;
+
+			&.border-red-500 {
+				background: color-mix(in srgb, var(--c-danger) 10%, transparent 98%) !important;
+				border-color: color-mix(in srgb, var(--c-danger) 15%, transparent 95%) !important;
+				color: var(--c-danger) !important;
+			}
+
+			&:focus {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+/* ___ Dialog - "Share Link to Chat" & "Public Link Updated" */
+[data-testid="modal-sharing"] {
+	[role="dialog"] {
+
+		/* "🔗 Copy Link" btn */
+		button.rounded-full {
+			border-radius: 50vw !important;
+		}
+
+		/*  bg of link preview and "🔗 Create Link" btn */
+		.bg-token-main-surface-primary {
+			--main-surface-primary: var(--c-surface-3) !important;
+		}
+
+		// /* bg-gradient of link preview */
+		.from-token-main-surface-primary {
+			--tw-gradient-from: var(--c-surface-3) !important;
+			// display: none;
+		}
+
+		aside {
+			background-color: var(--c-surface-3) !important;
+		}
+
+		/* PUBLIC LINK UPDATED - Social platforms in show in footer after the  "🔗 Copy Link" btn */
+		a[href*='linkedin'],
+		a[href*='facebook'],
+		a[href*='reddit'],
+		a[href*='twitter'] {
+			transform: scale(0.9);
+			margin-bottom: 5px !important;
+
+			&:hover {
+				transform: scale(1);
+			}
+
+			svg {
+				--main-surface-secondary: var(--c-surface-3) !important;
+			}
+
+			&+span {
+				color: var(--c-accent);
+				background-color: hsla(var(--accent-hsl) / 0.15) !important;
+				padding: 2px 8px;
+				border-radius: 50vw;
+				font-weight: 600;
+			}
+		}
+	}
+}
+
+/* Dialog with links from sources for mobile */
+[data-testid="modal-search-results"] {
+
+	@include dev('md') {
+		.bg-token-bg-primary {
+			--bg-primary: var(--c-bg-dialog) !important;
 		}
 	}
 }
