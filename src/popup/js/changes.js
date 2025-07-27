@@ -18,7 +18,7 @@ const links = {
 const SECTION_TYPES = {
 	// Critical hotfix section - will appear first if present
 	critical: { emoji: '🚨', title: 'Critical Fixes', priority: 0 },
-	newFixes: { emoji: '🔧', title: 'New Fixes', priority: 1 },
+	newFixes: { emoji: '🔧', title: 'New Key Fixes', priority: 1 },
 	// Separator for previous version content
 	previousSeparator: { emoji: '📜', title: 'From Previous Version', priority: 2, isSeparator: true },
 	features: { emoji: '🆕', title: 'Features', priority: 3 },
