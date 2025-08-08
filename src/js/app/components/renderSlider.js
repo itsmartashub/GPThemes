@@ -1,33 +1,33 @@
 import { icon_lock } from './icons'
 
-function renderToggleCard({ inputId, isChecked = false, icon, textTitle, textSubtitle, disabled = false }) {
-	const sanitizedInputId = sanitizeString(inputId)
-	const sanitizedTextTitle = sanitizeString(textTitle)
-	const sanitizedTextSubtitle = sanitizeString(textSubtitle)
+// function renderToggleCard({ inputId, isChecked = false, icon, textTitle, textSubtitle, disabled = false }) {
+// 	const sanitizedInputId = sanitizeString(inputId)
+// 	const sanitizedTextTitle = sanitizeString(textTitle)
+// 	const sanitizedTextSubtitle = sanitizeString(textSubtitle)
 
-	return `
-    <label class="gpth-switch" for="${sanitizedInputId}">
-      <div class="gpth-switch__icon" aria-hidden="true">
-        ${icon}
-      </div>
+// 	return `
+//     <label class="gpth-switch" for="${sanitizedInputId}">
+//       <div class="gpth-switch__icon" aria-hidden="true">
+//         ${icon}
+//       </div>
 
-      <div class="gpth-switch__text">
-        <div class="title mb-1">${sanitizedTextTitle}</div>
-        <div class="subtitle">${sanitizedTextSubtitle}</div>
-      </div>
+//       <div class="gpth-switch__text">
+//         <div class="title mb-1">${sanitizedTextTitle}</div>
+//         <div class="subtitle">${sanitizedTextSubtitle}</div>
+//       </div>
 
-      <div class="gpth-switch__checkbox">
-        <input 
-          type="checkbox" 
-          id="${sanitizedInputId}" 
-          ${isChecked ? 'checked' : ''}
-          ${disabled ? 'disabled' : ''}
-          aria-labelledby="${sanitizedInputId}-label"
-        >
-        <span class="slider" aria-hidden="true"></span>
-      </div>
-    </label>`
-}
+//       <div class="gpth-switch__checkbox">
+//         <input
+//           type="checkbox"
+//           id="${sanitizedInputId}"
+//           ${isChecked ? 'checked' : ''}
+//           ${disabled ? 'disabled' : ''}
+//           aria-labelledby="${sanitizedInputId}-label"
+//         >
+//         <span class="slider" aria-hidden="true"></span>
+//       </div>
+//     </label>`
+// }
 
 function renderSliderCard({
 	name,
@@ -100,4 +100,5 @@ function sanitizeString(str) {
 	return div.innerHTML
 }
 
-export { renderToggleCard, renderSliderCard }
+// export { renderToggleCard, renderSliderCard }
+export { renderSliderCard }

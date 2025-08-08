@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { renderSliderCard } from './components/renderSwitch'
+import { renderSliderCard } from './components/renderSlider'
 import { renderToggle } from './components/renderToggles'
 import { icon_full_width, icon_sync } from './components/icons'
 import { renderButton } from './components/renderButtons'
