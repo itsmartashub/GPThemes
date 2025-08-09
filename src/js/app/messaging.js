@@ -1,5 +1,6 @@
 import browser from 'webextension-polyfill'
-// import { toggleFloatingBtnVisibility, FLOATING_CLASS_NAME } from './floatingBtn'
+// import { toggleFloatingBtnVisibility } from './floatingBtn'
+// import { SELECTORS } from './config.js'
 import { toggleFloatingBtnVisibility } from './floatingBtn'
 
 /* Handles extension messages for the floating button and other features */
@@ -11,7 +12,7 @@ function setupExtensionMessaging() {
 
 		// Not used for now
 		/* if (msg?.action === 'isFloatingBtnExists') {
-			sendResponse({ exists: !!document.querySelector(`.${FLOATING_CLASS_NAME}`) })
+			sendResponse({ exists: !!document.querySelector(`.${SELECTORS.FLOATING_BTN.ROOT}`) })
 			return
 		} */
 
