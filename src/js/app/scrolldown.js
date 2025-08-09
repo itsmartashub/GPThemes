@@ -97,7 +97,7 @@ async function loadPositionPreference() {
 }
 
 function handleScrolldownListeners() {
-	console.log('[🎨GPThemes]: handleScrolldownListeners')
+	// console.log('[🎨GPThemes]: handleScrolldownListeners')
 
 	const btnContainer = document.querySelector('.gpth-scrolldown__tabs')
 	if (!btnContainer) return
@@ -121,7 +121,7 @@ function handleScrolldownListeners() {
 
 function init() {
 	handleScrolldownListeners()
-	console.log('[🎨GPThemes]: Scrolldown initialized')
+	// console.log('[🎨GPThemes]: Scrolldown initialized')
 }
 
 export { generateScrollDownHTML as renderCustomScrollDown, init, handleScrolldownListeners }

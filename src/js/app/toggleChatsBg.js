@@ -40,13 +40,13 @@ const generateChatBackgroundHTML = () => {
 		.join('')
 
 	return `
-    <section class="gpth-bubbles">
-      <h4 class="gpth-subheading">Chat Bubbles Toggle</h4>
-      <div class="gpth-bubbles__items">
-        ${toggleItems}
-      </div>
-    </section>
-  `
+		<section class="gpth-bubbles">
+			<h4 class="gpth-subheading">Chat Bubbles Toggle</h4>
+			<div class="gpth-bubbles__items">
+				${toggleItems}
+			</div>
+		</section>
+	`
 }
 
 // Update CSS variables based on state
@@ -63,7 +63,7 @@ const generateChatBackgroundHTML = () => {
 } */
 
 const updateRootVariables = (state) => {
-	console.log('updateRootVariables: ', state)
+	// console.log('updateRootVariables: ', state)
 
 	setCssVars({
 		toggleBgUser: state.user ? 'var(--c-bg-msg-user)' : 'transparent',

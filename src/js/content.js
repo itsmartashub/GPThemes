@@ -6,8 +6,6 @@ import { init as initWidths } from './app/mainWidths'
 // import { init as initScrolldown } from './app/scrolldown'
 import { init as initToggleChatsBg } from './app/toggleChatsBg'
 
-import { Notify, showNotification } from './app/components/renderToast'
-
 // Configuration
 const CONFIG = {
 	TARGET_SELECTOR: '.gpth-settings',
@@ -21,7 +19,7 @@ let retryTimeout = null // For cleanup
 
 // Main initialization function
 function initExtension() {
-	console.log(`[🎨GPThemes]: Initializing components (attempt ${retryCount + 1}/${CONFIG.MAX_RETRIES})`)
+	// console.log(`[🎨GPThemes]: Initializing components (attempt ${retryCount + 1}/${CONFIG.MAX_RETRIES})`)
 
 	try {
 		initThemes()
@@ -45,12 +43,12 @@ function scheduleRetry() {
 	if (retryCount <= CONFIG.MAX_RETRIES) {
 		const delay = CONFIG.RETRY_DELAY * retryCount
 
-		console.log(`[🎨GPThemes]: Scheduling retry ${retryCount}/${CONFIG.MAX_RETRIES} in ${delay}ms`)
+		// console.log(`[🎨GPThemes]: Scheduling retry ${retryCount}/${CONFIG.MAX_RETRIES} in ${delay}ms`)
 
 		retryTimeout = setTimeout(() => {
 			// Check if our components exist before retrying
 			if (document.querySelector(CONFIG.TARGET_SELECTOR)) {
-				console.log('[🎨GPThemes]: Components already present, stopping retries')
+				// console.log('[🎨GPThemes]: Components already present, stopping retries')
 				cleanup()
 				return
 			}
@@ -60,7 +58,7 @@ function scheduleRetry() {
 			)
 
 			if (initExtension()) {
-				console.log('[🎨GPThemes]: Injection successful')
+				// console.log('Injection successful')
 				cleanup()
 			} else {
 				scheduleRetry()

@@ -1,29 +1,33 @@
-.tab-buttons {
-    background-color: hsla(var(--accent-hsl) / 0.15);
-    color: var(--c-accent);
-    display: flex;
-    align-items: center;
-    border-radius: 100vw;
+.#{$pfx}-tabs {
 
-    @include dev('xxs') {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
-        border-radius: 1rem;
+
+
+    .#{$pfx}-tab-pane {
+        @extend %animFadeIn;
     }
 
-}
+    .#{$pfx}-tab-buttons {
+        background-color: hsla(var(--accent-hsl) / 0.15);
+        color: var(--c-accent);
+        display: flex;
+        align-items: center;
+        border-radius: 100vw;
 
-.tab-button {
-    flex: 1;
-    border-radius: inherit;
+        @include dev('xxs') {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+            border-radius: 1rem;
+        }
 
-    &.active {
-        background-color: var(--c-accent);
-        color: var(--c-on-accent) !important;
+        .#{$pfx}-tab-button {
+            flex: 1;
+            border-radius: inherit;
+
+            &.active {
+                background-color: var(--c-accent);
+                color: var(--c-on-accent) !important;
+            }
+        }
     }
-}
-
-.tab-pane {
-    @extend %animFadeIn;
 }

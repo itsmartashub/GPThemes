@@ -3,7 +3,7 @@ let rafId = null
 const pendingVars = {}
 
 function setCssVars(vars) {
-	console.log('[🎨GPThemes]: setCssVars', vars)
+	// console.log('[🎨GPThemes]: setCssVars', vars)
 
 	Object.entries(vars).forEach(([key, value]) => {
 		pendingVars[key] = value
