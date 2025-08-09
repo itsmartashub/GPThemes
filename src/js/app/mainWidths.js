@@ -6,7 +6,7 @@ import { renderButton } from './components/renderButtons'
 import { renderSeparator } from './components/renderUtils'
 import { renderCustomScrollDown, init as initScrolldown } from './scrolldown'
 import { renderChatBubbles } from './toggleChatsBg'
-import { $ } from '../utils/handleElements'
+import { q } from '../utils/handleElements'
 import { setCssVars } from '../utils/setCssVar'
 
 // ==========================================
@@ -158,9 +158,9 @@ function updateSlider({ sliderId, outputId, unitId, value, disabled = false }) {
 	const unit = extractUnit(value)
 
 	const elements = {
-		slider: $(sliderId),
-		output: $(outputId),
-		unit: $(unitId),
+		slider: q(sliderId),
+		output: q(outputId),
+		unit: q(unitId),
 	}
 
 	if (elements.slider) {
@@ -177,10 +177,10 @@ function updateUI({ settings, syncEnabled, fullWidthEnabled }) {
 
 	// Cache DOM elements once
 	const elements = {
-		chatSlider: $(UI_SELECTORS.sliderChatWidth),
-		textareaSlider: $(UI_SELECTORS.sliderTextareaWidth),
-		fullWidthToggle: $(UI_SELECTORS.toggleFullWidth),
-		syncWidthsToggle: $(UI_SELECTORS.toggleSyncWidths),
+		chatSlider: q(UI_SELECTORS.sliderChatWidth),
+		textareaSlider: q(UI_SELECTORS.sliderTextareaWidth),
+		fullWidthToggle: q(UI_SELECTORS.toggleFullWidth),
+		syncWidthsToggle: q(UI_SELECTORS.toggleSyncWidths),
 	}
 
 	const sliderData = [
@@ -227,7 +227,7 @@ async function saveState(state) {
 			[WIDTH_CONFIG.storageKeys.syncEnabled]: state.syncEnabled,
 			[WIDTH_CONFIG.storageKeys.fullWidthEnabled]: state.fullWidthEnabled,
 		})
-		console.log('[↔️ GPThemes] Settings saved')
+		// console.log('[↔️ GPThemes] Settings saved')
 	} catch (err) {
 		console.error('[↔️ GPThemes] Save failed:', err)
 	}
@@ -338,7 +338,7 @@ function removeAllListeners() {
 }
 
 function setupSliderListeners(selector, key) {
-	const slider = $(selector)
+	const slider = q(selector)
 	if (slider) {
 		// Input event for live updates
 		addListener(slider, 'input', (e) => handleWidthChange({ event: e, key, shouldSave: false }))
@@ -355,16 +355,16 @@ function handleWidthsListeners() {
 	removeAllListeners()
 
 	// Full Width Toggle
-	addListener($(UI_SELECTORS.toggleFullWidth), 'change', handleToggleFullWidth)
+	addListener(q(UI_SELECTORS.toggleFullWidth), 'change', handleToggleFullWidth)
 
 	// Sync Toggle
-	addListener($(UI_SELECTORS.toggleSyncWidths), 'change', handleToggleSyncWidths)
+	addListener(q(UI_SELECTORS.toggleSyncWidths), 'change', handleToggleSyncWidths)
 
 	setupSliderListeners(UI_SELECTORS.sliderChatWidth, 'w_chat_gpt')
 	setupSliderListeners(UI_SELECTORS.sliderTextareaWidth, 'w_prompt_textarea')
 
 	// Reset button
-	addListener($(UI_SELECTORS.btnResetWidths), 'click', resetWidths)
+	addListener(q(UI_SELECTORS.btnResetWidths), 'click', resetWidths)
 }
 
 // ==========================================

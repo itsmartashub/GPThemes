@@ -1,8 +1,11 @@
-const $ = (s) => document.querySelector(s)
-const $$ = (s) => document.querySelectorAll(s)
+// const $ = (s) => document.querySelector(s)
+// const $$ = (s) => document.querySelectorAll(s)
 
-const openElement = (selector, classname) => $(selector)?.classList.add(classname)
-const closeElement = (selector, classname) => $(selector)?.classList.remove(classname)
+const q = (s, root = document) => root.querySelector(s)
+const qq = (s, root = document) => root.querySelectorAll(s)
+
+const openElement = (selector, classname) => q(selector)?.classList.add(classname)
+const closeElement = (selector, classname) => q(selector)?.classList.remove(classname)
 
 const debounce = (fn, delay = 300) => {
 	let id
@@ -12,4 +15,4 @@ const debounce = (fn, delay = 300) => {
 	}
 }
 
-export { closeElement, openElement, debounce, $, $$ }
+export { closeElement, openElement, debounce, q, qq }

@@ -1,5 +1,5 @@
-.gpth-settings header {
-	.gpth-settings__title {
+.#{$pfx}-settings header {
+	.#{$pfx}-settings__title {
 		color: var(--c-accent);
 		// font-size: 1em;
 		// font-weight: 500;

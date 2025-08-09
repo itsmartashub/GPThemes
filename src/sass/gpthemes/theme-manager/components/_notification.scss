@@ -13,6 +13,7 @@
     margin-inline: auto;
     max-height: calc(100dvh - calc(1rem * 2));
     overflow-y: scroll;
+    overflow-x: hidden;
 
     .#{$pfx}-notify {
         position: relative;

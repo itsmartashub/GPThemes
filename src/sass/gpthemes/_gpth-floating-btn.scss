@@ -1,4 +1,4 @@
-.gpth {
+.#{$pfx} {
 	&__floating {
 		--floating-icon-size: 2.8rem;
 		--top: calc(var(--h-header) + 0.5rem);
@@ -385,7 +385,7 @@ html.dark {
 }
  */
 html.light {
-	.gpth__floating-icon::after {
+	.#{$pfx}__floating-icon::after {
 		color: var(--c-txt);
 	}
 }
