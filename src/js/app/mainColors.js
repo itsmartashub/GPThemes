@@ -1,4 +1,5 @@
 import browser from 'webextension-polyfill'
+import { SELECTORS, PFX } from './config.js'
 import { closeSettings, $settings } from './settingsManager.js'
 import { hexToHSL } from '../utils/hexToHSL.js'
 import { renderButton } from './components/renderButtons'
@@ -6,13 +7,13 @@ import { renderButton } from './components/renderButtons'
 // Configuration object - single source of truth
 const COLOR_CONFIG = {
 	light: {
-		id: 'accentLight',
+		id: SELECTORS.ACCENT.LIGHT_ID,
 		label: 'Accent <span>Light</span>',
 		default: '#6c4756',
 		storageKey: 'accent_light',
 	},
 	dark: {
-		id: 'accentDark',
+		id: SELECTORS.ACCENT.DARK_ID,
 		label: 'Accent <span>Dark</span>',
 		default: '#bfa8ff',
 		storageKey: 'accent_dark',
@@ -53,7 +54,7 @@ const generateColorsTabHTML = () => {
 			</div>
 			<footer class="flex justify-center mt-8">
 				${renderButton({
-					id: 'resetAllAccents',
+					id: SELECTORS.ACCENT.RESET_BTN_ID,
 					content: 'Reset Colors',
 					disabled: false,
 					className: 'btn-primary',
