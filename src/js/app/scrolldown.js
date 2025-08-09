@@ -60,13 +60,6 @@ function generateScrollDownHTML() {
     `
 }
 
-// function setCssVars(cssVars) {
-// 	const root = document.documentElement
-
-// 	Object.entries(cssVars).forEach(([key, value]) => {
-// 		root.style.setProperty(`--${key}`, value)
-// 	})
-// }
 async function savePositionPreference(position) {
 	try {
 		await browser.storage.sync.set({ scrollButtonPosition: position })

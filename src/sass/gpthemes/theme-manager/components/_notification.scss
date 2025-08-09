@@ -1,0 +1,73 @@
+/* Using your selector system */
+.#{$pfx}-notify-container {
+    --notif-bg: hsla(var(--accent-hsl) / 0.11);
+    --notif-c: var(--c-accent);
+    position: fixed;
+    top: 1rem;
+    right: 3rem;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 30rem;
+    margin-inline: auto;
+    max-height: calc(100dvh - calc(1rem * 2));
+    overflow-y: scroll;
+
+    .#{$pfx}-notify {
+        position: relative;
+        font-size: 1rem;
+        padding: calc(var(--p) * 1.5);
+        border-radius: calc(var(--br) * 1.2);
+        background-color: var(--notif-bg);
+        color: var(--notif-c);
+        border: 1px solid var(--notif-bg) !important;
+        backdrop-filter: blur(18px);
+        transform: translateX(100%);
+        opacity: 0;
+        transition: all 0.3s ease;
+
+        &__content {
+            padding-right: calc(var(--p) * 1.5);
+        }
+
+        &__close {
+            position: absolute;
+            top: 2px;
+            right: 4px;
+            background: transparent;
+            border: none;
+            color: inherit;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0 0.5rem;
+            line-height: 1;
+        }
+
+        &--show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        /* Notification type styles */
+        &--info {
+            --notif-bg: hsla(var(--accent-hsl) / 0.11);
+            --notif-c: var(--c-accent);
+        }
+
+        &--success {
+            --notif-bg: hsla(var(--success-hsl) / 0.11);
+            --notif-c: var(--c-success);
+        }
+
+        &--warning {
+            --notif-bg: hsla(var(--warning-hsl) / 0.11);
+            --notif-c: var(--c-warning);
+        }
+
+        &--error {
+            --notif-bg: hsla(var(--danger-hsl) / 0.11);
+            --notif-c: var(--c-danger);
+        }
+    }
+}

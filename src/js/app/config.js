@@ -1,11 +1,11 @@
 import browser from 'webextension-polyfill'
 
+export const PFX = 'gpth'
+
 export const EXT_CURRENT_VERSION = browser.runtime.getManifest().version
 export const CHANGELOG_URL = `https://github.com/itsmartashub/GPThemes/releases/tag/v${EXT_CURRENT_VERSION}`
 
 export const FLOATING_BTN_VISIBLE_KEY = 'floatingBtnVisible'
-
-export const PFX = 'gpth'
 
 export const SELECTORS = {
 	SUBHEADING: `${PFX}-subheading`,

@@ -1,37 +1,90 @@
+// notification.js
 import { SELECTORS } from '../config'
 
-// Auto-create container once
-let notifyContainer
+const NOTIFICATION_TYPES = {
+	INFO: 'info',
+	SUCCESS: 'success',
+	WARNING: 'warning',
+	ERROR: 'error',
+}
+
+const DEFAULT_DURATION = 4000 // 4 seconds
+
+// Create container once
+let notificationContainer
 
 function ensureContainer() {
-	if (!notifyContainer) {
-		notifyContainer = document.createElement('div')
-		notifyContainer.className = `${SELECTORS.NOTIFY.CONTAINER}`
-		document.body.appendChild(notifyContainer)
+	if (!notificationContainer) {
+		notificationContainer = document.createElement('div')
+		notificationContainer.className = SELECTORS.NOTIFY.CONTAINER
+		document.body.appendChild(notificationContainer)
+	}
+	return notificationContainer
+}
+
+export function showNotification(
+	message = 'ℹ️ Settings have been updated',
+	type = NOTIFICATION_TYPES.INFO,
+	duration = DEFAULT_DURATION
+) {
+	const container = ensureContainer()
+
+	const notification = document.createElement('div')
+	notification.className = `${SELECTORS.NOTIFY.ITEM} ${SELECTORS.NOTIFY.ITEM}--${type}`
+
+	notification.innerHTML = `
+		<div class="${SELECTORS.NOTIFY.ITEM}__content">${message}</div>
+		<button class="${SELECTORS.NOTIFY.ITEM}__close">&times;</button>
+  `
+
+	container.appendChild(notification)
+
+	// Force reflow to enable CSS transition
+	requestAnimationFrame(() => {
+		notification.classList.add(SELECTORS.NOTIFY.SHOW_STATE)
+	})
+
+	// Close button handler
+	notification.querySelector(`.${SELECTORS.NOTIFY.ITEM}__close`).addEventListener('click', () => {
+		closeNotification(notification)
+	})
+
+	// Auto-close if duration is set
+	// if (duration > 0) {
+	// 	setTimeout(() => {
+	// 		closeNotification(notification)
+	// 	}, duration)
+	// }
+
+	return {
+		close: () => closeNotification(notification),
 	}
 }
 
-export function notify(msg, type = 'info', duration = 3000) {
-	ensureContainer()
+function closeNotification(notification) {
+	notification.classList.remove(SELECTORS.NOTIFY.SHOW_STATE)
+	notification.addEventListener(
+		'transitionend',
+		() => {
+			notification.remove()
+			// Remove container if no notifications left
+			if (notificationContainer && notificationContainer.children.length === 0) {
+				notificationContainer.remove()
+				notificationContainer = null
+			}
+		},
+		{ once: true }
+	)
+}
 
-	const note = document.createElement('div')
-	note.className = `${SELECTORS.NOTIFY.CONTAINER} ${SELECTORS.NOTIFY}--${type}`
-	note.textContent = msg
-
-	notifyContainer.appendChild(note)
-
-	requestAnimationFrame(() => {
-		note.classList.add(SELECTORS.NOTIFY.SHOW_STATE)
-	})
-
-	setTimeout(() => {
-		note.classList.remove(SELECTORS.NOTIFY.SHOW_STATE)
-		note.addEventListener(
-			'transitionend',
-			() => {
-				note.remove()
-			},
-			{ once: true }
-		)
-	}, duration)
+// Export types for better autocomplete
+export const Notify = {
+	info: (msg = `ℹ️ Settings have been updated!`, duration) =>
+		showNotification(msg, NOTIFICATION_TYPES.INFO, duration),
+	success: (msg = '✅ Your changes were saved successfully.', duration) =>
+		showNotification(msg, NOTIFICATION_TYPES.SUCCESS, duration),
+	warning: (msg = `⚠️ Please check your input and try again.`, duration) =>
+		showNotification(msg, NOTIFICATION_TYPES.WARNING, duration),
+	error: (msg = `🚨 Yikes, something went wrong.`, duration) =>
+		showNotification(msg, NOTIFICATION_TYPES.ERROR, duration),
 }

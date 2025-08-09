@@ -6,6 +6,8 @@ import { init as initWidths } from './app/mainWidths'
 // import { init as initScrolldown } from './app/scrolldown'
 import { init as initToggleChatsBg } from './app/toggleChatsBg'
 
+import { Notify, showNotification } from './app/components/renderToast'
+
 // Configuration
 const CONFIG = {
 	TARGET_SELECTOR: '.gpth-settings',
@@ -29,6 +31,28 @@ function initExtension() {
 		initWidths()
 		// initScrolldown()
 		initToggleChatsBg()
+
+		// showNotification()
+		Notify.warning()
+		Notify.error()
+		Notify.info()
+		Notify.success()
+		Notify.warning()
+		Notify.warning()
+		Notify.error()
+		Notify.info()
+		Notify.success()
+		Notify.warning()
+		Notify.warning()
+		Notify.error()
+		Notify.info()
+		Notify.success()
+		Notify.warning()
+		Notify.warning()
+		Notify.error()
+		Notify.info()
+		Notify.success()
+		Notify.warning()
 	} catch (error) {
 		console.error('[🎨GPThemes]: Critical initialization error:', error)
 		return false

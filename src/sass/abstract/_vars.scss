@@ -18,6 +18,7 @@
 	--br-scrollbar: 50vw;
 
 	/* ? --- Paddings --- */
+	--p: 0.725rem;
 	--p-chat-bubble: 1rem;
 	--p-contextmenu: 0.9rem;
 	--p-tooltips: 0.2rem;
@@ -235,6 +236,10 @@ html.light {
 	--warning-hsl: 27 88% 44%;
 	--c-warning: hsl(var(--warning-hsl));
 
+	// --success-hsl: 138 24% 37%;
+	--success-hsl: 162 92% 25%;
+	--c-success: hsl(var(--success-hsl));
+
 	/* ? ========== COLORS ========== */
 	--c-accent: hsl(var(--accent-hsl));
 	--c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) * 0.3), 75%);
@@ -353,6 +358,10 @@ html.dark {
 	--c-danger: hsl(var(--danger-hsl));
 	--warning-hsl: 30 100% 74%;
 	--c-warning: hsl(var(--warning-hsl));
+
+	// color: hsl(162, 92%, 64%);
+	--success-hsl: 162 92% 64%;
+	--c-success: hsl(var(--success-hsl));
 
 	/* ? ========== COLORS ========== */
 	--c-accent: hsl(var(--accent-hsl));

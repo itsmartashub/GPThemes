@@ -1,3 +1,5 @@
+$pfx: 'gpth';
+
 @import 'theme-manager/components/_typography';
 @import 'theme-manager/components/_colorpicker';
 @import 'theme-manager/components/_range';
@@ -9,6 +11,7 @@
 @import 'theme-manager/components/_checkbox';
 @import 'theme-manager/components/_scrolldown';
 @import 'theme-manager/components/_toggle-chats-bg';
+@import 'theme-manager/components/_notification';
 
 @import 'theme-manager/sections/_header';
 @import 'theme-manager/sections/_main';
