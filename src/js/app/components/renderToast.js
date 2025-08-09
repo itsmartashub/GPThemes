@@ -50,11 +50,11 @@ export function showNotification(
 	})
 
 	// Auto-close if duration is set
-	// if (duration > 0) {
-	// 	setTimeout(() => {
-	// 		closeNotification(notification)
-	// 	}, duration)
-	// }
+	if (duration > 0) {
+		setTimeout(() => {
+			closeNotification(notification)
+		}, duration)
+	}
 
 	return {
 		close: () => closeNotification(notification),
