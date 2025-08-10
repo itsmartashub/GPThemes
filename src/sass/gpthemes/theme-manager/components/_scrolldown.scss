@@ -1,13 +1,13 @@
-.gpth-scrolldown {
+.#{$pfx}-scrolldown {
     $border: 1px solid hsla(var(--accent-hsl) / 0.1);
 
-    &__tabs {
+    &__btns {
         background-color: hsla(var(--accent-hsl) / 0.05);
         border: $border;
         overflow: hidden;
     }
 
-    &__tab {
+    &__btn {
         color: var(--c-accent);
         padding: 0.5rem 0;
 

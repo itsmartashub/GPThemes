@@ -9,7 +9,7 @@ import { init as initToggleChatsBg } from './app/toggleChatsBg'
 // Configuration
 const CONFIG = {
 	TARGET_SELECTOR: '.gpth-settings',
-	RETRY_DELAY: 2000,
+	RETRY_DELAY: 3000,
 	MAX_RETRIES: 4,
 }
 

@@ -1,6 +1,10 @@
 import browser from 'webextension-polyfill'
+import { SELECTORS } from './config.js'
+import { q, qq } from '../utils/handleElements.js'
+
 import { icon_align_left, icon_align_center, icon_align_right } from './components/icons'
 import { setCssVars } from '../utils/setCssVar'
+import { Notify } from './components/renderNotify.js'
 
 // Configuration object - single source of truth
 const POSITION_CONFIG = {
@@ -41,7 +45,7 @@ function generateScrollDownHTML() {
 			return `
                 <button 
                     id="scroll-btn-${position}" 
-                    class="gpth-scrolldown__tab flex items-center justify-center gap-1 ${isActive}" 
+                    class="${SELECTORS.SCROLLDOWN.BTN} flex items-center justify-center gap-1 ${isActive}" 
                     data-position="${position}"
                 >
                     ${config.icon} ${config.label}
@@ -51,9 +55,9 @@ function generateScrollDownHTML() {
 		.join('')
 
 	return `
-        <section class="gpth-scrolldown">
-            <h4 class="gpth-subheading">Scrolldown Button Align</h4>
-            <div class="gpth-scrolldown__tabs flex justify-center rounded-full">
+        <section class="${SELECTORS.SCROLLDOWN.ROOT}">
+            <h4 class="${SELECTORS.SUBHEADING}">Scrolldown Button Align</h4>
+            <div class="${SELECTORS.SCROLLDOWN.BTN_CONTAINER} flex justify-center rounded-full">
                 ${positionBtns}
             </div>
         </section>
@@ -74,7 +78,7 @@ function applyPosition(position = DEFAULT_POSITION, btnContainer) {
 	}
 
 	// 1. Update active button
-	const btns = btnContainer.querySelectorAll('.gpth-scrolldown__tab')
+	const btns = qq(`.${SELECTORS.SCROLLDOWN.BTN}`, btnContainer)
 	btns.forEach((btn) => {
 		btn.classList.toggle('active', btn.dataset.position === position)
 	})
@@ -99,13 +103,16 @@ async function loadPositionPreference() {
 function handleScrolldownListeners() {
 	// console.log('[🎨GPThemes]: handleScrolldownListeners')
 
-	const btnContainer = document.querySelector('.gpth-scrolldown__tabs')
+	const btnContainer = q(`.${SELECTORS.SCROLLDOWN.BTN_CONTAINER}`)
 	if (!btnContainer) return
 
 	// Use event delegation for better performance
 	btnContainer.addEventListener('click', (e) => {
-		const btn = e.target.closest('.gpth-scrolldown__tab')
+		const btn = e.target.closest(`.${SELECTORS.SCROLLDOWN.BTN}`)
 		if (!btn) return
+
+		const scrollBtn = q(SELECTORS.SCROLLDOWN.SCROLL_BTN)
+		if (!scrollBtn) return Notify.error('🚨 Scrolldown button not found :(')
 
 		const position = btn.dataset.position
 

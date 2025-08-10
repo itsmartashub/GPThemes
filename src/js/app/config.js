@@ -73,8 +73,9 @@ export const SELECTORS = {
 	// Scroll Down
 	SCROLLDOWN: {
 		ROOT: `${PFX}-scrolldown`,
-		BTN_CONTAINER: `${PFX}-scrolldown__tabs`,
-		BTN: `${PFX}-scrolldown__tab`,
+		BTN_CONTAINER: `${PFX}-scrolldown__btns`,
+		BTN: `${PFX}-scrolldown__btn`,
+		SCROLL_BTN: '[role="presentation"].composer-parent button:has(> svg.icon > path[d^="M9.33468"])',
 	},
 
 	// Bubbles
