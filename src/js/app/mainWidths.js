@@ -1,4 +1,5 @@
 import browser from 'webextension-polyfill'
+import { SELECTORS, PFX } from './config.js'
 import { renderSliderCard } from './components/renderSlider'
 import { renderToggle } from './components/renderToggles'
 import { icon_full_width, icon_sync } from './components/icons'
@@ -42,27 +43,6 @@ let currentState = {
 	fullWidthEnabled: false,
 }
 
-const UI_SELECTORS = {
-	// Feature toggles
-	toggleFullWidth: '#toggle-full-width',
-	toggleSyncWidths: '#toggle-sync-chat-textarea',
-
-	// Sliders
-	sliderChatWidth: '#slider-chat-width',
-	sliderTextareaWidth: '#slider-textarea-width',
-
-	// Button
-	btnResetWidths: '#resetWidths',
-
-	// Output displays
-	displayChatWidthValue: '#display-chat-width-value',
-	displayChatWidthUnit: '#display-chat-width-unit',
-	displayTextareaWidthValue: '#display-textarea-width-value',
-	displayTextareaWidthUnit: '#display-textarea-width-unit',
-}
-
-const UI_IDS = Object.fromEntries(Object.entries(UI_SELECTORS).map(([k, v]) => [k, v.slice(1)]))
-
 // ==========================================
 // UTILITIES
 // ==========================================
@@ -75,6 +55,7 @@ const formatWithUnit = (val, unit) => `${validateValue(val)}${unit}`
 // ==========================================
 // MAIN FUNCTIONS - CREATE WIDTH LAYOUT
 // ==========================================
+
 function renderWidthsTab() {
 	const chatUnit = extractUnit(WIDTH_CONFIG.defaults.w_chat_gpt)
 	const promptUnit = extractUnit(WIDTH_CONFIG.defaults.w_prompt_textarea)
@@ -84,10 +65,10 @@ function renderWidthsTab() {
 			${renderSliderCard({
 				name: 'Chats Width',
 				inputType: 'range',
-				inputId: UI_IDS.sliderChatWidth,
+				inputId: SELECTORS.WIDTH.SLIDER_CHAT_ID,
 				inputValue: extractNumber(WIDTH_CONFIG.defaults.w_chat_gpt),
-				displayValue: UI_IDS.displayChatWidthValue,
-				displayUnit: UI_IDS.displayChatWidthUnit,
+				displayValue: SELECTORS.WIDTH.DISPLAY_CHAT_VALUE_ID,
+				displayUnit: SELECTORS.WIDTH.DISPLAY_CHAT_UNIT_ID,
 				min: WIDTH_CONFIG.ui.minWidth,
 				max: WIDTH_CONFIG.ui.maxWidth,
 				unit: chatUnit,
@@ -95,10 +76,10 @@ function renderWidthsTab() {
 			${renderSliderCard({
 				name: 'Prompt Width',
 				inputType: 'range',
-				inputId: UI_IDS.sliderTextareaWidth,
+				inputId: SELECTORS.WIDTH.SLIDER_TEXTAREA_ID,
 				inputValue: extractNumber(WIDTH_CONFIG.defaults.w_prompt_textarea),
-				displayValue: UI_IDS.displayTextareaWidthValue,
-				displayUnit: UI_IDS.displayTextareaWidthUnit,
+				displayValue: SELECTORS.WIDTH.DISPLAY_TEXTAREA_VALUE_ID,
+				displayUnit: SELECTORS.WIDTH.DISPLAY_TEXTAREA_UNIT_ID,
 				min: WIDTH_CONFIG.ui.minWidth,
 				max: WIDTH_CONFIG.ui.maxWidth,
 				unit: promptUnit,
@@ -107,7 +88,7 @@ function renderWidthsTab() {
 
 		<div class="gpth-layouts__toggle-widths">
 			${renderToggle({
-				id: UI_IDS.toggleFullWidth,
+				id: SELECTORS.WIDTH.TOGGLE_FULL_ID,
 				checked: false,
 				label: 'Chat Full Width',
 				subtitle: "Expand chats to screen's edge for wider conversation view",
@@ -116,7 +97,7 @@ function renderWidthsTab() {
 				className: '',
 			})}
 			${renderToggle({
-				id: UI_IDS.toggleSyncWidths,
+				id: SELECTORS.WIDTH.TOGGLE_SYNC_ID,
 				checked: false,
 				label: 'Sync Prompt Width',
 				subtitle: 'Adjust prompt field to match the chat width for a more consistent view',
@@ -127,7 +108,7 @@ function renderWidthsTab() {
 		</div>
 		<div class="flex justify-center mt-8">
 			${renderButton({
-				id: UI_IDS.btnResetWidths,
+				id: SELECTORS.WIDTH.RESET_BTN_ID,
 				content: 'Reset Widths',
 				className: 'btn-primary',
 			})}
@@ -144,31 +125,20 @@ function renderWidthsTab() {
 // ==========================================
 // SETUP DOM AND CSS FN UPDATES
 // ==========================================
-/* function applyCssVariables(settings) {
-	requestAnimationFrame(() => {
-		const root = document.documentElement
-		for (const [k, v] of Object.entries(settings)) {
-			root.style.setProperty(`--${k}`, v)
-		}
-	})
-} */
-
 function updateSlider({ sliderId, outputId, unitId, value, disabled = false }) {
 	const numericValue = extractNumber(value)
 	const unit = extractUnit(value)
 
-	const elements = {
-		slider: q(sliderId),
-		output: q(outputId),
-		unit: q(unitId),
-	}
+	const slider = q(sliderId)
+	const output = q(outputId)
+	const unitEl = q(unitId)
 
-	if (elements.slider) {
-		elements.slider.value = numericValue
-		elements.slider.disabled = disabled
+	if (slider) {
+		slider.value = numericValue
+		slider.disabled = disabled
 	}
-	if (elements.output) elements.output.textContent = numericValue
-	if (elements.unit) elements.unit.textContent = unit
+	if (output) output.textContent = numericValue
+	if (unitEl) unitEl.textContent = unit
 }
 
 function updateUI({ settings, syncEnabled, fullWidthEnabled }) {
@@ -177,24 +147,24 @@ function updateUI({ settings, syncEnabled, fullWidthEnabled }) {
 
 	// Cache DOM elements once
 	const elements = {
-		chatSlider: q(UI_SELECTORS.sliderChatWidth),
-		textareaSlider: q(UI_SELECTORS.sliderTextareaWidth),
-		fullWidthToggle: q(UI_SELECTORS.toggleFullWidth),
-		syncWidthsToggle: q(UI_SELECTORS.toggleSyncWidths),
+		chatSlider: q(`#${SELECTORS.WIDTH.SLIDER_CHAT_ID}`),
+		textareaSlider: q(`#${SELECTORS.WIDTH.SLIDER_TEXTAREA_ID}`),
+		fullWidthToggle: q(`#${SELECTORS.WIDTH.TOGGLE_FULL_ID}`),
+		syncWidthsToggle: q(`#${SELECTORS.WIDTH.TOGGLE_SYNC_ID}`),
 	}
 
 	const sliderData = [
 		{
-			sliderId: UI_SELECTORS.sliderChatWidth,
-			outputId: UI_SELECTORS.displayChatWidthValue,
-			unitId: UI_SELECTORS.displayChatWidthUnit,
+			sliderId: `#${SELECTORS.WIDTH.SLIDER_CHAT_ID}`,
+			outputId: `#${SELECTORS.WIDTH.DISPLAY_CHAT_VALUE_ID}`,
+			unitId: `#${SELECTORS.WIDTH.DISPLAY_CHAT_UNIT_ID}`,
 			value: settings.w_chat_gpt,
 			disabled: fullWidthEnabled && settings.w_chat_gpt === '100%',
 		},
 		{
-			sliderId: UI_SELECTORS.sliderTextareaWidth,
-			outputId: UI_SELECTORS.displayTextareaWidthValue,
-			unitId: UI_SELECTORS.displayTextareaWidthUnit,
+			sliderId: `#${SELECTORS.WIDTH.SLIDER_TEXTAREA_ID}`,
+			outputId: `#${SELECTORS.WIDTH.DISPLAY_TEXTAREA_VALUE_ID}`,
+			unitId: `#${SELECTORS.WIDTH.DISPLAY_TEXTAREA_UNIT_ID}`,
 			value: settings.w_prompt_textarea,
 			disabled: syncEnabled,
 		},
@@ -355,16 +325,16 @@ function handleWidthsListeners() {
 	removeAllListeners()
 
 	// Full Width Toggle
-	addListener(q(UI_SELECTORS.toggleFullWidth), 'change', handleToggleFullWidth)
+	addListener(q(`#${SELECTORS.WIDTH.TOGGLE_FULL_ID}`), 'change', handleToggleFullWidth)
 
 	// Sync Toggle
-	addListener(q(UI_SELECTORS.toggleSyncWidths), 'change', handleToggleSyncWidths)
+	addListener(q(`#${SELECTORS.WIDTH.TOGGLE_SYNC_ID}`), 'change', handleToggleSyncWidths)
 
-	setupSliderListeners(UI_SELECTORS.sliderChatWidth, 'w_chat_gpt')
-	setupSliderListeners(UI_SELECTORS.sliderTextareaWidth, 'w_prompt_textarea')
+	setupSliderListeners(`#${SELECTORS.WIDTH.SLIDER_CHAT_ID}`, 'w_chat_gpt')
+	setupSliderListeners(`#${SELECTORS.WIDTH.SLIDER_TEXTAREA_ID}`, 'w_prompt_textarea')
 
 	// Reset button
-	addListener(q(UI_SELECTORS.btnResetWidths), 'click', resetWidths)
+	addListener(q(`#${SELECTORS.WIDTH.RESET_BTN_ID}`), 'click', resetWidths)
 }
 
 // ==========================================
