@@ -88,3 +88,11 @@ if (!document.querySelector(CONFIG.TARGET_SELECTOR)) {
 // Emergency cleanup if script re-runs
 if (window._gpthCleanup) window._gpthCleanup()
 window._gpthCleanup = cleanup
+
+/* TODO: Check why extension sometimes failed with console errors:
+
+- Initialization error: Error: Extension context invalidated.
+- Color manager initialization error: TypeError: Cannot read properties of null (reading 'querySelector')
+- Font manager initialization error: TypeError: Cannot read properties of null (reading 'querySelector')
+- Uncaught TypeError: Cannot read properties of null (reading 'classList')
+*/

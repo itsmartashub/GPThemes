@@ -1,6 +1,9 @@
 import browser from 'webextension-polyfill'
-import { renderToggle } from './components/renderToggles'
+import { SELECTORS } from './config.js'
+import { q, qq } from '../utils/handleElements.js'
 import { setCssVars } from '../utils/setCssVar'
+import { renderToggle } from './components/renderToggles'
+import { Notify } from './components/renderNotify.js'
 
 // Configuration object with all bubble types and their properties
 const BG_CONFIG = {
@@ -33,34 +36,21 @@ const generateChatBackgroundHTML = () => {
 				id: `id-${config.label}`,
 				checked: DEFAULT_STATE[type],
 				label: config.label,
-				className: 'gpth-bubbles__item cursor-pointer',
+				className: `${SELECTORS.TOGGLE_BUBBLES.ITEM} cursor-pointer`,
 				dataType: type,
 			})
 		)
 		.join('')
 
 	return `
-		<section class="gpth-bubbles">
-			<h4 class="gpth-subheading">Chat Bubbles Toggle</h4>
-			<div class="gpth-bubbles__items">
+		<section class="${SELECTORS.TOGGLE_BUBBLES.ROOT}">
+			<h4 class="${SELECTORS.SUBHEADING}">Chat Bubbles Toggle</h4>
+			<div class="${SELECTORS.TOGGLE_BUBBLES.ITEMS_CONTAINER}">
 				${toggleItems}
 			</div>
 		</section>
 	`
 }
-
-// Update CSS variables based on state
-/* const updateRootVariables = (state) => {
-	const root = document.documentElement
-
-	// Use a DocumentFragment for batched style updates
-	requestAnimationFrame(() => {
-		Object.entries(state).forEach(([type, isEnabled]) => {
-			const { toggleVar, originalVar } = BG_CONFIG[type]
-			root.style.setProperty(toggleVar, isEnabled ? `var(${originalVar})` : 'transparent')
-		})
-	})
-} */
 
 const updateRootVariables = (state) => {
 	// console.log('updateRootVariables: ', state)
@@ -77,6 +67,7 @@ const saveBackgroundPreference = async (state) => {
 		await browser.storage.sync.set({ [STORAGE_KEY]: state })
 		return true
 	} catch (error) {
+		Notify.error('Failed to save preference')
 		console.error('Failed to save preference:', error)
 		return false
 	}
@@ -88,6 +79,7 @@ const loadBackgroundPreference = async () => {
 		const result = await browser.storage.sync.get(STORAGE_KEY)
 		return result[STORAGE_KEY] || DEFAULT_STATE
 	} catch (error) {
+		Notify.error('Failed to load preference')
 		console.error('Failed to load preference:', error)
 		return DEFAULT_STATE
 	}
@@ -96,7 +88,7 @@ const loadBackgroundPreference = async () => {
 // Apply state to DOM elements and update CSS
 const applyBackgroundState = (state) => {
 	// Query all checkboxes at once and filter for better performance
-	const checkboxes = document.querySelectorAll('.gpth-bubbles .gpth-checkbox__input')
+	const checkboxes = qq(`.${SELECTORS.TOGGLE_BUBBLES.ROOT} .gpth-checkbox__input`)
 	checkboxes.forEach((input) => {
 		const type = input.dataset.type
 		if (type in state) {
@@ -109,7 +101,7 @@ const applyBackgroundState = (state) => {
 
 // Set up event delegation for better performance
 const setupBubblesListeners = () => {
-	const container = document.querySelector('.gpth-bubbles__items')
+	const container = q(`.${SELECTORS.TOGGLE_BUBBLES.ITEMS_CONTAINER}`)
 	if (!container) return
 
 	container.addEventListener('change', async (event) => {
@@ -121,6 +113,14 @@ const setupBubblesListeners = () => {
 				console.warn('Unknown or missing type for chat bubble toggle:', type, input)
 				return // Prevents the destructuring error
 			}
+
+			// Check if chat bubbles exist
+			// console.log(SELECTORS.CHATS[BG_CONFIG[type].label])
+			const chatBubbles = q(`.${SELECTORS.CHATS[BG_CONFIG[type].label]}`)
+			// console.log('chatBubbles: ', chatBubbles)
+
+			if (!chatBubbles) return Notify.error(`Could not find chat bubbles for ${BG_CONFIG[type].label}`)
+
 			const currentState = await loadBackgroundPreference()
 
 			// Create new state object (immutable pattern)

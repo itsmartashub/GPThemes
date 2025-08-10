@@ -79,9 +79,15 @@ export const SELECTORS = {
 	},
 
 	// Bubbles
-	BUBBLES: {
+	TOGGLE_BUBBLES: {
 		ROOT: `${PFX}-bubbles`,
 		ITEMS_CONTAINER: `${PFX}-bubbles__items`,
 		ITEM: `${PFX}-bubbles__item`,
+	},
+
+	// Chats
+	CHATS: {
+		USER: 'user-message-bubble-color',
+		GPT: `agent-turn`,
 	},
 }
