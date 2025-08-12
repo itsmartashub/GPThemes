@@ -14,6 +14,7 @@ export const SELECTORS = {
 	NOTIFY: {
 		CONTAINER: `${PFX}-notify-container`,
 		ITEM: `${PFX}-notify`,
+		CLOSE_BTN: `${PFX}-notify__close-btn`,
 		SHOW_STATE: `${PFX}-notify--show`,
 	},
 

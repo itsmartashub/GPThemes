@@ -1,7 +1,8 @@
 // Use a cross-browser storage API:
 import browser from 'webextension-polyfill'
 import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './components/icons.js'
-import { SELECTORS, PFX } from './config.js'
+import { SELECTORS } from './config.js'
+import { q } from '../utils/dom.js'
 import { handleChangeTheme } from './themeManager.js'
 import { createSettings, closeSettings } from './settingsManager.js'
 import { FLOATING_BTN_VISIBLE_KEY } from './config'
@@ -67,8 +68,8 @@ async function createFloatingBtn() {
 }
 function cacheFloatingElements(gpthFloatingBtn) {
 	elements.floatingBtn = gpthFloatingBtn
-	elements.floatingOptions = gpthFloatingBtn.querySelector(`.${SELECTORS.FLOATING_BTN.OPTIONS}`)
-	elements.floatingBtnsContainer = gpthFloatingBtn.querySelector(`.${SELECTORS.FLOATING_BTN.BTNS_CONTAINER}`)
+	elements.floatingOptions = q(`.${SELECTORS.FLOATING_BTN.OPTIONS}`, gpthFloatingBtn)
+	elements.floatingBtnsContainer = q(`.${SELECTORS.FLOATING_BTN.BTNS_CONTAINER}`, gpthFloatingBtn)
 }
 function addFloatingListeners() {
 	elements.floatingBtn.addEventListener('click', toggleFloatingOptions)
@@ -117,7 +118,7 @@ function toggleFloatingBtnVisibility(isVisible) {
 	elements.floatingBtn.classList.toggle(`${SELECTORS.FLOATING_BTN.ROOT}--hidden`, !isVisible)
 
 	// Close FLOATING_BTN too if it's open
-	if (!isVisible && document.querySelector(`.${SELECTORS.SETTINGS.OPEN_STATE}`)) closeSettings()
+	if (!isVisible && q(`.${SELECTORS.SETTINGS.OPEN_STATE}`)) closeSettings()
 }
 
 /* function initExtension() {

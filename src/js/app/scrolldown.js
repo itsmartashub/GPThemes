@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill'
 import { SELECTORS } from './config.js'
-import { q, qq } from '../utils/handleElements.js'
+import { q, qq } from '../utils/dom.js'
 
 import { icon_align_left, icon_align_center, icon_align_right } from './components/icons'
 import { setCssVars } from '../utils/setCssVar'
@@ -112,7 +112,11 @@ function handleScrolldownListeners() {
 		if (!btn) return
 
 		const scrollBtn = q(SELECTORS.SCROLLDOWN.SCROLL_BTN)
-		if (!scrollBtn) return Notify.error('🚨 Scrolldown button not found :(')
+		if (!scrollBtn)
+			return Notify.error(
+				`🚨 Scrolldown button not found. Possible reasons: missing on this page or OpenAI codebase changes.`,
+				5000
+			)
 
 		const position = btn.dataset.position
 

@@ -7,7 +7,7 @@ import { renderButton } from './components/renderButtons'
 import { renderSeparator } from './components/renderUtils'
 import { renderCustomScrollDown, init as initScrolldown } from './scrolldown'
 import { renderChatBubbles } from './toggleChatsBg'
-import { q } from '../utils/handleElements'
+import { q } from '../utils/dom.js'
 import { setCssVars } from '../utils/setCssVar'
 
 // ==========================================

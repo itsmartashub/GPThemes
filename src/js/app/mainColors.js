@@ -1,5 +1,6 @@
 import browser from 'webextension-polyfill'
-import { SELECTORS, PFX } from './config.js'
+import { SELECTORS } from './config.js'
+import { q } from '../utils/dom.js'
 import { closeSettings, $settings } from './settingsManager.js'
 import { hexToHSL } from '../utils/hexToHSL.js'
 import { renderButton } from './components/renderButtons'
@@ -80,7 +81,7 @@ const updateCSSVars = (colors = {}) => {
 	const currentValues = {}
 	Object.entries(COLOR_CONFIG).forEach(([theme, config]) => {
 		if (!colors[theme]) {
-			const input = $settings.querySelector(`#${config.id}`)
+			const input = q(`#${config.id}`, $settings)
 			currentValues[theme] = input ? input.value : config.default
 		}
 	})
@@ -109,7 +110,7 @@ const setColorInputValues = (colors) => {
 	Object.entries(colors).forEach(([theme, value]) => {
 		const config = COLOR_CONFIG[theme.toLowerCase()]
 		if (config) {
-			const input = $settings.querySelector(`#${config.id}`)
+			const input = q(`#${config.id}`, $settings)
 			if (input) input.value = value
 		}
 	})
@@ -127,7 +128,7 @@ const saveColorToStorage = async (key, value) => {
 
 const handleColorInputs = () => {
 	// Use event delegation for better performance and future-proofing
-	const container = $settings.querySelector('.colorpicker-container')
+	const container = q('.colorpicker-container', $settings)
 	if (!container) return
 
 	// Handle input events (live preview)

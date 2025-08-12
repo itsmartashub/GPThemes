@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill'
 import { SELECTORS } from './config.js'
-import { q, qq } from '../utils/handleElements.js'
+import { q, qq } from '../utils/dom.js'
 import { Notify } from './components/renderNotify.js'
 
 import { closeSettings, $settings } from './settingsManager.js'

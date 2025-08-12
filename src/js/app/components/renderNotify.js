@@ -1,5 +1,6 @@
 // notification.js
 import { SELECTORS } from '../config'
+import { q } from '../../utils/dom'
 
 const NOTIFICATION_TYPES = {
 	INFO: 'info',
@@ -34,7 +35,7 @@ export function showNotification(
 
 	notification.innerHTML = `
 		<div class="${SELECTORS.NOTIFY.ITEM}__content">${message}</div>
-		<button class="${SELECTORS.NOTIFY.ITEM}__close">&times;</button>
+		<button class="${SELECTORS.NOTIFY.CLOSE_BTN}">&times;</button>
   `
 
 	container.appendChild(notification)
@@ -45,7 +46,7 @@ export function showNotification(
 	})
 
 	// Close button handler
-	notification.querySelector(`.${SELECTORS.NOTIFY.ITEM}__close`).addEventListener('click', () => {
+	q(`.${SELECTORS.NOTIFY.CLOSE_BTN}`, notification).addEventListener('click', () => {
 		closeNotification(notification)
 	})
 
