@@ -1,3 +1,4 @@
+import { SELECTORS, PFX } from './config.js'
 import { renderColorsTab, resetAllAccents, init as initColors } from './mainColors.js'
 import { renderFontsTab, handleFontsListeners, init as initFonts } from './mainFonts.js'
 import { renderWidthsTab, handleWidthsListeners, init as initWidths } from './mainWidths.js'
@@ -10,7 +11,6 @@ let $tabButtons = null
 let $tabPanes = null
 
 // Constants
-const SETTINGS_OPEN_CLASS = 'gpth-settings--open'
 const ACTIVE_CLASS = 'active'
 const HIDDEN_CLASS = 'hidden'
 
@@ -19,7 +19,7 @@ async function createSettings() {
 	// if ($settings) return
 
 	const gpthSettings = document.createElement('div')
-	gpthSettings.className = 'gpth-settings fixed flex flex-col'
+	gpthSettings.className = `${SELECTORS.SETTINGS.ROOT} fixed flex flex-col`
 
 	// Render settings HTML
 	gpthSettings.innerHTML = `
@@ -29,16 +29,16 @@ async function createSettings() {
 			</h2>
 		</header>
 		<main>
-			<div class="tabs">
-				<div class="tab-buttons p-1 font-semibold mb-5">
-					<button class="tab-button py-2 px-4 focus:outline-none text-center active">Color</button>
-					<button class="tab-button py-2 px-4 focus:outline-none text-center">Font</button>
-					<button class="tab-button py-2 px-4 focus:outline-none text-center">Layout</button>
+			<div class="${SELECTORS.SETTINGS.TABS.ROOT}">
+				<div class="${SELECTORS.SETTINGS.TABS.BUTTONS} p-1 font-semibold mb-5">
+					<button class="${SELECTORS.SETTINGS.TABS.BUTTON} py-2 px-4 focus:outline-none text-center active">Color</button>
+					<button class="${SELECTORS.SETTINGS.TABS.BUTTON} py-2 px-4 focus:outline-none text-center">Font</button>
+					<button class="${SELECTORS.SETTINGS.TABS.BUTTON} py-2 px-4 focus:outline-none text-center">Layout</button>
 				</div>
-				<div class="tab-content">
-					<div class="tab-pane active" id="tab-colors">${renderColorsTab()}</div>
-					<div class="tab-pane hidden" id="tab-fonts">${renderFontsTab()}</div>
-					<div class="tab-pane hidden" id="tab-assets">${renderWidthsTab()}</div>
+				<div class="${SELECTORS.SETTINGS.TABS.CONTENT}">
+					<div class="${SELECTORS.SETTINGS.TABS.PANE} active" id="${PFX}-tab-colors">${renderColorsTab()}</div>
+					<div class="${SELECTORS.SETTINGS.TABS.PANE} hidden" id="${PFX}-tab-fonts">${renderFontsTab()}</div>
+					<div class="${SELECTORS.SETTINGS.TABS.PANE} hidden" id="${PFX}-tab-layout">${renderWidthsTab()}</div>
 				</div>
 			</div>
 		</main>
@@ -57,14 +57,13 @@ async function createSettings() {
 
 function cacheElements(gpthSettings) {
 	$settings = gpthSettings
-	$resetAllAccentsBtn = $settings.querySelector('#resetAllAccents')
-	$tabButtons = Array.from($settings.querySelectorAll('.tab-button'))
-	$tabPanes = Array.from($settings.querySelectorAll('.tab-pane'))
+	// $resetAllAccentsBtn = $settings.getElementById(SELECTORS.ACCENT.RESET_BTN_ID)
+	$resetAllAccentsBtn = $settings.querySelector(`#${SELECTORS.ACCENT.RESET_BTN_ID}`)
+	$tabButtons = Array.from($settings.querySelectorAll(`.${SELECTORS.SETTINGS.TABS.BUTTON}`))
+	$tabPanes = Array.from($settings.querySelectorAll(`.${SELECTORS.SETTINGS.TABS.PANE}`))
 
 	// Initially disable accent reset button
-	if ($resetAllAccentsBtn) {
-		$resetAllAccentsBtn.disabled = true
-	}
+	$resetAllAccentsBtn.disabled = true
 }
 
 function addListeners() {
@@ -73,18 +72,14 @@ function addListeners() {
 	handleWidthsListeners()
 	handleScrolldownListeners()
 
-	if ($resetAllAccentsBtn) {
-		$resetAllAccentsBtn.addEventListener('click', resetAllAccents)
-	}
+	$resetAllAccentsBtn?.addEventListener('click', resetAllAccents)
 }
 
 function openSettings() {
-	$settings.classList.add(SETTINGS_OPEN_CLASS)
+	$settings.classList.add(SELECTORS.SETTINGS.OPEN_STATE)
 	$settings.addEventListener('transitionend', handleSettingsOpened, { once: true })
 
-	if ($resetAllAccentsBtn) {
-		$resetAllAccentsBtn.disabled = false
-	}
+	$resetAllAccentsBtn.disabled = false
 }
 
 function handleSettingsOpened() {
@@ -94,16 +89,14 @@ function handleSettingsOpened() {
 function closeSettings() {
 	if (!$settings) return
 
-	$settings.classList.remove(SETTINGS_OPEN_CLASS)
+	$settings.classList.remove(SELECTORS.SETTINGS.OPEN_STATE)
 	document.body.removeEventListener('click', handleClickOutsideSettings)
 
-	if ($resetAllAccentsBtn) {
-		$resetAllAccentsBtn.disabled = true
-	}
+	$resetAllAccentsBtn.disabled = true
 }
 
 function handleClickOutsideSettings(e) {
-	if (!$settings.contains(e.target) && e.target.id !== 'gpth-open-settings') {
+	if (!$settings.contains(e.target) && e.target.id !== SELECTORS.SETTINGS.OPEN_BTN) {
 		closeSettings()
 	}
 }

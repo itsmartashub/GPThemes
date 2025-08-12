@@ -71,3 +71,34 @@
         }
     }
 }
+
+// Mixin with defaults for opacity and blur
+// @mixin el-status($type, $opacity: 0.11, $blur: 18px) {
+//     $color-hsl: var(--#{$type}-hsl);
+//     $color: var(--c-#{$type});
+
+//     background-color: hsla(#{$color-hsl} / #{$opacity}) !important;
+//     color: #{$color} !important;
+//     border: 1px solid hsla(#{$color-hsl} / #{$opacity}) !important;
+//     backdrop-filter: blur(#{$blur});
+// }
+
+@mixin elStatus($type,
+    $opacity: 0.11,
+    $blur: 18px,
+    $isBorder: true,
+    $isBackdrop: true) {
+    $colorHsl: var(--#{$type}-hsl);
+    $color: var(--c-#{$type});
+
+    background-color: hsla(#{$colorHsl} / #{$opacity}) !important;
+    color: #{$color} !important;
+
+    @if $isBorder {
+        border: 1px solid hsla(#{$colorHsl} / #{$opacity}) !important;
+    }
+
+    @if $isBackdrop {
+        backdrop-filter: blur(#{$blur});
+    }
+}

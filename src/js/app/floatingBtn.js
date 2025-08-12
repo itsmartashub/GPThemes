@@ -1,8 +1,10 @@
 // Use a cross-browser storage API:
 import browser from 'webextension-polyfill'
 import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './components/icons.js'
+import { SELECTORS } from './config.js'
+import { q } from '../utils/dom.js'
 import { handleChangeTheme } from './themeManager.js'
-import { createSettings, closeSettings, SETTINGS_OPEN_CLASS } from './settingsManager.js'
+import { createSettings, closeSettings } from './settingsManager.js'
 import { FLOATING_BTN_VISIBLE_KEY } from './config'
 import { setupExtensionMessaging } from './messaging'
 
@@ -13,7 +15,6 @@ import { init as initWidths } from './mainWidths' */
 
 // State
 let isOptionsShown = false
-const FLOATING_CLASS_NAME = 'gpth__floating'
 
 // DOM Elements
 const elements = {
@@ -43,19 +44,20 @@ async function init() {
 // ___ Create and append the floating button? - UI Components
 async function createFloatingBtn() {
 	const gpthFloatingBtn = document.createElement('div')
-	gpthFloatingBtn.className = FLOATING_CLASS_NAME
+	gpthFloatingBtn.className = SELECTORS.FLOATING_BTN.ROOT
 
 	gpthFloatingBtn.innerHTML = `
-    <div class="${FLOATING_CLASS_NAME}-icon">${icon_paint}</div>
-    <div class="gpth__options">
-      <div class="gpth__options-btns">
-        <button id="light" data-gpth-theme="light">${icon_sun}</button>
-        <button id="dark" data-gpth-theme="dark">${icon_moon}</button>
-        <button id="oled" data-gpth-theme="black">${icon_moon_full}</button>
-        <button id="gpth-open-settings" data-gpth-theme="more">${icon_settings}</button>
-      </div>
-    </div>
-  `
+		<div class="${SELECTORS.FLOATING_BTN.ROOT}-icon">${icon_paint}</div>
+
+		<div class="${SELECTORS.FLOATING_BTN.OPTIONS}">
+			<div class="${SELECTORS.FLOATING_BTN.BTNS_CONTAINER}">
+				<button id="light" data-gpth-theme="light">${icon_sun}</button>
+				<button id="dark" data-gpth-theme="dark">${icon_moon}</button>
+				<button id="oled" data-gpth-theme="black">${icon_moon_full}</button>
+				<button id="${SELECTORS.SETTINGS.OPEN_BTN}" data-gpth-theme="more">${icon_settings}</button>
+			</div>
+		</div>
+	`
 
 	document.body.appendChild(gpthFloatingBtn)
 	cacheFloatingElements(gpthFloatingBtn)
@@ -66,8 +68,8 @@ async function createFloatingBtn() {
 }
 function cacheFloatingElements(gpthFloatingBtn) {
 	elements.floatingBtn = gpthFloatingBtn
-	elements.floatingOptions = gpthFloatingBtn.querySelector('.gpth__options')
-	elements.floatingBtnsContainer = gpthFloatingBtn.querySelector('.gpth__options-btns')
+	elements.floatingOptions = q(`.${SELECTORS.FLOATING_BTN.OPTIONS}`, gpthFloatingBtn)
+	elements.floatingBtnsContainer = q(`.${SELECTORS.FLOATING_BTN.BTNS_CONTAINER}`, gpthFloatingBtn)
 }
 function addFloatingListeners() {
 	elements.floatingBtn.addEventListener('click', toggleFloatingOptions)
@@ -76,7 +78,7 @@ function addFloatingListeners() {
 // __ Options and Settings
 function toggleFloatingOptions() {
 	isOptionsShown = !isOptionsShown
-	elements.floatingOptions.classList.toggle('gpth__options--shown', isOptionsShown)
+	elements.floatingOptions.classList.toggle(SELECTORS.FLOATING_BTN.OPEN_STATE, isOptionsShown)
 
 	if (isOptionsShown) {
 		document.body.addEventListener('click', hideFloatingOptions)
@@ -96,7 +98,7 @@ function hideFloatingOptions(e) {
 function closeFloatingOptions() {
 	// console.log('closeFloatingOptions: ', { isOptionsShown })
 	isOptionsShown = false
-	elements.floatingOptions.classList.remove('gpth__options--shown')
+	elements.floatingOptions.classList.remove(SELECTORS.FLOATING_BTN.OPEN_STATE)
 	document.body.removeEventListener('click', hideFloatingOptions)
 	// console.log('closeFloatingOptions: ', { isOptionsShown })
 }
@@ -113,10 +115,10 @@ function toggleFloatingBtnVisibility(isVisible) {
 	// if (!elements.floatingBtn) return initExtension()
 	if (!elements.floatingBtn) return
 
-	elements.floatingBtn.classList.toggle(`${FLOATING_CLASS_NAME}--hidden`, !isVisible)
+	elements.floatingBtn.classList.toggle(`${SELECTORS.FLOATING_BTN.ROOT}--hidden`, !isVisible)
 
-	// Close settings too if it's open
-	if (!isVisible && document.querySelector(`.${SETTINGS_OPEN_CLASS}`)) closeSettings()
+	// Close FLOATING_BTN too if it's open
+	if (!isVisible && q(`.${SELECTORS.SETTINGS.OPEN_STATE}`)) closeSettings()
 }
 
 /* function initExtension() {
@@ -127,4 +129,4 @@ function toggleFloatingBtnVisibility(isVisible) {
 	initWidths()
 }
  */
-export { init, closeFloatingOptions, toggleFloatingBtnVisibility, FLOATING_CLASS_NAME }
+export { init, closeFloatingOptions, toggleFloatingBtnVisibility }

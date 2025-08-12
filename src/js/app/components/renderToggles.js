@@ -14,18 +14,18 @@ function renderToggle({
             <label class="gpth-switch ${className}" for="${id}">
                 ${icon ? `<div class="gpth-switch__icon" aria-hidden="true">${icon}</div>` : ''}
                 <div class="gpth-switch__text">
-                <div class="title mb-1">${label}</div>
-                ${subtitle ? `<div class="subtitle">${subtitle}</div>` : ''}
+                    <div class="title mb-1">${label}</div>
+                    ${subtitle ? `<div class="subtitle">${subtitle}</div>` : ''}
                 </div>
                 <div class="gpth-switch__checkbox">
-                <input
-                    type="checkbox"
-                    id="${id}"
-                    ${checked ? 'checked' : ''}
-                    ${disabled ? 'disabled' : ''}
-                    aria-labelledby="${id}-label"
-                >
-                <span class="slider" aria-hidden="true"></span>
+                    <input
+                        type="checkbox"
+                        id="${id}"
+                        ${checked ? 'checked' : ''}
+                        ${disabled ? 'disabled' : ''}
+                        aria-labelledby="${id}-label"
+                    >
+                    <span class="slider" aria-hidden="true"></span>
                 </div>
             </label>
         `

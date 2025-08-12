@@ -1,4 +1,4 @@
-.gpth-settings {
+.#{$pfx}-settings {
 	--w-scrollbar: 0.2rem;
 
 	--top: calc(var(--h-header) + 0.5rem + 3rem);
@@ -48,11 +48,11 @@
 	}
 
 	// section {
-	.tab-content {
+	.#{$pfx}-tab-content {
 		overflow-y: auto;
 		max-height: calc(var(--max-h) * 0.625);
 
-		.tab-pane {
+		.#{$pfx}-pane {
 			margin-inline: 0.2rem; // simulate space from the scrollbar
 		}
 	}
@@ -63,6 +63,6 @@
 	}
 }
 
-html.dark .gpth-settings {
+html.dark .#{$pfx}-settings {
 	--c-bg-menu: hsla(var(--accent-h), calc(var(--accent-s) * 0.2), calc(var(--accent-l) * 0.35), 0.3);
 }

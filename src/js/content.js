@@ -9,7 +9,7 @@ import { init as initToggleChatsBg } from './app/toggleChatsBg'
 // Configuration
 const CONFIG = {
 	TARGET_SELECTOR: '.gpth-settings',
-	RETRY_DELAY: 2000,
+	RETRY_DELAY: 3000,
 	MAX_RETRIES: 4,
 }
 
@@ -19,7 +19,7 @@ let retryTimeout = null // For cleanup
 
 // Main initialization function
 function initExtension() {
-	console.log(`[🎨GPThemes]: Initializing components (attempt ${retryCount + 1}/${CONFIG.MAX_RETRIES})`)
+	// console.log(`[🎨GPThemes]: Initializing components (attempt ${retryCount + 1}/${CONFIG.MAX_RETRIES})`)
 
 	try {
 		initThemes()
@@ -43,12 +43,12 @@ function scheduleRetry() {
 	if (retryCount <= CONFIG.MAX_RETRIES) {
 		const delay = CONFIG.RETRY_DELAY * retryCount
 
-		console.log(`[🎨GPThemes]: Scheduling retry ${retryCount}/${CONFIG.MAX_RETRIES} in ${delay}ms`)
+		// console.log(`[🎨GPThemes]: Scheduling retry ${retryCount}/${CONFIG.MAX_RETRIES} in ${delay}ms`)
 
 		retryTimeout = setTimeout(() => {
 			// Check if our components exist before retrying
 			if (document.querySelector(CONFIG.TARGET_SELECTOR)) {
-				console.log('[🎨GPThemes]: Components already present, stopping retries')
+				// console.log('[🎨GPThemes]: Components already present, stopping retries')
 				cleanup()
 				return
 			}
@@ -58,7 +58,7 @@ function scheduleRetry() {
 			)
 
 			if (initExtension()) {
-				console.log('[🎨GPThemes]: Injection successful')
+				// console.log('Injection successful')
 				cleanup()
 			} else {
 				scheduleRetry()
@@ -88,3 +88,11 @@ if (!document.querySelector(CONFIG.TARGET_SELECTOR)) {
 // Emergency cleanup if script re-runs
 if (window._gpthCleanup) window._gpthCleanup()
 window._gpthCleanup = cleanup
+
+/* TODO: Check why extension sometimes failed with console errors:
+
+- Initialization error: Error: Extension context invalidated.
+- Color manager initialization error: TypeError: Cannot read properties of null (reading 'querySelector')
+- Font manager initialization error: TypeError: Cannot read properties of null (reading 'querySelector')
+- Uncaught TypeError: Cannot read properties of null (reading 'classList')
+*/

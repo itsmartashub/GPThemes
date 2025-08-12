@@ -1,12 +1,17 @@
 import browser from 'webextension-polyfill'
+import { SELECTORS } from './config.js'
+import { q, qq } from '../utils/dom.js'
+import { Notify } from './components/renderNotify.js'
+
 import { closeSettings, $settings } from './settingsManager.js'
 import { renderFontSmallCard, renderFontBigCard } from './components/renderFonts'
 import { renderButton } from './components/renderButtons'
+import { setCssVars } from '../utils/setCssVar'
 
 // Font Configuration object - single source of truth
 const FONT_CONFIG = {
 	fontFamily: {
-		id: 'fontFamily',
+		id: SELECTORS.FONT.FAMILY_ID,
 		label: 'Font Family',
 		default: getComputedStyle(document.documentElement).getPropertyValue('--fontFamilyDefault').trim(),
 		storageKey: 'fontFamily',
@@ -42,7 +47,7 @@ const FONT_CONFIG = {
 		type: 'select',
 	},
 	fontSize: {
-		id: 'fontSize',
+		id: SELECTORS.FONT.SIZE_ID,
 		label: 'Font Size',
 		default: 16,
 		storageKey: 'fontSize',
@@ -52,7 +57,7 @@ const FONT_CONFIG = {
 		type: 'number',
 	},
 	lineHeight: {
-		id: 'lineHeight',
+		id: SELECTORS.FONT.LINE_HEIGHT_ID,
 		label: 'Line Height',
 		default: 28,
 		storageKey: 'lineHeight',
@@ -62,7 +67,7 @@ const FONT_CONFIG = {
 		type: 'number',
 	},
 	letterSpacing: {
-		id: 'letterSpacing',
+		id: SELECTORS.FONT.LETTER_SPACING_ID,
 		label: 'Letter Space',
 		default: 0,
 		storageKey: 'letterSpacing',
@@ -119,7 +124,7 @@ const renderFontsTab = () => {
           </div>
           ${renderFontBigCard({
 				name: FONT_CONFIG.fontSize.label,
-				className: 'fonts__size',
+				className: SELECTORS.FONT.SIZE_CLASS,
 				inputId: FONT_CONFIG.fontSize.id,
 				inputType: 'number',
 				inputValue: FONT_CONFIG.fontSize.default,
@@ -132,7 +137,7 @@ const renderFontsTab = () => {
         <div class="fonts__smallcards-wrapper">
           ${renderFontSmallCard({
 				name: FONT_CONFIG.lineHeight.label,
-				className: 'fonts__lineHeight',
+				className: SELECTORS.FONT.LINE_HEIGHT_CLASS,
 				inputId: FONT_CONFIG.lineHeight.id,
 				inputType: 'number',
 				inputValue: FONT_CONFIG.lineHeight.default,
@@ -143,7 +148,7 @@ const renderFontsTab = () => {
 			})}
           ${renderFontSmallCard({
 				name: FONT_CONFIG.letterSpacing.label,
-				className: 'fonts__letterSpacing',
+				className: SELECTORS.FONT.LETTER_SPACING_CLASS,
 				inputId: FONT_CONFIG.letterSpacing.id,
 				inputType: 'number',
 				inputValue: FONT_CONFIG.letterSpacing.default,
@@ -156,7 +161,7 @@ const renderFontsTab = () => {
       </div>
       <footer class="flex justify-center mt-8">
         ${renderButton({
-			id: 'resetFont',
+			id: SELECTORS.FONT.RESET_BTN_ID,
 			content: 'Reset Fonts',
 			disabled: false,
 			className: 'btn-primary',
@@ -169,7 +174,7 @@ const renderFontsTab = () => {
 // Helper function to set input field values
 const setInputValues = (values) => {
 	Object.entries(values).forEach(([key, value]) => {
-		const inputEl = $settings.querySelector(`#${FONT_CONFIG[key]?.id}`)
+		const inputEl = q(`#${FONT_CONFIG[key]?.id}`, $settings)
 		if (inputEl) {
 			inputEl.value = value
 		}
@@ -182,7 +187,7 @@ const updateCSSVars = (values = {}) => {
 	const currentValues = {}
 	Object.entries(FONT_CONFIG).forEach(([prop, config]) => {
 		if (!values[prop]) {
-			const input = $settings.querySelector(`#${config.id}`)
+			const input = q(`#${config.id}`, $settings)
 			currentValues[prop] = input ? input.value : config.default
 		}
 	})
@@ -192,9 +197,10 @@ const updateCSSVars = (values = {}) => {
 	// console.log(finalValues)
 
 	// Update CSS variables
-	Object.entries(finalValues).forEach(([prop, value]) => {
+	setCssVars(finalValues)
+	/* Object.entries(finalValues).forEach(([prop, value]) => {
 		document.documentElement.style.setProperty(`--${prop}`, value)
-	})
+	}) */
 }
 
 // Helper function to save value to storage
@@ -206,24 +212,6 @@ const saveValueToStorage = async (key, value) => {
 		console.error(`Error saving ${key} to storage:`, error)
 		return false
 	}
-}
-
-// Helper function to display error messages
-const displayError = (message) => {
-	// Remove any previous error messages
-	const existingError = document.querySelector('.gpth-error-msg')
-	if (existingError) existingError.remove()
-
-	// Create and insert the new error message
-	const errorMessage = document.createElement('div')
-	errorMessage.className = 'gpth-error-msg fixed rounded-xl bg-red-500 red-500 p-3 font-semibold text-center'
-	errorMessage.textContent = message
-	document.body.appendChild(errorMessage)
-
-	// Remove the error message after 4 seconds
-	setTimeout(() => {
-		errorMessage.remove()
-	}, 4000)
 }
 
 // Helper function to format numbers
@@ -243,10 +231,12 @@ const formatNumber = (inputVal, toFixedNum = 2) => {
 // Helper function to validate input values
 const validateInput = (value, min, max) => {
 	if (isNaN(value)) {
-		displayError('Empty or invalid value')
+		// displayError('Empty or invalid value')
+		Notify.error('🚨 Empty or invalid value')
 		return false
 	} else if (value < min || value > max) {
-		displayError(`Number must be between ${min} and ${max}`)
+		Notify.warning(`⚠️ Number must be between ${min} and ${max}`)
+		// displayError(`Number must be between ${min} and ${max}`)
 		return false
 	}
 	return true
@@ -280,7 +270,7 @@ const loadGoogleFont = (fontFamily) => {
 }
 
 const removeAllGoogleFontsLinks = () => {
-	const links = Array.from(document.querySelectorAll("head link[href*='fonts.']"))
+	const links = Array.from(qq("head link[href*='fonts.']"))
 	links.forEach((link) => {
 		if (link.href.includes('fonts.googleapis.com') || link.href.includes('fonts.gstatic.com')) {
 			link.remove()
@@ -408,68 +398,104 @@ const resetAllFonts = async () => {
 const handleFontsListeners = () => {
 	// Keep this function to maintain compatibility with settingsManager.js
 
-	const container = $settings.querySelector('#fontChangerPopover')
+	// const container = $settings.querySelector('#fontChangerPopover')
+	const container = q('#fontChangerPopover', $settings)
 	if (!container) return
 
+	const el = (selector) => q(`#${selector}`, container)
+
 	// Cache selectors for better performance
-	const selectors = {
-		selectFontFamily: $settings.querySelector('#fontFamily'),
-		inputFontSize: $settings.querySelector('#fontSize'),
-		inputLineHeight: $settings.querySelector('#lineHeight'),
-		inputLetterSpacing: $settings.querySelector('#letterSpacing'),
-		btnResetFont: $settings.querySelector('#resetFont'),
+	const elements = {
+		selectFontFamily: el(SELECTORS.FONT.FAMILY_ID),
+		inputFontSize: el(SELECTORS.FONT.SIZE_ID),
+		inputLineHeight: el(SELECTORS.FONT.LINE_HEIGHT_ID),
+		inputLetterSpacing: el(SELECTORS.FONT.LETTER_SPACING_ID),
+		btnResetFont: el(SELECTORS.FONT.RESET_BTN_ID),
 	}
 
-	// Add event listeners using the cached selectors
-	if (selectors.selectFontFamily) {
-		selectors.selectFontFamily.addEventListener('change', changeFontFamily)
-	}
+	const bind = (element, events) =>
+		element && Object.entries(events).forEach(([event, handler]) => element.addEventListener(event, handler))
 
-	if (selectors.inputFontSize) {
-		selectors.inputFontSize.addEventListener('focus', (e) => {
-			focusValues.fontSize = e.target.value
-		})
-		selectors.inputFontSize.addEventListener('blur', changeFontSize)
-		selectors.inputFontSize.addEventListener('keypress', (e) => {
-			if (e.key === 'Enter') {
-				e.preventDefault()
-				changeFontSize(e)
-				e.target.blur()
-			}
-		})
-	}
+	const handleEnter = (fn) => (e) => e.key === 'Enter' && (e.preventDefault(), fn(e), e.target.blur())
+	const setFocusValue = (key) => (e) => (focusValues[key] = e.target.value)
 
-	if (selectors.inputLineHeight) {
-		selectors.inputLineHeight.addEventListener('focus', (e) => {
-			focusValues.lineHeight = e.target.value
-		})
-		selectors.inputLineHeight.addEventListener('blur', changeLineHeight)
-		selectors.inputLineHeight.addEventListener('keypress', (e) => {
-			if (e.key === 'Enter') {
-				e.preventDefault()
-				changeLineHeight(e)
-				e.target.blur()
-			}
-		})
-	}
+	// Event bindings
+	bind(elements.selectFontFamily, {
+		change: changeFontFamily,
+	})
 
-	if (selectors.inputLetterSpacing) {
-		selectors.inputLetterSpacing.addEventListener('focus', (e) => {
-			focusValues.letterSpacing = e.target.value
-		})
-		selectors.inputLetterSpacing.addEventListener('blur', changeLetterSpacing)
-		selectors.inputLetterSpacing.addEventListener('keypress', (e) => {
-			if (e.key === 'Enter') {
-				e.preventDefault()
-				changeLetterSpacing(e)
-				e.target.blur()
-			}
-		})
-	}
+	bind(elements.inputFontSize, {
+		focus: setFocusValue('fontSize'),
+		blur: changeFontSize,
+		keypress: handleEnter(changeFontSize),
+	})
 
-	if (selectors.btnResetFont) {
-		selectors.btnResetFont.addEventListener('click', resetAllFonts)
-	}
+	bind(elements.inputLineHeight, {
+		focus: setFocusValue('lineHeight'),
+		blur: changeLineHeight,
+		keypress: handleEnter(changeLineHeight),
+	})
+
+	bind(elements.inputLetterSpacing, {
+		focus: setFocusValue('letterSpacing'),
+		blur: changeLetterSpacing,
+		keypress: handleEnter(changeLetterSpacing),
+	})
+
+	bind(elements.btnResetFont, {
+		click: resetAllFonts,
+	})
+
+	// // Add event listeners using the cached selectors
+	// if (elements.selectFontFamily) {
+	// 	elements.selectFontFamily.addEventListener('change', changeFontFamily)
+	// }
+
+	// if (elements.inputFontSize) {
+	// 	elements.inputFontSize.addEventListener('focus', (e) => {
+	// 		focusValues.fontSize = e.target.value
+	// 	})
+	// 	elements.inputFontSize.addEventListener('blur', changeFontSize)
+	// 	elements.inputFontSize.addEventListener('keypress', (e) => {
+	// 		if (e.key === 'Enter') {
+	// 			e.preventDefault()
+	// 			changeFontSize(e)
+	// 			e.target.blur()
+	// 		}
+	// 	})
+	// }
+
+	// if (elements.inputLineHeight) {
+	// 	elements.inputLineHeight.addEventListener('focus', (e) => {
+	// 		focusValues.lineHeight = e.target.value
+	// 	})
+	// 	elements.inputLineHeight.addEventListener('blur', changeLineHeight)
+	// 	elements.inputLineHeight.addEventListener('keypress', (e) => {
+	// 		if (e.key === 'Enter') {
+	// 			e.preventDefault()
+	// 			changeLineHeight(e)
+	// 			e.target.blur()
+	// 		}
+	// 	})
+	// }
+
+	// if (elements.inputLetterSpacing) {
+	// 	elements.inputLetterSpacing.addEventListener('focus', (e) => {
+	// 		focusValues.letterSpacing = e.target.value
+	// 	})
+	// 	elements.inputLetterSpacing.addEventListener('blur', changeLetterSpacing)
+	// 	elements.inputLetterSpacing.addEventListener('keypress', (e) => {
+	// 		if (e.key === 'Enter') {
+	// 			e.preventDefault()
+	// 			changeLetterSpacing(e)
+	// 			e.target.blur()
+	// 		}
+	// 	})
+	// }
+
+	// if (elements.btnResetFont) {
+	// 	elements.btnResetFont.addEventListener('click', resetAllFonts)
+	// }
 }
 
 // Load font values from storage
