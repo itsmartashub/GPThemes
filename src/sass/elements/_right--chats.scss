@@ -1,0 +1,279 @@
+.composer-parent[role='presentation'] {
+    container: main / inline-size;
+    --p-chat-bubble-multiply: 1.35;
+
+    /* Main Page chat-container  Bg */
+    background-color: var(--c-bg-chats-container) !important;
+
+    /* GTP logo in Dual Response chat bubbles */
+    .gizmo-bot-avatar {
+
+        &,
+        &>div.bg-token-main-surface-primary {
+            background-color: var(--c-accent) !important;
+        }
+
+        svg {
+            color: var(--c-on-accent) !important;
+        }
+    }
+
+    /* Product/items list in chat bubbles (when search something) */
+    .context-list {
+        box-shadow: 0 0 0 1px hsla(var(--accent-hsl) / 0.15);
+        background-color: var(--c-surface-2);
+        padding-inline: 0.5rem;
+        border-radius: var(--br-btn-big);
+        @include lift;
+    }
+}
+
+[data-testid^='conversation-turn-'] {
+    @include container('md') {
+        --p-chat-bubble: .8rem;
+        --br-chat-bubble: calc(var(--br) * 1.5);
+    }
+
+    @include container('sm') {
+
+        /* Wrapper of each chat-bubbles msg, decreise padding-inline. Spacing from chat bubbles to screen edge */
+        .text-base.my-auto.mx-auto[class*="[--thread-content-margin:"] {
+            --thread-content-margin: calc(var(--spacing)*2) !important;
+        }
+    }
+
+    /* _________ CANVAS in chat bubbles */
+    [id^="textdoc-message"] {
+        --bg-primary: var(--c-bg-cm) !important;
+        --main-surface-primary: var(--c-bg-cm) !important;
+        background-color: var(--c-bg-cm) !important;
+        will-change: border-color;
+        border: 2px solid hsla(var(--accent-hsl) / .12) !important;
+        transition: border-color .2s;
+
+        /* Gradient on the bottom of code */
+        .absolute.bottom-0.z-20.h-24.w-full.transition-colors {
+            background: linear-gradient(rgba(0, 0, 0, 0), var(--c-bg-cm)) !important;
+        }
+
+        &:hover {
+            border-color: hsla(var(--accent-hsl) / .3) !important;
+        }
+    }
+
+    /* Dual Responses (paragen) title */
+    [data-testid="paragen-feedback-title"] {
+        background: var(--c-bg-chats-container) !important;
+    }
+
+    /* Dual Responses */
+    [data-paragen-root="true"] {
+        background-color: var(--c-bg-msg-gpt) !important;
+    }
+
+    /* User and GPT chats footer */
+    [class*="mx-[var(--mini-thread-content-inset)]"]>.flex[class*="justify-"] {
+        // border: 2px solid red !important;
+
+        /* And User's and GPT's footer icons */
+        // [class*="group-hover/turn-messages:"]
+        &>[class*="has-data-[state=open]"] {
+            border-radius: 50vw;
+            /* 			background: hsla(var(--accent-hsl) / .12) !important;
+			border: 1px solid hsla(var(--accent-hsl) / .08) !important; */
+
+            button {
+                color: var(--c-accent) !important;
+
+                svg {
+                    color: currentColor !important;
+                }
+
+                &:is(:hover, :focus) {
+                    background-color: var(--c-accent) !important;
+                    color: var(--c-on-accent) !important;
+
+                    svg {
+                        color: currentColor !important;
+                    }
+                }
+            }
+        }
+
+        // /* Only user's footer icons */
+        &.justify-end {
+            &>[class*="has-data-[state=open]"] {
+                backdrop-filter: blur(10px);
+                background: hsla(var(--accent-hsl) / .12) !important;
+                border: 1px solid hsla(var(--accent-hsl) / .08) !important;
+            }
+        }
+
+        /* &.justify-start {
+			&>[class*="has-data-[state=open]"] {
+				max-width: max-content !important;
+				height: max-content !important;
+			}
+		} */
+
+        /* Only GPT's footer icons */
+        // &.justify-start {
+        // 	&>[class*="has-data-[state=open]"] {
+
+        // 		/* SOURCES btn */
+        // 		// button.group\/footnote:hover .text-token-text-secondary {
+        // 		// 	color: var(--c-on-accent) !important;
+        // 		// }
+        // 	}
+        // }
+    }
+
+    /* ================ USER CHAT ================ */
+    &[data-turn="user"] {
+
+        /* User chat bubble - Edit state.
+        There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario */
+        .rounded-3xl.bg-token-main-surface-tertiary:has(.max-h-\[25dvh\] > .grid > textarea) {
+            --main-surface-tertiary: hsla(var(--accent-hsl) / 0.08) !important;
+            border: 1px solid hsla(var(--accent-hsl) / 0.2);
+            caret-color: var(--c-accent);
+
+            .max-h-\[25dvh\] {
+                @extend %animFadeIn;
+
+                /* Make the text in edit textarea to be the full-width */
+                span.invisible,
+                textarea {
+                    line-height: calc(var(--lineHeight) / 16) !important;
+                    font-size: calc((var(--fontSize) / 16) * 1rem) !important;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    [data-message-author-role='user'] {
+
+        /* ↪️ Reply in msg */
+        &>.text-token-text-tertiary.mx-2.my-1.flex.items-start.justify-end.text-sm.font-normal {
+            background-color: hsla(var(--accent-hsl) / 0.2);
+            padding: 0.5rem;
+            color: var(--c-accent);
+            border-radius: calc(var(--br) * 1.35);
+            border-left: 0.35rem solid var(--c-accent);
+
+            svg {
+                border-radius: 50vw;
+                background-color: hsla(var(--accent-hsl) / 0.2);
+            }
+        }
+    }
+
+
+    /* ================ GPT CHAT ================ */
+    .agent-turn {
+
+        /* REASONING: "Reasoned about [topic] for [X] seconds" title */
+        .relative.my-1.min-h-6 {
+
+            /* REASONING: "Reasoned about [topic] for [X] seconds" content */
+            .relative.z-0 {
+                .origin-left.start-0.end-0.top-0 {
+                    ._markdown_1frq2_10.text-sm.markdown.prose.break-words {
+                        font-size: calc(calc((var(--fontSize) / 16) * 1rem) * 0.9) !important;
+                        line-height: calc(calc(var(--lineHeight) / 16) * 0.85) !important;
+                    }
+                }
+            }
+        }
+
+        /* "SOURCES" button, style for footer icons affects this too!! */
+        button.group\/footnote.bg-token-bg-primary.w-fit.rounded-3xl {
+            --bg-primary: hsla(var(--accent-hsl) / 0.1) !important;
+            text-transform: uppercase;
+
+            &:is(:hover, :focus) {
+                background-color: var(--c-accent) !important;
+
+                .text-token-text-secondary {
+                    // color: var(--c-accent) !important;
+                    color: var(--c-on-accent) !important;
+                }
+            }
+        }
+
+        /* Source link big cards with image and text that overlaps rigth the chat bubble */
+        [data-message-author-role="assistant"] .w-50.shrink-0.snap-start[class*="@5xl/thread:w-61"] {
+
+            .h-full.w-full.bg-clip-padding.bg-token-bg-primary.cursor-pointer.overflow-hidden {
+                background-color: hsla(var(--accent-hsl) / .08) !important;
+                backdrop-filter: blur(0.25rem);
+                border-color: hsla(var(--accent-hsl) / .1) !important;
+                transition: translate 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+
+                &:hover {
+                    translate: 0 -2px;
+                }
+            }
+        }
+
+        /* Link cards listed from sources listed when using "Search" */
+        a[class*="group/nav-list"] {
+            background-color: hsla(var(--accent-hsl) / 0.1) !important;
+            border-color: hsla(var(--accent-hsl) / 0.1) !important;
+            border-radius: var(--br);
+            transition: translate 0.25s $easeInOutSine;
+
+            .text-token-text-primary.decoration-token-link.line-clamp-5 {
+                transition: color 0.18s ease-in-out;
+            }
+
+            &:is(:hover, :focus) {
+                translate: 0 -0.1rem;
+
+                .text-token-text-primary.decoration-token-link.line-clamp-5 {
+                    color: var(--c-accent) !important;
+                }
+            }
+        }
+
+        /* DeepSearch: strange border */
+        [class*="@container"].border-token-border-sharp.mx-\[-16px\].contain-inline-size {
+            border: none !important;
+
+            [data-message-author-role="assistant"] {
+                border-radius: calc(var(--br-chat-bubble) * 0.7);
+                padding: 0.7rem 3%;
+                box-shadow: 0 0 0 1px hsla(var(--accent-hsl) / .12) !important;
+                background-image: var(--c-bg-gradient);
+            }
+        }
+
+
+        /* DALLE Image hover buttons - 👍👎 */
+        .group\/dalle-image {
+            @include imgTrans;
+
+            .group-hover\/dalle-image\:visible.absolute {
+                button {
+                    background-color: var(--c-on-accent) !important;
+                    color: var(--c-accent) !important;
+                    opacity: .8;
+
+                    svg {
+                        color: currentColor !important;
+                        transition: none !important;
+                    }
+
+                    &:hover {
+                        opacity: 1 !important;
+                        background-color: var(--c-accent) !important;
+                        color: var(--c-on-accent) !important;
+                    }
+                }
+            }
+        }
+
+
+    }
+}

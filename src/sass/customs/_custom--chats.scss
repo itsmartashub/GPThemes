@@ -1,15 +1,22 @@
 /* Chats msgs: <article> */
 [data-testid^='conversation-turn-'] {
 
-    /* ! ========== GPT msg width ========== */
-    /* Right chat content parent
-    /* Necu da stavim direkt na chat bubble jer nece biti dobro kad imamo double response prikazan */
-    // .mx-auto.flex.flex-1.text-base[class*="md:max-w-3xl"] {
-    /* New selector: 2025-04-10 */
+
+    /* ! ========== CUSTOM FONT SIZE AND LINE HEIGHT ========== */
+    //  Custom Font-Size and Line Height for chats and markdown code snippets
+    div[data-message-author-role],
+    .prose {
+        line-height: calc(var(--lineHeight) / 16) !important;
+        font-size: calc((var(--fontSize) / 16) * 1rem) !important;
+    }
+
+    /* ! ========== CUSTOM WIDTH ========== */
+    // Necu da stavim direkt na chat bubble jer nece biti dobro kad imamo double response prikazan. A i USER parent isto mora da menja width da bi user poruka bila u ravni sa GPT bubble-om
+    // New selector: 2025-04-10
+    /* ! ========== GPT msg width (and USER's wrapper) ========== */
     .group\/turn-messages[class*="max-w-(--thread-content-max-width)"] {
         will-change: width, max-width;
         max-width: var(--w_chat_gpt) !important;
-        // @include dev_high(red);
 
         @include container('md') {
             --w_chat_gpt: 100%;
@@ -18,15 +25,26 @@
     }
 
     /* ! ========== USER msg width ========== */
-    &:has([data-message-author-role='user']) {
-
-        /* New selector: 2025-04-10 */
-        // .bg-token-message-surface[class*="max-w-[var(--user-chat-width,70%)]"] {
-        .user-message-bubble-color {
-            // width: var(--max_w_chat_user) !important;
-            // max-width: var(--w_chat_user) !important;
-            width: var(--w_chat_user, auto) !important;
-            max-width: var(--max_w_chat_user, var(--user-chat-width)) !important;
-        }
+    // New selector: 2025-04-10
+    .user-message-bubble-color {
+        width: var(--w_chat_user, auto) !important;
+        max-width: var(--max_w_chat_user, var(--user-chat-width)) !important;
     }
+}
+
+/* ! ========== CUSTOM TOGGLE BUBBLES ========== */
+// Out of conversation scope, because on width <1000px for Canvas there is user message in <dialog> element, there's no conversation-turn
+// NEW SELECTOR: 2025-04-10 - User message - max-w-[var(--user-chat-width,70%)]
+.user-message-bubble-color {
+    background-color: var(--toggleBgUser);
+    padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply));
+    border-radius: var(--br-chat-bubble) !important;
+    @include dev_high(#7fe37f7d);
+}
+
+.agent-turn {
+    background-color: var(--toggleBgGpt);
+    padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply));
+    border-radius: var(--br-chat-bubble) !important;
+    @include dev_high(#f28b8b70);
 }

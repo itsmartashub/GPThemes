@@ -9,7 +9,7 @@
 @import 'abstract/_extends';
 
 
-// @import 'dev/_mixins'; // TODO: REMOVE THIS FOR PRODUCTION!
+@import 'dev/_mixins'; // TODO: REMOVE THIS FOR PRODUCTION!
 
 @import 'global/_base';
 @import 'global/_scrollbars';
@@ -40,7 +40,8 @@
 @import 'elements/_modal';
 @import 'elements/_radix-dialogs';
 @import 'elements/_library';
-@import 'elements/_right--main';
+// @import 'elements/_right--main';
+@import 'elements/_right--chats';
 @import 'elements/_source-pill-links';
 @import 'elements/_canvas';
 @import 'elements/_right--new-chat';
