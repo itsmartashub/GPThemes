@@ -45,7 +45,7 @@
 			}
 		}
 
-		.border-token-border-default:not([role='separator']),
+		.border-token-border-default:not([role='separator'], [data-testid*="-pricing-modal-column"]),
 		.border-white,
 		.border-black {
 			border-color: transparent !important;
@@ -372,10 +372,14 @@
 
 		/* Free and Plus plans cards */
 		[data-testid*="-pricing-modal-column"] {
-			margin: 0.3rem !important;
-			box-shadow: var(--box-shadow);
-			background-color: hsla(var(--accent-hsl) / 0.1) !important;
-			border: 1px solid hsla(var(--accent-hsl) / 0.1) !important;
+			// box-shadow: var(--box-shadow);
+			// border-color: hsla(var(--accent-hsl) / 0.15) !important; // not working...
+			background-image: linear-gradient(135deg,
+					hsla(var(--accent-hsl) / 0.2) 0%,
+					hsla(var(--accent-hsl) / 0.03) 40%,
+					hsla(var(--accent-hsl) / 0.03) 60%,
+					hsla(var(--accent-hsl) / 0.2) 100%);
+
 
 			/* Ugly bg behind text in Plans */
 			.bg-token-main-surface-primary {
@@ -385,12 +389,10 @@
 		}
 
 		/* Only PLUS plan card */
-		[data-testid*="plus-pricing-modal-column"] {
-			border: 1px solid hsla(var(--accent-hsl) / 0.3) !important;
+		[data-testid="plus-pricing-modal-column"] {
+			background-color: hsla(var(--accent-hsl) / 0.12) !important;
+			border-color: hsla(var(--accent-hsl) / 0.25) !important;
 
-			.border-green-600 {
-				border-color: var(--c-accent) !important;
-			}
 		}
 
 		/* See "ChatGPT Enterprise" */

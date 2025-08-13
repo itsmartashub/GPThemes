@@ -10,6 +10,11 @@
 	// background-color: red !important;
 }
 
+[class*="bg-[#DCDBFF]"] {
+	background-color: hsla(var(--accent-hsl) / .15) !important;
+	color: var(--c-accent) !important;
+}
+
 // .dark\:bg-white {
 // 	background-color: var(--c-accent);
 // }
