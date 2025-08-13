@@ -74,7 +74,7 @@
     /* User and GPT chats footer */
     [class*="group/turn-messages"]>.flex[class*="justify-"] {
 
-        /* And User's and GPT's footer icons */
+        /* And User's and GPT's footer icons/btns wrapper */
         [class*="touch:-me-2 touch:-ms-3.5 -ms-2.5 -me-1"] {
 
             /* .group\/footnote is 'SOURCES' */
@@ -85,7 +85,6 @@
                 svg {
                     color: currentColor !important;
                 }
-
 
                 &:is(:hover, :focus) {
                     scale: 1.12 !important;

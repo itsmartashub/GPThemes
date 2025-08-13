@@ -159,25 +159,6 @@ form {
 					color: var(--c-on-accent) !important;
 				}
 			}
-
-
-			/* 🖼️ "Attach Files" - attached file wrapper */
-			.no-scrollbar[data-fullbleed].-ms-1\.5.flex-nowrap {
-
-				/* Attached file */
-				.bg-primary.border-token-border-default {
-					background-color: hsla(var(--accent-hsl) / 0.12) !important;
-
-					/* 🖼️ "Attach Files" - attached image button */
-					button[type='button'][aria-haspopup='dialog'] {
-
-						/* "Attach Files" attached image */
-						span.bg-cover {
-							border-radius: 10px !important;
-						}
-					}
-				}
-			}
 		}
 
 		/* Menu when type "/" in prompt field, and when type `@` */
@@ -213,36 +194,28 @@ form {
 	}
 
 
-	/* Autocomplete suggestions - Element when clicked example cards below prompt textarea: "Create image", "Summarize text", "Analyze data", "Analyze images", and more...
-	
-	- &+.absolute.start-0.lg\:top-full.bg-token-main-surface-primary:has(ul) - selector introduced when #composer-background selector is removed
-	- .group .absolute.start-0.bg-token-main-surface-primary:has(ul) - selector when #composer-background selector is present */
-	&+.absolute.start-0.top-full.bg-token-bg-primary:has(ul) {
-		// background-color: var(--c-bg-chats-container);
-		margin-top: 0.2rem;
-		padding: 0 !important;
-		border-radius: var(--br-btn-big);
-		background-color: hsla(var(--accent-hsl) / 0.08) !important;
-		backdrop-filter: blur(20px);
+	/* Autocomplete suggestions - Element when clicked example cards below prompt textarea: "Create image", "Summarize text", "Analyze data", "Analyze images", and more... */
+	&+.absolute.start-0.top-full {
+		ul {
 
-		/* List of examples when clicked some of the cards below prompt field: "Summarize notes from a meeting", "Summarize my lease agreemen", etc */
-		ul>li>button {
-			background: transparent !important;
+			li {
+				transition: translate 0.25s linear, opacity 0.25s linear;
 
-			/* "Summarize" or "Analyze" etc */
-			span.text-token-text-tertiary {
-				--text-tertiary: var(--c-accent) !important;
+				button {
+					background: transparent !important;
+				}
 			}
 
-			/* The rest of the sentence after the word "Summarize", "Analyze" etc */
-			span.text-token-text-primary {
-				font-weight: 500;
-			}
+			&:hover {
+				li {
+					&:not(:hover) {
+						opacity: 0.4 !important;
+					}
 
-			/* autocomplete suggestion on hover/select by keyboard arrows */
-			&.bg-token-main-surface-secondary {
-				background-color: hsla(var(--accent-hsl) / 0.12) !important;
-				transform: translateY(-2px);
+					&:hover {
+						translate: 4px 0;
+					}
+				}
 			}
 		}
 	}
