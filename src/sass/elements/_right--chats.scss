@@ -173,7 +173,20 @@
     /* ================ GPT CHAT ================ */
     .agent-turn {
 
-        /* REASONING: "Reasoned about [topic] for [X] seconds" title */
+        /* TODO: CHECK THIS AND ALL REASONING VERSIONS... */
+        /* REASONING: "Reasoned about [topic] for [X] seconds" title: Version with sidebar right open */
+        .relative.bg-clip-padding.bg-token-bg-primary[class*="pt-[13px]"][class*="@max-3xl:-top-2"] {
+            background-color: transparent !important;
+            border-radius: 50vw !important;
+            transition: scale 0.25s $easeInOutSine, background-color 0.25s $easeInOutSine;
+
+            &:hover {
+                background-color: hsla(var(--accent-hsl) / .1) !important;
+                scale: 0.98 !important;
+            }
+        }
+
+        /* REASONING: "Reasoned about [topic] for [X] seconds" title: Version that toggle its content below */
         .relative.my-1.min-h-6 {
 
             /* REASONING: "Reasoned about [topic] for [X] seconds" content */
