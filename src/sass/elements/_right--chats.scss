@@ -72,24 +72,23 @@
     }
 
     /* User and GPT chats footer */
-    [class*="mx-[var(--mini-thread-content-inset)]"]>.flex[class*="justify-"] {
-        // border: 2px solid red !important;
+    [class*="group/turn-messages"]>.flex[class*="justify-"] {
 
         /* And User's and GPT's footer icons */
-        // [class*="group-hover/turn-messages:"]
-        &>[class*="has-data-[state=open]"] {
-            border-radius: 50vw;
-            /* 			background: hsla(var(--accent-hsl) / .12) !important;
-			border: 1px solid hsla(var(--accent-hsl) / .08) !important; */
+        [class*="touch:-me-2 touch:-ms-3.5 -ms-2.5 -me-1"] {
 
-            button {
+            /* .group\/footnote is 'SOURCES' */
+            button[aria-label]:not(.group\/footnote) {
                 color: var(--c-accent) !important;
+                transition: all 0.2s ease-in-out;
 
                 svg {
                     color: currentColor !important;
                 }
 
+
                 &:is(:hover, :focus) {
+                    scale: 1.12 !important;
                     background-color: var(--c-accent) !important;
                     color: var(--c-on-accent) !important;
 
@@ -100,32 +99,16 @@
             }
         }
 
-        // /* Only user's footer icons */
+        /* Only user's footer icons */
         &.justify-end {
-            &>[class*="has-data-[state=open]"] {
+
+            [class*="touch:-me-2 touch:-ms-3.5 -ms-2.5 -me-1"] {
+                border-radius: 50vw;
                 backdrop-filter: blur(10px);
                 background: hsla(var(--accent-hsl) / .12) !important;
                 border: 1px solid hsla(var(--accent-hsl) / .08) !important;
             }
         }
-
-        /* &.justify-start {
-			&>[class*="has-data-[state=open]"] {
-				max-width: max-content !important;
-				height: max-content !important;
-			}
-		} */
-
-        /* Only GPT's footer icons */
-        // &.justify-start {
-        // 	&>[class*="has-data-[state=open]"] {
-
-        // 		/* SOURCES btn */
-        // 		// button.group\/footnote:hover .text-token-text-secondary {
-        // 		// 	color: var(--c-on-accent) !important;
-        // 		// }
-        // 	}
-        // }
     }
 
     /* ================ USER CHAT ================ */
