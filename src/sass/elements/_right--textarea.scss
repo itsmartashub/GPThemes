@@ -11,7 +11,6 @@ form {
 			background: var(--c-bg-textarea) !important;
 			caret-color: var(--c-accent);
 			box-shadow: inset 0 0 1px 1px hsla(var(--accent-hsl) / 0.08) !important;
-			// box-shadow: 0 0 transparent, 0 0 transparent, 0 12px 48px hsla(var(--accent-hsl) / 0.08);
 			border: none !important;
 			backdrop-filter: blur(18px);
 
@@ -162,34 +161,8 @@ form {
 		}
 
 		/* Menu when type "/" in prompt field, and when type `@` */
-		// .popover[class*="radix-side"][class*="dark:bg-[#353535]"] {
 		.popover {
 			@include menuBg;
-
-			/* Search field when typed `@` */
-			input[placeholder] {
-				border-radius: var(--br-btn);
-				background-color: transparent !important;
-				box-shadow: 0 0 0 1px hsla(var(--accent-hsl) / 0.1);
-				margin-bottom: 0.5rem;
-
-				/* List of GPTs wrapper */
-				&~.max-h-40.overflow-y-auto {
-
-					/* List of GPTs - item */
-					.group.h-10 {
-
-						/* Active item */
-						&.bg-token-main-surface-secondary {
-							background-color: hsla(var(--accent-hsl) / 0.18) !important;
-						}
-
-						&:hover {
-							background-color: hsla(var(--accent-hsl) / 0.1) !important;
-						}
-					}
-				}
-			}
 		}
 	}
 
@@ -213,7 +186,9 @@ form {
 					}
 
 					&:hover {
-						translate: 4px 0;
+						// translate: 4px 0;
+						// translate: 0 3px;
+						translate: 0 -2px;
 					}
 				}
 			}
