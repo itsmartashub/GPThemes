@@ -46,5 +46,6 @@
     background-color: var(--toggleBgGpt);
     padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply));
     border-radius: var(--br-chat-bubble) !important;
+    margin-top: 0.4rem;
     // @include dev_high(#f28b8b70);
 }
