@@ -22,8 +22,9 @@ function generateHTML() {
 		${renderToggle({
 			id: SELECTORS?.CHATBOX?.TOGGLE_MAX_HEIGHT_ID,
 			checked: false,
-			label: 'Taller Chatbox',
-			subtitle: 'Increase the height of the message box to fit more content',
+			label: 'Expand Chatbox',
+			subtitle:
+				'Increase the height of the message box to fit more content. Warning: Always disabled on "Library" and  "New chat" initial page!',
 			icon: icon_taller_height,
 			card: true,
 			className: '',
@@ -31,23 +32,32 @@ function generateHTML() {
 	`
 }
 
-function setupListeners() {
-	const $toggleHeight = q(`#${SELECTORS.CHATBOX.TOGGLE_MAX_HEIGHT_ID}`)
+async function setupListeners() {
+	const input = q(`#${SELECTORS.CHATBOX.TOGGLE_MAX_HEIGHT_ID}`)
+	if (!input) return
 
-	// Silently skip if toggle is not yet rendered; caller can re-run later
-	if (!$toggleHeight) return
+	// Sync with saved state
+	const state = await loadState()
+	input.checked = !!state
 
-	// Sync UI with stored state when toggle becomes available
-	loadState().then((state) => {
-		$toggleHeight.checked = !!state
-	})
+	input.addEventListener('change', async (event) => {
+		const target = event.target
+		const chatbox = q(SELECTORS.CHATBOX.HEIGHT)
 
-	$toggleHeight.addEventListener('change', (e) => {
-		const isChecked = e.target.checked
+		if (!chatbox) {
+			Notify.error('Chatbox not found on this page.')
+			// Revert the toggle so UI stays truthful
+			target.checked = !target.checked
+			return
+		}
 
-		if (isChecked) enableCustomHeight()
-		else disableCustomHeight()
-		saveState(isChecked)
+		if (target.checked) {
+			enableCustomHeight()
+		} else {
+			disableCustomHeight()
+		}
+
+		saveState(target.checked)
 	})
 }
 
