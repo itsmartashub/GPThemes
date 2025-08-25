@@ -5,6 +5,7 @@ import { init as initFonts } from './app/mainFonts'
 import { init as initWidths } from './app/mainWidths'
 // import { init as initScrolldown } from './app/scrolldown'
 import { init as initToggleChatsBg } from './app/toggleChatsBg'
+import { init as initCustomChatboxHeight } from './app/customChatbox'
 
 // Configuration
 const CONFIG = {
@@ -29,6 +30,7 @@ function initExtension() {
 		initWidths()
 		// initScrolldown()
 		initToggleChatsBg()
+		initCustomChatboxHeight()
 	} catch (error) {
 		console.error('[🎨GPThemes]: Critical initialization error:', error)
 		return false

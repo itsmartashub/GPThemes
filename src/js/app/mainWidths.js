@@ -5,8 +5,9 @@ import { renderToggle } from './components/renderToggles'
 import { icon_full_width, icon_sync } from './components/icons'
 import { renderButton } from './components/renderButtons'
 import { renderSeparator } from './components/renderUtils'
-import { renderCustomScrollDown, init as initScrolldown } from './scrolldown'
+import { renderCustomScrollDown } from './scrolldown'
 import { renderChatBubbles } from './toggleChatsBg'
+import { renderCustomChatboxHeight, handleCustomChatboxListeners } from './customChatbox'
 import { q } from '../utils/dom.js'
 import { setCssVars } from '../utils/setCssVar'
 
@@ -113,6 +114,8 @@ function renderWidthsTab() {
 				className: 'btn-primary',
 			})}
 		</div>
+		${renderSeparator}
+		${renderCustomChatboxHeight()}
 		${renderSeparator}
 		${renderChatBubbles()}
 		${renderSeparator}
@@ -335,6 +338,8 @@ function handleWidthsListeners() {
 
 	// Reset button
 	addListener(q(`#${SELECTORS.WIDTH.RESET_BTN_ID}`), 'click', resetWidths)
+
+	handleCustomChatboxListeners()
 }
 
 // ==========================================
