@@ -17,3 +17,15 @@
         // }
     }
 }
+
+$chatbox-height-selector: '#thread-bottom-container:not([class*="@lg/thread:grow"]) form[data-type="unified-composer"] .contain-inline-size.overflow-clip[class*=\'bg-[\\#303030]\'] [class*="_prosemirror-parent"][class*="max-h-52"]';
+
+#{$chatbox-height-selector} {
+    transition: max-height 0.25s $easeInOutQuint;
+}
+
+html.gpth-chatbox--custom-height {
+    #{$chatbox-height-selector} {
+        max-height: var(--gpthChatboxHeight) !important;
+    }
+}

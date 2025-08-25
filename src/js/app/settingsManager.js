@@ -3,6 +3,7 @@ import { renderColorsTab, resetAllAccents, init as initColors } from './mainColo
 import { renderFontsTab, handleFontsListeners, init as initFonts } from './mainFonts.js'
 import { renderWidthsTab, handleWidthsListeners, init as initWidths } from './mainWidths.js'
 import { handleScrolldownListeners, init as initScrolldown } from './scrolldown.js'
+// import { handleCustomChatboxListeners } from './customChatbox.js'
 
 // Elements cache
 let $settings = null
@@ -71,6 +72,7 @@ function addListeners() {
 	handleFontsListeners()
 	handleWidthsListeners()
 	handleScrolldownListeners()
+	// handleCustomChatboxListeners()
 
 	$resetAllAccentsBtn?.addEventListener('click', resetAllAccents)
 }

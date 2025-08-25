@@ -1,6 +1,7 @@
 import browser from 'webextension-polyfill'
 
 export const PFX = 'gpth'
+const chatboxRoot = "form[data-type='unified-composer'] .contain-inline-size[class*='bg-[\\#303030]'"
 
 export const EXT_CURRENT_VERSION = browser.runtime.getManifest().version
 export const CHANGELOG_URL = `https://github.com/itsmartashub/GPThemes/releases/tag/v${EXT_CURRENT_VERSION}`
@@ -90,5 +91,13 @@ export const SELECTORS = {
 	CHATS: {
 		USER: 'user-message-bubble-color',
 		GPT: `agent-turn`,
+	},
+
+	// Chatbox
+	CHATBOX: {
+		ROOT: chatboxRoot,
+		TEMP: `${chatboxRoot}.dark\:bg-\[\#303030\].dark `,
+		HEIGHT: `form[data-type="unified-composer"] .contain-inline-size.overflow-clip[class*='bg-[\\#303030]'] [class*="_prosemirror-parent"][class*="max-h-52"]`,
+		TOGGLE_MAX_HEIGHT_ID: 'toggle-chatbox-max-height',
 	},
 }
