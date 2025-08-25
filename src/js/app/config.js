@@ -97,7 +97,7 @@ export const SELECTORS = {
 	CHATBOX: {
 		ROOT: chatboxRoot,
 		TEMP: `${chatboxRoot}.dark\:bg-\[\#303030\].dark `,
-		HEIGHT: `form[data-type="unified-composer"] .contain-inline-size.overflow-clip[class*='bg-[\\#303030]'] [class*="_prosemirror-parent"][class*="max-h-52"]`,
+		HEIGHT: `#thread-bottom-container:not([class*="@lg/thread:grow"]) form[data-type="unified-composer"] .contain-inline-size.overflow-clip[class*='bg-[\\#303030]'] [class*="_prosemirror-parent"][class*="max-h-52"]`,
 		TOGGLE_MAX_HEIGHT_ID: 'toggle-chatbox-max-height',
 	},
 }

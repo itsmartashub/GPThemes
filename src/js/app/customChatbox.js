@@ -1,6 +1,7 @@
 import browser from 'webextension-polyfill'
 
 import { SELECTORS } from './config'
+import { icon_taller_height } from './components/icons'
 import { q } from '../utils/dom'
 import { renderToggle } from './components/renderToggles'
 import { Notify } from './components/renderNotify'
@@ -17,13 +18,13 @@ function disableCustomHeight() {
 
 function generateHTML() {
 	return `
+		<h4 class="${SELECTORS.SUBHEADING}">Other</h4>
 		${renderToggle({
 			id: SELECTORS?.CHATBOX?.TOGGLE_MAX_HEIGHT_ID,
 			checked: false,
-			label: 'Increase Chatbox Height',
+			label: 'Taller Chatbox',
 			subtitle: 'Increase the height of the message box to fit more content',
-			// icon: icon_full_width,
-			icon: '',
+			icon: icon_taller_height,
 			card: true,
 			className: '',
 		})}
