@@ -96,9 +96,11 @@ export const SELECTORS = {
 	},
 
 	HIDE: {
+		CONTAINER_ID: `${PFX}-hide-toggles`,
 		HEADER: {
 			TOGGLE_ID: `${PFX}-hide-header`,
 			SELECTOR: `header#page-header`,
+			// SELECTOR: `#page-header, .h-header-height.top-0`,
 		},
 		FOOTER: {
 			TOGGLE_ID: `${PFX}-hide-footer`,

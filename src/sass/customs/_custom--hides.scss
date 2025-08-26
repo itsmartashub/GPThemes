@@ -1,0 +1,12 @@
+/* Header on: New chat layout, on chats layout, on mobile too, but not on GPTs where pill tags are */
+// .h-header-height.top-0,
+header#page-header {
+    display: var(--gpthHideHeader, flex) !important;
+}
+
+
+/* Footer */
+div#thread-bottom-container>div:last-of-type>div,
+span.text-sm.leading-none {
+    display: var(--gpthHideFooter, flex) !important;
+}
