@@ -9,6 +9,7 @@ import { renderSeparator } from './components/renderUtils'
 import { renderCustomScrollDown } from './scrolldown'
 import { renderChatBubbles } from './toggleChatsBg'
 import { renderCustomChatboxHeight, handleCustomChatboxListeners } from './customChatbox'
+import { renderCustomHides, handleCustomHidesListeners } from './custom-hide'
 import { q } from '../utils/dom.js'
 import { setCssVars } from '../utils/setCssVar'
 
@@ -115,6 +116,9 @@ function renderWidthsTab() {
 				className: 'btn-primary',
 			})}
 		</div>
+
+		${renderSeparator}
+		${renderCustomHides()}
 		${renderSeparator}
 		${renderCustomChatboxHeight()}
 		${renderSeparator}
@@ -340,6 +344,7 @@ function handleWidthsListeners() {
 	// Reset button
 	addListener(q(`#${SELECTORS.WIDTH.RESET_BTN_ID}`), 'click', resetWidths)
 
+	handleCustomHidesListeners()
 	handleCustomChatboxListeners()
 }
 
