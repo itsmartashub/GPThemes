@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill'
 import { renderToggle } from '../../js/app/components/renderToggles'
-import { FLOATING_BTN_VISIBLE_KEY } from '../../js/app/config'
+import { FLOATING_BTN_VISIBLE_KEY } from '../../js/app/config/constants'
 
 const CONFIG = {
 	toggleId: 'toggle-floating-btn-visibility',

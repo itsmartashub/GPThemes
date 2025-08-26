@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill'
 
-import { SELECTORS } from './config'
+import { SELECTORS } from './config/selectors'
 import { icon_taller_height } from './components/icons'
 import { q } from '../utils/dom'
 import { renderToggle } from './components/renderToggles'

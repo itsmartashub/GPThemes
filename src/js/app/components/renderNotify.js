@@ -1,5 +1,5 @@
 // notification.js
-import { SELECTORS } from '../config'
+import { SELECTORS } from '../config/selectors'
 import { q } from '../../utils/dom'
 
 const NOTIFICATION_TYPES = {

@@ -1,11 +1,11 @@
 // Use a cross-browser storage API:
 import browser from 'webextension-polyfill'
 import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './components/icons.js'
-import { SELECTORS } from './config.js'
+import { SELECTORS } from './config/selectors'
 import { q } from '../utils/dom.js'
 import { handleChangeTheme } from './themeManager.js'
 import { createSettings, closeSettings } from './settingsManager.js'
-import { FLOATING_BTN_VISIBLE_KEY } from './config'
+import { FLOATING_BTN_VISIBLE_KEY } from './config/constants.js'
 import { setupExtensionMessaging } from './messaging'
 
 /* import { init as initThemes } from './themeManager'
