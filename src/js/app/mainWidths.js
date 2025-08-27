@@ -1,5 +1,6 @@
 import browser from 'webextension-polyfill'
-import { SELECTORS, PFX } from './config.js'
+import { SELECTORS } from './config/selectors'
+import { PFX } from './config/constants.js'
 import { renderSliderCard } from './components/renderSlider'
 import { renderToggle } from './components/renderToggles'
 import { icon_full_width, icon_sync } from './components/icons'
@@ -8,6 +9,7 @@ import { renderSeparator } from './components/renderUtils'
 import { renderCustomScrollDown } from './scrolldown'
 import { renderChatBubbles } from './toggleChatsBg'
 import { renderCustomChatboxHeight, handleCustomChatboxListeners } from './customChatbox'
+import { renderCustomHides, handleCustomHidesListeners } from './custom-hide'
 import { q } from '../utils/dom.js'
 import { setCssVars } from '../utils/setCssVar'
 
@@ -114,6 +116,9 @@ function renderWidthsTab() {
 				className: 'btn-primary',
 			})}
 		</div>
+
+		${renderSeparator}
+		${renderCustomHides()}
 		${renderSeparator}
 		${renderCustomChatboxHeight()}
 		${renderSeparator}
@@ -339,6 +344,7 @@ function handleWidthsListeners() {
 	// Reset button
 	addListener(q(`#${SELECTORS.WIDTH.RESET_BTN_ID}`), 'click', resetWidths)
 
+	handleCustomHidesListeners()
 	handleCustomChatboxListeners()
 }
 

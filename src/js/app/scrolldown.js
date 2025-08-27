@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { SELECTORS } from './config.js'
+import { SELECTORS } from './config/selectors'
 import { q, qq } from '../utils/dom.js'
 
 import { icon_align_left, icon_align_center, icon_align_right } from './components/icons'

@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { SELECTORS } from './config.js'
+import { SELECTORS } from './config/selectors'
 import { q } from '../utils/dom.js'
 import { closeSettings, $settings } from './settingsManager.js'
 import { hexToHSL } from '../utils/hexToHSL.js'

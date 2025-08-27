@@ -1,4 +1,5 @@
-import { SELECTORS, PFX } from './config.js'
+import { SELECTORS } from './config/selectors'
+import { PFX } from './config/constants.js'
 import { renderColorsTab, resetAllAccents, init as initColors } from './mainColors.js'
 import { renderFontsTab, handleFontsListeners, init as initFonts } from './mainFonts.js'
 import { renderWidthsTab, handleWidthsListeners, init as initWidths } from './mainWidths.js'

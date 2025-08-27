@@ -1,13 +1,15 @@
+import { EXT_REPO_URL } from '../../js/app/config/constants'
+
 const links = {
 	issue: (issueNumber) =>
-		`<a href="https://github.com/itsmartashub/GPThemes/issues/${issueNumber}" 
+		`<a href="${EXT_REPO_URL}/issues/${issueNumber}" 
         target="_blank" 
         rel="noopener noreferrer" 
         class="changelog__issue-link">
         #${issueNumber}
       </a>`,
 	pr: (prNumber) =>
-		`<a href="https://github.com/itsmartashub/GPThemes/pull/${prNumber}" 
+		`<a href="${EXT_REPO_URL}/pull/${prNumber}" 
         target="_blank" 
         rel="noopener noreferrer" 
         class="changelog__pr-link">

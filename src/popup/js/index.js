@@ -1,10 +1,10 @@
 import browser from 'webextension-polyfill'
-import { EXT_CURRENT_VERSION, CHANGELOG_URL } from '../../js/app/config'
+import { EXT_CURR_VERSION, EXT_CURR_CHANGELOG_URL } from '../../js/app/config/constants'
 import { RELEASE_CHANGES } from './changes'
 import { setupFloatingBtnToggle } from './toggleGpthemes'
 
-const createFullChangelogLink = (version) =>
-	`<a href="https://github.com/itsmartashub/GPThemes/releases/tag/v${version}" target="_blank" rel="noopener noreferrer" class="changelog__seefullchangelog">🚀 See full release notes</a>`
+const createFullChangelogLink = (version = EXT_CURR_VERSION) =>
+	`<a href="${EXT_CURR_CHANGELOG_URL}" target="_blank" rel="noopener noreferrer" class="changelog__seefullchangelog">🚀 See full release notes</a>`
 
 const initChangelogUI = () => {
 	const changelogChangesEl = document.querySelector('.changelog__changes')
@@ -19,13 +19,13 @@ const initChangelogUI = () => {
 	// Construct the changes HTML once
 	const htmlChangesList = `
 		  ${RELEASE_CHANGES}
-		  <p>${createFullChangelogLink(EXT_CURRENT_VERSION)}</p>
+		  <p>${createFullChangelogLink()}</p>
 		`
 
 	// Update the DOM
 	changelogChangesEl.innerHTML = htmlChangesList
-	changelogVersionEl.textContent = `v${EXT_CURRENT_VERSION}`
-	changelogVersionEl.href = CHANGELOG_URL
+	changelogVersionEl.textContent = `v${EXT_CURR_VERSION}`
+	changelogVersionEl.href = EXT_CURR_CHANGELOG_URL
 }
 
 const updateBadge = async () => {

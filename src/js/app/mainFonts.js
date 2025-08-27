@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { SELECTORS } from './config.js'
+import { SELECTORS } from './config/selectors'
 import { q, qq } from '../utils/dom.js'
 import { Notify } from './components/renderNotify.js'
 
