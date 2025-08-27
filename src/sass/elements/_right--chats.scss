@@ -47,17 +47,15 @@
         --bg-primary: var(--c-bg-cm) !important;
         --main-surface-primary: var(--c-bg-cm) !important;
         background-color: var(--c-bg-cm) !important;
-        will-change: border-color;
-        border: 2px solid hsla(var(--accent-hsl) / .12) !important;
-        transition: border-color .2s;
+
+        /* Sticky header za Canvas gde su "Copy" | "Edit" | "Download" | "RUN CODE" */
+        .sticky.top-0>[class*="dark:bg-token-bg-elevated-secondary/80"] {
+            background-color: color-mix(in srgb, var(--c-bg-cm) 60%, transparent 50%) !important;
+        }
 
         /* Gradient on the bottom of code */
         .absolute.bottom-0.z-20.h-24.w-full.transition-colors {
             background: linear-gradient(rgba(0, 0, 0, 0), var(--c-bg-cm)) !important;
-        }
-
-        &:hover {
-            border-color: hsla(var(--accent-hsl) / .3) !important;
         }
     }
 
