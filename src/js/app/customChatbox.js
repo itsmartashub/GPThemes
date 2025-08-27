@@ -4,6 +4,8 @@ import { SELECTORS } from './config/selectors'
 import { icon_taller_height } from './components/icons'
 import { q } from '../utils/dom'
 import { renderToggle } from './components/renderToggles'
+
+import { renderUserAccentBgToggle, handleUserAccentBgListeners } from './custom-colors/accentUserBubble'
 import { Notify } from './components/renderNotify'
 
 // Storage key for preferences
@@ -29,6 +31,8 @@ function generateHTML() {
 			card: true,
 			className: '',
 		})}
+
+		${renderUserAccentBgToggle()}
 	`
 }
 

@@ -1,21 +1,36 @@
 /* Header on: New chat layout, on chats layout, on mobile too, but not on GPTs where pill tags are */
 // .h-header-height.top-0,
-header#page-header {
-    display: var(--gpthHideHeader, flex) !important;
+// header#page-header {
+//     display: var(--gpthHideHeader, flex) !important;
 
-    @include dev('md') {
-        display: none !important;
-    }
+//     @include dev('md') {
+//         display: none !important;
+//     }
+// }
+
+// .h-header-height.top-0 {
+//     @include dev('md') {
+//         display: var(--gpthHideHeader, flex) !important;
+//     }
+// }
+
+
+// /* Footer */
+// #thread-bottom-container>#thread-bottom~div.min-h-8>div {
+//     display: var(--gpthHideFooter, flex) !important;
+// }
+
+
+/* Header */
+html[style*="--gpthHideHeader: 1"] header#page-header {
+    display: none !important;
 }
 
-.h-header-height.top-0 {
-    @include dev('md') {
-        display: var(--gpthHideHeader, flex) !important;
-    }
+html[style*="--gpthHideHeader: 1"] .h-header-height.top-0 {
+    display: none !important;
 }
-
 
 /* Footer */
-#thread-bottom-container>#thread-bottom~div.min-h-8>div {
-    display: var(--gpthHideFooter, flex) !important;
+html[style*="--gpthHideFooter: 1"] #thread-bottom-container>#thread-bottom~div.min-h-8>div {
+    display: none !important;
 }

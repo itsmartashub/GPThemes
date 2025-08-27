@@ -40,6 +40,7 @@
     color: var(--c-txt) !important;
     padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply));
     border-radius: var(--br-chat-bubble) !important;
+    transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
     // @include dev_high(#7fe37f7d);
 }
 
@@ -49,4 +50,22 @@
     border-radius: var(--br-chat-bubble) !important;
     margin-top: 0.4rem;
     // @include dev_high(#f28b8b70);
+}
+
+/* ! ========== CUSTOM COLORS - Agressive accent for User chat ========== */
+// [data-gpth-user-msg-color="accent"] {
+//     --c-bg-msg-user: var(--c-accent) !important;
+
+//     .user-message-bubble-color {
+//         color: var(--c-on-accent) !important;
+//     }
+// }
+
+/* Accent enabled when var is 1 */
+html[style*="--gpthUserBubbleAccent: 1"] {
+    --c-bg-msg-user: var(--c-accent) !important;
+
+    .user-message-bubble-color {
+        color: var(--c-on-accent) !important;
+    }
 }

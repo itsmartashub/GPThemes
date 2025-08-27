@@ -9,6 +9,7 @@ import { renderSeparator } from './components/renderUtils'
 import { renderCustomScrollDown } from './scrolldown'
 import { renderChatBubbles } from './toggleChatsBg'
 import { renderCustomChatboxHeight, handleCustomChatboxListeners } from './customChatbox'
+import { handleUserAccentBgListeners } from './custom-colors/accentUserBubble'
 import { renderCustomHides, handleCustomHidesListeners } from './custom-hide'
 import { q } from '../utils/dom.js'
 import { setCssVars } from '../utils/setCssVar'
@@ -346,6 +347,7 @@ function handleWidthsListeners() {
 
 	handleCustomHidesListeners()
 	handleCustomChatboxListeners()
+	handleUserAccentBgListeners()
 }
 
 // ==========================================

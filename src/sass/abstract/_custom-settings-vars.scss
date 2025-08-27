@@ -37,9 +37,9 @@
     /* ! === CUSTOM CHATBOX HEIGHT === */
     --gpthChatboxHeight: 70svh; // Used when html has class `gpth-chatbox--custom-height`
 
-    /* ! === CUSTOM HIDE HEADER === */
-    --gpthHideHeader: flex;
+    /* ! === CUSTOM HIDES === */
+    --gpthHideHeader: 0;
+    --gpthHideFooter: 0;
 
-    /* ! === CUSTOM HIDE FOOTER === */
-    --gpthHideFooter: flex;
+    --gpthUserBubbleAccent: 0;
 }

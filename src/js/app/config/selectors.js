@@ -84,7 +84,8 @@ export const SELECTORS = {
 	// Chats
 	CHATS: {
 		USER: 'user-message-bubble-color',
-		GPT: `agent-turn`,
+		GPT: 'agent-turn',
+		TOGGLE_USER_BUBBLE_ACCENT_ID: `${PFX}-toggle-user-accent`,
 	},
 
 	// Chatbox
