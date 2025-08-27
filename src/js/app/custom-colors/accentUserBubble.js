@@ -14,7 +14,7 @@ function generateHTML() {
 		id: SELECTORS.CHATS.TOGGLE_USER_BUBBLE_ACCENT_ID,
 		checked: false,
 		label: 'Accent User Bubble',
-		subtitle: 'Change the color of the user bubble to match the theme color.',
+		subtitle: 'Make the user bubble fully accented for higher contrast',
 		icon: '✅',
 		card: true,
 	})
