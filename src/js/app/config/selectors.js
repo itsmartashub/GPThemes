@@ -104,7 +104,7 @@ export const SELECTORS = {
 		},
 		FOOTER: {
 			TOGGLE_ID: `${PFX}-hide-footer`,
-			SELECTOR: `div#thread-bottom-container > div:last-of-type > div, span.text-sm.leading-none`,
+			SELECTOR: `#thread-bottom-container > #thread-bottom ~ div.min-h-8 > div`,
 		},
 	},
 }
