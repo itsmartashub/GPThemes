@@ -37,6 +37,7 @@
 // NEW SELECTOR: 2025-04-10 - User message - max-w-[var(--user-chat-width,70%)]
 .user-message-bubble-color {
     background-color: var(--toggleBgUser);
+    color: var(--c-txt) !important;
     padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply));
     border-radius: var(--br-chat-bubble) !important;
     // @include dev_high(#7fe37f7d);
