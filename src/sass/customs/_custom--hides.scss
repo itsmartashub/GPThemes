@@ -1,7 +1,18 @@
 /* Header on: New chat layout, on chats layout, on mobile too, but not on GPTs where pill tags are */
 // .h-header-height.top-0,
 header#page-header {
+    @extend %animFadeIn;
     display: var(--gpthHideHeader, flex) !important;
+
+    @include dev('md') {
+        display: none !important;
+    }
+}
+
+.h-header-height.top-0 {
+    @include dev('md') {
+        display: var(--gpthHideHeader, flex) !important;
+    }
 }
 
 

@@ -6,7 +6,7 @@ export const ELEMENTS = [
 	{
 		id: SELECTORS.HIDE.HEADER.TOGGLE_ID,
 		label: 'Hide Header',
-		subtitle: 'Remove the top bar',
+		subtitle: 'Hide the top header section to maximize screen space.',
 		icon: icon_header,
 		selector: SELECTORS.HIDE.HEADER.SELECTOR,
 		cssVar: `--${PFX}HideHeader`,
@@ -15,7 +15,7 @@ export const ELEMENTS = [
 	{
 		id: SELECTORS.HIDE.FOOTER.TOGGLE_ID,
 		label: 'Hide Footer',
-		subtitle: 'Hide info below the message box',
+		subtitle: 'Hide info below the message box for a cleaner view',
 		icon: icon_footer,
 		selector: SELECTORS.HIDE.FOOTER.SELECTOR,
 		cssVar: `--${PFX}HideFooter`,
