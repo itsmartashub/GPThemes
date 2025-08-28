@@ -31,102 +31,60 @@ const SECTION_TYPES = {
 
 const currentReleaseChanges = {
 	// New fixes specific to this release
-	newFixes: [
-		{
-			description: 'User Chat Bubbles:',
-			details:
-				'Fixed user chat bubble display issues, restored <code>USER</code> bubble toggle functionality, and fixed user widths for full-width chats.',
-			issueRef: 156,
-		},
-	],
-
-	// This acts as a visual separator
-	previousSeparator: [
-		{
-			details: '',
-		},
-	],
-
-	// All the regular features and improvements from the previous planned release
 	features: [
 		{
-			description: 'Hide GPThemes Floating Button:',
-			details: `You can now easily toggle the GPThemes floating button directly from the extension popup (here) using the <code>HIDE GPTHEMES</code> switch at the top right.`,
-			issueRef: 146,
+			description: 'Taller Chatbox:',
+			details: `You can now toggle a taller chatbox layout to give yourself more room to type. <br/> 
+			⚠️ Always disabled on the <code>Library</code> and the intial <code>New chat</code> pages`,
+			prRef: 163,
 		},
 		{
-			description: 'New Fonts Types:',
-			details: `Added new fonts and 🆕 label in the font selection list for improving discoverability of recent font additions. <br/>Which Google font would you like to see?`,
-			issueRef: 154,
+			description: 'Hide Elements:',
+			details: `Added new toggles to hide the header and footer, giving you more control over the UI. <br/>
+			⚠️ If you encounter a bug or unexpected behavior, please let me know. Thanks 🙏`,
+			prRef: 165,
+		},
+		{
+			description: 'Full Accent Bubbles:',
+			details: 'You can now toggle a full accent-colored background for your user chat bubbles.',
+			prRef: 167,
 		},
 	],
+	// New improvements specific to this release
 	improvements: [
 		{
-			description: 'Chat Bubbles Spacing:',
+			description: 'User Bubble Text:',
+			details: "Overrode the OpenAI's new accent text color for user bubbles to ensure proper contrast.",
+		},
+		{
+			description: 'Chatbox Autosuggestions',
 			details:
-				'Both, assistant and user chat bubbles now should have same spacing, making them more visually aligned.',
-			issueRef: 143,
+				'Introduced a hover animation for the autosuggestion list in the prompt-textarea for enhanced visual feedback',
 		},
 		{
-			description: 'Created Images Animations:',
-			details: 'Created images now have smooth hover animations for a more dynamic feel.',
-			issueRef: 143,
+			description: 'Chat Footer Icons:',
+			details: 'Fixed icon styles and added a scale-up hover animation.',
 		},
 		{
-			description: 'Created Images Carousel:',
-			details: 'Enhanced the vertical carousel for created images.',
-			issueRef: 143,
-		},
-		{
-			description: 'Settings Dialog Styles:',
-			details: 'Improved GPT settings dialog, new sidebar and tab content styles.',
-			issueRef: 143,
-		},
-		{
-			description: 'Mobile Chat Adjustments:',
+			description: 'Text Selection:',
 			details:
-				'Chat bubbles on mobile devices have improved padding, spacing, and edge margins for a better look.',
-			issueRef: 143,
-		},
-	],
-	fixes: [
-		{
-			description: 'Assistant Chat Bubbles:',
-			details: 'Fixed toggle GPT chat bubble feature and missing background due to recent OpenAI changes.',
-			issueRef: 150,
+				'Adjusted the styling of selected text to ensure proper contrast and readability against the accent background.',
 		},
 		{
-			description: 'Prompt Custom Width:',
-			details: 'Fixed custom prompt textarea width feature',
-			issueRef: 152,
-		},
-		{
-			description: 'Scroll Down Button Alignment:',
-			details: 'Fixed custom scrolldown button alignment feature',
-			issueRef: 148,
-		},
-		{
-			description: 'Font Family Select Width:',
-			details: "Fixed font family select list's width increasing on in/out hover spams.",
-			issueRef: 142,
-		},
-		{
-			description: 'Canvas & Chat Styling:',
+			description: 'Chatbox:',
 			details:
-				'Addressed numerous broken styles in Canvas components, chat footers, Maps, and Markdown code blocks.',
-			issueRef: 143,
+				'Removed the attach file functionality and simplified the GPTs list by removing the input search field.',
 		},
 		{
-			description: 'Tooltip & Prompt Textarea:',
+			description: 'Reasoning Elements:',
 			details:
-				'Fixed tooltip text visibility. Resolved styling for search autocomplete and command menus: <code>/</code> & <code>@</code>. Restore different prompt textarea styles for temporary vs basic state.',
-			issueRef: 143,
+				'Applied minor styling improvements to all reasoning elements for better consistency and readability.',
 		},
 	],
 	other: [
 		{
 			details:
-				'Hey, there 👋 Thanks for using the <code>GPTHEMES</code> <br/> This is a follow-up release that includes some additional fixes plus all the great features from our previous update. For all the details, check out the full release notes on GitHub.',
+				'Hey, there 👋 Thanks for using the <code>GPTHEMES</code> <br/> If you encounter a bug or unexpected behavior, please let me know. Thanks 🙏 <br> For all the details, check out the full release notes on GitHub.',
 		},
 	],
 }
