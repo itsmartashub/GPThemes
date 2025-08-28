@@ -69,6 +69,11 @@ html[style*="--gpthUserBubbleAccent: 1"] {
 
     .user-message-bubble-color {
         color: var(--c-on-accent) !important;
+
+        ::selection {
+            background-color: var(--c-on-accent) !important;
+            color: var(--c-accent) !important;
+        }
     }
 }
 
