@@ -9,19 +9,19 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Get code
+            - name: Checkout code
               uses: actions/checkout@v4
 
-            - name: Install Node.js
-              uses: actions/setup-node@v4
+            - name: Install Bun
+              uses: oven-sh/setup-bun@v1
               with:
-                  node-version: '20'
+                  bun-version: latest # or pin: '1.1.22'
 
             - name: Install dependencies
-              run: npm ci
+              run: bun install
 
             - name: Build and Package Extensions
-              run: npm run build:all
+              run: bun run build:all
 
             - name: Upload prod extension artifact (unzipped)
               uses: actions/upload-artifact@v4
