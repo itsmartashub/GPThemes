@@ -11,17 +11,18 @@
 		"url": "https://github.com/itsmartashub/GPThemes/issues"
 	},
 	"homepage": "https://github.com/itsmartashub/GPThemes/",
+	"type": "module",
 	"scripts": {
-		"clean:dev": "rimraf .parcel-cache build/dev",
-		"clean:prod": "rimraf .parcel-cache build/prod",
-		"clean:zips": "rimraf build/releases",
-		"clean:all": "npm run clean:dev && npm run clean:prod && npm run clean:zips",
+		"clean:dev": "rm -rf .parcel-cache build/dev",
+		"clean:prod": "rm -rf .parcel-cache build/prod",
+		"clean:zips": "rm -rf build/releases",
+		"clean:all": "bun run clean:dev && bun run clean:prod && bun run clean:zips",
 		"dev:chrome": "parcel watch src/manifests/chromium-mv3/manifest.json --host localhost --dist-dir build/dev/chromium-mv3",
 		"dev:ff": "parcel watch src/manifests/firefox-mv2/manifest.json --host localhost --dist-dir build/dev/firefox-mv2",
 		"build:chrome": "parcel build src/manifests/chromium-mv3/manifest.json --dist-dir build/prod/gpthemes-chromium-mv3 --no-source-maps",
 		"build:ff": "parcel build src/manifests/firefox-mv2/manifest.json --dist-dir build/prod/gpthemes-firefox-mv2 --no-source-maps",
-		"zip": "node ./scripts/zip.js",
-		"build:all": "npm run clean:all && npm run build:chrome && npm run build:ff && npm run zip"
+		"zip": "bun scripts/zip.js",
+		"build:all": "bun run clean:all && bun run build:chrome && bun run build:ff && bun run zip"
 	},
 	"author": "itsmarta",
 	"keywords": [

@@ -1,6 +1,6 @@
-const fs = require('fs/promises')
-const AdmZip = require('adm-zip')
-const path = require('path')
+import fs from 'fs/promises'
+import path from 'path'
+import AdmZip from 'adm-zip'
 
 const CONFIG = {
 	manifestPaths: {
