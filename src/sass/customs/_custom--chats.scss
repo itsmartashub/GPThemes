@@ -34,9 +34,9 @@
 
 /* ! ========== CUSTOM TOGGLE BUBBLES ========== */
 // Out of conversation scope, because on width <1000px for Canvas there is user message in <dialog> element, there's no conversation-turn
-// NEW SELECTOR: 2025-04-10 - User message - max-w-[var(--user-chat-width,70%)]
+/* Default (toggle OFF → var=0): fallback site values */
 .user-message-bubble-color {
-    background-color: var(--toggleBgUser);
+    background-color: var(--c-bg-msg-user);
     color: var(--c-txt) !important;
     padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply));
     border-radius: var(--br-chat-bubble) !important;
@@ -45,12 +45,22 @@
 }
 
 .agent-turn {
-    background-color: var(--toggleBgGpt);
+    background-color: var(--c-bg-msg-gpt);
     padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply));
     border-radius: var(--br-chat-bubble) !important;
     margin-top: 0.4rem;
     // @include dev_high(#f28b8b70);
 }
+
+
+
+/* Toggle OF → replace with transparent colors to "remove" bubble bg */
+html[style*="--gpthToggleBubbleUser: 0"] .user-message-bubble-color,
+html[style*="--gpthToggleBubbleGpt: 0"] .agent-turn {
+    background-color: transparent !important;
+}
+
+
 
 /* ! ========== CUSTOM COLORS - Agressive accent for User chat ========== */
 // Accent enabled when var is 1 
@@ -59,5 +69,12 @@ html[style*="--gpthUserBubbleAccent: 1"] {
 
     .user-message-bubble-color {
         color: var(--c-on-accent) !important;
+    }
+}
+
+// If user chat bubble off (bg transparent) and accent user bubble is on, the text should be default, and not accent because of readability, and not --c-on-accent
+html[style*="--gpthToggleBubbleUser: 0"][style*="--gpthUserBubbleAccent: 1"] {
+    .user-message-bubble-color {
+        color: var(--c-txt) !important;
     }
 }

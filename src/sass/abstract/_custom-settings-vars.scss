@@ -31,8 +31,8 @@
     // --chats-container-mode: normal;
 
     /* ! === TOGGLE BUBBLES BG COLORS === */
-    --toggleBgUser: var(--c-bg-msg-user);
-    --toggleBgGpt: var(--c-bg-msg-gpt);
+    --gpthToggleBubbleUser: 1;
+    --gpthToggleBubbleGpt: 1;
 
     /* ! === CUSTOM CHATBOX HEIGHT === */
     --gpthChatboxHeight: 70svh; // Used when html has class `gpth-chatbox--custom-height`

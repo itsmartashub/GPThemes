@@ -137,7 +137,7 @@
 	&[data-turn="assistant"] {
 		/* This is now .agent-turn -> moved down */
 		/* .group\/turn-messages[class*="(--thread-content-max-width)"] {
-			background-color: var(--toggleBgGpt);
+			background-color: var(--gpthToggleBubbleGpt);
 			padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply));
 			border-radius: var(--br-chat-bubble) !important;
 		} */

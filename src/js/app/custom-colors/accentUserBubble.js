@@ -4,6 +4,7 @@ import { q } from '../../utils/dom.js'
 import browser from 'webextension-polyfill'
 import { setCssVars } from '../../utils/setCssVar.js'
 import { SELECTORS } from '../config/selectors.js'
+import { icon_accent } from '../components/icons.js'
 
 const STORAGE_KEY = 'customUserBubbleAccentState'
 const CSS_VAR = '--gpthUserBubbleAccent'
@@ -15,7 +16,7 @@ function generateHTML() {
 		checked: false,
 		label: 'Accent User Bubble',
 		subtitle: 'Make the user bubble fully accented for higher contrast',
-		icon: '✅',
+		icon: icon_accent,
 		card: true,
 	})
 }
