@@ -4,6 +4,8 @@ import { q } from '../utils/dom.js'
 import { closeSettings, $settings } from './settingsManager.js'
 import { hexToHSL } from '../utils/hexToHSL.js'
 import { renderButton } from './components/renderButtons'
+import { renderSeparator } from './components/renderUtils'
+import { renderUserAccentBgToggle, handleUserAccentBgListeners } from './custom-colors/accentUserBubble'
 
 // Configuration object - single source of truth
 const COLOR_CONFIG = {
@@ -53,6 +55,13 @@ const generateColorsTabHTML = () => {
 			<div class="colorpicker-container">
 				${colorPickers}
 			</div>
+
+			<div>
+				${renderSeparator}
+				${renderUserAccentBgToggle()}
+				${renderSeparator}
+			</div>
+
 			<footer class="flex justify-center mt-8">
 				${renderButton({
 					id: SELECTORS.ACCENT.RESET_BTN_ID,
@@ -240,6 +249,7 @@ const init = async () => {
 		updateCSSVars(colorValues)
 		setColorInputValues(colorValues)
 		handleColorInputs()
+		handleUserAccentBgListeners()
 	} catch (error) {
 		console.error('Color manager initialization error:', error)
 	}
