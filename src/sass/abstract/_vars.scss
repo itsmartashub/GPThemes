@@ -200,6 +200,19 @@ html,
 
 	--menu-item-highlighted: var(--interactive-bg-secondary-hover) !important;
 	--menu-item-active: var(--interactive-bg-secondary-press) !important;
+
+
+	// NEW: data-chat-theme, accent colog introduced by ChatGPT
+	--theme-attribution-highlight-bg: hsla(var(--accent-hsl) / 0.25) !important;
+	// --theme-user-msg-bg: var(--yellow-theme-user-msg-bg);
+	// --theme-user-msg-text: var(--yellow-theme-user-msg-text);
+	// --theme-submit-btn-bg: var(--yellow-theme-submit-btn-bg);
+	// --theme-submit-btn-text: var(--yellow-theme-submit-btn-text);
+	// --theme-secondary-btn-bg: var(--yellow-theme-secondary-btn-bg);
+	// --theme-secondary-btn-text: var(--yellow-theme-secondary-btn-text);
+	// --theme-user-selection-bg: var(--yellow-theme-user-selection-bg);
+	// --theme-attribution-highlight-bg: var(--yellow-theme-user-selection-bg);
+	// --theme-entity-accent: var(--yellow-theme-entity-accent);
 }
 
 // }
