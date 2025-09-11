@@ -6,9 +6,6 @@ const NEW_BADGE_TEXT = 'NEW'
 
 const handleInstallation = async (details) => {
 	try {
-		// Set badge background color once
-		await browser.action.setBadgeBackgroundColor({ color: BADGE_COLOR })
-
 		const currentVersion = browser.runtime.getManifest().version
 		// Get previously stored version
 		const { lastVersion } = await browser.storage.sync.get('lastVersion')
@@ -55,6 +52,9 @@ const handleMessage = async (message, sender, sendResponse) => {
 // Initialize listeners
 const initBackgroundScript = () => {
 	console.log('Initializing GPThemes background script')
+
+	// Set badge background color once
+	browser.action.setBadgeBackgroundColor({ color: BADGE_COLOR })
 
 	// Register installation handler
 	browser.runtime.onInstalled.addListener(handleInstallation)
