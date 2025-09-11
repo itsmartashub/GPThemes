@@ -26,6 +26,17 @@
         border-radius: var(--br-btn-big);
         @include lift;
     }
+
+
+    /* List of chats in Project */
+    section ol li.group {
+        border-radius: var(--br);
+        transition: transform 0.25s ease, background-color 0.25s ease;
+
+        &:hover {
+            transform: translateY(-0.08rem);
+        }
+    }
 }
 
 [data-testid^='conversation-turn-'] {

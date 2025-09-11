@@ -21,11 +21,6 @@
 		}
 	}
 
-	/* Chats <article> wrapper on XL screens (huge full width when sidebar collapsed) - with this cutted first user message is being fixed */
-	// .\@thread-xl\/thread\:pt-header-height {
-	// 	margin-top: calc(var(--p-chat-bubble) * 2.5) !important; // to cover user msg padding top and bottom, thats why is * 2
-	// }
-
 	/* Product/items list in chat bubbles (when search something) */
 	.context-list {
 		box-shadow: 0 0 0 1px hsla(var(--accent-hsl) / 0.15);
@@ -36,16 +31,6 @@
 		@include lift;
 	}
 
-	// Moved to global bgs because on mobile its not into header#page-header
-	// header#page-header {
-
-	// 	/* "Get Plus" and "Create a Workspace" pill sticky button on "New Chat" page */
-	// 	[class*="dark:bg-[#373669]"] {
-	// 		background-color: hsla(var(--accent-hsl) / .1) !important;
-	// 		color: var(--c-accent) !important;
-	// 		backdrop-filter: blur(10px);
-	// 	}
-	// }
 }
 
 /* @ === RIGHT - CHATS BUBBLES ===*/
