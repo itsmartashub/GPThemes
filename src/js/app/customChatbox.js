@@ -9,12 +9,13 @@ import { Notify } from './components/renderNotify'
 
 // Storage key for preferences
 const STORAGE_KEY = 'customChatboxHeightState'
+const ATTR_NAME = 'data-gpth-toggle-chatbox-height'
 
 function enableCustomHeight() {
-	document.documentElement.classList.add('gpth-chatbox--custom-height')
+	document.documentElement.setAttribute(ATTR_NAME, '')
 }
 function disableCustomHeight() {
-	document.documentElement.classList.remove('gpth-chatbox--custom-height')
+	document.documentElement.removeAttribute(ATTR_NAME)
 }
 
 function generateHTML() {

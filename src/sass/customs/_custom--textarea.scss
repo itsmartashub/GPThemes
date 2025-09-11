@@ -18,13 +18,22 @@
     }
 }
 
-$chatbox-height-selector: '#thread-bottom-container:not([class*="@lg/thread:grow"]) form[data-type="unified-composer"] .contain-inline-size.overflow-clip[class*=\'bg-[\\#303030]\'] [class*="_prosemirror-parent"][class*="max-h-52"]';
+
+/* 
+NEW CHAT LAYOUT
+relative isolate z-10 w-full basis-auto has-data-has-thread-error:pt-2 has-data-has-thread-error:[box-shadow:var(--sharp-edge-bottom-shadow)] md:border-transparent md:pt-0 dark:border-white/20 md:dark:border-transparent single-line min-h-0 mb-4 sm:grow flex flex-col
+
+CLASSIC CHAT LAYOUT
+relative isolate z-10 w-full basis-auto has-data-has-thread-error:pt-2 has-data-has-thread-error:[box-shadow:var(--sharp-edge-bottom-shadow)] md:border-transparent md:pt-0 dark:border-white/20 md:dark:border-transparent content-fade single-line flex flex-col
+*/
+/* not(.min-h-0) znaci da ne targetujemo chatbox u "New Chat" layoutu  */
+$chatbox-height-selector: '#thread-bottom-container:not(.min-h-0) form[data-type="unified-composer"] .contain-inline-size.overflow-clip[class*=\'bg-[\\#303030]\'] [class*="_prosemirror-parent"][class*="max-h-52"]';
 
 #{$chatbox-height-selector} {
     transition: max-height 0.25s $easeInOutQuint;
 }
 
-html.gpth-chatbox--custom-height {
+html[data-gpth-toggle-chatbox-height] {
     #{$chatbox-height-selector} {
         max-height: var(--gpthChatboxHeight) !important;
     }
