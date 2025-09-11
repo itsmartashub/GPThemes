@@ -488,3 +488,28 @@
 		}
 	}
 }
+
+/* Project files modal dialog when click on uploaded project files */
+[data-testid="modal-project-files"] {
+	.group\/file-row {
+
+		/* Delete file button */
+		// button.group\/file-layout {
+		// 	// margin: calc(var(--spacing) * -8) !important;
+		// 	translate: -1.2rem 0;
+		// 	backdrop-filter: blur(2px);
+		// }
+
+		&:hover {
+			background-color: hsla(var(--accent-hsl) / 0.12) !important;
+			color: var(--c-accent) !important;
+		}
+	}
+}
+
+/* Project form modal when click on "New Project" */
+#project-modal-form {
+	input[name="projectName"] {
+		background-color: var(--c-surface-3) !important;
+	}
+}
