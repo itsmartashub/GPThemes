@@ -168,7 +168,7 @@
         /* REASONING: "Reasoned about [topic] for [X] seconds" title: Version with sidebar right open */
         .relative.bg-clip-padding.bg-token-bg-primary[class*="pt-[13px]"][class*="@max-3xl:-top-2"] {
             background-color: transparent !important;
-            border-radius: 50vw !important;
+            border-radius: var(--br-chat-bubble) !important;
             transition: scale 0.25s $easeInOutSine, background-color 0.25s $easeInOutSine;
 
             &:hover {
