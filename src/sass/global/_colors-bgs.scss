@@ -274,6 +274,12 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 	}
 }
 
+/* Selected/active action chatbox button in Guest mode ("Search", "Study") */
+[class*="dark:bg-[#2A4A6D]"] {
+	background-color: hsla(var(--accent-hsl) / 0.15) !important;
+	color: var(--c-accent) !important;
+}
+
 /* .bg-\[\#f4f4f4\] - Search chats dialog active/hover item
 	[class*="dark:bg-[#353535]"] - menu with "Keyboard shortcuts" shown when hold `Ctrl` */
 .bg-\[\#f4f4f4\],
