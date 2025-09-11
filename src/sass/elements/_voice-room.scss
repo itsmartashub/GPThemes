@@ -1,26 +1,24 @@
 .lk-room-container {
-
-    button[aria-label="Turn off microphone"],
-    button[aria-label="Turn on microphone"],
-    button[aria-label="End voice mode"] {
+    button[aria-label] {
         border-radius: 50vw !important;
     }
 
-    button[aria-label="Turn off microphone"],
-    button[aria-label="End voice mode"] {
-        background-color: hsla(var(--accent-hsl) / 0.2) !important;
+    button[aria-label] {
+        &.btn-primary[class*="bg-black"] {
+            background-color: hsla(var(--accent-hsl) / 0.2) !important;
 
-        svg {
-            color: var(--c-accent) !important;
+            svg {
+                color: var(--c-accent) !important;
+            }
         }
-    }
 
-    button[aria-label="Turn on microphone"] {
-        background-color: hsla(var(--danger-hsl) / 0.2) !important;
-        color: var(--c-danger);
+        &.btn-primary[class*="bg-red-500"] {
+            background-color: hsla(var(--danger-hsl) / 0.2) !important;
+            color: var(--c-danger);
 
-        svg {
-            color: var(--c-danger) !important;
+            svg {
+                color: var(--c-danger) !important;
+            }
         }
     }
 
