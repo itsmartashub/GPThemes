@@ -19,7 +19,7 @@
 
     button[class*="bg-white/15"] {
         // background-color: var(--c-accent-light) !important;
-        // background-color: hsla(var(--accent-hsl) / .5);
+        // background-color: oklch(from var(--c-accent) l c h / .5);
         background-color: rgba(#fff, 0.3);
         backdrop-filter: blur(18px) !important;
     }
@@ -42,8 +42,8 @@
 
     button[role="option"] {
         transition: transform .15s $easeOutBack, opacity .15s linear;
-        border-color: hsla(var(--accent-hsl) / .25) !important;
-        background-color: hsla(var(--accent-hsl) / .25) !important;
+        border-color: oklch(from var(--c-accent) l c h / .25) !important;
+        background-color: oklch(from var(--c-accent) l c h / .25) !important;
 
         &[aria-selected="false"]:hover {
             opacity: 1 !important;

@@ -5,9 +5,9 @@
 	--right: 1.3rem;
 	--p: 2rem;
 	--max-h: 75vh;
-	--shadow-color: hsla(var(--accent-hsl) / 0.09);
+	--shadow-color: oklch(from var(--c-accent) l c h / 0.09);
 	--shadow-values: inset 0 0 20px 10px;
-	--c-scrollbar-thumb: hsla(var(--accent-hsl) / 0.3) !important;
+	--c-scrollbar-thumb: oklch(from var(--c-accent) l c h / 0.3) !important;
 	top: var(--top);
 	right: var(--right);
 	width: clamp(25rem, 25vw, 30rem);
@@ -17,7 +17,7 @@
 	// background-color: var(--c-bg-sidebar);
 	// box-shadow: var(--shadow-values) var(--shadow-color);
 	@include menuBg;
-	border: 1px solid hsla(var(--accent-hsl) / 0.1);
+	border: 1px solid oklch(from var(--c-accent) l c h / 0.1);
 	border-radius: var(--br-dialog);
 	pointer-events: none;
 	transform: translateX(calc(100% + 1.5rem)) !important;
@@ -63,6 +63,8 @@
 	}
 }
 
-html.dark .#{$pfx}-settings {
-	--c-bg-menu: hsla(var(--accent-h), calc(var(--accent-s) * 0.2), calc(var(--accent-l) * 0.35), 0.3);
-}
+// html.dark .#{$pfx}-settings {
+// 	--brightness-menu: brightness(0.45);
+// 	// --c-bg-menu: hsla(var(--accent-h), calc(var(--accent-s) * 0.2), calc(var(--accent-l) * 0.35), 0.3);
+// 	// --c-bg-menu: oklch(from var(--c-accent) calc(l * 0.35) calc(c * 0.2) h / 0.3);
+// }

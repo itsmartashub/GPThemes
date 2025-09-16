@@ -5,7 +5,7 @@
 
     button[aria-label] {
         &.btn-primary[class*="bg-black"] {
-            background-color: hsla(var(--accent-hsl) / 0.2) !important;
+            background-color: oklch(from var(--c-accent) l c h / 0.2) !important;
 
             svg {
                 color: var(--c-accent) !important;

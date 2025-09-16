@@ -23,7 +23,7 @@
 	.__menu-item {
 
 		&[data-active] {
-			box-shadow: 0 0 2px 1px hsla(var(--accent-hsl) / 0.075) inset;
+			box-shadow: 0 0 2px 1px oklch(from var(--c-accent) l c h / 0.075) inset;
 		}
 	}
 

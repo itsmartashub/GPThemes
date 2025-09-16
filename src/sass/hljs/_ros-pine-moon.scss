@@ -1,10 +1,10 @@
 .markdown {
-	// --c-bg-pre: var(--c-surface-2);
+	// --c-bg-cm: var(--c-surface-2);
 	--hljs-bg: transparent;
 }
 
 // 	--hljs-color: #262528;
-// 	--hljs-selection-bg: hsla(var(--accent-hsl) / 0.2);
+// 	--hljs-selection-bg: oklch(from var(--c-accent) l c h / 0.2);
 // 	--hljs-selection-color: var(--hljs-color);
 // 	--hljs-comment: #87818c;
 // 	/* Comments, Invisibles, Line Highlighting */

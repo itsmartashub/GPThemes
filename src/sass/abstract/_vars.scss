@@ -1,12 +1,10 @@
 :root {
 	--fsz-error-404: 3rem;
 
-	/* ? --- Widths and Heights --- */
 	--min-w-btn: 5.5rem;
 	--h-header: 60px;
 	--w-scrollbar: 0.365rem;
 
-	/* ? --- Border-radius --- */
 	--br: 1rem;
 	--br-chat-bubble: calc(var(--br) * 1.9);
 	--br-btn: calc(var(--br) * 0.9);
@@ -17,7 +15,6 @@
 	--br-tooltips: var(--br-btn);
 	--br-scrollbar: 50vw;
 
-	/* ? --- Paddings --- */
 	--p: 0.725rem;
 	--p-chat-bubble: 1rem;
 	--p-contextmenu: 0.9rem;
@@ -26,31 +23,43 @@
 	--p-dialog: 1.4rem;
 	--p-between-chats: 1rem;
 
-	/* ? --- Margins --- */
 	--mb-sidebar-nav-li: 0.2rem;
 	--my-pre: 1.5rem;
 
-	/* ? --- Blurs --- */
-	// --blur-sticky: 20px;
 	--blur-modal: 2rem;
 	--blur-menu: blur(18px);
 
-
-	/* ? --- Shadow things --- */
 	--box-shadow-values: 0px 0px 100px 0px;
 	--z-modal: 100;
 
+	--accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l);
+	--txt-hsl: var(--txt-h) var(--txt-s) var(--txt-l);
+	--surface-hsl: hsl(var(--accent-h) var(--surface-s) var(--surface-l));
+	--danger-hsl: var(--danger-h) var(--danger-s) var(--danger-l);
+
+	--c-txt: hsl(var(--txt-hsl));
+	--c-danger: hsl(var(--danger-hsl));
+	--c-warning: hsl(var(--warning-hsl));
+	--c-success: hsl(var(--success-hsl));
+	--c-accent: hsl(var(--accent-hsl));
+
+	--c-bg-sidebar: var(--c-surface-1);
+	--c-bg-textarea: linear-gradient(145deg, oklch(from var(--c-accent) l c h / 0.2) 0%, oklch(from var(--c-accent) l c h / 0.1) 22%, oklch(from var(--c-accent) l c h / 0.1) 68%, oklch(from var(--c-accent) l c h / 0.2) 100%);
+
+	--c-scrollbar-thumb: var(--c-surface-3);
+	--c-scrollbar-track: transparent;
+	--c-bg-cm: var(--c-surface-1);
+	--c-bg-tooltip: var(--c-accent-light);
+	--box-shadow: var(--box-shadow-values) oklch(from var(--c-accent) l c h / 0.1);
 	--c-bg-gradient: linear-gradient(135deg,
-			hsla(var(--accent-hsl) / 0.45) 0%,
-			hsla(var(--accent-hsl) / 0.1) 40%,
-			hsla(var(--accent-hsl) / 0.05) 60%,
-			hsla(var(--accent-hsl) / 0.45) 100%);
+			oklch(from var(--c-accent) l c h / 0.45) 0%,
+			oklch(from var(--c-accent) l c h / 0.1) 40%,
+			oklch(from var(--c-accent) l c h / 0.05) 60%,
+			oklch(from var(--c-accent) l c h / 0.45) 100%);
 
-	--c-bg-textarea: linear-gradient(145deg, hsla(var(--accent-hsl) / 0.2) 0%, hsla(var(--accent-hsl) / 0.1) 22%, hsla(var(--accent-hsl) / 0.1) 68%, hsla(var(--accent-hsl) / 0.2) 100%);
-
-
-	/* ? --- OPENAAI CSS VARS --- */
-
+	/* ==================================================
+    OPENAAI CSS VARS
+   ================================================== */
 	/* NEW OPENAI VARS */
 	// --user-chat-width: 70%;
 	// --sidebar-width: 260px;
@@ -70,7 +79,6 @@
 	// --gray-800: #212121;
 	// --gray-900: #171717;
 	// --gray-950: #0d0d0d;
-
 
 	@include dev('md') {
 		--p-chat-bubble: .8rem;
@@ -99,7 +107,7 @@ html,
 	--bg-secondary: var(--c-surface-2) !important;
 	--bg-tertiary: var(--c-surface-3) !important;
 	--bg-scrim: var(--c-surface-1) !important;
-	// --bg-elevated-primary: #303030;
+	// --bg-elevated-primary: var(--c-surface-2) !important; // e.g. stop btn bg when DeepSearch is active
 	// --bg-elevated-secondary: #181818;
 	--bg-status-warning: hsla(var(--warning-hsl) / 0.11) !important;
 	--bg-status-error: hsla(var(--danger-hsl) / 0.11) !important;
@@ -139,16 +147,16 @@ html,
 	// --box-shadow-primary: inset 0 -20px 80px -20px #	;
 
 	--link: var(--c-accent) !important;
-	--link-hover: hsla(var(--accent-hsl) / 0.2) !important;
+	--link-hover: oklch(from var(--c-accent) l c h / 0.2) !important;
 	--tag-blue: var(--c-accent) !important;
 	// --tag-blue-light: #0af;
 	--hint-text: var(--c-accent) !important;
-	--hint-bg: hsla(var(--accent-hsl) / 0.12) !important;
+	--hint-bg: oklch(from var(--c-accent) l c h / 0.12) !important;
 
-	--surface-hover: hsla(var(--accent-hsl) / 0.12) !important;
+	--surface-hover: oklch(from var(--c-accent) l c h / 0.12) !important;
 	--dot-color: var(--c-txt) !important;
-	--composer-blue-bg: hsla(var(--accent-hsl) / 0.14) !important;
-	--composer-blue-hover: hsla(var(--accent-hsl) / 0.2) !important;
+	--composer-blue-bg: oklch(from var(--c-accent) l c h / 0.14) !important;
+	--composer-blue-hover: oklch(from var(--c-accent) l c h / 0.2) !important;
 	--composer-blue-text: var(--c-accent) !important;
 
 	/* SIDEBAR OPENAI VARS */
@@ -192,11 +200,11 @@ html,
 	- "Upgrade ur plan" dialog bg */
 	--popover-surface-primary: var(--c-bg-contextmenu) !important;
 
-	--interactive-bg-secondary-hover: hsla(var(--accent-hsl) / 0.12) !important; // when hover action btns in prompt-textarea
-	--interactive-bg-secondary-press: hsla(var(--accent-hsl) / 0.2) !important; // when pressed action btns in prompt-textarea
-	--interactive-bg-accent-muted-hover: hsla(var(--accent-hsl) / 0.12) !important; // when hover on action btn in prompt-textarea like: Think, Search, Canvas etc
-	--interactive-bg-accent-muted-press: hsla(var(--accent-hsl) / 0.3) !important; // when holding pressed on action btn in prompt-textarea like: Think, Search, Canvas etc
-	--interactive-bg-accent-muted-context: hsla(var(--accent-hsl) / 0.2) !important; // When hover on active action button in chatbox. For example, if we are in Search chats and this btn is selected in chatbox. When we hover, it had blue-ish bg, now we override it
+	--interactive-bg-secondary-hover: oklch(from var(--c-accent) l c h / 0.12) !important; // when hover action btns in prompt-textarea
+	--interactive-bg-secondary-press: oklch(from var(--c-accent) l c h / 0.2) !important; // when pressed action btns in prompt-textarea
+	--interactive-bg-accent-muted-hover: oklch(from var(--c-accent) l c h / 0.12) !important; // when hover on action btn in prompt-textarea like: Think, Search, Canvas etc
+	--interactive-bg-accent-muted-press: oklch(from var(--c-accent) l c h / 0.3) !important; // when holding pressed on action btn in prompt-textarea like: Think, Search, Canvas etc
+	--interactive-bg-accent-muted-context: oklch(from var(--c-accent) l c h / 0.2) !important; // When hover on active action button in chatbox. For example, if we are in Search chats and this btn is selected in chatbox. When we hover, it had blue-ish bg, now we override it
 	--interactive-label-accent-default: var(--c-accent) !important;
 
 	--menu-item-highlighted: var(--interactive-bg-secondary-hover) !important;
@@ -204,7 +212,7 @@ html,
 
 
 	// NEW: data-chat-theme, accent colog introduced by ChatGPT
-	--theme-attribution-highlight-bg: hsla(var(--accent-hsl) / 0.25) !important;
+	--theme-attribution-highlight-bg: oklch(from var(--c-accent) l c h / 0.25) !important;
 	// --theme-user-msg-bg: var(--yellow-theme-user-msg-bg);
 	// --theme-user-msg-text: var(--yellow-theme-user-msg-text);
 	// --theme-submit-btn-bg: var(--yellow-theme-submit-btn-bg);
@@ -218,349 +226,109 @@ html,
 
 // }
 /* @ ================== LIGHT ================== */
-// html.light {
 html.light {
-	/* ? ========== HSL ========== */
-	// --accent-hsl: #6c4756;
-	// --accent-hsl: 335 21% 35%;
-
-	// --cl: #7e3e47;
 	--accent-h: 335;
 	--accent-s: 21%;
 	--accent-l: 35%;
-	--accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l);
 
-	/* --txt-hsl: 0 0% 0%; */
 	--txt-h: 0;
 	--txt-s: 0%;
 	--txt-l: 0%;
-	--txt-hsl: var(--txt-h) var(--txt-s) var(--txt-l);
 
 	--surface-h: var(--accent-h); // Inherit accent hue
 	--surface-s: 9%; // Drastically reduced saturation (near-gray)
 	--surface-l: 90%; // Base lightness
-	--surface-hsl: hsl(var(--surface-h) var(--surface-s) var(--surface-l));
 
-	/* --danger-hsl: 346 51% 45% */
 	--danger-h: 354;
 	--danger-s: 63%;
 	--danger-l: 48%;
-	--danger-hsl: var(--danger-h) var(--danger-s) var(--danger-l);
-	--c-danger: hsl(var(--danger-hsl));
 	--warning-hsl: 27 88% 44%;
-	--c-warning: hsl(var(--warning-hsl));
-
-	// --success-hsl: 138 24% 37%;
 	--success-hsl: 162 92% 25%;
-	--c-success: hsl(var(--success-hsl));
 
-	/* ? ========== COLORS ========== */
-	--c-accent: hsl(var(--accent-hsl));
 	--c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) * 0.3), 75%);
 	--c-on-accent: hsl(var(--accent-h), var(--accent-s), 88%);
 
-	/* ? ========== Text colors ========== */
-	--c-txt: hsl(var(--txt-hsl));
 	--c-subtext-1: hsl(var(--accent-h), 0%, 20%);
 	--c-subtext-2: hsl(var(--accent-h), 0%, 40%);
 
-	/* ? ========== Surface colors ========== */
 	--c-surface-1: var(--surface-hsl);
 	--c-surface-2: hsl(var(--surface-h) var(--surface-s) calc(var(--surface-l) * 0.945));
 	--c-surface-3: hsl(var(--surface-h) var(--surface-s) calc(var(--surface-l) * 0.905));
 
-	/* ? ========== Layout colors ========== */
-	--c-bg-sidebar: var(--c-surface-1);
 	--c-bg-chats-container: hsl(var(--surface-h) var(--surface-s) calc(var(--surface-l) * 1.02));
 
-	/* ? ========== Chat bubbles colors ========== */
-	--c-bg-msg-user: hsla(var(--accent-hsl) / 0.08);
+	--c-bg-msg-user: oklch(from var(--c-accent) l c h / 0.08);
 	--c-bg-msg-gpt: hsl(var(--surface-h), calc(var(--surface-s) * 1), calc(var(--surface-l) * 0.97));
-
-	/* ? ========== Type message textarea colors ========== */
-	--c-placeholder-textarea: hsla(var(--txt-hsl) / 0.6);
-
-	/* ? ========== modal, dialog, contextmenu bg ========== */
 	--c-bg-modal: hsla(var(--txt-hsl) / 0.3);
 	--c-bg-dialog: var(--c-surface-2);
-	// --c-bg-contextmenu: hsl(0, 0%, calc(var(--surface-l) / 1.1));
-	// --c-bg-contextmenu: var(--c-surface-3);
-	// --c-bg-contextmenu-item: var(--c-surface-2);
 	--c-bg-menu: hsla(var(--accent-h), calc(var(--accent-s) * 0.35), 75%, 0.5);
 	--brightness-menu: brightness(0.98);
-	// --brightness-menu: brightness(1);
-
-
-	/* ? ========== Tooltip bg ========== */
-	--c-bg-tooltip: var(--c-accent-light);
-
-	/* ? ========== border colors ========== */
 	--c-border: hsla(var(--txt-hsl) / 0.08);
-	--c-border-accent: hsla(var(--accent-hsl) / 0.1);
-
-	/* ========== CodeMirror Editor ========== */
-	--c-bg-cm: var(--c-surface-1);
-
-	/* ========== Code block (<pre> bg) ========== */
-	--c-bg-pre: var(--c-surface-1);
-	// --c-bg-pre: hsla(var(--accent-hsl) / 0.05);
-
-
-	/* ? ========== <pre>/markdown things colors ========== */
-	--c-markdown-a: var(--c-accent);
-
-	/* ? ========== Scrollbar colors ========== */
-	--c-scrollbar-thumb: var(--c-surface-3);
-	--c-scrollbar-track: transparent;
-	// --c-scrollbar-track: var(--c-surface-2);
-
-	/* ? ========== OpenAI surface colors ========== */
-	/* btn u biranju teme kad nemaa nikake pozadine */
-	--surface-primary: var(--c-surface-1) !important;
-
-	/* border oko context-menu, .bg-token-surface-secondary (za active link u sidebaru)*/
-	--surface-secondary: transparent !important;
-
-	/* Selected button/link/list in settings: "General", "Data controls" */
-	--surface-tertiary: var(--c-bg-msg-gpt) !important;
-
-	/* ? ========== OpenAI text colors ========== */
-
-	/* ? ========== PROVERITI - gray ========== */
-	--gray-300: var(--text-secondary) !important;
-
-	/* 3 tacke u listi u sidebar */
-	--gray-500: var(--c-txt) !important;
-
-	/* ? ========== BOX-SHADOW ==========*/
-	--box-shadow: var(--box-shadow-values) hsla(var(--accent-hsl) / 0.1);
-	// --box-shadow-contextmenu: 0px 0px 5px -2px hsla(0, 0%, 0%, 0.18);
-	// --box-shadow-contextmenu: 0px 0px 0px 1px color-mix(in srgb, var(--c-bg-contextmenu), black 1%);
-	--box-shadow-textarea: inset 0px 0px 15px 1px hsla(0, 0%, 0%, 0.1) !important;
-
-
 }
 
 /* @ ================== DARK ================== */
 html.dark {
 	/* ? ========== HSL ========== */
-	// --accent-hsl: #bba4f9;
-	// --accent-hsl: hsl(256 100% 83%);
-
 	/* --accent-hsl: 272 93% 78%; */
 	--accent-h: 256;
 	--accent-s: 100%;
 	--accent-l: 83%;
-	--accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l);
 
-	/* --txt-hsl: 255 86% 92%; */
 	--txt-h: var(--accent-h);
 	--txt-s: 86%;
 	--txt-l: 94%;
-	--txt-hsl: var(--txt-h) var(--txt-s) var(--txt-l);
 
 	--surface-h: 249;
 	--surface-s: 19%;
 	--surface-l: 13%;
-	--surface-hsl: hsl(var(--accent-h) var(--surface-s) var(--surface-l));
 
 	/* --danger-hsl: 356 77% 76% */
 	--danger-h: 356;
 	--danger-s: 77%;
 	--danger-l: 76%;
-	--danger-hsl: var(--danger-h) var(--danger-s) var(--danger-l);
-	--c-danger: hsl(var(--danger-hsl));
 	--warning-hsl: 30 100% 74%;
-	--c-warning: hsl(var(--warning-hsl));
 
 	// color: hsl(162, 92%, 64%);
 	--success-hsl: 162 92% 64%;
-	--c-success: hsl(var(--success-hsl));
 
-	/* ? ========== COLORS ========== */
-	--c-accent: hsl(var(--accent-hsl));
 	--c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 1.3), var(--accent-l));
 	--c-on-accent: hsl(var(--accent-h), var(--accent-s), 10%);
 
-	/* ? ========== Text colors ========== */
-	--c-txt: hsl(var(--txt-hsl));
 	--c-subtext-1: var(--c-accent-light);
 	--c-subtext-2: hsl(var(--accent-h) calc(var(--accent-s) / 2) var(--accent-l)) !important;
 
-	/* ? ========== Surface colors ========== */
 	--c-surface-1: hsl(var(--accent-h), var(--surface-s), var(--surface-l)); // darkest
 	--c-surface-2: hsl(var(--accent-h), var(--surface-s), calc(var(--surface-l) * 1.5)); // darker
 	--c-surface-3: hsl(var(--accent-h), var(--surface-s), calc(var(--surface-l) * 2)); // dark
 
-	/* ? ========== Layout colors ========== */
-	--c-bg-sidebar: var(--c-surface-1);
 	--c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.076));
 
-	/* ? ========== Chat bubbles colors ========== */
-	--c-bg-msg-user: hsla(var(--accent-hsl) / 0.04);
-	--c-bg-msg-gpt: hsla(var(--accent-hsl) / 0.08);
-
-	/* ? ========== Type message textarea colors ========== */
-	--c-placeholder-textarea: hsl(var(--accent-hsl) / 0.8);
-
-	/* ? ========== modal, dialog, contextmenu bg ========== */
-	--c-bg-modal: hsla(var(--accent-hsl) / 0.22);
+	// --c-bg-msg-user: oklch(from var(--c-accent) l c h / 0.04);
+	--c-bg-msg-user: oklch(from var(--c-accent) l c h / 0.14);
+	--c-bg-msg-gpt: oklch(from var(--c-accent) l c h / 0.08);
+	--c-bg-modal: oklch(from var(--c-accent) l c h / 0.15);
 	--c-bg-dialog: var(--c-surface-2);
-	// --c-bg-contextmenu: var(--c-surface-3);
-	// --c-bg-contextmenu-item: var(--c-surface-2);
-	// --c-bg-menu: hsla(var(--accent-hsl) / 0.15);
 	--c-bg-menu: hsla(var(--accent-h), calc(var(--accent-s) * 0.3), calc(var(--accent-l) * 0.75), 0.3);
 	--brightness-menu: brightness(0.8);
-	// --brightness-menu: brightness(1);
-
-	/* ? ========== Tooltip bg ========== */
-	--c-bg-tooltip: var(--c-accent-light);
-
-	/* ? ========== border colors ========== */
 	--c-border: hsla(var(--txt-hsl) / 0.08);
-	--c-border-accent: hsla(var(--accent-hsl) / 0.05);
-
-	/* ? ========== <pre>/markdown things colors ========== */
-	--c-bg-pre: hsla(var(--accent-h) var(--surface-s) var(--surface-l) / 0.8);
-	--c-markdown-a: var(--c-accent);
-
-	/* ========== CodeMirror Editor ========== */
-	// --c-bg-cm: var(--c-bg-pre); // surface-1
-	--c-bg-cm: var(--c-surface-1); // surface-1
-
-	/* ? ========== Scrollbar colors ========== */
-	--c-scrollbar-thumb: var(--c-surface-3);
-	--c-scrollbar-track: transparent;
-	// --c-scrollbar-track: var(--c-surface-2);
-
-	/* ? ========== OpenAI surface colors ========== */
-	/* btn u biranju teme kad nema nikake pozadine */
-	--surface-primary: var(--c-surface-1) !important;
-
-	/* border oko context-menu */
-	--surface-secondary: transparent !important;
-
-	/* Selected button/link/list in settings: "General", "Data controls" */
-	--surface-tertiary: var(--c-bg-msg-gpt) !important;
-
-	/* ? ========== PROVERITI - gray ========== */
-	--gray-300: var(--text-secondary) !important;
-
-	/* 3 tacke u listi u sidebar */
-	--gray-500: var(--c-txt) !important;
-
-	/* ? ========== BOX-SHADOW ==========*/
-	--box-shadow: var(--box-shadow-values) hsla(var(--accent-hsl) / 0.1);
-	// --box-shadow-contextmenu: 0px 0px 30px -10px hsla(var(--accent-hsl) / 0.18);
-	// --box-shadow-contextmenu: inset 0px 0px 12px 1px hsla(var(--accent-hsl) / 0.13);
-	--box-shadow-textarea: inset 0px 0px 15px 1px hsla(var(--accent-hsl) / 0.05) !important;
-
-	/* sidebar collapse btn;"ChatGPT 3.5 - Fastest" in 4o menu when hover on it in chat bubbles */
-	--text-quaternary: var(--c-subtext-2) !important;
-
 }
 
 /* @ ================== OLED ================== */
 html.dark[data-gptheme='oled'] {
-	/* ? ========== HSL ========== */
-
-	/* --accent-hsl: 272 93% 78%; */
-	/* 	--accent-h: 272;
-	--accent-s: 93%;
-	--accent-l: 78%;
-	--accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l); */
-
-	/* --txt-hsl: 255 86% 92%; */
-	/* 	--txt-h: var(--accent-h);
-	--txt-s: 86%;
-	--txt-l: 94%;
-	--txt-hsl: var(--txt-h) var(--txt-s) var(--txt-l); */
-
 	--surface-h: 0;
 	--surface-s: 0%;
 	--surface-l: 0%;
-	--surface-hsl: hsl(var(--accent-h) var(--surface-s) var(--surface-l));
 
-	/* --danger-hsl: 356 77% 76% */
-	--danger-h: 356;
-	--danger-s: 77%;
-	--danger-l: 76%;
-	--danger-hsl: var(--danger-h) var(--danger-s) var(--danger-l);
-	--c-danger: hsl(var(--danger-hsl));
-
-	/* ? ========== COLORS ========== */
-	--c-accent: hsl(var(--accent-hsl));
-	--c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 1.3), var(--accent-l));
-	--c-on-accent: hsl(var(--accent-h), var(--accent-s), 10%);
-
-	/* ? ========== Text colors ========== */
-	--c-txt: hsl(var(--txt-hsl));
-	--c-subtext-1: var(--c-accent-light);
-	--c-subtext-2: hsl(var(--accent-h) calc(var(--accent-s) / 2) var(--accent-l)) !important;
-
-	/* ? ========== Surface colors ========== */
-	--c-surface-1: black; // darkest
+	--c-surface-1: var(--surface-hsl); // darkest
 	--c-surface-2: hsl(var(--accent-h), calc(var(--surface-s) + 15%), calc(var(--surface-l) + 12%)); // darker
 	--c-surface-3: hsl(var(--accent-h), calc(var(--surface-s) + 15%), calc(var(--surface-l) + 8%)); // dark
 
-	/* ? ========== Layout colors ========== */
-	// --c-bg-sidebar: var(--c-surface-1);
-	// --c-bg-chats-container: var(--c-surface-2);
-	--c-bg-sidebar: black;
-	--c-bg-chats-container: black;
-	// --c-bg-chats-sticky: rgba(0, 0, 0, 0.02);
+	--c-bg-chats-container: var(--c-surface-1);
 
-	/* ? ========== Chat bubbles colors ========== */
-	// --c-bg-msg-user: hsl(var(--accent-h), calc(var(--accent-s) * 1.4), 10%);
-	--c-bg-msg-user: hsla(var(--accent-hsl) / 0.14);
+	--c-bg-msg-user: oklch(from var(--c-accent) l c h / 0.14);
 	--c-bg-msg-gpt: hsl(var(--accent-h), calc(var(--surface-s) + 20%), calc(var(--surface-l) + 6%));
-
-	/* ? ========== Type message textarea colors ========== */
-	--c-placeholder-textarea: hsl(var(--accent-hsl) / 0.8);
-
-	/* ? ========== modal, dialog, contextmenu bg ========== */
-	--c-bg-modal: hsla(var(--accent-hsl) / 0.09);
+	// --c-bg-modal: oklch(from var(--c-accent) l c h / 0.09);
 	--c-bg-dialog: var(--c-surface-1);
-	// --c-bg-contextmenu: var(--c-surface-3);
-	// --c-bg-contextmenu-item: var(--c-surface-2);
-
-	/* ? ========== Tooltip bg ========== */
-	--c-bg-tooltip: var(--c-accent-light);
-
-	/* ? ========== border colors ========== */
-	--c-border: var(--c-surface-2);
-	--c-border-accent: hsla(var(--accent-hsl) / 0.05);
-
-	/* ? ========== Scrollbar colors ========== */
-	--c-scrollbar-thumb: var(--c-surface-3);
-	--c-scrollbar-track: transparent;
-
-	/* ? ========== OpenAI surface colors ========== */
-	/* btn u biranju teme kad nema nikake pozadine */
-	--surface-primary: var(--c-surface-1) !important;
-
-	/* border oko context-menu */
-	--surface-secondary: transparent !important;
-
-	/* Selected button/link/list in settings: "General", "Data controls" */
-	--surface-tertiary: var(--c-bg-msg-gpt) !important;
-
-	/* ? ========== PROVERITI - gray ========== */
-	--gray-300: var(--text-secondary) !important;
-
-	/* 3 tacke u listi u sidebar */
-	--gray-500: var(--c-txt) !important;
-
-	/* ? ========== BOX-SHADOW ==========*/
-	--box-shadow: var(--box-shadow-values) hsla(var(--accent-hsl) / 0.1);
-	// --box-shadow-contextmenu: 0px 0px 30px 0px hsla(var(--accent-hsl) / 0.1);
-	// --box-shadow-contextmenu: 0px 0px 30px 0px red;
-	// --box-shadow-contextmenu: inset 0px 0px 15px 1px hsla(var(--accent-hsl) / 0.08);
-	--box-shadow-textarea: inset 0px 0px 15px 1px hsla(var(--accent-hsl) / 0.05) !important;
-	// --box-shadow-contextmenu: 0px 0px 30px 0px red;
-
-
-
 }
 
 /* POPOVER GLOBAL

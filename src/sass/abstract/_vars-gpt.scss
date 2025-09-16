@@ -1,0 +1,184 @@
+/* ==================================================
+OPENAAI CSS VARS
+================================================== */
+:root {
+    /* NEW OPENAI VARS */
+    // --user-chat-width: 70%;
+    // --sidebar-width: 260px;
+    // --sidebar-inline-padding: 12px;
+    // --header-height: 60px;
+    --white: var(--c-surface-1) !important;
+    --black: var(--c-accent) !important;
+    // --gray-50: #f9f9f9;
+    // --gray-100: #ececec;
+    // --gray-200: #e3e3e3;
+    // --gray-300: #cdcdcd;
+    // --gray-400: #b4b4b4;
+    // --gray-500: #9b9b9b;
+    // --gray-600: #676767;
+    // --gray-700: #424242;
+    // --gray-750: #2f2f2f;
+    // --gray-800: #212121;
+    // --gray-900: #171717;
+    // --gray-950: #0d0d0d;
+}
+
+html,
+.light,
+.dark {
+
+    --red-500: var(--c-danger) !important;
+    // --red-700: #911e1b;
+    --brand-purple: var(--c-accent) !important;
+    // --yellow-900: #4d3b00;
+
+    --bg-primary: var(--c-bg-chats-container) !important;
+    --bg-secondary: var(--c-surface-2) !important;
+    --bg-tertiary: var(--c-surface-3) !important;
+    --bg-scrim: var(--c-surface-1) !important;
+    // --bg-elevated-primary: var(--c-surface-2) !important; // e.g. stop btn bg when DeepSearch is active
+    // --bg-elevated-secondary: #181818;
+    --bg-status-warning: hsla(var(--warning-hsl) / 0.11) !important;
+    --bg-status-error: hsla(var(--danger-hsl) / 0.11) !important;
+    /* .border-token-border-default
+	- border oko "Uprade" btn-a
+	- border oko inputa u GPTs page
+	- border u "Keyboard shortcuts" oko kao tastera */
+    // --border-default: var(--c-border) !important;
+    --border-default: var(--c-border-accent) !important;
+    --border-light: var(--c-border-accent) !important;
+    // --border-heavy: #fff3;
+    --border-status-warning: hsla(var(--warning-hsl) / 0.11);
+    --border-status-error: hsla(var(--danger-hsl) / 0.11) !important;
+    --text-primary: var(--c-txt) !important;
+    --text-secondary: var(--c-subtext-1) !important;
+    --text-tertiary: var(--c-subtext-2) !important;
+    --text-accent: var(--c-accent) !important;
+    --text-status-warning: var(--c-warning) !important;
+    --text-status-error: var(--c-danger) !important;
+
+    --icon-primary: currentColor !important;
+    --icon-secondary: var(--c-subtext-1) !important;
+    --icon-tertiary: var(--c-surface-2) !important;
+    // --icon-inverted: #0d0d0d;
+    --icon-accent: var(--c-accent) !important;
+    --icon-status-warning: var(--c-warning) !important;
+    --icon-status-error: var(--c-danger) !important;
+
+    /* 
+	- Sidebar collapse btn
+	- "ChatGPT 3.5 - Fastest" in 4o menu when hover on it in chat bubbles*/
+    --text-quaternary: var(--c-subtext-2) !important;
+    --text-error: var(--c-danger) !important;
+    --text-placeholder: var(--c-subtext-1) !important;
+    --content-primary: var(--c-txt) !important;
+    --content-secondary: var(--c-subtext-1) !important;
+    // --box-shadow-primary: inset 0 -20px 80px -20px #	;
+
+    --link: var(--c-accent) !important;
+    --link-hover: oklch(from var(--c-accent) l c h / 0.2) !important;
+    --tag-blue: var(--c-accent) !important;
+    // --tag-blue-light: #0af;
+    --hint-text: var(--c-accent) !important;
+    --hint-bg: oklch(from var(--c-accent) l c h / 0.12) !important;
+
+    --surface-hover: oklch(from var(--c-accent) l c h / 0.12) !important;
+    --dot-color: var(--c-txt) !important;
+    --composer-blue-bg: oklch(from var(--c-accent) l c h / 0.14) !important;
+    --composer-blue-hover: oklch(from var(--c-accent) l c h / 0.2) !important;
+    --composer-blue-text: var(--c-accent) !important;
+
+    /* SIDEBAR OPENAI VARS */
+    /* .bg-token-sidebar-surface-primary
+	- sidebar bg
+	- nav item bg on hover */
+    --sidebar-surface-primary: var(--c-bg-sidebar) !important;
+    /* .bg-token-sidebar-surface-secondary
+	- GPT's variable in  nav item bg on hover */
+    --sidebar-surface-secondary: var(--c-surface-2) !important;
+    /* .bg-token-sidebar-surface-tertiary
+	- GPT's variable in  nav item bg on hover */
+    --sidebar-surface-tertiary: var(--c-surface-3) !important;
+    --sidebar-title-primary: var(--c-accent) !important;
+    --sidebar-surface: var(--c-bg-sidebar) !important;
+    --sidebar-body-primary: var(--c-txt) !important;
+    --sidebar-icon: currentColor !important;
+
+
+    // --main-surface-background: #212121e6;
+    // --message-surface: #323232d9;
+    /* 
+	- header of tables in "Shared links" and "Archived chats"
+	- Arrow btn in new chat big buttons */
+    --main-surface-primary: var(--c-surface-2) !important;
+    // --main-surface-primary-inverse: var(--white);
+
+    /*
+	- markdown header bg */
+    --main-surface-secondary: var(--c-surface-2) !important;
+
+    /* 
+	- History icon in Canvas when selected */
+    --main-surface-secondary-selected: var(--c-surface-3) !important;
+
+    /* ??? */
+    --main-surface-tertiary: var(--c-surface-3) !important;
+
+    /* .bg-token-popover-surface-primary  
+	- contextmenu in theme dropdown chooser
+	- "Upgrade ur plan" dialog bg */
+    --popover-surface-primary: var(--c-bg-contextmenu) !important;
+
+    --interactive-bg-secondary-hover: oklch(from var(--c-accent) l c h / 0.12) !important; // when hover action btns in prompt-textarea
+    --interactive-bg-secondary-press: oklch(from var(--c-accent) l c h / 0.2) !important; // when pressed action btns in prompt-textarea
+    --interactive-bg-accent-muted-hover: oklch(from var(--c-accent) l c h / 0.12) !important; // when hover on action btn in prompt-textarea like: Think, Search, Canvas etc
+    --interactive-bg-accent-muted-press: oklch(from var(--c-accent) l c h / 0.3) !important; // when holding pressed on action btn in prompt-textarea like: Think, Search, Canvas etc
+    --interactive-bg-accent-muted-context: oklch(from var(--c-accent) l c h / 0.2) !important; // When hover on active action button in chatbox. For example, if we are in Search chats and this btn is selected in chatbox. When we hover, it had blue-ish bg, now we override it
+    --interactive-label-accent-default: var(--c-accent) !important;
+
+    --menu-item-highlighted: var(--interactive-bg-secondary-hover) !important;
+    --menu-item-active: var(--interactive-bg-secondary-press) !important;
+
+
+    // NEW: data-chat-theme, accent colog introduced by ChatGPT
+    --theme-attribution-highlight-bg: oklch(from var(--c-accent) l c h / 0.25) !important;
+    // --theme-user-msg-bg: var(--yellow-theme-user-msg-bg);
+    // --theme-user-msg-text: var(--yellow-theme-user-msg-text);
+    // --theme-submit-btn-bg: var(--yellow-theme-submit-btn-bg);
+    // --theme-submit-btn-text: var(--yellow-theme-submit-btn-text);
+    // --theme-secondary-btn-bg: var(--yellow-theme-secondary-btn-bg);
+    // --theme-secondary-btn-text: var(--yellow-theme-secondary-btn-text);
+    // --theme-user-selection-bg: var(--yellow-theme-user-selection-bg);
+    // --theme-attribution-highlight-bg: var(--yellow-theme-user-selection-bg);
+    // --theme-entity-accent: var(--yellow-theme-entity-accent);
+}
+
+/* POPOVER GLOBAL
+- This fix gray bg for Canvas Code header
+*/
+.dark :not(.light).popover,
+.dark.popover,
+.popover .dark {
+    /* 	--main-surface-primary: var(--gray-750);
+	--main-surface-secondary: var(--gray-700);
+	--main-surface-tertiary: var(--gray-600);
+	--sidebar-surface-primary: var(--gray-750); */
+    --main-surface-primary: var(--c-surface-2) !important;
+    --main-surface-secondary: var(--c-surface-2) !important;
+    --main-surface-tertiary: var(--c-surface-3) !important;
+    --sidebar-surface-primary: var(--c-bg-sidebar) !important;
+}
+
+.dark .light.popover,
+.light .popover,
+.light.popover,
+.popover {
+    // --main-surface-primary: var(--white);
+    // --main-surface-secondary: var(--gray-100);
+    // --main-surface-tertiary: var(--gray-200);
+    // --sidebar-surface-primary: var(--white);
+    --main-surface-primary: var(--c-surface-2) !important;
+    --main-surface-secondary: var(--c-surface-2) !important;
+    --main-surface-tertiary: var(--c-surface-3) !important;
+    --sidebar-surface-primary: var(--c-bg-sidebar) !important;
+}

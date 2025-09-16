@@ -11,7 +11,7 @@
 }
 
 [class*="bg-[#DCDBFF]"] {
-	background-color: hsla(var(--accent-hsl) / .15) !important;
+	background-color: oklch(from var(--c-accent) l c h / .15) !important;
 	color: var(--c-accent) !important;
 }
 
@@ -260,7 +260,7 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 .text-blue-500.bg-\[\#DAEEFF\] - "Selection" in Create Image prompt textarea
 */
 .bg-\[\#DAEEFF\] {
-	background-color: hsla(var(--accent-hsl) / 0.2) !important;
+	background-color: oklch(from var(--c-accent) l c h / 0.2) !important;
 	color: var(--c-accent) !important;
 
 	svg {
@@ -276,7 +276,7 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 
 /* Selected/active action chatbox button in Guest mode ("Search", "Study") */
 [class*="dark:bg-[#2A4A6D]"] {
-	background-color: hsla(var(--accent-hsl) / 0.15) !important;
+	background-color: oklch(from var(--c-accent) l c h / 0.15) !important;
 	color: var(--c-accent) !important;
 }
 
@@ -284,7 +284,6 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 	[class*="dark:bg-[#353535]"] - menu with "Keyboard shortcuts" shown when hold `Ctrl` */
 .bg-\[\#f4f4f4\],
 [class*="dark:bg-[#353535]"] {
-	// background-color: hsla(var(--accent-hsl) / 0.1) !important;
 	background-color: var(--c-surface-3) !important;
 }
 
@@ -308,16 +307,16 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 
 /* "Attach files" svg background circled div when clicked some of the new "New Chat" layout prompt action cards (Like "Summarize text", "Analyze images", etc. */
 .bg-brand-blue-800\/20 {
-	background-color: hsla(var(--accent-hsl) / 0.12) !important;
+	background-color: oklch(from var(--c-accent) l c h / 0.12) !important;
 }
 
 
 /* Highlighted orang-ish text when hover source link in chat-bubble */
 .bg-\[#FCECC1\],
 .dark\:bg-\[\#64572A\] {
-	background-color: hsla(var(--accent-hsl) / 0.15) !important;
+	background-color: oklch(from var(--c-accent) l c h / 0.15) !important;
 	color: var(--c-accent) !important;
-	box-shadow: inset 0px 0px 0px 1px hsla(var(--accent-hsl) / 0.15) !important;
+	box-shadow: inset 0px 0px 0px 1px oklch(from var(--c-accent) l c h / 0.15) !important;
 }
 
 /* E.g. btn close ("Remove file") of attached file */
@@ -360,7 +359,7 @@ a.bg-token-main-surface-primary.group {
 
 /*e.g. new analyze dialog opening button in chat bubbles: aria-label="Coding Citation" */
 .bg-token-interactive-bg-tertiary-press {
-	--interactive-bg-tertiary-press: hsla(var(--accent-hsl) / 0.3) !important;
+	--interactive-bg-tertiary-press: oklch(from var(--c-accent) l c h / 0.3) !important;
 	// background-color: var(--interactive-bg-tertiary-press);
 }
 
@@ -374,12 +373,12 @@ a.bg-token-main-surface-primary.group {
 
 /* "Get Plus" and "Create a Workspace" pill sticky button on "New Chat" page */
 [class*="dark:bg-[#373669]"] {
-	background-color: hsla(var(--accent-hsl) / .1) !important;
+	background-color: oklch(from var(--c-accent) l c h / .1) !important;
 	color: var(--c-accent) !important;
 	backdrop-filter: blur(10px);
 
 	&:hover {
-		background-color: hsla(var(--accent-hsl) / .2) !important;
+		background-color: oklch(from var(--c-accent) l c h / .2) !important;
 	}
 }
 

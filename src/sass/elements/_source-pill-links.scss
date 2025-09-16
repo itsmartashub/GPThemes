@@ -20,7 +20,7 @@ text-token-text-secondary inline-flex items-center rounded-full bg-[#f4f4f4] sel
 
 /* Search Links pills in GPT Chat Bubble. ovo je .h[22px] i nije mouseover vec hover */
 a[target="_blank"].rounded-xl.font-medium.bg-\[\#f4f4f4\][class*="hover:bg-token-text-primary"] {
-    background: hsla(var(--accent-hsl) / 0.12);
+    background: oklch(from var(--c-accent) l c h / 0.12);
 
     span {
         color: var(--c-accent) !important;
@@ -43,7 +43,7 @@ a[target="_blank"].rounded-xl.font-medium.bg-\[\#f4f4f4\][class*="hover:bg-token
 button.bg-\[\#f4f4f4\][class*="hover:bg-token-main-surface-primary-inverse"].rounded-full,
 a[target="_blank"].bg-\[\#f4f4f4\][class*="hover:bg-token-main-surface-primary-inverse"].rounded-full,
 span.bg-\[\#f4f4f4\].rounded-full.text-xs {
-    background: hsla(var(--accent-hsl) / 0.12);
+    background: oklch(from var(--c-accent) l c h / 0.12);
 
     &.text-token-text-secondary {
         color: var(--c-accent) !important;

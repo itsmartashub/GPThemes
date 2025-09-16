@@ -1,0 +1,121 @@
+/* ==================================================
+   🎨 ADVANCED OKLCH THEME SYSTEM - SCSS + Auto Contrast
+   ================================================== */
+
+/* --------------------------------------------------
+   🔧 SCSS Helpers for DRY
+   -------------------------------------------------- */
+@function oklch-lighten($color, $amount) {
+    @return oklch(from $color calc(l + #{$amount}) c h);
+}
+
+@function oklch-darken($color, $amount) {
+    @return oklch(from $color calc(l - #{$amount}) c h);
+}
+
+@function oklch-alpha($color, $alpha) {
+    @return oklch(from $color l c h / #{$alpha});
+}
+
+@function oklch-mix($color1, $color2, $weight: 50%) {
+    @return color-mix(in oklch, $color1 $weight, $color2);
+}
+
+/* --------------------------------------------------
+   🌐 User Overrides Layer
+   -------------------------------------------------- */
+:root {
+    --accent-user: initial;
+    --surface-1-user: initial;
+    --surface-2-user: initial;
+    --surface-3-user: initial;
+    --txt-user: initial;
+    --subtext-1-user: initial;
+    --subtext-2-user: initial;
+
+    --c-accent: var(--accent-user, var(--accent));
+    --c-surface-1: var(--surface-1-user, var(--surface-1));
+    --c-surface-2: var(--surface-2-user, var(--surface-2));
+    --c-surface-3: var(--surface-3-user, var(--surface-3));
+    --c-txt: var(--txt-user, var(--txt));
+    --c-subtext-1: var(--subtext-1-user, var(--subtext-1));
+    --c-subtext-2: var(--subtext-2-user, var(--subtext-2));
+
+    /* Automatic contrast helpers */
+    --c-on-accent: color-contrast(var(--c-accent) vs oklch(1 0 0), oklch(0 0 0));
+    --c-on-surface-1: color-contrast(var(--c-surface-1) vs oklch(1 0 0), oklch(0 0 0));
+    --c-on-surface-2: color-contrast(var(--c-surface-2) vs oklch(1 0 0), oklch(0 0 0));
+    --c-on-surface-3: color-contrast(var(--c-surface-3) vs oklch(1 0 0), oklch(0 0 0));
+}
+
+/* ==================================================
+   🌞 LIGHT THEME
+   ================================================== */
+html.light {
+    --accent: oklch(0.55 0.15 335);
+    --surface-1: oklch(0.97 0.02 335);
+    --txt: oklch(0.20 0.02 335);
+
+    --surface-2: oklch(from var(--surface-1) calc(l * 0.945) c h);
+    --surface-3: oklch(from var(--surface-1) calc(l * 0.905) c h);
+
+    --subtext-1: oklch(from var(--txt) calc(l + 0.20) c h);
+    --subtext-2: oklch(from var(--txt) calc(l + 0.40) c h);
+
+    --c-accent-light: oklch-lighten(var(--c-accent), 0.4);
+
+    --c-bg-msg-user: oklch-alpha(var(--c-accent), 0.08);
+    --c-bg-msg-gpt: oklch-darken(var(--c-surface-1), 0.03);
+    --c-bg-chats-container: oklch-lighten(var(--c-surface-1), 0.02);
+    --c-bg-modal: oklch-alpha(var(--c-txt), 0.3);
+    --c-bg-dialog: var(--c-surface-2);
+    --c-bg-menu: oklch-alpha(var(--c-accent), 0.35);
+
+    --c-scrollbar-thumb: var(--c-surface-3);
+    --c-scrollbar-track: transparent;
+}
+
+/* ==================================================
+   🌙 DARK THEME
+   ================================================== */
+html.dark {
+    --accent: oklch(0.83 1.0 256);
+    --surface-1: oklch(0.13 0.19 249);
+    --txt: oklch(0.94 0.86 256);
+
+    --surface-2: oklch-lighten(var(--surface-1), 0.15);
+    --surface-3: oklch-lighten(var(--surface-1), 0.30);
+
+    --subtext-1: oklch-lighten(var(--c-accent), 0.05);
+    --subtext-2: oklch-lighten(var(--c-accent), 0.10);
+
+    --c-accent-light: oklch-darken(var(--c-accent), 0.1);
+
+    --c-bg-msg-user: oklch-alpha(var(--c-accent), 0.14);
+    --c-bg-msg-gpt: oklch-alpha(var(--c-accent), 0.08);
+    --c-bg-chats-container: oklch-lighten(var(--surface-1), 0.076);
+    --c-bg-modal: oklch-alpha(var(--c-accent), 0.15);
+    --c-bg-dialog: var(--c-surface-2);
+    --c-bg-menu: oklch-alpha(var(--c-accent), 0.3);
+
+    --c-scrollbar-thumb: var(--c-surface-3);
+    --c-scrollbar-track: transparent;
+}
+
+/* ==================================================
+   🖤 OLED THEME
+   ================================================== */
+html.dark[data-gptheme="oled"] {
+    --accent: oklch(0.83 1.0 256);
+    --surface-1: oklch(0 0 0);
+    --surface-2: oklch(0.12 0.01 256);
+    --surface-3: oklch(0.08 0.015 256);
+
+    --txt: oklch(0.95 0.02 256);
+    --subtext-1: oklch(0.70 0.02 256);
+    --subtext-2: oklch(0.55 0.01 256);
+
+    --c-bg-chats-container: var(--c-surface-1);
+    --c-bg-msg-gpt: oklch-lighten(var(--c-accent), 0.06);
+    --c-bg-dialog: var(--c-surface-1);
+}

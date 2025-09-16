@@ -1,0 +1,162 @@
+:root {
+    /* Base colors */
+    // --c-accent: var(--user-accent, #6c4756);
+    // --c-txt: oklch(from var(--user-txt, var(--accent)) l c h);
+
+
+
+    /* Alpha scales */
+    --alpha-1: 0.08;
+    --alpha-2: 0.15;
+    --alpha-3: 0.3;
+    --alpha-4: 0.5;
+    --alpha-5: 0.7;
+
+    /* Dynamic color functions 
+    USAGE:
+    .color-danger { 
+        background: var(--color-alpha);
+        --alpha: var(--alpha-subtle); 
+        --c-seed: var(--danger); 
+     } */
+    --ext-color-alpha: oklch(from var(--c-seed, var(--c-accent)) l c h / var(--alpha, 0.1));
+
+
+
+    --c-bg-sidebar: var(--c-surface-1);
+    --c-scrollbar-thumb: var(--c-surface-3);
+    --c-scrollbar-track: transparent;
+    --c-bg-cm: var(--c-surface-1);
+    --c-bg-tooltip: var(--c-accent-light);
+
+    --c-border-accent: oklch(from var(--c-accent) l c h / 0.05);
+    --c-border: oklch(from var(--c-txt) l c h / 0.05);
+    --box-shadow: var(--box-shadow-values) var(--ext-color-alpha);
+    --c-bg-textarea: linear-gradient(145deg,
+            oklch(from var(--c-accent) l c h / 0.2) 0%,
+            oklch(from var(--c-accent) l c h / 0.1) 22%,
+            oklch(from var(--c-accent) l c h / 0.1) 68%,
+            oklch(from var(--c-accent) l c h / 0.2) 100%);
+    --c-bg-gradient: linear-gradient(135deg,
+            oklch(from var(--c-accent) l c h / 0.45) 0%,
+            oklch(from var(--c-accent) l c h / 0.1) 40%,
+            oklch(from var(--c-accent) l c h / 0.05) 60%,
+            oklch(from var(--c-accent) l c h / 0.45) 100%);
+
+}
+
+html.light {
+    // --surface-1-bg: oklch(from var(--user-surface-1, var(--accent)) 0.9 calc(c * 0.6) h);
+    // --surface-2-bg: oklch(from var(--user-surface-1, var(--surface-1-bg)) 0.928 c h);
+    // --surface-3-bg: oklch(from var(--user-surface-1, var(--surface-1-bg)) 0.944 c h);
+    /*   
+    --surface-2-bg: oklch(from var(--user-surface-1, var(--accent)) 0.918 calc(c * 0.5) h);
+    --surface-3-bg: oklch(from var(--user-surface-1, var(--accent)) 0.938 calc(c * 0.6) h); */
+
+    // --c-surface-1: oklch(from var(--user-surface-1, var(--accent)) 0.94 calc(l * 0.2) h);
+    // --c-surface-2: oklch(from var(--user-surface-1, var(--surface-1-bg)) 0.96 c h);
+    // --c-surface-3: oklch(from var(--user-surface-1, var(--surface-1-bg)) 0.93 c h);
+
+    --c-accent: var(--user-accent, #6c4756);
+    --c-on-accent: oklch(from var(--c-accent) 1 calc(c * 0.3) h);
+    // --c-accent-light: oklch(from var(--c-accent) 0.8 calc(c * 0.5) h);
+    --c-accent-light: color-mix(in oklch, var(--c-surface-1), var(--c-accent) 13%);
+
+    // --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.8 calc(c * 0.3) h);
+    // --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.85 0.015 h);
+    // --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.85 0 h);
+    --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.85 0.009 h);
+    --c-surface-2: oklch(from var(--user-surface-1, var(--c-surface-1)) calc(l * 0.97) calc(c * 1.05) h);
+    --c-surface-3: oklch(from var(--user-surface-1, var(--c-surface-2)) calc(l * 0.97) calc(c * 1.05) h);
+    // --c-surface-3: oklch(from var(--user-surface-1, var(--c-surface-1)) 0.862 c h);
+
+    // --c-subtxt-1: oklch(from var(--user-surface-1, var(--accent)) 0.45 c h);
+
+    --c-txt: oklch(from var(--user-txt, var(--c-accent)) 0 c h);
+    --c-subtext-1: oklch(from var(--user-subtext-1, var(--c-accent)) 0.3 c h);
+    --c-subtext-2: oklch(from var(--user-subtext-2, var(--c-accent)) 0.45 calc(c * 0.88) h);
+
+
+    // --c-bg-msg-user: oklch(from var(--c-accent) calc(l * 1.75) calc(c * 0.7) h);
+    // --c-bg-msg-user: oklch(from var(--c-surface-3) calc(l * 0.97) calc(c * 1.093) h);
+    // --c-bg-msg-user: oklch(from var(--c-accent) 0.77 0.032 h);
+    --c-bg-msg-user: oklch(from var(--c-accent) l c h / 0.12);
+    // --c-bg-msg-user: color-mix(in oklch, var(--c-surface-1), var(--c-accent) 20%);
+    // --c-bg-msg-user: color-mix(in oklch, var(--c-bg-chats-container), var(--c-accent) 15%);
+    // --c-bg-msg-gpt: oklch(from var(--c-surface-1) calc(l * 0.978) calc(c * 1.1) h);
+    --c-bg-msg-gpt: oklch(from var(--c-surface-1) calc(l * 0.978) c h);
+
+    --c-bg-chats-container: oklch(from var(--c-surface-1) calc(l * 1.015) c h);
+
+    --c-bg-modal: oklch(from var(--c-accent) 0.2 calc(c * 0.75) h / 0.3);
+    --c-bg-dialog: var(--c-surface-2);
+    // --c-bg-menu: oklch(from var(--c-accent) l calc(c * 0.35) h / 0.5);
+    --c-bg-menu: oklch(from var(--c-accent) 0.75 calc(c * 0.35) h / 0.5);
+
+    --c-danger: oklch(54.874% 0.18998 21.116);
+    --c-warning: oklch(63.047% 0.16128 50.634);
+    --c-success: oklch(51.388% 0.10734 164.622);
+
+    --brightness-menu: brightness(0.98);
+
+    // --c-scrollbar-thumb: var(--c-surface-2);
+    // --c-scrollbar-track: transparent;
+
+    // for hovers: oklch(from currentColor 0.75 calc(c * 0.6) h);
+}
+
+html.dark {
+    // --c-surface-1: oklch(from var(--user-surface-1, var(--accent)) 0.23 0.04 h);
+    // --c-surface-2: oklch(from var(--user-surface-1, var(--accent)) 0.25 0.04 h);
+    // --c-surface-3: oklch(from var(--user-surface-1, var(--accent)) 0.296 0.04 h);
+    --c-accent: #bfa8ff;
+    --c-on-accent: oklch(from var(--c-accent) 0.25 c h);
+    --c-accent-light: oklch(from var(--c-accent) 0.32 calc(c * 0.5) h);
+
+    // --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.25 calc(c * 0.25) h);
+    // --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.24 calc(c * 0.2) h);
+    --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.25 calc(c * 0.25) h);
+    // --c-surface-2: oklch(from var(--user-surface-1, var(--c-accent)) 0.25 calc(c * 0.22) h);
+
+    --c-surface-2: oklch(from var(--user-surface-1, var(--c-surface-1)) calc(l * 1.165) calc(c * 1.08) h);
+    --c-surface-3: oklch(from var(--user-surface-1, var(--c-surface-2)) calc(l * 1.165) c h);
+    // --c-surface-3: oklch(from var(--user-surface-1, var(--c-accent)) 0.296 calc(c * 0.295) h);
+
+    --c-txt: oklch(from var(--user-txt, var(--c-accent)) 1 0.08 h);
+    --c-subtext-1: oklch(from var(--user-subtext-1, var(--c-accent)) 0.68 c h);
+    --c-subtext-2: oklch(from var(--user-subtext-2, var(--c-accent)) 0.78 c h);
+
+    --c-danger: oklch(76.195% 0.1137 15.941);
+    --c-warning: oklch(84.508% 0.11321 65.67);
+    --c-success: oklab(88.027% -0.15266 0.03073);
+
+    // --c-bg-msg-user: oklch(from var(--c-accent) l c h / 0.2);
+    // --c-bg-msg-gpt: oklch(from var(--c-accent) l c h / 0.08);
+    // --c-bg-msg-user: var(--c-accent-light);
+    --c-bg-msg-user: oklch(from var(--c-accent) 0.35 calc(c * 0.4) h);
+    --c-bg-msg-gpt: oklch(from var(--c-accent) 0.29 calc(c * 0.278) h);
+    // --c-bg-chats-container: oklch(from var(--c-surface-1) calc(l * 1.04) calc(c * ) h);
+    // --c-bg-chats-container: oklch(from var(--c-surface-1) calc(l * 1.02) calc(c * 1.05) h);
+    --c-bg-chats-container: oklch(from var(--c-surface-1) calc(l * 1.01) c h);
+    --c-bg-modal: oklch(from var(--c-accent) l c h / 0.25);
+    --c-bg-dialog: var(--c-surface-2);
+    --c-bg-menu: oklch(from var(--c-accent) 0.45 calc(c * 0.5) h / 0.42);
+    --brightness-menu: brightness(0.55);
+
+    // for hovers: color-mix(in srgb, currentcolor 20%, transparent);
+}
+
+html.dark[data-gptheme='oled'] {
+    --c-surface-1: oklch(0 0 0); // darkest
+    --c-surface-2: oklch(from var(--user-surface-1, var(--c-accent)) 0.12 calc(c * 0.22) h);
+    --c-surface-3: oklch(from var(--user-surface-1, var(--c-accent)) 0.15 calc(c * 0.22) h);
+
+    --c-bg-chats-container: var(--c-surface-1);
+    // --c-bg-msg-gpt: hsl(var(--accent-h), calc(var(--surface-s) + 20%), calc(var(--surface-l) + 6%));
+    // --c-bg-msg-user: oklch(from var(--c-accent) l c h / 0.2);
+    // --c-bg-msg-gpt: oklch(from var(--c-accent) l c h / 0.08);
+
+    --c-bg-msg-user: oklch(from var(--c-accent) 0.18 calc(c * 0.32) h);
+    --c-bg-msg-gpt: oklch(from var(--c-accent) 0.16 calc(c * 0.15) h);
+    --c-bg-dialog: var(--c-surface-1);
+}

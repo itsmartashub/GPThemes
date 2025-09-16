@@ -27,7 +27,7 @@ But adding this "main" blocked this style to smaller screens so I have to add it
 
 		&:hover,
 		[data-state='open'] {
-			background-color: hsla(var(--accent-hsl) / 0.1) !important;
+			background-color: oklch(from var(--c-accent) l c h / 0.1) !important;
 			color: var(--c-accent) !important;
 		}
 	}
