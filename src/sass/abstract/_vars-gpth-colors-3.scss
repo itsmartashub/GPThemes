@@ -137,7 +137,10 @@ html.dark[data-gptheme='oled'] {
     // --c-bg-msg-gpt: oklch(from var(--c-accent) l c h / 0.08);
 
     --c-bg-msg-user: oklch(from var(--c-accent) 0.25 calc(c * 0.4) h);
-    --c-bg-msg-gpt: oklch(from var(--c-accent) 0.2 calc(c * 0.18) h);
+    --c-bg-msg-gpt: oklch(from var(--c-accent) 0.18 calc(c * 0.2) h);
+    // --c-bg-msg-gpt: oklch(from var(--c-accent) 0.2 calc(c * 0.18) h);
+    // --c-bg-msg-gpt: oklch(from var(--c-accent) 0.15 calc(c * 0.282) h);
+    // --c-bg-msg-gpt: oklch(from var(--c-accent) l c h / 0.2);
 
     --c-bg-dialog: var(--c-surface-1);
     --c-bg-modal: oklch(from var(--c-accent) 0.5 calc(c * 0.5) h / 0.35);
