@@ -103,18 +103,16 @@
 		transform: translateX(50%);
 		border-radius: 20vw;
 		clip-path: polygon(0 0, 100% 0, 100% 0, 0% 0);
-		// background-color: oklch(from var(--c-accent) l c h / 0.12);
-		// box-shadow: var(--shadow-values) var(--shadow-color);
+		border: 1px solid oklch(from var(--c-accent) l c h / 0.2);
 		background-image: linear-gradient(135deg,
 				oklch(from var(--c-accent) l c h / 0.2) 0%,
 				oklch(from var(--c-accent) l c h / 0.03) 40%,
 				oklch(from var(--c-accent) l c h / 0.03) 60%,
 				oklch(from var(--c-accent) l c h / 0.2) 100%);
-		border: 1px solid oklch(from var(--c-accent) l c h / 0.2);
-		backdrop-filter: blur(10px);
-
-		transition: clip-path 0.3s $easeInOutCirc, opacity 0.3s ease-in-out;
 		backdrop-filter: blur(5px);
+		transition: clip-path 0.3s $easeInOutCirc, opacity 0.3s ease-in-out;
+
+
 
 		@include dev('sm') {
 			padding: 0.65rem;
