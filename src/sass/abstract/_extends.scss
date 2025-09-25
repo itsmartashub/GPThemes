@@ -29,19 +29,17 @@
 } */
 
 %gpth_floating_icon {
-	background-image: linear-gradient(135deg,
-			hsla(var(--accent-hsl) / 0.45) 0%,
-			hsla(var(--accent-hsl) / 0.1) 40%,
-			hsla(var(--accent-hsl) / 0.05) 60%,
-			hsla(var(--accent-hsl) / 0.45) 100%);
-	border: 1px solid hsla(var(--accent-hsl) / 0.2);
+	--alpha: 0.2;
+	background-image: var(--c-bg-gradient);
+	border: 1px solid var(--ext-color-alpha);
 	backdrop-filter: blur(10px);
 }
 
 %date-pill {
+	--alpha: 0.2;
+	background-color: var(--ext-color-alpha) !important;
 	display: inline-block !important;
 	color: var(--c-accent) !important;
-	background-color: hsl(var(--accent-hsl) / 0.2) !important;
 	font-weight: bold;
 	text-transform: uppercase;
 	line-height: 1 !important;
@@ -52,13 +50,13 @@
 }
 
 %simulator_bg {
-	// --c-simulator-bg: var(--c-surface-2);
-	// --c-simulator-shadow: hsla(var(--accent-hsl) / 0.15);
-	// --c-simulator-border: hsla(var(--accent-hsl) / 0.2);
-	background: linear-gradient(var(--c-simulator-bg, var(--c-surface-2))) !important;
+	--alpha: 0.24 // --c-simulator-bg: var(--c-surface-2);
+		// --c-simulator-shadow: oklch(from var(--c-accent) l c h / 0.15);
+		// --c-simulator-border: oklch(from var(--c-accent) l c h / 0.2);
+		background: linear-gradient(var(--c-simulator-bg, var(--c-surface-2))) !important;
 	box-shadow:
-		0 0 0 1px var(--c-simulator-border, hsla(var(--accent-hsl) / 0.24)),
-		inset 0 0 1rem 2rem var(--c-simulator-shadow, hsla(var(--accent-hsl) / 0.12));
+		0 0 0 1px var(--c-simulator-border, var(--ext-color-alpha)),
+		inset 0 0 1rem 2rem var(--c-simulator-shadow, oklch(from var(--c-accent) l c h /0.12));
 }
 
 // Reusable placeholders

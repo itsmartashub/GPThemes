@@ -15,8 +15,8 @@
         gap: 0.3rem;
         flex: 1 0 0;
         padding: 0.8rem;
-        background-color: hsla(var(--accent-hsl) / 0.1);
-        border: 1px solid hsla(var(--accent-hsl) / 0.1);
+        background-color: oklch(from var(--c-accent) l c h / 0.1);
+        border: 1px solid oklch(from var(--c-accent) l c h / 0.1);
         border-radius: var(--br);
         transition: background-color 0.25s ease, color 0.25s ease, scale 0.25s ease;
 

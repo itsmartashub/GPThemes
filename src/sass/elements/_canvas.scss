@@ -16,7 +16,7 @@
         .cm-line::selection {
             // background: var(--c-accent) !important;
             // color: var(--c-on-accent) !important;
-            background: hsla(var(--accent-hsl) / .14) !important;
+            background: oklch(from var(--c-accent) l c h / .14) !important;
             color: var(--c-accent) !important;
         }
 
@@ -34,7 +34,7 @@
     }
 
     .cm-activeLineGutter {
-        background-color: hsla(var(--accent-hsl) / .2) !important;
+        background-color: oklch(from var(--c-accent) l c h / .2) !important;
         color: var(--c-accent) !important;
     }
 
@@ -108,12 +108,12 @@
 
             /* Resizing line */
             .cursor-ns-resize.bg-token-text-quaternary {
-                background-color: hsla(var(--accent-hsl) / .5) !important;
+                background-color: oklch(from var(--c-accent) l c h / .5) !important;
             }
 
             /* Borders in console */
             .border-token-border-xlight {
-                --border-xlight: hsla(var(--accent-hsl) / .2) !important;
+                --border-xlight: oklch(from var(--c-accent) l c h / .2) !important;
                 // border-color: var(--border-xlight);
             }
 
@@ -153,8 +153,8 @@
                 /* Main state floating bg */
                 &.bg-token-main-surface-primary {
                     // background-image: var(--c-bg-gradient) !important;
-                    border: 1px solid hsla(var(--accent-hsl) / .14) !important;
-                    background-color: hsla(var(--accent-hsl) / .18) !important;
+                    border: 1px solid oklch(from var(--c-accent) l c h / .14) !important;
+                    background-color: oklch(from var(--c-accent) l c h / .18) !important;
                     backdrop-filter: blur(19px) !important;
                 }
 
@@ -188,7 +188,7 @@
 
                 /* Draggable Y-slider btn like: "Adjust the length" and "Reading level" in ProseMirror (text canvas) */
                 .cursor-grab.rounded-full.bg-token-main-surface-primary[draggable] {
-                    box-shadow: 0 0 0 0.65rem hsla(var(--accent-hsl) / 1) !important;
+                    box-shadow: 0 0 0 0.65rem oklch(from var(--c-accent) l c h / 1) !important;
                 }
 
                 /* SUBMIT CHANGE BUTTONS IN GENERAL */
@@ -208,7 +208,7 @@
 
                         &[class*="dark:bg-gray-700/50"],
                         &:hover {
-                            background-color: hsla(var(--accent-hsl) / .2) !important;
+                            background-color: oklch(from var(--c-accent) l c h / .2) !important;
                         }
                     }
                 }
@@ -225,7 +225,7 @@
 
                         &.bg-token-main-surface-primary {
                             --main-surface-primary: var(--c-surface-2) !important;
-                            border: 1px solid hsla(var(--accent-hsl) / .14) !important;
+                            border: 1px solid oklch(from var(--c-accent) l c h / .14) !important;
 
                             /* "Ask a ChatGPT" and toolbar buttons hover states */
                             button[class*="hover:bg-[#f5f5f5]"]:hover {
@@ -237,9 +237,9 @@
 
                 /* Floating balloons, like "1 more edit" */
                 .bg-token-main-surface-primary.border-token-main-surface-tertiary[aria-label^="Button to scroll the next edit into view"] {
-                    --main-surface-primary: hsla(var(--accent-hsl) / .15) !important;
-                    --main-surface-secondary: hsla(var(--accent-hsl) / .3) !important;
-                    border-color: hsla(var(--accent-hsl) / .12) !important;
+                    --main-surface-primary: oklch(from var(--c-accent) l c h / .15) !important;
+                    --main-surface-secondary: oklch(from var(--c-accent) l c h / .3) !important;
+                    border-color: oklch(from var(--c-accent) l c h / .12) !important;
                     color: var(--c-accent) !important;
                     backdrop-filter: blur(10px);
                 }
@@ -248,8 +248,8 @@
                 /* Blue Highlight when hover text to add a comment in Text Canvas */
                 [class*="dark:after:bg-[Highlight]"] {
                     &::after {
-                        background-color: hsla(var(--accent-hsl) / .15) !important;
-                        border: 1px solid hsla(var(--accent-hsl) / .15) !important;
+                        background-color: oklch(from var(--c-accent) l c h / .15) !important;
+                        border: 1px solid oklch(from var(--c-accent) l c h / .15) !important;
                     }
                 }
 
@@ -266,8 +266,8 @@
                 //     // color: var(--c-on-accent) !important;
                 //     @extend %simulator_bg;
                 //     // background: linear-gradient(var(--c-gradient, var(--c-surface-3))) !important;
-                //     // border: 1px solid hsla(var(--accent-hsl) / 0.3);
-                //     // box-shadow: inset 0 0 1rem 2rem hsla(var(--accent-hsl) / 0.15);
+                //     // border: 1px solid oklch(from var(--c-accent) l c h / 0.3);
+                //     // box-shadow: inset 0 0 1rem 2rem oklch(from var(--c-accent) l c h / 0.15);
                 // }
 
                 /*
@@ -361,7 +361,7 @@
                 }
 
                 &:disabled {
-                    background-color: hsla(var(--accent-hsl) / .12) !important;
+                    background-color: oklch(from var(--c-accent) l c h / .12) !important;
                 }
             }
         }
@@ -386,7 +386,7 @@ body:has(.absolute.z-20.h-full.transition-shadow.overflow-hidden.left-0 section.
 [class*="_main_"].ProseMirror pre:has(>code) {
     background-color: transparent !important;
     // background-color: red !important;
-    border: 2px solid hsla(var(--accent-hsl) / .3) !important;
+    border: 2px solid oklch(from var(--c-accent) l c h / .3) !important;
     border-radius: var(--br-btn) !important;
 }
 

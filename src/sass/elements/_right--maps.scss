@@ -24,7 +24,7 @@
 
                     /* Kao neki svg border od neaktivnih location bubble markers */
                     svg>[fill="black"] {
-                        fill: hsla(var(--accent-hsl) / .2) !important;
+                        fill: oklch(from var(--c-accent) l c h / .2) !important;
                     }
 
                     /* Location counter bubble markers in the maps - when selected/active */

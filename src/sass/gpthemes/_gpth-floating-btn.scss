@@ -37,7 +37,7 @@
 			height: var(--floating-icon-size);
 			color: var(--c-accent);
 			background-image: var(--c-bg-gradient);
-			border: 1px solid hsla(var(--accent-hsl) / 0.2);
+			border: 1px solid oklch(from var(--c-accent) l c h / 0.2);
 			backdrop-filter: blur(10px);
 
 			border-radius: 50vw;
@@ -57,8 +57,7 @@
 				padding: 0.5rem 0.8rem;
 				pointer-events: none;
 				background-color: var(--c-bg-tooltip);
-				color: var(--c-on-accent);
-				// color: var(--c-on-accent);
+				color: var(--c-accent) !important;
 				opacity: 0;
 				transform-origin: right center;
 				transform: translate(-110%, -50%) scale(0);
@@ -88,7 +87,7 @@
 	}
 
 	&__options {
-		// --shadow-color: hsla(var(--accent-hsl) / 0.08);
+		// --shadow-color: oklch(from var(--c-accent) l c h / 0.08);
 		// --shadow-values: inset 0 0 10px 5px;
 		pointer-events: none;
 		opacity: 0;
@@ -104,18 +103,16 @@
 		transform: translateX(50%);
 		border-radius: 20vw;
 		clip-path: polygon(0 0, 100% 0, 100% 0, 0% 0);
-		// background-color: hsla(var(--accent-hsl) / 0.12);
-		// box-shadow: var(--shadow-values) var(--shadow-color);
+		border: 1px solid oklch(from var(--c-accent) l c h / 0.2);
 		background-image: linear-gradient(135deg,
-				hsla(var(--accent-hsl) / 0.2) 0%,
-				hsla(var(--accent-hsl) / 0.03) 40%,
-				hsla(var(--accent-hsl) / 0.03) 60%,
-				hsla(var(--accent-hsl) / 0.2) 100%);
-		border: 1px solid hsla(var(--accent-hsl) / 0.2);
-		backdrop-filter: blur(10px);
-
-		transition: clip-path 0.3s $easeInOutCirc, opacity 0.3s ease-in-out;
+				oklch(from var(--c-accent) l c h / 0.2) 0%,
+				oklch(from var(--c-accent) l c h / 0.03) 40%,
+				oklch(from var(--c-accent) l c h / 0.03) 60%,
+				oklch(from var(--c-accent) l c h / 0.2) 100%);
 		backdrop-filter: blur(5px);
+		transition: clip-path 0.3s $easeInOutCirc, opacity 0.3s ease-in-out;
+
+
 
 		@include dev('sm') {
 			padding: 0.65rem;
@@ -334,14 +331,14 @@
 			display: grid;
 			grid-template-columns: 1fr 3fr;
 			overflow: clip;
-			box-shadow: 0 0 0 2px hsla(var(--accent-hsl) / 0.2);
+			box-shadow: 0 0 0 2px oklch(from var(--c-accent) l c h / 0.2);
 			border-radius: inherit;
 
 			aside {
-				background-color: hsla(var(--accent-hsl) / 0.2);
+				background-color: oklch(from var(--c-accent) l c h / 0.2);
 			}
 			section {
-				// background-color: hsla(var(--accent-hsl) / 0.01);
+				// background-color: oklch(from var(--c-accent) l c h / 0.01);
 				display: grid;
 				grid-template-rows: 3fr 4fr 2.5fr;
 				gap: 6px;
@@ -353,16 +350,16 @@
 
 					&:nth-child(1) {
 						// height: 50%;
-						background-color: hsla(var(--accent-hsl) / 0.4);
+						background-color: oklch(from var(--c-accent) l c h / 0.4);
 					}
 					&:nth-child(2) {
 						// height: 2rem;
-						background-color: hsla(var(--accent-hsl) / 0.2);
+						background-color: oklch(from var(--c-accent) l c h / 0.2);
 						justify-self: flex-end;
 					}
 					&:nth-child(3) {
 						// height: 4rem;
-						background-color: hsla(var(--accent-hsl) / 0.4);
+						background-color: oklch(from var(--c-accent) l c h / 0.4);
 						// justify-self: flex-end;
 					}
 				}

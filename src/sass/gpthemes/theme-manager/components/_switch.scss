@@ -22,8 +22,8 @@
 
     &:hover {
         // background-image: var(--c-bg-gradient);
-        background-color: hsla(var(--accent-hsl) / 0.1);
-        border-color: hsla(var(--accent-hsl) / 0.1) !important;
+        background-color: oklch(from var(--c-accent) l c h / 0.1);
+        border-color: oklch(from var(--c-accent) l c h / 0.1) !important;
         transform: scale(0.98);
     }
 
@@ -36,7 +36,7 @@
         display: grid;
         place-items: center;
         border-radius: 1rem;
-        background-color: hsla(var(--accent-hsl) / 0.2);
+        background-color: oklch(from var(--c-accent) l c h / 0.2);
         color: var(--c-accent);
 
         svg {
@@ -99,8 +99,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: hsla(var(--accent-hsl) / 0.3);
-            border: 2px solid hsla(var(--accent-hsl) / 0.5);
+            background-color: oklch(from var(--c-accent) l c h / 0.3);
+            border: 2px solid oklch(from var(--c-accent) l c h / 0.5);
             transition: .4s;
             border-radius: var(--chb-w);
 
@@ -110,7 +110,7 @@
                 height: var(--chb-slider-circle-size);
                 aspect-ratio: 1/1;
                 left: var(--chb-edge-gap);
-                background-color: hsla(var(--accent-hsl) / 0.5);
+                background-color: oklch(from var(--c-accent) l c h / 0.5);
                 transition: .4s $easeInOutCirc;
                 border-radius: 50%;
             }
@@ -127,7 +127,7 @@
         }
 
         input:disabled+.slider {
-            // background-color: hsla(var(--accent-hsl) / 0.1);
+            // background-color: oklch(from var(--c-accent) l c h / 0.1);
             opacity: 0.25 !important;
         }
 

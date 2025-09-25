@@ -9,13 +9,13 @@
 	/* To strictly select chat-bubble main code-block <pre> and not that "Result" in Analysis */
 	&.overflow-visible\! {
 		margin: var(--my-pre) auto !important;
-		box-shadow: color-mix(in srgb, var(--c-bg-pre) 90%, black 10%) 0px 7px 16px 0px; // on hover: 0 12 32 0
-		border: color-mix(in srgb, hsla(var(--accent-hsl) / 0.12) 50%, black 2%) 1px solid;
+		box-shadow: color-mix(in srgb, var(--c-bg-cm) 90%, black 10%) 0px 7px 16px 0px; // on hover: 0 12 32 0
+		border: color-mix(in srgb, oklch(from var(--c-accent) l c h / 0.12) 50%, black 2%) 1px solid;
 	}
 
 	/* Whole code block hljs element */
 	&>div {
-		background-color: var(--c-bg-pre) !important;
+		background-color: var(--c-bg-cm) !important;
 		border-radius: inherit !important;
 		padding: calc(var(--p-chat-bubble) * 0.5) !important;
 
@@ -28,7 +28,7 @@
 
 			/* "Always show details" with "Copy code" wrapper in Analyzed markdown */
 			&:has(label[for="ada-always-show"]) {
-				background-color: var(--c-bg-pre) !important;
+				background-color: var(--c-bg-cm) !important;
 				backdrop-filter: blur(5px) !important
 			}
 		}
@@ -53,9 +53,9 @@
 		/* "Copy Code", "Edit" buttons, switch in Analyses */
 		button:has(svg) {
 			$dur: 0.3s;
-			background-color: hsla(var(--accent-hsl) / 0.15) !important;
+			background-color: oklch(from var(--c-accent) l c h / 0.15) !important;
 			color: var(--c-accent) !important;
-			border: 1px solid hsla(var(--accent-hsl) / 0.15) !important;
+			border: 1px solid oklch(from var(--c-accent) l c h / 0.15) !important;
 			backdrop-filter: blur(20px) !important;
 			text-transform: uppercase !important;
 			border-radius: calc(var(--br) * 0.7) !important;
@@ -72,7 +72,7 @@
 			}
 
 			&:hover {
-				// background-color: hsla(var(--accent-hsl) / 0.2) !important;
+				// background-color: oklch(from var(--c-accent) l c h / 0.2) !important;
 				// color: var(--c-accent) !important;
 				// backdrop-filter: blur(5px) !important;
 				background-color: var(--c-accent) !important;

@@ -135,8 +135,8 @@
 
 		[role='tablist'] {
 			&.bg-token-bg-elevated-secondary {
-				background-color: hsla(var(--accent-hsl) / .04) !important;
-				border: 1px solid hsla(var(--accent-hsl) / .055) !important;
+				background-color: oklch(from var(--c-accent) l c h / .09) !important;
+				border: 1px solid oklch(from var(--c-accent) l c h / .12) !important;
 				border-radius: calc(var(--br-dialog) / 2) !important;
 			}
 
@@ -256,8 +256,8 @@
 		a[rel="noopener"].min-h-20.w-full {
 			width: max-content;
 			max-width: 100%;
-			background-color: hsla(var(--accent-hsl) / .12);
-			border: 1px solid hsla(var(--accent-hsl) / 0.14);
+			background-color: oklch(from var(--c-accent) l c h / .12);
+			border: 1px solid oklch(from var(--c-accent) l c h / 0.14);
 			border-radius: var(--br-btn);
 			color: var(--c-accent);
 			padding: 1rem;
@@ -274,7 +274,7 @@
 				text-transform: uppercase;
 
 				img[alt="Favicon"] {
-					border: 1px solid hsla(var(--accent-hsl) / 0.5);
+					border: 1px solid oklch(from var(--c-accent) l c h / 0.5);
 				}
 			}
 
@@ -289,8 +289,8 @@
 			/* Image counter that have the close button next to it */
 			.text-token-text-tertiary:has(~ button.h-9.w-9) {
 				color: var(--c-accent);
-				background-color: hsla(var(--accent-hsl) / .12);
-				border: 1px solid hsla(var(--accent-hsl) / 0.14);
+				background-color: oklch(from var(--c-accent) l c h / .12);
+				border: 1px solid oklch(from var(--c-accent) l c h / 0.14);
 				border-radius: 50vw;
 				padding: 0.2rem 1rem !important;
 				font-weight: 500;
@@ -308,7 +308,7 @@
 		/* input counter for seats */
 		input[type="number"],
 		button[role="radio"] {
-			border: 1px solid hsla(var(--accent-hsl) / .12) !important;
+			border: 1px solid oklch(from var(--c-accent) l c h / .12) !important;
 		}
 
 		input[type="number"] {
@@ -317,7 +317,7 @@
 
 		/* "Flexible plan" and "Annual plan" radio buttons */
 		button[role="radio"] {
-			border: 1px solid hsla(var(--accent-hsl) / .12) !important;
+			border: 1px solid oklch(from var(--c-accent) l c h / .12) !important;
 
 			&[aria-checked="true"] {
 				background-color: var(--c-surface-3) !important;
@@ -348,7 +348,7 @@
 
 	[role="dialog"] {
 		[role="group"][aria-label].bg-token-main-surface-tertiary.rounded-full {
-			background-color: hsla(var(--accent-hsl) / 0.1) !important;
+			background-color: oklch(from var(--c-accent) l c h / 0.1) !important;
 
 			/* "Personal" and "Business" switching buttons */
 			button[aria-label][role="radio"] {
@@ -373,12 +373,12 @@
 		/* Free and Plus plans cards */
 		[data-testid*="-pricing-modal-column"] {
 			// box-shadow: var(--box-shadow);
-			// border-color: hsla(var(--accent-hsl) / 0.15) !important; // not working...
+			// border-color: oklch(from var(--c-accent) l c h / 0.15) !important; // not working...
 			background-image: linear-gradient(135deg,
-					hsla(var(--accent-hsl) / 0.2) 0%,
-					hsla(var(--accent-hsl) / 0.03) 40%,
-					hsla(var(--accent-hsl) / 0.03) 60%,
-					hsla(var(--accent-hsl) / 0.2) 100%);
+					oklch(from var(--c-accent) l c h / 0.2) 0%,
+					oklch(from var(--c-accent) l c h / 0.03) 40%,
+					oklch(from var(--c-accent) l c h / 0.03) 60%,
+					oklch(from var(--c-accent) l c h / 0.2) 100%);
 
 
 			/* Ugly bg behind text in Plans */
@@ -390,8 +390,8 @@
 
 		/* Only PLUS plan card */
 		[data-testid="plus-pricing-modal-column"] {
-			background-color: hsla(var(--accent-hsl) / 0.12) !important;
-			border-color: hsla(var(--accent-hsl) / 0.25) !important;
+			background-color: oklch(from var(--c-accent) l c h / 0.12) !important;
+			border-color: oklch(from var(--c-accent) l c h / 0.25) !important;
 
 		}
 
@@ -470,7 +470,7 @@
 
 			&+span {
 				color: var(--c-accent);
-				background-color: hsla(var(--accent-hsl) / 0.15) !important;
+				background-color: oklch(from var(--c-accent) l c h / 0.15) !important;
 				padding: 2px 8px;
 				border-radius: 50vw;
 				font-weight: 600;
@@ -501,7 +501,7 @@
 		// }
 
 		&:hover {
-			background-color: hsla(var(--accent-hsl) / 0.12) !important;
+			background-color: oklch(from var(--c-accent) l c h / 0.12) !important;
 			color: var(--c-accent) !important;
 		}
 	}

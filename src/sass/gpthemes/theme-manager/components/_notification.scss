@@ -1,6 +1,6 @@
 /* Using your selector system */
 .#{$pfx}-notify-container {
-    --notif-bg: hsla(var(--accent-hsl) / 0.11);
+    --notif-bg: oklch(from var(--c-accent) l c h / 0.11);
     --notif-c: var(--c-accent);
     position: fixed;
     top: 1rem;
@@ -52,7 +52,7 @@
 
         /* Notification type styles */
         &--info {
-            --notif-bg: hsla(var(--accent-hsl) / 0.11);
+            --notif-bg: oklch(from var(--c-accent) l c h / 0.11);
             --notif-c: var(--c-accent);
         }
 

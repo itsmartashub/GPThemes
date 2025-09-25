@@ -10,9 +10,9 @@
     &--big,
     &--range label {
         // background-color: var(--c-surface-2);
-        // box-shadow: 0 0 0 1px hsla(var(--accent-hsl) / 0.2);
-        background-color: hsla(var(--accent-hsl) / 0.1);
-        border: 1px solid hsla(var(--accent-hsl) / 0.12);
+        // box-shadow: 0 0 0 1px oklch(from var(--c-accent) l c h / 0.2);
+        background-color: oklch(from var(--c-accent) l c h / 0.1);
+        border: 1px solid oklch(from var(--c-accent) l c h / 0.12);
         backdrop-filter: blur(10px) contrast(1.5);
     }
 
@@ -154,7 +154,7 @@
             --tw-ring-color: transparent !important;
             aspect-ratio: 1 / 1;
             height: 100%;
-            background-color: hsla(var(--accent-hsl) / 0.2);
+            background-color: oklch(from var(--c-accent) l c h / 0.2);
             color: var(--c-accent);
             padding: 0 !important;
             text-align: center;
@@ -164,7 +164,7 @@
 
         .card__unit {
             --px: 0.25rem;
-            background-color: hsla(var(--accent-hsl) / 0.12);
+            background-color: oklch(from var(--c-accent) l c h / 0.12);
             color: var(--c-accent);
             // font-size: 0.72rem;
             font-size: 0.5em;
@@ -232,7 +232,7 @@
             margin-left: -0.05rem;
             border-radius: 8px;
             color: var(--c-accent);
-            background-color: hsla(var(--accent-hsl) / 0.15);
+            background-color: oklch(from var(--c-accent) l c h / 0.15);
 
             @include dev('sm') {
                 --icon-size: 1.5rem;
@@ -258,7 +258,7 @@
             border-radius: 50vw;
 
             &:focus {
-                background-color: hsla(var(--accent-hsl) / 0.15) !important;
+                background-color: oklch(from var(--c-accent) l c h / 0.15) !important;
                 color: var(--c-accent);
                 padding: 4px 8px !important;
             }
@@ -300,7 +300,7 @@
 
         .card__unit {
             --px: 0.5rem;
-            background-color: hsla(var(--accent-hsl) / 0.12);
+            background-color: oklch(from var(--c-accent) l c h / 0.12);
             color: var(--c-accent);
             font-size: 0.5em;
             width: max-content;
@@ -318,7 +318,7 @@
             // width: var(--output-size);
             // height: var(--output-size);
             aspect-ratio: 1 / 1;
-            background-color: hsla(var(--accent-hsl) / 0.2);
+            background-color: oklch(from var(--c-accent) l c h / 0.2);
             color: var(--c-accent);
             font-size: 0.8em;
             line-height: 1;

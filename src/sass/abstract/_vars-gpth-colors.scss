@@ -1,0 +1,129 @@
+:root {
+    --accent-hsl: var(--accent-h) var(--accent-s) var(--accent-l);
+    --txt-hsl: var(--txt-h) var(--txt-s) var(--txt-l);
+    --surface-hsl: hsl(var(--accent-h) var(--surface-s) var(--surface-l));
+    --danger-hsl: var(--danger-h) var(--danger-s) var(--danger-l);
+
+    --c-txt: hsl(var(--txt-hsl));
+    --c-danger: hsl(var(--danger-hsl));
+    --c-warning: hsl(var(--warning-hsl));
+    --c-success: hsl(var(--success-hsl));
+    --c-accent: hsl(var(--accent-hsl));
+
+    --c-bg-sidebar: var(--c-surface-1);
+    --c-bg-textarea: linear-gradient(145deg, oklch(from var(--c-accent) l c h / 0.2) 0%, oklch(from var(--c-accent) l c h / 0.1) 22%, oklch(from var(--c-accent) l c h / 0.1) 68%, oklch(from var(--c-accent) l c h / 0.2) 100%);
+
+    --c-scrollbar-thumb: var(--c-surface-3);
+    --c-scrollbar-track: transparent;
+    --c-bg-cm: var(--c-surface-1);
+    --c-bg-tooltip: var(--c-accent-light);
+    --c-border-accent: oklch(from var(--c-accent) l c h / 0.1);
+    --c-border: hsla(var(--txt-hsl) / 0.08);
+    --box-shadow: var(--box-shadow-values) oklch(from var(--c-accent) l c h / 0.1);
+    --c-bg-gradient: linear-gradient(135deg,
+            oklch(from var(--c-accent) l c h / 0.45) 0%,
+            oklch(from var(--c-accent) l c h / 0.1) 40%,
+            oklch(from var(--c-accent) l c h / 0.05) 60%,
+            oklch(from var(--c-accent) l c h / 0.45) 100%);
+}
+
+/* @ ================== LIGHT ================== */
+html.light {
+    --accent-h: 335;
+    --accent-s: 21%;
+    --accent-l: 35%;
+
+    --txt-h: 0;
+    --txt-s: 0%;
+    --txt-l: 0%;
+
+    --surface-h: var(--accent-h); // Inherit accent hue
+    --surface-s: 9%; // Drastically reduced saturation (near-gray)
+    --surface-l: 90%; // Base lightness
+
+    --danger-h: 354;
+    --danger-s: 63%;
+    --danger-l: 48%;
+    --warning-hsl: 27 88% 44%;
+    --success-hsl: 162 92% 25%;
+
+    --c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) * 0.3), 75%);
+    --c-on-accent: hsl(var(--accent-h), var(--accent-s), 88%);
+
+    --c-subtext-1: hsl(var(--accent-h), 0%, 20%);
+    --c-subtext-2: hsl(var(--accent-h), 0%, 40%);
+
+    --c-surface-1: var(--surface-hsl); // normal
+    --c-surface-2: hsl(var(--surface-h) var(--surface-s) calc(var(--surface-l) * 0.945)); // darker
+    --c-surface-3: hsl(var(--surface-h) var(--surface-s) calc(var(--surface-l) * 0.905)); // darkest
+
+    --c-bg-chats-container: hsl(var(--surface-h) var(--surface-s) calc(var(--surface-l) * 1.02));
+    --c-bg-msg-user: oklch(from var(--c-accent) l c h / 0.08);
+    --c-bg-msg-gpt: hsl(var(--surface-h), calc(var(--surface-s) * 1), calc(var(--surface-l) * 0.97));
+    --c-bg-modal: hsla(var(--txt-hsl) / 0.3);
+    --c-bg-dialog: var(--c-surface-2);
+    --c-bg-menu: hsla(var(--accent-h), calc(var(--accent-s) * 0.35), 75%, 0.5);
+    --brightness-menu: brightness(0.98);
+}
+
+/* @ ================== DARK ================== */
+html.dark {
+    /* ? ========== HSL ========== */
+    /* --accent-hsl: 272 93% 78%; */
+    // color: #ca93fb;
+    --accent-h: 256;
+    --accent-s: 100%;
+    --accent-l: 83%;
+
+    --txt-h: var(--accent-h);
+    --txt-s: 86%;
+    --txt-l: 94%;
+
+    --surface-h: 249;
+    --surface-s: 19%;
+    --surface-l: 13%;
+
+    /* --danger-hsl: 356 77% 76% */
+    --danger-h: 356;
+    --danger-s: 77%;
+    --danger-l: 76%;
+    --warning-hsl: 30 100% 74%;
+
+    // color: hsl(162, 92%, 64%);
+    --success-hsl: 162 92% 64%;
+
+    --c-accent-light: hsl(var(--accent-h), calc(var(--accent-s) / 1.3), var(--accent-l));
+    --c-on-accent: hsl(var(--accent-h), var(--accent-s), 10%);
+
+    --c-subtext-1: var(--c-accent-light);
+    --c-subtext-2: hsl(var(--accent-h) calc(var(--accent-s) / 2) var(--accent-l)) !important;
+
+    --c-surface-1: hsl(var(--accent-h), var(--surface-s), var(--surface-l)); // darkest
+    --c-surface-2: hsl(var(--accent-h), var(--surface-s), calc(var(--surface-l) * 1.5)); // darker
+    --c-surface-3: hsl(var(--accent-h), var(--surface-s), calc(var(--surface-l) * 2)); // dark
+
+    --c-bg-chats-container: hsl(var(--accent-h) var(--surface-s) calc(var(--surface-l) * 1.076));
+
+    --c-bg-msg-user: oklch(from var(--c-accent) l c h / 0.2);
+    --c-bg-msg-gpt: oklch(from var(--c-accent) l c h / 0.08);
+    --c-bg-modal: oklch(from var(--c-accent) l c h / 0.15);
+    --c-bg-dialog: var(--c-surface-2);
+    --c-bg-menu: hsla(var(--accent-h), calc(var(--accent-s) * 0.3), calc(var(--accent-l) * 0.75), 0.3);
+    --brightness-menu: brightness(0.8);
+
+}
+
+/* @ ================== OLED ================== */
+html.dark[data-gptheme='oled'] {
+    --surface-h: 0;
+    --surface-s: 0%;
+    --surface-l: 0%;
+
+    --c-surface-1: var(--surface-hsl); // darkest
+    --c-surface-2: hsl(var(--accent-h), calc(var(--surface-s) + 15%), calc(var(--surface-l) + 12%)); // darker
+    --c-surface-3: hsl(var(--accent-h), calc(var(--surface-s) + 15%), calc(var(--surface-l) + 8%)); // dark
+
+    --c-bg-chats-container: var(--c-surface-1);
+    --c-bg-msg-gpt: hsl(var(--accent-h), calc(var(--surface-s) + 20%), calc(var(--surface-l) + 6%));
+    --c-bg-dialog: var(--c-surface-1);
+}

@@ -54,10 +54,10 @@
 // }
 
 .__menu-item {
-	--menu-item-active: hsla(var(--accent-hsl) / 0.16) !important;
-	--menu-item-hover: hsla(var(--accent-hsl) / 0.14) !important;
-	--menu-item-highlighted: hsla(var(--accent-hsl) / 0.15) !important;
-	--menu-item-open: hsla(var(--accent-hsl) / 0.22) !important;
+	--menu-item-active: oklch(from var(--c-accent) l c h / 0.16) !important;
+	--menu-item-hover: oklch(from var(--c-accent) l c h / 0.14) !important;
+	--menu-item-highlighted: oklch(from var(--c-accent) l c h / 0.15) !important;
+	--menu-item-open: oklch(from var(--c-accent) l c h / 0.22) !important;
 
 	// @include lift;
 	// @include scaleIn;

@@ -20,7 +20,8 @@
 
     /* Product/items list in chat bubbles (when search something) */
     .context-list {
-        box-shadow: 0 0 0 1px hsla(var(--accent-hsl) / 0.15);
+        --alpha: 0.15;
+        box-shadow: 0 0 0 1px var(--ext-color-alpha);
         background-color: var(--c-surface-2);
         padding-inline: 0.5rem;
         border-radius: var(--br-btn-big);
@@ -113,8 +114,8 @@
             [class*="touch:-me-2 touch:-ms-3.5 -ms-2.5 -me-1"] {
                 border-radius: 50vw;
                 backdrop-filter: blur(10px);
-                background: hsla(var(--accent-hsl) / .12) !important;
-                border: 1px solid hsla(var(--accent-hsl) / .08) !important;
+                background: oklch(from var(--c-accent) l c h / .12) !important;
+                border: 1px solid oklch(from var(--c-accent) l c h / .08) !important;
             }
         }
     }
@@ -125,8 +126,8 @@
         /* User chat bubble - Edit state.
         There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario */
         .rounded-3xl.bg-token-main-surface-tertiary:has(.max-h-\[25dvh\] > .grid > textarea) {
-            --main-surface-tertiary: hsla(var(--accent-hsl) / 0.08) !important;
-            border: 1px solid hsla(var(--accent-hsl) / 0.2);
+            --main-surface-tertiary: oklch(from var(--c-accent) l c h / 0.08) !important;
+            border: 1px solid oklch(from var(--c-accent) l c h / 0.2);
             caret-color: var(--c-accent);
 
             .max-h-\[25dvh\] {
@@ -147,7 +148,7 @@
 
         /* ↪️ Reply in msg */
         &>.text-token-text-tertiary.mx-2.my-1.flex.items-start.justify-end.text-sm.font-normal {
-            background-color: hsla(var(--accent-hsl) / 0.2);
+            background-color: oklch(from var(--c-accent) l c h / 0.2);
             padding: 0.5rem;
             color: var(--c-accent);
             border-radius: calc(var(--br) * 1.35);
@@ -155,7 +156,7 @@
 
             svg {
                 border-radius: 50vw;
-                background-color: hsla(var(--accent-hsl) / 0.2);
+                background-color: oklch(from var(--c-accent) l c h / 0.2);
             }
         }
     }
@@ -172,7 +173,7 @@
             transition: scale 0.25s $easeInOutSine, background-color 0.25s $easeInOutSine;
 
             &:hover {
-                background-color: hsla(var(--accent-hsl) / .1) !important;
+                background-color: oklch(from var(--c-accent) l c h / .1) !important;
                 scale: 0.98 !important;
             }
         }
@@ -193,7 +194,7 @@
 
         /* "SOURCES" button, style for footer icons affects this too!! */
         button.group\/footnote.bg-token-bg-primary.w-fit.rounded-3xl {
-            --bg-primary: hsla(var(--accent-hsl) / 0.1) !important;
+            --bg-primary: oklch(from var(--c-accent) l c h / 0.1) !important;
             text-transform: uppercase;
 
             &:is(:hover, :focus) {
@@ -210,9 +211,9 @@
         [data-message-author-role="assistant"] .w-50.shrink-0.snap-start[class*="@5xl/thread:w-61"] {
 
             .h-full.w-full.bg-clip-padding.bg-token-bg-primary.cursor-pointer.overflow-hidden {
-                background-color: hsla(var(--accent-hsl) / .08) !important;
+                background-color: oklch(from var(--c-accent) l c h / .08) !important;
                 backdrop-filter: blur(0.25rem);
-                border-color: hsla(var(--accent-hsl) / .1) !important;
+                border-color: oklch(from var(--c-accent) l c h / .1) !important;
                 transition: translate 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
 
                 &:hover {
@@ -223,8 +224,8 @@
 
         /* Link cards listed from sources listed when using "Search" */
         a[class*="group/nav-list"] {
-            background-color: hsla(var(--accent-hsl) / 0.1) !important;
-            border-color: hsla(var(--accent-hsl) / 0.1) !important;
+            background-color: oklch(from var(--c-accent) l c h / 0.1) !important;
+            border-color: oklch(from var(--c-accent) l c h / 0.1) !important;
             border-radius: var(--br);
             transition: translate 0.25s $easeInOutSine;
 
@@ -248,7 +249,7 @@
             [data-message-author-role="assistant"] {
                 border-radius: calc(var(--br-chat-bubble) * 0.7);
                 padding: 0.7rem 3%;
-                box-shadow: 0 0 0 1px hsla(var(--accent-hsl) / .12) !important;
+                box-shadow: 0 0 0 1px oklch(from var(--c-accent) l c h / .12) !important;
                 background-image: var(--c-bg-gradient);
             }
         }

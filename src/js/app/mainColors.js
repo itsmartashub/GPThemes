@@ -101,14 +101,19 @@ const updateCSSVars = (colors = {}) => {
 	// Generate CSS variables for each theme
 	const cssRules = Object.entries(finalColors)
 		.map(([theme, color]) => {
-			const hsl = hexToHSL(color)
+			// const hsl = hexToHSL(color)
+			// return `
+			// 	html.${theme} {
+			// 		--accent-h: ${hsl[0]} !important;
+			// 		--accent-s: ${hsl[1]}% !important;
+			// 		--accent-l: ${hsl[2]}% !important;
+			// 	}
+			// `
 			return `
 				html.${theme} {
-					--accent-h: ${hsl[0]} !important;
-					--accent-s: ${hsl[1]}% !important;
-					--accent-l: ${hsl[2]}% !important;
+					--c-accent: ${color} !important;
 				}
-				`
+			`
 		})
 		.join('')
 

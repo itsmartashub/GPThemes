@@ -1,0 +1,47 @@
+:root {
+    --fsz-error-404: 3rem;
+
+    --min-w-btn: 5.5rem;
+    --h-header: 60px;
+    --w-scrollbar: 0.365rem;
+
+    --br: 1rem;
+    --br-chat-bubble: calc(var(--br) * 1.9);
+    --br-btn: calc(var(--br) * 0.9);
+    --br-btn-big: calc(var(--br) * 1.2);
+    --br-dialog: calc(var(--br) * 2.5);
+    --br-contextmenu: calc(var(--br) * 1.5);
+    --br-pre: calc(var(--br) * 1.8);
+    --br-tooltips: var(--br-btn);
+    --br-scrollbar: 50vw;
+
+    --p: 0.725rem;
+    --p-chat-bubble: 1rem;
+    --p-contextmenu: 0.9rem;
+    --p-tooltips: 0.2rem;
+    --p-btn: 0.7rem;
+    --p-dialog: 1.4rem;
+    --p-between-chats: 1rem;
+
+    --mb-sidebar-nav-li: 0.2rem;
+    --my-pre: 1.5rem;
+
+    --blur-modal: 2rem;
+    --blur-menu: blur(18px);
+
+    --box-shadow-values: 0px 0px 100px 0px;
+    --z-modal: 100;
+
+    @include dev('md') {
+        --p-chat-bubble: .8rem;
+        --br-chat-bubble: calc(var(--br) * 1.5);
+        --p-contextmenu: .5rem;
+        --p-dialog: 0.3rem;
+        --br-dialog: calc(var(--br) * 1.5);
+        --p-sidebar-nav: 0.3rem;
+    }
+
+    @include dev('sm') {
+        --br-chat-bubble: var(--br);
+    }
+}

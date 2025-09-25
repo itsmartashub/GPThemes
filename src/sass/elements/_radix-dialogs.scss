@@ -33,7 +33,7 @@
 
 		[class*="hover:bg-token-main-surface-secondary"]:hover {
 			// --main-surface-secondary: var(--c-bg-contextmenu-item) !important;
-			--main-surface-secondary: hsla(var(--accent-hsl) / 0.14) !important;
+			--main-surface-secondary: oklch(from var(--c-accent) l c h / 0.14) !important;
 		}
 
 	}
