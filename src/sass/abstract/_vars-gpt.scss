@@ -163,7 +163,8 @@ html,
 	--main-surface-secondary: var(--gray-700);
 	--main-surface-tertiary: var(--gray-600);
 	--sidebar-surface-primary: var(--gray-750); */
-    --main-surface-primary: var(--c-surface-2) !important;
+    --main-surface-primary: var(--c-accent-light) !important;
+    // --main-surface-primary: var(--c-surface-2) !important;
     --main-surface-secondary: var(--c-surface-2) !important;
     --main-surface-tertiary: var(--c-surface-3) !important;
     --sidebar-surface-primary: var(--c-bg-sidebar) !important;
@@ -177,7 +178,8 @@ html,
     // --main-surface-secondary: var(--gray-100);
     // --main-surface-tertiary: var(--gray-200);
     // --sidebar-surface-primary: var(--white);
-    --main-surface-primary: var(--c-surface-2) !important;
+    --main-surface-primary: var(--c-accent-light) !important; // for black is ok, but dark and light is the same as parent (dialog)
+    // --main-surface-primary: var(--c-surface-2) !important;
     --main-surface-secondary: var(--c-surface-2) !important;
     --main-surface-tertiary: var(--c-surface-3) !important;
     --sidebar-surface-primary: var(--c-bg-sidebar) !important;

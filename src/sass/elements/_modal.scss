@@ -135,8 +135,8 @@
 
 		[role='tablist'] {
 			&.bg-token-bg-elevated-secondary {
-				background-color: oklch(from var(--c-accent) l c h / .04) !important;
-				border: 1px solid oklch(from var(--c-accent) l c h / .055) !important;
+				background-color: oklch(from var(--c-accent) l c h / .09) !important;
+				border: 1px solid oklch(from var(--c-accent) l c h / .12) !important;
 				border-radius: calc(var(--br-dialog) / 2) !important;
 			}
 
