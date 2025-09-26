@@ -14,7 +14,7 @@
 
         &.btn-primary[class*="bg-red-500"] {
             color: var(--c-danger);
-            background-color: oklch(from currentColor l c h / 0.2) !important;
+            background-color: oklch(from var(--c-danger) l c h / 0.2) !important;
 
             svg {
                 color: var(--c-danger) !important;

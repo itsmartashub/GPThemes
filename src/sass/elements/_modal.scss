@@ -384,6 +384,11 @@
 					oklch(from var(--c-accent) l c h / 0.03) 40%,
 					oklch(from var(--c-accent) l c h / 0.03) 60%,
 					oklch(from var(--c-accent) l c h / 0.2) 100%);
+			transition: scale 0.3s ease;
+
+			&:is(:hover, :focus-within) {
+				scale: 0.985;
+			}
 
 
 			/* Ugly bg behind text in Plans */
@@ -394,10 +399,10 @@
 		}
 
 		/* Only PLUS plan card */
-		[data-testid="plus-pricing-modal-column"] {
+		[data-testid="plus-pricing-modal-column"],
+		[data-testid="team-pricing-modal-column"] {
 			background-color: oklch(from var(--c-accent) l c h / 0.12) !important;
-			border-color: oklch(from var(--c-accent) l c h / 0.25) !important;
-
+			border-color: oklch(from var(--c-accent) l c h / 0.28) !important;
 		}
 
 		/* See "ChatGPT Enterprise" */

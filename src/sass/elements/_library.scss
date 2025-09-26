@@ -3,25 +3,11 @@
 .group\/imagegen-image {
     border-radius: var(--br-contextmenu) !important;
     @include imgTrans;
-    // transition: 0.3s $easeInOutCubic scale;
-
-    // img {
-    //     transition: 0.3s $easeInOutCubic scale;
-    // }
-
-    // &:is(:hover, :focus) {
-    //     scale: 0.97;
-
-    //     img {
-    //         scale: 1.1;
-    //     }
-    // }
 
     button[class*="bg-white/15"] {
-        // background-color: var(--c-accent-light) !important;
-        // background-color: oklch(from var(--c-accent) l c h / .5);
-        background-color: rgba(#fff, 0.3);
-        backdrop-filter: blur(18px) !important;
+        background-color: var(--c-accent-light) !important;
+        color: var(--c-accent) !important;
+        // backdrop-filter: blur(18px) !important;
     }
 
     // Text and buttons showed over image on image hover: download, like, dislike and image name

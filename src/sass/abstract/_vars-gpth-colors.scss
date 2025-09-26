@@ -38,6 +38,7 @@
             oklch(from var(--c-accent) l c h / 0.1) 22%,
             oklch(from var(--c-accent) l c h / 0.1) 68%,
             oklch(from var(--c-accent) l c h / 0.2) 100%);
+
     --c-bg-gradient: linear-gradient(135deg,
             oklch(from var(--c-accent) l c h / 0.45) 0%,
             oklch(from var(--c-accent) l c h / 0.1) 40%,
