@@ -49,24 +49,20 @@
 				position: absolute;
 				top: 50%;
 				left: 0;
-				font-size: 0.865rem;
-				font-weight: 500;
-				border-radius: 1.2rem;
+				font-size: 0.725rem;
+				font-weight: bold;
+				border-radius: 50vw;
 				width: max-content;
 				height: max-content;
-				padding: 0.5rem 0.8rem;
+				padding: 0.2rem 0.5rem;
+				background-color: var(--c-accent);
+				color: var(--c-on-accent) !important;
 				pointer-events: none;
-				background-color: var(--c-bg-tooltip);
-				color: var(--c-accent) !important;
 				opacity: 0;
 				transform-origin: right center;
 				transform: translate(-110%, -50%) scale(0);
 				transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 				// z-index: -1;
-
-				@include dev('sm') {
-					padding: 0.4rem 0.6rem;
-				}
 			}
 
 			&:hover {

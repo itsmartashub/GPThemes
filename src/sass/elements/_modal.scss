@@ -135,9 +135,14 @@
 
 		[role='tablist'] {
 			&.bg-token-bg-elevated-secondary {
-				background-color: oklch(from var(--c-accent) l c h / .09) !important;
-				border: 1px solid oklch(from var(--c-accent) l c h / .12) !important;
+				--alpha: 0.055;
+				background-color: var(--ext-color-alpha) !important;
+				border: 1px solid var(--ext-color-alpha) !important;
 				border-radius: calc(var(--br-dialog) / 2) !important;
+				// border: none !important;
+				// background-color: var(--c-surface-3) !important;
+				// background-color: oklch(from var(--c-bg-dialog) 0.2 c h) !important;
+				// background-color: var(--c-accent-light) !important;
 			}
 
 			button {

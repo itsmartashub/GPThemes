@@ -401,3 +401,17 @@ dialog.fixed.inset-0.w-full.h-full {
     //     background: var(--c-bg-chats-container) !important;
     // }
 }
+
+/* Canvas comments */
+[data-comment-id] {
+
+    /* Normal state */
+    [class*="dark:bg-gray-800"] {
+        background-color: var(--c-surface-3) !important;
+    }
+
+    /* Hover state */
+    .bg-token-main-surface-primary {
+        background-color: var(--c-accent-light) !important;
+    }
+}

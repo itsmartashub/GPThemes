@@ -134,6 +134,10 @@ html,
     --interactive-bg-accent-muted-hover: oklch(from var(--c-accent) l c h / 0.12) !important; // when hover on action btn in prompt-textarea like: Think, Search, Canvas etc
     --interactive-bg-accent-muted-press: oklch(from var(--c-accent) l c h / 0.3) !important; // when holding pressed on action btn in prompt-textarea like: Think, Search, Canvas etc
     --interactive-bg-accent-muted-context: oklch(from var(--c-accent) l c h / 0.2) !important; // When hover on active action button in chatbox. For example, if we are in Search chats and this btn is selected in chatbox. When we hover, it had blue-ish bg, now we override it
+    // --interactive-bg-accent-hover: oklch(from var(--c-accent) 0.95 0.08 h) !important;
+    --interactive-bg-accent-hover: oklch(from var(--c-accent) 0.9 calc(c * 0.4) h) !important;
+    --interactive-bg-accent-press: oklch(from var(--c-accent) 0.77 calc(c * 0.4) h) !important;
+
     --interactive-label-accent-default: var(--c-accent) !important;
 
     --menu-item-highlighted: var(--interactive-bg-secondary-hover) !important;
