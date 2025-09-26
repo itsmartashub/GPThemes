@@ -1,8 +1,8 @@
 import browser from 'webextension-polyfill'
 import { SELECTORS } from './config/selectors'
 import { q } from '../utils/dom.js'
+import { setCssVars } from '../utils/setCssVar.js'
 import { closeSettings, $settings } from './settingsManager.js'
-import { hexToHSL } from '../utils/hexToHSL.js'
 import { renderButton } from './components/renderButtons'
 import { renderSeparator } from './components/renderUtils'
 import { renderUserAccentBgToggle, handleUserAccentBgListeners } from './custom-colors/accentUserBubble'
@@ -34,8 +34,6 @@ const STORAGE_KEYS = Object.entries(COLOR_CONFIG).reduce((acc, [theme, config]) 
 	acc[`ACCENT_${theme.toUpperCase()}`] = config.storageKey
 	return acc
 }, {})
-
-let styleElement = null
 
 const generateColorsTabHTML = () => {
 	// Generate color pickers dynamically
@@ -74,60 +72,56 @@ const generateColorsTabHTML = () => {
 	`
 }
 
-const getOrCreateStyleElement = () => {
-	if (!styleElement) {
-		styleElement = document.createElement('style')
-		styleElement.type = 'text/css'
-		document.head.appendChild(styleElement)
-	}
-	return styleElement
-}
+// Helper to create theme-to-color mapping from COLOR_CONFIG
+const getThemeDefaults = () =>
+	Object.fromEntries(Object.entries(COLOR_CONFIG).map(([theme, config]) => [theme, config.default]))
+
+// Helper to create storage defaults from COLOR_CONFIG
+const getStorageDefaults = () =>
+	Object.fromEntries(Object.values(COLOR_CONFIG).map((config) => [config.storageKey, config.default]))
 
 const updateCSSVars = (colors = {}) => {
-	const styleEl = getOrCreateStyleElement()
+	// Get current values for any theme not provided - one liner!
+	const currentValues = Object.fromEntries(
+		Object.entries(COLOR_CONFIG)
+			.filter(([theme]) => !colors[theme])
+			.map(([theme, config]) => [theme, q(`#${config.id}`, $settings)?.value || config.default])
+	)
 
-	// Get current values for any theme not provided
-	const currentValues = {}
-	Object.entries(COLOR_CONFIG).forEach(([theme, config]) => {
-		if (!colors[theme]) {
-			const input = q(`#${config.id}`, $settings)
-			currentValues[theme] = input ? input.value : config.default
-		}
+	// Combine and apply in one go
+	const rootStyle = document.documentElement.style
+	Object.entries({ ...currentValues, ...colors }).forEach(([theme, color]) => {
+		rootStyle.setProperty(`--user-accent-${theme}`, color)
+		// setCssVars({ [`--user-accent-${theme}`]: color })
 	})
-
-	// Combine provided colors with current values
-	const finalColors = { ...currentValues, ...colors }
-
-	// Generate CSS variables for each theme
-	const cssRules = Object.entries(finalColors)
-		.map(([theme, color]) => {
-			// const hsl = hexToHSL(color)
-			// return `
-			// 	html.${theme} {
-			// 		--accent-h: ${hsl[0]} !important;
-			// 		--accent-s: ${hsl[1]}% !important;
-			// 		--accent-l: ${hsl[2]}% !important;
-			// 	}
-			// `
-			return `
-				html.${theme} {
-					--c-accent: ${color} !important;
-				}
-			`
-		})
-		.join('')
-
-	styleEl.textContent = cssRules
 }
 
 const setColorInputValues = (colors) => {
 	Object.entries(colors).forEach(([theme, value]) => {
-		const config = COLOR_CONFIG[theme.toLowerCase()]
-		if (config) {
-			const input = q(`#${config.id}`, $settings)
-			if (input) input.value = value
-		}
+		const input = q(`#${COLOR_CONFIG[theme]?.id}`, $settings)
+		if (input) input.value = value
 	})
+}
+
+const resetAllAccents = async () => {
+	try {
+		// Save defaults to storage
+		await browser.storage.sync.set(getStorageDefaults())
+
+		// Get theme defaults once
+		const themeDefaults = getThemeDefaults()
+
+		// Update UI
+		setColorInputValues(themeDefaults)
+
+		// Remove CSS properties
+		const rootStyle = document.documentElement.style
+		Object.keys(themeDefaults).forEach((theme) => {
+			rootStyle.removeProperty(`--user-accent-${theme}`)
+		})
+	} catch (error) {
+		console.error('Error resetting accent colors:', error)
+	}
 }
 
 const saveColorToStorage = async (key, value) => {
@@ -166,12 +160,6 @@ const handleColorInputs = () => {
 			}
 		}
 	})
-
-	// Setup for custom color picker (preparation for future implementation)
-	// This will be expanded when the custom picker is implemented
-	/* container.querySelectorAll('.colorpicker').forEach((picker) => {
-		picker.setAttribute('data-custom-picker-ready', 'false')
-	}) */
 }
 
 const loadColorValuesFromStorage = async () => {
@@ -219,31 +207,6 @@ const initializeColorStorage = async () => {
 		}
 	} catch (error) {
 		console.error('Error initializing color storage:', error)
-	}
-}
-
-const resetAllAccents = async () => {
-	try {
-		// Create an object of default values for storage
-		const defaults = {}
-		Object.values(COLOR_CONFIG).forEach((config) => {
-			defaults[config.storageKey] = config.default
-		})
-
-		// Save defaults to storage
-		await browser.storage.sync.set(defaults)
-
-		// Create a theme-to-color mapping for UI update
-		const themeDefaults = {}
-		Object.entries(COLOR_CONFIG).forEach(([theme, config]) => {
-			themeDefaults[theme] = config.default
-		})
-
-		// Update UI and CSS
-		setColorInputValues(themeDefaults)
-		updateCSSVars(themeDefaults)
-	} catch (error) {
-		console.error('Error resetting accent colors:', error)
 	}
 }
 
