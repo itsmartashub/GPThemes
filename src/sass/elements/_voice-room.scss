@@ -13,8 +13,8 @@
         }
 
         &.btn-primary[class*="bg-red-500"] {
-            background-color: hsla(var(--danger-hsl) / 0.2) !important;
             color: var(--c-danger);
+            background-color: oklch(from currentColor l c h / 0.2) !important;
 
             svg {
                 color: var(--c-danger) !important;

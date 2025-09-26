@@ -108,9 +108,9 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 [class*='bg-red-500'],
 [class*='bg-red-100'],
 [class*='bg-token-surface-error'] {
-	background-color: hsla(var(--danger-hsl) / 0.11) !important;
 	color: var(--c-danger) !important;
-	border: 1px solid hsla(var(--danger-hsl) / 0.11) !important;
+	background-color: oklch(from currentColor l c h / 0.11) !important;
+	border: 1px solid oklch(from currentColor l c h / 0.11) !important;
 	backdrop-filter: blur(18px);
 
 	svg {
@@ -124,9 +124,9 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 
 [class*='bg-orange-400']:not(.bg-opacity-0),
 [class*='dark:bg-yellow-600'] {
-	background-color: hsla(var(--warning-hsl) / 0.11) !important;
 	color: var(--c-warning) !important;
-	border: 1px solid hsla(var(--warning-hsl) / 0.11) !important;
+	background-color: oklch(from var(--c-warning) l c h / 0.11) !important;
+	border: 1px solid oklch(from var(--c-warning) l c h / 0.11) !important;
 	backdrop-filter: blur(18px);
 
 	svg {

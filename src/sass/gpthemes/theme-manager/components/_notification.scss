@@ -28,6 +28,10 @@
         opacity: 0;
         transition: all 0.3s ease;
 
+        --alpha: 1.1;
+        --notif-bg: var(--ext-color-alpha);
+        --notif-c: var(--c-seed, var(--c-accent));
+
         &__content {
             padding-right: calc(var(--p) * 1.5);
         }
@@ -52,23 +56,27 @@
 
         /* Notification type styles */
         &--info {
-            --notif-bg: oklch(from var(--c-accent) l c h / 0.11);
-            --notif-c: var(--c-accent);
+            --c-seed: var(--c-accent);
+            // --notif-bg: oklch(from var(--c-accent) l c h / 0.11);
+            // --notif-c: var(--c-accent);
         }
 
         &--success {
-            --notif-bg: hsla(var(--success-hsl) / 0.11);
-            --notif-c: var(--c-success);
+            --c-seed: var(--c-success);
+            // --notif-bg: hsla(var(--success-hsl) / 0.11);
+            // --notif-c: var(--c-success);
         }
 
         &--warning {
-            --notif-bg: hsla(var(--warning-hsl) / 0.11);
-            --notif-c: var(--c-warning);
+            --c-seed: var(--c-warning);
+            // --notif-bg: var(--ext-color-alpha);
+            // --notif-c: var(--c-seed);
         }
 
         &--error {
-            --notif-bg: hsla(var(--danger-hsl) / 0.11);
-            --notif-c: var(--c-danger);
+            --c-seed: var(--c-danger);
+            // --notif-bg: hsla(var(--danger-hsl) / 0.11);
+            // --notif-c: var(--c-danger);
         }
     }
 }

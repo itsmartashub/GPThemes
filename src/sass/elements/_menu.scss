@@ -66,10 +66,10 @@
 	// data-testid="delete-chat-menu-item"
 	&[data-color="danger"],
 	&[data-testid="log-out-menu-item"] {
-		--menu-item-active: hsla(var(--danger-hsl) / .16) !important;
-		--menu-item-hover: hsla(var(--danger-hsl) / .14) !important;
-		--menu-item-highlighted: hsla(var(--danger-hsl) / .15) !important;
-		--menu-item-open: hsla(var(--danger-hsl) / .22) !important;
+		--menu-item-active: oklch(from var(--c-danger) l c h / .16) !important;
+		--menu-item-hover: oklch(from var(--c-danger) l c h / .14) !important;
+		--menu-item-highlighted: oklch(from var(--c-danger) l c h / .15) !important;
+		--menu-item-open: oklch(from var(--c-danger) l c h / .22) !important;
 	}
 
 	&[data-testid="log-out-menu-item"] {

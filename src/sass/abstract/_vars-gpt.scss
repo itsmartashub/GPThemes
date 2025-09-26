@@ -38,8 +38,8 @@ html,
     --bg-scrim: var(--c-surface-1) !important;
     // --bg-elevated-primary: var(--c-surface-2) !important; // e.g. stop btn bg when DeepSearch is active
     // --bg-elevated-secondary: #181818;
-    --bg-status-warning: hsla(var(--warning-hsl) / 0.11) !important;
-    --bg-status-error: hsla(var(--danger-hsl) / 0.11) !important;
+    --bg-status-warning: oklch(from var(--c-warning) l c h / 0.11) !important;
+    --bg-status-error: oklch(from var(--c-danger) l c h / 0.11) !important;
     /* .border-token-border-default
 	- border oko "Uprade" btn-a
 	- border oko inputa u GPTs page
@@ -48,8 +48,8 @@ html,
     --border-default: var(--c-border-accent) !important;
     --border-light: var(--c-border-accent) !important;
     // --border-heavy: #fff3;
-    --border-status-warning: hsla(var(--warning-hsl) / 0.11);
-    --border-status-error: hsla(var(--danger-hsl) / 0.11) !important;
+    --border-status-warning: oklch(from var(--c-warning) l c h / 0.11);
+    --border-status-error: oklch(from var(--c-danger) l c h / 0.11) !important;
     --text-primary: var(--c-txt) !important;
     --text-secondary: var(--c-subtext-1) !important;
     --text-tertiary: var(--c-subtext-2) !important;

@@ -192,8 +192,8 @@
 		/* Memory 100% full */
 		[id*='content-Personalization'][role='tabpanel'] {
 			[class*="dark:text-[#DC2626]"] {
-				background-color: hsla(var(--danger-hsl) / 0.11) !important;
 				color: var(--c-danger) !important;
+				background-color: oklch(from currentColor l c h / 0.11) !important;
 			}
 
 		}

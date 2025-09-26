@@ -19,7 +19,7 @@
         --alpha: var(--alpha-subtle); 
         --c-seed: var(--danger); 
      } */
-    --ext-color-alpha: oklch(from var(--c-seed, var(--c-accent)) l c h / var(--alpha, 0.1));
+    --ext-color-alpha: oklch(from var(--c-seed, var(--c-accent)) l c h / var(--alpha, 0.11));
 
 
     --c-scrollbar-thumb: var(--c-surface-3);
@@ -50,11 +50,11 @@ html.light {
     --c-accent: var(--user-accent, #6c4756);
     --c-on-accent: oklch(from var(--c-accent) 1 calc(c * 0.3) h);
     // --c-accent-light: oklch(from var(--c-accent) 0.8 calc(c * 0.5) h);
-    --c-accent-light: color-mix(in oklch, var(--c-surface-1), var(--c-accent) 13%);
+    --c-accent-light: color-mix(in oklch, var(--c-surface-1), var(--c-accent) 14%);
 
     --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.925 0.0113 h);
-    --c-surface-2: oklch(from var(--user-surface-1, var(--c-surface-1)) calc(l * 0.96) calc(c * 1.07) h);
-    --c-surface-3: oklch(from var(--user-surface-1, var(--c-surface-2)) calc(l * 0.96) calc(c * 1.25) h);
+    --c-surface-2: oklch(from var(--user-surface-1, var(--c-surface-1)) calc(l * 0.96) calc(c * 1.2) h);
+    --c-surface-3: oklch(from var(--user-surface-1, var(--c-surface-2)) calc(l * 0.97) calc(c * 1.25) h);
 
     --c-txt: oklch(from var(--user-txt, var(--c-accent)) 0 c h);
     --c-subtext-1: oklch(from var(--user-subtext-1, var(--c-accent)) 0.3 c h);
