@@ -445,57 +445,6 @@ const handleFontsListeners = () => {
 	bind(elements.btnResetFont, {
 		click: resetAllFonts,
 	})
-
-	// // Add event listeners using the cached selectors
-	// if (elements.selectFontFamily) {
-	// 	elements.selectFontFamily.addEventListener('change', changeFontFamily)
-	// }
-
-	// if (elements.inputFontSize) {
-	// 	elements.inputFontSize.addEventListener('focus', (e) => {
-	// 		focusValues.fontSize = e.target.value
-	// 	})
-	// 	elements.inputFontSize.addEventListener('blur', changeFontSize)
-	// 	elements.inputFontSize.addEventListener('keypress', (e) => {
-	// 		if (e.key === 'Enter') {
-	// 			e.preventDefault()
-	// 			changeFontSize(e)
-	// 			e.target.blur()
-	// 		}
-	// 	})
-	// }
-
-	// if (elements.inputLineHeight) {
-	// 	elements.inputLineHeight.addEventListener('focus', (e) => {
-	// 		focusValues.lineHeight = e.target.value
-	// 	})
-	// 	elements.inputLineHeight.addEventListener('blur', changeLineHeight)
-	// 	elements.inputLineHeight.addEventListener('keypress', (e) => {
-	// 		if (e.key === 'Enter') {
-	// 			e.preventDefault()
-	// 			changeLineHeight(e)
-	// 			e.target.blur()
-	// 		}
-	// 	})
-	// }
-
-	// if (elements.inputLetterSpacing) {
-	// 	elements.inputLetterSpacing.addEventListener('focus', (e) => {
-	// 		focusValues.letterSpacing = e.target.value
-	// 	})
-	// 	elements.inputLetterSpacing.addEventListener('blur', changeLetterSpacing)
-	// 	elements.inputLetterSpacing.addEventListener('keypress', (e) => {
-	// 		if (e.key === 'Enter') {
-	// 			e.preventDefault()
-	// 			changeLetterSpacing(e)
-	// 			e.target.blur()
-	// 		}
-	// 	})
-	// }
-
-	// if (elements.btnResetFont) {
-	// 	elements.btnResetFont.addEventListener('click', resetAllFonts)
-	// }
 }
 
 // Load font values from storage

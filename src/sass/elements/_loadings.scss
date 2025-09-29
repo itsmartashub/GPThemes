@@ -2,3 +2,8 @@
     --main-surface-secondary: var(--c-surface-2) !important;
     --main-surface-tertiary: var(--c-surface-3) !important;
 }
+
+/* Skeleton loader in Project folder when list (project items) loading */
+.skeleton-child:is(:where(.group).skeleton *) {
+    --tw-gradient-via: oklch(from var(--c-accent) l c h / 0.3) !important;
+}

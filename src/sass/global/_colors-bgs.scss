@@ -386,3 +386,8 @@ a.bg-token-main-surface-primary.group {
 // 	--bg-primary: var(--c-bg-chats-container) !important;
 // 	background-color: var(--bg-primary);
 // }
+
+/* Settings > Account > "Complete verification to publish GPTs to everyone......" */
+.bg-token-main-surface-primary\/10 {
+	background-color: color-mix(in oklab, var(--main-surface-primary) 40%, transparent) !important;
+}
