@@ -17,15 +17,7 @@
 	}
 }
 
-#history {
-
-	/* List item for GPTs and for chats-list item */
-	.__menu-item {
-
-		&[data-active] {
-			box-shadow: 0 0 2px 1px oklch(from var(--c-accent) l c h / 0.075) inset;
-		}
-	}
+.__menu-item.hoverable {
 
 	/* Today, Yesterday - Time heading in sidebar */
 	h2.__menu-label {
@@ -38,5 +30,9 @@ nav[aria-label].h-full {
 		padding-block: 0.5rem !important;
 		border-radius: calc(var(--br) * 0.8) !important;
 		@include lift;
+
+		&[data-active] {
+			box-shadow: 0 0 2px 1px oklch(from var(--c-accent) l c h / 0.095) inset;
+		}
 	}
 }
