@@ -152,6 +152,7 @@ const initColorPickers = (colors) => {
 
 		const picker = new ColorPicker(btn, {
 			toggleStyle: 'button',
+			container: `.${SELECTORS.SETTINGS.ROOT}`,
 			color: initialColor,
 			submitMode: 'instant',
 			enableAlpha: false,
