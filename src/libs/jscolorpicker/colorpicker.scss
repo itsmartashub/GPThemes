@@ -56,7 +56,7 @@
 }
 
 .color-picker:not(.cp_wide) {
-  padding: 1px;
+  // padding: 1px;
   height: var(--cp-size);
   border: 2px solid var(--cp-border-color);
   border-style: solid;
@@ -293,9 +293,8 @@
 .color-picker:focus-visible,
 .cp_dialog *:focus-visible {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  border-color: var(--cp-body-bg);
-  box-shadow: 0 0 2px 2px var(--cp-tertiary-color) inset;
   outline: 0;
+  box-shadow: 0 0 40px 10px var(--ext-color-alpha) inset;
 }
 
 /* Swatches */
@@ -387,14 +386,15 @@
   width: 0;
   text-align: center;
 
-  border: none;
+  border: 1px solid var(--ext-color-alpha);
   border-radius: 0;
   padding: 0.25rem 0.375rem;
   font-size: 0.9rem;
   font-family: inherit;
 
-  color: var(--cp-body-color);
+  color: var(--c-accent);
   background-color: var(--c-surface-3) !important;
+  //   background-color: var(--c-bg-textarea) !important;
 }
 
 /* Action Buttons */

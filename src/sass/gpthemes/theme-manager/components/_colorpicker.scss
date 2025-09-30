@@ -95,7 +95,7 @@
 				oklch(from var(--c-accent) l c h / 0.03) 60%,
 				oklch(from var(--c-accent) l c h / 0.1) 100%);
 		border: 1px solid oklch(from var(--c-accent) l c h / 0.1);
-		backdrop-filter: blur(5px);
+		// backdrop-filter: blur(5px);
 	}
 
 	label {
@@ -103,6 +103,17 @@
 
 		span {
 			font-weight: bold;
+		}
+	}
+
+
+	.color-picker {
+		transition: scale 0.25s $easeOutCirc;
+	}
+
+	&:hover {
+		.color-picker {
+			scale: 1.2;
 		}
 	}
 }

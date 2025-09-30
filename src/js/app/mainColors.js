@@ -80,6 +80,7 @@ const initColorPickers = (colors) => {
 			dialogPlacement: 'bottom',
 			dismissOnOutsideClick: true,
 			dismissOnEscape: true,
+			showClearButton: true,
 		})
 
 		let lastColor = null
@@ -90,7 +91,15 @@ const initColorPickers = (colors) => {
 			}
 		})
 
-		picker.on('pick', (color) => color && throttledUpdate(color.string('hex')))
+		picker.on('pick', (color) => {
+			color && throttledUpdate(color.string('hex'))
+
+			/* Reset to default if cancelled or if trigger clear event */
+			if (!color) {
+				throttledUpdate(cfg.default)
+				picker.setColor(cfg.default, false)
+			}
+		})
 		picker.on('close', async () => {
 			const finalColor = picker.color?.string('hex')
 			if (finalColor) await saveColor(cfg.storageKey, finalColor)
