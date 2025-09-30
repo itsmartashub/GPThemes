@@ -21,7 +21,7 @@
   --cp-hover-color: var(--c-accent-light);
   --cp-button-color: var(--c-accent);
   --cp-border-color-translucent: var(--ext-color-alpha);
-  --cp-tertiary-color: var(--c-surface-3);
+  --cp-tertiary-color: var(--ext-color-alpha);
 }
 
 :root {
@@ -30,7 +30,7 @@
   --cp-size: 2.375rem;
   --cp-delay: 150ms;
 
-  --cp-border-radius-sm: 0.5rem;
+  --cp-border-radius-sm: var(--br-btn);
   --cp-border-radius-lg: var(--br);
   --cp-swatch-width: 1.5rem;
 
@@ -132,10 +132,11 @@
 }
 
 .cp_caret {
-  background-color: var(--cp-border-color);
-  color: var(--cp-body);
+  // background-color: var(--cp-border-color);
+  // color: var(--cp-body);
+  background-color: var(--c-accent-light);
+  color: var(--c-accent);
   font-size: calc(var(--cp-size) / 3);
-
   padding: 0.1rem 0 0 0.1rem;
   border-top-left-radius: var(--cp-border-radius-sm);
   border-top: 1px solid var(--cp-border-color-translucent);
@@ -143,7 +144,6 @@
 
   display: grid;
   place-items: center;
-  color: var(--cp-body-color);
 }
 
 .cp_caret svg {
@@ -156,19 +156,22 @@
 
 /* Picker dialog */
 .cp_dialog {
-  --cp-base-color: #000;
+  --cp-base-color: var(--c-accent);
   --cp-current-color: transparent;
   --cp-color: transparent;
   --cp-hue: 0;
   --cp-alpha: 0;
   --cp-primary: hsl(var(--cp-hue), 50%, 60%);
 
+  // clamp(25rem, 25vw, 30rem);
+
   position: absolute;
   z-index: 1055;
-  width: 17.2rem;
+  // width: 17.2rem;
+  // width: minmax(12rem, 17.2rem);
+  width: clamp(12rem, 60%, 16rem);
 
   background-color: var(--cp-body-bg);
-
   border: 1px solid var(--cp-border-color-translucent);
   border-radius: var(--cp-border-radius-lg);
   box-shadow: var(--cp-box-shadow);
@@ -177,8 +180,7 @@
   pointer-events: none;
 
   transition: opacity var(--cp-delay) ease-in-out;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-    Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: var(--fontFamily);
 }
 
 .cp_dialog-inner {
@@ -292,7 +294,7 @@
 .cp_dialog *:focus-visible {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   border-color: var(--cp-body-bg);
-  box-shadow: 0 0 0 2px var(--cp-tertiary-color);
+  box-shadow: 0 0 2px 2px var(--cp-tertiary-color) inset;
   outline: 0;
 }
 
@@ -364,14 +366,15 @@
   display: flex;
   gap: 1px;
   box-shadow: var(--cp-box-shadow-sm);
+  border-radius: 50vw;
 }
 
 .cp_input-group> :first-child {
-  border-radius: var(--cp-border-radius-sm) 0 0 var(--cp-border-radius-sm);
+  border-radius: var(--cp-border-radius-lg) 0 0 var(--cp-border-radius-lg);
 }
 
 .cp_input-group> :last-child {
-  border-radius: 0 var(--cp-border-radius-sm) var(--cp-border-radius-sm) 0;
+  border-radius: 0 var(--cp-border-radius-lg) var(--cp-border-radius-lg) 0;
 }
 
 .cp_input-group> :focus-visible {
@@ -391,7 +394,7 @@
   font-family: inherit;
 
   color: var(--cp-body-color);
-  background-color: var(--cp-border-color-translucent);
+  background-color: var(--c-surface-3) !important;
 }
 
 /* Action Buttons */
@@ -399,8 +402,8 @@
   border: none;
   padding: 0.35rem 0.5rem;
 
-  color: var(--cp-body-color);
-  background-color: var(--cp-button-color);
+  color: var(--c-on-accent);
+  background-color: var(--c-accent);
 
   cursor: pointer;
   transition: background-color 100ms ease-out;
@@ -410,7 +413,8 @@
 }
 
 .cp_action:hover {
-  background-color: var(--cp-border-color-translucent);
+  background-color: var(--c-accent-light);
+  color: var(--c-accent);
 }
 
 /* Icons */
