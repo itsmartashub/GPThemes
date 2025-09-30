@@ -1,11 +1,12 @@
+import ColorPicker from '../../libs/jscolorpicker/colorpicker.js'
 import browser from 'webextension-polyfill'
-import { SELECTORS } from './config/selectors'
+import { SELECTORS } from './config/selectors.js'
 import { q } from '../utils/dom.js'
 import { setCssVars } from '../utils/setCssVar.js'
 import { closeSettings, $settings } from './settingsManager.js'
-import { renderButton } from './components/renderButtons'
-import { renderSeparator } from './components/renderUtils'
-import { renderUserAccentBgToggle, handleUserAccentBgListeners } from './custom-colors/accentUserBubble'
+import { renderButton } from './components/renderButtons.js'
+import { renderSeparator } from './components/renderUtils.js'
+import { renderUserAccentBgToggle, handleUserAccentBgListeners } from './custom-colors/accentUserBubble.js'
 
 // Single source of truth
 const COLOR_CONFIG = {
@@ -23,21 +24,17 @@ const COLOR_CONFIG = {
 	},
 }
 
-// Pre-computed lookups (build once at module load)
+// Pre-computed lookups
 const entries = Object.entries(COLOR_CONFIG)
 const configs = Object.values(COLOR_CONFIG)
 const storageKeys = configs.map((c) => c.storageKey)
-const idToTheme = new Map(entries.map(([theme, cfg]) => [cfg.id, theme]))
-// const keyToTheme = new Map(entries.map(([theme, cfg]) => [cfg.storageKey, theme]))
+const idToConfig = new Map(configs.map((c) => [c.id, c]))
 
-// Helper: get theme's config value by key path
-const getThemeValue = (theme, key) => COLOR_CONFIG[theme]?.[key]
+// Store picker instances for cleanup
+const accentPickers = new Map()
 
-// Helper: get input element for theme
-const getThemeInput = (theme) => q(`#${getThemeValue(theme, 'id')}`, $settings)
-
-// Helper: get current value (from input or default)
-const getCurrentValue = (theme) => getThemeInput(theme)?.value ?? getThemeValue(theme, 'default')
+// Helper: get config by id
+const getConfigById = (id) => idToConfig.get(id)
 
 // Memoized HTML generation
 let cachedHTML = null
@@ -48,7 +45,7 @@ const generateColorsTabHTML = () => {
 		.map(
 			(c) => `
       <div class="colorpicker">
-        <input type="color" id="${c.id}" value="${c.default}" data-theme-key="${c.storageKey}" />
+        <button id="${c.id}" data-theme-key="${c.storageKey}"></button>
         <label for="${c.id}">${c.label}</label>
       </div>`
 		)
@@ -74,23 +71,14 @@ const generateColorsTabHTML = () => {
 	return cachedHTML
 }
 
-// Update CSS vars for given themes (or all if not specified)
-const updateCSSVars = (colors = {}) => {
-	const vars = Object.fromEntries(
-		entries.map(([theme]) => {
-			const val = colors[theme] ?? getCurrentValue(theme)
-			return [`user-accent-${theme}`, val]
-		})
-	)
-	setCssVars(vars)
-}
-
-// Sync input values with color data
-const setInputValues = (colors) => {
-	entries.forEach(([theme]) => {
-		const input = getThemeInput(theme)
-		if (input && colors[theme]) input.value = colors[theme]
-	})
+// Update CSS vars (only update provided themes, preserve others)
+// const updateCSSVars = (colors) => {
+// 	const vars = Object.fromEntries(Object.entries(colors).map(([theme, color]) => [`user-accent-${theme}`, color]))
+// 	setCssVars(vars)
+// }
+// Update a single CSS variable
+const updateCSSVar = (theme, color) => {
+	document.documentElement.style.setProperty(`--user-accent-${theme}`, color)
 }
 
 // Remove all custom CSS vars
@@ -101,17 +89,21 @@ const removeCSSVars = () => {
 
 // Reset to defaults
 const resetAllAccents = async () => {
+	// Update pickers
+	configs.forEach((c) => {
+		const picker = accentPickers.get(c.id)
+		if (picker) picker.setColor(c.default, false)
+	})
+
+	removeCSSVars()
+
 	const defaults = Object.fromEntries(configs.map((c) => [c.storageKey, c.default]))
 	await browser.storage.sync.set(defaults)
-
-	const colorsByTheme = Object.fromEntries(entries.map(([theme, cfg]) => [theme, cfg.default]))
-	setInputValues(colorsByTheme)
-	removeCSSVars()
 }
 
 // Save single color to storage
-const saveColor = (key, value) =>
-	browser.storage.sync.set({ [key]: value }).catch((err) => console.error('Save error:', err))
+const saveColor = async (key, value) =>
+	await browser.storage.sync.set({ [key]: value }).catch((err) => console.error('Save error:', err))
 
 // Load colors from storage with defaults as fallback
 const loadColors = async () => {
@@ -119,7 +111,7 @@ const loadColors = async () => {
 	return Object.fromEntries(entries.map(([theme, cfg]) => [theme, stored[cfg.storageKey] ?? cfg.default]))
 }
 
-// Ensure all storage keys exist (init missing ones)
+// Ensure all storage keys exist
 const ensureStorage = async () => {
 	const stored = await browser.storage.sync.get(storageKeys)
 	const missing = Object.fromEntries(
@@ -128,36 +120,98 @@ const ensureStorage = async () => {
 	if (Object.keys(missing).length) await browser.storage.sync.set(missing)
 }
 
-// Event delegation for color pickers
-const attachColorListeners = () => {
-	const container = q('.colorpicker-container', $settings)
-	if (!container) return
+// Debounce helper for performance
+const debounce = (fn, ms = 16) => {
+	let timeoutId
+	return (...args) => {
+		clearTimeout(timeoutId)
+		timeoutId = setTimeout(() => fn(...args), ms)
+	}
+}
 
-	// Live preview on input
-	container.addEventListener('input', (e) => {
-		if (e.target.type !== 'color') return
-		const theme = idToTheme.get(e.target.id)
-		if (theme) updateCSSVars({ [theme]: e.target.value })
-	})
+// RAF-based throttle for smoother updates
+const rafThrottle = (fn) => {
+	let rafId = null
+	return (...args) => {
+		if (rafId) return
+		rafId = requestAnimationFrame(() => {
+			fn(...args)
+			rafId = null
+		})
+	}
+}
 
-	// Save on change (when picker closes)
-	container.addEventListener('change', async (e) => {
-		if (e.target.type !== 'color') return
-		const key = e.target.dataset.themeKey
-		if (key) {
-			await saveColor(key, e.target.value)
-			closeSettings()
-		}
+// Initialize color pickers
+const initColorPickers = (colors) => {
+	configs.forEach((cfg) => {
+		const btn = q(`#${cfg.id}`, $settings)
+		if (!btn) return
+
+		const theme = cfg.id === SELECTORS.ACCENT.LIGHT_ID ? 'light' : 'dark'
+		const initialColor = colors[theme] ?? cfg.default
+
+		const picker = new ColorPicker(btn, {
+			toggleStyle: 'button',
+			color: initialColor,
+			submitMode: 'instant',
+			enableAlpha: false,
+			formats: false,
+			defaultFormat: 'hex',
+			dialogPlacement: 'bottom',
+			dismissOnOutsideClick: true,
+			dismissOnEscape: true,
+		})
+
+		// Throttled live preview using RAF for 60fps smoothness
+		// const throttledUpdate = rafThrottle((hexColor) => {
+		// 	// updateCSSVars({ [theme]: hexColor })
+		// 	updateCSSVar(theme, hexColor)
+		// })
+
+		let lastColor = null
+		const throttledUpdate = rafThrottle((hexColor) => {
+			if (hexColor !== lastColor) {
+				lastColor = hexColor
+				updateCSSVar(theme, hexColor)
+			}
+		})
+
+		// Live preview - update CSS vars with RAF throttle
+		picker.on('pick', (color) => {
+			if (!color) return
+			throttledUpdate(color.string('hex'))
+		})
+
+		// Save to storage ONLY when picker closes
+		picker.on('close', async () => {
+			const finalColor = picker.color?.string('hex')
+			if (finalColor) {
+				await saveColor(cfg.storageKey, finalColor)
+			}
+		})
+
+		accentPickers.set(cfg.id, picker)
 	})
+}
+
+// Cleanup pickers
+const destroyPickers = () => {
+	accentPickers.forEach((picker) => picker.destroy())
+	accentPickers.clear()
 }
 
 const init = async () => {
+	destroyPickers() // Clean up any previous pickers before creating new ones!
+
 	await ensureStorage()
 	const colors = await loadColors()
-	updateCSSVars(colors)
-	setInputValues(colors)
-	attachColorListeners()
+	// updateCSSVars(colors)
+	// Apply loaded colors immediately
+	entries.forEach(([theme, cfg]) => {
+		updateCSSVar(theme, colors[theme])
+	})
+	initColorPickers(colors)
 	handleUserAccentBgListeners()
 }
 
-export { generateColorsTabHTML as renderColorsTab, resetAllAccents, init }
+export { generateColorsTabHTML as renderColorsTab, resetAllAccents, init, destroyPickers }

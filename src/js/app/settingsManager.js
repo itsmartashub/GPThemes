@@ -1,10 +1,10 @@
 import { SELECTORS } from './config/selectors'
-import { PFX } from './config/constants.js'
-import { renderColorsTab, resetAllAccents, init as initColors } from './mainColors.js'
-import { renderFontsTab, handleFontsListeners, init as initFonts } from './mainFonts.js'
-import { renderWidthsTab, handleWidthsListeners, init as initWidths } from './mainWidths.js'
-import { handleScrolldownListeners, init as initScrolldown } from './scrolldown.js'
-// import { handleCustomChatboxListeners } from './customChatbox.js'
+import { PFX } from './config/constants'
+import { renderColorsTab, resetAllAccents, init as initColors } from './mainColors'
+import { renderFontsTab, handleFontsListeners, init as initFonts } from './mainFonts'
+import { renderWidthsTab, handleWidthsListeners, init as initWidths } from './mainWidths'
+import { handleScrolldownListeners, init as initScrolldown } from './scrolldown'
+// import { handleCustomChatboxListeners } from './customChatbox'
 
 // Elements cache
 let $settings = null
