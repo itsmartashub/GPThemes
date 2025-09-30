@@ -3,7 +3,10 @@
     // --c-accent: var(--user-accent, #6c4756);
     // --c-txt: oklch(from var(--user-txt, var(--accent)) l c h);
 
-
+    --c-default-accent-light: #6c4756;
+    --c-default-accent-dark: #bfa8ff;
+    // --c-default-accent-dark: #f98be9;
+    // --c-default-accent-dark: #e7f98b;
 
     /* Alpha scales */
     --alpha-1: 0.08;
@@ -48,7 +51,7 @@
 }
 
 html.light {
-    --c-accent: var(--user-accent-light, #6c4756);
+    --c-accent: var(--user-accent-light, var(--c-default-accent-light));
     // --c-on-accent: oklch(from var(--c-accent) 1 calc(c * 0.3) h);
     // --c-on-accent: oklch(from var(--c-accent) 0.95 0.08 h);
     --c-on-accent: oklch(from var(--c-accent) 0.95 calc(c * 0.4) h);
@@ -95,7 +98,10 @@ html.light {
 }
 
 html.dark {
-    --c-accent: var(--user-accent-dark, #bfa8ff);
+    // --c-default-accent-dark: #bfa8ff;
+
+    --c-accent: var(--user-accent-dark, var(--c-default-accent-dark));
+    // --c-accent: var(--user-accent-dark, #bfa8ff);
 
     --c-on-accent: oklch(from var(--c-accent) 0.25 c h);
     --c-accent-light: oklch(from var(--c-accent) 0.35 calc(c * 0.4) h);

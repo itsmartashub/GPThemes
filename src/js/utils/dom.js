@@ -18,10 +18,10 @@ const openElement = (selector, classname) => q(selector)?.classList.add(classnam
 const closeElement = (selector, classname) => q(selector)?.classList.remove(classname)
 
 const debounce = (fn, delay = 300) => {
-	let id
+	let timeoutId
 	return (...args) => {
-		clearTimeout(id)
-		id = setTimeout(() => fn(...args), delay)
+		clearTimeout(timeoutId)
+		timeoutId = setTimeout(() => fn(...args), delay)
 	}
 }
 
