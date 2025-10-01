@@ -5,9 +5,9 @@
     /* Header where main title and tabs are */
     [data-testid="bar-search-sources-header"] {
         .border-token-main-surface-tertiary.bg-token-main-surface-tertiary.rounded-full {
-            // background-color: oklch(from var(--c-accent) l c h / 0.2) !important;
+            // background-color: var(--c-accent-20) !important;
             border-radius: var(--br-btn) !important;
-            box-shadow: 0 0 0 1px oklch(from var(--c-accent) l c h / 0.2) !important;
+            box-shadow: 0 0 0 1px var(--c-accent-20) !important;
 
             /* "Activity" and "X Sources" tab in inactive state */
             button.btn[class*="min-w-[100px]"]:not(.bg-token-main-surface-primary) {

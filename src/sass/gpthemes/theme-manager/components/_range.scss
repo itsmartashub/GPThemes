@@ -1,11 +1,11 @@
 .gpth-settings {
     input[type="range"] {
-        --track-bg: oklch(from var(--c-accent) l c h / 0.5);
+        --track-bg: var(--c-accent-50);
         --thumb-bg: var(--c-accent);
         --thumb-focus-outline: var(--c-accent);
         --track-height: 0.75rem;
         --track-radius: 50vw;
-        --track-outline: 3px solid oklch(from var(--c-accent) l c h / 0.8);
+        --track-outline: 3px solid oklch(var(--from-accent) / 0.8);
         --thumb-size-multiplier: 0.8;
         --thumb-size: calc(var(--track-height) * var(--thumb-size-multiplier));
         --thumb-radius: 50vw;

@@ -5,9 +5,9 @@
 	--right: 1.3rem;
 	--p: 2rem;
 	--max-h: 75vh;
-	--shadow-color: oklch(from var(--c-accent) l c h / 0.09);
+	--shadow-color: var(--c-accent-10);
 	--shadow-values: inset 0 0 20px 10px;
-	--c-scrollbar-thumb: oklch(from var(--c-accent) l c h / 0.3) !important;
+	--c-scrollbar-thumb: var(--c-accent-30) !important;
 	top: var(--top);
 	right: var(--right);
 	width: clamp(25rem, 25vw, 30rem);
@@ -15,7 +15,7 @@
 	padding: var(--p);
 	opacity: 0;
 	@include menuBg;
-	border: 1px solid oklch(from var(--c-accent) l c h / 0.1);
+	border: 1px solid var(--c-accent-10);
 	border-radius: var(--br-dialog);
 	pointer-events: none;
 	transform: translateX(calc(100% + 1.5rem)) !important;

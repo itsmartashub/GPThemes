@@ -29,34 +29,27 @@
 } */
 
 %gpth_floating_icon {
-	--alpha: 0.2;
 	background-image: var(--c-bg-gradient);
-	border: 1px solid var(--ext-color-alpha);
+	border: 1px solid var(--c-accent-20);
 	backdrop-filter: blur(10px);
 }
 
 %date-pill {
-	--alpha: 0.2;
-	background-color: var(--ext-color-alpha) !important;
+	background-color: var(--c-accent-20) !important;
 	display: inline-block !important;
 	color: var(--c-accent) !important;
 	font-weight: bold;
 	text-transform: uppercase;
 	line-height: 1 !important;
 	border-radius: 50vw;
-	// font-size: 0.75rem !important;
-	// height: auto !important;
 	padding: 0.3rem 0.6rem !important;
 }
 
 %simulator_bg {
-	--alpha: 0.24 // --c-simulator-bg: var(--c-surface-2);
-		// --c-simulator-shadow: oklch(from var(--c-accent) l c h / 0.15);
-		// --c-simulator-border: oklch(from var(--c-accent) l c h / 0.2);
-		background: linear-gradient(var(--c-simulator-bg, var(--c-surface-2))) !important;
+	background: linear-gradient(var(--c-simulator-bg, var(--c-surface-2))) !important;
 	box-shadow:
-		0 0 0 1px var(--c-simulator-border, var(--ext-color-alpha)),
-		inset 0 0 1rem 2rem var(--c-simulator-shadow, oklch(from var(--c-accent) l c h /0.12));
+		0 0 0 1px var(--c-simulator-border, var(--c-accent-20)),
+		inset 0 0 1rem 2rem var(--c-simulator-shadow, var(--c-accent-10));
 }
 
 // Reusable placeholders

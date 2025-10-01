@@ -1,5 +1,6 @@
 // @import 'abstract/_mq';
 @import 'abstract/_bp';
+@import 'abstract/_functions';
 @import 'abstract/_custom-settings-vars';
 @import 'abstract/_vars-gpth-layout';
 @import 'abstract/_vars-gpth-colors';
@@ -10,8 +11,9 @@
 @import 'shared/_extends';
 @import 'abstract/_extends';
 
-
 @import 'dev/_mixins'; // TODO: REMOVE THIS FOR PRODUCTION!
+
+@import '../libs/jscolorpicker/colorpicker.scss';
 
 @import 'global/_base';
 @import 'global/_scrollbars';
@@ -42,7 +44,6 @@
 @import 'elements/_modal';
 @import 'elements/_radix-dialogs';
 @import 'elements/_library';
-// @import 'elements/_right--main';
 @import 'elements/_right--chats';
 @import 'elements/_source-pill-links';
 @import 'elements/_canvas';
@@ -53,10 +54,8 @@
 @import 'elements/_right--scrolldown';
 @import 'elements/_right--maps';
 @import 'elements/_voice-room';
-// @import 'pages/_shared-links';
 @import 'pages/_gpt-store';
 @import 'elements/_transitions';
-// @import 'elements/_chats-textarea-max-width';
 @import 'elements/_search';
 @import 'customs/_custom--chats';
 @import 'customs/_custom--textarea';

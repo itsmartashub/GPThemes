@@ -2,9 +2,9 @@
 /* New chat prompt examples - card buttons with prompt pregenerated */
 main [role='presentation'] {
 	--c-bg-gradient: linear-gradient(-45deg,
-			oklch(from var(--c-accent) l c h / 0.16) 0%,
-			oklch(from var(--c-accent) l c h / 0.04) 40% 60%,
-			oklch(from var(--c-accent) l c h / 0.16) 100%);
+			var(--c-accent-15) 0%,
+			var(--c-accent-03) 40% 60%,
+			var(--c-accent-15) 100%);
 
 	/* New "New Chat" layout prompt action cards */
 	// div.w-full:has(> form #prompt-textarea) + div.hidden ul > li > button,
@@ -12,7 +12,7 @@ main [role='presentation'] {
 	button.relative.flex.w-40.flex-col.rounded-2xl.border-token-border-default,
 	button.relative.whitespace-nowrap.rounded-2xl.border-token-border-default.text-start.align-top.shadow-xxs.transition.enabled\:hover\:bg-token-main-surface-secondary.disabled\:cursor-not-allowed {
 
-		--clr: oklch(from var(--c-accent) l c h / 0.12);
+		--clr: var(--c-accent-12);
 		border: 1px solid var(--clr) !important;
 		background-image: var(--c-bg-gradient) !important;
 		color: var(--c-accent) !important;

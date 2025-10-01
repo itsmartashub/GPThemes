@@ -5,5 +5,5 @@
 
 /* Skeleton loader in Project folder when list (project items) loading */
 .skeleton-child:is(:where(.group).skeleton *) {
-    --tw-gradient-via: oklch(from var(--c-accent) l c h / 0.3) !important;
+    --tw-gradient-via: var(--c-accent-10) !important;
 }

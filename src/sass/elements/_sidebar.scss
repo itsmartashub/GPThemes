@@ -32,7 +32,7 @@ nav[aria-label].h-full {
 		@include lift;
 
 		&[data-active] {
-			box-shadow: 0 0 2px 1px oklch(from var(--c-accent) l c h / 0.095) inset;
+			box-shadow: 0 0 2px 1px var(--c-accent-10) inset;
 		}
 	}
 }
