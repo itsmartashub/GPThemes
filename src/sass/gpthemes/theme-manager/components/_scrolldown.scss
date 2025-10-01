@@ -1,8 +1,8 @@
 .#{$pfx}-scrolldown {
-    $border: 1px solid oklch(from var(--c-accent) l c h / 0.1);
+    $border: 1px solid var(--c-accent-10);
 
     &__btns {
-        background-color: oklch(from var(--c-accent) l c h / 0.05);
+        background-color: oklch(var(--from-accent) / 0.05);
         border: $border;
         overflow: hidden;
     }
@@ -19,11 +19,11 @@
         }
 
         &:hover {
-            background-color: oklch(from var(--c-accent) l c h / 0.12);
+            background-color: var(--c-accent-12);
         }
 
         &.active {
-            background-color: oklch(from var(--c-accent) l c h / 0.15) !important;
+            background-color: var(--c-accent-15) !important;
         }
 
         svg {

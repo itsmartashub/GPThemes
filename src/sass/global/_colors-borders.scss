@@ -59,7 +59,7 @@ html.light [class*=':border-white/10'] {
 
 [class*='border-blue-'],
 [class*='dark:border-[#00000030]'] {
-	border-color: oklch(from var(--c-accent) l c h / 0.08) !important;
+	border-color: var(--c-accent-08) !important;
 }
 
 // .bg-token-border-default {

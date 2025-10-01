@@ -28,8 +28,8 @@
 
     button[role="option"] {
         transition: transform .15s $easeOutBack, opacity .15s linear;
-        border-color: oklch(from var(--c-accent) l c h / .25) !important;
-        background-color: oklch(from var(--c-accent) l c h / .25) !important;
+        border-color: var(--c-accent-20) !important;
+        background-color: var(--c-accent-20) !important;
 
         &[aria-selected="false"]:hover {
             opacity: 1 !important;

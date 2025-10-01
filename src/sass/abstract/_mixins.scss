@@ -15,7 +15,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: radial-gradient(circle at 100% 0%, oklch(from var(--c-accent) l c h /0.02) 5%, oklch(from var(--c-accent) l c h / 0.4) 100%);
+            background-image: radial-gradient(circle at 100% 0%, oklch(var(--from-accent) /0.02) 5%, var(--c-accent-40) 100%);
             z-index: 8;
             border-radius: inherit;
             backdrop-filter: blur(2px);
@@ -25,7 +25,7 @@
     &:hover {
         label::after {
             backdrop-filter: blur(0px) !important;
-            background-image: radial-gradient(circle at 100% 0%, oklch(from var(--c-accent) l c h / 0.4) 5%, oklch(from var(--c-accent) l c h / 0.02) 42%) !important;
+            background-image: radial-gradient(circle at 100% 0%, var(--c-accent-50) 5%, transparent 42%) !important;
         }
     }
 
@@ -105,8 +105,8 @@
 
 // @mixin bgcAccent($alpha: 0.1) {
 //     --alpha: #{$alpha};
-//     background-color: var(--ext-color-alpha) !important;
+//     background-color: var(--color-alpha) !important;
 //     color: var(--c-accent) !important;
 // }
 
-// oklch(from var(--c-accent) l c h /
+// oklch(var(--from-accent) /

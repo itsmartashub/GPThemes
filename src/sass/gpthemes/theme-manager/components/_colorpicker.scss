@@ -21,11 +21,11 @@
 // 		cursor: pointer;
 
 // 		background-image: linear-gradient(135deg,
-// 				oklch(from var(--c-accent) l c h / 0.2) 0%,
-// 				oklch(from var(--c-accent) l c h / 0.03) 40%,
-// 				oklch(from var(--c-accent) l c h / 0.03) 60%,
-// 				oklch(from var(--c-accent) l c h / 0.1) 100%);
-// 		border: 1px solid oklch(from var(--c-accent) l c h / 0.1);
+// 				var(--c-accent-20) 0%,
+// 				var(--c-accent-03) 40%,
+// 				var(--c-accent-03) 60%,
+// 				var(--c-accent-10) 100%);
+// 		border: 1px solid var(--c-accent-10);
 // 		backdrop-filter: blur(5px);
 // 	}
 
@@ -90,11 +90,11 @@
 		// transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
 
 		background-image: linear-gradient(135deg,
-				oklch(from var(--c-accent) l c h / 0.2) 0%,
-				oklch(from var(--c-accent) l c h / 0.03) 40%,
-				oklch(from var(--c-accent) l c h / 0.03) 60%,
-				oklch(from var(--c-accent) l c h / 0.1) 100%);
-		border: 1px solid oklch(from var(--c-accent) l c h / 0.1);
+				var(--c-accent-20) 0%,
+				var(--c-accent-03) 40%,
+				var(--c-accent-03) 60%,
+				var(--c-accent-10) 100%);
+		border: 1px solid var(--c-accent-10);
 		// backdrop-filter: blur(5px);
 	}
 

@@ -38,18 +38,17 @@ html,
     --bg-scrim: var(--c-surface-1) !important;
     // --bg-elevated-primary: var(--c-surface-2) !important; // e.g. stop btn bg when DeepSearch is active
     // --bg-elevated-secondary: #181818;
-    --bg-status-warning: oklch(from var(--c-warning) l c h / 0.11) !important;
-    --bg-status-error: oklch(from var(--c-danger) l c h / 0.11) !important;
+    --bg-status-warning: #{color-alpha(--c-warning, 0.2, true)};
+    --bg-status-error: #{color-alpha(--c-danger, 0.2, true)};
     /* .border-token-border-default
 	- border oko "Uprade" btn-a
 	- border oko inputa u GPTs page
 	- border u "Keyboard shortcuts" oko kao tastera */
-    // --border-default: var(--c-border) !important;
-    --border-default: var(--c-border-accent) !important;
-    --border-light: var(--c-border-accent) !important;
+    --border-default: var(--c-border) !important;
+    --border-light: var(--c-border) !important;
     // --border-heavy: #fff3;
-    --border-status-warning: oklch(from var(--c-warning) l c h / 0.11);
-    --border-status-error: oklch(from var(--c-danger) l c h / 0.11) !important;
+    --border-status-warning: #{color-alpha(--c-warning, 0.2, true)};
+    --border-status-error: #{color-alpha(--c-danger, 0.2, true)};
     --text-primary: var(--c-txt) !important;
     --text-secondary: var(--c-subtext-1) !important;
     --text-tertiary: var(--c-subtext-2) !important;
@@ -76,16 +75,16 @@ html,
     // --box-shadow-primary: inset 0 -20px 80px -20px #	;
 
     --link: var(--c-accent) !important;
-    --link-hover: oklch(from var(--c-accent) l c h / 0.2) !important;
+    --link-hover: var(--c-accent-20) !important;
     --tag-blue: var(--c-accent) !important;
     // --tag-blue-light: #0af;
     --hint-text: var(--c-accent) !important;
-    --hint-bg: oklch(from var(--c-accent) l c h / 0.12) !important;
+    --hint-bg: var(--c-accent-12) !important;
 
-    --surface-hover: oklch(from var(--c-accent) l c h / 0.12) !important;
+    --surface-hover: var(--c-accent-12) !important;
     --dot-color: var(--c-txt) !important;
-    --composer-blue-bg: oklch(from var(--c-accent) l c h / 0.14) !important;
-    --composer-blue-hover: oklch(from var(--c-accent) l c h / 0.2) !important;
+    --composer-blue-bg: var(--c-accent-15) !important;
+    --composer-blue-hover: var(--c-accent-20) !important;
     --composer-blue-text: var(--c-accent) !important;
 
     /* SIDEBAR OPENAI VARS */
@@ -129,11 +128,11 @@ html,
 	- "Upgrade ur plan" dialog bg */
     --popover-surface-primary: var(--c-bg-contextmenu) !important;
 
-    --interactive-bg-secondary-hover: oklch(from var(--c-accent) l c h / 0.12) !important; // when hover action btns in prompt-textarea
-    --interactive-bg-secondary-press: oklch(from var(--c-accent) l c h / 0.2) !important; // when pressed action btns in prompt-textarea
-    --interactive-bg-accent-muted-hover: oklch(from var(--c-accent) l c h / 0.12) !important; // when hover on action btn in prompt-textarea like: Think, Search, Canvas etc
-    --interactive-bg-accent-muted-press: oklch(from var(--c-accent) l c h / 0.3) !important; // when holding pressed on action btn in prompt-textarea like: Think, Search, Canvas etc
-    --interactive-bg-accent-muted-context: oklch(from var(--c-accent) l c h / 0.2) !important; // When hover on active action button in chatbox. For example, if we are in Search chats and this btn is selected in chatbox. When we hover, it had blue-ish bg, now we override it
+    --interactive-bg-secondary-hover: var(--c-accent-12) !important; // when hover action btns in prompt-textarea
+    --interactive-bg-secondary-press: var(--c-accent-20) !important; // when pressed action btns in prompt-textarea
+    --interactive-bg-accent-muted-hover: var(--c-accent-12) !important; // when hover on action btn in prompt-textarea like: Think, Search, Canvas etc
+    --interactive-bg-accent-muted-press: var(--c-accent-30) !important; // when holding pressed on action btn in prompt-textarea like: Think, Search, Canvas etc
+    --interactive-bg-accent-muted-context: var(--c-accent-20) !important; // When hover on active action button in chatbox. For example, if we are in Search chats and this btn is selected in chatbox. When we hover, it had blue-ish bg, now we override it
     // --interactive-bg-accent-hover: oklch(from var(--c-accent) 0.95 0.08 h) !important;
     --interactive-bg-accent-hover: oklch(from var(--c-accent) 0.9 calc(c * 0.4) h) !important;
     --interactive-bg-accent-press: oklch(from var(--c-accent) 0.77 calc(c * 0.4) h) !important;
@@ -145,7 +144,7 @@ html,
 
 
     // NEW: data-chat-theme, accent colog introduced by ChatGPT
-    --theme-attribution-highlight-bg: oklch(from var(--c-accent) l c h / 0.25) !important;
+    --theme-attribution-highlight-bg: var(--c-accent-20) !important;
     // --theme-user-msg-bg: var(--yellow-theme-user-msg-bg);
     // --theme-user-msg-text: var(--yellow-theme-user-msg-text);
     // --theme-submit-btn-bg: var(--yellow-theme-submit-btn-bg);

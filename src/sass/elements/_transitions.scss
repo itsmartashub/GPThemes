@@ -92,7 +92,7 @@ button[role='switch'] {
 			}
 
 			&:hover::after {
-				// background-color: oklch(from var(--c-accent) l c h / 0.12);
+				// background-color: var(--c-accent-12);
 				background-color: var(--c-surface-3);
 			}
 		}

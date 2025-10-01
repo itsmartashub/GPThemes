@@ -7,7 +7,7 @@
     }
 
     .#{$pfx}-tab-buttons {
-        background-color: oklch(from var(--c-accent) l c h / 0.15);
+        background-color: var(--c-accent-15);
         color: var(--c-accent);
         display: flex;
         align-items: center;

@@ -12,7 +12,7 @@
 [role="dialog"] .bg-black.border-t:has(.border-s-4.border-red-500) {
     border-top: unset !important;
     border-radius: var(--br-btn);
-    background-color: oklch(from var(--c-accent) l c h / 0.12);
+    background-color: var(--c-accent-12);
 
     /* "Analysis" <pre> code parents */
     .border-s-4.border-red-500 {
@@ -26,7 +26,7 @@
 .agent-turn .markdown.prose~.bg-token-sidebar-surface-primary:has(>.text-gray-400 ~ .prose),
 [role="dialog"] .bg-token-sidebar-surface-primary:has(>.text-gray-400 ~ .prose) {
     border-radius: var(--br-btn) !important;
-    background-color: oklch(from var(--c-accent) l c h / 0.12) !important;
+    background-color: var(--c-accent-12) !important;
     color: var(--c-accent) !important;
     border-left: 4px solid currentColor;
 

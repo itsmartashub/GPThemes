@@ -33,8 +33,7 @@ code.hljs {
 }
 
 ::selection {
-	--alpha: 0.5;
-	background-color: var(--ext-color-alpha) !important;
+	background-color: var(--c-accent-50) !important;
 	color: var(--c-txt) !important;
 	// color: var(--c-on-accent) !important;
 }

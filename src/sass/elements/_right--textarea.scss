@@ -10,7 +10,7 @@ form {
 		.contain-inline-size.overflow-clip[class*='bg-[#303030]'] {
 			background: var(--c-bg-textarea) !important;
 			caret-color: var(--c-accent);
-			box-shadow: inset 0 0 1px 1px oklch(from var(--c-accent) l c h / 0.08) !important;
+			box-shadow: inset 0 0 1px 1px var(--c-accent-08) !important;
 			border: none !important;
 			backdrop-filter: blur(18px);
 
@@ -30,8 +30,8 @@ form {
 				background-color: transparent !important;
 
 				.bg-token-main-surface-secondary.dark\:bg-token-main-surface-tertiary.text-sm {
-					background-color: oklch(from var(--c-accent) l c h / 0.12) !important;
-					border: 1px solid oklch(from var(--c-accent) l c h / 0.1) !important;
+					background-color: var(--c-accent-12) !important;
+					border: 1px solid var(--c-accent-10) !important;
 
 					/* 
 				- &.text-token-text-secondary:  Reply in classic textarea
@@ -53,7 +53,7 @@ form {
 						/* Reply btn icon */
 						.w-7.h-6:has(>svg) {
 							color: var(--c-accent) !important;
-							background-color: oklch(from var(--c-accent) l c h / 0.2) !important;
+							background-color: var(--c-accent-20) !important;
 						}
 
 						/* Cancel btn icon */
@@ -66,14 +66,14 @@ form {
 			}
 
 			span>button[aria-label="Open in canvas"] {
-				background-color: oklch(from var(--c-accent) l c h / 0.15) !important;
+				background-color: var(--c-accent-15) !important;
 				color: var(--c-accent) !important;
 			}
 
 			/* Tools, Dictate icon, Canvas, Search, Think */
 			button.composer-btn:not(#upload-file-btn),
 			[data-testid="system-hint-search"] .h-9.rounded-full.border.border-token-border-default[class*="bg-token-composer-blue-bg"] {
-				background-color: oklch(from var(--c-accent) l c h / 0.1) !important;
+				background-color: var(--c-accent-10) !important;
 			}
 
 			button.composer-btn,
@@ -85,7 +85,7 @@ form {
 
 			// "Search" for guest mode when hover
 			[data-testid="system-hint-search"] .h-9.rounded-full[class*="bg-token-composer-blue-bg"]:hover {
-				background-color: oklch(from var(--c-accent) l c h / 0.15) !important;
+				background-color: var(--c-accent-15) !important;
 			}
 
 			/* Voice and dictate wrapper */
@@ -117,18 +117,17 @@ form {
 
 			/* New Advanced Voice Mode button */
 			[data-testid="composer-speech-button"] {
-				--shadow: 0 0 2px 2px oklch(from var(--c-accent) l c h / 0.8) inset, -1px -1px 5px 0px #fff inset;
+				--shadow: 0 0 2px 2px oklch(var(--from-accent) / 0.8) inset, -1px -1px 5px 0px #fff inset;
 				--c-bg-gradient: linear-gradient(-25deg,
-						oklch(from var(--c-accent) l c h / 0.001) 0%,
-						oklch(from var(--c-accent) l c h / 0.35) 18%,
-						oklch(from var(--c-accent) l c h / 0.85) 58%,
-						oklch(from var(--c-accent) l c h / 1) 90%);
+						transparent 0%,
+						var(--c-accent-40) 18%,
+						var(--c-accent) 58%);
 				background: var(--c-bg-gradient) !important;
 				color: var(--c-on-accent) !important;
 				box-shadow: var(--shadow) !important;
 
 				&:disabled {
-					background: oklch(from var(--c-accent) l c h / 0.12) !important;
+					background: var(--c-accent-12) !important;
 					color: var(--c-accent) !important;
 				}
 			}
@@ -136,8 +135,8 @@ form {
 			/* Canvas file-tile */
 			div.group\/file-tile {
 				[id^="textdoc-message-temp"] {
-					border-color: oklch(from var(--c-accent) l c h / 0.1) !important;
-					background-color: oklch(from var(--c-accent) l c h / 0.1) !important;
+					border-color: var(--c-accent-10) !important;
+					background-color: var(--c-accent-10) !important;
 					color: var(--c-accent) !important;
 
 					/* Ugly gradients on the Canvas edit file attached edges */

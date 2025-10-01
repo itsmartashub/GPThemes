@@ -5,7 +5,7 @@
 
 
 @mixin shimmer($color: var(--c-accent),
-	$shine-color: oklch(from var(--c-accent) l c h / 0.1),
+	$shine-color: var(--c-accent-10),
 	$duration: 1.5s) {
 	position: relative;
 	display: inline-block;
@@ -30,5 +30,5 @@
 
 /* Usage */
 // .shimmer-text {
-// 	@include shimmer(var(--c-accent), oklch(from var(--c-accent) l c h / 0.1), 1.2s);
+// 	@include shimmer(var(--c-accent), var(--c-accent-10), 1.2s);
 // }

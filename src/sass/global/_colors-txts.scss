@@ -93,7 +93,7 @@
 
 /* Blue deepsearch "X sources" on hover */
 [class*="hover:text-[#0285ff]"]:hover {
-	color: oklch(from var(--c-accent) l c h / 0.2) !important;
+	color: var(--c-accent-20) !important;
 }
 
 .text-token-link {

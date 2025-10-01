@@ -1,0 +1,22 @@
+@use "sass:string";
+
+$_: null !default;
+
+@function color-alpha($color-var: $_,
+    $alpha: $_,
+    $important: $_) {
+    $final-color: if($color-var ==$_ or $color-var ==null, "--c-accent", $color-var);
+    $final-alpha: if($alpha ==$_ or $alpha ==null, "var(--alpha, 0.11)", $alpha);
+    $final-important: if($important ==true, ' !important', '');
+
+    @return string.unquote("oklch(from var(#{$final-color}) l c h / #{$final-alpha})#{$final-important}");
+}
+
+/* 
+.demo {
+  background: color-alpha();                  // default color + alpha
+  border: 1px solid color-alpha($_, 0.5);     // override alpha
+  color: color-alpha(--c-seed);               // override color
+  outline: color-alpha($_, $_, true);         // force !important
+}
+*/

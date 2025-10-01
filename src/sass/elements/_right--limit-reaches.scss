@@ -6,12 +6,12 @@
 
 		/* "You’ve hit the Free plan limit for GPT-4o" */
 		.bg-token-main-surface-primary.text-token-text-primary.flex.w-full.items-start.pe-3.rounded-3xl.border-token-border-default.text-sm:has(button[data-testid="close-button"]) {
-			--main-surface-primary: oklch(from var(--c-accent) l c h / 0.1) !important; // for light mode
-			--main-surface-secondary: oklch(from var(--c-accent) l c h / 0.1) !important; // for dark mode
+			--main-surface-primary: var(--c-accent-10) !important; // for light mode
+			--main-surface-secondary: var(--c-accent-10) !important; // for dark mode
 
-			// background-color: oklch(from var(--c-accent) l c h / 0.1) !important;
+			// background-color: var(--c-accent-10) !important;
 			backdrop-filter: blur(2rem);
-			border-color: oklch(from var(--c-accent) l c h / 0.1) !important;
+			border-color: var(--c-accent-10) !important;
 		}
 	}
 }

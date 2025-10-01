@@ -54,10 +54,10 @@
 // }
 
 .__menu-item {
-	--menu-item-active: oklch(from var(--c-accent) l c h / 0.16) !important;
-	--menu-item-hover: oklch(from var(--c-accent) l c h / 0.14) !important;
-	--menu-item-highlighted: oklch(from var(--c-accent) l c h / 0.15) !important;
-	--menu-item-open: oklch(from var(--c-accent) l c h / 0.22) !important;
+	--menu-item-active: oklch(var(--from-accent) / 0.16) !important;
+	--menu-item-hover: var(--c-accent-15) !important;
+	--menu-item-highlighted: var(--c-accent-15) !important;
+	--menu-item-open: var(--c-accent-20) !important;
 
 	// @include lift;
 	// @include scaleIn;
@@ -66,10 +66,21 @@
 	// data-testid="delete-chat-menu-item"
 	&[data-color="danger"],
 	&[data-testid="log-out-menu-item"] {
-		--menu-item-active: oklch(from var(--c-danger) l c h / .16) !important;
-		--menu-item-hover: oklch(from var(--c-danger) l c h / .14) !important;
-		--menu-item-highlighted: oklch(from var(--c-danger) l c h / .15) !important;
-		--menu-item-open: oklch(from var(--c-danger) l c h / .22) !important;
+		// --menu-item-active: oklch(from var(--c-danger) l c h / .16) !important;
+		// --menu-item-hover: oklch(from var(--c-danger) l c h / .14) !important;
+		// --menu-item-highlighted: oklch(from var(--c-danger) l c h / .15) !important;
+		// --menu-item-open: oklch(from var(--c-danger) l c h / .22) !important;
+
+		// --menu-item-active: color-alpha(--c-danger, 0.16, true);
+		// --menu-item-hover: color-alpha(--c-danger, 0.14, true);
+		// --menu-item-highlighted: color-alpha(--c-danger, 0.15, true);
+		// --menu-item-open: color-alpha(--c-danger, 0.22, true);
+
+		/* CSS VARS wont works with the example above, we need to interpolate it with # {} */
+		--menu-item-active: #{color-alpha(--c-danger, .16, true)};
+		--menu-item-hover: #{color-alpha(--c-danger, .14, true)};
+		--menu-item-highlighted: #{color-alpha(--c-danger, .15, true)};
+		--menu-item-open: #{color-alpha(--c-danger, .22, true)};
 	}
 
 	&[data-testid="log-out-menu-item"] {

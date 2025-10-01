@@ -1,6 +1,6 @@
 /* Using your selector system */
 .#{$pfx}-notify-container {
-    --notif-bg: oklch(from var(--c-accent) l c h / 0.11);
+    --notif-bg: var(--c-accent-10);
     --notif-c: var(--c-accent);
     position: fixed;
     top: 1rem;
@@ -28,8 +28,7 @@
         opacity: 0;
         transition: all 0.3s ease;
 
-        --alpha: 1.1;
-        --notif-bg: var(--ext-color-alpha);
+        --notif-bg: var(--c-accent-10);
         --notif-c: var(--c-seed, var(--c-accent));
 
         &__content {
@@ -57,26 +56,18 @@
         /* Notification type styles */
         &--info {
             --c-seed: var(--c-accent);
-            // --notif-bg: oklch(from var(--c-accent) l c h / 0.11);
-            // --notif-c: var(--c-accent);
         }
 
         &--success {
             --c-seed: var(--c-success);
-            // --notif-bg: hsla(var(--success-hsl) / 0.11);
-            // --notif-c: var(--c-success);
         }
 
         &--warning {
             --c-seed: var(--c-warning);
-            // --notif-bg: var(--ext-color-alpha);
-            // --notif-c: var(--c-seed);
         }
 
         &--error {
             --c-seed: var(--c-danger);
-            // --notif-bg: hsla(var(--danger-hsl) / 0.11);
-            // --notif-c: var(--c-danger);
         }
     }
 }
