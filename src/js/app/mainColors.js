@@ -92,10 +92,12 @@ const initColorPickers = (colors) => {
 		})
 
 		picker.on('pick', (color) => {
-			color && throttledUpdate(color.string('hex'))
-
-			/* Reset to default if cancelled or if trigger clear event */
-			if (!color) {
+			if (color) {
+				// Normal selection
+				throttledUpdate(color.string('hex'))
+			} else {
+				/* Reset to default if cancelled or if triggered clear event */
+				// Clear → reset to default
 				throttledUpdate(cfg.default)
 				picker.setColor(cfg.default, false)
 			}

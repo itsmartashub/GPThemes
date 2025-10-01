@@ -294,7 +294,9 @@
 .cp_dialog *:focus-visible {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   outline: 0;
-  box-shadow: 0 0 40px 10px var(--ext-color-alpha) inset;
+  // box-shadow: 0 0 40px 10px var(--ext-color-alpha) inset;
+  box-shadow: 0 0 2px 0.1px var(--c-accent) inset;
+  background-image: none !important;
 }
 
 /* Swatches */
@@ -381,6 +383,7 @@
 }
 
 .cp_value {
+  --alpha: 0.5;
   flex: 1 1 auto;
   min-width: 0;
   width: 0;
@@ -393,8 +396,8 @@
   font-family: inherit;
 
   color: var(--c-accent);
-  background-color: var(--c-surface-3) !important;
-  //   background-color: var(--c-bg-textarea) !important;
+  background-color: transparent !important;
+  background-image: linear-gradient(45deg, var(--ext-color-alpha));
 }
 
 /* Action Buttons */
