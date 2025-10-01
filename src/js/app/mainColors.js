@@ -1,4 +1,4 @@
-import ColorPicker from '../../libs/jscolorpicker/colorpicker.js'
+import ColorPicker from '../../libs/jscolorpicker/colorpicker.min.js'
 import browser from 'webextension-polyfill'
 import { SELECTORS } from './config/selectors.js'
 import { q } from '../utils/dom.js'
