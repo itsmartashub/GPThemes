@@ -59,6 +59,10 @@
 	--menu-item-highlighted: var(--c-accent-15) !important;
 	--menu-item-open: var(--c-accent-20) !important;
 
+	// &:hover {
+	// 	background-image: linear-gradient(to bottom, var(--c-accent-20), transparent 60%) !important;
+	// }
+
 	// @include lift;
 	// @include scaleIn;
 

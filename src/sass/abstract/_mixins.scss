@@ -54,6 +54,9 @@
 @mixin menuBg {
     backdrop-filter: var(--blur-menu) var(--brightness-menu, 1) !important;
     background-color: var(--c-bg-menu) !important;
+    // background-image: linear-gradient(to bottom, var(--c-accent-20), transparent) !important;
+    // background-image: linear-gradient(to bottom, var(--c-accent-20), transparent) !important;
+    box-shadow: inset 0 0 15px 0px var(--c-accent-10);
 }
 
 @mixin imgTrans {
