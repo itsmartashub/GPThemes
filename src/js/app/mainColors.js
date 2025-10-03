@@ -7,6 +7,7 @@ import { $settings } from './settingsManager.js'
 import { renderButton } from './components/renderButtons.js'
 import { renderSeparator } from './components/renderUtils.js'
 import { renderUserAccentBgToggle, handleUserAccentBgListeners } from './custom-colors/accentUserBubble.js'
+import { createTextColorManager, TEXT_COLOR_CONFIG } from './custom-colors/textColorManager.js'
 
 // --- CONFIG WITH THEME ---
 
@@ -30,6 +31,9 @@ const COLOR_CONFIG = [
 const accentPickers = new Map()
 const rootStyle = document.documentElement.style
 const storageKeys = COLOR_CONFIG.map((c) => c.storageKey)
+
+// Create text color manager
+const textColorManager = createTextColorManager(TEXT_COLOR_CONFIG)
 
 // --- CSS VARS ---
 const updateCSSVar = (theme, color) => rootStyle.setProperty(`--user-accent-${theme}`, color)
@@ -115,6 +119,8 @@ const initColorPickers = (colors) => {
 const destroyPickers = () => {
 	accentPickers.forEach((p) => p.destroy())
 	accentPickers.clear()
+
+	textColorManager.destroy()
 }
 
 const resetAllAccents = async () => {
@@ -167,6 +173,9 @@ const init = async () => {
 
 	initColorPickers(colors)
 	handleUserAccentBgListeners()
+
+	// Initialize text colors
+	await textColorManager.init()
 }
 
 export { generateColorsTabHTML as renderColorsTab, resetAllAccents, init, destroyPickers }

@@ -11,9 +11,9 @@ function setCssVars(vars) {
 
 	if (!rafId) {
 		rafId = requestAnimationFrame(() => {
-			const root = document.documentElement
+			const rootStyle = document.documentElement.style
 			Object.entries(pendingVars).forEach(([key, value]) => {
-				root.style.setProperty(`--${key}`, value)
+				rootStyle.setProperty(`--${key}`, value)
 			})
 			Object.keys(pendingVars).forEach((key) => delete pendingVars[key])
 			rafId = null

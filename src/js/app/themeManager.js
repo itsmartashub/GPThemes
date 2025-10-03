@@ -98,4 +98,4 @@ function init() {
 	}
 }
 
-export { init, handleChangeTheme }
+export { init, handleChangeTheme, getStoredThemeState, getSystemTheme }

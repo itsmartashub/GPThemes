@@ -4,6 +4,16 @@
 const q = (s, root = document) => root.querySelector(s)
 const qq = (s, root = document) => root.querySelectorAll(s)
 
+const rootEl = document.documentElement
+const rootStyle = rootEl.style
+
+const getVar = (varName, fallback = '') => {
+	const value = getComputedStyle(rootEl).getPropertyValue(varName)
+	return value ? value.trim() : fallback
+}
+
+const setVar = (varName, value) => rootStyle.setProperty(varName, value)
+
 const bind = (el, events) => el && Object.entries(events).forEach(([ev, fn]) => el.addEventListener(ev, fn))
 
 const handleEnter = (fn) => (e) => {
@@ -24,5 +34,15 @@ const debounce = (fn, delay = 300) => {
 		timeoutId = setTimeout(() => fn(...args), delay)
 	}
 }
+const rafThrottle = (fn) => {
+	let rafId = null
+	return (...args) => {
+		if (rafId) return
+		rafId = requestAnimationFrame(() => {
+			fn(...args)
+			rafId = null
+		})
+	}
+}
 
-export { closeElement, openElement, debounce, q, qq, bind, handleEnter }
+export { closeElement, openElement, debounce, q, qq, bind, handleEnter, rafThrottle, setVar, getVar }

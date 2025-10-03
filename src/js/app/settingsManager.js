@@ -1,6 +1,7 @@
 import { SELECTORS } from './config/selectors'
 import { PFX } from './config/constants'
-import { renderColorsTab, resetAllAccents, init as initColors } from './mainColors'
+// import { renderColorsTab, resetAllAccents, init as initColors } from './mainColors'
+import { renderColorsTab, resetAllAccents, init as initColors } from './custom-colors/tabColors'
 import { renderFontsTab, handleFontsListeners, init as initFonts } from './mainFonts'
 import { renderWidthsTab, handleWidthsListeners, init as initWidths } from './mainWidths'
 import { handleScrolldownListeners, init as initScrolldown } from './scrolldown'
