@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill'
 import { SELECTORS } from './config/selectors.js'
-import { q, qq } from '../utils/dom.js'
+import { $, $$ } from '../utils/dom.js'
 import { setCssVars } from '../utils/setCssVar.js'
 import { renderToggle } from './components/renderToggles.js'
 import { Notify } from './components/renderNotify.js'
@@ -84,7 +84,7 @@ const loadBackgroundPreference = async () => {
 
 // Apply state to inputs + CSS vars
 const applyBubbleState = (state) => {
-	const checkboxes = qq(`.${SELECTORS.TOGGLE_BUBBLES.ROOT} .gpth-checkbox__input`)
+	const checkboxes = $$(`.${SELECTORS.TOGGLE_BUBBLES.ROOT} .gpth-checkbox__input`)
 	checkboxes.forEach((input) => {
 		const type = input.dataset.type
 		if (type in state) input.checked = state[type]
@@ -95,7 +95,7 @@ const applyBubbleState = (state) => {
 
 // Listener with delegation
 const setupBubblesListeners = () => {
-	const container = q(`.${SELECTORS.TOGGLE_BUBBLES.ITEMS_CONTAINER}`)
+	const container = $(`.${SELECTORS.TOGGLE_BUBBLES.ITEMS_CONTAINER}`)
 	if (!container) return
 
 	container.addEventListener('change', async (event) => {

@@ -2,16 +2,11 @@
 import browser from 'webextension-polyfill'
 import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './components/icons.js'
 import { SELECTORS } from './config/selectors'
-import { q } from '../utils/dom.js'
+import { $ } from '../utils/dom.js'
 import { handleChangeTheme } from './themeManager.js'
 import { createSettings, closeSettings } from './settingsManager.js'
 import { FLOATING_BTN_VISIBLE_KEY } from './config/constants.js'
 import { setupExtensionMessaging } from './messaging'
-
-/* import { init as initThemes } from './themeManager'
-import { init as initColors } from './mainColors'
-import { init as initFonts } from './mainFonts'
-import { init as initWidths } from './mainWidths' */
 
 // State
 let isOptionsShown = false
@@ -68,8 +63,8 @@ async function createFloatingBtn() {
 }
 function cacheFloatingElements(gpthFloatingBtn) {
 	elements.floatingBtn = gpthFloatingBtn
-	elements.floatingOptions = q(`.${SELECTORS.FLOATING_BTN.OPTIONS}`, gpthFloatingBtn)
-	elements.floatingBtnsContainer = q(`.${SELECTORS.FLOATING_BTN.BTNS_CONTAINER}`, gpthFloatingBtn)
+	elements.floatingOptions = $(`.${SELECTORS.FLOATING_BTN.OPTIONS}`, gpthFloatingBtn)
+	elements.floatingBtnsContainer = $(`.${SELECTORS.FLOATING_BTN.BTNS_CONTAINER}`, gpthFloatingBtn)
 }
 function addFloatingListeners() {
 	elements.floatingBtn.addEventListener('click', toggleFloatingOptions)
@@ -118,7 +113,7 @@ function toggleFloatingBtnVisibility(isVisible) {
 	elements.floatingBtn.classList.toggle(`${SELECTORS.FLOATING_BTN.ROOT}--hidden`, !isVisible)
 
 	// Close FLOATING_BTN too if it's open
-	if (!isVisible && q(`.${SELECTORS.SETTINGS.OPEN_STATE}`)) closeSettings()
+	if (!isVisible && $(`.${SELECTORS.SETTINGS.OPEN_STATE}`)) closeSettings()
 }
 
 /* function initExtension() {

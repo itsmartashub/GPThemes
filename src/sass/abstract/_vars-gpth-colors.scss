@@ -11,9 +11,8 @@ $alphas: (
 );
 
 :root {
-    /* Base colors */
-    // --c-accent: var(--user-accent, #6c4756);
-    // --c-txt: oklch(from var(--user-txt, var(--accent)) l c h);
+
+    // contain: layout style paint;
 
     --c-default-accent-light: #6c4756;
     --c-default-accent-dark: #bfa8ff;

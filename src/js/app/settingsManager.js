@@ -1,9 +1,10 @@
 import { SELECTORS } from './config/selectors'
 import { PFX } from './config/constants'
-import { renderColorsTab, resetAllAccents, init as initColors } from './mainColors'
-import { renderFontsTab, handleFontsListeners, init as initFonts } from './mainFonts'
-import { renderWidthsTab, handleWidthsListeners, init as initWidths } from './mainWidths'
-import { handleScrolldownListeners, init as initScrolldown } from './scrolldown'
+import { renderColorsTab, resetAllAccents } from './mainColors'
+// import { renderColorsTab, resetAllAccents } from './custom-colors/tabColors'
+import { renderFontsTab, handleFontsListeners } from './mainFonts'
+import { renderWidthsTab, handleWidthsListeners } from './mainWidths'
+import { handleScrolldownListeners } from './scrolldown'
 // import { handleCustomChatboxListeners } from './customChatbox'
 
 // Elements cache

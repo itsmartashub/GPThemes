@@ -1,6 +1,6 @@
 import { renderToggle } from '../components/renderToggles.js'
 import { Notify } from '../components/renderNotify.js'
-import { q } from '../../utils/dom.js'
+import { $ } from '../../utils/dom.js'
 import browser from 'webextension-polyfill'
 import { setCssVars } from '../../utils/setCssVar.js'
 import { SELECTORS } from '../config/selectors.js'
@@ -59,7 +59,7 @@ async function setupListeners() {
 	applyAccentToggle(state)
 
 	input.addEventListener('change', async ({ target }) => {
-		const userBubble = q(`.${SELECTORS.CHATS.USER}`) // adjust selector to your chat bubbles
+		const userBubble = $(`.${SELECTORS.CHATS.USER}`) // adjust selector to your chat bubbles
 
 		if (!userBubble) {
 			handleError('User bubble not found on this page.')

@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill'
 import { SELECTORS } from './config/selectors'
-import { q, qq } from '../utils/dom.js'
+import { $, $$ } from '../utils/dom.js'
 import { Notify } from './components/renderNotify.js'
 
 import { closeSettings, $settings } from './settingsManager.js'
@@ -174,7 +174,7 @@ const renderFontsTab = () => {
 // Helper function to set input field values
 const setInputValues = (values) => {
 	Object.entries(values).forEach(([key, value]) => {
-		const inputEl = q(`#${FONT_CONFIG[key]?.id}`, $settings)
+		const inputEl = $(`#${FONT_CONFIG[key]?.id}`, $settings)
 		if (inputEl) {
 			inputEl.value = value
 		}
@@ -187,7 +187,7 @@ const updateCSSVars = (values = {}) => {
 	const currentValues = {}
 	Object.entries(FONT_CONFIG).forEach(([prop, config]) => {
 		if (!values[prop]) {
-			const input = q(`#${config.id}`, $settings)
+			const input = $(`#${config.id}`, $settings)
 			currentValues[prop] = input ? input.value : config.default
 		}
 	})
@@ -270,7 +270,7 @@ const loadGoogleFont = (fontFamily) => {
 }
 
 const removeAllGoogleFontsLinks = () => {
-	const links = Array.from(qq("head link[href*='fonts.']"))
+	const links = Array.from(q$("head link[href*='fonts.']"))
 	links.forEach((link) => {
 		if (link.href.includes('fonts.googleapis.com') || link.href.includes('fonts.gstatic.com')) {
 			link.remove()
@@ -399,10 +399,10 @@ const handleFontsListeners = () => {
 	// Keep this function to maintain compatibility with settingsManager.js
 
 	// const container = $settings.querySelector('#fontChangerPopover')
-	const container = q('#fontChangerPopover', $settings)
+	const container = $('#fontChangerPopover', $settings)
 	if (!container) return
 
-	const el = (selector) => q(`#${selector}`, container)
+	const el = (selector) => $(`#${selector}`, container)
 
 	// Cache selectors for better performance
 	const elements = {

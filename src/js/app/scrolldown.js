@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill'
 import { SELECTORS } from './config/selectors'
-import { q, qq } from '../utils/dom.js'
+import { $, $$ } from '../utils/dom.js'
 
 import { icon_align_left, icon_align_center, icon_align_right } from './components/icons'
 import { setCssVars } from '../utils/setCssVar'
@@ -78,7 +78,7 @@ function applyPosition(position = DEFAULT_POSITION, btnContainer) {
 	}
 
 	// 1. Update active button
-	const btns = qq(`.${SELECTORS.SCROLLDOWN.BTN}`, btnContainer)
+	const btns = $$(`.${SELECTORS.SCROLLDOWN.BTN}`, btnContainer)
 	btns.forEach((btn) => {
 		btn.classList.toggle('active', btn.dataset.position === position)
 	})
@@ -103,7 +103,7 @@ async function loadPositionPreference() {
 function handleScrolldownListeners() {
 	// console.log('[🎨GPThemes]: handleScrolldownListeners')
 
-	const btnContainer = q(`.${SELECTORS.SCROLLDOWN.BTN_CONTAINER}`)
+	const btnContainer = $(`.${SELECTORS.SCROLLDOWN.BTN_CONTAINER}`)
 	if (!btnContainer) return
 
 	// Use event delegation for better performance
@@ -111,7 +111,7 @@ function handleScrolldownListeners() {
 		const btn = e.target.closest(`.${SELECTORS.SCROLLDOWN.BTN}`)
 		if (!btn) return
 
-		const scrollBtn = q(SELECTORS.SCROLLDOWN.SCROLL_BTN)
+		const scrollBtn = $(SELECTORS.SCROLLDOWN.SCROLL_BTN)
 		if (!scrollBtn)
 			return Notify.error(
 				`🚨 Scrolldown button not found. Possible reasons: missing on this page or OpenAI codebase changes.`,

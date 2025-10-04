@@ -2,7 +2,7 @@ import browser from 'webextension-polyfill'
 
 import { SELECTORS } from './config/selectors'
 import { icon_taller_height } from './components/icons'
-import { q } from '../utils/dom'
+import { $ } from '../utils/dom'
 import { renderToggle } from './components/renderToggles'
 
 import { Notify } from './components/renderNotify'
@@ -35,7 +35,7 @@ function generateHTML() {
 }
 
 async function setupListeners() {
-	const input = q(`#${SELECTORS.CHATBOX.TOGGLE_MAX_HEIGHT_ID}`)
+	const input = $(`#${SELECTORS.CHATBOX.TOGGLE_MAX_HEIGHT_ID}`)
 	if (!input) return
 
 	// Sync with saved state
@@ -44,7 +44,7 @@ async function setupListeners() {
 
 	input.addEventListener('change', async (event) => {
 		const target = event.target
-		const chatbox = q(SELECTORS.CHATBOX.HEIGHT)
+		const chatbox = $(SELECTORS.CHATBOX.HEIGHT)
 
 		if (!chatbox) {
 			Notify.error('Chatbox not found on this page.')

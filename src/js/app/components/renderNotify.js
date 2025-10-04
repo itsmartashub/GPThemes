@@ -1,6 +1,6 @@
 // notification.js
 import { SELECTORS } from '../config/selectors'
-import { q } from '../../utils/dom'
+import { $ } from '../../utils/dom'
 
 const NOTIFICATION_TYPES = {
 	INFO: 'info',
@@ -46,7 +46,7 @@ export function showNotification(
 	})
 
 	// Close button handler
-	q(`.${SELECTORS.NOTIFY.CLOSE_BTN}`, notification).addEventListener('click', () => {
+	$(`.${SELECTORS.NOTIFY.CLOSE_BTN}`, notification).addEventListener('click', () => {
 		closeNotification(notification)
 	})
 

@@ -1,8 +1,18 @@
 // const $ = (s) => document.querySelector(s)
 // const $$ = (s) => document.querySelectorAll(s)
 
-const q = (s, root = document) => root.querySelector(s)
-const qq = (s, root = document) => root.querySelectorAll(s)
+const $ = (s, root = document) => root.querySelector(s)
+const $$ = (s, root = document) => root.querySelectorAll(s)
+
+const ROOT_DOC = document.documentElement
+const ROOT_STYLE = ROOT_DOC.style
+
+const getVar = (varName, fallback = '') => {
+	const value = getComputedStyle(ROOT_DOC).getPropertyValue(varName)
+	return value ? value.trim() : fallback
+}
+
+const setVar = (varName, value) => ROOT_STYLE.setProperty(varName, value)
 
 const bind = (el, events) => el && Object.entries(events).forEach(([ev, fn]) => el.addEventListener(ev, fn))
 
@@ -14,8 +24,8 @@ const handleEnter = (fn) => (e) => {
 	}
 }
 
-const openElement = (selector, classname) => q(selector)?.classList.add(classname)
-const closeElement = (selector, classname) => q(selector)?.classList.remove(classname)
+const openElement = (selector, classname) => $(selector)?.classList.add(classname)
+const closeElement = (selector, classname) => $(selector)?.classList.remove(classname)
 
 const debounce = (fn, delay = 300) => {
 	let timeoutId
@@ -24,5 +34,28 @@ const debounce = (fn, delay = 300) => {
 		timeoutId = setTimeout(() => fn(...args), delay)
 	}
 }
+const rafThrottle = (fn) => {
+	let rafId = null
+	return (...args) => {
+		if (rafId) return
+		rafId = requestAnimationFrame(() => {
+			fn(...args)
+			rafId = null
+		})
+	}
+}
 
-export { closeElement, openElement, debounce, q, qq, bind, handleEnter }
+export {
+	closeElement,
+	openElement,
+	debounce,
+	$,
+	$$,
+	bind,
+	handleEnter,
+	rafThrottle,
+	setVar,
+	getVar,
+	ROOT_STYLE,
+	ROOT_DOC,
+}

@@ -10,7 +10,7 @@ import { renderCustomScrollDown } from './scrolldown'
 import { renderChatBubbles } from './toggleChatBubbles'
 import { renderCustomChatboxHeight, handleCustomChatboxListeners } from './customChatbox'
 import { renderCustomHides, handleCustomHidesListeners } from './custom-hide'
-import { q } from '../utils/dom.js'
+import { $ } from '../utils/dom.js'
 import { setCssVars } from '../utils/setCssVar'
 
 // ==========================================
@@ -137,9 +137,9 @@ function updateSlider({ sliderId, outputId, unitId, value, disabled = false }) {
 	const numericValue = extractNumber(value)
 	const unit = extractUnit(value)
 
-	const slider = q(sliderId)
-	const output = q(outputId)
-	const unitEl = q(unitId)
+	const slider = $(sliderId)
+	const output = $(outputId)
+	const unitEl = $(unitId)
 
 	if (slider) {
 		slider.value = numericValue
@@ -155,10 +155,10 @@ function updateUI({ settings, syncEnabled, fullWidthEnabled }) {
 
 	// Cache DOM elements once
 	const elements = {
-		chatSlider: q(`#${SELECTORS.WIDTH.SLIDER_CHAT_ID}`),
-		textareaSlider: q(`#${SELECTORS.WIDTH.SLIDER_TEXTAREA_ID}`),
-		fullWidthToggle: q(`#${SELECTORS.WIDTH.TOGGLE_FULL_ID}`),
-		syncWidthsToggle: q(`#${SELECTORS.WIDTH.TOGGLE_SYNC_ID}`),
+		chatSlider: $(`#${SELECTORS.WIDTH.SLIDER_CHAT_ID}`),
+		textareaSlider: $(`#${SELECTORS.WIDTH.SLIDER_TEXTAREA_ID}`),
+		fullWidthToggle: $(`#${SELECTORS.WIDTH.TOGGLE_FULL_ID}`),
+		syncWidthsToggle: $(`#${SELECTORS.WIDTH.TOGGLE_SYNC_ID}`),
 	}
 
 	const sliderData = [
@@ -316,7 +316,7 @@ function removeAllListeners() {
 }
 
 function setupSliderListeners(selector, key) {
-	const slider = q(selector)
+	const slider = $(selector)
 	if (slider) {
 		// Input event for live updates
 		addListener(slider, 'input', (e) => handleWidthChange({ event: e, key, shouldSave: false }))
@@ -333,16 +333,16 @@ function handleWidthsListeners() {
 	removeAllListeners()
 
 	// Full Width Toggle
-	addListener(q(`#${SELECTORS.WIDTH.TOGGLE_FULL_ID}`), 'change', handleToggleFullWidth)
+	addListener($(`#${SELECTORS.WIDTH.TOGGLE_FULL_ID}`), 'change', handleToggleFullWidth)
 
 	// Sync Toggle
-	addListener(q(`#${SELECTORS.WIDTH.TOGGLE_SYNC_ID}`), 'change', handleToggleSyncWidths)
+	addListener($(`#${SELECTORS.WIDTH.TOGGLE_SYNC_ID}`), 'change', handleToggleSyncWidths)
 
 	setupSliderListeners(`#${SELECTORS.WIDTH.SLIDER_CHAT_ID}`, 'w_chat_gpt')
 	setupSliderListeners(`#${SELECTORS.WIDTH.SLIDER_TEXTAREA_ID}`, 'w_prompt_textarea')
 
 	// Reset button
-	addListener(q(`#${SELECTORS.WIDTH.RESET_BTN_ID}`), 'click', resetWidths)
+	addListener($(`#${SELECTORS.WIDTH.RESET_BTN_ID}`), 'click', resetWidths)
 
 	handleCustomHidesListeners()
 	handleCustomChatboxListeners()
