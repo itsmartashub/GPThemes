@@ -1,4 +1,4 @@
-import browser from 'webextension-polyfill'
+import { getItem, setItem } from '../utils/storage.js'
 import { SELECTORS } from './config/selectors.js'
 import { $, $$ } from '../utils/dom.js'
 import { setCssVars } from '../utils/setCssVar.js'
@@ -61,10 +61,10 @@ const updateRootVariables = (state) => {
 // Persist state
 const saveBackgroundPreference = async (state) => {
 	try {
-		await browser.storage.sync.set({ [STORAGE_KEY]: state })
+		await setItem(STORAGE_KEY, state)
 		return true
 	} catch (error) {
-		Notify.error('Failed to save preference')
+		Notify.error('Failed to save bubble preference')
 		console.error('Failed to save preference:', error)
 		return false
 	}
@@ -73,10 +73,10 @@ const saveBackgroundPreference = async (state) => {
 // Load state
 const loadBackgroundPreference = async () => {
 	try {
-		const result = await browser.storage.sync.get(STORAGE_KEY)
-		return result[STORAGE_KEY] || DEFAULT_STATE
+		const result = await getItem(STORAGE_KEY) // object states: { user: true, gpt: true } | { user: false, gpt: false } | { user: true, gpt: false } | { user: false, gpt: true } | null
+		return result || DEFAULT_STATE
 	} catch (error) {
-		Notify.error('Failed to load preference')
+		Notify.error('Failed to load bubble preference')
 		console.error('Failed to load preference:', error)
 		return DEFAULT_STATE
 	}

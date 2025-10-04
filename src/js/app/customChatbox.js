@@ -7,6 +7,7 @@ import { renderToggle } from './components/renderToggles'
 import { Notify } from './components/renderNotify'
 
 // Storage key for preferences
+const DEFAULT_STATE = false
 const STORAGE_KEY = 'customChatboxHeightState'
 const ATTR_NAME = 'data-gpth-toggle-chatbox-height'
 
@@ -22,7 +23,7 @@ function generateHTML() {
 		<h4 class="${SELECTORS.SUBHEADING}">Other</h4>
 		${renderToggle({
 			id: SELECTORS?.CHATBOX?.TOGGLE_MAX_HEIGHT_ID,
-			checked: false,
+			checked: DEFAULT_STATE,
 			label: 'Expand Chatbox',
 			subtitle:
 				'Increase the height of the message box to fit more content. Warning: Always disabled on "Library" and  "New chat" initial page!',
