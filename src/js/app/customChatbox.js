@@ -1,8 +1,7 @@
-import browser from 'webextension-polyfill'
-
+import { getItem, setItem } from '../utils/storage'
+import { $ } from '../utils/dom'
 import { SELECTORS } from './config/selectors'
 import { icon_taller_height } from './components/icons'
-import { $ } from '../utils/dom'
 import { renderToggle } from './components/renderToggles'
 
 import { Notify } from './components/renderNotify'
@@ -65,7 +64,7 @@ async function setupListeners() {
 
 async function saveState(state = false) {
 	try {
-		await browser.storage.sync.set({ [STORAGE_KEY]: state })
+		await setItem(STORAGE_KEY, state)
 		return true
 	} catch (error) {
 		Notify.error('Failed to save Chatbox height preference')
@@ -76,8 +75,9 @@ async function saveState(state = false) {
 
 async function loadState() {
 	try {
-		const result = await browser.storage.sync.get(STORAGE_KEY)
-		return result[STORAGE_KEY] || false
+		const isEnabled = await getItem(STORAGE_KEY)
+
+		return isEnabled || false
 	} catch (error) {
 		Notify.error('Failed to load Chatbox custom height preference')
 		console.error('Failed to load Chatbox height preference:', error)
