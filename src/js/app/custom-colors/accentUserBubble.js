@@ -1,11 +1,11 @@
-import { renderToggle } from '../components/renderToggles.js'
-import { Notify } from '../components/renderNotify.js'
-import { $ } from '../../utils/dom.js'
-import browser from 'webextension-polyfill'
-import { setCssVars } from '../../utils/setCssVar.js'
+import { $, setVar } from '../../utils/dom.js'
+import { getItem, setItem } from '../../utils/storage.js'
 import { SELECTORS } from '../config/selectors.js'
 import { icon_accent } from '../components/icons.js'
+import { renderToggle } from '../components/renderToggles.js'
+import { Notify } from '../components/renderNotify.js'
 
+const DEFAULT_STATE = false
 const STORAGE_KEY = 'customUserBubbleAccentState'
 const CSS_VAR = '--gpthUserBubbleAccent'
 
@@ -13,7 +13,7 @@ const CSS_VAR = '--gpthUserBubbleAccent'
 function generateHTML() {
 	return renderToggle({
 		id: SELECTORS.CHATS.TOGGLE_USER_BUBBLE_ACCENT_ID,
-		checked: false,
+		checked: DEFAULT_STATE,
 		label: 'Accent User Bubble',
 		subtitle: 'Make the user bubble fully accented for higher contrast',
 		icon: icon_accent,
@@ -23,14 +23,16 @@ function generateHTML() {
 
 // Apply toggle by setting CSS var to "1" (enabled) or "0" (disabled)
 function applyAccentToggle(enabled) {
-	setCssVars({ [CSS_VAR.replace(/^--/, '')]: enabled ? '1' : '0' })
+	// setCssVars({ [CSS_VAR.replace(/^--/, '')]: enabled ? '1' : '0' })
+	setVar(CSS_VAR, enabled ? '1' : '0')
 }
 
 // Load saved state from storage
 async function loadState() {
 	try {
-		const result = await browser.storage.sync.get(STORAGE_KEY)
-		return !!result[STORAGE_KEY]
+		const result = await getItem(STORAGE_KEY) // boolean: true | false | null
+
+		return !!result
 	} catch (error) {
 		handleError('Failed to load user accent bubble preference', error)
 		return false
@@ -38,9 +40,9 @@ async function loadState() {
 }
 
 // Save state to storage
-async function saveState(state = false) {
+async function saveState(state = DEFAULT_STATE) {
 	try {
-		await browser.storage.sync.set({ [STORAGE_KEY]: state })
+		await setItem(STORAGE_KEY, state)
 		return true
 	} catch (error) {
 		handleError('Failed to save user accent bubble preference', error)

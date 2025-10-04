@@ -3,7 +3,6 @@ import { $ } from '../utils/dom'
 import { SELECTORS } from './config/selectors'
 import { icon_taller_height } from './components/icons'
 import { renderToggle } from './components/renderToggles'
-
 import { Notify } from './components/renderNotify'
 
 // Storage key for preferences
