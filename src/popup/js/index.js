@@ -1,7 +1,7 @@
 import browser from 'webextension-polyfill'
 import { EXT_CURR_VERSION, EXT_CURR_CHANGELOG_URL } from '../../js/app/config/constants'
 import { RELEASE_CHANGES } from './changes'
-import { setupFloatingBtnToggle } from './toggleFAB'
+import { setupFABToggle } from './toggleFAB'
 
 const createFullChangelogLink = (version = EXT_CURR_VERSION) =>
 	`<a href="${EXT_CURR_CHANGELOG_URL}" target="_blank" rel="noopener noreferrer" class="changelog__seefullchangelog">🚀 See full release notes</a>`
@@ -45,7 +45,7 @@ const updateBadge = async () => {
 const initPopup = () => {
 	initChangelogUI()
 	updateBadge()
-	setupFloatingBtnToggle()
+	setupFABToggle()
 }
 
 // Start the initialization process
