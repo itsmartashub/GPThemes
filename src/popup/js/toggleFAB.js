@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill'
 import { renderToggle } from '../../js/app/components/renderToggles'
-import { FLOATING_BTN_VISIBLE_KEY } from '../../js/app/config/constants'
+import { SK_TOGGLE_FAB } from '../../js/app/floatingBtn'
 
 const CONFIG = {
 	toggleId: 'toggle-floating-btn-visibility',
@@ -23,14 +23,14 @@ async function setupFloatingBtnToggle() {
 	if (!container) return
 
 	// Get current state
-	const { [FLOATING_BTN_VISIBLE_KEY]: isVisible = true } = await browser.storage.sync.get(FLOATING_BTN_VISIBLE_KEY)
+	const { [SK_TOGGLE_FAB]: isVisible = true } = await browser.storage.sync.get(SK_TOGGLE_FAB)
 
 	container.innerHTML = renderFloatingBtnToggle(!isVisible)
 
 	// Just update storage - sync will handle the rest
 	document.getElementById(CONFIG.toggleId)?.addEventListener('change', async (e) => {
 		await browser.storage.sync.set({
-			[FLOATING_BTN_VISIBLE_KEY]: !e.target.checked,
+			[SK_TOGGLE_FAB]: !e.target.checked,
 		})
 	})
 }

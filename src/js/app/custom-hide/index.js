@@ -1,16 +1,12 @@
-import browser from 'webextension-polyfill'
-import { getItem, getItems, setItem } from '../../utils/storage.js'
+import { getItems, setItem } from '../../utils/storage.js'
 import { $, setVar, removeVar } from '../../utils/dom.js'
 import { ELEMENTS } from '../config/hidden-els.js'
 import { SELECTORS } from '../config/selectors'
 import { renderToggle } from '../components/renderToggles.js'
 import { Notify } from '../components/renderNotify.js'
-import { setCssVars } from '../../utils/setCssVar.js'
 
 // Precompute map for O(1) lookups
 const ELEMENTS_MAP = new Map(ELEMENTS.map((cfg) => [cfg.id, cfg]))
-
-console.log(ELEMENTS_MAP)
 
 // Render section HTML (string)
 function renderCustomHides() {
@@ -87,11 +83,9 @@ function applyToggle(config, isHidden) {
 
 	// 1. Direct and Clean Logic
 	if (isHidden) {
-		// State 1: Set variable to '1' (or whatever value signifies the active state)
-		setVar(varName, '1')
+		setVar(varName, '1') // State 1: Set variable to '1' (or whatever value signifies the active state)
 	} else {
-		// State 0: Remove the inline variable, letting CSS (e.g., :root defaults) take over.
-		removeVar(varName)
+		removeVar(varName) // State 0: Remove the inline variable, letting CSS (e.g., :root defaults) take over.
 	}
 
 	// 2. Persist state

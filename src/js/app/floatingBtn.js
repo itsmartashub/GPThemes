@@ -1,12 +1,13 @@
-// Use a cross-browser storage API:
-import browser from 'webextension-polyfill'
-import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './components/icons.js'
+import { getItem, watchStorageChanges } from '../utils/storage.js'
 import { SELECTORS } from './config/selectors'
 import { $ } from '../utils/dom.js'
+import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './components/icons.js'
 import { handleChangeTheme } from './themeManager.js'
 import { createSettings, closeSettings } from './settingsManager.js'
-import { FLOATING_BTN_VISIBLE_KEY } from './config/constants.js'
 import { setupExtensionMessaging } from './messaging'
+
+// Storage key
+const SK_TOGGLE_FAB = 'toggleFABVisibility'
 
 // State
 let isOptionsShown = false
@@ -18,18 +19,25 @@ const elements = {
 	floatingBtnsContainer: null,
 }
 
-// Listen for storage changes (for multi-tab sync)
-browser.storage.onChanged.addListener((changes, area) => {
-	if (area === 'sync' && changes[FLOATING_BTN_VISIBLE_KEY]) {
-		toggleFloatingBtnVisibility(changes[FLOATING_BTN_VISIBLE_KEY].newValue !== false)
+// ___ Listen for storage changes (for multi-tab sync)
+function handleStorageChange(changes, area) {
+	const change = changes[SK_TOGGLE_FAB]
+
+	// Check area and if the specific key changed
+	if (area === 'sync' && change) {
+		// Use a direct boolean check for clarity (newValue is likely a boolean)
+		const isVisible = change.newValue !== false
+		toggleFloatingBtnVisibility(isVisible)
 	}
-})
+}
 
 // ___ Initialize the application
 async function init() {
 	try {
 		await createFloatingBtn()
 		createSettings()
+		// Start watching for storage changes and store the cleanup function
+		watchStorageChanges(handleStorageChange)
 		setupExtensionMessaging()
 	} catch (error) {
 		console.error('Initialization error:', error)
@@ -100,8 +108,7 @@ function closeFloatingOptions() {
 
 /* Toggle flaoting button logic */
 async function setInitialFloatingBtnVisibility() {
-	const result = await browser.storage.sync.get(FLOATING_BTN_VISIBLE_KEY)
-	const isVisible = result[FLOATING_BTN_VISIBLE_KEY]
+	const isVisible = await getItem(SK_TOGGLE_FAB)
 	toggleFloatingBtnVisibility(isVisible !== false) // default true
 }
 // Show/hide floating button
@@ -116,12 +123,4 @@ function toggleFloatingBtnVisibility(isVisible) {
 	if (!isVisible && $(`.${SELECTORS.SETTINGS.OPEN_STATE}`)) closeSettings()
 }
 
-/* function initExtension() {
-	initThemes()
-	init()
-	initColors()
-	initFonts()
-	initWidths()
-}
- */
-export { init, closeFloatingOptions, toggleFloatingBtnVisibility }
+export { init, closeFloatingOptions, toggleFloatingBtnVisibility, SK_TOGGLE_FAB }
