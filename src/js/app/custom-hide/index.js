@@ -1,4 +1,6 @@
 import browser from 'webextension-polyfill'
+import { getItem, getItems, setItem } from '../../utils/storage.js'
+import { $, setVar, removeVar } from '../../utils/dom.js'
 import { ELEMENTS } from '../config/hidden-els.js'
 import { SELECTORS } from '../config/selectors'
 import { renderToggle } from '../components/renderToggles.js'
@@ -7,6 +9,8 @@ import { setCssVars } from '../../utils/setCssVar.js'
 
 // Precompute map for O(1) lookups
 const ELEMENTS_MAP = new Map(ELEMENTS.map((cfg) => [cfg.id, cfg]))
+
+console.log(ELEMENTS_MAP)
 
 // Render section HTML (string)
 function renderCustomHides() {
@@ -47,15 +51,16 @@ async function handleCustomHidesListeners() {
 
 	try {
 		// Load all states in parallel
-		const savedStates = await browser.storage.sync.get(ELEMENTS.map((cfg) => cfg.id))
+		const savedStates = await getItems(ELEMENTS.map((cfg) => cfg.id))
 
-		console.log('[🎨GPThemes]: Loaded toggle states', savedStates)
+		// console.log('[🎨GPThemes]: Loaded toggle states', savedStates)
 
 		for (const cfg of ELEMENTS) {
 			const saved = savedStates?.[cfg.id]
 			const isHidden = typeof saved === 'boolean' ? saved : cfg.isHidden
 
-			const input = container.querySelector(`#${cfg.id}`)
+			// const input = container.querySelector(`#${cfg.id}`)
+			const input = $(`#${cfg.id}`, container)
 			if (input) input.checked = isHidden
 
 			applyToggle(cfg, isHidden)
@@ -75,29 +80,27 @@ function handleToggleChange(e) {
 	if (cfg) applyToggle(cfg, checked)
 }
 
-function applyToggle(cfg, isHidden) {
-	// update CSS var on :root (ensure var name without leading --)
-	const varName = String(cfg.cssVar || '').replace(/^--/, '')
+/* Toggles a CSS variable state, typically between '1' (hidden) and removed (default) */
+function applyToggle(config, isHidden) {
+	const varName = String(config.cssVar || '')
 	if (!varName) return
 
-	// Store boolean as "0/1" for DRY CSS mapping
-	// setCssVars({ [varName]: isHidden ? '1' : '0' })
-	// setCssVars({ [varName]: isHidden ? 'none' : 'flex' })
+	// 1. Direct and Clean Logic
 	if (isHidden) {
-		// 1 = hidden
-		setCssVars({ [varName]: '1' })
+		// State 1: Set variable to '1' (or whatever value signifies the active state)
+		setVar(varName, '1')
 	} else {
-		// 0 = remove var → revert to site default
-		setCssVars({ [varName]: null }) // or delete inline style
+		// State 0: Remove the inline variable, letting CSS (e.g., :root defaults) take over.
+		removeVar(varName)
 	}
 
-	// persist state as hidden true/false
-	saveState(cfg.id, isHidden)
+	// 2. Persist state
+	saveState(config.id, isHidden)
 }
 
 async function saveState(key, value) {
 	try {
-		await browser.storage.sync.set({ [key]: value })
+		await setItem(key, value)
 	} catch (e) {
 		Notify.error(`Failed to save ${key} toggle state`)
 		console.error('Failed to save toggle state', key, e)

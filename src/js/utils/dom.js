@@ -7,13 +7,41 @@ const $$ = (s, root = document) => root.querySelectorAll(s)
 const ROOT_DOC = document.documentElement
 const ROOT_STYLE = ROOT_DOC.style
 
+// Helper to ensure the CSS variable name starts with '--'
+const formatVarName = (name) => (name.startsWith('--') ? name : `--${name}`)
+
 const getVar = (varName, fallback = '') => {
-	const value = getComputedStyle(ROOT_DOC).getPropertyValue(varName)
+	// Note: getComputedStyle requires the full '--' name
+	const fullVarName = formatVarName(varName)
+	const value = getComputedStyle(ROOT_DOC).getPropertyValue(fullVarName)
 	return value ? value.trim() : fallback
 }
 
-const setVar = (varName, value) => ROOT_STYLE.setProperty(varName, value)
+// All setters now accept names *with or without* the '--' prefix.
+const setVar = (varName, value) => ROOT_STYLE.setProperty(formatVarName(varName), value)
+const removeVar = (varName) => ROOT_STYLE.removeProperty(formatVarName(varName))
 
+const getVars = (varNames) => {
+	const values = {}
+	// Iterates over the list of requested names
+	varNames.forEach((name) => {
+		const fullVarName = formatVarName(name)
+		// Use the existing getVar to retrieve the value
+		values[fullVarName] = getVar(name)
+	})
+
+	return values
+}
+const setVars = (vars) => {
+	Object.entries(vars).forEach(([name, value]) => {
+		setVar(name, value)
+	})
+}
+const removeVars = (varNames) => {
+	varNames.forEach((name) => {
+		removeVar(name)
+	})
+}
 const bind = (el, events) => el && Object.entries(events).forEach(([ev, fn]) => el.addEventListener(ev, fn))
 
 const handleEnter = (fn) => (e) => {
@@ -54,8 +82,12 @@ export {
 	bind,
 	handleEnter,
 	rafThrottle,
-	setVar,
-	getVar,
 	ROOT_STYLE,
 	ROOT_DOC,
+	getVars,
+	getVar,
+	setVar,
+	removeVar,
+	setVars,
+	removeVars,
 }
