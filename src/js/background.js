@@ -1,24 +1,27 @@
-import browser from 'webextension-polyfill'
+import { runtime, action } from 'webextension-polyfill'
+
+import { getItem, setItem, removeItems } from './utils/storage'
 
 // Constants
 const BADGE_COLOR = '#ca93fb'
 const NEW_BADGE_TEXT = 'NEW'
+const VERSION_STORAGE_KEY = 'lastVersion'
 
 const handleInstallation = async (details) => {
 	try {
-		const currentVersion = browser.runtime.getManifest().version
+		const currentVersion = runtime.getManifest().version
 		// Get previously stored version
-		const { lastVersion } = await browser.storage.sync.get('lastVersion')
+		const { lastVersion } = await getItem(VERSION_STORAGE_KEY)
 
 		// Handle update scenario - show NEW badge and reset theme
 		if (details.reason === 'update' && lastVersion !== currentVersion) {
-			await browser.action.setBadgeText({ text: NEW_BADGE_TEXT })
-			await browser.storage.sync.remove('gptheme')
+			await action.setBadgeText({ text: NEW_BADGE_TEXT })
+			await removeItems('gptheme')
 			console.log(`Extension updated from ${lastVersion} to ${currentVersion}`)
 		}
 
 		// Store the current version to track updates
-		await browser.storage.sync.set({ lastVersion: currentVersion })
+		await setItem(VERSION_STORAGE_KEY, currentVersion)
 		console.log(`Installation event: ${details.reason}, version: ${currentVersion}`)
 	} catch (error) {
 		console.error('Error handling installation:', error)
@@ -27,8 +30,8 @@ const handleInstallation = async (details) => {
 
 const handleBadgeUpdate = async () => {
 	try {
-		const version = browser.runtime.getManifest().version
-		await browser.action.setBadgeText({ text: version })
+		const version = runtime.getManifest().version
+		await action.setBadgeText({ text: version })
 		return { status: 'Badge updated successfully' }
 	} catch (error) {
 		console.error('Error updating badge:', error)
@@ -54,14 +57,14 @@ const initBackgroundScript = () => {
 	console.log('Initializing GPThemes background script')
 
 	// Set badge background color once
-	browser.action.setBadgeBackgroundColor({ color: BADGE_COLOR })
+	action.setBadgeBackgroundColor({ color: BADGE_COLOR })
 
 	// Register installation handler
-	browser.runtime.onInstalled.addListener(handleInstallation)
+	runtime.onInstalled.addListener(handleInstallation)
 
 	// Register message handler (ensuring it's only added once)
 	if (!globalThis.hasSetBadgeListener) {
-		browser.runtime.onMessage.addListener(handleMessage)
+		runtime.onMessage.addListener(handleMessage)
 		globalThis.hasSetBadgeListener = true
 	}
 }
