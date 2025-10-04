@@ -1,5 +1,5 @@
 import ColorPicker from '../../libs/jscolorpicker/colorpicker.min.js'
-import browser from 'webextension-polyfill'
+import { getItems, setItem, setItems, removeItems } from '../utils/storage.js'
 import { SELECTORS } from './config/selectors.js'
 import { $, getVar, ROOT_STYLE } from '../utils/dom.js'
 import { $settings } from './settingsManager.js'
@@ -14,7 +14,7 @@ const COLOR_CONFIG = [
 		id: SELECTORS.ACCENT.LIGHT_ID,
 		label: 'Accent <span>Light</span>',
 		default: getVar('--c-default-accent-light', '#6c4756'),
-		storageKey: 'accent_light',
+		storageKey: 'gpthColorAccentLight',
 		cssVar: '--user-accent-light',
 	},
 	{
@@ -22,7 +22,7 @@ const COLOR_CONFIG = [
 		id: SELECTORS.ACCENT.DARK_ID,
 		label: 'Accent <span>Dark</span>',
 		default: getVar('--c-default-accent-dark', '#bfa8ff'),
-		storageKey: 'accent_dark',
+		storageKey: 'gpthColorAccentDark',
 		cssVar: '--user-accent-dark',
 	},
 ]
@@ -38,14 +38,14 @@ const removeCSSVars = () => COLOR_CONFIG.forEach((c) => ROOT_STYLE.removePropert
 const saveColor = async (key, value) => {
 	console.log('[🎨GPThemes]: Saving color:', key, value)
 	try {
-		await browser.storage.sync.set({ [key]: value })
+		await setItem(key, value)
 	} catch (err) {
 		console.error('Save error:', err)
 	}
 }
 
 const loadColors = async () => {
-	const stored = await browser.storage.sync.get(storageKeys)
+	const stored = await getItems(storageKeys)
 	return Object.fromEntries(COLOR_CONFIG.map((c) => [c.theme, stored[c.storageKey] ?? c.default]))
 }
 
@@ -83,11 +83,15 @@ const initColorPickers = (colors) => {
 					updateCSSVar(cfg.cssVar, newHex)
 				}
 			} else {
+				console.log('NO PICKER COLOR')
 				// Clear/reset to default
 				if (cachedHex !== cfg.default) {
+					console.log('Resetting color to default')
+
 					cachedHex = cfg.default
 					hasChanged = true
 					updateCSSVar(cfg.cssVar, cfg.default)
+					removeItems(cfg.storageKey)
 				}
 				picker.setColor(cfg.default, false)
 			}
@@ -113,8 +117,10 @@ const resetAllAccents = async () => {
 		ROOT_STYLE.setProperty(c.cssVar, c.default)
 	})
 	removeCSSVars()
-	const defaults = Object.fromEntries(COLOR_CONFIG.map((c) => [c.storageKey, c.default]))
-	await browser.storage.sync.set(defaults)
+	// const defaults = Object.fromEntries(COLOR_CONFIG.map((c) => [c.storageKey, c.default]))
+	// console.log(defaults)
+	// await setItems(defaults)
+	await removeItems(storageKeys)
 }
 
 // --- HTML GENERATION ---

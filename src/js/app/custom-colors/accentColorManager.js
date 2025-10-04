@@ -49,9 +49,6 @@ const loadColors = async () => {
 }
 
 const initColorPickers = (colors) => {
-	// Clear existing pickers
-	destroyPickers()
-
 	COLOR_CONFIG.forEach((cfg) => {
 		const btn = $(`#${cfg.id}`, $settings)
 		if (!btn) return
