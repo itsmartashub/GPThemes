@@ -1,9 +1,9 @@
-import browser from 'webextension-polyfill'
+import { getItem, setItem } from '../utils/storage'
 import { SELECTORS } from './config/selectors'
 import { $, $$ } from '../utils/dom.js'
 
 import { icon_align_left, icon_align_center, icon_align_right } from './components/icons'
-import { setCssVars } from '../utils/setCssVar'
+import { setCssVars } from '../utils/setCssVar' // batch css vars updates
 import { Notify } from './components/renderNotify.js'
 
 // Configuration object - single source of truth
@@ -35,6 +35,7 @@ const POSITION_CONFIG = {
 	},
 }
 
+const STORAGE_KEY = 'scrollButtonPosition'
 const DEFAULT_POSITION = 'center'
 
 function generateScrollDownHTML() {
@@ -66,7 +67,7 @@ function generateScrollDownHTML() {
 
 async function savePositionPreference(position) {
 	try {
-		await browser.storage.sync.set({ scrollButtonPosition: position })
+		await setItem(STORAGE_KEY, position)
 	} catch (error) {
 		console.error('Failed to save position preference:', error)
 	}
@@ -92,8 +93,8 @@ function applyPosition(position = DEFAULT_POSITION, btnContainer) {
 
 async function loadPositionPreference() {
 	try {
-		const result = await browser.storage.sync.get('scrollButtonPosition')
-		return result.scrollButtonPosition || DEFAULT_POSITION
+		const result = await getItem(STORAGE_KEY) // position: 'left' | 'center' | 'right' | null
+		return result || DEFAULT_POSITION
 	} catch (error) {
 		console.error('Failed to load position preference:', error)
 		return DEFAULT_POSITION

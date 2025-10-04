@@ -75,9 +75,9 @@ async function saveState(state = false) {
 
 async function loadState() {
 	try {
-		const isEnabled = await getItem(STORAGE_KEY)
+		const result = await getItem(STORAGE_KEY) // state: true | false | null
 
-		return isEnabled || false
+		return result || false
 	} catch (error) {
 		Notify.error('Failed to load Chatbox custom height preference')
 		console.error('Failed to load Chatbox height preference:', error)
