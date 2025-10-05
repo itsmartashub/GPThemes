@@ -1,20 +1,22 @@
-import browser from 'webextension-polyfill'
+import { setItem, getItems, setItems } from '../utils/storage.js'
+import { $, $$, getVar, setVar, setVars, bind } from '../utils/dom.js'
 import { SELECTORS } from './config/selectors'
-import { $, $$ } from '../utils/dom.js'
 import { Notify } from './components/renderNotify.js'
-
 import { closeSettings, $settings } from './settingsManager.js'
 import { renderFontSmallCard, renderFontBigCard } from './components/renderFonts'
 import { renderButton } from './components/renderButtons'
-import { setCssVars } from '../utils/setCssVar'
 
-// Font Configuration object - single source of truth
-const FONT_CONFIG = {
+// ============================================================================
+// CONFIG
+// ============================================================================
+
+const CONFIG = {
 	fontFamily: {
 		id: SELECTORS.FONT.FAMILY_ID,
 		label: 'Font Family',
-		default: getComputedStyle(document.documentElement).getPropertyValue('--fontFamilyDefault').trim(),
-		storageKey: 'fontFamily',
+		default: getVar('--gpthFontFamilyDefault'),
+		storageKey: 'textFontFamily',
+		cssVar: 'gpthFontFamily',
 		options: [
 			{ name: 'Default', label: 'Default' },
 			...[
@@ -22,140 +24,273 @@ const FONT_CONFIG = {
 				{ name: 'Roboto', label: 'Roboto' },
 				{ name: 'Roboto Mono', label: 'Roboto Mono' },
 				{ name: 'Roboto Serif', label: 'Roboto Serif' },
-				{ name: 'DM Sans', label: 'DM Sans' },
+				{ name: 'DM Sans', label: 'DM Sans 🆕' },
 				{ name: 'Reddit Mono', label: 'Reddit Mono' },
 				{ name: 'Poppins', label: 'Poppins' },
 				{ name: 'Raleway', label: 'Raleway' },
 				{ name: 'Noto Sans', label: 'Noto Sans' },
 				{ name: 'Lato', label: 'Lato' },
-				{ name: 'Quicksand', label: 'Quicksand' },
+				{ name: 'Quicksand', label: 'Quicksand 🆕' },
 				{ name: 'Outfit', label: 'Outfit' },
 				{ name: 'Share Tech Mono', label: 'Share Tech Mono' },
 				{ name: 'JetBrains Mono', label: 'JetBrains Mono' },
 				{ name: 'Work Sans', label: 'Work Sans' },
-				{ name: 'Lora', label: 'Lora' },
+				{ name: 'Lora', label: 'Lora 🆕' },
 				{ name: 'Manrope', label: 'Manrope' },
 				{ name: 'Libre Baskerville', label: 'Libre Baskervill' },
 				{ name: 'Bricolage Grotesque', label: 'Bricolage Grotesque' },
 				{ name: 'Hedvig Letters Serif', label: 'Hedvig Letters Serif' },
 				{ name: 'Literata', label: 'Literata' },
-				{ name: 'Syne', label: 'Syne' },
-				{ name: 'Sora', label: 'Sora' },
+				{ name: 'Syne', label: 'Syne 🆕' },
+				{ name: 'Sora', label: 'Sora 🆕' },
 				{ name: 'Golos Text', label: 'Golos Text' },
 			].sort((a, b) => a.label.localeCompare(b.label)),
 		],
-		type: 'select',
 	},
 	fontSize: {
 		id: SELECTORS.FONT.SIZE_ID,
 		label: 'Font Size',
 		default: 16,
-		storageKey: 'fontSize',
+		storageKey: 'textFontSize',
+		cssVar: 'gpthFontSize',
 		unit: 'px',
 		min: 12,
 		max: 24,
-		type: 'number',
 	},
 	lineHeight: {
 		id: SELECTORS.FONT.LINE_HEIGHT_ID,
 		label: 'Line Height',
 		default: 28,
-		storageKey: 'lineHeight',
+		storageKey: 'textLineHeight',
+		cssVar: 'gpthLineHeight',
 		unit: 'px',
 		min: 12,
 		max: 60,
-		type: 'number',
 	},
 	letterSpacing: {
 		id: SELECTORS.FONT.LETTER_SPACING_ID,
 		label: 'Letter Space',
 		default: 0,
-		storageKey: 'letterSpacing',
+		storageKey: 'textLetterSpacing',
+		cssVar: 'gpthLetterSpacing',
 		unit: 'px',
 		min: -30,
 		max: 30,
-		type: 'number',
 	},
 }
 
-// For efficient access to default values
-const DEFAULT_FONTS = Object.entries(FONT_CONFIG).reduce((acc, [prop, config]) => {
-	acc[prop.toUpperCase()] = config.default
-	return acc
-}, {})
+const GOOGLE_FONT_WEIGHTS = ':ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,300;1,400;1,500;1,600;1,700'
 
-// For efficient access to storage keys
-const STORAGE_KEYS = Object.entries(FONT_CONFIG).reduce((acc, [prop, config]) => {
-	acc[`FONT_${prop.toUpperCase()}`] = config.storageKey
-	return acc
-}, {})
+const focusValues = {}
 
-// Google Fonts configuration
-const GOOGLE_FONT_WEIGHTS = `:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,300;1,400;1,500;1,600;1,700`
+let cachedElements = null
 
-// Tracker for input field values on focus
-const focusValues = {
-	fontSize: null,
-	lineHeight: null,
-	letterSpacing: null,
+function getCachedElements() {
+	if (cachedElements) return cachedElements
+
+	const container = $('#fontChangerPopover', $settings)
+	if (!container) return null
+
+	cachedElements = {
+		fontFamily: $(`#${CONFIG.fontFamily.id}`, container),
+		fontSize: $(`#${CONFIG.fontSize.id}`, container),
+		lineHeight: $(`#${CONFIG.lineHeight.id}`, container),
+		letterSpacing: $(`#${CONFIG.letterSpacing.id}`, container),
+		resetBtn: $(`#${SELECTORS.FONT.RESET_BTN_ID}`, container),
+	}
+
+	return cachedElements
 }
 
-// Generate the HTML for the font tab
-const renderFontsTab = () => {
+// ============================================================================
+// UTILS
+// ============================================================================
+
+const formatNum = (val) => {
+	if (val === null || val === undefined || val === '') return null
+	const num = parseFloat(val)
+	if (isNaN(num)) return null
+	return num % 1 === 0 ? String(Math.round(num)) : num.toFixed(2).replace(/\.?0+$/, '')
+}
+
+const validate = (val, min, max) => {
+	const num = parseFloat(val)
+	if (isNaN(num) || val === null) {
+		Notify.error('🚨 Invalid number')
+		return false
+	}
+	if (num < min || num > max) {
+		Notify.warning(`⚠️ Must be between ${min} and ${max}`)
+		return false
+	}
+	return true
+}
+
+// const updateCSS = (key, val) => {
+// 	const cfg = FONT_CONFIG[key]
+// 	setVar(cfg.cssVar, cfg.unit ? `${val}${cfg.unit}` : val)
+// }
+
+function loadGoogleFont(font) {
+	if (font === CONFIG.fontFamily.default) return
+
+	const links = [
+		{ rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+		{ rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+		{
+			rel: 'stylesheet',
+			href: `https://fonts.googleapis.com/css2?family=${font.replace(
+				/ /g,
+				'+'
+			)}${GOOGLE_FONT_WEIGHTS}&display=swap`,
+		},
+	]
+
+	links.forEach(({ rel, href, crossorigin }) => {
+		const link = document.createElement('link')
+		link.rel = rel
+		link.href = href
+		if (crossorigin !== undefined) link.crossOrigin = crossorigin
+		document.head.appendChild(link)
+	})
+}
+
+function removeGoogleFontLinks() {
+	$$("link[href*='fonts.googleapis.com'], link[href*='fonts.gstatic.com']").forEach((link) => link.remove())
+}
+
+// ============================================================================
+// HANDLERS
+// ============================================================================
+
+async function handleNumeric(e, key) {
+	// console.log('[🎨GPThemes]: handleNumeric', key, e.target.value)
+
+	const cfg = CONFIG[key]
+	const newVal = formatNum(e.target.value)
+	const oldVal = focusValues[key]
+
+	if (newVal === oldVal) return
+
+	if (!validate(newVal, cfg.min, cfg.max)) {
+		e.target.value = oldVal
+		return
+	}
+
+	console.log(cfg.cssVar, newVal)
+	// updateCSS(key, newVal)
+	setVar(cfg.cssVar, newVal)
+	await setItem(cfg.storageKey, newVal)
+}
+
+async function handleFontFamily(e) {
+	const selectedFontFamily = e.target.value
+
+	removeGoogleFontLinks()
+
+	if (selectedFontFamily !== CONFIG.fontFamily.default) loadGoogleFont(selectedFontFamily)
+
+	// updateCSS('fontFamily', font)
+	setVar(CONFIG.fontFamily.cssVar, selectedFontFamily)
+
+	await setItem(CONFIG.fontFamily.storageKey, selectedFontFamily)
+}
+
+async function resetAll() {
+	// 1. Reset input DOM values
+	$(`#${CONFIG.fontFamily.id}`, $settings).value = CONFIG.fontFamily.default
+	$(`#${CONFIG.fontSize.id}`, $settings).value = CONFIG.fontSize.default
+	$(`#${CONFIG.lineHeight.id}`, $settings).value = CONFIG.lineHeight.default
+	$(`#${CONFIG.letterSpacing.id}`, $settings).value = CONFIG.letterSpacing.default
+
+	// 2. Reset DOM styles (CSS vars)
+	setVars({
+		[CONFIG.fontFamily.cssVar]: CONFIG.fontFamily.default,
+		[CONFIG.fontSize.cssVar]: CONFIG.fontSize.default,
+		[CONFIG.lineHeight.cssVar]: CONFIG.lineHeight.default,
+		[CONFIG.letterSpacing.cssVar]: CONFIG.letterSpacing.default,
+	})
+
+	// 3. Close settings
+	closeSettings()
+
+	// 4. Reset storage
+	const defaults = {
+		[CONFIG.fontFamily.storageKey]: CONFIG.fontFamily.default,
+		[CONFIG.fontSize.storageKey]: CONFIG.fontSize.default,
+		[CONFIG.lineHeight.storageKey]: CONFIG.lineHeight.default,
+		[CONFIG.letterSpacing.storageKey]: CONFIG.letterSpacing.default,
+	}
+
+	await setItems(defaults)
+
+	// 5. Remove injected Google Font links from DOM (<head>)
+	removeGoogleFontLinks()
+
+	Notify.success('✅ All fonts have been reset')
+}
+
+// ============================================================================
+// RENDER
+// ============================================================================
+
+function generateHTML() {
 	return `
     <section id="fontChangerPopover" class="fonts">
       <div class="fonts__props">
         <div class="fonts__bigcards-wrapper">
           <div class="fonts__family fonts__group card card--big h-full">
-            <label for="fontFamily" class="flex flex-col gap-1 h-full w-full">
+            <label for="${CONFIG.fontFamily.id}" class="flex flex-col gap-1 h-full w-full">
               <div>
                 <p class="card__unit card__icon">T</p>
                 <p class="card__name uppercase font-semibold">FONT FAMILY</p>
               </div>
-              <select id="fontFamily" class="flex-1 border-none outline-none focus:none font-bold" role="listbox">
-                ${FONT_CONFIG.fontFamily.options
-					.map((font) => {
-						const value = font.name === 'Default' ? FONT_CONFIG.fontFamily.default : font.name
-						return `<option value="${value}">${font.label}</option>`
+              <select id="${
+					CONFIG.fontFamily.id
+				}" class="flex-1 border-none outline-none focus:none font-bold" role="listbox">
+                ${CONFIG.fontFamily.options
+					.map((f) => {
+						const val = f.name === 'Default' ? CONFIG.fontFamily.default : f.name
+						return `<option value="${val}">${f.label}</option>`
 					})
 					.join('')}
               </select>
             </label>
           </div>
           ${renderFontBigCard({
-				name: FONT_CONFIG.fontSize.label,
+				name: CONFIG.fontSize.label,
 				className: SELECTORS.FONT.SIZE_CLASS,
-				inputId: FONT_CONFIG.fontSize.id,
+				inputId: CONFIG.fontSize.id,
 				inputType: 'number',
-				inputValue: FONT_CONFIG.fontSize.default,
-				inputPlaceholder: FONT_CONFIG.fontSize.default,
-				unit: FONT_CONFIG.fontSize.unit,
-				min: FONT_CONFIG.fontSize.min,
-				max: FONT_CONFIG.fontSize.max,
+				inputValue: CONFIG.fontSize.default,
+				inputPlaceholder: CONFIG.fontSize.default,
+				unit: CONFIG.fontSize.unit,
+				min: CONFIG.fontSize.min,
+				max: CONFIG.fontSize.max,
 			})}
         </div>
         <div class="fonts__smallcards-wrapper">
           ${renderFontSmallCard({
-				name: FONT_CONFIG.lineHeight.label,
+				name: CONFIG.lineHeight.label,
 				className: SELECTORS.FONT.LINE_HEIGHT_CLASS,
-				inputId: FONT_CONFIG.lineHeight.id,
+				inputId: CONFIG.lineHeight.id,
 				inputType: 'number',
-				inputValue: FONT_CONFIG.lineHeight.default,
-				inputPlaceholder: FONT_CONFIG.lineHeight.default,
-				unit: FONT_CONFIG.lineHeight.unit,
-				min: FONT_CONFIG.lineHeight.min,
-				max: FONT_CONFIG.lineHeight.max,
+				inputValue: CONFIG.lineHeight.default,
+				inputPlaceholder: CONFIG.lineHeight.default,
+				unit: CONFIG.lineHeight.unit,
+				min: CONFIG.lineHeight.min,
+				max: CONFIG.lineHeight.max,
 			})}
           ${renderFontSmallCard({
-				name: FONT_CONFIG.letterSpacing.label,
+				name: CONFIG.letterSpacing.label,
 				className: SELECTORS.FONT.LETTER_SPACING_CLASS,
-				inputId: FONT_CONFIG.letterSpacing.id,
+				inputId: CONFIG.letterSpacing.id,
 				inputType: 'number',
-				inputValue: FONT_CONFIG.letterSpacing.default,
-				inputPlaceholder: FONT_CONFIG.letterSpacing.default,
-				unit: FONT_CONFIG.letterSpacing.unit,
-				min: FONT_CONFIG.letterSpacing.min,
-				max: FONT_CONFIG.letterSpacing.max,
+				inputValue: CONFIG.letterSpacing.default,
+				inputPlaceholder: CONFIG.letterSpacing.default,
+				unit: CONFIG.letterSpacing.unit,
+				min: CONFIG.letterSpacing.min,
+				max: CONFIG.letterSpacing.max,
 			})}
         </div>
       </div>
@@ -171,350 +306,119 @@ const renderFontsTab = () => {
   `
 }
 
-// Helper function to set input field values
-const setInputValues = (values) => {
-	Object.entries(values).forEach(([key, value]) => {
-		const inputEl = $(`#${FONT_CONFIG[key]?.id}`, $settings)
-		if (inputEl) {
-			inputEl.value = value
-		}
+// ============================================================================
+// EVENTS
+// ============================================================================
+
+function addListeners() {
+	// const container = $('#fontChangerPopover', $settings)
+	// if (!container) return
+
+	// // Cache all elements at once
+	// const elements = {
+	// 	fontFamily: $(`#${CONFIG.fontFamily.id}`, container),
+	// 	fontSize: $(`#${CONFIG.fontSize.id}`, container),
+	// 	lineHeight: $(`#${CONFIG.lineHeight.id}`, container),
+	// 	letterSpacing: $(`#${CONFIG.letterSpacing.id}`, container),
+	// 	resetBtn: $(`#${SELECTORS.FONT.RESET_BTN_ID}`, container),
+	// }
+
+	const elements = getCachedElements()
+	if (!elements) return
+
+	const onEnter = (fn) => (e) => e.key === 'Enter' && (e.preventDefault(), fn(e), e.target.blur())
+	const track = (key) => (e) => (focusValues[key] = formatNum(e.target.value))
+
+	bind(elements.fontFamily, { change: handleFontFamily })
+
+	bind(elements.fontSize, {
+		focus: track('fontSize'),
+		blur: (e) => handleNumeric(e, 'fontSize'),
+		keypress: onEnter((e) => handleNumeric(e, 'fontSize')),
 	})
-}
 
-// Helper function to update CSS variables
-const updateCSSVars = (values = {}) => {
-	// Get current values for any prop not provided
-	const currentValues = {}
-	Object.entries(FONT_CONFIG).forEach(([prop, config]) => {
-		if (!values[prop]) {
-			const input = $(`#${config.id}`, $settings)
-			currentValues[prop] = input ? input.value : config.default
-		}
+	bind(elements.lineHeight, {
+		focus: track('lineHeight'),
+		blur: (e) => handleNumeric(e, 'lineHeight'),
+		keypress: onEnter((e) => handleNumeric(e, 'lineHeight')),
 	})
 
-	// Combine provided values with current values
-	const finalValues = { ...currentValues, ...values }
-	// console.log(finalValues)
+	bind(elements.letterSpacing, {
+		focus: track('letterSpacing'),
+		blur: (e) => handleNumeric(e, 'letterSpacing'),
+		keypress: onEnter((e) => handleNumeric(e, 'letterSpacing')),
+	})
 
-	// Update CSS variables
-	setCssVars(finalValues)
-	/* Object.entries(finalValues).forEach(([prop, value]) => {
-		document.documentElement.style.setProperty(`--${prop}`, value)
-	}) */
+	bind(elements.resetBtn, { click: resetAll })
 }
 
-// Helper function to save value to storage
-const saveValueToStorage = async (key, value) => {
-	try {
-		await browser.storage.sync.set({ [key]: value })
-		return true
-	} catch (error) {
-		console.error(`Error saving ${key} to storage:`, error)
-		return false
-	}
-}
+// ============================================================================
+// INIT
+// ============================================================================
 
-// Helper function to format numbers
-const formatNumber = (inputVal, toFixedNum = 2) => {
-	if (inputVal === null || inputVal === undefined) return '0'
-
-	// Remove leading zeros from the integer part
-	inputVal = String(inputVal).replace(/^0+(?=\d*\.)/, '')
-	// Parse the input as a number and return it with specified decimal places
-	let formatted = parseFloat(inputVal).toFixed(toFixedNum)
-	// Remove trailing zeros from the decimal part
-	formatted = formatted.replace(/\.?0+$/, '')
-	// Return the formatted number as a string
-	return formatted
-}
-
-// Helper function to validate input values
-const validateInput = (value, min, max) => {
-	if (isNaN(value)) {
-		// displayError('Empty or invalid value')
-		Notify.error('🚨 Empty or invalid value')
-		return false
-	} else if (value < min || value > max) {
-		Notify.warning(`⚠️ Number must be between ${min} and ${max}`)
-		// displayError(`Number must be between ${min} and ${max}`)
-		return false
-	}
-	return true
-}
-
-// Google Fonts helpers
-const loadGoogleFont = (fontFamily) => {
-	if (fontFamily === FONT_CONFIG.fontFamily.default) return
-
-	const links = [
-		{ rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-		{ rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-		{
-			rel: 'stylesheet',
-			href: `https://fonts.googleapis.com/css2?family=${fontFamily.replace(
-				' ',
-				'+'
-			)}${GOOGLE_FONT_WEIGHTS}&display=swap`,
-		},
+async function init() {
+	const keys = [
+		CONFIG.fontFamily.storageKey,
+		CONFIG.fontSize.storageKey,
+		CONFIG.lineHeight.storageKey,
+		CONFIG.letterSpacing.storageKey,
 	]
 
-	links.forEach(({ rel, href, crossorigin }) => {
-		const link = document.createElement('link')
-		link.rel = rel
-		link.href = href
-		if (crossorigin !== undefined) {
-			link.crossOrigin = crossorigin
-		}
-		document.head.appendChild(link)
-	})
-}
+	const stored = await getItems(keys)
 
-const removeAllGoogleFontsLinks = () => {
-	const links = Array.from(q$("head link[href*='fonts.']"))
-	links.forEach((link) => {
-		if (link.href.includes('fonts.googleapis.com') || link.href.includes('fonts.gstatic.com')) {
-			link.remove()
-		}
-	})
-}
+	// // Init missing values
+	// const missing = {}
+	// if (!stored[CONFIG.fontFamily.storageKey]) missing[CONFIG.fontFamily.storageKey] = CONFIG.fontFamily.default
+	// if (!stored[CONFIG.fontSize.storageKey]) missing[CONFIG.fontSize.storageKey] = CONFIG.fontSize.default
+	// if (!stored[CONFIG.lineHeight.storageKey]) missing[CONFIG.lineHeight.storageKey] = CONFIG.lineHeight.default
+	// if (!stored[CONFIG.letterSpacing.storageKey])
+	// 	missing[CONFIG.letterSpacing.storageKey] = CONFIG.letterSpacing.default
 
-// Handle font family change
-const changeFontFamily = async (e) => {
-	const selectedFont = e.target.value
+	// if (Object.keys(missing).length) await setItems(missing)
 
-	// Remove existing Google Font links
-	removeAllGoogleFontsLinks()
+	// const fontFamily = stored[CONFIG.fontFamily.storageKey] || CONFIG.fontFamily.default
+	// const fontSize = stored[CONFIG.fontSize.storageKey] || CONFIG.fontSize.default
+	// const lineHeight = stored[CONFIG.lineHeight.storageKey] || CONFIG.lineHeight.default
+	// const letterSpacing = stored[CONFIG.letterSpacing.storageKey] || CONFIG.letterSpacing.default
 
-	// Load new font if not default
-	if (selectedFont !== FONT_CONFIG.fontFamily.default) {
-		loadGoogleFont(selectedFont)
-	}
+	// Extract the pattern into a helper
+	const getStoredOrDefault = (configKey) => stored[CONFIG[configKey].storageKey] ?? CONFIG[configKey].default
 
-	// Update UI and save to storage
-	updateCSSVars({ fontFamily: selectedFont })
-	await saveValueToStorage(FONT_CONFIG.fontFamily.storageKey, selectedFont)
-	// closeSettings()
-}
+	// Then use it (still explicit, less repetition)
+	// Load values
+	const fontFamily = getStoredOrDefault('fontFamily')
+	const fontSize = getStoredOrDefault('fontSize')
+	const lineHeight = getStoredOrDefault('lineHeight')
+	const letterSpacing = getStoredOrDefault('letterSpacing')
 
-// Handle font size change
-const changeFontSize = async (e) => {
-	const newVal = formatNumber(e.target.value)
-	const originalVal = formatNumber(focusValues.fontSize, 4)
+	// Load Google Font
+	if (fontFamily !== CONFIG.fontFamily.default) loadGoogleFont(fontFamily)
 
-	// Skip if no change
-	if (originalVal === newVal) return
-
-	// Validate input
-	if (!validateInput(newVal, FONT_CONFIG.fontSize.min, FONT_CONFIG.fontSize.max)) {
-		// Reset to original value if invalid
-		e.target.value = originalVal
-		updateCSSVars({ fontSize: originalVal })
-		await saveValueToStorage(FONT_CONFIG.fontSize.storageKey, originalVal)
-		return
-	}
-
-	// Update UI and save to storage
-	updateCSSVars({ fontSize: newVal })
-	await saveValueToStorage(FONT_CONFIG.fontSize.storageKey, newVal)
-}
-
-// Handle line height change
-const changeLineHeight = async (e) => {
-	const newVal = formatNumber(e.target.value)
-	const originalVal = formatNumber(focusValues.lineHeight, 4)
-
-	// Skip if no change
-	if (originalVal === newVal) return
-
-	// Validate input
-	if (!validateInput(newVal, FONT_CONFIG.lineHeight.min, FONT_CONFIG.lineHeight.max)) {
-		// Reset to original value if invalid
-		e.target.value = originalVal
-		updateCSSVars({ lineHeight: originalVal })
-		await saveValueToStorage(FONT_CONFIG.lineHeight.storageKey, originalVal)
-		return
-	}
-
-	// Update UI and save to storage
-	updateCSSVars({ lineHeight: newVal })
-	await saveValueToStorage(FONT_CONFIG.lineHeight.storageKey, newVal)
-}
-
-// Handle letter spacing change
-const changeLetterSpacing = async (e) => {
-	const newVal = formatNumber(e.target.value)
-	const originalVal = formatNumber(focusValues.letterSpacing, 4)
-
-	// Skip if no change
-	if (originalVal === newVal) return
-
-	// Validate input
-	if (!validateInput(newVal, FONT_CONFIG.letterSpacing.min, FONT_CONFIG.letterSpacing.max)) {
-		// Reset to original value if invalid
-		e.target.value = originalVal
-		updateCSSVars({ letterSpacing: originalVal })
-		await saveValueToStorage(FONT_CONFIG.letterSpacing.storageKey, originalVal)
-		return
-	}
-
-	// Update UI and save to storage
-	updateCSSVars({ letterSpacing: newVal })
-	await saveValueToStorage(FONT_CONFIG.letterSpacing.storageKey, newVal)
-}
-
-// Reset all fonts to default values
-const resetAllFonts = async () => {
-	try {
-		// Create an object of default values for storage
-		const defaults = {}
-		Object.values(FONT_CONFIG).forEach((config) => {
-			defaults[config.storageKey] = config.default
-		})
-
-		// Save defaults to storage
-		await browser.storage.sync.set(defaults)
-
-		// Create a prop-to-value mapping for UI update
-		const defaultValues = {}
-		Object.entries(FONT_CONFIG).forEach(([prop, config]) => {
-			defaultValues[prop] = config.default
-		})
-
-		// Remove Google Font links for clean slate
-		removeAllGoogleFontsLinks()
-
-		// Update UI and CSS
-		setInputValues(defaultValues)
-		updateCSSVars(defaultValues)
-
-		// Close settings panel
-		closeSettings()
-	} catch (error) {
-		console.error('Error resetting font values:', error)
-	}
-}
-
-// Main event handler function - this matches the original function signature
-const handleFontsListeners = () => {
-	// Keep this function to maintain compatibility with settingsManager.js
-
-	// const container = $settings.querySelector('#fontChangerPopover')
-	const container = $('#fontChangerPopover', $settings)
-	if (!container) return
-
-	const el = (selector) => $(`#${selector}`, container)
-
-	// Cache selectors for better performance
-	const elements = {
-		selectFontFamily: el(SELECTORS.FONT.FAMILY_ID),
-		inputFontSize: el(SELECTORS.FONT.SIZE_ID),
-		inputLineHeight: el(SELECTORS.FONT.LINE_HEIGHT_ID),
-		inputLetterSpacing: el(SELECTORS.FONT.LETTER_SPACING_ID),
-		btnResetFont: el(SELECTORS.FONT.RESET_BTN_ID),
-	}
-
-	const bind = (element, events) =>
-		element && Object.entries(events).forEach(([event, handler]) => element.addEventListener(event, handler))
-
-	const handleEnter = (fn) => (e) => e.key === 'Enter' && (e.preventDefault(), fn(e), e.target.blur())
-	const setFocusValue = (key) => (e) => (focusValues[key] = e.target.value)
-
-	// Event bindings
-	bind(elements.selectFontFamily, {
-		change: changeFontFamily,
+	// Set CSS vars
+	setVars({
+		[CONFIG.fontFamily.cssVar]: fontFamily,
+		[CONFIG.fontSize.cssVar]: fontSize,
+		[CONFIG.lineHeight.cssVar]: lineHeight,
+		[CONFIG.letterSpacing.cssVar]: letterSpacing,
 	})
 
-	bind(elements.inputFontSize, {
-		focus: setFocusValue('fontSize'),
-		blur: changeFontSize,
-		keypress: handleEnter(changeFontSize),
-	})
+	// Update inputs
+	const elements = getCachedElements()
+	if (!elements) return
 
-	bind(elements.inputLineHeight, {
-		focus: setFocusValue('lineHeight'),
-		blur: changeLineHeight,
-		keypress: handleEnter(changeLineHeight),
-	})
+	elements.fontFamily.value = fontFamily
+	elements.fontSize.value = fontSize
+	elements.lineHeight.value = lineHeight
+	elements.letterSpacing.value = letterSpacing
+	// const $fontFamily = $(`#${CONFIG.fontFamily.id}`, $settings)
+	// const $fontSize = $(`#${CONFIG.fontSize.id}`, $settings)
+	// const $lineHeight = $(`#${CONFIG.lineHeight.id}`, $settings)
+	// const $letterSpacing = $(`#${CONFIG.letterSpacing.id}`, $settings)
 
-	bind(elements.inputLetterSpacing, {
-		focus: setFocusValue('letterSpacing'),
-		blur: changeLetterSpacing,
-		keypress: handleEnter(changeLetterSpacing),
-	})
-
-	bind(elements.btnResetFont, {
-		click: resetAllFonts,
-	})
+	// if ($fontFamily) $fontFamily.value = fontFamily
+	// if ($fontSize) $fontSize.value = fontSize
+	// if ($lineHeight) $lineHeight.value = lineHeight
+	// if ($letterSpacing) $letterSpacing.value = letterSpacing
 }
 
-// Load font values from storage
-const loadFontValuesFromStorage = async () => {
-	try {
-		// Create an array of storage keys to retrieve
-		const keys = Object.values(FONT_CONFIG).map((config) => config.storageKey)
-
-		// Get all values at once
-		const storedValues = await browser.storage.sync.get(keys)
-
-		// Map stored values back to font properties
-		const result = {}
-		Object.entries(FONT_CONFIG).forEach(([prop, config]) => {
-			result[prop] = storedValues[config.storageKey] || config.default
-		})
-
-		return result
-	} catch (error) {
-		console.error('Error loading font values:', error)
-
-		// Return defaults if storage fails
-		return Object.entries(FONT_CONFIG).reduce((acc, [prop, config]) => {
-			acc[prop] = config.default
-			return acc
-		}, {})
-	}
-}
-
-// Initialize font storage with defaults if needed
-const initializeFontStorage = async () => {
-	try {
-		const keys = Object.values(FONT_CONFIG).map((config) => config.storageKey)
-		const storedValues = await browser.storage.sync.get(keys)
-
-		// Check if any values are missing
-		const updates = {}
-		Object.entries(FONT_CONFIG).forEach(([_, config]) => {
-			if (!storedValues[config.storageKey]) {
-				updates[config.storageKey] = config.default
-			}
-		})
-
-		// Save any missing values
-		if (Object.keys(updates).length > 0) {
-			await browser.storage.sync.set(updates)
-		}
-	} catch (error) {
-		console.error('Error initializing font storage:', error)
-	}
-}
-
-// Main initialization function
-const init = async () => {
-	try {
-		await initializeFontStorage()
-		const fontValues = await loadFontValuesFromStorage()
-
-		// Load Google Font if not default
-		if (fontValues.fontFamily && fontValues.fontFamily !== FONT_CONFIG.fontFamily.default) {
-			loadGoogleFont(fontValues.fontFamily)
-		}
-
-		// Update UI and CSS variables
-		updateCSSVars(fontValues)
-		setInputValues(fontValues)
-	} catch (error) {
-		console.error('Font manager initialization error:', error)
-	}
-}
-
-// Export using the original function names for backward compatibility
-export { renderFontsTab, resetAllFonts, handleFontsListeners, init }
+export { generateHTML as renderFontsTab, resetAll as resetAllFonts, addListeners as handleFontsListeners, init }

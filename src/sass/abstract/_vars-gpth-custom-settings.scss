@@ -1,6 +1,6 @@
 :root {
     /* ! === CUSTOM FONTS === */
-    --fontFamilyDefault: ui-sans-serif,
+    --gpthFontFamilyDefault: ui-sans-serif,
         -apple-system,
         system-ui,
         Segoe UI,
@@ -14,10 +14,10 @@
         Arial,
         Segoe UI Emoji,
         Segoe UI Symbol;
-    --fontFamily: var(--fontFamilyDefault);
-    --fontSize: inherit;
-    --letterSpacing: none;
-    --lineHeight: 28;
+    --gpthFontFamily: var(--gpthFontFamilyDefault);
+    --gpthFontSize: inherit;
+    --gpthLetterSpacing: none;
+    --gpthLineHeight: 28;
 
     /* ! === CUSTOM SCROLLDOWN POSITION === */
     --scrollBtnLeft: unset;

@@ -6,4 +6,4 @@ export function getCssVar(varName, fallback = '') {
 	return value ? value.trim() : fallback
 }
 // Usage:
-// const fontFamilyDefault = getCssVar('--fontFamilyDefault', 'Arial, sans-serif');
+// const fontFamilyDefault = getCssVar('--gpthFontFamilyDefault', 'Arial, sans-serif');

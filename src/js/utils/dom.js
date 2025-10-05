@@ -1,6 +1,3 @@
-// const $ = (s) => document.querySelector(s)
-// const $$ = (s) => document.querySelectorAll(s)
-
 const $ = (s, root = document) => root.querySelector(s)
 const $$ = (s, root = document) => root.querySelectorAll(s)
 

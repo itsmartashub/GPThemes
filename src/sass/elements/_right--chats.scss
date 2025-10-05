@@ -142,8 +142,8 @@
                 /* Make the text in edit textarea to be the full-width */
                 span.invisible,
                 textarea {
-                    line-height: calc(var(--lineHeight) / 16) !important;
-                    font-size: calc((var(--fontSize) / 16) * 1rem) !important;
+                    line-height: calc(var(--gpthLineHeight) / 16) !important;
+                    font-size: calc((var(--gpthFontSize) / 16) * 1rem) !important;
                     width: 100%;
                 }
             }
@@ -191,8 +191,8 @@
             .relative.z-0 {
                 .origin-left.start-0.end-0.top-0 {
                     ._markdown_1frq2_10.text-sm.markdown.prose.break-words {
-                        font-size: calc(calc((var(--fontSize) / 16) * 1rem) * 0.9) !important;
-                        line-height: calc(calc(var(--lineHeight) / 16) * 0.85) !important;
+                        font-size: calc(calc((var(--gpthFontSize) / 16) * 1rem) * 0.9) !important;
+                        line-height: calc(calc(var(--gpthLineHeight) / 16) * 0.85) !important;
                     }
                 }
             }

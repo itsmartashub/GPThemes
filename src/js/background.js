@@ -5,24 +5,24 @@ import { getItem, setItem, removeItems } from './utils/storage'
 // Constants
 const BADGE_COLOR = '#ca93fb'
 const NEW_BADGE_TEXT = 'NEW'
-const VERSION_STORAGE_KEY = 'lastVersion'
+const SK_EXT_VERSION = 'extPrevVersion'
 
 const handleInstallation = async (details) => {
 	try {
-		const currentVersion = runtime.getManifest().version
+		const currVersion = runtime.getManifest().version
 		// Get previously stored version
-		const { lastVersion } = await getItem(VERSION_STORAGE_KEY)
+		const prevVersion = await getItem(SK_EXT_VERSION)
 
 		// Handle update scenario - show NEW badge and reset theme
-		if (details.reason === 'update' && lastVersion !== currentVersion) {
+		if (details.reason === 'update' && prevVersion !== currVersion) {
 			await action.setBadgeText({ text: NEW_BADGE_TEXT })
 			await removeItems('gptheme')
-			console.log(`Extension updated from ${lastVersion} to ${currentVersion}`)
+			console.log(`Extension updated from ${prevVersion} to ${currVersion}`)
 		}
 
 		// Store the current version to track updates
-		await setItem(VERSION_STORAGE_KEY, currentVersion)
-		console.log(`Installation event: ${details.reason}, version: ${currentVersion}`)
+		await setItem(SK_EXT_VERSION, currVersion)
+		console.log(`Installation event: ${details.reason}, version: ${currVersion}`)
 	} catch (error) {
 		console.error('Error handling installation:', error)
 	}

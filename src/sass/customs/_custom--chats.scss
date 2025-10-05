@@ -6,8 +6,8 @@
     //  Custom Font-Size and Line Height for chats and markdown code snippets
     div[data-message-author-role],
     .prose {
-        line-height: calc(var(--lineHeight) / 16) !important;
-        font-size: calc((var(--fontSize) / 16) * 1rem) !important;
+        line-height: calc(var(--gpthLineHeight) / 16) !important;
+        font-size: calc(calc(var(--gpthFontSize) / 16) * 1rem) !important;
     }
 
     /* ! ========== CUSTOM WIDTH ========== */
