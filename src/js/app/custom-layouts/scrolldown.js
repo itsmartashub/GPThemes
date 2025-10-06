@@ -1,36 +1,35 @@
-import { getItem, setItem } from '../utils/storage'
-import { SELECTORS } from './config/selectors'
-import { $, $$ } from '../utils/dom.js'
-
-import { icon_align_left, icon_align_center, icon_align_right } from './components/icons'
-import { setCssVars } from '../utils/setCssVar' // batch css vars updates
-import { Notify } from './components/renderNotify.js'
+import { getItem, setItem } from '../../utils/storage.js'
+import { SELECTORS } from '../config/selectors.js'
+import { $, $$ } from '../../utils/dom.js'
+import { setVars } from '../../utils/dom.js' // batch css vars updates
+import { icon_align_left, icon_align_center, icon_align_right } from '../components/icons.js'
+import { Notify } from '../components/renderNotify.js'
 
 // Configuration object - single source of truth
-const POSITION_CONFIG = {
+const CONFIG = {
 	left: {
 		label: 'Left',
 		icon: icon_align_left,
 		cssVars: {
-			scrollBtnLeft: '0%',
-			scrollBtnRight: 'unset',
+			'--scrollBtnLeft': '0%',
+			'--scrollBtnRight': 'unset',
 		},
 	},
 	center: {
 		label: 'Center',
 		icon: icon_align_center,
 		cssVars: {
-			scrollBtnLeft: 'unset',
-			scrollBtnRight: '50%',
+			'--scrollBtnLeft': 'unset',
+			'--scrollBtnRight': '50%',
 		},
 	},
 	right: {
 		label: 'Right',
 		icon: icon_align_right,
 		cssVars: {
-			scrollBtnLeft: 'unset',
-			// scrollBtnRight: '1.5rem',
-			scrollBtnRight: '2rem',
+			'--scrollBtnLeft': 'unset',
+			// '--scrollBtnRight': '1.5rem',
+			'--scrollBtnRight': '2rem',
 		},
 	},
 }
@@ -38,8 +37,8 @@ const POSITION_CONFIG = {
 const STORAGE_KEY = 'scrollButtonPosition'
 const DEFAULT_POSITION = 'center'
 
-function generateScrollDownHTML() {
-	const positionBtns = Object.entries(POSITION_CONFIG)
+function generateHTML() {
+	const positionBtns = Object.entries(CONFIG)
 		.map(([position, config]) => {
 			const isActive = position === DEFAULT_POSITION ? 'active' : ''
 
@@ -65,16 +64,27 @@ function generateScrollDownHTML() {
     `
 }
 
-async function savePositionPreference(position) {
+async function getFromStorage() {
+	try {
+		const result = await getItem(STORAGE_KEY) // Returns: 'left' | 'center' | 'right' | null
+		return result || DEFAULT_POSITION
+	} catch (error) {
+		console.error('Failed to load position preference:', error)
+		return DEFAULT_POSITION
+	}
+}
+async function saveToStorage(position) {
 	try {
 		await setItem(STORAGE_KEY, position)
+		Notify.success('Position updated successfully')
 	} catch (error) {
 		console.error('Failed to save position preference:', error)
+		Notify.error('Failed to save position preference')
 	}
 }
 
 function applyPosition(position = DEFAULT_POSITION, btnContainer) {
-	if (!POSITION_CONFIG[position]) {
+	if (!CONFIG[position]) {
 		position = DEFAULT_POSITION
 	}
 
@@ -85,25 +95,13 @@ function applyPosition(position = DEFAULT_POSITION, btnContainer) {
 	})
 
 	// 2. Apply CSS variables
-	setCssVars(POSITION_CONFIG[position].cssVars)
+	setVars(CONFIG[position].cssVars)
 
 	// 3. Save preference in storage
-	savePositionPreference(position)
-}
-
-async function loadPositionPreference() {
-	try {
-		const result = await getItem(STORAGE_KEY) // position: 'left' | 'center' | 'right' | null
-		return result || DEFAULT_POSITION
-	} catch (error) {
-		console.error('Failed to load position preference:', error)
-		return DEFAULT_POSITION
-	}
+	saveToStorage(position)
 }
 
 function handleScrolldownListeners() {
-	console.log('[🎨GPThemes]: handleScrolldownListeners')
-
 	const btnContainer = $(`.${SELECTORS.SCROLLDOWN.BTN_CONTAINER}`)
 	if (!btnContainer) return
 
@@ -126,14 +124,9 @@ function handleScrolldownListeners() {
 	})
 
 	// Load and apply saved preferences
-	loadPositionPreference().then((position) => {
+	getFromStorage().then((position) => {
 		applyPosition(position, btnContainer)
 	})
 }
 
-function init() {
-	handleScrolldownListeners()
-	// console.log('[🎨GPThemes]: Scrolldown initialized')
-}
-
-export { generateScrollDownHTML as renderCustomScrollDown, init, handleScrolldownListeners }
+export { generateHTML as renderCustomScrolldown, handleScrolldownListeners }

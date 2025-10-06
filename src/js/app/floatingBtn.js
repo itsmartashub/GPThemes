@@ -4,7 +4,7 @@ import { $ } from '../utils/dom.js'
 import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './components/icons.js'
 import { handleChangeTheme } from './themeManager.js'
 import { createSettings, closeSettings } from './settingsManager.js'
-import { setupExtensionMessaging } from './messaging'
+import { setupExtensionMessaging } from './messaging/index.js'
 
 // Storage key
 const SK_TOGGLE_FAB = 'toggleFABVisibility'

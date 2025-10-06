@@ -1,12 +1,9 @@
 import { SELECTORS } from './config/selectors'
 import { PFX } from './config/constants'
-// import { renderColorsTab, resetAllAccents } from './mainColors'
-// import { renderFontsTab, handleFontsListeners } from './mainFonts'
-// import { renderWidthsTab, handleWidthsListeners } from './mainWidths'
 import { renderColorsTab, handleColorsListeners } from './custom-colors/index'
 import { renderFontsTab, handleFontsListeners } from './custom-fonts/index'
 import { renderWidthsTab, handleWidthsListeners } from './custom-layouts/index'
-import { handleScrolldownListeners } from './scrolldown'
+import { handleScrolldownListeners } from './custom-layouts/scrolldown'
 // import { handleCustomChatboxListeners } from './toggleCustomChatbox'
 
 // Elements cache
@@ -51,9 +48,6 @@ async function createSettings() {
 	// Add to DOM and set up listeners
 	document.body.appendChild(gpthSettings)
 	cacheElements(gpthSettings)
-
-	// Initialize modules
-	// await Promise.all([initColors(), initFonts(), initWidths(), initScrolldown()])
 
 	// Add listeners after initialization
 	addListeners()

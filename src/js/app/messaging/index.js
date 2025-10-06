@@ -1,7 +1,7 @@
 import browser from 'webextension-polyfill'
 // import { toggleFloatingBtnVisibility } from './floatingBtn'
 // import { SELECTORS } from './config/selectors'
-import { toggleFloatingBtnVisibility } from './floatingBtn'
+import { toggleFloatingBtnVisibility } from '../floatingBtn'
 
 /* Handles extension messages for the floating button and other features */
 function setupExtensionMessaging() {

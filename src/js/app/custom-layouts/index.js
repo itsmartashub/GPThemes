@@ -1,13 +1,12 @@
-import browser from 'webextension-polyfill'
-import { $ } from '../../utils/dom.js'
-import { setCssVars } from '../../utils/setCssVar.js'
+import { getItems, setItems, removeItems } from '../../utils/storage.js'
+import { $, setVars } from '../../utils/dom.js'
 import { SELECTORS } from '../config/selectors.js'
 import { icon_full_width, icon_sync } from '../components/icons.js'
 import { renderSliderCard } from '../components/renderSlider.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { renderButton } from '../components/renderButtons.js'
 import { renderSeparator } from '../components/renderUtils.js'
-import { renderCustomScrollDown } from '../scrolldown.js'
+import { renderCustomScrolldown } from './scrolldown.js'
 import { renderChatBubbles } from './toggleChatBubbles.js'
 import { renderCustomChatboxHeight, handleCustomChatboxListeners } from './toggleChatboxHeight.js'
 import { renderCustomHides, handleCustomHidesListeners } from '../custom-hide/index.js'
@@ -34,8 +33,8 @@ const WIDTH_CONFIG = {
 	},
 	storageKeys: {
 		widthSettings: 'widthSettings',
-		syncEnabled: 'widthSyncEnabled',
-		fullWidthEnabled: 'fullWidthEnabled',
+		syncEnabled: 'widthIsSyncEnabled',
+		fullWidthEnabled: 'widthIsFullEnabled',
 	},
 }
 
@@ -123,7 +122,7 @@ function renderWidthsTab() {
 		${renderSeparator}
 		${renderChatBubbles()}
 		${renderSeparator}
-		${renderCustomScrollDown()}
+		${renderCustomScrolldown()}
 
 	</section>
 	`
@@ -199,7 +198,7 @@ function updateUI({ settings, syncEnabled, fullWidthEnabled }) {
 // Save state to storage
 async function saveState(state) {
 	try {
-		await browser.storage.sync.set({
+		await setItems({
 			[WIDTH_CONFIG.storageKeys.widthSettings]: state.settings,
 			[WIDTH_CONFIG.storageKeys.syncEnabled]: state.syncEnabled,
 			[WIDTH_CONFIG.storageKeys.fullWidthEnabled]: state.fullWidthEnabled,
@@ -234,7 +233,7 @@ function handleWidthChange({ event, key, shouldSave = false }) {
 		currentState.syncEnabled = false
 	}
 
-	setCssVars(currentState.settings)
+	setVars(currentState.settings)
 	updateUI(currentState)
 
 	if (shouldSave) {
@@ -275,7 +274,7 @@ function handleToggleFullWidth() {
 	syncTextareaWithChatWidth()
 
 	// Apply changes and update UI
-	setCssVars(currentState.settings)
+	setVars(currentState.settings)
 	updateUI(currentState)
 	saveState(currentState)
 }
@@ -290,7 +289,7 @@ function handleToggleSyncWidths() {
 		: WIDTH_CONFIG.defaults.w_prompt_textarea
 
 	// Apply changes and update UI
-	setCssVars(currentState.settings)
+	setVars(currentState.settings)
 	updateUI(currentState)
 	saveState(currentState)
 }
@@ -357,10 +356,10 @@ async function resetWidths() {
 		fullWidthEnabled: false,
 	}
 
-	setCssVars(currentState.settings)
+	setVars(currentState.settings)
 	updateUI(currentState)
 
-	await browser.storage.sync.remove(Object.values(WIDTH_CONFIG.storageKeys))
+	await removeItems(Object.values(WIDTH_CONFIG.storageKeys))
 	// console.log('[↔️ GPThemes] Width settings reset.')
 }
 
@@ -370,7 +369,7 @@ async function resetWidths() {
 // Initialize the module
 async function init() {
 	try {
-		const result = await browser.storage.sync.get(Object.values(WIDTH_CONFIG.storageKeys))
+		const result = await getItems(Object.values(WIDTH_CONFIG.storageKeys))
 
 		currentState = {
 			settings: result[WIDTH_CONFIG.storageKeys.widthSettings] || { ...WIDTH_CONFIG.defaults },
@@ -395,7 +394,7 @@ async function init() {
 			currentState.settings.w_prompt_textarea = currentState.settings.w_chat_gpt
 		}
 
-		setCssVars(currentState.settings)
+		setVars(currentState.settings)
 		updateUI(currentState)
 
 		// console.log('[↔️ GPThemes] Width settings initialized:', currentState)
