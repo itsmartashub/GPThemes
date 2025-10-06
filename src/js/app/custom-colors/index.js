@@ -1,11 +1,11 @@
-import ColorPicker from '../../libs/jscolorpicker/colorpicker.min.js'
-import { getItems, setItem, removeItems } from '../utils/storage.js'
-import { SELECTORS } from './config/selectors.js'
-import { $, getVar, ROOT_STYLE } from '../utils/dom.js'
-import { $settings } from './settingsManager.js'
-import { renderButton } from './components/renderButtons.js'
-import { renderSeparator } from './components/renderUtils.js'
-import { renderUserAccentBgToggle, handleUserAccentBgListeners } from './custom-colors/toggleAccentUserBubble.js'
+import ColorPicker from '../../../libs/jscolorpicker/colorpicker.min.js'
+import { getItems, setItem, removeItems } from '../../utils/storage.js'
+import { SELECTORS } from '../config/selectors.js'
+import { $, getVar, ROOT_STYLE } from '../../utils/dom.js'
+import { $settings } from '../settingsManager.js'
+import { renderButton } from '../components/renderButtons.js'
+import { renderSeparator } from '../components/renderUtils.js'
+import { renderUserAccentBgToggle, handleUserAccentBgListeners } from './toggleAccentUserBubble.js'
 
 // --- CONFIG WITH THEME ---
 const CONFIG = [
@@ -130,25 +130,29 @@ const generateColorsTabHTML = () => {
 
 	const colorPickersHTML = CONFIG.map(
 		(c) => `
-			<div class="colorpicker">
-				<button id="${c.id}" data-theme-key="${c.storageKey}"></button>
-				<label for="${c.id}">${c.label}</label>
-			</div>
-		`
+            <div class="colorpicker">
+                <button id="${c.id}" data-theme-key="${c.storageKey}"></button>
+                <label for="${c.id}">${c.label}</label>
+            </div>
+        `
 	).join('')
 
 	cachedHTML = `
-		<section>
-			<div class="colorpicker-container">${colorPickersHTML}</div>
-			<div>
-				${renderSeparator}
-				${renderUserAccentBgToggle()}
-				${renderSeparator}
-			</div>
-			<footer class="flex justify-center mt-8">
-				${renderButton({ id: SELECTORS.ACCENT.RESET_BTN_ID, content: 'Reset Colors', className: 'btn-primary' })}
-			</footer>
-		</section>`
+        <section>
+            <div class="colorpicker-container">${colorPickersHTML}</div>
+            <div>
+                ${renderSeparator}
+                ${renderUserAccentBgToggle()}
+                ${renderSeparator}
+            </div>
+            <footer class="flex justify-center mt-8">
+                ${renderButton({
+					id: SELECTORS.ACCENT.RESET_BTN_ID,
+					content: 'Reset Colors',
+					className: 'btn-primary',
+				})}
+            </footer>
+        </section>`
 
 	return cachedHTML
 }

@@ -1,13 +1,14 @@
 import { init as initThemes } from './app/themeManager'
 import { init as initFloating } from './app/floatingBtn'
-import { init as initColors } from './app/mainColors'
-// import { init as initColors } from './app/custom-colors/tabColors'
-import { init as initFonts } from './app/mainFonts'
+// import { init as initColors } from './app/mainColors'
+import { init as initColors } from './app/custom-colors/index'
+import { init as initFonts } from './app/custom-fonts/index'
+// import { init as initFonts } from './app/mainFonts'
 import { init as initWidths } from './app/mainWidths'
 // import { init as initScrolldown } from './app/scrolldown'
 import { init as inittoggleChatBubbles } from './app/toggleChatBubbles'
 import { init as initCustomChatboxHeight } from './app/customChatbox'
-import { init as initUserAccentBg } from './app/custom-colors/accentUserBubble'
+import { init as initUserAccentBg } from './app/custom-colors/toggleAccentUserBubble'
 
 // Configuration
 const CONFIG = {
