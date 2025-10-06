@@ -1,12 +1,12 @@
-import { getItem, setItem } from '../utils/storage.js'
-import { SELECTORS } from './config/selectors.js'
-import { $, $$ } from '../utils/dom.js'
-import { setCssVars } from '../utils/setCssVar.js'
-import { renderToggle } from './components/renderToggles.js'
-import { Notify } from './components/renderNotify.js'
+import { getItem, setItem } from '../../utils/storage.js'
+import { SELECTORS } from '../config/selectors.js'
+import { $, $$, setVars } from '../../utils/dom.js'
+import { setCssVars } from '../../utils/setCssVar.js'
+import { renderToggle } from '../components/renderToggles.js'
+import { Notify } from '../components/renderNotify.js'
 
 // Bubble types + config
-const BG_CONFIG = {
+const CONFIG = {
 	user: {
 		label: 'USER',
 		var: '--gpthToggleBubbleUser', // our 0/1 var
@@ -26,17 +26,17 @@ const DEFAULT_STATE = {
 const STORAGE_KEY = 'chatBubblesState'
 
 // Generate section HTML
-const generateChatBackgroundHTML = () => {
-	const toggleItems = Object.entries(BG_CONFIG)
-		.map(([type, config]) =>
-			renderToggle({
+function generateHTML() {
+	const toggleItems = Object.entries(CONFIG)
+		.map(function ([type, config]) {
+			return renderToggle({
 				id: `id-${config.label}`,
 				checked: DEFAULT_STATE[type],
 				label: config.label,
 				className: `${SELECTORS.TOGGLE_BUBBLES.ITEM} cursor-pointer`,
 				dataType: type,
 			})
-		)
+		})
 		.join('')
 
 	return `
@@ -50,16 +50,18 @@ const generateChatBackgroundHTML = () => {
 }
 
 // Write CSS vars based on state
-const updateRootVariables = (state) => {
+function updateRootVars(state) {
 	const vars = {}
-	for (const [type, config] of Object.entries(BG_CONFIG)) {
+	for (const [type, config] of Object.entries(CONFIG)) {
 		vars[config.var.replace(/^--/, '')] = state[type] ? '1' : '0'
 	}
+	console.log(vars)
+
 	setCssVars(vars)
 }
 
 // Persist state
-const saveBackgroundPreference = async (state) => {
+async function saveToStorage(state) {
 	try {
 		await setItem(STORAGE_KEY, state)
 		return true
@@ -71,7 +73,7 @@ const saveBackgroundPreference = async (state) => {
 }
 
 // Load state
-const loadBackgroundPreference = async () => {
+async function getFromStorage() {
 	try {
 		const result = await getItem(STORAGE_KEY) // object states: { user: true, gpt: true } | { user: false, gpt: false } | { user: true, gpt: false } | { user: false, gpt: true } | null
 		return result || DEFAULT_STATE
@@ -83,44 +85,44 @@ const loadBackgroundPreference = async () => {
 }
 
 // Apply state to inputs + CSS vars
-const applyBubbleState = (state) => {
+function applyBubbleState(state) {
 	const checkboxes = $$(`.${SELECTORS.TOGGLE_BUBBLES.ROOT} .gpth-checkbox__input`)
-	checkboxes.forEach((input) => {
+	checkboxes.forEach(function (input) {
 		const type = input.dataset.type
 		if (type in state) input.checked = state[type]
 	})
 
-	updateRootVariables(state)
+	updateRootVars(state)
 }
 
 // Listener with delegation
-const setupBubblesListeners = () => {
+function setupListeners() {
 	const container = $(`.${SELECTORS.TOGGLE_BUBBLES.ITEMS_CONTAINER}`)
 	if (!container) return
 
-	container.addEventListener('change', async (event) => {
+	container.addEventListener('change', async function (event) {
 		const input = event.target
 		if (!input.classList.contains('gpth-checkbox__input')) return
 
 		const type = input.dataset.type
-		if (!type || !(type in BG_CONFIG)) {
+		if (!type || !(type in CONFIG)) {
 			console.warn('Unknown or missing type for chat bubble toggle:', type)
 			return
 		}
 
-		const currentState = await loadBackgroundPreference()
+		const currentState = await getFromStorage()
 		const updatedState = { ...currentState, [type]: input.checked }
 
-		updateRootVariables(updatedState)
-		saveBackgroundPreference(updatedState)
+		updateRootVars(updatedState)
+		saveToStorage(updatedState)
 	})
 }
 
 // Init module
-const init = async () => {
-	const state = await loadBackgroundPreference()
+async function init() {
+	const state = await getFromStorage()
 	applyBubbleState(state)
-	setupBubblesListeners()
+	setupListeners()
 }
 
-export { generateChatBackgroundHTML as renderChatBubbles, init }
+export { generateHTML as renderChatBubbles, init }

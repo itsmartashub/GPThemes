@@ -1,13 +1,13 @@
 import { SELECTORS } from './config/selectors'
 import { PFX } from './config/constants'
 // import { renderColorsTab, resetAllAccents } from './mainColors'
-import { renderColorsTab, resetAllAccents } from './custom-colors/index'
-// import { renderColorsTab, resetAllAccents } from './custom-colors/tabColors'
 // import { renderFontsTab, handleFontsListeners } from './mainFonts'
+// import { renderWidthsTab, handleWidthsListeners } from './mainWidths'
+import { renderColorsTab, resetAllAccents } from './custom-colors/index'
 import { renderFontsTab, handleFontsListeners } from './custom-fonts/index'
-import { renderWidthsTab, handleWidthsListeners } from './mainWidths'
+import { renderWidthsTab, handleWidthsListeners } from './custom-layouts/index'
 import { handleScrolldownListeners } from './scrolldown'
-// import { handleCustomChatboxListeners } from './customChatbox'
+// import { handleCustomChatboxListeners } from './toggleCustomChatbox'
 
 // Elements cache
 let $settings = null

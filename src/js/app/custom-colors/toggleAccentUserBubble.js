@@ -23,7 +23,6 @@ function generateHTML() {
 
 // Apply toggle by setting CSS var to "1" (enabled) or "0" (disabled)
 function applyAccentToggle(enabled) {
-	// setCssVars({ [CSS_VAR.replace(/^--/, '')]: enabled ? '1' : '0' })
 	setVar(CSS_VAR, enabled ? '1' : '0')
 }
 

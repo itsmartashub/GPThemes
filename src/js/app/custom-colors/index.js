@@ -1,11 +1,12 @@
 import ColorPicker from '../../../libs/jscolorpicker/colorpicker.min.js'
 import { getItems, setItem, removeItems } from '../../utils/storage.js'
 import { SELECTORS } from '../config/selectors.js'
-import { $, getVar, ROOT_STYLE } from '../../utils/dom.js'
+import { $, getVar, setVar, setVars, removeVar, ROOT_STYLE } from '../../utils/dom.js'
 import { $settings } from '../settingsManager.js'
 import { renderButton } from '../components/renderButtons.js'
 import { renderSeparator } from '../components/renderUtils.js'
 import { renderUserAccentBgToggle, handleUserAccentBgListeners } from './toggleAccentUserBubble.js'
+import { Notify } from '../components/renderNotify.js'
 
 // --- CONFIG WITH THEME ---
 const CONFIG = [
@@ -14,7 +15,7 @@ const CONFIG = [
 		id: SELECTORS.ACCENT.LIGHT_ID,
 		label: 'Accent <span>Light</span>',
 		default: getVar('--c-default-accent-light', '#6c4756'),
-		storageKey: 'gpthColorAccentLight',
+		storageKey: 'colorAccentLight',
 		cssVar: '--user-accent-light',
 	},
 	{
@@ -22,7 +23,7 @@ const CONFIG = [
 		id: SELECTORS.ACCENT.DARK_ID,
 		label: 'Accent <span>Dark</span>',
 		default: getVar('--c-default-accent-dark', '#bfa8ff'),
-		storageKey: 'gpthColorAccentDark',
+		storageKey: 'colorAccentDark',
 		cssVar: '--user-accent-dark',
 	},
 ]
@@ -30,32 +31,37 @@ const CONFIG = [
 const accentPickers = new Map()
 const STORAGE_KEYS = CONFIG.map((c) => c.storageKey)
 
-// --- DIRECT CSS UPDATE ---
-const updateCSSVar = (cssVar, color) => ROOT_STYLE.setProperty(cssVar, color)
-const removeCSSVars = () => CONFIG.forEach((c) => ROOT_STYLE.removeProperty(c.cssVar))
-
 // --- STORAGE ---
-const saveColor = async (key, value) => {
-	console.log('[🎨GPThemes]: Saving color:', key, value)
+async function saveToStorage(key, value) {
 	try {
 		await setItem(key, value)
+		Notify.success('Color updated successfully')
 	} catch (err) {
+		Notify.error('Failed to save color')
 		console.error('Save error:', err)
 	}
 }
 
-const loadColors = async () => {
-	const stored = await getItems(STORAGE_KEYS)
-	return Object.fromEntries(CONFIG.map((c) => [c.theme, stored[c.storageKey] ?? c.default]))
+async function getFromStorage() {
+	try {
+		return await getItems(STORAGE_KEYS) // Returns: { colorAccentLight: '#...', colorAccentDark: '#...' }
+	} catch (err) {
+		console.error('Failed to load colors from storage:', err)
+		Notify.warning('Using default colors')
+		return {}
+	}
 }
 
 // --- COLOR PICKERS ---
-const initColorPickers = (colors) => {
+function initColorPickers(storageColors) {
+	console.log(storageColors)
+
 	CONFIG.forEach((cfg) => {
 		const btn = $(`#${cfg.id}`, $settings)
 		if (!btn) return
 
-		const initialColor = colors[cfg.theme] ?? cfg.default
+		const initialColor = storageColors[cfg.storageKey] ?? cfg.default
+
 		const picker = new ColorPicker(btn, {
 			toggleStyle: 'button',
 			container: `.${SELECTORS.SETTINGS.ROOT}`,
@@ -70,7 +76,6 @@ const initColorPickers = (colors) => {
 			showClearButton: true,
 		})
 
-		// Track changes to avoid unnecessary saves
 		let cachedHex = initialColor
 		let hasChanged = false
 
@@ -80,27 +85,24 @@ const initColorPickers = (colors) => {
 				if (newHex !== cachedHex) {
 					cachedHex = newHex
 					hasChanged = true
-					updateCSSVar(cfg.cssVar, newHex)
+					setVar(cfg.cssVar, newHex)
 				}
 			} else {
 				console.log('NO PICKER COLOR')
-				// Clear/reset to default
 				if (cachedHex !== cfg.default) {
 					console.log('Resetting color to default')
-
 					cachedHex = cfg.default
 					hasChanged = true
-					updateCSSVar(cfg.cssVar, cfg.default)
+					setVar(cfg.cssVar, cfg.default)
 					removeItems(cfg.storageKey)
 				}
 				picker.setColor(cfg.default, false)
 			}
 		})
 
-		// Save ONLY on close AND only if changed
 		picker.on('close', async () => {
 			if (hasChanged) {
-				await saveColor(cfg.storageKey, cachedHex)
+				await saveToStorage(cfg.storageKey, cachedHex)
 				hasChanged = false
 			}
 		})
@@ -110,32 +112,43 @@ const initColorPickers = (colors) => {
 }
 
 // --- RESET ---
-const resetAllAccents = async () => {
-	CONFIG.forEach((c) => {
+async function resetAllAccents() {
+	// Check if any colors are actually different from default before resetting
+	const needsReset = CONFIG.some((cfg) => {
+		const currentValue = getVar(cfg.cssVar)
+		return currentValue && currentValue !== cfg.default
+	})
+
+	// Guard: Only reset if colors are not already at default
+	if (!needsReset) {
+		console.log('Colors already at default, skipping reset')
+		Notify.info('Colors are already at default values')
+		return
+	}
+
+	CONFIG.forEach(function (c) {
 		const picker = accentPickers.get(c.id)
 		if (picker) picker.setColor(c.default, false)
-		ROOT_STYLE.setProperty(c.cssVar, c.default)
+		removeVar(c.cssVar)
 	})
-	removeCSSVars()
-	// const defaults = Object.fromEntries(COLOR_CONFIG.map((c) => [c.storageKey, c.default]))
-	// console.log(defaults)
-	// await setItems(defaults)
+
 	await removeItems(STORAGE_KEYS)
+	Notify.success('All colors reset to default')
 }
 
 // --- HTML GENERATION ---
 let cachedHTML = null
-const generateColorsTabHTML = () => {
+function generateHTML() {
 	if (cachedHTML) return cachedHTML
 
-	const colorPickersHTML = CONFIG.map(
-		(c) => `
+	const colorPickersHTML = CONFIG.map(function (c) {
+		return `
             <div class="colorpicker">
                 <button id="${c.id}" data-theme-key="${c.storageKey}"></button>
                 <label for="${c.id}">${c.label}</label>
             </div>
         `
-	).join('')
+	}).join('')
 
 	cachedHTML = `
         <section>
@@ -158,12 +171,17 @@ const generateColorsTabHTML = () => {
 }
 
 // --- INIT ---
-const init = async () => {
-	const colors = await loadColors()
+async function init() {
+	const stored = await getFromStorage()
+	const cssVarsObj = {}
 
-	CONFIG.forEach((c) => ROOT_STYLE.setProperty(c.cssVar, colors[c.theme]))
-	initColorPickers(colors)
+	CONFIG.forEach((c) => {
+		cssVarsObj[c.cssVar] = stored[c.storageKey] ?? c.default
+	})
+
+	setVars(cssVarsObj)
+	initColorPickers(stored)
 	handleUserAccentBgListeners()
 }
 
-export { generateColorsTabHTML as renderColorsTab, resetAllAccents, init }
+export { generateHTML as renderColorsTab, resetAllAccents, init }
