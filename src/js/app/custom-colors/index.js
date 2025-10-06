@@ -1,7 +1,7 @@
 import ColorPicker from '../../../libs/jscolorpicker/colorpicker.min.js'
 import { getItems, setItem, removeItems } from '../../utils/storage.js'
 import { SELECTORS } from '../config/selectors.js'
-import { $, getVar, setVar, setVars, removeVar, ROOT_STYLE } from '../../utils/dom.js'
+import { $, getVar, setVar, setVars, removeVar } from '../../utils/dom.js'
 import { $settings } from '../settingsManager.js'
 import { renderButton } from '../components/renderButtons.js'
 import { renderSeparator } from '../components/renderUtils.js'
@@ -31,6 +31,8 @@ const CONFIG = [
 const accentPickers = new Map()
 const STORAGE_KEYS = CONFIG.map((c) => c.storageKey)
 
+let $resetBtn = null
+
 // --- STORAGE ---
 async function saveToStorage(key, value) {
 	try {
@@ -44,7 +46,8 @@ async function saveToStorage(key, value) {
 
 async function getFromStorage() {
 	try {
-		return await getItems(STORAGE_KEYS) // Returns: { colorAccentLight: '#...', colorAccentDark: '#...' }
+		const result = await getItems(STORAGE_KEYS)
+		return result
 	} catch (err) {
 		console.error('Failed to load colors from storage:', err)
 		Notify.warning('Using default colors')
@@ -54,9 +57,10 @@ async function getFromStorage() {
 
 // --- COLOR PICKERS ---
 function initColorPickers(storageColors) {
-	console.log(storageColors)
+	// console.log(storageColors)
 
 	CONFIG.forEach((cfg) => {
+		// const btn = document.getElementById(cfg.id)
 		const btn = $(`#${cfg.id}`, $settings)
 		if (!btn) return
 
@@ -76,25 +80,24 @@ function initColorPickers(storageColors) {
 			showClearButton: true,
 		})
 
-		let cachedHex = initialColor
+		let currHex = initialColor
 		let hasChanged = false
 
 		picker.on('pick', (color) => {
 			if (color) {
 				const newHex = color.string('hex')
-				if (newHex !== cachedHex) {
-					cachedHex = newHex
-					hasChanged = true
+				if (newHex !== currHex) {
+					currHex = newHex
 					setVar(cfg.cssVar, newHex)
+					hasChanged = true
 				}
 			} else {
-				console.log('NO PICKER COLOR')
-				if (cachedHex !== cfg.default) {
-					console.log('Resetting color to default')
-					cachedHex = cfg.default
-					hasChanged = true
-					setVar(cfg.cssVar, cfg.default)
+				if (currHex !== cfg.default) {
+					console.log('Resetting color to default', color)
+					currHex = cfg.default
+					removeVar(cfg.cssVar)
 					removeItems(cfg.storageKey)
+					hasChanged = true
 				}
 				picker.setColor(cfg.default, false)
 			}
@@ -102,7 +105,10 @@ function initColorPickers(storageColors) {
 
 		picker.on('close', async () => {
 			if (hasChanged) {
-				await saveToStorage(cfg.storageKey, cachedHex)
+				if (currHex !== cfg.default) {
+					await saveToStorage(cfg.storageKey, currHex)
+				}
+				updateResetButton() // ONLY update on close, not during drag
 				hasChanged = false
 			}
 		})
@@ -111,17 +117,22 @@ function initColorPickers(storageColors) {
 	})
 }
 
+function hasCustomColors() {
+	return CONFIG.some((cfg) => {
+		const current = getVar(cfg.cssVar)
+		return current && current !== cfg.default
+	})
+}
+
+function updateResetButton() {
+	if ($resetBtn) {
+		$resetBtn.disabled = !hasCustomColors()
+		console.log('Reset button updated:', !hasCustomColors() ? 'disabled' : 'enabled')
+	}
+}
 // --- RESET ---
 async function resetAllAccents() {
-	// Check if any colors are actually different from default before resetting
-	const needsReset = CONFIG.some((cfg) => {
-		const currentValue = getVar(cfg.cssVar)
-		return currentValue && currentValue !== cfg.default
-	})
-
-	// Guard: Only reset if colors are not already at default
-	if (!needsReset) {
-		console.log('Colors already at default, skipping reset')
+	if (!hasCustomColors()) {
 		Notify.info('Colors are already at default values')
 		return
 	}
@@ -167,21 +178,47 @@ function generateHTML() {
             </footer>
         </section>`
 
+	// Only set elements AFTER injection into DOM: Run this code on the next animation frame - after the DOM has been painted.
+	requestAnimationFrame(() => {
+		setElements()
+		setListeners()
+		updateResetButton() // Set initial state
+	})
+
 	return cachedHTML
+}
+
+function setElements() {
+	// $resetBtn = document.getElementById(SELECTORS.ACCENT.RESET_BTN_ID)
+	$resetBtn = $(`#${SELECTORS.ACCENT.RESET_BTN_ID}`, $settings)
+}
+
+function setListeners() {
+	$resetBtn?.addEventListener('click', resetAllAccents)
+	handleUserAccentBgListeners()
 }
 
 // --- INIT ---
 async function init() {
 	const stored = await getFromStorage()
+	console.log('[🎨GPThemes] Stored colors:', stored) // Return: {} or {colorAccentLight: '#...', colorAccentDark: '#...}
+
+	if (!stored || Object.keys(stored).length === 0) {
+		initColorPickers({})
+		return
+	}
+
 	const cssVarsObj = {}
+	for (const cfg of CONFIG) {
+		const color = stored[cfg.storageKey]
+		if (color) cssVarsObj[cfg.cssVar] = color
+	}
 
-	CONFIG.forEach((c) => {
-		cssVarsObj[c.cssVar] = stored[c.storageKey] ?? c.default
-	})
+	if (Object.keys(cssVarsObj).length) {
+		setVars(cssVarsObj)
+	}
 
-	setVars(cssVarsObj)
 	initColorPickers(stored)
-	handleUserAccentBgListeners()
 }
 
-export { generateHTML as renderColorsTab, resetAllAccents, init }
+export { generateHTML as renderColorsTab, init, setListeners as handleColorsListeners }

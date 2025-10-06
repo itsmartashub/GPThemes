@@ -3,7 +3,7 @@ import { PFX } from './config/constants'
 // import { renderColorsTab, resetAllAccents } from './mainColors'
 // import { renderFontsTab, handleFontsListeners } from './mainFonts'
 // import { renderWidthsTab, handleWidthsListeners } from './mainWidths'
-import { renderColorsTab, resetAllAccents } from './custom-colors/index'
+import { renderColorsTab, handleColorsListeners } from './custom-colors/index'
 import { renderFontsTab, handleFontsListeners } from './custom-fonts/index'
 import { renderWidthsTab, handleWidthsListeners } from './custom-layouts/index'
 import { handleScrolldownListeners } from './scrolldown'
@@ -11,7 +11,6 @@ import { handleScrolldownListeners } from './scrolldown'
 
 // Elements cache
 let $settings = null
-let $resetAllAccentsBtn = null
 let $tabButtons = null
 let $tabPanes = null
 
@@ -62,30 +61,23 @@ async function createSettings() {
 
 function cacheElements(gpthSettings) {
 	$settings = gpthSettings
-	// $resetAllAccentsBtn = $settings.getElementById(SELECTORS.ACCENT.RESET_BTN_ID)
-	$resetAllAccentsBtn = $settings.querySelector(`#${SELECTORS.ACCENT.RESET_BTN_ID}`)
 	$tabButtons = Array.from($settings.querySelectorAll(`.${SELECTORS.SETTINGS.TABS.BUTTON}`))
 	$tabPanes = Array.from($settings.querySelectorAll(`.${SELECTORS.SETTINGS.TABS.PANE}`))
-
-	// Initially disable accent reset button
-	$resetAllAccentsBtn.disabled = true
 }
 
 function addListeners() {
 	handleTabsSwitching()
+
+	handleColorsListeners()
 	handleFontsListeners()
 	handleWidthsListeners()
 	handleScrolldownListeners()
 	// handleCustomChatboxListeners()
-
-	$resetAllAccentsBtn?.addEventListener('click', resetAllAccents)
 }
 
 function openSettings() {
 	$settings.classList.add(SELECTORS.SETTINGS.OPEN_STATE)
 	$settings.addEventListener('transitionend', handleSettingsOpened, { once: true })
-
-	$resetAllAccentsBtn.disabled = false
 }
 
 function handleSettingsOpened() {
@@ -97,8 +89,6 @@ function closeSettings() {
 
 	$settings.classList.remove(SELECTORS.SETTINGS.OPEN_STATE)
 	document.body.removeEventListener('click', handleClickOutsideSettings)
-
-	$resetAllAccentsBtn.disabled = true
 }
 
 function handleClickOutsideSettings(e) {

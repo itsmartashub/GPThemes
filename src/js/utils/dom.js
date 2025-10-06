@@ -29,10 +29,10 @@ const getVars = (varNames) => {
 
 	return values
 }
-const setVars = (vars) => {
-	Object.entries(vars).forEach(([name, value]) => {
-		setVar(name, value)
-	})
+function setVars(vars) {
+	for (const name in vars) {
+		if (Object.hasOwn(vars, name)) ROOT_STYLE.setProperty(formatVarName(name), vars[name])
+	}
 }
 const removeVars = (varNames) => {
 	varNames.forEach((name) => {

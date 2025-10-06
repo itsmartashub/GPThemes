@@ -102,7 +102,7 @@ async function loadPositionPreference() {
 }
 
 function handleScrolldownListeners() {
-	// console.log('[🎨GPThemes]: handleScrolldownListeners')
+	console.log('[🎨GPThemes]: handleScrolldownListeners')
 
 	const btnContainer = $(`.${SELECTORS.SCROLLDOWN.BTN_CONTAINER}`)
 	if (!btnContainer) return
