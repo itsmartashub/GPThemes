@@ -9,7 +9,32 @@ import { renderButton } from './components/renderButtons'
 // ============================================================================
 // CONFIG
 // ============================================================================
-
+const FONT_FAMILIES = {
+	Inter: '',
+	Roboto: '',
+	'Roboto Mono': '',
+	'Roboto Serif': '',
+	'DM Sans': '🆕',
+	'Reddit Mono': '',
+	Poppins: '',
+	Raleway: '',
+	'Noto Sans': '',
+	Lato: '',
+	Quicksand: '🆕',
+	Outfit: '',
+	'Share Tech Mono': '',
+	'JetBrains Mono': '',
+	'Work Sans': '',
+	Lora: '🆕',
+	Manrope: '',
+	'Libre Baskerville': '',
+	'Bricolage Grotesque': '',
+	'Hedvig Letters Serif': '',
+	Literata: '',
+	Syne: '🆕',
+	Sora: '🆕',
+	'Golos Text': '',
+}
 const CONFIG = {
 	fontFamily: {
 		id: SELECTORS.FONT.FAMILY_ID,
@@ -19,32 +44,12 @@ const CONFIG = {
 		cssVar: 'gpthFontFamily',
 		options: [
 			{ name: 'Default', label: 'Default' },
-			...[
-				{ name: 'Inter', label: 'Inter' },
-				{ name: 'Roboto', label: 'Roboto' },
-				{ name: 'Roboto Mono', label: 'Roboto Mono' },
-				{ name: 'Roboto Serif', label: 'Roboto Serif' },
-				{ name: 'DM Sans', label: 'DM Sans 🆕' },
-				{ name: 'Reddit Mono', label: 'Reddit Mono' },
-				{ name: 'Poppins', label: 'Poppins' },
-				{ name: 'Raleway', label: 'Raleway' },
-				{ name: 'Noto Sans', label: 'Noto Sans' },
-				{ name: 'Lato', label: 'Lato' },
-				{ name: 'Quicksand', label: 'Quicksand 🆕' },
-				{ name: 'Outfit', label: 'Outfit' },
-				{ name: 'Share Tech Mono', label: 'Share Tech Mono' },
-				{ name: 'JetBrains Mono', label: 'JetBrains Mono' },
-				{ name: 'Work Sans', label: 'Work Sans' },
-				{ name: 'Lora', label: 'Lora 🆕' },
-				{ name: 'Manrope', label: 'Manrope' },
-				{ name: 'Libre Baskerville', label: 'Libre Baskervill' },
-				{ name: 'Bricolage Grotesque', label: 'Bricolage Grotesque' },
-				{ name: 'Hedvig Letters Serif', label: 'Hedvig Letters Serif' },
-				{ name: 'Literata', label: 'Literata' },
-				{ name: 'Syne', label: 'Syne 🆕' },
-				{ name: 'Sora', label: 'Sora 🆕' },
-				{ name: 'Golos Text', label: 'Golos Text' },
-			].sort((a, b) => a.label.localeCompare(b.label)),
+			...Object.entries(FONT_FAMILIES)
+				.map(([name, badge]) => ({
+					name,
+					label: badge ? `${name} ${badge}` : name,
+				}))
+				.sort((a, b) => a.label.localeCompare(b.label)),
 		],
 	},
 	fontSize: {
@@ -79,13 +84,14 @@ const CONFIG = {
 	},
 }
 
+const GOOGLE_FONT_BASE = 'https://fonts.googleapis.com/css2?family='
 const GOOGLE_FONT_WEIGHTS = ':ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,300;1,400;1,500;1,600;1,700'
-
+let currentFontLink = null
+let preconnectLinksAdded = false
 const focusValues = {}
-
 let cachedElements = null
 
-function getCachedElements() {
+function getElements() {
 	if (cachedElements) return cachedElements
 
 	const container = $('#fontChangerPopover', $settings)
@@ -100,6 +106,18 @@ function getCachedElements() {
 	}
 
 	return cachedElements
+}
+
+function updateInputs(values) {
+	// console.log('[🎨GPThemes]: updateInputs', values) // Object: { fontFamily: 'Lora', fontSize: 16, lineHeight: 28, letterSpacing: 0 }
+
+	const elements = getElements()
+	if (!elements) return
+
+	if (values.fontFamily !== undefined) elements.fontFamily.value = values.fontFamily
+	if (values.fontSize !== undefined) elements.fontSize.value = values.fontSize
+	if (values.lineHeight !== undefined) elements.lineHeight.value = values.lineHeight
+	if (values.letterSpacing !== undefined) elements.letterSpacing.value = values.letterSpacing
 }
 
 // ============================================================================
@@ -126,39 +144,6 @@ const validate = (val, min, max) => {
 	return true
 }
 
-// const updateCSS = (key, val) => {
-// 	const cfg = FONT_CONFIG[key]
-// 	setVar(cfg.cssVar, cfg.unit ? `${val}${cfg.unit}` : val)
-// }
-
-function loadGoogleFont(font) {
-	if (font === CONFIG.fontFamily.default) return
-
-	const links = [
-		{ rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-		{ rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-		{
-			rel: 'stylesheet',
-			href: `https://fonts.googleapis.com/css2?family=${font.replace(
-				/ /g,
-				'+'
-			)}${GOOGLE_FONT_WEIGHTS}&display=swap`,
-		},
-	]
-
-	links.forEach(({ rel, href, crossorigin }) => {
-		const link = document.createElement('link')
-		link.rel = rel
-		link.href = href
-		if (crossorigin !== undefined) link.crossOrigin = crossorigin
-		document.head.appendChild(link)
-	})
-}
-
-function removeGoogleFontLinks() {
-	$$("link[href*='fonts.googleapis.com'], link[href*='fonts.gstatic.com']").forEach((link) => link.remove())
-}
-
 // ============================================================================
 // HANDLERS
 // ============================================================================
@@ -177,31 +162,75 @@ async function handleNumeric(e, key) {
 		return
 	}
 
-	console.log(cfg.cssVar, newVal)
-	// updateCSS(key, newVal)
 	setVar(cfg.cssVar, newVal)
 	await setItem(cfg.storageKey, newVal)
 }
 
+function addPreconnectLinks() {
+	if (preconnectLinksAdded) return
+
+	document.head.insertAdjacentHTML(
+		'beforeend',
+		`
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        `
+	)
+	preconnectLinksAdded = true
+}
+function setGoogleFont(font) {
+	// If it's the default font, remove only the font stylesheet
+	if (font === CONFIG.fontFamily.default) {
+		removeCurrGoogleFontLink()
+		return
+	}
+
+	// Ensure preconnect links are there
+	addPreconnectLinks()
+
+	// Remove previous font link if exists
+	removeCurrGoogleFontLink()
+
+	// Create and insert only the font-specific stylesheet
+	currentFontLink = document.createElement('link')
+	currentFontLink.rel = 'stylesheet'
+	currentFontLink.href = `${GOOGLE_FONT_BASE}${encodeURIComponent(font)}${GOOGLE_FONT_WEIGHTS}&display=swap`
+
+	document.head.appendChild(currentFontLink)
+}
+function removeCurrGoogleFontLink() {
+	if (currentFontLink && currentFontLink.parentNode) {
+		currentFontLink.remove()
+	}
+	currentFontLink = null
+}
+function removeAllGoogleFontLinks() {
+	// Remove current font link
+	removeCurrGoogleFontLink()
+
+	// Remove all Google Fonts related links (including preconnect)
+	$$("link[href*='fonts.googleapis.com'], link[href*='fonts.gstatic.com']").forEach((link) => link.remove())
+	preconnectLinksAdded = false
+}
+
+// Update your handleFontFamily function:
 async function handleFontFamily(e) {
 	const selectedFontFamily = e.target.value
 
-	removeGoogleFontLinks()
+	// This will handle both default and custom fonts appropriately
+	setGoogleFont(selectedFontFamily)
 
-	if (selectedFontFamily !== CONFIG.fontFamily.default) loadGoogleFont(selectedFontFamily)
-
-	// updateCSS('fontFamily', font)
 	setVar(CONFIG.fontFamily.cssVar, selectedFontFamily)
-
 	await setItem(CONFIG.fontFamily.storageKey, selectedFontFamily)
 }
-
 async function resetAll() {
 	// 1. Reset input DOM values
-	$(`#${CONFIG.fontFamily.id}`, $settings).value = CONFIG.fontFamily.default
-	$(`#${CONFIG.fontSize.id}`, $settings).value = CONFIG.fontSize.default
-	$(`#${CONFIG.lineHeight.id}`, $settings).value = CONFIG.lineHeight.default
-	$(`#${CONFIG.letterSpacing.id}`, $settings).value = CONFIG.letterSpacing.default
+	updateInputs({
+		fontFamily: CONFIG.fontFamily.default,
+		fontSize: CONFIG.fontSize.default,
+		lineHeight: CONFIG.lineHeight.default,
+		letterSpacing: CONFIG.letterSpacing.default,
+	})
 
 	// 2. Reset DOM styles (CSS vars)
 	setVars({
@@ -211,21 +240,22 @@ async function resetAll() {
 		[CONFIG.letterSpacing.cssVar]: CONFIG.letterSpacing.default,
 	})
 
-	// 3. Close settings
-	closeSettings()
-
-	// 4. Reset storage
-	const defaults = {
+	// 3. Reset storage
+	const defaultsValues = {
 		[CONFIG.fontFamily.storageKey]: CONFIG.fontFamily.default,
 		[CONFIG.fontSize.storageKey]: CONFIG.fontSize.default,
 		[CONFIG.lineHeight.storageKey]: CONFIG.lineHeight.default,
 		[CONFIG.letterSpacing.storageKey]: CONFIG.letterSpacing.default,
 	}
+	await setItems(defaultsValues)
 
-	await setItems(defaults)
+	// 4. Close settings
+	closeSettings()
 
 	// 5. Remove injected Google Font links from DOM (<head>)
-	removeGoogleFontLinks()
+	// removeGoogleFontLinks()
+	// 4. Remove ALL Google Font links (including preconnect)
+	removeAllGoogleFontLinks()
 
 	Notify.success('✅ All fonts have been reset')
 }
@@ -311,19 +341,7 @@ function generateHTML() {
 // ============================================================================
 
 function addListeners() {
-	// const container = $('#fontChangerPopover', $settings)
-	// if (!container) return
-
-	// // Cache all elements at once
-	// const elements = {
-	// 	fontFamily: $(`#${CONFIG.fontFamily.id}`, container),
-	// 	fontSize: $(`#${CONFIG.fontSize.id}`, container),
-	// 	lineHeight: $(`#${CONFIG.lineHeight.id}`, container),
-	// 	letterSpacing: $(`#${CONFIG.letterSpacing.id}`, container),
-	// 	resetBtn: $(`#${SELECTORS.FONT.RESET_BTN_ID}`, container),
-	// }
-
-	const elements = getCachedElements()
+	const elements = getElements()
 	if (!elements) return
 
 	const onEnter = (fn) => (e) => e.key === 'Enter' && (e.preventDefault(), fn(e), e.target.blur())
@@ -357,6 +375,7 @@ function addListeners() {
 // ============================================================================
 
 async function init() {
+	// 1. Get stored values from storage
 	const keys = [
 		CONFIG.fontFamily.storageKey,
 		CONFIG.fontSize.storageKey,
@@ -365,36 +384,17 @@ async function init() {
 	]
 
 	const stored = await getItems(keys)
-
-	// // Init missing values
-	// const missing = {}
-	// if (!stored[CONFIG.fontFamily.storageKey]) missing[CONFIG.fontFamily.storageKey] = CONFIG.fontFamily.default
-	// if (!stored[CONFIG.fontSize.storageKey]) missing[CONFIG.fontSize.storageKey] = CONFIG.fontSize.default
-	// if (!stored[CONFIG.lineHeight.storageKey]) missing[CONFIG.lineHeight.storageKey] = CONFIG.lineHeight.default
-	// if (!stored[CONFIG.letterSpacing.storageKey])
-	// 	missing[CONFIG.letterSpacing.storageKey] = CONFIG.letterSpacing.default
-
-	// if (Object.keys(missing).length) await setItems(missing)
-
-	// const fontFamily = stored[CONFIG.fontFamily.storageKey] || CONFIG.fontFamily.default
-	// const fontSize = stored[CONFIG.fontSize.storageKey] || CONFIG.fontSize.default
-	// const lineHeight = stored[CONFIG.lineHeight.storageKey] || CONFIG.lineHeight.default
-	// const letterSpacing = stored[CONFIG.letterSpacing.storageKey] || CONFIG.letterSpacing.default
-
-	// Extract the pattern into a helper
 	const getStoredOrDefault = (configKey) => stored[CONFIG[configKey].storageKey] ?? CONFIG[configKey].default
 
-	// Then use it (still explicit, less repetition)
-	// Load values
 	const fontFamily = getStoredOrDefault('fontFamily')
 	const fontSize = getStoredOrDefault('fontSize')
 	const lineHeight = getStoredOrDefault('lineHeight')
 	const letterSpacing = getStoredOrDefault('letterSpacing')
 
-	// Load Google Font
-	if (fontFamily !== CONFIG.fontFamily.default) loadGoogleFont(fontFamily)
+	// 2. Load Google Font if not font family isnt default
+	if (fontFamily !== CONFIG.fontFamily.default) setGoogleFont(fontFamily)
 
-	// Set CSS vars
+	// 3. Update DOM (CSS vars)
 	setVars({
 		[CONFIG.fontFamily.cssVar]: fontFamily,
 		[CONFIG.fontSize.cssVar]: fontSize,
@@ -402,23 +402,8 @@ async function init() {
 		[CONFIG.letterSpacing.cssVar]: letterSpacing,
 	})
 
-	// Update inputs
-	const elements = getCachedElements()
-	if (!elements) return
-
-	elements.fontFamily.value = fontFamily
-	elements.fontSize.value = fontSize
-	elements.lineHeight.value = lineHeight
-	elements.letterSpacing.value = letterSpacing
-	// const $fontFamily = $(`#${CONFIG.fontFamily.id}`, $settings)
-	// const $fontSize = $(`#${CONFIG.fontSize.id}`, $settings)
-	// const $lineHeight = $(`#${CONFIG.lineHeight.id}`, $settings)
-	// const $letterSpacing = $(`#${CONFIG.letterSpacing.id}`, $settings)
-
-	// if ($fontFamily) $fontFamily.value = fontFamily
-	// if ($fontSize) $fontSize.value = fontSize
-	// if ($lineHeight) $lineHeight.value = lineHeight
-	// if ($letterSpacing) $letterSpacing.value = letterSpacing
+	// 4. Update inputs using helper
+	updateInputs({ fontFamily, fontSize, lineHeight, letterSpacing })
 }
 
 export { generateHTML as renderFontsTab, resetAll as resetAllFonts, addListeners as handleFontsListeners, init }
