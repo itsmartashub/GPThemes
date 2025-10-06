@@ -83,11 +83,16 @@ async function saveToStorage(position) {
 	}
 }
 
-function applyPosition(position = DEFAULT_POSITION, btnContainer) {
+function applyPosition(position = DEFAULT_POSITION, btnContainer, silent = false) {
 	if (!CONFIG[position]) {
 		position = DEFAULT_POSITION
 	}
 
+	// GUARD: Bail if clicking the same position
+	const currActive = $(`.${SELECTORS.SCROLLDOWN.BTN}.active`, btnContainer)
+	if (currActive?.dataset.position === position) {
+		return Notify.info(`Already at ${position} position`) // Silently ignore - already there!
+	}
 	// 1. Update active button
 	const btns = $$(`.${SELECTORS.SCROLLDOWN.BTN}`, btnContainer)
 	btns.forEach((btn) => {
@@ -98,7 +103,10 @@ function applyPosition(position = DEFAULT_POSITION, btnContainer) {
 	setVars(CONFIG[position].cssVars)
 
 	// 3. Save preference in storage
-	saveToStorage(position)
+	// saveToStorage(position)
+	if (!silent) {
+		saveToStorage(position)
+	}
 }
 
 function handleScrolldownListeners() {
@@ -125,7 +133,7 @@ function handleScrolldownListeners() {
 
 	// Load and apply saved preferences
 	getFromStorage().then((position) => {
-		applyPosition(position, btnContainer)
+		applyPosition(position, btnContainer, true)
 	})
 }
 
