@@ -6,7 +6,7 @@ import { renderWidthsTab, handleWidthsListeners } from './custom-layouts/index'
 import { handleScrolldownListeners } from './custom-layouts/scrolldown'
 // import { handleCustomChatboxListeners } from './toggleCustomChatbox'
 
-// Elements cache
+// Cached DOM refs
 let $settings = null
 let $tabButtons = null
 let $tabPanes = null
@@ -19,11 +19,53 @@ async function createSettings() {
 	// Create settings element if it doesn't exist
 	// if ($settings) return
 
+	// 1. Create and render settings HTML
 	const gpthSettings = document.createElement('div')
 	gpthSettings.className = `${SELECTORS.SETTINGS.ROOT} fixed flex flex-col`
 
-	// Render settings HTML
-	gpthSettings.innerHTML = `
+	gpthSettings.innerHTML = templateHTML()
+
+	// 2. Append (synchronous) - Add to DOM
+	document.body.appendChild(gpthSettings)
+
+	// 3. Cache elements
+	cacheElements(gpthSettings)
+
+	// 4. Attach listeners after initialization
+	attachListeners()
+
+	return gpthSettings
+}
+
+function templateHTML() {
+	const tabConfig = [
+		{ id: 'colors', label: 'Color', render: renderColorsTab },
+		{ id: 'fonts', label: 'Font', render: renderFontsTab },
+		{ id: 'layout', label: 'Layout', render: renderWidthsTab },
+	]
+
+	const taButtonsHTML = tabConfig
+		.map(
+			({ label }, i) => `
+				<button 
+					class="${SELECTORS.SETTINGS.TABS.BUTTON} py-2 px-4 focus:outline-none text-center ${i === 0 ? ACTIVE_CLASS : ''}">
+					${label}
+				</button>`
+		)
+		.join('')
+
+	const tabPanesHTML = tabConfig
+		.map(
+			({ id, render }, i) => `
+				<div 
+					id="${PFX}-tab-${id}" 
+					class="${SELECTORS.SETTINGS.TABS.PANE} ${i === 0 ? ACTIVE_CLASS : HIDDEN_CLASS}">
+					${render()}
+				</div>`
+		)
+		.join('')
+
+	return `
 		<header class="mb-5">
 			<h2 class="text-center font-medium gpth-settings__title">
 				<span class="font-semibold">GPThemes</span> Customization
@@ -32,34 +74,23 @@ async function createSettings() {
 		<main>
 			<div class="${SELECTORS.SETTINGS.TABS.ROOT}">
 				<div class="${SELECTORS.SETTINGS.TABS.BUTTONS} p-1 font-semibold mb-5">
-					<button class="${SELECTORS.SETTINGS.TABS.BUTTON} py-2 px-4 focus:outline-none text-center active">Color</button>
-					<button class="${SELECTORS.SETTINGS.TABS.BUTTON} py-2 px-4 focus:outline-none text-center">Font</button>
-					<button class="${SELECTORS.SETTINGS.TABS.BUTTON} py-2 px-4 focus:outline-none text-center">Layout</button>
+					${taButtonsHTML}
 				</div>
 				<div class="${SELECTORS.SETTINGS.TABS.CONTENT}">
-					<div class="${SELECTORS.SETTINGS.TABS.PANE} active" id="${PFX}-tab-colors">${renderColorsTab()}</div>
-					<div class="${SELECTORS.SETTINGS.TABS.PANE} hidden" id="${PFX}-tab-fonts">${renderFontsTab()}</div>
-					<div class="${SELECTORS.SETTINGS.TABS.PANE} hidden" id="${PFX}-tab-layout">${renderWidthsTab()}</div>
+					${tabPanesHTML}
 				</div>
 			</div>
 		</main>
 	`
-
-	// Add to DOM and set up listeners
-	document.body.appendChild(gpthSettings)
-	cacheElements(gpthSettings)
-
-	// Add listeners after initialization
-	addListeners()
 }
 
 function cacheElements(gpthSettings) {
 	$settings = gpthSettings
-	$tabButtons = Array.from($settings.querySelectorAll(`.${SELECTORS.SETTINGS.TABS.BUTTON}`))
-	$tabPanes = Array.from($settings.querySelectorAll(`.${SELECTORS.SETTINGS.TABS.PANE}`))
+	$tabButtons = [...$settings.querySelectorAll(`.${SELECTORS.SETTINGS.TABS.BUTTON}`)]
+	$tabPanes = [...$settings.querySelectorAll(`.${SELECTORS.SETTINGS.TABS.PANE}`)]
 }
 
-function addListeners() {
+function attachListeners() {
 	handleTabsSwitching()
 
 	handleColorsListeners()
@@ -70,14 +101,11 @@ function addListeners() {
 }
 
 function openSettings() {
+	if (!$settings) return
+
 	$settings.classList.add(SELECTORS.SETTINGS.OPEN_STATE)
-	$settings.addEventListener('transitionend', handleSettingsOpened, { once: true })
+	$settings.addEventListener('transitionend', handleOpened, { once: true })
 }
-
-function handleSettingsOpened() {
-	document.body.addEventListener('click', handleClickOutsideSettings)
-}
-
 function closeSettings() {
 	if (!$settings) return
 
@@ -85,14 +113,19 @@ function closeSettings() {
 	document.body.removeEventListener('click', handleClickOutsideSettings)
 }
 
+function handleOpened() {
+	document.body.addEventListener('click', handleClickOutsideSettings)
+}
+
 function handleClickOutsideSettings(e) {
+	// Ignore clicks inside settings
 	if (!$settings.contains(e.target) && e.target.id !== SELECTORS.SETTINGS.OPEN_BTN) {
 		closeSettings()
 	}
 }
 
 function handleTabsSwitching() {
-	if (!$tabButtons || !$tabButtons.length) return
+	if (!$tabButtons?.length) return
 
 	// Use cached elements instead of querying on each click
 	$tabButtons.forEach((tab, index) => {

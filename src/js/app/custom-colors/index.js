@@ -149,6 +149,7 @@ async function resetAllAccents() {
 
 // --- HTML GENERATION ---
 let cachedHTML = null
+
 function generateHTML() {
 	if (cachedHTML) return cachedHTML
 

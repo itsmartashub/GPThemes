@@ -91,6 +91,42 @@ let preconnectLinksAdded = false
 const focusValues = {}
 let cachedElements = null
 
+// ============================================================================
+// INIT
+// ============================================================================
+
+async function init() {
+	// 1. Get stored values from storage
+	const keys = [
+		CONFIG.fontFamily.storageKey,
+		CONFIG.fontSize.storageKey,
+		CONFIG.lineHeight.storageKey,
+		CONFIG.letterSpacing.storageKey,
+	]
+
+	const stored = await getItems(keys)
+	const getStoredOrDefault = (configKey) => stored[CONFIG[configKey].storageKey] ?? CONFIG[configKey].default
+
+	const fontFamily = getStoredOrDefault('fontFamily')
+	const fontSize = getStoredOrDefault('fontSize')
+	const lineHeight = getStoredOrDefault('lineHeight')
+	const letterSpacing = getStoredOrDefault('letterSpacing')
+
+	// 2. Load Google Font if not font family isnt default
+	if (fontFamily !== CONFIG.fontFamily.default) setGoogleFont(fontFamily)
+
+	// 3. Update DOM (CSS vars)
+	setVars({
+		[CONFIG.fontFamily.cssVar]: fontFamily,
+		[CONFIG.fontSize.cssVar]: fontSize,
+		[CONFIG.lineHeight.cssVar]: lineHeight,
+		[CONFIG.letterSpacing.cssVar]: letterSpacing,
+	})
+
+	// 4. Update inputs using helper
+	updateInputs({ fontFamily, fontSize, lineHeight, letterSpacing })
+}
+
 function getElements() {
 	if (cachedElements) return cachedElements
 
@@ -121,30 +157,6 @@ function updateInputs(values) {
 }
 
 // ============================================================================
-// UTILS
-// ============================================================================
-
-const formatNum = (val) => {
-	if (val === null || val === undefined || val === '') return null
-	const num = parseFloat(val)
-	if (isNaN(num)) return null
-	return num % 1 === 0 ? String(Math.round(num)) : num.toFixed(2).replace(/\.?0+$/, '')
-}
-
-const validate = (val, min, max) => {
-	const num = parseFloat(val)
-	if (isNaN(num) || val === null) {
-		Notify.error('🚨 Invalid number')
-		return false
-	}
-	if (num < min || num > max) {
-		Notify.warning(`⚠️ Must be between ${min} and ${max}`)
-		return false
-	}
-	return true
-}
-
-// ============================================================================
 // HANDLERS
 // ============================================================================
 
@@ -166,6 +178,9 @@ async function handleNumeric(e, key) {
 	await setItem(cfg.storageKey, newVal)
 }
 
+// ============================================================================
+// GOOGLE FONTS
+// ============================================================================
 function addPreconnectLinks() {
 	if (preconnectLinksAdded) return
 
@@ -371,39 +386,27 @@ function addListeners() {
 }
 
 // ============================================================================
-// INIT
+// UTILS
 // ============================================================================
 
-async function init() {
-	// 1. Get stored values from storage
-	const keys = [
-		CONFIG.fontFamily.storageKey,
-		CONFIG.fontSize.storageKey,
-		CONFIG.lineHeight.storageKey,
-		CONFIG.letterSpacing.storageKey,
-	]
+const formatNum = (val) => {
+	if (val === null || val === undefined || val === '') return null
+	const num = parseFloat(val)
+	if (isNaN(num)) return null
+	return num % 1 === 0 ? String(Math.round(num)) : num.toFixed(2).replace(/\.?0+$/, '')
+}
 
-	const stored = await getItems(keys)
-	const getStoredOrDefault = (configKey) => stored[CONFIG[configKey].storageKey] ?? CONFIG[configKey].default
-
-	const fontFamily = getStoredOrDefault('fontFamily')
-	const fontSize = getStoredOrDefault('fontSize')
-	const lineHeight = getStoredOrDefault('lineHeight')
-	const letterSpacing = getStoredOrDefault('letterSpacing')
-
-	// 2. Load Google Font if not font family isnt default
-	if (fontFamily !== CONFIG.fontFamily.default) setGoogleFont(fontFamily)
-
-	// 3. Update DOM (CSS vars)
-	setVars({
-		[CONFIG.fontFamily.cssVar]: fontFamily,
-		[CONFIG.fontSize.cssVar]: fontSize,
-		[CONFIG.lineHeight.cssVar]: lineHeight,
-		[CONFIG.letterSpacing.cssVar]: letterSpacing,
-	})
-
-	// 4. Update inputs using helper
-	updateInputs({ fontFamily, fontSize, lineHeight, letterSpacing })
+const validate = (val, min, max) => {
+	const num = parseFloat(val)
+	if (isNaN(num) || val === null) {
+		Notify.error('🚨 Invalid number')
+		return false
+	}
+	if (num < min || num > max) {
+		Notify.warning(`⚠️ Must be between ${min} and ${max}`)
+		return false
+	}
+	return true
 }
 
 export { generateHTML as renderFontsTab, resetAll as resetAllFonts, addListeners as handleFontsListeners, init }
