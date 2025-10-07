@@ -1,12 +1,11 @@
 import { init as initThemes } from './app/themeManager'
-import { init as initFloating } from './app/floatingBtn'
+import { init as initFAB } from './app/FAB'
 // import { init as initColors } from './app/mainColors'
 // import { init as initFonts } from './app/mainFonts'
 // import { init as initWidths } from './app/mainWidths'
 import { init as initColors } from './app/custom-colors/index'
 import { init as initFonts } from './app/custom-fonts/index'
 import { init as initWidths } from './app/custom-layouts/index'
-// import { init as initScrolldown } from './app/scrolldown'
 import { init as initToggleChatBubbles } from './app/custom-layouts/toggleChatBubbles'
 import { init as initCustomChatboxHeight } from './app/custom-layouts/toggleChatboxHeight'
 import { init as initUserAccentBg } from './app/custom-colors/toggleAccentUserBubble'
@@ -28,7 +27,7 @@ function initExtension() {
 
 	try {
 		initThemes()
-		initFloating()
+		initFAB()
 		initColors()
 		initFonts()
 		initWidths()

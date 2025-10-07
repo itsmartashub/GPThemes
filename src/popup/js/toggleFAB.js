@@ -1,4 +1,4 @@
-import { SK_TOGGLE_FAB } from '../../js/app/floatingBtn'
+import { SK_TOGGLE_FAB } from '../../js/app/FAB'
 import { getItem, setItem } from '../../js/utils/storage'
 import { renderToggle } from '../../js/app/components/renderToggles'
 
