@@ -127,7 +127,7 @@ function hasCustomColors() {
 function updateResetButton() {
 	if ($resetBtn) {
 		$resetBtn.disabled = !hasCustomColors()
-		console.log('Reset button updated:', !hasCustomColors() ? 'disabled' : 'enabled')
+		// console.log('Reset button updated:', !hasCustomColors() ? 'disabled' : 'enabled')
 	}
 }
 // --- RESET ---
@@ -201,7 +201,7 @@ function setListeners() {
 // --- INIT ---
 async function init() {
 	const stored = await getFromStorage()
-	console.log('[🎨GPThemes] Stored colors:', stored) // Return: {} or {colorAccentLight: '#...', colorAccentDark: '#...}
+	// console.log('[🎨GPThemes] Stored colors:', stored) // Return: {} or {colorAccentLight: '#...', colorAccentDark: '#...}
 
 	if (!stored || Object.keys(stored).length === 0) {
 		initColorPickers({})
