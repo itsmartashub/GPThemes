@@ -1,5 +1,5 @@
-import { $, setVar } from '../../utils/dom.js'
 import { getItem, setItem } from '../../utils/storage.js'
+import { $, setVar } from '../../utils/dom.js'
 import { SELECTORS } from '../config/selectors.js'
 import { icon_accent } from '../components/icons.js'
 import { renderToggle } from '../components/renderToggles.js'
@@ -10,7 +10,7 @@ const STORAGE_KEY = 'customUserBubbleAccentState'
 const CSS_VAR = '--gpthUserBubbleAccent'
 
 // Render toggle HTML
-function generateHTML() {
+function templateHTML() {
 	return renderToggle({
 		id: SELECTORS.CHATS.TOGGLE_USER_BUBBLE_ACCENT_ID,
 		checked: DEFAULT_STATE,
@@ -19,11 +19,6 @@ function generateHTML() {
 		icon: icon_accent,
 		card: true,
 	})
-}
-
-// Apply toggle by setting CSS var to "1" (enabled) or "0" (disabled)
-function applyAccentToggle(enabled) {
-	setVar(CSS_VAR, enabled ? '1' : '0')
 }
 
 // Load saved state from storage
@@ -49,35 +44,15 @@ async function saveState(state = DEFAULT_STATE) {
 	}
 }
 
-// Setup toggle input listener
-async function setupListeners() {
-	const input = document.getElementById(SELECTORS.CHATS.TOGGLE_USER_BUBBLE_ACCENT_ID)
-	if (!input) return
-
-	// Sync with saved state
-	const state = await loadState()
-	input.checked = state
-	applyAccentToggle(state)
-
-	input.addEventListener('change', async ({ target }) => {
-		const userBubble = $(`.${SELECTORS.CHATS.USER}`) // adjust selector to your chat bubbles
-
-		if (!userBubble) {
-			handleError('User bubble not found on this page.')
-			target.checked = !target.checked
-			return
-		}
-
-		const isEnabled = target.checked
-		applyAccentToggle(isEnabled)
-		saveState(isEnabled)
-	})
+// Apply CSS only (no DOM dependency)
+function applyCss(enabled) {
+	setVar(CSS_VAR, enabled ? '1' : '0')
 }
 
-// Initialize toggle on page load
-async function init() {
-	const state = await loadState()
-	applyAccentToggle(state)
+// Update input to reflect state (DOM required)
+function updateInputs(enabled) {
+	const input = document.getElementById(SELECTORS.CHATS.TOGGLE_USER_BUBBLE_ACCENT_ID)
+	if (input) input.checked = !!enabled
 }
 
 // Error handler
@@ -86,4 +61,40 @@ function handleError(message, error = null) {
 	if (error) console.error(`${message}:`, error)
 }
 
-export { generateHTML as renderUserAccentBgToggle, init, setupListeners as handleUserAccentBgListeners }
+async function handleChange({ target }) {
+	const userBubble = $(`.${SELECTORS.CHATS.USER}`)
+
+	if (!userBubble) {
+		handleError('User bubble not found on this page.')
+		target.checked = !target.checked
+		return
+	}
+
+	const isEnabled = target.checked
+	applyCss(isEnabled)
+	saveState(isEnabled)
+}
+
+// Setup toggle input listener (mount after DOM exists)
+async function mount() {
+	const input = document.getElementById(SELECTORS.CHATS.TOGGLE_USER_BUBBLE_ACCENT_ID)
+	if (!input) {
+		console.warning(`Element with ID ${SELECTORS.CHATS.TOGGLE_USER_BUBBLE_ACCENT_ID} not found`)
+		return
+	}
+
+	// Sync with saved state
+	const state = await loadState()
+	updateInputs(state)
+	applyCss(state)
+	input.addEventListener('change', handleChange)
+}
+
+// // Initialize toggle on page load
+// async function init() {
+// 	const state = await loadState()
+// 	applyCss(state)
+// }
+
+// export { templateHTML as renderUserAccentBgToggle, init, mount }
+export { templateHTML as renderUserAccentBgToggle, mount }

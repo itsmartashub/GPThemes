@@ -17,7 +17,7 @@ function disableCustomHeight() {
 	document.documentElement.removeAttribute(ATTR_NAME)
 }
 
-function generateHTML() {
+function templateHTML() {
 	return `
 		<h4 class="${SELECTORS.SUBHEADING}">Other</h4>
 		${renderToggle({
@@ -31,35 +31,6 @@ function generateHTML() {
 			className: '',
 		})}
 	`
-}
-
-async function setupListeners() {
-	const input = $(`#${SELECTORS.CHATBOX.TOGGLE_MAX_HEIGHT_ID}`)
-	if (!input) return
-
-	// Sync with saved state
-	const state = await loadState()
-	input.checked = !!state
-
-	input.addEventListener('change', async (event) => {
-		const target = event.target
-		const chatbox = $(SELECTORS.CHATBOX.HEIGHT)
-
-		if (!chatbox) {
-			Notify.error('Chatbox not found on this page.')
-			// Revert the toggle so UI stays truthful
-			target.checked = !target.checked
-			return
-		}
-
-		if (target.checked) {
-			enableCustomHeight()
-		} else {
-			disableCustomHeight()
-		}
-
-		saveState(target.checked)
-	})
 }
 
 async function saveState(state = false) {
@@ -85,15 +56,57 @@ async function loadState() {
 	}
 }
 
-function init() {
-	// Only apply saved state on load; do not require settings UI to be present
-	loadState().then((state) => {
-		if (state) {
-			enableCustomHeight()
-		} else {
-			disableCustomHeight()
-		}
-	})
+// Apply CSS/attribute only (no DOM dependency)
+function applyCss(state) {
+	if (state) {
+		enableCustomHeight()
+	} else {
+		disableCustomHeight()
+	}
 }
 
-export { generateHTML as renderCustomChatboxHeight, init, setupListeners as handleCustomChatboxListeners }
+// Update input to reflect state (DOM required)
+function updateInputs(state) {
+	const input = document.getElementById(SELECTORS.CHATBOX.TOGGLE_MAX_HEIGHT_ID)
+	if (input) input.checked = !!state
+}
+
+async function handleChange(e) {
+	const target = e.target
+	const chatbox = $(SELECTORS.CHATBOX.HEIGHT)
+
+	if (!chatbox) {
+		Notify.error('Chatbox not found on this page.')
+		// Revert the toggle so UI stays truthful
+		target.checked = !target.checked
+		return
+	}
+
+	const isEnabled = target.checked
+	applyCss(isEnabled)
+	saveState(isEnabled)
+}
+
+// Setup toggle input listener (mount after DOM exists)
+async function mount() {
+	const input = document.getElementById(SELECTORS.CHATBOX.TOGGLE_MAX_HEIGHT_ID)
+	if (!input) {
+		Notify.warning('Missing chatbox toggle button')
+		return
+	}
+
+	// Sync with saved state
+	const state = await loadState()
+	updateInputs(state)
+	applyCss(state)
+	input.addEventListener('change', handleChange)
+}
+
+// // Initialize toggle on page load
+// async function init() {
+// 	// Only apply saved state on load; do not require settings UI to be present
+// 	const state = await loadState()
+// 	applyCss(state)
+// }
+
+export { templateHTML as renderCustomChatboxHeight, mount }

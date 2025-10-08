@@ -279,7 +279,7 @@ async function resetAll() {
 // RENDER
 // ============================================================================
 
-function generateHTML() {
+function templateHTML() {
 	return `
     <section id="fontChangerPopover" class="fonts">
       <div class="fonts__props">
@@ -409,4 +409,10 @@ const validate = (val, min, max) => {
 	return true
 }
 
-export { generateHTML as renderFontsTab, resetAll as resetAllFonts, addListeners as handleFontsListeners, init }
+function mount() {
+	const elements = getElements()
+	if (!elements) return
+	addListeners()
+}
+
+export { templateHTML as renderFontsTab, resetAll as resetAllFonts, addListeners as handleFontsListeners, init, mount }

@@ -12,18 +12,18 @@ const NOTIFICATION_TYPES = {
 const DEFAULT_DURATION = 4000 // 4 seconds
 
 // Create container once
-let notificationContainer
+let $notificationContainer
 
 function ensureContainer() {
-	if (!notificationContainer) {
-		notificationContainer = document.createElement('div')
-		notificationContainer.className = SELECTORS.NOTIFY.CONTAINER
-		document.body.appendChild(notificationContainer)
+	if (!$notificationContainer) {
+		$notificationContainer = document.createElement('div')
+		$notificationContainer.className = SELECTORS.NOTIFY.CONTAINER
+		document.body.appendChild($notificationContainer)
 	}
-	return notificationContainer
+	return $notificationContainer
 }
 
-export function showNotification(
+function showNotification(
 	message = 'ℹ️ Settings have been updated',
 	type = NOTIFICATION_TYPES.INFO,
 	duration = DEFAULT_DURATION
@@ -37,28 +37,32 @@ export function showNotification(
 		<div class="${SELECTORS.NOTIFY.ITEM}__content">${message}</div>
 		<button class="${SELECTORS.NOTIFY.CLOSE_BTN}">&times;</button>
   `
-
-	container.appendChild(notification)
+	// Place latest notification on top
+	container.prepend(notification)
 
 	// Force reflow to enable CSS transition
 	requestAnimationFrame(() => {
 		notification.classList.add(SELECTORS.NOTIFY.SHOW_STATE)
 	})
 
-	// Close button handler
-	$(`.${SELECTORS.NOTIFY.CLOSE_BTN}`, notification).addEventListener('click', () => {
+	// Handle auto-close timeout
+	let timeoutId = null
+	if (duration > 0) {
+		timeoutId = setTimeout(() => closeNotification(notification), duration)
+	}
+
+	// Handle close button click
+	const closeBtn = notification.querySelector(`.${SELECTORS.NOTIFY.CLOSE_BTN}`)
+	closeBtn.addEventListener('click', () => {
+		if (timeoutId) clearTimeout(timeoutId)
 		closeNotification(notification)
 	})
 
-	// Auto-close if duration is set
-	if (duration > 0) {
-		setTimeout(() => {
-			closeNotification(notification)
-		}, duration)
-	}
-
 	return {
-		close: () => closeNotification(notification),
+		close: () => {
+			if (timeoutId) clearTimeout(timeoutId)
+			closeNotification(notification)
+		},
 	}
 }
 
@@ -69,9 +73,9 @@ function closeNotification(notification) {
 		() => {
 			notification.remove()
 			// Remove container if no notifications left
-			if (notificationContainer && notificationContainer.children.length === 0) {
-				notificationContainer.remove()
-				notificationContainer = null
+			if ($notificationContainer && $notificationContainer.children.length === 0) {
+				$notificationContainer.remove()
+				$notificationContainer = null
 			}
 		},
 		{ once: true }
@@ -79,7 +83,7 @@ function closeNotification(notification) {
 }
 
 // Export types for better autocomplete
-export const Notify = {
+const Notify = {
 	info: (msg = `ℹ️ Settings have been updated!`, duration) =>
 		showNotification(msg, NOTIFICATION_TYPES.INFO, duration),
 	success: (msg = '✅ Your changes were saved successfully.', duration) =>
@@ -89,3 +93,5 @@ export const Notify = {
 	error: (msg = `🚨 Yikes, something went wrong.`, duration) =>
 		showNotification(msg, NOTIFICATION_TYPES.ERROR, duration),
 }
+
+export { Notify, showNotification }

@@ -1,14 +1,7 @@
 import { init as initThemes } from './app/themeManager'
 import { init as initFAB } from './app/FAB'
-// import { init as initColors } from './app/mainColors'
-// import { init as initFonts } from './app/mainFonts'
-// import { init as initWidths } from './app/mainWidths'
-import { init as initColors } from './app/custom-colors/index'
-import { init as initFonts } from './app/custom-fonts/index'
-import { init as initWidths } from './app/custom-layouts/index'
-import { init as initToggleChatBubbles } from './app/custom-layouts/toggleChatBubbles'
-import { init as initCustomChatboxHeight } from './app/custom-layouts/toggleChatboxHeight'
-import { init as initUserAccentBg } from './app/custom-colors/toggleAccentUserBubble'
+// Chat bubbles and chatbox height are mounted from custom-layouts after Settings render
+// User bubble accent toggle is mounted from colors module after Settings render
 
 // Configuration
 const CONFIG = {
@@ -28,13 +21,7 @@ function initExtension() {
 	try {
 		initThemes()
 		initFAB()
-		initColors()
-		initFonts()
-		initWidths()
-		// initScrolldown()
-		initToggleChatBubbles()
-		initCustomChatboxHeight()
-		initUserAccentBg()
+		// Settings modules (colors, fonts, layouts) are initialized inside settingsManager after DOM attach
 	} catch (error) {
 		console.error('[🎨GPThemes]: Critical initialization error:', error)
 		return false
@@ -94,11 +81,3 @@ if (!document.querySelector(CONFIG.TARGET_SELECTOR)) {
 // Emergency cleanup if script re-runs
 if (window._gpthCleanup) window._gpthCleanup()
 window._gpthCleanup = cleanup
-
-/* TODO: Check why extension sometimes failed with console errors:
-
-- Initialization error: Error: Extension context invalidated.
-- Color manager initialization error: TypeError: Cannot read properties of null (reading 'querySelector')
-- Font manager initialization error: TypeError: Cannot read properties of null (reading 'querySelector')
-- Uncaught TypeError: Cannot read properties of null (reading 'classList')
-*/

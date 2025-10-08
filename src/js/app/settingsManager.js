@@ -1,9 +1,24 @@
 import { SELECTORS } from './config/selectors'
 import { PFX } from './config/constants'
-import { renderColorsTab, handleColorsListeners } from './custom-colors/index'
-import { renderFontsTab, handleFontsListeners } from './custom-fonts/index'
-import { renderWidthsTab, handleWidthsListeners } from './custom-layouts/index'
-import { handleScrolldownListeners } from './custom-layouts/scrolldown'
+import {
+	renderColorsTab,
+	handleColorsListeners,
+	init as initColorsModule,
+	mount as mountColors,
+} from './custom-colors/index'
+import {
+	renderFontsTab,
+	handleFontsListeners,
+	init as initFontsModule,
+	mount as mountFonts,
+} from './custom-fonts/index'
+import {
+	renderWidthsTab,
+	handleWidthsListeners,
+	init as initWidthsModule,
+	mount as mountWidths,
+} from './custom-layouts/index'
+// Scrolldown is initialized and mounted from custom-layouts module
 // import { handleCustomChatboxListeners } from './toggleCustomChatbox'
 
 // Cached DOM refs
@@ -33,6 +48,17 @@ async function createSettings() {
 
 	// 4. Attach listeners after initialization
 	attachListeners()
+
+	// 5. Initialize modules now that DOM is attached
+	try {
+		await Promise.all([initColorsModule(), initFontsModule(), initWidthsModule()])
+		// After state/css init, mount DOM listeners scoped to settings
+		mountColors()
+		mountFonts()
+		mountWidths()
+	} catch (err) {
+		console.error('[Settings] Module initialization failed:', err)
+	}
 
 	return gpthSettings
 }
@@ -93,10 +119,9 @@ function cacheElements(gpthSettings) {
 function attachListeners() {
 	handleTabsSwitching()
 
-	handleColorsListeners()
-	handleFontsListeners()
-	handleWidthsListeners()
-	handleScrolldownListeners()
+	// handleColorsListeners()
+	// handleFontsListeners()
+	// handleWidthsListeners()
 	// handleCustomChatboxListeners()
 }
 

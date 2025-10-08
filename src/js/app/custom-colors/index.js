@@ -5,7 +5,7 @@ import { $, getVar, setVar, setVars, removeVar } from '../../utils/dom.js'
 import { $settings } from '../settingsManager.js'
 import { renderButton } from '../components/renderButtons.js'
 import { renderSeparator } from '../components/renderUtils.js'
-import { renderUserAccentBgToggle, handleUserAccentBgListeners } from './toggleAccentUserBubble.js'
+import { renderUserAccentBgToggle, mount as mountUserAccent } from './toggleAccentUserBubble.js'
 import { Notify } from '../components/renderNotify.js'
 
 // --- CONFIG WITH THEME ---
@@ -32,6 +32,7 @@ const accentPickers = new Map()
 const STORAGE_KEYS = CONFIG.map((c) => c.storageKey)
 
 let $resetBtn = null
+let loadedColors = null
 
 // --- STORAGE ---
 async function saveToStorage(key, value) {
@@ -150,7 +151,7 @@ async function resetAllAccents() {
 // --- HTML GENERATION ---
 let cachedHTML = null
 
-function generateHTML() {
+function templateHTML() {
 	if (cachedHTML) return cachedHTML
 
 	const colorPickersHTML = CONFIG.map(function (c) {
@@ -163,28 +164,21 @@ function generateHTML() {
 	}).join('')
 
 	cachedHTML = `
-        <section>
-            <div class="colorpicker-container">${colorPickersHTML}</div>
-            <div>
-                ${renderSeparator}
-                ${renderUserAccentBgToggle()}
-                ${renderSeparator}
-            </div>
-            <footer class="flex justify-center mt-8">
-                ${renderButton({
+		<section id="sectionColors">
+			<div class="colorpicker-container">${colorPickersHTML}</div>
+			<div>
+				${renderSeparator}
+				${renderUserAccentBgToggle()}
+				${renderSeparator}
+			</div>
+			<footer class="flex justify-center mt-8">
+				${renderButton({
 					id: SELECTORS.ACCENT.RESET_BTN_ID,
 					content: 'Reset Colors',
 					className: 'btn-primary',
 				})}
-            </footer>
-        </section>`
-
-	// Only set elements AFTER injection into DOM: Run this code on the next animation frame - after the DOM has been painted.
-	requestAnimationFrame(() => {
-		setElements()
-		setListeners()
-		updateResetButton() // Set initial state
-	})
+			</footer>
+		</section>`
 
 	return cachedHTML
 }
@@ -196,30 +190,33 @@ function setElements() {
 
 function setListeners() {
 	$resetBtn?.addEventListener('click', resetAllAccents)
-	handleUserAccentBgListeners()
+}
+
+// Mount hook to wire DOM after settings are attached
+function mount() {
+	setElements()
+	setListeners()
+	initColorPickers(loadedColors || {})
+	updateResetButton()
+	mountUserAccent()
 }
 
 // --- INIT ---
 async function init() {
 	const stored = await getFromStorage()
-	// console.log('[🎨GPThemes] Stored colors:', stored) // Return: {} or {colorAccentLight: '#...', colorAccentDark: '#...}
-
-	if (!stored || Object.keys(stored).length === 0) {
-		initColorPickers({})
-		return
-	}
+	// console.log('[🎨GPThemes] Stored colors:', stored)
 
 	const cssVarsObj = {}
-	for (const cfg of CONFIG) {
-		const color = stored[cfg.storageKey]
-		if (color) cssVarsObj[cfg.cssVar] = color
+	if (stored && Object.keys(stored).length) {
+		for (const cfg of CONFIG) {
+			const color = stored[cfg.storageKey]
+			if (color) cssVarsObj[cfg.cssVar] = color
+		}
+		if (Object.keys(cssVarsObj).length) setVars(cssVarsObj)
 	}
 
-	if (Object.keys(cssVarsObj).length) {
-		setVars(cssVarsObj)
-	}
-
-	initColorPickers(stored)
+	// Defer picker creation to mount when DOM exists
+	loadedColors = stored || {}
 }
 
-export { generateHTML as renderColorsTab, init, setListeners as handleColorsListeners }
+export { templateHTML as renderColorsTab, init, setListeners as handleColorsListeners, mount }

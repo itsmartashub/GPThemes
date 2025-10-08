@@ -6,10 +6,11 @@ import { renderSliderCard } from '../components/renderSlider.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { renderButton } from '../components/renderButtons.js'
 import { renderSeparator } from '../components/renderUtils.js'
-import { renderCustomScrolldown } from './scrolldown.js'
-import { renderChatBubbles } from './toggleChatBubbles.js'
-import { renderCustomChatboxHeight, handleCustomChatboxListeners } from './toggleChatboxHeight.js'
-import { renderCustomHides, handleCustomHidesListeners } from '../custom-hide/index.js'
+// import { renderCustomScrolldown, init as initScrolldown, mount as mountScrolldown } from './scrolldown.js'
+import { renderCustomScrolldown, mount as mountScrolldown } from './scrolldown.js'
+import { renderCustomChatBubbles, mount as mountChatBubbles } from './toggleChatBubbles.js'
+import { renderCustomChatboxHeight, mount as mountCustomChatboxHeight } from './toggleChatboxHeight.js'
+import { renderCustomHides, mount as mountCustomHides } from '../custom-hide/index.js'
 
 // ==========================================
 // CONSTANTS
@@ -57,7 +58,7 @@ const formatWithUnit = (val, unit) => `${validateValue(val)}${unit}`
 // MAIN FUNCTIONS - CREATE WIDTH LAYOUT
 // ==========================================
 
-function renderWidthsTab() {
+function templateHTML() {
 	const chatUnit = extractUnit(WIDTH_CONFIG.defaults.w_chat_gpt)
 	const promptUnit = extractUnit(WIDTH_CONFIG.defaults.w_prompt_textarea)
 	return `
@@ -120,7 +121,7 @@ function renderWidthsTab() {
 		${renderSeparator}
 		${renderCustomChatboxHeight()}
 		${renderSeparator}
-		${renderChatBubbles()}
+		${renderCustomChatBubbles()}
 		${renderSeparator}
 		${renderCustomScrolldown()}
 
@@ -341,9 +342,7 @@ function handleWidthsListeners() {
 
 	// Reset button
 	addListener($(`#${SELECTORS.WIDTH.RESET_BTN_ID}`), 'click', resetWidths)
-
-	handleCustomHidesListeners()
-	handleCustomChatboxListeners()
+	// Hides are mounted from module mount()
 }
 
 // ==========================================
@@ -397,6 +396,10 @@ async function init() {
 		setVars(currentState.settings)
 		updateUI(currentState)
 
+		// Initialize sub-features early (CSS vars)
+		// await Promise.all([initScrolldown(), initCustomHides()])
+		// await initScrolldown()
+
 		// console.log('[↔️ GPThemes] Width settings initialized:', currentState)
 	} catch (err) {
 		console.error('[↔️ GPThemes] Init error:', err)
@@ -404,4 +407,13 @@ async function init() {
 }
 
 // Export public functions
-export { handleWidthsListeners, renderWidthsTab, init }
+function mount() {
+	handleWidthsListeners()
+	// Mount sub-features after DOM attached
+	mountCustomChatboxHeight()
+	mountChatBubbles()
+	mountScrolldown()
+	mountCustomHides()
+}
+
+export { handleWidthsListeners, templateHTML as renderWidthsTab, init, mount }

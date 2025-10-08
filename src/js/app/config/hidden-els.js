@@ -10,6 +10,7 @@ export const ELEMENTS = [
 		icon: icon_header,
 		selector: SELECTORS.HIDE.HEADER.SELECTOR,
 		cssVar: `--${PFX}HideHeader`,
+		storageKey: 'hideHeader',
 		isHidden: false,
 	},
 	{
@@ -19,6 +20,7 @@ export const ELEMENTS = [
 		icon: icon_footer,
 		selector: SELECTORS.HIDE.FOOTER.SELECTOR,
 		cssVar: `--${PFX}HideFooter`,
+		storageKey: 'hideFooter',
 		isHidden: false,
 	},
 ]

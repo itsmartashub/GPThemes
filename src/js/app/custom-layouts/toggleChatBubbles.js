@@ -1,17 +1,16 @@
 import { getItem, setItem } from '../../utils/storage.js'
 import { SELECTORS } from '../config/selectors.js'
 import { $, $$, setVars } from '../../utils/dom.js'
-import { setCssVars } from '../../utils/setCssVar.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { Notify } from '../components/renderNotify.js'
 
 // Bubble types + config
 const CONFIG = {
-	user: {
+	User: {
 		label: 'USER',
 		var: '--gpthToggleBubbleUser', // our 0/1 var
 	},
-	gpt: {
+	GPT: {
 		label: 'GPT',
 		var: '--gpthToggleBubbleGpt',
 	},
@@ -26,7 +25,7 @@ const DEFAULT_STATE = {
 const STORAGE_KEY = 'chatBubblesState'
 
 // Generate section HTML
-function generateHTML() {
+function templateHTML() {
 	const toggleItems = Object.entries(CONFIG)
 		.map(function ([type, config]) {
 			return renderToggle({
@@ -49,31 +48,26 @@ function generateHTML() {
   `
 }
 
-// Write CSS vars based on state
-function updateRootVars(state) {
+// Apply CSS only (no DOM dependency)
+function applyCss(state) {
 	const vars = {}
 	for (const [type, config] of Object.entries(CONFIG)) {
-		vars[config.var.replace(/^--/, '')] = state[type] ? '1' : '0'
+		vars[config.var] = state[type] ? '1' : '0'
 	}
-	console.log(vars)
-
-	setCssVars(vars)
+	setVars(vars)
 }
 
-// Persist state
-async function saveToStorage(state) {
-	try {
-		await setItem(STORAGE_KEY, state)
-		return true
-	} catch (error) {
-		Notify.error('Failed to save bubble preference')
-		console.error('Failed to save preference:', error)
-		return false
-	}
+// Update checkbox inputs to reflect state (DOM required)
+function updateInputs(state) {
+	const checkboxes = $$(`.${SELECTORS.TOGGLE_BUBBLES.ROOT} .gpth-checkbox__input`)
+	checkboxes.forEach(function (input) {
+		const type = input.dataset.type
+		if (type in state) input.checked = state[type]
+	})
 }
 
 // Load state
-async function getFromStorage() {
+async function loadState() {
 	try {
 		const result = await getItem(STORAGE_KEY) // object states: { user: true, gpt: true } | { user: false, gpt: false } | { user: true, gpt: false } | { user: false, gpt: true } | null
 		return result || DEFAULT_STATE
@@ -84,45 +78,57 @@ async function getFromStorage() {
 	}
 }
 
-// Apply state to inputs + CSS vars
-function applyBubbleState(state) {
-	const checkboxes = $$(`.${SELECTORS.TOGGLE_BUBBLES.ROOT} .gpth-checkbox__input`)
-	checkboxes.forEach(function (input) {
-		const type = input.dataset.type
-		if (type in state) input.checked = state[type]
-	})
-
-	updateRootVars(state)
+// Persist state
+async function saveState(state) {
+	try {
+		await setItem(STORAGE_KEY, state)
+		return true
+	} catch (error) {
+		Notify.error('Failed to save bubble preference')
+		console.error('Failed to save preference:', error)
+		return false
+	}
 }
 
-// Listener with delegation
-function setupListeners() {
+async function handleChange(event) {
+	const input = event.target
+	if (!input.classList.contains('gpth-checkbox__input')) return
+
+	const type = input.dataset.type
+	if (!type || !(type in CONFIG)) {
+		console.warn('Unknown or missing type for chat bubble toggle:', type)
+		return
+	}
+
+	const currentState = await loadState()
+	const updatedState = { ...currentState, [type]: input.checked }
+	applyCss(updatedState)
+	updateInputs(updatedState)
+	saveState(updatedState).then((success) =>
+		input.checked ? Notify.success(` ${type} bubble enabled`) : Notify.info(` ${type} bubble disabled`)
+	)
+}
+
+// Mount after DOM exists: sync inputs and add delegation listener
+async function mount() {
 	const container = $(`.${SELECTORS.TOGGLE_BUBBLES.ITEMS_CONTAINER}`)
-	if (!container) return
+	if (!container) {
+		console.warning(`Element with class ${SELECTORS.TOGGLE_BUBBLES.ITEMS_CONTAINER} not found`)
+		return
+	}
 
-	container.addEventListener('change', async function (event) {
-		const input = event.target
-		if (!input.classList.contains('gpth-checkbox__input')) return
+	// Sync inputs to current state on mount
+	const state = await loadState()
+	applyCss(state)
+	updateInputs(state)
 
-		const type = input.dataset.type
-		if (!type || !(type in CONFIG)) {
-			console.warn('Unknown or missing type for chat bubble toggle:', type)
-			return
-		}
-
-		const currentState = await getFromStorage()
-		const updatedState = { ...currentState, [type]: input.checked }
-
-		updateRootVars(updatedState)
-		saveToStorage(updatedState)
-	})
+	container.addEventListener('change', handleChange)
 }
 
-// Init module
-async function init() {
-	const state = await getFromStorage()
-	applyBubbleState(state)
-	setupListeners()
-}
+// // Init module: apply CSS vars early without DOM dependency
+// async function init() {
+// 	const state = await loadState()
+// 	applyCss(state)
+// }
 
-export { generateHTML as renderChatBubbles, init }
+export { templateHTML as renderCustomChatBubbles, mount }
