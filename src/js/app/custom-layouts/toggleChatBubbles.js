@@ -1,6 +1,6 @@
 import { getItem, setItem } from '../../utils/storage.js'
 import { SELECTORS } from '../config/selectors.js'
-import { ATTR_BUBBLE_GPT, ATTR_BUBBLE_USER } from '../config/constants-attr.js'
+import { ATTR_BUBBLE_GPT, ATTR_BUBBLE_USER } from '../config/consts-attr.js'
 import { $, $$, ROOT_HTML } from '../../utils/dom.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { Notify } from '../components/renderNotify.js'

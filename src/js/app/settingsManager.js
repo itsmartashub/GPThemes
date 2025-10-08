@@ -1,5 +1,5 @@
 import { SELECTORS } from './config/selectors'
-import { PFX } from './config/constants'
+import { PFX } from './config/consts'
 import { renderColorsTab, init as initColorsModule, mount as mountColors } from './custom-colors/index'
 import { renderFontsTab, init as initFontsModule, mount as mountFonts } from './custom-fonts/index'
 import { renderWidthsTab, init as initWidthsModule, mount as mountWidths } from './custom-layouts/index'

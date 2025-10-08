@@ -1,6 +1,6 @@
 import { getItems, setItem } from '../../utils/storage.js'
 import { $, ROOT_HTML } from '../../utils/dom.js'
-import { ELEMENTS } from '../config/hidden-els.js'
+import { ELEMENTS } from '../config/consts-hidden-els.js'
 import { SELECTORS } from '../config/selectors'
 import { renderToggle } from '../components/renderToggles.js'
 import { Notify } from '../components/renderNotify.js'

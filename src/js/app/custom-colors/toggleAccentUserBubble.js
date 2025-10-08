@@ -1,7 +1,7 @@
 import { getItem, setItem } from '../../utils/storage.js'
 import { $, ROOT_HTML } from '../../utils/dom.js'
 import { SELECTORS } from '../config/selectors.js'
-import { ATTR_BUBBLE_USER_ACCENT } from '../config/constants-attr.js'
+import { ATTR_BUBBLE_USER_ACCENT } from '../config/consts-attr.js'
 import { icon_accent } from '../components/icons.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { Notify } from '../components/renderNotify.js'

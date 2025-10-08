@@ -1,5 +1,5 @@
 import { SELECTORS } from './selectors'
-import { ATTR_HIDE_HEADER, ATTR_HIDE_FOOTER } from './constants-attr'
+import { ATTR_HIDE_HEADER, ATTR_HIDE_FOOTER } from './consts-attr'
 import { icon_header, icon_footer } from '../components/icons'
 
 export const ELEMENTS = [

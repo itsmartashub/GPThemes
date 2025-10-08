@@ -1,4 +1,4 @@
-import { EXT_REPO_URL } from '../../js/app/config/constants'
+import { EXT_REPO_URL } from '../../js/app/config/consts'
 
 const links = {
 	issue: (issueNumber) =>

@@ -1,4 +1,4 @@
-import { PFX } from './constants'
+import { PFX } from './consts'
 
 const chatboxRoot = "form[data-type='unified-composer'] .contain-inline-size[class*='bg-[\\#303030]'"
 
