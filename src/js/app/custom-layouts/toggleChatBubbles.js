@@ -1,6 +1,6 @@
 import { getItem, setItem } from '../../utils/storage.js'
 import { SELECTORS } from '../config/selectors.js'
-import { $, $$ } from '../../utils/dom.js'
+import { $, $$, ROOT_HTML } from '../../utils/dom.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { Notify } from '../components/renderNotify.js'
 
@@ -22,7 +22,7 @@ const DEFAULT_STATE = {
 	gpt: true,
 }
 
-const STORAGE_KEY = 'chatBubblesState'
+const STORAGE_KEY = 'toggleChatBubblesState'
 
 // Generate section HTML
 function templateHTML() {
@@ -50,15 +50,13 @@ function templateHTML() {
 
 // Apply data attributes to document root
 function applyDataAttributes(state) {
-	const root = document.documentElement
-
 	for (const [type, config] of Object.entries(CONFIG)) {
 		if (state[type]) {
 			// When bubble is ENABLED (checked), remove the data attribute
-			root.removeAttribute(config.attr)
+			ROOT_HTML.removeAttribute(config.attr)
 		} else {
 			// When bubble is DISABLED (unchecked), set the data attribute
-			root.setAttribute(config.attr, '')
+			ROOT_HTML.setAttribute(config.attr, '')
 		}
 	}
 }

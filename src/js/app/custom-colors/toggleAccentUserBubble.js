@@ -1,13 +1,13 @@
 import { getItem, setItem } from '../../utils/storage.js'
-import { $, setVar } from '../../utils/dom.js'
+import { $, ROOT_HTML } from '../../utils/dom.js'
 import { SELECTORS } from '../config/selectors.js'
 import { icon_accent } from '../components/icons.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { Notify } from '../components/renderNotify.js'
 
 const DEFAULT_STATE = false
-const STORAGE_KEY = 'customUserBubbleAccentState'
-const CSS_VAR = '--gpthUserBubbleAccent'
+const STORAGE_KEY = 'toggleUserBubbleAccentState'
+const DATA_ATTR = 'data-gpth-toggle-bubble-user-accent'
 
 // Render toggle HTML
 function templateHTML() {
@@ -44,9 +44,15 @@ async function saveState(state = DEFAULT_STATE) {
 	}
 }
 
-// Apply CSS only (no DOM dependency)
-function applyCss(enabled) {
-	setVar(CSS_VAR, enabled ? '1' : '0')
+// Apply data attribute to document root
+function applyDataAttribute(enabled) {
+	if (enabled) {
+		// When toggle is ON, set the data attribute
+		ROOT_HTML.setAttribute(DATA_ATTR, '')
+	} else {
+		// When toggle is OFF, remove the data attribute
+		ROOT_HTML.removeAttribute(DATA_ATTR)
+	}
 }
 
 // Update input to reflect state (DOM required)
@@ -71,8 +77,15 @@ async function handleChange({ target }) {
 	}
 
 	const isEnabled = target.checked
-	applyCss(isEnabled)
+	applyDataAttribute(isEnabled)
 	saveState(isEnabled)
+
+	// Show appropriate notification
+	if (isEnabled) {
+		Notify.success('User bubble accent enabled')
+	} else {
+		Notify.info('User bubble accent disabled')
+	}
 }
 
 // Setup toggle input listener (mount after DOM exists)
@@ -86,15 +99,8 @@ async function mount() {
 	// Sync with saved state
 	const state = await loadState()
 	updateInputs(state)
-	applyCss(state)
+	applyDataAttribute(state)
 	input.addEventListener('change', handleChange)
 }
 
-// // Initialize toggle on page load
-// async function init() {
-// 	const state = await loadState()
-// 	applyCss(state)
-// }
-
-// export { templateHTML as renderUserAccentBgToggle, init, mount }
 export { templateHTML as renderUserAccentBgToggle, mount }

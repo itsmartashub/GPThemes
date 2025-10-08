@@ -1,8 +1,8 @@
 const $ = (s, root = document) => root.querySelector(s)
 const $$ = (s, root = document) => root.querySelectorAll(s)
 
-const ROOT_DOC = document.documentElement
-const ROOT_STYLE = ROOT_DOC.style
+const ROOT_HTML = document.documentElement
+const ROOT_STYLE = ROOT_HTML.style
 
 // Helper to ensure the CSS variable name starts with '--'
 const formatVarName = (name) => (name.startsWith('--') ? name : `--${name}`)
@@ -10,7 +10,7 @@ const formatVarName = (name) => (name.startsWith('--') ? name : `--${name}`)
 const getVar = (varName, fallback = '') => {
 	// Note: getComputedStyle requires the full '--' name
 	const fullVarName = formatVarName(varName)
-	const value = getComputedStyle(ROOT_DOC).getPropertyValue(fullVarName)
+	const value = getComputedStyle(ROOT_HTML).getPropertyValue(fullVarName)
 	return value ? value.trim() : fallback
 }
 
@@ -80,7 +80,7 @@ export {
 	handleEnter,
 	rafThrottle,
 	ROOT_STYLE,
-	ROOT_DOC,
+	ROOT_HTML,
 	getVars,
 	getVar,
 	setVar,
