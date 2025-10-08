@@ -1,21 +1,14 @@
 import { getItem, setItem } from '../../utils/storage'
-import { $ } from '../../utils/dom'
+import { $, ROOT_HTML } from '../../utils/dom'
 import { SELECTORS } from '../config/selectors'
-import { icon_taller_height } from '../components/icons'
+import { ATTR_CHATBOX_HEIGHT } from '../config/consts-attr'
 import { renderToggle } from '../components/renderToggles'
 import { Notify } from '../components/renderNotify'
+import { icon_taller_height } from '../components/icons'
 
-// Storage key for preferences
-const DEFAULT_STATE = false
 const STORAGE_KEY = 'customChatboxHeightState'
-const ATTR_NAME = 'data-gpth-toggle-chatbox-height'
-
-function enableCustomHeight() {
-	document.documentElement.setAttribute(ATTR_NAME, '')
-}
-function disableCustomHeight() {
-	document.documentElement.removeAttribute(ATTR_NAME)
-}
+const DATA_ATTR = ATTR_CHATBOX_HEIGHT
+const DEFAULT_STATE = false
 
 function templateHTML() {
 	return `
@@ -28,14 +21,26 @@ function templateHTML() {
 				'Increase the height of the message box to fit more content. Warning: Always disabled on "Library" and  "New chat" initial page!',
 			icon: icon_taller_height,
 			card: true,
-			className: '',
 		})}
 	`
 }
+// Load saved state from storage
+async function loadState() {
+	try {
+		const result = await getItem(STORAGE_KEY) // state: true | false | null
 
-async function saveState(state = false) {
+		return !!result
+	} catch (error) {
+		Notify.error('Failed to load Chatbox custom height preference')
+		console.error('Failed to load Chatbox height preference:', error)
+		return false
+	}
+}
+// Save state to storage
+async function saveState(state = DEFAULT_STATE) {
 	try {
 		await setItem(STORAGE_KEY, state)
+		state ? Notify.success('Chatbox height preference enabled') : Notify.info('Chatbox height preference disabled')
 		return true
 	} catch (error) {
 		Notify.error('Failed to save Chatbox height preference')
@@ -44,24 +49,14 @@ async function saveState(state = false) {
 	}
 }
 
-async function loadState() {
-	try {
-		const result = await getItem(STORAGE_KEY) // state: true | false | null
-
-		return result || false
-	} catch (error) {
-		Notify.error('Failed to load Chatbox custom height preference')
-		console.error('Failed to load Chatbox height preference:', error)
-		return false
-	}
-}
-
 // Apply CSS/attribute only (no DOM dependency)
-function applyCss(state) {
+function updateDataAttr(state) {
 	if (state) {
-		enableCustomHeight()
+		// When toggle is ON, set the data attribute
+		ROOT_HTML.setAttribute(DATA_ATTR, '')
 	} else {
-		disableCustomHeight()
+		// When toggle is OFF, remove the data attribute
+		ROOT_HTML.removeAttribute(DATA_ATTR)
 	}
 }
 
@@ -71,8 +66,8 @@ function updateInputs(state) {
 	if (input) input.checked = !!state
 }
 
-async function handleChange(e) {
-	const target = e.target
+async function handleChange({ target }) {
+	// const target = e.target
 	const chatbox = $(SELECTORS.CHATBOX.HEIGHT)
 
 	if (!chatbox) {
@@ -83,30 +78,30 @@ async function handleChange(e) {
 	}
 
 	const isEnabled = target.checked
-	applyCss(isEnabled)
+	updateDataAttr(isEnabled)
 	saveState(isEnabled)
+
+	// // Show appropriate notification
+	// if (isEnabled) {
+	// 	Notify.success('User bubble accent enabled')
+	// } else {
+	// 	Notify.info('User bubble accent disabled')
+	// }
 }
 
 // Setup toggle input listener (mount after DOM exists)
 async function mount() {
 	const input = document.getElementById(SELECTORS.CHATBOX.TOGGLE_MAX_HEIGHT_ID)
 	if (!input) {
-		Notify.warning('Missing chatbox toggle button')
+		console.warning(`Element with ID ${SELECTORS.CHATS.TOGGLE_USER_BUBBLE_ACCENT_ID} not found`)
 		return
 	}
 
 	// Sync with saved state
 	const state = await loadState()
 	updateInputs(state)
-	applyCss(state)
+	updateDataAttr(state)
 	input.addEventListener('change', handleChange)
 }
-
-// // Initialize toggle on page load
-// async function init() {
-// 	// Only apply saved state on load; do not require settings UI to be present
-// 	const state = await loadState()
-// 	applyCss(state)
-// }
 
 export { templateHTML as renderCustomChatboxHeight, mount }

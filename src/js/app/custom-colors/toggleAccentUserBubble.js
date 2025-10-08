@@ -2,13 +2,13 @@ import { getItem, setItem } from '../../utils/storage.js'
 import { $, ROOT_HTML } from '../../utils/dom.js'
 import { SELECTORS } from '../config/selectors.js'
 import { ATTR_BUBBLE_USER_ACCENT } from '../config/consts-attr.js'
-import { icon_accent } from '../components/icons.js'
-import { renderToggle } from '../components/renderToggles.js'
 import { Notify } from '../components/renderNotify.js'
+import { renderToggle } from '../components/renderToggles.js'
+import { icon_accent } from '../components/icons.js'
 
-const DEFAULT_STATE = false
 const STORAGE_KEY = 'toggleUserBubbleAccentState'
 const DATA_ATTR = ATTR_BUBBLE_USER_ACCENT
+const DEFAULT_STATE = false
 
 // Render toggle HTML
 function templateHTML() {
@@ -33,11 +33,11 @@ async function loadState() {
 		return false
 	}
 }
-
 // Save state to storage
 async function saveState(state = DEFAULT_STATE) {
 	try {
 		await setItem(STORAGE_KEY, state)
+		state ? Notify.success('User bubble accent enabled') : Notify.info('User bubble accent enable')
 		return true
 	} catch (error) {
 		handleError('Failed to save user accent bubble preference', error)
@@ -81,12 +81,12 @@ async function handleChange({ target }) {
 	updateDataAttr(isEnabled)
 	saveState(isEnabled)
 
-	// Show appropriate notification
-	if (isEnabled) {
-		Notify.success('User bubble accent enabled')
-	} else {
-		Notify.info('User bubble accent disabled')
-	}
+	// // Show appropriate notification
+	// if (isEnabled) {
+	// 	Notify.success('User bubble accent enabled')
+	// } else {
+	// 	Notify.info('User bubble accent disabled')
+	// }
 }
 
 // Setup toggle input listener (mount after DOM exists)
