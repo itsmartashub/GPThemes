@@ -1,6 +1,6 @@
 import { runtime, action } from 'webextension-polyfill'
 
-import { getItem, setItem, removeItems } from './utils/storage'
+import { getItem, setItem, removeItems, getStorage, clearStorage } from './utils/storage'
 
 // Constants
 const BADGE_COLOR = '#ca93fb'

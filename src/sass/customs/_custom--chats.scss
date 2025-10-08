@@ -55,8 +55,8 @@
 
 
 /* Toggle OF → replace with transparent colors to "remove" bubble bg */
-html[style*="--gpthToggleBubbleUser: 0"] .user-message-bubble-color,
-html[style*="--gpthToggleBubbleGpt: 0"] .agent-turn {
+html[data-gpth-toggle-bubble-user] .user-message-bubble-color,
+html[data-gpth-toggle-bubble-gpt] .agent-turn {
     background-color: transparent !important;
 }
 
@@ -64,7 +64,8 @@ html[style*="--gpthToggleBubbleGpt: 0"] .agent-turn {
 
 /* ! ========== CUSTOM COLORS - Agressive accent for User chat ========== */
 // Accent enabled when var is 1 
-html[style*="--gpthUserBubbleAccent: 1"] {
+html[style*="--gpthUserBubbleAccent: 1"],
+html[data-gpth-toggle-bubble-user-accent] {
     --c-bg-msg-user: var(--c-accent) !important;
 
     .user-message-bubble-color {
@@ -78,7 +79,8 @@ html[style*="--gpthUserBubbleAccent: 1"] {
 }
 
 // If user chat bubble off (bg transparent) and accent user bubble is on, the text should be default, and not accent because of readability, and not --c-on-accent
-html[style*="--gpthToggleBubbleUser: 0"][style*="--gpthUserBubbleAccent: 1"] {
+html[style*="--gpthToggleBubbleUser: 0"][style*="--gpthUserBubbleAccent: 1"],
+html[data-toggle-bubble-user][data-toggle-bubble-user-accent] {
     .user-message-bubble-color {
         color: var(--c-txt) !important;
     }

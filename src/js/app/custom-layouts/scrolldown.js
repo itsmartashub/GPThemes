@@ -92,7 +92,7 @@ function applyPosition(position = DEFAULT_POSITION, btnContainer, silent = false
 	const $currActive = $(`.${SELECTORS.SCROLLDOWN.BTN}.active`, btnContainer)
 
 	if ($currActive?.dataset.position === position) {
-		return Notify.info(`Already at ${position} position`) // Silently ignore - already there!
+		return
 	}
 
 	// 1. Update active button

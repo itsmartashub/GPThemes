@@ -15,7 +15,7 @@ let retryCount = 0
 let retryTimeout = null // For cleanup
 
 // Main initialization function
-function initExtension() {
+async function initExtension() {
 	// console.log(`[🎨GPThemes]: Initializing components (attempt ${retryCount + 1}/${CONFIG.MAX_RETRIES})`)
 
 	try {

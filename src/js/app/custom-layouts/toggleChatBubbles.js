@@ -1,18 +1,18 @@
 import { getItem, setItem } from '../../utils/storage.js'
 import { SELECTORS } from '../config/selectors.js'
-import { $, $$, setVars } from '../../utils/dom.js'
+import { $, $$ } from '../../utils/dom.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { Notify } from '../components/renderNotify.js'
 
 // Bubble types + config
 const CONFIG = {
-	User: {
+	user: {
 		label: 'USER',
-		var: '--gpthToggleBubbleUser', // our 0/1 var
+		attr: 'data-gpth-toggle-bubble-user',
 	},
-	GPT: {
+	gpt: {
 		label: 'GPT',
-		var: '--gpthToggleBubbleGpt',
+		attr: 'data-gpth-toggle-bubble-gpt',
 	},
 }
 
@@ -48,13 +48,19 @@ function templateHTML() {
   `
 }
 
-// Apply CSS only (no DOM dependency)
-function applyCss(state) {
-	const vars = {}
+// Apply data attributes to document root
+function applyDataAttributes(state) {
+	const root = document.documentElement
+
 	for (const [type, config] of Object.entries(CONFIG)) {
-		vars[config.var] = state[type] ? '1' : '0'
+		if (state[type]) {
+			// When bubble is ENABLED (checked), remove the data attribute
+			root.removeAttribute(config.attr)
+		} else {
+			// When bubble is DISABLED (unchecked), set the data attribute
+			root.setAttribute(config.attr, '')
+		}
 	}
-	setVars(vars)
 }
 
 // Update checkbox inputs to reflect state (DOM required)
@@ -69,7 +75,7 @@ function updateInputs(state) {
 // Load state
 async function loadState() {
 	try {
-		const result = await getItem(STORAGE_KEY) // object states: { user: true, gpt: true } | { user: false, gpt: false } | { user: true, gpt: false } | { user: false, gpt: true } | null
+		const result = await getItem(STORAGE_KEY)
 		return result || DEFAULT_STATE
 	} catch (error) {
 		Notify.error('Failed to load bubble preference')
@@ -102,7 +108,7 @@ async function handleChange(event) {
 
 	const currentState = await loadState()
 	const updatedState = { ...currentState, [type]: input.checked }
-	applyCss(updatedState)
+	applyDataAttributes(updatedState)
 	updateInputs(updatedState)
 	saveState(updatedState).then((success) =>
 		input.checked ? Notify.success(` ${type} bubble enabled`) : Notify.info(` ${type} bubble disabled`)
@@ -119,16 +125,10 @@ async function mount() {
 
 	// Sync inputs to current state on mount
 	const state = await loadState()
-	applyCss(state)
+	applyDataAttributes(state)
 	updateInputs(state)
 
 	container.addEventListener('change', handleChange)
 }
-
-// // Init module: apply CSS vars early without DOM dependency
-// async function init() {
-// 	const state = await loadState()
-// 	applyCss(state)
-// }
 
 export { templateHTML as renderCustomChatBubbles, mount }

@@ -32,14 +32,8 @@ async function init() {
 	}
 }
 
-// --- DOM CREATION ---
-async function createFAB() {
-	// Prevent duplicates
-	if (elements.FAB) return
-
-	const $FAB = document.createElement('div')
-	$FAB.className = SELECTORS.FLOATING_BTN.ROOT
-	$FAB.innerHTML = `
+function templateHTML() {
+	return `
 		<div class="${SELECTORS.FLOATING_BTN.ROOT}-icon">${icon_paint}</div>
 		<div class="${SELECTORS.FLOATING_BTN.OPTIONS}">
 			<div class="${SELECTORS.FLOATING_BTN.BTNS_CONTAINER}">
@@ -50,6 +44,16 @@ async function createFAB() {
 			</div>
 		</div>
 	`
+}
+
+// --- DOM CREATION ---
+async function createFAB() {
+	// Prevent duplicates
+	if (elements.FAB) return
+
+	const $FAB = document.createElement('div')
+	$FAB.className = SELECTORS.FLOATING_BTN.ROOT
+	$FAB.innerHTML = templateHTML()
 	document.body.appendChild($FAB)
 
 	cacheElements($FAB)
@@ -80,8 +84,6 @@ function onFABClick(e) {
 }
 
 function toggleFABOptions(show = !isOptionsShown) {
-	console.log('[🎨GPThemes]: toggleFABOptions', show)
-
 	if (!elements.FABOptions) return
 
 	isOptionsShown = show

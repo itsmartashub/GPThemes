@@ -1,23 +1,8 @@
 import { SELECTORS } from './config/selectors'
 import { PFX } from './config/constants'
-import {
-	renderColorsTab,
-	handleColorsListeners,
-	init as initColorsModule,
-	mount as mountColors,
-} from './custom-colors/index'
-import {
-	renderFontsTab,
-	handleFontsListeners,
-	init as initFontsModule,
-	mount as mountFonts,
-} from './custom-fonts/index'
-import {
-	renderWidthsTab,
-	handleWidthsListeners,
-	init as initWidthsModule,
-	mount as mountWidths,
-} from './custom-layouts/index'
+import { renderColorsTab, init as initColorsModule, mount as mountColors } from './custom-colors/index'
+import { renderFontsTab, init as initFontsModule, mount as mountFonts } from './custom-fonts/index'
+import { renderWidthsTab, init as initWidthsModule, mount as mountWidths } from './custom-layouts/index'
 // Scrolldown is initialized and mounted from custom-layouts module
 // import { handleCustomChatboxListeners } from './toggleCustomChatbox'
 
@@ -51,7 +36,14 @@ async function createSettings() {
 
 	// 5. Initialize modules now that DOM is attached
 	try {
-		await Promise.all([initColorsModule(), initFontsModule(), initWidthsModule()])
+		const results = await Promise.allSettled([initColorsModule(), initFontsModule(), initWidthsModule()])
+
+		results.forEach((r, i) => {
+			if (r.status === 'rejected') {
+				const names = ['Colors', 'Fonts', 'Widths']
+				console.error(`[Settings] ${names[i]} module failed:`, r.reason)
+			}
+		})
 		// After state/css init, mount DOM listeners scoped to settings
 		mountColors()
 		mountFonts()
@@ -118,11 +110,6 @@ function cacheElements(gpthSettings) {
 
 function attachListeners() {
 	handleTabsSwitching()
-
-	// handleColorsListeners()
-	// handleFontsListeners()
-	// handleWidthsListeners()
-	// handleCustomChatboxListeners()
 }
 
 function openSettings() {

@@ -61,12 +61,6 @@ async function loadState() {
 
 // Apply CSS var without saving
 function applyCss(cssVar, isHidden) {
-	// console.log('applyCss', config, isHidden)
-
-	// const varName = String(config.cssVar || '')
-
-	// console.log('varName', varName)
-
 	if (!cssVar) return
 
 	if (isHidden) setVar(cssVar, '1')

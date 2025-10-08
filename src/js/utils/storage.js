@@ -17,7 +17,7 @@ function validateArea(area) {
 }
 
 /* Get one key value from storage */
-export async function getItem(key, defaultValue = null, area = DEFAULT_AREA) {
+async function getItem(key, defaultValue = null, area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
 		const result = await browser.storage[area].get(key)
@@ -29,7 +29,7 @@ export async function getItem(key, defaultValue = null, area = DEFAULT_AREA) {
 }
 
 /* Get multiple items by keys */
-export async function getItems(keys = [], area = DEFAULT_AREA) {
+async function getItems(keys = [], area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
 		const result = await browser.storage[area].get(keys)
@@ -41,7 +41,7 @@ export async function getItems(keys = [], area = DEFAULT_AREA) {
 }
 
 /* Set one key/value pair */
-export async function setItem(key, value, area = DEFAULT_AREA) {
+async function setItem(key, value, area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
 		await browser.storage[area].set({ [key]: value })
@@ -51,7 +51,7 @@ export async function setItem(key, value, area = DEFAULT_AREA) {
 }
 
 /* Set multiple key/value pairs */
-export async function setItems(data = {}, area = DEFAULT_AREA) {
+async function setItems(data = {}, area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
 		await browser.storage[area].set(data)
@@ -61,7 +61,7 @@ export async function setItems(data = {}, area = DEFAULT_AREA) {
 }
 
 /* Remove specific key(s) */
-export async function removeItems(keys, area = DEFAULT_AREA) {
+async function removeItems(keys, area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
 		await browser.storage[area].remove(keys)
@@ -71,7 +71,7 @@ export async function removeItems(keys, area = DEFAULT_AREA) {
 }
 
 /* Clear entire storage area */
-export async function clearStorage(area = DEFAULT_AREA) {
+async function clearStorage(area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
 		await browser.storage[area].clear()
@@ -79,25 +79,18 @@ export async function clearStorage(area = DEFAULT_AREA) {
 		console.error('[storage:clearStorage]', err)
 	}
 }
-
-/* Get storage usage in bytes */
-export async function getBytesInUse(keys = null, area = DEFAULT_AREA) {
+async function getStorage(area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
-		return await browser.storage[area].getBytesInUse(keys)
+		const allData = await browser.storage[area].get()
+		return allData
 	} catch (err) {
-		console.error('[storage:getBytesInUse]', err)
-		return 0
+		console.error('[storage:getAllKeys]', err)
+		return []
 	}
 }
-
-/* Check if storage area is available */
-export function isAreaAvailable(area) {
-	return !!browser.storage[area]
-}
-
 /* Get all keys in storage area */
-export async function getAllKeys(area = DEFAULT_AREA) {
+async function getAllKeys(area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
 		const allData = await browser.storage[area].get()
@@ -109,7 +102,7 @@ export async function getAllKeys(area = DEFAULT_AREA) {
 }
 
 /* Check if key exists in storage */
-export async function hasKey(key, area = DEFAULT_AREA) {
+async function hasKey(key, area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
 		const result = await browser.storage[area].get(key)
@@ -119,9 +112,24 @@ export async function hasKey(key, area = DEFAULT_AREA) {
 		return false
 	}
 }
+/* Get storage usage in bytes */
+async function getBytesInUse(keys = null, area = DEFAULT_AREA) {
+	try {
+		validateArea(area)
+		return await browser.storage[area].getBytesInUse(keys)
+	} catch (err) {
+		console.error('[storage:getBytesInUse]', err)
+		return 0
+	}
+}
+
+/* Check if storage area is available */
+function isAreaAvailable(area) {
+	return !!browser.storage[area]
+}
 
 /* Update specific properties of an object in storage (shallow merge) */
-export async function updateObject(key, updates, area = DEFAULT_AREA) {
+async function updateObject(key, updates, area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
 		const existing = await getItem(key, {}, area)
@@ -133,7 +141,7 @@ export async function updateObject(key, updates, area = DEFAULT_AREA) {
 }
 
 /* Watch storage changes globally */
-export function watchStorageChanges(callback) {
+function watchStorageChanges(callback) {
 	const listener = (changes, areaName) => {
 		callback(changes, areaName)
 	}
@@ -146,40 +154,43 @@ export function watchStorageChanges(callback) {
 }
 
 // Pre-configured area-specific functions
-export const storageLocal = {
+const storageLocal = {
 	getItem: (key, defaultValue = null) => getItem(key, defaultValue, 'local'),
 	getItems: (keys = []) => getItems(keys, 'local'),
 	setItem: (key, value) => setItem(key, value, 'local'),
 	setItems: (data = {}) => setItems(data, 'local'),
 	removeItems: (keys) => removeItems(keys, 'local'),
 	clearStorage: () => clearStorage('local'),
+	getStorage: () => getStorage('local'),
 	getBytesInUse: (keys = null) => getBytesInUse(keys, 'local'),
 	getAllKeys: () => getAllKeys('local'),
 	hasKey: (key) => hasKey(key, 'local'),
 	updateObject: (key, updates) => updateObject(key, updates, 'local'),
 }
 
-export const storageSync = {
+const storageSync = {
 	getItem: (key, defaultValue = null) => getItem(key, defaultValue, 'sync'),
 	getItems: (keys = []) => getItems(keys, 'sync'),
 	setItem: (key, value) => setItem(key, value, 'sync'),
 	setItems: (data = {}) => setItems(data, 'sync'),
 	removeItems: (keys) => removeItems(keys, 'sync'),
 	clearStorage: () => clearStorage('sync'),
+	getStorage: () => getStorage('sync'),
 	getBytesInUse: (keys = null) => getBytesInUse(keys, 'sync'),
 	getAllKeys: () => getAllKeys('sync'),
 	hasKey: (key) => hasKey(key, 'sync'),
 	updateObject: (key, updates) => updateObject(key, updates, 'sync'),
 }
 // Default export with all functions
-export default {
+export {
 	STORAGE_AREAS,
 	getItem,
 	getItems,
 	setItem,
 	setItems,
-	removeItems: removeItems,
+	removeItems,
 	clearStorage,
+	getStorage,
 	getBytesInUse,
 	isAreaAvailable,
 	getAllKeys,
