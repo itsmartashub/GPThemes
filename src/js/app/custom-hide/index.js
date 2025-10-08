@@ -1,5 +1,5 @@
 import { getItems, setItem } from '../../utils/storage.js'
-import { $, setVar, removeVar } from '../../utils/dom.js'
+import { $, ROOT_HTML } from '../../utils/dom.js'
 import { ELEMENTS } from '../config/hidden-els.js'
 import { SELECTORS } from '../config/selectors'
 import { renderToggle } from '../components/renderToggles.js'
@@ -18,7 +18,7 @@ function templateHTML() {
 	const items = ELEMENTS.map((cfg) =>
 		renderToggle({
 			id: cfg.id,
-			checked: cfg.isHidden,
+			checked: cfg.isHidden, // false by default = OFF
 			label: cfg.label,
 			subtitle: cfg.subtitle,
 			icon: cfg.icon,
@@ -41,36 +41,40 @@ async function saveState(key, value) {
 	try {
 		await setItem(key, value)
 		let element = key.startsWith('hide') ? key.slice(4) : 'Element'
-		// Notify.success(`${key.startsWith('hide') ? key.slice(4) : key} ${value ? 'hidden' : 'shown'}`)
 		value ? Notify.info(`😶‍🌫️ ${element} hidden`) : Notify.success(` 👁️ ${element} shown`)
 	} catch (e) {
 		Notify.error(`Failed to hide element`)
 		console.error('Failed to save toggle state', key, e)
 	}
 }
+
 // Load saved state from storage
 async function loadState() {
 	try {
-		const result = await getItems(ELEMENTS.map((cfg) => cfg.id)) // boolean: true | false | null
-		return !!result
+		const result = await getItems(ELEMENTS.map((cfg) => cfg.id))
+		return result
 	} catch (error) {
-		handleError('Failed to load user accent bubble preference', error)
-		return false
+		console.error('Failed to load toggle states:', error)
+		return {}
 	}
 }
 
-// Apply CSS var without saving
-function applyCss(cssVar, isHidden) {
-	if (!cssVar) return
+// Apply data attribute without saving
+function updateDataAttr(dataAttr, isHidden) {
+	if (!dataAttr) return
 
-	if (isHidden) setVar(cssVar, '1')
-	else removeVar(cssVar)
+	if (isHidden) {
+		// When element should be hidden, ADD the data attribute
+		ROOT_HTML.setAttribute(dataAttr, '')
+	} else {
+		// When element should be shown, REMOVE the data attribute
+		ROOT_HTML.removeAttribute(dataAttr)
+	}
 }
 
 // destructure e.target
 function handleChange({ target }) {
 	if (!target.matches('input[type="checkbox"]')) return
-	console.log(target)
 
 	const { id } = target
 	const cfg = ELEMENTS_MAP.get(id)
@@ -84,7 +88,7 @@ function handleChange({ target }) {
 	}
 
 	const isHidden = target.checked
-	applyCss(cfg.cssVar, isHidden)
+	updateDataAttr(cfg.dataAttr, isHidden)
 	saveState(cfg.storageKey, isHidden)
 }
 
@@ -92,7 +96,7 @@ function handleChange({ target }) {
 async function mount() {
 	const container = document.getElementById(SELECTORS.HIDE.CONTAINER_ID)
 	if (!container) {
-		Notify.warning(`Element with ID ${SELECTORS.HIDE.CONTAINER_ID} not found`)
+		console.warn(`Element with ID ${SELECTORS.HIDE.CONTAINER_ID} not found`)
 		return
 	}
 
@@ -107,7 +111,7 @@ async function mount() {
 
 			const input = $(`#${cfg.id}`, container)
 			if (input) input.checked = isHidden
-			applyCss(cfg.cssVar, isHidden)
+			updateDataAttr(cfg.dataAttr, isHidden)
 		}
 	} catch (e) {
 		Notify.error('Failed to load toggle states')
@@ -116,20 +120,5 @@ async function mount() {
 
 	container.addEventListener('change', handleChange)
 }
-
-// // Apply CSS vars only (no DOM dependency)
-// async function init() {
-// 	try {
-// 		const savedStates = await loadState()
-// 		for (const cfg of ELEMENTS) {
-// 			const saved = savedStates?.[cfg.id]
-// 			const isHidden = typeof saved === 'boolean' ? saved : cfg.isHidden
-// 			applyCss(cfg, isHidden)
-// 		}
-// 	} catch (e) {
-// 		Notify.error('Failed to load toggle states')
-// 		console.error('Failed to load toggle states', e)
-// 	}
-// }
 
 export { templateHTML as renderCustomHides, mount }

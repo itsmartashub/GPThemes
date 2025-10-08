@@ -22,16 +22,16 @@
 
 
 /* Header */
-html[style*="--gpthHideHeader: 1"] header#page-header {
+html[data-gpth-hide-header] header#page-header {
     display: none !important;
 }
 
 /* TODO: has to handle and this selector in SELECTOR js file for this element */
-// html[style*="--gpthHideHeader: 1"] .h-header-height.top-0 {
+// html[data-gpth-hide-header]  .h-header-height.top-0 {
 //     display: none !important;
 // }
 
 /* Footer */
-html[style*="--gpthHideFooter: 1"] #thread-bottom-container>#thread-bottom~div.min-h-8>div {
+html[data-gpth-hide-footer] #thread-bottom-container>#thread-bottom~div.min-h-8>div {
     display: none !important;
 }

@@ -1,5 +1,6 @@
 import { getItem, setItem } from '../../utils/storage.js'
 import { SELECTORS } from '../config/selectors.js'
+import { ATTR_BUBBLE_GPT, ATTR_BUBBLE_USER } from '../config/constants-attr.js'
 import { $, $$, ROOT_HTML } from '../../utils/dom.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { Notify } from '../components/renderNotify.js'
@@ -8,11 +9,11 @@ import { Notify } from '../components/renderNotify.js'
 const CONFIG = {
 	user: {
 		label: 'USER',
-		attr: 'data-gpth-toggle-bubble-user',
+		attr: ATTR_BUBBLE_USER,
 	},
 	gpt: {
 		label: 'GPT',
-		attr: 'data-gpth-toggle-bubble-gpt',
+		attr: ATTR_BUBBLE_GPT,
 	},
 }
 
@@ -49,7 +50,7 @@ function templateHTML() {
 }
 
 // Apply data attributes to document root
-function applyDataAttributes(state) {
+function updateDataAttr(state) {
 	for (const [type, config] of Object.entries(CONFIG)) {
 		if (state[type]) {
 			// When bubble is ENABLED (checked), remove the data attribute
@@ -106,7 +107,7 @@ async function handleChange(event) {
 
 	const currentState = await loadState()
 	const updatedState = { ...currentState, [type]: input.checked }
-	applyDataAttributes(updatedState)
+	updateDataAttr(updatedState)
 	updateInputs(updatedState)
 	saveState(updatedState).then((success) =>
 		input.checked ? Notify.success(` ${type} bubble enabled`) : Notify.info(` ${type} bubble disabled`)
@@ -123,7 +124,7 @@ async function mount() {
 
 	// Sync inputs to current state on mount
 	const state = await loadState()
-	applyDataAttributes(state)
+	updateDataAttr(state)
 	updateInputs(state)
 
 	container.addEventListener('change', handleChange)

@@ -1,13 +1,14 @@
 import { getItem, setItem } from '../../utils/storage.js'
 import { $, ROOT_HTML } from '../../utils/dom.js'
 import { SELECTORS } from '../config/selectors.js'
+import { ATTR_BUBBLE_USER_ACCENT } from '../config/constants-attr.js'
 import { icon_accent } from '../components/icons.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { Notify } from '../components/renderNotify.js'
 
 const DEFAULT_STATE = false
 const STORAGE_KEY = 'toggleUserBubbleAccentState'
-const DATA_ATTR = 'data-gpth-toggle-bubble-user-accent'
+const DATA_ATTR = ATTR_BUBBLE_USER_ACCENT
 
 // Render toggle HTML
 function templateHTML() {
@@ -45,7 +46,7 @@ async function saveState(state = DEFAULT_STATE) {
 }
 
 // Apply data attribute to document root
-function applyDataAttribute(enabled) {
+function updateDataAttr(enabled) {
 	if (enabled) {
 		// When toggle is ON, set the data attribute
 		ROOT_HTML.setAttribute(DATA_ATTR, '')
@@ -77,7 +78,7 @@ async function handleChange({ target }) {
 	}
 
 	const isEnabled = target.checked
-	applyDataAttribute(isEnabled)
+	updateDataAttr(isEnabled)
 	saveState(isEnabled)
 
 	// Show appropriate notification
@@ -99,7 +100,7 @@ async function mount() {
 	// Sync with saved state
 	const state = await loadState()
 	updateInputs(state)
-	applyDataAttribute(state)
+	updateDataAttr(state)
 	input.addEventListener('change', handleChange)
 }
 
