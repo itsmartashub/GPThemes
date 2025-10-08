@@ -36,7 +36,6 @@
 
   --cp-box-shadow: 0 0.5rem 1rem var(--c-accent-10);
   --cp-box-shadow-sm: 0 0.125rem 0.25rem var(--c-accent-10);
-  ;
 
   --cp-bg-checker: repeating-conic-gradient(var(--c-accent) 0% 25%, transparent 0% 50%) 50% / 0.5rem 0.5rem;
 }
@@ -205,6 +204,7 @@
 
 /* Areas & Sliders */
 .cp_thumb {
+  will-change: left, top;
   position: absolute;
   transform: translate(-50%, -50%);
   pointer-events: none;

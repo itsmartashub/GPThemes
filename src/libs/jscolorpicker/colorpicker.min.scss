@@ -1,5 +1,15 @@
-[data-bs-theme=dark],
-[data-cp-theme=dark] {
+html.light {
+    --cp-body-bg: #ffffff;
+    --cp-body-color: #212529;
+    --cp-body-color-rgb: 33, 37, 41;
+    --cp-border-color: #ccc;
+    --cp-hover-color: #999;
+    --cp-button-color: #ccc;
+    --cp-border-color-translucent: rgba(0, 0, 0, .175);
+    --cp-tertiary-color: rgba(33, 37, 41, .5)
+}
+
+html.dark {
     --cp-body-bg: #212529 !important;
     --cp-body-color: #dee2e6 !important;
     --cp-body-color-rgb: 222, 226, 230 !important;
@@ -10,26 +20,14 @@
     --cp-tertiary-color: rgba(222, 226, 230, .5) !important
 }
 
-:root,
-[data-bs-theme=light],
-[data-cp-theme=light] {
-    --cp-body-bg: #fff;
-    --cp-body-color: #212529;
-    --cp-body-color-rgb: 33, 37, 41;
-    --cp-border-color: #ccc;
-    --cp-hover-color: #999;
-    --cp-button-color: #ccc;
-    --cp-border-color-translucent: rgba(0, 0, 0, .175);
-    --cp-tertiary-color: rgba(33, 37, 41, .5)
-}
-
 :root {
     box-sizing: border-box;
     --cp-size: 2.375rem;
-    --cp-delay: .15s;
-    --cp-border-radius-sm: .25rem;
-    --cp-border-radius-lg: .5rem;
+    --cp-delay: 150ms;
+    --cp-border-radius-sm: var(--br-btn);
+    --cp-border-radius-lg: var(--br);
     --cp-swatch-width: 1.5rem;
+
     --cp-box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
     --cp-box-shadow-sm: 0 .125rem .25rem rgba(0, 0, 0, .075);
     --cp-bg-checker: repeating-conic-gradient(#808080 0% 25%, transparent 0% 50%) 50% / .5rem .5rem
@@ -143,7 +141,8 @@
     --cp-primary: hsl(var(--cp-hue), 50%, 60%);
     position: absolute;
     z-index: 1055;
-    width: 17.2rem;
+    // width: 17.2rem;
+    width: clamp(12rem, 60%, 16rem);
     background-color: var(--cp-body-bg);
     border: 1px solid var(--cp-border-color-translucent);
     border-radius: var(--cp-border-radius-lg);
@@ -151,7 +150,7 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--cp-delay) ease-in-out;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif
+    font-family: var(--gpthFontFamily);
 }
 
 .cp_dialog-inner {
