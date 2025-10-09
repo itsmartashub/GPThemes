@@ -1,10 +1,8 @@
-// src/settings/index.js
-
 import { SELECTORS } from './config/selectors.js'
 import { PFX } from './config/consts.js'
 import { renderColorsTab, init as initColors, mount as mountColors } from './custom-colors/index.js'
 import { renderFontsTab, init as initFonts, mount as mountFonts } from './custom-fonts/index.js'
-import { renderWidthsTab, init as initWidths, mount as mountWidths } from './custom-layouts/index.js'
+import { renderLayoutsTab, init as initWidths, mount as mountWidths } from './custom-layouts/index.js'
 
 // ============================================================================
 // Global state (cached refs, constants)
@@ -19,7 +17,7 @@ const HIDDEN_CLASS = 'hidden'
 const TABS_CONFIG = [
 	{ id: 'colors', label: 'Color', render: renderColorsTab, init: initColors, mount: mountColors },
 	{ id: 'fonts', label: 'Font', render: renderFontsTab, init: initFonts, mount: mountFonts },
-	{ id: 'layout', label: 'Layout', render: renderWidthsTab, init: initWidths, mount: mountWidths },
+	{ id: 'layout', label: 'Layout', render: renderLayoutsTab, init: initWidths, mount: mountWidths },
 ]
 
 // ============================================================================
@@ -29,7 +27,7 @@ function templateHTML() {
 	// const tabs = [
 	// 	{ id: 'colors', label: 'Color', render: renderColorsTab },
 	// 	{ id: 'fonts', label: 'Font', render: renderFontsTab },
-	// 	{ id: 'layout', label: 'Layout', render: renderWidthsTab },
+	// 	{ id: 'layout', label: 'Layout', render: renderLayoutsTab },
 	// ]
 
 	// const buttons = TABS_CONFIG.map(
