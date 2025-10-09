@@ -27,7 +27,7 @@ async function loadState() {
 	try {
 		const result = await getItem(STORAGE_KEY) // boolean: true | false | null
 
-		return !!result
+		return !!result // if null => !!null => false
 	} catch (error) {
 		handleError('Failed to load user accent bubble preference', error)
 		return false
@@ -37,7 +37,7 @@ async function loadState() {
 async function saveState(state = DEFAULT_STATE) {
 	try {
 		await setItem(STORAGE_KEY, state)
-		state ? Notify.success('User bubble accent enabled') : Notify.info('User bubble accent enable')
+		state ? Notify.success('User bubble accent enabled') : Notify.info('User bubble accent disabled')
 		return true
 	} catch (error) {
 		handleError('Failed to save user accent bubble preference', error)
@@ -96,11 +96,12 @@ async function mount() {
 		console.warning(`Element with ID ${SELECTORS.CHATS.TOGGLE_USER_BUBBLE_ACCENT_ID} not found`)
 		return
 	}
-
-	// Sync with saved state
+	// Get data from storage and update html root data-attribute (css) and inputs
 	const state = await loadState()
-	updateInputs(state)
 	updateDataAttr(state)
+	updateInputs(state)
+
+	// Attach listeners to inputs
 	input.addEventListener('change', handleChange)
 }
 

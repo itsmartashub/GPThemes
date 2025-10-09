@@ -49,7 +49,7 @@ function templateHTML() {
 // --- DOM CREATION ---
 async function createFAB() {
 	// Prevent duplicates
-	if (elements.FAB) return
+	// if (elements.FAB) return
 
 	const $FAB = document.createElement('div')
 	$FAB.className = SELECTORS.FLOATING_BTN.ROOT

@@ -367,6 +367,8 @@ async function resetWidths() {
 // ==========================================
 // Initialize the module
 async function init() {
+	console.log('[INIT LAYOUT]')
+
 	try {
 		const result = await getItems(Object.values(WIDTH_CONFIG.storageKeys))
 
@@ -408,6 +410,8 @@ async function init() {
 
 // Export public functions
 function mount() {
+	console.log('[MOUNT LAYOUT]')
+
 	handleWidthsListeners()
 	// Mount sub-features after DOM attached
 	mountCustomChatboxHeight()

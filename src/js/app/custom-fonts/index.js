@@ -4,7 +4,17 @@ import { SELECTORS } from '../config/selectors'
 import { Notify } from '../components/renderNotify.js'
 import { renderButton } from '../components/renderButtons'
 import { renderFontSmallCard, renderFontBigCard } from '../components/renderFonts'
-import { closeSettings, $settings } from '../settingsManager.js'
+// import { closeSettings } from '../settingsManager.js'
+
+// let $rootSettings = null
+let currentFontLink = null
+let preconnectLinksAdded = false
+let cachedElements = null
+let storedValues = null
+
+const focusValues = {}
+const GOOGLE_FONT_BASE = 'https://fonts.googleapis.com/css2?family='
+const GOOGLE_FONT_WEIGHTS = ':ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,300;1,400;1,500;1,600;1,700'
 
 // ============================================================================
 // CONFIG
@@ -84,53 +94,87 @@ const CONFIG = {
 	},
 }
 
-const GOOGLE_FONT_BASE = 'https://fonts.googleapis.com/css2?family='
-const GOOGLE_FONT_WEIGHTS = ':ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,300;1,400;1,500;1,600;1,700'
-let currentFontLink = null
-let preconnectLinksAdded = false
-const focusValues = {}
-let cachedElements = null
-
 // ============================================================================
-// INIT
+// RENDER
 // ============================================================================
 
-async function init() {
-	// 1. Get stored values from storage
-	const keys = [
-		CONFIG.fontFamily.storageKey,
-		CONFIG.fontSize.storageKey,
-		CONFIG.lineHeight.storageKey,
-		CONFIG.letterSpacing.storageKey,
-	]
-
-	const stored = await getItems(keys)
-	const getStoredOrDefault = (configKey) => stored[CONFIG[configKey].storageKey] ?? CONFIG[configKey].default
-
-	const fontFamily = getStoredOrDefault('fontFamily')
-	const fontSize = getStoredOrDefault('fontSize')
-	const lineHeight = getStoredOrDefault('lineHeight')
-	const letterSpacing = getStoredOrDefault('letterSpacing')
-
-	// 2. Load Google Font if not font family isnt default
-	if (fontFamily !== CONFIG.fontFamily.default) setGoogleFont(fontFamily)
-
-	// 3. Update DOM (CSS vars)
-	setVars({
-		[CONFIG.fontFamily.cssVar]: fontFamily,
-		[CONFIG.fontSize.cssVar]: fontSize,
-		[CONFIG.lineHeight.cssVar]: lineHeight,
-		[CONFIG.letterSpacing.cssVar]: letterSpacing,
-	})
-
-	// 4. Update inputs using helper
-	updateInputs({ fontFamily, fontSize, lineHeight, letterSpacing })
+function templateHTML() {
+	return `
+    <section id="fontChangerPopover" class="fonts">
+      <div class="fonts__props">
+        <div class="fonts__bigcards-wrapper">
+          <div class="fonts__family fonts__group card card--big h-full">
+            <label for="${CONFIG.fontFamily.id}" class="flex flex-col gap-1 h-full w-full">
+              <div>
+                <p class="card__unit card__icon">T</p>
+                <p class="card__name uppercase font-semibold">FONT FAMILY</p>
+              </div>
+              <select id="${
+					CONFIG.fontFamily.id
+				}" class="flex-1 border-none outline-none focus:none font-bold" role="listbox">
+                ${CONFIG.fontFamily.options
+					.map((f) => {
+						const val = f.name === 'Default' ? CONFIG.fontFamily.default : f.name
+						return `<option value="${val}">${f.label}</option>`
+					})
+					.join('')}
+              </select>
+            </label>
+          </div>
+          ${renderFontBigCard({
+				name: CONFIG.fontSize.label,
+				className: SELECTORS.FONT.SIZE_CLASS,
+				inputId: CONFIG.fontSize.id,
+				inputType: 'number',
+				inputValue: CONFIG.fontSize.default,
+				inputPlaceholder: CONFIG.fontSize.default,
+				unit: CONFIG.fontSize.unit,
+				min: CONFIG.fontSize.min,
+				max: CONFIG.fontSize.max,
+			})}
+        </div>
+        <div class="fonts__smallcards-wrapper">
+          ${renderFontSmallCard({
+				name: CONFIG.lineHeight.label,
+				className: SELECTORS.FONT.LINE_HEIGHT_CLASS,
+				inputId: CONFIG.lineHeight.id,
+				inputType: 'number',
+				inputValue: CONFIG.lineHeight.default,
+				inputPlaceholder: CONFIG.lineHeight.default,
+				unit: CONFIG.lineHeight.unit,
+				min: CONFIG.lineHeight.min,
+				max: CONFIG.lineHeight.max,
+			})}
+          ${renderFontSmallCard({
+				name: CONFIG.letterSpacing.label,
+				className: SELECTORS.FONT.LETTER_SPACING_CLASS,
+				inputId: CONFIG.letterSpacing.id,
+				inputType: 'number',
+				inputValue: CONFIG.letterSpacing.default,
+				inputPlaceholder: CONFIG.letterSpacing.default,
+				unit: CONFIG.letterSpacing.unit,
+				min: CONFIG.letterSpacing.min,
+				max: CONFIG.letterSpacing.max,
+			})}
+        </div>
+      </div>
+      <footer class="flex justify-center mt-8">
+        ${renderButton({
+			id: SELECTORS.FONT.RESET_BTN_ID,
+			content: 'Reset Fonts',
+			disabled: false,
+			className: 'btn-primary',
+		})}
+      </footer>
+    </section>
+  `
 }
 
 function getElements() {
 	if (cachedElements) return cachedElements
 
-	const container = $('#fontChangerPopover', $settings)
+	// const container = $('#fontChangerPopover', $rootSettings)
+	const container = document.getElementById('fontChangerPopover')
 	if (!container) return null
 
 	cachedElements = {
@@ -148,6 +192,7 @@ function updateInputs(values) {
 	// console.log('[🎨GPThemes]: updateInputs', values) // Object: { fontFamily: 'Lora', fontSize: 16, lineHeight: 28, letterSpacing: 0 }
 
 	const elements = getElements()
+
 	if (!elements) return
 
 	if (values.fontFamily !== undefined) elements.fontFamily.value = values.fontFamily
@@ -238,6 +283,7 @@ async function handleFontFamily(e) {
 	setVar(CONFIG.fontFamily.cssVar, selectedFontFamily)
 	await setItem(CONFIG.fontFamily.storageKey, selectedFontFamily)
 }
+
 async function resetAll() {
 	// 1. Reset input DOM values
 	updateInputs({
@@ -265,90 +311,12 @@ async function resetAll() {
 	await setItems(defaultsValues)
 
 	// 4. Close settings
-	closeSettings()
+	// closeSettings()
 
-	// 5. Remove injected Google Font links from DOM (<head>)
-	// removeGoogleFontLinks()
-	// 4. Remove ALL Google Font links (including preconnect)
+	// 5. Remove ALL Google Font links (including preconnect)
 	removeAllGoogleFontLinks()
 
 	Notify.success('✅ All fonts have been reset')
-}
-
-// ============================================================================
-// RENDER
-// ============================================================================
-
-function templateHTML() {
-	return `
-    <section id="fontChangerPopover" class="fonts">
-      <div class="fonts__props">
-        <div class="fonts__bigcards-wrapper">
-          <div class="fonts__family fonts__group card card--big h-full">
-            <label for="${CONFIG.fontFamily.id}" class="flex flex-col gap-1 h-full w-full">
-              <div>
-                <p class="card__unit card__icon">T</p>
-                <p class="card__name uppercase font-semibold">FONT FAMILY</p>
-              </div>
-              <select id="${
-					CONFIG.fontFamily.id
-				}" class="flex-1 border-none outline-none focus:none font-bold" role="listbox">
-                ${CONFIG.fontFamily.options
-					.map((f) => {
-						const val = f.name === 'Default' ? CONFIG.fontFamily.default : f.name
-						return `<option value="${val}">${f.label}</option>`
-					})
-					.join('')}
-              </select>
-            </label>
-          </div>
-          ${renderFontBigCard({
-				name: CONFIG.fontSize.label,
-				className: SELECTORS.FONT.SIZE_CLASS,
-				inputId: CONFIG.fontSize.id,
-				inputType: 'number',
-				inputValue: CONFIG.fontSize.default,
-				inputPlaceholder: CONFIG.fontSize.default,
-				unit: CONFIG.fontSize.unit,
-				min: CONFIG.fontSize.min,
-				max: CONFIG.fontSize.max,
-			})}
-        </div>
-        <div class="fonts__smallcards-wrapper">
-          ${renderFontSmallCard({
-				name: CONFIG.lineHeight.label,
-				className: SELECTORS.FONT.LINE_HEIGHT_CLASS,
-				inputId: CONFIG.lineHeight.id,
-				inputType: 'number',
-				inputValue: CONFIG.lineHeight.default,
-				inputPlaceholder: CONFIG.lineHeight.default,
-				unit: CONFIG.lineHeight.unit,
-				min: CONFIG.lineHeight.min,
-				max: CONFIG.lineHeight.max,
-			})}
-          ${renderFontSmallCard({
-				name: CONFIG.letterSpacing.label,
-				className: SELECTORS.FONT.LETTER_SPACING_CLASS,
-				inputId: CONFIG.letterSpacing.id,
-				inputType: 'number',
-				inputValue: CONFIG.letterSpacing.default,
-				inputPlaceholder: CONFIG.letterSpacing.default,
-				unit: CONFIG.letterSpacing.unit,
-				min: CONFIG.letterSpacing.min,
-				max: CONFIG.letterSpacing.max,
-			})}
-        </div>
-      </div>
-      <footer class="flex justify-center mt-8">
-        ${renderButton({
-			id: SELECTORS.FONT.RESET_BTN_ID,
-			content: 'Reset Fonts',
-			disabled: false,
-			className: 'btn-primary',
-		})}
-      </footer>
-    </section>
-  `
 }
 
 // ============================================================================
@@ -409,9 +377,52 @@ const validate = (val, min, max) => {
 	return true
 }
 
-function mount() {
-	const elements = getElements()
-	if (!elements) return
+// ============================================================================
+// INIT
+// ============================================================================
+
+async function init() {
+	console.log('[INIT FONTS]')
+
+	// 1. Get stored values from storage
+	const keys = [
+		CONFIG.fontFamily.storageKey,
+		CONFIG.fontSize.storageKey,
+		CONFIG.lineHeight.storageKey,
+		CONFIG.letterSpacing.storageKey,
+	]
+
+	const stored = await getItems(keys)
+	const getStoredOrDefault = (configKey) => stored[CONFIG[configKey].storageKey] ?? CONFIG[configKey].default
+
+	const fontFamily = getStoredOrDefault('fontFamily')
+	const fontSize = getStoredOrDefault('fontSize')
+	const lineHeight = getStoredOrDefault('lineHeight')
+	const letterSpacing = getStoredOrDefault('letterSpacing')
+
+	// 2. Load Google Font if not font family isnt default
+	if (fontFamily !== CONFIG.fontFamily.default) setGoogleFont(fontFamily)
+
+	// 3. Update DOM (CSS vars)
+	setVars({
+		[CONFIG.fontFamily.cssVar]: fontFamily,
+		[CONFIG.fontSize.cssVar]: fontSize,
+		[CONFIG.lineHeight.cssVar]: lineHeight,
+		[CONFIG.letterSpacing.cssVar]: letterSpacing,
+	})
+
+	storedValues = { fontFamily, fontSize, lineHeight, letterSpacing }
+
+	// 4. Update inputs using helper -> moved in MOUNT since its DOM dependent
+	// updateInputs({ fontFamily, fontSize, lineHeight, letterSpacing })
+}
+
+function mount(rootSettings) {
+	console.log('[MOUNT FONTS]')
+
+	// Update inputs using helper
+	updateInputs(storedValues)
+	// $rootSettings = rootSettings
 	addListeners()
 }
 

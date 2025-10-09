@@ -1,171 +1,26 @@
-import ColorPicker from '../../../libs/jscolorpicker/colorpicker.min.js'
-import { getItems, setItem, removeItems } from '../../utils/storage.js'
 import { SELECTORS } from '../config/selectors.js'
-import { $, getVar, setVar, setVars, removeVar } from '../../utils/dom.js'
-import { $settings } from '../settingsManager.js'
+import { $ } from '../../utils/dom.js'
 import { renderButton } from '../components/renderButtons.js'
 import { renderSeparator } from '../components/renderUtils.js'
-import { renderUserAccentBgToggle, mount as mountUserAccent } from './toggleAccentUserBubble.js'
-import { Notify } from '../components/renderNotify.js'
+import { renderUserAccentBgToggle, mount as mountUserBubbleAccent } from './toggleAccentUserBubble.js'
+import {
+	renderAccentsColors,
+	mount as mountAccentColors,
+	init as initAccentColors,
+	resetAllAccents,
+} from './accentColors.js'
 
-// --- CONFIG WITH THEME ---
-const CONFIG = [
-	{
-		theme: 'light',
-		id: SELECTORS.ACCENT.LIGHT_ID,
-		label: 'Accent <span>Light</span>',
-		default: getVar('--c-default-accent-light', '#6c4756'),
-		storageKey: 'colorAccentLight',
-		cssVar: '--user-accent-light',
-	},
-	{
-		theme: 'dark',
-		id: SELECTORS.ACCENT.DARK_ID,
-		label: 'Accent <span>Dark</span>',
-		default: getVar('--c-default-accent-dark', '#bfa8ff'),
-		storageKey: 'colorAccentDark',
-		cssVar: '--user-accent-dark',
-	},
-]
+// --- STATE ---
+// let $rootSettings = null
+// let $resetBtn = null
 
-const accentPickers = new Map()
-const STORAGE_KEYS = CONFIG.map((c) => c.storageKey)
-
-let $resetBtn = null
-let loadedColors = null
-
-// --- STORAGE ---
-async function saveToStorage(key, value) {
-	try {
-		await setItem(key, value)
-		Notify.success('Color updated successfully')
-	} catch (err) {
-		Notify.error('Failed to save color')
-		console.error('Save error:', err)
-	}
-}
-
-async function getFromStorage() {
-	try {
-		const result = await getItems(STORAGE_KEYS)
-		return result
-	} catch (err) {
-		console.error('Failed to load colors from storage:', err)
-		Notify.warning('Using default colors')
-		return {}
-	}
-}
-
-// --- COLOR PICKERS ---
-function initColorPickers(storageColors) {
-	// console.log(storageColors)
-
-	CONFIG.forEach((cfg) => {
-		// const btn = document.getElementById(cfg.id)
-		const btn = $(`#${cfg.id}`, $settings)
-		if (!btn) return
-
-		const initialColor = storageColors[cfg.storageKey] ?? cfg.default
-
-		const picker = new ColorPicker(btn, {
-			toggleStyle: 'button',
-			container: `.${SELECTORS.SETTINGS.ROOT}`,
-			color: initialColor,
-			submitMode: 'instant',
-			enableAlpha: false,
-			formats: false,
-			defaultFormat: 'hex',
-			dialogPlacement: 'bottom',
-			dismissOnOutsideClick: true,
-			dismissOnEscape: true,
-			showClearButton: true,
-		})
-
-		let currHex = initialColor
-		let hasChanged = false
-
-		picker.on('pick', (color) => {
-			if (color) {
-				const newHex = color.string('hex')
-				if (newHex !== currHex) {
-					currHex = newHex
-					setVar(cfg.cssVar, newHex)
-					hasChanged = true
-				}
-			} else {
-				if (currHex !== cfg.default) {
-					console.log('Resetting color to default', color)
-					currHex = cfg.default
-					removeVar(cfg.cssVar)
-					removeItems(cfg.storageKey)
-					hasChanged = true
-				}
-				picker.setColor(cfg.default, false)
-			}
-		})
-
-		picker.on('close', async () => {
-			if (hasChanged) {
-				if (currHex !== cfg.default) {
-					await saveToStorage(cfg.storageKey, currHex)
-				}
-				updateResetButton() // ONLY update on close, not during drag
-				hasChanged = false
-			}
-		})
-
-		accentPickers.set(cfg.id, picker)
-	})
-}
-
-function hasCustomColors() {
-	return CONFIG.some((cfg) => {
-		const current = getVar(cfg.cssVar)
-		return current && current !== cfg.default
-	})
-}
-
-function updateResetButton() {
-	if ($resetBtn) {
-		$resetBtn.disabled = !hasCustomColors()
-		// console.log('Reset button updated:', !hasCustomColors() ? 'disabled' : 'enabled')
-	}
-}
-// --- RESET ---
-async function resetAllAccents() {
-	if (!hasCustomColors()) {
-		Notify.info('Colors are already at default values')
-		return
-	}
-
-	CONFIG.forEach(function (c) {
-		const picker = accentPickers.get(c.id)
-		if (picker) picker.setColor(c.default, false)
-		removeVar(c.cssVar)
-	})
-
-	await removeItems(STORAGE_KEYS)
-	Notify.success('All colors reset to default')
-}
-
-// --- HTML GENERATION ---
-let cachedHTML = null
-
+// --- TEMPLATE ---
 function templateHTML() {
-	if (cachedHTML) return cachedHTML
-
-	const colorPickersHTML = CONFIG.map(function (c) {
-		return `
-            <div class="colorpicker">
-                <button id="${c.id}" data-theme-key="${c.storageKey}"></button>
-                <label for="${c.id}">${c.label}</label>
-            </div>
-        `
-	}).join('')
-
-	cachedHTML = `
+	return `
 		<section id="sectionColors">
-			<div class="colorpicker-container">${colorPickersHTML}</div>
+			<div>
+				${renderAccentsColors()}
+			</div>
 			<div>
 				${renderSeparator}
 				${renderUserAccentBgToggle()}
@@ -179,44 +34,35 @@ function templateHTML() {
 				})}
 			</footer>
 		</section>`
-
-	return cachedHTML
 }
 
-function setElements() {
-	// $resetBtn = document.getElementById(SELECTORS.ACCENT.RESET_BTN_ID)
-	$resetBtn = $(`#${SELECTORS.ACCENT.RESET_BTN_ID}`, $settings)
-}
-
-function setListeners() {
-	$resetBtn?.addEventListener('click', resetAllAccents)
-}
-
-// Mount hook to wire DOM after settings are attached
-function mount() {
-	setElements()
-	setListeners()
-	initColorPickers(loadedColors || {})
-	updateResetButton()
-	mountUserAccent()
+// --- LISTENERS ---
+function resetAll() {
+	resetAllAccents()
 }
 
 // --- INIT ---
 async function init() {
-	const stored = await getFromStorage()
-	// console.log('[🎨GPThemes] Stored colors:', stored)
-
-	const cssVarsObj = {}
-	if (stored && Object.keys(stored).length) {
-		for (const cfg of CONFIG) {
-			const color = stored[cfg.storageKey]
-			if (color) cssVarsObj[cfg.cssVar] = color
-		}
-		if (Object.keys(cssVarsObj).length) setVars(cssVarsObj)
-	}
-
-	// Defer picker creation to mount when DOM exists
-	loadedColors = stored || {}
+	console.log('[INIT COLORS]')
+	await initAccentColors()
 }
 
-export { templateHTML as renderColorsTab, init, setListeners as handleColorsListeners, mount }
+// --- MOUNT ---
+function mount(rootSettings) {
+	console.log('[MOUNT COLORS]')
+	// Setup elements
+	let $rootSettings = rootSettings
+	let $resetBtn = $(`#${SELECTORS.ACCENT.RESET_BTN_ID}`, rootSettings)
+	// setElements(rootSettings)
+
+	// Attach listeners
+	$resetBtn.addEventListener('click', resetAll)
+	// setListeners()
+
+	// Mount other child modules
+	mountAccentColors($rootSettings, $resetBtn)
+	mountUserBubbleAccent()
+}
+
+// --- EXPORTS ---
+export { templateHTML as renderColorsTab, init, mount }
