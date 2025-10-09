@@ -1,5 +1,5 @@
 import { SELECTORS } from '../config/selectors.js'
-import { $ } from '../../utils/dom.js'
+import { getElementById } from '../../utils/dom.js'
 import { renderButton } from '../components/renderButtons.js'
 import { renderSeparator } from '../components/renderUtils.js'
 import { renderUserAccentBgToggle, mount as mountUserBubbleAccent } from './toggleAccentUserBubble.js'
@@ -9,10 +9,6 @@ import {
 	init as initAccentColors,
 	resetAllAccents,
 } from './accentColors.js'
-
-// --- STATE ---
-// let $rootSettings = null
-// let $resetBtn = null
 
 // --- TEMPLATE ---
 function templateHTML() {
@@ -48,19 +44,16 @@ async function init() {
 }
 
 // --- MOUNT ---
-function mount(rootSettings) {
+function mount() {
 	console.log('[MOUNT COLORS]')
 	// Setup elements
-	let $rootSettings = rootSettings
-	let $resetBtn = $(`#${SELECTORS.ACCENT.RESET_BTN_ID}`, rootSettings)
-	// setElements(rootSettings)
+	let $resetBtn = document.getElementById(SELECTORS.ACCENT.RESET_BTN_ID)
 
 	// Attach listeners
 	$resetBtn.addEventListener('click', resetAll)
-	// setListeners()
 
 	// Mount other child modules
-	mountAccentColors($rootSettings, $resetBtn)
+	mountAccentColors($resetBtn)
 	mountUserBubbleAccent()
 }
 

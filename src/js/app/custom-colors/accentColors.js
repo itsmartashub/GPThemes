@@ -128,11 +128,12 @@ function createPickers(storageColors) {
 				}
 			} else {
 				if (currHex !== cfg.default) {
-					console.log('Resetting color to default', color)
+					// console.log('Resetting color to default', color)
 					currHex = cfg.default
 					removeVar(cfg.cssVar)
 					removeItems(cfg.storageKey)
 					hasChanged = true
+					Notify.success(`Accent color for ${cfg.theme} theme has been reset to default`)
 				}
 				picker.setColor(cfg.default, false)
 			}
@@ -186,8 +187,7 @@ async function init() {
 // ============================================================================
 // MOUNT: Setup DOM with cached data
 // ============================================================================
-function mount(rootSettings, resetBtn) {
-	// $rootSettings = rootSettings
+function mount(resetBtn) {
 	$resetBtn = resetBtn
 
 	// Use the cached data from init()

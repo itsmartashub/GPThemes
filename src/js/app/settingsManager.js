@@ -140,6 +140,7 @@ async function createSettings() {
 	// 4. Init modules in parallel, mount sequentially after DOM ready
 	await Promise.allSettled(TABS_CONFIG.map(({ init }) => init()))
 
+	//  Wait for next tick to ensure DOM is fully ready
 	requestAnimationFrame(() => {
 		// 5. Mount modules
 		TABS_CONFIG.forEach(({ mount }) => mount(el))
@@ -204,6 +205,8 @@ function handleTabsSwitching(e) {
 
 	const newIndex = parseInt(btn.dataset.tab)
 	const activeIndex = $tabButtons.findIndex((t) => t.classList.contains(ACTIVE_CLASS))
+
+	// console.log(activeIndex, newIndex)
 
 	if (activeIndex === newIndex) return
 
