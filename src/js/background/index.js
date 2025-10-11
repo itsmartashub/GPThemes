@@ -9,14 +9,14 @@ import {
 	markBadgeAsSeen,
 	getCurrentBadge,
 } from './updateBadge'
-import { checkAndCleanStorage, getCurrentVersion, getStoredVersion, setStoredVersion } from './versionControl'
+import { checkAndCleanStorage, getExtCurrVersion, getExtStoredVersion, setExtStoredVersion } from './versionControl'
 
 initBackgroundScript()
 
 async function handleInstallation(details) {
 	try {
-		const currVersion = getCurrentVersion()
-		const prevVersion = await getStoredVersion()
+		const currVersion = getExtCurrVersion()
+		const prevVersion = await getExtStoredVersion()
 
 		console.log(`📦 Install event: ${details.reason}`)
 		console.log(`   Previous: ${prevVersion} → Current: ${currVersion}`)
@@ -32,12 +32,12 @@ async function handleInstallation(details) {
 			}
 
 			// Always update stored version on update
-			await setStoredVersion(currVersion)
+			await setExtStoredVersion(currVersion)
 		} else if (details.reason === 'install') {
 			// Fresh install - show version immediately
 			await setVersionBadge()
 			await markBadgeAsSeen()
-			await setStoredVersion(currVersion)
+			await setExtStoredVersion(currVersion)
 			console.log('✅ Fresh install - version badge set')
 		}
 	} catch (error) {
@@ -71,8 +71,8 @@ async function initBackgroundScript() {
 
 		// STEP 3: Get current state
 		const seen = await isBadgeSeen()
-		const storedVersion = await getStoredVersion()
-		const currentVersion = getCurrentVersion()
+		const storedVersion = await getExtStoredVersion()
+		const currentVersion = getExtCurrVersion()
 		const currentBadge = await getCurrentBadge()
 
 		console.log('📊 Current State:')
@@ -89,7 +89,7 @@ async function initBackgroundScript() {
 			// Edge case: version mismatch but badge is empty
 			console.log('⚠️ Version mismatch detected - setting NEW badge')
 			await setNewBadge()
-			await setStoredVersion(currentVersion)
+			await setExtStoredVersion(currentVersion)
 		} else if (seen && currentBadge !== currentVersion) {
 			// Restore version badge if it was already seen
 			await setVersionBadge()

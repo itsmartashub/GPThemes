@@ -1,16 +1,16 @@
 import { getItem, setItem, setItems, getStorage, clearStorage } from '../utils/storage'
-import { SK_EXT_VERSION, SK_STORAGE_VERSION } from '../app/config/consts-storage'
+import { SK_EXT_VERSION, SK_DB_VERSION } from '../app/config/consts-storage'
 import { runtime } from 'webextension-polyfill'
 
-const STORAGE_VERSION = '1.0'
+const DB_VERSION = '1.0'
 
 export async function checkAndCleanStorage() {
-	const storedVersion = await getItem(SK_STORAGE_VERSION)
-	const currentExtVersion = getCurrentVersion()
+	const dbStoredVersion = await getItem(SK_DB_VERSION)
+	const currExtVersion = getExtCurrVersion()
 
 	// If storage version doesn't exist or doesn't match, clean everything
-	if (!storedVersion || storedVersion !== STORAGE_VERSION) {
-		console.log(`⚠️ Storage version mismatch: ${storedVersion} → ${STORAGE_VERSION}`)
+	if (!dbStoredVersion || dbStoredVersion !== DB_VERSION) {
+		console.log(`⚠️ Storage version mismatch: ${dbStoredVersion} → ${DB_VERSION}`)
 
 		// Get all keys and nuke everything
 		const allStorage = await getStorage()
@@ -23,11 +23,11 @@ export async function checkAndCleanStorage() {
 
 		// Set both versions immediately after cleanup
 		await setItems({
-			[SK_STORAGE_VERSION]: STORAGE_VERSION,
-			[SK_EXT_VERSION]: currentExtVersion,
+			[SK_DB_VERSION]: DB_VERSION,
+			[SK_EXT_VERSION]: currExtVersion,
 		})
 
-		console.log(`✅ Storage reset | storage=${STORAGE_VERSION}, ext=${currentExtVersion}`)
+		console.log(`✅ Storage reset | storage=${DB_VERSION}, ext=${currExtVersion}`)
 		return true // Indicates cleanup happened
 	}
 
@@ -35,8 +35,8 @@ export async function checkAndCleanStorage() {
 	return false // No cleanup needed
 }
 
-export const getCurrentVersion = () => runtime.getManifest().version
-export const getStoredVersion = () => getItem(SK_EXT_VERSION)
-export const setStoredVersion = (version) => setItem(SK_EXT_VERSION, version)
+export const getExtCurrVersion = () => runtime.getManifest().version
+export const getExtStoredVersion = () => getItem(SK_EXT_VERSION)
+export const setExtStoredVersion = (version) => setItem(SK_EXT_VERSION, version)
 
-export { SK_EXT_VERSION, SK_STORAGE_VERSION, STORAGE_VERSION }
+export { SK_EXT_VERSION, SK_DB_VERSION, DB_VERSION }

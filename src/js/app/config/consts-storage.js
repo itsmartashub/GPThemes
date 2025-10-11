@@ -32,7 +32,7 @@ export const SK_TOGGLE_USER_BUBBLE_ACCENT = 'toggleUserBubbleAccentState'
 
 // Extension Metadata
 export const SK_EXT_VERSION = '_extVersion'
-export const SK_STORAGE_VERSION = '_dbVersion'
+export const SK_DB_VERSION = '_dbVersion'
 export const SK_BADGE_SEEN = '_isBadgeSeen'
 
 // =============================================
@@ -66,5 +66,5 @@ export const EXPORT_CONFIG = Object.freeze({
 	],
 
 	// Settings to exclude from exports (system data)
-	EXCLUDE: [SK_EXT_VERSION, SK_STORAGE_VERSION, SK_BADGE_SEEN],
+	EXCLUDE: [SK_EXT_VERSION, SK_DB_VERSION, SK_BADGE_SEEN],
 })
