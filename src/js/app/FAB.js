@@ -6,7 +6,7 @@ import { handleChangeTheme } from './themeManager.js'
 import { createSettings, closeSettings } from './settingsManager.js'
 import { setupExtensionMessaging } from './messaging/index.js'
 
-const STORAGE_KEY = 'toggleFABVisibility'
+const STORAGE_KEY = 'toggleFABHidden'
 
 // Local UI state
 let isOptionsShown = false
@@ -107,18 +107,18 @@ function closeFABOptions() {
 
 // --- VISIBILITY ---
 async function setInitialFABVisibility() {
-	const isVisible = await getItem(STORAGE_KEY)
-	toggleFABVisibility(isVisible !== false) // default true
+	const isHidden = await getItem(STORAGE_KEY)
+	toggleFABVisibility(isHidden) // default false
 }
 
-function toggleFABVisibility(isVisible) {
+function toggleFABVisibility(isHidden = false) {
 	const { FAB } = elements
 	if (!FAB) return
 
-	FAB.classList.toggle(`${SELECTORS.FLOATING_BTN.ROOT}--hidden`, !isVisible)
+	FAB.classList.toggle(`${SELECTORS.FLOATING_BTN.ROOT}--hidden`, isHidden)
 
 	// Auto-close settings if FAB hidden
-	if (!isVisible && $(`.${SELECTORS.SETTINGS.OPEN_STATE}`)) closeSettings()
+	if (isHidden && $(`.${SELECTORS.SETTINGS.OPEN_STATE}`)) closeSettings()
 }
 
 // --- STORAGE WATCHER ---
@@ -128,8 +128,13 @@ function handleStorageChange(changes, area) {
 	const change = changes[STORAGE_KEY]
 	if (!change) return
 
-	const isVisible = change.newValue !== false
-	toggleFABVisibility(isVisible)
+	console.log('change: ', change)
+
+	const isHidden = change.newValue !== false
+
+	console.log('isHidden', isHidden)
+
+	toggleFABVisibility(isHidden)
 }
 
 // --- EXPORTS ---

@@ -8,9 +8,6 @@ import { Notify } from '../components/renderNotify.js'
 // Precompute map for O(1) lookups
 const ELEMENTS_MAP = new Map(ELEMENTS.map((cfg) => [cfg.id, cfg]))
 
-console.log('ELEMENTS', ELEMENTS)
-console.log('ELEMENTS_MA', ELEMENTS_MAP)
-
 // Render section HTML (string)
 function templateHTML() {
 	if (!Array.isArray(ELEMENTS) || ELEMENTS.length === 0) {
@@ -55,7 +52,6 @@ async function saveState(key, value) {
 async function loadState() {
 	try {
 		const result = await getItems(ELEMENTS.map((cfg) => cfg.storageKey))
-		console.log(result)
 
 		return result
 	} catch (error) {
@@ -108,7 +104,6 @@ async function mount() {
 	try {
 		// Load all states in parallel
 		const savedStates = await loadState()
-		console.log('savedStates', savedStates)
 
 		// Apply saved states
 		for (const cfg of ELEMENTS) {

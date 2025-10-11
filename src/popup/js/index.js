@@ -1,4 +1,5 @@
 import browser from 'webextension-polyfill'
+import { getItem } from '../../js/utils/storage'
 import { EXT_CURR_VERSION, EXT_CURR_CHANGELOG_URL } from '../../js/app/config/consts'
 import { RELEASE_CHANGES } from './changes'
 import { setupFABToggle } from './toggleFAB'
@@ -29,16 +30,12 @@ const initChangelogUI = () => {
 }
 
 const updateBadge = async () => {
+	console.log('=== POPUP: Sending setBadge message ===')
 	try {
-		// Send message to background script
 		const response = await browser.runtime.sendMessage({ action: 'setBadge' })
-
-		// Background script now always returns a response with status
-		if (response && response.status) {
-			console.log('Badge status:', response.status)
-		}
+		console.log('✅ Badge update response:', response)
 	} catch (error) {
-		console.error('Failed to update badge:', error)
+		console.error('❌ Failed to update badge:', error)
 	}
 }
 
