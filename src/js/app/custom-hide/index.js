@@ -8,6 +8,9 @@ import { Notify } from '../components/renderNotify.js'
 // Precompute map for O(1) lookups
 const ELEMENTS_MAP = new Map(ELEMENTS.map((cfg) => [cfg.id, cfg]))
 
+console.log('ELEMENTS', ELEMENTS)
+console.log('ELEMENTS_MA', ELEMENTS_MAP)
+
 // Render section HTML (string)
 function templateHTML() {
 	if (!Array.isArray(ELEMENTS) || ELEMENTS.length === 0) {
@@ -51,7 +54,9 @@ async function saveState(key, value) {
 // Load saved state from storage
 async function loadState() {
 	try {
-		const result = await getItems(ELEMENTS.map((cfg) => cfg.id))
+		const result = await getItems(ELEMENTS.map((cfg) => cfg.storageKey))
+		console.log(result)
+
 		return result
 	} catch (error) {
 		console.error('Failed to load toggle states:', error)
@@ -103,10 +108,11 @@ async function mount() {
 	try {
 		// Load all states in parallel
 		const savedStates = await loadState()
+		console.log('savedStates', savedStates)
 
 		// Apply saved states
 		for (const cfg of ELEMENTS) {
-			const saved = savedStates?.[cfg.id]
+			const saved = savedStates?.[cfg.storageKey]
 			const isHidden = typeof saved === 'boolean' ? saved : cfg.isHidden
 
 			const input = $(`#${cfg.id}`, container)
