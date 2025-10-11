@@ -1,12 +1,13 @@
 import { getItem, setItem } from '../../utils/storage'
 import { $, ROOT_HTML } from '../../utils/dom'
 import { SELECTORS } from '../config/selectors'
+import { SK_TOGGLE_CHATBOX_HEIGHT } from '../config/consts-storage'
 import { ATTR_CHATBOX_HEIGHT } from '../config/consts-attr'
 import { renderToggle } from '../components/renderToggles'
 import { Notify } from '../components/renderNotify'
 import { icon_taller_height } from '../components/icons'
 
-const STORAGE_KEY = 'customChatboxHeightState'
+const STORAGE_KEY = SK_TOGGLE_CHATBOX_HEIGHT
 const DATA_ATTR = ATTR_CHATBOX_HEIGHT
 const DEFAULT_STATE = false
 

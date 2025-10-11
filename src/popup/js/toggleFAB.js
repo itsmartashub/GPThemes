@@ -1,8 +1,6 @@
-import { SK_TOGGLE_FAB } from '../../js/app/FAB'
+import { SK_TOGGLE_FAB_HIDDEN } from '../../js/app/config/consts-storage'
 import { getItem, setItem, removeItems } from '../../js/utils/storage'
 import { renderToggle } from '../../js/app/components/renderToggles'
-
-console.log(SK_TOGGLE_FAB)
 
 const CONFIG = {
 	label: 'Hide GPThemes',
@@ -15,13 +13,13 @@ async function setupFABToggle() {
 	if (!container) return
 
 	// Get current state - handle null case (first install)
-	let shouldHideFAB = await getItem(SK_TOGGLE_FAB)
+	let shouldHideFAB = await getItem(SK_TOGGLE_FAB_HIDDEN)
 
 	// If null (first time), default to false (don't hide)
 	if (shouldHideFAB === null) {
 		shouldHideFAB = false
 		// Optionally set the default value in storage
-		await removeItems(SK_TOGGLE_FAB)
+		await removeItems(SK_TOGGLE_FAB_HIDDEN)
 	}
 
 	console.log('shouldHideFAB', shouldHideFAB)
@@ -39,7 +37,7 @@ async function setupFABToggle() {
 		const shouldBeHidden = e.target.checked
 
 		console.log('FAB hidden:', shouldBeHidden)
-		await setItem(SK_TOGGLE_FAB, shouldBeHidden)
+		await setItem(SK_TOGGLE_FAB_HIDDEN, shouldBeHidden)
 	})
 }
 

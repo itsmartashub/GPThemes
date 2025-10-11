@@ -1,5 +1,6 @@
 import { getItem, setItem } from '../../utils/storage.js'
 import { SELECTORS } from '../config/selectors.js'
+import { SK_SCROLL_BUTTON_POSITION } from '../config/consts-storage.js'
 import { $, $$ } from '../../utils/dom.js'
 import { setVars } from '../../utils/dom.js' // batch css vars updates
 import { icon_align_left, icon_align_center, icon_align_right } from '../components/icons.js'
@@ -34,7 +35,7 @@ const CONFIG = {
 	},
 }
 
-const STORAGE_KEY = 'scrollButtonPosition'
+const STORAGE_KEY = SK_SCROLL_BUTTON_POSITION
 const DEFAULT_POSITION = 'center'
 
 function templateHTML() {

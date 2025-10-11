@@ -1,5 +1,5 @@
 import { runtime } from 'webextension-polyfill'
-import { getItem, removeItems, setItems } from '../utils/storage'
+import { removeItems, setItems } from '../utils/storage'
 import {
 	initBadgeColor,
 	setVersionBadge,
@@ -9,15 +9,11 @@ import {
 	markBadgeAsSeen,
 	getCurrentBadge,
 } from './updateBadge'
-import {
-	checkAndCleanStorage,
-	getCurrentVersion,
-	getStoredVersion,
-	setStoredVersion,
-	SK_EXT_VERSION,
-} from './versionControl'
+import { checkAndCleanStorage, getCurrentVersion, getStoredVersion, setStoredVersion } from './versionControl'
 
-const handleInstallation = async (details) => {
+initBackgroundScript()
+
+async function handleInstallation(details) {
 	try {
 		const currVersion = getCurrentVersion()
 		const prevVersion = await getStoredVersion()
@@ -49,7 +45,7 @@ const handleInstallation = async (details) => {
 	}
 }
 
-const handleMessage = (message, sender, sendResponse) => {
+function handleMessage(message, sender, sendResponse) {
 	if (message.action === 'setBadge') {
 		updateBadgeToVersion()
 			.then(() => sendResponse({ status: 'success' }))
@@ -61,7 +57,7 @@ const handleMessage = (message, sender, sendResponse) => {
 	}
 }
 
-const initBackgroundScript = async () => {
+async function initBackgroundScript() {
 	console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 	console.log('🚀 BACKGROUND SCRIPT INIT')
 	console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
@@ -113,6 +109,7 @@ const initBackgroundScript = async () => {
 		console.log('✅ Background script ready')
 		console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
+		/* REMOVE THIS WHEN DONE TESTING !!! */
 		// SET_TESTING_ITEMS()
 	} catch (error) {
 		console.error('❌ Init error:', error)
@@ -151,5 +148,3 @@ async function SET_TESTING_ITEMS() {
 	}
 	await setItems(items)
 }
-
-initBackgroundScript()

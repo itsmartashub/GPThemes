@@ -1,6 +1,7 @@
 import ColorPicker from '../../../libs/jscolorpicker/colorpicker.min.js'
 import { getItems, setItem, removeItems } from '../../utils/storage.js'
 import { SELECTORS } from '../config/selectors.js'
+import { SK_COLOR_ACCENT_LIGHT, SK_COLOR_ACCENT_DARK } from '../config/consts-storage.js'
 import { $, getVar, setVar, setVars, removeVar } from '../../utils/dom.js'
 import { Notify } from '../components/renderNotify.js'
 
@@ -15,7 +16,7 @@ const CONFIG = [
 		id: SELECTORS.ACCENT.LIGHT_ID,
 		label: 'Accent <span>Light</span>',
 		default: getVar('--c-default-accent-light', '#6c4756'),
-		storageKey: 'colorAccentLight',
+		storageKey: SK_COLOR_ACCENT_LIGHT,
 		cssVar: '--user-accent-light',
 	},
 	{
@@ -23,7 +24,7 @@ const CONFIG = [
 		id: SELECTORS.ACCENT.DARK_ID,
 		label: 'Accent <span>Dark</span>',
 		default: getVar('--c-default-accent-dark', '#bfa8ff'),
-		storageKey: 'colorAccentDark',
+		storageKey: SK_COLOR_ACCENT_DARK,
 		cssVar: '--user-accent-dark',
 	},
 ]

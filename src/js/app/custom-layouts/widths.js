@@ -1,6 +1,7 @@
 import { getItems, setItems, removeItems } from '../../utils/storage.js'
 import { $, setVars } from '../../utils/dom.js'
 import { SELECTORS } from '../config/selectors.js'
+import { SK_WIDTH_SETTINGS, SK_WIDTH_IS_FULL_ENABLED, SK_WIDTH_IS_SYNC_ENABLED } from '../config/consts-storage.js'
 import { icon_full_width, icon_sync } from '../components/icons.js'
 import { renderSliderCard } from '../components/renderSlider.js'
 import { renderToggle } from '../components/renderToggles.js'
@@ -26,9 +27,9 @@ const WIDTH_CONFIG = {
 		maxWidth: 100,
 	},
 	storageKeys: {
-		widthSettings: 'widthSettings',
-		syncEnabled: 'widthIsSyncEnabled',
-		fullWidthEnabled: 'widthIsFullEnabled',
+		widthSettings: SK_WIDTH_SETTINGS,
+		syncEnabled: SK_WIDTH_IS_FULL_ENABLED,
+		fullWidthEnabled: SK_WIDTH_IS_SYNC_ENABLED,
 	},
 }
 

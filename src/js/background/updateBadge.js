@@ -1,9 +1,9 @@
 import { runtime, action } from 'webextension-polyfill'
 import { getItem, setItem, removeItems } from '../utils/storage'
+import { SK_BADGE_SEEN } from '../app/config/consts-storage'
 
 const BADGE_COLOR = '#ca93fb'
 const NEW_BADGE_TEXT = 'NEW'
-const SK_BADGE_SEEN = 'isBadgeSeen'
 
 export const initBadgeColor = async () => {
 	await action.setBadgeBackgroundColor({ color: BADGE_COLOR })

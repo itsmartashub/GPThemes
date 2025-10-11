@@ -1,12 +1,13 @@
 import { getItem, setItem } from '../../utils/storage.js'
 import { $, ROOT_HTML } from '../../utils/dom.js'
 import { SELECTORS } from '../config/selectors.js'
+import { SK_TOGGLE_USER_BUBBLE_ACCENT } from '../config/consts-storage.js'
 import { ATTR_BUBBLE_USER_ACCENT } from '../config/consts-attr.js'
 import { Notify } from '../components/renderNotify.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { icon_accent } from '../components/icons.js'
 
-const STORAGE_KEY = 'toggleUserBubbleAccentState'
+const STORAGE_KEY = SK_TOGGLE_USER_BUBBLE_ACCENT
 const DATA_ATTR = ATTR_BUBBLE_USER_ACCENT
 const DEFAULT_STATE = false
 

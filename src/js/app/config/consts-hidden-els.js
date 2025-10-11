@@ -1,5 +1,6 @@
 import { SELECTORS } from './selectors'
 import { ATTR_HIDE_HEADER, ATTR_HIDE_FOOTER } from './consts-attr'
+import { SK_TOGGLE_HIDE_HEADER, SK_TOGGLE_HIDE_FOOTER } from './consts-storage'
 import { icon_header, icon_footer } from '../components/icons'
 
 export const ELEMENTS = [
@@ -10,7 +11,7 @@ export const ELEMENTS = [
 		icon: icon_header,
 		selector: SELECTORS.HIDE.HEADER.SELECTOR,
 		dataAttr: ATTR_HIDE_HEADER, // Changed from cssVar to dataAttr
-		storageKey: 'hideHeader',
+		storageKey: SK_TOGGLE_HIDE_HEADER,
 		isHidden: false, // OFF by default = no data attribute
 	},
 	{
@@ -20,7 +21,7 @@ export const ELEMENTS = [
 		icon: icon_footer,
 		selector: SELECTORS.HIDE.FOOTER.SELECTOR,
 		dataAttr: ATTR_HIDE_FOOTER, // Changed from cssVar to dataAttr
-		storageKey: 'hideFooter',
+		storageKey: SK_TOGGLE_HIDE_FOOTER,
 		isHidden: false, // OFF by default = no data attribute
 	},
 ]

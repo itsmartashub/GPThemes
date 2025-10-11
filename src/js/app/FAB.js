@@ -1,12 +1,13 @@
 import { getItem, watchStorageChanges } from '../utils/storage.js'
 import { SELECTORS } from './config/selectors.js'
+import { SK_TOGGLE_FAB_HIDDEN } from './config/consts-storage.js'
 import { $ } from '../utils/dom.js'
 import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './components/icons.js'
 import { handleChangeTheme } from './themeManager.js'
 import { createSettings, closeSettings } from './settingsManager.js'
 import { setupExtensionMessaging } from './messaging/index.js'
 
-const STORAGE_KEY = 'toggleFABHidden'
+const STORAGE_KEY = SK_TOGGLE_FAB_HIDDEN
 
 // Local UI state
 let isOptionsShown = false

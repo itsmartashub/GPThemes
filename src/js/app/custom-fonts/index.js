@@ -1,6 +1,12 @@
 import { setItem, getItems, setItems } from '../../utils/storage.js'
 import { $, $$, getVar, setVar, setVars, bind } from '../../utils/dom.js'
 import { SELECTORS } from '../config/selectors'
+import {
+	SK_TEXT_FONT_FAMILY,
+	SK_TEXT_FONT_SIZE,
+	SK_TEXT_LINE_HEIGHT,
+	SK_TEXT_LETTER_SPACING,
+} from '../config/consts-storage.js'
 import { Notify } from '../components/renderNotify.js'
 import { renderButton } from '../components/renderButtons'
 import { renderFontSmallCard, renderFontBigCard } from '../components/renderFonts'
@@ -50,7 +56,7 @@ const CONFIG = {
 		id: SELECTORS.FONT.FAMILY_ID,
 		label: 'Font Family',
 		default: getVar('--gpthFontFamilyDefault'),
-		storageKey: 'textFontFamily',
+		storageKey: SK_TEXT_FONT_FAMILY,
 		cssVar: '--gpthFontFamily',
 		options: [
 			{ name: 'Default', label: 'Default' },
@@ -66,7 +72,7 @@ const CONFIG = {
 		id: SELECTORS.FONT.SIZE_ID,
 		label: 'Font Size',
 		default: 16,
-		storageKey: 'textFontSize',
+		storageKey: SK_TEXT_FONT_SIZE,
 		cssVar: '--gpthFontSize',
 		unit: 'px',
 		min: 12,
@@ -76,7 +82,7 @@ const CONFIG = {
 		id: SELECTORS.FONT.LINE_HEIGHT_ID,
 		label: 'Line Height',
 		default: 28,
-		storageKey: 'textLineHeight',
+		storageKey: SK_TEXT_LINE_HEIGHT,
 		cssVar: '--gpthLineHeight',
 		unit: 'px',
 		min: 12,
@@ -86,7 +92,7 @@ const CONFIG = {
 		id: SELECTORS.FONT.LETTER_SPACING_ID,
 		label: 'Letter Space',
 		default: 0,
-		storageKey: 'textLetterSpacing',
+		storageKey: SK_TEXT_LETTER_SPACING,
 		cssVar: '--gpthLetterSpacing',
 		unit: 'px',
 		min: -30,
