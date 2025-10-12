@@ -29,7 +29,7 @@
 
 
     /* List of chats in Project */
-    section ol li.group {
+    section ol li.group\/project-item {
         border-radius: var(--br);
         transition: transform 0.25s ease, background-color 0.25s ease;
         // border-bottom: none !important;
