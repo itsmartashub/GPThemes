@@ -1,7 +1,8 @@
 import browser from 'webextension-polyfill'
-import { EXT_CURR_VERSION, EXT_CURR_CHANGELOG_URL } from '../../js/app/config/constants'
+import { getItem } from '../../js/utils/storage'
+import { EXT_CURR_VERSION, EXT_CURR_CHANGELOG_URL } from '../../js/app/config/consts'
 import { RELEASE_CHANGES } from './changes'
-import { setupFloatingBtnToggle } from './toggleGpthemes'
+import { setupFABToggle } from './toggleFAB'
 
 const createFullChangelogLink = (version = EXT_CURR_VERSION) =>
 	`<a href="${EXT_CURR_CHANGELOG_URL}" target="_blank" rel="noopener noreferrer" class="changelog__seefullchangelog">🚀 See full release notes</a>`
@@ -29,23 +30,19 @@ const initChangelogUI = () => {
 }
 
 const updateBadge = async () => {
+	console.log('=== POPUP: Sending setBadge message ===')
 	try {
-		// Send message to background script
 		const response = await browser.runtime.sendMessage({ action: 'setBadge' })
-
-		// Background script now always returns a response with status
-		if (response && response.status) {
-			console.log('Badge status:', response.status)
-		}
+		console.log('✅ Badge update response:', response)
 	} catch (error) {
-		console.error('Failed to update badge:', error)
+		console.error('❌ Failed to update badge:', error)
 	}
 }
 
 const initPopup = () => {
 	initChangelogUI()
 	updateBadge()
-	setupFloatingBtnToggle()
+	setupFABToggle()
 }
 
 // Start the initialization process

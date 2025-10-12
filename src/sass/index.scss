@@ -1,7 +1,7 @@
 // @import 'abstract/_mq';
 @import 'abstract/_bp';
 @import 'abstract/_functions';
-@import 'abstract/_custom-settings-vars';
+@import 'abstract/_vars-gpth-custom-settings';
 @import 'abstract/_vars-gpth-layout';
 @import 'abstract/_vars-gpth-colors';
 @import 'abstract/_vars-gpt';
@@ -14,6 +14,7 @@
 @import 'dev/_mixins'; // TODO: REMOVE THIS FOR PRODUCTION!
 
 @import '../libs/jscolorpicker/colorpicker.scss';
+// @import '../libs/jscolorpicker/colorpicker.min.scss';
 
 @import 'global/_base';
 @import 'global/_scrollbars';

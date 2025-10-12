@@ -1,14 +1,14 @@
 html,
 body {
 	--text-primary: var(--c-txt) !important;
-	letter-spacing: calc((var(--letterSpacing) / 16) * 1px) !important;
+	letter-spacing: calc((var(--gpthLetterSpacing) / 16) * 1px) !important;
 	color: var(--c-txt) !important;
 	background-color: var(--c-bg-chats-container) !important;
 }
 
 :host,
 html {
-	font-family: var(--fontFamily), var(--fontFamilyDefault) !important;
+	font-family: var(--gpthFontFamily), var(--gpthFontFamilyDefault) !important;
 }
 
 .h-px {

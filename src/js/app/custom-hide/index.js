@@ -1,15 +1,15 @@
-import browser from 'webextension-polyfill'
-import { ELEMENTS } from '../config/hidden-els.js'
+import { getItems, setItem } from '../../utils/storage.js'
+import { $, ROOT_HTML } from '../../utils/dom.js'
+import { ELEMENTS } from '../config/consts-hidden-els.js'
 import { SELECTORS } from '../config/selectors'
 import { renderToggle } from '../components/renderToggles.js'
 import { Notify } from '../components/renderNotify.js'
-import { setCssVars } from '../../utils/setCssVar.js'
 
 // Precompute map for O(1) lookups
 const ELEMENTS_MAP = new Map(ELEMENTS.map((cfg) => [cfg.id, cfg]))
 
 // Render section HTML (string)
-function renderCustomHides() {
+function templateHTML() {
 	if (!Array.isArray(ELEMENTS) || ELEMENTS.length === 0) {
 		console.warn('ELEMENTS array is empty or invalid')
 		return ''
@@ -18,7 +18,7 @@ function renderCustomHides() {
 	const items = ELEMENTS.map((cfg) =>
 		renderToggle({
 			id: cfg.id,
-			checked: cfg.isHidden,
+			checked: cfg.isHidden, // false by default = OFF
 			label: cfg.label,
 			subtitle: cfg.subtitle,
 			icon: cfg.icon,
@@ -37,71 +37,89 @@ function renderCustomHides() {
 	`
 }
 
+async function saveState(key, value) {
+	try {
+		await setItem(key, value)
+		let element = key.startsWith('hide') ? key.slice(4) : 'Element'
+		value ? Notify.info(`😶‍🌫️ ${element} hidden`) : Notify.success(` 👁️ ${element} shown`)
+	} catch (e) {
+		Notify.error(`Failed to hide element`)
+		console.error('Failed to save toggle state', key, e)
+	}
+}
+
+// Load saved state from storage
+async function loadState() {
+	try {
+		const result = await getItems(ELEMENTS.map((cfg) => cfg.storageKey))
+
+		return result
+	} catch (error) {
+		console.error('Failed to load toggle states:', error)
+		return {}
+	}
+}
+
+// Apply data attribute without saving
+function updateDataAttr(dataAttr, isHidden) {
+	if (!dataAttr) return
+
+	if (isHidden) {
+		// When element should be hidden, ADD the data attribute
+		ROOT_HTML.setAttribute(dataAttr, '')
+	} else {
+		// When element should be shown, REMOVE the data attribute
+		ROOT_HTML.removeAttribute(dataAttr)
+	}
+}
+
+// destructure e.target
+function handleChange({ target }) {
+	if (!target.matches('input[type="checkbox"]')) return
+
+	const { id } = target
+	const cfg = ELEMENTS_MAP.get(id)
+	const element = $(cfg?.selector)
+
+	if (!element) {
+		console.warn(`Element with ID ${id} not found`)
+		Notify.warning('Element not found')
+		target.checked = !target.checked
+		return
+	}
+
+	const isHidden = target.checked
+	updateDataAttr(cfg.dataAttr, isHidden)
+	saveState(cfg.storageKey, isHidden)
+}
+
 // Hydrate and wire events after render
-async function handleCustomHidesListeners() {
+async function mount() {
 	const container = document.getElementById(SELECTORS.HIDE.CONTAINER_ID)
 	if (!container) {
-		Notify.warning(`Container with ID ${SELECTORS.HIDE.CONTAINER_ID} not found`)
+		console.warn(`Element with ID ${SELECTORS.HIDE.CONTAINER_ID} not found`)
 		return
 	}
 
 	try {
 		// Load all states in parallel
-		const savedStates = await browser.storage.sync.get(ELEMENTS.map((cfg) => cfg.id))
+		const savedStates = await loadState()
 
-		console.log('[🎨GPThemes]: Loaded toggle states', savedStates)
-
+		// Apply saved states
 		for (const cfg of ELEMENTS) {
-			const saved = savedStates?.[cfg.id]
+			const saved = savedStates?.[cfg.storageKey]
 			const isHidden = typeof saved === 'boolean' ? saved : cfg.isHidden
 
-			const input = container.querySelector(`#${cfg.id}`)
+			const input = $(`#${cfg.id}`, container)
 			if (input) input.checked = isHidden
-
-			applyToggle(cfg, isHidden)
+			updateDataAttr(cfg.dataAttr, isHidden)
 		}
 	} catch (e) {
 		Notify.error('Failed to load toggle states')
 		console.error('Failed to load toggle states', e)
 	}
 
-	container.addEventListener('change', handleToggleChange)
+	container.addEventListener('change', handleChange)
 }
 
-function handleToggleChange(e) {
-	if (!e.target.matches('input[type="checkbox"]')) return
-	const { id, checked } = e.target
-	const cfg = ELEMENTS_MAP.get(id)
-	if (cfg) applyToggle(cfg, checked)
-}
-
-function applyToggle(cfg, isHidden) {
-	// update CSS var on :root (ensure var name without leading --)
-	const varName = String(cfg.cssVar || '').replace(/^--/, '')
-	if (!varName) return
-
-	// Store boolean as "0/1" for DRY CSS mapping
-	// setCssVars({ [varName]: isHidden ? '1' : '0' })
-	// setCssVars({ [varName]: isHidden ? 'none' : 'flex' })
-	if (isHidden) {
-		// 1 = hidden
-		setCssVars({ [varName]: '1' })
-	} else {
-		// 0 = remove var → revert to site default
-		setCssVars({ [varName]: null }) // or delete inline style
-	}
-
-	// persist state as hidden true/false
-	saveState(cfg.id, isHidden)
-}
-
-async function saveState(key, value) {
-	try {
-		await browser.storage.sync.set({ [key]: value })
-	} catch (e) {
-		Notify.error(`Failed to save ${key} toggle state`)
-		console.error('Failed to save toggle state', key, e)
-	}
-}
-
-export { renderCustomHides, handleCustomHidesListeners }
+export { templateHTML as renderCustomHides, mount }

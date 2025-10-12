@@ -1,30 +1,86 @@
-import { SELECTORS } from './config/selectors'
-import { PFX } from './config/constants'
-import { renderColorsTab, resetAllAccents, init as initColors } from './mainColors'
-import { renderFontsTab, handleFontsListeners, init as initFonts } from './mainFonts'
-import { renderWidthsTab, handleWidthsListeners, init as initWidths } from './mainWidths'
-import { handleScrolldownListeners, init as initScrolldown } from './scrolldown'
-// import { handleCustomChatboxListeners } from './customChatbox'
+import { SELECTORS } from './config/selectors.js'
+import { PFX } from './config/consts.js'
+import { renderColorsTab, init as initColors, mount as mountColors } from './custom-colors/index.js'
+import { renderFontsTab, init as initFonts, mount as mountFonts } from './custom-fonts/index.js'
+import { renderLayoutsTab, init as initWidths, mount as mountWidths } from './custom-layouts/index.js'
 
-// Elements cache
+// ============================================================================
+// Global state (cached refs, constants)
+// ============================================================================
 let $settings = null
-let $resetAllAccentsBtn = null
-let $tabButtons = null
-let $tabPanes = null
+let $tabButtons = []
+let $tabPanes = []
 
-// Constants
 const ACTIVE_CLASS = 'active'
 const HIDDEN_CLASS = 'hidden'
 
-async function createSettings() {
-	// Create settings element if it doesn't exist
-	// if ($settings) return
+const TABS_CONFIG = [
+	{ id: 'colors', label: 'Color', render: renderColorsTab, init: initColors, mount: mountColors },
+	{ id: 'fonts', label: 'Font', render: renderFontsTab, init: initFonts, mount: mountFonts },
+	{ id: 'layout', label: 'Layout', render: renderLayoutsTab, init: initWidths, mount: mountWidths },
+]
 
-	const gpthSettings = document.createElement('div')
-	gpthSettings.className = `${SELECTORS.SETTINGS.ROOT} fixed flex flex-col`
+// ============================================================================
+// UI RENDERING (template)
+// ============================================================================
+function templateHTML() {
+	// const tabs = [
+	// 	{ id: 'colors', label: 'Color', render: renderColorsTab },
+	// 	{ id: 'fonts', label: 'Font', render: renderFontsTab },
+	// 	{ id: 'layout', label: 'Layout', render: renderLayoutsTab },
+	// ]
 
-	// Render settings HTML
-	gpthSettings.innerHTML = `
+	// const buttons = TABS_CONFIG.map(
+	// 	({ label }, i) => `
+	// 		<button class="${SELECTORS.SETTINGS.TABS.BUTTON} py-2 px-4 focus:outline-none text-center ${
+	// 		i === 0 ? ACTIVE_CLASS : ''
+	// 	}">
+	// 			${label}
+	// 		</button>`
+	// ).join('')
+
+	// const panes = TABS_CONFIG.map(
+	// 	({ id, render }, i) => `
+	// 		<div id="${PFX}-tab-${id}"
+	// 			class="${SELECTORS.SETTINGS.TABS.PANE} ${i === 0 ? ACTIVE_CLASS : HIDDEN_CLASS}">
+	// 			${render()}
+	// 		</div>`
+	// ).join('')
+
+	// return `
+	// 	<header class="mb-5">
+	// 		<h2 class="text-center font-medium gpth-settings__title">
+	// 			<span class="font-semibold">GPThemes</span> Customization
+	// 		</h2>
+	// 	</header>
+	// 	<main>
+	// 		<div class="${SELECTORS.SETTINGS.TABS.ROOT}">
+	// 			<div class="${SELECTORS.SETTINGS.TABS.BUTTONS} p-1 font-semibold mb-5">
+	// 				${buttons}
+	// 			</div>
+	// 			<div class="${SELECTORS.SETTINGS.TABS.CONTENT}">
+	// 				${panes}
+	// 			</div>
+	// 		</div>
+	// 	</main>`
+	const buttons = TABS_CONFIG.map(
+		({ label }, i) => `
+			<button class="${SELECTORS.SETTINGS.TABS.BUTTON} py-2 px-4 focus:outline-none text-center ${
+			i === 0 ? ACTIVE_CLASS : ''
+		}" data-tab="${i}">
+				${label}
+			</button>`
+	).join('')
+
+	const panes = TABS_CONFIG.map(
+		({ id, render }, i) => `
+			<div id="${PFX}-tab-${id}"
+				class="${SELECTORS.SETTINGS.TABS.PANE} ${i === 0 ? ACTIVE_CLASS : HIDDEN_CLASS}">
+				${render()}
+			</div>`
+	).join('')
+
+	return `
 		<header class="mb-5">
 			<h2 class="text-center font-medium gpth-settings__title">
 				<span class="font-semibold">GPThemes</span> Customization
@@ -33,97 +89,151 @@ async function createSettings() {
 		<main>
 			<div class="${SELECTORS.SETTINGS.TABS.ROOT}">
 				<div class="${SELECTORS.SETTINGS.TABS.BUTTONS} p-1 font-semibold mb-5">
-					<button class="${SELECTORS.SETTINGS.TABS.BUTTON} py-2 px-4 focus:outline-none text-center active">Color</button>
-					<button class="${SELECTORS.SETTINGS.TABS.BUTTON} py-2 px-4 focus:outline-none text-center">Font</button>
-					<button class="${SELECTORS.SETTINGS.TABS.BUTTON} py-2 px-4 focus:outline-none text-center">Layout</button>
+					${buttons}
 				</div>
 				<div class="${SELECTORS.SETTINGS.TABS.CONTENT}">
-					<div class="${SELECTORS.SETTINGS.TABS.PANE} active" id="${PFX}-tab-colors">${renderColorsTab()}</div>
-					<div class="${SELECTORS.SETTINGS.TABS.PANE} hidden" id="${PFX}-tab-fonts">${renderFontsTab()}</div>
-					<div class="${SELECTORS.SETTINGS.TABS.PANE} hidden" id="${PFX}-tab-layout">${renderWidthsTab()}</div>
+					${panes}
 				</div>
 			</div>
-		</main>
-	`
-
-	// Add to DOM and set up listeners
-	document.body.appendChild(gpthSettings)
-	cacheElements(gpthSettings)
-
-	// Initialize modules
-	// await Promise.all([initColors(), initFonts(), initWidths(), initScrolldown()])
-
-	// Add listeners after initialization
-	addListeners()
+		</main>`
 }
 
-function cacheElements(gpthSettings) {
-	$settings = gpthSettings
-	// $resetAllAccentsBtn = $settings.getElementById(SELECTORS.ACCENT.RESET_BTN_ID)
-	$resetAllAccentsBtn = $settings.querySelector(`#${SELECTORS.ACCENT.RESET_BTN_ID}`)
-	$tabButtons = Array.from($settings.querySelectorAll(`.${SELECTORS.SETTINGS.TABS.BUTTON}`))
-	$tabPanes = Array.from($settings.querySelectorAll(`.${SELECTORS.SETTINGS.TABS.PANE}`))
+// ============================================================================
+// Lifecycle: CREATE (build DOM, init modules, mount)
+// ============================================================================
+async function createSettings() {
+	console.log('[CREATE SETTINGS]')
 
-	// Initially disable accent reset button
-	$resetAllAccentsBtn.disabled = true
+	// 1. Create root container
+	const el = document.createElement('div')
+	el.className = `${SELECTORS.SETTINGS.ROOT} fixed flex flex-col`
+	el.innerHTML = templateHTML()
+
+	// 2. Append to DOM FIRST
+	document.body.appendChild(el)
+
+	// 3. Cache elements AFTER they're in DOM
+	setElements(el)
+
+	// 4. Initialize modules (data/logic only)
+	// try {
+	// 	await Promise.allSettled([initColors(), initFonts(), initWidths()])
+	// } catch (err) {
+	// 	console.error('[Settings] Module initialization failed:', err)
+	// }
+	// //  Wait for next tick to ensure DOM is fully ready
+	// requestAnimationFrame(() => {
+	// 	// 5. Mount modules
+	// 	mountColors(el)
+	// 	mountFonts(el)
+	// 	mountWidths(el)
+
+	// 	// 6. Attach global listeners
+	// 	// 6. Attach global listeners
+	// 	// 6. Attach global listeners
+	// 	attachListeners()
+	// })
+	// mountModules(el)
+
+	// 4. Init modules in parallel, mount sequentially after DOM ready
+	await Promise.allSettled(TABS_CONFIG.map(({ init }) => init()))
+
+	//  Wait for next tick to ensure DOM is fully ready
+	requestAnimationFrame(() => {
+		// 5. Mount modules
+		TABS_CONFIG.forEach(({ mount }) => mount(el))
+		// 6. Attach global listeners
+		attachListeners()
+	})
+
+	return el
 }
 
-function addListeners() {
-	handleTabsSwitching()
-	handleFontsListeners()
-	handleWidthsListeners()
-	handleScrolldownListeners()
-	// handleCustomChatboxListeners()
+// ============================================================================
+// Lifecycle: MOUNT (cache elements, bind listeners)
+// ============================================================================
+// function mountModules(root) {
+// 	// Wait for next tick to ensure DOM is fully ready
+// 	requestAnimationFrame(() => {
+// 		mountColors(root)
+// 		mountFonts(root)
+// 		mountWidths(root)
+// 	})
+// }
 
-	$resetAllAccentsBtn?.addEventListener('click', resetAllAccents)
+function setElements(root) {
+	$settings = root
+	$tabButtons = [...$settings.querySelectorAll(`.${SELECTORS.SETTINGS.TABS.BUTTON}`)]
+	$tabPanes = [...$settings.querySelectorAll(`.${SELECTORS.SETTINGS.TABS.PANE}`)]
+}
+
+function attachListeners() {
+	$settings.querySelector(`.${SELECTORS.SETTINGS.TABS.BUTTONS}`).addEventListener('click', handleTabsSwitching)
+	// handleTabsSwitching()
+}
+
+function handleClickOutside(e) {
+	const isClickInside = $settings.contains(e.target)
+	const isToggleBtn = e.target.id === SELECTORS.SETTINGS.OPEN_BTN
+
+	if (!isClickInside && !isToggleBtn) closeSettings()
+}
+
+function handleTabsSwitching(e) {
+	// if (!$tabButtons?.length) return
+
+	// $tabButtons.forEach((tab, index) => {
+	// 	tab.addEventListener('click', () => {
+	// 		const activeIndex = $tabButtons.findIndex((t) => t.classList.contains(ACTIVE_CLASS))
+	// 		if (activeIndex === index) return
+
+	// 		// Update button states
+	// 		$tabButtons[activeIndex].classList.remove(ACTIVE_CLASS)
+	// 		tab.classList.add(ACTIVE_CLASS)
+
+	// 		// Update content panes
+	// 		$tabPanes[activeIndex].classList.add(HIDDEN_CLASS)
+	// 		$tabPanes[index].classList.remove(HIDDEN_CLASS)
+	// 	})
+	// })
+
+	// Event delegation for tabs - single listener instead of N
+	const btn = e.target.closest(`.${SELECTORS.SETTINGS.TABS.BUTTON}`)
+	if (!btn) return
+
+	const newIndex = parseInt(btn.dataset.tab)
+	const activeIndex = $tabButtons.findIndex((t) => t.classList.contains(ACTIVE_CLASS))
+
+	// console.log(activeIndex, newIndex)
+
+	if (activeIndex === newIndex) return
+
+	// Swap states
+	$tabButtons[activeIndex].classList.remove(ACTIVE_CLASS)
+	$tabButtons[newIndex].classList.add(ACTIVE_CLASS)
+	$tabPanes[activeIndex].classList.add(HIDDEN_CLASS)
+	$tabPanes[newIndex].classList.remove(HIDDEN_CLASS)
 }
 
 function openSettings() {
+	if (!$settings) return
+
 	$settings.classList.add(SELECTORS.SETTINGS.OPEN_STATE)
-	$settings.addEventListener('transitionend', handleSettingsOpened, { once: true })
 
-	$resetAllAccentsBtn.disabled = false
-}
-
-function handleSettingsOpened() {
-	document.body.addEventListener('click', handleClickOutsideSettings)
+	// Small delay to allow reflow before attaching listener
+	requestAnimationFrame(() => {
+		document.addEventListener('click', handleClickOutside, true)
+	})
 }
 
 function closeSettings() {
 	if (!$settings) return
 
 	$settings.classList.remove(SELECTORS.SETTINGS.OPEN_STATE)
-	document.body.removeEventListener('click', handleClickOutsideSettings)
-
-	$resetAllAccentsBtn.disabled = true
+	document.removeEventListener('click', handleClickOutside, true)
 }
 
-function handleClickOutsideSettings(e) {
-	if (!$settings.contains(e.target) && e.target.id !== SELECTORS.SETTINGS.OPEN_BTN) {
-		closeSettings()
-	}
-}
-
-function handleTabsSwitching() {
-	if (!$tabButtons || !$tabButtons.length) return
-
-	// Use cached elements instead of querying on each click
-	$tabButtons.forEach((tab, index) => {
-		tab.addEventListener('click', () => {
-			const activeTabIndex = $tabButtons.findIndex((t) => t.classList.contains(ACTIVE_CLASS))
-
-			// Skip if the clicked tab is already active
-			if (activeTabIndex === index) return
-
-			// Update tab buttons
-			$tabButtons[activeTabIndex].classList.remove(ACTIVE_CLASS)
-			tab.classList.add(ACTIVE_CLASS)
-
-			// Update tab panes
-			$tabPanes[activeTabIndex].classList.add(HIDDEN_CLASS)
-			$tabPanes[index].classList.remove(HIDDEN_CLASS)
-		})
-	})
-}
-
-export { createSettings, openSettings, closeSettings, $settings, SETTINGS_OPEN_CLASS }
+// ============================================================================
+// Exports
+// ============================================================================
+export { createSettings, openSettings, closeSettings }

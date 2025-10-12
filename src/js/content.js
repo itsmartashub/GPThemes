@@ -1,12 +1,7 @@
 import { init as initThemes } from './app/themeManager'
-import { init as initFloating } from './app/floatingBtn'
-import { init as initColors } from './app/mainColors'
-import { init as initFonts } from './app/mainFonts'
-import { init as initWidths } from './app/mainWidths'
-// import { init as initScrolldown } from './app/scrolldown'
-import { init as inittoggleChatBubbles } from './app/toggleChatBubbles'
-import { init as initCustomChatboxHeight } from './app/customChatbox'
-import { init as initUserAccentBg } from './app/custom-colors/accentUserBubble'
+import { init as initFAB } from './app/FAB'
+// Chat bubbles and chatbox height are mounted from custom-layouts after Settings render
+// User bubble accent toggle is mounted from colors module after Settings render
 
 // Configuration
 const CONFIG = {
@@ -20,19 +15,13 @@ let retryCount = 0
 let retryTimeout = null // For cleanup
 
 // Main initialization function
-function initExtension() {
+async function initExtension() {
 	// console.log(`[🎨GPThemes]: Initializing components (attempt ${retryCount + 1}/${CONFIG.MAX_RETRIES})`)
 
 	try {
 		initThemes()
-		initFloating()
-		initColors()
-		initFonts()
-		initWidths()
-		// initScrolldown()
-		inittoggleChatBubbles()
-		initCustomChatboxHeight()
-		initUserAccentBg()
+		initFAB()
+		// Settings modules (colors, fonts, layouts) are initialized inside settingsManager after DOM attach
 	} catch (error) {
 		console.error('[🎨GPThemes]: Critical initialization error:', error)
 		return false
@@ -92,11 +81,3 @@ if (!document.querySelector(CONFIG.TARGET_SELECTOR)) {
 // Emergency cleanup if script re-runs
 if (window._gpthCleanup) window._gpthCleanup()
 window._gpthCleanup = cleanup
-
-/* TODO: Check why extension sometimes failed with console errors:
-
-- Initialization error: Error: Extension context invalidated.
-- Color manager initialization error: TypeError: Cannot read properties of null (reading 'querySelector')
-- Font manager initialization error: TypeError: Cannot read properties of null (reading 'querySelector')
-- Uncaught TypeError: Cannot read properties of null (reading 'classList')
-*/

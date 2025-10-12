@@ -15,6 +15,9 @@
     overflow-y: scroll;
     overflow-x: hidden;
 
+    // It isolates reflows inside the container and prevents global layout recalculation when notifications slide in/out. Great for UIs with frequent updates.
+    contain: layout style paint;
+
     .#{$pfx}-notify {
         position: relative;
         font-size: 1rem;
@@ -22,13 +25,13 @@
         border-radius: calc(var(--br) * 1.2);
         background-color: var(--notif-bg);
         color: var(--notif-c);
-        border: 1px solid var(--notif-bg) !important;
+        border: 1px solid color-alpha(currentColor, 0.1) !important;
         backdrop-filter: blur(18px);
         transform: translateX(100%);
         opacity: 0;
         transition: all 0.3s ease;
 
-        --notif-bg: var(--c-accent-10);
+        --notif-bg: #{color-alpha(--c-seed, 0.2, true)};
         --notif-c: var(--c-seed, var(--c-accent));
 
         &__content {

@@ -3,7 +3,7 @@
 /* Dont use pre directly bcs in the "Analysis" code there is also <pre> */
 .prose pre {
 	border-radius: calc(var(--br-chat-bubble) * 0.5) !important;
-	font-size: calc(calc((var(--fontSize) / 16) * 1rem) * 0.85) !important;
+	font-size: calc(calc((var(--gpthFontSize) / 16) * 1rem) * 0.85) !important;
 	letter-spacing: -0.2px !important;
 
 	/* To strictly select chat-bubble main code-block <pre> and not that "Result" in Analysis */

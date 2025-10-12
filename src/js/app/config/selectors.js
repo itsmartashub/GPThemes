@@ -1,4 +1,4 @@
-import { PFX } from './constants'
+import { PFX } from './consts'
 
 const chatboxRoot = "form[data-type='unified-composer'] .contain-inline-size[class*='bg-[\\#303030]'"
 
@@ -38,7 +38,7 @@ export const SELECTORS = {
 	ACCENT: {
 		LIGHT_ID: `${PFX}-accent-light-id`,
 		DARK_ID: `${PFX}-accent-dark-id`,
-		RESET_BTN_ID: 'resetAllAccents',
+		RESET_BTN_ID: '${PFX}ResetAllColors',
 	},
 
 	// Width Controls
