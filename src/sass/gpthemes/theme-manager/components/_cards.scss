@@ -63,7 +63,7 @@
         top: var(--card-tooltip-top);
         left: 50%;
         transform: translateX(-50%);
-        z-index: 1000;
+        z-index: 100;
         opacity: 0;
         pointer-events: none;
         translate: 0 -0.5rem;
@@ -337,6 +337,33 @@
 
         &.is-locked {
             @include isLockedIcon;
+        }
+    }
+
+
+    &__loader {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        background-color: var(--c-surface-2);
+        background-image: linear-gradient(65deg, var(--c-accent), var(--c-surface-1));
+        color: var(--c-on-accent);
+        border-radius: inherit;
+        backdrop-filter: blur(20px);
+        z-index: 110;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+
+    &--loading {
+        opacity: 0.7;
+        pointer-events: none;
+
+        .card__loader {
+            opacity: 1 !important;
+            pointer-events: all !important;
         }
     }
 }

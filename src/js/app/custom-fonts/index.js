@@ -18,6 +18,8 @@ let preconnectLinksAdded = false
 let cachedElements = null
 let storedValues = null
 
+let loaderTimeout = null
+
 const focusValues = {}
 const GOOGLE_FONT_BASE = 'https://fonts.googleapis.com/css2?family='
 const GOOGLE_FONT_WEIGHTS = ':ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,300;1,400;1,500;1,600;1,700'
@@ -110,23 +112,25 @@ function templateHTML() {
       <div class="fonts__props">
         <div class="fonts__bigcards-wrapper">
           <div class="fonts__family fonts__group card card--big h-full">
-            <label for="${CONFIG.fontFamily.id}" class="flex flex-col gap-1 h-full w-full">
-              <div>
-                <p class="card__unit card__icon">T</p>
-                <p class="card__name uppercase font-semibold">FONT FAMILY</p>
-              </div>
-              <select id="${
-					CONFIG.fontFamily.id
-				}" class="flex-1 border-none outline-none focus:none font-bold" role="listbox">
-                ${CONFIG.fontFamily.options
-					.map((f) => {
-						const val = f.name === 'Default' ? CONFIG.fontFamily.default : f.name
-						return `<option value="${val}">${f.label}</option>`
-					})
-					.join('')}
-              </select>
-            </label>
+			<label for="${CONFIG.fontFamily.id}" class="flex flex-col gap-1 h-full w-full">
+				<div>
+					<p class="card__unit card__icon">T</p>
+					<p class="card__name uppercase font-semibold">FONT FAMILY</p>
+				</div>
+				<select id="${CONFIG.fontFamily.id}" class="flex-1 border-none outline-none focus:none font-bold" role="listbox">
+					${CONFIG.fontFamily.options
+						.map((f) => {
+							const val = f.name === 'Default' ? CONFIG.fontFamily.default : f.name
+							return `<option value="${val}">${f.label}</option>`
+						})
+
+						.join('')}
+				</select>
+			</label>
+				
+			<div class="card__loader">⌛</div>
           </div>
+
           ${renderFontBigCard({
 				name: CONFIG.fontSize.label,
 				className: SELECTORS.FONT.SIZE_CLASS,
@@ -244,6 +248,20 @@ function addPreconnectLinks() {
 	)
 	preconnectLinksAdded = true
 }
+function removeCurrGoogleFontLink() {
+	if (currentFontLink && currentFontLink.parentNode) {
+		currentFontLink.remove()
+	}
+	currentFontLink = null
+}
+function removeAllGoogleFontLinks() {
+	// Remove current font link
+	removeCurrGoogleFontLink()
+
+	// Remove all Google Fonts related links (including preconnect)
+	$$("link[href*='fonts.googleapis.com'], link[href*='fonts.gstatic.com']").forEach((link) => link.remove())
+	preconnectLinksAdded = false
+}
 function setGoogleFont(font) {
 	// If it's the default font, remove only the font stylesheet
 	if (font === CONFIG.fontFamily.default) {
@@ -260,34 +278,58 @@ function setGoogleFont(font) {
 	// Create and insert only the font-specific stylesheet
 	currentFontLink = document.createElement('link')
 	currentFontLink.rel = 'stylesheet'
+
+	// Added &display=swap for immediate text visibility
 	currentFontLink.href = `${GOOGLE_FONT_BASE}${encodeURIComponent(font)}${GOOGLE_FONT_WEIGHTS}&display=swap`
 
 	document.head.appendChild(currentFontLink)
 }
-function removeCurrGoogleFontLink() {
-	if (currentFontLink && currentFontLink.parentNode) {
-		currentFontLink.remove()
-	}
-	currentFontLink = null
-}
-function removeAllGoogleFontLinks() {
-	// Remove current font link
-	removeCurrGoogleFontLink()
 
-	// Remove all Google Fonts related links (including preconnect)
-	$$("link[href*='fonts.googleapis.com'], link[href*='fonts.gstatic.com']").forEach((link) => link.remove())
-	preconnectLinksAdded = false
+function clearLoaderTimeout() {
+	if (loaderTimeout) {
+		clearTimeout(loaderTimeout)
+		loaderTimeout = null
+	}
+}
+
+function setLoader(isLoading = false) {
+	console.log('setLoader: ', isLoading)
+	clearLoaderTimeout() // Always clear when setting loader state
+
+	const $cardFontFamily = $('.fonts__family')
+	$cardFontFamily.classList.toggle('card--loading', isLoading)
 }
 
 // Update your handleFontFamily function:
 async function handleFontFamily(e) {
 	const selectedFontFamily = e.target.value
 
-	// This will handle both default and custom fonts appropriately
-	setGoogleFont(selectedFontFamily)
+	clearLoaderTimeout() // Clear any existing
 
-	setVar(CONFIG.fontFamily.cssVar, selectedFontFamily)
-	await setItem(CONFIG.fontFamily.storageKey, selectedFontFamily)
+	setLoader(true)
+
+	try {
+		// Set CSS variable immediately for instant visual feedback
+		setVar(CONFIG.fontFamily.cssVar, selectedFontFamily)
+
+		// Load font with display=swap for faster perceived performance
+		setGoogleFont(selectedFontFamily)
+
+		// Save to storage (non-blocking)
+		await setItem(CONFIG.fontFamily.storageKey, selectedFontFamily)
+		Notify.success('Font updated successfully')
+	} catch (error) {
+		console.error('Font change failed:', error)
+		// Revert on error
+		e.target.value = storedValues.fontFamily
+		setVar(CONFIG.fontFamily.cssVar, storedValues.fontFamily)
+	} finally {
+		// Hide loader after minimal time to prevent blink
+		// The font will continue loading in background with display=swap
+		loaderTimeout = setTimeout(() => {
+			setLoader(false)
+		}, 400)
+	}
 }
 
 async function resetAll() {

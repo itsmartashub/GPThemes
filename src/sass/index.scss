@@ -13,7 +13,8 @@
 
 @import 'dev/_mixins'; // TODO: REMOVE THIS FOR PRODUCTION!
 
-@import '../libs/jscolorpicker/colorpicker.scss';
+@import '../libs/jscolorpicker/colorpicker-my-style.scss';
+// @import '../libs/jscolorpicker/colorpicker-default-style.scss';
 // @import '../libs/jscolorpicker/colorpicker.min.scss';
 
 @import 'global/_base';
