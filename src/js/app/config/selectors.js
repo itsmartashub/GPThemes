@@ -39,6 +39,7 @@ export const SELECTORS = {
 		LIGHT_ID: `${PFX}-accent-light-id`,
 		DARK_ID: `${PFX}-accent-dark-id`,
 		RESET_BTN_ID: '${PFX}ResetAllColors',
+		TOGGLE_ACCENT_TEXT_ID: `${PFX}-toggle-accent-text`,
 	},
 
 	// Width Controls
