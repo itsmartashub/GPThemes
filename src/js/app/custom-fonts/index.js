@@ -18,8 +18,6 @@ let preconnectLinksAdded = false
 let cachedElements = null
 let storedValues = null
 
-let loaderTimeout = null
-
 const focusValues = {}
 const GOOGLE_FONT_BASE = 'https://fonts.googleapis.com/css2?family='
 const GOOGLE_FONT_WEIGHTS = ':ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,300;1,400;1,500;1,600;1,700'
@@ -285,28 +283,9 @@ function setGoogleFont(font) {
 	document.head.appendChild(currentFontLink)
 }
 
-function clearLoaderTimeout() {
-	if (loaderTimeout) {
-		clearTimeout(loaderTimeout)
-		loaderTimeout = null
-	}
-}
-
-function setLoader(isLoading = false) {
-	console.log('setLoader: ', isLoading)
-	clearLoaderTimeout() // Always clear when setting loader state
-
-	const $cardFontFamily = $('.fonts__family')
-	$cardFontFamily.classList.toggle('card--loading', isLoading)
-}
-
 // Update your handleFontFamily function:
 async function handleFontFamily(e) {
 	const selectedFontFamily = e.target.value
-
-	clearLoaderTimeout() // Clear any existing
-
-	setLoader(true)
 
 	try {
 		// Set CSS variable immediately for instant visual feedback
@@ -323,12 +302,7 @@ async function handleFontFamily(e) {
 		// Revert on error
 		e.target.value = storedValues.fontFamily
 		setVar(CONFIG.fontFamily.cssVar, storedValues.fontFamily)
-	} finally {
-		// Hide loader after minimal time to prevent blink
-		// The font will continue loading in background with display=swap
-		loaderTimeout = setTimeout(() => {
-			setLoader(false)
-		}, 400)
+		Notify.error('Failed to update font')
 	}
 }
 
