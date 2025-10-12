@@ -125,8 +125,6 @@ function templateHTML() {
 						.join('')}
 				</select>
 			</label>
-				
-			<div class="card__loader">⌛</div>
           </div>
 
           ${renderFontBigCard({
