@@ -126,7 +126,7 @@ html,
     /* .bg-token-popover-surface-primary  
 	- contextmenu in theme dropdown chooser
 	- "Upgrade ur plan" dialog bg */
-    --popover-surface-primary: var(--c-bg-contextmenu) !important;
+    --popover-surface-primary: var(--c-surface-2) !important;
 
     --interactive-bg-secondary-hover: var(--c-accent-12) !important; // when hover action btns in prompt-textarea
     --interactive-bg-secondary-press: var(--c-accent-20) !important; // when pressed action btns in prompt-textarea
