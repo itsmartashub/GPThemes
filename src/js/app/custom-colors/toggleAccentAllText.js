@@ -5,7 +5,7 @@ import { SK_TOGGLE_ACCENT_TEXT } from '../config/consts-storage.js'
 import { ATTR_ACCENT_TEXT } from '../config/consts-attr.js'
 import { Notify } from '../components/renderNotify.js'
 import { renderToggle } from '../components/renderToggles.js'
-import { icon_accent } from '../components/icons.js'
+import { icon_text_color } from '../components/icons.js'
 
 const STORAGE_KEY = SK_TOGGLE_ACCENT_TEXT
 const DATA_ATTR = ATTR_ACCENT_TEXT
@@ -18,7 +18,7 @@ function templateHTML() {
 		checked: DEFAULT_STATE,
 		label: 'Accent All Text',
 		subtitle: 'Make all the text on the page accented',
-		icon: icon_accent,
+		icon: icon_text_color,
 		card: true,
 	})
 }
