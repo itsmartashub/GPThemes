@@ -153,7 +153,7 @@
     [data-message-author-role='user'] {
 
         /* ↪️ Reply in msg */
-        &>.text-token-text-tertiary.mx-2.my-1.flex.items-start.justify-end.text-sm.font-normal {
+        &>.text-token-text-tertiary.mx-2.flex.items-start.justify-end.text-sm.font-normal {
             background-color: var(--c-accent-20);
             padding: 0.5rem;
             color: var(--c-accent);

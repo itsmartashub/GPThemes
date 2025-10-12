@@ -188,3 +188,16 @@ form {
 		}
 	}
 }
+
+
+/* Uploaded file in chatbox and in chats too */
+a .bg-primary .p-2.w-80 {
+	.h-10.w-10 {
+		background-color: var(--c-accent-12) !important;
+		color: var(--c-accent) !important;
+
+		svg {
+			color: currentColor !important
+		}
+	}
+}
