@@ -1,8 +1,8 @@
 import { SELECTORS } from '../config/selectors.js'
-import { getElementById } from '../../utils/dom.js'
 import { renderButton } from '../components/renderButtons.js'
 import { renderSeparator } from '../components/renderUtils.js'
 import { renderUserAccentBgToggle, mount as mountUserBubbleAccent } from './toggleAccentUserBubble.js'
+import { renderAllTextAccent, mount as mountAllTextAccent } from './toggleAccentAllText.js'
 import {
 	renderAccentsColors,
 	mount as mountAccentColors,
@@ -17,11 +17,14 @@ function templateHTML() {
 			<div>
 				${renderAccentsColors()}
 			</div>
+
+			${renderSeparator}
+
 			<div>
-				${renderSeparator}
 				${renderUserAccentBgToggle()}
-				${renderSeparator}
+				${renderAllTextAccent()}
 			</div>
+			
 			<footer class="flex justify-center mt-8">
 				${renderButton({
 					id: SELECTORS.ACCENT.RESET_BTN_ID,
@@ -55,6 +58,7 @@ function mount() {
 	// Mount other child modules
 	mountAccentColors($resetBtn)
 	mountUserBubbleAccent()
+	mountAllTextAccent()
 }
 
 // --- EXPORTS ---
