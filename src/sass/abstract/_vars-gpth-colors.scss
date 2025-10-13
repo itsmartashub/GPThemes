@@ -117,11 +117,12 @@ html.dark {
     --c-on-accent: oklch(from var(--c-accent) 0.25 c h);
     --c-accent-light: oklch(from var(--c-accent) 0.35 calc(c * 0.4) h);
 
-    --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.25 calc(c * 0.18) h);
+    --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.24 calc(c * 0.18) h);
     --c-surface-2: oklch(from var(--user-surface-2, var(--c-surface-1)) calc(l * 1.256) calc(c * 1.4) h);
     --c-surface-3: oklch(from var(--user-surface-3, var(--c-surface-2)) calc(l * 1.2) calc(c * 1.4) h);
-    --c-bg-chats-container: oklch(from var(--c-surface-1) calc(l * 1.035) calc(c * 1.05) h);
-    --c-bg-msg-gpt: oklch(from var(--c-bg-chats-container) calc(l * 1.15) calc(c * 1.15) h);
+
+    --c-bg-chats-container: oklch(from var(--c-surface-1) calc(l * 1.03) calc(c * 1.05) h);
+    --c-bg-msg-gpt: oklch(from var(--c-bg-chats-container) calc(l * 1.15) calc(c * 1.3) h);
     // --c-bg-msg-gpt: oklch(from var(--c-accent) 0.35 calc(c * 0.282) h);
 
     // --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.26 calc(c * 0.2) h);
