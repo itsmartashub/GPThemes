@@ -1,5 +1,6 @@
 {
 	"manifest_version": 3,
+	"minimum_chrome_version": "119",
 	"version": "5.3.0",
 	"name": "GPThemes - ChatGPT Customization & Tweaks",
 	"description": "Redesign ChatGPT: custom colors, fonts & layouts — widescreen mode, width sliders, expandable chatbox, hide header/footer & more.",

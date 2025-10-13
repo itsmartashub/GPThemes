@@ -90,5 +90,14 @@
 		"svgo": "^4.0.0",
 		"webextension-polyfill": "^0.12.0"
 	},
-	"browserslist": "> 1%, last 2 versions, not dead"
+	"browserslist": [
+		"Chrome >= 119",
+		"ChromeAndroid >= 119",
+		"Edge >= 119",
+		"Opera >= 105",
+		"Firefox >= 128",
+		"FirefoxAndroid >= 128",
+		"Safari >= 16.4",
+		"Samsung >= 24"
+	]
 }

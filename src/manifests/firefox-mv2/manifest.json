@@ -21,7 +21,8 @@
 	"permissions": ["storage", "https://chat.openai.com/*", "https://chatgpt.com/*"],
 	"browser_specific_settings": {
 		"gecko": {
-			"id": "gpthemes@itsmarta"
+			"id": "gpthemes@itsmarta",
+			"strict_min_version": "128.0"
 		}
 	},
 	"background": {
@@ -36,6 +37,6 @@
 			"48": "../../assets/icons/48.png",
 			"128": "../../assets/icons/128.png"
 		},
-		"default_title": "ChatGPT Customization"
+		"default_title": "ChatGPT Customization & Tweaks"
 	}
 }
