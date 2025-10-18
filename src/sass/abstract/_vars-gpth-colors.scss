@@ -137,8 +137,8 @@ html.dark {
     // --c-subtext-2: oklch(from var(--user-text-3, var(--c-accent)) 0.82 calc(c * 0.7) h);
     /* Monochromatic friendly */
     // --c-txt: oklch(from var(--user-text-1, var(--c-accent)) 1 0 h);
-    --c-txt: oklch(from var(--user-text-1, var(--c-accent)) 1 0.04 h);
-    --c-subtext-1: color-mix(in oklch, var(--c-accent), var(--c-surface-1) 20%);
+    --c-txt: oklch(from var(--user-text-1, var(--c-accent)) 1 0.035 h);
+    --c-subtext-1: color-mix(in oklch, var(--c-accent), var(--c-surface-2) 30%);
     --c-subtext-2: color-mix(in oklch, var(--c-accent), #fff 35%);
 
     --c-danger: oklch(75.114% 0.13378 16.727);
