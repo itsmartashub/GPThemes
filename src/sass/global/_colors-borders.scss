@@ -38,19 +38,6 @@ html.light [class*=':border-white/10'] {
 	border-color: var(--c-border) !important;
 }
 
-/* TOS - "This content may violate content policy..." (red) & "This content may violate our Terms of Use or usage policies." (orange) warnings */
-/* [class*='border-red-500'] {
-	border-color: hsla(var(--danger-hsl) / 0.11) !important;
-}
-[class*='border-orange-500'] {
-	border-color: hsla(var(--warning-hsl) / 0.11) !important;
-} */
-
-/* "Share link" mini chat footer 3 dots btn */
-[class*='focus-visible:border-green-500'] {
-	border-color: transparent !important;
-}
-
 /*This removes the border from code snippets box and (green) checkboxes/switches in "Settings" */
 [class*='border-token-border-medium'] {
 	// --border-medium: transparent !important;

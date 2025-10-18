@@ -125,6 +125,17 @@
 				}
 			}
 
+			/* Back button, e.g. when goes to: "Settings" -> "Advanced" ->  */
+			.h-header-height {
+				button.btn.btn-ghost.btn-small {
+					@extend .btn-secondary;
+
+					&:hover {
+						@extend .btn-primary;
+					}
+				}
+			}
+
 			button[type="button"][aria-haspopup="menu"] {
 				@extend .btn-secondary;
 				min-width: var(--min-w-btn);
