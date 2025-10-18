@@ -131,10 +131,14 @@ html.dark {
     // --c-bg-msg-gpt: oklch(from var(--c-accent) 0.32 calc(c * 0.282) h);
     // --c-bg-chats-container: oklch(from var(--c-surface-1) calc(l * 1.04) calc(c * 1.1) h);
 
-    --c-txt: oklch(from var(--user-text-1, var(--c-accent)) 1 0.07 h);
-    // --c-txt: oklch(from var(--user-txt, var(--c-accent)) 1 c h);
-    --c-subtext-1: oklch(from var(--user-text-2, var(--c-accent)) 0.72 calc(c * 0.85) h);
-    --c-subtext-2: oklch(from var(--user-text-3, var(--c-accent)) 0.82 calc(c * 0.7) h);
+    /* Before monochromatic */
+    // --c-txt: oklch(from var(--user-text-1, var(--c-accent)) 1 0.07 h);
+    // --c-subtext-1: oklch(from var(--user-text-2, var(--c-accent)) 0.72 calc(c * 0.85) h);
+    // --c-subtext-2: oklch(from var(--user-text-3, var(--c-accent)) 0.82 calc(c * 0.7) h);
+    /* Monochromatic friendly */
+    --c-txt: oklch(from var(--user-text-1, var(--c-accent)) 1 0 h);
+    --c-subtext-2: color-mix(in oklch, var(--c-accent), #fff 35%);
+    --c-subtext-1: color-mix(in oklch, var(--c-accent), var(--c-surface-2) 50%);
 
     --c-danger: oklch(75.114% 0.13378 16.727);
     --c-warning: oklch(84.508% 0.11321 65.67);
@@ -173,8 +177,12 @@ html.dark[data-gptheme='oled'] {
     // --c-bg-msg-gpt: var(--c-accent-08);
 
     --c-bg-msg-user: oklch(from var(--c-accent) 0.23 calc(c * 0.4) h);
+    // --c-bg-msg-gpt: oklch(from var(--c-accent) 0.15 0.02 h);
+    --c-bg-msg-gpt: oklch(from var(--c-accent) 0.158 calc(c * 0.2) h);
+    // --c-bg-msg-gpt: var(--c-accent-03);
+
     // --c-bg-msg-gpt: oklch(from var(--c-accent) 0.2 calc(c * 0.2) h);
-    --c-bg-msg-gpt: oklch(from var(--c-accent) 0.15 0.02 h);
+    // --c-bg-msg-gpt: oklch(from var(--c-accent) 0.15 0.02 h);
     // --c-bg-msg-gpt: oklch(from var(--c-accent) 0.2 calc(c * 0.18) h);
     // --c-bg-msg-gpt: oklch(from var(--c-accent) 0.15 calc(c * 0.282) h);
     // --c-bg-msg-gpt: var(--c-accent-20);
