@@ -445,52 +445,102 @@
 	}
 }
 
-/* ___ Dialog - "Share Link to Chat" & "Public Link Updated" */
-[data-testid="modal-sharing"] {
-	[role="dialog"] {
+/* TODO: remove 2025-10-01?? There us new sharing dialog - Dialog - "Share Link to Chat" & "Public Link Updated" */
+// [data-testid="modal-sharing"] {
+// 	[role="dialog"] {
 
-		/* "🔗 Copy Link" btn */
-		button.rounded-full {
-			border-radius: 50vw !important;
+// 		/* "🔗 Copy Link" btn */
+// 		button.rounded-full {
+// 			border-radius: 50vw !important;
+// 		}
+
+// 		/*  bg of link preview and "🔗 Create Link" btn */
+// 		.bg-token-main-surface-primary {
+// 			--main-surface-primary: var(--c-surface-3) !important;
+// 		}
+
+// 		// /* bg-gradient of link preview */
+// 		.from-token-main-surface-primary {
+// 			--tw-gradient-from: var(--c-surface-3) !important;
+// 			// display: none;
+// 		}
+
+// 		aside {
+// 			background-color: var(--c-surface-3) !important;
+// 		}
+
+// 		/* PUBLIC LINK UPDATED - Social platforms in show in footer after the  "🔗 Copy Link" btn */
+// 		a[href*='linkedin'],
+// 		a[href*='facebook'],
+// 		a[href*='reddit'],
+// 		a[href*='twitter'] {
+// 			transform: scale(0.9);
+// 			margin-bottom: 5px !important;
+
+// 			&:hover {
+// 				transform: scale(1);
+// 			}
+
+// 			svg {
+// 				--main-surface-secondary: var(--c-surface-3) !important;
+// 			}
+
+// 			&+span {
+// 				color: var(--c-accent);
+// 				background-color: var(--c-accent-15) !important;
+// 				padding: 2px 8px;
+// 				border-radius: 50vw;
+// 				font-weight: 600;
+// 			}
+// 		}
+// 	}
+// }
+
+/* Sharing dialog */
+.absolute.inset-0.max-w-\[664px\] {
+
+	[role="dialog"].popover {
+		[data-testid="sharing-post-unfurl-view"] {
+
+			/* Chat wrapper in sharing dialog */
+			[class*="dark:bg-[#353535]"].h-full {
+				background-color: var(--c-bg-chats-container) !important;
+
+				[data-message-author-role="user"] .user-message-bubble-color,
+				[data-message-author-role="assistant"] {
+					padding: 1.2rem !important;
+				}
+
+				[data-message-author-role="user"] {
+					.user-message-bubble-color {
+						background-color: var(--c-bg-msg-user) !important;
+					}
+				}
+
+				[data-message-author-role="assistant"] {
+					background-color: var(--c-bg-msg-gpt) !important;
+					border-radius: 1.5rem;
+				}
+			}
 		}
 
-		/*  bg of link preview and "🔗 Create Link" btn */
-		.bg-token-main-surface-primary {
-			--main-surface-primary: var(--c-surface-3) !important;
-		}
+		/* Social buttons wrapper */
+		button.relative.flex.flex-col.gap-y-4[class*="disabled:opacity-50"] {
+			transition: scale 0.2s $easeInOutBack;
 
-		// /* bg-gradient of link preview */
-		.from-token-main-surface-primary {
-			--tw-gradient-from: var(--c-surface-3) !important;
-			// display: none;
-		}
-
-		aside {
-			background-color: var(--c-surface-3) !important;
-		}
-
-		/* PUBLIC LINK UPDATED - Social platforms in show in footer after the  "🔗 Copy Link" btn */
-		a[href*='linkedin'],
-		a[href*='facebook'],
-		a[href*='reddit'],
-		a[href*='twitter'] {
-			transform: scale(0.9);
-			margin-bottom: 5px !important;
+			/* Social circled button */
+			&>.h-16.w-16.rounded-full {
+				--text-primary: currentColor !important;
+				@include accent('prim');
+				// transition: background-color 0.2s $easeInCirc;
+			}
 
 			&:hover {
-				transform: scale(1);
-			}
+				scale: 0.97;
 
-			svg {
-				--main-surface-secondary: var(--c-surface-3) !important;
-			}
-
-			&+span {
-				color: var(--c-accent);
-				background-color: var(--c-accent-15) !important;
-				padding: 2px 8px;
-				border-radius: 50vw;
-				font-weight: 600;
+				&>.h-16.w-16.rounded-full {
+					@include accent('sec');
+				}
 			}
 		}
 	}
@@ -502,6 +552,8 @@
 	@include dev('lg') {
 		.bg-token-bg-primary {
 			--bg-primary: var(--c-bg-dialog) !important;
+
+
 		}
 	}
 }

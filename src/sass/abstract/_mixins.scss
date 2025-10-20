@@ -108,8 +108,24 @@
 
 // @mixin bgcAccent($alpha: 0.1) {
 //     --alpha: #{$alpha};
-//     background-color: var(--color-alpha) !important;
+//     background-color: var(--color-alpha) !important; 
 //     color: var(--c-accent) !important;
 // }
 
 // oklch(var(--from-accent) /
+
+@mixin accent($mode: 'prim') {
+    @if $mode =='prim' {
+        background-color: var(--c-accent) !important;
+        color: var(--c-on-accent) !important;
+    }
+
+    @else if $mode =='sec' {
+        background-color: var(--c-accent-light) !important;
+        color: var(--c-accent) !important;
+    }
+
+    @else {
+        @warn "Unknown accent mode '#{$mode}' — use 'prim' or 'sec'.";
+    }
+}

@@ -30,61 +30,68 @@ const SECTION_TYPES = {
 }
 
 const currentReleaseChanges = {
-	// New fixes specific to this release
 	features: [
 		{
-			description: 'Taller Chatbox:',
-			details: `You can now toggle a taller chatbox layout to give yourself more room to type. <br/> 
-			⚠️ Always disabled on the <code>Library</code> and the intial <code>New chat</code> pages`,
-			prRef: 163,
+			description: 'OKLCH Color System:',
+			details:
+				'Completely rebuilt color management from HSL to OKLCH for better color accuracy, perceptual uniformity, and better lightness handling on modern displays',
+			prRef: 171,
 		},
 		{
-			description: 'Hide Elements:',
-			details: `Added new toggles to hide the header and footer, giving you more control over the UI. <br/>
-			⚠️ If you encounter a bug or unexpected behavior, please let me know. Thanks 🙏`,
-			prRef: 165,
+			description: 'New Color Picker:',
+			details:
+				'Replaced native browser input with colorpicker library featuring manual HEX input, eyedropper tool, individual color reset, and consistent cross-browser behavior. (Please read <code>Other</code> section for performance info)',
+			prRef: 173,
 		},
 		{
-			description: 'Full Accent Bubbles:',
-			details: 'You can now toggle a full accent-colored background for your user chat bubbles.',
-			prRef: 167,
+			description: 'All Text Accented Toggle:',
+			details: 'Added toggle to apply accent color to main text on the page',
+			prRef: 175,
+			issueRef: 109,
+		},
+		{
+			description: 'Storage Version Control:',
+			details:
+				'Implemented automatic storage clearing when extension version is outdated, ensuring clean upgrades. <br/> ⚠️ Your settings will be reset on first launch',
 		},
 	],
-	// New improvements specific to this release
 	improvements: [
 		{
-			description: 'User Bubble Text:',
-			details: "Overrode the OpenAI's new accent text color for user bubbles to ensure proper contrast.",
-		},
-		{
-			description: 'Chatbox Autosuggestions',
+			description: 'Theme Improvements:',
 			details:
-				'Introduced a hover animation for the autosuggestion list in the prompt-textarea for enhanced visual feedback',
+				'Brightened light theme; enhanced bubble contrast; tweaked dark/OLED theme to be more monochromatic-friendly,and many more',
 		},
 		{
-			description: 'Chat Footer Icons:',
-			details: 'Fixed icon styles and added a scale-up hover animation.',
-		},
-		{
-			description: 'Text Selection:',
+			description: 'Updated Colors:',
 			details:
-				'Adjusted the styling of selected text to ensure proper contrast and readability against the accent background.',
+				'Refined surface and menu colors across all themes (light, dark, OLED) for better visual hierarchy',
 		},
 		{
-			description: 'Chatbox:',
-			details:
-				'Removed the attach file functionality and simplified the GPTs list by removing the input search field.',
+			description: 'Project Interface:',
+			details: 'Added border radius and smooth hover transitions to chat list',
 		},
 		{
-			description: 'Reasoning Elements:',
-			details:
-				'Applied minor styling improvements to all reasoning elements for better consistency and readability.',
+			description: 'Modals Dialogs:',
+			details: 'Added better style to back button and improve sharing dialog',
+		},
+	],
+	fixes: [
+		{
+			description: 'Expand Chatbox Height:',
+			details: 'Updated selectors to prevent targeting chatbox in <code>New Chat</code> layout',
+		},
+		{
+			description: 'Project & Sidebar:',
+			details: 'Fixed hover styles and pill-style dates broken due to OpenAI updates',
 		},
 	],
 	other: [
 		{
-			details:
-				'Hey, there 👋 Thanks for using the <code>GPTHEMES</code> <br/> If you encounter a bug or unexpected behavior, please let me know. Thanks 🙏 <br> For all the details, check out the full release notes on GitHub.',
+			details: `Hey there 👋 This is a <strong>MAJOR</strong> <code>v6.0.0</code> release with complete color system overhaul and massive codebase refactor! <br/><br/> 
+			⚠️ <strong>Important:</strong> Your settings will be reset on first launch due to storage version update. <br/><br/>
+			💡 <strong>Note on color picker:</strong> For the smoothest experience, change colors on lighter pages (like "New Chat" screen without chat messages). Live preview regenerates the entire theme during dragging, which can lag on heavy pages. If this becomes too slow on your device, please open an issue. Though removing live preview would lose that instant UI morph. <br/><br/>
+			🐛 If you encounter any bugs, please report them on GitHub. <br/><br/> 
+			For full technical details and maintenance notes, check out the complete release notes on GitHub.`,
 		},
 	],
 }
