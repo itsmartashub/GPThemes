@@ -1,13 +1,14 @@
 import ColorPicker from '../../../libs/jscolorpicker/colorpicker.min.js'
+// import ColorPicker from '../../../libs/jscolorpicker/colorpicker.js'
 import { getItems, setItem, removeItems } from '../../utils/storage.js'
 import { SELECTORS } from '../config/selectors.js'
 import { SK_COLOR_ACCENT_LIGHT, SK_COLOR_ACCENT_DARK } from '../config/consts-storage.js'
-import { $, getVar, setVar, setVars, removeVar } from '../../utils/dom.js'
+import { getVar, setVar, setVars, removeVar } from '../../utils/dom.js'
 import { Notify } from '../components/renderNotify.js'
 
-// let $rootSettings = null
 let $resetBtn = null
-let storedColors = null // ← Cache the loaded data
+let storedColors = null
+const accentPickers = new Map()
 
 // --- CONFIG ---
 const CONFIG = [
@@ -30,7 +31,6 @@ const CONFIG = [
 ]
 
 const STORAGE_KEYS = CONFIG.map((cfg) => cfg.storageKey)
-const accentPickers = new Map()
 
 // --- TEMPLATE ---
 function templateHTML() {
@@ -49,8 +49,7 @@ function templateHTML() {
 // --- STORAGE ---
 async function getFromStorage() {
 	try {
-		const result = await getItems(STORAGE_KEYS)
-		return result || {}
+		return (await getItems(STORAGE_KEYS)) || {}
 	} catch (err) {
 		console.error('Failed to load colors from storage:', err)
 		Notify.warning('Using default colors')
@@ -68,7 +67,7 @@ async function saveToStorage(key, value) {
 	}
 }
 
-// --- LOGIC ---
+// --- CSS LOGIC ---
 function updateCss(stored) {
 	const cssVars = {}
 	for (const cfg of CONFIG) {
@@ -91,16 +90,11 @@ function updateResetButton() {
 
 // --- PICKERS ---
 function createPickers(storageColors) {
-	// console.log(storageColors)
-	// console.log('[CREATE COLOR PICKERS]')
-
 	CONFIG.forEach((cfg) => {
 		const btn = document.getElementById(cfg.id)
 		if (!btn) return
 
 		const initialColor = storageColors[cfg.storageKey] ?? cfg.default
-
-		// console.log(initialColor)
 
 		const picker = new ColorPicker(btn, {
 			toggleStyle: 'button',
@@ -109,51 +103,86 @@ function createPickers(storageColors) {
 			submitMode: 'instant',
 			enableAlpha: false,
 			formats: false,
-			defaultFormat: 'hex',
 			dialogPlacement: 'bottom',
 			dismissOnOutsideClick: true,
 			dismissOnEscape: true,
 			showClearButton: true,
 		})
 
-		let currHex = initialColor
+		let currentValidColor = initialColor
 		let hasChanged = false
 
 		picker.on('pick', (color) => {
-			if (color) {
-				const newHex = color.string('hex')
-				if (newHex !== currHex) {
-					currHex = newHex
-					setVar(cfg.cssVar, newHex)
-					hasChanged = true
-				}
-			} else {
-				if (currHex !== cfg.default) {
-					// console.log('Resetting color to default', color)
-					currHex = cfg.default
-					removeVar(cfg.cssVar)
-					removeItems(cfg.storageKey)
-					hasChanged = true
-					Notify.success(`Accent color for ${cfg.theme} theme has been reset to default`)
-				}
-				picker.setColor(cfg.default, false)
+			// Handle clear button - reset to default
+			if (!color) {
+				handleColorReset()
+				return
+			}
+
+			const colorString = color.string('hex')
+
+			// Skip if color contains NaN (invalid state during typing/deletion)
+			if (colorString.includes('NaN')) {
+				return // Silently ignore - user is still typing
+			}
+
+			// Validate it's a proper hex color
+			if (!isValidCompleteColor(colorString)) {
+				return // Invalid color, don't update
+			}
+
+			// Only update if color actually changed
+			if (colorString !== currentValidColor) {
+				currentValidColor = colorString
+				setVar(cfg.cssVar, colorString)
+				hasChanged = true
 			}
 		})
 
 		picker.on('close', async () => {
 			if (hasChanged) {
-				if (currHex !== cfg.default) {
-					await saveToStorage(cfg.storageKey, currHex)
+				// Save if different from default, otherwise clean up
+				if (currentValidColor !== cfg.default) {
+					await saveToStorage(cfg.storageKey, currentValidColor)
+				} else {
+					removeVar(cfg.cssVar)
+					await removeItems(cfg.storageKey)
 				}
-				updateResetButton() // ONLY update on close, not during drag
+
+				updateResetButton()
 				hasChanged = false
 			}
 		})
+
+		function handleColorReset() {
+			currentValidColor = cfg.default
+			hasChanged = true
+			setVar(cfg.cssVar, cfg.default)
+			picker.setColor(cfg.default, false)
+			Notify.success(`Accent color for ${cfg.theme} theme reset to default`)
+		}
 
 		accentPickers.set(cfg.id, picker)
 	})
 }
 
+// --- SIMPLIFIED VALIDATION ---
+function isValidCompleteColor(colorStr) {
+	if (!colorStr || typeof colorStr !== 'string') return false
+
+	// Skip colors with NaN (invalid state)
+	if (colorStr.includes('NaN')) return false
+
+	const trimmed = colorStr.trim().toLowerCase()
+
+	// Only accept complete hex colors (3 or 6 digits)
+	if (trimmed.startsWith('#')) {
+		const hex = trimmed.slice(1)
+		return /^[0-9a-f]{3}$|^[0-9a-f]{6}$/i.test(hex)
+	}
+
+	return false
+}
 // --- RESET ---
 async function resetAll() {
 	if (!hasCustomColors()) {
@@ -172,26 +201,15 @@ async function resetAll() {
 	updateResetButton()
 }
 
-// ============================================================================
-// INIT: Load data + update CSS (runs early)
-// ============================================================================
+// --- INIT & MOUNT ---
 async function init() {
-	// Load once and cache
 	storedColors = await getFromStorage()
-
-	// Update CSS vars immediately (visible change)
 	updateCss(storedColors)
-
-	return storedColors // ← Return for parent if needed
+	return storedColors
 }
 
-// ============================================================================
-// MOUNT: Setup DOM with cached data
-// ============================================================================
 function mount(resetBtn) {
 	$resetBtn = resetBtn
-
-	// Use the cached data from init()
 	createPickers(storedColors)
 	updateResetButton()
 }
