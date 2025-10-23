@@ -1,5 +1,4 @@
 import ColorPicker from '../../../libs/jscolorpicker/colorpicker.min.js'
-// import ColorPicker from '../../../libs/jscolorpicker/colorpicker.js'
 import { getItems, setItem, removeItems } from '../../utils/storage.js'
 import { SELECTORS } from '../config/selectors.js'
 import { SK_COLOR_ACCENT_LIGHT, SK_COLOR_ACCENT_DARK } from '../config/consts-storage.js'
@@ -88,6 +87,32 @@ function updateResetButton() {
 	if ($resetBtn) $resetBtn.disabled = !hasCustomColors()
 }
 
+// --- VALIDATION ---
+function isValidCompleteColor(colorStr) {
+	if (!colorStr || typeof colorStr !== 'string') return false
+
+	// Skip colors with NaN (invalid state)
+	if (colorStr.includes('NaN')) return false
+
+	const trimmed = colorStr.trim().toLowerCase()
+
+	// Only accept complete hex colors (3 or 6 digits)
+	if (trimmed.startsWith('#')) {
+		const hex = trimmed.slice(1)
+		return /^[0-9a-f]{3}$|^[0-9a-f]{6}$/i.test(hex)
+	}
+
+	return false
+}
+
+function isColorObjectValid(color) {
+	if (!color || !color.color) return false
+
+	// Check if any of the HSV values are NaN
+	const [h, s, v] = color.color
+	return !isNaN(h) && !isNaN(s) && !isNaN(v)
+}
+
 // --- PICKERS ---
 function createPickers(storageColors) {
 	CONFIG.forEach((cfg) => {
@@ -111,6 +136,7 @@ function createPickers(storageColors) {
 
 		let currentValidColor = initialColor
 		let hasChanged = false
+		let lastValidBeforeInvalid = initialColor
 
 		picker.on('pick', (color) => {
 			// Handle clear button - reset to default
@@ -119,20 +145,25 @@ function createPickers(storageColors) {
 				return
 			}
 
-			const colorString = color.string('hex')
-
-			// Skip if color contains NaN (invalid state during typing/deletion)
-			if (colorString.includes('NaN')) {
-				return // Silently ignore - user is still typing
+			// Check if color object itself is valid (not NaN values)
+			if (!isColorObjectValid(color)) {
+				Notify.error('Invalid color. Please copy-paste full value')
+				revertToLastValid()
+				return
 			}
+
+			const colorString = color.string('hex')
 
 			// Validate it's a proper hex color
 			if (!isValidCompleteColor(colorString)) {
-				return // Invalid color, don't update
+				Notify.error('Invalid color format. Please enter a valid hex color code.')
+				revertToLastValid()
+				return
 			}
 
 			// Only update if color actually changed
 			if (colorString !== currentValidColor) {
+				lastValidBeforeInvalid = currentValidColor
 				currentValidColor = colorString
 				setVar(cfg.cssVar, colorString)
 				hasChanged = true
@@ -141,6 +172,14 @@ function createPickers(storageColors) {
 
 		picker.on('close', async () => {
 			if (hasChanged) {
+				// Final validation before saving
+				if (!isValidCompleteColor(currentValidColor)) {
+					Notify.error('Cannot save invalid color. Reverting to previous value.')
+					revertToLastValid()
+					hasChanged = false
+					return
+				}
+
 				// Save if different from default, otherwise clean up
 				if (currentValidColor !== cfg.default) {
 					await saveToStorage(cfg.storageKey, currentValidColor)
@@ -154,7 +193,14 @@ function createPickers(storageColors) {
 			}
 		})
 
+		function revertToLastValid() {
+			currentValidColor = lastValidBeforeInvalid
+			setVar(cfg.cssVar, lastValidBeforeInvalid)
+			picker.setColor(lastValidBeforeInvalid, false)
+		}
+
 		function handleColorReset() {
+			lastValidBeforeInvalid = cfg.default
 			currentValidColor = cfg.default
 			hasChanged = true
 			setVar(cfg.cssVar, cfg.default)
@@ -166,23 +212,6 @@ function createPickers(storageColors) {
 	})
 }
 
-// --- SIMPLIFIED VALIDATION ---
-function isValidCompleteColor(colorStr) {
-	if (!colorStr || typeof colorStr !== 'string') return false
-
-	// Skip colors with NaN (invalid state)
-	if (colorStr.includes('NaN')) return false
-
-	const trimmed = colorStr.trim().toLowerCase()
-
-	// Only accept complete hex colors (3 or 6 digits)
-	if (trimmed.startsWith('#')) {
-		const hex = trimmed.slice(1)
-		return /^[0-9a-f]{3}$|^[0-9a-f]{6}$/i.test(hex)
-	}
-
-	return false
-}
 // --- RESET ---
 async function resetAll() {
 	if (!hasCustomColors()) {
