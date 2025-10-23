@@ -59,9 +59,9 @@ async function getFromStorage() {
 async function saveToStorage(key, value) {
 	try {
 		await setItem(key, value)
-		Notify.success('Color updated successfully')
+		Notify.success('Color saved successfully')
 	} catch (err) {
-		Notify.error('Failed to save color')
+		Notify.error('Failed to save color to storage')
 		console.error('Save error:', err)
 	}
 }
@@ -88,29 +88,117 @@ function updateResetButton() {
 }
 
 // --- VALIDATION ---
-function isValidCompleteColor(colorStr) {
+function isValidHexColor(colorStr) {
 	if (!colorStr || typeof colorStr !== 'string') return false
-
-	// Skip colors with NaN (invalid state)
 	if (colorStr.includes('NaN')) return false
 
 	const trimmed = colorStr.trim().toLowerCase()
+	if (!trimmed.startsWith('#')) return false
 
-	// Only accept complete hex colors (3 or 6 digits)
-	if (trimmed.startsWith('#')) {
-		const hex = trimmed.slice(1)
-		return /^[0-9a-f]{3}$|^[0-9a-f]{6}$/i.test(hex)
-	}
-
-	return false
+	const hex = trimmed.slice(1)
+	return /^[0-9a-f]{3}$|^[0-9a-f]{6}$/i.test(hex)
 }
 
-function isColorObjectValid(color) {
+function isColorValid(color) {
 	if (!color || !color.color) return false
+	const [h, s, v, a] = color.color
+	return !isNaN(h) && !isNaN(s) && !isNaN(v) && a === 1
+}
 
-	// Check if any of the HSV values are NaN
-	const [h, s, v] = color.color
-	return !isNaN(h) && !isNaN(s) && !isNaN(v)
+// --- PICKER EVENT HANDLERS ---
+function createPickerHandlers(picker, cfg, initialColor) {
+	let currentValidColor = initialColor
+	let hasChanged = false
+
+	const handlers = {
+		onPick: (color) => {
+			console.log(color.color)
+
+			// This fires on every color change (dragging, typing, etc.)
+			if (!color) {
+				handlers.onClear()
+				return
+			}
+
+			// Validate the color
+			if (!isColorValid(color)) {
+				// Don't show error for every invalid state during typing
+				// Only show error if it's clearly invalid and user might be stuck
+				const colorString = color.string('hex')
+				if (colorString.includes('NaN') && colorString.length > 1) {
+					Notify.error('Invalid color format')
+				}
+				return
+			}
+
+			const colorString = color.string('hex')
+
+			// Only update if we have a valid complete hex color
+			if (isValidHexColor(colorString)) {
+				if (colorString !== currentValidColor) {
+					currentValidColor = colorString
+					setVar(cfg.cssVar, colorString)
+					hasChanged = true
+					// Notify.info('Color updated')
+				}
+			} else {
+				// User is typing partial hex - provide guidance at key points
+				if (colorString.startsWith('#') && (colorString.length === 4 || colorString.length === 7)) {
+					Notify.info('Complete the color code', { timeout: 2000 })
+				}
+			}
+		},
+
+		onOpen: () => {
+			Notify.info('Enter # followed by 3 or 6 hex digits')
+		},
+
+		onClose: async () => {
+			const finalColor = picker.color
+
+			// Final validation before saving
+			if (!finalColor || !isColorValid(finalColor) || !isValidHexColor(currentValidColor)) {
+				Notify.error('Invalid color - reverted to previous value')
+				handlers.revertToLastValid()
+				return
+			}
+
+			if (hasChanged) {
+				try {
+					if (currentValidColor !== cfg.default) {
+						await saveToStorage(cfg.storageKey, currentValidColor)
+					} else {
+						removeVar(cfg.cssVar)
+						await removeItems(cfg.storageKey)
+						Notify.success(`Accent color for ${cfg.theme} theme reset to default`)
+					}
+					updateResetButton()
+					hasChanged = false
+				} catch (error) {
+					Notify.error('Failed to save color changes')
+				}
+			}
+		},
+
+		onClear: () => {
+			currentValidColor = cfg.default
+			hasChanged = true
+			setVar(cfg.cssVar, cfg.default)
+			picker.setColor(cfg.default, false)
+			Notify.success(`Accent color for ${cfg.theme} theme reset to default`)
+		},
+
+		revertToLastValid: () => {
+			const revertColor = currentValidColor || cfg.default
+			setVar(cfg.cssVar, revertColor)
+			picker.setColor(revertColor, false)
+			hasChanged = false
+		},
+
+		getCurrentColor: () => currentValidColor,
+	}
+
+	return handlers
 }
 
 // --- PICKERS ---
@@ -125,93 +213,26 @@ function createPickers(storageColors) {
 			toggleStyle: 'button',
 			container: `.${SELECTORS.SETTINGS.ROOT}`,
 			color: initialColor,
-			submitMode: 'instant',
+			submitMode: 'instant', // This makes 'pick' fire on every change
 			enableAlpha: false,
-			formats: false,
+			formats: ['hex'],
+			defaultFormat: 'hex',
 			dialogPlacement: 'bottom',
 			dismissOnOutsideClick: true,
 			dismissOnEscape: true,
 			showClearButton: true,
 		})
 
-		let currentValidColor = initialColor
-		let hasChanged = false
-		let lastValidBeforeInvalid = initialColor
+		const handlers = createPickerHandlers(picker, cfg, initialColor)
 
-		picker.on('pick', (color) => {
-			// Handle clear button - reset to default
-			if (!color) {
-				handleColorReset()
-				return
-			}
+		// Only bind documented events
+		picker.on('pick', handlers.onPick)
+		picker.on('open', handlers.onOpen)
+		picker.on('close', handlers.onClose)
 
-			// Check if color object itself is valid (not NaN values)
-			if (!isColorObjectValid(color)) {
-				Notify.error('Invalid color. Please copy-paste full value')
-				revertToLastValid()
-				return
-			}
-
-			const colorString = color.string('hex')
-
-			// Validate it's a proper hex color
-			if (!isValidCompleteColor(colorString)) {
-				Notify.error('Invalid color format. Please enter a valid hex color code.')
-				revertToLastValid()
-				return
-			}
-
-			// Only update if color actually changed
-			if (colorString !== currentValidColor) {
-				lastValidBeforeInvalid = currentValidColor
-				currentValidColor = colorString
-				setVar(cfg.cssVar, colorString)
-				hasChanged = true
-			}
-		})
-
-		picker.on('close', async () => {
-			if (hasChanged) {
-				// Final validation before saving
-				if (!isValidCompleteColor(currentValidColor)) {
-					Notify.error('Cannot save invalid color. Reverting to previous value.')
-					revertToLastValid()
-					hasChanged = false
-					return
-				}
-
-				// Save if different from default, otherwise clean up
-				if (currentValidColor !== cfg.default) {
-					await saveToStorage(cfg.storageKey, currentValidColor)
-				} else {
-					removeVar(cfg.cssVar)
-					await removeItems(cfg.storageKey)
-				}
-
-				updateResetButton()
-				hasChanged = false
-			}
-		})
-
-		function revertToLastValid() {
-			currentValidColor = lastValidBeforeInvalid
-			setVar(cfg.cssVar, lastValidBeforeInvalid)
-			picker.setColor(lastValidBeforeInvalid, false)
-		}
-
-		function handleColorReset() {
-			lastValidBeforeInvalid = cfg.default
-			currentValidColor = cfg.default
-			hasChanged = true
-			setVar(cfg.cssVar, cfg.default)
-			picker.setColor(cfg.default, false)
-			Notify.success(`Accent color for ${cfg.theme} theme reset to default`)
-		}
-
-		accentPickers.set(cfg.id, picker)
+		accentPickers.set(cfg.id, { picker, handlers })
 	})
 }
-
 // --- RESET ---
 async function resetAll() {
 	if (!hasCustomColors()) {
@@ -219,22 +240,38 @@ async function resetAll() {
 		return
 	}
 
-	CONFIG.forEach((cfg) => {
-		const picker = accentPickers.get(cfg.id)
-		if (picker) picker.setColor(cfg.default, false)
-		removeVar(cfg.cssVar)
-	})
+	try {
+		CONFIG.forEach((cfg) => {
+			const pickerData = accentPickers.get(cfg.id)
+			if (pickerData) {
+				const { picker, handlers } = pickerData
+				handlers.onClear() // Use the clear handler
+			} else {
+				// Fallback if picker not initialized
+				removeVar(cfg.cssVar)
+			}
+		})
 
-	await removeItems(STORAGE_KEYS)
-	Notify.success('All colors reset to default')
-	updateResetButton()
+		await removeItems(STORAGE_KEYS)
+		Notify.success('All accent colors reset to default')
+		updateResetButton()
+	} catch (error) {
+		Notify.error('Failed to reset colors')
+		console.error('Reset error:', error)
+	}
 }
 
 // --- INIT & MOUNT ---
 async function init() {
-	storedColors = await getFromStorage()
-	updateCss(storedColors)
-	return storedColors
+	try {
+		storedColors = await getFromStorage()
+		updateCss(storedColors)
+		return storedColors
+	} catch (error) {
+		Notify.error('Failed to initialize color settings')
+		console.error('Init error:', error)
+		return {}
+	}
 }
 
 function mount(resetBtn) {

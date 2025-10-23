@@ -357,8 +357,12 @@
 }
 
 .cp_format[aria-checked='true'] {
-  color: var(--cp-body-color);
-  background-color: var(--cp-button-color);
+  @include accent('prim');
+
+  &:hover {
+    @include accent('sec');
+
+  }
 }
 
 /* Input */
