@@ -112,10 +112,9 @@ function createPickerHandlers(picker, cfg, initialColor) {
 
 	const handlers = {
 		onPick: (color) => {
-			console.log(color.color)
-
 			// This fires on every color change (dragging, typing, etc.)
 			if (!color) {
+				// Clear button was clicked - reset to DEFAULT COLOR
 				handlers.onClear()
 				return
 			}
@@ -139,7 +138,6 @@ function createPickerHandlers(picker, cfg, initialColor) {
 					currentValidColor = colorString
 					setVar(cfg.cssVar, colorString)
 					hasChanged = true
-					// Notify.info('Color updated')
 				}
 			} else {
 				// User is typing partial hex - provide guidance at key points
@@ -154,9 +152,23 @@ function createPickerHandlers(picker, cfg, initialColor) {
 		},
 
 		onClose: async () => {
-			const finalColor = picker.color
+			// If user cleared to default, save that state
+			if (currentValidColor === cfg.default && hasChanged) {
+				try {
+					removeVar(cfg.cssVar)
+					await removeItems(cfg.storageKey)
+					Notify.success(`Accent color for ${cfg.theme} theme reset to default`)
+					updateResetButton()
+					hasChanged = false
+					return
+				} catch (error) {
+					Notify.error('Failed to reset color')
+					return
+				}
+			}
 
-			// Final validation before saving
+			// Normal validation for other cases
+			const finalColor = picker.color
 			if (!finalColor || !isColorValid(finalColor) || !isValidHexColor(currentValidColor)) {
 				Notify.error('Invalid color - reverted to previous value')
 				handlers.revertToLastValid()
@@ -181,10 +193,11 @@ function createPickerHandlers(picker, cfg, initialColor) {
 		},
 
 		onClear: () => {
+			// RESET TO DEFAULT COLOR - this is what the user expects!
 			currentValidColor = cfg.default
 			hasChanged = true
 			setVar(cfg.cssVar, cfg.default)
-			picker.setColor(cfg.default, false)
+			picker.setColor(cfg.default, false) // Set the picker to show the default color
 			Notify.success(`Accent color for ${cfg.theme} theme reset to default`)
 		},
 
@@ -233,6 +246,7 @@ function createPickers(storageColors) {
 		accentPickers.set(cfg.id, { picker, handlers })
 	})
 }
+
 // --- RESET ---
 async function resetAll() {
 	if (!hasCustomColors()) {
