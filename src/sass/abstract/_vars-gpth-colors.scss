@@ -15,10 +15,10 @@ $alphas: (
 
     // contain: layout style paint;
 
-    --c-default-accent-light: #6c4756;
-    --c-default-accent-dark: #bfa8ff;
+    --c-default-accent-light: #4d4d34; // #6c4756; // #695a4a // #564c37 // #564c37 // #41370b
+    --c-default-accent-dark: #c2d8c4; // #bfa8ff;
     // --c-default-accent-light: #f98be9; // za swatch: #425100 (dark green), #777744 (light green)
-    // --c-default-accent-dark: #e7f98b; // za swatch: #c255fa, #ea667a, #928e82 (gold), #97997c & 7c9986 (green smooth), 8888ff (blue hc)
+    // --c-default-accent-dark: #e7f98b; // za swatch: #c255fa (pink/purple hc), #ea667a (hc red-ish), #928e82 (gold), #97997c & 7c9986 (green smooth), 8888ff (blue hc), #9dbaf8 (bluish)
 
     --from-accent: from var(--c-accent) l c h;
 
@@ -67,11 +67,11 @@ html.light {
     // --c-accent-light: oklch(from var(--c-accent) 0.8 calc(c * 0.5) h);
     --c-accent-light: color-mix(in oklch, var(--c-surface-1), var(--c-accent) 14%);
 
-    --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.952 0.009 h);
+    --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.945 0.008 h);
     // --c-surface-2: oklch(from var(--user-surface-1, var(--c-surface-1)) calc(l * 0.96) calc(c * 1.2) h);
     // --c-surface-3: oklch(from var(--user-surface-1, var(--c-surface-2)) calc(l * 0.97) calc(c * 1.25) h);
-    --c-surface-2: oklch(from var(--user-surface-1, var(--c-surface-1)) calc(l * 0.97) calc(c * 1.12) h);
-    --c-surface-3: oklch(from var(--user-surface-1, var(--c-surface-2)) calc(l * 0.97) calc(c * 1.22) h);
+    --c-surface-2: oklch(from var(--user-surface-1, var(--c-surface-1)) calc(l * 0.98) calc(c * 1.12) h);
+    --c-surface-3: oklch(from var(--user-surface-1, var(--c-surface-2)) calc(l * 0.98) calc(c * 1.22) h);
 
     --c-txt: oklch(from var(--user-text-1, var(--c-accent)) 0 c h);
     --c-subtext-1: oklch(from var(--user-text-2, var(--c-accent)) 0.3 c h);
@@ -83,13 +83,14 @@ html.light {
     // --c-bg-msg-user: oklch(from var(--c-accent) 0.77 0.032 h);
     // --c-bg-msg-user: color-mix(in oklch, var(--c-surface-1), var(--c-accent) 20%);
     // --c-bg-msg-user: color-mix(in oklch, var(--c-bg-chats-container), var(--c-accent) 14%);
-    --c-bg-msg-user: var(--c-accent-13);
+    // --c-bg-msg-user: var(--c-accent-13);
+    --c-bg-msg-user: var(--c-accent-20);
     // --c-bg-msg-gpt: oklch(from var(--c-surface-1) calc(l * 0.98) c h);
-    --c-bg-msg-gpt: oklch(from var(--c-surface-1) calc(l * 0.978) calc(c * 1.2) h);
+    --c-bg-msg-gpt: oklch(from var(--c-surface-1) calc(l * 0.978) calc(c * 1.15) h);
     // --c-bg-msg-gpt: oklch(from var(--c-surface-1) calc(l * 0.975) calc(c * 1.2) h);
     // --c-bg-msg-gpt: oklch(from var(--c-surface-1) calc(l * 0.975) c h);
 
-    --c-bg-chats-container: oklch(from var(--c-surface-1) calc(l * 1.01) calc(c * 0.98) h);
+    --c-bg-chats-container: oklch(from var(--c-surface-1) calc(l * 1.0315) calc(c * 0.97) h);
 
     --c-bg-modal: oklch(from var(--c-accent) 0.2 calc(c * 0.75) h / 0.3);
     // --c-bg-menu: oklch(from var(--c-accent) l calc(c * 0.35) h / 0.5);

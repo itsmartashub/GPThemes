@@ -123,7 +123,10 @@ function createPickerHandlers(picker, cfg, initialColor) {
 			}
 		},
 
-		onOpen: () => Notify.info('Enter # followed by 3 or 6 hex digits'),
+		onOpen: () =>
+			Notify.info(
+				'Enter # followed by 3 or 6 hex digits. \n\nIf you are using copy-paste, advice is to select the whole color code, with hexa character.'
+			),
 
 		onClose: async () => {
 			if (currentColor === cfg.default && hasChanged) {
