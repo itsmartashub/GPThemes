@@ -14,11 +14,11 @@ export const SELECTORS = {
 	},
 
 	// Floating Button
-	FLOATING_BTN: {
-		ROOT: `${PFX}__floating`,
-		OPTIONS: `${PFX}__options`,
-		BTNS_CONTAINER: `${PFX}__options-btns`,
-		OPEN_STATE: `${PFX}__options--shown`,
+	FAB: {
+		ROOT: `${PFX}-fab`,
+		DOCK: `${PFX}-dock`,
+		DOCK_BTNS: `${PFX}-dock__btns`,
+		OPEN_STATE: `${PFX}-dock--shown`,
 	},
 	// Settings Panel
 	SETTINGS: {

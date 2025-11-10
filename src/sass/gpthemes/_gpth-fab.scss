@@ -1,5 +1,6 @@
+/* FAB */
 .#{$pfx} {
-	&__floating {
+	&-fab {
 		--floating-icon-size: 2.8rem;
 		--top: calc(var(--h-header) + 0.5rem);
 		--right: 1rem;
@@ -29,7 +30,7 @@
 			translate: 0 -50%;
 		}
 
-		&-icon {
+		&__icon {
 			position: relative;
 			display: grid;
 			place-items: center;
@@ -81,15 +82,18 @@
 			}
 		}
 	}
+}
 
-	&__options {
-		// --shadow-color: var(--c-accent-08);
-		// --shadow-values: inset 0 0 10px 5px;
+/* FAB DOCK */
+.#{$pfx} {
+	&-dock {
+		--btn-gap: 1rem;
+
 		pointer-events: none;
 		opacity: 0;
 		display: grid;
 		place-items: center;
-		gap: 3rem;
+		gap: var(--btn-gap);
 		width: max-content;
 		height: max-content;
 		padding: 0.8rem;
@@ -108,91 +112,85 @@
 		backdrop-filter: blur(5px);
 		transition: clip-path 0.3s $easeInOutCirc, opacity 0.3s ease-in-out;
 
-
-
 		@include dev('sm') {
 			padding: 0.65rem;
 		}
 
 		&--shown {
 			opacity: 1;
-			pointer-events: all !important;
+			pointer-events: auto !important;
 			clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%) !important;
 
-			button {
-				// --btn-scale: 1 !important;
+			.#{$pfx}-dock__btn {
 				transform: scale(1) !important;
 			}
 		}
 
-		// h5 {
-		// 	margin-bottom: 1rem;
-		// 	display: inline-block;
-		// 	font-size: 1.3rem;
-		// 	letter-spacing: 1px;
-		// 	font-weight: 100;
-		// }
-
-		&-btns {
-			gap: 1rem;
+		&__btns {
+			gap: var(--btn-gap);
 			display: grid;
-			// border-radius: var(--br-btn);
+		}
 
-			button {
-				--btn-size: 2rem;
-				// --btn-scale: 0;
-				cursor: pointer;
-				position: relative;
-				width: var(--btn-size);
-				height: var(--btn-size);
-				display: grid;
-				place-items: center;
-				line-height: 1;
+		&__btn {
+			--btn-size: 2rem;
+			cursor: pointer;
+			position: relative;
+			width: var(--btn-size);
+			height: var(--btn-size);
+			display: grid;
+			place-items: center;
+			line-height: 1;
+			border-radius: 50vw;
+			color: var(--c-accent);
+			transform: scale(0);
+			transition: 0.3s linear;
+
+			&::after {
+				content: attr(data-gpth-dock-btn);
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: max-content;
+				font-size: 0.7rem;
+				text-transform: uppercase;
+				font-weight: 700;
+				padding: 6px;
+				border-radius: 5px;
+				background-color: var(--c-accent);
+				color: var(--c-on-accent);
 				border-radius: 50vw;
-				color: var(--c-accent);
-				// transform: scale(var(--btn-scale));
-				transform: scale(0);
-				transition: 0.3s linear;
+				opacity: 0;
+				transform: translate(-50%, 0%) scale(0);
+				transition: transform 0.3s $easeInOutCirc, opacity 0.4s linear;
+			}
 
-				.icon {
-					--icon-size: 1.5em;
-					height: var(--icon-size);
-					width: var(--icon-size);
-					// transition: stroke 0.3s ease;
-				}
+			.icon {
+				--icon-size: 1.5em;
+				height: var(--icon-size);
+				width: var(--icon-size);
+			}
+
+			&:hover {
+				color: transparent !important;
 
 				&::after {
-					content: attr(data-gpth-theme);
-					position: absolute;
-					top: 50%;
-					left: 50%;
-					width: max-content;
-					font-size: 0.7rem;
-					text-transform: uppercase;
-					font-weight: 700;
-					padding: 6px;
-					border-radius: 5px;
-					background-color: var(--c-accent);
-					color: var(--c-on-accent);
-					border-radius: 50vw;
-					opacity: 0;
-					transform: translate(-50%, 0%) scale(0);
-					transition: transform 0.3s $easeInOutCirc, opacity 0.4s linear;
-				}
-
-				&:hover {
-					color: transparent;
-
-					&::after {
-						opacity: 1;
-						transform: translate(-50%, -50%) scale(1);
-					}
+					opacity: 1 !important;
+					transform: translate(-50%, -50%) scale(1) !important;
 				}
 			}
 		}
 	}
+}
 
-	/* 	&__themes {
+html.light {
+	.#{$pfx}-dock-icon::after {
+		color: var(--c-txt);
+	}
+}
+
+
+
+/* 	&__themes {
 		display: grid;
 		place-items: center;
 
@@ -223,7 +221,7 @@
 				}
 
 				&::after {
-					content: attr(data-gpth-theme);
+					content: attr(data-gpth-dock-btn);
 					position: absolute;
 					top: 50%;
 					left: 50%;
@@ -252,8 +250,8 @@
 		}
 	} */
 
-	/* Jos ne koristim ovo. Za image upload */
-	/* 	&__upload {
+/* Jos ne koristim ovo. Za image upload */
+/* 	&__upload {
 		display: grid;
 		justify-items: center;
 
@@ -362,40 +360,3 @@
 			}
 		}
 	} */
-}
-
-/* html.light {
-	& [data-gpth-theme]::after,
-	.gpth__svg-icon::after {
-		color: var(--c-txt);
-	}
-}
-html.dark {
-	& [data-gpth-theme]::after,
-	.gpth__svg-icon::after {
-		color: var(--c-on-accent);
-	}
-}
- */
-html.light {
-	.#{$pfx}__floating-icon::after {
-		color: var(--c-txt);
-	}
-}
-
-
-
-/* GPTs page */
-// body:has(.h-full.overflow-y-auto .sticky img[alt='User']) {
-
-// 	@include dev('md') {
-// 		// box-shadow: inset 0 0 0 10px red !important;
-
-// 		.gpth {
-// 			&__floating {
-// 				// --top: calc(var(--h-header) * 2);
-// 				--top: calc(var(--h-header)/4);
-// 			}
-// 		}
-// 	}
-// }

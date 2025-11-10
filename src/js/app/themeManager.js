@@ -56,10 +56,15 @@ function updateTheme(newTheme, isOLED = false) {
 
 // Event handlers
 function handleChangeTheme(e) {
+	console.log(e.target)
+
 	const themeBtn = e.target.closest('button')
 	if (!themeBtn) return
 
-	const themeId = themeBtn.id
+	const themeId = themeBtn.id ?? themeBtn.id
+
+	// Skip handling for Ko-fi
+	// if (themeId === 'kofi') return
 
 	// console.log(themeId)
 

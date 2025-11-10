@@ -5,7 +5,8 @@ import { init as initFAB } from './app/FAB'
 
 // Configuration
 const CONFIG = {
-	TARGET_SELECTOR: '.gpth-settings',
+	// TARGET_SELECTOR: '.gpth-settings',
+	TARGET_SELECTOR: '.gpth-fab',
 	RETRY_DELAY: 3000,
 	MAX_RETRIES: 4,
 }

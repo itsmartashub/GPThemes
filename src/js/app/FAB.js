@@ -2,7 +2,7 @@ import { getItem, watchStorageChanges } from '../utils/storage.js'
 import { SELECTORS } from './config/selectors.js'
 import { SK_TOGGLE_FAB_HIDDEN } from './config/consts-storage.js'
 import { $ } from '../utils/dom.js'
-import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint } from './components/icons.js'
+import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint, icon_kofi_cup } from './components/icons.js'
 import { handleChangeTheme } from './themeManager.js'
 import { createSettings, closeSettings } from './settingsManager.js'
 import { setupExtensionMessaging } from './messaging/index.js'
@@ -10,13 +10,13 @@ import { setupExtensionMessaging } from './messaging/index.js'
 const STORAGE_KEY = SK_TOGGLE_FAB_HIDDEN
 
 // Local UI state
-let isOptionsShown = false
+let isDockShown = false
 
 // Cached DOM refs
 const elements = {
 	FAB: null,
-	FABOptions: null,
-	FABContainer: null,
+	FABDock: null,
+	FABDockBtnContainer: null,
 }
 
 // --- INIT ---
@@ -35,15 +35,20 @@ async function init() {
 
 function templateHTML() {
 	return `
-		<div class="${SELECTORS.FLOATING_BTN.ROOT}-icon">${icon_paint}</div>
-		<div class="${SELECTORS.FLOATING_BTN.OPTIONS}">
-			<div class="${SELECTORS.FLOATING_BTN.BTNS_CONTAINER}">
-				<button id="light" data-gpth-theme="light">${icon_sun}</button>
-				<button id="dark" data-gpth-theme="dark">${icon_moon}</button>
-				<button id="oled" data-gpth-theme="black">${icon_moon_full}</button>
-				<button id="${SELECTORS.SETTINGS.OPEN_BTN}" data-gpth-theme="more">${icon_settings}</button>
+		<div class="${SELECTORS.FAB.ROOT}__icon">${icon_paint}</div>
+		
+		<aside class="${SELECTORS.FAB.DOCK}">
+			<div class="${SELECTORS.FAB.DOCK_BTNS}">
+				<button id="light" data-gpth-dock-btn="light" class="${SELECTORS.FAB.DOCK}__btn">${icon_sun}</button>
+				<button id="dark" data-gpth-dock-btn="dark" class="${SELECTORS.FAB.DOCK}__btn">${icon_moon}</button>
+				<button id="oled" data-gpth-dock-btn="black" class="${SELECTORS.FAB.DOCK}__btn">${icon_moon_full}</button>
+				<button id="${SELECTORS.SETTINGS.OPEN_BTN}" data-gpth-dock-btn="more" class="${SELECTORS.FAB.DOCK}__btn">${icon_settings}</button>
 			</div>
-		</div>
+
+			<a href="https://ko-fi.com/http417" data-gpth-dock-btn="ko-fi" class="${SELECTORS.FAB.DOCK}__btn" target="_blank" rel="noopener noreferrer">
+				${icon_kofi_cup}
+			</a>
+		</aside>
 	`
 }
 
@@ -53,9 +58,11 @@ async function createFAB() {
 	// if (elements.FAB) return
 
 	const $FAB = document.createElement('div')
-	$FAB.className = SELECTORS.FLOATING_BTN.ROOT
+	$FAB.className = SELECTORS.FAB.ROOT
 	$FAB.innerHTML = templateHTML()
 	document.body.appendChild($FAB)
+
+	console.log($FAB)
 
 	cacheElements($FAB)
 	bindListeners()
@@ -67,28 +74,32 @@ async function createFAB() {
 // --- ELEMENTS ---
 function cacheElements(FAB) {
 	elements.FAB = FAB
-	elements.FABOptions = $(`.${SELECTORS.FLOATING_BTN.OPTIONS}`, FAB)
-	elements.FABContainer = $(`.${SELECTORS.FLOATING_BTN.BTNS_CONTAINER}`, FAB)
+	elements.FABDock = $(`.${SELECTORS.FAB.DOCK}`, FAB)
+	elements.FABDockBtnContainer = $(`.${SELECTORS.FAB.DOCK_BTNS}`, FAB)
+
+	console.log(SELECTORS.FAB.DOCK_BTNS, $(`.${SELECTORS.FAB.DOCK_BTNS}`))
 }
 
 // --- EVENTS ---
 function bindListeners() {
+	console.log(elements)
+
 	elements.FAB.addEventListener('click', onFABClick)
-	elements.FABContainer.addEventListener('click', handleChangeTheme)
+	elements.FABDockBtnContainer.addEventListener('click', handleChangeTheme)
 }
 
 function onFABClick(e) {
 	// Ignore clicks on actual option buttons (delegated to theme handler)
-	if (e.target.closest(`.${SELECTORS.FLOATING_BTN.BTNS_CONTAINER}`)) return
+	if (e.target.closest(`.${SELECTORS.FAB.DOCK_BTNS}`)) return
 
-	toggleFABOptions()
+	toggleFABDock()
 }
 
-function toggleFABOptions(show = !isOptionsShown) {
-	if (!elements.FABOptions) return
+function toggleFABDock(show = !isDockShown) {
+	if (!elements.FABDock) return
 
-	isOptionsShown = show
-	elements.FABOptions.classList.toggle(SELECTORS.FLOATING_BTN.OPEN_STATE, show)
+	isDockShown = show
+	elements.FABDock.classList.toggle(SELECTORS.FAB.OPEN_STATE, show)
 
 	if (show) {
 		document.addEventListener('click', handleOutsideClick, { capture: true })
@@ -99,11 +110,11 @@ function toggleFABOptions(show = !isOptionsShown) {
 
 function handleOutsideClick(e) {
 	const insideFAB = elements.FAB?.contains(e.target)
-	if (!insideFAB) toggleFABOptions(false)
+	if (!insideFAB) toggleFABDock(false)
 }
 
-function closeFABOptions() {
-	toggleFABOptions(false)
+function closeFABDock() {
+	toggleFABDock(false)
 }
 
 // --- VISIBILITY ---
@@ -113,10 +124,12 @@ async function setInitialFABVisibility() {
 }
 
 function toggleFABVisibility(isHidden = false) {
+	console.log(elements)
+
 	const { FAB } = elements
 	if (!FAB) return
 
-	FAB.classList.toggle(`${SELECTORS.FLOATING_BTN.ROOT}--hidden`, isHidden)
+	FAB.classList.toggle(`${SELECTORS.FAB.ROOT}--hidden`, isHidden)
 
 	// Auto-close settings if FAB hidden
 	if (isHidden && $(`.${SELECTORS.SETTINGS.OPEN_STATE}`)) closeSettings()
@@ -139,9 +152,4 @@ function handleStorageChange(changes, area) {
 }
 
 // --- EXPORTS ---
-export {
-	init,
-	closeFABOptions as closeFloatingOptions,
-	toggleFABVisibility as toggleFloatingBtnVisibility,
-	STORAGE_KEY as SK_TOGGLE_FAB,
-}
+export { init, toggleFABVisibility, STORAGE_KEY as SK_TOGGLE_FAB }

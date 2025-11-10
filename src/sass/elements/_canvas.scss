@@ -368,19 +368,6 @@
     }
 }
 
-
-/* TODO: removed due to recent GPT changes when introduced `Edit` button in Canvas and block scroll in Conversation after closing the Canvas previously opened from this `Edit` button (the button next to `Copy Code` in markdown code snippets header */
-/* Hide the floating button when Canvas is opened */
-/* body:has(.absolute.z-20.h-full.transition-shadow.overflow-hidden.left-0 section.popover main #codemirror),
-body:has(.absolute.z-20.h-full.transition-shadow.overflow-hidden.left-0 section.popover main #prosemirror-editor-container),
-body:has(.absolute.z-20.h-full.transition-shadow.overflow-hidden.left-0 section.popover main [class*="absolute left-0 top-0 h-full w-full rotate-45 bg-gradient-to-r from-transparent via-black/20 to-transparent opacity-50 dark:via-white/5"]) {
-    .gpth__floating {
-        opacity: 0;
-        pointer-events: none;
-    }
-} */
-
-
 /* Text Canvas: Code block when selected History view of edits. In that state it has unmatched bg with accent theme */
 // [class*="_main_"].ProseMirror:is(.dark *) pre:has(>code),
 [class*="_main_"].ProseMirror pre:has(>code) {
