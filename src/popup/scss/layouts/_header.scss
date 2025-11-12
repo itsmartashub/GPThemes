@@ -5,25 +5,80 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    // margin-bottom: 0.5rem;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     backdrop-filter: blur(2rem);
     border-radius: 0 0 1.2rem 1.2rem;
 
-    .logo {
-        --img-size: 2.35rem;
-        filter: drop-shadow(0 0 50px rgba($accent, 1)) drop-shadow(-2px 4px 0px rgba($accent, 0.4)) drop-shadow(0 0 1px rgba($accent, 0.4));
-        transition: scale 0.25s ease, filter 0.2s ease;
+    // .logo {
+    //     --img-size: 2.35rem;
+    //     filter: drop-shadow(0 0 50px rgba($accent, 1)) drop-shadow(-2px 4px 0px rgba($accent, 0.4)) drop-shadow(0 0 1px rgba($accent, 0.4));
+    //     transition: scale 0.25s ease, filter 0.2s ease;
+
+    //     img {
+    //         width: var(--img-size);
+    //         aspect-ratio: 1/1;
+    //     }
+
+    //     &:hover {
+    //         scale: 1.1;
+    //         filter: drop-shadow(0 0 50px rgba($accent, 1));
+    //     }
+    // }
+
+    perspective: 500px;
+    transform-style: preserve-3d;
+
+    .logo-kofi {
+        --shadow: -5px 5px 0px rgba($accent, 0.3);
+        width: 8rem;
+        display: grid;
+        place-items: center;
+        gap: 0.5rem;
+        padding: 0.3rem 0.3rem 0.6rem 0.3rem;
+        border: 1px solid rgba($accent, 0.1);
+        background-color: rgba($accent, 0.1);
+        border-radius: 0.7rem;
+        box-shadow: -5px 5px 0px rgba($accent, 0.3);
+        transform: rotateY(30deg) skewX(2deg);
+        transition: box-shadow 0.2s ease, transform 0.3s ease;
+
+        p {
+            color: $accent;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.95em;
+            opacity: 0.9;
+            // transition: opacity 0.2s ease, scale 0.3s ease;
+            // transition: opacity 0.2s ease, translate 0.3s ease;
+            // transition: opacity 0.3s ease;
+        }
 
         img {
-            width: var(--img-size);
-            aspect-ratio: 1/1;
-            // backdrop-filter: drop-shadow(0 0 1rem $accent);
+            filter: drop-shadow(-5px 5px 0px rgba($accent, 0.3));
+            width: 70%;
+            transition: filter 0.4s ease, translate 0.3s ease, scale 0.3s ease;
+            // transition: filter 0.4s ease;
         }
 
         &:hover {
-            scale: 1.1;
-            filter: drop-shadow(0 0 50px rgba($accent, 1));
+            box-shadow: 0 0 0 rgba($accent, 0.8);
+            transform: rotateX(0deg) rotateY(0deg);
+            /*             box-shadow: 4px -3px 0 rgba($accent, 0.3);
+            transform: rotateY(-15deg) rotateX(-20deg) skewY(0deg); */
+
+            img {
+                filter: drop-shadow(0 0 0 rgba($accent, 1));
+                translate: 0 -10%;
+                scale: 0.88;
+                // translate: 0 -50%;
+            }
+
+            // p {
+            // opacity: 1;
+            // scale: 0.85;
+            // opacity: 0;
+            // translate: 0 10%;
+            // }
         }
     }
 }

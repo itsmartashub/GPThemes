@@ -1,19 +1,19 @@
 .bg-circle {
     --size: 10rem;
     position: fixed;
-    top: 10%;
-    left: 80%;
+    top: 8%;
+    left: 0%;
     width: var(--size);
     height: var(--size);
     border-radius: 50vw;
     z-index: -1;
     background-color: $accent;
-    filter: blur(2rem);
-    opacity: .1;
+    filter: blur(5rem);
+    opacity: .2;
 
     &:nth-of-type(2) {
         top: 40%;
-        left: 0%
+        left: 80%
     }
 
     &:nth-of-type(3) {
