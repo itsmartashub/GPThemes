@@ -49,6 +49,7 @@
     padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply));
     border-radius: var(--br-chat-bubble) !important;
     margin-top: 0.4rem;
+    // transition: padding 0.2s ease, background-color 0.2s ease;
     // @include dev_high(#f28b8b70);
 }
 
@@ -58,6 +59,10 @@
 html[data-gpth-toggle-bubble-user] .user-message-bubble-color,
 html[data-gpth-toggle-bubble-gpt] .agent-turn {
     background-color: transparent !important;
+}
+
+html[data-gpth-toggle-bubble-gpt] .agent-turn {
+    padding-inline: 0 !important;
 }
 
 /* ! ========== CUSTOM COLORS - Agressive accent for User chat ========== */
