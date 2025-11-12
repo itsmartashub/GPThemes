@@ -38,7 +38,9 @@ $alphas: (
     --c-scrollbar-thumb: var(--c-surface-3);
     --c-scrollbar-track: transparent;
 
-    --c-bg-sidebar: var(--c-surface-1);
+    --c-bg-sidebar: oklch(from var(--c-surface-2) calc(l * 1.0165) c h);
+    --c-bg-sidebar-link: var(--c-surface-3);
+    // --c-bg-sibebar-link: oklch(from var(--c-bg-sidebar) calc(l * 0.96) c h);
     --c-bg-cm: var(--c-surface-1);
     --c-bg-dialog: var(--c-surface-1);
 
@@ -67,11 +69,9 @@ html.light {
     // --c-accent-light: oklch(from var(--c-accent) 0.8 calc(c * 0.5) h);
     --c-accent-light: color-mix(in oklch, var(--c-surface-1), var(--c-accent) 14%);
 
-    --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.945 0.008 h);
-    // --c-surface-2: oklch(from var(--user-surface-1, var(--c-surface-1)) calc(l * 0.96) calc(c * 1.2) h);
-    // --c-surface-3: oklch(from var(--user-surface-1, var(--c-surface-2)) calc(l * 0.97) calc(c * 1.25) h);
-    --c-surface-2: oklch(from var(--user-surface-1, var(--c-surface-1)) calc(l * 0.98) calc(c * 1.12) h);
-    --c-surface-3: oklch(from var(--user-surface-1, var(--c-surface-2)) calc(l * 0.98) calc(c * 1.22) h);
+    --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.95 0.005 h);
+    --c-surface-2: oklch(from var(--user-surface-2, var(--c-surface-1)) calc(l * 0.98) calc(c * 1.12) h);
+    --c-surface-3: oklch(from var(--user-surface-3, var(--c-surface-2)) calc(l * 0.98) calc(c * 1.22) h);
 
     --c-txt: oklch(from var(--user-text-1, var(--c-accent)) 0 c h);
     --c-subtext-1: oklch(from var(--user-text-2, var(--c-accent)) 0.3 c h);
@@ -84,13 +84,15 @@ html.light {
     // --c-bg-msg-user: color-mix(in oklch, var(--c-surface-1), var(--c-accent) 20%);
     // --c-bg-msg-user: color-mix(in oklch, var(--c-bg-chats-container), var(--c-accent) 14%);
     // --c-bg-msg-user: var(--c-accent-13);
-    --c-bg-msg-user: var(--c-accent-20);
+    --c-bg-msg-user: var(--c-accent-12);
     // --c-bg-msg-gpt: oklch(from var(--c-surface-1) calc(l * 0.98) c h);
-    --c-bg-msg-gpt: oklch(from var(--c-surface-1) calc(l * 0.978) calc(c * 1.15) h);
+    // --c-bg-msg-gpt: oklch(from var(--c-surface-1) calc(l * 0.978) calc(c * 1.15) h);
+    --c-bg-msg-gpt: oklch(from var(--c-surface-1) calc(l * 0.98) calc(c * 1.1) h);
     // --c-bg-msg-gpt: oklch(from var(--c-surface-1) calc(l * 0.975) calc(c * 1.2) h);
     // --c-bg-msg-gpt: oklch(from var(--c-surface-1) calc(l * 0.975) c h);
 
-    --c-bg-chats-container: oklch(from var(--c-surface-1) calc(l * 1.0315) calc(c * 0.97) h);
+    // --c-bg-chats-container: oklch(from var(--c-surface-1) calc(l * 1.0315) calc(c * 0.97) h);
+    --c-bg-chats-container: oklch(from var(--c-surface-1) calc(l * 1.0189) c h);
 
     --c-bg-modal: oklch(from var(--c-accent) 0.2 calc(c * 0.75) h / 0.3);
     // --c-bg-menu: oklch(from var(--c-accent) l calc(c * 0.35) h / 0.5);
@@ -159,6 +161,11 @@ html.dark {
     // --c-bg-menu: oklch(from var(--c-surface-2) 0.4 calc(c * 0.6) h / 0.3);
     --c-bg-menu: oklch(from var(--c-surface-2) 0.35 calc(c * 1.4) h / 0.3);
     --brightness-menu: brightness(1);
+
+    --c-bg-sidebar: var(--c-surface-1);
+    --c-bg-sidebar-link: var(--c-surface-2);
+
+    --c-scrollbar-thumb: var(--c-surface-2);
 
     // for hovers: color-mix(in srgb, currentcolor 20%, transparent);
 }

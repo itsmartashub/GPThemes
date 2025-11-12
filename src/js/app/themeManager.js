@@ -56,8 +56,6 @@ function updateTheme(newTheme, isOLED = false) {
 
 // Event handlers
 function handleChangeTheme(e) {
-	console.log(e.target)
-
 	const themeBtn = e.target.closest('button')
 	if (!themeBtn) return
 

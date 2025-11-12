@@ -41,13 +41,13 @@ function resetAll() {
 
 // --- INIT ---
 async function init() {
-	console.log('[INIT LAYOUT]')
+	// console.log('[INIT LAYOUT]')
 	await initWidths()
 }
 
 // --- MOUNT ---
 function mount() {
-	console.log('[MOUNT LAYOUT]')
+	// console.log('[MOUNT LAYOUT]')
 
 	// Mount width management
 	mountWidths()

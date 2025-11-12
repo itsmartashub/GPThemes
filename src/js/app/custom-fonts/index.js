@@ -402,7 +402,7 @@ const validate = (val, min, max) => {
 // ============================================================================
 
 async function init() {
-	console.log('[INIT FONTS]')
+	// console.log('[INIT FONTS]')
 
 	// 1. Get stored values from storage
 	const keys = [
@@ -438,7 +438,7 @@ async function init() {
 }
 
 function mount(rootSettings) {
-	console.log('[MOUNT FONTS]')
+	// console.log('[MOUNT FONTS]')
 
 	// Update inputs using helper
 	updateInputs(storedValues)

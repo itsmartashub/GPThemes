@@ -62,8 +62,6 @@ async function createFAB() {
 	$FAB.innerHTML = templateHTML()
 	document.body.appendChild($FAB)
 
-	console.log($FAB)
-
 	cacheElements($FAB)
 	bindListeners()
 
@@ -76,14 +74,10 @@ function cacheElements(FAB) {
 	elements.FAB = FAB
 	elements.FABDock = $(`.${SELECTORS.FAB.DOCK}`, FAB)
 	elements.FABDockBtnContainer = $(`.${SELECTORS.FAB.DOCK_BTNS}`, FAB)
-
-	console.log(SELECTORS.FAB.DOCK_BTNS, $(`.${SELECTORS.FAB.DOCK_BTNS}`))
 }
 
 // --- EVENTS ---
 function bindListeners() {
-	console.log(elements)
-
 	elements.FAB.addEventListener('click', onFABClick)
 	elements.FABDockBtnContainer.addEventListener('click', handleChangeTheme)
 }
@@ -124,8 +118,6 @@ async function setInitialFABVisibility() {
 }
 
 function toggleFABVisibility(isHidden = false) {
-	console.log(elements)
-
 	const { FAB } = elements
 	if (!FAB) return
 
@@ -142,11 +134,7 @@ function handleStorageChange(changes, area) {
 	const change = changes[STORAGE_KEY]
 	if (!change) return
 
-	console.log('change: ', change)
-
 	const isHidden = change.newValue !== false
-
-	console.log('isHidden', isHidden)
 
 	toggleFABVisibility(isHidden)
 }

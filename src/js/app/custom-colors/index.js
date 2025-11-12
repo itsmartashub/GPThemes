@@ -42,13 +42,13 @@ function resetAll() {
 
 // --- INIT ---
 async function init() {
-	console.log('[INIT COLORS]')
+	// console.log('[INIT COLORS]')
 	await initAccentColors()
 }
 
 // --- MOUNT ---
 function mount() {
-	console.log('[MOUNT COLORS]')
+	// console.log('[MOUNT COLORS]')
 	// Setup elements
 	let $resetBtn = document.getElementById(SELECTORS.ACCENT.RESET_BTN_ID)
 

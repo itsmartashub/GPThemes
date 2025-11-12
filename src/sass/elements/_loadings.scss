@@ -4,6 +4,14 @@
 }
 
 /* Skeleton loader in Project folder when list (project items) loading */
-.skeleton-child:is(:where(.group).skeleton *) {
-    --tw-gradient-via: var(--c-accent-10) !important;
+// .skeleton-child:is(:where(.group).skeleton *) {
+//     // --tw-gradient-via: var(--c-accent-10) !important;
+//     --tw-gradient-via: var(--c-accent-light) !important;
+// }
+
+
+* .skeleton-child {
+    --skeleton-gradient-from: var(--c-surface-1) !important;
+    --skeleton-gradient-to: var(--c-surface-2) !important;
+    --skeleton-gradient-via: var(--c-surface-3) !important;
 }

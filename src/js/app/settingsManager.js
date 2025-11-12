@@ -102,7 +102,7 @@ function templateHTML() {
 // Lifecycle: CREATE (build DOM, init modules, mount)
 // ============================================================================
 async function createSettings() {
-	console.log('[CREATE SETTINGS]')
+	// console.log('[CREATE SETTINGS]')
 
 	// 1. Create root container
 	const el = document.createElement('div')

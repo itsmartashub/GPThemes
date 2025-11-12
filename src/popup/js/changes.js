@@ -72,12 +72,16 @@ const currentReleaseChanges = {
 				'Refined surface and menu colors across all themes (light, dark, OLED) for better visual hierarchy',
 		},
 		{
-			description: 'Project Interface:',
-			details: 'Improve list chats style',
+			description: 'GPT Bubble Toggle:',
+			details: `When GPT bubble is off, ensure the text fills the maximum available horizontal space (X-axis) to match the official platform's design. More noticable on mobile/smaller screens`,
 		},
 		{
 			description: 'Modals Dialogs:',
 			details: 'Added better style to back button and improve sharing dialog',
+		},
+		{
+			description: 'Project Interface:',
+			details: 'Match the chat list style with extension design',
 		},
 	],
 	fixes: [

@@ -5,6 +5,7 @@
 #stage-popover-sidebar {
 	background-color: var(--c-bg-sidebar) !important;
 	color: var(--c-txt) !important;
+	// border-inline-end-width: 0 !important;
 }
 
 
@@ -31,8 +32,8 @@ nav[aria-label].h-full {
 		border-radius: calc(var(--br) * 0.8) !important;
 		@include lift;
 
-		&[data-active] {
-			box-shadow: 0 0 2px 1px var(--c-accent-10) inset;
-		}
+		--menu-item-active: var(--c-bg-sidebar-link) !important;
+		--menu-item-hover: var(--c-bg-sidebar-link) !important;
+		--menu-item-highlighted: var(--c-bg-sidebar-link) !important;
 	}
 }
