@@ -6,16 +6,14 @@
 
     ul {
         list-style-type: none;
-        padding-left: 1.7rem;
+        padding-left: 1rem;
         // margin-bottom: 2rem;
 
         li {
             position: relative;
             padding: 0.5rem;
             border-radius: 0.8rem;
-            font-size: 0.956em;
-            transition: background-color 0.2s ease, scale 0.2s ease;
-
+            font-size: 0.915em;
 
             // Add custom bullets using pseudo-elements
             &::before {
@@ -30,9 +28,6 @@
             }
 
             &:hover {
-                background-color: rgba($accent, 0.1);
-                scale: 1.02;
-
                 &::before {
                     scale: 0;
                 }
@@ -100,15 +95,25 @@
     &__changes {
         padding: 0.1rem;
         display: grid;
-        gap: 2rem;
+        gap: 2.3rem;
 
         h3 {
-            font-size: 1.5em;
-            // margin-bottom: 0.2rem;
+            font-size: 0.915em;
+            color: $accent !important;
+            background-color: rgba($accent, 0.12) !important;
+            border: 1px solid rgba($accent, 0.05);
+            display: inline-block;
+            font-weight: 600;
+            text-transform: uppercase;
+            line-height: 1;
+            border-radius: 50vw;
+            padding: 0.6rem;
+            margin-bottom: 0.8rem;
+            backdrop-filter: blur(1rem);
         }
 
         p {
-            text-align: center
+            text-align: center;
         }
 
         a {

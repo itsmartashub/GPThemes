@@ -27,6 +27,7 @@ const SECTION_TYPES = {
 	improvements: { emoji: '🚀', title: 'Key Enhancements', priority: 4 },
 	fixes: { emoji: '🩹', title: 'Key Fixes', priority: 5 },
 	other: { emoji: '🧵', title: 'Other', priority: 6 },
+	support: { emoji: '💌', title: 'Support', priority: 7 },
 }
 
 const currentReleaseChanges = {
@@ -54,12 +55,16 @@ const currentReleaseChanges = {
 			details:
 				'Implemented automatic storage clearing when extension version is outdated, ensuring clean upgrades. <br/> ⚠️ Your settings will be reset on first launch',
 		},
+		{
+			description: 'Accent Colors:',
+			details: 'Change default accent colors',
+		},
 	],
 	improvements: [
 		{
 			description: 'Theme Improvements:',
 			details:
-				'Brightened light theme; enhanced bubble contrast; tweaked dark/OLED theme to be more monochromatic-friendly,and many more',
+				'Tweaked Dark/OLED theme to be more monochromatic-friendly. Brightened light theme. Enhanced bubble contrast, and many more',
 		},
 		{
 			description: 'Updated Colors:',
@@ -68,7 +73,7 @@ const currentReleaseChanges = {
 		},
 		{
 			description: 'Project Interface:',
-			details: 'Added border radius and smooth hover transitions to chat list',
+			details: 'Improve list chats style',
 		},
 		{
 			description: 'Modals Dialogs:',
@@ -87,11 +92,20 @@ const currentReleaseChanges = {
 	],
 	other: [
 		{
-			details: `Hey there 👋 This is a <strong>MAJOR</strong> <code>v6.0.0</code> release with complete color system overhaul and massive codebase refactor! <br/><br/> 
-			⚠️ <strong>Important:</strong> Your settings will be reset on first launch due to storage version update. <br/><br/>
-			💡 <strong>Note on color picker:</strong> For the smoothest experience, change colors on lighter pages (like "New Chat" screen without chat messages). Live preview regenerates the entire theme during dragging, which can lag on heavy pages. If this becomes too slow on your device, please open an issue. Though removing live preview would lose that instant UI morph. <br/><br/>
-			🐛 If you encounter any bugs, please report them on GitHub. <br/><br/> 
+			details: `Hey there 👋 This is a <strong>MAJOR</strong> <code>v6.0.0</code> release with complete color system overhaul and massive codebase refactor.<br/><br/> 
+
+			⚠️ <strong>Important:</strong> Your settings will be reset on first launch due to extension storage version update. <br/><br/>
+
+			💡 <strong>Note on color picker:</strong> For the smoothest experience, change colors on lighter pages (like blank <code>New Chat</code> screen). Live preview regenerates the entire theme during dragging, which can lag on heavy pages. <br/><br/>
+
 			For full technical details and maintenance notes, check out the complete release notes on GitHub.`,
+		},
+	],
+	support: [
+		{
+			details: ` <strong>Keep it alive:</strong> This extension is free so everyone can use it. But maintaining it through constant platform updates takes real time and effort. Many great tools end up behind paywalls just to survive. I'm trying to avoid that.<br/><br/> 
+			
+			🍵 If you can afford it and find GPThemes valuable, you can support its development with a <a href="https://ko-fi.com/http417" target="_blank" rel="noopener noreferrer"> <code>pay-what-you-want</code> contribution on KO-FI. </a> Even small contributions help keep it alive and accessible.`,
 		},
 	],
 }
