@@ -1,3 +1,9 @@
+/* popup.css */
+:root {
+    --popup-min-w: 18rem;
+    --popup-max-w: 30rem;
+}
+
 body {
     background-color: $bg;
     color: $fg;
@@ -5,7 +11,9 @@ body {
     font-optical-sizing: auto;
     font-style: normal;
     font-size: 0.92rem;
-    width: 28rem;
+    width: 18rem;
+    box-sizing: border-box;
+    width: clamp(var(--popup-min-w), 28rem, var(--popup-max-w));
     line-height: 1.45;
 }
 

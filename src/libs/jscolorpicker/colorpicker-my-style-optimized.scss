@@ -162,13 +162,16 @@
   --cp-alpha: 0;
   --cp-primary: hsl(var(--cp-hue), 50%, 60%);
 
-  // clamp(25rem, 25vw, 30rem);
+  /* Mine */
+  --cp-min-w: 12rem;
+  --cp-mid-w: 70%;
+  --cp-max-w: 16rem;
 
   position: absolute;
   z-index: 1055;
   // width: 17.2rem;
   // width: minmax(12rem, 17.2rem);
-  width: clamp(12rem, 60%, 16rem);
+  width: clamp(var(--cp-min-w), var(--cp-mid-w), var(--cp-max-w));
 
   background-color: var(--cp-body-bg);
   border: 1px solid var(--cp-border-color-translucent);
@@ -180,6 +183,11 @@
 
   transition: opacity var(--cp-delay) ease-in-out;
   font-family: var(--gpthFontFamily);
+
+  @include dev('sm') {
+    --cp-mid-w: 80%;
+    --cp-max-w: 80%;
+  }
 }
 
 .cp_dialog-inner {

@@ -2,7 +2,8 @@
 .#{$pfx} {
 	&-fab {
 		--floating-icon-size: 2.8rem;
-		--top: calc(var(--h-header) + 0.5rem);
+		// --top: calc(var(--h-header) + 0.5rem);
+		--top: calc(var(--header-height, var(--h-header)) + 0.2rem);
 		--right: 1rem;
 		position: fixed;
 		top: var(--top);
@@ -25,8 +26,8 @@
 		/* On GPTs page floating is overlaping user image in sticky header so i need to move it down */
 		@include dev('md') {
 			--floating-icon-size: 2.2rem;
-			--right: 4rem;
-			top: calc(var(--h-header) / 2);
+			--right: 6rem;
+			top: calc(var(--header-height, var(--h-header)) / 2);
 			translate: 0 -50%;
 		}
 
