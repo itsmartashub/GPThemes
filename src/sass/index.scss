@@ -11,7 +11,7 @@
 @import 'shared/_extends';
 @import 'abstract/_extends';
 
-@import 'dev/_mixins'; // TODO: REMOVE THIS FOR PRODUCTION!
+// @import 'dev/_mixins'; // TODO: REMOVE THIS FOR PRODUCTION!
 
 // @import '../libs/jscolorpicker/colorpicker-my-style.scss';
 @import '../libs/jscolorpicker/colorpicker-my-style-optimized.scss';
@@ -29,7 +29,7 @@
 // @import 'hljs/_ros-pine-moon';
 
 /* OLED hljs Themes */
-@import 'hljs/oled/_ir-black'; // favorit. yellowish/pink/blue jace boje
+// @import 'hljs/oled/_ir-black'; // favorit. yellowish/pink/blue jace boje
 
 // @import 'elements/_forms';
 @import 'elements/_accessibility';

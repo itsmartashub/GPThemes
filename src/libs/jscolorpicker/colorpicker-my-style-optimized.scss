@@ -171,6 +171,7 @@
   z-index: 1055;
   // width: 17.2rem;
   // width: minmax(12rem, 17.2rem);
+  /* Mine */
   width: clamp(var(--cp-min-w), var(--cp-mid-w), var(--cp-max-w));
 
   background-color: var(--cp-body-bg);

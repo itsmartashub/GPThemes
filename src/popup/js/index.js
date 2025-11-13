@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { getItem } from '../../js/utils/storage'
+// import { getItem } from '../../js/utils/storage'
 import { EXT_CURR_VERSION, EXT_CURR_CHANGELOG_URL } from '../../js/app/config/consts'
 import { RELEASE_CHANGES } from './changes'
 import { setupFABToggle } from './toggleFAB'
@@ -39,7 +39,18 @@ const updateBadge = async () => {
 	}
 }
 
+const detectDeviceType = () => {
+	const ua = navigator.userAgent || navigator.vendor || window.opera
+	const isMobile = /android|iphone|ipad|ipod/i.test(ua)
+	document.documentElement.classList.add(isMobile ? 'is-mobile' : 'is-desktop')
+	return isMobile
+}
+
+// Detect device type (mobile vs desktop) and set class on <html>
 const initPopup = () => {
+	const isMobile = detectDeviceType()
+	console.log(`📱 Device detected: ${isMobile ? 'Mobile' : 'Desktop'}`)
+
 	initChangelogUI()
 	updateBadge()
 	setupFABToggle()

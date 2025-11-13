@@ -1,0 +1,13 @@
+@mixin device($type) {
+    @if $type ==mob {
+        html.is-mobile & {
+            @content;
+        }
+    }
+
+    @else if $type ==desk {
+        html.is-desktop & {
+            @content;
+        }
+    }
+}

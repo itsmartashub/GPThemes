@@ -1,6 +1,6 @@
-/* popup.css */
 :root {
     --popup-min-w: 18rem;
+    --popup-mid-w: 26rem;
     --popup-max-w: 30rem;
 }
 
@@ -11,10 +11,19 @@ body {
     font-optical-sizing: auto;
     font-style: normal;
     font-size: 0.92rem;
-    width: 18rem;
     box-sizing: border-box;
-    width: clamp(var(--popup-min-w), 28rem, var(--popup-max-w));
+    width: clamp(var(--popup-min-w), var(--popup-mid-w), var(--popup-max-w));
+    min-height: 100dvh;
     line-height: 1.45;
+
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    @include device(mob) {
+        --popup-mid-w: 22rem;
+    }
+
+    // @include device(desk) {}
 }
 
 ::-webkit-scrollbar {
