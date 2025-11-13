@@ -10,27 +10,40 @@
     backdrop-filter: blur(2rem);
     border-radius: 0 0 1.2rem 1.2rem;
 
-    perspective: 500px;
-    transform-style: preserve-3d;
-    // transform-style: flat;
+    &__logo-wrapper {
+        // Chromium gets the full 3D treatment
+        perspective: 400px;
+        transform-style: preserve-3d;
 
-    .logo-kofi {
+        // Firefox override - remove 3D context from sticky element
+        @-moz-document url-prefix() {
+            perspective: none;
+            transform-style: flat;
+        }
+    }
+
+    &__logo-kofi {
         --shadow: -5px 5px 0px rgba($accent, 0.3);
-        will-change: transform;
         width: 8rem;
         display: grid;
         place-items: center;
         gap: 0.5rem;
         padding: 0.3rem 0.3rem 0.6rem 0.3rem;
         border: 1px solid rgba($accent, 0.1);
-        background-color: rgba($accent, 0.08);
         border-radius: 0.7rem;
+        background-color: rgba($accent, 0.08);
         box-shadow: -5px 5px 0px rgba($accent, 0.3);
+        transition: box-shadow 0.2s ease, transform 0.3s ease;
 
-        transform: rotateY(30deg) skewX(2deg) translateZ(0.1px);
+        // Chromium gets true 3D
+        transform: rotateY(30deg) skewX(2deg) scale(1.05, 0.96);
         backface-visibility: hidden;
 
-        transition: box-shadow 0.2s ease, transform 0.3s ease;
+        // Firefox gets fake 3D
+        @-moz-document url-prefix() {
+            transform: skewX(8deg) skewY(-1deg) rotateY(-20deg) scale(1.05, 0.96);
+            backface-visibility: visible;
+        }
 
         p {
             color: $accent;
@@ -48,8 +61,15 @@
 
         &:hover {
             box-shadow: 0 0 0 rgba($accent, 0.8);
-            transform: rotateX(0deg) rotateY(0deg) translateZ(0.1px);
 
+            // Chromium hover
+            transform: rotateY(0deg) skewX(0deg) scale(1, 1);
+
+
+            // Firefox hover
+            @-moz-document url-prefix() {
+                transform: skewX(0) skewY(0) rotateY(0) scale(1, 1);
+            }
 
             img {
                 filter: drop-shadow(0 0 0 rgba($accent, 1));
