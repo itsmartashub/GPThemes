@@ -22,15 +22,9 @@ export const setNewBadge = async () => {
 }
 
 export const updateBadgeToVersion = async () => {
-	const seen = await getItem(SK_BADGE_SEEN)
-	if (seen) {
-		console.log('Badge already seen, skipping update')
-		return
-	}
-
 	await setVersionBadge()
 	await setItem(SK_BADGE_SEEN, true)
-	console.log('✅ Badge changed from NEW → version (persistent)')
+	console.log('✅ Badge changed from NEW → version')
 }
 
 export const isBadgeSeen = () => getItem(SK_BADGE_SEEN)

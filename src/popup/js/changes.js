@@ -108,9 +108,9 @@ const currentReleaseChanges = {
 		{
 			details: `Hey there 👋 This is a <strong>MAJOR</strong> <code>v6.0.0</code> release with complete color system overhaul and massive codebase refactor.<br/><br/> 
 
-			⚠️ <strong>Important:</strong> Your settings will be reset on first launch due to extension storage version update. <br/><br/>
+			🚨 <strong>Important:</strong> Your settings will be reset on first launch due to extension storage version update.<br/><br/>
 
-			💡 <strong>Note on color picker:</strong> For the smoothest experience, change colors on lighter pages (like blank <code>New Chat</code> screen). Live preview regenerates the entire theme during dragging, which can lag on heavy pages. <br/><br/>
+			💡 <strong>Note on color picker:</strong> For the smoothest experience, change colors on lighter pages (like blank <code>New Chat</code> screen). Live preview regenerates the entire theme during dragging, which can lag on heavy pages.<br/><br/>
 
 			For full technical details and maintenance notes, check out the complete release notes on GitHub.`,
 		},

@@ -1,16 +1,19 @@
 import { runtime } from 'webextension-polyfill'
-import { removeItems, setItems } from '../utils/storage'
+import { removeItems } from '../utils/storage'
 import {
 	initBadgeColor,
 	setVersionBadge,
 	setNewBadge,
 	updateBadgeToVersion,
 	isBadgeSeen,
-	markBadgeAsSeen,
 	getCurrentBadge,
 } from './updateBadge'
 import { checkAndCleanStorage, getExtCurrVersion, getExtStoredVersion, setExtStoredVersion } from './versionControl'
 
+// Register onInstalled listener at module level (before init runs)
+runtime.onInstalled.addListener(handleInstallation)
+
+// Initialize background script
 initBackgroundScript()
 
 async function handleInstallation(details) {
@@ -18,30 +21,30 @@ async function handleInstallation(details) {
 		const currVersion = getExtCurrVersion()
 		const prevVersion = await getExtStoredVersion()
 
-		console.log(`📦 Install event: ${details.reason}`)
-		console.log(`   Previous: ${prevVersion} → Current: ${currVersion}`)
+		console.log(`📦 Extension ${details.reason}: ${prevVersion || 'none'} → ${currVersion}`)
 
 		if (details.reason === 'update') {
-			// Only show NEW badge if version actually changed
 			if (prevVersion !== currVersion) {
+				await initBadgeColor()
 				await setNewBadge()
-				await removeItems(['gptheme']) // Theme-specific cleanup
-				console.log('✅ Update detected - NEW badge set')
+				await removeItems(['gptheme'])
+				console.log('✅ NEW badge set')
 			} else {
-				console.log('⚠️ Update event but same version, keeping current badge')
+				const seen = await isBadgeSeen()
+				if (seen) {
+					await initBadgeColor()
+					await setVersionBadge()
+				}
 			}
-
-			// Always update stored version on update
 			await setExtStoredVersion(currVersion)
 		} else if (details.reason === 'install') {
-			// Fresh install - show version immediately
+			await initBadgeColor()
 			await setVersionBadge()
-			await markBadgeAsSeen()
 			await setExtStoredVersion(currVersion)
-			console.log('✅ Fresh install - version badge set')
+			console.log('✅ Version badge set')
 		}
 	} catch (error) {
-		console.error('❌ Installation error:', error)
+		console.error('❌ Installation handler error:', error)
 	}
 }
 
@@ -50,101 +53,47 @@ function handleMessage(message, sender, sendResponse) {
 		updateBadgeToVersion()
 			.then(() => sendResponse({ status: 'success' }))
 			.catch((error) => {
-				console.error('❌ Message handler error:', error)
+				console.error('❌ Badge update error:', error)
 				sendResponse({ status: 'error', message: error.message })
 			})
-		return true // Keep channel open for async response
+		return true
 	}
 }
 
 async function initBackgroundScript() {
-	console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-	console.log('🚀 BACKGROUND SCRIPT INIT')
-	console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+	console.log('🚀 Background script initializing...')
 
 	try {
-		// STEP 1: Check storage version and cleanup if needed
-		const wasCleanedUp = await checkAndCleanStorage()
-
-		// STEP 2: Initialize badge color
+		await checkAndCleanStorage()
 		await initBadgeColor()
 
-		// STEP 3: Get current state
 		const seen = await isBadgeSeen()
 		const storedVersion = await getExtStoredVersion()
 		const currentVersion = getExtCurrVersion()
 		const currentBadge = await getCurrentBadge()
 
-		console.log('📊 Current State:')
-		console.log(`   Badge: "${currentBadge}" | Seen: ${seen}`)
-		console.log(`   Stored: ${storedVersion} | Current: ${currentVersion}`)
-		console.log(`   Cleanup: ${wasCleanedUp}`)
+		console.log(`📊 State: Badge="${currentBadge}" | Seen=${seen} | v${storedVersion}→${currentVersion}`)
 
-		// STEP 4: Handle badge state based on current situation
-		if (wasCleanedUp) {
-			// Storage was just cleaned, this is like a fresh start
-			// Don't set badge here, let onInstalled handle it
-			console.log('⏳ Waiting for onInstalled event...')
-		} else if (storedVersion !== currentVersion && !currentBadge) {
-			// Edge case: version mismatch but badge is empty
-			console.log('⚠️ Version mismatch detected - setting NEW badge')
-			await setNewBadge()
-			await setExtStoredVersion(currentVersion)
-		} else if (seen && currentBadge !== currentVersion) {
-			// Restore version badge if it was already seen
-			await setVersionBadge()
-			console.log('✅ Version badge restored')
+		// Restore badge if empty
+		if (!currentBadge) {
+			if (seen) {
+				await setVersionBadge()
+			} else if (storedVersion && storedVersion !== currentVersion) {
+				await setNewBadge()
+			} else if (!storedVersion) {
+				await setVersionBadge()
+				await setExtStoredVersion(currentVersion)
+			}
 		}
 
-		// STEP 5: Register event listeners
-		runtime.onInstalled.addListener(handleInstallation)
-
+		// Register message listener
 		if (!globalThis.hasSetBadgeListener) {
 			runtime.onMessage.addListener(handleMessage)
 			globalThis.hasSetBadgeListener = true
-			console.log('✅ Message listener registered')
 		}
 
-		console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 		console.log('✅ Background script ready')
-		console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-
-		/* REMOVE THIS WHEN DONE TESTING !!! */
-		// SET_TESTING_ITEMS()
 	} catch (error) {
 		console.error('❌ Init error:', error)
 	}
-}
-
-/* REMOVE AFTER TESTING !!! */
-async function SET_TESTING_ITEMS() {
-	const items = {
-		accent_dark: '#ffa8a8',
-		accent_light: '#476c4e',
-		chat_user_edit_icon_right: 'calc(0% + 2rem)',
-		chat_user_edit_icon_top: '100%',
-		chat_user_edit_icon_transform: 'translateY(-1.25rem)',
-		customChatboxHeightState: true,
-		fontFamily: 'Bricolage Grotesque',
-		fontSize: 20,
-		fullWidthEnabled: true,
-		'gpth-hide-footer': true,
-		'gpth-hide-header': true,
-		lastVersion: '5.3.0',
-		letterSpacing: 3,
-		lineHeight: 27,
-		max_w_chat_user: '84%',
-		scrollButtonPosition: 'left',
-		w_chat_gpt: '84%',
-		w_chat_user: '84%',
-		w_prompt_textarea: '48rem',
-		widthSettings: {
-			max_w_chat_user: '100%',
-			w_chat_gpt: '100%',
-			w_chat_user: '100%',
-			w_prompt_textarea: '100%',
-		},
-		widthSyncEnabled: true,
-	}
-	await setItems(items)
 }
