@@ -108,5 +108,9 @@ export const SELECTORS = {
 			TOGGLE_ID: `${PFX}-hide-footer`,
 			SELECTOR: `#thread-bottom-container > #thread-bottom ~ div.min-h-8 > div`,
 		},
+		UPGRADE: {
+			TOGGLE_ID: `${PFX}-hide-upgrade-chip`,
+			SELECTOR: '.h-header-height.top-0 .rounded-full.bg-\\[\\#F1F1FB\\].dark\\:bg-\\[\\#373669\\]',
+		},
 	},
 }

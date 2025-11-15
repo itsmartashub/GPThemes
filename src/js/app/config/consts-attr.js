@@ -4,6 +4,7 @@ const ATTR_BUBBLE_USER = 'data-gpth-toggle-bubble-user',
 	ATTR_CHATBOX_HEIGHT = 'data-gpth-toggle-chatbox-height',
 	ATTR_HIDE_HEADER = 'data-gpth-hide-header',
 	ATTR_HIDE_FOOTER = 'data-gpth-hide-footer',
+	ATTR_HIDE_UPGRADE_CHIP = 'data-gpth-hide-upgrade-chip',
 	ATTR_ACCENT_TEXT = 'data-gpth-toggle-accent-text'
 
 export {
@@ -14,4 +15,5 @@ export {
 	ATTR_CHATBOX_HEIGHT,
 	ATTR_HIDE_HEADER,
 	ATTR_HIDE_FOOTER,
+	ATTR_HIDE_UPGRADE_CHIP,
 }
