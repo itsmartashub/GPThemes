@@ -37,11 +37,12 @@ function templateHTML() {
 	`
 }
 
-async function saveState(key, value) {
+async function saveState(key, value, label) {
 	try {
 		await setItem(key, value)
-		let element = key.startsWith('hide') ? key.slice(4) : 'Element'
-		value ? Notify.info(`😶‍🌫️ ${element} hidden`) : Notify.success(` 👁️ ${element} shown`)
+
+		const element = label ? label.replace('Hide ', '') : 'Element'
+		value ? Notify.info(`😶‍🌫️ ${element} hidden`) : Notify.success(`👁️ ${element} shown`)
 	} catch (e) {
 		Notify.error(`Failed to hide element`)
 		console.error('Failed to save toggle state', key, e)
@@ -62,35 +63,30 @@ async function loadState() {
 
 // Apply data attribute without saving
 function updateDataAttr(dataAttr, isHidden) {
-	if (!dataAttr) return
+	if (!dataAttr || !ROOT_HTML) return
 
-	if (isHidden) {
-		// When element should be hidden, ADD the data attribute
-		ROOT_HTML.setAttribute(dataAttr, '')
-	} else {
-		// When element should be shown, REMOVE the data attribute
-		ROOT_HTML.removeAttribute(dataAttr)
-	}
+	// When element should be hidden, ADD the data attr. When element should be shown, REMOVE the data attr
+	isHidden ? ROOT_HTML.setAttribute(dataAttr, '') : ROOT_HTML.removeAttribute(dataAttr)
 }
 
-// destructure e.target
+// Handle toggle change - check element existence ON EVERY TOGGLE
 function handleChange({ target }) {
 	if (!target.matches('input[type="checkbox"]')) return
 
-	const { id } = target
-	const cfg = ELEMENTS_MAP.get(id)
-	const element = $(cfg?.selector)
+	const cfg = ELEMENTS_MAP.get(target.id)
+	if (!cfg) return
 
+	// Check if element exists RIGHT NOW
+	const element = $(cfg.selector)
 	if (!element) {
-		console.warn(`Element with ID ${id} not found`)
-		Notify.warning('Element not found')
-		target.checked = !target.checked
+		Notify.error(`${cfg.label.replace('Hide ', '')} not found on this page`)
+		target.checked = !target.checked // Revert toggle
 		return
 	}
 
 	const isHidden = target.checked
 	updateDataAttr(cfg.dataAttr, isHidden)
-	saveState(cfg.storageKey, isHidden)
+	saveState(cfg.storageKey, isHidden, cfg.label)
 }
 
 // Hydrate and wire events after render
@@ -115,11 +111,12 @@ async function mount() {
 			updateDataAttr(cfg.dataAttr, isHidden)
 		}
 	} catch (e) {
-		Notify.error('Failed to load toggle states')
-		console.error('Failed to load toggle states', e)
+		Notify.error('Failed to load hide settings')
+		console.error('Failed to load hide controls: ', e)
+	} finally {
+		// ALWAYS attach the listener, even if loading state failed
+		container.addEventListener('change', handleChange)
 	}
-
-	container.addEventListener('change', handleChange)
 }
 
 export { templateHTML as renderCustomHides, mount }
