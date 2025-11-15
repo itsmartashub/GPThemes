@@ -1,7 +1,7 @@
 import { SELECTORS } from './selectors'
 import { ATTR_HIDE_HEADER, ATTR_HIDE_FOOTER, ATTR_HIDE_UPGRADE_CHIP } from './consts-attr'
 import { SK_TOGGLE_HIDE_HEADER, SK_TOGGLE_HIDE_FOOTER, SK_TOGGLE_HIDE_UPGRADE_CHIP } from './consts-storage'
-import { icon_header, icon_footer } from '../components/icons'
+import { icon_header, icon_footer, icon_upgrade } from '../components/icons'
 
 export const ELEMENTS = [
 	{
@@ -28,7 +28,7 @@ export const ELEMENTS = [
 		id: SELECTORS.HIDE.UPGRADE.TOGGLE_ID,
 		label: 'Hide Upgrade Chip',
 		subtitle: 'Hide the upgrade chip from the top header for a cleaner view',
-		icon: icon_footer,
+		icon: icon_upgrade,
 		selector: SELECTORS.HIDE.UPGRADE.SELECTOR,
 		dataAttr: ATTR_HIDE_UPGRADE_CHIP,
 		storageKey: SK_TOGGLE_HIDE_UPGRADE_CHIP,
