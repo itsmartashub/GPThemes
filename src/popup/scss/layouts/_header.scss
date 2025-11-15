@@ -20,6 +20,27 @@
             perspective: none;
             transform-style: flat;
         }
+
+        &:is(:hover, :focus) {
+            .header__logo-kofi {
+                box-shadow: 0 0 0 rgba($accent, 0.8);
+
+                // Chromium hover
+                transform: rotateY(0deg) skewX(0deg) scale(1, 1);
+
+
+                // Firefox hover
+                @-moz-document url-prefix() {
+                    transform: skewX(0) skewY(0) rotateY(0) scale(1, 1);
+                }
+
+                img {
+                    filter: drop-shadow(0 0 0 rgba($accent, 1));
+                    translate: 0 -10%;
+                    scale: 0.88;
+                }
+            }
+        }
     }
 
     &__logo-kofi {
@@ -59,23 +80,6 @@
             transition: filter 0.4s ease, translate 0.3s ease, scale 0.3s ease;
         }
 
-        &:hover {
-            box-shadow: 0 0 0 rgba($accent, 0.8);
 
-            // Chromium hover
-            transform: rotateY(0deg) skewX(0deg) scale(1, 1);
-
-
-            // Firefox hover
-            @-moz-document url-prefix() {
-                transform: skewX(0) skewY(0) rotateY(0) scale(1, 1);
-            }
-
-            img {
-                filter: drop-shadow(0 0 0 rgba($accent, 1));
-                translate: 0 -10%;
-                scale: 0.88;
-            }
-        }
     }
 }

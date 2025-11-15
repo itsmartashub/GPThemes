@@ -35,13 +35,13 @@ const currentReleaseChanges = {
 		{
 			description: 'OKLCH Color System:',
 			details:
-				'Completely rebuilt color management from HSL to OKLCH for better color accuracy, perceptual uniformity, and better lightness handling on modern displays',
+				'Completely rebuilt color management from <code>HSL</code> to <code>OKLCH</code> for better color accuracy, perceptual uniformity, and better lightness handling on modern displays',
 			prRef: 171,
 		},
 		{
 			description: 'New Color Picker:',
 			details:
-				'Replaced native browser input with colorpicker library featuring manual HEX input, eyedropper tool, individual color reset, and consistent cross-browser behavior. (Please read <code>Other</code> section for performance info)',
+				'Replaced native browser input with colorpicker library featuring <strong>manual HEX input</strong>, <strong>keyedropper tool</strong>, <strong>individual color reset</strong>, and for <strong>consistent cross-browser behavior</strong>. (Please read <code>Other</code> section for performance info)',
 			prRef: 173,
 		},
 		{
@@ -51,13 +51,19 @@ const currentReleaseChanges = {
 			issueRef: 109,
 		},
 		{
-			description: 'Storage Version Control:',
-			details:
-				'Implemented automatic storage clearing when extension version is outdated, ensuring clean upgrades. <br/> ⚠️ Your settings will be reset on first launch',
+			description: 'Hide Upgrade Chip:',
+			details: 'Added toggle to hide <code>Upgrade for free</code> chip from the top header',
+			prRef: 180,
+			issueRef: 179,
 		},
 		{
 			description: 'Accent Colors:',
 			details: 'Change default accent colors',
+		},
+		{
+			description: 'Storage Version Control:',
+			details:
+				'Implemented automatic storage clearing when extension version is outdated, ensuring clean upgrades. <br/> ⚠️ <strong>YOUR SETTINGS WILL BE RESET ON FIRST LAUNCH</strong>',
 		},
 	],
 	improvements: [
@@ -74,6 +80,10 @@ const currentReleaseChanges = {
 		{
 			description: 'GPT Bubble Toggle:',
 			details: `When GPT bubble is off, ensure the text fills the maximum available horizontal space (X-axis) to match the official platform's design. More noticable on mobile/smaller screens`,
+		},
+		{
+			description: 'Markdown Syntax Highlight:',
+			details: 'Remove custom <code>rose-pine</code> syntax highlighting theme and use default one instead',
 		},
 		{
 			description: 'Modals Dialogs:',
@@ -109,7 +119,7 @@ const currentReleaseChanges = {
 		{
 			details: ` <strong>Keep it alive:</strong> This extension is free so everyone can use it. But maintaining it through constant platform updates takes real time and effort. Many great tools end up behind paywalls just to survive. I'm trying to avoid that.<br/><br/> 
 			
-			🍵 If you can afford it and find GPThemes valuable, you can support its development with a <a href="https://ko-fi.com/http417" target="_blank" rel="noopener noreferrer"> <code>pay-what-you-want</code> contribution on KO-FI. </a> Even small contributions help keep it alive and accessible.`,
+			🍵 If you can afford it and find GPThemes valuable, you can support its development with a <a href="https://ko-fi.com/http417" target="_blank" rel="noopener noreferrer"> <code>pay what you want</code> contribution on KO-FI. </a> Even small contributions help keep it alive and accessible.`,
 		},
 	],
 }

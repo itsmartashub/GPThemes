@@ -5,33 +5,17 @@
     padding: 0.8rem;
 
     ul {
-        list-style-type: none;
-        padding-left: 1rem;
-        // margin-bottom: 2rem;
+        // list-style-type: none;
+        padding-left: 2rem;
+
+        *+* {
+            margin-top: 0.8rem;
+        }
 
         li {
             position: relative;
-            padding: 0.5rem;
             border-radius: 0.8rem;
             font-size: 0.915em;
-
-            // Add custom bullets using pseudo-elements
-            &::before {
-                content: '•';
-                position: absolute;
-                color: $accent;
-                font-size: 1.2em;
-                line-height: 1;
-                top: 0.6rem;
-                left: -0.4em;
-                transition: scale 0.2s ease;
-            }
-
-            &:hover {
-                &::before {
-                    scale: 0;
-                }
-            }
 
         }
 
