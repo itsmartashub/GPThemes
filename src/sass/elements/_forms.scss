@@ -40,3 +40,9 @@ textarea {
 		color: var(--c-subtext-2) !important;
 	}
 }
+
+/* "Share this project" - Sharing Project (folder) dialog - inputs */
+.react-select-container .react-select__control:where(.dark, .dark *):not(:where(.dark .light, .dark .light *)) {
+	background-color: var(--c-surface-3) !important;
+	border-color: var(--c-surface-3) !important;
+}
