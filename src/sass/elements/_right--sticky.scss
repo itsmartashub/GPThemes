@@ -20,7 +20,7 @@ But adding this "main" blocked this style to smaller screens so I have to add it
 .sticky {
 
 	/* "ChatGPT" button in sticky header */
-	[data-testid="model-switcher-dropdown-button"][type='button'][aria-haspopup='menu'] {
+	[data-testid="model-switcher-dropdown-button"] {
 		transition: 0.25s color ease-in-out, 0.25s background-color ease-in-out;
 		border-radius: var(--br-btn) !important;
 		// backdrop-filter: blur(5px);

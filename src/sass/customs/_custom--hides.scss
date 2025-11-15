@@ -35,3 +35,8 @@ html[data-gpth-hide-header] header#page-header {
 html[data-gpth-hide-footer] #thread-bottom-container>#thread-bottom~div.min-h-8>div {
     display: none !important;
 }
+
+/* "Upgrade for free" chip button in header */
+html[data-gpth-hide-upgrade-chip] .h-header-height.top-0 .rounded-full.bg-\[\#F1F1FB\].dark\:bg-\[\#373669\] {
+    display: none !important;
+}
