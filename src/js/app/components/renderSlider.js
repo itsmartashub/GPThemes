@@ -29,7 +29,7 @@ import { icon_lock } from './icons'
 //     </label>`
 // }
 
-function renderSliderCard({
+export function renderSliderCard({
 	name,
 	inputId,
 	inputType,
@@ -99,6 +99,3 @@ function sanitizeString(str) {
 	div.textContent = str
 	return div.innerHTML
 }
-
-// export { renderToggleCard, renderSliderCard }
-export { renderSliderCard }

@@ -42,7 +42,7 @@ export const SK_BADGE_SEEN = '_isBadgeSeen'
 // =============================================
 
 export const EXPORT_CONFIG = Object.freeze({
-	// Settings to include in exports (user preferences)
+	// Settings to include in exports (user prefs)
 	INCLUDE: [
 		SK_COLOR_ACCENT_DARK,
 		SK_COLOR_ACCENT_LIGHT,

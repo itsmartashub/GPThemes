@@ -1,12 +1,19 @@
 import { onOpenSettings } from './settingsManager.js'
 
-// Constants for theme management
+// =====================================================
+// STATE
+// =====================================================
+
 const THEMES = {
 	LIGHT: 'light',
 	DARK: 'dark',
 	SYSTEM: 'system',
 	OLED: 'oled',
 }
+
+// =====================================================
+// UTILS
+// =====================================================
 
 const mediaQuery = window.matchMedia('(prefers-color-scheme: light)')
 
@@ -22,11 +29,13 @@ function getStoredThemeState() {
 	}
 }
 
+// =====================================================
+// UPDATE CSS/DOM
+// =====================================================
 function setRootTheme(theme, isOLED) {
 	const root = document.documentElement
 	const effectiveTheme = theme === THEMES.SYSTEM ? getSystemTheme() : theme
 
-	// Single source of truth for theme application
 	root.className = effectiveTheme
 	root.style.colorScheme = effectiveTheme
 	root.dataset.gptheme = effectiveTheme === THEMES.DARK && isOLED ? 'oled' : effectiveTheme
@@ -35,15 +44,17 @@ function setRootTheme(theme, isOLED) {
 function updateTheme(newTheme, isOLED = false) {
 	const { theme: currentTheme } = getStoredThemeState()
 
+	// Get storage theme value and skip if no change
 	if (currentTheme === newTheme && String(isOLED) === localStorage.getItem('isOLED')) return
 
-	// Update storage and DOM in a single operation
+	// Update storage if theme changed
 	localStorage.setItem('theme', newTheme)
 	localStorage.setItem('isOLED', isOLED)
 
+	// Update DOM
 	setRootTheme(newTheme, isOLED)
 
-	// Notify other tabs/windows
+	// Notify other tabs/windows (this update GPT's CodeMirror (Canvas) theme without need for page reloading)
 	window.dispatchEvent(
 		new StorageEvent('storage', {
 			key: 'theme',
@@ -54,17 +65,14 @@ function updateTheme(newTheme, isOLED = false) {
 	)
 }
 
-// Event handlers
-function handleChangeTheme(e) {
+// =====================================================
+// EVENTS
+// =====================================================
+function onChangeTheme(e) {
 	const themeBtn = e.target.closest('button')
 	if (!themeBtn) return
 
 	const themeId = themeBtn.id ?? themeBtn.id
-
-	// Skip handling for Ko-fi
-	// if (themeId === 'kofi') return
-
-	// console.log(themeId)
 
 	switch (themeId) {
 		case THEMES.LIGHT:
@@ -81,6 +89,9 @@ function handleChangeTheme(e) {
 	}
 }
 
+// =====================================================
+// Lifecycle: INIT
+// =====================================================
 function init() {
 	const { theme, isOLED } = getStoredThemeState()
 	setRootTheme(theme, isOLED)
@@ -92,7 +103,7 @@ function init() {
 		}
 	}
 
-	// Add listener for theme change based on system preferences
+	// Add event listener for theme change based on sys pref
 	mediaQuery.addEventListener('change', mediaQueryListener)
 
 	// Clean up the event listener when the component is destroyed
@@ -101,4 +112,7 @@ function init() {
 	}
 }
 
-export { init, handleChangeTheme }
+// =====================================================
+// Exports
+// =====================================================
+export { init, onChangeTheme as handleChangeTheme }

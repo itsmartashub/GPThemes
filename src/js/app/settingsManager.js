@@ -4,9 +4,9 @@ import { renderColorsTab, init as initColors, mount as mountColors } from './cus
 import { renderFontsTab, init as initFonts, mount as mountFonts } from './custom-fonts/index.js'
 import { renderLayoutsTab, init as initWidths, mount as mountWidths } from './custom-layouts/index.js'
 
-// =========================================================
+// =====================================================
 // STATE - global state (cached refs, constants)
-// =========================================================
+// =====================================================
 let $settings = null
 let $tabButtons = []
 let $tabPanes = []
@@ -20,9 +20,9 @@ const TABS_CONFIG = [
 	{ id: 'layout', label: 'Layout', render: renderLayoutsTab, init: initWidths, mount: mountWidths },
 ]
 
-// =========================================================
+// =====================================================
 // TEMPLATE - UI rendergn
-// =========================================================
+// =====================================================
 function templateHTML() {
 	// const tabs = [
 	// 	{ id: 'colors', label: 'Color', render: renderColorsTab },
@@ -98,9 +98,9 @@ function templateHTML() {
 		</main>`
 }
 
-// =========================================================
+// =====================================================
 // Lifecycle: CREATE (build DOM, init modules, mount)
-// =========================================================
+// =====================================================
 async function createSettings() {
 	// console.log('[CREATE SETTINGS]')
 
@@ -129,18 +129,18 @@ async function createSettings() {
 	return el
 }
 
-// =========================================================
+// =====================================================
 // ELEMENTS - cache DOM elemnt references
-// =========================================================
+// =====================================================
 function setElements(root) {
 	$settings = root
 	$tabButtons = [...$settings.querySelectorAll(`.${SELECTORS.SETTINGS.TABS.BUTTON}`)]
 	$tabPanes = [...$settings.querySelectorAll(`.${SELECTORS.SETTINGS.TABS.PANE}`)]
 }
 
-// =========================================================
+// =====================================================
 // LISTENERS
-// =========================================================
+// =====================================================
 function addListeners() {
 	$settings.querySelector(`.${SELECTORS.SETTINGS.TABS.BUTTONS}`).addEventListener('click', onTabsSwitching)
 	// handleTabsSwitching()
@@ -190,7 +190,7 @@ function onCloseSettings() {
 	document.removeEventListener('click', onClickOutside, true)
 }
 
-// =========================================================
+// =====================================================
 // Exports
-// =========================================================
+// =====================================================
 export { createSettings, onOpenSettings, onCloseSettings }

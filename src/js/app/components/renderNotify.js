@@ -1,7 +1,6 @@
-// notification.js
 import { SELECTORS } from '../config/selectors'
 
-const NOTIFICATION_TYPES = {
+const NOTIF_TYPES = {
 	INFO: 'info',
 	SUCCESS: 'success',
 	WARNING: 'warning',
@@ -9,37 +8,37 @@ const NOTIFICATION_TYPES = {
 }
 
 const DEFAULT_DURATION = 4000
-const MAX_NOTIFICATIONS = 5
+const MAX_NOTIF = 5
 const THROTTLE_DELAY = 300
 
 // Persistent container & throttle tracking
-let $notificationContainer = null
-let lastNotificationTime = 0
+let $notifContainer = null
+let lastNotifTime = 0
 
 // Create container once and keep it
 function ensureContainer() {
-	if (!$notificationContainer) {
-		$notificationContainer = document.createElement('div')
-		$notificationContainer.className = SELECTORS.NOTIFY.CONTAINER
-		document.body.appendChild($notificationContainer)
+	if (!$notifContainer) {
+		$notifContainer = document.createElement('div')
+		$notifContainer.className = SELECTORS.NOTIFY.CONTAINER
+		document.body.appendChild($notifContainer)
 	}
-	return $notificationContainer
+	return $notifContainer
 }
 
-// Throttle rapid notifications
+// Throttle rapid notif
 function shouldThrottle() {
 	const now = Date.now()
-	if (now - lastNotificationTime < THROTTLE_DELAY) {
+	if (now - lastNotifTime < THROTTLE_DELAY) {
 		return true
 	}
-	lastNotificationTime = now
+	lastNotifTime = now
 	return false
 }
 
-// Limit notification count
-function enforceMaxNotifications(container) {
+// Limit notif count
+function enforceMaxNotif(container) {
 	const notifications = container.children
-	while (notifications.length >= MAX_NOTIFICATIONS) {
+	while (notifications.length >= MAX_NOTIF) {
 		const oldest = notifications[notifications.length - 1]
 		closeNotification(oldest, true)
 	}
@@ -47,18 +46,18 @@ function enforceMaxNotifications(container) {
 
 function showNotification(
 	message = 'ℹ️ Settings have been updated',
-	type = NOTIFICATION_TYPES.INFO,
+	type = NOTIF_TYPES.INFO,
 	duration = DEFAULT_DURATION
 ) {
-	// Throttle rapid-fire notifications
+	// Throttle rapid-fire notifs
 	if (shouldThrottle()) {
 		return { close: () => {} }
 	}
 
 	const container = ensureContainer()
-	enforceMaxNotifications(container)
+	enforceMaxNotif(container)
 
-	// Create notification with close button in one go
+	// Create notif with close btn in one go
 	const notification = document.createElement('div')
 	notification.className = `${SELECTORS.NOTIFY.ITEM} ${SELECTORS.NOTIFY.ITEM}--${type}`
 
@@ -78,7 +77,7 @@ function showNotification(
 	let timeoutId = null
 	let isClosed = false
 
-	// Cleanup function - prevents memory leaks
+	// Cleanup fn - prevents mem leaks
 	const cleanup = () => {
 		if (isClosed) return
 		isClosed = true
@@ -87,17 +86,17 @@ function showNotification(
 			clearTimeout(timeoutId)
 			timeoutId = null
 		}
-		closeBtn.removeEventListener('click', handleClose)
+		closeBtn.removeEventListener('click', onClose)
 	}
 
 	// Close handler
-	const handleClose = () => {
+	const onClose = () => {
 		cleanup()
 		closeNotification(notification)
 	}
 
 	// Single event listener (will be properly cleaned up)
-	closeBtn.addEventListener('click', handleClose, { once: true })
+	closeBtn.addEventListener('click', onClose, { once: true })
 
 	// Auto-close timeout
 	if (duration > 0) {
@@ -116,7 +115,7 @@ function showNotification(
 	})
 
 	return {
-		close: handleClose,
+		close: onClose,
 	}
 }
 
@@ -143,23 +142,23 @@ function closeNotification(notification, immediate = false) {
 
 	notification.addEventListener('transitionend', cleanup, { once: true })
 
-	// Fallback if transition doesn't fire
+	// Fallback if transition doesnt fire
 	setTimeout(cleanup, 500)
 }
 
 // Smart container cleanup - only if empty for a while
 let cleanupTimer = null
 function cleanupContainer() {
-	if (!$notificationContainer) return
+	if (!$notifContainer) return
 
 	if (cleanupTimer) clearTimeout(cleanupTimer)
 
-	if ($notificationContainer.children.length === 0) {
-		// Wait a bit before removing - likely more notifications coming
+	if ($notifContainer.children.length === 0) {
+		// Wait a bit before removing - likely more notifs coming
 		cleanupTimer = setTimeout(() => {
-			if ($notificationContainer && $notificationContainer.children.length === 0) {
-				$notificationContainer.remove()
-				$notificationContainer = null
+			if ($notifContainer && $notifContainer.children.length === 0) {
+				$notifContainer.remove()
+				$notifContainer = null
 			}
 		}, 1000)
 	}
@@ -167,14 +166,12 @@ function cleanupContainer() {
 
 // Unified API
 const Notify = {
-	info: (msg = 'ℹ️ Settings have been updated!', duration) =>
-		showNotification(msg, NOTIFICATION_TYPES.INFO, duration),
+	info: (msg = 'ℹ️ Settings have been updated!', duration) => showNotification(msg, NOTIF_TYPES.INFO, duration),
 	success: (msg = '✅ Your changes were saved successfully.', duration) =>
-		showNotification(msg, NOTIFICATION_TYPES.SUCCESS, duration),
+		showNotification(msg, NOTIF_TYPES.SUCCESS, duration),
 	warning: (msg = '⚠️ Please check your input and try again.', duration) =>
-		showNotification(msg, NOTIFICATION_TYPES.WARNING, duration),
-	error: (msg = '🚨 Yikes, something went wrong.', duration) =>
-		showNotification(msg, NOTIFICATION_TYPES.ERROR, duration),
+		showNotification(msg, NOTIF_TYPES.WARNING, duration),
+	error: (msg = '🚨 Yikes, something went wrong.', duration) => showNotification(msg, NOTIF_TYPES.ERROR, duration),
 }
 
 export { Notify, showNotification }

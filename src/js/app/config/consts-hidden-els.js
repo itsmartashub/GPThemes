@@ -10,7 +10,7 @@ export const ELEMENTS = [
 		subtitle: 'Hide the top header section to maximize screen space.',
 		icon: icon_header,
 		selector: SELECTORS.HIDE.HEADER.SELECTOR,
-		dataAttr: ATTR_HIDE_HEADER, // Changed from cssVar to dataAttr
+		dataAttr: ATTR_HIDE_HEADER,
 		storageKey: SK_TOGGLE_HIDE_HEADER,
 		isHidden: false, // OFF by default = no data attribute
 	},

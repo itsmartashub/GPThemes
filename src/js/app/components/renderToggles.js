@@ -1,4 +1,4 @@
-function renderToggle({
+export function renderToggle({
 	id,
 	checked = false,
 	label = '',
@@ -49,5 +49,3 @@ function renderToggle({
         `
 	}
 }
-
-export { renderToggle }

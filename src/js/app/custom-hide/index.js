@@ -5,10 +5,15 @@ import { SELECTORS } from '../config/selectors'
 import { renderToggle } from '../components/renderToggles.js'
 import { Notify } from '../components/renderNotify.js'
 
+// =====================================================
+// STATE
+// =====================================================
 // Precompute map for O(1) lookups
 const ELEMENTS_MAP = new Map(ELEMENTS.map((cfg) => [cfg.id, cfg]))
 
-// Render section HTML (string)
+// =====================================================
+// TEMPLATE
+// =====================================================
 function templateHTML() {
 	if (!Array.isArray(ELEMENTS) || ELEMENTS.length === 0) {
 		console.warn('ELEMENTS array is empty or invalid')
@@ -37,6 +42,10 @@ function templateHTML() {
 	`
 }
 
+// =====================================================
+// STORAGE
+// =====================================================
+// Save state to storage
 async function saveState(key, value, label) {
 	try {
 		await setItem(key, value)
@@ -48,7 +57,6 @@ async function saveState(key, value, label) {
 		console.error('Failed to save toggle state', key, e)
 	}
 }
-
 // Load saved state from storage
 async function loadState() {
 	try {
@@ -61,6 +69,9 @@ async function loadState() {
 	}
 }
 
+// =====================================================
+// UPDATE CSS/DOM
+// =====================================================
 // Apply data attribute without saving
 function updateDataAttr(dataAttr, isHidden) {
 	if (!dataAttr || !ROOT_HTML) return
@@ -70,7 +81,7 @@ function updateDataAttr(dataAttr, isHidden) {
 }
 
 // Handle toggle change - check element existence ON EVERY TOGGLE
-function handleChange({ target }) {
+function onChange({ target }) {
 	if (!target.matches('input[type="checkbox"]')) return
 
 	const cfg = ELEMENTS_MAP.get(target.id)
@@ -89,6 +100,9 @@ function handleChange({ target }) {
 	saveState(cfg.storageKey, isHidden, cfg.label)
 }
 
+// =====================================================
+// Lifecycle: MOUNT
+// =====================================================
 // Hydrate and wire events after render
 async function mount() {
 	const container = document.getElementById(SELECTORS.HIDE.CONTAINER_ID)
@@ -115,7 +129,7 @@ async function mount() {
 		console.error('Failed to load hide controls: ', e)
 	} finally {
 		// ALWAYS attach the listener, even if loading state failed
-		container.addEventListener('change', handleChange)
+		container.addEventListener('change', onChange)
 	}
 }
 

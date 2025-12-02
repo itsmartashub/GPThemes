@@ -6,6 +6,10 @@ import { $, $$, ROOT_HTML } from '../../utils/dom.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { Notify } from '../components/renderNotify.js'
 
+// =====================================================
+// STATE
+// =====================================================
+
 // Bubble types + config
 const CONFIG = {
 	user: {
@@ -26,7 +30,10 @@ const DEFAULT_STATE = {
 
 const STORAGE_KEY = SK_TOGGLE_CHAT_BUBBLES_STATE
 
-// Generate section HTML
+// =====================================================
+// TEMPLATE
+// =====================================================
+
 function templateHTML() {
 	const toggleItems = Object.entries(CONFIG)
 		.map(function ([type, config]) {
@@ -50,16 +57,52 @@ function templateHTML() {
   `
 }
 
+// =====================================================
+// STORAGE
+// =====================================================
+// Save state to storage
+async function saveState(state) {
+	try {
+		await setItem(STORAGE_KEY, state)
+		return true
+	} catch (error) {
+		Notify.error('Failed to save bubble preference')
+		console.error('Failed to save preference:', error)
+		return false
+	}
+}
+// Load saved state from storage
+async function loadState() {
+	try {
+		const result = await getItem(STORAGE_KEY)
+		return result || DEFAULT_STATE
+	} catch (error) {
+		Notify.error('Failed to load bubble preference')
+		console.error('Failed to load preference:', error)
+		return DEFAULT_STATE
+	}
+}
+
+// =====================================================
+// UPDATE CSS/DOM
+// =====================================================
+
 // Apply data attributes to document root
 function updateDataAttr(state) {
 	for (const [type, config] of Object.entries(CONFIG)) {
-		if (state[type]) {
-			// When bubble is ENABLED (checked), remove the data attribute
-			ROOT_HTML.removeAttribute(config.attr)
-		} else {
-			// When bubble is DISABLED (unchecked), set the data attribute
-			ROOT_HTML.setAttribute(config.attr, '')
-		}
+		// if (state[type]) {
+		// 	// When bubble is ENABLED (checked), remove the data attr
+		// 	ROOT_HTML.removeAttribute(config.attr)
+		// } else {
+		// 	// When bubble is DISABLED (unchecked), set the data attr
+		// 	ROOT_HTML.setAttribute(config.attr, '')
+		// }
+
+		// When bubble is ENABLED (checked), REMOVE the data attr!! When bubble is DISABLED (unchecked), SET the data attr
+		state[type] ? ROOT_HTML.removeAttribute(config.attr) : ROOT_HTML.setAttribute(config.attr, '')
+
+		// When bubble is DISABLED (unchecked), ADD the data attr!! When bubble is ENaABLED (checked), REMOVE the data attr
+		// !state[type] ? ROOT_HTML.setAttribute(config.attr, '') : ROOT_HTML.removeAttribute(config.attr)
 	}
 }
 
@@ -72,31 +115,11 @@ function updateInputs(state) {
 	})
 }
 
-// Load state
-async function loadState() {
-	try {
-		const result = await getItem(STORAGE_KEY)
-		return result || DEFAULT_STATE
-	} catch (error) {
-		Notify.error('Failed to load bubble preference')
-		console.error('Failed to load preference:', error)
-		return DEFAULT_STATE
-	}
-}
+// =====================================================
+// EVENTS
+// =====================================================
 
-// Persist state
-async function saveState(state) {
-	try {
-		await setItem(STORAGE_KEY, state)
-		return true
-	} catch (error) {
-		Notify.error('Failed to save bubble preference')
-		console.error('Failed to save preference:', error)
-		return false
-	}
-}
-
-async function handleChange(event) {
+async function onChange(event) {
 	const input = event.target
 	if (!input.classList.contains('gpth-checkbox__input')) return
 
@@ -106,14 +129,19 @@ async function handleChange(event) {
 		return
 	}
 
-	const currentState = await loadState()
-	const updatedState = { ...currentState, [type]: input.checked }
+	const currState = await loadState()
+	const updatedState = { ...currState, [type]: input.checked }
 	updateDataAttr(updatedState)
 	updateInputs(updatedState)
+
 	saveState(updatedState).then((success) =>
 		input.checked ? Notify.success(` ${type} bubble enabled`) : Notify.info(` ${type} bubble disabled`)
 	)
 }
+
+// =====================================================
+// Lifecycle: MOUNT
+// =====================================================
 
 // Mount after DOM exists: sync inputs and add delegation listener
 async function mount() {
@@ -123,12 +151,14 @@ async function mount() {
 		return
 	}
 
-	// Sync inputs to current state on mount
+	// Sync inputs to curr/saved state on mount
 	const state = await loadState()
 	updateDataAttr(state)
 	updateInputs(state)
-
-	container.addEventListener('change', handleChange)
+	container.addEventListener('change', onChange)
 }
 
+// =====================================================
+// Exports
+// =====================================================
 export { templateHTML as renderCustomChatBubbles, mount }

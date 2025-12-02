@@ -1,9 +1,8 @@
 import { init as initThemes } from './app/themeManager'
 import { init as initFAB } from './app/custom-fab/index'
-// Chat bubbles and chatbox height are mounted from custom-layouts after Settings render
-// User bubble accent toggle is mounted from colors module after Settings render
+// !! Chat bubbles and chatbox height are mounted from custom-layouts after Settings render !!
+// !! User bubble accent toggle is mounted from Colors module after Settings render !!
 
-// Configuration
 const CONFIG = {
 	// TARGET_SELECTOR: '.gpth-settings',
 	TARGET_SELECTOR: '.gpth-fab',
@@ -15,14 +14,14 @@ const CONFIG = {
 let retryCount = 0
 let retryTimeout = null // For cleanup
 
-// Main initialization function
-async function initExtension() {
+// Main init fn
+async function initExt() {
 	// console.log(`[🎨GPThemes]: Initializing components (attempt ${retryCount + 1}/${CONFIG.MAX_RETRIES})`)
 
 	try {
 		initThemes()
 		initFAB()
-		// Settings modules (colors, fonts, layouts) are initialized inside settingsManager after DOM attach
+		// !! Settings modules (colors, fonts, layouts) are initialized inside settingsManager after DOM attach !!
 	} catch (error) {
 		console.error('[🎨GPThemes]: Critical initialization error:', error)
 		return false
@@ -51,7 +50,7 @@ function scheduleRetry() {
 				'[🎨GPThemes]: Re-initializing extension (possible React hydration issue: "Minified React error #XXX;" above?)'
 			)
 
-			if (initExtension()) {
+			if (initExt()) {
 				// console.log('Injection successful')
 				cleanup()
 			} else {
@@ -63,7 +62,7 @@ function scheduleRetry() {
 	}
 }
 
-// Cleanup function
+// Cleanup fn
 function cleanup() {
 	if (retryTimeout) {
 		clearTimeout(retryTimeout)
@@ -73,7 +72,7 @@ function cleanup() {
 
 // Initial run
 if (!document.querySelector(CONFIG.TARGET_SELECTOR)) {
-	initExtension()
+	initExt()
 	scheduleRetry()
 } else {
 	console.log('[🎨GPThemes]: Components already present on first check')

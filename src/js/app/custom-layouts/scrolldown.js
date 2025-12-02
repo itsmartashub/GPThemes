@@ -2,11 +2,14 @@ import { getItem, setItem } from '../../utils/storage.js'
 import { SELECTORS } from '../config/selectors.js'
 import { SK_SCROLL_BUTTON_POSITION } from '../config/consts-storage.js'
 import { $, $$ } from '../../utils/dom.js'
-import { setVars } from '../../utils/dom.js' // batch css vars updates
+import { setVars } from '../../utils/dom.js'
 import { icon_align_left, icon_align_center, icon_align_right } from '../components/icons.js'
 import { Notify } from '../components/renderNotify.js'
 
-// Configuration object - single source of truth
+// =====================================================
+// STATE
+// =====================================================
+
 const CONFIG = {
 	left: {
 		label: 'Left',
@@ -38,6 +41,10 @@ const CONFIG = {
 const STORAGE_KEY = SK_SCROLL_BUTTON_POSITION
 const DEFAULT_POSITION = 'center'
 
+// =====================================================
+// TEMPLATE
+// =====================================================
+
 function templateHTML() {
 	const positionBtns = Object.entries(CONFIG)
 		.map(([position, config]) => {
@@ -65,15 +72,10 @@ function templateHTML() {
     `
 }
 
-async function getFromStorage() {
-	try {
-		const result = await getItem(STORAGE_KEY) // Returns: 'left' | 'center' | 'right' | null
-		return result || DEFAULT_POSITION
-	} catch (error) {
-		console.error('Failed to load position preference:', error)
-		return DEFAULT_POSITION
-	}
-}
+// =====================================================
+// STORAGE
+// =====================================================
+
 async function saveToStorage(position) {
 	try {
 		await setItem(STORAGE_KEY, position)
@@ -83,6 +85,19 @@ async function saveToStorage(position) {
 		Notify.error('Failed to save position preference')
 	}
 }
+async function getFromStorage() {
+	try {
+		const result = await getItem(STORAGE_KEY) // returns: 'left' | 'center' | 'right' | null
+		return result || DEFAULT_POSITION
+	} catch (error) {
+		console.error('Failed to load position preference:', error)
+		return DEFAULT_POSITION
+	}
+}
+
+// =====================================================
+// UPDATE CSS/DOM & STORAGE
+// =====================================================
 
 function applyPosition(position = DEFAULT_POSITION, btnContainer, silent = false) {
 	if (!CONFIG[position]) {
@@ -92,26 +107,25 @@ function applyPosition(position = DEFAULT_POSITION, btnContainer, silent = false
 	// GUARD: Bail if clicking the same position
 	const $currActive = $(`.${SELECTORS.SCROLLDOWN.BTN}.active`, btnContainer)
 
-	if ($currActive?.dataset.position === position) {
-		return
-	}
+	if ($currActive?.dataset.position === position) return
 
-	// 1. Update active button
+	// 1. Update active btn
 	const $btns = $$(`.${SELECTORS.SCROLLDOWN.BTN}`, btnContainer)
 	$btns.forEach((btn) => {
 		btn.classList.toggle('active', btn.dataset.position === position)
 	})
 
-	// 2. Apply CSS variables
+	// 2. Apply CSS vars
 	setVars(CONFIG[position].cssVars)
 
-	// 3. Save preference in storage
-	// saveToStorage(position)
-	if (!silent) {
-		saveToStorage(position)
-	}
+	// 3. Save pref in storage
+	if (!silent) saveToStorage(position)
 }
-function handleClick(e) {
+
+// =====================================================
+// EVENTS
+// =====================================================
+function onClick(e) {
 	// console.log('handleClick', this)
 	const $btnContainer = this
 	const $btn = e.target.closest(`.${SELECTORS.SCROLLDOWN.BTN}`)
@@ -129,16 +143,20 @@ function handleClick(e) {
 	applyPosition(position, $btnContainer)
 }
 
+// =====================================================
+// Lifecycle: MOUNT
+// =====================================================
+
 async function mount() {
 	const $btnContainer = $(`.${SELECTORS.SCROLLDOWN.BTN_CONTAINER}`)
 	if (!$btnContainer) return console.warn(`Element with class ${SELECTORS.SCROLLDOWN.BTN_CONTAINER} not found`)
 
-	// Load and apply saved preferences for button active state
+	// Load and apply saved prefs for btn active state
 	const position = await getFromStorage()
 	applyPosition(position, $btnContainer, true)
 
-	// Use event delegation for better performance
-	$btnContainer.addEventListener('click', handleClick)
+	// Use event delegation for better perf
+	$btnContainer.addEventListener('click', onClick)
 }
 // async function init() {
 // 	const position = await getFromStorage()
