@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { toggleFABVisibility } from '../FAB'
+import { toggleFABVisibility } from '../custom-fab/index'
 
 /* Handles extension messages for the floating button and other features */
 function setupExtensionMessaging() {

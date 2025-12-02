@@ -1,4 +1,4 @@
-import { openSettings } from './settingsManager.js'
+import { onOpenSettings } from './settingsManager.js'
 
 // Constants for theme management
 const THEMES = {
@@ -76,7 +76,7 @@ function handleChangeTheme(e) {
 			updateTheme(THEMES.DARK, true)
 			break
 		case 'gpth-open-settings':
-			openSettings()
+			onOpenSettings()
 			break
 	}
 }

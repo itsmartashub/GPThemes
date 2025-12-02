@@ -1,5 +1,5 @@
 import { init as initThemes } from './app/themeManager'
-import { init as initFAB } from './app/FAB'
+import { init as initFAB } from './app/custom-fab/index'
 // Chat bubbles and chatbox height are mounted from custom-layouts after Settings render
 // User bubble accent toggle is mounted from colors module after Settings render
 

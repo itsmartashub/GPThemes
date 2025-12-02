@@ -4,9 +4,9 @@ import { renderColorsTab, init as initColors, mount as mountColors } from './cus
 import { renderFontsTab, init as initFonts, mount as mountFonts } from './custom-fonts/index.js'
 import { renderLayoutsTab, init as initWidths, mount as mountWidths } from './custom-layouts/index.js'
 
-// ============================================================================
-// Global state (cached refs, constants)
-// ============================================================================
+// =========================================================
+// STATE - global state (cached refs, constants)
+// =========================================================
 let $settings = null
 let $tabButtons = []
 let $tabPanes = []
@@ -20,9 +20,9 @@ const TABS_CONFIG = [
 	{ id: 'layout', label: 'Layout', render: renderLayoutsTab, init: initWidths, mount: mountWidths },
 ]
 
-// ============================================================================
-// UI RENDERING (template)
-// ============================================================================
+// =========================================================
+// TEMPLATE - UI rendergn
+// =========================================================
 function templateHTML() {
 	// const tabs = [
 	// 	{ id: 'colors', label: 'Color', render: renderColorsTab },
@@ -98,9 +98,9 @@ function templateHTML() {
 		</main>`
 }
 
-// ============================================================================
+// =========================================================
 // Lifecycle: CREATE (build DOM, init modules, mount)
-// ============================================================================
+// =========================================================
 async function createSettings() {
 	// console.log('[CREATE SETTINGS]')
 
@@ -115,26 +115,6 @@ async function createSettings() {
 	// 3. Cache elements AFTER they're in DOM
 	setElements(el)
 
-	// 4. Initialize modules (data/logic only)
-	// try {
-	// 	await Promise.allSettled([initColors(), initFonts(), initWidths()])
-	// } catch (err) {
-	// 	console.error('[Settings] Module initialization failed:', err)
-	// }
-	// //  Wait for next tick to ensure DOM is fully ready
-	// requestAnimationFrame(() => {
-	// 	// 5. Mount modules
-	// 	mountColors(el)
-	// 	mountFonts(el)
-	// 	mountWidths(el)
-
-	// 	// 6. Attach global listeners
-	// 	// 6. Attach global listeners
-	// 	// 6. Attach global listeners
-	// 	attachListeners()
-	// })
-	// mountModules(el)
-
 	// 4. Init modules in parallel, mount sequentially after DOM ready
 	await Promise.allSettled(TABS_CONFIG.map(({ init }) => init()))
 
@@ -143,60 +123,37 @@ async function createSettings() {
 		// 5. Mount modules
 		TABS_CONFIG.forEach(({ mount }) => mount(el))
 		// 6. Attach global listeners
-		attachListeners()
+		addListeners()
 	})
 
 	return el
 }
 
-// ============================================================================
-// Lifecycle: MOUNT (cache elements, bind listeners)
-// ============================================================================
-// function mountModules(root) {
-// 	// Wait for next tick to ensure DOM is fully ready
-// 	requestAnimationFrame(() => {
-// 		mountColors(root)
-// 		mountFonts(root)
-// 		mountWidths(root)
-// 	})
-// }
-
+// =========================================================
+// ELEMENTS - cache DOM elemnt references
+// =========================================================
 function setElements(root) {
 	$settings = root
 	$tabButtons = [...$settings.querySelectorAll(`.${SELECTORS.SETTINGS.TABS.BUTTON}`)]
 	$tabPanes = [...$settings.querySelectorAll(`.${SELECTORS.SETTINGS.TABS.PANE}`)]
 }
 
-function attachListeners() {
-	$settings.querySelector(`.${SELECTORS.SETTINGS.TABS.BUTTONS}`).addEventListener('click', handleTabsSwitching)
+// =========================================================
+// LISTENERS
+// =========================================================
+function addListeners() {
+	$settings.querySelector(`.${SELECTORS.SETTINGS.TABS.BUTTONS}`).addEventListener('click', onTabsSwitching)
 	// handleTabsSwitching()
 }
 
-function handleClickOutside(e) {
+function onClickOutside(e) {
 	const isClickInside = $settings.contains(e.target)
 	const isToggleBtn = e.target.id === SELECTORS.SETTINGS.OPEN_BTN
 
-	if (!isClickInside && !isToggleBtn) closeSettings()
+	if (!isClickInside && !isToggleBtn) onCloseSettings()
 }
 
-function handleTabsSwitching(e) {
-	// if (!$tabButtons?.length) return
-
-	// $tabButtons.forEach((tab, index) => {
-	// 	tab.addEventListener('click', () => {
-	// 		const activeIndex = $tabButtons.findIndex((t) => t.classList.contains(ACTIVE_CLASS))
-	// 		if (activeIndex === index) return
-
-	// 		// Update button states
-	// 		$tabButtons[activeIndex].classList.remove(ACTIVE_CLASS)
-	// 		tab.classList.add(ACTIVE_CLASS)
-
-	// 		// Update content panes
-	// 		$tabPanes[activeIndex].classList.add(HIDDEN_CLASS)
-	// 		$tabPanes[index].classList.remove(HIDDEN_CLASS)
-	// 	})
-	// })
-
+function onTabsSwitching(e) {
 	// Event delegation for tabs - single listener instead of N
 	const btn = e.target.closest(`.${SELECTORS.SETTINGS.TABS.BUTTON}`)
 	if (!btn) return
@@ -215,25 +172,25 @@ function handleTabsSwitching(e) {
 	$tabPanes[newIndex].classList.remove(HIDDEN_CLASS)
 }
 
-function openSettings() {
+function onOpenSettings() {
 	if (!$settings) return
 
 	$settings.classList.add(SELECTORS.SETTINGS.OPEN_STATE)
 
 	// Small delay to allow reflow before attaching listener
 	requestAnimationFrame(() => {
-		document.addEventListener('click', handleClickOutside, true)
+		document.addEventListener('click', onClickOutside, true)
 	})
 }
 
-function closeSettings() {
+function onCloseSettings() {
 	if (!$settings) return
 
 	$settings.classList.remove(SELECTORS.SETTINGS.OPEN_STATE)
-	document.removeEventListener('click', handleClickOutside, true)
+	document.removeEventListener('click', onClickOutside, true)
 }
 
-// ============================================================================
+// =========================================================
 // Exports
-// ============================================================================
-export { createSettings, openSettings, closeSettings }
+// =========================================================
+export { createSettings, onOpenSettings, onCloseSettings }
