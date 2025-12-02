@@ -76,8 +76,16 @@ async function loadState() {
 function updateDataAttr(dataAttr, isHidden) {
 	if (!dataAttr || !ROOT_HTML) return
 
+	if (isHidden) {
+		// When element should be hidden, SET the data attr
+		ROOT_HTML.setAttribute(dataAttr, '')
+	} else {
+		// When element should be shown, REMOVE the data attr
+		ROOT_HTML.removeAttribute(dataAttr)
+	}
+
 	// When element should be hidden, ADD the data attr. When element should be shown, REMOVE the data attr
-	isHidden ? ROOT_HTML.setAttribute(dataAttr, '') : ROOT_HTML.removeAttribute(dataAttr)
+	// isHidden ? ROOT_HTML.setAttribute(dataAttr, '') : ROOT_HTML.removeAttribute(dataAttr)
 }
 
 // Handle toggle change - check element existence ON EVERY TOGGLE

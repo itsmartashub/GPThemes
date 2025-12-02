@@ -65,16 +65,16 @@ async function loadState() {
 
 // Apply CSS/attribute only (no DOM dependency)
 function updateDataAttr(state) {
-	// if (state) {
-	// 	// When toggle is ON, set the data attribute
-	// 	ROOT_HTML.setAttribute(DATA_ATTR, '')
-	// } else {
-	// 	// When toggle is OFF, remove the data attribute
-	// 	ROOT_HTML.removeAttribute(DATA_ATTR)
-	// }
+	if (state) {
+		// When toggle is ON, set the data attr
+		ROOT_HTML.setAttribute(DATA_ATTR, '')
+	} else {
+		// When toggle is OFF, remove the data attr
+		ROOT_HTML.removeAttribute(DATA_ATTR)
+	}
 
 	// When toggle is ON, set the data attr. When toggle is OFF, remove the data attr
-	state ? ROOT_HTML.setAttribute(DATA_ATTR, '') : ROOT_HTML.removeAttribute(DATA_ATTR)
+	// state ? ROOT_HTML.setAttribute(DATA_ATTR, '') : ROOT_HTML.removeAttribute(DATA_ATTR)
 }
 
 // Update input to reflect state (DOM required)

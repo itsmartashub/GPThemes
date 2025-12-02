@@ -3,9 +3,13 @@ import { SELECTORS } from '../config/selectors.js'
 import { SK_TOGGLE_FAB_HIDDEN } from '../config/consts-storage.js'
 import { $ } from '../../utils/dom.js'
 import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint, icon_kofi_cup } from '../components/icons.js'
-import { handleChangeTheme } from '../themeManager.js'
+import { onChangeTheme } from '../themeManager.js'
 import { createSettings, onCloseSettings } from '../settingsManager.js'
 import { setupExtensionMessaging } from '../messaging/index.js'
+
+// =====================================================
+// CONSTANTS
+// =====================================================
 
 const STORAGE_KEY = SK_TOGGLE_FAB_HIDDEN
 
@@ -13,12 +17,12 @@ const STORAGE_KEY = SK_TOGGLE_FAB_HIDDEN
 // STATE
 // =====================================================
 
-let isDockShown = false
+let isDockOpen = false
 
 const elements = {
 	FAB: null,
-	FABDock: null,
-	FABDockBtnContainer: null,
+	dock: null,
+	dockButtons: null,
 }
 
 // =====================================================
@@ -49,19 +53,24 @@ function templateHTML() {
 // =====================================================
 
 async function createFAB() {
-	// prevent duplicates
-	// if (elements.FAB) return
-
+	// 1. Create DOM
 	const $FAB = document.createElement('div')
 	$FAB.className = SELECTORS.FAB.ROOT
 	$FAB.innerHTML = templateHTML()
 	document.body.appendChild($FAB)
 
+	// 2. Cache elements
 	setElements($FAB)
-	addListeners()
 
-	// Initialize visibility
+	// 3. Load initial state
 	await setInitialFABVisibility()
+
+	// 4. Wire up listeners (after DOM ready)
+	requestAnimationFrame(() => {
+		addListeners()
+	})
+
+	return $FAB
 }
 
 // =====================================================
@@ -70,8 +79,8 @@ async function createFAB() {
 
 function setElements(FAB) {
 	elements.FAB = FAB
-	elements.FABDock = $(`.${SELECTORS.FAB.DOCK}`, FAB)
-	elements.FABDockBtnContainer = $(`.${SELECTORS.FAB.DOCK_BTNS}`, FAB)
+	elements.dock = $(`.${SELECTORS.FAB.DOCK}`, FAB)
+	elements.dockButtons = $(`.${SELECTORS.FAB.DOCK_BTNS}`, FAB)
 }
 
 // =====================================================
@@ -80,14 +89,14 @@ function setElements(FAB) {
 
 function addListeners() {
 	elements.FAB.addEventListener('click', onFABClick)
-	elements.FABDockBtnContainer.addEventListener('click', handleChangeTheme)
+	elements.dockButtons.addEventListener('click', onChangeTheme)
 }
 
 function onFABClick(e) {
 	// Ignore clicks on actual option buttons (delegated to theme handler)
 	if (e.target.closest(`.${SELECTORS.FAB.DOCK_BTNS}`)) return
 
-	onToggleFABDock()
+	toggleDock()
 }
 
 // =====================================================
@@ -95,13 +104,15 @@ function onFABClick(e) {
 // =====================================================
 
 // Toggle dock visibility
-function onToggleFABDock(show = !isDockShown) {
-	if (!elements.FABDock) return
+function toggleDock(shouldOpen) {
+	const newState = shouldOpen ?? !isDockOpen
 
-	isDockShown = show
-	elements.FABDock.classList.toggle(SELECTORS.FAB.OPEN_STATE, show)
+	if (!elements.dock || isDockOpen === newState) return
 
-	if (show) {
+	isDockOpen = newState
+	elements.dock.classList.toggle(SELECTORS.FAB.OPEN_STATE, newState)
+
+	if (newState) {
 		document.addEventListener('click', onOutsideClick, { capture: true })
 	} else {
 		document.removeEventListener('click', onOutsideClick, { capture: true })
@@ -111,31 +122,34 @@ function onToggleFABDock(show = !isDockShown) {
 // Close dock when clicking outside FAB
 function onOutsideClick(e) {
 	const insideFAB = elements.FAB?.contains(e.target)
-	if (!insideFAB) onToggleFABDock(false)
-}
-
-// Close the dock
-function onCloseFABDock() {
-	onToggleFABDock(false)
+	if (!insideFAB) toggleDock(false)
 }
 
 // =====================================================
 // SET VISIBILITY
 // =====================================================
 
-// Load initial visibilty state from storage
-async function setInitialFABVisibility() {
-	const isHidden = await getItem(STORAGE_KEY)
-	toggleFABVisibility(isHidden) // default false
-}
-
-function toggleFABVisibility(isHidden = false) {
+function setFABVisibility(isHidden = false) {
 	if (!elements.FAB) return
 
 	elements.FAB.classList.toggle(`${SELECTORS.FAB.ROOT}--hidden`, isHidden)
 
 	// auto-close settings if FAB hidden
 	if (isHidden && $(`.${SELECTORS.SETTINGS.OPEN_STATE}`)) onCloseSettings()
+}
+
+// Load initial visibilty state from storage
+async function setInitialFABVisibility() {
+	// Show FAB immediately (non-blocking)
+	setFABVisibility(false)
+
+	// Update from storage if different
+	try {
+		const isHidden = await getItem(STORAGE_KEY)
+		if (isHidden) setFABVisibility(true)
+	} catch (error) {
+		console.warn('[FAB] Could not load visibility state:', error)
+	}
 }
 
 // =====================================================
@@ -150,7 +164,7 @@ function onStorageChange(changes, area) {
 	if (!visibilityChange) return
 
 	const isHidden = visibilityChange.newValue !== false
-	toggleFABVisibility(isHidden)
+	setFABVisibility(isHidden)
 }
 
 // =====================================================
@@ -160,6 +174,8 @@ function onStorageChange(changes, area) {
 async function init() {
 	try {
 		await createFAB()
+
+		// Initialize sub-modules
 		createSettings()
 		setupExtensionMessaging()
 
@@ -173,4 +189,4 @@ async function init() {
 // =====================================================
 // Exports
 // =====================================================
-export { init, toggleFABVisibility }
+export { init, setFABVisibility as toggleFABVisibility }

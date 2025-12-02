@@ -24,45 +24,6 @@ const TABS_CONFIG = [
 // TEMPLATE - UI rendergn
 // =====================================================
 function templateHTML() {
-	// const tabs = [
-	// 	{ id: 'colors', label: 'Color', render: renderColorsTab },
-	// 	{ id: 'fonts', label: 'Font', render: renderFontsTab },
-	// 	{ id: 'layout', label: 'Layout', render: renderLayoutsTab },
-	// ]
-
-	// const buttons = TABS_CONFIG.map(
-	// 	({ label }, i) => `
-	// 		<button class="${SELECTORS.SETTINGS.TABS.BUTTON} py-2 px-4 focus:outline-none text-center ${
-	// 		i === 0 ? ACTIVE_CLASS : ''
-	// 	}">
-	// 			${label}
-	// 		</button>`
-	// ).join('')
-
-	// const panes = TABS_CONFIG.map(
-	// 	({ id, render }, i) => `
-	// 		<div id="${PFX}-tab-${id}"
-	// 			class="${SELECTORS.SETTINGS.TABS.PANE} ${i === 0 ? ACTIVE_CLASS : HIDDEN_CLASS}">
-	// 			${render()}
-	// 		</div>`
-	// ).join('')
-
-	// return `
-	// 	<header class="mb-5">
-	// 		<h2 class="text-center font-medium gpth-settings__title">
-	// 			<span class="font-semibold">GPThemes</span> Customization
-	// 		</h2>
-	// 	</header>
-	// 	<main>
-	// 		<div class="${SELECTORS.SETTINGS.TABS.ROOT}">
-	// 			<div class="${SELECTORS.SETTINGS.TABS.BUTTONS} p-1 font-semibold mb-5">
-	// 				${buttons}
-	// 			</div>
-	// 			<div class="${SELECTORS.SETTINGS.TABS.CONTENT}">
-	// 				${panes}
-	// 			</div>
-	// 		</div>
-	// 	</main>`
 	const buttons = TABS_CONFIG.map(
 		({ label }, i) => `
 			<button class="${SELECTORS.SETTINGS.TABS.BUTTON} py-2 px-4 focus:outline-none text-center ${

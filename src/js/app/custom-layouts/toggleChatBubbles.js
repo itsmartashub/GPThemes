@@ -7,8 +7,10 @@ import { renderToggle } from '../components/renderToggles.js'
 import { Notify } from '../components/renderNotify.js'
 
 // =====================================================
-// STATE
+// CONSTANTS
 // =====================================================
+
+const STORAGE_KEY = SK_TOGGLE_CHAT_BUBBLES_STATE
 
 // Bubble types + config
 const CONFIG = {
@@ -27,8 +29,6 @@ const DEFAULT_STATE = {
 	user: true,
 	gpt: true,
 }
-
-const STORAGE_KEY = SK_TOGGLE_CHAT_BUBBLES_STATE
 
 // =====================================================
 // TEMPLATE
@@ -90,17 +90,13 @@ async function loadState() {
 // Apply data attributes to document root
 function updateDataAttr(state) {
 	for (const [type, config] of Object.entries(CONFIG)) {
-		// if (state[type]) {
-		// 	// When bubble is ENABLED (checked), remove the data attr
-		// 	ROOT_HTML.removeAttribute(config.attr)
-		// } else {
-		// 	// When bubble is DISABLED (unchecked), set the data attr
-		// 	ROOT_HTML.setAttribute(config.attr, '')
-		// }
-
-		// When bubble is ENABLED (checked), REMOVE the data attr!! When bubble is DISABLED (unchecked), SET the data attr
-		state[type] ? ROOT_HTML.removeAttribute(config.attr) : ROOT_HTML.setAttribute(config.attr, '')
-
+		if (state[type]) {
+			// When bubble is ENABLED (checked), remove the data attr
+			ROOT_HTML.removeAttribute(config.attr)
+		} else {
+			// When bubble is DISABLED (unchecked), set the data attr
+			ROOT_HTML.setAttribute(config.attr, '')
+		}
 		// When bubble is DISABLED (unchecked), ADD the data attr!! When bubble is ENaABLED (checked), REMOVE the data attr
 		// !state[type] ? ROOT_HTML.setAttribute(config.attr, '') : ROOT_HTML.removeAttribute(config.attr)
 	}
@@ -131,11 +127,12 @@ async function onChange(event) {
 
 	const currState = await loadState()
 	const updatedState = { ...currState, [type]: input.checked }
+
 	updateDataAttr(updatedState)
 	updateInputs(updatedState)
 
 	saveState(updatedState).then((success) =>
-		input.checked ? Notify.success(` ${type} bubble enabled`) : Notify.info(` ${type} bubble disabled`)
+		input.checked ? Notify.success(`${type} bubble enabled`) : Notify.info(`${type} bubble disabled`)
 	)
 }
 

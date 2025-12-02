@@ -12,18 +12,19 @@ async function setupFABToggle() {
 	const container = document.getElementById(CONFIG.containerId)
 	if (!container) return
 
-	// Get current state - handle null case (first install)
+	// Get curr state - handle null case (first install)
 	let shouldHideFAB = await getItem(SK_TOGGLE_FAB_HIDDEN)
 
 	// If null (first time), default to false (don't hide)
 	if (shouldHideFAB === null) {
 		shouldHideFAB = false
-		// Optionally set the default value in storage
+		// Optionally set the default val in storage
 		await removeItems(SK_TOGGLE_FAB_HIDDEN)
 	}
 
 	console.log('shouldHideFAB', shouldHideFAB)
 
+	// Create toggle FAB
 	container.innerHTML = renderToggle({
 		id: CONFIG.toggleId,
 		checked: shouldHideFAB, // Toggle checked = FAB visible, unchecked = FAB hidden
@@ -32,11 +33,13 @@ async function setupFABToggle() {
 		className: '',
 	})
 
-	// Update storage when toggle changes
+	// Attach toggle listener
 	document.getElementById(CONFIG.toggleId)?.addEventListener('change', async (e) => {
 		const shouldBeHidden = e.target.checked
 
 		console.log('FAB hidden:', shouldBeHidden)
+
+		// Update storage when toggle changes
 		await setItem(SK_TOGGLE_FAB_HIDDEN, shouldBeHidden)
 	})
 }

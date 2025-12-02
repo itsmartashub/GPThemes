@@ -60,16 +60,16 @@ async function loadState() {
 // =====================================================
 // Apply data attribute to document root
 function updateDataAttr(enabled) {
-	// if (enabled) {
-	// 	// When toggle is ON, set the data attribute
-	// 	ROOT_HTML.setAttribute(DATA_ATTR, '')
-	// } else {
-	// 	// When toggle is OFF, remove the data attribute
-	// 	ROOT_HTML.removeAttribute(DATA_ATTR)
-	// }
+	if (enabled) {
+		// When toggle is ON, set the data attribute
+		ROOT_HTML.setAttribute(DATA_ATTR, '')
+	} else {
+		// When toggle is OFF, remove the data attribute
+		ROOT_HTML.removeAttribute(DATA_ATTR)
+	}
 
 	// When toggle is ON, set the data attr. When toggle is OFF, remove the data att
-	enabled ? ROOT_HTML.setAttribute(DATA_ATTR, '') : ROOT_HTML.removeAttribute(DATA_ATTR)
+	// enabled ? ROOT_HTML.setAttribute(DATA_ATTR, '') : ROOT_HTML.removeAttribute(DATA_ATTR)
 }
 
 // Update input to reflect state (DOM required)
