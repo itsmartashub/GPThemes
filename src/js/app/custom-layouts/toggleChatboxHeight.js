@@ -7,10 +7,16 @@ import { renderToggle } from '../components/renderToggles'
 import { Notify } from '../components/renderNotify'
 import { icon_taller_height } from '../components/icons'
 
+// =====================================================
+// STATE
+// =====================================================
 const STORAGE_KEY = SK_TOGGLE_CHATBOX_HEIGHT
 const DATA_ATTR = ATTR_CHATBOX_HEIGHT
 const DEFAULT_STATE = false
 
+// =====================================================
+// TEMPLATE
+// =====================================================
 function templateHTML() {
 	return `
 		<h4 class="${SELECTORS.SUBHEADING}">Other</h4>
@@ -25,18 +31,9 @@ function templateHTML() {
 		})}
 	`
 }
-// Load saved state from storage
-async function loadState() {
-	try {
-		const result = await getItem(STORAGE_KEY) // state: true | false | null
-
-		return !!result
-	} catch (error) {
-		Notify.error('Failed to load Chatbox custom height preference')
-		console.error('Failed to load Chatbox height preference:', error)
-		return false
-	}
-}
+// =====================================================
+// STORAGE
+// =====================================================
 // Save state to storage
 async function saveState(state = DEFAULT_STATE) {
 	try {
@@ -49,16 +46,35 @@ async function saveState(state = DEFAULT_STATE) {
 		return false
 	}
 }
+// Load saved state from storage
+async function loadState() {
+	try {
+		const result = await getItem(STORAGE_KEY) // state: true | false | null
+
+		return !!result
+	} catch (error) {
+		Notify.error('Failed to load Chatbox custom height preference')
+		console.error('Failed to load Chatbox height preference:', error)
+		return false
+	}
+}
+
+// =====================================================
+// UPDATE CSS/DOM
+// =====================================================
 
 // Apply CSS/attribute only (no DOM dependency)
 function updateDataAttr(state) {
 	if (state) {
-		// When toggle is ON, set the data attribute
+		// When toggle is ON, set the data attr
 		ROOT_HTML.setAttribute(DATA_ATTR, '')
 	} else {
-		// When toggle is OFF, remove the data attribute
+		// When toggle is OFF, remove the data attr
 		ROOT_HTML.removeAttribute(DATA_ATTR)
 	}
+
+	// When toggle is ON, set the data attr. When toggle is OFF, remove the data attr
+	// state ? ROOT_HTML.setAttribute(DATA_ATTR, '') : ROOT_HTML.removeAttribute(DATA_ATTR)
 }
 
 // Update input to reflect state (DOM required)
@@ -67,7 +83,10 @@ function updateInputs(state) {
 	if (input) input.checked = !!state
 }
 
-async function handleChange({ target }) {
+// =====================================================
+// EVENTS
+// =====================================================
+async function onChange({ target }) {
 	// const target = e.target
 	const chatbox = $(SELECTORS.CHATBOX.HEIGHT)
 
@@ -89,8 +108,11 @@ async function handleChange({ target }) {
 	// 	Notify.info('User bubble accent disabled')
 	// }
 }
+// =====================================================
+// Lifecycle: MOUNT
+// =====================================================
 
-// Setup toggle input listener (mount after DOM exists)
+// Mount after DOM exists: sync inputs and add delegation listener
 async function mount() {
 	const input = document.getElementById(SELECTORS.CHATBOX.TOGGLE_MAX_HEIGHT_ID)
 	if (!input) {
@@ -98,11 +120,14 @@ async function mount() {
 		return
 	}
 
-	// Sync with saved state
+	// Sync inputs to curr/saved state on mount
 	const state = await loadState()
 	updateInputs(state)
 	updateDataAttr(state)
-	input.addEventListener('change', handleChange)
+	input.addEventListener('change', onChange)
 }
 
+// =====================================================
+// Exports
+// =====================================================
 export { templateHTML as renderCustomChatboxHeight, mount }

@@ -8,7 +8,7 @@ import { renderToggle } from '../components/renderToggles.js'
 import { renderButton } from '../components/renderButtons.js'
 
 // ==========================================
-// CONSTANTS
+// STATE/CONSTANTS
 // ==========================================
 const WIDTH_CONFIG = {
 	defaults: {
@@ -41,78 +41,80 @@ let currentState = {
 
 let eventListeners = []
 
-// ==========================================
+// =====================================================
 // UTILITIES
-// ==========================================
+// =====================================================
 const extractNumber = (v) => parseFloat(v) || 0
 const extractUnit = (v) => (v?.includes('rem') ? 'REM' : '%')
 const validateValue = (v, min = WIDTH_CONFIG.ui.minWidth, max = WIDTH_CONFIG.ui.maxWidth) =>
 	isNaN(+v) ? min.toString() : Math.max(min, Math.min(max, +v)).toString()
 const formatWithUnit = (val, unit) => `${validateValue(val)}${unit}`
 
-// --- TEMPLATE ---
+// =====================================================
+// TEMPLATE
+// =====================================================
 function templateHTML() {
 	const chatUnit = extractUnit(WIDTH_CONFIG.defaults.w_chat_gpt)
 	const promptUnit = extractUnit(WIDTH_CONFIG.defaults.w_prompt_textarea)
 
 	return `
-    <div class="gpth-layouts__custom-width mb-4">
-      ${renderSliderCard({
-			name: 'Chats Width',
-			inputType: 'range',
-			inputId: SELECTORS.WIDTH.SLIDER_CHAT_ID,
-			inputValue: extractNumber(WIDTH_CONFIG.defaults.w_chat_gpt),
-			displayValue: SELECTORS.WIDTH.DISPLAY_CHAT_VALUE_ID,
-			displayUnit: SELECTORS.WIDTH.DISPLAY_CHAT_UNIT_ID,
-			min: WIDTH_CONFIG.ui.minWidth,
-			max: WIDTH_CONFIG.ui.maxWidth,
-			unit: chatUnit,
-		})}
-      ${renderSliderCard({
-			name: 'Prompt Width',
-			inputType: 'range',
-			inputId: SELECTORS.WIDTH.SLIDER_TEXTAREA_ID,
-			inputValue: extractNumber(WIDTH_CONFIG.defaults.w_prompt_textarea),
-			displayValue: SELECTORS.WIDTH.DISPLAY_TEXTAREA_VALUE_ID,
-			displayUnit: SELECTORS.WIDTH.DISPLAY_TEXTAREA_UNIT_ID,
-			min: WIDTH_CONFIG.ui.minWidth,
-			max: WIDTH_CONFIG.ui.maxWidth,
-			unit: promptUnit,
-		})}
-    </div>
+		<div class="gpth-layouts__custom-width mb-4">
+			${renderSliderCard({
+				name: 'Chats Width',
+				inputType: 'range',
+				inputId: SELECTORS.WIDTH.SLIDER_CHAT_ID,
+				inputValue: extractNumber(WIDTH_CONFIG.defaults.w_chat_gpt),
+				displayValue: SELECTORS.WIDTH.DISPLAY_CHAT_VALUE_ID,
+				displayUnit: SELECTORS.WIDTH.DISPLAY_CHAT_UNIT_ID,
+				min: WIDTH_CONFIG.ui.minWidth,
+				max: WIDTH_CONFIG.ui.maxWidth,
+				unit: chatUnit,
+			})}
+			${renderSliderCard({
+				name: 'Prompt Width',
+				inputType: 'range',
+				inputId: SELECTORS.WIDTH.SLIDER_TEXTAREA_ID,
+				inputValue: extractNumber(WIDTH_CONFIG.defaults.w_prompt_textarea),
+				displayValue: SELECTORS.WIDTH.DISPLAY_TEXTAREA_VALUE_ID,
+				displayUnit: SELECTORS.WIDTH.DISPLAY_TEXTAREA_UNIT_ID,
+				min: WIDTH_CONFIG.ui.minWidth,
+				max: WIDTH_CONFIG.ui.maxWidth,
+				unit: promptUnit,
+			})}
+		</div>
 
-    <div class="gpth-layouts__toggle-widths">
-      ${renderToggle({
-			id: SELECTORS.WIDTH.TOGGLE_FULL_ID,
-			checked: false,
-			label: 'Chat Full Width',
-			subtitle: "Expand chats to screen's edge for wider conversation view",
-			icon: icon_full_width,
-			card: true,
-			className: '',
-		})}
-      ${renderToggle({
-			id: SELECTORS.WIDTH.TOGGLE_SYNC_ID,
-			checked: false,
-			label: 'Sync Prompt Width',
-			subtitle: 'Adjust prompt field to match the chat width for a more consistent view',
-			icon: icon_sync,
-			card: true,
-			className: '',
-		})}
-    </div>
-    <div class="flex justify-center mt-8">
-      ${renderButton({
-			id: SELECTORS.WIDTH.RESET_BTN_ID,
-			content: 'Reset Widths',
-			className: 'btn-primary',
-		})}
-    </div>`
+		<div class="gpth-layouts__toggle-widths">
+			${renderToggle({
+				id: SELECTORS.WIDTH.TOGGLE_FULL_ID,
+				checked: false,
+				label: 'Chat Full Width',
+				subtitle: "Expand chats to screen's edge for wider conversation view",
+				icon: icon_full_width,
+				card: true,
+				className: '',
+			})}
+			${renderToggle({
+				id: SELECTORS.WIDTH.TOGGLE_SYNC_ID,
+				checked: false,
+				label: 'Sync Prompt Width',
+				subtitle: 'Adjust prompt field to match the chat width for a more consistent view',
+				icon: icon_sync,
+				card: true,
+				className: '',
+			})}
+		</div>
+		<div class="flex justify-center mt-8">
+			${renderButton({
+				id: SELECTORS.WIDTH.RESET_BTN_ID,
+				content: 'Reset Widths',
+				className: 'btn-primary',
+			})}
+		</div>`
 }
 
-// ==========================================
-// STORAGE & STATE MANAGEMENT
-// ==========================================
+// =====================================================
+// STORAGE
+// =====================================================
 async function saveState(state) {
 	try {
 		await setItems({
@@ -125,9 +127,9 @@ async function saveState(state) {
 	}
 }
 
-// ==========================================
-// UI UPDATES
-// ==========================================
+// =====================================================
+// CSS/DOM UPDATES
+// =====================================================
 function updateSlider({ sliderId, outputId, unitId, value, disabled = false }) {
 	const numericValue = extractNumber(value)
 	const unit = extractUnit(value)
@@ -184,16 +186,15 @@ function updateUI({ settings, syncEnabled, fullWidthEnabled }) {
 	})
 }
 
-// ==========================================
-// WIDTH LOGIC
-// ==========================================
-function syncTextareaWithChatWidth() {
+// =====================================================
+// EVENTS (width logics)
+// =====================================================
+function onSyncTextareaWithChatWidth() {
 	if (currentState.syncEnabled) {
 		currentState.settings.w_prompt_textarea = currentState.settings.w_chat_gpt
 	}
 }
-
-function handleWidthChange({ event, key, shouldSave = false }) {
+function onWidthChange({ event, key, shouldSave = false }) {
 	const val = formatWithUnit(event.target.value, event.target.dataset.unit || '%')
 	currentState.settings[key] = val
 
@@ -202,7 +203,7 @@ function handleWidthChange({ event, key, shouldSave = false }) {
 	}
 
 	if (key === 'w_chat_gpt') {
-		syncTextareaWithChatWidth()
+		onSyncTextareaWithChatWidth()
 	}
 
 	if (key === 'w_prompt_textarea' && currentState.syncEnabled && val !== currentState.settings.w_chat_gpt) {
@@ -217,7 +218,8 @@ function handleWidthChange({ event, key, shouldSave = false }) {
 	}
 }
 
-function handleToggleFullWidth() {
+// Toggle full width
+function onToggleFullWidth() {
 	currentState.fullWidthEnabled = !currentState.fullWidthEnabled
 
 	if (currentState.fullWidthEnabled) {
@@ -230,13 +232,14 @@ function handleToggleFullWidth() {
 		})
 	}
 
-	syncTextareaWithChatWidth()
+	onSyncTextareaWithChatWidth()
 	setVars(currentState.settings)
 	updateUI(currentState)
 	saveState(currentState)
 }
 
-function handleToggleSyncWidths() {
+// Toggle sync chatbox and textarea
+function onToggleSyncWidths() {
 	currentState.syncEnabled = !currentState.syncEnabled
 
 	currentState.settings.w_prompt_textarea = currentState.syncEnabled
@@ -248,15 +251,17 @@ function handleToggleSyncWidths() {
 	saveState(currentState)
 }
 
-// ==========================================
-// EVENT MANAGEMENT
-// ==========================================
+// =====================================================
+// EVENTS
+// =====================================================
+
+// TODO: Should be moved on some utils fn
 function addListener(element, event, handler) {
 	if (!element) return
 	element.addEventListener(event, handler)
 	eventListeners.push({ element, event, handler })
 }
-
+// TODO: Should be moved on some utils fn
 function removeAllListeners() {
 	eventListeners.forEach(({ element, event, handler }) => {
 		element.removeEventListener(event, handler)
@@ -264,30 +269,31 @@ function removeAllListeners() {
 	eventListeners = []
 }
 
+// Attach slider width listeners (inputs)
 function setupSliderListeners(selector, key) {
 	const slider = $(selector)
 	if (slider) {
-		addListener(slider, 'input', (e) => handleWidthChange({ event: e, key, shouldSave: false }))
+		addListener(slider, 'input', (e) => onWidthChange({ event: e, key, shouldSave: false }))
 		addListener(slider, 'change', () => saveState(currentState))
 	}
 }
-
+// Attach all width listeners
 function setupListeners() {
 	removeAllListeners()
 
-	addListener($(`#${SELECTORS.WIDTH.TOGGLE_FULL_ID}`), 'change', handleToggleFullWidth)
-	addListener($(`#${SELECTORS.WIDTH.TOGGLE_SYNC_ID}`), 'change', handleToggleSyncWidths)
+	addListener($(`#${SELECTORS.WIDTH.TOGGLE_FULL_ID}`), 'change', onToggleFullWidth)
+	addListener($(`#${SELECTORS.WIDTH.TOGGLE_SYNC_ID}`), 'change', onToggleSyncWidths)
 
 	setupSliderListeners(`#${SELECTORS.WIDTH.SLIDER_CHAT_ID}`, 'w_chat_gpt')
 	setupSliderListeners(`#${SELECTORS.WIDTH.SLIDER_TEXTAREA_ID}`, 'w_prompt_textarea')
 
-	addListener($(`#${SELECTORS.WIDTH.RESET_BTN_ID}`), 'click', resetAll)
+	addListener($(`#${SELECTORS.WIDTH.RESET_BTN_ID}`), 'click', onResetAll)
 }
 
 // ==========================================
 // RESET
 // ==========================================
-async function resetAll() {
+async function onResetAll() {
 	currentState = {
 		settings: { ...WIDTH_CONFIG.defaults },
 		syncEnabled: false,
@@ -299,9 +305,9 @@ async function resetAll() {
 	await removeItems(Object.values(WIDTH_CONFIG.storageKeys))
 }
 
-// ==========================================
-// INIT & MOUNT
-// ==========================================
+// =====================================================
+// Lifecycle: INIT
+// =====================================================
 async function init() {
 	try {
 		const result = await getItems(Object.values(WIDTH_CONFIG.storageKeys))
@@ -328,9 +334,14 @@ async function init() {
 	}
 }
 
+// =====================================================
+// Lifecycle: MOUNT
+// =====================================================
 function mount() {
 	setupListeners()
 }
 
-// --- EXPORTS ---
-export { templateHTML, init, mount, resetAll }
+// =====================================================
+// Exports
+// =====================================================
+export { templateHTML, init, mount, onResetAll as resetAll }

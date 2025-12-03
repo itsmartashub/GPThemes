@@ -16,7 +16,7 @@ function validateArea(area) {
 	}
 }
 
-/* Get one key value from storage */
+// Get one key value from storage
 async function getItem(key, defaultValue = null, area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
@@ -28,7 +28,7 @@ async function getItem(key, defaultValue = null, area = DEFAULT_AREA) {
 	}
 }
 
-/* Get multiple items by keys */
+// Get multiple items by keys
 async function getItems(keys = [], area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
@@ -40,7 +40,7 @@ async function getItems(keys = [], area = DEFAULT_AREA) {
 	}
 }
 
-/* Set one key/value pair */
+// Set one key/value pair
 async function setItem(key, value, area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
@@ -50,7 +50,7 @@ async function setItem(key, value, area = DEFAULT_AREA) {
 	}
 }
 
-/* Set multiple key/value pairs */
+// Set multiple key/value pairs
 async function setItems(data = {}, area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
@@ -60,7 +60,7 @@ async function setItems(data = {}, area = DEFAULT_AREA) {
 	}
 }
 
-/* Remove specific key(s) */
+// Remove specific key(s)
 async function removeItems(keys, area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
@@ -70,7 +70,7 @@ async function removeItems(keys, area = DEFAULT_AREA) {
 	}
 }
 
-/* Clear entire storage area */
+// Clear entire storage area
 async function clearStorage(area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
@@ -89,7 +89,7 @@ async function getStorage(area = DEFAULT_AREA) {
 		return []
 	}
 }
-/* Get all keys in storage area */
+// Get all keys in storage area
 async function getAllKeys(area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
@@ -101,7 +101,7 @@ async function getAllKeys(area = DEFAULT_AREA) {
 	}
 }
 
-/* Check if key exists in storage */
+// Check if key exists in storage
 async function hasKey(key, area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
@@ -112,7 +112,7 @@ async function hasKey(key, area = DEFAULT_AREA) {
 		return false
 	}
 }
-/* Get storage usage in bytes */
+// Get storage usage in bytes
 async function getBytesInUse(keys = null, area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
@@ -123,12 +123,12 @@ async function getBytesInUse(keys = null, area = DEFAULT_AREA) {
 	}
 }
 
-/* Check if storage area is available */
+// Check if storage area is available
 function isAreaAvailable(area) {
 	return !!browser.storage[area]
 }
 
-/* Update specific properties of an object in storage (shallow merge) */
+// Update specific props of an obj in storage (shallow merge)
 async function updateObject(key, updates, area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
@@ -140,7 +140,7 @@ async function updateObject(key, updates, area = DEFAULT_AREA) {
 	}
 }
 
-/* Watch storage changes globally */
+// Watch storage changes globally
 function watchStorageChanges(callback) {
 	const listener = (changes, areaName) => {
 		callback(changes, areaName)
@@ -153,7 +153,7 @@ function watchStorageChanges(callback) {
 	}
 }
 
-// Pre-configured area-specific functions
+// Pre-configured area-specific fns
 const storageLocal = {
 	getItem: (key, defaultValue = null) => getItem(key, defaultValue, 'local'),
 	getItems: (keys = []) => getItems(keys, 'local'),
@@ -181,6 +181,7 @@ const storageSync = {
 	hasKey: (key) => hasKey(key, 'sync'),
 	updateObject: (key, updates) => updateObject(key, updates, 'sync'),
 }
+
 // Default export with all functions
 export {
 	STORAGE_AREAS,

@@ -7,11 +7,16 @@ import { Notify } from '../components/renderNotify.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { icon_text_color } from '../components/icons.js'
 
+// =====================================================
+// STATE
+// =====================================================
 const STORAGE_KEY = SK_TOGGLE_ACCENT_TEXT
 const DATA_ATTR = ATTR_ACCENT_TEXT
 const DEFAULT_STATE = false
 
-// Render toggle HTML
+// =====================================================
+// TEMPLATE
+// =====================================================
 function templateHTML() {
 	return renderToggle({
 		id: SELECTORS.CHATS.TOGGLE_ACCENT_TEXT_ID,
@@ -23,17 +28,10 @@ function templateHTML() {
 	})
 }
 
-// Load saved state from storage
-async function loadState() {
-	try {
-		const result = await getItem(STORAGE_KEY) // boolean: true | false | null
+// =====================================================
+// STORAGE
+// =====================================================
 
-		return !!result // if null => !!null => false
-	} catch (error) {
-		handleError('Failed to load all text accent preference', error)
-		return false
-	}
-}
 // Save state to storage
 async function saveState(state = DEFAULT_STATE) {
 	try {
@@ -41,11 +39,25 @@ async function saveState(state = DEFAULT_STATE) {
 		state ? Notify.success('All text accent enabled') : Notify.info('All text accent disabled')
 		return true
 	} catch (error) {
-		handleError('Failed to save user accent bubble preference', error)
+		onError('Failed to save user accent bubble preference', error)
+		return false
+	}
+}
+// Load saved state from storage
+async function loadState() {
+	try {
+		const result = await getItem(STORAGE_KEY) // boolean: true | false | null
+
+		return !!result // if null => !!null => false
+	} catch (error) {
+		onError('Failed to load all text accent preference', error)
 		return false
 	}
 }
 
+// =====================================================
+// UPDATE CSS/DOM
+// =====================================================
 // Apply data attribute to document root
 function updateDataAttr(enabled) {
 	if (enabled) {
@@ -55,6 +67,9 @@ function updateDataAttr(enabled) {
 		// When toggle is OFF, remove the data attribute
 		ROOT_HTML.removeAttribute(DATA_ATTR)
 	}
+
+	// When toggle is ON, set the data attr. When toggle is OFF, remove the data att
+	// enabled ? ROOT_HTML.setAttribute(DATA_ATTR, '') : ROOT_HTML.removeAttribute(DATA_ATTR)
 }
 
 // Update input to reflect state (DOM required)
@@ -63,13 +78,16 @@ function updateInputs(enabled) {
 	if (input) input.checked = !!enabled
 }
 
+// =====================================================
+// EVENTS
+// =====================================================
 // Error handler
-function handleError(message, error = null) {
+function onError(message, error = null) {
 	Notify.error(message)
 	if (error) console.error(`${message}:`, error)
 }
 
-async function handleChange({ target }) {
+async function onChange({ target }) {
 	// const userBubble = $(`.${SELECTORS.CHATS.USER}`)
 
 	// if (!userBubble) {
@@ -82,13 +100,17 @@ async function handleChange({ target }) {
 	updateDataAttr(isEnabled)
 	saveState(isEnabled)
 
-	// // Show appropriate notification
+	// // Show appropriate notif
 	// if (isEnabled) {
 	// 	Notify.success('User bubble accent enabled')
 	// } else {
 	// 	Notify.info('User bubble accent disabled')
 	// }
 }
+
+// =====================================================
+// Lifecycle: MOUNT
+// =====================================================
 
 // Setup toggle input listener (mount after DOM exists)
 async function mount() {
@@ -103,7 +125,10 @@ async function mount() {
 	updateInputs(state)
 
 	// Attach listeners to inputs
-	input.addEventListener('change', handleChange)
+	input.addEventListener('change', onChange)
 }
 
+// =====================================================
+// Exports
+// =====================================================
 export { templateHTML as renderAllTextAccent, mount }

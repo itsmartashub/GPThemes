@@ -10,7 +10,9 @@ import {
 	resetAllAccents,
 } from './accentColors.js'
 
-// --- TEMPLATE ---
+// =====================================================
+// TEMPLATE
+// =====================================================
 function templateHTML() {
 	return `
 		<section id="sectionColors">
@@ -35,18 +37,24 @@ function templateHTML() {
 		</section>`
 }
 
-// --- LISTENERS ---
+// =====================================================
+// LISTENERS - RESET
+// =====================================================
 function resetAll() {
 	resetAllAccents()
 }
 
-// --- INIT ---
+// =====================================================
+// Lifecycle: INIT
+// =====================================================
 async function init() {
 	// console.log('[INIT COLORS]')
 	await initAccentColors()
 }
 
-// --- MOUNT ---
+// =====================================================
+// Lifecycle: MOUNT
+// =====================================================
 function mount() {
 	// console.log('[MOUNT COLORS]')
 	// Setup elements

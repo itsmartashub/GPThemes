@@ -1,6 +1,9 @@
-import { openSettings } from './settingsManager.js'
+import { onOpenSettings } from './settingsManager.js'
 
-// Constants for theme management
+// =====================================================
+// CONSTANTS
+// =====================================================
+
 const THEMES = {
 	LIGHT: 'light',
 	DARK: 'dark',
@@ -8,63 +11,104 @@ const THEMES = {
 	OLED: 'oled',
 }
 
-const mediaQuery = window.matchMedia('(prefers-color-scheme: light)')
+const STORAGE_KEYS = {
+	THEME: 'theme',
+	IS_OLED: 'isOLED',
+}
+
+const PREFERS_LIGHT_MEDIA_QUERY = window.matchMedia('(prefers-color-scheme: light)')
+
+let cachedThemeState = null
+
+// =====================================================
+// UTILITY FUNCTIONS
+// =====================================================
 
 // Core theme management
-function getSystemTheme() {
-	return mediaQuery.matches ? THEMES.LIGHT : THEMES.DARK
+function getSysTheme() {
+	return PREFERS_LIGHT_MEDIA_QUERY.matches ? THEMES.LIGHT : THEMES.DARK
 }
 // Theme state management
 function getStoredThemeState() {
-	return {
-		theme: localStorage.getItem('theme') || THEMES.SYSTEM,
-		isOLED: localStorage.getItem('isOLED') === 'true',
+	if (cachedThemeState) return cachedThemeState
+
+	try {
+		cachedThemeState = {
+			theme: localStorage.getItem(STORAGE_KEYS.THEME) || THEMES.SYSTEM,
+			isOLED: localStorage.getItem(STORAGE_KEYS.IS_OLED) === 'true',
+		}
+	} catch (error) {
+		console.warn('LocalStorage unavailable, using defaults:', error)
+		cachedThemeState = { theme: THEMES.SYSTEM, isOLED: false }
 	}
+
+	return cachedThemeState
+}
+function invalidateThemeCache() {
+	cachedThemeState = null
 }
 
+// =====================================================
+// UPDATE CSS/DOM (DOm manipulation)
+// =====================================================
 function setRootTheme(theme, isOLED) {
 	const root = document.documentElement
-	const effectiveTheme = theme === THEMES.SYSTEM ? getSystemTheme() : theme
+	const effectiveTheme = theme === THEMES.SYSTEM ? getSysTheme() : theme
+	const dataAttrTheme = effectiveTheme === THEMES.DARK && isOLED ? THEMES.OLED : effectiveTheme
 
-	// Single source of truth for theme application
 	root.className = effectiveTheme
 	root.style.colorScheme = effectiveTheme
-	root.dataset.gptheme = effectiveTheme === THEMES.DARK && isOLED ? 'oled' : effectiveTheme
+	root.dataset.gptheme = dataAttrTheme
 }
 
 function updateTheme(newTheme, isOLED = false) {
-	const { theme: currentTheme } = getStoredThemeState()
+	// const { theme: currentTheme } = getStoredThemeState()
 
-	if (currentTheme === newTheme && String(isOLED) === localStorage.getItem('isOLED')) return
+	// // Get storage theme value and skip if no change
+	// if (currentTheme === newTheme && String(isOLED) === localStorage.getItem(STORAGE_KEYS.IS_OLED)) return
 
-	// Update storage and DOM in a single operation
-	localStorage.setItem('theme', newTheme)
-	localStorage.setItem('isOLED', isOLED)
+	const { theme: currTheme, isOLED: currIsOLED } = getStoredThemeState()
 
+	// Skip if no change
+	// Skip if no change
+	if (currTheme === newTheme && currIsOLED === isOLED) return
+
+	// Update storage if theme changed
+	try {
+		localStorage.setItem(STORAGE_KEYS.THEME, newTheme)
+		localStorage.setItem(STORAGE_KEYS.IS_OLED, String(isOLED))
+		invalidateThemeCache()
+	} catch (error) {
+		console.error('Failed to save theme:', error)
+		return
+	}
+
+	// Update DOM
 	setRootTheme(newTheme, isOLED)
 
-	// Notify other tabs/windows
+	// Update Canvas theme
+	broadcastThemeChange(newTheme)
+}
+
+// Notify other tabs/windows (this update GPT's CodeMirror (Canvas) theme w/o need for page reloading)
+function broadcastThemeChange(newTheme) {
 	window.dispatchEvent(
 		new StorageEvent('storage', {
-			key: 'theme',
+			key: STORAGE_KEYS.THEME,
 			newValue: newTheme,
-			// oldValue: currentTheme,
 			storageArea: localStorage,
 		})
 	)
 }
 
-// Event handlers
-function handleChangeTheme(e) {
-	const themeBtn = e.target.closest('button')
+// =====================================================
+// EVENTS
+// =====================================================
+function onChangeTheme(e) {
+	const themeBtn = e.target.closest('button[data-gpth-dock-btn]')
 	if (!themeBtn) return
 
-	const themeId = themeBtn.id ?? themeBtn.id
-
-	// Skip handling for Ko-fi
-	// if (themeId === 'kofi') return
-
-	// console.log(themeId)
+	const themeId = themeBtn.id
 
 	switch (themeId) {
 		case THEMES.LIGHT:
@@ -72,33 +116,43 @@ function handleChangeTheme(e) {
 		case THEMES.SYSTEM:
 			updateTheme(themeId, false)
 			break
-		case 'oled':
+		case THEMES.OLED:
 			updateTheme(THEMES.DARK, true)
 			break
 		case 'gpth-open-settings':
-			openSettings()
+			onOpenSettings()
 			break
+		default:
+			console.warn(`Unknown theme: ${themeId}`)
 	}
 }
 
+// System pref handler
+function onSystemPrefChange() {
+	const { theme, isOLED } = getStoredThemeState()
+	if (theme === THEMES.SYSTEM) {
+		setRootTheme(THEMES.SYSTEM, isOLED)
+	}
+}
+
+// =====================================================
+// Lifecycle: INIT
+// =====================================================
 function init() {
 	const { theme, isOLED } = getStoredThemeState()
 	setRootTheme(theme, isOLED)
 
-	const mediaQueryListener = () => {
-		const { theme, isOLED } = getStoredThemeState()
-		if (theme === THEMES.SYSTEM) {
-			setRootTheme(THEMES.SYSTEM, isOLED)
-		}
-	}
-
-	// Add listener for theme change based on system preferences
-	mediaQuery.addEventListener('change', mediaQueryListener)
+	// Add event listener for theme change based on sys pref
+	PREFERS_LIGHT_MEDIA_QUERY.addEventListener('change', onSystemPrefChange)
 
 	// Clean up the event listener when the component is destroyed
 	return () => {
-		mediaQuery.removeEventListener('change', mediaQueryListener)
+		PREFERS_LIGHT_MEDIA_QUERY.removeEventListener('change', onSystemPrefChange)
+		invalidateThemeCache()
 	}
 }
 
-export { init, handleChangeTheme }
+// =====================================================
+// Exports
+// =====================================================
+export { init, onChangeTheme }

@@ -11,12 +11,11 @@ import {
 import { checkAndCleanStorage, getExtCurrVersion, getExtStoredVersion, setExtStoredVersion } from './versionControl'
 
 // Register onInstalled listener at module level (before init runs)
-runtime.onInstalled.addListener(handleInstallation)
+runtime.onInstalled.addListener(onInstallation)
 
-// Initialize background script
 initBackgroundScript()
 
-async function handleInstallation(details) {
+async function onInstallation(details) {
 	try {
 		const currVersion = getExtCurrVersion()
 		const prevVersion = await getExtStoredVersion()
@@ -48,7 +47,7 @@ async function handleInstallation(details) {
 	}
 }
 
-function handleMessage(message, sender, sendResponse) {
+function onMessage(message, sender, sendResponse) {
 	if (message.action === 'setBadge') {
 		updateBadgeToVersion()
 			.then(() => sendResponse({ status: 'success' }))
@@ -86,9 +85,9 @@ async function initBackgroundScript() {
 			}
 		}
 
-		// Register message listener
+		// Register msg listener
 		if (!globalThis.hasSetBadgeListener) {
-			runtime.onMessage.addListener(handleMessage)
+			runtime.onMessage.addListener(onMessage)
 			globalThis.hasSetBadgeListener = true
 		}
 

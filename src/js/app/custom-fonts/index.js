@@ -10,7 +10,6 @@ import {
 import { Notify } from '../components/renderNotify.js'
 import { renderButton } from '../components/renderButtons'
 import { renderFontSmallCard, renderFontBigCard } from '../components/renderFonts'
-// import { closeSettings } from '../settingsManager.js'
 
 // let $rootSettings = null
 let currentFontLink = null
@@ -22,9 +21,9 @@ const focusValues = {}
 const GOOGLE_FONT_BASE = 'https://fonts.googleapis.com/css2?family='
 const GOOGLE_FONT_WEIGHTS = ':ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,300;1,400;1,500;1,600;1,700'
 
-// ============================================================================
+// =====================================================
 // CONFIG
-// ============================================================================
+// =====================================================
 const FONT_FAMILIES = {
 	Inter: '',
 	Roboto: '',
@@ -100,9 +99,9 @@ const CONFIG = {
 	},
 }
 
-// ============================================================================
+// =====================================================
 // RENDER
-// ============================================================================
+// =====================================================
 
 function templateHTML() {
 	return `
@@ -207,9 +206,9 @@ function updateInputs(values) {
 	if (values.letterSpacing !== undefined) elements.letterSpacing.value = values.letterSpacing
 }
 
-// ============================================================================
+// =====================================================
 // HANDLERS
-// ============================================================================
+// =====================================================
 
 async function handleNumeric(e, key) {
 	// console.log('[🎨GPThemes]: handleNumeric', key, e.target.value)
@@ -229,9 +228,9 @@ async function handleNumeric(e, key) {
 	await setItem(cfg.storageKey, newVal)
 }
 
-// ============================================================================
+// =====================================================
 // GOOGLE FONTS
-// ============================================================================
+// =====================================================
 function addPreconnectLinks() {
 	if (preconnectLinksAdded) return
 
@@ -330,18 +329,15 @@ async function resetAll() {
 	}
 	await setItems(defaultsValues)
 
-	// 4. Close settings
-	// closeSettings()
-
-	// 5. Remove ALL Google Font links (including preconnect)
+	// 4. Remove ALL Google Font links (including preconnect)
 	removeAllGoogleFontLinks()
 
 	Notify.success('✅ All fonts have been reset')
 }
 
-// ============================================================================
+// =====================================================
 // EVENTS
-// ============================================================================
+// =====================================================
 
 function addListeners() {
 	const elements = getElements()
@@ -373,9 +369,9 @@ function addListeners() {
 	bind(elements.resetBtn, { click: resetAll })
 }
 
-// ============================================================================
+// =====================================================
 // UTILS
-// ============================================================================
+// =====================================================
 
 const formatNum = (val) => {
 	if (val === null || val === undefined || val === '') return null
@@ -397,9 +393,9 @@ const validate = (val, min, max) => {
 	return true
 }
 
-// ============================================================================
+// =====================================================
 // INIT
-// ============================================================================
+// =====================================================
 
 async function init() {
 	// console.log('[INIT FONTS]')

@@ -7,11 +7,16 @@ import { Notify } from '../components/renderNotify.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { icon_accent } from '../components/icons.js'
 
+// =====================================================
+// STATE
+// =====================================================
 const STORAGE_KEY = SK_TOGGLE_USER_BUBBLE_ACCENT
 const DATA_ATTR = ATTR_BUBBLE_USER_ACCENT
 const DEFAULT_STATE = false
 
-// Render toggle HTML
+// =====================================================
+// TEMPLATE
+// =====================================================
 function templateHTML() {
 	return renderToggle({
 		id: SELECTORS.CHATS.TOGGLE_USER_BUBBLE_ACCENT_ID,
@@ -23,6 +28,9 @@ function templateHTML() {
 	})
 }
 
+// =====================================================
+// STORAGE
+// =====================================================
 // Load saved state from storage
 async function loadState() {
 	try {
@@ -30,7 +38,7 @@ async function loadState() {
 
 		return !!result // if null => !!null => false
 	} catch (error) {
-		handleError('Failed to load user accent bubble preference', error)
+		onError('Failed to load user accent bubble preference', error)
 		return false
 	}
 }
@@ -41,11 +49,14 @@ async function saveState(state = DEFAULT_STATE) {
 		state ? Notify.success('User bubble accent enabled') : Notify.info('User bubble accent disabled')
 		return true
 	} catch (error) {
-		handleError('Failed to save user accent bubble preference', error)
+		onError('Failed to save user accent bubble preference', error)
 		return false
 	}
 }
 
+// =====================================================
+// UPDATE CSS/DOM
+// =====================================================
 // Apply data attribute to document root
 function updateDataAttr(enabled) {
 	if (enabled) {
@@ -64,16 +75,16 @@ function updateInputs(enabled) {
 }
 
 // Error handler
-function handleError(message, error = null) {
+function onError(message, error = null) {
 	Notify.error(message)
 	if (error) console.error(`${message}:`, error)
 }
 
-async function handleChange({ target }) {
+async function onChange({ target }) {
 	const userBubble = $(`.${SELECTORS.CHATS.USER}`)
 
 	if (!userBubble) {
-		handleError('User bubble not found on this page.')
+		onError('User bubble not found on this page.')
 		target.checked = !target.checked
 		return
 	}
@@ -82,7 +93,7 @@ async function handleChange({ target }) {
 	updateDataAttr(isEnabled)
 	saveState(isEnabled)
 
-	// // Show appropriate notification
+	// // Show appropriate notif
 	// if (isEnabled) {
 	// 	Notify.success('User bubble accent enabled')
 	// } else {
@@ -90,6 +101,9 @@ async function handleChange({ target }) {
 	// }
 }
 
+// =====================================================
+// Lifecycle: MOUNT
+// =====================================================
 // Setup toggle input listener (mount after DOM exists)
 async function mount() {
 	const input = document.getElementById(SELECTORS.CHATS.TOGGLE_USER_BUBBLE_ACCENT_ID)
@@ -103,7 +117,7 @@ async function mount() {
 	updateInputs(state)
 
 	// Attach listeners to inputs
-	input.addEventListener('change', handleChange)
+	input.addEventListener('change', onChange)
 }
 
 export { templateHTML as renderUserAccentBgToggle, mount }

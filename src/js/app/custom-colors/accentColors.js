@@ -5,11 +5,14 @@ import { SK_COLOR_ACCENT_LIGHT, SK_COLOR_ACCENT_DARK } from '../config/consts-st
 import { getVar, setVar, setVars, removeVar } from '../../utils/dom.js'
 import { Notify } from '../components/renderNotify.js'
 
+// =====================================================
+// STATE
+// =====================================================
+
 let $resetBtn = null
 let storedColors = null
 const accentPickers = new Map()
 
-// --- CONFIG ---
 const CONFIG = [
 	{
 		theme: 'light',
@@ -29,7 +32,10 @@ const CONFIG = [
 	},
 ]
 
-// --- TEMPLATE ---
+// =====================================================
+// TEMPLATE
+// =====================================================
+
 function templateHTML() {
 	return `<div class="colorpicker-container">${CONFIG.map(
 		(cfg) => `
@@ -41,7 +47,21 @@ function templateHTML() {
 	).join('')}</div>`
 }
 
-// --- STORAGE ---
+// =====================================================
+// STORAGE
+// =====================================================
+
+// Save state to storage
+async function saveToStorage(key, value) {
+	try {
+		await setItem(key, value)
+		Notify.success('Color saved')
+	} catch (err) {
+		Notify.error('Failed to save color')
+		console.error('Save error:', err)
+	}
+}
+// Load saved state from storage
 async function getFromStorage() {
 	try {
 		return (await getItems(CONFIG.map((cfg) => cfg.storageKey))) || {}
@@ -52,17 +72,10 @@ async function getFromStorage() {
 	}
 }
 
-async function saveToStorage(key, value) {
-	try {
-		await setItem(key, value)
-		Notify.success('Color saved')
-	} catch (err) {
-		Notify.error('Failed to save color')
-		console.error('Save error:', err)
-	}
-}
+// =====================================================
+// UPDATE CSS/DOM
+// =====================================================
 
-// --- CSS LOGIC ---
 function updateCss(stored) {
 	const cssVars = {}
 	CONFIG.forEach((cfg) => {
@@ -89,7 +102,10 @@ function updateResetButton() {
 	if ($resetBtn) $resetBtn.disabled = !hasCustomColors()
 }
 
-// --- VALIDATION ---
+// =====================================================
+// VALIDATION
+// =====================================================
+
 function isValidHexColor(colorStr) {
 	return (
 		colorStr &&
@@ -103,7 +119,10 @@ function isColorValid(color) {
 	return color?.color && color.color.every((val) => !isNaN(val)) && color.color[3] === 1
 }
 
-// --- PICKER MANAGEMENT ---
+// =====================================================
+// CREATE - PICKER MANAGEMRNT
+// =====================================================
+
 function createPickerHandlers(picker, cfg, initialColor) {
 	let currentColor = initialColor
 	let lastValidColor = initialColor // Track last valid color for reverts
@@ -222,8 +241,11 @@ function createPickers(storageColors) {
 	})
 }
 
-// --- RESET ---
-async function resetAll() {
+// =====================================================
+// LISTENERS - RESET
+// =====================================================
+
+async function onResetAll() {
 	if (!hasCustomColors()) {
 		Notify.info('Colors are already at defaults')
 		return
@@ -244,7 +266,10 @@ async function resetAll() {
 	}
 }
 
-// --- INIT & MOUNT ---
+// =====================================================
+// Lifecycle: INIT
+// =====================================================
+
 async function init() {
 	try {
 		storedColors = await getFromStorage()
@@ -257,6 +282,10 @@ async function init() {
 	}
 }
 
+// =====================================================
+// Lifecycle: MOUNT
+// =====================================================
+
 function mount(resetBtn) {
 	if (accentPickers.size > 0) return
 	$resetBtn = resetBtn
@@ -264,5 +293,7 @@ function mount(resetBtn) {
 	updateResetButton()
 }
 
-// --- EXPORTS ---
-export { templateHTML as renderAccentsColors, resetAll as resetAllAccents, mount, init }
+// =====================================================
+// Exports
+// =====================================================
+export { templateHTML as renderAccentsColors, onResetAll as resetAllAccents, mount, init }

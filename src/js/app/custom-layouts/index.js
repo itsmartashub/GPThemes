@@ -17,7 +17,10 @@ import {
 	templateHTML as renderWidthsSection,
 } from './widths.js'
 
-// --- TEMPLATE ---
+// =====================================================
+// TEMPLATE
+// =====================================================
+
 function templateHTML() {
 	return `
     <section id="sectionLayouts" class="gpth-layouts">
@@ -34,18 +37,27 @@ function templateHTML() {
     </section>`
 }
 
-// --- LISTENERS ---
-function resetAll() {
+// =====================================================
+// LISTENERS - RESET
+// =====================================================
+
+function onResetAll() {
 	resetWidths()
 }
 
-// --- INIT ---
+// =====================================================
+// Lifecycle: INIT
+// =====================================================
+
 async function init() {
 	// console.log('[INIT LAYOUT]')
 	await initWidths()
 }
 
-// --- MOUNT ---
+// =====================================================
+// Lifecycle: MOUNT
+// =====================================================
+
 function mount() {
 	// console.log('[MOUNT LAYOUT]')
 
@@ -59,5 +71,7 @@ function mount() {
 	mountCustomHides()
 }
 
-// --- EXPORTS ---
+// =====================================================
+// Exports
+// =====================================================
 export { templateHTML as renderLayoutsTab, init, mount }
