@@ -6,8 +6,18 @@
 	background-color: var(--c-bg-sidebar) !important;
 	color: var(--c-txt) !important;
 	// border-inline-end-width: 0 !important;
-}
 
+
+	nav {
+		button {
+
+			/* Today, Yesterday - Time heading in sidebar */
+			h2.__menu-label {
+				@extend %date-pill;
+			}
+		}
+	}
+}
 
 #sidebar-header {
 
@@ -18,13 +28,6 @@
 	}
 }
 
-.__menu-item.hoverable {
-
-	/* Today, Yesterday - Time heading in sidebar */
-	h2.__menu-label {
-		@extend %date-pill;
-	}
-}
 
 nav[aria-label].h-full {
 	.__menu-item {
