@@ -115,8 +115,12 @@ form {
 				}
 			}
 
-			/* New Advanced Voice Mode button */
-			[data-testid="composer-speech-button"] {
+
+
+			/* Advanced Voice Mode button */
+			button.composer-submit-button-color,
+			#composer-submit-button {
+				// [data-testid="composer-speech-button"] {
 				--shadow: 0 0 2px 2px oklch(var(--from-accent) / 0.8) inset, -1px -1px 5px 0px #fff inset;
 				--c-bg-gradient: linear-gradient(-25deg,
 						transparent 0%,
@@ -127,7 +131,18 @@ form {
 				box-shadow: var(--shadow) !important;
 
 				&:disabled {
-					background: var(--c-accent-12) !important;
+					--c-bg-gradient: linear-gradient(-25deg,
+							transparent 0%,
+							var(--c-accent-10) 18%,
+							var(--c-accent-12) 58%);
+					color: var(--c-accent) !important;
+				}
+			}
+
+			/* New Advanced Voice Mode button - when recording */
+			.lk-room-container {
+				button.bg-token-icon-primary {
+					background-color: var(--c-accent-20) !important;
 					color: var(--c-accent) !important;
 				}
 			}

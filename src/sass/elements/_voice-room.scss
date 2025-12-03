@@ -1,37 +1,45 @@
+// .lk-room-container {
+//     button[aria-label] {
+//         border-radius: 50vw !important;
+//     }
+
+//     button[aria-label] {
+//         &.btn-primary[class*="bg-black"] {
+//             background-color: var(--c-accent-20) !important;
+
+//             svg {
+//                 color: var(--c-accent) !important;
+//             }
+//         }
+
+//         &.btn-primary[class*="bg-red-500"] {
+//             color: var(--c-danger);
+//             background-color: color-alpha(--c-danger, 0.2, true);
+
+//             svg {
+//                 color: var(--c-danger) !important;
+//             }
+//         }
+//     }
+
+//     button.absolute.w-48 {
+//         border-radius: calc(var(--br-btn) * 1.5) !important;
+//     }
+
+//     /* "Choose a voice" absolute buttons with gradient */
+//     .bg-gradient-to-r,
+//     .bg-gradient-to-l {
+//         --gradient-color-from: var(--c-surface-2) !important;
+//     }
+// }
+
 .lk-room-container {
-    button[aria-label] {
-        border-radius: 50vw !important;
-    }
-
-    button[aria-label] {
-        &.btn-primary[class*="bg-black"] {
-            background-color: var(--c-accent-20) !important;
-
-            svg {
-                color: var(--c-accent) !important;
-            }
-        }
-
-        &.btn-primary[class*="bg-red-500"] {
-            color: var(--c-danger);
-            background-color: color-alpha(--c-danger, 0.2, true);
-
-            svg {
-                color: var(--c-danger) !important;
-            }
-        }
-    }
-
-    button.absolute.w-48 {
-        border-radius: calc(var(--br-btn) * 1.5) !important;
-    }
-
-    /* "Choose a voice" absolute buttons with gradient */
-    .bg-gradient-to-r,
-    .bg-gradient-to-l {
-        --gradient-color-from: var(--c-surface-2) !important;
+    button.bg-token-icon-primary {
+        background-color: var(--c-accent-20) !important;
+        // color: var(--c-accent) !important;
     }
 }
+
 
 /* Advanced Voice - "Monthly limit reached" dialog */
 [role="dialog"] {
