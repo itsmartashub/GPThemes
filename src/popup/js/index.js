@@ -1,13 +1,12 @@
 import browser from 'webextension-polyfill'
-// import { getItem } from '../../js/utils/storage'
 import { EXT_CURR_VERSION, EXT_CURR_CHANGELOG_URL } from '../../js/app/config/consts'
 import { RELEASE_CHANGES } from './changes'
-import { setupFABToggle } from './toggleFAB'
+import { init as createFABToggle } from './toggleFAB'
 
 const createFullChangelogLink = (version = EXT_CURR_VERSION) =>
 	`<a href="${EXT_CURR_CHANGELOG_URL}" target="_blank" rel="noopener noreferrer" class="changelog__seefullchangelog">🚀 See full release notes</a>`
 
-const initChangelogUI = () => {
+function initChangelogUI() {
 	const changelogChangesEl = document.querySelector('.changelog__changes')
 	const changelogVersionEl = document.querySelector('.changelog__version')
 
@@ -29,7 +28,7 @@ const initChangelogUI = () => {
 	changelogVersionEl.href = EXT_CURR_CHANGELOG_URL
 }
 
-const updateBadge = async () => {
+async function updateBadge() {
 	console.log('=== POPUP: Sending setBadge message ===')
 	try {
 		const response = await browser.runtime.sendMessage({ action: 'setBadge' })
@@ -39,7 +38,7 @@ const updateBadge = async () => {
 	}
 }
 
-const detectDeviceType = () => {
+function detectDeviceType() {
 	const ua = navigator.userAgent || navigator.vendor || window.opera
 	const isMobile = /android|iphone|ipad|ipod/i.test(ua)
 	document.documentElement.classList.add(isMobile ? 'is-mobile' : 'is-desktop')
@@ -47,14 +46,13 @@ const detectDeviceType = () => {
 }
 
 // Detect device type (mobile vs desktop) and set class on <html>
-const initPopup = () => {
+function init() {
 	const isMobile = detectDeviceType()
 	console.log(`📱 Device detected: ${isMobile ? 'Mobile' : 'Desktop'}`)
 
 	initChangelogUI()
 	updateBadge()
-	setupFABToggle()
+	createFABToggle()
 }
 
-// Start the initialization process
-initPopup()
+init()

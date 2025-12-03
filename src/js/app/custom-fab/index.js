@@ -163,7 +163,8 @@ function onStorageChange(changes, area) {
 	const visibilityChange = changes[STORAGE_KEY]
 	if (!visibilityChange) return
 
-	const isHidden = visibilityChange.newValue !== false
+	// Only hide FAB if newValue is EXPLICITLY true
+	const isHidden = visibilityChange.newValue === true
 	setFABVisibility(isHidden)
 }
 

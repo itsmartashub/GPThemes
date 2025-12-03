@@ -1,47 +1,52 @@
-import { SK_TOGGLE_FAB_HIDDEN } from '../../js/app/config/consts-storage'
-import { getItem, setItem, removeItems } from '../../js/utils/storage'
-import { renderToggle } from '../../js/app/components/renderToggles'
+import { SK_TOGGLE_FAB_HIDDEN } from '../../js/app/config/consts-storage.js'
+import { getItem, setItem, removeItems } from '../../js/utils/storage.js'
+import { renderToggle } from '../../js/app/components/renderToggles.js'
+
+const STORAGE_KEY = SK_TOGGLE_FAB_HIDDEN
 
 const CONFIG = {
-	label: 'Hide GPThemes',
-	containerId: 'toggle-fab-container',
-	toggleId: 'toggle-fab-visibility',
+	SELECTORS: {
+		container: 'toggle-fab-container',
+		toggle: 'toggle-fab-visibility',
+	},
+	LABEL: 'Hide GPThemes',
 }
 
-async function setupFABToggle() {
-	const container = document.getElementById(CONFIG.containerId)
+// Update storage when toggle changes
+async function onChange(e) {
+	const hideFAB = e.target.checked
+
+	if (hideFAB) {
+		// If true, hide FAB
+		await setItem(STORAGE_KEY, true)
+	} else {
+		await removeItems(STORAGE_KEY)
+	}
+}
+
+async function init() {
+	const container = document.getElementById(CONFIG.SELECTORS.container)
 	if (!container) return
 
-	// Get curr state - handle null case (first install)
-	let shouldHideFAB = await getItem(SK_TOGGLE_FAB_HIDDEN)
+	try {
+		// Get current state - handle null case (first install)
+		let isHidden = (await getItem(STORAGE_KEY)) ?? false
 
-	// If null (first time), default to false (don't hide)
-	if (shouldHideFAB === null) {
-		shouldHideFAB = false
-		// Optionally set the default val in storage
-		await removeItems(SK_TOGGLE_FAB_HIDDEN)
+		// Render toggle
+		container.innerHTML = renderToggle({
+			id: CONFIG.SELECTORS.toggle,
+			checked: isHidden, // toggle ✅ = FAB visible, toggle ❌ = FAB hidden
+			label: CONFIG.LABEL,
+			card: true,
+			className: '',
+		})
+
+		// Handle toggle changes
+		document.getElementById(CONFIG.SELECTORS.toggle)?.addEventListener('change', onChange)
+	} catch (error) {
+		console.error('Failed to setup FAB toggle:', error)
+		container.innerHTML = '<p class="error">Hrm, toggle failed 😳</p>'
 	}
-
-	console.log('shouldHideFAB', shouldHideFAB)
-
-	// Create toggle FAB
-	container.innerHTML = renderToggle({
-		id: CONFIG.toggleId,
-		checked: shouldHideFAB, // Toggle checked = FAB visible, unchecked = FAB hidden
-		label: CONFIG.label,
-		card: true,
-		className: '',
-	})
-
-	// Attach toggle listener
-	document.getElementById(CONFIG.toggleId)?.addEventListener('change', async (e) => {
-		const shouldBeHidden = e.target.checked
-
-		console.log('FAB hidden:', shouldBeHidden)
-
-		// Update storage when toggle changes
-		await setItem(SK_TOGGLE_FAB_HIDDEN, shouldBeHidden)
-	})
 }
 
-export { setupFABToggle }
+export { init }
