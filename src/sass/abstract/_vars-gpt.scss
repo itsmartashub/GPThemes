@@ -32,6 +32,7 @@ html,
     --brand-purple: var(--c-accent) !important;
     // --yellow-900: #4d3b00;
 
+    --bg-accent-static: var(--c-accent) !important;
     --bg-primary: var(--c-bg-chats-container) !important;
     --bg-secondary: var(--c-surface-2) !important;
     --bg-tertiary: var(--c-surface-3) !important;
@@ -55,6 +56,8 @@ html,
     --text-accent: var(--c-accent) !important;
     --text-status-warning: var(--c-warning) !important;
     --text-status-error: var(--c-danger) !important;
+
+    --text-inverted-static: var(--c-on-accent) !important;
 
     --icon-primary: currentColor !important;
     --icon-secondary: var(--c-subtext-1) !important;
@@ -110,7 +113,7 @@ html,
 	- header of tables in "Shared links" and "Archived chats"
 	- Arrow btn in new chat big buttons */
     --main-surface-primary: var(--c-surface-2) !important;
-    // --main-surface-primary-inverse: var(--white);
+    --main-surface-primary-inverse: var(--c-subtext-2) !important;
 
     /*
 	- markdown header bg */
@@ -122,6 +125,7 @@ html,
 
     /* ??? */
     --main-surface-tertiary: var(--c-surface-3) !important;
+
 
     /* .bg-token-popover-surface-primary  
 	- contextmenu in theme dropdown chooser
