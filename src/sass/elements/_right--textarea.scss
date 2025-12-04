@@ -119,7 +119,8 @@ form {
 
 			/* Advanced Voice Mode button */
 			button.composer-submit-button-color,
-			#composer-submit-button {
+			#composer-submit-button,
+			[data-testid="composer-speech-button"] {
 				// [data-testid="composer-speech-button"] {
 				--shadow: 0 0 2px 2px oklch(var(--from-accent) / 0.8) inset, -1px -1px 5px 0px #fff inset;
 				--c-bg-gradient: linear-gradient(-25deg,
