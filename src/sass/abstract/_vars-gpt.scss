@@ -37,8 +37,8 @@ html,
     --bg-secondary: var(--c-surface-2) !important;
     --bg-tertiary: var(--c-surface-3) !important;
     --bg-scrim: var(--c-surface-1) !important;
-    // --bg-elevated-primary: var(--c-surface-2) !important; // e.g. stop btn bg when DeepSearch is active
-    // --bg-elevated-secondary: #181818;
+    --bg-elevated-primary: var(--c-surface-2) !important; // e.g. stop btn bg when DeepSearch is active & chatbox in grup chat
+    --bg-elevated-secondary: var(--c-surface-3) !important;
     --bg-status-warning: #{color-alpha(--c-warning, 0.2, true)};
     --bg-status-error: #{color-alpha(--c-danger, 0.2, true)};
     /* .border-token-border-default
