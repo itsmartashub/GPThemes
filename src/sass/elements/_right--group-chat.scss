@@ -1,0 +1,49 @@
+/* GROUP CHATS */
+
+%groupChatMsgPadding {
+    padding-block: calc(var(--spacing) * 2.5) !important;
+    padding-inline: calc(var(--spacing) * 4) !important;
+}
+
+%groupChatMsgRadius {
+    border-radius: var(--radius-3xl) !important;
+}
+
+%groupChatMsgSharedStyle {
+    @extend %groupChatMsgPadding;
+    @extend %groupChatMsgRadius;
+}
+
+[role="presentation"] {
+
+    /* Message wrapper */
+    .group\/message[data-message-id] {
+
+
+        /* Sended & received msg bubbles */
+        .group\/message {
+
+            // sended
+            &.user-message-bubble-color,
+            &.bg-token-bg-tertiary {
+                @extend %groupChatMsgSharedStyle;
+            }
+
+
+            // sended
+            // &.user-message-bubble-color {}
+
+            // received
+            // &.bg-token-bg-tertiary {}
+
+
+        }
+
+        /* ChatGPT msg in Group chat (w/o bubble and bg) */
+        [id^="collapsible-chatgpt-message-"] {
+            @extend %groupChatMsgSharedStyle;
+            background-image: linear-gradient(to top, var(--c-bg-chats-container), var(--c-bg-msg-gpt)) !important;
+            box-shadow: 0 0 3px 1px inset color-alpha(--c-bg-msg-gpt, 0.5, true);
+        }
+    }
+}
