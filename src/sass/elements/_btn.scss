@@ -58,7 +58,7 @@ button {
 		background-color: var(--c-accent) !important;
 	}
 
-	&:not(&-secondary, &-danger, &-danger-outline, &-green, &-ghost) {
+	&:not(&-secondary, &-danger, &-danger-outline, &-green, &-ghost, &[class*='bg-red-']) {
 		background-color: var(--c-accent) !important;
 
 		&:hover {
