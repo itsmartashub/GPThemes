@@ -5,6 +5,9 @@
 	border-radius: calc(var(--br-chat-bubble) * 0.5) !important;
 	font-size: calc(calc((var(--gpthFontSize) / 16) * 1rem) * 0.85) !important;
 	letter-spacing: -0.2px !important;
+	// remove default padding: padding-left: 1.14286em; padding-right: 1.14286em;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
 
 	/* To strictly select chat-bubble main code-block <pre> and not that "Result" in Analysis */
 	&.overflow-visible\! {
