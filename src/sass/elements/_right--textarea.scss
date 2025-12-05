@@ -117,28 +117,28 @@ form {
 
 
 
-			/* Advanced Voice Mode button */
-			button.composer-submit-button-color,
-			#composer-submit-button,
-			[data-testid="composer-speech-button"] {
-				// [data-testid="composer-speech-button"] {
-				--shadow: 0 0 2px 2px oklch(var(--from-accent) / 0.8) inset, -1px -1px 5px 0px #fff inset;
-				--c-bg-gradient: linear-gradient(-25deg,
-						transparent 0%,
-						var(--c-accent-40) 18%,
-						var(--c-accent) 58%);
-				background: var(--c-bg-gradient) !important;
-				color: var(--c-on-accent) !important;
-				box-shadow: var(--shadow) !important;
+			// /* Advanced Voice Mode button */
+			// button.composer-submit-button-color,
+			// #composer-submit-button,
+			// [data-testid="composer-speech-button"] {
+			// 	// [data-testid="composer-speech-button"] {
+			// 	--shadow: 0 0 2px 2px oklch(var(--from-accent) / 0.8) inset, -1px -1px 5px 0px #fff inset;
+			// 	--c-bg-gradient: linear-gradient(-25deg,
+			// 			transparent 0%,
+			// 			var(--c-accent-40) 18%,
+			// 			var(--c-accent) 58%);
+			// 	background: var(--c-bg-gradient) !important;
+			// 	color: var(--c-on-accent) !important;
+			// 	box-shadow: var(--shadow) !important;
 
-				&:disabled {
-					--c-bg-gradient: linear-gradient(-25deg,
-							transparent 0%,
-							var(--c-accent-10) 18%,
-							var(--c-accent-12) 58%);
-					color: var(--c-accent) !important;
-				}
-			}
+			// 	&:disabled {
+			// 		--c-bg-gradient: linear-gradient(-25deg,
+			// 				transparent 0%,
+			// 				var(--c-accent-10) 18%,
+			// 				var(--c-accent-12) 58%);
+			// 		color: var(--c-accent) !important;
+			// 	}
+			// }
 
 			/* New Advanced Voice Mode button - when recording */
 			.lk-room-container {
@@ -218,4 +218,24 @@ a .bg-primary .p-2.w-80 {
 			color: currentColor !important
 		}
 	}
+}
+
+/* Plus button (attach file) in chatbox in Group chat */
+#composer-plus-btn {
+	background-color: var(--c-accent-12) !important;
+	color: var(--c-accent) !important;
+}
+
+/* Advanced Voice Mode button and submit btn in chatbox for classic and Group chat layout */
+button.composer-submit-button-color,
+#composer-submit-button,
+[data-testid="composer-speech-button"] {
+	--shadow: 0 0 2px 2px oklch(var(--from-accent) / 0.8) inset, -1px -1px 5px 0px #fff inset;
+	--c-bg-gradient: linear-gradient(-25deg,
+			transparent 0%,
+			var(--c-accent-40) 18%,
+			var(--c-accent) 58%);
+	background: var(--c-bg-gradient) !important;
+	color: var(--c-on-accent) !important;
+	box-shadow: var(--shadow) !important;
 }
