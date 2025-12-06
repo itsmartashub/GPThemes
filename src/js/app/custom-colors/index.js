@@ -1,6 +1,7 @@
 import { SELECTORS } from '../config/selectors.js'
 import { renderButton } from '../components/renderButtons.js'
 import { renderSeparator } from '../components/renderUtils.js'
+import { renderInfo } from '../components/renderInfo.js'
 import { renderUserAccentBgToggle, mount as mountUserBubbleAccent } from './toggleAccentUserBubble.js'
 import { renderAllTextAccent, mount as mountAllTextAccent } from './toggleAccentAllText.js'
 import {
@@ -20,6 +21,11 @@ function templateHTML() {
 				${renderAccentsColors()}
 			</div>
 
+			${renderInfo({
+				text: 'Enter # followed by 3 or 6 hex digits. Select the whole code, <strong>with # character</strong>.',
+				classNames: 'm-6',
+			})}
+				
 			${renderSeparator}
 
 			<div>

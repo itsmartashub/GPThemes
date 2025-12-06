@@ -142,10 +142,10 @@ function createPickerHandlers(picker, cfg, initialColor) {
 			}
 		},
 
-		onOpen: () =>
-			Notify.info(
-				'Enter # followed by 3 or 6 hex digits. \n\nIf you are using copy-paste, advice is to select the whole color code, with hexa character.'
-			),
+		// onOpen: () =>
+		// 	Notify.info(
+		// 		'Enter # followed by 3 or 6 hex digits. \n\nIf you are using copy-paste, advice is to select the whole color code, with hexa character.'
+		// 	),
 
 		onClose: async () => {
 			if (currentColor === cfg.default && hasChanged) {
@@ -234,7 +234,7 @@ function createPickers(storageColors) {
 		const handlers = createPickerHandlers(picker, cfg, initialColor)
 
 		picker.on('pick', handlers.onPick)
-		picker.on('open', handlers.onOpen)
+		// picker.on('open', handlers.onOpen)
 		picker.on('close', handlers.onClose)
 
 		accentPickers.set(cfg.id, { picker, handlers })

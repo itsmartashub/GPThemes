@@ -1,0 +1,26 @@
+@use 'messaging-base' as msg;
+
+// .#{$pfx}-info {
+.gpth-info {
+    @extend %msg-base;
+    @include accent('sec', true);
+
+    // Info-specific sizing
+    font-size: 0.785rem;
+    padding: 0.5rem 0.65rem;
+
+    // Icon wrapper
+    >svg,
+    >span:first-child {
+        @extend %msg-icon;
+        margin-top: 0.125rem;
+    }
+
+    // Text content
+    &__text {
+        @extend %msg-text;
+    }
+
+    // Generate all type variants using shared mixin
+    @include msg.generate-msg-types(msg.$message-types);
+}

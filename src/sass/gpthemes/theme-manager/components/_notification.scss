@@ -1,76 +1,79 @@
 /* Using your selector system */
 .#{$pfx}-notify-container {
-    --notif-bg: var(--c-accent-10);
-    --notif-c: var(--c-accent);
+    --spacing: 1rem;
+    --w-max: 30rem;
     position: fixed;
-    top: 1rem;
+    top: var(--spacing);
     right: 3rem;
     z-index: 9999;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    max-width: 30rem;
-    margin-inline: auto;
-    max-height: calc(100dvh - calc(1rem * 2));
-    overflow-y: scroll;
+    width: var(--w-max);
+    max-height: calc(100dvh - calc(var(--spacing) * 2));
+    overflow-y: auto;
     overflow-x: hidden;
+    padding: 1rem;
 
     // It isolates reflows inside the container and prevents global layout recalculation when notifications slide in/out. Great for UIs with frequent updates.
     contain: layout style paint;
 
+    @include dev('xs') {
+        --w-max: 90vw;
+
+        right: 50%;
+        transform: translateX(50%);
+        margin-inline: auto;
+    }
+
     .#{$pfx}-notify {
+        --fg: var(--c-accent);
+
+        width: max-content;
+        max-width: var(--w-max);
         position: relative;
+        color: var(--fg);
+        background: color-alpha(currentColor, 0.2);
+        border: 1px solid color-alpha(currentColor, 0.1);
+        backdrop-filter: blur(18px);
         font-size: 1rem;
         padding: calc(var(--p) * 1.5);
+        margin-inline: auto;
         border-radius: calc(var(--br) * 1.2);
-        background-color: var(--notif-bg);
-        color: var(--notif-c);
-        border: 1px solid color-alpha(currentColor, 0.1) !important;
-        backdrop-filter: blur(18px);
         transform: translateX(100%);
         opacity: 0;
         transition: all 0.3s ease;
-
-        --notif-bg: #{color-alpha(--c-seed, 0.2, true)};
-        --notif-c: var(--c-seed, var(--c-accent));
-
-        &__content {
-            padding-right: calc(var(--p) * 1.5);
-        }
-
-        &__close-btn {
-            position: absolute;
-            top: 2px;
-            right: 4px;
-            background: transparent;
-            border: none;
-            color: inherit;
-            font-size: 2rem;
-            cursor: pointer;
-            padding: 0 0.5rem;
-            line-height: 1;
-        }
 
         &--show {
             transform: translateX(0);
             opacity: 1;
         }
 
-        /* Notification type styles */
-        &--info {
-            --c-seed: var(--c-accent);
+        &__close-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            translate: 25% -25%;
+            font-size: 1.2em;
+            padding: 0 0.125em;
+            color: color-mix(in oklab, var(--fg), black 50%);
+            background-color: var(--fg);
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+            border-radius: 50vw;
         }
 
         &--success {
-            --c-seed: var(--c-success);
+            --fg: var(--c-success);
         }
 
         &--warning {
-            --c-seed: var(--c-warning);
+            --fg: var(--c-warning);
         }
 
         &--error {
-            --c-seed: var(--c-danger);
+            --fg: var(--c-danger);
         }
     }
 }
