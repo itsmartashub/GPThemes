@@ -1,19 +1,21 @@
 :root {
     /* ! === CUSTOM FONTS === */
+    --gpthFontFamilyOpenAISans: 'OpenAI Sans'; // Font like on OpenAI's Sora website
     --gpthFontFamilyDefault: ui-sans-serif,
         -apple-system,
         system-ui,
-        Segoe UI,
-        Roboto,
+        sans-serif,
         Ubuntu,
         Cantarell,
-        Noto Sans,
-        sans-serif,
+        "Noto Sans",
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji",
         Helvetica,
-        Apple Color Emoji,
-        Arial,
-        Segoe UI Emoji,
-        Segoe UI Symbol;
+        Arial;
+
+    // OPENAI DEFAULT: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --gpthFontFamily: var(--gpthFontFamilyDefault);
     --gpthFontSize: inherit;
     --gpthLetterSpacing: none;

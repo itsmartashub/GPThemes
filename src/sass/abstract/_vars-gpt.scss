@@ -23,6 +23,7 @@ OPENAAI CSS VARS
     // --gray-950: #0d0d0d;
 }
 
+
 html,
 .light,
 .dark {
@@ -34,6 +35,7 @@ html,
 
     --bg-accent-static: var(--c-accent) !important;
     --bg-primary: var(--c-bg-chats-container) !important;
+    --bg-primary-inverted: var(--c-accent) !important;
     --bg-secondary: var(--c-surface-2) !important;
     --bg-tertiary: var(--c-surface-3) !important;
     --bg-scrim: var(--c-surface-1) !important;
