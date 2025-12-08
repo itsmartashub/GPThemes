@@ -1,4 +1,4 @@
-// Using a CDN URL for fflate, which is compatible with Deno's ES module import syste
+// Using a CDN urlURL for fflate, which is compatible with Deno's ES module import
 // zipSync is used for synchronous, high-perf compression
 import { zipSync } from 'https://cdn.jsdelivr.net/npm/fflate/esm/browser.js'
 
@@ -20,6 +20,8 @@ const CONFIG = {
 		firefox: 'firefox-mv2',
 	},
 }
+
+createZipFiles()
 
 // Reads the version string from a manifest file.
 async function readExtVersionFromManifest(manifestPath) {
@@ -105,6 +107,3 @@ async function createZipFiles() {
 		Deno.exit(1) // Exit with a non-zero code on failure
 	}
 }
-
-// Execute the main function
-createZipFiles()

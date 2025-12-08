@@ -1,8 +1,8 @@
 name: 📦 Extension CI/CD and Packaging
 
 on:
-    workflow_dispatch: # Trigger manually via GitHub UI
-    pull_request: # Trigger on pull requests for status checks
+    workflow_dispatch: # Trigger manually via GH UI
+    pull_request: # Trigger on PR for status checks
 
 jobs:
     build-and-package:
@@ -13,13 +13,9 @@ jobs:
             - name: ⚙️ Checkout repo
               uses: actions/checkout@v4
 
-            - name: 🔖 Set short SHA
-              id: slug
-              run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-
             # --- SETUP ENVIRONMENT ---
 
-            # CRITICAL: Install pnpm FIRST before setup-node tries to cache it (whitelist the `pnpm/action-setup@*` under the Repo > Settings > Actions )
+            # CRITICAL: Install pnpm FIRST before setup-node tries to cache it (!! whitelist the `pnpm/action-setup@*` under the Repo > Settings > Actions !!)
             - name: 📦 Install pnpm
               uses: pnpm/action-setup@v4
               with:
@@ -41,32 +37,18 @@ jobs:
 
             # --- BUILD & ZIP ---
 
-            - name: 🏗️ Build and Package Extensions (pnpm build:all)
+            - name: 🏗️ Build and package ext (pnpm build:all)
               run: pnpm build:all
 
             # --- ARTIFACT UPLOAD ---
 
-            - name: ⬆️ Upload chromium ext
+            - name: ⬆️ Upload release zips
               uses: actions/upload-artifact@v4
               with:
-                  name: gpthemes-chromium${{ github.event.pull_request.number && format('-PR{0}', github.event.pull_request.number) || '-debug' }}
-                  path: build/prod/*-chromium-*/**/*
-                  retention-days: 7
-
-            - name: ⬆️ Upload firefox ext
-              uses: actions/upload-artifact@v4
-              with:
-                  name: gpthemes-firefox${{ github.event.pull_request.number && format('-PR{0}', github.event.pull_request.number) || '-debug' }}
-                  path: build/prod/*-firefox-*/**/*
-                  retention-days: 7
-
-            # - name: ⬆️ Upload release zips
-            #   uses: actions/upload-artifact@v4
-            #   with:
-            #       # Use PR number if available, otherwise fall back to SHA (for manual triggers)
-            #       name: GPThemes-debug-${{ github.event.pull_request.number && format('PR{0}', github.event.pull_request.number) || format('build{0}', github.run_number) }}
-            #       path: build/releases/*
-            #       retention-days: 7 # Keep artifacts for a week
+                  # Use PR number if available, otherwise fall back to SHA (for manual triggers)
+                  name: GPThemes-debug-${{ github.event.pull_request.number && format('PR{0}', github.event.pull_request.number) || format('build{0}', github.run_number) }}
+                  path: build/releases/*
+                  # retention-days: 7 # Keep artifacts for a week
 
     report:
         # Use always() instead of failure() if you want the report step to run
