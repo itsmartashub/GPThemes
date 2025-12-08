@@ -1,0 +1,63 @@
+# .github/workflows/ci-cd.yml
+
+name: 📦 Extension CI/CD and Packaging
+
+on:
+    # Trigger manually via GitHub UI
+    workflow_dispatch:
+    # Trigger on pull requests for status checks
+    pull_request:
+
+jobs:
+    build-and-package:
+        name: Build, zip, and test
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: ⚙️ Checkout repo
+              uses: actions/checkout@v4
+
+            # --- SETUP ENVIRONMENT ---
+
+            - name: 🚀 Setup Node.js & pnpm
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20' # LTS version for stability
+                  cache: 'pnpm'
+
+            - name: 📦 Install pnpm deps
+              run: pnpm install --frozen-lockfile # Use --frozen-lockfile for CI stability
+
+            - name: 🦕 Setup deno
+              uses: denoland/setup-deno@v2
+              with:
+                  deno-version: 'v2.x' # Use v2 for the latest feat/perf
+
+            # NOTE: No separate 'deno install' step is needed as 'zip.js' uses URL imports.
+
+            # --- BUILD & ZIP ---
+
+            - name: 🏗️ Build and Package Extensions (pnpm build:all)
+              # This single command runs clean, parcel builds, and the deno zip script.
+              run: pnpm build:all
+
+            # --- ARTIFACT UPLOAD ---
+
+            - name: ⬆️ Upload release zips
+              uses: actions/upload-artifact@v4
+              with:
+                  name: extension-debug-${{ github.sha }} # Dynamic name based on commit hash
+                  path: build/releases/*
+                  retention-days: 7 # Keep artifacts for a week
+
+    report:
+        # Use always() instead of failure() if you want the report step to run
+        if: failure()
+        needs: [build-and-package]
+        runs-on: ubuntu-latest
+        steps:
+            - name: ⚠️ Failure Report
+              run: |
+                  echo "### ❌ Build/packaging failed" >> $GITHUB_STEP_SUMMARY
+                  echo "Review the logs for the 'Build and package extensions' step." >> $GITHUB_STEP_SUMMARY
+                  echo "Job status: ${{ needs.build-and-package.result }}" >> $GITHUB_STEP_SUMMARY

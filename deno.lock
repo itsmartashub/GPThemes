@@ -1,0 +1,17 @@
+{
+  "version": "5",
+  "remote": {
+    "https://cdn.jsdelivr.net/npm/fflate/esm/browser.js": "8cc1f687e0159e977addb6b85e274dbd11e622cf151f4fcb7b85d49622ea43e7"
+  },
+  "workspace": {
+    "packageJson": {
+      "dependencies": [
+        "npm:@parcel/config-default@^2.16.3",
+        "npm:@parcel/config-webextension@^2.16.3",
+        "npm:@parcel/transformer-sass@2.16.3",
+        "npm:parcel@^2.16.3",
+        "npm:webextension-polyfill@0.12"
+      ]
+    }
+  }
+}
