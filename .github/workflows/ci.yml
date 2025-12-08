@@ -40,13 +40,19 @@ jobs:
             - name: 🏗️ Build and package ext (pnpm build:all)
               run: pnpm build:all
 
+            # --- ARTIFACT NAMING HELPERS ---
+
+            - name: 🧮 Short SHA
+              id: sha
+              run: echo "short=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+
             # --- ARTIFACT UPLOAD ---
 
             - name: ⬆️ Upload release zips
               uses: actions/upload-artifact@v4
               with:
                   # Use PR number if available, otherwise fall back to SHA (for manual triggers)
-                  name: GPThemes-debug-${{ github.event.pull_request.number && format('PR{0}', github.event.pull_request.number) || format('build{0}', github.run_number) }}
+                  name: GPThemes-debug-${{ github.event.pull_request.number && format('PR#{0}-{1}', github.event.pull_request.number, steps.sha.outputs.short) || format('build{0}-{1}', github.run_number, steps.sha.outputs.short) }}
                   path: build/releases/*
                   # retention-days: 7 # Keep artifacts for a week
 
