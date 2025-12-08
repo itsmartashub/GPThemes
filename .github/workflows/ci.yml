@@ -19,19 +19,19 @@ jobs:
 
             # --- SETUP ENVIRONMENT ---
 
-            # CRITICAL: install pnpm FIRST before setup-node tries to cache it !!
+            # CRITICAL: Install pnpm FIRST before setup-node tries to cache it
             - name: 📦 Install pnpm
               uses: pnpm/action-setup@v4
               with:
                   version: '10'
 
-            - name: 🚀 Setup Node & cache pnpm
+            - name: 🚀 Setup Node.js & pnpm
               uses: actions/setup-node@v4
               with:
                   node-version: '20' # LTS version for stability
                   cache: 'pnpm'
 
-            - name: 📦 Install deps
+            - name: 📦 Install pnpm deps
               run: pnpm install --frozen-lockfile # Use --frozen-lockfile for CI stability
 
             - name: 🦕 Setup deno
