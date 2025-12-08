@@ -47,8 +47,8 @@ jobs:
             - name: ⬆️ Upload release zips
               uses: actions/upload-artifact@v4
               with:
-              # Use PR number if available, otherwise fall back to SHA (for manual triggers)
-              name: GPThemes-debug-${{ github.event.pull_request.number && format('PR{0}', github.event.pull_request.number) || github.sha }}
+                  # Use PR number if available, otherwise fall back to SHA (for manual triggers)
+                  name: GPThemes-debug-${{ github.event.pull_request.number && format('PR{0}', github.event.pull_request.number) || github.sha }}
                   path: build/releases/*
                   retention-days: 7 # Keep artifacts for a week
 
