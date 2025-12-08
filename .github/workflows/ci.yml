@@ -1,5 +1,3 @@
-# .github/workflows/ci-cd.yml
-
 name: 📦 Extension CI/CD and Packaging
 
 on:
@@ -19,7 +17,7 @@ jobs:
 
             # --- SETUP ENVIRONMENT ---
 
-            # CRITICAL: Install pnpm FIRST before setup-node tries to cache it
+            # CRITICAL: Install pnpm FIRST before setup-node tries to cache it (whitelist the `pnpm/action-setup@*` under the Repo > Settings > Actions )
             - name: 📦 Install pnpm
               uses: pnpm/action-setup@v4
               with:
@@ -28,7 +26,7 @@ jobs:
             - name: 🚀 Setup Node.js & pnpm
               uses: actions/setup-node@v4
               with:
-                  node-version: '20' # LTS version for stability
+                  node-version: '20'
                   cache: 'pnpm'
 
             - name: 📦 Install pnpm deps
@@ -37,14 +35,11 @@ jobs:
             - name: 🦕 Setup deno
               uses: denoland/setup-deno@v2
               with:
-                  deno-version: 'v2.x' # Use v2 for the latest feat/perf
-
-            # NOTE: No separate 'deno install' step is needed as 'zip.js' uses URL imports.
+                  deno-version: 'v2.x'
 
             # --- BUILD & ZIP ---
 
             - name: 🏗️ Build and Package Extensions (pnpm build:all)
-              # This single command runs clean, parcel builds, and the deno zip script.
               run: pnpm build:all
 
             # --- ARTIFACT UPLOAD ---
@@ -52,7 +47,8 @@ jobs:
             - name: ⬆️ Upload release zips
               uses: actions/upload-artifact@v4
               with:
-                  name: extension-debug-${{ github.sha }} # Dynamic name based on commit hash
+              # Use PR number if available, otherwise fall back to SHA (for manual triggers)
+              name: GPThemes-debug-${{ github.event.pull_request.number && format('PR{0}', github.event.pull_request.number) || github.sha }}
                   path: build/releases/*
                   retention-days: 7 # Keep artifacts for a week
 
