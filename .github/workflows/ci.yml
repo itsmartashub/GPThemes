@@ -19,7 +19,13 @@ jobs:
 
             # --- SETUP ENVIRONMENT ---
 
-            - name: 🚀 Setup Node.js & pnpm
+            - name: 📦 Setup pnpm
+              uses: pnpm/action-setup@v4
+              with:
+              version: '10'
+              run_install: false
+
+            - name: 🚀 Setup Node.js
               uses: actions/setup-node@v4
               with:
                   node-version: '20' # LTS version for stability
