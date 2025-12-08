@@ -44,12 +44,16 @@ jobs:
 
             - name: 🧮 Short SHA
               id: sha
+              # PR trigger: use PR head SHA
+              # Manual or push trigger: use commit SHA
+              # Take first 7 chars
               run: |
                   if [ "${{ github.event.pull_request }}" != "" ]; then
-                    echo "short=${{ github.event.pull_request.head.sha::7 }}" >> "$GITHUB_OUTPUT"
+                    SHA=$(jq -r .pull_request.head.sha $GITHUB_EVENT_PATH)
                   else
-                    echo "short=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+                    SHA=$GITHUB_SHA
                   fi
+                  echo "short=${SHA:0:7}" >> $GITHUB_OUTPUT
 
             # --- ARTIFACT UPLOAD ---
 
@@ -58,8 +62,8 @@ jobs:
               with:
                   # Use PR number if available, otherwise fall back to SHA (for manual triggers)
                   name: ${{ github.event.pull_request.number
-                      && format('GPThemes-debug-pr#{0}-{1}', github.event.pull_request.number, steps.sha.outputs.short)
-                      || format('GPThemes-debug-ci#{0}', steps.sha.outputs.short) }}
+                      && format('GPThemes-debug-PR#{0}-{1}', github.event.pull_request.number, steps.sha.outputs.short)
+                      || format('GPThemes-debug-build-{0}', steps.sha.outputs.short) }}
                   path: build/releases/*
                   # retention-days: 7 # Keep artifacts for a week
 
