@@ -4,6 +4,10 @@ on:
     workflow_dispatch: # Trigger manually via GH UI
     pull_request: # Trigger on PR for status checks
 
+permissions:
+    contents: read # only read repo files
+    pull-requests: write # only write PR comments/artifacts if needed
+
 jobs:
     build-and-package:
         name: Build, zip, and test
@@ -19,13 +23,13 @@ jobs:
             - name: 📦 Install pnpm
               uses: pnpm/action-setup@v4
               with:
-                  version: '10'
+                  version: "10"
 
             - name: 🚀 Setup Node.js & pnpm
               uses: actions/setup-node@v4
               with:
-                  node-version: '20'
-                  cache: 'pnpm'
+                  node-version: "20"
+                  cache: "pnpm"
 
             - name: 📦 Install pnpm deps
               run: pnpm install --frozen-lockfile # Use --frozen-lockfile for CI stability
@@ -33,7 +37,7 @@ jobs:
             - name: 🦕 Setup deno
               uses: denoland/setup-deno@v2
               with:
-                  deno-version: 'v2.x'
+                  deno-version: "v2.x"
 
             # --- BUILD & ZIP ---
 
@@ -62,8 +66,8 @@ jobs:
               with:
                   # Use PR number if available, otherwise fall back to SHA (for manual triggers)
                   name: ${{ github.event.pull_request.number
-                      && format('GPThemes-debug-PR#{0}-{1}', github.event.pull_request.number, steps.sha.outputs.short)
-                      || format('GPThemes-debug-build-{0}', steps.sha.outputs.short) }}
+                      && format('ext-debug-PR#{0}-{1}', github.event.pull_request.number, steps.sha.outputs.short)
+                      || format('ext-debug-build-{0}', steps.sha.outputs.short) }}
                   path: build/releases/*
                   # retention-days: 7 # Keep artifacts for a week
 
