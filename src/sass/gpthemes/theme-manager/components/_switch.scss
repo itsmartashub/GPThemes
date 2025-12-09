@@ -10,14 +10,14 @@
     border-radius: calc(var(--br-btn) * 1.5);
     padding: var(--p-btn);
     border: 1px solid transparent;
-    transition: .25s ease-in;
+    transition: 0.25s ease-in;
 
-    @include dev('xxs') {
+    @include dev("xxs") {
         display: grid;
         gap: 1rem 0.5rem;
         grid-template-areas:
-            'icon . checkbox'
-            'text text text';
+            "icon . checkbox"
+            "text text text";
     }
 
     &:hover {
@@ -27,10 +27,10 @@
         transform: scale(0.98);
     }
 
-
     &__icon {
         --icon-size: 2.8em;
         --svg-muliplicator: 0.6;
+
         width: var(--icon-size);
         height: var(--icon-size);
         display: grid;
@@ -44,7 +44,7 @@
             height: calc(var(--icon-size) * var(--svg-muliplicator));
         }
 
-        @include dev('xxs') {
+        @include dev("xxs") {
             grid-area: icon;
         }
     }
@@ -69,7 +69,7 @@
             font-weight: 400;
         }
 
-        @include dev('xxs') {
+        @include dev("xxs") {
             grid-area: text;
         }
     }
@@ -101,7 +101,7 @@
             bottom: 0;
             background-color: var(--c-accent-30);
             border: 2px solid var(--c-accent-50);
-            transition: .4s;
+            transition: 0.4s;
             border-radius: var(--chb-w);
 
             &::before {
@@ -111,12 +111,12 @@
                 aspect-ratio: 1/1;
                 left: var(--chb-edge-gap);
                 background-color: var(--c-accent-50);
-                transition: .4s $easeInOutCirc;
+                transition: 0.4s $easeInOutCirc;
                 border-radius: 50%;
             }
         }
 
-        input:checked+.slider {
+        input:checked + .slider {
             background-color: var(--c-accent);
             border-color: transparent !important;
 
@@ -126,12 +126,12 @@
             }
         }
 
-        input:disabled+.slider {
+        input:disabled + .slider {
             // background-color: var(--c-accent-10);
             opacity: 0.25 !important;
         }
 
-        @include dev('xxs') {
+        @include dev("xxs") {
             grid-area: checkbox;
         }
     }
