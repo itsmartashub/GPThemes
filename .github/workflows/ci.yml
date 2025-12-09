@@ -1,0 +1,84 @@
+name: 📦 Extension CI/CD and Packaging
+
+on:
+    workflow_dispatch: # Trigger manually via GH UI
+    pull_request: # Trigger on PR for status checks
+
+permissions:
+    contents: read # only read repo files
+    pull-requests: write # only write PR comments/artifacts if needed
+
+jobs:
+    build-and-package:
+        name: Build, zip, and test
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: ⚙️ Checkout repo
+              uses: actions/checkout@v4
+
+            # --- SETUP ENVIRONMENT ---
+
+            # CRITICAL: Install pnpm FIRST before setup-node tries to cache it (!! whitelist the `pnpm/action-setup@*` under the Repo > Settings > Actions !!)
+            - name: 📦 Install pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: "10"
+
+            - name: 🚀 Setup Node.js & pnpm
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+                  cache: "pnpm"
+
+            - name: 📦 Install pnpm deps
+              run: pnpm install --frozen-lockfile # Use --frozen-lockfile for CI stability
+
+            - name: 🦕 Setup deno
+              uses: denoland/setup-deno@v2
+              with:
+                  deno-version: "v2.x"
+
+            # --- BUILD & ZIP ---
+
+            - name: 🏗️ Build and package ext (pnpm build:all)
+              run: pnpm build:all
+
+            # --- ARTIFACT NAMING HELPERS ---
+
+            - name: 🧮 Short SHA
+              id: sha
+              # PR trigger: use PR head SHA
+              # Manual or push trigger: use commit SHA
+              # Take first 7 chars
+              run: |
+                  if [ "${{ github.event.pull_request }}" != "" ]; then
+                    SHA=$(jq -r .pull_request.head.sha $GITHUB_EVENT_PATH)
+                  else
+                    SHA=$GITHUB_SHA
+                  fi
+                  echo "short=${SHA:0:7}" >> $GITHUB_OUTPUT
+
+            # --- ARTIFACT UPLOAD ---
+
+            - name: ⬆️ Upload release zips
+              uses: actions/upload-artifact@v4
+              with:
+                  # Use PR number if available, otherwise fall back to SHA (for manual triggers)
+                  name: ${{ github.event.pull_request.number
+                      && format('ext-debug-PR#{0}-{1}', github.event.pull_request.number, steps.sha.outputs.short)
+                      || format('ext-debug-build-{0}', steps.sha.outputs.short) }}
+                  path: build/releases/*
+                  # retention-days: 7 # Keep artifacts for a week
+
+    report:
+        # Use always() instead of failure() if you want the report step to run
+        if: failure()
+        needs: [build-and-package]
+        runs-on: ubuntu-latest
+        steps:
+            - name: ⚠️ Failure Report
+              run: |
+                  echo "### ❌ Build/packaging failed" >> $GITHUB_STEP_SUMMARY
+                  echo "Review the logs for the 'Build and package extensions' step." >> $GITHUB_STEP_SUMMARY
+                  echo "Job status: ${{ needs.build-and-package.result }}" >> $GITHUB_STEP_SUMMARY
