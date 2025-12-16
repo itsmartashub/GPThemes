@@ -5,12 +5,12 @@ on:
   workflow_call:
     inputs:
       skip-biome:
-        description: "Set to true to skip Biome checks."
+        description: "Set to true to skip Biome checks"
         required: false
         type: boolean
         default: false
       skip-stylelint:
-        description: "Set to true to skip Stylelint checks."
+        description: "Set to true to skip Stylelint checks"
         required: false
         type: boolean
         default: false
@@ -39,11 +39,11 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       # --- 1. RUN BIOME LINT (conditional) ---
-      - name: 🔍 Run Biome Lint (JS/TS)
+      - name: 🔍 Run Biome lint (JS)
         # check the input passed from the caller workflow
         if: ${{ inputs.skip-biome == false }}
         run: |
-          echo "--- Running Biome Lint (pnpm lint) ---"
+          echo "--- RUNNING BIOME LINT (pnpm lint) ---"
           pnpm lint || true
 
       # --- 2. RUN STYLELINT (conditional) ---
@@ -51,5 +51,5 @@ jobs:
         # check the input passed from the caller workflow
         if: ${{ inputs.skip-stylelint == false }}
         run: |
-          echo "--- Running Stylelint (pnpm slint) ---"
+          echo "--- RUNNING STYLELINT (pnpm slint) ---"
           pnpm slint || true
