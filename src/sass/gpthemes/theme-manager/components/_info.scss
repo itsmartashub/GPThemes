@@ -2,7 +2,6 @@
     color: var(--fg, var(--c-accent));
     background-color: color-alpha(currentColor, 0.15);
     box-shadow: 0 0 0 1px color-alpha(currentColor, 0.25);
-
     font-size: 0.765rem;
     display: flex;
     align-items: flex-start;
@@ -18,18 +17,22 @@
 
     /* TODO: add mixing for this */
     &[data-type="info"] {
+
         --fg: var(--c-accent);
     }
 
     &[data-type="success"] {
+
         --fg: var(--c-success);
     }
 
     &[data-type="warning"] {
+
         --fg: var(--c-warning);
     }
 
     &[data-type="danger"] {
+
         --fg: var(--c-danger);
     }
 }

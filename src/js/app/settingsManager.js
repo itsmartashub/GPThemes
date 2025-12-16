@@ -1,8 +1,12 @@
-import { SELECTORS } from './config/selectors.js'
 import { PFX } from './config/consts.js'
-import { renderColorsTab, init as initColors, mount as mountColors } from './custom-colors/index.js'
-import { renderFontsTab, init as initFonts, mount as mountFonts } from './custom-fonts/index.js'
-import { renderLayoutsTab, init as initWidths, mount as mountWidths } from './custom-layouts/index.js'
+import { SELECTORS } from './config/selectors.js'
+import { init as initColors, mount as mountColors, renderColorsTab } from './custom-colors/index.js'
+import { init as initFonts, mount as mountFonts, renderFontsTab } from './custom-fonts/index.js'
+import {
+	init as initWidths,
+	mount as mountWidths,
+	renderLayoutsTab,
+} from './custom-layouts/index.js'
 
 // =====================================================
 // STATE - global state (cached refs, constants)
@@ -17,7 +21,13 @@ const HIDDEN_CLASS = 'hidden'
 const TABS_CONFIG = [
 	{ id: 'colors', label: 'Color', render: renderColorsTab, init: initColors, mount: mountColors },
 	{ id: 'fonts', label: 'Font', render: renderFontsTab, init: initFonts, mount: mountFonts },
-	{ id: 'layout', label: 'Layout', render: renderLayoutsTab, init: initWidths, mount: mountWidths },
+	{
+		id: 'layout',
+		label: 'Layout',
+		render: renderLayoutsTab,
+		init: initWidths,
+		mount: mountWidths,
+	},
 ]
 
 // =====================================================
@@ -27,10 +37,10 @@ function templateHTML() {
 	const buttons = TABS_CONFIG.map(
 		({ label }, i) => `
 			<button class="${SELECTORS.SETTINGS.TABS.BUTTON} py-2 px-4 focus:outline-none text-center ${
-			i === 0 ? ACTIVE_CLASS : ''
-		}" data-tab="${i}">
+				i === 0 ? ACTIVE_CLASS : ''
+			}" data-tab="${i}">
 				${label}
-			</button>`
+			</button>`,
 	).join('')
 
 	const panes = TABS_CONFIG.map(
@@ -38,7 +48,7 @@ function templateHTML() {
 			<div id="${PFX}-tab-${id}"
 				class="${SELECTORS.SETTINGS.TABS.PANE} ${i === 0 ? ACTIVE_CLASS : HIDDEN_CLASS}">
 				${render()}
-			</div>`
+			</div>`,
 	).join('')
 
 	return `
@@ -82,7 +92,9 @@ async function createSettings() {
 	//  Wait for next tick to ensure DOM is fully ready
 	requestAnimationFrame(() => {
 		// 5. Mount modules
-		TABS_CONFIG.forEach(({ mount }) => mount(el))
+		TABS_CONFIG.forEach(({ mount }) => {
+			mount(el)
+		})
 		// 6. Attach global listeners
 		addListeners()
 	})
@@ -103,7 +115,9 @@ function setElements(root) {
 // LISTENERS
 // =====================================================
 function addListeners() {
-	$settings.querySelector(`.${SELECTORS.SETTINGS.TABS.BUTTONS}`).addEventListener('click', onTabsSwitching)
+	$settings
+		.querySelector(`.${SELECTORS.SETTINGS.TABS.BUTTONS}`)
+		.addEventListener('click', onTabsSwitching)
 	// handleTabsSwitching()
 }
 
@@ -119,7 +133,7 @@ function onTabsSwitching(e) {
 	const btn = e.target.closest(`.${SELECTORS.SETTINGS.TABS.BUTTON}`)
 	if (!btn) return
 
-	const newIndex = parseInt(btn.dataset.tab)
+	const newIndex = +btn.dataset.tab
 	const activeIndex = $tabButtons.findIndex((t) => t.classList.contains(ACTIVE_CLASS))
 
 	// console.log(activeIndex, newIndex)

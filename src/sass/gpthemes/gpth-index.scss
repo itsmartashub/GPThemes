@@ -1,24 +1,21 @@
-$pfx: 'gpth';
+$pfx: "gpth";
 
-@import 'theme-manager/components/_typography';
-@import 'theme-manager/components/_colorpicker';
-@import 'theme-manager/components/_range';
-@import 'theme-manager/components/_tabs';
-@import 'theme-manager/components/_cards';
-@import 'theme-manager/components/_fonts';
-@import 'theme-manager/components/_switch';
-@import 'theme-manager/components/_checkbox';
-@import 'theme-manager/components/_scrolldown';
-@import 'theme-manager/components/_toggle-chats-bg';
+@import "theme-manager/components/_typography";
+@import "theme-manager/components/_colorpicker";
+@import "theme-manager/components/_range";
+@import "theme-manager/components/_tabs";
+@import "theme-manager/components/_cards";
+@import "theme-manager/components/_fonts";
+@import "theme-manager/components/_switch";
+@import "theme-manager/components/_checkbox";
+@import "theme-manager/components/_scrolldown";
+@import "theme-manager/components/_toggle-chats-bg";
 // @import 'theme-manager/components/_msg-base';
 // @import 'theme-manager/components/_msg';
-@import 'theme-manager/components/_notification';
-@import 'theme-manager/components/_info';
-
-@import 'theme-manager/sections/_header';
-@import 'theme-manager/sections/_main';
-@import 'theme-manager/sections/_header';
-@import 'theme-manager/layouts/_gpth-layouts';
-
-@import '_gpth-fab';
-@import '_gpth-settings';
+@import "theme-manager/components/_notification";
+@import "theme-manager/components/_info";
+@import "theme-manager/sections/_main";
+@import "theme-manager/sections/_header";
+@import "theme-manager/layouts/_gpth-layouts";
+@import "_gpth-fab";
+@import "_gpth-settings";

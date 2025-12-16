@@ -6,10 +6,13 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
+        "npm:@biomejs/biome@2.3.8",
         "npm:@parcel/config-default@^2.16.3",
         "npm:@parcel/config-webextension@^2.16.3",
         "npm:@parcel/transformer-sass@2.16.3",
         "npm:parcel@^2.16.3",
+        "npm:stylelint-config-standard-scss@16",
+        "npm:stylelint@^16.26.1",
         "npm:webextension-polyfill@0.12"
       ]
     }

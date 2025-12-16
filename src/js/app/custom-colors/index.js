@@ -1,15 +1,18 @@
-import { SELECTORS } from '../config/selectors.js'
 import { renderButton } from '../components/renderButtons.js'
-import { renderSeparator } from '../components/renderUtils.js'
 import { renderInfo } from '../components/renderInfo.js'
-import { renderUserAccentBgToggle, mount as mountUserBubbleAccent } from './toggleAccentUserBubble.js'
-import { renderAllTextAccent, mount as mountAllTextAccent } from './toggleAccentAllText.js'
+import { renderSeparator } from '../components/renderUtils.js'
+import { SELECTORS } from '../config/selectors.js'
 import {
-	renderAccentsColors,
-	mount as mountAccentColors,
 	init as initAccentColors,
+	mount as mountAccentColors,
+	renderAccentsColors,
 	resetAllAccents,
 } from './accentColors.js'
+import { mount as mountAllTextAccent, renderAllTextAccent } from './toggleAccentAllText.js'
+import {
+	mount as mountUserBubbleAccent,
+	renderUserAccentBgToggle,
+} from './toggleAccentUserBubble.js'
 
 // =====================================================
 // TEMPLATE
@@ -64,7 +67,7 @@ async function init() {
 function mount() {
 	// console.log('[MOUNT COLORS]')
 	// Setup elements
-	let $resetBtn = document.getElementById(SELECTORS.ACCENT.RESET_BTN_ID)
+	const $resetBtn = document.getElementById(SELECTORS.ACCENT.RESET_BTN_ID)
 
 	// Attach listeners
 	$resetBtn.addEventListener('click', resetAll)

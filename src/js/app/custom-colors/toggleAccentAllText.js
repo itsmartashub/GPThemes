@@ -1,11 +1,11 @@
+import { ROOT_HTML } from '../../utils/dom.js'
 import { getItem, setItem } from '../../utils/storage.js'
-import { $, ROOT_HTML } from '../../utils/dom.js'
-import { SELECTORS } from '../config/selectors.js'
-import { SK_TOGGLE_ACCENT_TEXT } from '../config/consts-storage.js'
-import { ATTR_ACCENT_TEXT } from '../config/consts-attr.js'
+import { icon_text_color } from '../components/icons.js'
 import { Notify } from '../components/renderNotify.js'
 import { renderToggle } from '../components/renderToggles.js'
-import { icon_text_color } from '../components/icons.js'
+import { ATTR_ACCENT_TEXT } from '../config/consts-attr.js'
+import { SK_TOGGLE_ACCENT_TEXT } from '../config/consts-storage.js'
+import { SELECTORS } from '../config/selectors.js'
 
 // =====================================================
 // STATE
@@ -131,4 +131,4 @@ async function mount() {
 // =====================================================
 // Exports
 // =====================================================
-export { templateHTML as renderAllTextAccent, mount }
+export { mount, templateHTML as renderAllTextAccent }

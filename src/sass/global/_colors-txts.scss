@@ -20,7 +20,6 @@
 .text-gray-600,
 .text-gray-500 {
 	color: var(--c-subtext-2) !important;
-	// color: red !important;
 }
 
 /* .text-gizmo-gray-500 is the footer txt in dialog "YOU'RE INVITED TO PLUS" */
@@ -31,8 +30,8 @@
 
 /* Temp textarea text */
 .text-token-text-primary {
+
 	--text-primary: var(--c-txt) !important;
-	// color: var(--text-primary);
 }
 
 /* 
@@ -42,20 +41,20 @@
 - "Upgrade your plan" dialog - "Have an existing plan? See billing help" and "* Price billed annually, minimum 2 users" 
 - Settings - Text after "Chat history & training"
 - "Loading" in dialogs
-- "👍👎 ❌" in "Was this response better or worse? 👍👎 | ❌"*/
+- "👍👎 ❌" in "Was this response better or worse? 👍👎 | ❌" */
 .text-token-text-secondary {
 	color: var(--c-subtext-1) !important;
-	// color: red !important;
 }
 
 /* "ChatGPT 3.5 ^ and its contextmenu small txt", "Upgrade plan - Get GPT-4, DALL-E, and more", icon bubble in tables, "X" close btn in dialogs, etc */
 .text-token-text-tertiary {
+
 	--text-tertiary: var(--c-subtext-2) !important;
-	// --text-tertiary: red !important;
 }
 
 /* Sidebar collapse btn;"ChatGPT 3.5 - Fastest" in 4o menu when hover on it in chat bubbles */
 .text-token-text-quaternary {
+
 	--text-quaternary: var(--c-subtext-2) !important;
 }
 
@@ -80,7 +79,7 @@
 - .text-blue-400: Blue text in reply in prompt textarea when DALLE image is open
 - .text-blue-800: Attached icon in Guest mode
 - .text-\[\#0285ff\: Blue deepsearch "X sources"
-- .text-black: maps marker text of inactive marker and 'Map' or 'List' tab in map (inactive tab)*/
+- .text-black: maps marker text of inactive marker and 'Map' or 'List' tab in map (inactive tab) */
 .text-\[\#0285ff\],
 .text-black,
 .text-green-600,
@@ -97,6 +96,7 @@
 }
 
 .text-token-link {
+
 	--link: var(--c-accent) !important;
 }
 

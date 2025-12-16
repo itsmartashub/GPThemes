@@ -1,6 +1,6 @@
-import { getItem, setItem, setItems, getStorage, clearStorage } from '../utils/storage'
-import { SK_EXT_VERSION, SK_DB_VERSION } from '../app/config/consts-storage'
 import { runtime } from 'webextension-polyfill'
+import { SK_DB_VERSION, SK_EXT_VERSION } from '../app/config/consts-storage'
+import { clearStorage, getItem, getStorage, setItem, setItems } from '../utils/storage'
 
 export const DB_VERSION = '1.0'
 

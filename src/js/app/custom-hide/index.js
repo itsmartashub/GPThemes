@@ -1,9 +1,9 @@
-import { getItems, setItem } from '../../utils/storage.js'
 import { $, ROOT_HTML } from '../../utils/dom.js'
+import { getItems, setItem } from '../../utils/storage.js'
+import { Notify } from '../components/renderNotify.js'
+import { renderToggle } from '../components/renderToggles.js'
 import { ELEMENTS } from '../config/consts-hidden-els.js'
 import { SELECTORS } from '../config/selectors'
-import { renderToggle } from '../components/renderToggles.js'
-import { Notify } from '../components/renderNotify.js'
 
 // =====================================================
 // STATE
@@ -29,7 +29,7 @@ function templateHTML() {
 			icon: cfg.icon,
 			card: true,
 			className: '',
-		})
+		}),
 	).join('')
 
 	return `

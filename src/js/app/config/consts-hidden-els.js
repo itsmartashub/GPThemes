@@ -1,7 +1,11 @@
+import { icon_footer, icon_header, icon_upgrade } from '../components/icons'
+import { ATTR_HIDE_FOOTER, ATTR_HIDE_HEADER, ATTR_HIDE_UPGRADE_CHIP } from './consts-attr'
+import {
+	SK_TOGGLE_HIDE_FOOTER,
+	SK_TOGGLE_HIDE_HEADER,
+	SK_TOGGLE_HIDE_UPGRADE_CHIP,
+} from './consts-storage'
 import { SELECTORS } from './selectors'
-import { ATTR_HIDE_HEADER, ATTR_HIDE_FOOTER, ATTR_HIDE_UPGRADE_CHIP } from './consts-attr'
-import { SK_TOGGLE_HIDE_HEADER, SK_TOGGLE_HIDE_FOOTER, SK_TOGGLE_HIDE_UPGRADE_CHIP } from './consts-storage'
-import { icon_header, icon_footer, icon_upgrade } from '../components/icons'
 
 export const ELEMENTS = [
 	{

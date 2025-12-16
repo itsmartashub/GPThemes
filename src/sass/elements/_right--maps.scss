@@ -1,17 +1,14 @@
 [role="presentation"].composer-parent {
     [data-message-author-role="assistant"] {
         .markdown .not-prose {
-
             .bg-linear-to-b {
                 background: none !important;
             }
 
             /* Search - Maps */
             .mapboxgl-map {
-
                 /* Location counter bubbles in maps */
                 .mapboxgl-marker {
-
                     /* Change the text color for selected location counter bubbles in the maps */
                     .text-white.absolute {
                         color: var(--c-on-accent) !important;

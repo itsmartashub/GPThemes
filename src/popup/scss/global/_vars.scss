@@ -1,17 +1,18 @@
 @use "sass:color";
 
-$accent: rgb(202, 147, 251); // rgb(194, 216, 196); // rgb(252, 154, 154);
+$accent: rgb(202 147 251); // rgb(194, 216, 196); // rgb(252, 154, 154);
 $on-accent: color.scale($accent, $lightness: -80%);
 $bg: color.scale($accent, $lightness: -97%);
 $fg: color.scale($accent, $lightness: 70%);
 $warning: #f3bc27;
-$bg-gradient: linear-gradient(135deg,
-                color.adjust($accent, $alpha: -0.65) 0%,
-                color.adjust($accent, $alpha: -0.9) 30%,
-                color.adjust($accent, $alpha: -0.95) 60%,
-                color.adjust($accent, $alpha: -0.65) 100%);
-
+$bg-gradient: linear-gradient(
+    135deg,
+    color.adjust($accent, $alpha: -0.65) 0%,
+    color.adjust($accent, $alpha: -0.9) 30%,
+    color.adjust($accent, $alpha: -0.95) 60%,
+    color.adjust($accent, $alpha: -0.65) 100%
+);
 $w-scrollbar: 3px;
 $br-scrollbar: 1rem;
-$c-scrollbar-thumb: #ffffff33;
+$c-scrollbar-thumb: #fff3;
 $c-scrollbar-track: #ffffff0d;

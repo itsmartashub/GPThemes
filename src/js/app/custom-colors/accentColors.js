@@ -1,9 +1,9 @@
 import ColorPicker from '../../../libs/jscolorpicker/colorpicker.min.js'
-import { getItems, setItem, removeItems } from '../../utils/storage.js'
-import { SELECTORS } from '../config/selectors.js'
-import { SK_COLOR_ACCENT_LIGHT, SK_COLOR_ACCENT_DARK } from '../config/consts-storage.js'
-import { getVar, setVar, setVars, removeVar } from '../../utils/dom.js'
+import { getVar, removeVar, setVar, setVars } from '../../utils/dom.js'
+import { getItems, removeItems, setItem } from '../../utils/storage.js'
 import { Notify } from '../components/renderNotify.js'
+import { SK_COLOR_ACCENT_DARK, SK_COLOR_ACCENT_LIGHT } from '../config/consts-storage.js'
+import { SELECTORS } from '../config/selectors.js'
 
 // =====================================================
 // STATE
@@ -43,7 +43,7 @@ function templateHTML() {
 			<button id="${cfg.id}" data-theme-key="${cfg.storageKey}"></button>
 			<label for="${cfg.id}">${cfg.label}</label>
 		</div>
-	`
+	`,
 	).join('')}</div>`
 }
 
@@ -116,7 +116,8 @@ function isValidHexColor(colorStr) {
 }
 
 function isColorValid(color) {
-	return color?.color && color.color.every((val) => !isNaN(val)) && color.color[3] === 1
+	// return color?.color && color.color.every((val) => !Number.isNaN(val)) && color.color[3] === 1
+	return color?.color.every((val) => !Number.isNaN(val)) && color.color[3] === 1
 }
 
 // =====================================================

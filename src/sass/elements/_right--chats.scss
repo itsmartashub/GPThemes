@@ -1,13 +1,14 @@
 .composer-parent[role='presentation'] {
     container: main / inline-size;
+
     --p-chat-bubble-multiply: 1.35; // not used for Group chats !!
 
     /* Main Page chat-container  Bg */
     background-color: var(--c-bg-chats-container) !important;
 
+
     /* GTP logo in Dual Response chat bubbles */
     .gizmo-bot-avatar {
-
         &,
         &>div.bg-token-main-surface-primary {
             background-color: var(--c-accent) !important;
@@ -24,6 +25,7 @@
         background-color: var(--c-surface-2);
         padding-inline: 0.5rem;
         border-radius: var(--br-btn-big);
+
         @include lift;
     }
 
@@ -32,48 +34,46 @@
     section ol li.group\/project-item {
         border-radius: var(--br);
         transition: transform 0.25s ease, background-color 0.25s ease;
-        // border-bottom: none !important;
-        // margin-bottom: 0.5rem;
-
-        // &:nth-child(2n) {
-        //     background-color: var(--c-accent-03);
-        // }
 
         &:hover {
             transform: translateY(-0.08rem);
-            // background-color: var(--c-accent-10) !important;
         }
     }
 }
 
 [data-testid^='conversation-turn-'] {
     @include container('md') {
+
         --p-chat-bubble: .8rem;
+
         --br-chat-bubble: calc(var(--br) * 1.5);
     }
 
     @include container('sm') {
-
         /* Wrapper of each chat-bubbles msg, decreise padding-inline. Spacing from chat bubbles to screen edge */
         .text-base.my-auto.mx-auto[class*="[--thread-content-margin:"] {
-            --thread-content-margin: calc(var(--spacing)*2) !important;
+
+            --thread-content-margin: calc(var(--spacing) * 2) !important;
         }
     }
 
     /* _________ CANVAS in chat bubbles */
     [id^="textdoc-message"] {
+
         --bg-primary: var(--c-bg-cm) !important;
+
         --main-surface-primary: var(--c-bg-cm) !important;
+
         background-color: var(--c-bg-cm) !important;
 
         /* Sticky header za Canvas gde su "Copy" | "Edit" | "Download" | "RUN CODE" */
         .sticky.top-0>[class*="dark:bg-token-bg-elevated-secondary/80"] {
-            background-color: color-mix(in srgb, var(--c-bg-cm) 60%, transparent 50%) !important;
+            background-color: color-mix(in sRGB, var(--c-bg-cm) 60%, transparent 50%) !important;
         }
 
         /* Gradient on the bottom of code */
         .absolute.bottom-0.z-20.h-24.w-full.transition-colors {
-            background: linear-gradient(rgba(0, 0, 0, 0), var(--c-bg-cm)) !important;
+            background: linear-gradient(rgb(0 0 0 / 0), var(--c-bg-cm)) !important;
         }
     }
 
@@ -89,10 +89,8 @@
 
     /* User and GPT chats footer */
     [class*="group/turn-messages"]>.flex[class*="justify-"] {
-
         /* And User's and GPT's footer icons/btns wrapper */
         [class*="touch:-me-2 touch:-ms-3.5 -ms-2.5 -me-1"] {
-
             /* .group\/footnote is 'SOURCES' */
             button[aria-label]:not(.group\/footnote) {
                 color: var(--c-accent) !important;
@@ -116,7 +114,6 @@
 
         /* Only user's footer icons */
         &.justify-end {
-
             [class*="touch:-me-2 touch:-ms-3.5 -ms-2.5 -me-1"] {
                 border-radius: 50vw;
                 backdrop-filter: blur(10px);
@@ -128,11 +125,12 @@
 
     /* ================ USER CHAT ================ */
     &[data-turn="user"] {
-
         /* User chat bubble - Edit state.
         There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario */
         .rounded-3xl.bg-token-main-surface-tertiary:has(.max-h-\[25dvh\] > .grid > textarea) {
+
             --main-surface-tertiary: var(--c-accent-08) !important;
+
             border: 1px solid var(--c-accent-20);
             caret-color: var(--c-accent);
 
@@ -151,7 +149,6 @@
     }
 
     [data-message-author-role='user'] {
-
         /* ↪️ Reply in msg */
         &>.text-token-text-tertiary.mx-2.flex.items-start.justify-end.text-sm.font-normal {
             background-color: var(--c-accent-20);
@@ -170,8 +167,8 @@
 
     /* ================ GPT CHAT ================ */
     .agent-turn {
-
         /* TODO: CHECK THIS AND ALL REASONING VERSIONS... */
+
         /* REASONING: "Reasoned about [topic] for [X] seconds" title: Version with sidebar right open */
         .relative.bg-clip-padding.bg-token-bg-primary[class*="pt-[13px]"][class*="@max-3xl:-top-2"] {
             background-color: transparent !important;
@@ -186,7 +183,6 @@
 
         /* REASONING: "Reasoned about [topic] for [X] seconds" title: Version that toggle its content below */
         .relative.my-1.min-h-6 {
-
             /* REASONING: "Reasoned about [topic] for [X] seconds" content */
             .relative.z-0 {
                 .origin-left.start-0.end-0.top-0 {
@@ -200,14 +196,16 @@
 
         /* "SOURCES" button, style for footer icons affects this too!! */
         button.group\/footnote.bg-token-bg-primary.w-fit.rounded-3xl {
+
             --bg-primary: var(--c-accent-10) !important;
+
             text-transform: uppercase;
 
             &:is(:hover, :focus) {
                 background-color: var(--c-accent) !important;
 
                 .text-token-text-secondary {
-                    // color: var(--c-accent) !important;
+                    // color: var(--c-accent) !important;color
                     color: var(--c-on-accent) !important;
                 }
             }
@@ -215,7 +213,6 @@
 
         /* Source link big cards with image and text that overlaps rigth the chat bubble */
         [data-message-author-role="assistant"] .w-50.shrink-0.snap-start[class*="@5xl/thread:w-61"] {
-
             .h-full.w-full.bg-clip-padding.bg-token-bg-primary.cursor-pointer.overflow-hidden {
                 background-color: var(--c-accent-08) !important;
                 backdrop-filter: blur(0.25rem);

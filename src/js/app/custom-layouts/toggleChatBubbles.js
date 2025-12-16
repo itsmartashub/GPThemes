@@ -1,10 +1,10 @@
-import { getItem, setItem } from '../../utils/storage.js'
-import { SELECTORS } from '../config/selectors.js'
-import { SK_TOGGLE_CHAT_BUBBLES_STATE } from '../config/consts-storage.js'
-import { ATTR_BUBBLE_GPT, ATTR_BUBBLE_USER } from '../config/consts-attr.js'
 import { $, $$, ROOT_HTML } from '../../utils/dom.js'
-import { renderToggle } from '../components/renderToggles.js'
+import { getItem, setItem } from '../../utils/storage.js'
 import { Notify } from '../components/renderNotify.js'
+import { renderToggle } from '../components/renderToggles.js'
+import { ATTR_BUBBLE_GPT, ATTR_BUBBLE_USER } from '../config/consts-attr.js'
+import { SK_TOGGLE_CHAT_BUBBLES_STATE } from '../config/consts-storage.js'
+import { SELECTORS } from '../config/selectors.js'
 
 // =====================================================
 // CONSTANTS
@@ -36,15 +36,15 @@ const DEFAULT_STATE = {
 
 function templateHTML() {
 	const toggleItems = Object.entries(CONFIG)
-		.map(function ([type, config]) {
-			return renderToggle({
+		.map(([type, config]) =>
+			renderToggle({
 				id: `id-${config.label}`,
 				checked: DEFAULT_STATE[type],
 				label: config.label,
 				className: `${SELECTORS.TOGGLE_BUBBLES.ITEM} cursor-pointer`,
 				dataType: type,
-			})
-		})
+			}),
+		)
 		.join('')
 
 	return `
@@ -105,7 +105,7 @@ function updateDataAttr(state) {
 // Update checkbox inputs to reflect state (DOM required)
 function updateInputs(state) {
 	const checkboxes = $$(`.${SELECTORS.TOGGLE_BUBBLES.ROOT} .gpth-checkbox__input`)
-	checkboxes.forEach(function (input) {
+	checkboxes.forEach((input) => {
 		const type = input.dataset.type
 		if (type in state) input.checked = state[type]
 	})
@@ -131,8 +131,10 @@ async function onChange(event) {
 	updateDataAttr(updatedState)
 	updateInputs(updatedState)
 
-	saveState(updatedState).then((success) =>
-		input.checked ? Notify.success(`${type} bubble enabled`) : Notify.info(`${type} bubble disabled`)
+	saveState(updatedState).then(() =>
+		input.checked
+			? Notify.success(`${type} bubble enabled`)
+			: Notify.info(`${type} bubble disabled`),
 	)
 }
 

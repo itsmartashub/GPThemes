@@ -5,7 +5,8 @@ import { toggleFABVisibility } from '../custom-fab/index'
 function setupExtensionMessaging() {
 	if (!browser?.runtime?.onMessage) return
 
-	browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+	// browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+	browser.runtime.onMessage.addListener((msg) => {
 		console.log(msg)
 
 		if (msg?.action === 'toggleFABVisibility') {

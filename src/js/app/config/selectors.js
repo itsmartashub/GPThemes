@@ -1,6 +1,7 @@
 import { PFX } from './consts'
 
-const chatboxRoot = "form[data-type='unified-composer'] .contain-inline-size[class*='bg-[\\#303030]'"
+const chatboxRoot =
+	"form[data-type='unified-composer'] .contain-inline-size[class*='bg-[\\#303030]'"
 
 export const SELECTORS = {
 	SUBHEADING: `${PFX}-subheading`,
@@ -38,7 +39,7 @@ export const SELECTORS = {
 	ACCENT: {
 		LIGHT_ID: `${PFX}-accent-light-id`,
 		DARK_ID: `${PFX}-accent-dark-id`,
-		RESET_BTN_ID: '${PFX}ResetAllColors',
+		RESET_BTN_ID: `${PFX}ResetAllColors`,
 		TOGGLE_ACCENT_TEXT_ID: `${PFX}-toggle-accent-text`,
 	},
 
@@ -72,7 +73,8 @@ export const SELECTORS = {
 		ROOT: `${PFX}-scrolldown`,
 		BTN_CONTAINER: `${PFX}-scrolldown__btns`,
 		BTN: `${PFX}-scrolldown__btn`,
-		SCROLL_BTN: '[role="presentation"].composer-parent button:has(> svg.icon > path[d^="M9.33468"])',
+		SCROLL_BTN:
+			'[role="presentation"].composer-parent button:has(> svg.icon > path[d^="M9.33468"])',
 	},
 
 	// Bubbles
@@ -92,7 +94,7 @@ export const SELECTORS = {
 	// Chatbox
 	CHATBOX: {
 		ROOT: chatboxRoot,
-		TEMP: `${chatboxRoot}.dark\:bg-\[\#303030\].dark `,
+		TEMP: `${chatboxRoot}.dark:bg-[#303030].dark `,
 		HEIGHT: `#thread-bottom-container:not([class*="@lg/thread:grow"]) form[data-type="unified-composer"] .contain-inline-size.overflow-clip[class*='bg-[\\#303030]'] [class*="_prosemirror-parent"][class*="max-h-52"]`,
 		TOGGLE_MAX_HEIGHT_ID: 'toggle-chatbox-max-height',
 	},
@@ -110,7 +112,8 @@ export const SELECTORS = {
 		},
 		UPGRADE: {
 			TOGGLE_ID: `${PFX}-hide-upgrade-chip`,
-			SELECTOR: '.h-header-height.top-0 .rounded-full.bg-\\[\\#F1F1FB\\].dark\\:bg-\\[\\#373669\\]',
+			SELECTOR:
+				'.h-header-height.top-0 .rounded-full.bg-\\[\\#F1F1FB\\].dark\\:bg-\\[\\#373669\\]',
 		},
 	},
 }

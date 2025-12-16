@@ -47,7 +47,6 @@ scrollbar-track-piece {
 
 /* scrollbar-color for For Firefox */
 @-moz-document url-prefix() {
-
     html,
     * {
         scrollbar-color: rgba($accent, .5) rgba($accent, .2); // second parameter (transparent) is for bg-thumb

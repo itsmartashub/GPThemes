@@ -1,4 +1,5 @@
-/* === STICKY ChatGPT version ===*/
+/* === STICKY ChatGPT version === */
+
 /* Removing "main" before sticky caused this style is applied on many elements I don't want: Sidebar "NEW CHT" wrapper, and down the [aria-haspopup='menu']:hover caused also issues on in pop-up table on more options (3dots) svg icon.
 But adding this "main" blocked this style to smaller screens so I have to add it down, out of this block,
 
@@ -18,12 +19,10 @@ But adding this "main" blocked this style to smaller screens so I have to add it
 }
 
 .sticky {
-
 	/* "ChatGPT" button in sticky header */
 	[data-testid="model-switcher-dropdown-button"] {
 		transition: 0.25s color ease-in-out, 0.25s background-color ease-in-out;
 		border-radius: var(--br-btn) !important;
-		// backdrop-filter: blur(5px);
 
 		&:hover,
 		[data-state='open'] {
@@ -32,7 +31,7 @@ But adding this "main" blocked this style to smaller screens so I have to add it
 		}
 	}
 
-	/* ___ STICKY GPTs Page - "Global view ON" btn, "+CREATE" btn*/
+	/* ___ STICKY GPTs Page - "Global view ON" btn, "+CREATE" btn */
 	.btn {
 		border-radius: 50vw !important;
 	}

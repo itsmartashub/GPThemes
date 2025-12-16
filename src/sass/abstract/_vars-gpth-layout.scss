@@ -32,7 +32,7 @@
     --box-shadow-values: 0px 0px 100px 0px;
     --z-modal: 100;
 
-    @include dev('md') {
+    @include dev("md") {
         --p-chat-bubble: .8rem;
         --br-chat-bubble: calc(var(--br) * 1.5);
         --p-contextmenu: .5rem;
@@ -41,7 +41,7 @@
         --p-sidebar-nav: 0.3rem;
     }
 
-    @include dev('sm') {
+    @include dev("sm") {
         --br-chat-bubble: var(--br);
     }
 }

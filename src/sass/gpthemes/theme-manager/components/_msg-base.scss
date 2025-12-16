@@ -1,22 +1,32 @@
-@use 'sass:map';
+@use "sass:map";
 
 // Shared msg type config
 $msg-types: (
-    'info': ('color': var(--c-accent),
-        'bg-opacity': 0.1,
-        'border-opacity': 0.2),
-    'success': ('color': var(--c-success),
-        'bg-opacity': 0.1,
-        'border-opacity': 0.2),
-    'warning': ('color': var(--c-warning),
-        'bg-opacity': 0.15,
-        'border-opacity': 0.25),
-    'danger': ('color': var(--c-danger),
-        'bg-opacity': 0.12,
-        'border-opacity': 0.3),
-    'error': ('color': var(--c-danger),
-        'bg-opacity': 0.12,
-        'border-opacity': 0.3)
+    "info": (
+        "color": var(--c-accent),
+        "bg-opacity": 0.1,
+        "border-opacity": 0.2,
+    ),
+    "success": (
+        "color": var(--c-success),
+        "bg-opacity": 0.1,
+        "border-opacity": 0.2,
+    ),
+    "warning": (
+        "color": var(--c-warning),
+        "bg-opacity": 0.15,
+        "border-opacity": 0.25,
+    ),
+    "danger": (
+        "color": var(--c-danger),
+        "bg-opacity": 0.12,
+        "border-opacity": 0.3,
+    ),
+    "error": (
+        "color": var(--c-danger),
+        "bg-opacity": 0.12,
+        "border-opacity": 0.3,
+    ),
 );
 
 // Shared base styles for ALL msg components
@@ -51,9 +61,9 @@ $msg-types: (
 
 // Universal mixin for type variants
 @mixin msg-type-variant($type, $config) {
-    $color: map.get($config, 'color');
-    $bg-opacity: map.get($config, 'bg-opacity');
-    $border-opacity: map.get($config, 'border-opacity');
+    $color: map.get($config, "color");
+    $bg-opacity: map.get($config, "bg-opacity");
+    $border-opacity: map.get($config, "border-opacity");
 
     &[data-type="#{$type}"],
     &--#{$type} {
@@ -74,8 +84,7 @@ $msg-types: (
 
 // Shared animation states
 @mixin msg-animations {
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 0.3s ease,
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease,
         background-color 0.2s ease;
 
     &:hover {

@@ -1,9 +1,9 @@
 import browser from 'webextension-polyfill'
-import { EXT_CURR_VERSION, EXT_CURR_CHANGELOG_URL } from '../../js/app/config/consts'
+import { EXT_CURR_CHANGELOG_URL, EXT_CURR_VERSION } from '../../js/app/config/consts'
 import { RELEASE_CHANGES } from './changes'
 import { init as createFABToggle } from './toggleFAB'
 
-const createFullChangelogLink = (version = EXT_CURR_VERSION) =>
+const createFullChangelogLink = () =>
 	`<a href="${EXT_CURR_CHANGELOG_URL}" target="_blank" rel="noopener noreferrer" class="changelog__seefullchangelog">🚀 See full release notes</a>`
 
 function initChangelogUI() {

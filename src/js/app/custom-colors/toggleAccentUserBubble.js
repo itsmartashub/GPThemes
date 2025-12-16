@@ -1,11 +1,11 @@
-import { getItem, setItem } from '../../utils/storage.js'
 import { $, ROOT_HTML } from '../../utils/dom.js'
-import { SELECTORS } from '../config/selectors.js'
-import { SK_TOGGLE_USER_BUBBLE_ACCENT } from '../config/consts-storage.js'
-import { ATTR_BUBBLE_USER_ACCENT } from '../config/consts-attr.js'
+import { getItem, setItem } from '../../utils/storage.js'
+import { icon_accent } from '../components/icons.js'
 import { Notify } from '../components/renderNotify.js'
 import { renderToggle } from '../components/renderToggles.js'
-import { icon_accent } from '../components/icons.js'
+import { ATTR_BUBBLE_USER_ACCENT } from '../config/consts-attr.js'
+import { SK_TOGGLE_USER_BUBBLE_ACCENT } from '../config/consts-storage.js'
+import { SELECTORS } from '../config/selectors.js'
 
 // =====================================================
 // STATE
@@ -46,7 +46,9 @@ async function loadState() {
 async function saveState(state = DEFAULT_STATE) {
 	try {
 		await setItem(STORAGE_KEY, state)
-		state ? Notify.success('User bubble accent enabled') : Notify.info('User bubble accent disabled')
+		state
+			? Notify.success('User bubble accent enabled')
+			: Notify.info('User bubble accent disabled')
 		return true
 	} catch (error) {
 		onError('Failed to save user accent bubble preference', error)

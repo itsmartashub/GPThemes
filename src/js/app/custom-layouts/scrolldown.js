@@ -1,10 +1,9 @@
+import { $, $$, setVars } from '../../utils/dom.js'
 import { getItem, setItem } from '../../utils/storage.js'
-import { SELECTORS } from '../config/selectors.js'
-import { SK_SCROLL_BUTTON_POSITION } from '../config/consts-storage.js'
-import { $, $$ } from '../../utils/dom.js'
-import { setVars } from '../../utils/dom.js'
-import { icon_align_left, icon_align_center, icon_align_right } from '../components/icons.js'
+import { icon_align_center, icon_align_left, icon_align_right } from '../components/icons.js'
 import { Notify } from '../components/renderNotify.js'
+import { SK_SCROLL_BUTTON_POSITION } from '../config/consts-storage.js'
+import { SELECTORS } from '../config/selectors.js'
 
 // =====================================================
 // STATE
@@ -126,8 +125,6 @@ function applyPosition(position = DEFAULT_POSITION, btnContainer, silent = false
 // EVENTS
 // =====================================================
 function onClick(e) {
-	// console.log('handleClick', this)
-	const $btnContainer = this
 	const $btn = e.target.closest(`.${SELECTORS.SCROLLDOWN.BTN}`)
 	if (!$btn) return
 
@@ -135,12 +132,12 @@ function onClick(e) {
 	if (!$scrollBtn)
 		return Notify.error(
 			`🚨 Scrolldown button not found. Possible reasons: missing on this page or OpenAI codebase changes.`,
-			5000
+			5000,
 		)
 
 	const position = $btn.dataset.position
 
-	applyPosition(position, $btnContainer)
+	applyPosition(position, this)
 }
 
 // =====================================================
@@ -149,7 +146,8 @@ function onClick(e) {
 
 async function mount() {
 	const $btnContainer = $(`.${SELECTORS.SCROLLDOWN.BTN_CONTAINER}`)
-	if (!$btnContainer) return console.warn(`Element with class ${SELECTORS.SCROLLDOWN.BTN_CONTAINER} not found`)
+	if (!$btnContainer)
+		return console.warn(`Element with class ${SELECTORS.SCROLLDOWN.BTN_CONTAINER} not found`)
 
 	// Load and apply saved prefs for btn active state
 	const position = await getFromStorage()

@@ -1,14 +1,19 @@
 import { runtime } from 'webextension-polyfill'
 import { removeItems } from '../utils/storage'
 import {
-	initBadgeColor,
-	setVersionBadge,
-	setNewBadge,
-	updateBadgeToVersion,
-	isBadgeSeen,
 	getCurrentBadge,
+	initBadgeColor,
+	isBadgeSeen,
+	setNewBadge,
+	setVersionBadge,
+	updateBadgeToVersion,
 } from './updateBadge'
-import { checkAndCleanStorage, getExtCurrVersion, getExtStoredVersion, setExtStoredVersion } from './versionControl'
+import {
+	checkAndCleanStorage,
+	getExtCurrVersion,
+	getExtStoredVersion,
+	setExtStoredVersion,
+} from './versionControl'
 
 // Register onInstalled listener at module level (before init runs)
 runtime.onInstalled.addListener(onInstallation)
@@ -47,7 +52,8 @@ async function onInstallation(details) {
 	}
 }
 
-function onMessage(message, sender, sendResponse) {
+// function onMessage(message, sender, sendResponse) {
+function onMessage(message, _sender, sendResponse) {
 	if (message.action === 'setBadge') {
 		updateBadgeToVersion()
 			.then(() => sendResponse({ status: 'success' }))
@@ -71,7 +77,9 @@ async function initBackgroundScript() {
 		const currentVersion = getExtCurrVersion()
 		const currentBadge = await getCurrentBadge()
 
-		console.log(`📊 State: Badge="${currentBadge}" | Seen=${seen} | v${storedVersion}→${currentVersion}`)
+		console.log(
+			`📊 State: Badge="${currentBadge}" | Seen=${seen} | v${storedVersion}→${currentVersion}`,
+		)
 
 		// Restore badge if empty
 		if (!currentBadge) {

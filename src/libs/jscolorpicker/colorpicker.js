@@ -3,9 +3,10 @@ var __defNormalProp = (obj, key, value) =>
 	key in obj
 		? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value })
 		: (obj[key] = value)
-var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== 'symbol' ? key + '' : key, value)
+var __publicField = (obj, key, value) =>
+	__defNormalProp(obj, typeof key !== 'symbol' ? key + '' : key, value)
 function getDefaultExportFromCjs(x) {
-	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x
+	return x && x.__esModule && Object.hasOwn(x, 'default') ? x['default'] : x
 }
 var events = { exports: {} }
 var R = typeof Reflect === 'object' ? Reflect : null
@@ -14,7 +15,7 @@ var ReflectApply =
 		? R.apply
 		: function ReflectApply2(target, receiver, args) {
 				return Function.prototype.apply.call(target, receiver, args)
-		  }
+			}
 var ReflectOwnKeys
 if (R && typeof R.ownKeys === 'function') {
 	ReflectOwnKeys = R.ownKeys
@@ -47,20 +48,20 @@ EventEmitter.prototype._maxListeners = void 0
 var defaultMaxListeners = 10
 function checkListener(listener) {
 	if (typeof listener !== 'function') {
-		throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof listener)
+		throw new TypeError(
+			'The "listener" argument must be of type Function. Received type ' + typeof listener,
+		)
 	}
 }
 Object.defineProperty(EventEmitter, 'defaultMaxListeners', {
 	enumerable: true,
-	get: function () {
-		return defaultMaxListeners
-	},
-	set: function (arg) {
+	get: () => defaultMaxListeners,
+	set: (arg) => {
 		if (typeof arg !== 'number' || arg < 0 || NumberIsNaN(arg)) {
 			throw new RangeError(
 				'The value of "defaultMaxListeners" is out of range. It must be a non-negative number. Received ' +
 					arg +
-					'.'
+					'.',
 			)
 		}
 		defaultMaxListeners = arg
@@ -75,7 +76,11 @@ EventEmitter.init = function () {
 }
 EventEmitter.prototype.setMaxListeners = function setMaxListeners(n) {
 	if (typeof n !== 'number' || n < 0 || NumberIsNaN(n)) {
-		throw new RangeError('The value of "n" is out of range. It must be a non-negative number. Received ' + n + '.')
+		throw new RangeError(
+			'The value of "n" is out of range. It must be a non-negative number. Received ' +
+				n +
+				'.',
+		)
 	}
 	this._maxListeners = n
 	return this
@@ -150,7 +155,7 @@ function _addListener(target, type, listener, prepend) {
 					existing.length +
 					' ' +
 					String(type) +
-					' listeners added. Use emitter.setMaxListeners() to increase limit'
+					' listeners added. Use emitter.setMaxListeners() to increase limit',
 			)
 			w.name = 'MaxListenersExceededWarning'
 			w.emitter = target
@@ -221,7 +226,8 @@ EventEmitter.prototype.removeListener = function removeListener(type, listener) 
 			spliceOne(list, position)
 		}
 		if (list.length === 1) events2[type] = list[0]
-		if (events2.removeListener !== void 0) this.emit('removeListener', type, originalListener || listener)
+		if (events2.removeListener !== void 0)
+			this.emit('removeListener', type, originalListener || listener)
 	}
 	return this
 }
@@ -268,7 +274,8 @@ function _listeners(target, type, unwrap) {
 	if (events2 === void 0) return []
 	var evlistener = events2[type]
 	if (evlistener === void 0) return []
-	if (typeof evlistener === 'function') return unwrap ? [evlistener.listener || evlistener] : [evlistener]
+	if (typeof evlistener === 'function')
+		return unwrap ? [evlistener.listener || evlistener] : [evlistener]
 	return unwrap ? unwrapListeners(evlistener) : arrayClone(evlistener, evlistener.length)
 }
 EventEmitter.prototype.listeners = function listeners(type) {
@@ -277,7 +284,7 @@ EventEmitter.prototype.listeners = function listeners(type) {
 EventEmitter.prototype.rawListeners = function rawListeners(type) {
 	return _listeners(this, type, false)
 }
-EventEmitter.listenerCount = function (emitter, type) {
+EventEmitter.listenerCount = (emitter, type) => {
 	if (typeof emitter.listenerCount === 'function') {
 		return emitter.listenerCount(type)
 	} else {
@@ -317,7 +324,7 @@ function unwrapListeners(arr) {
 	return ret
 }
 function once2(emitter, name) {
-	return new Promise(function (resolve, reject) {
+	return new Promise((resolve, reject) => {
 		function errorListener(err) {
 			emitter.removeListener(name, resolver)
 			reject(err)
@@ -354,7 +361,9 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
 			listener(arg)
 		})
 	} else {
-		throw new TypeError('The "emitter" argument must be of type EventEmitter. Received type ' + typeof emitter)
+		throw new TypeError(
+			'The "emitter" argument must be of type EventEmitter. Received type ' + typeof emitter,
+		)
 	}
 }
 var eventsExports = events.exports
@@ -371,12 +380,16 @@ var clippingParents = 'clippingParents'
 var viewport = 'viewport'
 var popper = 'popper'
 var reference = 'reference'
-var variationPlacements = /* @__PURE__ */ basePlacements.reduce(function (acc, placement) {
-	return acc.concat([placement + '-' + start, placement + '-' + end])
-}, [])
-var placements = /* @__PURE__ */ [].concat(basePlacements, [auto]).reduce(function (acc, placement) {
-	return acc.concat([placement, placement + '-' + start, placement + '-' + end])
-}, [])
+var variationPlacements = /* @__PURE__ */ basePlacements.reduce(
+	(acc, placement) => acc.concat([placement + '-' + start, placement + '-' + end]),
+	[],
+)
+var placements = /* @__PURE__ */ []
+	.concat(basePlacements, [auto])
+	.reduce(
+		(acc, placement) => acc.concat([placement, placement + '-' + start, placement + '-' + end]),
+		[],
+	)
 var beforeRead = 'beforeRead'
 var read = 'read'
 var afterRead = 'afterRead'
@@ -386,7 +399,17 @@ var afterMain = 'afterMain'
 var beforeWrite = 'beforeWrite'
 var write = 'write'
 var afterWrite = 'afterWrite'
-var modifierPhases = [beforeRead, read, afterRead, beforeMain, main, afterMain, beforeWrite, write, afterWrite]
+var modifierPhases = [
+	beforeRead,
+	read,
+	afterRead,
+	beforeMain,
+	main,
+	afterMain,
+	beforeWrite,
+	write,
+	afterWrite,
+]
 function getNodeName(element) {
 	return element ? (element.nodeName || '').toLowerCase() : null
 }
@@ -417,7 +440,7 @@ function isShadowRoot(node) {
 }
 function applyStyles(_ref) {
 	var state = _ref.state
-	Object.keys(state.elements).forEach(function (name) {
+	Object.keys(state.elements).forEach((name) => {
 		var style = state.styles[name] || {}
 		var attributes = state.attributes[name] || {}
 		var element = state.elements[name]
@@ -425,7 +448,7 @@ function applyStyles(_ref) {
 			return
 		}
 		Object.assign(element.style, style)
-		Object.keys(attributes).forEach(function (name2) {
+		Object.keys(attributes).forEach((name2) => {
 			var value = attributes[name2]
 			if (value === false) {
 				element.removeAttribute(name2)
@@ -454,14 +477,14 @@ function effect$2(_ref2) {
 	if (state.elements.arrow) {
 		Object.assign(state.elements.arrow.style, initialStyles.arrow)
 	}
-	return function () {
-		Object.keys(state.elements).forEach(function (name) {
+	return () => {
+		Object.keys(state.elements).forEach((name) => {
 			var element = state.elements[name]
 			var attributes = state.attributes[name] || {}
 			var styleProperties = Object.keys(
-				state.styles.hasOwnProperty(name) ? state.styles[name] : initialStyles[name]
+				Object.hasOwn(state.styles, name) ? state.styles[name] : initialStyles[name],
 			)
-			var style = styleProperties.reduce(function (style2, property) {
+			var style = styleProperties.reduce((style2, property) => {
 				style2[property] = ''
 				return style2
 			}, {})
@@ -469,7 +492,7 @@ function effect$2(_ref2) {
 				return
 			}
 			Object.assign(element.style, style)
-			Object.keys(attributes).forEach(function (attribute) {
+			Object.keys(attributes).forEach((attribute) => {
 				element.removeAttribute(attribute)
 			})
 		})
@@ -492,11 +515,7 @@ var round = Math.round
 function getUAString() {
 	var uaData = navigator.userAgentData
 	if (uaData != null && uaData.brands && Array.isArray(uaData.brands)) {
-		return uaData.brands
-			.map(function (item) {
-				return item.brand + '/' + item.version
-			})
-			.join(' ')
+		return uaData.brands.map((item) => item.brand + '/' + item.version).join(' ')
 	}
 	return navigator.userAgent
 }
@@ -520,8 +539,12 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy) {
 	var _ref = isElement(element) ? getWindow(element) : window,
 		visualViewport = _ref.visualViewport
 	var addVisualOffsets = !isLayoutViewport() && isFixedStrategy
-	var x = (clientRect.left + (addVisualOffsets && visualViewport ? visualViewport.offsetLeft : 0)) / scaleX
-	var y = (clientRect.top + (addVisualOffsets && visualViewport ? visualViewport.offsetTop : 0)) / scaleY
+	var x =
+		(clientRect.left + (addVisualOffsets && visualViewport ? visualViewport.offsetLeft : 0)) /
+		scaleX
+	var y =
+		(clientRect.top + (addVisualOffsets && visualViewport ? visualViewport.offsetTop : 0)) /
+		scaleY
 	var width = clientRect.width / scaleX
 	var height = clientRect.height / scaleY
 	return {
@@ -578,7 +601,7 @@ function getDocumentElement(element) {
 		(isElement(element)
 			? element.ownerDocument
 			: // $FlowFixMe[prop-missing]
-			  element.document) || window.document
+				element.document) || window.document
 	).documentElement
 }
 function getParentNode(element) {
@@ -638,13 +661,18 @@ function getContainingBlock(element) {
 function getOffsetParent(element) {
 	var window2 = getWindow(element)
 	var offsetParent = getTrueOffsetParent(element)
-	while (offsetParent && isTableElement(offsetParent) && getComputedStyle$1(offsetParent).position === 'static') {
+	while (
+		offsetParent &&
+		isTableElement(offsetParent) &&
+		getComputedStyle$1(offsetParent).position === 'static'
+	) {
 		offsetParent = getTrueOffsetParent(offsetParent)
 	}
 	if (
 		offsetParent &&
 		(getNodeName(offsetParent) === 'html' ||
-			(getNodeName(offsetParent) === 'body' && getComputedStyle$1(offsetParent).position === 'static'))
+			(getNodeName(offsetParent) === 'body' &&
+				getComputedStyle$1(offsetParent).position === 'static'))
 	) {
 		return window2
 	}
@@ -672,7 +700,7 @@ function mergePaddingObject(paddingObject) {
 	return Object.assign({}, getFreshSideObject(), paddingObject)
 }
 function expandToHashMap(value, keys) {
-	return keys.reduce(function (hashMap, key) {
+	return keys.reduce((hashMap, key) => {
 		hashMap[key] = value
 		return hashMap
 	}, {})
@@ -683,10 +711,12 @@ var toPaddingObject = function toPaddingObject2(padding, state) {
 			? padding(
 					Object.assign({}, state.rects, {
 						placement: state.placement,
-					})
-			  )
+					}),
+				)
 			: padding
-	return mergePaddingObject(typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements))
+	return mergePaddingObject(
+		typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements),
+	)
 }
 function arrow(_ref) {
 	var _state$modifiersData$
@@ -707,7 +737,10 @@ function arrow(_ref) {
 	var minProp = axis === 'y' ? top : left
 	var maxProp = axis === 'y' ? bottom : right
 	var endDiff =
-		state.rects.reference[len] + state.rects.reference[axis] - popperOffsets2[axis] - state.rects.popper[len]
+		state.rects.reference[len] +
+		state.rects.reference[axis] -
+		popperOffsets2[axis] -
+		state.rects.popper[len]
 	var startDiff = popperOffsets2[axis] - state.rects.reference[axis]
 	var arrowOffsetParent = getOffsetParent(arrowElement)
 	var clientSize = arrowOffsetParent
@@ -794,15 +827,15 @@ function mapToStyles(_ref2) {
 			? roundOffsets({
 					x,
 					y,
-			  })
+				})
 			: {
 					x,
 					y,
-			  }
+				}
 	x = _ref3.x
 	y = _ref3.y
-	var hasX = offsets.hasOwnProperty('x')
-	var hasY = offsets.hasOwnProperty('y')
+	var hasX = Object.hasOwn(offsets, 'x')
+	var hasY = Object.hasOwn(offsets, 'y')
 	var sideX = left
 	var sideY = top
 	var win = window
@@ -818,23 +851,29 @@ function mapToStyles(_ref2) {
 			}
 		}
 		offsetParent = offsetParent
-		if (placement === top || ((placement === left || placement === right) && variation === end)) {
+		if (
+			placement === top ||
+			((placement === left || placement === right) && variation === end)
+		) {
 			sideY = bottom
 			var offsetY =
 				isFixed && offsetParent === win && win.visualViewport
 					? win.visualViewport.height
 					: // $FlowFixMe[prop-missing]
-					  offsetParent[heightProp]
+						offsetParent[heightProp]
 			y -= offsetY - popperRect.height
 			y *= gpuAcceleration ? 1 : -1
 		}
-		if (placement === left || ((placement === top || placement === bottom) && variation === end)) {
+		if (
+			placement === left ||
+			((placement === top || placement === bottom) && variation === end)
+		) {
 			sideX = right
 			var offsetX =
 				isFixed && offsetParent === win && win.visualViewport
 					? win.visualViewport.width
 					: // $FlowFixMe[prop-missing]
-					  offsetParent[widthProp]
+						offsetParent[widthProp]
 			x -= offsetX - popperRect.width
 			x *= gpuAcceleration ? 1 : -1
 		}
@@ -843,7 +882,7 @@ function mapToStyles(_ref2) {
 		{
 			position,
 		},
-		adaptive && unsetSides
+		adaptive && unsetSides,
 	)
 	var _ref4 =
 		roundOffsets === true
@@ -852,12 +891,12 @@ function mapToStyles(_ref2) {
 						x,
 						y,
 					},
-					getWindow(popper2)
-			  )
+					getWindow(popper2),
+				)
 			: {
 					x,
 					y,
-			  }
+				}
 	x = _ref4.x
 	y = _ref4.y
 	if (gpuAcceleration) {
@@ -872,7 +911,7 @@ function mapToStyles(_ref2) {
 				(win.devicePixelRatio || 1) <= 1
 					? 'translate(' + x + 'px, ' + y + 'px)'
 					: 'translate3d(' + x + 'px, ' + y + 'px, 0)'),
-			_Object$assign)
+			_Object$assign),
 		)
 	}
 	return Object.assign(
@@ -882,7 +921,7 @@ function mapToStyles(_ref2) {
 		(_Object$assign2[sideY] = hasY ? y + 'px' : ''),
 		(_Object$assign2[sideX] = hasX ? x + 'px' : ''),
 		(_Object$assign2.transform = ''),
-		_Object$assign2)
+		_Object$assign2),
 	)
 }
 function computeStyles(_ref5) {
@@ -912,8 +951,8 @@ function computeStyles(_ref5) {
 					position: state.options.strategy,
 					adaptive,
 					roundOffsets,
-				})
-			)
+				}),
+			),
 		)
 	}
 	if (state.modifiersData.arrow != null) {
@@ -926,8 +965,8 @@ function computeStyles(_ref5) {
 					position: 'absolute',
 					adaptive: false,
 					roundOffsets,
-				})
-			)
+				}),
+			),
 		)
 	}
 	state.attributes.popper = Object.assign({}, state.attributes.popper, {
@@ -955,16 +994,16 @@ function effect(_ref) {
 	var window2 = getWindow(state.elements.popper)
 	var scrollParents = [].concat(state.scrollParents.reference, state.scrollParents.popper)
 	if (scroll) {
-		scrollParents.forEach(function (scrollParent) {
+		scrollParents.forEach((scrollParent) => {
 			scrollParent.addEventListener('scroll', instance.update, passive)
 		})
 	}
 	if (resize) {
 		window2.addEventListener('resize', instance.update, passive)
 	}
-	return function () {
+	return () => {
 		if (scroll) {
-			scrollParents.forEach(function (scrollParent) {
+			scrollParents.forEach((scrollParent) => {
 				scrollParent.removeEventListener('scroll', instance.update, passive)
 			})
 		}
@@ -988,18 +1027,14 @@ var hash$1 = {
 	top: 'bottom',
 }
 function getOppositePlacement(placement) {
-	return placement.replace(/left|right|bottom|top/g, function (matched) {
-		return hash$1[matched]
-	})
+	return placement.replace(/left|right|bottom|top/g, (matched) => hash$1[matched])
 }
 var hash = {
 	start: 'end',
 	end: 'start',
 }
 function getOppositeVariationPlacement(placement) {
-	return placement.replace(/start|end/g, function (matched) {
-		return hash[matched]
-	})
+	return placement.replace(/start|end/g, (matched) => hash[matched])
 }
 function getWindowScroll(node) {
 	var win = getWindow(node)
@@ -1011,7 +1046,10 @@ function getWindowScroll(node) {
 	}
 }
 function getWindowScrollBarX(element) {
-	return getBoundingClientRect(getDocumentElement(element)).left + getWindowScroll(element).scrollLeft
+	return (
+		getBoundingClientRect(getDocumentElement(element)).left +
+		getWindowScroll(element).scrollLeft
+	)
 }
 function getViewportRect(element, strategy) {
 	var win = getWindow(element)
@@ -1041,9 +1079,22 @@ function getDocumentRect(element) {
 	var _element$ownerDocumen
 	var html = getDocumentElement(element)
 	var winScroll = getWindowScroll(element)
-	var body = (_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body
-	var width = max(html.scrollWidth, html.clientWidth, body ? body.scrollWidth : 0, body ? body.clientWidth : 0)
-	var height = max(html.scrollHeight, html.clientHeight, body ? body.scrollHeight : 0, body ? body.clientHeight : 0)
+	var body =
+		(_element$ownerDocumen = element.ownerDocument) == null
+			? void 0
+			: _element$ownerDocumen.body
+	var width = max(
+		html.scrollWidth,
+		html.clientWidth,
+		body ? body.scrollWidth : 0,
+		body ? body.clientWidth : 0,
+	)
+	var height = max(
+		html.scrollHeight,
+		html.clientHeight,
+		body ? body.scrollHeight : 0,
+		body ? body.clientHeight : 0,
+	)
 	var x = -winScroll.scrollLeft + getWindowScrollBarX(element)
 	var y = -winScroll.scrollTop
 	if (getComputedStyle$1(body || html).direction === 'rtl') {
@@ -1079,7 +1130,10 @@ function listScrollParents(element, list) {
 	}
 	var scrollParent = getScrollParent(element)
 	var isBody =
-		scrollParent === ((_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body)
+		scrollParent ===
+		((_element$ownerDocumen = element.ownerDocument) == null
+			? void 0
+			: _element$ownerDocumen.body)
 	var win = getWindow(scrollParent)
 	var target = isBody
 		? [win].concat(win.visualViewport || [], isScrollParent(scrollParent) ? scrollParent : [])
@@ -1088,7 +1142,7 @@ function listScrollParents(element, list) {
 	return isBody
 		? updatedList
 		: // $FlowFixMe[incompatible-call]: isBody tells us target will be an HTMLElement here
-		  updatedList.concat(listScrollParents(getParentNode(target)))
+			updatedList.concat(listScrollParents(getParentNode(target)))
 }
 function rectToClientRect(rect) {
 	return Object.assign({}, rect, {
@@ -1114,36 +1168,40 @@ function getClientRectFromMixedType(element, clippingParent, strategy) {
 	return clippingParent === viewport
 		? rectToClientRect(getViewportRect(element, strategy))
 		: isElement(clippingParent)
-		? getInnerBoundingClientRect(clippingParent, strategy)
-		: rectToClientRect(getDocumentRect(getDocumentElement(element)))
+			? getInnerBoundingClientRect(clippingParent, strategy)
+			: rectToClientRect(getDocumentRect(getDocumentElement(element)))
 }
 function getClippingParents(element) {
 	var clippingParents2 = listScrollParents(getParentNode(element))
 	var canEscapeClipping = ['absolute', 'fixed'].indexOf(getComputedStyle$1(element).position) >= 0
-	var clipperElement = canEscapeClipping && isHTMLElement(element) ? getOffsetParent(element) : element
+	var clipperElement =
+		canEscapeClipping && isHTMLElement(element) ? getOffsetParent(element) : element
 	if (!isElement(clipperElement)) {
 		return []
 	}
-	return clippingParents2.filter(function (clippingParent) {
-		return (
+	return clippingParents2.filter(
+		(clippingParent) =>
 			isElement(clippingParent) &&
 			contains(clippingParent, clipperElement) &&
-			getNodeName(clippingParent) !== 'body'
-		)
-	})
+			getNodeName(clippingParent) !== 'body',
+	)
 }
 function getClippingRect(element, boundary, rootBoundary, strategy) {
-	var mainClippingParents = boundary === 'clippingParents' ? getClippingParents(element) : [].concat(boundary)
+	var mainClippingParents =
+		boundary === 'clippingParents' ? getClippingParents(element) : [].concat(boundary)
 	var clippingParents2 = [].concat(mainClippingParents, [rootBoundary])
 	var firstClippingParent = clippingParents2[0]
-	var clippingRect = clippingParents2.reduce(function (accRect, clippingParent) {
-		var rect = getClientRectFromMixedType(element, clippingParent, strategy)
-		accRect.top = max(rect.top, accRect.top)
-		accRect.right = min(rect.right, accRect.right)
-		accRect.bottom = min(rect.bottom, accRect.bottom)
-		accRect.left = max(rect.left, accRect.left)
-		return accRect
-	}, getClientRectFromMixedType(element, firstClippingParent, strategy))
+	var clippingRect = clippingParents2.reduce(
+		(accRect, clippingParent) => {
+			var rect = getClientRectFromMixedType(element, clippingParent, strategy)
+			accRect.top = max(rect.top, accRect.top)
+			accRect.right = min(rect.right, accRect.right)
+			accRect.bottom = min(rect.bottom, accRect.bottom)
+			accRect.left = max(rect.left, accRect.left)
+			return accRect
+		},
+		getClientRectFromMixedType(element, firstClippingParent, strategy),
+	)
 	clippingRect.width = clippingRect.right - clippingRect.left
 	clippingRect.height = clippingRect.bottom - clippingRect.top
 	clippingRect.x = clippingRect.left
@@ -1224,16 +1282,18 @@ function detectOverflow(state, options) {
 		_options$padding = _options.padding,
 		padding = _options$padding === void 0 ? 0 : _options$padding
 	var paddingObject = mergePaddingObject(
-		typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements)
+		typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements),
 	)
 	var altContext = elementContext === popper ? reference : popper
 	var popperRect = state.rects.popper
 	var element = state.elements[altBoundary ? altContext : elementContext]
 	var clippingClientRect = getClippingRect(
-		isElement(element) ? element : element.contextElement || getDocumentElement(state.elements.popper),
+		isElement(element)
+			? element
+			: element.contextElement || getDocumentElement(state.elements.popper),
 		boundary,
 		rootBoundary,
-		strategy
+		strategy,
 	)
 	var referenceClientRect = getBoundingClientRect(state.elements.reference)
 	var popperOffsets2 = computeOffsets({
@@ -1253,7 +1313,7 @@ function detectOverflow(state, options) {
 	var offsetData = state.modifiersData.offset
 	if (elementContext === popper && offsetData) {
 		var offset2 = offsetData[placement]
-		Object.keys(overflowOffsets).forEach(function (key) {
+		Object.keys(overflowOffsets).forEach((key) => {
 			var multiply = [right, bottom].indexOf(key) >= 0 ? 1 : -1
 			var axis = [top, bottom].indexOf(key) >= 0 ? 'y' : 'x'
 			overflowOffsets[key] += offset2[axis] * multiply
@@ -1272,22 +1332,21 @@ function computeAutoPlacement(state, options) {
 		padding = _options.padding,
 		flipVariations = _options.flipVariations,
 		_options$allowedAutoP = _options.allowedAutoPlacements,
-		allowedAutoPlacements = _options$allowedAutoP === void 0 ? placements : _options$allowedAutoP
+		allowedAutoPlacements =
+			_options$allowedAutoP === void 0 ? placements : _options$allowedAutoP
 	var variation = getVariation(placement)
 	var placements$1 = variation
 		? flipVariations
 			? variationPlacements
-			: variationPlacements.filter(function (placement2) {
-					return getVariation(placement2) === variation
-			  })
+			: variationPlacements.filter((placement2) => getVariation(placement2) === variation)
 		: basePlacements
-	var allowedPlacements = placements$1.filter(function (placement2) {
-		return allowedAutoPlacements.indexOf(placement2) >= 0
-	})
+	var allowedPlacements = placements$1.filter(
+		(placement2) => allowedAutoPlacements.indexOf(placement2) >= 0,
+	)
 	if (allowedPlacements.length === 0) {
 		allowedPlacements = placements$1
 	}
-	var overflows = allowedPlacements.reduce(function (acc, placement2) {
+	var overflows = allowedPlacements.reduce((acc, placement2) => {
 		acc[placement2] = detectOverflow(state, {
 			placement: placement2,
 			boundary,
@@ -1296,9 +1355,7 @@ function computeAutoPlacement(state, options) {
 		})[getBasePlacement(placement2)]
 		return acc
 	}, {})
-	return Object.keys(overflows).sort(function (a, b) {
-		return overflows[a] - overflows[b]
-	})
+	return Object.keys(overflows).sort((a, b) => overflows[a] - overflows[b])
 }
 function getExpandedFallbackPlacements(placement) {
 	if (getBasePlacement(placement) === auto) {
@@ -1338,20 +1395,22 @@ function flip(_ref) {
 		(isBasePlacement || !flipVariations
 			? [getOppositePlacement(preferredPlacement)]
 			: getExpandedFallbackPlacements(preferredPlacement))
-	var placements2 = [preferredPlacement].concat(fallbackPlacements).reduce(function (acc, placement2) {
-		return acc.concat(
-			getBasePlacement(placement2) === auto
-				? computeAutoPlacement(state, {
-						placement: placement2,
-						boundary,
-						rootBoundary,
-						padding,
-						flipVariations,
-						allowedAutoPlacements,
-				  })
-				: placement2
-		)
-	}, [])
+	var placements2 = [preferredPlacement].concat(fallbackPlacements).reduce(
+		(acc, placement2) =>
+			acc.concat(
+				getBasePlacement(placement2) === auto
+					? computeAutoPlacement(state, {
+							placement: placement2,
+							boundary,
+							rootBoundary,
+							padding,
+							flipVariations,
+							allowedAutoPlacements,
+						})
+					: placement2,
+			),
+		[],
+	)
 	var referenceRect = state.rects.reference
 	var popperRect = state.rects.popper
 	var checksMap = /* @__PURE__ */ new Map()
@@ -1370,7 +1429,13 @@ function flip(_ref) {
 			altBoundary,
 			padding,
 		})
-		var mainVariationSide = isVertical ? (isStartVariation ? right : left) : isStartVariation ? bottom : top
+		var mainVariationSide = isVertical
+			? isStartVariation
+				? right
+				: left
+			: isStartVariation
+				? bottom
+				: top
 		if (referenceRect[len] > popperRect[len]) {
 			mainVariationSide = getOppositePlacement(mainVariationSide)
 		}
@@ -1382,11 +1447,7 @@ function flip(_ref) {
 		if (checkAltAxis) {
 			checks.push(overflow[mainVariationSide] <= 0, overflow[altVariationSide] <= 0)
 		}
-		if (
-			checks.every(function (check) {
-				return check
-			})
-		) {
+		if (checks.every((check) => check)) {
 			firstFittingPlacement = placement
 			makeFallbackChecks = false
 			break
@@ -1396,12 +1457,10 @@ function flip(_ref) {
 	if (makeFallbackChecks) {
 		var numberOfChecks = flipVariations ? 3 : 1
 		var _loop = function _loop2(_i2) {
-			var fittingPlacement = placements2.find(function (placement2) {
+			var fittingPlacement = placements2.find((placement2) => {
 				var checks2 = checksMap.get(placement2)
 				if (checks2) {
-					return checks2.slice(0, _i2).every(function (check) {
-						return check
-					})
+					return checks2.slice(0, _i2).every((check) => check)
 				}
 			})
 			if (fittingPlacement) {
@@ -1445,9 +1504,7 @@ function getSideOffsets(overflow, rect, preventedOffsets) {
 	}
 }
 function isAnySideFullyClipped(overflow) {
-	return [top, right, bottom, left].some(function (side) {
-		return overflow[side] >= 0
-	})
+	return [top, right, bottom, left].some((side) => overflow[side] >= 0)
 }
 function hide(_ref) {
 	var state = _ref.state,
@@ -1491,8 +1548,8 @@ function distanceAndSkiddingToXY(placement, rects, offset2) {
 				? offset2(
 						Object.assign({}, rects, {
 							placement,
-						})
-				  )
+						}),
+					)
 				: offset2,
 		skidding = _ref[0],
 		distance = _ref[1]
@@ -1502,11 +1559,11 @@ function distanceAndSkiddingToXY(placement, rects, offset2) {
 		? {
 				x: distance,
 				y: skidding,
-		  }
+			}
 		: {
 				x: skidding,
 				y: distance,
-		  }
+			}
 }
 function offset(_ref2) {
 	var state = _ref2.state,
@@ -1514,7 +1571,7 @@ function offset(_ref2) {
 		name = _ref2.name
 	var _options$offset = options.offset,
 		offset2 = _options$offset === void 0 ? [0, 0] : _options$offset
-	var data = placements.reduce(function (acc, placement) {
+	var data = placements.reduce((acc, placement) => {
 		acc[placement] = distanceAndSkiddingToXY(placement, state.rects, offset2)
 		return acc
 	}, {})
@@ -1589,23 +1646,25 @@ function preventOverflow(_ref) {
 			? tetherOffset(
 					Object.assign({}, state.rects, {
 						placement: state.placement,
-					})
-			  )
+					}),
+				)
 			: tetherOffset
 	var normalizedTetherOffsetValue =
 		typeof tetherOffsetValue === 'number'
 			? {
 					mainAxis: tetherOffsetValue,
 					altAxis: tetherOffsetValue,
-			  }
+				}
 			: Object.assign(
 					{
 						mainAxis: 0,
 						altAxis: 0,
 					},
-					tetherOffsetValue
-			  )
-	var offsetModifierState = state.modifiersData.offset ? state.modifiersData.offset[state.placement] : null
+					tetherOffsetValue,
+				)
+	var offsetModifierState = state.modifiersData.offset
+		? state.modifiersData.offset[state.placement]
+		: null
 	var data = {
 		x: 0,
 		y: 0,
@@ -1631,7 +1690,7 @@ function preventOverflow(_ref) {
 				: {
 						width: 0,
 						height: 0,
-				  }
+					}
 		var arrowPaddingObject = state.modifiersData['arrow#persistent']
 			? state.modifiersData['arrow#persistent'].padding
 			: getFreshSideObject()
@@ -1639,10 +1698,18 @@ function preventOverflow(_ref) {
 		var arrowPaddingMax = arrowPaddingObject[altSide]
 		var arrowLen = within(0, referenceRect[len], arrowRect[len])
 		var minOffset = isBasePlacement
-			? referenceRect[len] / 2 - additive - arrowLen - arrowPaddingMin - normalizedTetherOffsetValue.mainAxis
+			? referenceRect[len] / 2 -
+				additive -
+				arrowLen -
+				arrowPaddingMin -
+				normalizedTetherOffsetValue.mainAxis
 			: minLen - arrowLen - arrowPaddingMin - normalizedTetherOffsetValue.mainAxis
 		var maxOffset = isBasePlacement
-			? -referenceRect[len] / 2 + additive + arrowLen + arrowPaddingMax + normalizedTetherOffsetValue.mainAxis
+			? -referenceRect[len] / 2 +
+				additive +
+				arrowLen +
+				arrowPaddingMax +
+				normalizedTetherOffsetValue.mainAxis
 			: maxLen + arrowLen + arrowPaddingMax + normalizedTetherOffsetValue.mainAxis
 		var arrowOffsetParent = state.elements.arrow && getOffsetParent(state.elements.arrow)
 		var clientOffset = arrowOffsetParent
@@ -1651,7 +1718,8 @@ function preventOverflow(_ref) {
 				: arrowOffsetParent.clientLeft || 0
 			: 0
 		var offsetModifierValue =
-			(_offsetModifierState$ = offsetModifierState == null ? void 0 : offsetModifierState[mainAxis]) != null
+			(_offsetModifierState$ =
+				offsetModifierState == null ? void 0 : offsetModifierState[mainAxis]) != null
 				? _offsetModifierState$
 				: 0
 		var tetherMin = offset2 + minOffset - offsetModifierValue - clientOffset
@@ -1659,7 +1727,7 @@ function preventOverflow(_ref) {
 		var preventedOffset = within(
 			tether ? min(min$1, tetherMin) : min$1,
 			offset2,
-			tether ? max(max$1, tetherMax) : max$1
+			tether ? max(max$1, tetherMax) : max$1,
 		)
 		popperOffsets2[mainAxis] = preventedOffset
 		data[mainAxis] = preventedOffset - offset2
@@ -1674,22 +1742,23 @@ function preventOverflow(_ref) {
 		var _max = _offset - overflow[_altSide]
 		var isOriginSide = [top, left].indexOf(basePlacement) !== -1
 		var _offsetModifierValue =
-			(_offsetModifierState$2 = offsetModifierState == null ? void 0 : offsetModifierState[altAxis]) != null
+			(_offsetModifierState$2 =
+				offsetModifierState == null ? void 0 : offsetModifierState[altAxis]) != null
 				? _offsetModifierState$2
 				: 0
 		var _tetherMin = isOriginSide
 			? _min
 			: _offset -
-			  referenceRect[_len] -
-			  popperRect[_len] -
-			  _offsetModifierValue +
-			  normalizedTetherOffsetValue.altAxis
+				referenceRect[_len] -
+				popperRect[_len] -
+				_offsetModifierValue +
+				normalizedTetherOffsetValue.altAxis
 		var _tetherMax = isOriginSide
 			? _offset +
-			  referenceRect[_len] +
-			  popperRect[_len] -
-			  _offsetModifierValue -
-			  normalizedTetherOffsetValue.altAxis
+				referenceRect[_len] +
+				popperRect[_len] -
+				_offsetModifierValue -
+				normalizedTetherOffsetValue.altAxis
 			: _max
 		var _preventedOffset =
 			tether && isOriginSide
@@ -1768,13 +1837,13 @@ function order(modifiers) {
 	var map = /* @__PURE__ */ new Map()
 	var visited = /* @__PURE__ */ new Set()
 	var result = []
-	modifiers.forEach(function (modifier) {
+	modifiers.forEach((modifier) => {
 		map.set(modifier.name, modifier)
 	})
 	function sort(modifier) {
 		visited.add(modifier.name)
 		var requires = [].concat(modifier.requires || [], modifier.requiresIfExists || [])
-		requires.forEach(function (dep) {
+		requires.forEach((dep) => {
 			if (!visited.has(dep)) {
 				var depModifier = map.get(dep)
 				if (depModifier) {
@@ -1784,7 +1853,7 @@ function order(modifiers) {
 		})
 		result.push(modifier)
 	}
-	modifiers.forEach(function (modifier) {
+	modifiers.forEach((modifier) => {
 		if (!visited.has(modifier.name)) {
 			sort(modifier)
 		}
@@ -1793,20 +1862,17 @@ function order(modifiers) {
 }
 function orderModifiers(modifiers) {
 	var orderedModifiers = order(modifiers)
-	return modifierPhases.reduce(function (acc, phase) {
-		return acc.concat(
-			orderedModifiers.filter(function (modifier) {
-				return modifier.phase === phase
-			})
-		)
-	}, [])
+	return modifierPhases.reduce(
+		(acc, phase) => acc.concat(orderedModifiers.filter((modifier) => modifier.phase === phase)),
+		[],
+	)
 }
 function debounce(fn2) {
 	var pending
-	return function () {
+	return () => {
 		if (!pending) {
-			pending = new Promise(function (resolve) {
-				Promise.resolve().then(function () {
+			pending = new Promise((resolve) => {
+				Promise.resolve().then(() => {
 					pending = void 0
 					resolve(fn2())
 				})
@@ -1816,19 +1882,17 @@ function debounce(fn2) {
 	}
 }
 function mergeByName(modifiers) {
-	var merged = modifiers.reduce(function (merged2, current) {
+	var merged = modifiers.reduce((merged2, current) => {
 		var existing = merged2[current.name]
 		merged2[current.name] = existing
 			? Object.assign({}, existing, current, {
 					options: Object.assign({}, existing.options, current.options),
 					data: Object.assign({}, existing.data, current.data),
-			  })
+				})
 			: current
 		return merged2
 	}, {})
-	return Object.keys(merged).map(function (key) {
-		return merged[key]
-	})
+	return Object.keys(merged).map((key) => merged[key])
 }
 var DEFAULT_OPTIONS = {
 	placement: 'bottom',
@@ -1839,9 +1903,9 @@ function areValidElements() {
 	for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
 		args[_key] = arguments[_key]
 	}
-	return !args.some(function (element) {
-		return !(element && typeof element.getBoundingClientRect === 'function')
-	})
+	return !args.some(
+		(element) => !(element && typeof element.getBoundingClientRect === 'function'),
+	)
 }
 function popperGenerator(generatorOptions) {
 	if (generatorOptions === void 0) {
@@ -1851,7 +1915,8 @@ function popperGenerator(generatorOptions) {
 		_generatorOptions$def = _generatorOptions.defaultModifiers,
 		defaultModifiers2 = _generatorOptions$def === void 0 ? [] : _generatorOptions$def,
 		_generatorOptions$def2 = _generatorOptions.defaultOptions,
-		defaultOptions = _generatorOptions$def2 === void 0 ? DEFAULT_OPTIONS : _generatorOptions$def2
+		defaultOptions =
+			_generatorOptions$def2 === void 0 ? DEFAULT_OPTIONS : _generatorOptions$def2
 	return function createPopper2(reference2, popper2, options) {
 		if (options === void 0) {
 			options = defaultOptions
@@ -1874,23 +1939,23 @@ function popperGenerator(generatorOptions) {
 			state,
 			setOptions: function setOptions(setOptionsAction) {
 				var options2 =
-					typeof setOptionsAction === 'function' ? setOptionsAction(state.options) : setOptionsAction
+					typeof setOptionsAction === 'function'
+						? setOptionsAction(state.options)
+						: setOptionsAction
 				cleanupModifierEffects()
 				state.options = Object.assign({}, defaultOptions, state.options, options2)
 				state.scrollParents = {
 					reference: isElement(reference2)
 						? listScrollParents(reference2)
 						: reference2.contextElement
-						? listScrollParents(reference2.contextElement)
-						: [],
+							? listScrollParents(reference2.contextElement)
+							: [],
 					popper: listScrollParents(popper2),
 				}
 				var orderedModifiers = orderModifiers(
-					mergeByName([].concat(defaultModifiers2, state.options.modifiers))
+					mergeByName([].concat(defaultModifiers2, state.options.modifiers)),
 				)
-				state.orderedModifiers = orderedModifiers.filter(function (m) {
-					return m.enabled
-				})
+				state.orderedModifiers = orderedModifiers.filter((m) => m.enabled)
 				runModifierEffects()
 				return instance.update()
 			},
@@ -1913,15 +1978,16 @@ function popperGenerator(generatorOptions) {
 					reference: getCompositeRect(
 						reference3,
 						getOffsetParent(popper3),
-						state.options.strategy === 'fixed'
+						state.options.strategy === 'fixed',
 					),
 					popper: getLayoutRect(popper3),
 				}
 				state.reset = false
 				state.placement = state.options.placement
-				state.orderedModifiers.forEach(function (modifier) {
-					return (state.modifiersData[modifier.name] = Object.assign({}, modifier.data))
-				})
+				state.orderedModifiers.forEach(
+					(modifier) =>
+						(state.modifiersData[modifier.name] = Object.assign({}, modifier.data)),
+				)
 				for (var index = 0; index < state.orderedModifiers.length; index++) {
 					if (state.reset === true) {
 						state.reset = false
@@ -1946,12 +2012,13 @@ function popperGenerator(generatorOptions) {
 			},
 			// Async and optimistically optimized update – it will not be executed if
 			// not necessary (debounced to run at most once-per-tick)
-			update: debounce(function () {
-				return new Promise(function (resolve) {
-					instance.forceUpdate()
-					resolve(state)
-				})
-			}),
+			update: debounce(
+				() =>
+					new Promise((resolve) => {
+						instance.forceUpdate()
+						resolve(state)
+					}),
+			),
 			destroy: function destroy() {
 				cleanupModifierEffects()
 				isDestroyed = true
@@ -1960,13 +2027,13 @@ function popperGenerator(generatorOptions) {
 		if (!areValidElements(reference2, popper2)) {
 			return instance
 		}
-		instance.setOptions(options).then(function (state2) {
+		instance.setOptions(options).then((state2) => {
 			if (!isDestroyed && options.onFirstUpdate) {
 				options.onFirstUpdate(state2)
 			}
 		})
 		function runModifierEffects() {
-			state.orderedModifiers.forEach(function (_ref) {
+			state.orderedModifiers.forEach((_ref) => {
 				var name = _ref.name,
 					_ref$options = _ref.options,
 					options2 = _ref$options === void 0 ? {} : _ref$options,
@@ -1984,9 +2051,7 @@ function popperGenerator(generatorOptions) {
 			})
 		}
 		function cleanupModifierEffects() {
-			effectCleanupFns.forEach(function (fn2) {
-				return fn2()
-			})
+			effectCleanupFns.forEach((fn2) => fn2())
 			effectCleanupFns = []
 		}
 		return instance
@@ -2073,7 +2138,7 @@ const toHex = (color) =>
 		.map((v) =>
 			Math.round(v * 255)
 				.toString(16)
-				.padStart(2, '0')
+				.padStart(2, '0'),
 		)
 		.join('')
 const convertColor = (color, format) => {
@@ -2274,7 +2339,8 @@ class ColorPicker extends eventsExports.EventEmitter {
 			window.addEventListener('pointerdown', (event) => {
 				if (!this._open) return
 				const $toggle = event.target
-				if (!$toggle.closest('.cp_dialog') && !$toggle.closest('.color-picker')) this.close()
+				if (!$toggle.closest('.cp_dialog') && !$toggle.closest('.color-picker'))
+					this.close()
 			})
 		}
 		if (this.config.dismissOnEscape) {
@@ -2347,7 +2413,10 @@ class ColorPicker extends eventsExports.EventEmitter {
 		this.$toggle.append(this.$input, this.$button)
 		this.changeHandler = () => {
 			if (!this._firingChange) {
-				this.setColor(this.isInput ? this.$input.value : this.$toggle.getAttribute('data-color'), false)
+				this.setColor(
+					this.isInput ? this.$input.value : this.$toggle.getAttribute('data-color'),
+					false,
+				)
 			}
 		}
 		this.clickHandler = () => this.toggle()
@@ -2629,13 +2698,25 @@ class ColorPicker extends eventsExports.EventEmitter {
 		var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j
 		const currentColor = ((_a = this.color) == null ? void 0 : _a.toString()) ?? 'transparent'
 		const newColorHex = this._newColor.string('hex')
-		;(_b = this.$dialog) == null ? void 0 : _b.style.setProperty('--cp-base-color', newColorHex.substring(0, 7))
-		;(_c = this.$button) == null ? void 0 : _c.style.setProperty('--cp-current-color', currentColor)
-		;(_d = this.$dialog) == null ? void 0 : _d.style.setProperty('--cp-current-color', currentColor)
+		;(_b = this.$dialog) == null
+			? void 0
+			: _b.style.setProperty('--cp-base-color', newColorHex.substring(0, 7))
+		;(_c = this.$button) == null
+			? void 0
+			: _c.style.setProperty('--cp-current-color', currentColor)
+		;(_d = this.$dialog) == null
+			? void 0
+			: _d.style.setProperty('--cp-current-color', currentColor)
 		;(_e = this.$dialog) == null ? void 0 : _e.style.setProperty('--cp-color', newColorHex)
-		;(_f = this.$dialog) == null ? void 0 : _f.style.setProperty('--cp-hue', this._newColor.hue().toString())
-		;(_g = this.$dialog) == null ? void 0 : _g.style.setProperty('--cp-alpha', this._newColor.alpha().toString())
-		;(_h = this.hsvSlider) == null ? void 0 : _h.move(this._newColor.saturation(), 1 - this._newColor.value())
+		;(_f = this.$dialog) == null
+			? void 0
+			: _f.style.setProperty('--cp-hue', this._newColor.hue().toString())
+		;(_g = this.$dialog) == null
+			? void 0
+			: _g.style.setProperty('--cp-alpha', this._newColor.alpha().toString())
+		;(_h = this.hsvSlider) == null
+			? void 0
+			: _h.move(this._newColor.saturation(), 1 - this._newColor.value())
 		;(_i = this.hueSlider) == null ? void 0 : _i.move(this._newColor.hue() / 360)
 		;(_j = this.alphaSlider) == null ? void 0 : _j.move(this._newColor.alpha())
 		if (updateInput && this.$colorInput) {

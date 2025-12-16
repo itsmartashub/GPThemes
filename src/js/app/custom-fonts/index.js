@@ -1,15 +1,15 @@
-import { setItem, getItems, setItems } from '../../utils/storage.js'
-import { $, $$, getVar, setVar, setVars, bind } from '../../utils/dom.js'
-import { SELECTORS } from '../config/selectors'
+import { $, $$, bind, getVar, setVar, setVars } from '../../utils/dom.js'
+import { getItems, setItem, setItems } from '../../utils/storage.js'
+import { renderButton } from '../components/renderButtons'
+import { renderFontBigCard, renderFontSmallCard } from '../components/renderFonts'
+import { Notify } from '../components/renderNotify.js'
 import {
 	SK_TEXT_FONT_FAMILY,
 	SK_TEXT_FONT_SIZE,
-	SK_TEXT_LINE_HEIGHT,
 	SK_TEXT_LETTER_SPACING,
+	SK_TEXT_LINE_HEIGHT,
 } from '../config/consts-storage.js'
-import { Notify } from '../components/renderNotify.js'
-import { renderButton } from '../components/renderButtons'
-import { renderFontSmallCard, renderFontBigCard } from '../components/renderFonts'
+import { SELECTORS } from '../config/selectors'
 
 // let $rootSettings = null
 let currentFontLink = null
@@ -241,14 +241,13 @@ function addPreconnectLinks() {
 		`
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        `
+        `,
 	)
 	preconnectLinksAdded = true
 }
 function removeCurrGoogleFontLink() {
-	if (currentFontLink && currentFontLink.parentNode) {
-		currentFontLink.remove()
-	}
+	if (currentFontLink?.parentNode) currentFontLink.remove()
+
 	currentFontLink = null
 }
 function removeAllGoogleFontLinks() {
@@ -256,7 +255,9 @@ function removeAllGoogleFontLinks() {
 	removeCurrGoogleFontLink()
 
 	// Remove all Google Fonts related links (including preconnect)
-	$$("link[href*='fonts.googleapis.com'], link[href*='fonts.gstatic.com']").forEach((link) => link.remove())
+	$$("link[href*='fonts.googleapis.com'], link[href*='fonts.gstatic.com']").forEach((link) => {
+		link.remove()
+	})
 	preconnectLinksAdded = false
 }
 function setGoogleFont(font) {
@@ -345,8 +346,16 @@ function addListeners() {
 	const elements = getElements()
 	if (!elements) return
 
-	const onEnter = (fn) => (e) => e.key === 'Enter' && (e.preventDefault(), fn(e), e.target.blur())
-	const track = (key) => (e) => (focusValues[key] = formatNum(e.target.value))
+	const onEnter = (fn) => (e) => {
+		if (e.key === 'Enter') {
+			e.preventDefault()
+			fn(e)
+			e.target.blur()
+		}
+	}
+	const track = (key) => (e) => {
+		focusValues[key] = formatNum(e.target.value)
+	}
 
 	bind(elements.fontFamily, { change: handleFontFamily })
 
@@ -378,13 +387,13 @@ function addListeners() {
 const formatNum = (val) => {
 	if (val === null || val === undefined || val === '') return null
 	const num = parseFloat(val)
-	if (isNaN(num)) return null
+	if (Number.isNaN(num)) return null
 	return num % 1 === 0 ? String(Math.round(num)) : num.toFixed(2).replace(/\.?0+$/, '')
 }
 
 const validate = (val, min, max) => {
 	const num = parseFloat(val)
-	if (isNaN(num) || val === null) {
+	if (Number.isNaN(num) || val === null) {
 		Notify.error('🚨 Invalid number')
 		return false
 	}
@@ -411,7 +420,8 @@ async function init() {
 	]
 
 	const stored = await getItems(keys)
-	const getStoredOrDefault = (configKey) => stored[CONFIG[configKey].storageKey] ?? CONFIG[configKey].default
+	const getStoredOrDefault = (configKey) =>
+		stored[CONFIG[configKey].storageKey] ?? CONFIG[configKey].default
 
 	const fontFamily = getStoredOrDefault('fontFamily')
 	const fontSize = getStoredOrDefault('fontSize')
@@ -435,7 +445,8 @@ async function init() {
 	// updateInputs({ fontFamily, fontSize, lineHeight, letterSpacing })
 }
 
-function mount(rootSettings) {
+// function mount(rootSettings) {
+function mount() {
 	// console.log('[MOUNT FONTS]')
 
 	// Update inputs using helper
@@ -444,4 +455,10 @@ function mount(rootSettings) {
 	addListeners()
 }
 
-export { templateHTML as renderFontsTab, resetAll as resetAllFonts, addListeners as handleFontsListeners, init, mount }
+export {
+	addListeners as handleFontsListeners,
+	init,
+	mount,
+	templateHTML as renderFontsTab,
+	resetAll as resetAllFonts,
+}

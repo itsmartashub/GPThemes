@@ -5,7 +5,6 @@
     position: relative;
     // z-index: -1;
 
-
     &--small,
     &--big,
     &--range label {
@@ -16,8 +15,7 @@
         backdrop-filter: blur(10px) contrast(1.5);
     }
 
-
-    @include dev('sm') {
+    @include dev("sm") {
         font-size: 1.4rem;
     }
 
@@ -33,7 +31,7 @@
     }
 
     label,
-    label>* {
+    label > * {
         cursor: pointer !important;
     }
 
@@ -45,7 +43,6 @@
 
     input,
     select {
-
         &:focus {
             outline: none !important;
             border: none !important;
@@ -59,6 +56,7 @@
     &::after,
     &::before {
         --card-tooltip-gap: 0.5rem;
+
         position: absolute;
         top: var(--card-tooltip-top);
         left: 50%;
@@ -72,10 +70,11 @@
 
     &::after {
         --card-tooltip-top: calc(100% + var(--card-tooltip-gap));
+
         content: attr(data-gpth-err);
         width: max-content;
         height: clamp(1.5rem, 50%, max-content);
-        font-size: .45em;
+        font-size: 0.45em;
         font-weight: bold;
         padding: 0.5rem;
         color: var(--c-on-accent);
@@ -84,9 +83,12 @@
     }
 
     &::before {
+
         --border-w: 0.5rem;
-        // --card-tooltip-top: calc(100% - var(--card-tooltip-gap) - var(--border-w));
+        // --card-tooltip-top: calc(100% - var(--card-tooltip-gap) - var(--border-w));--card-tooltip-top
+
         --card-tooltip-top: calc(100% - var(--card-tooltip-gap) + 0.1rem);
+
         content: "";
         border-width: var(--border-w);
         border-style: solid;
@@ -94,7 +96,6 @@
     }
 
     &:has(select) {
-
         &::after,
         &::before {
             display: none;
@@ -102,7 +103,6 @@
     }
 
     &:has(input:focus) {
-
         &::after,
         &::before {
             opacity: 1 !important;
@@ -113,23 +113,12 @@
     /* Hide arrows in Webkit browsers (Chrome, Safari) */
     input[type="number"]::-webkit-outer-spin-button,
     input[type="number"]::-webkit-inner-spin-button {
-        -webkit-appearance: none;
+        appearance: none;
         margin: 0;
     }
 
     /* Hide arrows in Firefox */
     input[type="number"] {
-        -moz-appearance: textfield;
-        /* For Firefox */
-        appearance: textfield;
-    }
-
-    /* Ensure the input field looks consistent across all browsers */
-    input[type="number"] {
-        -webkit-appearance: none;
-        /* For Chrome and Safari */
-        -moz-appearance: textfield;
-        /* For Firefox */
         appearance: textfield;
     }
 
@@ -138,7 +127,6 @@
     &--small {
         border-radius: 50vw;
         // z-index: -1;
-
 
         label {
             height: 3rem;
@@ -151,7 +139,9 @@
         }
 
         input {
+
             --tw-ring-color: transparent !important;
+
             aspect-ratio: 1 / 1;
             height: 100%;
             background-color: var(--c-accent-20);
@@ -163,7 +153,9 @@
         }
 
         .card__unit {
+
             --px: 0.25rem;
+
             background-color: var(--c-accent-12);
             color: var(--c-accent);
             // font-size: 0.72rem;
@@ -201,27 +193,32 @@
             }
 
             .card__unitname-wrapper {
-                transform: translatex(3px);
+                transform: translateX(3px);
             }
         }
     }
 
-
     /* _________________   BIG CARDS   _________________ */
     &--big {
-        --p: .9rem;
+
+        --p: 0.9rem;
+
         border-radius: 1.5rem;
         padding: var(--p);
         z-index: 1;
 
-        @include dev('sm') {
+        @include dev("sm") {
+
             --p: 0.5rem;
+
             font-size: 1.4rem;
             border-radius: 1rem;
         }
 
         .card__icon {
+
             --icon-size: 1.8rem;
+
             width: var(--icon-size);
             height: var(--icon-size);
             display: grid;
@@ -234,7 +231,8 @@
             color: var(--c-accent);
             background-color: var(--c-accent-15);
 
-            @include dev('sm') {
+            @include dev("sm") {
+
                 --icon-size: 1.5rem;
             }
         }
@@ -254,7 +252,7 @@
             width: 100%;
             height: max-content !important;
             background-color: transparent !important;
-            padding: 4px 0px !important;
+            padding: 4px 0 !important;
             border-radius: 50vw;
 
             &:focus {
@@ -267,8 +265,6 @@
         select {
             background: none;
             appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
             border: none !important;
 
             option {
@@ -289,7 +285,6 @@
         }
     }
 
-
     /* _________________   RANGE CARDS   _________________ */
     &--range {
         input {
@@ -299,7 +294,9 @@
         }
 
         .card__unit {
+
             --px: 0.5rem;
+
             background-color: var(--c-accent-12);
             color: var(--c-accent);
             font-size: 0.5em;
@@ -314,6 +311,7 @@
         }
 
         .card__output {
+
             --output-size: 2.5rem;
             // width: var(--output-size);
             // height: var(--output-size);
@@ -325,13 +323,14 @@
         }
 
         .icon-locked {
+            @extend %animScaleIn;
+
             display: none;
             position: absolute;
             top: 6%;
             right: 7%;
             width: 1.8rem;
             color: var(--c-accent);
-            @extend %animScaleIn;
             z-index: 10;
         }
 
@@ -339,7 +338,6 @@
             @include isLockedIcon;
         }
     }
-
 
     /*     &__loader {
         position: fixed;

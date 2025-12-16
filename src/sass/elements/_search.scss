@@ -5,7 +5,6 @@
     /* Header where main title and tabs are */
     [data-testid="bar-search-sources-header"] {
         .border-token-main-surface-tertiary.bg-token-main-surface-tertiary.rounded-full {
-            // background-color: var(--c-accent-20) !important;
             border-radius: var(--br-btn) !important;
             box-shadow: 0 0 0 1px var(--c-accent-20) !important;
 
@@ -19,10 +18,10 @@
     /* Add hover state for searched items */
     a[class*="hover:bg-token-main-surface-secondary"] {
 
-        // transition: transform 0.25 ease, background-color 0.25 ease !important;
 
         &:hover {
             --main-surface-secondary: var(--c-surface-3) !important;
+            
             transform: translateY(-2px);
         }
     }

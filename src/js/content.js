@@ -1,5 +1,6 @@
-import { init as initThemes } from './app/themeManager'
 import { init as initFAB } from './app/custom-fab/index'
+import { init as initThemes } from './app/themeManager'
+
 // !! Chat bubbles and chatbox height are mounted from custom-layouts after Settings render !!
 // !! User bubble accent toggle is mounted from Colors module after Settings render !!
 
@@ -47,7 +48,7 @@ function scheduleRetry() {
 			}
 
 			console.info(
-				'[🎨GPThemes]: Re-initializing extension (possible React hydration issue: "Minified React error #XXX;" above?)'
+				'[🎨GPThemes]: Re-initializing extension (possible React hydration issue: "Minified React error #XXX;" above?)',
 			)
 
 			if (initExt()) {

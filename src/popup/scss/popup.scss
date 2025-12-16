@@ -2,12 +2,10 @@
 @import '../../sass/abstract/_deviceType';
 @import '../../sass/shared/_easing';
 @import '../../sass/shared/_extends';
-
-@import 'global/_reset.scss';
-@import 'global/_vars.scss';
-@import 'global/_base.scss';
-
-@import 'components/_bg-circles.scss';
-@import 'components/_toggles.scss';
-@import 'layouts/_changelog.scss';
-@import 'layouts/_header.scss';
+@import 'global/_reset';
+@import 'global/_vars';
+@import 'global/_base';
+@import 'components/_bg-circles';
+@import 'components/_toggles';
+@import 'layouts/_changelog';
+@import 'layouts/_header';

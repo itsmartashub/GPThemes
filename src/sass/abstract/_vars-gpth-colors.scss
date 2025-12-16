@@ -98,9 +98,9 @@ html.light {
     // --c-bg-menu: oklch(from var(--c-accent) l calc(c * 0.35) h / 0.5);
     --c-bg-menu: oklch(from var(--c-accent) 0.8 calc(c * 0.25) h / 0.5);
 
-    --c-danger: oklch(46.52% 0.16884 22.615);
-    --c-warning: oklch(63.047% 0.16128 50.634);
-    --c-success: oklch(51.388% 0.10734 164.622);
+    --c-danger: oklch(46.52% 0.1688 22.615);
+    --c-warning: oklch(63.047% 0.1612 50.634);
+    --c-success: oklch(51.388% 0.1073 164.622);
 
     --brightness-menu: brightness(0.98);
 
@@ -143,9 +143,9 @@ html.dark {
     --c-subtext-1: color-mix(in oklch, var(--c-accent), var(--c-surface-2) 30%);
     --c-subtext-2: color-mix(in oklch, var(--c-accent), #fff 35%);
 
-    --c-danger: oklch(75.114% 0.13378 16.727);
-    --c-warning: oklch(84.508% 0.11321 65.67);
-    --c-success: oklab(88.027% -0.15266 0.03073);
+    --c-danger: oklch(75.114% 0.1337 16.727);
+    --c-warning: oklch(84.508% 0.1131 65.67);
+    --c-success: oklab(88.027% -0.1526 0.0307);
 
     // --c-bg-msg-user: var(--c-accent-20);
     // --c-bg-msg-gpt: var(--c-accent-08);
@@ -167,7 +167,7 @@ html.dark {
 
     --c-scrollbar-thumb: var(--c-surface-2);
 
-    // for hovers: color-mix(in srgb, currentcolor 20%, transparent);
+    // for hovers: color-mix(in sRGB, currentcolor 20%, transparent);
 }
 
 html.dark[data-gptheme='oled'] {

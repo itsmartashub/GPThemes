@@ -14,7 +14,6 @@ main#main {
 		padding-bottom: 0.6rem !important;
 
 		.no-scrollbar.flex.scroll-m-5 {
-
 			[class*='md:rounded-none'],
 			[class*='md:rounded-lg'] {
 				border-radius: 50vw !important;
@@ -28,6 +27,7 @@ main#main {
 
 		/* Left/right arrows in tags track */
 		.absolute[class*='bg-linear-to-'] {
+
 			--tw-gradient-from: var(--c-bg-chats-container) !important;
 
 			button {
