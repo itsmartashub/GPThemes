@@ -4,19 +4,19 @@ on:
     workflow_dispatch:
         inputs:
             skip_build:
-                description: 'Set to true to skip the main build/packaging job.'
+                description: "Set to true to skip the main build/packaging job."
                 required: false
-                default: 'false'
+                default: false
                 type: boolean
             skip_biome:
-                description: 'Set to true to skip Biome (JS) lint checks.'
+                description: "Set to true to skip Biome (JS) lint checks."
                 required: false
-                default: 'false'
+                default: false
                 type: boolean
             skip_stylelint:
-                description: 'Set to true to skip Stylelint (CSS/SCSS) checks.'
+                description: "Set to true to skip Stylelint (CSS/SCSS) checks."
                 required: false
-                default: 'false'
+                default: false
                 type: boolean
     pull_request:
 
@@ -30,8 +30,8 @@ jobs:
         # pass the input params directly to the reusalbe workflow
         uses: ./.github/workflows/lint.yml
         with:
-            skip-biome: ${{ github.event.inputs.skip_biome || 'false' }}
-            skip-stylelint: ${{ github.event.inputs.skip_stylelint || 'false' }}
+            skip-biome: ${{ github.event.inputs.skip_biome || false }}
+            skip-stylelint: ${{ github.event.inputs.skip_stylelint || false }}
 
     call-build:
         name: 🏗️ Call build and package

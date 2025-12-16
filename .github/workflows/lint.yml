@@ -1,57 +1,55 @@
-# File: .github/workflows/lint-checks.yml
-
-name: Reusable Lint Checks
+name: Reusable lint checks
 
 on:
-    # This workflow is only callable by other workflows
-    workflow_call:
-        inputs:
-            skip-biome:
-                description: 'Set to true to skip Biome checks.'
-                required: false
-                type: boolean
-                default: false
-            skip-stylelint:
-                description: 'Set to true to skip Stylelint checks.'
-                required: false
-                type: boolean
-                default: false
+  # This workflow is only callable by other workflows
+  workflow_call:
+    inputs:
+      skip-biome:
+        description: "Set to true to skip Biome checks."
+        required: false
+        type: boolean
+        default: false
+      skip-stylelint:
+        description: "Set to true to skip Stylelint checks."
+        required: false
+        type: boolean
+        default: false
 
 jobs:
-    lint:
-        name: 🧹 Run Lint Checks (Informational)
-        runs-on: ubuntu-latest
-        steps:
-            - name: ⚙️ Checkout repo
-              uses: actions/checkout@v4
+  lint:
+    name: 🧹 Run lint checks (informational)
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⚙️ Checkout repo
+        uses: actions/checkout@v4
 
-            # --- SETUP ---
-            - name: 📦 Install pnpm
-              uses: pnpm/action-setup@v4
-              with:
-                  version: "10"
+      # --- SETUP ---
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: "10"
 
-            - name: 🚀 Setup Node.js & pnpm
-              uses: actions/setup-node@v4
-              with:
-                  node-version: "20"
-                  cache: "pnpm"
+      - name: 🚀 Setup Node.js & pnpm
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
 
-            - name: 📦 Install pnpm deps
-              run: pnpm install --frozen-lockfile
+      - name: 📦 Install pnpm deps
+        run: pnpm install --frozen-lockfile
 
-            # --- 1. RUN BIOME LINT (conditional) ---
-            - name: 🔍 Run Biome Lint (JS/TS)
-              # check the input passed from the caller workflow
-              if: ${{ inputs.skip-biome == false }}
-              run: |
-                  echo "--- Running Biome Lint (pnpm lint) ---"
-                  pnpm lint || true
+      # --- 1. RUN BIOME LINT (conditional) ---
+      - name: 🔍 Run Biome Lint (JS/TS)
+        # check the input passed from the caller workflow
+        if: ${{ inputs.skip-biome == false }}
+        run: |
+          echo "--- Running Biome Lint (pnpm lint) ---"
+          pnpm lint || true
 
-            # --- 2. RUN STYLELINT (conditional) ---
-            - name: 🎨 Run Stylelint (CSS/SCSS)
-              # check the input passed from the caller workflow
-              if: ${{ inputs.skip-stylelint == false }}
-              run: |
-                  echo "--- Running Stylelint (pnpm slint) ---"
-                  pnpm slint || true
+      # --- 2. RUN STYLELINT (conditional) ---
+      - name: 🎨 Run Stylelint (CSS/SCSS)
+        # check the input passed from the caller workflow
+        if: ${{ inputs.skip-stylelint == false }}
+        run: |
+          echo "--- Running Stylelint (pnpm slint) ---"
+          pnpm slint || true
