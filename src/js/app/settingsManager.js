@@ -92,7 +92,9 @@ async function createSettings() {
 	//  Wait for next tick to ensure DOM is fully ready
 	requestAnimationFrame(() => {
 		// 5. Mount modules
-		TABS_CONFIG.forEach(({ mount }) => mount(el))
+		TABS_CONFIG.forEach(({ mount }) => {
+			mount(el)
+		})
 		// 6. Attach global listeners
 		addListeners()
 	})
@@ -131,7 +133,7 @@ function onTabsSwitching(e) {
 	const btn = e.target.closest(`.${SELECTORS.SETTINGS.TABS.BUTTON}`)
 	if (!btn) return
 
-	const newIndex = parseInt(btn.dataset.tab)
+	const newIndex = +btn.dataset.tab
 	const activeIndex = $tabButtons.findIndex((t) => t.classList.contains(ACTIVE_CLASS))
 
 	// console.log(activeIndex, newIndex)

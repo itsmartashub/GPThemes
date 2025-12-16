@@ -51,7 +51,7 @@ let eventListeners = []
 const extractNumber = (v) => parseFloat(v) || 0
 const extractUnit = (v) => (v?.includes('rem') ? 'REM' : '%')
 const validateValue = (v, min = WIDTH_CONFIG.ui.minWidth, max = WIDTH_CONFIG.ui.maxWidth) =>
-	isNaN(+v) ? min.toString() : Math.max(min, Math.min(max, +v)).toString()
+	Number.isNaN(+v) ? min.toString() : Math.max(min, Math.min(max, +v)).toString()
 const formatWithUnit = (val, unit) => `${validateValue(val)}${unit}`
 
 // =====================================================

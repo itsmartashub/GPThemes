@@ -52,7 +52,8 @@ async function onInstallation(details) {
 	}
 }
 
-function onMessage(message, sender, sendResponse) {
+// function onMessage(message, sender, sendResponse) {
+function onMessage(message, _sender, sendResponse) {
 	if (message.action === 'setBadge') {
 		updateBadgeToVersion()
 			.then(() => sendResponse({ status: 'success' }))

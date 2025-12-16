@@ -116,7 +116,8 @@ function isValidHexColor(colorStr) {
 }
 
 function isColorValid(color) {
-	return color?.color && color.color.every((val) => !isNaN(val)) && color.color[3] === 1
+	// return color?.color && color.color.every((val) => !Number.isNaN(val)) && color.color[3] === 1
+	return color?.color.every((val) => !Number.isNaN(val)) && color.color[3] === 1
 }
 
 // =====================================================

@@ -131,7 +131,7 @@ async function onChange(event) {
 	updateDataAttr(updatedState)
 	updateInputs(updatedState)
 
-	saveState(updatedState).then((success) =>
+	saveState(updatedState).then(() =>
 		input.checked
 			? Notify.success(`${type} bubble enabled`)
 			: Notify.info(`${type} bubble disabled`),
