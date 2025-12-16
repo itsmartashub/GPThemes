@@ -7,7 +7,7 @@
 		"defaultBranch": "master"
 	},
 	"files": {
-		"includes": ["**", "!src/libs"]
+		"includes": ["**", "!src/libs", ".github/workflows/*"]
 	},
 	"formatter": {
 		"enabled": true,
@@ -23,7 +23,6 @@
 			}
 		}
 	},
-
 	"javascript": {
 		"formatter": {
 			"quoteStyle": "single",
