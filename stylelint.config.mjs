@@ -16,6 +16,7 @@ export default {
 		'selector-id-pattern': null, // useless for this extension
 		'container-name-pattern': null, // falsepositive
 		'rule-empty-line-before': null, // dramaQ
+		'at-rule-empty-line-before': null, // dramaQ
 		'declaration-empty-line-before': null, // dramaQ
 		'selector-pseudo-element-colon-notation': null,
 		'hue-degree-notation': null, // falsepositive
