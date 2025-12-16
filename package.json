@@ -23,8 +23,11 @@
 		"build:ff": "parcel build src/manifests/firefox-mv2/manifest.json --dist-dir build/prod/gpthemes-firefox-mv2 --no-source-maps",
 		"zip": "deno run --allow-read --allow-write --allow-env scripts/zip.js",
 		"build:all": "pnpm clean:all && pnpm build:chrome && pnpm build:ff && pnpm zip",
-		"lintformat": "biome check --write",
-		"lintformat:max": "biome check --write --max-diagnostics=6000",
+		"lint": "biome lint",
+		"lint:staged": "biome lint --staged",
+		"format": "biome format --write",
+		"check": "biome check --write",
+		"check:max": "biome check --write --max-diagnostics=6000",
 		"slint": "pnpm dlx stylelint src/**/*.scss",
 		"slint:fix": "pnpm dlx stylelint src/**/*.scss --fix"
 	},
