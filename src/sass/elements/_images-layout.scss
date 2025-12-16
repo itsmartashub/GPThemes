@@ -1,0 +1,16 @@
+body > .pointer-events-none.fixed.inset-0.contain-size[data-shader]  {
+    canvas {
+        opacity: 0 !important;
+    }
+
+    // &::after {
+    //     content: "";
+    //     position: absolute;
+    //     inset: 0;
+    //     width: 100%;
+    //     height: 100%;
+    //     background: linear-gradient(to bottom, var(--c-bg-chats-container), var(--c-accent-50)) !important;
+    //     z-index: 1;
+    //     opacity: 0.98;
+    // }
+}
