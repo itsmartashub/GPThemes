@@ -94,6 +94,8 @@ html,
     /* .bg-token-sidebar-surface-primary
 	- sidebar bg
 	- nav item bg on hover */
+    --sidebar-bg: var(--c-bg-sidebar) !important;
+    --sidebar-mask-bg: var(--c-bg-sidebar) !important;
     --sidebar-surface-primary: var(--c-bg-sidebar) !important;
     /* .bg-token-sidebar-surface-secondary
 	- GPT's variable in  nav item bg on hover */
