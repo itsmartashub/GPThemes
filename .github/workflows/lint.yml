@@ -15,6 +15,9 @@ on:
         type: boolean
         default: false
 
+permissions:
+  contents: read
+
 jobs:
   lint:
     name: 🧹 Run lint checks (informational)

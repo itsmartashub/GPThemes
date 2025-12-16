@@ -4,6 +4,9 @@ on:
   # this workflow is only callable by other workflows
   workflow_call:
 
+permissions:
+  contents: read
+
 jobs:
   build-and-package:
     name: Build and zip
