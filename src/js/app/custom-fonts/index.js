@@ -120,7 +120,7 @@ function templateHTML() {
 					${CONFIG.fontFamily.options
 						.map((f) => {
 							const val = f.name === 'Default' ? CONFIG.fontFamily.default : f.name
-							return `<option value="${val}">${f.label}</option>`
+							return `<option value="${escapeHTML(val)}">${f.label}</option>`
 						})
 
 						.join('')}
@@ -177,6 +177,10 @@ function templateHTML() {
   `
 }
 
+function escapeHTML(str) {
+	return str.replace(/"/g, '&quot;').replace(/'/g, '&#39;')
+}
+
 function getElements() {
 	if (cachedElements) return cachedElements
 
@@ -202,10 +206,10 @@ function updateInputs(values) {
 
 	if (!elements) return
 
-	if (values.fontFamily !== undefined) elements.fontFamily.value = values.fontFamily
-	if (values.fontSize !== undefined) elements.fontSize.value = values.fontSize
-	if (values.lineHeight !== undefined) elements.lineHeight.value = values.lineHeight
-	if (values.letterSpacing !== undefined) elements.letterSpacing.value = values.letterSpacing
+	if (values?.fontFamily) elements.fontFamily.value = values.fontFamily
+	if (values?.fontSize) elements.fontSize.value = values.fontSize
+	if (values?.lineHeight) elements.lineHeight.value = values.lineHeight
+	if (values?.letterSpacing) elements.letterSpacing.value = values.letterSpacing
 }
 
 // =====================================================
@@ -440,6 +444,8 @@ async function init() {
 	})
 
 	storedValues = { fontFamily, fontSize, lineHeight, letterSpacing }
+
+	console.log(storedValues)
 
 	// 4. Update inputs using helper -> moved in MOUNT since its DOM dependent
 	// updateInputs({ fontFamily, fontSize, lineHeight, letterSpacing })

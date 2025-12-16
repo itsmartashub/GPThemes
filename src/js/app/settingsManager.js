@@ -87,8 +87,26 @@ async function createSettings() {
 	setElements(el)
 
 	// 4. Init modules in parallel, mount sequentially after DOM ready
-	await Promise.allSettled(TABS_CONFIG.map(({ init }) => init()))
+	/* await Promise.allSettled(TABS_CONFIG.map(({ init }) => init()))
 
+	//  Wait for next tick to ensure DOM is fully ready
+	requestAnimationFrame(() => {
+		// 5. Mount modules
+		TABS_CONFIG.forEach(({ mount }) => {
+			mount(el)
+		})
+		// 6. Attach global listeners
+		addListeners()
+	}) */
+
+	// Check results of each init
+	const results = await Promise.allSettled(TABS_CONFIG.map(({ init }) => init()))
+
+	results.forEach((result, index) => {
+		if (result.status === 'rejected') {
+			console.error(`[Settings] ${TABS_CONFIG[index].id} init failed:`, result.reason)
+		}
+	})
 	//  Wait for next tick to ensure DOM is fully ready
 	requestAnimationFrame(() => {
 		// 5. Mount modules

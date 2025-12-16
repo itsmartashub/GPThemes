@@ -4,6 +4,7 @@ export default {
 	extends: ['stylelint-config-standard-scss'],
 	rules: {
 		// CSS - stylelint-config-standard
+		'font-family-name-quotes': 'always-where-recommended',
 		'keyframes-name-pattern': null,
 		'no-invalid-double-slash-comments': null, // dramaQ
 		'alpha-value-notation': 'number', // falsepositive

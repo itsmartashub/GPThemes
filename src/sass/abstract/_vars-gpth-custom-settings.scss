@@ -1,8 +1,9 @@
 /* stylelint-disable custom-property-pattern */
 :root {
     /* ! === CUSTOM FONTS === */
-    --gpthFontFamilyOpenAISans: "OpenAI Sans"; // Font like on OpenAI's Sora website
-    --gpthFontFamilyDefault: var(--default-font-family, ui-sans-serif, -apple-system, "system-ui", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, "sans-serif", "Segoe UI Emoji", "Segoe UI Symbol"); // --default-font-family is OpenAI's default var
+    --gpthFontFamilyOpenAISans: 'OpenAI Sans'; // Font like on OpenAI's Sora website
+    --gpthFontFamilyDefault: var(--default-font-family, 'ui-sans-serif', '-apple-system', 'system-ui', 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, 'sans-serif', 'Segoe UI Emoji', 'Segoe UI Symbol'); // --default-font-family is OpenAI's default var
+    // --gpthFontFamilyDefault: var(--gpthFontFamilyOpenAISans, 'ui-sans-serif', '-apple-system', 'system-ui', 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, 'sans-serif', 'Segoe UI Emoji', 'Segoe UI Symbol'); // --default-font-family is OpenAI's default varefault-font-family is OpenAI's default var
 
     // OPENAI DEFAULT: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --gpthFontFamily: var(--gpthFontFamilyDefault);
