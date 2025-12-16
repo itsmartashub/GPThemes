@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { EXT_CURR_VERSION, EXT_CURR_CHANGELOG_URL } from '../../js/app/config/consts'
+import { EXT_CURR_CHANGELOG_URL, EXT_CURR_VERSION } from '../../js/app/config/consts'
 import { RELEASE_CHANGES } from './changes'
 import { init as createFABToggle } from './toggleFAB'
 

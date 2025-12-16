@@ -1,15 +1,15 @@
-import { setItem, getItems, setItems } from '../../utils/storage.js'
-import { $, $$, getVar, setVar, setVars, bind } from '../../utils/dom.js'
-import { SELECTORS } from '../config/selectors'
+import { $, $$, bind, getVar, setVar, setVars } from '../../utils/dom.js'
+import { getItems, setItem, setItems } from '../../utils/storage.js'
+import { renderButton } from '../components/renderButtons'
+import { renderFontBigCard, renderFontSmallCard } from '../components/renderFonts'
+import { Notify } from '../components/renderNotify.js'
 import {
 	SK_TEXT_FONT_FAMILY,
 	SK_TEXT_FONT_SIZE,
-	SK_TEXT_LINE_HEIGHT,
 	SK_TEXT_LETTER_SPACING,
+	SK_TEXT_LINE_HEIGHT,
 } from '../config/consts-storage.js'
-import { Notify } from '../components/renderNotify.js'
-import { renderButton } from '../components/renderButtons'
-import { renderFontSmallCard, renderFontBigCard } from '../components/renderFonts'
+import { SELECTORS } from '../config/selectors'
 
 // let $rootSettings = null
 let currentFontLink = null
@@ -241,7 +241,7 @@ function addPreconnectLinks() {
 		`
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        `
+        `,
 	)
 	preconnectLinksAdded = true
 }
@@ -256,7 +256,9 @@ function removeAllGoogleFontLinks() {
 	removeCurrGoogleFontLink()
 
 	// Remove all Google Fonts related links (including preconnect)
-	$$("link[href*='fonts.googleapis.com'], link[href*='fonts.gstatic.com']").forEach((link) => link.remove())
+	$$("link[href*='fonts.googleapis.com'], link[href*='fonts.gstatic.com']").forEach((link) =>
+		link.remove(),
+	)
 	preconnectLinksAdded = false
 }
 function setGoogleFont(font) {
@@ -411,7 +413,8 @@ async function init() {
 	]
 
 	const stored = await getItems(keys)
-	const getStoredOrDefault = (configKey) => stored[CONFIG[configKey].storageKey] ?? CONFIG[configKey].default
+	const getStoredOrDefault = (configKey) =>
+		stored[CONFIG[configKey].storageKey] ?? CONFIG[configKey].default
 
 	const fontFamily = getStoredOrDefault('fontFamily')
 	const fontSize = getStoredOrDefault('fontSize')
@@ -444,4 +447,10 @@ function mount(rootSettings) {
 	addListeners()
 }
 
-export { templateHTML as renderFontsTab, resetAll as resetAllFonts, addListeners as handleFontsListeners, init, mount }
+export {
+	templateHTML as renderFontsTab,
+	resetAll as resetAllFonts,
+	addListeners as handleFontsListeners,
+	init,
+	mount,
+}

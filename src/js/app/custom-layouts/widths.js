@@ -1,11 +1,15 @@
-import { getItems, setItems, removeItems } from '../../utils/storage.js'
 import { $, setVars } from '../../utils/dom.js'
-import { SELECTORS } from '../config/selectors.js'
-import { SK_WIDTH_SETTINGS, SK_WIDTH_IS_FULL_ENABLED, SK_WIDTH_IS_SYNC_ENABLED } from '../config/consts-storage.js'
+import { getItems, removeItems, setItems } from '../../utils/storage.js'
 import { icon_full_width, icon_sync } from '../components/icons.js'
+import { renderButton } from '../components/renderButtons.js'
 import { renderSliderCard } from '../components/renderSlider.js'
 import { renderToggle } from '../components/renderToggles.js'
-import { renderButton } from '../components/renderButtons.js'
+import {
+	SK_WIDTH_IS_FULL_ENABLED,
+	SK_WIDTH_IS_SYNC_ENABLED,
+	SK_WIDTH_SETTINGS,
+} from '../config/consts-storage.js'
+import { SELECTORS } from '../config/selectors.js'
 
 // ==========================================
 // STATE/CONSTANTS
@@ -206,7 +210,11 @@ function onWidthChange({ event, key, shouldSave = false }) {
 		onSyncTextareaWithChatWidth()
 	}
 
-	if (key === 'w_prompt_textarea' && currentState.syncEnabled && val !== currentState.settings.w_chat_gpt) {
+	if (
+		key === 'w_prompt_textarea' &&
+		currentState.syncEnabled &&
+		val !== currentState.settings.w_chat_gpt
+	) {
 		currentState.syncEnabled = false
 	}
 
@@ -313,7 +321,9 @@ async function init() {
 		const result = await getItems(Object.values(WIDTH_CONFIG.storageKeys))
 
 		currentState = {
-			settings: result[WIDTH_CONFIG.storageKeys.widthSettings] || { ...WIDTH_CONFIG.defaults },
+			settings: result[WIDTH_CONFIG.storageKeys.widthSettings] || {
+				...WIDTH_CONFIG.defaults,
+			},
 			syncEnabled: result[WIDTH_CONFIG.storageKeys.syncEnabled] || false,
 			fullWidthEnabled: result[WIDTH_CONFIG.storageKeys.fullWidthEnabled] || false,
 		}

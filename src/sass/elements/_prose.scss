@@ -40,51 +40,56 @@
 	--tw-prose-invert-th-borders: var(--c-border) !important;
 	--tw-prose-invert-td-borders: var(--c-border) !important;
 
-	/* Markdown Blockquotes border-left */
-	blockquote {
-		background-color: var(--c-accent-12);
-		border-radius: var(--br-btn);
+    /* Markdown Blockquotes border-left */
+    blockquote {
+        background-color: var(--c-accent-12);
+        border-radius: var(--br-btn);
 
-		&::after {
-			border-radius: inherit;
-			left: 0.5rem !important;
-			background-color: var(--tw-prose-quote-borders) !important;
-		}
-	}
+        &::after {
+            border-radius: inherit;
+            left: 0.5rem !important;
+            background-color: var(--tw-prose-quote-borders) !important;
+        }
+    }
 
-	/* Markdown Lists/bullers. Center them, they were on top, not centered */
-	ul>li {
+    /* Markdown Lists/bullers. Center them, they were on top, not centered */
+    ul > li {
+        /* Bullets before checkboxes */
+        &:has(input[type="checkbox"]) {
+            &::before {
+                --tw-translate-y: 150% !important;
+            }
+        }
 
-		/* Bullets before checkboxes */
-		&:has(input[type='checkbox']) {
-			&::before {
-				--tw-translate-y: 150% !important;
-			}
-		}
+        /* Bullets */
+        &::before {
+            --tw-translate-y: 50%;
 
-		/* Bullets */
-		&::before {
-			--tw-translate-y: 50%;
-			line-height: 1 !important;
-		}
-	}
+            line-height: 1 !important;
+        }
+    }
 
-	li {
-		/* Ordered list item number (li::before) */
-		--text-tertiary: var(--c-accent) !important;
-	}
+    li {
+        /* Ordered list item number (li::before) */
+        --text-tertiary: var(--c-accent) !important;
+    }
 
-	/* Markdown Links rendered in GPT answers */
-	a {
-		color: var(--c-accent) !important;
+    /* Markdown Links rendered in GPT answers */
+    a {
+        color: var(--c-accent) !important;
 
-		/* 
+        /* 
 		- [class*="group-hover/navigation"] je veliki source link u chat bubble kao onaj "ChatGPT Release Note" na sony, ali on je sad &.border-token-border-light
 		- .btn-secondary se odnosi na sve linkove sto imaju style kao btn-secondary, recimo "Directions", "Website", "Call" u Search/Maps-List za mobile */
-		&[href]:not(&[class*='bg-[#f4f4f4]'], &[class*="group/nav-list"], &.border-token-border-light, &.btn-secondary) {
-			@extend %link_hover_underlined;
-		}
-	}
+        &[href]:not(
+                &[class*="bg-[#f4f4f4]"],
+                &[class*="group/nav-list"],
+                &.border-token-border-light,
+                &.btn-secondary
+            ) {
+            @extend %link_hover_underlined;
+        }
+    }
 
 	/* Style Markdown Checkboxes */
 	// input[type='checkbox'] {
@@ -99,83 +104,83 @@
 	// 	}
 	// }
 
-	/* new Markdown table - NEW STYLE AGAIN... */
-	div[class*='_tableContainer'] {
-		--thread-content-width: var(--w_chat_gpt) !important;
-		width: 100% !important;
-		margin-inline: unset !important;
+    /* new Markdown table - NEW STYLE AGAIN... */
+    div[class*="_tableContainer"] {
+        --thread-content-width: var(--w_chat_gpt) !important;
+        width: 100% !important;
+        margin-inline: unset !important;
 
-		div[class*='_tableWrapper'] {
-			margin-inline: unset !important;
-			// width: 100% !important;
+        div[class*="_tableWrapper"] {
+            margin-inline: unset !important;
+            // width: 100% !important;width
 
-			table {
-				max-width: 100% !important;
-				min-width: fit-content !important;
-				// max-width: var(--w_chat_gpt) !important;
-				// min-width: var(--w_chat_gpt) !important;
+            table {
+                max-width: 100% !important;
+                min-width: fit-content !important;
+                // max-width: var(--w_chat_gpt) !important;max-width
+                // min-width: var(--w_chat_gpt) !important;min-width
 
-				&~div.sticky {
-					right: 0 !important;
+                & ~ div.sticky {
+                    right: 0 !important;
 
-					// .sticky[class*="end-(--thread-content-margin)"] {
-					// }
+                    // .sticky[class*="end-(--thread-content-margin)"] {
+                    // }
 
-					.bg-token-bg-primary {
-						background-color: var(--c-accent) !important;
-						color: var(--c-on-accent) !important;
-						border-radius: 50vw !important;
+                    .bg-token-bg-primary {
+                        background-color: var(--c-accent) !important;
+                        color: var(--c-on-accent) !important;
+                        border-radius: 50vw !important;
 
-						&:hover {
-							background-color: var(--c-on-accent) !important;
-							color: var(--c-accent) !important;
-						}
-					}
-				}
-			}
-		}
-	}
+                        &:hover {
+                            background-color: var(--c-on-accent) !important;
+                            color: var(--c-accent) !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-
-	table {
+    table {
 		/* TODO - this overflow cause cutting the border edges of latest <tr> child, wtf. So I have to add border to <table> also (down where <th>, <td> are) */
 		// overflow: hidden;
 		border-radius: var(--br-btn) !important;
 		// --thread-content-width: var(--w_chat_gpt) !important;
 		// width: 100% !important;
 
-		thead {
-			--tw-prose-headings: var(--c-txt) !important;
-			border-collapse: collapse !important;
-			border-spacing: 0 !important;
-			background-color: var(--c-surface-3) !important;
-			text-transform: uppercase;
-			font-size: 0.8rem !important;
-		}
+        thead {
+            --tw-prose-headings: var(--c-txt) !important;
 
-		&,
-		th,
-		td {
-			border: 1px solid var(--c-border) !important;
-		}
+            border-collapse: collapse !important;
+            border-spacing: 0 !important;
+            background-color: var(--c-surface-3) !important;
+            text-transform: uppercase;
+            font-size: 0.8rem !important;
+        }
 
-		th,
-		td {
-			padding: 0.5rem !important;
-		}
+        &,
+        th,
+        td {
+            border: 1px solid var(--c-border) !important;
+        }
 
-		/* Make odd rows darker */
-		tbody tr:nth-child(2n) {
-			background-color: hsla(var(--txt-hsl) / 0.03) !important;
-		}
-	}
+        th,
+        td {
+            padding: 0.5rem !important;
+        }
 
-	code:not(pre code) {
-		background-color: var(--c-accent-10) !important;
-		color: var(--c-accent);
-	}
+        /* Make odd rows darker */
+        tbody tr:nth-child(2n) {
+            background-color: hsla(var(--txt-hsl) / 0.03) !important;
+        }
+    }
+
+    code:not(pre code) {
+        background-color: var(--c-accent-10) !important;
+        color: var(--c-accent);
+    }
 }
 
 .markdown th {
-	background-color: unset !important;
+    background-color: unset !important;
 }

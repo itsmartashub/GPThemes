@@ -1,20 +1,22 @@
-import { SELECTORS } from '../config/selectors.js'
-import { renderButton } from '../components/renderButtons.js'
-import { renderSeparator } from '../components/renderUtils.js'
 import { icon_full_width, icon_sync } from '../components/icons.js'
+import { renderButton } from '../components/renderButtons.js'
 import { renderSliderCard } from '../components/renderSlider.js'
 import { renderToggle } from '../components/renderToggles.js'
-
+import { renderSeparator } from '../components/renderUtils.js'
+import { SELECTORS } from '../config/selectors.js'
+import { mount as mountCustomHides, renderCustomHides } from '../custom-hide/index.js'
 // Import child modules
-import { renderCustomScrolldown, mount as mountScrolldown } from './scrolldown.js'
-import { renderCustomChatBubbles, mount as mountChatBubbles } from './toggleChatBubbles.js'
-import { renderCustomChatboxHeight, mount as mountCustomChatboxHeight } from './toggleChatboxHeight.js'
-import { renderCustomHides, mount as mountCustomHides } from '../custom-hide/index.js'
+import { mount as mountScrolldown, renderCustomScrolldown } from './scrolldown.js'
+import { mount as mountChatBubbles, renderCustomChatBubbles } from './toggleChatBubbles.js'
+import {
+	mount as mountCustomChatboxHeight,
+	renderCustomChatboxHeight,
+} from './toggleChatboxHeight.js'
 import {
 	init as initWidths,
 	mount as mountWidths,
-	resetAll as resetWidths,
 	templateHTML as renderWidthsSection,
+	resetAll as resetWidths,
 } from './widths.js'
 
 // =====================================================

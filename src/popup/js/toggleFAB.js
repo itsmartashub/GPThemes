@@ -1,6 +1,6 @@
-import { SK_TOGGLE_FAB_HIDDEN } from '../../js/app/config/consts-storage.js'
-import { getItem, setItem, removeItems } from '../../js/utils/storage.js'
 import { renderToggle } from '../../js/app/components/renderToggles.js'
+import { SK_TOGGLE_FAB_HIDDEN } from '../../js/app/config/consts-storage.js'
+import { getItem, removeItems, setItem } from '../../js/utils/storage.js'
 
 const STORAGE_KEY = SK_TOGGLE_FAB_HIDDEN
 
@@ -30,7 +30,7 @@ async function init() {
 
 	try {
 		// Get current state - handle null case (first install)
-		let isHidden = (await getItem(STORAGE_KEY)) ?? false
+		const isHidden = (await getItem(STORAGE_KEY)) ?? false
 
 		// Render toggle
 		container.innerHTML = renderToggle({

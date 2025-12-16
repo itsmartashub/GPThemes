@@ -8,7 +8,7 @@
         // list-style-type: none;
         padding-left: 2rem;
 
-        *+* {
+        * + * {
             margin-top: 0.8rem;
         }
 
@@ -16,14 +16,13 @@
             position: relative;
             border-radius: 0.8rem;
             font-size: 0.915em;
-
         }
 
         code {
             color: $accent;
             font-weight: 500;
-            padding: .1rem .3rem;
-            border-radius: .4rem;
+            padding: 0.1rem 0.3rem;
+            border-radius: 0.4rem;
             background-color: rgba($accent, 0.2);
         }
     }
@@ -36,7 +35,7 @@
     &__footer {
         position: sticky;
         z-index: 10;
-        padding: 1rem 0 0.5rem 0;
+        padding: 1rem 0 0.5rem;
     }
 
     &__header {
@@ -48,11 +47,6 @@
         h2 {
             font-size: 1.8em;
             font-weight: 700;
-            // background: linear-gradient(120deg, $accent 15%, rgba($accent, 0.6), $accent 80%);
-            // // background: linear-gradient(90deg, $accent, rgba($accent, 0.4), $accent);
-            // -webkit-background-clip: text;
-            // background-clip: text;
-            // color: transparent;
             color: $accent;
 
             span {
@@ -69,10 +63,10 @@
         border-radius: 0.7rem;
         font-size: 1.2em;
         font-weight: bold;
-        transition: .3s ease-in-out;
+        transition: 0.3s ease-in-out;
 
         &:hover {
-            background-color: rgba($accent, .2);
+            background-color: rgba($accent, 0.2);
         }
     }
 
@@ -102,6 +96,7 @@
 
         a {
             @extend %link_hover_underlined;
+
             color: $accent !important;
         }
     }
@@ -111,7 +106,7 @@
         text-transform: uppercase;
     }
 
-    p:has(>.changelog__seefullchangelog) {
+    p:has(> .changelog__seefullchangelog) {
         &:not(&:last-child) {
             margin-bottom: 4rem;
         }
@@ -120,19 +115,17 @@
     &__footer {
         bottom: 0;
         text-align: center;
-        // background: linear-gradient(to bottom, rgba($bg, 0.1), rgba($bg, 1) 75%);
 
         a {
-            // background-image: $bg-gradient;
             background-color: $accent;
             color: $on-accent;
             border-radius: 0.5rem;
             padding: 0.2rem 0.5rem;
             font-weight: bold;
-            transition: .3s ease-in-out;
+            transition: 0.3s ease-in-out;
 
             &:hover {
-                background-color: rgba($accent, .2);
+                background-color: rgba($accent, 0.2);
                 color: $accent;
                 backdrop-filter: blur(1rem);
             }
@@ -157,27 +150,27 @@
         padding: 0.5rem 1.2rem;
         background-image: $bg-gradient;
         border-radius: 50vw;
-        // border-top: 2px dashed rgba($accent, 0.5);
         border-top: 2px solid rgba($accent, 0.15);
 
         h3 {
             text-align: center;
             text-transform: uppercase;
-            color: $accent;
             font-size: 0.95em;
-
-            background: linear-gradient(90deg, $accent, rgba($accent, 0.4), $accent);
-            -webkit-background-clip: text;
-            /* Safari/WebKit */
+            background: linear-gradient(
+                90deg,
+                $accent,
+                rgba($accent, 0.4),
+                $accent
+            );
             background-clip: text;
+
+            /* Safari/WebKit */
             color: transparent;
-            /* Hide the original text color */
         }
 
         &__separator-text {
-            // color: #777;
             font-style: italic;
-            margin: 8px 0 0 0;
+            margin: 8px 0 0;
             opacity: 0.7;
         }
     }

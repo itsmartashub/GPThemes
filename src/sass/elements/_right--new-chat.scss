@@ -1,6 +1,8 @@
 // /* === RIGHT - NEW CHAT - 4 BIG BTNS === */
+
 /* New chat prompt examples - card buttons with prompt pregenerated */
 main [role='presentation'] {
+
 	--c-bg-gradient: linear-gradient(-45deg,
 			var(--c-accent-15) 0%,
 			var(--c-accent-03) 40% 60%,
@@ -8,17 +10,20 @@ main [role='presentation'] {
 
 	/* New "New Chat" layout prompt action cards */
 	// div.w-full:has(> form #prompt-textarea) + div.hidden ul > li > button,
+
 	/* Classic big "New Chat" layout prompt example cards */
 	button.relative.flex.w-40.flex-col.rounded-2xl.border-token-border-default,
 	button.relative.whitespace-nowrap.rounded-2xl.border-token-border-default.text-start.align-top.shadow-xxs.transition.enabled\:hover\:bg-token-main-surface-secondary.disabled\:cursor-not-allowed {
 
 		--clr: var(--c-accent-12);
+
 		border: 1px solid var(--clr) !important;
 		background-image: var(--c-bg-gradient) !important;
 		color: var(--c-accent) !important;
 		transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s;
 
 		.text-gray-600 {
+
 			--c-subtext-2: currentColor;
 		}
 

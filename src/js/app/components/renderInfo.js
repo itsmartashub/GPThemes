@@ -1,4 +1,4 @@
-import { icon_info, icon_warning, icon_danger, icon_success } from '../components/icons.js'
+import { icon_danger, icon_info, icon_success, icon_warning } from '../components/icons.js'
 
 const ICON_MAP = {
 	info: icon_info,

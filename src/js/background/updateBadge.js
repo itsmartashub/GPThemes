@@ -1,6 +1,6 @@
-import { runtime, action } from 'webextension-polyfill'
-import { getItem, setItem, removeItems } from '../utils/storage'
+import { action, runtime } from 'webextension-polyfill'
 import { SK_BADGE_SEEN } from '../app/config/consts-storage'
+import { getItem, removeItems, setItem } from '../utils/storage'
 
 export const BADGE_COLOR = '#ca93fb'
 export const NEW_BADGE_TEXT = 'NEW'

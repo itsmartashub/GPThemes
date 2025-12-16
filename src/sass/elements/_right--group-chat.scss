@@ -15,11 +15,8 @@
 }
 
 [role="presentation"] {
-
     /* Message wrapper */
     .group\/message[data-message-id] {
-
-
         /* Sended & received msg bubbles */
         .group\/message {
 
@@ -42,6 +39,7 @@
         /* ChatGPT msg in Group chat (w/o bubble and bg) */
         [id^="collapsible-chatgpt-message-"] {
             @extend %groupChatMsgSharedStyle;
+
             background-image: linear-gradient(to top, var(--c-bg-chats-container), var(--c-bg-msg-gpt)) !important;
             box-shadow: 0 0 3px 1px inset color-alpha(--c-bg-msg-gpt, 0.5, true);
         }

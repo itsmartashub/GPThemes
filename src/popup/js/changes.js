@@ -22,7 +22,12 @@ const SECTION_TYPES = {
 	critical: { emoji: '🚨', title: 'Critical Fixes', priority: 0 },
 	newFixes: { emoji: '🔧', title: 'New Key Fixes', priority: 1 },
 	// Separator for previous version content
-	previousSeparator: { emoji: '📜', title: 'From Previous Version', priority: 2, isSeparator: true },
+	previousSeparator: {
+		emoji: '📜',
+		title: 'From Previous Version',
+		priority: 2,
+		isSeparator: true,
+	},
 	features: { emoji: '🆕', title: 'Features', priority: 3 },
 	improvements: { emoji: '🚀', title: 'Key Enhancements', priority: 4 },
 	fixes: { emoji: '🩹', title: 'Key Fixes', priority: 5 },
@@ -83,7 +88,8 @@ const currentReleaseChanges = {
 		},
 		{
 			description: 'Markdown Syntax Highlight:',
-			details: 'Remove custom <code>rose-pine</code> syntax highlighting theme and use default one instead',
+			details:
+				'Remove custom <code>rose-pine</code> syntax highlighting theme and use default one instead',
 		},
 		{
 			description: 'Modals Dialogs:',
@@ -97,7 +103,8 @@ const currentReleaseChanges = {
 	fixes: [
 		{
 			description: 'Expand Chatbox Height:',
-			details: 'Updated selectors to prevent targeting chatbox in <code>New Chat</code> layout',
+			details:
+				'Updated selectors to prevent targeting chatbox in <code>New Chat</code> layout',
 		},
 		{
 			description: 'Project & Sidebar:',
@@ -141,7 +148,9 @@ const generateChangelog = () => {
 	// Get only sections that have content and sort by priority
 	const sectionsWithContent = Object.entries(currentReleaseChanges)
 		.filter(([_, items]) => items && items.length > 0)
-		.sort(([a], [b]) => (SECTION_TYPES[a]?.priority || 999) - (SECTION_TYPES[b]?.priority || 999))
+		.sort(
+			([a], [b]) => (SECTION_TYPES[a]?.priority || 999) - (SECTION_TYPES[b]?.priority || 999),
+		)
 
 	if (sectionsWithContent.length === 0) {
 		return '<p>No changes in this release.</p>'
@@ -153,8 +162,8 @@ const generateChangelog = () => {
 			const sectionClass = ['critical', 'newFixes'].includes(sectionKey)
 				? `changelog__${sectionKey.replace(/([A-Z])/g, '-$1').toLowerCase()}-section`
 				: sectionKey === 'previousSeparator'
-				? 'changelog__previous-separator'
-				: ''
+					? 'changelog__previous-separator'
+					: ''
 
 			// Special handling for separator section
 			if (section.isSeparator) {

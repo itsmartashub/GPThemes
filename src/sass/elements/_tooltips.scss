@@ -16,7 +16,6 @@ div[data-radix-popper-content-wrapper] {
 	relative z-50 transition-opacity select-none overflow-hidden dark bg-black rounded-xl max-w-sm p-0 animate-show
 	*/
 	div[style*='--radix-tooltip-content'][class*="bg-black"]:not(.rounded-xl.border-token-border-default, .p-0) {
-
 		&,
 		.text-white,
 		.text-token-text-primary,

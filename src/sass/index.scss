@@ -14,8 +14,7 @@
 // @import 'dev/_mixins'; // TODO: REMOVE THIS FOR PRODUCTION!
 
 // @import '../libs/jscolorpicker/colorpicker-my-style.scss';
-@import "../libs/jscolorpicker/colorpicker-my-style-optimized.scss";
-// @import '../libs/jscolorpicker/colorpicker-default-style.scss';
+@import "../libs/jscolorpicker/colorpicker-my-style-optimized";
 // @import '../libs/jscolorpicker/colorpicker.min.scss';
 
 @import "global/_base";
@@ -65,5 +64,4 @@
 @import "customs/_custom--textarea";
 @import "customs/_custom--hides";
 @import "customs/_custom--colors";
-
 @import "gpthemes/gpth-index";

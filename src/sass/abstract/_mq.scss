@@ -29,36 +29,36 @@ $big: 120em;
 	@if $bp == mob-ant {
 		@media only screen and (max-width: #{$mob-ant}) {
 			@content;
-		} //320px
+		} // 320px
 	}
 
 	@if $bp == mob {
 		@media only screen and (max-width: #{$mob}) {
 			@content;
-		} //500px
+		} // 500px
 	}
 
 	@if $bp == tab-port {
 		@media only screen and (max-width: #{$tab-port}) {
 			@content;
-		} //600px
+		} // 600px
 	}
 
 	@if $bp == tab-land {
 		@media only screen and (max-width: #{$tab-land}) {
 			@content;
-		} //900px
+		} // 900px
 	}
 
 	@if $bp == laptop {
 		@media only screen and (max-width: #{$laptop}) {
 			@content;
-		} //1200px
+		} // 1200px
 	}
 
 	@if $bp == big-desktop {
 		@media only screen and (min-width: #{$big}) {
 			@content;
-		} //1800
+		} // 1800
 	}
 }

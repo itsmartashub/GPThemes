@@ -23,9 +23,10 @@
 		"build:ff": "parcel build src/manifests/firefox-mv2/manifest.json --dist-dir build/prod/gpthemes-firefox-mv2 --no-source-maps",
 		"zip": "deno run --allow-read --allow-write --allow-env scripts/zip.js",
 		"build:all": "pnpm clean:all && pnpm build:chrome && pnpm build:ff && pnpm zip",
-		"lint-format": "biome check --write",
-		"stylelint": "pnpm dlx stylelint src/**/*.scss",
-		"stylelint:fix": "pnpm dlx stylelint src/**/*.scss --fix"
+		"lintformat": "biome check --write",
+		"lintformat:max": "biome check --write --max-diagnostics=6000",
+		"slint": "pnpm dlx stylelint src/**/*.scss",
+		"slint:fix": "pnpm dlx stylelint src/**/*.scss --fix"
 	},
 	"author": "itsmarta",
 	"keywords": [
@@ -97,7 +98,6 @@
 		"@parcel/transformer-sass": "2.16.3",
 		"parcel": "^2.16.3",
 		"stylelint": "^16.26.1",
-		"stylelint-config-standard": "^39.0.1",
 		"stylelint-config-standard-scss": "^16.0.0"
 	},
 	"dependencies": {

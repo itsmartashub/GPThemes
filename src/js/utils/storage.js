@@ -7,7 +7,7 @@ const STORAGE_AREAS = {
 	MANAGED: 'managed',
 }
 
-let DEFAULT_AREA = STORAGE_AREAS.SYNC
+const DEFAULT_AREA = STORAGE_AREAS.SYNC
 
 // Helper to validate storage area
 function validateArea(area) {

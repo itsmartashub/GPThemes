@@ -1,35 +1,58 @@
 html.light {
-    --cp-body-bg: #ffffff;
+
+    --cp-body-bg: #fff;
+
     --cp-body-color: #212529;
+
     --cp-body-color-rgb: 33, 37, 41;
+
     --cp-border-color: #ccc;
+
     --cp-hover-color: #999;
+
     --cp-button-color: #ccc;
-    --cp-border-color-translucent: rgba(0, 0, 0, .175);
-    --cp-tertiary-color: rgba(33, 37, 41, .5)
+
+    --cp-border-color-translucent: rgb(0 0 0 / .175);
+
+    --cp-tertiary-color: rgb(33 37 41 / .5)
 }
 
 html.dark {
+
     --cp-body-bg: #212529 !important;
+
     --cp-body-color: #dee2e6 !important;
+
     --cp-body-color-rgb: 222, 226, 230 !important;
+
     --cp-border-color: #666 !important;
+
     --cp-hover-color: #777 !important;
+
     --cp-button-color: #666 !important;
-    --cp-border-color-translucent: rgba(255, 255, 255, .15) !important;
-    --cp-tertiary-color: rgba(222, 226, 230, .5) !important
+
+    --cp-border-color-translucent: rgb(255 255 255 / .15) !important;
+
+    --cp-tertiary-color: rgb(222 226 230 / .5) !important
 }
 
 :root {
     box-sizing: border-box;
+
     --cp-size: 2.375rem;
+
     --cp-delay: 150ms;
+
     --cp-border-radius-sm: var(--br-btn);
+
     --cp-border-radius-lg: var(--br);
+
     --cp-swatch-width: 1.5rem;
 
-    --cp-box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
-    --cp-box-shadow-sm: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    --cp-box-shadow: 0 .5rem 1rem rgb(0 0 0 / .15);
+
+    --cp-box-shadow-sm: 0 .125rem .25rem rgb(0 0 0 / .075);
+
     --cp-bg-checker: repeating-conic-gradient(#808080 0% 25%, transparent 0% 50%) 50% / .5rem .5rem
 }
 
@@ -107,13 +130,12 @@ html.dark {
 }
 
 .cp_button.cp_unset {
-    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjU2IDI1NiI+PHBhdGggZmlsbD0iIzM4M2E0YyIgZD0iTTIwOC40OSAxOTEuNTFhMTIgMTIgMCAwIDEtMTcgMTdMMTI4IDE0NWwtNjMuNTEgNjMuNDlhMTIgMTIgMCAwIDEtMTctMTdMMTExIDEyOEw0Ny41MSA2NC40OWExMiAxMiAwIDAgMSAxNy0xN0wxMjggMTExbDYzLjUxLTYzLjUyYTEyIDEyIDAgMCAxIDE3IDE3TDE0NSAxMjhaIi8+PC9zdmc+), var(--cp-border-color);
+    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjU2IDI1NiI+PHBhdGggZmlsbD0iIzM4M2E0YyIgZD0iTTIwOC40OSAxOTEuNTFhMTIgMTIgMCAwIDEtMTcgMTdMMTI4IDE0NWwtNjMuNTEgNjMuNDlhMTIgMTIgMCAwIDEtMTctMTdMMTExIDEyOEw0Ny41MSA2NC40OWExMiAxMiAwIDAgMSAxNy0xN0wxMjggMTExbDYzLjUxLTYzLjUyYTEyIDEyIDAgMCAxIDE3IDE3TDE0NSAxMjhaIi8+PC9zdmc+"), var(--cp-border-color);
     background-size: 100% 100%
 }
 
 .cp_caret {
     background-color: var(--cp-border-color);
-    color: var(--cp-body);
     font-size: calc(var(--cp-size) / 3);
     padding: .1rem 0 0 .1rem;
     border-top-left-radius: var(--cp-border-radius-sm);
@@ -133,15 +155,22 @@ html.dark {
 }
 
 .cp_dialog {
+
     --cp-base-color: #000;
+
     --cp-current-color: transparent;
+
     --cp-color: transparent;
+
     --cp-hue: 0;
+
     --cp-alpha: 0;
-    --cp-primary: hsl(var(--cp-hue), 50%, 60%);
+
+    --cp-primary: hsl(var(--cp-hue) 50% 60%);
+
     position: absolute;
     z-index: 1055;
-    // width: 17.2rem;
+    // width: 17.2rem;width
     width: clamp(12rem, 60%, 16rem);
     background-color: var(--cp-body-bg);
     border: 1px solid var(--cp-border-color-translucent);
@@ -214,8 +243,8 @@ html.dark {
 }
 
 .cp_area-hsv {
-    border-radius: var(--cp-border-radius-lg) var(--cp-border-radius-lg) 0px 0px;
-    background: linear-gradient(to top, rgba(0, 0, 0, var(--cp-alpha)), transparent), linear-gradient(to left, hsla(var(--cp-hue), 100%, 50%, var(--cp-alpha)), rgba(255, 255, 255, var(--cp-alpha))), var(--cp-bg-checker)
+    border-radius: var(--cp-border-radius-lg) var(--cp-border-radius-lg) 0 0;
+    background: linear-gradient(to top, rgb(0 0 0 / var(--cp-alpha)), transparent), linear-gradient(to left, hsl(var(--cp-hue) 100% 50% / var(--cp-alpha)), rgb(255 255 255 / var(--cp-alpha))), var(--cp-bg-checker)
 }
 
 .cp_area-hsv .cp_thumb {
@@ -227,7 +256,7 @@ html.dark {
 }
 
 .cp_slider-hue .cp_thumb {
-    background-color: hsl(var(--cp-hue), 100%, 50%)
+    background-color: hsl(var(--cp-hue) 100% 50%)
 }
 
 .cp_slider-alpha {
@@ -258,11 +287,13 @@ html.dark {
 }
 
 .cp_swatch {
+
     --cp-color: transparent;
+
     width: var(--cp-swatch-width);
     aspect-ratio: 1;
     padding: 0;
-    border: 1px solid rgba(0, 0, 0, .2) !important;
+    border: 1px solid rgb(0 0 0 / .2) !important;
     border-radius: var(--cp-border-radius-sm) !important;
     overflow: hidden;
     cursor: pointer;
@@ -299,7 +330,7 @@ html.dark {
     background-color: var(--cp-border-color-translucent) !important
 }
 
-.cp_format[aria-checked=true] {
+.cp_format[aria-checked="true"] {
     color: var(--cp-body-color);
     background-color: var(--cp-button-color)
 }

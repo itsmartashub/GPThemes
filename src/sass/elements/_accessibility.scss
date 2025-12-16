@@ -3,22 +3,26 @@
 // :before {
 // 	--tw-ring-color: hsl(var(--accent-h),
 // 			calc(var(--accent-s) / 1.5),
-// 			var(--accent-l)) !important; // out border (box-shadow) on dialog btns color
-// 	--tw-ring-offset-color: var(--c-bg-dialog) !important; // inner border on dialog btns color
+// 			var(--accent-l)) !important;--tw-ring-color // out border (box-shadow) on dialog btns color
+// 	--tw-ring-offset-color: var(--c-bg-dialog) !important;outborderondialogbtnscolor--tw-ring-offset-color // inner border on dialog btns color
 // }
 
 /* From ChatGPT */
-:is([type=text], [type=email], [type=url], [type=password], [type=number], [type=date], [type=datetime-local], [type=month], [type=search], [type=tel], [type=time], [type=week], [multiple], textarea, select) {
-
+:is([type="text"], [type="email"], [type="url"], [type="password"], [type="number"], [type="date"], [type="datetime-local"], [type="month"], [type="search"], [type="tel"], [type="time"], [type="week"], [multiple], textarea, select) {
 	&:focus-visible,
 	&:focus-within {
-
 		/* --tw-ring-inset: var(--tw-empty); */
+
 		--tw-ring-offset-width: 0px;
+
 		--tw-ring-offset-color: var(--c-subtext-2) !important;
+
 		--tw-ring-color: var(--c-accent) !important;
+
 		--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+
 		--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+
 		border-color: var(--c-accent) !important;
 		box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
 		outline: 2px solid var(--c-accent) !important;
@@ -26,56 +30,19 @@
 	}
 
 	&:focus {
+
 		--tw-ring-offset-width: 0px;
+
 		--tw-ring-offset-color: var(--c-subtext-2) !important;
+
 		--tw-ring-color: var(--c-accent) !important;
+
 		--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+
 		--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-		// border-color: var(--c-accent) !important;
 		border-color: transparent !important;
-		// border: none !important;
 		box-shadow: none !important;
 		outline: 0 solid var(--c-accent) !important;
 		outline-offset: 0 !important;
 	}
 }
-
-// :focus-visible:not(.btn-primary,
-// 	.btn-danger,
-// 	.btn-secondary:not([role='combobox'], .bg-token-surface-tertiary input),
-// 	textarea,
-// 	input,
-// 	[aria-label='Delete shared link'],
-// 	[class*='text-red-'],
-// 	button[type='button']) {
-// 	outline: 2.5px solid hsl(var(--accent-h), calc(var(--accent-s) / 1.5), var(--accent-l));
-// }
-
-// :focus-visible:is(.btn-secondary[role='combobox']) {
-// 	border: 1px solid var(--c-accent-50) !important;
-// }
-
-// /* 🗑️ Recycle icon in "Shared link" table */
-// :focus-visible:is([aria-label='Delete shared link'], [class*='text-red-']) {
-// 	--tw-ring-color: var(--c-danger) !important;
-// 	// --tw-ring-color: var(--c-danger) !important;
-// 	outline: 2.5px solid var(--c-danger) !important;
-// }
-
-// .btn-danger {
-// 	--tw-ring-color: var(--c-danger) !important;
-// 	// outline: 2.5px solid var(--c-danger) !important;
-
-// 	// &:focus {
-// 	//     outline-color: var(--c-bg-dialog) !important;
-// 	// }
-// }
-
-// [class*='focus'] {
-// 	box-shadow: none !important;
-// 	outline: none !important;
-
-// 	&:focus {
-// 		box-shadow: none !important;
-// 	}
-// }

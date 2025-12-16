@@ -1,48 +1,48 @@
-[role='listbox'],
-[role='menu'] {
-	border-radius: var(--br-contextmenu) !important;
-	padding: var(--p-contextmenu) calc(var(--p-contextmenu) * 0.5) !important;
+[role="listbox"],
+[role="menu"] {
+    border-radius: var(--br-contextmenu) !important;
+    padding: var(--p-contextmenu) calc(var(--p-contextmenu) * 0.5) !important;
 
-	&.popover {
-		@include menuBg;
-	}
+    &.popover {
+        @include menuBg;
+    }
 
-	.__menu-item {
-		padding-block: calc(var(--p-contextmenu) * 0.8) !important;
-		border-radius: 0.9em !important;
-		@include scaleIn;
-	}
+    .__menu-item {
+        @include scaleIn;
 
-	/* Separator/divider in menus ([role="separator"]) */
-	.h-px {
-		display: block !important;
-	}
+        padding-block: calc(var(--p-contextmenu) * 0.8) !important;
+        border-radius: 0.9em !important;
+    }
+
+    /* Separator/divider in menus ([role="separator"]) */
+    .h-px {
+        display: block !important;
+    }
 }
 
 /* __ MODAL - Choose theme context menu & tooltips?  */
 // [data-radix-popper-content-wrapper] {
 [data-radix-select-viewport] {
+    [data-radix-collection-item] {
+        border-radius: var(--br-btn);
+        height: auto !important;
+        margin-bottom: 4px;
+        overflow: visible !important;
+        outline: none !important;
+    }
 
-	[data-radix-collection-item] {
-		border-radius: var(--br-btn);
-		height: auto !important;
-		margin-bottom: 4px;
-		overflow: visible !important;
-		outline: none !important;
-	}
+    /* MODAL - Choose theme context menuitem hover active */
+    [data-state="checked"] {
+        span[class*="text-token-text-"] {
+            color: var(--c-on-accent) !important;
+        }
 
-	/* MODAL - Choose theme context menuitem hover active */
-	[data-state='checked'] {
-		span[class*="text-token-text-"] {
-			color: var(--c-on-accent) !important;
-		}
-
-		&,
-		&:hover {
-			background-color: var(--c-accent) !important;
-			color: var(--c-on-accent) !important;
-		}
-	}
+        &,
+        &:hover {
+            background-color: var(--c-accent) !important;
+            color: var(--c-on-accent) !important;
+        }
+    }
 }
 
 /* [role='menu'] for contextmenu */
@@ -53,23 +53,23 @@
 // --sidebar-surface-primary: var(--c-surface-2) !important;
 // }
 
+
 .__menu-item {
-	--menu-item-active: oklch(var(--from-accent) / 0.16) !important;
-	--menu-item-hover: var(--c-accent-15) !important;
-	--menu-item-highlighted: var(--c-accent-15) !important;
-	--menu-item-open: var(--c-accent-20) !important;
+    --menu-item-active: oklch(var(--from-accent) / 0.16) !important;
+    --menu-item-hover: var(--c-accent-15) !important;
+    --menu-item-highlighted: var(--c-accent-15) !important;
+    --menu-item-open: var(--c-accent-20) !important;
 
 	// &:hover {
 	// 	background-image: linear-gradient(to bottom, var(--c-accent-20), transparent 60%) !important;
 	// }
 
-	// @include lift;
-	// @include scaleIn;
+    // @include lift;
+    // @include scaleIn;
 
-
-	// data-testid="delete-chat-menu-item"
-	&[data-color="danger"],
-	&[data-testid="log-out-menu-item"] {
+    // data-testid="delete-chat-menu-item"
+    &[data-color="danger"],
+    &[data-testid="log-out-menu-item"] {
 		// --menu-item-active: oklch(from var(--c-danger) l c h / .16) !important;
 		// --menu-item-hover: oklch(from var(--c-danger) l c h / .14) !important;
 		// --menu-item-highlighted: oklch(from var(--c-danger) l c h / .15) !important;
@@ -80,14 +80,14 @@
 		// --menu-item-highlighted: color-alpha(--c-danger, 0.15, true);
 		// --menu-item-open: color-alpha(--c-danger, 0.22, true);
 
-		/* CSS VARS wont works with the example above, we need to interpolate it with # {} */
-		--menu-item-active: #{color-alpha(--c-danger, .16, true)};
-		--menu-item-hover: #{color-alpha(--c-danger, .14, true)};
-		--menu-item-highlighted: #{color-alpha(--c-danger, .15, true)};
-		--menu-item-open: #{color-alpha(--c-danger, .22, true)};
-	}
+        /* CSS VARS wont works with the example above, we need to interpolate it with # {} */
+        --menu-item-active: #{color-alpha(--c-danger, 0.16, true)};
+        --menu-item-hover: #{color-alpha(--c-danger, 0.14, true)};
+        --menu-item-highlighted: #{color-alpha(--c-danger, 0.15, true)};
+        --menu-item-open: #{color-alpha(--c-danger, 0.22, true)};
+    }
 
-	&[data-testid="log-out-menu-item"] {
-		color: var(--c-danger) !important;
-	}
+    &[data-testid="log-out-menu-item"] {
+        color: var(--c-danger) !important;
+    }
 }

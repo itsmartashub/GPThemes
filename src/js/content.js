@@ -1,12 +1,12 @@
-import { init as initFAB } from "./app/custom-fab/index"
-import { init as initThemes } from "./app/themeManager"
+import { init as initFAB } from './app/custom-fab/index'
+import { init as initThemes } from './app/themeManager'
 
 // !! Chat bubbles and chatbox height are mounted from custom-layouts after Settings render !!
 // !! User bubble accent toggle is mounted from Colors module after Settings render !!
 
 const CONFIG = {
 	// TARGET_SELECTOR: '.gpth-settings',
-	TARGET_SELECTOR: ".gpth-fab",
+	TARGET_SELECTOR: '.gpth-fab',
 	RETRY_DELAY: 3000,
 	MAX_RETRIES: 4,
 }
@@ -24,7 +24,7 @@ async function initExt() {
 		initFAB()
 		// !! Settings modules (colors, fonts, layouts) are initialized inside settingsManager after DOM attach !!
 	} catch (error) {
-		console.error("[🎨GPThemes]: Critical initialization error:", error)
+		console.error('[🎨GPThemes]: Critical initialization error:', error)
 		return false
 	}
 	return true
@@ -59,7 +59,7 @@ function scheduleRetry() {
 			}
 		}, delay)
 	} else {
-		console.log("[🎨GPThemes]: Maximum retries reached")
+		console.log('[🎨GPThemes]: Maximum retries reached')
 	}
 }
 
@@ -76,7 +76,7 @@ if (!document.querySelector(CONFIG.TARGET_SELECTOR)) {
 	initExt()
 	scheduleRetry()
 } else {
-	console.log("[🎨GPThemes]: Components already present on first check")
+	console.log('[🎨GPThemes]: Components already present on first check')
 }
 
 // Emergency cleanup if script re-runs

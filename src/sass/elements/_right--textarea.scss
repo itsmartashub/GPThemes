@@ -197,8 +197,6 @@ form {
 					}
 
 					&:hover {
-						// translate: 4px 0;
-						// translate: 0 3px;
 						translate: 0 -2px;
 					}
 				}
@@ -235,6 +233,7 @@ button.composer-submit-button-color,
 			transparent 0%,
 			var(--c-accent-40) 18%,
 			var(--c-accent) 58%);
+			
 	background: var(--c-bg-gradient) !important;
 	color: var(--c-on-accent) !important;
 	box-shadow: var(--shadow) !important;

@@ -29,9 +29,7 @@ html,
 .dark {
 
     --red-500: var(--c-danger) !important;
-    // --red-700: #911e1b;
     --brand-purple: var(--c-accent) !important;
-    // --yellow-900: #4d3b00;
 
     --bg-accent-static: var(--c-accent) !important;
     --bg-primary: var(--c-bg-chats-container) !important;
@@ -71,7 +69,7 @@ html,
 
     /* 
 	- Sidebar collapse btn
-	- "ChatGPT 3.5 - Fastest" in 4o menu when hover on it in chat bubbles*/
+	- "ChatGPT 3.5 - Fastest" in 4o menu when hover on it in chat bubbles */
     --text-quaternary: var(--c-subtext-2) !important;
     --text-error: var(--c-danger) !important;
     --text-placeholder: var(--c-subtext-1) !important;
@@ -149,7 +147,7 @@ html,
     --menu-item-active: var(--interactive-bg-secondary-press) !important;
 
 
-    // NEW: data-chat-theme, accent colog introduced by ChatGPT
+    // NEW: data-chat-theme, accent colog introduced by ChatGPT;
     --theme-attribution-highlight-bg: var(--c-accent-20) !important;
     // --theme-user-msg-bg: var(--yellow-theme-user-msg-bg);
     // --theme-user-msg-text: var(--yellow-theme-user-msg-text);

@@ -1,7 +1,10 @@
 /* Using your selector system */
 .#{$pfx}-notify-container {
+
     --spacing: 1rem;
+
     --w-max: 30rem;
+
     position: fixed;
     top: var(--spacing);
     right: 3rem;
@@ -11,14 +14,14 @@
     gap: 1rem;
     width: var(--w-max);
     max-height: calc(100dvh - calc(var(--spacing) * 2));
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden auto;
     padding: 1rem;
 
     // It isolates reflows inside the container and prevents global layout recalculation when notifications slide in/out. Great for UIs with frequent updates.
     contain: layout style paint;
 
-    @include dev('xs') {
+    @include dev("xs") {
+
         --w-max: 90vw;
 
         right: 50%;
@@ -27,6 +30,7 @@
     }
 
     .#{$pfx}-notify {
+
         --fg: var(--c-accent);
 
         width: max-content;
@@ -65,14 +69,17 @@
         }
 
         &--success {
+
             --fg: var(--c-success);
         }
 
         &--warning {
+
             --fg: var(--c-warning);
         }
 
         &--error {
+
             --fg: var(--c-danger);
         }
     }

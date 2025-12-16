@@ -39,7 +39,8 @@ export const removeVars = (varNames) => {
 		removeVar(name)
 	})
 }
-export const bind = (el, events) => el && Object.entries(events).forEach(([ev, fn]) => el.addEventListener(ev, fn))
+export const bind = (el, events) =>
+	el && Object.entries(events).forEach(([ev, fn]) => el.addEventListener(ev, fn))
 
 export const openElement = (selector, classname) => $(selector)?.classList.add(classname)
 export const closeElement = (selector, classname) => $(selector)?.classList.remove(classname)

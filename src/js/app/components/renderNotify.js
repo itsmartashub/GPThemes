@@ -47,7 +47,7 @@ function enforceMaxNotif(container) {
 function showNotification(
 	message = 'ℹ️ Settings have been updated',
 	type = NOTIF_TYPES.INFO,
-	duration = DEFAULT_DURATION
+	duration = DEFAULT_DURATION,
 ) {
 	// Throttle rapid-fire notifs
 	if (shouldThrottle()) {
@@ -166,12 +166,14 @@ function cleanupContainer() {
 
 // Unified API
 const Notify = {
-	info: (msg = 'ℹ️ Settings have been updated!', duration) => showNotification(msg, NOTIF_TYPES.INFO, duration),
+	info: (msg = 'ℹ️ Settings have been updated!', duration) =>
+		showNotification(msg, NOTIF_TYPES.INFO, duration),
 	success: (msg = '✅ Your changes were saved successfully.', duration) =>
 		showNotification(msg, NOTIF_TYPES.SUCCESS, duration),
 	warning: (msg = '⚠️ Please check your input and try again.', duration) =>
 		showNotification(msg, NOTIF_TYPES.WARNING, duration),
-	error: (msg = '🚨 Yikes, something went wrong.', duration) => showNotification(msg, NOTIF_TYPES.ERROR, duration),
+	error: (msg = '🚨 Yikes, something went wrong.', duration) =>
+		showNotification(msg, NOTIF_TYPES.ERROR, duration),
 }
 
 export { Notify, showNotification }

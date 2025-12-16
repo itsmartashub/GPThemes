@@ -97,7 +97,7 @@ function broadcastThemeChange(newTheme) {
 			key: STORAGE_KEYS.THEME,
 			newValue: newTheme,
 			storageArea: localStorage,
-		})
+		}),
 	)
 }
 

@@ -31,7 +31,6 @@ scrollbar-track-piece {
 
 /* scrollbar-color for For Firefox */
 @-moz-document url-prefix() {
-
     html,
     * {
         scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important; // second parameter (transparent) is for bg-thumb

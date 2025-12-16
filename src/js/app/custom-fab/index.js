@@ -1,11 +1,18 @@
-import { getItem, watchStorageChanges } from '../../utils/storage.js'
-import { SELECTORS } from '../config/selectors.js'
-import { SK_TOGGLE_FAB_HIDDEN } from '../config/consts-storage.js'
 import { $ } from '../../utils/dom.js'
-import { icon_sun, icon_moon, icon_moon_full, icon_settings, icon_paint, icon_kofi_cup } from '../components/icons.js'
-import { onChangeTheme } from '../themeManager.js'
-import { createSettings, onCloseSettings } from '../settingsManager.js'
+import { getItem, watchStorageChanges } from '../../utils/storage.js'
+import {
+	icon_kofi_cup,
+	icon_moon,
+	icon_moon_full,
+	icon_paint,
+	icon_settings,
+	icon_sun,
+} from '../components/icons.js'
+import { SK_TOGGLE_FAB_HIDDEN } from '../config/consts-storage.js'
+import { SELECTORS } from '../config/selectors.js'
 import { setupExtensionMessaging } from '../messaging/index.js'
+import { createSettings, onCloseSettings } from '../settingsManager.js'
+import { onChangeTheme } from '../themeManager.js'
 
 // =====================================================
 // CONSTANTS

@@ -30,7 +30,6 @@ li {
 
 	&,
 	& button {
-
 		$duration: 0.25s;
 
 		transition:
@@ -66,7 +65,7 @@ li {
 }
 
 /* ___ Switch button circle hover. Ovde ne moze :focus, ostane style kao da je checked ili obrnuto i kad se unhoveruje */
-button[role='switch'] {
+button[role="switch"] {
 	span[data-state] {
 		transition: transform 0.4s $easeInOutBack, background-color 0.3s ease-in-out;
 	}
@@ -79,7 +78,7 @@ button[role='switch'] {
 			position: relative;
 
 			&::after {
-				content: '';
+				content: "";
 				width: 100%;
 				height: 100%;
 				top: 0;

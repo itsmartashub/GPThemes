@@ -6,12 +6,13 @@
 
     &__bigcards-wrapper,
     &__smallcards-wrapper {
+
         --gap: 0.65rem;
 
         grid-template-columns: repeat(auto-fit, minmax(8.25rem, 1fr));
         display: grid;
         align-items: center;
-        // gap: calc(var(--gap) * 2) var(--gap);
+        // gap: calc(var(--gap) * 2) var(--gap);gap
         gap: var(--gap);
     }
 }

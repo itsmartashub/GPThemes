@@ -1,11 +1,11 @@
-import { getItem, setItem } from '../../utils/storage'
 import { $, ROOT_HTML } from '../../utils/dom'
-import { SELECTORS } from '../config/selectors'
-import { SK_TOGGLE_CHATBOX_HEIGHT } from '../config/consts-storage'
-import { ATTR_CHATBOX_HEIGHT } from '../config/consts-attr'
-import { renderToggle } from '../components/renderToggles'
-import { Notify } from '../components/renderNotify'
+import { getItem, setItem } from '../../utils/storage'
 import { icon_taller_height } from '../components/icons'
+import { Notify } from '../components/renderNotify'
+import { renderToggle } from '../components/renderToggles'
+import { ATTR_CHATBOX_HEIGHT } from '../config/consts-attr'
+import { SK_TOGGLE_CHATBOX_HEIGHT } from '../config/consts-storage'
+import { SELECTORS } from '../config/selectors'
 
 // =====================================================
 // STATE
@@ -38,7 +38,9 @@ function templateHTML() {
 async function saveState(state = DEFAULT_STATE) {
 	try {
 		await setItem(STORAGE_KEY, state)
-		state ? Notify.success('Chatbox height preference enabled') : Notify.info('Chatbox height preference disabled')
+		state
+			? Notify.success('Chatbox height preference enabled')
+			: Notify.info('Chatbox height preference disabled')
 		return true
 	} catch (error) {
 		Notify.error('Failed to save Chatbox height preference')

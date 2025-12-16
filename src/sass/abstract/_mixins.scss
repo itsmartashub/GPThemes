@@ -8,14 +8,13 @@
         opacity: 0.7 !important;
 
         &::after {
-            will-change: backdrop-filter;
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: radial-gradient(circle at 100% 0%, oklch(var(--from-accent) /0.02) 5%, var(--c-accent-40) 100%);
+            background-image: radial-gradient(circle at 100% 0%, oklch(var(--from-accent) / 0.02) 5%, var(--c-accent-40) 100%);
             z-index: 8;
             border-radius: inherit;
             backdrop-filter: blur(2px);
@@ -24,14 +23,13 @@
 
     &:hover {
         label::after {
-            backdrop-filter: blur(0px) !important;
+            backdrop-filter: none!important;
             background-image: radial-gradient(circle at 100% 0%, var(--c-accent-50) 5%, transparent 42%) !important;
         }
     }
 
     .icon-locked {
         display: block !important;
-        // opacity: 1 !important;
     }
 }
 
@@ -54,9 +52,7 @@
 @mixin menuBg {
     backdrop-filter: var(--blur-menu) var(--brightness-menu, 1) !important;
     background-color: var(--c-bg-menu) !important;
-    // background-image: linear-gradient(to bottom, var(--c-accent-20), transparent) !important;
-    // background-image: linear-gradient(to bottom, var(--c-accent-20), transparent) !important;
-    box-shadow: inset 0 0 15px 0px var(--c-accent-10);
+    box-shadow: inset 0 0 15px 0 var(--c-accent-10);
 }
 
 @mixin imgTrans {
@@ -106,30 +102,18 @@
     }
 }
 
-// @mixin bgcAccent($alpha: 0.1) {
-//     --alpha: #{$alpha};
-//     background-color: var(--color-alpha) !important; 
-//     color: var(--c-accent) !important;
-// }
-
-// oklch(var(--from-accent) /
-
 @mixin accent($mode: 'prim', $shadow: false) {
-    @if $mode =='prim' {
+    @if $mode == 'prim' {
         background-color: var(--c-accent) !important;
         color: var(--c-on-accent) !important;
-    }
-
-    @else if $mode =='sec' {
+    } @else if $mode == 'sec' {
         background-color: var(--c-accent-light) !important;
         color: var(--c-accent) !important;
 
         @if $shadow {
             box-shadow: 0 0 0 1px color-mix(in oklch, currentColor 15%, transparent);
         }
-    }
-
-    @else {
+    } @else {
         @warn "Unknown accent mode '#{$mode}' — use 'prim' or 'sec'.";
     }
 }

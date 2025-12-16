@@ -2,6 +2,7 @@
 a[target="_blank"].rounded-xl.font-medium.text-token-text-secondary\!.bg-\[\#F4F4F4\]\!.dark\:bg-\[\#303030\]\!,
 a[target="_blank"].rounded-xl.font-medium.bg-token-text-primary\!.text-token-main-surface-primary\! {
     --c-simulator-txt: var(--c-accent);
+
     @extend %simulator_bg;
 
     span {
@@ -34,7 +35,6 @@ a[target="_blank"].rounded-xl.font-medium.bg-\[\#f4f4f4\][class*="hover:bg-token
         }
     }
 }
-
 
 /* 💡 Reasoning pill links/btns in chat bubble
 - span.bg-\[\#f4f4f4\].rounded-full.text-xs - Reasoning 🔍 pill title

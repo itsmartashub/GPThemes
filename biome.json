@@ -26,7 +26,7 @@
 
 	"javascript": {
 		"formatter": {
-			"quoteStyle": "double",
+			"quoteStyle": "single",
 			"semicolons": "asNeeded"
 		}
 	},

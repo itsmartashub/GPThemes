@@ -1,19 +1,8 @@
+/* stylelint-disable custom-property-pattern */
 :root {
     /* ! === CUSTOM FONTS === */
-    --gpthFontFamilyOpenAISans: 'OpenAI Sans'; // Font like on OpenAI's Sora website
-    --gpthFontFamilyDefault: ui-sans-serif,
-        -apple-system,
-        system-ui,
-        sans-serif,
-        Ubuntu,
-        Cantarell,
-        "Noto Sans",
-        "Apple Color Emoji",
-        "Segoe UI Emoji",
-        "Segoe UI Symbol",
-        "Noto Color Emoji",
-        Helvetica,
-        Arial;
+    --gpthFontFamilyOpenAISans: "OpenAI Sans"; // Font like on OpenAI's Sora website
+    --gpthFontFamilyDefault: var(--default-font-family, ui-sans-serif, -apple-system, "system-ui", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, "sans-serif", "Segoe UI Emoji", "Segoe UI Symbol"); // --default-font-family is OpenAI's default var
 
     // OPENAI DEFAULT: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --gpthFontFamily: var(--gpthFontFamilyDefault);
@@ -31,7 +20,6 @@
     --w_chat_gpt: 48rem;
     --w_prompt_textarea: 48rem;
     // --chats-container-mode: normal;
-
 
     /* ! === CUSTOM CHATBOX HEIGHT === */
     --gpthChatboxHeight: 70svh; // Used when html has class `gpth-chatbox--custom-height`
