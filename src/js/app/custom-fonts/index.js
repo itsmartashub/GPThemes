@@ -246,9 +246,8 @@ function addPreconnectLinks() {
 	preconnectLinksAdded = true
 }
 function removeCurrGoogleFontLink() {
-	if (currentFontLink && currentFontLink.parentNode) {
-		currentFontLink.remove()
-	}
+	if (currentFontLink?.parentNode) currentFontLink.remove()
+
 	currentFontLink = null
 }
 function removeAllGoogleFontLinks() {
@@ -256,9 +255,9 @@ function removeAllGoogleFontLinks() {
 	removeCurrGoogleFontLink()
 
 	// Remove all Google Fonts related links (including preconnect)
-	$$("link[href*='fonts.googleapis.com'], link[href*='fonts.gstatic.com']").forEach((link) =>
-		link.remove(),
-	)
+	$$("link[href*='fonts.googleapis.com'], link[href*='fonts.gstatic.com']").forEach((link) => {
+		link.remove()
+	})
 	preconnectLinksAdded = false
 }
 function setGoogleFont(font) {
@@ -448,9 +447,9 @@ function mount(rootSettings) {
 }
 
 export {
-	templateHTML as renderFontsTab,
-	resetAll as resetAllFonts,
 	addListeners as handleFontsListeners,
 	init,
 	mount,
+	templateHTML as renderFontsTab,
+	resetAll as resetAllFonts,
 }

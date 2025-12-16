@@ -39,7 +39,7 @@ export const SELECTORS = {
 	ACCENT: {
 		LIGHT_ID: `${PFX}-accent-light-id`,
 		DARK_ID: `${PFX}-accent-dark-id`,
-		RESET_BTN_ID: '${PFX}ResetAllColors',
+		RESET_BTN_ID: `${PFX}ResetAllColors`,
 		TOGGLE_ACCENT_TEXT_ID: `${PFX}-toggle-accent-text`,
 	},
 

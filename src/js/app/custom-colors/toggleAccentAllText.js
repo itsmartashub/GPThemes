@@ -1,4 +1,4 @@
-import { $, ROOT_HTML } from '../../utils/dom.js'
+import { ROOT_HTML } from '../../utils/dom.js'
 import { getItem, setItem } from '../../utils/storage.js'
 import { icon_text_color } from '../components/icons.js'
 import { Notify } from '../components/renderNotify.js'
@@ -131,4 +131,4 @@ async function mount() {
 // =====================================================
 // Exports
 // =====================================================
-export { templateHTML as renderAllTextAccent, mount }
+export { mount, templateHTML as renderAllTextAccent }

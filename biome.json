@@ -35,7 +35,8 @@
 		"actions": {
 			"source": {
 				"organizeImports": "on",
-				"useSortedProperties": "on"
+				"useSortedProperties": "on",
+				"useSortedAttributes": "on"
 			}
 		}
 	}

@@ -1,9 +1,4 @@
-import { icon_full_width, icon_sync } from '../components/icons.js'
-import { renderButton } from '../components/renderButtons.js'
-import { renderSliderCard } from '../components/renderSlider.js'
-import { renderToggle } from '../components/renderToggles.js'
 import { renderSeparator } from '../components/renderUtils.js'
-import { SELECTORS } from '../config/selectors.js'
 import { mount as mountCustomHides, renderCustomHides } from '../custom-hide/index.js'
 // Import child modules
 import { mount as mountScrolldown, renderCustomScrolldown } from './scrolldown.js'
@@ -16,7 +11,6 @@ import {
 	init as initWidths,
 	mount as mountWidths,
 	templateHTML as renderWidthsSection,
-	resetAll as resetWidths,
 } from './widths.js'
 
 // =====================================================
@@ -25,27 +19,27 @@ import {
 
 function templateHTML() {
 	return `
-    <section id="sectionLayouts" class="gpth-layouts">
-      ${renderWidthsSection()}
-      
-      ${renderSeparator}
-      ${renderCustomHides()}
-      ${renderSeparator}
-      ${renderCustomChatboxHeight()}
-      ${renderSeparator}
-      ${renderCustomChatBubbles()}
-      ${renderSeparator}
-      ${renderCustomScrolldown()}
-    </section>`
+		<section id="sectionLayouts" class="gpth-layouts">
+			${renderWidthsSection()}
+			
+			${renderSeparator}
+			${renderCustomHides()}
+			${renderSeparator}
+			${renderCustomChatboxHeight()}
+			${renderSeparator}
+			${renderCustomChatBubbles()}
+			${renderSeparator}
+			${renderCustomScrolldown()}
+		</section>`
 }
 
 // =====================================================
 // LISTENERS - RESET
 // =====================================================
 
-function onResetAll() {
-	resetWidths()
-}
+// function onResetAll() {
+// 	resetWidths()
+// }
 
 // =====================================================
 // Lifecycle: INIT
@@ -76,4 +70,4 @@ function mount() {
 // =====================================================
 // Exports
 // =====================================================
-export { templateHTML as renderLayoutsTab, init, mount }
+export { init, mount, templateHTML as renderLayoutsTab }
