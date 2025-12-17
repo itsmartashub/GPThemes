@@ -21,8 +21,7 @@ body>.pointer-events-none.fixed.inset-0.contain-size[data-shader] {
 
 		[role='presentation'] {
 
-			#image-app-composer~.max-w-app-content {
-
+			.max-w-app-content {
 
 				section {
 					// border: 5px solid orange !important;
@@ -35,7 +34,7 @@ body>.pointer-events-none.fixed.inset-0.contain-size[data-shader] {
 						}
 
 						&:is(:hover, :focus) img {
-							transform: scale(1.1);
+							transform: scale(1.15);
 						}
 					}
 				}

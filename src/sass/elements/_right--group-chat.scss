@@ -19,11 +19,8 @@
     /* Message wrapper */
     .group\/message[data-message-id*="CalpicoMessage"] {
 
-        border: 5px solid red;
-
         /* Sended & received msg bubbles */
         .group\/message {
-            // border: 5px solid orange;
 
             // sended
             &.user-message-bubble-color,

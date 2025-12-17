@@ -106,3 +106,13 @@ html[data-gpth-toggle-bubble-user][data-gpth-toggle-bubble-user-accent] {
         color: var(--c-txt) !important;
     }
 }
+
+
+/* Group chats: sync custom widths change on this layout too */
+/* header#calpico-page-header~div:not(.sticky.bottom-0) {
+    // border: 5px solid orange;
+
+    [class*="max-w-(--thread-content-max-width)"] {
+        max-width: var(--w_chat_gpt) !important;
+    }
+} */
