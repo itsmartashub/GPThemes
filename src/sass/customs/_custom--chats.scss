@@ -61,14 +61,28 @@
 
 
 
-/* Toggle OF → replace with transparent colors to "remove" bubble bg */
+/* Toggle OFF → replace with transparent colors to "remove" bubble bg */
 html[data-gpth-toggle-bubble-user] .user-message-bubble-color,
 html[data-gpth-toggle-bubble-gpt] .agent-turn {
     background-color: transparent !important;
 }
 
+
+/* Toggle OFF → remove background gradient and box shadow from GPT bubble in Group chats */
+// html[data-gpth-toggle-bubble-gpt] [id^="collapsible-chatgpt-message-"] {
+html[data-gpth-toggle-bubble-gpt] [role="presentation"] .group\/message[data-message-id*="CalpicoMessage"] [id^="collapsible-chatgpt-message-"] {
+    background-image: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+
 html[data-gpth-toggle-bubble-gpt] .agent-turn {
     padding-inline: 0 !important;
+
+    @include dev('sm') {
+        padding-inline: 0.5rem !important;
+    }
 }
 
 /* ! ========== CUSTOM COLORS - Agressive accent for User chat ========== */

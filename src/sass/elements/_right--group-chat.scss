@@ -15,10 +15,15 @@
 }
 
 [role="presentation"] {
+
     /* Message wrapper */
-    .group\/message[data-message-id] {
+    .group\/message[data-message-id*="CalpicoMessage"] {
+
+        border: 5px solid red;
+
         /* Sended & received msg bubbles */
         .group\/message {
+            // border: 5px solid orange;
 
             // sended
             &.user-message-bubble-color,
@@ -40,7 +45,7 @@
         [id^="collapsible-chatgpt-message-"] {
             @extend %groupChatMsgSharedStyle;
 
-            background-image: linear-gradient(to top, var(--c-bg-chats-container), var(--c-bg-msg-gpt)) !important;
+            background-image: linear-gradient(to top, var(--c-bg-chats-container), var(--c-bg-msg-gpt));
             box-shadow: 0 0 3px 1px inset color-alpha(--c-bg-msg-gpt, 0.5, true);
         }
     }
