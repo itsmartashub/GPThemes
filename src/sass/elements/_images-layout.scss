@@ -3,43 +3,71 @@ body>.pointer-events-none.fixed.inset-0.contain-size[data-shader] {
 		opacity: 0 !important;
 	}
 
-	// &::after {
-	//     content: "";
-	//     position: absolute;
-	//     inset: 0;
-	//     width: 100%;
-	//     height: 100%;
-	//     background: linear-gradient(to bottom, var(--c-bg-chats-container), var(--c-accent-50)) !important;
-	//     z-index: 1;
-	//     opacity: 0.98;
-	// }
+	// background: radial-gradient(circle at 60% 50%, var(--c-accent-10), var(--c-bg-sidebar), var(--c-bg-sidebar));
+	// background: radial-gradient(farthest-corner at 55% 70%, var(--c-accent-10), transparent, var(--c-bg-sidebar));
+	// background: radial-gradient(farthest-corner at 55% 70%, var(--c-accent-10), transparent, var(--c-bg-sidebar), var(--c-bg-sidebar));
+	background: radial-gradient(farthest-corner at 55% 80%, var(--c-accent-10), var(--c-accent-03), var(--c-bg-sidebar), var(--c-bg-sidebar));
+	background-blend-mode: difference;
+
+	/* 	background: radial-gradient(circle farthest-side at 15% 75%, var(--c-accent-20) 0%, var(--c-bg-sidebar) 100%),
+	radial-gradient(circle farthest-corner at 50% 50%, var(--c-accent-20) 0%, var(--c-bg-sidebar) 100%),
+	radial-gradient(circle farthest-corner at 85% 36%, var(--c-accent-10) 0%, var(--c-bg-sidebar) 100%);
+	background-blend-mode: overlay; */
 }
 
-#main {
+/* html:has(body>.pointer-events-none.fixed.inset-0.contain-size[data-shader]) {
 
-	div[class*='@container/images-app-shell'] {
+	&.dark,
+	&.light {
+		--c-sidebar-bg: transparent;
+		--sidebar-bg: transparent;
+		--sidebar-mask-bg: transparent;
+		--bg-elevated-secondary: transparent;
+	}
 
-		[role='presentation'] {
+	#stage-slideover-sidebar,
+	#stage-popover-sidebar {
+		--bg-elevated-secondary: transparent;
+		--c-sidebar-bg: transparent;
+		background: transparent;
 
-			.max-w-app-content {
+	}
 
-				section {
-					// border: 5px solid orange !important;
+	[class*="background-color:var(--sidebar-bg,"] {
+		background: transparent !important;
+	}
 
-					button .bg-token-interactive-bg-tertiary-hover[class*='corner-superellipse'] {
-						// @include imgTrans;
+} */
 
-						img {
-							transition: transform 0.25s ease;
-						}
+// .images-app.h-svh
+.images-app.h-svh {
 
-						&:is(:hover, :focus) img {
-							transform: scale(1.15);
+	#main {
+
+		div[class*='@container/images-app-shell'] {
+
+			[role='presentation'] {
+
+				.max-w-app-content {
+
+					section {
+						// border: 5px solid orange !important;
+
+						button .bg-token-interactive-bg-tertiary-hover[class*='corner-superellipse'] {
+							// @include imgTrans;
+
+							img {
+								transition: transform 0.25s ease;
+							}
+
+							&:is(:hover, :focus) img {
+								transform: scale(1.15);
+							}
 						}
 					}
 				}
 			}
 		}
-	}
 
+	}
 }
