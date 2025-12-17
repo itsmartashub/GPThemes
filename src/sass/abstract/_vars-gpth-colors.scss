@@ -164,7 +164,7 @@ html.dark {
 
     --c-scrollbar-thumb: var(--c-surface-2);
 
-    // for hovers: color-mix(in sRGB, currentcolor 20%, transparent);
+    // for hovers: color-mix(in oklch, currentcolor 20%, transparent);
 }
 
 html.dark[data-gptheme='oled'] {

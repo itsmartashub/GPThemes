@@ -12,11 +12,11 @@
     /* To strictly select chat-bubble main code-block <pre> and not that "Result" in Analysis */
     &.overflow-visible\! {
         margin: var(--my-pre) auto !important;
-        border: color-mix(in sRGB, var(--c-accent-12) 50%, black 2%) 1px solid;
+        border: color-mix(in oklch, var(--c-accent-12) 50%, black 2%) 1px solid;
     }
 
     /* Whole code block hljs element */
-    & > div {
+    &>div {
         background-color: var(--c-bg-cm) !important;
         border-radius: inherit !important;
         padding: calc(var(--p-chat-bubble) * 0.5) !important;
@@ -46,6 +46,7 @@
     /* "Copy Code" btn in pre header */
     // .sticky button:has(svg) {
     .sticky:has(button svg) {
+
         /* Buttons parent, add gas between "Copy code" and "Edit" */
         .font-sans:not(#ada-always-show) {
             gap: 0.5rem;
@@ -72,9 +73,9 @@
             }
 
             &:hover {
-				// background-color: var(--c-accent-20) !important;
-				// color: var(--c-accent) !important;
-				// backdrop-filter: blur(5px) !important;
+                // background-color: var(--c-accent-20) !important;
+                // color: var(--c-accent) !important;
+                // backdrop-filter: blur(5px) !important;
                 background-color: var(--c-accent) !important;
                 color: var(--c-on-accent) !important;
                 transform: scale(0.98);

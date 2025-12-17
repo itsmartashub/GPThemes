@@ -60,7 +60,7 @@
             translate: 25% -25%;
             font-size: 1.2em;
             padding: 0 0.125em;
-            color: color-mix(in oklab, var(--fg), black 50%);
+            color: color-mix(in oklch, var(--fg), black 50%);
             background-color: var(--fg);
             border: none;
             cursor: pointer;
