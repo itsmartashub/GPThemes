@@ -35,98 +35,56 @@ const SECTION_TYPES = {
 	support: { emoji: '💌', title: 'Support', priority: 7 },
 }
 
+/* 
+
+ <a href="https://ko-fi.com/http417" target="_blank" rel="noopener noreferrer">KO-FI</a> 
+ <a href="https://github.com/itsmartashub/GPThemes/issues/new?template=feature_request.yml" target="_blank" rel="noopener noreferrer">GitHub issue</a> 
+*/
 const currentReleaseChanges = {
 	features: [
 		{
-			description: 'OKLCH Color System:',
+			description: 'New Font:',
 			details:
-				'Completely rebuilt color management from <code>HSL</code> to <code>OKLCH</code> for better color accuracy, perceptual uniformity, and better lightness handling on modern displays',
-			prRef: 171,
+				'Added <code>Google Sans Flex</code>  <br/><i>💡 Technically, almost any font found on the <a href="https://fonts.google.com/" target="_blank" rel="noopener noreferrer">Google Fonts Platform</a> can be added. If you have a favorite, let me know in a <a href="https://github.com/itsmartashub/GPThemes/issues/new?template=feature_request.yml" target="_blank" rel="noopener noreferrer">GitHub issue</a>, <a href="https://ko-fi.com/http417" target="_blank" rel="noopener noreferrer">ko-fi</a>, or review</i>',
 		},
 		{
-			description: 'New Color Picker:',
-			details:
-				'Replaced native browser input with colorpicker library featuring <strong>manual HEX input</strong>, <strong>keyedropper tool</strong>, <strong>individual color reset</strong>, and for <strong>consistent cross-browser behavior</strong>. (Please read <code>Other</code> section for performance info)',
-			prRef: 173,
-		},
-		{
-			description: 'All Text Accented Toggle:',
-			details: 'Added toggle to apply accent color to main text on the page',
-			prRef: 175,
-			issueRef: 109,
-		},
-		{
-			description: 'Hide Upgrade Chip:',
-			details: 'Added toggle to hide <code>Upgrade for free</code> chip from the top header',
-			prRef: 180,
-			issueRef: 179,
-		},
-		{
-			description: 'Accent Colors:',
-			details: 'Change default accent colors',
-		},
-		{
-			description: 'Storage Version Control:',
-			details:
-				'Implemented automatic storage clearing when extension version is outdated, ensuring clean upgrades. <br/> ⚠️ <strong>YOUR SETTINGS WILL BE RESET ON FIRST LAUNCH</strong>',
+			description: 'Group Chat:',
+			details: 'Extended toggle chat bubble functionality to the new <code>Group</code> chats layout',
 		},
 	],
 	improvements: [
 		{
-			description: 'Theme Improvements:',
-			details:
-				'Tweaked Dark/OLED theme to be more monochromatic-friendly. Brightened light theme. Enhanced bubble contrast, and many more',
+			description: 'Group UI:',
+			details: 'Refined styling for the new <code>Group chats</code> layout',
 		},
 		{
-			description: 'Updated Colors:',
-			details:
-				'Refined surface and menu colors across all themes (light, dark, OLED) for better visual hierarchy',
-		},
-		{
-			description: 'GPT Bubble Toggle:',
-			details: `When GPT bubble is off, ensure the text fills the maximum available horizontal space (X-axis) to match the official platform's design. More noticable on mobile/smaller screens`,
-		},
-		{
-			description: 'Markdown Syntax Highlight:',
-			details:
-				'Remove custom <code>rose-pine</code> syntax highlighting theme and use default one instead',
-		},
-		{
-			description: 'Modals Dialogs:',
-			details: 'Added better style to back button and improve sharing dialog',
-		},
-		{
-			description: 'Project Interface:',
-			details: 'Match the chat list style with extension design',
+			description: 'Image UI:',
+			details: 'Refined styling for the new <code>Images</code> layout',
 		},
 	],
 	fixes: [
 		{
-			description: 'Expand Chatbox Height:',
-			details:
-				'Updated selectors to prevent targeting chatbox in <code>New Chat</code> layout',
+			description: 'Advanced Voice:',
+			details: 'Restored the appearance of the voice button and layout',
 		},
 		{
-			description: 'Project & Sidebar:',
-			details: 'Fixed hover styles and pill-style dates broken due to OpenAI updates',
+			description: 'Mobile Optimization:',
+			details: 'Fixed edge-spacing issues for GPT messages on mobile devices when bubble is off',
+		},
+		{
+			description: 'UI Consistency:',
+			details:
+				'Fixed broken sidebar styling, sticky header alignment in GPTs Store, and many other small UI improvements',
 		},
 	],
 	other: [
 		{
-			details: `Hey there 👋 This is a <strong>MAJOR</strong> <code>v6.0.0</code> release with complete color system overhaul and massive codebase refactor.<br/><br/> 
-
-			🚨 <strong>Important:</strong> Your settings will be reset on first launch due to extension storage version update.<br/><br/>
-
-			💡 <strong>Note on color picker:</strong> For the smoothest experience, change colors on lighter pages (like blank <code>New Chat</code> screen). Live preview regenerates the entire theme during dragging, which can lag on heavy pages.<br/><br/>
-
-			For full technical details and maintenance notes, check out the complete release notes on GitHub.`,
+			details: `<strong>Under the Hood:</strong> General maintenance, system architecture optimizations, and codebase refinements to ensure long-term stability and improved performance`,
 		},
 	],
 	support: [
 		{
-			details: ` <strong>Keep it alive:</strong> This extension is free so everyone can use it. But maintaining it through constant platform updates takes real time and effort. Many great tools end up behind paywalls just to survive. I'm trying to avoid that.<br/><br/> 
-			
-			🍵 If you can afford it and find GPThemes valuable, you can support its development with a <a href="https://ko-fi.com/http417" target="_blank" rel="noopener noreferrer"> <code>pay what you want</code> contribution on KO-FI. </a> Even small contributions help keep it alive and accessible.`,
+			details: `🍵 If you find GPThemes valuable, consider supporting its development with a <a href="https://ko-fi.com/http417" target="_blank" rel="noopener noreferrer">contribution on KO-FI</a>`,
 		},
 	],
 }
@@ -148,9 +106,7 @@ const generateChangelog = () => {
 	// Get only sections that have content and sort by priority
 	const sectionsWithContent = Object.entries(currentReleaseChanges)
 		.filter(([_, items]) => items && items.length > 0)
-		.sort(
-			([a], [b]) => (SECTION_TYPES[a]?.priority || 999) - (SECTION_TYPES[b]?.priority || 999),
-		)
+		.sort(([a], [b]) => (SECTION_TYPES[a]?.priority || 999) - (SECTION_TYPES[b]?.priority || 999))
 
 	if (sectionsWithContent.length === 0) {
 		return '<p>No changes in this release.</p>'
@@ -162,8 +118,8 @@ const generateChangelog = () => {
 			const sectionClass = ['critical', 'newFixes'].includes(sectionKey)
 				? `changelog__${sectionKey.replace(/([A-Z])/g, '-$1').toLowerCase()}-section`
 				: sectionKey === 'previousSeparator'
-					? 'changelog__previous-separator'
-					: ''
+				? 'changelog__previous-separator'
+				: ''
 
 			// Special handling for separator section
 			if (section.isSeparator) {

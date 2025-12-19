@@ -9,10 +9,7 @@ import {
 	resetAllAccents,
 } from './accentColors.js'
 import { mount as mountAllTextAccent, renderAllTextAccent } from './toggleAccentAllText.js'
-import {
-	mount as mountUserBubbleAccent,
-	renderUserAccentBgToggle,
-} from './toggleAccentUserBubble.js'
+import { mount as mountUserBubbleAccent, renderUserAccentBgToggle } from './toggleAccentUserBubble.js'
 
 // =====================================================
 // TEMPLATE
@@ -25,7 +22,7 @@ function templateHTML() {
 			</div>
 
 			${renderInfo({
-				text: 'Enter # followed by 3 or 6 hex digits. Select the whole code, <strong>with # character</strong>.',
+				text: `Supported formats: <strong>#RGB</strong> and <strong>#RRGGBB</strong>. Other color formats (<strong>RGB</strong>, <strong>HSV</strong>, <strong>HSL</strong>) can technically be entered, but they will be automatically converted to <strong>HEX</strong>.`,
 				classNames: 'm-6',
 			})}
 				

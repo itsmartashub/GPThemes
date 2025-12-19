@@ -362,7 +362,8 @@
 
 		/* Only PLUS plan card */
 		[data-testid="plus-pricing-modal-column"],
-		[data-testid="team-pricing-modal-column"] {
+		[data-testid="team-pricing-modal-column"],
+		[data-testid="go-pricing-modal-column"] {
 			background-color: var(--c-accent-12) !important;
 			border-color: var(--c-accent-30) !important;
 		}
