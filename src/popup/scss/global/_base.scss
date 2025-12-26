@@ -26,33 +26,33 @@ body {
     // @include device(desk) {}
 }
 
-::-webkit-scrollbar {
-    width: $w-scrollbar; // desired scrollbar width 
-    height: 0 !important; // desired sbun crollbar height
-}
+// ::-webkit-scrollbar {
+//     width: $w-scrollbar; // desired scrollbar width 
+//     height: 0 !important; // desired sbun crollbar height
+// }
 
 /* scrollbar thumb */
-::-webkit-scrollbar-thumb,
-scrollbar-thumb {
-    background-color: rgba($accent, .5); // scrollbar thumb color
-    border-radius: $br-scrollbar; // roundness of the thumb
-}
+// ::-webkit-scrollbar-thumb,
+// scrollbar-thumb {
+//     background-color: rgba($accent, .5); // scrollbar thumb color
+//     border-radius: $br-scrollbar; // roundness of the thumb
+// }
 
 /* scrollbar track */
-::-webkit-scrollbar-track,
-scrollbar-track-piece {
-    background-color: rgba($accent, .2); // scrollbar track color
-    border-radius: $br-scrollbar;
-}
+// ::-webkit-scrollbar-track,
+// scrollbar-track-piece {
+//     background-color: rgba($accent, .2); // scrollbar track color
+//     border-radius: $br-scrollbar;
+// }
 
 /* scrollbar-color for For Firefox */
-@-moz-document url-prefix() {
-    html,
-    * {
-        scrollbar-color: rgba($accent, .5) rgba($accent, .2); // second parameter (transparent) is for bg-thumb
-        scrollbar-width: thin;
-    }
-}
+// @-moz-document url-prefix() {
+//     html,
+//     * {
+//         scrollbar-color: rgba($accent, .5) rgba($accent, .2); // second parameter (transparent) is for bg-thumb
+//         scrollbar-width: thin;
+//     }
+// }
 
 a {
     text-decoration: none;

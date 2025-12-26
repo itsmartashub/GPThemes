@@ -32,9 +32,6 @@ $alphas: (
      } */
     --color-alpha: oklch(from var(--c-seed, var(--c-accent)) l c h / var(--alpha, 0.11));
 
-    --c-scrollbar-thumb: var(--c-surface-3);
-    --c-scrollbar-track: transparent;
-
     --c-bg-sidebar: oklch(from var(--c-surface-2) clamp(0, calc(l * 1.0165), 1) c h);
     --c-bg-sidebar-link: var(--c-surface-3);
     // --c-bg-sibebar-link: oklch(from var(--c-bg-sidebar) calc(l * 0.96) c h);
@@ -162,7 +159,7 @@ html.dark {
     --c-bg-sidebar: var(--c-surface-1);
     --c-bg-sidebar-link: var(--c-surface-2);
 
-    --c-scrollbar-thumb: var(--c-surface-2);
+    // --c-scrollbar-thumb: var(--c-surface-2);
 
     // for hovers: color-mix(in oklch, currentcolor 20%, transparent);
 }

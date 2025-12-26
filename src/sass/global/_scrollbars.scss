@@ -1,44 +1,68 @@
-*,
-html {
+:root {
+    --c-scrollbar-thumb: oklch(from var(--c-txt) l c h / 0.25);
+    --c-scrollbar-thumb-hover: var(--c-accent-light);
+    --c-scrollbar-track: transparent;
+    --w-scrollbar: 0.425rem;
+    --h-scrollbar-button: 8px;
+    --br-scrollbar: 50vw;
+}
+
+
+/* OVO DOLE IZGLEDA DA NISTA NE RADI, NECE DA SE OVERRIDUJE. Jedino ako stavimo scrollbar-width i scrollbar-color da budu unset, onda hoce */
+* {
+    /*  scrollbar-width: thin !important; // auto | thin | none
+    scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important; */
+
+    /* Use this if you want to remove native scrollbars and want to add your scrollbar width */
+    scrollbar-width: unset !important; // auto | thin | none
     scrollbar-color: unset !important;
-    scrollbar-width: unset !important;
-    /*     scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important;
-    scrollbar-width: thin !important; */
-}
 
-/* WebKit/Blink browsers (Chrome, Edge, Safari, etc.) */
-::-webkit-scrollbar {
-    width: var(--w-scrollbar) !important; // desired scrollbar width 
-    // height: 0 !important; // desired scrollbar height
-    height: var(--w-scrollbar) !important; // desired scrollbar height
-    cursor: grab;
-}
+    /* Scrollbar edge triangles */
+    &::-webkit-scrollbar-button {
+        /* Ako stavimo ovo onda ga nema uopste i thumnb overlappuje iz parenta. Zato cemo staviti height da bude e.g. 8px */
+        // display: none !important;
+        // width: 0 !important;
+        height: var(--h-scrollbar-button) !important;
+        background: var(--c-scrollbar-track) !important;
+    }
 
-/* scrollbar thumb */
-::-webkit-scrollbar-thumb,
-scrollbar-thumb {
-    background-color: var(--c-scrollbar-thumb) !important; // scrollbar thumb color
-    border-radius: var(--br-scrollbar) !important; // roundness of the thumb
-    cursor: grab;
-}
+    &::-webkit-scrollbar-corner {
+        background: var(--c-scrollbar-track) !important;
+    }
 
-/* scrollbar track */
-::-webkit-scrollbar-track,
-scrollbar-track-piece {
-    background-color: var(--c-scrollbar-track) !important; // scrollbar track color
-    border-radius: var(--br-scrollbar) !important;
-}
+    &::-webkit-scrollbar-track {
+        background: var(--c-scrollbar-track) !important;
+        border-radius: var(--br-scrollbar) !important;
+    }
 
-/* scrollbar-color for For Firefox */
-@-moz-document url-prefix() {
-    html,
-    * {
-        scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important; // second parameter (transparent) is for bg-thumb
-        scrollbar-width: thin !important;
+    /* Thumb (draggable part)*/
+    &::-webkit-scrollbar-thumb {
+        background: var(--c-scrollbar-thumb) !important;
+        border-radius: var(--br-scrollbar) !important;
+        cursor: grab !important;
+
+        // TODO (remove): Not wokring? 
+        &:is(:hover, :active) {
+            background: var(--c-scrollbar-thumb-hover) !important;
+        }
     }
 }
 
-[class*="scrollbar-width:none"],
-.no-scrollbar {
-    --w-scrollbar: 0 !important;
+*,
+html,
+body {
+
+    &::-webkit-scrollbar {
+        max-width: var(--w-scrollbar) !important;
+        max-height: var(--w-scrollbar) !important;
+    }
+}
+
+@-moz-document url-prefix() {
+
+    html,
+    * {
+        scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important;
+        scrollbar-width: thin !important;
+    }
 }
