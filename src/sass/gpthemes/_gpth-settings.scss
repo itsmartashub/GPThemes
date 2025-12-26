@@ -1,4 +1,6 @@
 .#{$pfx}-settings {
+
+
 	--w-scrollbar: 0.2rem;
 
 	--top: calc(var(--h-header) + 0.5rem + 3rem);
@@ -24,6 +26,7 @@
 	// overflow: clip;
 	transition: transform 0.3s $easeOutBack, opacity 0.3s ease;
 	// overscroll-behavior: contain;
+
 
 	&--open {
 		opacity: 1 !important;
