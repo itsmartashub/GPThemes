@@ -1,20 +1,20 @@
-name: 📦 Extension CI/CD caller
+name: CI/CD caller
 
 on:
     workflow_dispatch:
         inputs:
             skip_build:
-                description: "Set to true to skip the main build/packaging job."
+                description: 'Set to true to skip the main build/packaging job.'
                 required: false
                 default: false
                 type: boolean
             skip_biome:
-                description: "Set to true to skip Biome (JS) lint checks."
+                description: 'Set to true to skip Biome (JS) lint checks.'
                 required: false
                 default: false
                 type: boolean
             skip_stylelint:
-                description: "Set to true to skip Stylelint (CSS/SCSS) checks."
+                description: 'Set to true to skip Stylelint (CSS/SCSS) checks.'
                 required: false
                 default: false
                 type: boolean
@@ -26,7 +26,7 @@ permissions:
 
 jobs:
     call-lint:
-        name: 🧹 Call lint checks
+        name: Call lint checks
         # pass the input params directly to the reusalbe workflow
         uses: ./.github/workflows/lint.yml
         with:
@@ -34,14 +34,14 @@ jobs:
             skip-stylelint: ${{ github.event.inputs.skip_stylelint || false }}
 
     call-build:
-        name: 🏗️ Call build and package
+        name: Call build and package
         # skip this job if the skip_build input is true (only applicable to manual dispatch)
         if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.skip_build != true }}
         # pass the environment context down
         uses: ./.github/workflows/build.yml
 
     report:
-        name: ⚠️ Failure Report
+        name: Failure Report
         # Use always() and check the status because call-build can be skipped via 'if'
         if: always() && needs.call-build.result == 'failure'
         needs: [call-build]
