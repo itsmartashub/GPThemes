@@ -1,5 +1,6 @@
 /* === MAIN RIGHT - Scroll Down arrow but and Close button for uploaded attachments in prompt textarea */
 [role="presentation"].composer-parent div[style*="opacity: 1;"]>button[class*="end-1/2 translate-x-1/2"].absolute.rounded-full.w-8.h-8 {
+
     /* 
 - .bottom-5 is when no element above textarea prompt
 - [style*="bottom:"] is when element above textarea prompt */
@@ -23,3 +24,5 @@
         }
     }
 }
+
+/* svg use[href="/cdn/assets/sprites-core-i9agxugi.svg#ac89a7"] */

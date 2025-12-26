@@ -1,7 +1,6 @@
 import { PFX } from './consts'
 
-const chatboxRoot =
-	"form[data-type='unified-composer'] .contain-inline-size[class*='bg-[\\#303030]'"
+const chatboxRoot = "form[data-type='unified-composer'] .contain-inline-size[class*='bg-[\\#303030]'"
 
 export const SELECTORS = {
 	SUBHEADING: `${PFX}-subheading`,
@@ -74,7 +73,7 @@ export const SELECTORS = {
 		BTN_CONTAINER: `${PFX}-scrolldown__btns`,
 		BTN: `${PFX}-scrolldown__btn`,
 		SCROLL_BTN:
-			'[role="presentation"].composer-parent button:has(> svg.icon > path[d^="M9.33468"])',
+			'[role="presentation"].composer-parent div[style*="opacity: 1;"]>button[class*="end-1/2 translate-x-1/2"].absolute.rounded-full.w-8.h-8',
 	},
 
 	// Bubbles
@@ -112,8 +111,7 @@ export const SELECTORS = {
 		},
 		UPGRADE: {
 			TOGGLE_ID: `${PFX}-hide-upgrade-chip`,
-			SELECTOR:
-				'.h-header-height.top-0 .rounded-full.bg-\\[\\#F1F1FB\\].dark\\:bg-\\[\\#373669\\]',
+			SELECTOR: '.h-header-height.top-0 .rounded-full.bg-\\[\\#F1F1FB\\].dark\\:bg-\\[\\#373669\\]',
 		},
 	},
 }
