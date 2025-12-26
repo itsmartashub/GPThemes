@@ -1,62 +1,62 @@
-name: Reusable build and pack
+name: Build
 
 on:
-  # this workflow is only callable by other workflows
-  workflow_call:
+    # this workflow is only callable by other workflows
+    workflow_call:
 
 permissions:
-  contents: read
+    contents: read
 
 jobs:
-  build-and-package:
-    name: Build and zip
-    runs-on: ubuntu-latest
+    build-and-package:
+        name: Build and zip
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: ⚙️ Checkout repo
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4
 
-        # --- SETUP ENVIRONMENT ---
-      - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: "10"
+              # --- SETUP ENVIRONMENT ---
+            - name: Install pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: '10'
 
-      - name: 🚀 Setup Node.js & pnpm
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "pnpm"
+            - name: Setup Node.js & pnpm
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
+                  cache: 'pnpm'
 
-      - name: 📦 Install pnpm deps
-        run: pnpm install --frozen-lockfile
+            - name: Install pnpm deps
+              run: pnpm install --frozen-lockfile
 
-      - name: 🦕 Setup deno
-        uses: denoland/setup-deno@v2
-        with:
-          deno-version: "v2.x"
+            - name: Setup deno
+              uses: denoland/setup-deno@v2
+              with:
+                  deno-version: 'v2.x'
 
-      # --- BUILD & ZIP ---
-      - name: 🏗️ Build and package ext (pnpm build:all)
-        run: pnpm build:all
+            # --- BUILD & ZIP ---
+            - name: Build and package ext (pnpm build:all)
+              run: pnpm build:all
 
-      # --- ARTIFACT NAMING HELPERS ---
-      - name: 🧮 Short SHA
-        id: sha
-        # Logic to determine the correct SHA for PRs vs. pushes/manual runs
-        run: |
-          if [ "${{ github.event.pull_request }}" != "" ]; then
-            SHA=$(jq -r .pull_request.head.sha $GITHUB_EVENT_PATH)
-          else
-            SHA=$GITHUB_SHA
-          fi
-          echo "short=${SHA:0:7}" >> $GITHUB_OUTPUT
+            # --- ARTIFACT NAMING HELPERS ---
+            - name: Short SHA
+              id: sha
+              # Logic to determine the correct SHA for PRs vs. pushes/manual runs
+              run: |
+                  if [ "${{ github.event.pull_request }}" != "" ]; then
+                    SHA=$(jq -r .pull_request.head.sha $GITHUB_EVENT_PATH)
+                  else
+                    SHA=$GITHUB_SHA
+                  fi
+                  echo "short=${SHA:0:7}" >> $GITHUB_OUTPUT
 
-      # --- ARTIFACT UPLOAD ---
-      - name: ⬆️ Upload release zips
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ github.event.pull_request.number
-            && format('ext-debug-PR#{0}-{1}', github.event.pull_request.number, steps.sha.outputs.short)
-            || format('ext-debug-build-{0}', steps.sha.outputs.short) }}
-          path: build/releases/*
+            # --- ARTIFACT UPLOAD ---
+            - name: ⬆Upload release zips
+              uses: actions/upload-artifact@v4
+              with:
+                  name: ${{ github.event.pull_request.number
+                      && format('GPThemes-debug-PR#{0}-{1}', github.event.pull_request.number, steps.sha.outputs.short)
+                      || format('GPThemes-debug-build-{0}', steps.sha.outputs.short) }}
+                  path: build/releases/*
