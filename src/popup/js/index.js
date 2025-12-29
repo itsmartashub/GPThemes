@@ -8,10 +8,11 @@ const createFullChangelogLink = () =>
 
 function initChangelogUI() {
 	const changelogChangesEl = document.querySelector('.changelog__changes')
-	const changelogVersionEl = document.querySelector('.changelog__version')
+	const changelogVersionLinkEl = document.querySelector('.changelog__version-link')
+	const changelogVersionTextEl = document.querySelector('.changelog__version-text')
 
 	// Ensure elements exist to prevent errors
-	if (!changelogChangesEl || !changelogVersionEl) {
+	if (!changelogChangesEl || !changelogVersionLinkEl) {
 		console.error('Changelog elements not found in the DOM')
 		return
 	}
@@ -19,13 +20,12 @@ function initChangelogUI() {
 	// Construct the changes HTML once
 	const htmlChangesList = `
 		  ${RELEASE_CHANGES}
-		  <p>${createFullChangelogLink()}</p>
 		`
 
 	// Update the DOM
 	changelogChangesEl.innerHTML = htmlChangesList
-	changelogVersionEl.textContent = `v${EXT_CURR_VERSION}`
-	changelogVersionEl.href = EXT_CURR_CHANGELOG_URL
+	changelogVersionTextEl.textContent = `v${EXT_CURR_VERSION}`
+	changelogVersionLinkEl.href = EXT_CURR_CHANGELOG_URL
 }
 
 async function updateBadge() {

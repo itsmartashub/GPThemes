@@ -50,17 +50,28 @@
     }
 
     &__version {
-        background-image: $bg-gradient;
-        backdrop-filter: blur(1rem);
-        color: $accent !important;
-        padding: 0.2rem 0.8rem;
-        border-radius: 0.7rem;
-        font-size: 1.2em;
-        font-weight: bold;
-        transition: 0.3s ease-in-out;
+        &-link {
+            background-image: $bg-gradient;
+            backdrop-filter: blur(1rem);
+            color: $accent !important;
+            padding: 0.2rem 0.8rem;
+            border-radius: 0.7rem;
+            font-size: 1.2em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: 0.3s ease-in-out;
 
-        &:hover {
-            background-color: oklch(from $accent l c h / 0.2);
+            &:hover {
+                background-color: oklch(from $accent l c h / 0.2);
+            }
+
+            /* svg {
+                $size: 1.2em;
+                width: $size;
+                height: $size;
+            } */
         }
     }
 
