@@ -23,7 +23,7 @@
 
     &:hover {
         label::after {
-            backdrop-filter: none!important;
+            backdrop-filter: none !important;
             background-image: radial-gradient(circle at 100% 0%, var(--c-accent-50) 5%, transparent 42%) !important;
         }
     }
@@ -103,17 +103,61 @@
 }
 
 @mixin accent($mode: 'prim', $shadow: false) {
-    @if $mode == 'prim' {
+    @if $mode =='prim' {
         background-color: var(--c-accent) !important;
         color: var(--c-on-accent) !important;
-    } @else if $mode == 'sec' {
+    }
+
+    @else if $mode =='sec' {
         background-color: var(--c-accent-light) !important;
         color: var(--c-accent) !important;
 
         @if $shadow {
             box-shadow: 0 0 0 1px color-mix(in oklch, currentColor 15%, transparent);
         }
-    } @else {
+    }
+
+    @else {
         @warn "Unknown accent mode '#{$mode}' — use 'prim' or 'sec'.";
+    }
+}
+
+
+@mixin scrollbar($width: var(--w-scrollbar),
+    $thumb: var(--c-scrollbar-thumb),
+    $track: var(--c-scrollbar-track)) {
+
+    &::-webkit-scrollbar {
+        width: var(--w-scrollbar);
+        height: var(--w-scrollbar);
+    }
+
+    /* Scrollbar edge triangles */
+    &::-webkit-scrollbar-button {
+        /* Ako stavimo ovo onda ga nema uopste i thumnb overlappuje iz parenta. Zato cemo staviti height da bude e.g. 8px */
+        // display: none !important;
+        // width: 0 !important;
+        height: var(--h-scrollbar-button);
+        background: $track;
+    }
+
+    &::-webkit-scrollbar-corner {
+        background: $track;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $track;
+        border-radius: var(--br-scrollbar);
+    }
+
+    /* Thumb (draggable part) */
+    &::-webkit-scrollbar-thumb {
+        background: $thumb;
+        border-radius: var(--br-scrollbar);
+        cursor: grab;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: var(--c-scrollbar-thumb-hover);
     }
 }

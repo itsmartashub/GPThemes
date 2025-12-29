@@ -1,6 +1,6 @@
 :root {
     --c-scrollbar-thumb: oklch(from var(--c-txt) l c h / 0.25);
-    --c-scrollbar-thumb-hover: var(--c-accent-light);
+    --c-scrollbar-thumb-hover: var(--c-accent);
     --c-scrollbar-track: transparent;
     --w-scrollbar: 0.425rem;
     --h-scrollbar-button: 8px;
@@ -9,20 +9,29 @@
 
 
 /* OVO DOLE IZGLEDA DA NISTA NE RADI, NECE DA SE OVERRIDUJE. Jedino ako stavimo scrollbar-width i scrollbar-color da budu unset, onda hoce */
+
 * {
+    scrollbar-color: unset !important;
+}
+
+html,
+body,
+.gpth-tab-content,
+.overflow-y-auto,
+[class*=":overflow-y-auto"],
+.cm-scroller {
     /* !!!! Add this to * caused showing the scrollbar on all elements, which is not default behavior w/o this extension */
     /*  scrollbar-width: thin !important; // auto | thin | none | unset
     scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important; */
 
     /* Use this if you want to remove native scrollbars and want to add your scrollbar width */
-    // scrollbar-width: unset !important; // auto | thin | none
-    // scrollbar-color: unset !important;
+    scrollbar-width: thin !important; // auto | thin | none
     scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important;
 }
 
 ::-webkit-scrollbar {
-    max-width: var(--w-scrollbar) !important;
-    max-height: var(--w-scrollbar) !important;
+    width: var(--w-scrollbar) !important;
+    height: var(--w-scrollbar) !important;
 }
 
 /* Scrollbar edge triangles */
@@ -43,23 +52,18 @@
     border-radius: var(--br-scrollbar) !important;
 }
 
-/* Thumb (draggable part)*/
+/* Thumb (draggable part) */
 ::-webkit-scrollbar-thumb {
     background: var(--c-scrollbar-thumb) !important;
     border-radius: var(--br-scrollbar) !important;
     cursor: grab !important;
-
-    // TODO (remove): Not wokring? 
-    &:is(:hover, :active) {
-        background: var(--c-scrollbar-thumb-hover) !important;
-    }
 }
 
-@-moz-document url-prefix() {
+// @-moz-document url-prefix() {
 
-    html,
-    * {
-        scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important;
-        // scrollbar-width: thin !important;
-    }
-}
+//     html,
+//     * {
+//         scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important;
+//         // scrollbar-width: thin !important;
+//     }
+// }

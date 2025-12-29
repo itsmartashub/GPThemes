@@ -160,6 +160,9 @@ html,
     // --theme-user-selection-bg: var(--yellow-theme-user-selection-bg);
     // --theme-attribution-highlight-bg: var(--yellow-theme-user-selection-bg);
     // --theme-entity-accent: var(--yellow-theme-entity-accent);
+
+    --scrollbar-color: var(--c-scrollbar-thumb) !important;
+    --scrollbar-color-hover: var(--c-scrollbar-thumb-hover) !important;
 }
 
 /* POPOVER GLOBAL
