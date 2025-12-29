@@ -50,7 +50,7 @@ const FONT_FAMILIES = {
 	Syne: '',
 	Sora: '',
 	'Golos Text': '',
-	'Google Sans Flex': '🆕',
+	'Google Sans Flex': '',
 }
 const CONFIG = {
 	fontFamily: {

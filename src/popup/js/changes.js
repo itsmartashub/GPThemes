@@ -36,50 +36,27 @@ const SECTION_TYPES = {
 }
 
 /* 
-
  <a href="https://ko-fi.com/http417" target="_blank" rel="noopener noreferrer">KO-FI</a> 
  <a href="https://github.com/itsmartashub/GPThemes/issues/new?template=feature_request.yml" target="_blank" rel="noopener noreferrer">GitHub issue</a> 
 */
 const currentReleaseChanges = {
-	features: [
-		{
-			description: 'New Font:',
-			details:
-				'Added <code>Google Sans Flex</code>  <br/><i>💡 Technically, almost any font found on the <a href="https://fonts.google.com/" target="_blank" rel="noopener noreferrer">Google Fonts Platform</a> can be added. If you have a favorite, let me know in a <a href="https://github.com/itsmartashub/GPThemes/issues/new?template=feature_request.yml" target="_blank" rel="noopener noreferrer">GitHub issue</a>, <a href="https://ko-fi.com/http417" target="_blank" rel="noopener noreferrer">ko-fi</a>, or review</i>',
-		},
-		{
-			description: 'Group Chat:',
-			details: 'Extended toggle chat bubble functionality to the new <code>Group</code> chats layout',
-		},
-	],
-	improvements: [
-		{
-			description: 'Group UI:',
-			details: 'Refined styling for the new <code>Group chats</code> layout',
-		},
-		{
-			description: 'Image UI:',
-			details: 'Refined styling for the new <code>Images</code> layout',
-		},
-	],
+	// features: [],
+	// improvements: [],
 	fixes: [
 		{
-			description: 'Advanced Voice:',
-			details: 'Restored the appearance of the voice button and layout',
+			description: 'Scrollbars:',
+			details: 'Ensure scrollbar is visible on chats container for improved UX',
 		},
 		{
-			description: 'Mobile Optimization:',
-			details: 'Fixed edge-spacing issues for GPT messages on mobile devices when bubble is off',
-		},
-		{
-			description: 'UI Consistency:',
-			details:
-				'Fixed broken sidebar styling, sticky header alignment in GPTs Store, and many other small UI improvements',
+			description: 'Scrolldown Button:',
+			details: 'Update selector to fix custom scrolldown alignment functionality',
 		},
 	],
 	other: [
 		{
-			details: `<strong>Under the Hood:</strong> General maintenance, system architecture optimizations, and codebase refinements to ensure long-term stability and improved performance`,
+			description: 'Google Fonts:',
+			details:
+				'Technically, almost any font found on the <a href="https://fonts.google.com/" target="_blank" rel="noopener noreferrer">Google Fonts Platform</a> can be added. If you have a favorite, let me know in a <a href="https://github.com/itsmartashub/GPThemes/issues/new?template=feature_request.yml" target="_blank" rel="noopener noreferrer">Github issue</a>, <a href="https://ko-fi.com/http417" target="_blank" rel="noopener noreferrer">ko-fi</a>, or review',
 		},
 	],
 	support: [

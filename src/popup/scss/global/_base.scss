@@ -4,6 +4,36 @@
     --popup-max-w: 30rem;
 }
 
+* {
+    scrollbar-color: unset;
+    scrollbar-width: unset;
+}
+
+::-webkit-scrollbar {
+    width: $scrollbar-w;
+    height: $scrollbar-w;
+}
+
+::-webkit-scrollbar-button {
+    background: $scrollbar-track;
+}
+
+::-webkit-scrollbar-corner {
+    background: $scrollbar-track;
+}
+
+::-webkit-scrollbar-track {
+    background: $scrollbar-track;
+    border-radius: $scrollbar-br;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $scrollbar-thumb;
+    border-radius: $scrollbar-br;
+    cursor: grab;
+}
+
+
 body {
     background-color: $bg;
     color: $fg;
@@ -25,34 +55,6 @@ body {
 
     // @include device(desk) {}
 }
-
-// ::-webkit-scrollbar {
-//     width: $w-scrollbar; // desired scrollbar width 
-//     height: 0 !important; // desired sbun crollbar height
-// }
-
-/* scrollbar thumb */
-// ::-webkit-scrollbar-thumb,
-// scrollbar-thumb {
-//     background-color: rgba($accent, .5); // scrollbar thumb color
-//     border-radius: $br-scrollbar; // roundness of the thumb
-// }
-
-/* scrollbar track */
-// ::-webkit-scrollbar-track,
-// scrollbar-track-piece {
-//     background-color: rgba($accent, .2); // scrollbar track color
-//     border-radius: $br-scrollbar;
-// }
-
-/* scrollbar-color for For Firefox */
-// @-moz-document url-prefix() {
-//     html,
-//     * {
-//         scrollbar-color: rgba($accent, .5) rgba($accent, .2); // second parameter (transparent) is for bg-thumb
-//         scrollbar-width: thin;
-//     }
-// }
 
 a {
     text-decoration: none;

@@ -1,5 +1,4 @@
 .bg-circle {
-
     --size: 10rem;
 
     position: fixed;
@@ -11,7 +10,7 @@
     z-index: -1;
     background-color: $accent;
     filter: blur(5rem);
-    opacity: .2;
+    opacity: .25;
 
     &:nth-of-type(2) {
         top: 40%;

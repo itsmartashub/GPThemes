@@ -8,8 +8,8 @@
     gap: 0.8rem;
     border-radius: 0.8rem;
     padding: 0.5rem;
-    border: 1px solid rgba($accent, 0.1);
-    background-color: rgba($accent, 0.1);
+    border: 1px solid oklch(from $accent l c h / 0.1);
+    background-color: oklch(from $accent l c h / 0.1);
     transition: transform 0.25s ease-in;
 
     &:hover {
@@ -17,9 +17,7 @@
     }
 
     &__icon {
-
         --icon-size: 2.8em;
-
         --svg-muliplicator: 0.6;
 
         width: var(--icon-size);
@@ -27,7 +25,7 @@
         display: grid;
         place-items: center;
         border-radius: 1rem;
-        background-color: rgba($accent, 0.2);
+        background-color: oklch(from $accent l c h / 0.2);
         color: $accent;
 
         svg {
@@ -85,8 +83,8 @@
             position: absolute;
             cursor: pointer;
             inset: 0;
-            background-color: rgba($accent, 0.3);
-            border: 2px solid rgba($accent, 0.5);
+            background-color: oklch(from $accent l c h / 0.3);
+            border: 2px solid oklch(from $accent l c h / 0.5);
             transition: 0.4s;
             border-radius: var(--chb-w);
 
@@ -96,13 +94,13 @@
                 height: var(--chb-slider-circle-size);
                 aspect-ratio: 1/1;
                 left: var(--chb-edge-gap);
-                background-color: rgba($accent, 0.5);
+                background-color: oklch(from $accent l c h / 0.5);
                 transition: 0.4s $easeInOutCirc;
                 border-radius: 50%;
             }
         }
 
-        input:checked + .slider {
+        input:checked+.slider {
             background-color: $accent;
             border-color: transparent !important;
 
@@ -112,8 +110,7 @@
             }
         }
 
-        input:disabled + .slider {
-            // background-color: rgba($accent, 0.1);
+        input:disabled+.slider {
             opacity: 0.25 !important;
         }
     }

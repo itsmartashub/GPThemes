@@ -23,7 +23,7 @@
 
         &:is(:hover, :focus) {
             .header__logo-kofi {
-                box-shadow: 0 0 0 rgba($accent, 0.8);
+                box-shadow: 0 0 0 oklch(from $accent l c h / 0.8);
 
                 // Chromium hover
                 transform: rotateY(0deg) skewX(0deg) scale(1, 1);
@@ -34,7 +34,7 @@
                 }
 
                 img {
-                    filter: drop-shadow(0 0 0 rgba($accent, 1));
+                    filter: drop-shadow(0 0 0 oklch(from $accent l c h / 1));
                     translate: 0 -10%;
                     scale: 0.88;
                 }
@@ -43,17 +43,17 @@
     }
 
     &__logo-kofi {
-        --shadow: -5px 5px 0px rgba($accent, 0.3);
+        --shadow: -5px 5px 0px oklch(from $accent l c h / 0.3);
 
         width: 8rem;
         display: grid;
         place-items: center;
         gap: 0.5rem;
         padding: 0.3rem 0.3rem 0.6rem 0.3rem;
-        border: 1px solid rgba($accent, 0.1);
+        border: 1px solid oklch(from $accent l c h / 0.1);
         border-radius: 0.7rem;
-        background-color: rgba($accent, 0.08);
-        box-shadow: -5px 5px 0 rgba($accent, 0.3);
+        background-color: oklch(from $accent l c h / 0.08);
+        box-shadow: -5px 5px 0 oklch(from $accent l c h / 0.3);
         transition: box-shadow 0.2s ease, transform 0.3s ease;
 
         // Chromium gets true 3D
@@ -62,8 +62,7 @@
 
         // Firefox gets fake 3D
         @-moz-document url-prefix() {
-            transform: skewX(8deg) skewY(-1deg) rotateY(-20deg)
-                scale(1.05, 0.96);
+            transform: skewX(8deg) skewY(-1deg) rotateY(-20deg) scale(1.05, 0.96);
             backface-visibility: visible;
         }
 
@@ -76,7 +75,7 @@
         }
 
         img {
-            filter: drop-shadow(-5px 5px 0 rgba($accent, 0.3));
+            filter: drop-shadow(-5px 5px 0 oklch(from $accent l c h / 0.3));
             width: 70%;
             transition: filter 0.4s ease, translate 0.3s ease, scale 0.3s ease;
         }
