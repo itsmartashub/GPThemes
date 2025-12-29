@@ -7,7 +7,7 @@ function setupExtensionMessaging() {
 
 	// browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 	browser.runtime.onMessage.addListener((msg) => {
-		console.log(msg)
+		// console.log(msg)
 
 		if (msg?.action === 'toggleFABVisibility') {
 			toggleFABVisibility(msg.visible)

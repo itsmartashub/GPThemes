@@ -245,7 +245,7 @@ function addPreconnectLinks() {
 		`
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        `,
+        `
 	)
 	preconnectLinksAdded = true
 }
@@ -424,8 +424,7 @@ async function init() {
 	]
 
 	const stored = await getItems(keys)
-	const getStoredOrDefault = (configKey) =>
-		stored[CONFIG[configKey].storageKey] ?? CONFIG[configKey].default
+	const getStoredOrDefault = (configKey) => stored[CONFIG[configKey].storageKey] ?? CONFIG[configKey].default
 
 	const fontFamily = getStoredOrDefault('fontFamily')
 	const fontSize = getStoredOrDefault('fontSize')
@@ -445,7 +444,7 @@ async function init() {
 
 	storedValues = { fontFamily, fontSize, lineHeight, letterSpacing }
 
-	console.log(storedValues)
+	// console.log(storedValues)
 
 	// 4. Update inputs using helper -> moved in MOUNT since its DOM dependent
 	// updateInputs({ fontFamily, fontSize, lineHeight, letterSpacing })
@@ -461,10 +460,4 @@ function mount() {
 	addListeners()
 }
 
-export {
-	addListeners as handleFontsListeners,
-	init,
-	mount,
-	templateHTML as renderFontsTab,
-	resetAll as resetAllFonts,
-}
+export { addListeners as handleFontsListeners, init, mount, templateHTML as renderFontsTab, resetAll as resetAllFonts }
