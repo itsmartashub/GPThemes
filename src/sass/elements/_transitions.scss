@@ -1,31 +1,3 @@
-/* ___ General */
-// button,
-// li,
-// a:not([href^="/c/"], [href^="/gpts"]),
-// svg,
-// [class*=':hover'] {
-// 	// transition: all 0.25s ease-in-out;
-// 	$duration: 0.25s;
-
-// 	transition:
-// 		transform $duration ease,
-// 		opacity $duration ease,
-// 		background-color $duration ease,
-// 		color $duration ease,
-// 		opacity $duration ease;
-// }
-
-/* Zbog linkova u source sidebar */
-button[class*="hover:"],
-a:not([href^="/c/"], [href^="/gpts"]) {
-	$duration: 0.25s;
-
-	transition:
-		transform $duration ease,
-		background-color $duration ease,
-		color $duration ease;
-}
-
 li {
 
 	&,

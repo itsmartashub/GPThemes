@@ -19,14 +19,14 @@ $easeOutQuart: cubic-bezier(0.165, 0.84, 0.44, 1);
 $easeInOutQuart: cubic-bezier(0.77, 0, 0.175, 1);
 
 /* Quint */
-$easeInQuint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-$easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
-$easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
+$easeInQuint: cubic-bezier(0.5, 0, 0.75, 0);
+$easeOutQuint: cubic-bezier(0.25, 1, 0.5, 1);
+$easeInOutQuint: cubic-bezier(0.76, 0, 0.24, 1);
 
 /* Expo */
-$easeInExpo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
-$easeOutExpo: cubic-bezier(0.19, 1, 0.22, 1);
-$easeInOutExpo: cubic-bezier(1, 0, 0, 1);
+$easeInExpo: cubic-bezier(0.7, 0, 0.84, 0);
+$easeOutExpo: cubic-bezier(0.16, 1, 0.3, 1);
+$easeInOutExpo: cubic-bezier(0.87, 0, 0.13, 1);
 
 /* Cicr */
 $easeInCirc: cubic-bezier(0.6, 0.04, 0.98, 0.335);

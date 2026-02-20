@@ -44,9 +44,7 @@
 
 [data-testid^='conversation-turn-'] {
     @include container('md') {
-
         --p-chat-bubble: .8rem;
-
         --br-chat-bubble: calc(var(--br) * 1.5);
     }
 
@@ -54,16 +52,13 @@
 
         /* Wrapper of each chat-bubbles msg, decreise padding-inline. Spacing from chat bubbles to screen edge */
         .text-base.my-auto.mx-auto[class*="[--thread-content-margin:"] {
-
             --thread-content-margin: calc(var(--spacing) * 2) !important;
         }
     }
 
     /* _________ CANVAS in chat bubbles */
     [id^="textdoc-message"] {
-
         --bg-primary: var(--c-bg-cm) !important;
-
         --main-surface-primary: var(--c-bg-cm) !important;
 
         background-color: var(--c-bg-cm) !important;
@@ -98,14 +93,12 @@
             /* .group\/footnote is 'SOURCES' */
             button[aria-label]:not(.group\/footnote) {
                 color: var(--c-accent) !important;
-                transition: all 0.2s ease-in-out;
 
                 svg {
                     color: currentColor !important;
                 }
 
-                &:is(:hover, :focus) {
-                    scale: 1.12 !important;
+                &:hover {
                     background-color: var(--c-accent) !important;
                     color: var(--c-on-accent) !important;
 
@@ -133,7 +126,6 @@
         /* User chat bubble - Edit state.
         There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario */
         .rounded-3xl.bg-token-main-surface-tertiary:has(.max-h-\[25dvh\] > .grid > textarea) {
-
             --main-surface-tertiary: var(--c-accent-08) !important;
 
             border: 1px solid var(--c-accent-20);
@@ -203,7 +195,6 @@
 
         /* "SOURCES" button, style for footer icons affects this too!! */
         button.group\/footnote.bg-token-bg-primary.w-fit.rounded-3xl {
-
             --bg-primary: var(--c-accent-10) !important;
 
             text-transform: uppercase;

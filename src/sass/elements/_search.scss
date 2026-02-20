@@ -16,13 +16,13 @@
     }
 
     /* Add hover state for searched items */
-    a[class*="hover:bg-token-main-surface-secondary"] {
-
+    a[class*="hover:bg-token-surface-hover"] {
+        transition: transform 0.45s $easeOutQuint, background-color 0.45s $easeOutQuint;
 
         &:hover {
             --main-surface-secondary: var(--c-surface-3) !important;
-            
-            transform: translateY(-2px);
+
+            transform: translateY(-0.225rem);
         }
     }
 }
