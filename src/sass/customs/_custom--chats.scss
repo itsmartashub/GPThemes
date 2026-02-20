@@ -59,14 +59,11 @@
     // @include dev_high(#f28b8b70);
 }
 
-
-
 /* Toggle OFF → replace with transparent colors to "remove" bubble bg */
 html[data-gpth-toggle-bubble-user] .user-message-bubble-color,
 html[data-gpth-toggle-bubble-gpt] .agent-turn {
     background-color: transparent !important;
 }
-
 
 /* Toggle OFF → remove background gradient and box shadow from GPT bubble in Group chats */
 // html[data-gpth-toggle-bubble-gpt] [id^="collapsible-chatgpt-message-"] {

@@ -32,8 +32,19 @@ html[data-gpth-hide-header] header#page-header {
 // }
 
 /* Footer */
-html[data-gpth-hide-footer] #thread-bottom-container>#thread-bottom~div.min-h-8>div {
-    display: none !important;
+html[data-gpth-hide-footer] {
+
+    /* Footer in basic chats */
+    #main div#thread-bottom-container>div:last-of-type:is(.-mt-4)>div,
+    /* Footer in Group Chats */
+    #main div.sticky.bottom-0 .min-h-8.w-full.text-xs.text-pretty {
+        display: none !important;
+    }
+
+    /* Add padding bottom to add gap from window bottom edge */
+    #main div.sticky.bottom-0 {
+        padding-bottom: 0.5rem;
+    }
 }
 
 /* "Upgrade for free" chip button in header */
