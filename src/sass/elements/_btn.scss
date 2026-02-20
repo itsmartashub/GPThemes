@@ -57,7 +57,8 @@ button {
 	&-green {
 		background-color: var(--c-accent) !important;
 	}
-/* .btn-custom - big card buttons in "Discover something new" section in new "Images" layout */
+
+	/* .btn-custom - big card buttons in "Discover something new" section in new "Images" layout */
 	&:not(&-secondary, &-danger, &-danger-outline, &-green, &-ghost, &[class*='bg-red-'], .btn-custom) {
 		background-color: var(--c-accent) !important;
 

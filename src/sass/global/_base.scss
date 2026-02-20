@@ -13,9 +13,10 @@ html {
 	font-family: var(--gpthFontFamily), var(--gpthFontFamilyDefault) !important;
 }
 
-.h-px {
-	display: none !important;
-}
+/* !!! THIS CAUSES THE PROJECT ITEMS NOT LOADING !!! Bcs OpenAI probably used that small almost invisible element to dynamically load on scroll/when-in-view more projects */
+// .h-px {
+// 	display: none !important;
+// }
 
 code.hljs {
 	letter-spacing: -0.2px;
