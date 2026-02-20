@@ -2,13 +2,12 @@ $accent: oklch(75.532% 0.1546 307.422); // rgb(194, 216, 196); // rgb(252, 154, 
 $on-accent: oklch(from $accent 0.25 c h);
 $bg: oklch(from $accent 1% calc(c * 0.85) h);
 $fg: oklch(from $accent 97% c h);
-$warning: oklch(82.29% 0.15986 85.891);
+$warning: oklch(82.29% 0.1599 85.891);
 $bg-gradient: linear-gradient(135deg,
-                oklch(from $accent l c h / 0.65) 0%,
-                oklch(from $accent l c h / 0.15) 30%,
-                oklch(from $accent l c h / 0.1) 60%,
-                oklch(from $accent l c h / 0.65) 100%);
-
+        oklch(from $accent l c h / 0.65) 0%,
+        oklch(from $accent l c h / 0.15) 30%,
+        oklch(from $accent l c h / 0.1) 60%,
+        oklch(from $accent l c h / 0.65) 100%);
 $scrollbar-w: 3px;
 $scrollbar-br: 1rem;
 $scrollbar-thumb: oklch(from $accent l c h / 0.25);

@@ -27,7 +27,7 @@ OPENAAI CSS VARS
 html,
 .light,
 .dark {
-
+    --theme-entity-accent: var(--c-accent) !important;
     --red-500: var(--c-danger) !important;
     --brand-purple: var(--c-accent) !important;
 
