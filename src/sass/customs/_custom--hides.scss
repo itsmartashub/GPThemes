@@ -32,13 +32,7 @@ html[data-gpth-hide-header] header#page-header {
 // }
 
 /* Footer */
-// html[data-gpth-hide-footer] #thread-bottom-container>#thread-bottom~div.min-h-8>div {
 html[data-gpth-hide-footer] {
-
-    // div#thread-bottom-container>div:last-of-type>div,
-    // span.text-sm.leading-none {
-    //     display: none !important;
-    // }
 
     /* Footer in basic chats */
     #main div#thread-bottom-container>div:last-of-type:is(.-mt-4)>div,
@@ -46,42 +40,14 @@ html[data-gpth-hide-footer] {
     #main div.sticky.bottom-0 .min-h-8.w-full.text-xs.text-pretty {
         display: none !important;
     }
+
+    /* Add padding bottom to add gap from window bottom edge */
+    #main div.sticky.bottom-0 {
+        padding-bottom: 0.5rem;
+    }
 }
 
 /* "Upgrade for free" chip button in header */
 html[data-gpth-hide-upgrade-chip] .h-header-height.top-0 .rounded-full.bg-\[\#F1F1FB\].dark\:bg-\[\#373669\] {
     display: none !important;
 }
-
-// div#thread-bottom-container>div:last-of-type>div,
-// span.text-sm.leading-none {
-//     box-shadow: 0 0 0 4px red !important;
-//     border: 3px solid red !important;
-// }
-// div#thread-bottom-container>div:last-of-type>div,
-// span.text-sm.leading-none {
-//     box-shadow: 0 0 0 4px red !important;
-//     border: 3px solid red !important;
-// }
-
-// #main {
-//     box-shadow: 0 0 0 4px orange !important;
-//     border: 3px solid orange !important;
-
-//     /* Footer in basic chats */
-//     div#thread-bottom-container>div:last-of-type:is(.-mt-4)>div {
-//         box-shadow: 0 0 0 4px red !important;
-//         border: 3px solid red !important;
-//     }
-
-//     /* Footer in Group Chats */
-//     div.sticky.bottom-0 .min-h-8.w-full.text-xs.text-pretty {
-//         box-shadow: 0 0 0 4px lightblue !important;
-//         border: 3px solid lightblue !important;
-//     }
-
-//     /* ?? idk */
-//     span.text-sm.leading-none {
-//         box-shadow: 0 0 0 4px green !important;
-//         border: 3px solid green !important;
-//     }
