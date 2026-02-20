@@ -28,18 +28,16 @@
                 @extend %groupChatMsgSharedStyle;
             }
 
-
             // sended
             // &.user-message-bubble-color {}
 
             // received
             // &.bg-token-bg-tertiary {}
-
-
         }
 
         /* ChatGPT msg in Group chat (w/o bubble and bg) */
-        [id^="collapsible-chatgpt-message-"] {
+        // [id^="collapsible-chatgpt-message-"] {
+        [data-message-author-role="assistant"] {
             @extend %groupChatMsgSharedStyle;
 
             background-image: linear-gradient(to top, var(--c-bg-chats-container), var(--c-bg-msg-gpt));

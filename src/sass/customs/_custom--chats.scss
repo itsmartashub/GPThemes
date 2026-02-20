@@ -66,8 +66,8 @@ html[data-gpth-toggle-bubble-gpt] .agent-turn {
 }
 
 /* Toggle OFF → remove background gradient and box shadow from GPT bubble in Group chats */
-// html[data-gpth-toggle-bubble-gpt] [id^="collapsible-chatgpt-message-"] {
-html[data-gpth-toggle-bubble-gpt] [role="presentation"] .group\/message[data-message-id*="CalpicoMessage"] [id^="collapsible-chatgpt-message-"] {
+// html[data-gpth-toggle-bubble-gpt] [role="presentation"] .group\/message[data-message-id*="CalpicoMessage"] [id^="collapsible-chatgpt-message-"] {
+html[data-gpth-toggle-bubble-gpt] [role="presentation"] .group\/message[data-message-id*="CalpicoMessage"] [data-message-author-role="assistant"] {
     background-image: none !important;
     box-shadow: none !important;
     padding: 0 !important;
