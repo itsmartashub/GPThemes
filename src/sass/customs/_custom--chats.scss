@@ -59,6 +59,22 @@
     // @include dev_high(#f28b8b70);
 }
 
+/* Group Chats - Custom widths */
+main#main [role="presentation"] {
+    header#calpico-page-header~div.flex-1 {
+
+        [class*="max-w-(--thread-content-max-width)"] {
+            will-change: width, max-width;
+            max-width: var(--w_chat_gpt) !important;
+
+            @include container('md') {
+                --w_chat_gpt: 100%;
+                width: var(--w_chat_gpt);
+            }
+        }
+    }
+}
+
 /* Toggle OFF → replace with transparent colors to "remove" bubble bg */
 html[data-gpth-toggle-bubble-user] .user-message-bubble-color,
 html[data-gpth-toggle-bubble-gpt] .agent-turn {
