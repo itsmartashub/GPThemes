@@ -14,10 +14,11 @@
         border-radius: 0.9em !important;
     }
 
-    /* Separator/divider in menus ([role="separator"]) */
-    .h-px {
-        display: block !important;
-    }
+    /* Separator/divider in menus ([role="separator"])
+    I've removed this h-px global display:none which I've used to hide all dividers because it breaks Projects dynamic threads loading due to OpenAI's IntersectionObserver. So there is no reason to force showing them here with display: block */
+    // .h-px {
+    //     display: block !important;
+    // }
 }
 
 /* __ MODAL - Choose theme context menu & tooltips?  */
@@ -60,9 +61,9 @@
     --menu-item-highlighted: var(--c-accent-15) !important;
     --menu-item-open: var(--c-accent-20) !important;
 
-	// &:hover {
-	// 	background-image: linear-gradient(to bottom, var(--c-accent-20), transparent 60%) !important;
-	// }
+    // &:hover {
+    // 	background-image: linear-gradient(to bottom, var(--c-accent-20), transparent 60%) !important;
+    // }
 
     // @include lift;
     // @include scaleIn;
@@ -70,15 +71,15 @@
     // data-testid="delete-chat-menu-item"
     &[data-color="danger"],
     &[data-testid="log-out-menu-item"] {
-		// --menu-item-active: oklch(from var(--c-danger) l c h / .16) !important;
-		// --menu-item-hover: oklch(from var(--c-danger) l c h / .14) !important;
-		// --menu-item-highlighted: oklch(from var(--c-danger) l c h / .15) !important;
-		// --menu-item-open: oklch(from var(--c-danger) l c h / .22) !important;
+        // --menu-item-active: oklch(from var(--c-danger) l c h / .16) !important;
+        // --menu-item-hover: oklch(from var(--c-danger) l c h / .14) !important;
+        // --menu-item-highlighted: oklch(from var(--c-danger) l c h / .15) !important;
+        // --menu-item-open: oklch(from var(--c-danger) l c h / .22) !important;
 
-		// --menu-item-active: color-alpha(--c-danger, 0.16, true);
-		// --menu-item-hover: color-alpha(--c-danger, 0.14, true);
-		// --menu-item-highlighted: color-alpha(--c-danger, 0.15, true);
-		// --menu-item-open: color-alpha(--c-danger, 0.22, true);
+        // --menu-item-active: color-alpha(--c-danger, 0.16, true);
+        // --menu-item-hover: color-alpha(--c-danger, 0.14, true);
+        // --menu-item-highlighted: color-alpha(--c-danger, 0.15, true);
+        // --menu-item-open: color-alpha(--c-danger, 0.22, true);
 
         /* CSS VARS wont works with the example above, we need to interpolate it with # {} */
         --menu-item-active: #{color-alpha(--c-danger, 0.16, true)};
