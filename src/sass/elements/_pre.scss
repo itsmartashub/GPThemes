@@ -1,89 +1,100 @@
-/* === RIGHT - <pre> - MARKDOWN CODE IN CHATS == =*/
+// /* === RIGHT - <pre> - MARKDOWN CODE IN CHATS == =*/
 
-/* Dont use pre directly bcs in the "Analysis" code there is also <pre> */
-.prose pre {
-    border-radius: calc(var(--br-chat-bubble) * 0.5) !important;
-    font-size: calc(calc((var(--gpthFontSize) / 16) * 1rem) * 0.85) !important;
-    letter-spacing: -0.2px !important;
-    // remove default padding: padding-left: 1.14286em; padding-right: 1.14286em;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+// /* Dont use pre directly bcs in the "Analysis" code there is also <pre> */
+// .prose pre {
+//     border-radius: calc(var(--br-chat-bubble) * 0.5) !important;
+//     font-size: calc(calc((var(--gpthFontSize) / 16) * 1rem) * 0.85) !important;
+//     letter-spacing: -0.2px !important;
+//     // remove default padding: padding-left: 1.14286em; padding-right: 1.14286em;
+//     padding-left: 0 !important;
+//     padding-right: 0 !important;
 
-    /* To strictly select chat-bubble main code-block <pre> and not that "Result" in Analysis */
-    &.overflow-visible\! {
-        margin: var(--my-pre) auto !important;
-        border: color-mix(in oklch, var(--c-accent-12) 50%, black 2%) 1px solid;
-    }
+//     /* To strictly select chat-bubble main code-block <pre> and not that "Result" in Analysis */
+//     &.overflow-visible\! {
+//         margin: var(--my-pre) auto !important;
+//         border: color-mix(in oklch, var(--c-accent-12) 50%, black 2%) 1px solid;
+//     }
 
-    /* Whole code block hljs element */
-    &>div {
-        background-color: var(--c-bg-cm) !important;
-        border-radius: inherit !important;
-        padding: calc(var(--p-chat-bubble) * 0.5) !important;
+//     /* Whole code block hljs element */
+//     &>div {
+//         background-color: var(--c-bg-cm) !important;
+//         border-radius: inherit !important;
+//         padding: calc(var(--p-chat-bubble) * 0.5) !important;
 
-        /* 
-		- pre header
-		- wrapper div of "Copy code" button
-		- main code wrapper */
-        [class*="bg-token-sidebar-surface-primary"] {
-            background-color: transparent !important;
+//         /* 
+// 		- pre header
+// 		- wrapper div of "Copy code" button
+// 		- main code wrapper */
+//         [class*="bg-token-sidebar-surface-primary"] {
+//             background-color: transparent !important;
 
-            /* "Always show details" with "Copy code" wrapper in Analyzed markdown */
-            &:has(label[for="ada-always-show"]) {
-                background-color: var(--c-bg-cm) !important;
-                backdrop-filter: blur(5px) !important;
-            }
-        }
+//             /* "Always show details" with "Copy code" wrapper in Analyzed markdown */
+//             &:has(label[for="ada-always-show"]) {
+//                 background-color: var(--c-bg-cm) !important;
+//                 backdrop-filter: blur(5px) !important;
+//             }
+//         }
 
-        /* pre header. Code name in pre header (html, php, css, etc) */
-        .font-sans.select-none {
-            padding: 0 !important;
-            font-weight: bold;
-            color: var(--c-accent) !important;
-        }
-    }
+//         /* pre header. Code name in pre header (html, php, css, etc) */
+//         .font-sans.select-none {
+//             padding: 0 !important;
+//             font-weight: bold;
+//             color: var(--c-accent) !important;
+//         }
+//     }
 
-    /* "Copy Code" btn in pre header */
-    // .sticky button:has(svg) {
-    .sticky:has(button svg) {
+//     /* "Copy Code" btn in pre header */
+//     // .sticky button:has(svg) {
+//     .sticky:has(button svg) {
 
-        /* Buttons parent, add gas between "Copy code" and "Edit" */
-        .font-sans:not(#ada-always-show) {
-            gap: 0.5rem;
-        }
+//         /* Buttons parent, add gas between "Copy code" and "Edit" */
+//         .font-sans:not(#ada-always-show) {
+//             gap: 0.5rem;
+//         }
 
-        /* "Copy Code", "Edit" buttons, switch in Analyses */
-        button:has(svg) {
-            $dur: 0.3s;
-            background-color: var(--c-accent-15) !important;
-            color: var(--c-accent) !important;
-            border: 1px solid var(--c-accent-15) !important;
-            backdrop-filter: blur(20px) !important;
-            text-transform: uppercase !important;
-            border-radius: calc(var(--br) * 0.7) !important;
-            padding: calc(var(--p-btn) * 0.8) var(--p-btn);
-            font-weight: bold;
-            transition: opacity $dur ease, background-color $dur ease-in-out,
-                color $dur ease, transform $dur ease !important;
+//         /* "Copy Code", "Edit" buttons, switch in Analyses */
+//         button:has(svg) {
+//             $dur: 0.3s;
+//             background-color: var(--c-accent-15) !important;
+//             color: var(--c-accent) !important;
+//             border: 1px solid var(--c-accent-15) !important;
+//             backdrop-filter: blur(20px) !important;
+//             text-transform: uppercase !important;
+//             border-radius: calc(var(--br) * 0.7) !important;
+//             padding: calc(var(--p-btn) * 0.8) var(--p-btn);
+//             font-weight: bold;
+//             transition: opacity $dur ease, background-color $dur ease-in-out,
+//                 color $dur ease, transform $dur ease !important;
 
-            /* SVG icons before 'Copy code' btn in md */
-            svg {
-                color: currentColor !important;
-                transition: color 0s ease !important;
-            }
+//             /* SVG icons before 'Copy code' btn in md */
+//             svg {
+//                 color: currentColor !important;
+//                 transition: color 0s ease !important;
+//             }
 
-            &:hover {
-                // background-color: var(--c-accent-20) !important;
-                // color: var(--c-accent) !important;
-                // backdrop-filter: blur(5px) !important;
-                background-color: var(--c-accent) !important;
-                color: var(--c-on-accent) !important;
-                transform: scale(0.98);
+//             &:hover {
+//                 // background-color: var(--c-accent-20) !important;
+//                 // color: var(--c-accent) !important;
+//                 // backdrop-filter: blur(5px) !important;
+//                 background-color: var(--c-accent) !important;
+//                 color: var(--c-on-accent) !important;
+//                 transform: scale(0.98);
 
-                svg {
-                    color: currentColor !important;
-                }
-            }
-        }
-    }
-}
+//                 svg {
+//                     color: currentColor !important;
+//                 }
+//             }
+//         }
+//     }
+// }
+
+/* New Markdown Style */
+// .prose pre {
+//     &.overflow-visible\!.px-0\! {
+//         background-color: var(--c-bg-cm) !important;
+//         border-radius: calc(var(--br-chat-bubble) * 0.5) !important;
+
+//         /* Mardown sticky header w/ action buttons */
+//         // .sticky.z-2 {}
+//     }
+// }
