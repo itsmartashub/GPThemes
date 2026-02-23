@@ -1,34 +1,97 @@
-[role="presentation"].composer-parent {
-    [data-message-author-role="assistant"] {
-        .markdown .not-prose {
-            .bg-linear-to-b {
-                background: none !important;
-            }
+// [role="presentation"].composer-parent {
+//     [data-message-author-role="assistant"] {
+//         .markdown .not-prose {
+//             .bg-linear-to-b {
+//                 background: none !important;
+//             }
 
-            /* Search - Maps */
-            .mapboxgl-map {
-                /* Location counter bubbles in maps */
-                .mapboxgl-marker {
-                    /* Change the text color for selected location counter bubbles in the maps */
-                    .text-white.absolute {
-                        color: var(--c-on-accent) !important;
-                    }
+//             /* Search - Maps */
+//             .mapboxgl-map {
+//                 /* Location counter bubbles in maps */
+//                 .mapboxgl-marker {
+//                     /* Change the text color for selected location counter bubbles in the maps */
+//                     .text-white.absolute {
+//                         color: var(--c-on-accent) !important;
+//                     }
 
-                    /* Location counter bubble markers in the maps - when not selected */
-                    svg>[fill="white"] {
-                        fill: var(--c-on-accent) !important;
-                    }
+//                     /* Location counter bubble markers in the maps - when not selected */
+//                     svg>[fill="white"] {
+//                         fill: var(--c-on-accent) !important;
+//                     }
 
-                    /* Kao neki svg border od neaktivnih location bubble markers */
-                    svg>[fill="black"] {
-                        fill: var(--c-accent-20) !important;
-                    }
+//                     /* Kao neki svg border od neaktivnih location bubble markers */
+//                     svg>[fill="black"] {
+//                         fill: var(--c-accent-20) !important;
+//                     }
 
-                    /* Location counter bubble markers in the maps - when selected/active */
-                    svg>[fill="#282828"] {
-                        fill: var(--c-accent) !important;
-                    }
-                }
+//                     /* Location counter bubble markers in the maps - when selected/active */
+//                     svg>[fill="#282828"] {
+//                         fill: var(--c-accent) !important;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+/* Search - Maps */
+.mapboxgl-map {
+
+    /* Location counter bubbles in maps */
+    .mapboxgl-marker {
+        // background-color: var(--c-accent) !important;
+        // color: var(--c-on-accent) !important;
+
+        /* Change the text color for selected location counter bubbles in the maps */
+        // .text-white.absolute {
+        //     color: var(--c-on-accent) !important;
+        // }
+        .text-token-interactive-label-primary-press {
+            --interactive-label-primary-press: var(--c-on-accent) !important;
+            // color: var(--interactive-label-primary-press);
+        }
+
+        .bg-token-interactive-bg-primary-press {
+            --interactive-bg-primary-press: var(--c-accent) !important;
+            // background-color: var(--interactive-bg-primary-press);
+        }
+
+        .bg-token-bg-primary {
+            background-color: color-mix(in oklch, var(--c-surface-2) 40%, transparent) !important;
+            backdrop-filter: blur(2rem);
+            box-shadow: 0 0 0 1px var(--c-accent-50)
+        }
+
+        // /* Location counter bubble markers in the maps - when not selected */
+        // svg>[fill="white"] {
+        //     fill: var(--c-on-accent) !important;
+        // }
+
+        // /* Kao neki svg border od neaktivnih location bubble markers */
+        // svg>[fill="black"] {
+        //     fill: var(--c-accent-20) !important;
+        // }
+
+        // /* Location counter bubble markers in the maps - when selected/active */
+        // svg>[fill="#282828"] {
+        //     fill: var(--c-accent) !important;
+        // }
+    }
+}
+
+#business-list-container {
+    // background-color: var(--c-surface-1) !important;
+    color: var(--c-accent) !important;
+    background-color: var(--c-accent-12) !important;
+    backdrop-filter: blur(2rem);
+
+    [role="list"] {
+        [class*="hover:"] {
+            transition: transform 0.45s $easeOutQuint, background-color 0.45s $easeOutQuint;
+
+            &:hover {
+                background-color: rgba(0 0 0 / 0.125) !important;
+                transform: translateY(-0.225rem);
             }
         }
     }
