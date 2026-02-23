@@ -16,11 +16,12 @@
     }
 
     /* Add hover state for searched items */
-    a[class*="hover:bg-token-surface-hover"] {
+    // a[class*="hover:bg-token-surface-hover"],
+    a[class*="hover:"][target="_blank"] {
         transition: transform 0.45s $easeOutQuint, background-color 0.45s $easeOutQuint;
 
         &:hover {
-            --main-surface-secondary: var(--c-surface-3) !important;
+            background-color: var(--c-surface-3) !important;
 
             transform: translateY(-0.225rem);
         }
