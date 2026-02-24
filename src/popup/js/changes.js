@@ -19,7 +19,7 @@ const links = {
 
 const SECTION_TYPES = {
 	// Critical hotfix section - will appear first if present
-	critical: { emoji: '🚨', title: 'Critical Fixes', priority: 0 },
+	critical: { emoji: '🚨', title: 'Critical Fixes', priority: 1 },
 	newFixes: { emoji: '🔧', title: 'New Key Fixes', priority: 1 },
 	// Separator for previous version content
 	previousSeparator: {
@@ -42,14 +42,52 @@ const SECTION_TYPES = {
 const currentReleaseChanges = {
 	// features: [],
 	// improvements: [],
-	fixes: [
+	// fixes: [],
+	// other: [],
+	// support: [],
+	critical: [
 		{
-			description: 'Scrollbars:',
-			details: 'Ensure scrollbar is visible on chats container for improved UX',
+			description: 'Project Loading:',
+			details:
+				'Fixed a critical bug where project threads would stop loading during scroll. Sorry for gaslighting you with the <code>Project</code> chats disapearing :( Many thanks to <strong>@Fredisland</strong> for mentioning this major bug 🤝',
+			issueRef: 197,
+		},
+	],
+	improvements: [
+		{
+			description: 'Group Chats:',
+			details: 'Custom chat widths and GPT bubble toggles now fully support <code>Group Chat</code> layouts',
+			prRef: 202,
+			issueRef: 203,
 		},
 		{
-			description: 'Scrolldown Button:',
-			details: 'Update selector to fix custom scrolldown alignment functionality',
+			description: 'Map Interactivity:',
+			details: 'Refined markers and semi-transparent sidebars for the new map interface',
+			prRef: 205,
+		},
+		{
+			description: 'Source Sidebars:',
+			details: 'Unified hover states for all source-link sidebars',
+		},
+		{
+			description: 'Code Snippets:',
+			details: "Reverted custom code block styles to align with OpenAI's latest native defaults",
+			prRef: 206,
+		},
+		{
+			description: 'Pin Icon:',
+			details: "Improved the pin icon's color contrast in sidebar chatlists",
+		},
+	],
+	fixes: [
+		{
+			description: 'Hide Footer:',
+			details: 'Fixed <code>Hide Footer</code> toogle',
+			prRef: 200,
+		},
+		{
+			description: 'Lag Reduction:',
+			details: 'Optimized hover animations to eliminate micro-stuttering during interaction with some elements',
 		},
 	],
 	other: [
@@ -95,27 +133,27 @@ const generateChangelog = () => {
 			const sectionClass = ['critical', 'newFixes'].includes(sectionKey)
 				? `changelog__${sectionKey.replace(/([A-Z])/g, '-$1').toLowerCase()}-section`
 				: sectionKey === 'previousSeparator'
-				? 'changelog__previous-separator'
-				: ''
+					? 'changelog__previous-separator'
+					: ''
 
 			// Special handling for separator section
 			if (section.isSeparator) {
 				return `
-          <div class="${sectionClass}">
-            <h3>${section.emoji} ${section.title}</h3>
-            <p class="changelog__separator-text">${items[0].details}</p>
-          </div>
-        `
+				<div class="${sectionClass}">
+					<h3>${section.emoji} ${section.title}</h3>
+					<p class="changelog__separator-text">${items[0].details}</p>
+				</div>
+				`
 			}
 
 			return `
-          <div class="${sectionClass}">
-            <h3>${section.emoji} ${section.title}</h3>
-            <ul>
-              ${items.map(generateChangelogItem).join('')}
-            </ul>
-          </div>
-        `
+				<div class="${sectionClass}">
+					<h3>${section.emoji} ${section.title}</h3>
+					<ul>
+					${items.map(generateChangelogItem).join('')}
+					</ul>
+				</div>
+			`
 		})
 		.join('\n')
 }
