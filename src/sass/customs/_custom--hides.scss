@@ -35,15 +35,15 @@ html[data-gpth-hide-header] header#page-header {
 html[data-gpth-hide-footer] {
 
     /* Footer in basic chats */
-    #main div#thread-bottom-container>div:last-of-type:is(.-mt-4)>div,
+    #main div#thread-bottom-container>div:last-of-type:is(.-mt-4),
     /* Footer in Group Chats */
     #main div.sticky.bottom-0 .min-h-8.w-full.text-xs.text-pretty {
         display: none !important;
     }
 
-    /* Add padding bottom to add gap from window bottom edge */
+    /* Add padding bottom to add gap from window bottom edge (for chatbox in "Group Chats") */
     #main div.sticky.bottom-0 {
-        padding-bottom: 0.5rem;
+        padding-bottom: 0.2rem;
     }
 }
 
