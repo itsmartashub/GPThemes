@@ -3,6 +3,8 @@
 	- Tooltip with searched links in GPT chat bubble
 	- Tooltip when hover on "Attach Files" button in prompt textarea
 	- Tooltip when hover on ❌ in attached images in prompt textarea
+	- Card Tooltip when hover on attached source links for Projects > Sources
+	- Card Tooltip when hover on Map links
 */
 div[data-radix-popper-content-wrapper] {
 
@@ -20,14 +22,15 @@ div[data-radix-popper-content-wrapper] {
 	*/
 	// div[style*='--radix-tooltip-content'][class*="bg-black"]:not(.rounded-xl.border-token-border-default, .p-0) {
 	div[style*='--radix-tooltip-content'][class*="bg-black"]:not(.p-0) {
+		background-color: color-mix(var(--c-accent) 10%, var(--c-surface-2)) !important;
 
-		&,
-		.text-white,
-		.text-token-text-primary,
-		.text-token-text-tertiary,
-		.text-gray-400 {
-			color: var(--c-on-accent) !important;
-		}
+		// &,
+		// .text-white,
+		// .text-token-text-primary,
+		// .text-token-text-tertiary,
+		// .text-gray-400 {
+		// 	color: var(--c-on-accent) !important;
+		// }
 
 		// /* "Ctrl + K" etc */
 		.text-token-text-tertiary,
