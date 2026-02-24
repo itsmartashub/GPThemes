@@ -442,10 +442,10 @@
 
 /* ----- PERFORMANCE BOOST ----- */
 // GPU acceleration for draggable elements only
-.cp_thumb {
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
+// .cp_thumb {
+//   backface-visibility: hidden;
+//   -webkit-backface-visibility: hidden;
+// }
 
 // GPU layers for all interactive elements  
 /* .cp_area-hsv,
@@ -453,3 +453,10 @@
 .cp_slider-alpha {
   transform: translateZ(0);
 } */
+
+/* Potentional fix for MacBook - colorpicker not opening */
+.cp_button,
+.cp_caret,
+.cp_caret svg {
+  pointer-events: none !important;
+}
