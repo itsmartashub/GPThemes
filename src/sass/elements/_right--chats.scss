@@ -31,13 +31,32 @@
     }
 
 
-    /* List of chats in Project */
-    section ol li.group\/project-item {
-        border-radius: var(--br);
-        transition: transform 0.25s ease, background-color 0.25s ease;
+    /* List of "Chats" in Project */
+    [id*="-content-chats"] {
 
-        &:hover {
-            transform: translateY(-0.08rem);
+        section ol li.group\/project-item {
+            border-radius: var(--br);
+            transition: transform 0.25s ease, background-color 0.25s ease;
+
+            &:hover {
+                transform: translateY(-0.08rem);
+            }
+        }
+    }
+
+    /* List of "Sources" in Project */
+    [id*="-content-files"] {
+
+        section .group\/file-row {
+            border-radius: var(--br);
+            transition: transform 0.25s ease, background-color 0.25s ease;
+
+            /* Note that original class style is: ".hover\:bg-token-interactive-bg-primary-selected\/5:hover" which I override in "global/_colors-bgs.scss" */
+            &:hover {
+                background-color: var(--c-accent-08) !important;
+                color: var(--c-accent) !important;
+                transform: translateY(-0.08rem);
+            }
         }
     }
 }
