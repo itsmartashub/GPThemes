@@ -32,11 +32,22 @@ nav[aria-label].h-full {
 	.__menu-item {
 		padding-block: 0.5rem !important;
 		border-radius: calc(var(--br) * 0.8) !important;
-		
+
 		@include lift;
 
 		--menu-item-active: var(--c-bg-sidebar-link) !important;
 		--menu-item-hover: var(--c-bg-sidebar-link) !important;
 		--menu-item-highlighted: var(--c-bg-sidebar-link) !important;
+
+		.trailing-pair {
+
+			/* Pin icon for pinned chat */
+			.trailing {
+
+				svg.icon-xs.text-token-icon-tertiary.opacity-50 {
+					color: var(--c-accent) !important;
+				}
+			}
+		}
 	}
 }
