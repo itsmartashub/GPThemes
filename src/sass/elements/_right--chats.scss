@@ -302,3 +302,10 @@
 
     }
 }
+
+/* Blur chatbox wrapper background and remove ugly grey background on bottom */
+main#main #thread-bottom-container.content-fade:after {
+    // background-color: var(--c-bg-chats-container) !important;
+    background: none !important;
+    backdrop-filter: blur(20px);
+}
