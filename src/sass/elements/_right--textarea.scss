@@ -1,13 +1,10 @@
 /* ===  RIGHT - TEXTAREA PARENT, message type and send button */
-// main form {
-// #thread-bottom form {
 form {
 
-	// &>[class*='bg-[#303030]']:has(#prompt-textarea) {
 	/* TODO(remove): REMOVE the #composer-background selector when this selector is removed for all user profiles */
 	#composer-background,
 	&[data-type="unified-composer"] {
-		.contain-inline-size.overflow-clip[class*='bg-[#303030]'] {
+		.contain-inline-size.bg-token-bg-primary.dark\:bg-token-bg-elevated-primary.dark-oled\:bg-token-bg-primary {
 			background: var(--c-bg-textarea) !important;
 			caret-color: var(--c-accent);
 			box-shadow: inset 0 0 1px 1px var(--c-accent-08) !important;
@@ -15,8 +12,9 @@ form {
 			backdrop-filter: blur(18px);
 
 			/* Prompt text field for "Temporary chat" */
-			&.dark\:bg-\[\#303030\].dark {
+			&.dark {
 				--c-bg-textarea: var(--c-surface-2);
+				box-shadow: inset 0 0 1px 1px color-alpha(currentColor, 0.055, true);
 			}
 
 			#upload-file-btn {
@@ -233,7 +231,7 @@ button.composer-submit-button-color,
 			transparent 0%,
 			var(--c-accent-40) 18%,
 			var(--c-accent) 58%);
-			
+
 	background: var(--c-bg-gradient) !important;
 	color: var(--c-on-accent) !important;
 	box-shadow: var(--shadow) !important;
