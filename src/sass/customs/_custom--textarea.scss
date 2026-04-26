@@ -9,25 +9,12 @@
         @include container('md') {
             --w_prompt_textarea: 100%;
         }
-
-        /* TODO This element causes weird empty space before prompt field which makes prompt fields visually unshifted or misaligned. The best would be to display:none, but idk if that would be filled with some important content in the future. So I use :empty to remove it only when this element is without any content. */
-        // &>div.flex.justify-center:has(~form):empty {
-        // 	// border: 4px solid orange !important;
-        // 	display: none !important;
-        // }
     }
 }
 
-
-/* 
-NEW CHAT LAYOUT
-relative isolate z-10 w-full basis-auto has-data-has-thread-error:pt-2 has-data-has-thread-error:[box-shadow:var(--sharp-edge-bottom-shadow)] md:border-transparent md:pt-0 dark:border-white/20 md:dark:border-transparent single-line min-h-0 mb-4 sm:grow flex flex-col
-
-CLASSIC CHAT LAYOUT
-relative isolate z-10 w-full basis-auto has-data-has-thread-error:pt-2 has-data-has-thread-error:[box-shadow:var(--sharp-edge-bottom-shadow)] md:border-transparent md:pt-0 dark:border-white/20 md:dark:border-transparent content-fade single-line flex flex-col
-*/
-/* not(.min-h-0) znaci da ne targetujemo chatbox u "New Chat" layoutu  */
-$chatbox-height-selector: '#thread-bottom-container:not(.min-h-0) form[data-type="unified-composer"] .contain-inline-size.overflow-clip[class*=\'bg-[\\#303030]\'] [class*="_prosemirror-parent"][class*="max-h-52"]';
+/* not(.min-h-0) / :not([class*="@lg/thread:grow"]) znaci da ne targetujemo chatbox u "New Chat" layoutu  */
+$chatbox-selector: 'form[data-type="unified-composer"] .contain-inline-size.bg-token-bg-primary';
+$chatbox-height-selector: '#thread-bottom-container:not(.min-h-0) #{$chatbox-selector} [class*="_prosemirror-parent"].max-h-52';
 
 #{$chatbox-height-selector} {
     transition: max-height 0.25s $easeInOutQuint;

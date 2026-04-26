@@ -1,6 +1,6 @@
 import { PFX } from './consts'
 
-const chatboxRoot = "form[data-type='unified-composer'] .contain-inline-size[class*='bg-[\\#303030]'"
+const chatboxRoot = "form[data-type='unified-composer'] .contain-inline-size.bg-token-bg-primary"
 
 export const SELECTORS = {
 	SUBHEADING: `${PFX}-subheading`,
@@ -93,8 +93,8 @@ export const SELECTORS = {
 	// Chatbox
 	CHATBOX: {
 		ROOT: chatboxRoot,
-		TEMP: `${chatboxRoot}.dark:bg-[#303030].dark`,
-		HEIGHT: `#thread-bottom-container:not([class*="@lg/thread:grow"]) form[data-type="unified-composer"] .contain-inline-size.overflow-clip[class*='bg-[\\#303030]'] [class*="_prosemirror-parent"][class*="max-h-52"]`,
+		TEMP: `${chatboxRoot}.dark`,
+		HEIGHT: `#thread-bottom-container:not(.min-h-0) ${chatboxRoot} [class*="_prosemirror-parent"].max-h-52`,
 		TOGGLE_MAX_HEIGHT_ID: 'toggle-chatbox-max-height',
 	},
 
