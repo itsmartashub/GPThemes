@@ -1,8 +1,10 @@
 /* Sidebar bg-color */
+/* Sidebar bg-color */
 // .bg-token-sidebar-surface-primary[class*="var(--sidebar-slideover)"] {
 /* #stage-popover-sidebar is selector for smaller screen */
 #stage-slideover-sidebar,
 #stage-popover-sidebar {
+	--sidebar-surface-primary: var(--c-bg-sidebar) !important;
 	background-color: var(--c-bg-sidebar) !important;
 	color: var(--c-txt) !important;
 	// border-inline-end-width: 0 !important;
