@@ -14,7 +14,7 @@ export const SK_TOGGLE_HIDE_UPGRADE_CHIP = 'hideUpgradeChip'
 export const SK_TOGGLE_CHATBOX_HEIGHT = 'toggleChatboxHeightState'
 export const SK_TOGGLE_FAB_HIDDEN = 'toggleFABHidden'
 
-// Position Settings
+// Position Settings - TODO: don't forget to remove this from storage.sync in future, unless you fix the scrolldown alignement feat !!!
 export const SK_SCROLL_BUTTON_POSITION = 'scrollButtonPosition'
 
 // Width Settings

@@ -67,14 +67,14 @@ export const SELECTORS = {
 		RESET_BTN_ID: 'resetFont',
 	},
 
-	// Scroll Down
-	SCROLLDOWN: {
-		ROOT: `${PFX}-scrolldown`,
-		BTN_CONTAINER: `${PFX}-scrolldown__btns`,
-		BTN: `${PFX}-scrolldown__btn`,
-		SCROLL_BTN:
-			'[role="presentation"].composer-parent div[style*="opacity: 1;"]>button[class*="end-1/2 translate-x-1/2"].absolute.rounded-full.w-8.h-8',
-	},
+	// // Scroll Down
+	// SCROLLDOWN: {
+	// 	ROOT: `${PFX}-scrolldown`,
+	// 	BTN_CONTAINER: `${PFX}-scrolldown__btns`,
+	// 	BTN: `${PFX}-scrolldown__btn`,
+	// 	SCROLL_BTN:
+	// 		'#main #thread-bottom-container button[class*="var(--thread-scroll-to-bottom-banner-offset"].h-8.w-8.rounded-full',
+	// },
 
 	// Bubbles
 	TOGGLE_BUBBLES: {

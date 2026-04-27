@@ -1,28 +1,20 @@
 /* === MAIN RIGHT - Scroll Down arrow but and Close button for uploaded attachments in prompt textarea */
-[role="presentation"].composer-parent div[style*="opacity: 1;"]>button[class*="end-1/2 translate-x-1/2"].absolute.rounded-full.w-8.h-8 {
 
-    /* 
-- .bottom-5 is when no element above textarea prompt
-- [style*="bottom:"] is when element above textarea prompt */
-    &[class*="bottom-"],
-    &[style*="bottom:"] {
-        will-change: right, left;
-        left: var(--scrollBtnLeft, unset) !important;
-        right: var(--scrollBtnRight, 50%) !important;
-        background-color: var(--c-accent) !important;
-        transition: opacity 0.25s ease, scale 0.25s ease;
+/* 
+relative flex h-8 w-8 cursor-pointer items-center justify-center overflow-hidden rounded-full outline-hidden select-none btn-secondary bg-token-bg-primary/65! hover:bg-token-main-surface-secondary/75! shadow-short box-content backdrop-blur-[2px] backdrop-filter sm:shadow-md dark:shadow-none! group-data-stream-active/scroll-root:squircle *:absolute *:inset-0 *:m-auto group-data-stream-active/scroll-root:w-10 motion-safe:transition-[width] motion-safe:duration-120 motion-safe:ease-out *:motion-safe:transition-opacity *:motion-safe:duration-120 *:motion-safe:ease-out absolute start-1/2 z-10 -translate-x-1/2 bottom-[calc(100%+6*var(--spacing)+var(--thread-scroll-to-bottom-banner-offset,0px))]"
+*/
+// [role="presentation"].composer-parent div[style*="opacity: 1;"]>button[class*="end-1/2 translate-x-1/2"].absolute.rounded-full.w-8.h-8 {
 
-        &:hover {
-            scale: 1.05;
-            opacity: 0.8;
-        }
+// #main #thread-bottom-container button[class*="var(--thread-scroll-to-bottom-banner-offset"].h-8.w-8.rounded-full {
+//     // will-change: right, left;
+//     // left: var(--scrollBtnLeft, unset) !important;
+//     // right: var(--scrollBtnRight, 50%) !important;
+//     // background: var(--c-accent) !important;
+//     // transition: opacity 0.25s ease, scale 0.25s ease;
 
 
-        /* RIGHT - Scroll Down arrow SVG Color === */
-        svg {
-            color: var(--c-on-accent) !important;
-        }
-    }
-}
-
-/* svg use[href="/cdn/assets/sprites-core-i9agxugi.svg#ac89a7"] */
+//     /* RIGHT - Scroll Down arrow SVG Color === */
+//     svg {
+//         color: var(--c-on-accent) !important;
+//     }
+// }
