@@ -9,7 +9,8 @@ body {
 }
 
 :host,
-html {
+html,
+body {
 	font-family: var(--gpthFontFamily), var(--gpthFontFamilyDefault) !important;
 }
 

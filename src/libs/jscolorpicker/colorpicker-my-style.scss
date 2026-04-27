@@ -179,7 +179,7 @@
   pointer-events: none;
 
   transition: opacity var(--cp-delay) ease-in-out;
-  font-family: var(--gpthFontFamily);
+  font-family: var(--gpthFontFamily, inherit);
 }
 
 .cp_dialog-inner {

@@ -8,7 +8,7 @@
 		position: fixed;
 		top: var(--top);
 		right: var(--right);
-		font-family: var(--gpthFontFamily);
+		font-family: var(--gpthFontFamily, inherit);
 		transition: scale 0.2s, opacity 0.2s;
 
 		// this add only for Firefox

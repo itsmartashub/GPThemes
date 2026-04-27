@@ -183,7 +183,7 @@
   pointer-events: none;
 
   transition: opacity var(--cp-delay) ease-in-out;
-  font-family: var(--gpthFontFamily);
+  font-family: var(--gpthFontFamily, inherit);
 
   @include dev('sm') {
     --cp-mid-w: 80%;

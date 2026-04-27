@@ -1,4 +1,4 @@
-import { $, $$, bind, getVar, setVar, setVars } from '../../utils/dom.js'
+import { $, $$, bind, removeVar, setVar, setVars } from '../../utils/dom.js'
 import { getItems, setItem, setItems } from '../../utils/storage.js'
 import { renderButton } from '../components/renderButtons'
 import { renderFontBigCard, renderFontSmallCard } from '../components/renderFonts'
@@ -56,7 +56,7 @@ const CONFIG = {
 	fontFamily: {
 		id: SELECTORS.FONT.FAMILY_ID,
 		label: 'Font Family',
-		default: getVar('--gpthFontFamilyDefault'),
+		default: 'Default',
 		storageKey: SK_TEXT_FONT_FAMILY,
 		cssVar: '--gpthFontFamily',
 		options: [
@@ -111,21 +111,20 @@ function templateHTML() {
       <div class="fonts__props">
         <div class="fonts__bigcards-wrapper">
           <div class="fonts__family fonts__group card card--big h-full">
-			<label for="${CONFIG.fontFamily.id}" class="flex flex-col gap-1 h-full w-full">
-				<div>
-					<p class="card__unit card__icon">T</p>
-					<p class="card__name uppercase font-semibold">FONT FAMILY</p>
-				</div>
-				<select id="${CONFIG.fontFamily.id}" class="flex-1 border-none outline-none focus:none font-bold" role="listbox">
-					${CONFIG.fontFamily.options
+            <label for="${CONFIG.fontFamily.id}" class="flex flex-col gap-1 h-full w-full">
+                <div>
+                    <p class="card__unit card__icon">T</p>
+                    <p class="card__name uppercase font-semibold">FONT FAMILY</p>
+                </div>
+                <select id="${CONFIG.fontFamily.id}" class="flex-1 border-none outline-none focus:none font-bold" role="listbox">
+                    ${CONFIG.fontFamily.options
 						.map((f) => {
 							const val = f.name === 'Default' ? CONFIG.fontFamily.default : f.name
 							return `<option value="${escapeHTML(val)}">${f.label}</option>`
 						})
-
 						.join('')}
-				</select>
-			</label>
+                </select>
+            </label>
           </div>
 
           ${renderFontBigCard({
@@ -245,7 +244,7 @@ function addPreconnectLinks() {
 		`
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        `
+        `,
 	)
 	preconnectLinksAdded = true
 }
@@ -287,25 +286,50 @@ function setGoogleFont(font) {
 	document.head.appendChild(currentFontLink)
 }
 
-// Update your handleFontFamily function:
+const formatFontForCSS = (font) => {
+	if (!font || font === 'Default') return 'Default'
+
+	// Only wrap in quotes if its a name with spaces (Google Fonts)
+	return font.includes(' ') && !font.startsWith('"') ? `"${font}"` : font
+}
+
 async function handleFontFamily(e) {
 	const selectedFontFamily = e.target.value
 
+	// console.log(selectedFontFamily)
+
 	try {
-		// Set CSS variable immediately for instant visual feedback
-		setVar(CONFIG.fontFamily.cssVar, selectedFontFamily)
+		// If it's the sentinel 'Default', remove css var override entirely
+		if (selectedFontFamily === 'Default') {
+			removeVar(CONFIG.fontFamily.cssVar)
+			removeCurrGoogleFontLink()
+			await setItem(CONFIG.fontFamily.storageKey, 'Default')
+		} else {
+			const formattedFont = formatFontForCSS(selectedFontFamily)
+			// console.log(formattedFont)
 
-		// Load font with display=swap for faster perceived performance
-		setGoogleFont(selectedFontFamily)
+			// Set CSS var immediately for instant visual feedback
+			setVar(CONFIG.fontFamily.cssVar, formattedFont)
 
-		// Save to storage (non-blocking)
-		await setItem(CONFIG.fontFamily.storageKey, selectedFontFamily)
+			// Load font with display=swap for faster perceived perf
+			setGoogleFont(selectedFontFamily)
+
+			// Save to storage (non-blocking)
+			await setItem(CONFIG.fontFamily.storageKey, selectedFontFamily)
+		}
 		Notify.success('Font updated successfully')
 	} catch (error) {
 		console.error('Font change failed:', error)
 		// Revert on error
-		e.target.value = storedValues.fontFamily
-		setVar(CONFIG.fontFamily.cssVar, storedValues.fontFamily)
+		const prev = storedValues.fontFamily
+		updateInputs({ fontFamily: prev })
+
+		// If previous was Default, remove css var, else set var
+		if (prev === 'Default') {
+			removeVar(CONFIG.fontFamily.cssVar)
+		} else {
+			setVar(CONFIG.fontFamily.cssVar, formatFontForCSS(prev))
+		}
 		Notify.error('Failed to update font')
 	}
 }
@@ -320,8 +344,9 @@ async function resetAll() {
 	})
 
 	// 2. Reset DOM styles (CSS vars)
+	// For Font Family, remove the override to let CSS take back control
+	removeVar(CONFIG.fontFamily.cssVar)
 	setVars({
-		[CONFIG.fontFamily.cssVar]: CONFIG.fontFamily.default,
 		[CONFIG.fontSize.cssVar]: CONFIG.fontSize.default,
 		[CONFIG.lineHeight.cssVar]: CONFIG.lineHeight.default,
 		[CONFIG.letterSpacing.cssVar]: CONFIG.letterSpacing.default,
@@ -435,8 +460,14 @@ async function init() {
 	if (fontFamily !== CONFIG.fontFamily.default) setGoogleFont(fontFamily)
 
 	// 3. Update DOM (CSS vars)
+	// If it's Default, remove the override, otherwise set the var
+	if (fontFamily === 'Default') {
+		removeVar(CONFIG.fontFamily.cssVar)
+	} else {
+		setVar(CONFIG.fontFamily.cssVar, formatFontForCSS(fontFamily))
+	}
+
 	setVars({
-		[CONFIG.fontFamily.cssVar]: fontFamily,
 		[CONFIG.fontSize.cssVar]: fontSize,
 		[CONFIG.lineHeight.cssVar]: lineHeight,
 		[CONFIG.letterSpacing.cssVar]: letterSpacing,
