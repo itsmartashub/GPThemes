@@ -112,7 +112,8 @@ export const SELECTORS = {
 		},
 		UPGRADE: {
 			TOGGLE_ID: `${PFX}-hide-upgrade-chip`,
-			SELECTOR: '.h-header-height.top-0 .rounded-full.bg-\\[\\#F1F1FB\\].dark\\:bg-\\[\\#373669\\]',
+			SELECTOR:
+				'.h-header-height.top-0 .rounded-full.bg-\\[\\#F1F1FB\\].dark\\:bg-\\[\\#373669\\], nav[aria-label].h-full [class*="bg-(--sidebar-surface-primary)"].sticky.bottom-0 [data-testid="accounts-profile-button"]~div.mx-3\\.5.mt-1 button[aria-label].text-xs.font-medium',
 		},
 	},
 }

@@ -1,10 +1,6 @@
 import { icon_footer, icon_header, icon_upgrade } from '../components/icons'
 import { ATTR_HIDE_FOOTER, ATTR_HIDE_HEADER, ATTR_HIDE_UPGRADE_CHIP } from './consts-attr'
-import {
-	SK_TOGGLE_HIDE_FOOTER,
-	SK_TOGGLE_HIDE_HEADER,
-	SK_TOGGLE_HIDE_UPGRADE_CHIP,
-} from './consts-storage'
+import { SK_TOGGLE_HIDE_FOOTER, SK_TOGGLE_HIDE_HEADER, SK_TOGGLE_HIDE_UPGRADE_CHIP } from './consts-storage'
 import { SELECTORS } from './selectors'
 
 export const ELEMENTS = [
@@ -30,8 +26,8 @@ export const ELEMENTS = [
 	},
 	{
 		id: SELECTORS.HIDE.UPGRADE.TOGGLE_ID,
-		label: 'Hide Upgrade Chip',
-		subtitle: 'Hide the upgrade chip from the top header for a cleaner view',
+		label: 'Hide Upgrade Chips',
+		subtitle: 'Hide upgrade chips from the top header and sidebar for a cleaner view',
 		icon: icon_upgrade,
 		selector: SELECTORS.HIDE.UPGRADE.SELECTOR,
 		dataAttr: ATTR_HIDE_UPGRADE_CHIP,
