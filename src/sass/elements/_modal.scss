@@ -344,15 +344,18 @@
 		}
 
 		/* Free and Plus plans cards */
-		[data-testid*="-pricing-modal-column"] {
+		[data-testid*="-pricing-modal-column-wrapper"] {
 			// box-shadow: var(--box-shadow);
 			// border-color: var(--c-accent-15) !important; // not working...
-			background-image: linear-gradient(135deg,
-					var(--c-accent-20) 0%,
-					var(--c-accent-03) 40%,
-					var(--c-accent-03) 60%,
-					var(--c-accent-20) 100%);
 			transition: scale 0.3s ease;
+
+			&>div[data-testid$="-pricing-modal-column"] {
+				background-image: linear-gradient(135deg,
+						var(--c-accent-20) 0%,
+						var(--c-accent-03) 40%,
+						var(--c-accent-03) 60%,
+						var(--c-accent-20) 100%);
+			}
 
 			&:is(:hover, :focus-within) {
 				scale: 0.985;
@@ -367,12 +370,12 @@
 		}
 
 		/* Only PLUS plan card */
-		[data-testid="plus-pricing-modal-column"],
-		[data-testid="team-pricing-modal-column"],
-		[data-testid="go-pricing-modal-column"] {
-			background-color: var(--c-accent-12) !important;
-			border-color: var(--c-accent-30) !important;
-		}
+		// [data-testid="plus-pricing-modal-column"],
+		// [data-testid="team-pricing-modal-column"],
+		// [data-testid="go-pricing-modal-column"] {
+		// 	background-color: var(--c-accent-12) !important;
+		// 	border-color: var(--c-accent-30) !important;
+		// }
 
 		/* See "ChatGPT Enterprise" */
 		a[href="https://openai.com/enterprise"] {
