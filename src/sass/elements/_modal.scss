@@ -2,12 +2,12 @@
 .absolute.inset-0 .fixed.inset-0,
 .fixed.inset-0[class*='bg-black/90'] {
 	background-color: var(--c-bg-modal) !important;
-	backdrop-filter: blur(var(--blur-modal)) !important;
+	// backdrop-filter: blur(var(--blur-modal)) !important;
 
-	.from-token-main-surface-primary {
-		--main-surface-primary: var(--c-bg-dialog) !important;
-		// --tw-gradient-from: var(--c-bg-dialog) !important;
-	}
+	// .from-token-main-surface-primary {
+	// 	--main-surface-primary: var(--c-bg-dialog) !important;
+	// 	// --tw-gradient-from: var(--c-bg-dialog) !important;
+	// }
 
 	/* ===================== DIALOGS ====================  */
 	[role='dialog'] {
@@ -15,7 +15,7 @@
 
 		&.popover {
 			padding: var(--p-dialog) !important;
-			box-shadow: var(--box-shadow);
+			box-shadow: var(--box-shadow), 0 0 0 1px var(--c-accent-03);
 
 			/* Add border radius only to dialogs that have border radius. For example "Create Image" dialog is full vw and vh and it doesnt have radius */
 			&[class*='rounded'] {
@@ -115,19 +115,24 @@
 		[id*='-content-'] {
 			--anim-duration: 0.18s;
 			@extend %animFadeIn;
+			border-radius: child-radius(var(--br-dialog), var(--p-dialog)) !important;
+			background-color: var(--c-bg-dialog) !important;
 
-			/* Main title in settings dialogs */
+			// background-color: color-alpha($_, 0.055, true);
+			// border: 1px solid color-alpha($_, 0.055, true);
+
+			/* Main title in settings dialogs. But check the "Settings" -> "Apps" -> "Advanced Settings" btn. It has and this and this style above for h3 */
 			section:nth-of-type(1) {
-				h3.min-h-header-height {
-					&>.truncate {
+				h3.text-lg {
+					&>div {
 						@extend %date-pill;
 					}
 				}
 			}
 
-			/* Back button, e.g. when goes to: "Settings" -> "Advanced" ->  */
+			/* FIX: Back button, e.g. when goes to: "Settings" -> "Advanced" ->, but check the "Settings" -> "Apps" -> "Advanced Settings" btn. It has and this and this style above for h3  */
 			.h-header-height {
-				button.btn.btn-ghost.btn-small {
+				button.btn.btn-ghost {
 					@extend .btn-secondary;
 
 					&:hover {
@@ -145,11 +150,12 @@
 		}
 
 		[role='tablist'] {
-			&.bg-token-bg-elevated-secondary {
-				background-color: color-alpha($_, 0.055, true);
-				border: 1px solid color-alpha($_, 0.055, true);
-				border-radius: calc(var(--br-dialog) / 2) !important;
-			}
+			// OpenAI removed this sidebar alike style. So maybe move this style to -content- element above (its the settings sidebar active content
+			// &.bg-token-bg-elevated-secondary {
+			// 	background-color: color-alpha($_, 0.055, true);
+			// 	border: 1px solid color-alpha($_, 0.055, true);
+			// 	border-radius: child-radius(var(--br-dialog), var(--p-dialog)) !important;
+			// }
 
 			button {
 				padding: var(--p-btn);
