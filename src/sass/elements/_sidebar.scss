@@ -18,6 +18,11 @@
 			}
 		}
 	}
+
+	// New elements in sidebar, between sidebar header and footer
+	.bg-token-main-surface-primary {
+		background-color: var(--c-bg-sidebar) !important;
+	}
 }
 
 #sidebar-header {
