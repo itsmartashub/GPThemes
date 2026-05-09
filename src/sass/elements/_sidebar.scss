@@ -19,7 +19,7 @@
 		}
 	}
 
-	// New elements in sidebar, between sidebar header and footer
+	// New nav items style in sidebar, between sidebar header and footer
 	.bg-token-main-surface-primary {
 		background-color: var(--c-bg-sidebar) !important;
 	}
@@ -35,7 +35,7 @@
 }
 
 
-nav[aria-label].h-full {
+#history {
 	.__menu-item {
 		padding-block: 0.5rem !important;
 		border-radius: calc(var(--br) * 0.8) !important;
@@ -57,17 +57,4 @@ nav[aria-label].h-full {
 			}
 		}
 	}
-
-	// See custom--hides.scss
-	/* [class*="bg-(--sidebar-surface-primary)"].sticky.bottom-0 {
-		background: red !important;
-
-		[data-testid="accounts-profile-button"] {
-
-			// "Claim Offer" button in sidebar below Account image
-			&~div.mx-3\.5.mt-1 button[aria-label].text-xs.font-medium {
-				background: green !important;
-			}
-		}
-	} */
 }
