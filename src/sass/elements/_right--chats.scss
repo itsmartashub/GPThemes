@@ -300,6 +300,15 @@
         }
 
 
+        /* New "Edit" writing block in GPT bubble (Edit, Ask for Edit) */
+        [data-testid="writing-block-container"] {
+
+            &,
+            [class*="dark:bg-[#2a2a2a]"] {
+                background: var(--c-bg-cm) !important;
+            }
+        }
+
     }
 }
 

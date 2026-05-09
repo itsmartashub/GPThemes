@@ -394,3 +394,13 @@ a.bg-token-main-surface-primary.group {
 .bg-token-main-surface-primary\/10 {
 	background-color: color-mix(in oklch, var(--main-surface-primary) 40%, transparent) !important;
 }
+
+// E.g. "Accept" button in Editing writing new markdown block in GPT bubble
+button.bg-token-interactive-label-accent-default {
+	background-color: var(--c-accent) !important;
+
+	&,
+	span.text-white {
+		color: var(--c-on-accent) !important;
+	}
+}

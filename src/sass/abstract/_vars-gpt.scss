@@ -157,16 +157,20 @@ html,
     --theme-attribution-highlight-bg: var(--c-accent-20) !important;
     // --theme-user-msg-bg: var(--yellow-theme-user-msg-bg);
     // --theme-user-msg-text: var(--yellow-theme-user-msg-text);
-    // --theme-submit-btn-bg: var(--yellow-theme-submit-btn-bg);
-    // --theme-submit-btn-text: var(--yellow-theme-submit-btn-text);
-    // --theme-secondary-btn-bg: var(--yellow-theme-secondary-btn-bg);
-    // --theme-secondary-btn-text: var(--yellow-theme-secondary-btn-text);
-    // --theme-user-selection-bg: var(--yellow-theme-user-selection-bg);
+    --theme-submit-btn-bg: var(--c-accent) !important;
+    --theme-submit-btn-text: var(--c-on-accent) !important;
+    --theme-secondary-btn-bg: var(--c-accent-light) !important;
+    --theme-secondary-btn-text: var(--c-accent) !important;
+    // --theme-secondary-btn-bg: oklch(from var(--c-accent) 0.3 calc(c * 0.5) h) !important;
+    // --theme-secondary-btn-text: var(--c-accent) !important;
+    --theme-user-selection-bg: #{color-alpha(--c-warning, 0.2, true)}; // See it in GPT bubble when there is Edit markdown writing block
     // --theme-attribution-highlight-bg: var(--yellow-theme-user-selection-bg);
-    // --theme-entity-accent: var(--yellow-theme-entity-accent);
+    --theme-entity-accent: var(--c-accent) !important;
 
     --scrollbar-color: var(--c-scrollbar-thumb) !important;
     --scrollbar-color-hover: var(--c-scrollbar-thumb-hover) !important;
+
+
 }
 
 /* POPOVER GLOBAL
