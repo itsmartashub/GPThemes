@@ -16,9 +16,14 @@ But adding this "main" blocked this style to smaller screens so I have to add it
 #page-header {
 	background: var(--c-bg-chats-container) !important;
 	box-shadow: none !important;
+
+	button.button-glimmer-cta {
+		@include accent("sec");
+	}
 }
 
 .sticky {
+
 	/* "ChatGPT" button in sticky header */
 	[data-testid="model-switcher-dropdown-button"] {
 		transition: 0.25s color ease-in-out, 0.25s background-color ease-in-out;
