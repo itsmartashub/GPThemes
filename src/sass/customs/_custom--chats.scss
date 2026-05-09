@@ -1,7 +1,6 @@
 /* Chats msgs: <article> */
 [data-testid^='conversation-turn-'] {
 
-
     /* ! ========== CUSTOM FONT SIZE AND LINE HEIGHT ========== */
     //  Custom Font-Size and Line Height for chats and markdown code snippets
     div[data-message-author-role],
@@ -26,7 +25,13 @@
 
     /* ! ========== USER msg width ========== */
     // New selector: 2025-04-10
-    .user-message-bubble-color {
+    // .user-message-bubble-color {
+    //     width: var(--w_chat_user, auto) !important;
+    //     max-width: var(--max_w_chat_user, var(--user-chat-width)) !important;
+    // }
+
+    //  New selector: 2026-05-10
+    [data-message-author-role="user"] [class*="max-w-(--user-chat-width,70%)"] {
         width: var(--w_chat_user, auto) !important;
         max-width: var(--max_w_chat_user, var(--user-chat-width)) !important;
     }

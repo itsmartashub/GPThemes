@@ -19,17 +19,14 @@
     /* Message wrapper */
     .group\/message[data-message-id*="CalpicoMessage"] {
 
-        /* Sended & received msg bubbles */
+        /* Sent & received msg bubbles */
         .group\/message {
 
-            // sended
+            // sent
             &.user-message-bubble-color,
             &.bg-token-bg-tertiary {
                 @extend %groupChatMsgSharedStyle;
             }
-
-            // sended
-            // &.user-message-bubble-color {}
 
             // received
             // &.bg-token-bg-tertiary {}
