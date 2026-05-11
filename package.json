@@ -83,23 +83,21 @@
 		"foss",
 		"opensource"
 	],
-	"license": "GPL-3.0",
 	"browserslist": [
-		"Chrome >= 119",
-		"ChromeAndroid >= 119",
-		"Edge >= 119",
-		"Opera >= 105",
-		"Firefox >= 128",
-		"FirefoxAndroid >= 128",
-		"Safari >= 16.4",
-		"Samsung >= 24"
+		"chrome >= 119",
+		"edge >= 119",
+		"firefox >= 128",
+		"safari >= 18",
+		"not dead"
 	],
 	"devDependencies": {
 		"@biomejs/biome": "2.3.8",
 		"@parcel/config-default": "^2.16.3",
 		"@parcel/config-webextension": "^2.16.3",
 		"@parcel/transformer-sass": "2.16.3",
+		"autoprefixer": "^10.5.0",
 		"parcel": "^2.16.3",
+		"postcss": "^8.5.6",
 		"stylelint": "^16.26.1",
 		"stylelint-config-standard-scss": "^16.0.0"
 	},

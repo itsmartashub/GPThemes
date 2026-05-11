@@ -1,9 +1,9 @@
 {
 	"manifest_version": 3,
 	"minimum_chrome_version": "119",
-	"version": "6.2.0",
-	"name": "GPThemes - ChatGPT Customization & Tweaks",
-	"description": "Redesign ChatGPT: custom colors, fonts & layouts — widescreen mode, width sliders, expandable chatbox, hide header/footer & more.",
+	"version": "6.3.0",
+	"name": "GPThemes - ChatGPT Widescreen, Fonts & Color",
+	"description": "Redesign ChatGPT: custom color, fonts & layouts — widescreen mode, chat bubbles, expandable chatbox, hide header/footer & more",
 	"author": "itsmarta",
 	"homepage_url": "https://github.com/itsmartashub/GPThemes",
 	"host_permissions": ["https://chat.openai.com/*", "https://chatgpt.com/*"],

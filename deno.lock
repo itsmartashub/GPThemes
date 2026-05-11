@@ -10,7 +10,9 @@
         "npm:@parcel/config-default@^2.16.3",
         "npm:@parcel/config-webextension@^2.16.3",
         "npm:@parcel/transformer-sass@2.16.3",
+        "npm:autoprefixer@^10.5.0",
         "npm:parcel@^2.16.3",
+        "npm:postcss@^8.5.6",
         "npm:stylelint-config-standard-scss@16",
         "npm:stylelint@^16.26.1",
         "npm:webextension-polyfill@0.12"

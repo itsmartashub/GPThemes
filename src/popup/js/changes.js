@@ -19,6 +19,7 @@ const links = {
 
 const SECTION_TYPES = {
 	// Critical hotfix section - will appear first if present
+	note: { emoji: '👋', title: 'Note', priority: 1 },
 	critical: { emoji: '🚨', title: 'Critical Fixes', priority: 1 },
 	newFixes: { emoji: '🔧', title: 'New Key Fixes', priority: 1 },
 	// Separator for previous version content
@@ -40,54 +41,74 @@ const SECTION_TYPES = {
  <a href="https://github.com/itsmartashub/GPThemes/issues/new?template=feature_request.yml" target="_blank" rel="noopener noreferrer">GitHub issue</a> 
 */
 const currentReleaseChanges = {
+	// note: [],
+	// critical: [],
+	// newFixes: [],
 	// features: [],
 	// improvements: [],
 	// fixes: [],
 	// other: [],
 	// support: [],
-	critical: [
+	note: [
 		{
-			description: 'Project Loading:',
-			details:
-				'Fixed a critical bug where project threads would stop loading during scroll. Sorry for gaslighting you with the <code>Project</code> chats disapearing :( Many thanks to <strong>@Fredisland</strong> for mentioning this major bug 🤝',
-			issueRef: 197,
+			// details:
+			// 	'Temporarily deactivated the <code>Scrolldown alignment</code> feature to focus on maintenance and ensure overall extension stability <a href="https://github.com/itsmartashub/GPThemes/issues/208" target="_blank" rel="noopener noreferrer">See more</a>',
+			// issueRef: 208,
+			details: `Hey there, it's been a while. <br>
+					A few things were broken, and I only just found out. Sorry about that.
+					I've moved on to other AI workflows, so I rarely visit the site this was built for anymore.<br>
+					If something's off, I probably won't know unless you tell me :(`,
+		},
+	],
+	features: [
+		{
+			description: 'Hide Upgrade Chips:',
+			details: 'Hide the upgrade chip from the sidebar also when <code>Hide Upgrade Chips</code> is enabled',
 		},
 	],
 	improvements: [
 		{
-			description: 'Group Chats:',
-			details: 'Custom chat widths and GPT bubble toggles now fully support <code>Group Chat</code> layouts',
-			prRef: 202,
-			issueRef: 203,
+			description: 'Text Editing:',
+			details:
+				'Enhanced styling for new markdown edit blocks, including theme-consistent backgrounds, improved selected text menu dropdowns, and custom accent colors for buttons and text selection',
+			issueRef: 214,
 		},
 		{
-			description: 'Map Interactivity:',
-			details: 'Refined markers and semi-transparent sidebars for the new map interface',
-			prRef: 205,
-		},
-		{
-			description: 'Source Sidebars:',
-			details: 'Unified hover states for all source-link sidebars',
-		},
-		{
-			description: 'Code Snippets:',
-			details: "Reverted custom code block styles to align with OpenAI's latest native defaults",
-			prRef: 206,
-		},
-		{
-			description: 'Pin Icon:',
-			details: "Improved the pin icon's color contrast in sidebar chatlists",
+			description: 'UI/UX:',
+			details: 'Improved styling for tooltips, settings & upgrade dialogs, and pricing cards',
 		},
 	],
 	fixes: [
 		{
-			description: 'Hide Footer:',
-			details: 'Fixed <code>Hide Footer</code> toogle',
-			prRef: 200,
+			description: 'Fonts:',
+			details: 'Fixed custom font family application and fallback logic',
+			issueRef: 210,
 		},
 		{
-			description: 'Lag Reduction:',
-			details: 'Optimized hover animations to eliminate micro-stuttering during interaction with some elements',
+			description: 'Expand Chatbox:',
+			details: 'Fixed <code>Expand chatbox</code> feature',
+			issueRef: 209,
+		},
+		{
+			description: 'Chatbox:',
+			details:
+				'Fixed chatbox background to match accent theme with blur, and differentiate it with temporary chatbox',
+			issueRef: 211,
+		},
+		{
+			description: 'Chatbox Section:',
+			details: 'Replaced the grey background with a modern backdrop blur for better readability',
+			issueRef: 211,
+		},
+		{
+			description: 'Chat Bubble:',
+			details: 'Fixed user bubble alignment and custom width feature',
+			issueRef: 213,
+		},
+		{
+			description: 'Sidebar:',
+			details:
+				'Fixed background theme consistency, corrected pin icon colors, and improved upgrade chip hiding selectors',
 		},
 	],
 	other: [
@@ -99,7 +120,7 @@ const currentReleaseChanges = {
 	],
 	support: [
 		{
-			details: `🍵 If you find GPThemes valuable, consider supporting its development with a <a href="https://ko-fi.com/http417" target="_blank" rel="noopener noreferrer">contribution on KO-FI</a>`,
+			details: `Some tools just become part of how you work. If this is one of them, <a href="https://ko-fi.com/http417" target="_blank" rel="noopener noreferrer">Ko-fi</a> is there`,
 		},
 	],
 }
