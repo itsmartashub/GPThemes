@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"minimum_chrome_version": "119",
-	"version": "6.3.0",
+	"version": "6.3.1",
 	"name": "GPThemes - ChatGPT Widescreen, Fonts & Color",
 	"description": "Redesign ChatGPT: custom color, fonts & layouts — widescreen mode, chat bubbles, expandable chatbox, hide header/footer & more",
 	"author": "itsmarta",
