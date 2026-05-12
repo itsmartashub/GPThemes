@@ -51,9 +51,6 @@ const currentReleaseChanges = {
 	// support: [],
 	note: [
 		{
-			// details:
-			// 	'Temporarily deactivated the <code>Scrolldown alignment</code> feature to focus on maintenance and ensure overall extension stability <a href="https://github.com/itsmartashub/GPThemes/issues/208" target="_blank" rel="noopener noreferrer">See more</a>',
-			// issueRef: 208,
 			details: `Hey there, it's been a while. <br>
 					A few things were broken, and I only just found out. Sorry about that.
 					I've moved on to other AI workflows, so I rarely visit the site this was built for anymore.<br>
@@ -76,6 +73,10 @@ const currentReleaseChanges = {
 		{
 			description: 'UI/UX:',
 			details: 'Improved styling for tooltips, settings & upgrade dialogs, and pricing cards',
+		},
+		{
+			description: 'Sidebar:',
+			details: 'Unify sidebar and chat container background colors',
 		},
 	],
 	fixes: [

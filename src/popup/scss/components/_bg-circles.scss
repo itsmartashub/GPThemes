@@ -2,7 +2,7 @@
     --size: 10rem;
 
     position: fixed;
-    top: 8%;
+    top: 5%;
     left: 0%;
     width: var(--size);
     height: var(--size);
@@ -10,7 +10,7 @@
     z-index: -1;
     background-color: $accent;
     filter: blur(5rem);
-    opacity: .25;
+    opacity: .35;
 
     &:nth-of-type(2) {
         top: 40%;
@@ -18,7 +18,7 @@
     }
 
     &:nth-of-type(3) {
-        top: 80vh;
-        left: 50%
+        top: 90vh;
+        left: 40%
     }
 }
