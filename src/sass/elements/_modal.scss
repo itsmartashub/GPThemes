@@ -1,7 +1,7 @@
-/* ___  MODAL Background */
+/* ___  MODAL Background — simple dark scrim, matching native ChatGPT */
 .absolute.inset-0 .fixed.inset-0,
 .fixed.inset-0[class*='bg-black/90'] {
-	background-color: var(--c-bg-modal) !important;
+	background-color: rgb(0 0 0 / 0.5) !important;
 	// backdrop-filter: blur(var(--blur-modal)) !important;
 
 	// .from-token-main-surface-primary {
@@ -15,7 +15,7 @@
 
 		&.popover {
 			padding: var(--p-dialog) !important;
-			box-shadow: var(--box-shadow), 0 0 0 1px var(--c-accent-03);
+			box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 
 			/* Add border radius only to dialogs that have border radius. For example "Create Image" dialog is full vw and vh and it doesnt have radius */
 			&[class*='rounded'] {
@@ -102,7 +102,8 @@
 
 
 
-/* Modal Settings dialog */
+/* Modal Settings dialog — only theme colors, minimal layout fixes.
+   Match native ChatGPT as closely as possible. */
 [data-testid="modal-settings"] {
 	[role="dialog"] {
 
@@ -111,51 +112,33 @@
 			min-width: var(--min-w-btn);
 		}
 
+		/* Match close button rounding to target settings panel (square rounded) */
+		button[aria-label*="lose"],
+		button[class*="close"] {
+			border-radius: 0.5rem !important;
+		}
+
 		/* Tab view transitions - In tab dialog part which is changing on tabpanel click (on right side) */
 		[id*='-content-'] {
 			--anim-duration: 0.18s;
 			@extend %animFadeIn;
-			border-radius: child-radius(var(--br-dialog), var(--p-dialog)) !important;
 			background-color: var(--c-bg-dialog) !important;
 
-			// background-color: color-alpha($_, 0.055, true);
-			// border: 1px solid color-alpha($_, 0.055, true);
-
-			/* Main title in settings dialogs. But check the "Settings" -> "Apps" -> "Advanced Settings" btn. It has and this and this style above for h3 */
-			section:nth-of-type(1) {
-				h3.text-lg {
-					&>div {
-						@extend %date-pill;
-					}
-				}
-			}
-
-			/* FIX: Back button, e.g. when goes to: "Settings" -> "Advanced" ->, but check the "Settings" -> "Apps" -> "Advanced Settings" btn. It has and this and this style above for h3  */
+			/* FIX: Back button, e.g. when goes to: "Settings" -> "Advanced" -> */
 			.h-header-height {
 				button.btn.btn-ghost {
-					@extend .btn-secondary;
-
 					&:hover {
-						@extend .btn-primary;
+						background-color: var(--c-surface-3) !important;
 					}
 				}
 			}
 
 			button[type="button"][aria-haspopup="menu"] {
-				@extend .btn-secondary;
-				min-width: var(--min-w-btn);
 				border-radius: var(--br-btn) !important;
-				font-weight: 500 !important;
 			}
 		}
 
 		[role='tablist'] {
-			// OpenAI removed this sidebar alike style. So maybe move this style to -content- element above (its the settings sidebar active content
-			// &.bg-token-bg-elevated-secondary {
-			// 	background-color: color-alpha($_, 0.055, true);
-			// 	border: 1px solid color-alpha($_, 0.055, true);
-			// 	border-radius: child-radius(var(--br-dialog), var(--p-dialog)) !important;
-			// }
 
 			button {
 				padding: var(--p-btn);
@@ -165,14 +148,13 @@
 					transition: none !important;
 				}
 
+				/* Subtle highlight on active tab — matches native */
 				&[data-state='active'] {
-					// background-color: var(--c-accent) !important;
-					// color: var(--c-on-accent) !important;
-					@extend .btn-primary;
+					background-color: var(--c-surface-3) !important;
 				}
 
 				&[data-state='inactive']:is(:hover, :focus) {
-					@extend .btn-secondary;
+					background-color: var(--c-surface-2) !important;
 				}
 			}
 
@@ -181,18 +163,13 @@
 			&[data-orientation='vertical'] {
 				flex-wrap: nowrap !important;
 				overflow-y: auto;
-
-				[role="tab"] {
-					@include lift;
-				}
 			}
 
 			&[data-orientation='horizontal'] {
 				background-color: var(--c-surface-3) !important;
 
 				button[data-state='active'] {
-					background-color: var(--c-accent) !important;
-					color: var(--c-on-accent);
+					background-color: var(--c-surface-2) !important;
 				}
 			}
 		}
@@ -236,11 +213,6 @@
 			}
 		}
 
-		/* Heading "Settings" in Settings Modal */
-		h2.text-lg.font-semibold {
-			text-transform: uppercase;
-		}
-
 		/* "Enabled" btn for 2fa in "Settings" > "General" */
 		span.bg-green-50.text-green-700 {
 			@extend %date-pill;
@@ -258,6 +230,60 @@
 		}
 	}
 }
+
+/* ===================== INTELLIGENCE / CONFIGURE DIALOG ==================== */
+/* Custom background highlights for options in the Configure / Intelligence dialog.
+   We make all options transparent by default to prevent React/Radix focus lag from
+   causing multiple highlights, and explicitly style only the hovered option or the
+   currently selected option (detected via selection attributes or the checkmark SVG). */
+[role="dialog"][data-gpth-intelligence-dialog] {
+
+	li, [role="option"] {
+		&,
+		&.bg-token-main-surface-secondary,
+		&.bg-token-bg-elevated-secondary {
+			background-color: transparent !important;
+			background: transparent !important;
+			translate: none !important;
+		}
+
+		&:is(:hover, :focus, :focus-visible, :focus-within, :active) {
+			&,
+			&.bg-token-main-surface-secondary,
+			&.bg-token-bg-elevated-secondary {
+				background-color: var(--c-surface-3) !important;
+				translate: none !important;
+			}
+		}
+
+		/* Target selected row (has selected/checked status or contains checkmark SVG) */
+		&[aria-selected="true"],
+		&[aria-checked="true"],
+		&[data-state="checked"],
+		&[data-state="active"],
+		&[data-selected="true"],
+		&:has(svg) {
+			&,
+			&.bg-token-main-surface-secondary,
+			&.bg-token-bg-elevated-secondary {
+				background-color: var(--c-surface-3) !important;
+				translate: none !important;
+			}
+		}
+	}
+
+	/* Model / Thinking-effort dropdown buttons — remove GPThemes button styling */
+	button[aria-haspopup] {
+		min-width: 0 !important;
+		background: transparent !important;
+		border: 0 !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		backdrop-filter: none !important;
+	}
+}
+
+
 
 /* ___ Web Searched Images with links*/
 [data-testid="modal-image-result"] {
@@ -509,5 +535,19 @@
 #project-modal-form {
 	input[name="projectName"] {
 		background-color: var(--c-surface-3) !important;
+	}
+}
+
+/* Input and textarea readability inside dialogs */
+[role="dialog"] {
+	input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+	textarea {
+		background-color: var(--c-surface-2) !important;
+		color: var(--c-txt) !important;
+		border: 1px solid var(--c-border) !important;
+
+		&:focus {
+			border-color: var(--c-accent) !important;
+		}
 	}
 }

@@ -1,10 +1,20 @@
 import { renderSeparator } from '../components/renderUtils.js'
 import { mount as mountCustomHides, renderCustomHides } from '../custom-hide/index.js'
+import { mount as mountActivityPanel } from './activityPanel.js'
+import { mount as mountIntelligenceDialog } from './intelligenceDialog.js'
 // Import child modules
 // import { mount as mountScrolldown, renderCustomScrolldown } from './scrolldown.js'
 import { mount as mountChatBubbles, renderCustomChatBubbles } from './toggleChatBubbles.js'
-import { mount as mountCustomChatboxHeight, renderCustomChatboxHeight } from './toggleChatboxHeight.js'
-import { init as initWidths, mount as mountWidths, templateHTML as renderWidthsSection } from './widths.js'
+import {
+	mount as mountCustomChatboxHeight,
+	renderCustomChatboxHeight,
+} from './toggleChatboxHeight.js'
+import { mount as mountPulseCards, renderExpandPulseCards } from './togglePulseCards.js'
+import {
+	init as initWidths,
+	mount as mountWidths,
+	templateHTML as renderWidthsSection,
+} from './widths.js'
 
 // =====================================================
 // TEMPLATE
@@ -19,6 +29,7 @@ function templateHTML() {
 			${renderCustomHides()}
 			${renderSeparator}
 			${renderCustomChatboxHeight()}
+			${renderExpandPulseCards()}
 			${renderSeparator}
 			${renderCustomChatBubbles()}
 			</section>`
@@ -55,7 +66,11 @@ function mount() {
 
 	// Mount other child modules
 	mountCustomChatboxHeight()
+	mountPulseCards()
 	mountChatBubbles()
+	mountIntelligenceDialog()
+	mountActivityPanel()
+
 	// mountScrolldown()
 	mountCustomHides()
 }

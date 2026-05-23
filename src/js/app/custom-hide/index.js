@@ -4,6 +4,7 @@ import { Notify } from '../components/renderNotify.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { ELEMENTS } from '../config/consts-hidden-els.js'
 import { SELECTORS } from '../config/selectors'
+import { observeSidebarPillMarkers, syncSidebarPillMarkers } from './sidebarPills.js'
 
 // =====================================================
 // STATE
@@ -95,9 +96,11 @@ function onChange({ target }) {
 	const cfg = ELEMENTS_MAP.get(target.id)
 	if (!cfg) return
 
+	syncSidebarPillMarkers()
+
 	// Check if element exists RIGHT NOW
 	const element = $(cfg.selector)
-	if (!element) {
+	if (!element && !cfg.allowMissing) {
 		Notify.error(`${cfg.label.replace('Hide ', '')} not found on this page`)
 		target.checked = !target.checked // Revert toggle
 		return
@@ -120,6 +123,8 @@ async function mount() {
 	}
 
 	try {
+		observeSidebarPillMarkers()
+
 		// Load all states in parallel
 		const savedStates = await loadState()
 

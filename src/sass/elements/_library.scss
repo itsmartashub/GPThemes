@@ -1,4 +1,161 @@
 /* Created image in chat bubbles and in "Library" */
+html[data-gpth-page-library],
+main:has(input[placeholder*="Search library" i]) {
+    --main-surface-primary: var(--c-bg-chats-container) !important;
+    --main-surface-secondary: var(--c-surface-2) !important;
+    --main-surface-tertiary: var(--c-surface-3) !important;
+
+    background-color: var(--c-bg-chats-container) !important;
+
+    main {
+        background-color: var(--c-bg-chats-container) !important;
+    }
+
+    /* Library tab/filter/view toolbar */
+    main>div:has(button):has([class*="grid"]),
+    main :is(div, section, nav, header):has(>button):has([class*="grid"]),
+    main :is(div, section, nav, header):has(button):has(button[aria-selected]),
+    main :is(div, section, nav, header):has(button):has(button[aria-pressed]) {
+        background-color: var(--c-bg-chats-container) !important;
+        border-color: var(--c-border) !important;
+    }
+
+    main :is(.bg-white,
+        [class*="bg-white"],
+        [class*="bg-[#fff"],
+        [class*="bg-[#FFF"],
+        [class*="from-white"],
+        [class*="via-white"],
+        [class*="to-white"],
+        [class*="bg-token-main-surface-primary"],
+        [class*="bg-token-bg-primary"]):not(input) {
+        --tw-gradient-from: var(--c-bg-chats-container) !important;
+        --tw-gradient-via: var(--c-bg-chats-container) !important;
+        --tw-gradient-to: var(--c-bg-chats-container) !important;
+        --bg-primary: var(--c-bg-chats-container) !important;
+        --main-surface-primary: var(--c-bg-chats-container) !important;
+
+        background-color: var(--c-bg-chats-container) !important;
+        background: var(--c-bg-chats-container) !important;
+    }
+
+    main :is([style*="background: white"],
+        [style*="background-color: white"],
+        [style*="background: rgb(255, 255, 255)"],
+        [style*="background-color: rgb(255, 255, 255)"]) {
+        background-color: var(--c-bg-chats-container) !important;
+        background: var(--c-bg-chats-container) !important;
+    }
+
+    main :is(.border-white,
+        [class*="border-white"],
+        [class*="border-[#fff"],
+        [class*="border-[#FFF"]) {
+        border-color: var(--c-border) !important;
+    }
+
+    main :is(button, [role="tab"], [aria-pressed]) {
+        color: var(--c-subtext-1) !important;
+    }
+
+    main :is([class*="grid"], [role="row"], [role="table"], table) :is(button, [role="button"], [aria-sort]) {
+        appearance: none !important;
+        background-color: transparent !important;
+        background: transparent !important;
+        border-color: transparent !important;
+        box-shadow: none !important;
+        color: var(--c-subtext-1) !important;
+    }
+
+    main :is([class*="grid"], [role="row"], [role="table"], table) :is(button, [role="button"], [aria-sort]) * {
+        background-color: transparent !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    main [data-gpth-library-header-control] {
+        appearance: none !important;
+        -webkit-appearance: none !important;
+        background-color: transparent !important;
+        background: transparent !important;
+        border-color: transparent !important;
+        box-shadow: none !important;
+        color: var(--c-subtext-1) !important;
+        outline: none !important;
+    }
+
+    main [data-gpth-library-header-control] * {
+        background-color: transparent !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        color: inherit !important;
+    }
+
+    main [data-gpth-library-header-control]::before,
+    main [data-gpth-library-header-control]::after,
+    main [data-gpth-library-header-control] *::before,
+    main [data-gpth-library-header-control] *::after {
+        background-color: transparent !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    main [data-gpth-library-header-control]::selection,
+    main [data-gpth-library-header-control] *::selection {
+        background-color: transparent !important;
+        color: inherit !important;
+    }
+
+    main ::selection {
+        background-color: var(--c-accent-20) !important;
+        color: var(--c-txt) !important;
+    }
+
+    main [data-gpth-library-upload-button] {
+        transform: none !important;
+        translate: 0 0 !important;
+        scale: 1 !important;
+        will-change: auto !important;
+        transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out !important;
+
+        &:is(:hover, :focus, :active) {
+            transform: none !important;
+            translate: 0 0 !important;
+            scale: 1 !important;
+        }
+    }
+
+    main :is(select,
+        option,
+        [role="combobox"],
+        [aria-haspopup="listbox"],
+        [aria-haspopup="menu"]) {
+        appearance: none !important;
+        -webkit-appearance: none !important;
+        background-color: transparent !important;
+        background: transparent !important;
+        border-color: transparent !important;
+        box-shadow: none !important;
+        color: var(--c-subtext-1) !important;
+        outline: none !important;
+    }
+
+    main :is(button[aria-selected="true"],
+        button[aria-pressed="true"],
+        [role="tab"][aria-selected="true"]) {
+        background-color: var(--c-accent) !important;
+        color: var(--c-on-accent) !important;
+    }
+
+    main :is(th, [role="columnheader"], [role="row"]:first-of-type) :is(button, [role="button"]) {
+        background-color: transparent !important;
+        background: transparent !important;
+        border-color: transparent !important;
+        box-shadow: none !important;
+        color: var(--c-subtext-1) !important;
+    }
+}
+
 /* New "Create Image" image wrapper */
 .group\/imagegen-image {
     border-radius: var(--br-contextmenu) !important;

@@ -71,6 +71,57 @@
     // }
 
     &:has(section.popover #codemirror, section.popover #prosemirror-editor-container) {
+        --sidebar-bg: var(--c-bg-sidebar) !important;
+        --sidebar-mask-bg: var(--c-bg-sidebar) !important;
+        --sidebar-surface: var(--c-bg-sidebar) !important;
+        --sidebar-surface-primary: var(--c-bg-sidebar) !important;
+        --sidebar-surface-secondary: var(--c-surface-2) !important;
+        --sidebar-surface-tertiary: var(--c-surface-3) !important;
+
+        /* Canvas split view uses a compact sidebar rail that can escape the normal sidebar selectors. */
+        #stage-slideover-sidebar,
+        #stage-popover-sidebar,
+        [class*="bg-token-sidebar-surface-primary"],
+        [class*="bg-token-sidebar-surface-secondary"],
+        [class*="bg-token-sidebar-surface-tertiary"],
+        :is(nav, aside, [role="navigation"], [data-testid*="sidebar"])[class*="bg-white"],
+        :is(nav, aside, [role="navigation"], [data-testid*="sidebar"])[class*="bg-gray-50"],
+        :is(nav, aside, [role="navigation"], [data-testid*="sidebar"])[class*="bg-gray-100"],
+        > [class*="bg-white"][class*="h-full"],
+        > [class*="bg-gray-50"][class*="h-full"],
+        > [class*="bg-gray-100"][class*="h-full"] {
+            --sidebar-bg: var(--c-bg-sidebar) !important;
+            --sidebar-mask-bg: var(--c-bg-sidebar) !important;
+            --sidebar-surface: var(--c-bg-sidebar) !important;
+            --sidebar-surface-primary: var(--c-bg-sidebar) !important;
+            --sidebar-surface-secondary: var(--c-surface-2) !important;
+            --sidebar-surface-tertiary: var(--c-surface-3) !important;
+            background-color: var(--c-bg-sidebar) !important;
+            color: var(--c-txt) !important;
+        }
+
+        #stage-slideover-sidebar,
+        #stage-popover-sidebar,
+        [class*="bg-token-sidebar-surface"] {
+            border-color: var(--c-border) !important;
+
+            button,
+            a {
+                color: var(--c-txt) !important;
+            }
+
+            button:hover,
+            a:hover,
+            [class*="hover:bg-token-sidebar-surface"]:hover,
+            [class*="dark:hover:bg-white"]:hover {
+                background-color: var(--c-bg-sidebar-link) !important;
+            }
+
+            svg {
+                color: var(--c-subtext-1) !important;
+            }
+        }
+
         .bg-black {
             background-color: var(--c-accent) !important;
             color: var(--c-on-accent) !important;

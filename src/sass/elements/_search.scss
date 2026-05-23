@@ -1,43 +1,284 @@
-/* ___ Search list of sources showed on the right h-full of the chats container */
-[data-testid="stage-thread-flyout"] {
+/* Search sources and activity flyout */
+[data-testid*="flyout" i],
+[data-testid*="flyOut" i],
+[data-testid*="activity" i],
+[class*="ThreadFlyout" i],
+[class*="ActivitySidebar" i],
+[data-testid="modal-chat-screen-entity-flyout"],
+[data-gpth-activity-panel],
+aside,
+[role="complementary"] {
+    --bg-primary: var(--c-bg-chats-container) !important;
+    --bg-secondary: var(--c-surface-2) !important;
+    --bg-tertiary: var(--c-surface-3) !important;
+    --bg-elevated-primary: var(--c-surface-2) !important;
+    --bg-elevated-secondary: var(--c-surface-3) !important;
+    --border-default: var(--c-border) !important;
+    --border-light: var(--c-border) !important;
+    --border-extra-light: var(--c-border) !important;
+    --interactive-bg-secondary-hover: var(--c-accent-12) !important;
+    --link: var(--c-accent) !important;
+    --link-hover: var(--c-accent) !important;
     --main-surface-primary: var(--c-bg-chats-container) !important;
+    --main-surface-secondary: var(--c-surface-2) !important;
+    --main-surface-secondary-selected: var(--c-surface-3) !important;
+    --main-surface-tertiary: var(--c-surface-3) !important;
+    --popover-surface-primary: var(--c-surface-2) !important;
+    --surface-hover: var(--c-accent-12) !important;
+    --text-accent: var(--c-accent) !important;
+    --text-primary: var(--c-txt) !important;
+    --text-secondary: var(--c-subtext-1) !important;
+    --text-tertiary: var(--c-subtext-2) !important;
 
-    [data-testid="screen-threadFlyOut"] {
+    color: var(--c-txt) !important;
+    background: var(--c-bg-chats-container) !important;
 
-        /* Header where main title and tabs are */
-        [data-testid="bar-search-sources-header"] {
-            .border-token-main-surface-tertiary.bg-token-main-surface-tertiary.rounded-full {
-                border-radius: var(--br-btn) !important;
-                box-shadow: 0 0 0 1px var(--c-accent-20) !important;
+    [data-testid="screen-threadFlyOut"],
+    .bg-token-bg-primary,
+    .bg-token-main-surface-primary,
+    [class*="bg-token-bg-primary"],
+    [class*="dark:bg-black"] {
+        background-color: var(--c-bg-chats-container) !important;
+    }
 
-                /* "Activity" and "X Sources" tab in inactive state */
-                button.btn[class*="min-w-[100px]"]:not(.bg-token-main-surface-primary) {
-                    color: var(--c-accent) !important;
-                }
+    .bg-token-bg-secondary,
+    .bg-token-bg-elevated-primary,
+    .bg-token-main-surface-secondary,
+    [class*="bg-token-bg-secondary"],
+    [class*="bg-token-bg-elevated-primary"],
+    [class*="bg-token-main-surface-secondary"] {
+        background-color: var(--c-surface-2) !important;
+    }
+
+    .bg-token-bg-elevated-secondary,
+    .bg-token-main-surface-tertiary,
+    [class*="bg-token-bg-elevated-secondary"],
+    [class*="bg-token-main-surface-tertiary"] {
+        background-color: var(--c-surface-3) !important;
+    }
+
+    /* Memory and Web parent container backgrounds in the sidebar */
+    .bg-neutral-50,
+    .bg-neutral-100,
+    .bg-neutral-200,
+    .bg-gray-50,
+    .bg-gray-100,
+    .bg-gray-200,
+    .bg-white,
+    [class*="bg-neutral-"],
+    [class*="bg-gray-5"],
+    [class*="bg-gray-1"],
+    [class*="bg-gray-2"],
+    [class*="bg-white"],
+    [class*="bg-[#f"],
+    [class*="bg-[#e"],
+    [class*="bg-[#d"],
+    [class*="bg-[#F"],
+    [class*="bg-[#E"],
+    [class*="bg-[#D"] {
+        background-color: var(--c-surface-2) !important;
+        background: var(--c-surface-2) !important;
+    }
+
+    /* Override any remaining elements using token-based surface backgrounds */
+    [class*="surface-primary"],
+    [class*="surface-secondary"] {
+        background-color: var(--c-surface-2) !important;
+    }
+
+    /* Catch-all for rounded card containers that may have light backgrounds */
+    [class*="rounded"] {
+        &[class*="bg-"] {
+            background-color: var(--c-surface-2) !important;
+        }
+    }
+
+    .text-token-text-primary,
+    [class*="text-token-text-primary"] {
+        color: var(--c-txt) !important;
+    }
+
+    .text-token-text-secondary,
+    [class*="text-token-text-secondary"] {
+        color: var(--c-subtext-1) !important;
+    }
+
+    .text-token-text-tertiary,
+    [class*="text-token-text-tertiary"] {
+        color: var(--c-subtext-2) !important;
+    }
+
+    .border-token-border-default,
+    .border-token-border-light,
+    .border-token-main-surface-tertiary,
+    [class*="border-token-border"],
+    [class*="border-token-main-surface"] {
+        border-color: var(--c-border) !important;
+    }
+
+    [class*="border-l"],
+    [class*="border-s"] {
+        border-color: var(--c-accent-12) !important;
+    }
+
+    svg {
+        color: currentColor !important;
+    }
+
+    a {
+        color: inherit !important;
+    }
+
+    [data-testid="bar-search-sources-header"] {
+        background: linear-gradient(180deg,
+            var(--c-bg-chats-container) 0%,
+            color-mix(in oklch, var(--c-bg-chats-container) 88%, transparent) 100%) !important;
+        border-bottom: 1px solid var(--c-accent-10) !important;
+
+        .border-token-main-surface-tertiary.bg-token-main-surface-tertiary.rounded-full {
+            gap: 0.18rem;
+            padding: 0.18rem !important;
+            background: var(--c-accent-08) !important;
+            border: 1px solid var(--c-accent-12) !important;
+            border-radius: var(--br-btn-big) !important;
+            box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--c-txt) 4%, transparent) !important;
+        }
+
+        button.btn[class*="min-w-[100px]"],
+        button[class*="min-w-[100px]"][role="combobox"] {
+            border-radius: var(--br-btn) !important;
+            color: var(--c-subtext-1) !important;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+
+            &:not(.bg-token-main-surface-primary):is(:hover, :focus-visible) {
+                color: var(--c-accent) !important;
+                background-color: var(--c-accent-12) !important;
+                transform: translateY(-0.04rem);
+            }
+
+            &.bg-token-main-surface-primary,
+            &[aria-selected="true"] {
+                color: var(--c-on-accent) !important;
+                background-color: var(--c-accent) !important;
+                box-shadow: 0 0 0 1px var(--c-accent-20), 0 8px 18px -14px var(--c-accent) !important;
             }
         }
 
-        /* Add hover state for searched items */
-        // a[class*="hover:bg-token-surface-hover"],
-        a[class*="hover:"][target="_blank"] {
-            transition: transform 0.45s $easeOutQuint, background-color 0.45s $easeOutQuint;
+        button[aria-label] {
+            color: var(--c-subtext-1) !important;
 
-            &:hover {
-                background-color: var(--c-surface-3) !important;
-                transform: translateY(-0.225rem);
+            &:is(:hover, :focus-visible) {
+                color: var(--c-accent) !important;
+                background-color: var(--c-accent-12) !important;
             }
         }
+    }
 
-        [class*="dark:bg-black"] {
-            background-color: var(--c-bg-sidebar) !important;
+    a[target="_blank"][class*="hover:"]:not([class*="rounded-full"]) {
+        background-color: var(--c-surface-2) !important;
+        border: 1px solid var(--c-accent-10) !important;
+        border-radius: var(--br) !important;
+        box-shadow: 0 10px 28px -24px rgb(0 0 0 / 0.7);
+        transition: transform 0.35s $easeOutQuint, background-color 0.35s $easeOutQuint, border-color 0.35s $easeOutQuint;
+
+        &:is(:hover, :focus-visible) {
+            background-color: var(--c-surface-3) !important;
+            border-color: var(--c-accent-20) !important;
+            transform: translateY(-0.16rem);
+        }
+    }
+
+    a[target="_blank"][class*="rounded-full"],
+    button[class*="rounded-full"][class*="bg-"],
+    span[class*="rounded-full"][class*="bg-"] {
+        color: var(--c-accent) !important;
+        background: var(--c-accent-12) !important;
+        border: 1px solid var(--c-accent-12) !important;
+        box-shadow: none !important;
+        transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+
+        span {
+            color: currentColor !important;
+        }
+
+        &:is(:hover, :focus-visible) {
+            color: var(--c-on-accent) !important;
+            background-color: var(--c-accent) !important;
+            border-color: var(--c-accent) !important;
+            transform: translateY(-0.06rem);
         }
     }
 }
 
+/* Fix Memory and Web parent container backgrounds globally inside all right sidebar containers */
+[class*="flyout" i],
+[class*="Flyout" i],
+[data-testid*="flyout" i],
+[data-testid*="activity" i],
+[data-gpth-activity-panel],
+aside,
+[role="complementary"] {
+    /* Override any light backgrounds on child elements */
+    [class*="bg-neutral-"],
+    [class*="bg-gray-"],
+    [class*="bg-white"],
+    [class*="bg-[#f"],
+    [class*="bg-[#e"],
+    [class*="bg-[#F"],
+    [class*="bg-[#E"] {
+        background-color: var(--c-surface-2) !important;
+        background: var(--c-surface-2) !important;
+    }
 
-/* [data-testid="modal-chat-screen-entity-flyout"] - for mobile   */
-[data-testid="modal-chat-screen-entity-flyout"] {
-    [class*="dark:bg-black"] {
-        background-color: var(--c-bg-sidebar) !important;
+    /* Override surface token backgrounds */
+    [class*="surface-primary"],
+    [class*="surface-secondary"] {
+        background-color: var(--c-surface-2) !important;
+    }
+
+    /* Override rounded card backgrounds */
+    [class*="rounded"][class*="bg-"] {
+        background-color: var(--c-surface-2) !important;
+    }
+
+    /* Override any div with explicit light background styles */
+    div[style*="background-color: rgb(2"],
+    div[style*="background-color: #f"],
+    div[style*="background-color: #e"],
+    div[style*="background-color: #d"],
+    div[style*="background-color: white"],
+    div[style*="background: rgb(2"],
+    div[style*="background: #f"],
+    div[style*="background: #e"] {
+        background-color: var(--c-surface-2) !important;
+        background: var(--c-surface-2) !important;
+    }
+}
+
+html.light {
+    [data-testid*="flyout" i],
+    [data-testid*="flyOut" i],
+    [data-testid*="activity" i],
+    [class*="ThreadFlyout" i],
+    [class*="ActivitySidebar" i],
+    [data-testid="modal-chat-screen-entity-flyout"],
+    [data-gpth-activity-panel],
+    aside,
+    [role="complementary"] {
+        color-scheme: light;
+    }
+}
+
+html.dark {
+    [data-testid*="flyout" i],
+    [data-testid*="flyOut" i],
+    [data-testid*="activity" i],
+    [class*="ThreadFlyout" i],
+    [class*="ActivitySidebar" i],
+    [data-testid="modal-chat-screen-entity-flyout"],
+    [data-gpth-activity-panel],
+    aside,
+    [role="complementary"] {
+        color-scheme: dark;
     }
 }

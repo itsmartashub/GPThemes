@@ -8,10 +8,93 @@ body {
 	background-color: var(--c-bg-chats-container) !important;
 }
 
+// =====================================================
+// PRIMARY FONT — model / reading content (global default)
+// =====================================================
 :host,
 html,
 body {
 	font-family: var(--gpthFontFamily), var(--gpthFontFamilyDefault) !important;
+
+	&::placeholder,
+	& *::placeholder {
+		font-family: var(--gpthFontFamily), var(--gpthFontFamilyDefault) !important;
+	}
+}
+
+// Model (GPT) response text
+div[data-message-author-role="assistant"],
+.agent-turn {
+	font-family: var(--gpthFontFamily), var(--gpthFontFamilyDefault) !important;
+}
+
+div[data-message-author-role="assistant"] *,
+.agent-turn * {
+	&:not(code):not(pre):not(kbd):not(samp):not(.font-mono):not([class*="font-mono"]):not(code *):not(pre *) {
+		font-family: var(--gpthFontFamily), var(--gpthFontFamilyDefault) !important;
+	}
+}
+
+// =====================================================
+// SECONDARY FONT — UI chrome (user bubbles, input, menus, dialogs, sidebar)
+// =====================================================
+div[data-message-author-role="user"],
+.user-message-bubble-color,
+#prompt-textarea,
+[class*="_prosemirror-parent"],
+[contenteditable="true"],
+textarea,
+[role="menu"],
+[role="listbox"],
+[role="menuitem"],
+[role="menuitemradio"],
+.__menu-item,
+[role="dialog"],
+[data-radix-popper-content-wrapper],
+[role="tooltip"],
+div[style*="--radix-tooltip-content"],
+#stage-slideover-sidebar,
+#stage-popover-sidebar,
+#sidebar-header,
+aside,
+[role="navigation"],
+nav,
+nav a,
+nav button {
+	font-family: var(--gpthFontFamilySecondary), var(--gpthFontFamilyDefault) !important;
+
+	&::placeholder,
+	& *::placeholder {
+		font-family: var(--gpthFontFamilySecondary), var(--gpthFontFamilyDefault) !important;
+	}
+}
+
+div[data-message-author-role="user"] *,
+.user-message-bubble-color *,
+#prompt-textarea *,
+[class*="_prosemirror-parent"] *,
+[contenteditable="true"] *,
+textarea *,
+[role="menu"] *,
+[role="listbox"] *,
+[role="menuitem"] *,
+[role="menuitemradio"] *,
+.__menu-item *,
+[role="dialog"] *,
+[data-radix-popper-content-wrapper] *,
+[role="tooltip"] *,
+div[style*="--radix-tooltip-content"] *,
+#stage-slideover-sidebar *,
+#stage-popover-sidebar *,
+#sidebar-header *,
+aside *,
+[role="navigation"] *,
+nav *,
+nav a *,
+nav button * {
+	&:not(code):not(pre):not(kbd):not(samp):not(.font-mono):not([class*="font-mono"]):not(code *):not(pre *) {
+		font-family: var(--gpthFontFamilySecondary), var(--gpthFontFamilyDefault) !important;
+	}
 }
 
 /* !!! THIS CAUSES THE PROJECT ITEMS NOT LOADING !!! Bcs OpenAI probably used that small almost invisible element to dynamically load on scroll/when-in-view more projects */

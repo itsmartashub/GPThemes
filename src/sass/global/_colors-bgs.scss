@@ -24,7 +24,10 @@
 		- Line | in "Is this conversation helpful so far?
 👍 👎 | ✖️" */
 .bg-gray-50,
-.bg-gray-100 {
+.bg-gray-100,
+.bg-neutral-50,
+.bg-neutral-100,
+.bg-neutral-200 {
 	background-color: var(--c-surface-2) !important;
 }
 

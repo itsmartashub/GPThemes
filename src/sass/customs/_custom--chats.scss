@@ -43,8 +43,11 @@
 .user-message-bubble-color {
     background-color: var(--c-bg-msg-user);
     color: var(--c-txt) !important;
-    padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply));
-    border-radius: var(--br-chat-bubble) !important;
+    width: fit-content;
+    min-height: unset !important;
+    padding: var(--p-chat-bubble-user-block) var(--p-chat-bubble-user-inline) !important;
+    border-radius: var(--br-chat-bubble-user, var(--br-chat-bubble)) !important;
+    font-size: calc(((var(--gpthFontSize) + 1) / 16) * 1rem) !important;
     transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
     // @include dev_high(#7fe37f7d);
 

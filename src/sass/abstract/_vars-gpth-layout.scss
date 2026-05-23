@@ -5,16 +5,19 @@
     --h-header: 60px;
 
     --br: 1rem;
-    --br-chat-bubble: calc(var(--br) * 1.9);
-    --br-btn: calc(var(--br) * 0.9);
-    --br-btn-big: calc(var(--br) * 1.2);
-    --br-dialog: calc(var(--br) * 2.5);
-    --br-contextmenu: calc(var(--br) * 1.5);
+    --br-chat-bubble: calc(var(--br) * 1.25);
+    --br-chat-bubble-user: calc(var(--br) * 0.8);
+    --br-btn: calc(var(--br) * 0.5);
+    --br-btn-big: calc(var(--br) * 0.75);
+    --br-dialog: calc(var(--br) * 1.25);
+    --br-contextmenu: calc(var(--br) * 0.75);
     --br-pre: calc(var(--br) * 1.8);
     --br-tooltips: var(--br-btn);
 
     --p: 0.725rem;
     --p-chat-bubble: 1rem;
+    --p-chat-bubble-user-block: 0.65rem;
+    --p-chat-bubble-user-inline: 1rem;
     --p-contextmenu: 0.9rem;
     --p-tooltips: 0.2rem;
     --p-btn: 0.7rem;
@@ -32,14 +35,18 @@
 
     @include dev("md") {
         --p-chat-bubble: .8rem;
-        --br-chat-bubble: calc(var(--br) * 1.5);
+        --br-chat-bubble: calc(var(--br) * 1.15);
+        --br-chat-bubble-user: calc(var(--br) * 0.75);
+        --p-chat-bubble-user-block: 0.58rem;
+        --p-chat-bubble-user-inline: 0.9rem;
         --p-contextmenu: .5rem;
         --p-dialog: 0.3rem;
-        --br-dialog: calc(var(--br) * 1.5);
+        --br-dialog: var(--br);
         --p-sidebar-nav: 0.3rem;
     }
 
     @include dev("sm") {
-        --br-chat-bubble: var(--br);
+        --br-chat-bubble: calc(var(--br) * 0.95);
+        --br-chat-bubble-user: calc(var(--br) * 0.7);
     }
 }

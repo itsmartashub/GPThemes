@@ -5,11 +5,11 @@ form {
 	#composer-background,
 	&[data-type="unified-composer"] {
 		.contain-inline-size.bg-token-bg-primary.dark\:bg-token-bg-elevated-primary.dark-oled\:bg-token-bg-primary {
-			background: var(--c-bg-textarea) !important;
+			background: var(--c-surface-2) !important;
 			caret-color: var(--c-accent);
 			box-shadow: inset 0 0 1px 1px var(--c-accent-08) !important;
 			border: none !important;
-			backdrop-filter: blur(18px);
+			backdrop-filter: none !important;
 
 			/* Prompt text field for "Temporary chat" */
 			&.dark {
@@ -69,7 +69,7 @@ form {
 			}
 
 			/* Tools, Dictate icon, Canvas, Search, Think */
-			button.composer-btn:not(#upload-file-btn),
+			button.composer-btn:not(#upload-file-btn, #composer-plus-btn),
 			[data-testid="system-hint-search"] .h-9.rounded-full.border.border-token-border-default[class*="bg-token-composer-blue-bg"] {
 				background-color: var(--c-accent-10) !important;
 			}
@@ -81,9 +81,50 @@ form {
 				border-radius: 50vw;
 			}
 
+			#composer-plus-btn {
+				background-color: transparent !important;
+				color: var(--c-txt) !important;
+				box-shadow: none !important;
+				transition:
+					background-color 0.16s ease,
+					color 0.16s ease,
+					box-shadow 0.16s ease;
+
+				&,
+				* {
+					background-color: transparent !important;
+					box-shadow: none !important;
+				}
+
+				&:is(:hover, :focus-visible, [data-state="open"]) {
+					background-color: var(--interactive-bg-secondary-hover) !important;
+					color: var(--c-txt) !important;
+					box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--c-txt) 6%, transparent) !important;
+				}
+
+				&:is(:hover, :focus-visible, [data-state="open"]) > :is(div, span) {
+					background-color: var(--interactive-bg-secondary-hover) !important;
+					box-shadow: inherit !important;
+				}
+			}
+
 			// "Search" for guest mode when hover
 			[data-testid="system-hint-search"] .h-9.rounded-full[class*="bg-token-composer-blue-bg"]:hover {
 				background-color: var(--c-accent-15) !important;
+			}
+
+			button:has(> svg:last-child):has(span):not(.composer-btn, [data-testid]) {
+				transition:
+					background-color 0.16s ease,
+					color 0.16s ease,
+					box-shadow 0.16s ease;
+				border-radius: 999px !important;
+
+				&:is(:hover, :focus-visible, [data-state="open"]) {
+					background-color: var(--interactive-bg-secondary-hover) !important;
+					color: var(--c-txt) !important;
+					box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--c-txt) 6%, transparent);
+				}
 			}
 
 			/* Voice and dictate wrapper */
@@ -218,8 +259,30 @@ a .bg-primary .p-2.w-80 {
 
 /* Plus button (attach file) in chatbox in Group chat */
 #composer-plus-btn {
-	background-color: var(--c-accent-12) !important;
-	color: var(--c-accent) !important;
+	background-color: transparent !important;
+	color: var(--c-txt) !important;
+	box-shadow: none !important;
+	transition:
+		background-color 0.16s ease,
+		color 0.16s ease,
+		box-shadow 0.16s ease;
+
+	&,
+	* {
+		background-color: transparent !important;
+		box-shadow: none !important;
+	}
+
+	&:is(:hover, :focus-visible, [data-state="open"]) {
+		background-color: var(--interactive-bg-secondary-hover) !important;
+		color: var(--c-txt) !important;
+		box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--c-txt) 6%, transparent) !important;
+	}
+
+	&:is(:hover, :focus-visible, [data-state="open"]) > :is(div, span) {
+		background-color: var(--interactive-bg-secondary-hover) !important;
+		box-shadow: inherit !important;
+	}
 }
 
 /* Advanced Voice Mode button and submit btn in chatbox for classic and Group chat layout */

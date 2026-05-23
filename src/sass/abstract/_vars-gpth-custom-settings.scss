@@ -2,7 +2,7 @@
 :root {
 	/* ! === CUSTOM FONTS === */
 	--gpthFontFamilyOpenAISans: 'OpenAI Sans'; // Font like on OpenAI's Sora website
-	--gpthFontFamilySystem: -apple-system-body, "ui-sans-serif", -apple-system, "system-ui", Segoe UI, Helvetica, Apple Color Emoji, Arial, "sans-serif", Segoe UI Emoji, Segoe UI Symbol;
+	--gpthFontFamilySystem: "FK Grotesk Neue", "FK Grotesk", -apple-system-body, "ui-sans-serif", -apple-system, "system-ui", Segoe UI, Helvetica, Apple Color Emoji, Arial, "sans-serif", Segoe UI Emoji, Segoe UI Symbol;
 	--gpthFontFamilyDefault: var(--default-font-family, var(--gpthFontFamilySystem)); // --default-font-family is OpenAI's default var
 	// --gpthFontFamilyDefault: var(--gpthFontFamilyOpenAISans, 'ui-sans-serif', '-apple-system', 'system-ui', 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, 'sans-serif', 'Segoe UI Emoji', 'Segoe UI Symbol'); // --default-font-family is OpenAI's default varefault-font-family is OpenAI's default var
 
@@ -11,6 +11,7 @@
 	*/
 
 	--gpthFontFamily: var(--gpthFontFamilyDefault);
+	--gpthFontFamilySecondary: var(--gpthFontFamilyDefault);
 	--gpthFontSize: inherit;
 	--gpthLetterSpacing: none;
 	--gpthLineHeight: 28;

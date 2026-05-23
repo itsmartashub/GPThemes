@@ -40,6 +40,20 @@
 // 	}
 // }
 
-.bg-token-bg-tooltip {
-	box-shadow: 0 0 0 1px var(--c-accent-20);
+.bg-token-bg-tooltip,
+[data-radix-popper-content-wrapper] [role="tooltip"],
+[data-radix-popper-content-wrapper] div[style*="--radix-tooltip-content"] {
+	border-radius: 0.55rem !important;
+	background-color: var(--bg-tooltip) !important;
+	border: 1px solid color-mix(in oklch, var(--c-txt) 8%, transparent) !important;
+	box-shadow:
+		0 1px 0 rgb(255 255 255 / 0.035) inset,
+		0 8px 18px -16px rgb(0 0 0 / 0.82) !important;
+}
+
+[data-radix-popper-content-wrapper] [role="tooltip"]:not(:has(.p-0, img, video, canvas)),
+[data-radix-popper-content-wrapper] div[style*="--radix-tooltip-content"]:not(.p-0, :has(img, video, canvas)) {
+	min-height: 0 !important;
+	padding: 0.28rem 0.5rem !important;
+	line-height: 1;
 }

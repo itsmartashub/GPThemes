@@ -9,7 +9,10 @@ import {
 	resetAllAccents,
 } from './accentColors.js'
 import { mount as mountAllTextAccent, renderAllTextAccent } from './toggleAccentAllText.js'
-import { mount as mountUserBubbleAccent, renderUserAccentBgToggle } from './toggleAccentUserBubble.js'
+import {
+	mount as mountUserBubbleAccent,
+	renderUserAccentBgToggle,
+} from './toggleAccentUserBubble.js'
 
 // =====================================================
 // TEMPLATE

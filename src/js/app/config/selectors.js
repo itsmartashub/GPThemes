@@ -58,6 +58,7 @@ export const SELECTORS = {
 	// Font Controls
 	FONT: {
 		FAMILY_ID: 'fontFamily',
+		FAMILY_SECONDARY_ID: 'fontFamilySecondary',
 		SIZE_ID: 'fontSize',
 		LINE_HEIGHT_ID: 'lineHeight',
 		LETTER_SPACING_ID: 'letterSpacing',
@@ -98,6 +99,10 @@ export const SELECTORS = {
 		TOGGLE_MAX_HEIGHT_ID: 'toggle-chatbox-max-height',
 	},
 
+	PULSE: {
+		TOGGLE_EXPAND_CARDS_ID: `${PFX}-toggle-expand-pulse-cards`,
+	},
+
 	HIDE: {
 		CONTAINER_ID: `${PFX}-hide-toggles`,
 		HEADER: {
@@ -109,6 +114,14 @@ export const SELECTORS = {
 			TOGGLE_ID: `${PFX}-hide-footer`,
 			// SELECTOR: `#thread-bottom-container > #thread-bottom ~ div.min-h-8 > div`,
 			SELECTOR: `#main div#thread-bottom-container>div:last-of-type:is(.-mt-4),#main div.sticky.bottom-0 .min-h-8.w-full.text-xs.text-pretty`,
+		},
+		RECENTS_PILL: {
+			TOGGLE_ID: `${PFX}-hide-recents-pill`,
+			SELECTOR: `.__menu-label[data-gpth-sidebar-pill="recents"]`,
+		},
+		GPTS_PILL: {
+			TOGGLE_ID: `${PFX}-hide-gpts-pill`,
+			SELECTOR: `.__menu-label[data-gpth-sidebar-pill="gpts"]`,
 		},
 		UPGRADE: {
 			TOGGLE_ID: `${PFX}-hide-upgrade-chip`,

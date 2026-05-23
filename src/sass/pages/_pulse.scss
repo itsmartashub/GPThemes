@@ -1,0 +1,65 @@
+html[data-gpth-page-pulse][data-gpth-expand-pulse-cards] {
+	#main,
+	main {
+		--thread-content-max-width: min(100%, calc(100vw - 8rem)) !important;
+	}
+
+	#main :is([class*="max-w-"], [class*="w-[min"], [class*="mx-auto"]),
+	main :is([class*="max-w-"], [class*="w-[min"], [class*="mx-auto"]) {
+		max-width: min(100%, calc(100vw - 8rem)) !important;
+	}
+
+	#main :is(article, section, [role="article"], [class*="rounded"]):has(img):has(button),
+	main :is(article, section, [role="article"], [class*="rounded"]):has(img):has(button) {
+		width: 100% !important;
+		max-width: min(100%, calc(100vw - 8rem)) !important;
+	}
+
+	@include dev("md") {
+		#main,
+		main {
+			--thread-content-max-width: min(100%, calc(100vw - 2rem)) !important;
+		}
+
+		#main :is([class*="max-w-"], [class*="w-[min"], [class*="mx-auto"]),
+		main :is([class*="max-w-"], [class*="w-[min"], [class*="mx-auto"]),
+		#main :is(article, section, [role="article"], [class*="rounded"]):has(img):has(button),
+		main :is(article, section, [role="article"], [class*="rounded"]):has(img):has(button) {
+			max-width: min(100%, calc(100vw - 2rem)) !important;
+		}
+	}
+}
+
+html[data-gpth-page-pulse] {
+	#main,
+	main {
+		--pulse-fade-bg: var(--c-bg-chats-container);
+	}
+
+	#main :is(
+		.bg-gradient-to-b,
+		.bg-linear-to-b,
+		[class*="from-white"],
+		[class*="via-white"],
+		[class*="dark:from-[#212121]"],
+		[class*="dark:via-[#212121]"]
+	),
+	main :is(
+		.bg-gradient-to-b,
+		.bg-linear-to-b,
+		[class*="from-white"],
+		[class*="via-white"],
+		[class*="dark:from-[#212121]"],
+		[class*="dark:via-[#212121]"]
+	) {
+		--tw-gradient-from: var(--pulse-fade-bg) var(--tw-gradient-from-position) !important;
+		--tw-gradient-via: color-mix(in oklch, var(--pulse-fade-bg) 88%, transparent) var(--tw-gradient-via-position) !important;
+		--tw-gradient-to: transparent var(--tw-gradient-to-position) !important;
+		background-image: linear-gradient(to bottom, var(--tw-gradient-stops)) !important;
+	}
+
+	#thread-bottom-container.content-fade::after {
+		background: linear-gradient(to bottom, transparent, var(--pulse-fade-bg) 72%) !important;
+		backdrop-filter: none !important;
+	}
+}

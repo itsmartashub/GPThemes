@@ -10,8 +10,11 @@ export const SK_TOGGLE_ACCENT_TEXT = 'toggleAccentTextState'
 // Layout Toggles
 export const SK_TOGGLE_HIDE_HEADER = 'hideHeader'
 export const SK_TOGGLE_HIDE_FOOTER = 'hideFooter'
+export const SK_TOGGLE_HIDE_RECENTS_PILL = 'hideRecentsPill'
+export const SK_TOGGLE_HIDE_GPTS_PILL = 'hideGPTsPill'
 export const SK_TOGGLE_HIDE_UPGRADE_CHIP = 'hideUpgradeChip'
 export const SK_TOGGLE_CHATBOX_HEIGHT = 'toggleChatboxHeightState'
+export const SK_TOGGLE_EXPAND_PULSE_CARDS = 'toggleExpandPulseCardsState'
 export const SK_TOGGLE_FAB_HIDDEN = 'toggleFABHidden'
 
 // Position Settings - TODO: don't forget to remove this from storage.sync in future, unless you fix the scrolldown alignement feat !!!
@@ -24,6 +27,7 @@ export const SK_WIDTH_IS_SYNC_ENABLED = 'widthIsSyncEnabled'
 
 // Typography Settings
 export const SK_TEXT_FONT_FAMILY = 'textFontFamily'
+export const SK_TEXT_FONT_FAMILY_SECONDARY = 'textFontFamilySecondary'
 export const SK_TEXT_FONT_SIZE = 'textFontSize'
 export const SK_TEXT_LETTER_SPACING = 'textLetterSpacing'
 export const SK_TEXT_LINE_HEIGHT = 'textLineHeight'
@@ -51,7 +55,10 @@ export const EXPORT_CONFIG = Object.freeze({
 		SK_TOGGLE_CHATBOX_HEIGHT,
 		SK_TOGGLE_HIDE_HEADER,
 		SK_TOGGLE_HIDE_FOOTER,
+		SK_TOGGLE_HIDE_RECENTS_PILL,
+		SK_TOGGLE_HIDE_GPTS_PILL,
 		SK_TOGGLE_HIDE_UPGRADE_CHIP,
+		SK_TOGGLE_EXPAND_PULSE_CARDS,
 		SK_TOGGLE_FAB_HIDDEN,
 
 		SK_SCROLL_BUTTON_POSITION,
@@ -61,6 +68,7 @@ export const EXPORT_CONFIG = Object.freeze({
 		SK_WIDTH_SETTINGS,
 
 		SK_TEXT_FONT_FAMILY,
+		SK_TEXT_FONT_FAMILY_SECONDARY,
 		SK_TEXT_FONT_SIZE,
 		SK_TEXT_LETTER_SPACING,
 		SK_TEXT_LINE_HEIGHT,

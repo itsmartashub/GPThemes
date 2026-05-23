@@ -1,6 +1,18 @@
-import { icon_footer, icon_header, icon_upgrade } from '../components/icons'
-import { ATTR_HIDE_FOOTER, ATTR_HIDE_HEADER, ATTR_HIDE_UPGRADE_CHIP } from './consts-attr'
-import { SK_TOGGLE_HIDE_FOOTER, SK_TOGGLE_HIDE_HEADER, SK_TOGGLE_HIDE_UPGRADE_CHIP } from './consts-storage'
+import { icon_badge, icon_footer, icon_header, icon_upgrade } from '../components/icons'
+import {
+	ATTR_HIDE_FOOTER,
+	ATTR_HIDE_GPTS_PILL,
+	ATTR_HIDE_HEADER,
+	ATTR_HIDE_RECENTS_PILL,
+	ATTR_HIDE_UPGRADE_CHIP,
+} from './consts-attr'
+import {
+	SK_TOGGLE_HIDE_FOOTER,
+	SK_TOGGLE_HIDE_GPTS_PILL,
+	SK_TOGGLE_HIDE_HEADER,
+	SK_TOGGLE_HIDE_RECENTS_PILL,
+	SK_TOGGLE_HIDE_UPGRADE_CHIP,
+} from './consts-storage'
 import { SELECTORS } from './selectors'
 
 export const ELEMENTS = [
@@ -23,6 +35,28 @@ export const ELEMENTS = [
 		dataAttr: ATTR_HIDE_FOOTER,
 		storageKey: SK_TOGGLE_HIDE_FOOTER,
 		isHidden: false,
+	},
+	{
+		id: SELECTORS.HIDE.RECENTS_PILL.TOGGLE_ID,
+		label: 'Hide Recents Pill',
+		subtitle: 'Remove the rounded background behind the RECENTS label in the sidebar.',
+		icon: icon_badge,
+		selector: SELECTORS.HIDE.RECENTS_PILL.SELECTOR,
+		dataAttr: ATTR_HIDE_RECENTS_PILL,
+		storageKey: SK_TOGGLE_HIDE_RECENTS_PILL,
+		isHidden: false,
+		allowMissing: true,
+	},
+	{
+		id: SELECTORS.HIDE.GPTS_PILL.TOGGLE_ID,
+		label: 'Hide GPTs Pill',
+		subtitle: 'Remove the rounded background behind the GPTS label in the sidebar.',
+		icon: icon_badge,
+		selector: SELECTORS.HIDE.GPTS_PILL.SELECTOR,
+		dataAttr: ATTR_HIDE_GPTS_PILL,
+		storageKey: SK_TOGGLE_HIDE_GPTS_PILL,
+		isHidden: false,
+		allowMissing: true,
 	},
 	{
 		id: SELECTORS.HIDE.UPGRADE.TOGGLE_ID,

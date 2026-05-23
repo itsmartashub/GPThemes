@@ -60,7 +60,8 @@ const currentReleaseChanges = {
 	features: [
 		{
 			description: 'Hide Upgrade Chips:',
-			details: 'Hide the upgrade chip from the sidebar also when <code>Hide Upgrade Chips</code> is enabled',
+			details:
+				'Hide the upgrade chip from the sidebar also when <code>Hide Upgrade Chips</code> is enabled',
 		},
 	],
 	improvements: [
@@ -98,7 +99,8 @@ const currentReleaseChanges = {
 		},
 		{
 			description: 'Chatbox Section:',
-			details: 'Replaced the grey background with a modern backdrop blur for better readability',
+			details:
+				'Replaced the grey background with a modern backdrop blur for better readability',
 			issueRef: 211,
 		},
 		{
@@ -143,7 +145,9 @@ const generateChangelog = () => {
 	// Get only sections that have content and sort by priority
 	const sectionsWithContent = Object.entries(currentReleaseChanges)
 		.filter(([_, items]) => items && items.length > 0)
-		.sort(([a], [b]) => (SECTION_TYPES[a]?.priority || 999) - (SECTION_TYPES[b]?.priority || 999))
+		.sort(
+			([a], [b]) => (SECTION_TYPES[a]?.priority || 999) - (SECTION_TYPES[b]?.priority || 999),
+		)
 
 	if (sectionsWithContent.length === 0) {
 		return '<p>No changes in this release.</p>'

@@ -55,3 +55,24 @@ html[data-gpth-hide-upgrade-chip] {
         display: none !important;
     }
 }
+
+html[data-gpth-hide-recents-pill] [data-gpth-sidebar-pill-wrapper="recents"],
+html[data-gpth-hide-gpts-pill] [data-gpth-sidebar-pill-wrapper="gpts"],
+html[data-gpth-hide-recents-pill] #stage-slideover-sidebar nav button[data-gpth-sidebar-pill-wrapper="recents"],
+html[data-gpth-hide-recents-pill] #stage-popover-sidebar nav button[data-gpth-sidebar-pill-wrapper="recents"],
+html[data-gpth-hide-gpts-pill] #stage-slideover-sidebar nav button[data-gpth-sidebar-pill-wrapper="gpts"],
+html[data-gpth-hide-gpts-pill] #stage-popover-sidebar nav button[data-gpth-sidebar-pill-wrapper="gpts"] {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+}
+
+html[data-gpth-hide-recents-pill] #stage-slideover-sidebar nav button h2.__menu-label[data-gpth-sidebar-pill="recents"],
+html[data-gpth-hide-recents-pill] #stage-popover-sidebar nav button h2.__menu-label[data-gpth-sidebar-pill="recents"],
+html[data-gpth-hide-gpts-pill] #stage-slideover-sidebar nav button h2.__menu-label[data-gpth-sidebar-pill="gpts"],
+html[data-gpth-hide-gpts-pill] #stage-popover-sidebar nav button h2.__menu-label[data-gpth-sidebar-pill="gpts"] {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding-inline: 0 !important;
+}
