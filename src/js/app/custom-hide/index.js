@@ -4,13 +4,19 @@ import { Notify } from '../components/renderNotify.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { ELEMENTS } from '../config/consts-hidden-els.js'
 import { SELECTORS } from '../config/selectors'
-import { observeSidebarPillMarkers, syncSidebarPillMarkers } from './sidebarPills.js'
+import {
+	disconnectSidebarPillMarkers,
+	observeSidebarPillMarkers,
+	syncSidebarPillMarkers,
+} from './sidebarPills.js'
 
 // =====================================================
 // STATE
 // =====================================================
 // Precompute map for O(1) lookups
 const ELEMENTS_MAP = new Map(ELEMENTS.map((cfg) => [cfg.id, cfg]))
+let mountedContainer = null
+let mountToken = 0
 
 // =====================================================
 // TEMPLATE
@@ -53,9 +59,11 @@ async function saveState(key, value, label) {
 
 		const element = label ? label.replace('Hide ', '') : 'Element'
 		value ? Notify.info(`😶‍🌫️ ${element} hidden`) : Notify.success(`👁️ ${element} shown`)
+		return true
 	} catch (e) {
 		Notify.error(`Failed to hide element`)
 		console.error('Failed to save toggle state', key, e)
+		return false
 	}
 }
 // Load saved state from storage
@@ -116,6 +124,7 @@ function onChange({ target }) {
 // =====================================================
 // Hydrate and wire events after render
 async function mount() {
+	const token = ++mountToken
 	const container = document.getElementById(SELECTORS.HIDE.CONTAINER_ID)
 	if (!container) {
 		console.warn(`Element with ID ${SELECTORS.HIDE.CONTAINER_ID} not found`)
@@ -127,6 +136,7 @@ async function mount() {
 
 		// Load all states in parallel
 		const savedStates = await loadState()
+		if (token !== mountToken || !container.isConnected) return
 
 		// Apply saved states
 		for (const cfg of ELEMENTS) {
@@ -141,9 +151,20 @@ async function mount() {
 		Notify.error('Failed to load hide settings')
 		console.error('Failed to load hide controls: ', e)
 	} finally {
-		// ALWAYS attach the listener, even if loading state failed
-		container.addEventListener('change', onChange)
+		if (token === mountToken && container.isConnected) {
+			// ALWAYS attach the listener, even if loading state failed
+			container.removeEventListener('change', onChange)
+			container.addEventListener('change', onChange)
+			mountedContainer = container
+		}
 	}
 }
 
-export { templateHTML as renderCustomHides, mount }
+function cleanup() {
+	mountToken++
+	mountedContainer?.removeEventListener('change', onChange)
+	mountedContainer = null
+	disconnectSidebarPillMarkers()
+}
+
+export { cleanup, templateHTML as renderCustomHides, mount }

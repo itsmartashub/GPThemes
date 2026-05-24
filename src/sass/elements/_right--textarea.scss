@@ -216,30 +216,101 @@ form {
 		}
 	}
 
+}
 
-	/* Autocomplete suggestions - Element when clicked example cards below prompt textarea: "Create image", "Summarize text", "Analyze data", "Analyze images", and more... */
-	&+.absolute.start-0.top-full {
-		ul {
+/* Inline suggested prompts below the composer. JS adds stable markers; the fallback prevents first-paint flash. */
+/* Compatibility fallback: host selectors cover the brief window before JS stamps data-gpth markers. */
+:is([data-gpth-suggested-prompts-panel], body:has(#prompt-textarea) .absolute.start-0.top-full:has(button):not(:has(#prompt-textarea), :has(form)), body:has(#prompt-textarea) [class*="start-0"][class*="top-full"]:has(button):not(:has(#prompt-textarea), :has(form))) {
+	width: 100% !important;
+	max-width: var(--w_prompt_textarea, 48rem) !important;
+	margin-inline: auto !important;
+	padding: 0 !important;
+	background: transparent !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	color: var(--c-subtext-1) !important;
+	font-family: var(--gpthFontFamilySecondary), var(--gpthFontFamilyDefault) !important;
+	font-size: 0.875rem !important;
+	letter-spacing: inherit !important;
+	line-height: 1.35 !important;
+	overflow: visible !important;
+}
 
-			li {
-				transition: translate 0.25s linear, opacity 0.25s linear;
+[data-gpth-suggested-prompts-panel] * {
+	background: transparent !important;
+	box-shadow: none !important;
+}
 
-				button {
-					background: transparent !important;
-				}
-			}
+:is([data-gpth-suggested-prompts-panel], body:has(#prompt-textarea) .absolute.start-0.top-full:has(button):not(:has(#prompt-textarea), :has(form)), body:has(#prompt-textarea) [class*="start-0"][class*="top-full"]:has(button):not(:has(#prompt-textarea), :has(form))) :is(ul, [role="listbox"], [cmdk-list]) {
+	width: 100% !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	background: transparent !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	display: grid !important;
+	list-style: none !important;
+}
 
-			&:hover {
-				li {
-					&:not(:hover) {
-						opacity: 0.4 !important;
-					}
+:is([data-gpth-suggested-prompt-row], body:has(#prompt-textarea) .absolute.start-0.top-full:has(button):not(:has(#prompt-textarea), :has(form)) li, body:has(#prompt-textarea) [class*="start-0"][class*="top-full"]:has(button):not(:has(#prompt-textarea), :has(form)) li) {
+	margin: 0 !important;
+	padding: 0 !important;
+	border-top: 1px solid color-mix(in oklch, var(--c-txt) 7%, transparent) !important;
+	opacity: 1 !important;
+	transition:
+		background-color 0.16s ease,
+		border-color 0.16s ease,
+		opacity 0.16s ease;
 
-					&:hover {
-						translate: 0 -2px;
-					}
-				}
-			}
+	&:first-child {
+		border-top-color: transparent !important;
+	}
+}
+
+:is([data-gpth-suggested-prompt-button], body:has(#prompt-textarea) .absolute.start-0.top-full:has(button):not(:has(#prompt-textarea), :has(form)) button, body:has(#prompt-textarea) [class*="start-0"][class*="top-full"]:has(button):not(:has(#prompt-textarea), :has(form)) button) {
+	width: 100% !important;
+	min-height: 2.65rem !important;
+	padding: 0.72rem 1.35rem !important;
+	background: transparent !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	color: var(--c-subtext-1) !important;
+	font: inherit !important;
+	text-align: left !important;
+	transition:
+		background-color 0.16s ease,
+		color 0.16s ease,
+		padding-inline 0.16s ease;
+
+	&,
+	* {
+		color: inherit !important;
+	}
+
+	:is(strong, b, mark, [class*="font-medium"], [class*="font-semibold"]) {
+		color: var(--c-txt) !important;
+		font-weight: 600 !important;
+	}
+
+	&:is(:hover, :focus-visible, [aria-selected="true"]) {
+		background-color: color-mix(in oklch, var(--c-txt) 4%, transparent) !important;
+		color: var(--c-txt) !important;
+		padding-inline: 1.55rem 1.15rem !important;
+	}
+}
+
+@media (width <=40em) {
+	:is([data-gpth-suggested-prompts-panel], body:has(#prompt-textarea) .absolute.start-0.top-full:has(button):not(:has(#prompt-textarea), :has(form)), body:has(#prompt-textarea) [class*="start-0"][class*="top-full"]:has(button):not(:has(#prompt-textarea), :has(form))) {
+		font-size: 0.82rem !important;
+	}
+
+	:is([data-gpth-suggested-prompt-button], body:has(#prompt-textarea) .absolute.start-0.top-full:has(button):not(:has(#prompt-textarea), :has(form)) button, body:has(#prompt-textarea) [class*="start-0"][class*="top-full"]:has(button):not(:has(#prompt-textarea), :has(form)) button) {
+		min-height: 2.45rem !important;
+		padding-inline: 0.9rem !important;
+
+		&:is(:hover, :focus-visible, [aria-selected="true"]) {
+			padding-inline: 1rem 0.8rem !important;
 		}
 	}
 }
@@ -252,7 +323,7 @@ a .bg-primary .p-2.w-80 {
 		color: var(--c-accent) !important;
 
 		svg {
-			color: currentColor !important
+			color: currentColor !important;
 		}
 	}
 }

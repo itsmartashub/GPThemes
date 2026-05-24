@@ -20,7 +20,7 @@
 			/* Add border radius only to dialogs that have border radius. For example "Create Image" dialog is full vw and vh and it doesnt have radius */
 			&[class*='rounded'] {
 				border-radius: var(--br-dialog) !important;
-			}
+		}
 
 			/*
 			- close button in dialogs
@@ -30,7 +30,7 @@
 				&:hover {
 					--main-surface-secondary: var(--c-surface-3) !important;
 					--main-surface-tertiary: var(--c-surface-3) !important;
-				}
+			}
 			}
 
 
@@ -153,7 +153,7 @@
 					background-color: var(--c-surface-3) !important;
 				}
 
-				&[data-state='inactive']:is(:hover, :focus) {
+				&[data-state='inactive']:is(:hover, :focus-visible) {
 					background-color: var(--c-surface-2) !important;
 				}
 			}
@@ -242,12 +242,11 @@
 		&,
 		&.bg-token-main-surface-secondary,
 		&.bg-token-bg-elevated-secondary {
-			background-color: transparent !important;
 			background: transparent !important;
 			translate: none !important;
 		}
 
-		&:is(:hover, :focus, :focus-visible, :focus-within, :active) {
+		&:is(:hover, :focus-visible, :focus-within, :active) {
 			&,
 			&.bg-token-main-surface-secondary,
 			&.bg-token-bg-elevated-secondary {
@@ -540,13 +539,13 @@
 
 /* Input and textarea readability inside dialogs */
 [role="dialog"] {
-	input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+	input:not([type="checkbox"], [type="radio"], [type="range"]),
 	textarea {
 		background-color: var(--c-surface-2) !important;
 		color: var(--c-txt) !important;
 		border: 1px solid var(--c-border) !important;
 
-		&:focus {
+		&:focus-visible {
 			border-color: var(--c-accent) !important;
 		}
 	}

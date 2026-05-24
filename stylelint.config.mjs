@@ -29,6 +29,10 @@ export default {
 		'length-zero-no-unit': null, // dramaQ
 		'no-duplicate-selectors': null, // falsepositive
 		'shorthand-property-no-redundant-values': null, // dramaQ
+		'declaration-property-value-disallowed-list': {
+			'background-color': [/^none$/i],
+			translate: [/scale\(/i],
+		},
 
 		// SCSS - stylelint-config-standard-scss
 		'scss/double-slash-comment-empty-line-before': null,

@@ -30,13 +30,13 @@ jobs:
         # pass the input params directly to the reusalbe workflow
         uses: ./.github/workflows/lint.yml
         with:
-            skip-biome: ${{ inputs.skip_biome == 'true' }}
-            skip-stylelint: ${{ inputs.skip_stylelint == 'true' }}
+            skip-biome: ${{ inputs.skip_biome || false }}
+            skip-stylelint: ${{ inputs.skip_stylelint || false }}
 
     call-build:
         name: Call build and package
         # skip this job if the skip_build input is true (only applicable to manual dispatch)
-        if: ${{ github.event_name != 'workflow_dispatch' || inputs.skip_build != 'true' }}
+        if: ${{ github.event_name != 'workflow_dispatch' || !inputs.skip_build }}
         # pass the environment context down
         uses: ./.github/workflows/build.yml
 

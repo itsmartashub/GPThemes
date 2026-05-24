@@ -1,7 +1,7 @@
 {
   "version": "5",
   "remote": {
-    "https://cdn.jsdelivr.net/npm/fflate/esm/browser.js": "8cc1f687e0159e977addb6b85e274dbd11e622cf151f4fcb7b85d49622ea43e7"
+    "https://cdn.jsdelivr.net/npm/fflate@0.8.3/esm/browser.js": "b7ca4450b19559a1d50eb381adcee94b82449674be4cd17789d9beba7e6122a1"
   },
   "workspace": {
     "packageJson": {

@@ -1,6 +1,6 @@
-// Using a CDN urlURL for fflate, which is compatible with Deno's ES module import
+// Using a pinned CDN URL for fflate, which is compatible with Deno's ES module import
 // zipSync is used for synchronous, high-perf compression
-import { zipSync } from 'https://cdn.jsdelivr.net/npm/fflate/esm/browser.js'
+import { zipSync } from 'https://cdn.jsdelivr.net/npm/fflate@0.8.3/esm/browser.js'
 
 const CONFIG = {
 	// Paths to the manifest files to read the extension version from

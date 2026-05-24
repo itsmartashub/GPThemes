@@ -1,4 +1,4 @@
-import { onOpenSettings } from './settingsManager.js'
+import { onToggleSettings } from './settingsManager.js'
 
 // =====================================================
 // CONSTANTS
@@ -16,9 +16,13 @@ const STORAGE_KEYS = {
 	IS_OLED: 'isOLED',
 }
 
+const ROOT_THEME_CLASSES = [THEMES.LIGHT, THEMES.DARK]
+const OWNED_THEME_CLASSES = Object.values(THEMES).map((theme) => `gpth-theme-${theme}`)
+
 const PREFERS_LIGHT_MEDIA_QUERY = window.matchMedia('(prefers-color-scheme: light)')
 
 let cachedThemeState = null
+let removeSystemPrefListener = null
 
 // =====================================================
 // UTILITY FUNCTIONS
@@ -56,8 +60,10 @@ function setRootTheme(theme, isOLED) {
 	const effectiveTheme = theme === THEMES.SYSTEM ? getSysTheme() : theme
 	const dataAttrTheme = effectiveTheme === THEMES.DARK && isOLED ? THEMES.OLED : effectiveTheme
 
-	root.className = effectiveTheme
+	root.classList.remove(...ROOT_THEME_CLASSES, ...OWNED_THEME_CLASSES)
+	root.classList.add(effectiveTheme, `gpth-theme-${dataAttrTheme}`)
 	root.style.colorScheme = effectiveTheme
+	root.dataset.gpthTheme = dataAttrTheme
 	root.dataset.gptheme = dataAttrTheme
 }
 
@@ -120,7 +126,7 @@ function onChangeTheme(e) {
 			updateTheme(THEMES.DARK, true)
 			break
 		case 'gpth-open-settings':
-			onOpenSettings()
+			onToggleSettings()
 			break
 		default:
 			console.warn(`Unknown theme: ${themeId}`)
@@ -143,12 +149,18 @@ function init() {
 	setRootTheme(theme, isOLED)
 
 	// Add event listener for theme change based on sys pref
-	PREFERS_LIGHT_MEDIA_QUERY.addEventListener('change', onSystemPrefChange)
+	if (!removeSystemPrefListener) {
+		PREFERS_LIGHT_MEDIA_QUERY.addEventListener('change', onSystemPrefChange)
+		removeSystemPrefListener = () => {
+			PREFERS_LIGHT_MEDIA_QUERY.removeEventListener('change', onSystemPrefChange)
+			removeSystemPrefListener = null
+			invalidateThemeCache()
+		}
+	}
 
 	// Clean up the event listener when the component is destroyed
 	return () => {
-		PREFERS_LIGHT_MEDIA_QUERY.removeEventListener('change', onSystemPrefChange)
-		invalidateThemeCache()
+		removeSystemPrefListener?.()
 	}
 }
 

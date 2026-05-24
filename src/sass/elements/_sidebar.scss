@@ -15,6 +15,7 @@
 			/* Today, Yesterday - Time heading in sidebar */
 			h2.__menu-label {
 				@extend %date-pill;
+				font-family: var(--gpthFontFamily), var(--gpthFontFamilyDefault) !important;
 			}
 		}
 	}
@@ -22,6 +23,32 @@
 	// New nav items style in sidebar, between sidebar header and footer
 	.bg-token-main-surface-primary {
 		background-color: var(--c-bg-sidebar) !important;
+	}
+
+	.__menu-item[data-testid="accounts-profile-button"] {
+		--menu-item-active: transparent !important;
+		--menu-item-highlighted: transparent !important;
+		--menu-item-hover: var(--c-bg-sidebar-link) !important;
+		--menu-item-open: var(--c-bg-sidebar-link) !important;
+
+		&,
+		> button {
+			transition: background-color 0.16s ease, color 0.16s ease;
+		}
+
+		&:not(:hover, :focus-visible, [aria-expanded="true"], [data-state="open"], :has([aria-expanded="true"], [data-state="open"], :focus-visible)),
+		&:not(:hover, :focus-visible, [aria-expanded="true"], [data-state="open"], :has([aria-expanded="true"], [data-state="open"], :focus-visible)) > button {
+			background: transparent !important;
+		}
+
+		&:is(:hover, :focus-visible, [aria-expanded="true"], [data-state="open"]),
+		&:has([aria-expanded="true"], [data-state="open"], :focus-visible) {
+
+			&,
+			> button {
+				background-color: var(--c-bg-sidebar-link) !important;
+			}
+		}
 	}
 }
 

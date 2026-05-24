@@ -14,6 +14,9 @@ const STORAGE_KEY = SK_TOGGLE_USER_BUBBLE_ACCENT
 const DATA_ATTR = ATTR_BUBBLE_USER_ACCENT
 const DEFAULT_STATE = false
 
+let mountedInput = null
+let mountToken = 0
+
 // =====================================================
 // TEMPLATE
 // =====================================================
@@ -108,18 +111,29 @@ async function onChange({ target }) {
 // =====================================================
 // Setup toggle input listener (mount after DOM exists)
 async function mount() {
+	const token = ++mountToken
 	const input = document.getElementById(SELECTORS.CHATS.TOGGLE_USER_BUBBLE_ACCENT_ID)
 	if (!input) {
-		console.warning(`Element with ID ${SELECTORS.CHATS.TOGGLE_USER_BUBBLE_ACCENT_ID} not found`)
+		console.warn(`Element with ID ${SELECTORS.CHATS.TOGGLE_USER_BUBBLE_ACCENT_ID} not found`)
 		return
 	}
 	// Get data from storage and update html root data-attribute (css) and inputs
 	const state = await loadState()
+	if (token !== mountToken || !input.isConnected) return
+
 	updateDataAttr(state)
 	updateInputs(state)
 
 	// Attach listeners to inputs
+	input.removeEventListener('change', onChange)
 	input.addEventListener('change', onChange)
+	mountedInput = input
 }
 
-export { templateHTML as renderUserAccentBgToggle, mount }
+function cleanup() {
+	mountToken++
+	mountedInput?.removeEventListener('change', onChange)
+	mountedInput = null
+}
+
+export { cleanup, templateHTML as renderUserAccentBgToggle, mount }

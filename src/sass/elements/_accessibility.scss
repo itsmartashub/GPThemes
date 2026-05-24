@@ -7,6 +7,21 @@
 // 	--tw-ring-offset-color: var(--c-bg-dialog) !important;outborderondialogbtnscolor--tw-ring-offset-color // inner border on dialog btns color
 // }
 
+:where(
+	button,
+	[role="button"],
+	[role="menuitem"],
+	[role="menuitemradio"],
+	[role="option"],
+	[role="tab"],
+	a[href],
+	summary,
+	[tabindex]:not([tabindex="-1"])
+):focus-visible {
+	outline: 2px solid var(--c-accent) !important;
+	outline-offset: 2px !important;
+}
+
 /* From ChatGPT */
 :is([type="text"], [type="email"], [type="url"], [type="password"], [type="number"], [type="date"], [type="datetime-local"], [type="month"], [type="search"], [type="tel"], [type="time"], [type="week"], [multiple], textarea, select) {
 	&:focus-visible,
@@ -29,7 +44,7 @@
 		outline-offset: 2px;
 	}
 
-	&:focus {
+	&:focus:not(:focus-visible) {
 
 		--tw-ring-offset-width: 0px;
 

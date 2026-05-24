@@ -1,8 +1,8 @@
 {
 	"name": "gpthemes",
-	"version": "1.0.0",
+	"version": "6.7.6",
 	"displayName": "GPThemes - ChatGPT Customization & Tweaks",
-	"description": "Redesign ChatGPT: custom colors, fonts & layouts — widescreen mode, width sliders, expandable chatbox, hide header/footer & more.",
+	"description": "Customize ChatGPT with themes, fonts, colors, layout widths, chatbox tweaks, and a floating settings dock.",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/itsmartashub/GPThemes.git"
@@ -28,8 +28,8 @@
 		"format": "biome format --write",
 		"check": "biome check --write",
 		"check:max": "biome check --write --max-diagnostics=6000",
-		"slint": "pnpm dlx stylelint src/**/*.scss",
-		"slint:fix": "pnpm dlx stylelint src/**/*.scss --fix"
+		"slint": "stylelint \"src/**/*.scss\"",
+		"slint:fix": "stylelint \"src/**/*.scss\" --fix"
 	},
 	"author": "itsmarta",
 	"keywords": [

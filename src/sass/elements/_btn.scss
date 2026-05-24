@@ -31,7 +31,7 @@ button {
 	}
 
 	&-ghost {
-		background-color: none !important;
+		background-color: transparent;
 		color: var(--c-txt) !important;
 		backdrop-filter: blur(1rem);
 

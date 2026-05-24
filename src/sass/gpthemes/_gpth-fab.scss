@@ -144,24 +144,34 @@
 			border-radius: 50vw;
 			color: var(--c-accent);
 			transform: scale(0);
-			transition: 0.3s linear;
+			scale: 1;
+			transition:
+				transform 0.22s $easeOutCubic,
+				scale 0.16s $easeOutCubic,
+				background-color 0.16s ease,
+				color 0.16s ease;
 
 			&::after {
 				content: attr(data-gpth-dock-btn);
 				position: absolute;
 				top: 50%;
-				left: 50%;
+				right: calc(100% + 0.55rem);
 				width: max-content;
 				font-size: 0.7rem;
 				text-transform: uppercase;
 				font-weight: 700;
-				padding: 6px;
+				line-height: 1;
+				padding: 0.38rem 0.5rem;
 				background-color: var(--c-accent);
 				color: var(--c-on-accent);
 				border-radius: 50vw;
+				box-shadow: 0 10px 24px -16px rgb(0 0 0 / 0.75);
 				opacity: 0;
-				transform: translate(-50%, 0%) scale(0);
-				transition: transform 0.3s $easeInOutCirc, opacity 0.4s linear;
+				pointer-events: none;
+				transform: translate(0.25rem, -50%);
+				transition:
+					transform 0.16s $easeOutCubic,
+					opacity 0.16s ease;
 			}
 
 			.icon {
@@ -171,11 +181,13 @@
 			}
 
 			&:hover {
-				color: transparent !important;
+				background-color: var(--c-accent-12);
+				color: var(--c-accent) !important;
+				scale: 1.06;
 
 				&::after {
 					opacity: 1 !important;
-					transform: translate(-50%, -50%) scale(1) !important;
+					transform: translate(0, -50%) !important;
 				}
 			}
 		}

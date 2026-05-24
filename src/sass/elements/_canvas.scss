@@ -62,6 +62,7 @@
 
 /* Canvas with CodeMirror (for code) and ProseMirror (for text) showed on the left (when open canvas) 
 - .fixed.inset-0.z-40.overflow-hidden is for smaller screens (width <= 1000px) */
+/* Host compatibility: Canvas is mostly third-party generated markup, so these overrides intentionally stay scoped to known Canvas containers. */
 .absolute.start-0.z-20.h-full.overflow-hidden,
 .fixed.inset-0.z-40.overflow-hidden {
 

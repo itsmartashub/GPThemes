@@ -1,4 +1,5 @@
 import { init as initFAB } from './app/custom-fab/index'
+import { mount as mountSuggestedPrompts } from './app/custom-layouts/suggestedPrompts'
 import { init as initThemes } from './app/themeManager'
 
 // !! Chat bubbles and chatbox height are mounted from custom-layouts after Settings render !!
@@ -10,6 +11,8 @@ const CONFIG = {
 	RETRY_DELAY: 3000,
 	MAX_RETRIES: 4,
 }
+
+const CLEANUP_KEY = '_gpthCleanup'
 
 const PAGE_ATTRS = {
 	LIBRARY: 'data-gpth-page-library',
@@ -32,38 +35,18 @@ const LIBRARY_HEADER_SELECTOR = [
 // Track number of attempts
 let retryCount = 0
 let retryTimeout = null // For cleanup
+const runtimeCleanups = []
 let routeObserverStarted = false
+let routeObserver = null
+let routeScanFrame = null
 let lastRoutePath = ''
+
+function addCleanup(cleanup) {
+	if (typeof cleanup === 'function') runtimeCleanups.push(cleanup)
+}
 
 function normalizeLibraryLabel(text) {
 	return text?.trim().replace(/\s+/g, ' ') || ''
-}
-
-function applyLibraryHeaderPaintReset(el) {
-	if (!(el instanceof HTMLElement)) return
-
-	el.style.setProperty('appearance', 'none', 'important')
-	el.style.setProperty('-webkit-appearance', 'none', 'important')
-	el.style.setProperty('background', 'transparent', 'important')
-	el.style.setProperty('background-color', 'transparent', 'important')
-	el.style.setProperty('border-color', 'transparent', 'important')
-	el.style.setProperty('box-shadow', 'none', 'important')
-	el.style.setProperty('color', 'var(--c-subtext-1)', 'important')
-	el.style.setProperty('outline', 'none', 'important')
-}
-
-function applyLibraryUploadMotionReset(el) {
-	if (!(el instanceof HTMLElement)) return
-
-	el.style.setProperty('transform', 'none', 'important')
-	el.style.setProperty('translate', '0 0', 'important')
-	el.style.setProperty('scale', '1', 'important')
-	el.style.setProperty('will-change', 'auto', 'important')
-	el.style.setProperty(
-		'transition',
-		'opacity 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out',
-		'important',
-	)
 }
 
 function markLibraryHeaderNode(el) {
@@ -74,8 +57,6 @@ function markLibraryHeaderNode(el) {
 
 	target.setAttribute(LIBRARY_HEADER_ATTR, '')
 	el.setAttribute(LIBRARY_HEADER_ATTR, '')
-	applyLibraryHeaderPaintReset(target)
-	applyLibraryHeaderPaintReset(el)
 
 	let current = target
 	for (let depth = 0; depth < 6; depth++) {
@@ -86,34 +67,29 @@ function markLibraryHeaderNode(el) {
 		if (parentText.length > 90) break
 
 		parent.setAttribute(LIBRARY_HEADER_ATTR, '')
-		applyLibraryHeaderPaintReset(parent)
 		current = parent
 	}
 }
 
-function markLibraryUploadButton() {
-	document.querySelectorAll(`[${LIBRARY_UPLOAD_ATTR}]`).forEach((el) => {
+function clearLibraryMarkers(main) {
+	main.querySelectorAll(`[${LIBRARY_HEADER_ATTR}], [${LIBRARY_UPLOAD_ATTR}]`).forEach((el) => {
+		el.removeAttribute(LIBRARY_HEADER_ATTR)
 		el.removeAttribute(LIBRARY_UPLOAD_ATTR)
 	})
+}
 
-	const main = document.querySelector('main')
-	if (!main) return
-
+function markLibraryUploadButton(main) {
 	main.querySelectorAll('button, a, [role="button"]').forEach((el) => {
 		if (normalizeLibraryLabel(el.textContent) !== 'Upload') return
 
 		el.setAttribute(LIBRARY_UPLOAD_ATTR, '')
-		applyLibraryUploadMotionReset(el)
 	})
 }
 
-function markLibraryHeaderControls() {
-	document.querySelectorAll(`[${LIBRARY_HEADER_ATTR}]`).forEach((el) => {
-		el.removeAttribute(LIBRARY_HEADER_ATTR)
-	})
-
-	const main = document.querySelector('main')
+function markLibraryHeaderControls(main) {
 	if (!main) return
+
+	clearLibraryMarkers(main)
 
 	main.querySelectorAll(LIBRARY_HEADER_SELECTOR).forEach((el) => {
 		const label = normalizeLibraryLabel(el.textContent)
@@ -148,38 +124,86 @@ function updatePageAttrs() {
 	}
 
 	if (isLibrary) {
-		markLibraryHeaderControls()
-		markLibraryUploadButton()
+		const main = document.querySelector('main')
+		if (!main) return
+
+		markLibraryHeaderControls(main)
+		markLibraryUploadButton(main)
 	}
 }
 
+function scheduleRouteScan() {
+	if (routeScanFrame) return
+
+	routeScanFrame = window.requestAnimationFrame(() => {
+		routeScanFrame = null
+		updatePageAttrs()
+	})
+}
+
 function observePageRoute() {
-	if (routeObserverStarted) return
+	if (routeObserverStarted || !document.body) return
 	routeObserverStarted = true
 	updatePageAttrs()
 
-	new MutationObserver(updatePageAttrs).observe(document.body, { childList: true, subtree: true })
+	routeObserver = new MutationObserver(scheduleRouteScan)
+	routeObserver.observe(document.body, { childList: true, subtree: true })
 	window.addEventListener('popstate', updatePageAttrs)
+
+	addCleanup(() => {
+		if (routeScanFrame) {
+			window.cancelAnimationFrame(routeScanFrame)
+			routeScanFrame = null
+		}
+		routeObserver?.disconnect()
+		routeObserver = null
+		routeObserverStarted = false
+		lastRoutePath = ''
+		document.documentElement.removeAttribute(PAGE_ATTRS.LIBRARY)
+		window.removeEventListener('popstate', updatePageAttrs)
+	})
 }
 
 // Main init fn
 async function initExt() {
 	// console.log(`[🎨GPThemes]: Initializing components (attempt ${retryCount + 1}/${CONFIG.MAX_RETRIES})`)
+	if (!document.body) return false
 
 	try {
 		observePageRoute()
-		initThemes()
-		initFAB()
+		addCleanup(mountSuggestedPrompts())
+		addCleanup(initThemes())
+		addCleanup(await initFAB())
 		// !! Settings modules (colors, fonts, layouts) are initialized inside settingsManager after DOM attach !!
 	} catch (error) {
 		console.error('[🎨GPThemes]: Critical initialization error:', error)
+		disposeRuntimeModules()
 		return false
 	}
 	return true
 }
 
+function disposeRuntimeModules() {
+	while (runtimeCleanups.length) {
+		const cleanup = runtimeCleanups.pop()
+		try {
+			cleanup()
+		} catch (error) {
+			console.warn('[🎨GPThemes]: Cleanup failed:', error)
+		}
+	}
+}
+
+function clearRetry() {
+	if (retryTimeout) {
+		clearTimeout(retryTimeout)
+		retryTimeout = null
+	}
+}
+
 // Schedule retries with exponential backoff
 function scheduleRetry() {
+	clearRetry()
 	retryCount++
 
 	if (retryCount <= CONFIG.MAX_RETRIES) {
@@ -187,21 +211,15 @@ function scheduleRetry() {
 
 		// console.log(`[🎨GPThemes]: Scheduling retry ${retryCount}/${CONFIG.MAX_RETRIES} in ${delay}ms`)
 
-		retryTimeout = setTimeout(() => {
-			// Check if our components exist before retrying
-			if (document.querySelector(CONFIG.TARGET_SELECTOR)) {
-				// console.log('[🎨GPThemes]: Components already present, stopping retries')
-				cleanup()
-				return
-			}
-
+		retryTimeout = setTimeout(async () => {
 			console.info(
 				'[🎨GPThemes]: Re-initializing extension (possible React hydration issue: "Minified React error #XXX;" above?)',
 			)
 
-			if (initExt()) {
+			if (await initExt()) {
 				// console.log('Injection successful')
-				cleanup()
+				retryCount = 0
+				clearRetry()
 			} else {
 				scheduleRetry()
 			}
@@ -213,20 +231,32 @@ function scheduleRetry() {
 
 // Cleanup fn
 function cleanup() {
-	if (retryTimeout) {
-		clearTimeout(retryTimeout)
-		retryTimeout = null
-	}
-}
-
-// Initial run
-if (!document.querySelector(CONFIG.TARGET_SELECTOR)) {
-	initExt()
-	scheduleRetry()
-} else {
-	console.log('[🎨GPThemes]: Components already present on first check')
+	clearRetry()
+	disposeRuntimeModules()
 }
 
 // Emergency cleanup if script re-runs
-if (window._gpthCleanup) window._gpthCleanup()
-window._gpthCleanup = cleanup
+if (typeof window[CLEANUP_KEY] === 'function') window[CLEANUP_KEY]()
+window[CLEANUP_KEY] = cleanup
+
+async function start() {
+	const initialized = await initExt()
+	if (initialized) {
+		if (document.querySelector(CONFIG.TARGET_SELECTOR)) {
+			console.log('[🎨GPThemes]: Components initialized')
+		}
+		retryCount = 0
+		clearRetry()
+		return
+	}
+
+	scheduleRetry()
+}
+
+// Initial run
+if (document.body) {
+	start()
+} else {
+	document.addEventListener('DOMContentLoaded', start, { once: true })
+	addCleanup(() => document.removeEventListener('DOMContentLoaded', start))
+}

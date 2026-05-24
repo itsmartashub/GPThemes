@@ -234,11 +234,12 @@ function updateInputs(values) {
 
 	if (!elements) return
 
-	if (values?.fontFamily) elements.fontFamily.value = values.fontFamily
-	if (values?.fontFamilySecondary) elements.fontFamilySecondary.value = values.fontFamilySecondary
-	if (values?.fontSize) elements.fontSize.value = values.fontSize
-	if (values?.lineHeight) elements.lineHeight.value = values.lineHeight
-	if (values?.letterSpacing) elements.letterSpacing.value = values.letterSpacing
+	if (values?.fontFamily != null) elements.fontFamily.value = values.fontFamily
+	if (values?.fontFamilySecondary != null)
+		elements.fontFamilySecondary.value = values.fontFamilySecondary
+	if (values?.fontSize != null) elements.fontSize.value = values.fontSize
+	if (values?.lineHeight != null) elements.lineHeight.value = values.lineHeight
+	if (values?.letterSpacing != null) elements.letterSpacing.value = values.letterSpacing
 }
 
 // =====================================================
@@ -562,8 +563,16 @@ function mount() {
 	addListeners()
 }
 
+function cleanup() {
+	cachedElements = null
+	for (const key of Object.keys(focusValues)) {
+		delete focusValues[key]
+	}
+}
+
 export {
 	addListeners as handleFontsListeners,
+	cleanup,
 	init,
 	mount,
 	templateHTML as renderFontsTab,

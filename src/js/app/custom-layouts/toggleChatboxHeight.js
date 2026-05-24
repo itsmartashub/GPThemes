@@ -14,6 +14,9 @@ const STORAGE_KEY = SK_TOGGLE_CHATBOX_HEIGHT
 const DATA_ATTR = ATTR_CHATBOX_HEIGHT
 const DEFAULT_STATE = false
 
+let mountedInput = null
+let mountToken = 0
+
 // =====================================================
 // TEMPLATE
 // =====================================================
@@ -116,20 +119,31 @@ async function onChange({ target }) {
 
 // Mount after DOM exists: sync inputs and add delegation listener
 async function mount() {
+	const token = ++mountToken
 	const input = document.getElementById(SELECTORS.CHATBOX.TOGGLE_MAX_HEIGHT_ID)
 	if (!input) {
-		console.warning(`Element with ID ${SELECTORS.CHATS.TOGGLE_USER_BUBBLE_ACCENT_ID} not found`)
+		console.warn(`Element with ID ${SELECTORS.CHATBOX.TOGGLE_MAX_HEIGHT_ID} not found`)
 		return
 	}
 
 	// Sync inputs to curr/saved state on mount
 	const state = await loadState()
+	if (token !== mountToken || !input.isConnected) return
+
 	updateInputs(state)
 	updateDataAttr(state)
+	input.removeEventListener('change', onChange)
 	input.addEventListener('change', onChange)
+	mountedInput = input
 }
 
 // =====================================================
 // Exports
 // =====================================================
-export { templateHTML as renderCustomChatboxHeight, mount }
+function cleanup() {
+	mountToken++
+	mountedInput?.removeEventListener('change', onChange)
+	mountedInput = null
+}
+
+export { cleanup, templateHTML as renderCustomChatboxHeight, mount }

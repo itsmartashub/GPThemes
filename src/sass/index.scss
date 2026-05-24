@@ -31,7 +31,6 @@
 // @import 'hljs/oled/_ir-black'; // favorit. yellowish/pink/blue jace boje
 
 // @import 'elements/_forms';
-@import "elements/_accessibility";
 @import "elements/_loadings";
 @import "elements/_forms";
 @import "elements/_menu";
@@ -67,3 +66,6 @@
 @import "customs/_custom--hides";
 @import "customs/_custom--colors";
 @import "gpthemes/gpth-index";
+
+/* Keep keyboard focus restoration last so component focus resets cannot erase visible rings. */
+@import "elements/_accessibility";

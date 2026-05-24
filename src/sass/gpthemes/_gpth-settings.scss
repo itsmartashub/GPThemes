@@ -16,22 +16,34 @@
 	max-height: var(--max-h);
 	padding: var(--p);
 	opacity: 0;
+	visibility: hidden;
 	@include menuBg;
 	border: 1px solid var(--c-accent-10);
 	border-radius: var(--br-dialog);
 	pointer-events: none;
-	transform: translateX(calc(100% + 1.5rem)) !important;
+	transform: translate3d(1rem, -0.2rem, 0) scale(0.985) !important;
 	z-index: calc(var(--z-modal) + 10);
 	overflow: clip auto;
 	// overflow: clip;
-	transition: transform 0.3s $easeOutBack, opacity 0.3s ease;
+	overscroll-behavior: contain;
+	will-change: transform, opacity;
+	transition:
+		transform 0.22s $easeOutCubic,
+		opacity 0.18s ease,
+		visibility 0.18s ease;
 	// overscroll-behavior: contain;
 
 
 	&--open {
 		opacity: 1 !important;
+		visibility: visible;
 		pointer-events: all !important;
-		transform: translateX(0%) !important;
+		transform: translate3d(0, 0, 0) scale(1) !important;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none !important;
+		transform: translate3d(0, 0, 0) scale(1) !important;
 	}
 
 	@include dev('sm') {
@@ -61,6 +73,36 @@
 	[role="separator"] {
 		display: block !important;
 		--border-light: var(--c-border) !important;
+	}
+
+	.card,
+	.card input,
+	.card select,
+	.card__unitname-wrapper,
+	.card__name,
+	.colorpicker,
+	.colorpicker .color-picker,
+	.#{$pfx}-switch,
+	.#{$pfx}-bubbles__item {
+		transition:
+			background-color 0.16s ease,
+			border-color 0.16s ease,
+			box-shadow 0.16s ease,
+			color 0.16s ease !important;
+	}
+
+	.card:is(:hover, :focus-within),
+	.card:is(:hover, :focus-within) input,
+	.card:is(:hover, :focus-within) select,
+	.card:is(:hover, :focus-within) .card__unitname-wrapper,
+	.card:is(:hover, :focus-within) .card__name,
+	.colorpicker:is(:hover, :focus-within),
+	.colorpicker:is(:hover, :focus-within) .color-picker,
+	.#{$pfx}-switch:is(:hover, :focus-within),
+	.#{$pfx}-bubbles__item:is(:hover, :focus) {
+		transform: none !important;
+		translate: 0 0 !important;
+		scale: 1 !important;
 	}
 }
 

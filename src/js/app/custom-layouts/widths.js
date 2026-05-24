@@ -5,6 +5,7 @@ import { renderButton } from '../components/renderButtons.js'
 import { renderSliderCard } from '../components/renderSlider.js'
 import { renderToggle } from '../components/renderToggles.js'
 import {
+	SK_DB_VERSION,
 	SK_WIDTH_IS_FULL_ENABLED,
 	SK_WIDTH_IS_SYNC_ENABLED,
 	SK_WIDTH_SETTINGS,
@@ -32,8 +33,8 @@ const WIDTH_CONFIG = {
 	},
 	storageKeys: {
 		widthSettings: SK_WIDTH_SETTINGS,
-		syncEnabled: SK_WIDTH_IS_FULL_ENABLED,
-		fullWidthEnabled: SK_WIDTH_IS_SYNC_ENABLED,
+		syncEnabled: SK_WIDTH_IS_SYNC_ENABLED,
+		fullWidthEnabled: SK_WIDTH_IS_FULL_ENABLED,
 	},
 }
 
@@ -49,17 +50,19 @@ let eventListeners = []
 // UTILITIES
 // =====================================================
 const extractNumber = (v) => parseFloat(v) || 0
-const extractUnit = (v) => (v?.includes('rem') ? 'REM' : '%')
+const extractCssUnit = (v) => (v?.toLowerCase?.().includes('rem') ? 'rem' : '%')
+const extractDisplayUnit = (v) => (extractCssUnit(v) === 'rem' ? 'REM' : '%')
 const validateValue = (v, min = WIDTH_CONFIG.ui.minWidth, max = WIDTH_CONFIG.ui.maxWidth) =>
 	Number.isNaN(+v) ? min.toString() : Math.max(min, Math.min(max, +v)).toString()
-const formatWithUnit = (val, unit) => `${validateValue(val)}${unit}`
+const formatWithUnit = (val, unit) => `${validateValue(val)}${unit === 'rem' ? 'rem' : '%'}`
+const shouldReadLegacyWidthFlags = (dbVersion) => !dbVersion || dbVersion === '1.0'
 
 // =====================================================
 // TEMPLATE
 // =====================================================
 function templateHTML() {
-	const chatUnit = extractUnit(WIDTH_CONFIG.defaults.w_chat_gpt)
-	const promptUnit = extractUnit(WIDTH_CONFIG.defaults.w_prompt_textarea)
+	const chatUnit = extractCssUnit(WIDTH_CONFIG.defaults.w_chat_gpt)
+	const promptUnit = extractCssUnit(WIDTH_CONFIG.defaults.w_prompt_textarea)
 
 	return `
 		<div class="gpth-layouts__custom-width mb-4">
@@ -72,7 +75,8 @@ function templateHTML() {
 				displayUnit: SELECTORS.WIDTH.DISPLAY_CHAT_UNIT_ID,
 				min: WIDTH_CONFIG.ui.minWidth,
 				max: WIDTH_CONFIG.ui.maxWidth,
-				unit: chatUnit,
+				dataUnit: chatUnit,
+				unit: extractDisplayUnit(WIDTH_CONFIG.defaults.w_chat_gpt),
 			})}
 			${renderSliderCard({
 				name: 'Prompt Width',
@@ -83,7 +87,8 @@ function templateHTML() {
 				displayUnit: SELECTORS.WIDTH.DISPLAY_TEXTAREA_UNIT_ID,
 				min: WIDTH_CONFIG.ui.minWidth,
 				max: WIDTH_CONFIG.ui.maxWidth,
-				unit: promptUnit,
+				dataUnit: promptUnit,
+				unit: extractDisplayUnit(WIDTH_CONFIG.defaults.w_prompt_textarea),
 			})}
 		</div>
 
@@ -126,8 +131,10 @@ async function saveState(state) {
 			[WIDTH_CONFIG.storageKeys.syncEnabled]: state.syncEnabled,
 			[WIDTH_CONFIG.storageKeys.fullWidthEnabled]: state.fullWidthEnabled,
 		})
+		return true
 	} catch (err) {
 		console.error('[↔️ GPThemes] Save failed:', err)
+		return false
 	}
 }
 
@@ -136,7 +143,8 @@ async function saveState(state) {
 // =====================================================
 function updateSlider({ sliderId, outputId, unitId, value, disabled = false }) {
 	const numericValue = extractNumber(value)
-	const unit = extractUnit(value)
+	const cssUnit = extractCssUnit(value)
+	const displayUnit = extractDisplayUnit(value)
 
 	const slider = $(sliderId)
 	const output = $(outputId)
@@ -144,10 +152,12 @@ function updateSlider({ sliderId, outputId, unitId, value, disabled = false }) {
 
 	if (slider) {
 		slider.value = numericValue
+		slider.dataset.unit = cssUnit
 		slider.disabled = disabled
+		slider.setAttribute('aria-valuenow', numericValue)
 	}
 	if (output) output.textContent = numericValue
-	if (unitEl) unitEl.textContent = unit
+	if (unitEl) unitEl.textContent = displayUnit
 }
 
 function updateUI({ settings, syncEnabled, fullWidthEnabled }) {
@@ -199,7 +209,7 @@ function onSyncTextareaWithChatWidth() {
 	}
 }
 function onWidthChange({ event, key, shouldSave = false }) {
-	const val = formatWithUnit(event.target.value, event.target.dataset.unit || '%')
+	const val = formatWithUnit(event.target.value, event.target.dataset.unit || 'rem')
 	currentState.settings[key] = val
 
 	if (key === 'w_chat_gpt' && currentState.fullWidthEnabled && val !== '100%') {
@@ -318,14 +328,23 @@ async function onResetAll() {
 // =====================================================
 async function init() {
 	try {
-		const result = await getItems(Object.values(WIDTH_CONFIG.storageKeys))
+		const result = await getItems([
+			...new Set([...Object.values(WIDTH_CONFIG.storageKeys), SK_DB_VERSION]),
+		])
+		const legacyFlags = shouldReadLegacyWidthFlags(result[SK_DB_VERSION])
+		const syncEnabledKey = legacyFlags
+			? SK_WIDTH_IS_FULL_ENABLED
+			: WIDTH_CONFIG.storageKeys.syncEnabled
+		const fullWidthEnabledKey = legacyFlags
+			? SK_WIDTH_IS_SYNC_ENABLED
+			: WIDTH_CONFIG.storageKeys.fullWidthEnabled
 
 		currentState = {
 			settings: result[WIDTH_CONFIG.storageKeys.widthSettings] || {
 				...WIDTH_CONFIG.defaults,
 			},
-			syncEnabled: result[WIDTH_CONFIG.storageKeys.syncEnabled] || false,
-			fullWidthEnabled: result[WIDTH_CONFIG.storageKeys.fullWidthEnabled] || false,
+			syncEnabled: result[syncEnabledKey] ?? false,
+			fullWidthEnabled: result[fullWidthEnabledKey] ?? false,
 		}
 
 		if (currentState.fullWidthEnabled) {
@@ -354,4 +373,4 @@ function mount() {
 // =====================================================
 // Exports
 // =====================================================
-export { templateHTML, init, mount, onResetAll as resetAll }
+export { templateHTML, init, mount, removeAllListeners as cleanup, onResetAll as resetAll }

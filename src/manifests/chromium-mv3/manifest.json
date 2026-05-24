@@ -1,9 +1,10 @@
 {
 	"manifest_version": 3,
 	"minimum_chrome_version": "119",
-	"version": "6.7.6.7",
-	"name": "GPThemes (Ronak's Version 🤌🏽)",
-	"description": "Thank u itsmarta i wish u didn't get claudepilled 😔 Original extension: https://chromewebstore.google.com/detail/gpthemes-chatgpt-widescre/bghdlfnkbghekhdadaokecnhkcodfcna",
+	"version": "6.7.6",
+	"version_name": "6.7.6 Ronak stabilization build",
+	"name": "GPThemes (Ronak's Version)",
+	"description": "Customize ChatGPT with themes, fonts, colors, layout widths, chatbox tweaks, and a floating settings dock.",
 	"author": "itsmarta",
 	"homepage_url": "https://github.com/itsmartashub/GPThemes",
 	"host_permissions": ["https://chat.openai.com/*", "https://chatgpt.com/*"],
@@ -38,6 +39,6 @@
 			"48": "../../assets/icons/48.png",
 			"128": "../../assets/icons/128.png"
 		},
-		"default_title": "GPThemes (Ronak's Version 🤌🏽)"
+		"default_title": "GPThemes (Ronak's Version)"
 	}
 }

@@ -23,7 +23,8 @@ initBackgroundScript()
 async function onInstallation(details) {
 	try {
 		const currVersion = getExtCurrVersion()
-		const prevVersion = await getExtStoredVersion()
+		const storedVersion = await getExtStoredVersion()
+		const prevVersion = details.previousVersion || storedVersion
 
 		console.log(`📦 Extension ${details.reason}: ${prevVersion || 'none'} → ${currVersion}`)
 

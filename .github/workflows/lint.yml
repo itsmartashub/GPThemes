@@ -20,7 +20,7 @@ permissions:
 
 jobs:
     lint:
-        name: Run lint checks (informational)
+        name: Run lint checks
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repo
@@ -30,7 +30,7 @@ jobs:
             - name: Install pnpm
               uses: pnpm/action-setup@v4
               with:
-                  version: '10'
+                  version: '11.2.2'
 
             - name: Setup Node.js & pnpm
               uses: actions/setup-node@v4
@@ -47,7 +47,7 @@ jobs:
               if: ${{ inputs.skip-biome == false }}
               run: |
                   echo "--- RUNNING BIOME LINT (pnpm lint) ---"
-                  pnpm lint || true
+                  pnpm lint
 
             # --- 2. RUN STYLELINT (conditional) ---
             - name: Run Stylelint (CSS/SCSS)
@@ -55,4 +55,4 @@ jobs:
               if: ${{ inputs.skip-stylelint == false }}
               run: |
                   echo "--- RUNNING STYLELINT (pnpm slint) ---"
-                  pnpm slint || true
+                  pnpm slint

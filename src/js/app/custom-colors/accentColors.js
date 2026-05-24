@@ -53,13 +53,9 @@ function templateHTML() {
 
 // Save state to storage
 async function saveToStorage(key, value) {
-	try {
-		await setItem(key, value)
-		Notify.success('Color saved')
-	} catch (err) {
-		Notify.error('Failed to save color')
-		console.error('Save error:', err)
-	}
+	await setItem(key, value)
+	Notify.success('Color saved')
+	return true
 }
 // Load saved state from storage
 async function getFromStorage() {
@@ -297,4 +293,12 @@ function mount(resetBtn) {
 // =====================================================
 // Exports
 // =====================================================
-export { templateHTML as renderAccentsColors, onResetAll as resetAllAccents, mount, init }
+function cleanup() {
+	for (const { picker } of accentPickers.values()) {
+		picker.destroy?.()
+	}
+	accentPickers.clear()
+	$resetBtn = null
+}
+
+export { cleanup, templateHTML as renderAccentsColors, onResetAll as resetAllAccents, mount, init }

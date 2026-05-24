@@ -10,6 +10,8 @@ const PILL_LABELS = {
 }
 
 let observerStarted = false
+let observer = null
+let syncOnNextFrame = null
 
 function normalizeLabel(text = '') {
 	return text.replace(/\s+/g, ' ').trim().toLowerCase()
@@ -42,8 +44,8 @@ export function observeSidebarPillMarkers() {
 	observerStarted = true
 	syncSidebarPillMarkers()
 
-	const syncOnNextFrame = rafThrottle(syncSidebarPillMarkers)
-	const observer = new MutationObserver(() => {
+	syncOnNextFrame = rafThrottle(syncSidebarPillMarkers)
+	observer = new MutationObserver(() => {
 		syncOnNextFrame()
 	})
 
@@ -51,5 +53,16 @@ export function observeSidebarPillMarkers() {
 		subtree: true,
 		childList: true,
 		characterData: true,
+	})
+}
+
+export function disconnectSidebarPillMarkers() {
+	observer?.disconnect()
+	observer = null
+	syncOnNextFrame = null
+	observerStarted = false
+	document.querySelectorAll(`[${PILL_ATTR}], [${PILL_WRAPPER_ATTR}]`).forEach((el) => {
+		el.removeAttribute(PILL_ATTR)
+		el.removeAttribute(PILL_WRAPPER_ATTR)
 	})
 }

@@ -9,13 +9,16 @@ export function renderToggle({
 	className = '',
 	dataType = '',
 }) {
+	const labelId = `${id}-label`
+	const descriptionId = `${id}-description`
+
 	if (card) {
 		return `
             <label class="gpth-switch ${className}" for="${id}">
                 ${icon ? `<div class="gpth-switch__icon" aria-hidden="true">${icon}</div>` : ''}
                 <div class="gpth-switch__text">
-                    <div class="title mb-1">${label}</div>
-                    ${subtitle ? `<div class="subtitle">${subtitle}</div>` : ''}
+                    <div id="${labelId}" class="title mb-1">${label}</div>
+                    ${subtitle ? `<div id="${descriptionId}" class="subtitle">${subtitle}</div>` : ''}
                 </div>
                 <div class="gpth-switch__checkbox">
                     <input
@@ -23,7 +26,8 @@ export function renderToggle({
                         id="${id}"
                         ${checked ? 'checked' : ''}
                         ${disabled ? 'disabled' : ''}
-                        aria-labelledby="${id}-label"
+                        aria-labelledby="${labelId}"
+                        ${subtitle ? `aria-describedby="${descriptionId}"` : ''}
                     >
                     <span class="slider" aria-hidden="true"></span>
                 </div>

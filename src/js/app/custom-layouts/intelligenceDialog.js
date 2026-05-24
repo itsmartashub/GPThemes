@@ -5,6 +5,7 @@
  */
 
 let active = false
+let observer = null
 
 function isIntelligenceDialog(dialog) {
 	const text = dialog.textContent || ''
@@ -29,7 +30,18 @@ function mount() {
 	if (active) return
 	active = true
 	scan()
-	new MutationObserver(scan).observe(document.body, { childList: true, subtree: true })
+	observer = new MutationObserver(scan)
+	observer.observe(document.body, { childList: true, subtree: true })
+	return cleanup
 }
 
-export { mount }
+function cleanup() {
+	observer?.disconnect()
+	observer = null
+	active = false
+	document.querySelectorAll('[data-gpth-intelligence-dialog]').forEach((dialog) => {
+		dialog.removeAttribute('data-gpth-intelligence-dialog')
+	})
+}
+
+export { cleanup, mount }

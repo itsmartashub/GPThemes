@@ -14,6 +14,9 @@ const DEFAULT_STATE = false
 
 let routeObserverStarted = false
 let lastPath = ''
+let routeObserver = null
+let mountedInput = null
+let mountToken = 0
 
 function templateHTML() {
 	return renderToggle({
@@ -69,8 +72,8 @@ function observeRouteChanges() {
 	routeObserverStarted = true
 	updatePulsePageAttr()
 
-	const observer = new MutationObserver(updatePulsePageAttr)
-	observer.observe(document.body, { childList: true, subtree: true })
+	routeObserver = new MutationObserver(updatePulsePageAttr)
+	routeObserver.observe(document.body, { childList: true, subtree: true })
 	window.addEventListener('popstate', updatePulsePageAttr)
 }
 
@@ -96,6 +99,7 @@ async function onChange({ target }) {
 }
 
 async function mount() {
+	const token = ++mountToken
 	const input = document.getElementById(SELECTORS.PULSE.TOGGLE_EXPAND_CARDS_ID)
 	if (!input) {
 		console.warn(`Element with ID ${SELECTORS.PULSE.TOGGLE_EXPAND_CARDS_ID} not found`)
@@ -105,9 +109,26 @@ async function mount() {
 	observeRouteChanges()
 
 	const state = await loadState()
+	if (token !== mountToken || !input.isConnected) return
+
 	updateInput(state)
 	updateDataAttr(state)
+	input.removeEventListener('change', onChange)
 	input.addEventListener('change', onChange)
+	mountedInput = input
 }
 
-export { templateHTML as renderExpandPulseCards, mount }
+function cleanup() {
+	mountToken++
+	routeObserver?.disconnect()
+	routeObserver = null
+	window.removeEventListener('popstate', updatePulsePageAttr)
+	routeObserverStarted = false
+	lastPath = ''
+	ROOT_HTML.removeAttribute(PAGE_ATTR)
+
+	mountedInput?.removeEventListener('change', onChange)
+	mountedInput = null
+}
+
+export { cleanup, templateHTML as renderExpandPulseCards, mount }

@@ -3,13 +3,19 @@ import { renderInfo } from '../components/renderInfo.js'
 import { renderSeparator } from '../components/renderUtils.js'
 import { SELECTORS } from '../config/selectors.js'
 import {
+	cleanup as cleanupAccentColors,
 	init as initAccentColors,
 	mount as mountAccentColors,
 	renderAccentsColors,
 	resetAllAccents,
 } from './accentColors.js'
-import { mount as mountAllTextAccent, renderAllTextAccent } from './toggleAccentAllText.js'
 import {
+	cleanup as cleanupAllTextAccent,
+	mount as mountAllTextAccent,
+	renderAllTextAccent,
+} from './toggleAccentAllText.js'
+import {
+	cleanup as cleanupUserBubbleAccent,
 	mount as mountUserBubbleAccent,
 	renderUserAccentBgToggle,
 } from './toggleAccentUserBubble.js'
@@ -53,6 +59,8 @@ function resetAll() {
 	resetAllAccents()
 }
 
+let mountedResetBtn = null
+
 // =====================================================
 // Lifecycle: INIT
 // =====================================================
@@ -68,9 +76,12 @@ function mount() {
 	// console.log('[MOUNT COLORS]')
 	// Setup elements
 	const $resetBtn = document.getElementById(SELECTORS.ACCENT.RESET_BTN_ID)
+	if (!$resetBtn) return
 
 	// Attach listeners
+	$resetBtn.removeEventListener('click', resetAll)
 	$resetBtn.addEventListener('click', resetAll)
+	mountedResetBtn = $resetBtn
 
 	// Mount other child modules
 	mountAccentColors($resetBtn)
@@ -78,5 +89,13 @@ function mount() {
 	mountAllTextAccent()
 }
 
+function cleanup() {
+	mountedResetBtn?.removeEventListener('click', resetAll)
+	mountedResetBtn = null
+	cleanupAccentColors()
+	cleanupUserBubbleAccent()
+	cleanupAllTextAccent()
+}
+
 // --- EXPORTS ---
-export { templateHTML as renderColorsTab, init, mount }
+export { cleanup, templateHTML as renderColorsTab, init, mount }

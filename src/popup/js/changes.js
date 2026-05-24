@@ -41,89 +41,44 @@ const SECTION_TYPES = {
  <a href="https://github.com/itsmartashub/GPThemes/issues/new?template=feature_request.yml" target="_blank" rel="noopener noreferrer">GitHub issue</a> 
 */
 const currentReleaseChanges = {
-	// note: [],
-	// critical: [],
-	// newFixes: [],
-	// features: [],
-	// improvements: [],
-	// fixes: [],
-	// other: [],
-	// support: [],
 	note: [
 		{
-			details: `Hey there, it's been a while. <br>
-					A few things were broken, and I only just found out. Sorry about that.
-					I've moved on to other AI workflows, so I rarely visit the site this was built for anymore.<br>
-					If something's off, I probably won't know unless you tell me :(`,
-		},
-	],
-	features: [
-		{
-			description: 'Hide Upgrade Chips:',
 			details:
-				'Hide the upgrade chip from the sidebar also when <code>Hide Upgrade Chips</code> is enabled',
+				'This build focuses on stability: safer extension injection, cleaner storage migration, and release metadata that matches the packaged extension.',
 		},
 	],
 	improvements: [
 		{
-			description: 'Text Editing:',
+			description: 'Runtime lifecycle:',
 			details:
-				'Enhanced styling for new markdown edit blocks, including theme-consistent backgrounds, improved selected text menu dropdowns, and custom accent colors for buttons and text selection',
-			issueRef: 214,
+				'Avoid duplicate observers and listeners when ChatGPT reinjects content scripts.',
 		},
 		{
-			description: 'UI/UX:',
-			details: 'Improved styling for tooltips, settings & upgrade dialogs, and pricing cards',
+			description: 'Storage:',
+			details:
+				'Migrate settings by version instead of clearing all saved preferences during upgrades.',
 		},
 		{
-			description: 'Sidebar:',
-			details: 'Unify sidebar and chat container background colors',
+			description: 'Settings:',
+			details:
+				'Keep width units, font reset values, and toggle labels in sync with saved state.',
 		},
 	],
 	fixes: [
 		{
-			description: 'Fonts:',
-			details: 'Fixed custom font family application and fallback logic',
-			issueRef: 210,
+			description: 'Theme application:',
+			details: 'Preserve ChatGPT root classes while applying GPThemes theme markers.',
 		},
 		{
-			description: 'Expand Chatbox:',
-			details: 'Fixed <code>Expand chatbox</code> feature',
-			issueRef: 209,
-		},
-		{
-			description: 'Chatbox:',
-			details:
-				'Fixed chatbox background to match accent theme with blur, and differentiate it with temporary chatbox',
-			issueRef: 211,
-		},
-		{
-			description: 'Chatbox Section:',
-			details:
-				'Replaced the grey background with a modern backdrop blur for better readability',
-			issueRef: 211,
-		},
-		{
-			description: 'Chat Bubble:',
-			details: 'Fixed user bubble alignment and custom width feature',
-			issueRef: 213,
-		},
-		{
-			description: 'Sidebar:',
-			details:
-				'Fixed background theme consistency, corrected pin icon colors, and improved upgrade chip hiding selectors',
+			description: 'Customization toggles:',
+			details: 'Fixed Accent All Text targeting and invalid console warning calls.',
 		},
 	],
 	other: [
 		{
-			description: 'Google Fonts:',
+			description: 'Quality gates:',
 			details:
-				'Technically, almost any font found on the <a href="https://fonts.google.com/" target="_blank" rel="noopener noreferrer">Google Fonts Platform</a> can be added. If you have a favorite, let me know in a <a href="https://github.com/itsmartashub/GPThemes/issues/new?template=feature_request.yml" target="_blank" rel="noopener noreferrer">Github issue</a>, <a href="https://ko-fi.com/http417" target="_blank" rel="noopener noreferrer">ko-fi</a>, or review',
-		},
-	],
-	support: [
-		{
-			details: `Some tools just become part of how you work. If this is one of them, <a href="https://ko-fi.com/http417" target="_blank" rel="noopener noreferrer">Ko-fi</a> is there`,
+				'Biome and Stylelint now run as real CI checks instead of informational steps.',
 		},
 	],
 }

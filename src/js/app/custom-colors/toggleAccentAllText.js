@@ -14,12 +14,15 @@ const STORAGE_KEY = SK_TOGGLE_ACCENT_TEXT
 const DATA_ATTR = ATTR_ACCENT_TEXT
 const DEFAULT_STATE = false
 
+let mountedInput = null
+let mountToken = 0
+
 // =====================================================
 // TEMPLATE
 // =====================================================
 function templateHTML() {
 	return renderToggle({
-		id: SELECTORS.CHATS.TOGGLE_ACCENT_TEXT_ID,
+		id: SELECTORS.ACCENT.TOGGLE_ACCENT_TEXT_ID,
 		checked: DEFAULT_STATE,
 		label: 'Accent All Text',
 		subtitle: 'Make all the text on the page accented',
@@ -74,7 +77,7 @@ function updateDataAttr(enabled) {
 
 // Update input to reflect state (DOM required)
 function updateInputs(enabled) {
-	const input = document.getElementById(SELECTORS.CHATS.TOGGLE_ACCENT_TEXT_ID)
+	const input = document.getElementById(SELECTORS.ACCENT.TOGGLE_ACCENT_TEXT_ID)
 	if (input) input.checked = !!enabled
 }
 
@@ -114,21 +117,32 @@ async function onChange({ target }) {
 
 // Setup toggle input listener (mount after DOM exists)
 async function mount() {
-	const input = document.getElementById(SELECTORS.CHATS.TOGGLE_ACCENT_TEXT_ID)
+	const token = ++mountToken
+	const input = document.getElementById(SELECTORS.ACCENT.TOGGLE_ACCENT_TEXT_ID)
 	if (!input) {
-		console.warning(`Element with ID ${SELECTORS.CHATS.TOGGLE_ACCENT_TEXT_ID} not found`)
+		console.warn(`Element with ID ${SELECTORS.ACCENT.TOGGLE_ACCENT_TEXT_ID} not found`)
 		return
 	}
 	// Get data from storage and update html root data-attribute (css) and inputs
 	const state = await loadState()
+	if (token !== mountToken || !input.isConnected) return
+
 	updateDataAttr(state)
 	updateInputs(state)
 
 	// Attach listeners to inputs
+	input.removeEventListener('change', onChange)
 	input.addEventListener('change', onChange)
+	mountedInput = input
 }
 
 // =====================================================
 // Exports
 // =====================================================
-export { mount, templateHTML as renderAllTextAccent }
+function cleanup() {
+	mountToken++
+	mountedInput?.removeEventListener('change', onChange)
+	mountedInput = null
+}
+
+export { cleanup, mount, templateHTML as renderAllTextAccent }

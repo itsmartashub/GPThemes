@@ -30,7 +30,7 @@ div[data-message-author-role="assistant"],
 
 div[data-message-author-role="assistant"] *,
 .agent-turn * {
-	&:not(code):not(pre):not(kbd):not(samp):not(.font-mono):not([class*="font-mono"]):not(code *):not(pre *) {
+	&:not(code, pre, kbd, samp, .font-mono, [class*="font-mono"], code *, pre *) {
 		font-family: var(--gpthFontFamily), var(--gpthFontFamilyDefault) !important;
 	}
 }
@@ -92,7 +92,7 @@ aside *,
 nav *,
 nav a *,
 nav button * {
-	&:not(code):not(pre):not(kbd):not(samp):not(.font-mono):not([class*="font-mono"]):not(code *):not(pre *) {
+	&:not(code, pre, kbd, samp, .font-mono, [class*="font-mono"], code *, pre *) {
 		font-family: var(--gpthFontFamilySecondary), var(--gpthFontFamilyDefault) !important;
 	}
 }

@@ -35,7 +35,6 @@ main:has(input[placeholder*="Search library" i]) {
         --bg-primary: var(--c-bg-chats-container) !important;
         --main-surface-primary: var(--c-bg-chats-container) !important;
 
-        background-color: var(--c-bg-chats-container) !important;
         background: var(--c-bg-chats-container) !important;
     }
 
@@ -43,7 +42,6 @@ main:has(input[placeholder*="Search library" i]) {
         [style*="background-color: white"],
         [style*="background: rgb(255, 255, 255)"],
         [style*="background-color: rgb(255, 255, 255)"]) {
-        background-color: var(--c-bg-chats-container) !important;
         background: var(--c-bg-chats-container) !important;
     }
 
@@ -60,7 +58,6 @@ main:has(input[placeholder*="Search library" i]) {
 
     main :is([class*="grid"], [role="row"], [role="table"], table) :is(button, [role="button"], [aria-sort]) {
         appearance: none !important;
-        background-color: transparent !important;
         background: transparent !important;
         border-color: transparent !important;
         box-shadow: none !important;
@@ -68,42 +65,36 @@ main:has(input[placeholder*="Search library" i]) {
     }
 
     main :is([class*="grid"], [role="row"], [role="table"], table) :is(button, [role="button"], [aria-sort]) * {
-        background-color: transparent !important;
         background: transparent !important;
         box-shadow: none !important;
     }
 
     main [data-gpth-library-header-control] {
-        appearance: none !important;
-        -webkit-appearance: none !important;
-        background-color: transparent !important;
-        background: transparent !important;
-        border-color: transparent !important;
-        box-shadow: none !important;
-        color: var(--c-subtext-1) !important;
-        outline: none !important;
+        appearance: none;
+        background: transparent;
+        border-color: transparent;
+        box-shadow: none;
+        color: var(--c-subtext-1);
     }
 
     main [data-gpth-library-header-control] * {
-        background-color: transparent !important;
-        background: transparent !important;
-        box-shadow: none !important;
-        color: inherit !important;
+        background: transparent;
+        box-shadow: none;
+        color: inherit;
     }
 
     main [data-gpth-library-header-control]::before,
     main [data-gpth-library-header-control]::after,
     main [data-gpth-library-header-control] *::before,
     main [data-gpth-library-header-control] *::after {
-        background-color: transparent !important;
-        background: transparent !important;
-        box-shadow: none !important;
+        background: transparent;
+        box-shadow: none;
     }
 
     main [data-gpth-library-header-control]::selection,
     main [data-gpth-library-header-control] *::selection {
-        background-color: transparent !important;
-        color: inherit !important;
+        background-color: transparent;
+        color: inherit;
     }
 
     main ::selection {
@@ -112,16 +103,16 @@ main:has(input[placeholder*="Search library" i]) {
     }
 
     main [data-gpth-library-upload-button] {
-        transform: none !important;
-        translate: 0 0 !important;
-        scale: 1 !important;
-        will-change: auto !important;
-        transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out !important;
+        transform: none;
+        translate: 0 0;
+        scale: 1;
+        will-change: auto;
+        transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
-        &:is(:hover, :focus, :active) {
-            transform: none !important;
-            translate: 0 0 !important;
-            scale: 1 !important;
+        &:is(:hover, :focus-visible, :active) {
+            transform: none;
+            translate: 0 0;
+            scale: 1;
         }
     }
 
@@ -131,13 +122,10 @@ main:has(input[placeholder*="Search library" i]) {
         [aria-haspopup="listbox"],
         [aria-haspopup="menu"]) {
         appearance: none !important;
-        -webkit-appearance: none !important;
-        background-color: transparent !important;
         background: transparent !important;
         border-color: transparent !important;
         box-shadow: none !important;
         color: var(--c-subtext-1) !important;
-        outline: none !important;
     }
 
     main :is(button[aria-selected="true"],
@@ -148,7 +136,6 @@ main:has(input[placeholder*="Search library" i]) {
     }
 
     main :is(th, [role="columnheader"], [role="row"]:first-of-type) :is(button, [role="button"]) {
-        background-color: transparent !important;
         background: transparent !important;
         border-color: transparent !important;
         box-shadow: none !important;

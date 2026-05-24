@@ -11,7 +11,7 @@ import {
 import { SK_TOGGLE_FAB_HIDDEN } from '../config/consts-storage.js'
 import { SELECTORS } from '../config/selectors.js'
 import { setupExtensionMessaging } from '../messaging/index.js'
-import { createSettings, onCloseSettings } from '../settingsManager.js'
+import { createSettings, destroySettings, onCloseSettings } from '../settingsManager.js'
 import { onChangeTheme } from '../themeManager.js'
 
 // =====================================================
@@ -25,6 +25,11 @@ const STORAGE_KEY = SK_TOGGLE_FAB_HIDDEN
 // =====================================================
 
 let isDockOpen = false
+let isInitialized = false
+let listenersAttached = false
+let removeStorageWatcher = null
+let removeMessagingListener = null
+let initToken = 0
 
 const elements = {
 	FAB: null,
@@ -42,10 +47,10 @@ function templateHTML() {
         
         <aside class="${SELECTORS.FAB.DOCK}">
             <div class="${SELECTORS.FAB.DOCK_BTNS}">
-                <button id="light" data-gpth-dock-btn="light" class="${SELECTORS.FAB.DOCK}__btn">${icon_sun}</button>
-                <button id="dark" data-gpth-dock-btn="dark" class="${SELECTORS.FAB.DOCK}__btn">${icon_moon}</button>
-                <button id="oled" data-gpth-dock-btn="black" class="${SELECTORS.FAB.DOCK}__btn">${icon_moon_full}</button>
-                <button id="${SELECTORS.SETTINGS.OPEN_BTN}" data-gpth-dock-btn="more" class="${SELECTORS.FAB.DOCK}__btn">${icon_settings}</button>
+                <button id="light" type="button" aria-label="Use light theme" data-gpth-dock-btn="light" class="${SELECTORS.FAB.DOCK}__btn">${icon_sun}</button>
+                <button id="dark" type="button" aria-label="Use dark theme" data-gpth-dock-btn="dark" class="${SELECTORS.FAB.DOCK}__btn">${icon_moon}</button>
+                <button id="oled" type="button" aria-label="Use OLED theme" data-gpth-dock-btn="black" class="${SELECTORS.FAB.DOCK}__btn">${icon_moon_full}</button>
+                <button id="${SELECTORS.SETTINGS.OPEN_BTN}" type="button" aria-label="Toggle GPThemes settings" data-gpth-dock-btn="settings" class="${SELECTORS.FAB.DOCK}__btn">${icon_settings}</button>
             </div>
 
             <a href="https://ko-fi.com/http417" data-gpth-dock-btn="ko-fi" class="${SELECTORS.FAB.DOCK}__btn" target="_blank" rel="noopener noreferrer">
@@ -60,6 +65,16 @@ function templateHTML() {
 // =====================================================
 
 async function createFAB() {
+	const existing = document.querySelector(`.${SELECTORS.FAB.ROOT}`)
+	if (existing) {
+		setElements(existing)
+		await setInitialFABVisibility()
+		requestAnimationFrame(() => {
+			addListeners()
+		})
+		return existing
+	}
+
 	// 1. Create DOM
 	const $FAB = document.createElement('div')
 	$FAB.className = SELECTORS.FAB.ROOT
@@ -95,8 +110,20 @@ function setElements(FAB) {
 // =====================================================
 
 function addListeners() {
+	if (listenersAttached || !elements.FAB || !elements.dockButtons) return
+
 	elements.FAB.addEventListener('click', onFABClick)
 	elements.dockButtons.addEventListener('click', onChangeTheme)
+	listenersAttached = true
+}
+
+function removeListeners() {
+	if (!listenersAttached) return
+
+	elements.FAB?.removeEventListener('click', onFABClick)
+	elements.dockButtons?.removeEventListener('click', onChangeTheme)
+	document.removeEventListener('click', onOutsideClick, { capture: true })
+	listenersAttached = false
 }
 
 function onFABClick(e) {
@@ -180,18 +207,45 @@ function onStorageChange(changes, area) {
 // =====================================================
 
 async function init() {
+	if (isInitialized && elements.FAB?.isConnected) return cleanup
+
+	const token = ++initToken
+
 	try {
 		await createFAB()
+		if (token !== initToken || !elements.FAB?.isConnected) return
 
 		// Initialize sub-modules
-		createSettings()
-		setupExtensionMessaging()
+		await createSettings()
+		if (token !== initToken || !elements.FAB?.isConnected) return
+
+		removeMessagingListener = setupExtensionMessaging()
 
 		// Listen for storage sync changes (cross-tab)
-		watchStorageChanges(onStorageChange)
+		removeStorageWatcher = watchStorageChanges(onStorageChange)
+		isInitialized = true
+		return cleanup
 	} catch (err) {
 		console.error('[FAB:init] Failed:', err)
+		throw err
 	}
+}
+
+function cleanup() {
+	initToken++
+	toggleDock(false)
+	removeListeners()
+	removeStorageWatcher?.()
+	removeStorageWatcher = null
+	removeMessagingListener?.()
+	removeMessagingListener = null
+	destroySettings()
+	elements.FAB?.remove()
+	elements.FAB = null
+	elements.dock = null
+	elements.dockButtons = null
+	isDockOpen = false
+	isInitialized = false
 }
 
 // =====================================================

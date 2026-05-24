@@ -16,11 +16,16 @@ const CONFIG = {
 async function onChange(e) {
 	const hideFAB = e.target.checked
 
-	if (hideFAB) {
-		// If true, hide FAB
-		await setItem(STORAGE_KEY, true)
-	} else {
-		await removeItems(STORAGE_KEY)
+	try {
+		if (hideFAB) {
+			// If true, hide FAB
+			await setItem(STORAGE_KEY, true)
+		} else {
+			await removeItems(STORAGE_KEY)
+		}
+	} catch (error) {
+		e.target.checked = !hideFAB
+		console.error('Failed to update FAB visibility preference:', error)
 	}
 }
 

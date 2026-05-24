@@ -40,12 +40,14 @@ export function renderSliderCard({
 	min = 10,
 	max = 100,
 	unit = '%',
+	dataUnit = unit,
 	isLocked = false,
 }) {
 	const sanitizedName = sanitizeString(name)
 	const sanitizedInputId = sanitizeString(inputId)
 	const sanitizedInputValue = sanitizeString(inputValue)
 	const sanitizedInputPlaceholder = sanitizeString(inputPlaceholder)
+	const sanitizedDataUnit = sanitizeString(dataUnit)
 
 	return `
     <div 
@@ -87,6 +89,7 @@ export function renderSliderCard({
           aria-valuemin="${min}"
           aria-valuemax="${max}"
           aria-valuenow="${sanitizedInputValue}"
+          data-unit="${sanitizedDataUnit}"
           ${isLocked ? 'disabled' : ''}
         >
       </label>

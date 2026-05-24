@@ -1,4 +1,5 @@
 /* Search sources and activity flyout */
+/* Host compatibility selectors stay broad because these side panels are not all stamped by GPThemes JS. */
 [data-testid*="flyout" i],
 [data-testid*="flyOut" i],
 [data-testid*="activity" i],
@@ -76,7 +77,6 @@ aside,
     [class*="bg-[#F"],
     [class*="bg-[#E"],
     [class*="bg-[#D"] {
-        background-color: var(--c-surface-2) !important;
         background: var(--c-surface-2) !important;
     }
 
@@ -127,6 +127,10 @@ aside,
 
     a {
         color: inherit !important;
+    }
+
+    [data-gpth-activity-surface] {
+        background: var(--c-surface-2) !important;
     }
 
     [data-testid="bar-search-sources-header"] {
@@ -226,7 +230,6 @@ aside,
     [class*="bg-[#e"],
     [class*="bg-[#F"],
     [class*="bg-[#E"] {
-        background-color: var(--c-surface-2) !important;
         background: var(--c-surface-2) !important;
     }
 
@@ -250,7 +253,6 @@ aside,
     div[style*="background: rgb(2"],
     div[style*="background: #f"],
     div[style*="background: #e"] {
-        background-color: var(--c-surface-2) !important;
         background: var(--c-surface-2) !important;
     }
 }

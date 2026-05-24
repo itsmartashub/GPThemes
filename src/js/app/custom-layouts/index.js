@@ -1,16 +1,33 @@
 import { renderSeparator } from '../components/renderUtils.js'
-import { mount as mountCustomHides, renderCustomHides } from '../custom-hide/index.js'
-import { mount as mountActivityPanel } from './activityPanel.js'
-import { mount as mountIntelligenceDialog } from './intelligenceDialog.js'
+import {
+	cleanup as cleanupCustomHides,
+	mount as mountCustomHides,
+	renderCustomHides,
+} from '../custom-hide/index.js'
+import { cleanup as cleanupActivityPanel, mount as mountActivityPanel } from './activityPanel.js'
+import {
+	cleanup as cleanupIntelligenceDialog,
+	mount as mountIntelligenceDialog,
+} from './intelligenceDialog.js'
+import {
+	cleanup as cleanupChatBubbles,
+	mount as mountChatBubbles,
+	renderCustomChatBubbles,
+} from './toggleChatBubbles.js'
 // Import child modules
 // import { mount as mountScrolldown, renderCustomScrolldown } from './scrolldown.js'
-import { mount as mountChatBubbles, renderCustomChatBubbles } from './toggleChatBubbles.js'
 import {
+	cleanup as cleanupCustomChatboxHeight,
 	mount as mountCustomChatboxHeight,
 	renderCustomChatboxHeight,
 } from './toggleChatboxHeight.js'
-import { mount as mountPulseCards, renderExpandPulseCards } from './togglePulseCards.js'
 import {
+	cleanup as cleanupPulseCards,
+	mount as mountPulseCards,
+	renderExpandPulseCards,
+} from './togglePulseCards.js'
+import {
+	cleanup as cleanupWidths,
 	init as initWidths,
 	mount as mountWidths,
 	templateHTML as renderWidthsSection,
@@ -60,6 +77,7 @@ async function init() {
 
 function mount() {
 	// console.log('[MOUNT LAYOUT]')
+	cleanup()
 
 	// Mount width management
 	mountWidths()
@@ -75,7 +93,17 @@ function mount() {
 	mountCustomHides()
 }
 
+function cleanup() {
+	cleanupWidths()
+	cleanupIntelligenceDialog()
+	cleanupActivityPanel()
+	cleanupPulseCards()
+	cleanupCustomChatboxHeight()
+	cleanupChatBubbles()
+	cleanupCustomHides()
+}
+
 // =====================================================
 // Exports
 // =====================================================
-export { init, mount, templateHTML as renderLayoutsTab }
+export { cleanup, init, mount, templateHTML as renderLayoutsTab }

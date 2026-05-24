@@ -16,6 +16,11 @@ function validateArea(area) {
 	}
 }
 
+function throwStorageWriteError(operation, err) {
+	console.error(`[storage:${operation}]`, err)
+	throw err
+}
+
 // Get one key value from storage
 async function getItem(key, defaultValue = null, area = DEFAULT_AREA) {
 	try {
@@ -45,8 +50,9 @@ async function setItem(key, value, area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
 		await browser.storage[area].set({ [key]: value })
+		return true
 	} catch (err) {
-		console.error('[storage:setItem]', err)
+		throwStorageWriteError('setItem', err)
 	}
 }
 
@@ -55,8 +61,9 @@ async function setItems(data = {}, area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
 		await browser.storage[area].set(data)
+		return true
 	} catch (err) {
-		console.error('[storage:setItems]', err)
+		throwStorageWriteError('setItems', err)
 	}
 }
 
@@ -65,8 +72,9 @@ async function removeItems(keys, area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
 		await browser.storage[area].remove(keys)
+		return true
 	} catch (err) {
-		console.error('[storage:removeItem]', err)
+		throwStorageWriteError('removeItems', err)
 	}
 }
 
@@ -75,8 +83,9 @@ async function clearStorage(area = DEFAULT_AREA) {
 	try {
 		validateArea(area)
 		await browser.storage[area].clear()
+		return true
 	} catch (err) {
-		console.error('[storage:clearStorage]', err)
+		throwStorageWriteError('clearStorage', err)
 	}
 }
 async function getStorage(area = DEFAULT_AREA) {
@@ -135,8 +144,9 @@ async function updateObject(key, updates, area = DEFAULT_AREA) {
 		const existing = await getItem(key, {}, area)
 		const updated = { ...existing, ...updates }
 		await setItem(key, updated, area)
+		return updated
 	} catch (err) {
-		console.error('[storage:updateObject]', err)
+		throwStorageWriteError('updateObject', err)
 	}
 }
 

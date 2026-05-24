@@ -1,5 +1,5 @@
 // $accent: oklch(75.532% 0.1546 307.422); // rgb(194, 216, 196); // rgb(252, 154, 154);
-$accent: oklch(82.125% 0.07902 147.047);
+$accent: oklch(82.125% 0.0790 147.047);
 $on-accent: oklch(from $accent 0.25 c h);
 $bg: oklch(from $accent 2% calc(c * 0.85) h);
 $fg: oklch(from $accent 99.5% calc(c * 0.6) h);

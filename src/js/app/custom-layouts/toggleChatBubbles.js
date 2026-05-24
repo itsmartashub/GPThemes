@@ -30,6 +30,9 @@ const DEFAULT_STATE = {
 	gpt: true,
 }
 
+let mountedContainer = null
+let mountToken = 0
+
 // =====================================================
 // TEMPLATE
 // =====================================================
@@ -144,20 +147,31 @@ async function onChange(event) {
 
 // Mount after DOM exists: sync inputs and add delegation listener
 async function mount() {
+	const token = ++mountToken
 	const container = $(`.${SELECTORS.TOGGLE_BUBBLES.ITEMS_CONTAINER}`)
 	if (!container) {
-		console.warning(`Element with class ${SELECTORS.TOGGLE_BUBBLES.ITEMS_CONTAINER} not found`)
+		console.warn(`Element with class ${SELECTORS.TOGGLE_BUBBLES.ITEMS_CONTAINER} not found`)
 		return
 	}
 
 	// Sync inputs to curr/saved state on mount
 	const state = await loadState()
+	if (token !== mountToken || !container.isConnected) return
+
 	updateDataAttr(state)
 	updateInputs(state)
+	container.removeEventListener('change', onChange)
 	container.addEventListener('change', onChange)
+	mountedContainer = container
 }
 
 // =====================================================
 // Exports
 // =====================================================
-export { templateHTML as renderCustomChatBubbles, mount }
+function cleanup() {
+	mountToken++
+	mountedContainer?.removeEventListener('change', onChange)
+	mountedContainer = null
+}
+
+export { cleanup, templateHTML as renderCustomChatBubbles, mount }

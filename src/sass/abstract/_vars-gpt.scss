@@ -1,6 +1,7 @@
 /* ==================================================
 OPENAAI CSS VARS
 ================================================== */
+/* Host token overrides keep priority because ChatGPT redefines these variables late and per surface. */
 :root {
     /* NEW OPENAI VARS */
     // --user-chat-width: 70%;
@@ -157,7 +158,6 @@ html,
     --theme-attribution-highlight-bg: var(--c-accent-20) !important;
     // --theme-user-msg-bg: var(--yellow-theme-user-msg-bg);
     // --theme-user-msg-text: var(--yellow-theme-user-msg-text);
-    --theme-submit-btn-bg: var(--c-accent) !important;
     --theme-submit-btn-text: var(--c-on-accent) !important;
     --theme-secondary-btn-bg: var(--c-accent-light) !important;
     --theme-secondary-btn-text: var(--c-accent) !important;
@@ -165,8 +165,6 @@ html,
     // --theme-secondary-btn-text: var(--c-accent) !important;
     --theme-user-selection-bg: #{color-alpha(--c-warning, 0.2, true)}; // See it in GPT bubble when there is Edit markdown writing block
     // --theme-attribution-highlight-bg: var(--yellow-theme-user-selection-bg);
-    --theme-entity-accent: var(--c-accent) !important;
-
     --scrollbar-color: var(--c-scrollbar-thumb) !important;
     --scrollbar-color-hover: var(--c-scrollbar-thumb-hover) !important;
 
