@@ -1,16 +1,28 @@
-// $accent: oklch(75.532% 0.1546 307.422); // rgb(194, 216, 196); // rgb(252, 154, 154);
-$accent: oklch(82.125% 0.0790 147.047);
-$on-accent: oklch(from $accent 0.25 c h);
-$bg: oklch(from $accent 2% calc(c * 0.85) h);
-$fg: oklch(from $accent 99.5% calc(c * 0.6) h);
-// $fg: oklab(100% 0 -0.00011);
-$warning: oklch(82.29% 0.1599 85.891);
-$bg-gradient: linear-gradient(135deg,
-                oklch(from $accent l c h / 0.65) 0%,
-                oklch(from $accent l c h / 0.15) 30%,
-                oklch(from $accent l c h / 0.1) 60%,
-                oklch(from $accent l c h / 0.65) 100%);
+// Typography
+$font-serif: "Instrument Serif", georgia, serif;
+$font-body: "Newsreader", georgia, serif;
+$font-ui: "Inter", system-ui, sans-serif;
+
+// Colors (Dark Theme from ronakchakraborty.me)
+$color-bg: #221913;
+$color-surface: #2d221b;
+$color-accent: #c9b89a;
+$color-accent-soft: rgba(201, 184, 154, 0.18);
+$color-border: #5b493c;
+$color-text: #f3e6d4;
+$color-text-muted: #d5c1aa;
+$color-text-faint: #ab9378;
+$color-panel: rgba(49, 37, 29, 0.84);
+$color-panel-strong: rgba(37, 28, 22, 0.95);
+$color-card-bg: rgba(61, 46, 36, 0.36);
+
+// Scrollbars
 $scrollbar-w: 3px;
 $scrollbar-br: 1rem;
-$scrollbar-thumb: oklch(from $accent l c h / 0.25);
+$scrollbar-thumb: $color-border;
 $scrollbar-track: transparent;
+
+// Easing Curves
+$ease-gentle: cubic-bezier(0.2, 0.8, 0.2, 1);
+$ease-press: cubic-bezier(0.16, 1, 0.3, 1);
+

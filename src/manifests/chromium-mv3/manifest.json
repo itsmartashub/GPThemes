@@ -19,9 +19,9 @@
 	"content_scripts": [
 		{
 			"matches": ["https://chat.openai.com/*", "https://chatgpt.com/*"],
-			"js": ["../../js/content.js"],
+			"js": ["../../js/inject-theme.js", "../../js/content.js"],
 			"css": ["../../sass/index.scss"],
-			"run_at": "document_idle"
+			"run_at": "document_start"
 		}
 	],
 	"background": {
@@ -29,6 +29,12 @@
 		"type": "module"
 	},
 	"permissions": ["storage"],
+	"web_accessible_resources": [
+		{
+			"resources": ["*.png"],
+			"matches": ["https://chat.openai.com/*", "https://chatgpt.com/*"]
+		}
+	],
 	"content_security_policy": {
 		"extension_pages": "script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;"
 	},

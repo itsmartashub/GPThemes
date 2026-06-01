@@ -1,16 +1,49 @@
 export const $ = (s, root = document) => root.querySelector(s)
 export const $$ = (s, root = document) => root.querySelectorAll(s)
 
-export const ROOT_HTML = document.documentElement
-export const ROOT_STYLE = ROOT_HTML.style
+export const ROOT_HTML = new Proxy({}, {
+	get(target, prop) {
+		const root = document.documentElement
+		if (!root) return undefined
+		const val = root[prop]
+		return typeof val === 'function' ? val.bind(root) : val
+	},
+	set(target, prop, value) {
+		const root = document.documentElement
+		if (root) {
+			root[prop] = value
+			return true
+		}
+		return false
+	}
+})
+
+export const ROOT_STYLE = new Proxy({}, {
+	get(target, prop) {
+		const root = document.documentElement
+		if (!root) return undefined
+		const val = root.style[prop]
+		return typeof val === 'function' ? val.bind(root.style) : val
+	},
+	set(target, prop, value) {
+		const root = document.documentElement
+		if (root) {
+			root.style[prop] = value
+			return true
+		}
+		return false
+	}
+})
 
 // Helper to ensure the CSS var name starts with '--'
 const formatVarName = (name) => (name.startsWith('--') ? name : `--${name}`)
 
 export const getVar = (varName, fallback = '') => {
 	// Note: getComputedStyle requires the full '--' name
+	const root = document.documentElement
+	if (!root) return fallback
 	const fullVarName = formatVarName(varName)
-	const value = getComputedStyle(ROOT_HTML).getPropertyValue(fullVarName)
+	const value = getComputedStyle(root).getPropertyValue(fullVarName)
 	return value ? value.trim() : fallback
 }
 

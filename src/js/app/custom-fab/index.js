@@ -43,21 +43,21 @@ const elements = {
 
 function templateHTML() {
 	return `
-        <div class="${SELECTORS.FAB.ROOT}__icon">${icon_paint}</div>
-        
-        <aside class="${SELECTORS.FAB.DOCK}">
-            <div class="${SELECTORS.FAB.DOCK_BTNS}">
-                <button id="light" type="button" aria-label="Use light theme" data-gpth-dock-btn="light" class="${SELECTORS.FAB.DOCK}__btn">${icon_sun}</button>
-                <button id="dark" type="button" aria-label="Use dark theme" data-gpth-dock-btn="dark" class="${SELECTORS.FAB.DOCK}__btn">${icon_moon}</button>
-                <button id="oled" type="button" aria-label="Use OLED theme" data-gpth-dock-btn="black" class="${SELECTORS.FAB.DOCK}__btn">${icon_moon_full}</button>
-                <button id="${SELECTORS.SETTINGS.OPEN_BTN}" type="button" aria-label="Toggle GPThemes settings" data-gpth-dock-btn="settings" class="${SELECTORS.FAB.DOCK}__btn">${icon_settings}</button>
-            </div>
-
-            <a href="https://ko-fi.com/http417" data-gpth-dock-btn="ko-fi" class="${SELECTORS.FAB.DOCK}__btn" target="_blank" rel="noopener noreferrer">
-                ${icon_kofi_cup}
-            </a>
-        </aside>
-    `
+	        <div class="${SELECTORS.FAB.ROOT}__icon" data-gpth-label="Change theme">${icon_paint}</div>
+	        
+	        <aside class="${SELECTORS.FAB.DOCK}">
+	            <div class="${SELECTORS.FAB.DOCK_BTNS}">
+	                <button id="light" type="button" aria-label="Use light theme" data-gpth-label="Light theme" data-gpth-dock-btn="light" class="${SELECTORS.FAB.DOCK}__btn">${icon_sun}</button>
+	                <button id="dark" type="button" aria-label="Use dark theme" data-gpth-label="Dark theme" data-gpth-dock-btn="dark" class="${SELECTORS.FAB.DOCK}__btn">${icon_moon}</button>
+	                <button id="oled" type="button" aria-label="Use OLED theme" data-gpth-label="OLED theme" data-gpth-dock-btn="black" class="${SELECTORS.FAB.DOCK}__btn">${icon_moon_full}</button>
+	                <button id="${SELECTORS.SETTINGS.OPEN_BTN}" type="button" aria-label="Toggle GPThemes settings" data-gpth-label="Settings" data-gpth-dock-btn="settings" class="${SELECTORS.FAB.DOCK}__btn">${icon_settings}</button>
+	            </div>
+	
+	            <a href="https://ko-fi.com/http417" aria-label="Support the original creator" data-gpth-label="Support the original creator" data-gpth-dock-btn="ko-fi" class="${SELECTORS.FAB.DOCK}__btn" target="_blank" rel="noopener noreferrer">
+	                ${icon_kofi_cup}
+	            </a>
+	        </aside>
+	    `
 }
 
 // =====================================================

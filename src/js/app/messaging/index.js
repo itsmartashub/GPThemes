@@ -3,6 +3,13 @@ import { toggleFABVisibility } from '../custom-fab/index'
 
 let removeMessageListener = null
 
+function getFABHiddenState(msg) {
+	if (typeof msg?.isHidden === 'boolean') return msg.isHidden
+	if (typeof msg?.hidden === 'boolean') return msg.hidden
+	if (typeof msg?.visible === 'boolean') return !msg.visible
+	return false
+}
+
 /* Handles extension msgs for the FAB and other features */
 function setupExtensionMessaging() {
 	if (!browser?.runtime?.onMessage) return
@@ -13,7 +20,7 @@ function setupExtensionMessaging() {
 		// console.log(msg)
 
 		if (msg?.action === 'toggleFABVisibility') {
-			toggleFABVisibility(msg.visible)
+			toggleFABVisibility(getFABHiddenState(msg))
 			// No need to update storage here - popup already did that
 			return
 		}

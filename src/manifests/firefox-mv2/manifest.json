@@ -13,12 +13,13 @@
 	"content_scripts": [
 		{
 			"matches": ["https://chat.openai.com/*", "https://chatgpt.com/*"],
-			"js": ["../../js/content.js"],
+			"js": ["../../js/inject-theme.js", "../../js/content.js"],
 			"css": ["../../sass/index.scss"],
-			"run_at": "document_idle"
+			"run_at": "document_start"
 		}
 	],
 	"permissions": ["storage", "https://chat.openai.com/*", "https://chatgpt.com/*"],
+	"web_accessible_resources": ["*.png"],
 	"browser_specific_settings": {
 		"gecko": {
 			"id": "gpthemes@itsmarta",

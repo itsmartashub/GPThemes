@@ -1,3 +1,5 @@
+import browser from 'webextension-polyfill'
+import faviconUrl from 'url:../assets/icons/32.png'
 import { init as initFAB } from './app/custom-fab/index'
 import { mount as mountSuggestedPrompts } from './app/custom-layouts/suggestedPrompts'
 import { init as initThemes } from './app/themeManager'
@@ -141,6 +143,70 @@ function scheduleRouteScan() {
 	})
 }
 
+let faviconObserver = null
+
+function resolveExtensionUrl(assetUrl) {
+	if (typeof assetUrl !== 'string') return null
+	if (/^[a-z][a-z\d+.-]*:/i.test(assetUrl)) return assetUrl
+	return browser.runtime.getURL(assetUrl.replace(/^\//, ''))
+}
+
+function observeFavicon() {
+	if (faviconObserver) return
+
+	const targetNode = document.head
+	if (!targetNode) {
+		if (document.documentElement) {
+			const headObserver = new MutationObserver(() => {
+				if (document.head) {
+					headObserver.disconnect()
+					observeFavicon()
+				}
+			})
+			headObserver.observe(document.documentElement, { childList: true })
+		}
+		return
+	}
+
+	const resolvedUrl = resolveExtensionUrl(faviconUrl)
+	if (!resolvedUrl) {
+		console.warn('[🎨GPThemes]: Could not resolve favicon URL')
+		return
+	}
+
+	const applyFavicon = () => {
+		const links = document.querySelectorAll("link[rel*='icon']")
+		if (links.length === 0) {
+			const link = document.createElement('link')
+			link.rel = 'icon'
+			link.href = resolvedUrl
+			document.head.appendChild(link)
+		} else {
+			links.forEach((link) => {
+				if (link.getAttribute('href') !== resolvedUrl) {
+					link.href = resolvedUrl
+				}
+			})
+		}
+	}
+
+	applyFavicon()
+
+	faviconObserver = new MutationObserver((mutations) => {
+		for (const mutation of mutations) {
+			if (mutation.type === 'childList') {
+				applyFavicon()
+			}
+		}
+	})
+
+	faviconObserver.observe(targetNode, { childList: true, subtree: true })
+	addCleanup(() => {
+		faviconObserver?.disconnect()
+		faviconObserver = null
+	})
+}
+
 function observePageRoute() {
 	if (routeObserverStarted || !document.body) return
 	routeObserverStarted = true
@@ -165,14 +231,15 @@ function observePageRoute() {
 }
 
 // Main init fn
-async function initExt() {
+async function initExt(themeCleanup = null) {
 	// console.log(`[🎨GPThemes]: Initializing components (attempt ${retryCount + 1}/${CONFIG.MAX_RETRIES})`)
 	if (!document.body) return false
 
 	try {
+		observeFavicon()
 		observePageRoute()
 		addCleanup(mountSuggestedPrompts())
-		addCleanup(initThemes())
+		addCleanup(themeCleanup || initThemes())
 		addCleanup(await initFAB())
 		// !! Settings modules (colors, fonts, layouts) are initialized inside settingsManager after DOM attach !!
 	} catch (error) {
@@ -180,6 +247,13 @@ async function initExt() {
 		disposeRuntimeModules()
 		return false
 	}
+
+	// Verify that the element survived possible React hydration
+	if (!document.querySelector(CONFIG.TARGET_SELECTOR)) {
+		disposeRuntimeModules()
+		return false
+	}
+
 	return true
 }
 
@@ -239,14 +313,33 @@ function cleanup() {
 if (typeof window[CLEANUP_KEY] === 'function') window[CLEANUP_KEY]()
 window[CLEANUP_KEY] = cleanup
 
-async function start() {
-	const initialized = await initExt()
-	if (initialized) {
-		if (document.querySelector(CONFIG.TARGET_SELECTOR)) {
-			console.log('[🎨GPThemes]: Components initialized')
+let initialThemeCleanup = initThemes()
+let guardianObserver = null
+
+function startGuardian() {
+	if (guardianObserver || !document.body) return
+	guardianObserver = new MutationObserver(() => {
+		if (retryCount === 0 && !document.querySelector(CONFIG.TARGET_SELECTOR)) {
+			console.info('[🎨GPThemes]: Element missing from body. Re-initializing...')
+			disposeRuntimeModules()
+			start()
 		}
+	})
+	guardianObserver.observe(document.body, { childList: true })
+	addCleanup(() => {
+		guardianObserver?.disconnect()
+		guardianObserver = null
+	})
+}
+
+async function start() {
+	const initialized = await initExt(initialThemeCleanup)
+	initialThemeCleanup = null // prevent reuse
+	if (initialized) {
+		console.log('[🎨GPThemes]: Components initialized')
 		retryCount = 0
 		clearRetry()
+		startGuardian()
 		return
 	}
 

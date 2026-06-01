@@ -4,33 +4,37 @@
     flex-wrap: wrap;
     justify-content: space-between;
     cursor: pointer;
-    font-size: 1rem;
-    gap: 0.8rem;
-    border-radius: 0.8rem;
-    padding: 0.5rem;
-    border: 1px solid oklch(from $accent l c h / 0.1);
-    background-color: oklch(from $accent l c h / 0.1);
-    transition: transform 0.25s ease-in;
+    font-family: $font-ui;
+    font-size: 0.85rem;
+    gap: 1rem;
+    border-radius: 0; // sharp corners
+    padding: 0.5rem 0.75rem;
+    border: 1px solid $color-border;
+    background-color: $color-surface;
+    transition: background-color 220ms ease, border-color 220ms ease;
 
     &:hover {
-        transform: scale(0.98);
+        background-color: $color-panel-strong;
+        border-color: $color-accent;
     }
 
     &__icon {
-        --icon-size: 2.8em;
+        --icon-size: 2.2em;
         --svg-muliplicator: 0.6;
 
         width: var(--icon-size);
         height: var(--icon-size);
         display: grid;
         place-items: center;
-        border-radius: 1rem;
-        background-color: oklch(from $accent l c h / 0.2);
-        color: $accent;
+        border-radius: 0; // sharp corners
+        background-color: $color-card-bg;
+        color: $color-text-muted;
+        border: 1px solid $color-border;
 
         svg {
             width: calc(var(--icon-size) * var(--svg-muliplicator));
             height: calc(var(--icon-size) * var(--svg-muliplicator));
+            stroke-width: 1.5;
         }
     }
 
@@ -38,32 +42,31 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        gap: 0.1rem;
+        gap: 0.2rem;
 
         .title {
-            font-size: 0.8em;
-            font-weight: bold;
-            color: $accent;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: $color-text;
             text-transform: uppercase;
+            letter-spacing: 0.15em;
             line-height: 1;
         }
 
         .subtitle {
-            font-size: 0.7em;
-            line-height: 1.25;
+            font-family: $font-body;
+            font-size: 0.85em;
+            line-height: 1.4;
             font-weight: 400;
+            color: $color-text-muted;
             white-space: pre-line;
         }
     }
 
     &__checkbox {
-
-        --chb-w: 2.5rem;
-
-        --chb-h: calc(var(--chb-w) * 0.58);
-
-        --chb-edge-gap: calc(var(--chb-w) * 0.077);
-
+        --chb-w: 2.2rem;
+        --chb-h: calc(var(--chb-w) * 0.55);
+        --chb-edge-gap: 3px;
         --chb-slider-circle-size: calc(var(--chb-h) - 2 * var(--chb-edge-gap));
 
         position: relative;
@@ -72,9 +75,14 @@
         height: var(--chb-h);
 
         input {
+            position: absolute;
+            inset: 0;
             opacity: 0;
-            width: 0;
-            height: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            z-index: 2;
+            margin: 0;
         }
 
         .slider {
@@ -83,10 +91,11 @@
             position: absolute;
             cursor: pointer;
             inset: 0;
-            background-color: oklch(from $accent l c h / 0.3);
-            border: 2px solid oklch(from $accent l c h / 0.5);
-            transition: 0.4s;
-            border-radius: var(--chb-w);
+            background-color: $color-card-bg;
+            border: 1px solid $color-border;
+            transition: background-color 220ms ease, border-color 220ms ease;
+            border-radius: 0; // sharp track
+            z-index: 1;
 
             &::before {
                 position: absolute;
@@ -94,30 +103,29 @@
                 height: var(--chb-slider-circle-size);
                 aspect-ratio: 1/1;
                 left: var(--chb-edge-gap);
-                background-color: oklch(from $accent l c h / 0.5);
-                transition: 0.4s $easeInOutCirc;
-                border-radius: 50%;
+                background-color: $color-text-faint;
+                transition: transform 220ms ease, background-color 220ms ease;
+                border-radius: 0; // sharp slider handle
             }
         }
 
-        input:checked+.slider {
-            background-color: $accent;
-            border-color: transparent !important;
+        input:checked + .slider {
+            background-color: $color-accent;
+            border-color: $color-accent;
 
             &::before {
-                transform: translateX(calc(var(--chb-w) - 145%));
-                background-color: $on-accent;
+                transform: translateX(calc(var(--chb-w) - var(--chb-slider-circle-size) - (var(--chb-edge-gap) * 2)));
+                background-color: $color-bg;
             }
         }
 
-        input:disabled+.slider {
-            opacity: 0.25 !important;
+        input:disabled + .slider {
+            opacity: 0.4;
         }
     }
 }
 
 #toggle-fab-container {
-    // max-width: max-content;
     display: flex;
     justify-content: flex-end;
 }

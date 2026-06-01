@@ -88,12 +88,12 @@ const generateChangelogItem = (item) => {
 	const prLink = item.prRef ? ` ${links.pr(item.prRef)}` : ''
 
 	return `
-      <li>
-        ${item.description ? `<strong>${item.description}</strong> ` : ''}
-        ${item.details}
-        ${issueLink}${prLink}
-      </li>
-    `
+		<div class="changelog-item">
+			${item.description ? `<span class="changelog-item__desc">${item.description}</span>` : ''}
+			<span class="changelog-item__details">${item.details}</span>
+			${issueLink || prLink ? `<span class="changelog-item__links">${issueLink}${prLink}</span>` : ''}
+		</div>
+	`
 }
 
 const generateChangelog = () => {
@@ -105,38 +105,50 @@ const generateChangelog = () => {
 		)
 
 	if (sectionsWithContent.length === 0) {
-		return '<p>No changes in this release.</p>'
+		return '<p class="changelog__empty">No changes in this release.</p>'
 	}
 
-	return sectionsWithContent
-		.map(([sectionKey, items]) => {
-			const section = SECTION_TYPES[sectionKey]
-			const sectionClass = ['critical', 'newFixes'].includes(sectionKey)
-				? `changelog__${sectionKey.replace(/([A-Z])/g, '-$1').toLowerCase()}-section`
-				: sectionKey === 'previousSeparator'
-					? 'changelog__previous-separator'
-					: ''
+	return `
+		<div class="changelog-grid">
+			${sectionsWithContent
+				.map(([sectionKey, items]) => {
+					const section = SECTION_TYPES[sectionKey]
+					const sectionClass = ['critical', 'newFixes'].includes(sectionKey)
+						? `changelog-card--${sectionKey.replace(/([A-Z])/g, '-$1').toLowerCase()}`
+						: sectionKey === 'previousSeparator'
+							? 'changelog-card--previous-separator'
+							: ''
 
-			// Special handling for separator section
-			if (section.isSeparator) {
-				return `
-				<div class="${sectionClass}">
-					<h3>${section.emoji} ${section.title}</h3>
-					<p class="changelog__separator-text">${items[0].details}</p>
-				</div>
-				`
-			}
+					// Special handling for separator section
+					if (section.isSeparator) {
+						return `
+						<div class="changelog-card changelog-card--separator ${sectionClass}">
+							<div class="changelog-card__header">
+								<span class="changelog-card__emoji">${section.emoji}</span>
+								<span class="changelog-card__label">${section.title}</span>
+							</div>
+							<div class="changelog-card__body">
+								<p class="changelog__separator-text">${items[0].details}</p>
+							</div>
+						</div>
+						`
+					}
 
-			return `
-				<div class="${sectionClass}">
-					<h3>${section.emoji} ${section.title}</h3>
-					<ul>
-					${items.map(generateChangelogItem).join('')}
-					</ul>
-				</div>
-			`
-		})
-		.join('\n')
+					return `
+						<div class="changelog-card ${sectionClass}">
+							<div class="changelog-card__header">
+								<span class="changelog-card__emoji">${section.emoji}</span>
+								<span class="changelog-card__label">${section.title}</span>
+							</div>
+							<div class="changelog-card__body">
+								${items.map(generateChangelogItem).join('')}
+							</div>
+						</div>
+					`
+				})
+				.join('\n')}
+		</div>
+	`
 }
 
 // Generate the final changelog HTML

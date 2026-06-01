@@ -3,11 +3,14 @@
 	&-fab {
 		--floating-icon-size: 2.8rem;
 		// --top: calc(var(--h-header) + 0.5rem);
-		--top: calc(var(--header-height, var(--h-header)) + 0.2rem);
+		--top: calc(var(--header-height, var(--h-header, 3.5rem)) + 0.2rem);
 		--right: 1rem;
-		position: fixed;
-		top: var(--top);
-		right: var(--right);
+		position: fixed !important;
+		top: var(--top) !important;
+		right: var(--right) !important;
+		z-index: 2147483647 !important;
+		display: block !important;
+		visibility: visible !important;
 		font-family: var(--gpthFontFamilySecondary, inherit);
 		transition: scale 0.2s, opacity 0.2s;
 
@@ -27,32 +30,34 @@
 		@include dev('md') {
 			--floating-icon-size: 2.2rem;
 			--right: 6rem;
-			top: calc(var(--header-height, var(--h-header)) / 2);
+			top: calc(var(--header-height, var(--h-header, 3.5rem)) / 2);
 			translate: 0 -50%;
 		}
 
 		&__icon {
 			position: relative;
-			display: grid;
+			display: grid !important;
 			place-items: center;
-			width: var(--floating-icon-size);
-			height: var(--floating-icon-size);
-			color: var(--c-accent);
-			background-image: var(--c-bg-gradient);
-			border: 1px solid var(--c-accent-20);
-			backdrop-filter: blur(10px);
+			width: var(--floating-icon-size) !important;
+			height: var(--floating-icon-size) !important;
+			color: var(--c-accent) !important;
+			background-image: var(--c-bg-gradient) !important;
+			background-color: var(--c-bg) !important; /* fallback */
+			border: 1px solid var(--c-accent-20) !important;
+			backdrop-filter: blur(10px) !important;
 
-			border-radius: 50vw;
+			border-radius: 50vw !important;
 			transition: transform 0.15s $easeOutCubic, background-color 0.3s $easeOutCubic, color 0.3s $easeOutCubic;
 			cursor: pointer;
 
 			&::after {
-				content: 'Change theme';
+				content: attr(data-gpth-label);
 				position: absolute;
 				top: 50%;
 				left: 0;
 				font-size: 0.725rem;
 				font-weight: bold;
+				line-height: 1;
 				border-radius: 50vw;
 				width: max-content;
 				height: max-content;
@@ -61,6 +66,7 @@
 				color: var(--c-on-accent) !important;
 				pointer-events: none;
 				opacity: 0;
+				white-space: nowrap;
 				transform-origin: right center;
 				transform: translate(-110%, -50%) scale(0);
 				transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -91,41 +97,41 @@
 		--btn-gap: 1rem;
 
 		pointer-events: none;
-		opacity: 0;
-		display: grid;
-		place-items: center;
-		gap: var(--btn-gap);
-		width: max-content;
-		height: max-content;
-		padding: 0.8rem;
-		position: absolute;
-		right: 50%;
-		top: 150%;
-		transform: translateX(50%);
-		border-radius: 20vw;
-		clip-path: polygon(0 0, 100% 0, 100% 0, 0% 0);
-		border: 1px solid var(--c-accent-20);
-		background-image: linear-gradient(135deg,
-				var(--c-accent-20) 0%,
-				var(--c-accent-03) 40%,
-				var(--c-accent-03) 60%,
-				var(--c-accent-20) 100%);
-		backdrop-filter: blur(5px);
-		transition: clip-path 0.3s $easeInOutCirc, opacity 0.3s ease-in-out;
+			opacity: 0;
+			display: grid;
+			place-items: center;
+			gap: var(--btn-gap);
+			width: max-content;
+			height: max-content;
+			padding: 0.8rem;
+			position: absolute;
+			right: 50%;
+			top: 150%;
+			transform: translateX(50%) translateY(-0.25rem) scaleY(0.9);
+			transform-origin: top center;
+			border-radius: 20vw;
+			border: 1px solid var(--c-accent-20);
+			background-image: linear-gradient(135deg,
+					var(--c-accent-20) 0%,
+					var(--c-accent-03) 40%,
+					var(--c-accent-03) 60%,
+					var(--c-accent-20) 100%);
+			backdrop-filter: blur(5px);
+			transition: transform 0.22s $easeOutCubic, opacity 0.22s ease-in-out;
 
 		@include dev('sm') {
 			padding: 0.65rem;
 		}
 
-		&--shown {
-			opacity: 1;
-			pointer-events: auto !important;
-			clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%) !important;
+			&--shown {
+				opacity: 1;
+				pointer-events: auto !important;
+				transform: translateX(50%) translateY(0) scaleY(1) !important;
 
-			.#{$pfx}-dock__btn {
-				transform: scale(1) !important;
+				.#{$pfx}-dock__btn {
+					transform: scale(1) !important;
+				}
 			}
-		}
 
 		&__btns {
 			gap: var(--btn-gap);
@@ -152,23 +158,24 @@
 				color 0.16s ease;
 
 			&::after {
-				content: attr(data-gpth-dock-btn);
+				content: attr(data-gpth-label);
 				position: absolute;
 				top: 50%;
 				right: calc(100% + 0.55rem);
 				width: max-content;
-				font-size: 0.7rem;
-				text-transform: uppercase;
+				font-size: 0.725rem;
 				font-weight: 700;
 				line-height: 1;
-				padding: 0.38rem 0.5rem;
+				padding: 0.2rem 0.5rem;
 				background-color: var(--c-accent);
-				color: var(--c-on-accent);
+				color: var(--c-on-accent) !important;
 				border-radius: 50vw;
 				box-shadow: 0 10px 24px -16px rgb(0 0 0 / 0.75);
 				opacity: 0;
 				pointer-events: none;
-				transform: translate(0.25rem, -50%);
+				white-space: nowrap;
+				transform-origin: right center;
+				transform: translate(0.25rem, -50%) scale(0);
 				transition:
 					transform 0.16s $easeOutCubic,
 					opacity 0.16s ease;
@@ -187,7 +194,7 @@
 
 				&::after {
 					opacity: 1 !important;
-					transform: translate(0, -50%) !important;
+					transform: translate(0, -50%) scale(1) !important;
 				}
 			}
 		}
