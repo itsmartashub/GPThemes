@@ -10,6 +10,7 @@ OPENAAI CSS VARS
     --white: var(--c-surface-1) !important;
     // --black: var(--c-accent) !important;
     --black: var(--c-bg-chats-container) !important;
+    --right-bg: var(--c-bg-chats-container) !important;
     // --gray-50: #f9f9f9;
     // --gray-100: #ececec;
     // --gray-200: #e3e3e3;
@@ -149,6 +150,9 @@ html,
     // --interactive-bg-accent-hover: oklch(from var(--c-accent) 0.95 0.08 h) !important;
     --interactive-bg-accent-hover: oklch(from var(--c-accent) 0.9 calc(c * 0.4) h) !important;
     --interactive-bg-accent-press: oklch(from var(--c-accent) 0.77 calc(c * 0.4) h) !important;
+
+    --interactive-bg-tertiary-hover: var(--c-accent-12) !important;
+    --interactive-bg-tertiary-press: var(--c-accent-20) !important;
 
     --interactive-label-accent-default: var(--c-accent) !important;
 
