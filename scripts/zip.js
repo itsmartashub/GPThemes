@@ -1,6 +1,5 @@
-// Using a CDN urlURL for fflate, which is compatible with Deno's ES module import
-// zipSync is used for synchronous, high-perf compression
-import { zipSync } from 'https://cdn.jsdelivr.net/npm/fflate/esm/browser.js'
+// Using a CDN urlURL for fflate, which is compatible with Deno's ES module import. zipSync is used for synchronous, high-perf compression
+import { zipSync } from 'npm:fflate@0.8.2'
 
 const CONFIG = {
 	// Paths to the manifest files to read the extension version from
@@ -45,8 +44,7 @@ async function deleteExistingFile(filePath) {
 	}
 }
 
-// Recursively traverses a folder and collects all files into a map
-// compatible with fflate's zipSync, using relative paths as keys
+// Recursively traverses a folder and collects all files into a map compatible with fflate's zipSync, using relative paths as keys
 async function collectFiles(folderPath, basePath = '') {
 	const files = {}
 
