@@ -44,6 +44,8 @@ html,
     --bg-status-warning: #{color-alpha(--c-warning, 0.2, true)};
     --bg-status-error: #{color-alpha(--c-danger, 0.2, true)};
 
+    --bg-secondary-surface: var(--c-bg-chats-container) !important;
+
     --bg-tooltip: color-mix(var(--c-accent) 10%, var(--c-surface-2)) !important;
     /* .border-token-border-default
 	- border oko "Uprade" btn-a
