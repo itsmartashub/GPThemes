@@ -54,7 +54,7 @@ html,
     --border-default: var(--c-border) !important;
     --border-light: var(--c-border) !important;
     --border-extra-light: var(--c-border) !important;
-    // --border-heavy: #fff3;
+    --border-heavy: var(--c-border) !important;
     --border-status-warning: #{color-alpha(--c-warning, 0.2, true)};
     --border-status-error: #{color-alpha(--c-danger, 0.2, true)};
     --text-primary: var(--c-txt) !important;
