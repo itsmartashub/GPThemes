@@ -29,7 +29,7 @@ input,
 textarea {
 	outline: none !important;
 
-	--black: var(--c-surface-2) !important; // this fix input bg accent on inputs that have bg-token-main-surface-primary: var(--black) bcs we global override the --black to be --accent 
+	// --black: var(--c-surface-2) !important; // this fix input bg accent on inputs that have bg-token-main-surface-primary: var(--black) bcs we global override the --black to be --accent 
 
 	&.border-red-500 {
 		background: color-mix(in oklch, var(--c-danger) 10%, transparent 98%) !important;
