@@ -34,11 +34,14 @@ async function getItem(key, defaultValue = null, area = DEFAULT_AREA) {
 }
 
 // Get multiple items by keys
+async function getItemsStrict(keys = [], area = DEFAULT_AREA) {
+	validateArea(area)
+	return browser.storage[area].get(keys)
+}
+
 async function getItems(keys = [], area = DEFAULT_AREA) {
 	try {
-		validateArea(area)
-		const result = await browser.storage[area].get(keys)
-		return result
+		return await getItemsStrict(keys, area)
 	} catch (err) {
 		console.error('[storage:getItems]', err)
 		return {}
@@ -181,6 +184,7 @@ const storageLocal = {
 const storageSync = {
 	getItem: (key, defaultValue = null) => getItem(key, defaultValue, 'sync'),
 	getItems: (keys = []) => getItems(keys, 'sync'),
+	getItemsStrict: (keys = []) => getItemsStrict(keys, 'sync'),
 	setItem: (key, value) => setItem(key, value, 'sync'),
 	setItems: (data = {}) => setItems(data, 'sync'),
 	removeItems: (keys) => removeItems(keys, 'sync'),
@@ -197,6 +201,7 @@ export {
 	STORAGE_AREAS,
 	getItem,
 	getItems,
+	getItemsStrict,
 	setItem,
 	setItems,
 	removeItems,

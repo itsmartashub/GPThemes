@@ -90,13 +90,19 @@ export const debounce = (fn, delay = 300) => {
 }
 export const rafThrottle = (fn) => {
 	let rafId = null
-	return (...args) => {
-		if (rafId) return
+	const throttled = (...args) => {
+		if (rafId !== null) return
 		rafId = requestAnimationFrame(() => {
-			fn(...args)
 			rafId = null
+			fn(...args)
 		})
 	}
+	throttled.cancel = () => {
+		if (rafId === null) return
+		cancelAnimationFrame(rafId)
+		rafId = null
+	}
+	return throttled
 }
 
 export const onEnter = (fn) => (e) => {

@@ -2,10 +2,13 @@ import { runtime } from 'webextension-polyfill'
 import {
 	SK_DB_VERSION,
 	SK_EXT_VERSION,
-	SK_WIDTH_IS_FULL_ENABLED,
-	SK_WIDTH_IS_SYNC_ENABLED,
+	SK_WIDTH_FLAGS_LEGACY_FORMAT,
+	SK_WIDTH_IS_FULL_ENABLED_LEGACY,
+	SK_WIDTH_IS_SYNC_ENABLED_LEGACY,
+	WIDTH_FLAGS_FORMAT_NAMED,
+	WIDTH_FLAGS_FORMAT_SWAPPED,
 } from '../app/config/consts-storage'
-import { getItem, getStorage, setItem, setItems } from '../utils/storage'
+import { getItem, getItemsStrict, setItem, setItems } from '../utils/storage'
 
 export const DB_VERSION = '1.1'
 
@@ -30,49 +33,28 @@ function isBeforeVersion(currentVersion, targetVersion) {
 	return false
 }
 
-async function migrateWidthFlagKeys(allStorage) {
-	const legacySyncValue = allStorage[SK_WIDTH_IS_FULL_ENABLED]
-	const legacyFullValue = allStorage[SK_WIDTH_IS_SYNC_ENABLED]
-	const migrated = {}
-
-	if (typeof legacyFullValue === 'boolean') {
-		migrated[SK_WIDTH_IS_FULL_ENABLED] = legacyFullValue
-	}
-
-	if (typeof legacySyncValue === 'boolean') {
-		migrated[SK_WIDTH_IS_SYNC_ENABLED] = legacySyncValue
-	}
-
-	if (Object.keys(migrated).length > 0) {
-		await setItems(migrated)
-		console.log('✅ Migrated width full/sync storage flags')
-	}
-}
-
-const MIGRATIONS = [
-	{
-		version: '1.1',
-		migrate: migrateWidthFlagKeys,
-	},
-]
-
 export async function checkAndCleanStorage() {
-	const dbStoredVersion = await getItem(SK_DB_VERSION)
+	const storedMigrationState = await getItemsStrict([
+		SK_DB_VERSION,
+		SK_WIDTH_IS_FULL_ENABLED_LEGACY,
+		SK_WIDTH_IS_SYNC_ENABLED_LEGACY,
+	])
+	const dbStoredVersion = storedMigrationState[SK_DB_VERSION]
 
 	if (!dbStoredVersion || isBeforeVersion(dbStoredVersion, DB_VERSION)) {
 		console.log(`⚠️ Storage migration needed: ${dbStoredVersion || 'none'} → ${DB_VERSION}`)
-
-		const allStorage = await getStorage()
-
-		for (const { version, migrate } of MIGRATIONS) {
-			if (!dbStoredVersion || isBeforeVersion(dbStoredVersion, version)) {
-				await migrate(allStorage)
-			}
+		const hasLegacyWidthFlags =
+			typeof storedMigrationState[SK_WIDTH_IS_FULL_ENABLED_LEGACY] === 'boolean' ||
+			typeof storedMigrationState[SK_WIDTH_IS_SYNC_ENABLED_LEGACY] === 'boolean'
+		const updates = {
+			[SK_DB_VERSION]: DB_VERSION,
+			[SK_WIDTH_FLAGS_LEGACY_FORMAT]:
+				dbStoredVersion === '1.0' || (!dbStoredVersion && hasLegacyWidthFlags)
+					? WIDTH_FLAGS_FORMAT_SWAPPED
+					: WIDTH_FLAGS_FORMAT_NAMED,
 		}
 
-		await setItems({
-			[SK_DB_VERSION]: DB_VERSION,
-		})
+		await setItems(updates)
 		console.log(`✅ Storage migrated | storage=${DB_VERSION}`)
 		return true // Indicates migration happened
 	}

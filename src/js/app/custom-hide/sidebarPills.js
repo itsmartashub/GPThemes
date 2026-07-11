@@ -78,6 +78,7 @@ function observeSidebarPillMarkers() {
 }
 
 function disconnectSidebarPillMarkers() {
+	syncOnNextFrame?.cancel?.()
 	markerObserver?.disconnect()
 	markerObserver = null
 	markerRoot = null

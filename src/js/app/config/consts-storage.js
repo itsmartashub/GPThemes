@@ -22,8 +22,13 @@ export const SK_SCROLL_BUTTON_POSITION = 'scrollButtonPosition'
 
 // Width Settings
 export const SK_WIDTH_SETTINGS = 'widthSettings'
-export const SK_WIDTH_IS_FULL_ENABLED = 'widthIsFullEnabled'
-export const SK_WIDTH_IS_SYNC_ENABLED = 'widthIsSyncEnabled'
+export const SK_WIDTH_IS_FULL_ENABLED = 'widthIsFullEnabledV2'
+export const SK_WIDTH_IS_SYNC_ENABLED = 'widthIsSyncEnabledV2'
+export const SK_WIDTH_IS_FULL_ENABLED_LEGACY = 'widthIsFullEnabled'
+export const SK_WIDTH_IS_SYNC_ENABLED_LEGACY = 'widthIsSyncEnabled'
+export const SK_WIDTH_FLAGS_LEGACY_FORMAT = '_widthFlagsLegacyFormat'
+export const WIDTH_FLAGS_FORMAT_NAMED = 'named'
+export const WIDTH_FLAGS_FORMAT_SWAPPED = 'swapped'
 
 // Typography Settings
 export const SK_TEXT_FONT_FAMILY = 'textFontFamily'
@@ -65,6 +70,8 @@ export const EXPORT_CONFIG = Object.freeze({
 
 		SK_WIDTH_IS_FULL_ENABLED,
 		SK_WIDTH_IS_SYNC_ENABLED,
+		SK_WIDTH_IS_FULL_ENABLED_LEGACY,
+		SK_WIDTH_IS_SYNC_ENABLED_LEGACY,
 		SK_WIDTH_SETTINGS,
 
 		SK_TEXT_FONT_FAMILY,
@@ -78,5 +85,5 @@ export const EXPORT_CONFIG = Object.freeze({
 	],
 
 	// Settings to exclude from exports (system data)
-	EXCLUDE: [SK_EXT_VERSION, SK_DB_VERSION, SK_BADGE_SEEN],
+	EXCLUDE: [SK_EXT_VERSION, SK_DB_VERSION, SK_BADGE_SEEN, SK_WIDTH_FLAGS_LEGACY_FORMAT],
 })

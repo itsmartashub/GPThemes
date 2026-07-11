@@ -93,6 +93,9 @@
 		"safari >= 18",
 		"not dead"
 	],
+	"@parcel/bundler-default": {
+		"disableSharedBundles": true
+	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.8",
 		"@parcel/config-default": "^2.16.3",

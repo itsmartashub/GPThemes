@@ -6,9 +6,14 @@ import { renderSliderCard } from '../components/renderSlider.js'
 import { renderToggle } from '../components/renderToggles.js'
 import {
 	SK_DB_VERSION,
+	SK_WIDTH_FLAGS_LEGACY_FORMAT,
 	SK_WIDTH_IS_FULL_ENABLED,
+	SK_WIDTH_IS_FULL_ENABLED_LEGACY,
 	SK_WIDTH_IS_SYNC_ENABLED,
+	SK_WIDTH_IS_SYNC_ENABLED_LEGACY,
 	SK_WIDTH_SETTINGS,
+	WIDTH_FLAGS_FORMAT_NAMED,
+	WIDTH_FLAGS_FORMAT_SWAPPED,
 } from '../config/consts-storage.js'
 import { SELECTORS } from '../config/selectors.js'
 
@@ -43,6 +48,7 @@ let currentState = {
 	syncEnabled: false,
 	fullWidthEnabled: false,
 }
+let legacyFlagsFormat = WIDTH_FLAGS_FORMAT_NAMED
 
 let eventListeners = []
 
@@ -55,8 +61,6 @@ const extractDisplayUnit = (v) => (extractCssUnit(v) === 'rem' ? 'REM' : '%')
 const validateValue = (v, min = WIDTH_CONFIG.ui.minWidth, max = WIDTH_CONFIG.ui.maxWidth) =>
 	Number.isNaN(+v) ? min.toString() : Math.max(min, Math.min(max, +v)).toString()
 const formatWithUnit = (val, unit) => `${validateValue(val)}${unit === 'rem' ? 'rem' : '%'}`
-const shouldReadLegacyWidthFlags = (dbVersion) => !dbVersion || dbVersion === '1.0'
-
 // =====================================================
 // TEMPLATE
 // =====================================================
@@ -126,10 +130,18 @@ function templateHTML() {
 // =====================================================
 async function saveState(state) {
 	try {
+		const legacyFlagsAreSwapped = legacyFlagsFormat === WIDTH_FLAGS_FORMAT_SWAPPED
 		await setItems({
 			[WIDTH_CONFIG.storageKeys.widthSettings]: state.settings,
 			[WIDTH_CONFIG.storageKeys.syncEnabled]: state.syncEnabled,
 			[WIDTH_CONFIG.storageKeys.fullWidthEnabled]: state.fullWidthEnabled,
+			[SK_WIDTH_IS_FULL_ENABLED_LEGACY]: legacyFlagsAreSwapped
+				? state.syncEnabled
+				: state.fullWidthEnabled,
+			[SK_WIDTH_IS_SYNC_ENABLED_LEGACY]: legacyFlagsAreSwapped
+				? state.fullWidthEnabled
+				: state.syncEnabled,
+			[SK_WIDTH_FLAGS_LEGACY_FORMAT]: legacyFlagsFormat,
 		})
 		return true
 	} catch (err) {
@@ -320,7 +332,11 @@ async function onResetAll() {
 
 	setVars(currentState.settings)
 	updateUI(currentState)
-	await removeItems(Object.values(WIDTH_CONFIG.storageKeys))
+	await removeItems([
+		...Object.values(WIDTH_CONFIG.storageKeys),
+		SK_WIDTH_IS_FULL_ENABLED_LEGACY,
+		SK_WIDTH_IS_SYNC_ENABLED_LEGACY,
+	])
 }
 
 // =====================================================
@@ -329,22 +345,50 @@ async function onResetAll() {
 async function init() {
 	try {
 		const result = await getItems([
-			...new Set([...Object.values(WIDTH_CONFIG.storageKeys), SK_DB_VERSION]),
+			...new Set([
+				...Object.values(WIDTH_CONFIG.storageKeys),
+				SK_DB_VERSION,
+				SK_WIDTH_FLAGS_LEGACY_FORMAT,
+				SK_WIDTH_IS_FULL_ENABLED_LEGACY,
+				SK_WIDTH_IS_SYNC_ENABLED_LEGACY,
+			]),
 		])
-		const legacyFlags = shouldReadLegacyWidthFlags(result[SK_DB_VERSION])
-		const syncEnabledKey = legacyFlags
-			? SK_WIDTH_IS_FULL_ENABLED
-			: WIDTH_CONFIG.storageKeys.syncEnabled
-		const fullWidthEnabledKey = legacyFlags
-			? SK_WIDTH_IS_SYNC_ENABLED
-			: WIDTH_CONFIG.storageKeys.fullWidthEnabled
+		const hasLegacyWidthFlags =
+			typeof result[SK_WIDTH_IS_FULL_ENABLED_LEGACY] === 'boolean' ||
+			typeof result[SK_WIDTH_IS_SYNC_ENABLED_LEGACY] === 'boolean'
+		const legacyFlagsAreSwapped =
+			result[SK_WIDTH_FLAGS_LEGACY_FORMAT] === WIDTH_FLAGS_FORMAT_SWAPPED ||
+			(!result[SK_WIDTH_FLAGS_LEGACY_FORMAT] &&
+				(result[SK_DB_VERSION] === '1.0' ||
+					(!result[SK_DB_VERSION] && hasLegacyWidthFlags)))
+		legacyFlagsFormat = legacyFlagsAreSwapped
+			? WIDTH_FLAGS_FORMAT_SWAPPED
+			: WIDTH_FLAGS_FORMAT_NAMED
+		const legacySyncEnabled =
+			result[
+				legacyFlagsAreSwapped
+					? SK_WIDTH_IS_FULL_ENABLED_LEGACY
+					: SK_WIDTH_IS_SYNC_ENABLED_LEGACY
+			]
+		const legacyFullWidthEnabled =
+			result[
+				legacyFlagsAreSwapped
+					? SK_WIDTH_IS_SYNC_ENABLED_LEGACY
+					: SK_WIDTH_IS_FULL_ENABLED_LEGACY
+			]
+		const syncEnabled = result[WIDTH_CONFIG.storageKeys.syncEnabled]
+		const fullWidthEnabled = result[WIDTH_CONFIG.storageKeys.fullWidthEnabled]
 
 		currentState = {
 			settings: result[WIDTH_CONFIG.storageKeys.widthSettings] || {
 				...WIDTH_CONFIG.defaults,
 			},
-			syncEnabled: result[syncEnabledKey] ?? false,
-			fullWidthEnabled: result[fullWidthEnabledKey] ?? false,
+			syncEnabled:
+				typeof syncEnabled === 'boolean' ? syncEnabled : (legacySyncEnabled ?? false),
+			fullWidthEnabled:
+				typeof fullWidthEnabled === 'boolean'
+					? fullWidthEnabled
+					: (legacyFullWidthEnabled ?? false),
 		}
 
 		if (currentState.fullWidthEnabled) {
