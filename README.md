@@ -116,3 +116,17 @@
 ## Support & Keep It Alive
 
 - If you can afford it and find GPThemes valuable, you can support its development with a `pay-what-you-want` contribution on [KO-FI](https://ko-fi.com/http417). Even small contributions help keep it alive and accessible.
+
+## Development
+
+GPThemes is built as two browser-extension targets from the same source tree. The runtime entry points are `src/js/inject-theme.js` for the earliest theme paint, `src/js/content.js` for page integration, and `src/sass/index.scss` for the shared visual layer.
+
+The supported development toolchain is Node.js 24, pnpm 11, and Deno 2. Corepack can install the pinned pnpm version from `package.json`.
+
+```bash
+corepack enable
+pnpm install --frozen-lockfile
+pnpm dev:chrome
+```
+
+Use `pnpm dev:ff` for Firefox development. Run `pnpm validate` before opening a pull request to lint the source, build both browser targets, and create the release archives.

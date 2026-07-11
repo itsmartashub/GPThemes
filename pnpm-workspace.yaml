@@ -1,0 +1,5 @@
+allowBuilds:
+  '@parcel/watcher@2.5.1': true
+  '@swc/core@1.15.3': true
+  'lmdb@2.8.5': true
+  'msgpackr-extract@3.0.3': true

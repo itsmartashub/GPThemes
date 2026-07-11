@@ -1,7 +1,6 @@
 name: Build
 
 on:
-    # this workflow is only callable by other workflows
     workflow_call:
 
 permissions:
@@ -9,54 +8,51 @@ permissions:
 
 jobs:
     build-and-package:
-        name: Build and zip
+        name: Build and package
         runs-on: ubuntu-latest
+        timeout-minutes: 15
 
         steps:
-            - name: Checkout repo
-              uses: actions/checkout@v4
+            - name: Check out repository
+              uses: actions/checkout@v7
 
-              # --- SETUP ENVIRONMENT ---
             - name: Install pnpm
-              uses: pnpm/action-setup@v4
-              with:
-                  version: '11.2.2'
+              uses: pnpm/action-setup@v6
 
-            - name: Setup Node.js & pnpm
-              uses: actions/setup-node@v4
+            - name: Set up Node.js
+              uses: actions/setup-node@v6
               with:
-                  node-version: '20'
+                  node-version: '24'
                   cache: 'pnpm'
 
-            - name: Install pnpm deps
+            - name: Install dependencies
               run: pnpm install --frozen-lockfile
 
-            - name: Setup deno
+            - name: Set up Deno
               uses: denoland/setup-deno@v2
               with:
                   deno-version: 'v2.x'
 
-            # --- BUILD & ZIP ---
-            - name: Build and package ext (pnpm build:all)
+            - name: Build and package extensions
               run: pnpm build:all
 
-            # --- ARTIFACT NAMING HELPERS ---
-            - name: Short SHA
+            - name: Resolve short commit SHA
               id: sha
-              # Logic to determine the correct SHA for PRs vs. pushes/manual runs
+              shell: bash
               run: |
                   if [ "${{ github.event.pull_request }}" != "" ]; then
-                    SHA=$(jq -r .pull_request.head.sha $GITHUB_EVENT_PATH)
+                    SHA=$(jq -r .pull_request.head.sha "$GITHUB_EVENT_PATH")
                   else
                     SHA=$GITHUB_SHA
                   fi
-                  echo "short=${SHA:0:7}" >> $GITHUB_OUTPUT
+                  echo "short=${SHA:0:7}" >> "$GITHUB_OUTPUT"
 
-            # --- ARTIFACT UPLOAD ---
-            - name: ⬆Upload release zips
-              uses: actions/upload-artifact@v4
+            - name: Upload release archives
+              uses: actions/upload-artifact@v7
               with:
                   name: ${{ github.event.pull_request.number
                       && format('GPThemes-debug-PR#{0}-{1}', github.event.pull_request.number, steps.sha.outputs.short)
                       || format('GPThemes-debug-build-{0}', steps.sha.outputs.short) }}
                   path: build/releases/*
+                  if-no-files-found: error
+                  retention-days: 7

@@ -9,3 +9,7 @@ build
 
 release.md
 release.html
+
+# Local operating-system and tool artifacts
+.DS_Store
+*.log

@@ -5,18 +5,18 @@
 	"description": "Customize ChatGPT with themes, fonts, colors, layout widths, chatbox tweaks, and a floating settings dock.",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/itsmartashub/GPThemes.git"
+		"url": "https://github.com/ronchak/GPThemes.git"
 	},
 	"bugs": {
-		"url": "https://github.com/itsmartashub/GPThemes/issues"
+		"url": "https://github.com/ronchak/GPThemes/issues"
 	},
-	"homepage": "https://github.com/itsmartashub/GPThemes/",
+	"homepage": "https://github.com/ronchak/GPThemes/",
 	"type": "module",
 	"scripts": {
-		"clean:dev": "rm -rf .parcel-cache build/dev",
-		"clean:prod": "rm -rf .parcel-cache build/prod",
-		"clean:zips": "rm -rf build/releases",
-		"clean:all": "pnpm clean:dev && pnpm clean:prod && pnpm clean:zips",
+		"clean:dev": "node scripts/clean.js dev",
+		"clean:prod": "node scripts/clean.js prod",
+		"clean:zips": "node scripts/clean.js releases",
+		"clean:all": "node scripts/clean.js all",
 		"dev:chrome": "parcel watch src/manifests/chromium-mv3/manifest.json --dist-dir build/dev/chromium-mv3 --no-hmr",
 		"dev:ff": "parcel watch src/manifests/firefox-mv2/manifest.json --dist-dir build/dev/firefox-mv2 --no-hmr",
 		"build:chrome": "parcel build src/manifests/chromium-mv3/manifest.json --dist-dir build/prod/gpthemes-chromium-mv3 --no-source-maps",
@@ -29,7 +29,8 @@
 		"check": "biome check --write",
 		"check:max": "biome check --write --max-diagnostics=6000",
 		"slint": "stylelint \"src/**/*.scss\"",
-		"slint:fix": "stylelint \"src/**/*.scss\" --fix"
+		"slint:fix": "stylelint \"src/**/*.scss\" --fix",
+		"validate": "pnpm lint && pnpm slint && pnpm build:all"
 	},
 	"author": "itsmarta",
 	"keywords": [
@@ -104,5 +105,13 @@
 	"dependencies": {
 		"webextension-polyfill": "^0.12.0"
 	},
-	"packageManager": "pnpm@11.2.2+sha512.36e6621fad506178936455e70247b8808ef4ec25797a9f437a93281a020484e2607f6a469a22e982987c3dbb8866e3071514ab10a4a1749e06edcd1ec118436f"
+	"packageManager": "pnpm@11.2.2+sha512.36e6621fad506178936455e70247b8808ef4ec25797a9f437a93281a020484e2607f6a469a22e982987c3dbb8866e3071514ab10a4a1749e06edcd1ec118436f",
+	"private": true,
+	"maintainers": [
+		"ronchak"
+	],
+	"engines": {
+		"node": ">=24",
+		"pnpm": ">=11.2.2 <12"
+	}
 }
