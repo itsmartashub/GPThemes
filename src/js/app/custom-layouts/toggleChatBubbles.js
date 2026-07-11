@@ -1,4 +1,4 @@
-import { $, $$, ROOT_HTML } from '../../utils/dom.js'
+import { $, ROOT_HTML } from '../../utils/dom.js'
 import { getItem, setItem } from '../../utils/storage.js'
 import { Notify } from '../components/renderNotify.js'
 import { renderToggle } from '../components/renderToggles.js'
@@ -6,36 +6,17 @@ import { ATTR_BUBBLE_GPT, ATTR_BUBBLE_USER } from '../config/consts-attr.js'
 import { SK_TOGGLE_CHAT_BUBBLES_STATE } from '../config/consts-storage.js'
 import { SELECTORS } from '../config/selectors.js'
 
-// =====================================================
-// CONSTANTS
-// =====================================================
-
 const STORAGE_KEY = SK_TOGGLE_CHAT_BUBBLES_STATE
-
-// Bubble types + config
 const CONFIG = {
-	user: {
-		label: 'USER',
-		attr: ATTR_BUBBLE_USER,
-	},
-	gpt: {
-		label: 'GPT',
-		attr: ATTR_BUBBLE_GPT,
-	},
+	user: { label: 'USER', attr: ATTR_BUBBLE_USER },
+	gpt: { label: 'GPT', attr: ATTR_BUBBLE_GPT },
 }
+const DEFAULT_STATE = { user: true, gpt: true }
 
-// Default toggle state
-const DEFAULT_STATE = {
-	user: true,
-	gpt: true,
-}
-
+let currentState = { ...DEFAULT_STATE }
+let initialized = false
 let mountedContainer = null
 let mountToken = 0
-
-// =====================================================
-// TEMPLATE
-// =====================================================
 
 function templateHTML() {
 	const toggleItems = Object.entries(CONFIG)
@@ -57,95 +38,71 @@ function templateHTML() {
 				${toggleItems}
 			</div>
 		</section>
-  `
+	`
 }
 
-// =====================================================
-// STORAGE
-// =====================================================
-// Save state to storage
 async function saveState(state) {
 	try {
 		await setItem(STORAGE_KEY, state)
 		return true
 	} catch (error) {
 		Notify.error('Failed to save bubble preference')
-		console.error('Failed to save preference:', error)
+		console.error('Failed to save bubble preference:', error)
 		return false
 	}
 }
-// Load saved state from storage
+
 async function loadState() {
-	try {
-		const result = await getItem(STORAGE_KEY)
-		return result || DEFAULT_STATE
-	} catch (error) {
-		Notify.error('Failed to load bubble preference')
-		console.error('Failed to load preference:', error)
-		return DEFAULT_STATE
+	const stored = await getItem(STORAGE_KEY, DEFAULT_STATE)
+	return {
+		user: stored?.user ?? DEFAULT_STATE.user,
+		gpt: stored?.gpt ?? DEFAULT_STATE.gpt,
 	}
 }
 
-// =====================================================
-// UPDATE CSS/DOM
-// =====================================================
-
-// Apply data attributes to document root
-function updateDataAttr(state) {
+function applyState(state) {
 	for (const [type, config] of Object.entries(CONFIG)) {
-		if (state[type]) {
-			// When bubble is ENABLED (checked), remove the data attr
-			ROOT_HTML.removeAttribute(config.attr)
-		} else {
-			// When bubble is DISABLED (unchecked), set the data attr
-			ROOT_HTML.setAttribute(config.attr, '')
-		}
-		// When bubble is DISABLED (unchecked), ADD the data attr!! When bubble is ENaABLED (checked), REMOVE the data attr
-		// !state[type] ? ROOT_HTML.setAttribute(config.attr, '') : ROOT_HTML.removeAttribute(config.attr)
+		ROOT_HTML.toggleAttribute(config.attr, !state[type])
 	}
 }
 
-// Update checkbox inputs to reflect state (DOM required)
 function updateInputs(state) {
-	const checkboxes = $$(`.${SELECTORS.TOGGLE_BUBBLES.ROOT} .gpth-checkbox__input`)
-	checkboxes.forEach((input) => {
+	const container = $(`.${SELECTORS.TOGGLE_BUBBLES.ITEMS_CONTAINER}`)
+	if (!container) return
+
+	for (const input of container.querySelectorAll('.gpth-checkbox__input')) {
 		const type = input.dataset.type
 		if (type in state) input.checked = state[type]
-	})
+	}
 }
-
-// =====================================================
-// EVENTS
-// =====================================================
 
 async function onChange(event) {
 	const input = event.target
 	if (!input.classList.contains('gpth-checkbox__input')) return
 
 	const type = input.dataset.type
-	if (!type || !(type in CONFIG)) {
+	if (!(type in CONFIG)) {
 		console.warn('Unknown or missing type for chat bubble toggle:', type)
 		return
 	}
 
-	const currState = await loadState()
-	const updatedState = { ...currState, [type]: input.checked }
+	currentState = { ...currentState, [type]: input.checked }
+	applyState(currentState)
+	updateInputs(currentState)
+	await saveState(currentState)
 
-	updateDataAttr(updatedState)
-	updateInputs(updatedState)
-
-	saveState(updatedState).then(() =>
-		input.checked
-			? Notify.success(`${type} bubble enabled`)
-			: Notify.info(`${type} bubble disabled`),
-	)
+	input.checked
+		? Notify.success(`${type} bubble enabled`)
+		: Notify.info(`${type} bubble disabled`)
 }
 
-// =====================================================
-// Lifecycle: MOUNT
-// =====================================================
+async function init() {
+	currentState = await loadState()
+	applyState(currentState)
+	initialized = true
+	return currentState
+}
 
-// Mount after DOM exists: sync inputs and add delegation listener
 async function mount() {
 	const token = ++mountToken
 	const container = $(`.${SELECTORS.TOGGLE_BUBBLES.ITEMS_CONTAINER}`)
@@ -154,24 +111,19 @@ async function mount() {
 		return
 	}
 
-	// Sync inputs to curr/saved state on mount
-	const state = await loadState()
+	if (!initialized) await init()
 	if (token !== mountToken || !container.isConnected) return
 
-	updateDataAttr(state)
-	updateInputs(state)
+	updateInputs(currentState)
 	container.removeEventListener('change', onChange)
 	container.addEventListener('change', onChange)
 	mountedContainer = container
 }
 
-// =====================================================
-// Exports
-// =====================================================
 function cleanup() {
 	mountToken++
 	mountedContainer?.removeEventListener('change', onChange)
 	mountedContainer = null
 }
 
-export { cleanup, templateHTML as renderCustomChatBubbles, mount }
+export { cleanup, init, mount, templateHTML as renderCustomChatBubbles }

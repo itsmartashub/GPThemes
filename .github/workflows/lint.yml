@@ -43,6 +43,12 @@ jobs:
               if: ${{ inputs.skip-biome == false }}
               run: pnpm lint
 
+            - name: Check JavaScript import graph
+              run: pnpm check:cycles
+
+            - name: Run runtime architecture tests
+              run: pnpm test:runtime
+
             - name: Run Stylelint
               if: ${{ inputs.skip-stylelint == false }}
               run: pnpm slint

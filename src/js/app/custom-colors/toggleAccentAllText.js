@@ -14,6 +14,8 @@ const STORAGE_KEY = SK_TOGGLE_ACCENT_TEXT
 const DATA_ATTR = ATTR_ACCENT_TEXT
 const DEFAULT_STATE = false
 
+let currentState = DEFAULT_STATE
+let initialized = false
 let mountedInput = null
 let mountToken = 0
 
@@ -99,9 +101,9 @@ async function onChange({ target }) {
 	// 	return
 	// }
 
-	const isEnabled = target.checked
-	updateDataAttr(isEnabled)
-	saveState(isEnabled)
+	currentState = target.checked
+	updateDataAttr(currentState)
+	saveState(currentState)
 
 	// // Show appropriate notif
 	// if (isEnabled) {
@@ -112,10 +114,16 @@ async function onChange({ target }) {
 }
 
 // =====================================================
-// Lifecycle: MOUNT
+// Lifecycle
 // =====================================================
 
-// Setup toggle input listener (mount after DOM exists)
+async function init() {
+	currentState = await loadState()
+	updateDataAttr(currentState)
+	initialized = true
+	return currentState
+}
+
 async function mount() {
 	const token = ++mountToken
 	const input = document.getElementById(SELECTORS.ACCENT.TOGGLE_ACCENT_TEXT_ID)
@@ -123,14 +131,11 @@ async function mount() {
 		console.warn(`Element with ID ${SELECTORS.ACCENT.TOGGLE_ACCENT_TEXT_ID} not found`)
 		return
 	}
-	// Get data from storage and update html root data-attribute (css) and inputs
-	const state = await loadState()
+
+	if (!initialized) await init()
 	if (token !== mountToken || !input.isConnected) return
 
-	updateDataAttr(state)
-	updateInputs(state)
-
-	// Attach listeners to inputs
+	updateInputs(currentState)
 	input.removeEventListener('change', onChange)
 	input.addEventListener('change', onChange)
 	mountedInput = input
@@ -145,4 +150,4 @@ function cleanup() {
 	mountedInput = null
 }
 
-export { cleanup, mount, templateHTML as renderAllTextAccent }
+export { cleanup, init, mount, templateHTML as renderAllTextAccent }

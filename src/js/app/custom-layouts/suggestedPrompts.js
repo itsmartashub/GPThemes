@@ -1,18 +1,24 @@
+import { subscribeDomMutations } from '../../runtime/domMutations.js'
+import { subscribeRouteChanges } from '../../runtime/routes.js'
+
 const PANEL_ATTR = 'data-gpth-suggested-prompts-panel'
 const ROW_ATTR = 'data-gpth-suggested-prompt-row'
 const BUTTON_ATTR = 'data-gpth-suggested-prompt-button'
 const MAX_PANEL_DISTANCE = 320
 
 let active = false
-let observer = null
+let composerRoot = null
+let composerObserver = null
 let scanFrame = null
+let removeDomSubscription = null
+let removeRouteSubscription = null
 
 function normalizeText(text) {
 	return text?.trim().replace(/\s+/g, ' ') || ''
 }
 
-function isVisible(el) {
-	const rect = el.getBoundingClientRect()
+function isVisible(element) {
+	const rect = element.getBoundingClientRect()
 	return rect.width > 0 && rect.height > 0
 }
 
@@ -35,6 +41,12 @@ function getComposerContext() {
 	return { form, prompt, rect }
 }
 
+function getComposerRoot() {
+	const prompt = document.querySelector('#prompt-textarea')
+	if (!(prompt instanceof HTMLElement)) return null
+	return prompt.closest('form')?.parentElement || prompt.parentElement
+}
+
 function hasEnoughHorizontalOverlap(rect, composerRect) {
 	const composerLeft = composerRect.left - 96
 	const composerRight = composerRect.right + 96
@@ -42,15 +54,16 @@ function hasEnoughHorizontalOverlap(rect, composerRect) {
 	return overlap >= Math.min(rect.width, composerRect.width) * 0.35
 }
 
-function isSuggestionCandidate(el, composer) {
-	if (!(el instanceof HTMLElement) || !isVisible(el)) return false
-	if (el.closest('form, aside, nav, [role="dialog"], [data-testid="modal-settings"]'))
+function isSuggestionCandidate(element, composer) {
+	if (!(element instanceof HTMLElement) || !isVisible(element)) return false
+	if (element.closest('form, aside, nav, [role="dialog"], [data-testid="modal-settings"]')) {
 		return false
+	}
 
-	const text = normalizeText(el.innerText || el.textContent)
+	const text = normalizeText(element.innerText || element.textContent)
 	if (text.length < 8 || text.length > 180) return false
 
-	const rect = el.getBoundingClientRect()
+	const rect = element.getBoundingClientRect()
 	const centerY = rect.top + rect.height / 2
 	if (centerY < composer.rect.bottom - 8) return false
 	if (centerY > composer.rect.bottom + MAX_PANEL_DISTANCE) return false
@@ -60,16 +73,16 @@ function isSuggestionCandidate(el, composer) {
 	return true
 }
 
-function countCandidatesInside(el, candidates) {
+function countCandidatesInside(element, candidates) {
 	let count = 0
 	for (const candidate of candidates) {
-		if (el.contains(candidate)) count++
+		if (element.contains(candidate)) count++
 	}
 	return count
 }
 
-function containsComposer(el, composer) {
-	return el.contains(composer.prompt) || (composer.form && el.contains(composer.form))
+function containsComposer(element, composer) {
+	return element.contains(composer.prompt) || (composer.form && element.contains(composer.form))
 }
 
 function findPanel(candidates, composer) {
@@ -89,7 +102,7 @@ function findPanel(candidates, composer) {
 				const area = rect.width * rect.height
 
 				if (!best || count > best.count || (count === best.count && area < best.area)) {
-					best = { count, area, el: current }
+					best = { count, area, element: current }
 				}
 			}
 
@@ -97,14 +110,14 @@ function findPanel(candidates, composer) {
 		}
 	}
 
-	return best?.el || null
+	return best?.element || null
 }
 
 function clearMarkers() {
-	document.querySelectorAll(`[${PANEL_ATTR}], [${ROW_ATTR}], [${BUTTON_ATTR}]`).forEach((el) => {
-		el.removeAttribute(PANEL_ATTR)
-		el.removeAttribute(ROW_ATTR)
-		el.removeAttribute(BUTTON_ATTR)
+	document.querySelectorAll(`[${PANEL_ATTR}], [${ROW_ATTR}], [${BUTTON_ATTR}]`).forEach((element) => {
+		element.removeAttribute(PANEL_ATTR)
+		element.removeAttribute(ROW_ATTR)
+		element.removeAttribute(BUTTON_ATTR)
 	})
 }
 
@@ -134,7 +147,7 @@ function scan() {
 
 	const root = composer.form?.parentElement || document.querySelector('main') || document.body
 	const candidates = [...root.querySelectorAll('button, [role="button"], [role="option"]')]
-		.filter((el) => isSuggestionCandidate(el, composer))
+		.filter((element) => isSuggestionCandidate(element, composer))
 		.slice(0, 8)
 
 	if (candidates.length < 2) return
@@ -155,7 +168,7 @@ function scan() {
 }
 
 function scheduleScan() {
-	if (scanFrame) window.cancelAnimationFrame(scanFrame)
+	if (scanFrame) return
 
 	scanFrame = window.requestAnimationFrame(() => {
 		scanFrame = null
@@ -163,20 +176,47 @@ function scheduleScan() {
 	})
 }
 
-function mount() {
-	if (active || !document.body) return
-	active = true
+function attachComposerObserver() {
+	const nextRoot = getComposerRoot()
+	if (!nextRoot || nextRoot === composerRoot) return
 
-	scan()
-	observer = new MutationObserver(scheduleScan)
-	observer.observe(document.body, {
+	composerObserver?.disconnect()
+	composerRoot = nextRoot
+	composerObserver = new MutationObserver(scheduleScan)
+	composerObserver.observe(composerRoot, {
+		characterData: true,
 		childList: true,
 		subtree: true,
-		characterData: true,
 	})
+	scheduleScan()
+}
 
+function ensureComposerObserver() {
+	if (!composerRoot?.isConnected) {
+		composerObserver?.disconnect()
+		composerObserver = null
+		composerRoot = null
+		attachComposerObserver()
+	}
+}
+
+function onRouteChange() {
+	composerObserver?.disconnect()
+	composerObserver = null
+	composerRoot = null
+	attachComposerObserver()
+	scheduleScan()
+}
+
+function mount() {
+	if (active || !document.body) return cleanup
+	active = true
+
+	attachComposerObserver()
+	scan()
+	removeDomSubscription = subscribeDomMutations(ensureComposerObserver)
+	removeRouteSubscription = subscribeRouteChanges(onRouteChange, { emitCurrent: false })
 	document.addEventListener('input', scheduleScan, true)
-	document.addEventListener('keyup', scheduleScan, true)
 	return cleanup
 }
 
@@ -185,10 +225,15 @@ function cleanup() {
 		window.cancelAnimationFrame(scanFrame)
 		scanFrame = null
 	}
-	observer?.disconnect()
-	observer = null
+
+	composerObserver?.disconnect()
+	composerObserver = null
+	composerRoot = null
+	removeDomSubscription?.()
+	removeDomSubscription = null
+	removeRouteSubscription?.()
+	removeRouteSubscription = null
 	document.removeEventListener('input', scheduleScan, true)
-	document.removeEventListener('keyup', scheduleScan, true)
 	clearMarkers()
 	active = false
 }

@@ -1,46 +1,67 @@
-/**
- * Minimal tagger for the Intelligence / Configure dialog.
- * Only identifies the dialog and stamps data-gpth-intelligence-dialog.
- * NO selection management — native ChatGPT handles that via checkmark + DOM classes.
- */
+import { subscribeDomMutations } from '../../runtime/domMutations.js'
 
+const DIALOG_ATTR = 'data-gpth-intelligence-dialog'
 let active = false
-let observer = null
+let removeDomSubscription = null
 
 function isIntelligenceDialog(dialog) {
 	const text = dialog.textContent || ''
 	if (!text.includes('Intelligence') || !text.includes('Model')) return false
-	return ['Instant', 'Thinking', 'Pro'].filter((m) => text.includes(m)).length >= 2
+	return ['Instant', 'Thinking', 'Pro'].filter((model) => text.includes(model)).length >= 2
 }
 
-function scan() {
+function getDialogs(root) {
+	if (!(root instanceof HTMLElement)) return []
+	return [
+		...(root.matches('[role="dialog"]') ? [root] : []),
+		...root.querySelectorAll('[role="dialog"]'),
+	]
+}
+
+function scanRoot(root) {
+	for (const dialog of getDialogs(root)) {
+		dialog.toggleAttribute(DIALOG_ATTR, isIntelligenceDialog(dialog))
+	}
+}
+
+function scanDocument() {
 	for (const dialog of document.querySelectorAll('[role="dialog"]')) {
-		if (isIntelligenceDialog(dialog)) {
-			dialog.setAttribute('data-gpth-intelligence-dialog', '')
-		} else if (
-			dialog.hasAttribute('data-gpth-intelligence-dialog') &&
-			!dialog.textContent?.includes('Intelligence')
-		) {
-			dialog.removeAttribute('data-gpth-intelligence-dialog')
+		dialog.toggleAttribute(DIALOG_ATTR, isIntelligenceDialog(dialog))
+	}
+}
+
+function onDomMutations(mutations) {
+	for (const mutation of mutations) {
+		const target =
+			mutation.target instanceof HTMLElement
+				? mutation.target
+				: mutation.target.parentElement
+		const containingDialog = target?.closest?.('[role="dialog"]')
+		if (containingDialog) {
+			containingDialog.toggleAttribute(DIALOG_ATTR, isIntelligenceDialog(containingDialog))
+		}
+
+		for (const node of mutation.addedNodes) {
+			if (node instanceof HTMLElement) scanRoot(node)
 		}
 	}
 }
 
 function mount() {
-	if (active) return
+	if (active) return cleanup
 	active = true
-	scan()
-	observer = new MutationObserver(scan)
-	observer.observe(document.body, { childList: true, subtree: true })
+
+	scanDocument()
+	removeDomSubscription = subscribeDomMutations(onDomMutations)
 	return cleanup
 }
 
 function cleanup() {
-	observer?.disconnect()
-	observer = null
+	removeDomSubscription?.()
+	removeDomSubscription = null
 	active = false
-	document.querySelectorAll('[data-gpth-intelligence-dialog]').forEach((dialog) => {
-		dialog.removeAttribute('data-gpth-intelligence-dialog')
+	document.querySelectorAll(`[${DIALOG_ATTR}]`).forEach((dialog) => {
+		dialog.removeAttribute(DIALOG_ATTR)
 	})
 }
 

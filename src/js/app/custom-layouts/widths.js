@@ -367,6 +367,7 @@ async function init() {
 // Lifecycle: MOUNT
 // =====================================================
 function mount() {
+	updateUI(currentState)
 	setupListeners()
 }
 

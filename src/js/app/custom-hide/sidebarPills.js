@@ -1,28 +1,29 @@
+import { subscribeDomMutations } from '../../runtime/domMutations.js'
 import { rafThrottle } from '../../utils/dom.js'
 
 const PILL_ATTR = 'data-gpth-sidebar-pill'
 const PILL_WRAPPER_ATTR = 'data-gpth-sidebar-pill-wrapper'
 const LABEL_SELECTOR = '.__menu-label'
-
 const PILL_LABELS = {
 	recents: 'recents',
 	gpts: 'gpts',
 }
 
-let observerStarted = false
-let observer = null
+let markerRoot = null
+let markerObserver = null
+let removeRootGuard = null
 let syncOnNextFrame = null
 
 function normalizeLabel(text = '') {
 	return text.replace(/\s+/g, ' ').trim().toLowerCase()
 }
 
-export function syncSidebarPillMarkers() {
+function syncSidebarPillMarkers() {
 	const labels = document.querySelectorAll(LABEL_SELECTOR)
 	if (!labels.length) return
 
-	document.querySelectorAll(`[${PILL_WRAPPER_ATTR}]`).forEach((el) => {
-		el.removeAttribute(PILL_WRAPPER_ATTR)
+	document.querySelectorAll(`[${PILL_WRAPPER_ATTR}]`).forEach((element) => {
+		element.removeAttribute(PILL_WRAPPER_ATTR)
 	})
 
 	for (const label of labels) {
@@ -32,37 +33,65 @@ export function syncSidebarPillMarkers() {
 		if (normalized === PILL_LABELS.recents || normalized === PILL_LABELS.gpts) {
 			label.setAttribute(PILL_ATTR, normalized)
 			wrapper?.setAttribute(PILL_WRAPPER_ATTR, normalized)
-		} else if (label.hasAttribute(PILL_ATTR)) {
+		} else {
 			label.removeAttribute(PILL_ATTR)
 		}
 	}
 }
 
-export function observeSidebarPillMarkers() {
-	if (observerStarted || !document.body) return
+function findMarkerRoot() {
+	const label = document.querySelector(LABEL_SELECTOR)
+	return label?.closest('nav, aside') || label?.parentElement || null
+}
 
-	observerStarted = true
-	syncSidebarPillMarkers()
+function attachMarkerRoot() {
+	const nextRoot = findMarkerRoot()
+	if (!nextRoot || nextRoot === markerRoot) return
+
+	markerObserver?.disconnect()
+	markerRoot = nextRoot
+	markerObserver = new MutationObserver(syncOnNextFrame)
+	markerObserver.observe(markerRoot, {
+		characterData: true,
+		childList: true,
+		subtree: true,
+	})
+	syncOnNextFrame()
+}
+
+function guardMarkerRoot() {
+	if (!markerRoot?.isConnected || !markerRoot.querySelector(LABEL_SELECTOR)) {
+		markerObserver?.disconnect()
+		markerObserver = null
+		markerRoot = null
+		attachMarkerRoot()
+	}
+}
+
+function observeSidebarPillMarkers() {
+	if (removeRootGuard || !document.body) return
 
 	syncOnNextFrame = rafThrottle(syncSidebarPillMarkers)
-	observer = new MutationObserver(() => {
-		syncOnNextFrame()
-	})
+	attachMarkerRoot()
+	syncOnNextFrame()
+	removeRootGuard = subscribeDomMutations(guardMarkerRoot)
+}
 
-	observer.observe(document.body, {
-		subtree: true,
-		childList: true,
-		characterData: true,
+function disconnectSidebarPillMarkers() {
+	markerObserver?.disconnect()
+	markerObserver = null
+	markerRoot = null
+	removeRootGuard?.()
+	removeRootGuard = null
+	syncOnNextFrame = null
+	document.querySelectorAll(`[${PILL_ATTR}], [${PILL_WRAPPER_ATTR}]`).forEach((element) => {
+		element.removeAttribute(PILL_ATTR)
+		element.removeAttribute(PILL_WRAPPER_ATTR)
 	})
 }
 
-export function disconnectSidebarPillMarkers() {
-	observer?.disconnect()
-	observer = null
-	syncOnNextFrame = null
-	observerStarted = false
-	document.querySelectorAll(`[${PILL_ATTR}], [${PILL_WRAPPER_ATTR}]`).forEach((el) => {
-		el.removeAttribute(PILL_ATTR)
-		el.removeAttribute(PILL_WRAPPER_ATTR)
-	})
+export {
+	disconnectSidebarPillMarkers,
+	observeSidebarPillMarkers,
+	syncSidebarPillMarkers,
 }

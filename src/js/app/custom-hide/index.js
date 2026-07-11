@@ -3,37 +3,37 @@ import { getItems, setItem } from '../../utils/storage.js'
 import { Notify } from '../components/renderNotify.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { ELEMENTS } from '../config/consts-hidden-els.js'
-import { SELECTORS } from '../config/selectors'
+import { SELECTORS } from '../config/selectors.js'
 import {
 	disconnectSidebarPillMarkers,
 	observeSidebarPillMarkers,
 	syncSidebarPillMarkers,
 } from './sidebarPills.js'
 
-// =====================================================
-// STATE
-// =====================================================
-// Precompute map for O(1) lookups
-const ELEMENTS_MAP = new Map(ELEMENTS.map((cfg) => [cfg.id, cfg]))
+const ELEMENTS_MAP = new Map(ELEMENTS.map((config) => [config.id, config]))
+const PILL_TOGGLE_IDS = new Set([
+	SELECTORS.HIDE.RECENTS_PILL.TOGGLE_ID,
+	SELECTORS.HIDE.GPTS_PILL.TOGGLE_ID,
+])
+
+let currentStates = {}
+let initialized = false
 let mountedContainer = null
 let mountToken = 0
 
-// =====================================================
-// TEMPLATE
-// =====================================================
 function templateHTML() {
 	if (!Array.isArray(ELEMENTS) || ELEMENTS.length === 0) {
 		console.warn('ELEMENTS array is empty or invalid')
 		return ''
 	}
 
-	const items = ELEMENTS.map((cfg) =>
+	const items = ELEMENTS.map((config) =>
 		renderToggle({
-			id: cfg.id,
-			checked: cfg.isHidden, // false by default = OFF
-			label: cfg.label,
-			subtitle: cfg.subtitle,
-			icon: cfg.icon,
+			id: config.id,
+			checked: config.isHidden,
+			label: config.label,
+			subtitle: config.subtitle,
+			icon: config.icon,
 			card: true,
 			className: '',
 		}),
@@ -49,80 +49,85 @@ function templateHTML() {
 	`
 }
 
-// =====================================================
-// STORAGE
-// =====================================================
-// Save state to storage
-async function saveState(key, value, label) {
+async function saveState(config, value) {
 	try {
-		await setItem(key, value)
-
-		const element = label ? label.replace('Hide ', '') : 'Element'
+		await setItem(config.storageKey, value)
+		const element = config.label?.replace('Hide ', '') || 'Element'
 		value ? Notify.info(`😶‍🌫️ ${element} hidden`) : Notify.success(`👁️ ${element} shown`)
 		return true
-	} catch (e) {
-		Notify.error(`Failed to hide element`)
-		console.error('Failed to save toggle state', key, e)
+	} catch (error) {
+		Notify.error('Failed to hide element')
+		console.error('Failed to save toggle state:', config.storageKey, error)
 		return false
 	}
 }
-// Load saved state from storage
+
 async function loadState() {
-	try {
-		const result = await getItems(ELEMENTS.map((cfg) => cfg.storageKey))
-
-		return result
-	} catch (error) {
-		console.error('Failed to load toggle states:', error)
-		return {}
-	}
+	return getItems(ELEMENTS.map((config) => config.storageKey))
 }
 
-// =====================================================
-// UPDATE CSS/DOM
-// =====================================================
-// Apply data attribute without saving
-function updateDataAttr(dataAttr, isHidden) {
-	if (!dataAttr || !ROOT_HTML) return
+function applyState(config, isHidden) {
+	ROOT_HTML.toggleAttribute(config.dataAttr, isHidden)
+}
 
-	if (isHidden) {
-		// When element should be hidden, SET the data attr
-		ROOT_HTML.setAttribute(dataAttr, '')
+function shouldObserveSidebarPills() {
+	return ELEMENTS.some(
+		(config) => PILL_TOGGLE_IDS.has(config.id) && currentStates[config.storageKey] === true,
+	)
+}
+
+function syncSidebarPillObservation() {
+	if (shouldObserveSidebarPills()) {
+		observeSidebarPillMarkers()
+		syncSidebarPillMarkers()
 	} else {
-		// When element should be shown, REMOVE the data attr
-		ROOT_HTML.removeAttribute(dataAttr)
+		disconnectSidebarPillMarkers()
 	}
-
-	// When element should be hidden, ADD the data attr. When element should be shown, REMOVE the data attr
-	// isHidden ? ROOT_HTML.setAttribute(dataAttr, '') : ROOT_HTML.removeAttribute(dataAttr)
 }
 
-// Handle toggle change - check element existence ON EVERY TOGGLE
-function onChange({ target }) {
+function updateInputs(container) {
+	for (const config of ELEMENTS) {
+		const input = $(`#${config.id}`, container)
+		if (input) input.checked = currentStates[config.storageKey] ?? config.isHidden
+	}
+}
+
+async function onChange({ target }) {
 	if (!target.matches('input[type="checkbox"]')) return
 
-	const cfg = ELEMENTS_MAP.get(target.id)
-	if (!cfg) return
+	const config = ELEMENTS_MAP.get(target.id)
+	if (!config) return
 
-	syncSidebarPillMarkers()
-
-	// Check if element exists RIGHT NOW
-	const element = $(cfg.selector)
-	if (!element && !cfg.allowMissing) {
-		Notify.error(`${cfg.label.replace('Hide ', '')} not found on this page`)
-		target.checked = !target.checked // Revert toggle
+	const element = $(config.selector)
+	if (!element && !config.allowMissing) {
+		Notify.error(`${config.label.replace('Hide ', '')} not found on this page`)
+		target.checked = currentStates[config.storageKey] ?? config.isHidden
 		return
 	}
 
 	const isHidden = target.checked
-	updateDataAttr(cfg.dataAttr, isHidden)
-	saveState(cfg.storageKey, isHidden, cfg.label)
+	currentStates[config.storageKey] = isHidden
+	applyState(config, isHidden)
+	if (PILL_TOGGLE_IDS.has(config.id)) syncSidebarPillObservation()
+	await saveState(config, isHidden)
 }
 
-// =====================================================
-// Lifecycle: MOUNT
-// =====================================================
-// Hydrate and wire events after render
+async function init() {
+	const savedStates = await loadState()
+	currentStates = {}
+
+	for (const config of ELEMENTS) {
+		const saved = savedStates?.[config.storageKey]
+		const isHidden = typeof saved === 'boolean' ? saved : config.isHidden
+		currentStates[config.storageKey] = isHidden
+		applyState(config, isHidden)
+	}
+
+	syncSidebarPillObservation()
+	initialized = true
+	return currentStates
+}
+
 async function mount() {
 	const token = ++mountToken
 	const container = document.getElementById(SELECTORS.HIDE.CONTAINER_ID)
@@ -131,33 +136,13 @@ async function mount() {
 		return
 	}
 
-	try {
-		observeSidebarPillMarkers()
+	if (!initialized) await init()
+	if (token !== mountToken || !container.isConnected) return
 
-		// Load all states in parallel
-		const savedStates = await loadState()
-		if (token !== mountToken || !container.isConnected) return
-
-		// Apply saved states
-		for (const cfg of ELEMENTS) {
-			const saved = savedStates?.[cfg.storageKey]
-			const isHidden = typeof saved === 'boolean' ? saved : cfg.isHidden
-
-			const input = $(`#${cfg.id}`, container)
-			if (input) input.checked = isHidden
-			updateDataAttr(cfg.dataAttr, isHidden)
-		}
-	} catch (e) {
-		Notify.error('Failed to load hide settings')
-		console.error('Failed to load hide controls: ', e)
-	} finally {
-		if (token === mountToken && container.isConnected) {
-			// ALWAYS attach the listener, even if loading state failed
-			container.removeEventListener('change', onChange)
-			container.addEventListener('change', onChange)
-			mountedContainer = container
-		}
-	}
+	updateInputs(container)
+	container.removeEventListener('change', onChange)
+	container.addEventListener('change', onChange)
+	mountedContainer = container
 }
 
 function cleanup() {
@@ -165,6 +150,7 @@ function cleanup() {
 	mountedContainer?.removeEventListener('change', onChange)
 	mountedContainer = null
 	disconnectSidebarPillMarkers()
+	initialized = false
 }
 
-export { cleanup, templateHTML as renderCustomHides, mount }
+export { cleanup, init, mount, templateHTML as renderCustomHides }

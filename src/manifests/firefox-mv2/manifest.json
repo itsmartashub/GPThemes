@@ -12,14 +12,37 @@
 	},
 	"content_scripts": [
 		{
-			"matches": ["https://chat.openai.com/*", "https://chatgpt.com/*"],
-			"js": ["../../js/inject-theme.js", "../../js/content.js"],
-			"css": ["../../sass/index.scss"],
+			"matches": [
+				"https://chat.openai.com/*",
+				"https://chatgpt.com/*"
+			],
+			"js": [
+				"../../js/inject-theme.js"
+			],
+			"css": [
+				"../../sass/index.scss"
+			],
 			"run_at": "document_start"
+		},
+		{
+			"matches": [
+				"https://chat.openai.com/*",
+				"https://chatgpt.com/*"
+			],
+			"js": [
+				"../../js/content.js"
+			],
+			"run_at": "document_idle"
 		}
 	],
-	"permissions": ["storage", "https://chat.openai.com/*", "https://chatgpt.com/*"],
-	"web_accessible_resources": ["*.png"],
+	"permissions": [
+		"storage",
+		"https://chat.openai.com/*",
+		"https://chatgpt.com/*"
+	],
+	"web_accessible_resources": [
+		"*.png"
+	],
 	"browser_specific_settings": {
 		"gecko": {
 			"id": "gpthemes@itsmarta",
@@ -27,7 +50,9 @@
 		}
 	},
 	"background": {
-		"scripts": ["../../js/background/index.js"],
+		"scripts": [
+			"../../js/background/index.js"
+		],
 		"persistent": false
 	},
 	"content_security_policy": "script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;",

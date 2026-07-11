@@ -1,8 +1,4 @@
-/**
- * Tagger for the Activity sidebar (Memory, Web, etc.)
- * Stamps data-gpth-activity-panel on the right sidebar container
- * so CSS can reliably target it regardless of ChatGPT's class names.
- */
+import { subscribeDomMutations } from '../../runtime/domMutations.js'
 
 const PANEL_ATTR = 'data-gpth-activity-panel'
 const SURFACE_ATTR = 'data-gpth-activity-surface'
@@ -22,95 +18,92 @@ const SURFACE_SELECTOR = [
 ].join(',')
 
 let active = false
-let observer = null
-let scanTimeout = null
+let removeDomSubscription = null
 
-/** Check if an element looks like the activity/thread flyout sidebar */
-function isActivityPanel(el) {
-	// Check for common right-sidebar indicators
-	if (el.matches('aside, [role="complementary"]')) return true
-	if (el.getAttribute('data-testid')?.match(/flyout|activity/i)) return true
-	if (
-		el.className?.match?.(/flyout|activity|sidebar/i) &&
-		!el.matches('#stage-slideover-sidebar, #stage-popover-sidebar, nav')
+function isActivityPanel(element) {
+	if (element.matches('aside, [role="complementary"]')) return true
+	if (element.getAttribute('data-testid')?.match(/flyout|activity/i)) return true
+	return !!(
+		element.className?.match?.(/flyout|activity|sidebar/i) &&
+		!element.matches('#stage-slideover-sidebar, #stage-popover-sidebar, nav')
 	)
-		return true
-	return false
 }
 
-/** Mark light backgrounds so CSS can theme them without repeated inline writes. */
-function markChildSurfaces(panel) {
-	const children = panel.querySelectorAll(SURFACE_SELECTOR)
-	for (const child of children) {
-		if (!(child instanceof HTMLElement)) continue
-
-		const style = window.getComputedStyle(child)
-		const bg = style.backgroundColor
-		if (!bg || bg === 'transparent' || bg === 'rgba(0, 0, 0, 0)') continue
-
-		// Parse rgb values
-		const match = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/)
-		if (!match) continue
-
-		const [, r, g, b] = match.map(Number)
-		// If the background is light (high luminance), it needs to be overridden
-		const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
-		if (luminance > 0.7) {
-			child.setAttribute(SURFACE_ATTR, '')
-		}
+function isLightBackground(element) {
+	const background = window.getComputedStyle(element).backgroundColor
+	if (!background || background === 'transparent' || background === 'rgba(0, 0, 0, 0)') {
+		return false
 	}
+
+	const match = background.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/)
+	if (!match) return false
+
+	const [, red, green, blue] = match.map(Number)
+	const luminance = (0.299 * red + 0.587 * green + 0.114 * blue) / 255
+	return luminance > 0.7
 }
 
-function scan() {
-	const root = document.querySelector('main') || document.body
-	if (!root) return
-
-	// Tag any activity panel elements
-	const candidates = [
-		...(root.matches(CANDIDATE_SELECTOR) ? [root] : []),
-		...root.querySelectorAll(CANDIDATE_SELECTOR),
+function getMatches(root, selector) {
+	if (!(root instanceof HTMLElement)) return []
+	return [
+		...(root.matches(selector) ? [root] : []),
+		...root.querySelectorAll(selector),
 	]
+}
 
-	for (const el of candidates) {
-		if (!el.hasAttribute(PANEL_ATTR) && isActivityPanel(el)) {
-			el.setAttribute(PANEL_ATTR, '')
-			markChildSurfaces(el)
+function markChildSurfaces(panel, root = panel) {
+	for (const element of getMatches(root, SURFACE_SELECTOR)) {
+		if (panel.contains(element) && isLightBackground(element)) {
+			element.setAttribute(SURFACE_ATTR, '')
 		}
 	}
+}
 
-	// Also force backgrounds on already-tagged panels when DOM changes
-	for (const panel of root.querySelectorAll(`[${PANEL_ATTR}]`)) {
-		markChildSurfaces(panel)
+function markPanel(panel) {
+	if (!panel.hasAttribute(PANEL_ATTR)) panel.setAttribute(PANEL_ATTR, '')
+	markChildSurfaces(panel)
+}
+
+function scanRoot(root) {
+	if (!(root instanceof HTMLElement)) return
+
+	const containingPanel = root.closest(`[${PANEL_ATTR}]`)
+	if (containingPanel) markChildSurfaces(containingPanel, root)
+
+	for (const element of getMatches(root, CANDIDATE_SELECTOR)) {
+		if (isActivityPanel(element)) markPanel(element)
+	}
+}
+
+function scanDocument() {
+	const root = document.querySelector('main') || document.body
+	if (root instanceof HTMLElement) scanRoot(root)
+}
+
+function onDomMutations(mutations) {
+	for (const mutation of mutations) {
+		for (const node of mutation.addedNodes) {
+			if (node instanceof HTMLElement) scanRoot(node)
+		}
 	}
 }
 
 function mount() {
-	if (active) return
+	if (active) return cleanup
 	active = true
 
-	// Initial scan
-	scan()
-
-	observer = new MutationObserver(() => {
-		if (scanTimeout) clearTimeout(scanTimeout)
-		scanTimeout = setTimeout(scan, 150)
-	})
-
-	observer.observe(document.body, { childList: true, subtree: true })
+	scanDocument()
+	removeDomSubscription = subscribeDomMutations(onDomMutations)
 	return cleanup
 }
 
 function cleanup() {
-	if (scanTimeout) {
-		clearTimeout(scanTimeout)
-		scanTimeout = null
-	}
-	observer?.disconnect()
-	observer = null
+	removeDomSubscription?.()
+	removeDomSubscription = null
 	active = false
-	document.querySelectorAll(`[${PANEL_ATTR}], [${SURFACE_ATTR}]`).forEach((el) => {
-		el.removeAttribute(PANEL_ATTR)
-		el.removeAttribute(SURFACE_ATTR)
+	document.querySelectorAll(`[${PANEL_ATTR}], [${SURFACE_ATTR}]`).forEach((element) => {
+		element.removeAttribute(PANEL_ATTR)
+		element.removeAttribute(SURFACE_ATTR)
 	})
 }
 

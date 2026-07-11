@@ -11,11 +11,13 @@ import {
 } from './accentColors.js'
 import {
 	cleanup as cleanupAllTextAccent,
+	init as initAllTextAccent,
 	mount as mountAllTextAccent,
 	renderAllTextAccent,
 } from './toggleAccentAllText.js'
 import {
 	cleanup as cleanupUserBubbleAccent,
+	init as initUserBubbleAccent,
 	mount as mountUserBubbleAccent,
 	renderUserAccentBgToggle,
 } from './toggleAccentUserBubble.js'
@@ -66,7 +68,7 @@ let mountedResetBtn = null
 // =====================================================
 async function init() {
 	// console.log('[INIT COLORS]')
-	await initAccentColors()
+	await Promise.all([initAccentColors(), initUserBubbleAccent(), initAllTextAccent()])
 }
 
 // =====================================================

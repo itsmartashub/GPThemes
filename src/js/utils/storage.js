@@ -95,7 +95,7 @@ async function getStorage(area = DEFAULT_AREA) {
 		return allData
 	} catch (err) {
 		console.error('[storage:getAllKeys]', err)
-		return []
+		return {}
 	}
 }
 // Get all keys in storage area

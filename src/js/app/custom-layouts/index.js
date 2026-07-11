@@ -1,6 +1,7 @@
 import { renderSeparator } from '../components/renderUtils.js'
 import {
 	cleanup as cleanupCustomHides,
+	init as initCustomHides,
 	mount as mountCustomHides,
 	renderCustomHides,
 } from '../custom-hide/index.js'
@@ -11,18 +12,19 @@ import {
 } from './intelligenceDialog.js'
 import {
 	cleanup as cleanupChatBubbles,
+	init as initChatBubbles,
 	mount as mountChatBubbles,
 	renderCustomChatBubbles,
 } from './toggleChatBubbles.js'
-// Import child modules
-// import { mount as mountScrolldown, renderCustomScrolldown } from './scrolldown.js'
 import {
 	cleanup as cleanupCustomChatboxHeight,
+	init as initCustomChatboxHeight,
 	mount as mountCustomChatboxHeight,
 	renderCustomChatboxHeight,
 } from './toggleChatboxHeight.js'
 import {
 	cleanup as cleanupPulseCards,
+	init as initPulseCards,
 	mount as mountPulseCards,
 	renderExpandPulseCards,
 } from './togglePulseCards.js'
@@ -33,15 +35,12 @@ import {
 	templateHTML as renderWidthsSection,
 } from './widths.js'
 
-// =====================================================
-// TEMPLATE
-// =====================================================
+let runtimeMarkersMounted = false
 
 function templateHTML() {
 	return `
 		<section id="sectionLayouts" class="gpth-layouts">
 			${renderWidthsSection()}
-			
 			${renderSeparator}
 			${renderCustomHides()}
 			${renderSeparator}
@@ -49,61 +48,45 @@ function templateHTML() {
 			${renderExpandPulseCards()}
 			${renderSeparator}
 			${renderCustomChatBubbles()}
-			</section>`
+		</section>
+	`
 }
-// ${renderSeparator}
-// ${renderCustomScrolldown()}
-
-// =====================================================
-// LISTENERS - RESET
-// =====================================================
-
-// function onResetAll() {
-// 	resetWidths()
-// }
-
-// =====================================================
-// Lifecycle: INIT
-// =====================================================
 
 async function init() {
-	// console.log('[INIT LAYOUT]')
-	await initWidths()
+	await Promise.all([
+		initWidths(),
+		initCustomHides(),
+		initCustomChatboxHeight(),
+		initPulseCards(),
+		initChatBubbles(),
+	])
+
+	if (!runtimeMarkersMounted) {
+		mountIntelligenceDialog()
+		mountActivityPanel()
+		runtimeMarkersMounted = true
+	}
 }
 
-// =====================================================
-// Lifecycle: MOUNT
-// =====================================================
-
-function mount() {
-	// console.log('[MOUNT LAYOUT]')
-	cleanup()
-
-	// Mount width management
-	mountWidths()
-
-	// Mount other child modules
-	mountCustomChatboxHeight()
-	mountPulseCards()
-	mountChatBubbles()
-	mountIntelligenceDialog()
-	mountActivityPanel()
-
-	// mountScrolldown()
-	mountCustomHides()
+async function mount() {
+	await Promise.all([
+		mountWidths(),
+		mountCustomHides(),
+		mountCustomChatboxHeight(),
+		mountPulseCards(),
+		mountChatBubbles(),
+	])
 }
 
 function cleanup() {
 	cleanupWidths()
+	cleanupCustomHides()
+	cleanupCustomChatboxHeight()
+	cleanupPulseCards()
+	cleanupChatBubbles()
 	cleanupIntelligenceDialog()
 	cleanupActivityPanel()
-	cleanupPulseCards()
-	cleanupCustomChatboxHeight()
-	cleanupChatBubbles()
-	cleanupCustomHides()
+	runtimeMarkersMounted = false
 }
 
-// =====================================================
-// Exports
-// =====================================================
 export { cleanup, init, mount, templateHTML as renderLayoutsTab }

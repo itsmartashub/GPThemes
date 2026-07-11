@@ -1,149 +1,15 @@
 import browser from 'webextension-polyfill'
 import faviconUrl from 'url:../assets/icons/32.png'
-import { init as initFAB } from './app/custom-fab/index'
-import { mount as mountSuggestedPrompts } from './app/custom-layouts/suggestedPrompts'
-import { init as initThemes } from './app/themeManager'
-
-// !! Chat bubbles and chatbox height are mounted from custom-layouts after Settings render !!
-// !! User bubble accent toggle is mounted from Colors module after Settings render !!
-
-const CONFIG = {
-	// TARGET_SELECTOR: '.gpth-settings',
-	TARGET_SELECTOR: '.gpth-fab',
-	RETRY_DELAY: 3000,
-	MAX_RETRIES: 4,
-}
+import { init as initFAB } from './app/custom-fab/index.js'
+import { mount as mountSuggestedPrompts } from './app/custom-layouts/suggestedPrompts.js'
+import { mount as mountLibraryPageMarkers } from './app/pageMarkers/library.js'
+import { init as initThemes } from './app/themeManager.js'
+import { subscribeDomMutations } from './runtime/domMutations.js'
 
 const CLEANUP_KEY = '_gpthCleanup'
-
-const PAGE_ATTRS = {
-	LIBRARY: 'data-gpth-page-library',
-}
-const LIBRARY_HEADER_ATTR = 'data-gpth-library-header-control'
-const LIBRARY_UPLOAD_ATTR = 'data-gpth-library-upload-button'
-const LIBRARY_HEADER_LABEL_PATTERN = /^(Name|Modified|Size)\b/
-const LIBRARY_HEADER_SELECTOR = [
-	'button',
-	'[role="button"]',
-	'[aria-sort]',
-	'[role="columnheader"]',
-	'th',
-	'span',
-	'div',
-	'label',
-	'p',
-].join(',')
-
-// Track number of attempts
-let retryCount = 0
-let retryTimeout = null // For cleanup
 const runtimeCleanups = []
-let routeObserverStarted = false
-let routeObserver = null
-let routeScanFrame = null
-let lastRoutePath = ''
-
-function addCleanup(cleanup) {
-	if (typeof cleanup === 'function') runtimeCleanups.push(cleanup)
-}
-
-function normalizeLibraryLabel(text) {
-	return text?.trim().replace(/\s+/g, ' ') || ''
-}
-
-function markLibraryHeaderNode(el) {
-	if (!(el instanceof HTMLElement)) return
-
-	const target =
-		el.closest('button, [role="button"], [aria-sort], th, [role="columnheader"]') || el
-
-	target.setAttribute(LIBRARY_HEADER_ATTR, '')
-	el.setAttribute(LIBRARY_HEADER_ATTR, '')
-
-	let current = target
-	for (let depth = 0; depth < 6; depth++) {
-		const parent = current.parentElement
-		if (!parent || parent.matches('main')) break
-
-		const parentText = normalizeLibraryLabel(parent.textContent)
-		if (parentText.length > 90) break
-
-		parent.setAttribute(LIBRARY_HEADER_ATTR, '')
-		current = parent
-	}
-}
-
-function clearLibraryMarkers(main) {
-	main.querySelectorAll(`[${LIBRARY_HEADER_ATTR}], [${LIBRARY_UPLOAD_ATTR}]`).forEach((el) => {
-		el.removeAttribute(LIBRARY_HEADER_ATTR)
-		el.removeAttribute(LIBRARY_UPLOAD_ATTR)
-	})
-}
-
-function markLibraryUploadButton(main) {
-	main.querySelectorAll('button, a, [role="button"]').forEach((el) => {
-		if (normalizeLibraryLabel(el.textContent) !== 'Upload') return
-
-		el.setAttribute(LIBRARY_UPLOAD_ATTR, '')
-	})
-}
-
-function markLibraryHeaderControls(main) {
-	if (!main) return
-
-	clearLibraryMarkers(main)
-
-	main.querySelectorAll(LIBRARY_HEADER_SELECTOR).forEach((el) => {
-		const label = normalizeLibraryLabel(el.textContent)
-		if (!LIBRARY_HEADER_LABEL_PATTERN.test(label)) return
-
-		markLibraryHeaderNode(el)
-	})
-
-	const textWalker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
-		acceptNode(node) {
-			return LIBRARY_HEADER_LABEL_PATTERN.test(normalizeLibraryLabel(node.textContent))
-				? NodeFilter.FILTER_ACCEPT
-				: NodeFilter.FILTER_REJECT
-		},
-	})
-
-	let node = textWalker.nextNode()
-	while (node) {
-		markLibraryHeaderNode(node.parentElement)
-		node = textWalker.nextNode()
-	}
-}
-
-function updatePageAttrs() {
-	const path = location.pathname
-	const currentPage = path.split('/').filter(Boolean)[0]
-	const isLibrary = currentPage === 'library'
-
-	if (path !== lastRoutePath) {
-		lastRoutePath = path
-		document.documentElement.toggleAttribute(PAGE_ATTRS.LIBRARY, isLibrary)
-	}
-
-	if (isLibrary) {
-		const main = document.querySelector('main')
-		if (!main) return
-
-		markLibraryHeaderControls(main)
-		markLibraryUploadButton(main)
-	}
-}
-
-function scheduleRouteScan() {
-	if (routeScanFrame) return
-
-	routeScanFrame = window.requestAnimationFrame(() => {
-		routeScanFrame = null
-		updatePageAttrs()
-	})
-}
-
-let faviconObserver = null
+let started = false
+let lifecycleGeneration = 0
 
 function resolveExtensionUrl(assetUrl) {
 	if (typeof assetUrl !== 'string') return null
@@ -151,202 +17,162 @@ function resolveExtensionUrl(assetUrl) {
 	return browser.runtime.getURL(assetUrl.replace(/^\//, ''))
 }
 
-function observeFavicon() {
-	if (faviconObserver) return
-
-	const targetNode = document.head
-	if (!targetNode) {
-		if (document.documentElement) {
-			const headObserver = new MutationObserver(() => {
-				if (document.head) {
-					headObserver.disconnect()
-					observeFavicon()
-				}
-			})
-			headObserver.observe(document.documentElement, { childList: true })
-		}
-		return
-	}
-
+function installFavicon() {
 	const resolvedUrl = resolveExtensionUrl(faviconUrl)
-	if (!resolvedUrl) {
-		console.warn('[🎨GPThemes]: Could not resolve favicon URL')
-		return
+	const head = document.head
+	if (!resolvedUrl || !head) return
+
+	const originalHrefs = new Map()
+	const existingManagedLink = head.querySelector('link[data-gpth-favicon]')
+	const managedLink = existingManagedLink || document.createElement('link')
+	const createdManagedLink = !existingManagedLink
+
+	if (createdManagedLink) {
+		managedLink.rel = 'icon'
+		managedLink.setAttribute('data-gpth-favicon', '')
+		head.appendChild(managedLink)
 	}
 
 	const applyFavicon = () => {
-		const links = document.querySelectorAll("link[rel*='icon']")
-		if (links.length === 0) {
-			const link = document.createElement('link')
-			link.rel = 'icon'
-			link.href = resolvedUrl
-			document.head.appendChild(link)
-		} else {
-			links.forEach((link) => {
-				if (link.getAttribute('href') !== resolvedUrl) {
-					link.href = resolvedUrl
-				}
-			})
+		if (!managedLink.isConnected) head.appendChild(managedLink)
+
+		const links = head.querySelectorAll("link[rel*='icon']")
+		for (const link of links) {
+			if (!originalHrefs.has(link)) originalHrefs.set(link, link.getAttribute('href'))
+			if (link.getAttribute('href') !== resolvedUrl) link.setAttribute('href', resolvedUrl)
 		}
 	}
 
 	applyFavicon()
+	const observer = new MutationObserver(applyFavicon)
+	observer.observe(head, {
+		attributeFilter: ['href', 'rel'],
+		attributes: true,
+		childList: true,
+		subtree: true,
+	})
 
-	faviconObserver = new MutationObserver((mutations) => {
-		for (const mutation of mutations) {
-			if (mutation.type === 'childList') {
-				applyFavicon()
-			}
+	return () => {
+		observer.disconnect()
+		for (const [link, originalHref] of originalHrefs) {
+			if (!link.isConnected || link === managedLink) continue
+			if (originalHref == null) link.removeAttribute('href')
+			else link.setAttribute('href', originalHref)
 		}
-	})
-
-	faviconObserver.observe(targetNode, { childList: true, subtree: true })
-	addCleanup(() => {
-		faviconObserver?.disconnect()
-		faviconObserver = null
-	})
+		if (createdManagedLink) managedLink.remove()
+	}
 }
 
-function observePageRoute() {
-	if (routeObserverStarted || !document.body) return
-	routeObserverStarted = true
-	updatePageAttrs()
-
-	routeObserver = new MutationObserver(scheduleRouteScan)
-	routeObserver.observe(document.body, { childList: true, subtree: true })
-	window.addEventListener('popstate', updatePageAttrs)
-
-	addCleanup(() => {
-		if (routeScanFrame) {
-			window.cancelAnimationFrame(routeScanFrame)
-			routeScanFrame = null
-		}
-		routeObserver?.disconnect()
-		routeObserver = null
-		routeObserverStarted = false
-		lastRoutePath = ''
-		document.documentElement.removeAttribute(PAGE_ATTRS.LIBRARY)
-		window.removeEventListener('popstate', updatePageAttrs)
-	})
+function addCleanup(cleanup) {
+	if (typeof cleanup === 'function') runtimeCleanups.push(cleanup)
 }
 
-// Main init fn
-async function initExt(themeCleanup = null) {
-	// console.log(`[🎨GPThemes]: Initializing components (attempt ${retryCount + 1}/${CONFIG.MAX_RETRIES})`)
-	if (!document.body) return false
+function isCurrentLifecycle(generation) {
+	return started && generation === lifecycleGeneration
+}
 
+function disposeFeature(name, cleanup) {
+	if (typeof cleanup !== 'function') return
 	try {
-		observeFavicon()
-		observePageRoute()
-		addCleanup(mountSuggestedPrompts())
-		addCleanup(themeCleanup || initThemes())
-		addCleanup(await initFAB())
-		// !! Settings modules (colors, fonts, layouts) are initialized inside settingsManager after DOM attach !!
+		cleanup()
 	} catch (error) {
-		console.error('[🎨GPThemes]: Critical initialization error:', error)
-		disposeRuntimeModules()
+		console.warn(`[GPThemes] ${name} stale initialization cleanup failed:`, error)
+	}
+}
+
+async function mountFeature(name, initializer, generation) {
+	try {
+		const cleanup = await initializer()
+		if (!isCurrentLifecycle(generation)) {
+			disposeFeature(name, cleanup)
+			return false
+		}
+
+		addCleanup(cleanup)
+		return true
+	} catch (error) {
+		console.error(`[GPThemes] ${name} failed to initialize:`, error)
 		return false
 	}
-
-	// Verify that the element survived possible React hydration
-	if (!document.querySelector(CONFIG.TARGET_SELECTOR)) {
-		disposeRuntimeModules()
-		return false
-	}
-
-	return true
 }
 
-function disposeRuntimeModules() {
-	while (runtimeCleanups.length) {
-		const cleanup = runtimeCleanups.pop()
-		try {
-			cleanup()
-		} catch (error) {
-			console.warn('[🎨GPThemes]: Cleanup failed:', error)
+async function mountFloatingThemeMenu() {
+	let disposed = false
+	let fabCleanup = null
+	let remountPromise = null
+
+	async function mountFAB() {
+		const cleanup = await initFAB()
+		if (disposed) {
+			disposeFeature('floating theme menu', cleanup)
+			return
 		}
+		fabCleanup = cleanup
 	}
-}
 
-function clearRetry() {
-	if (retryTimeout) {
-		clearTimeout(retryTimeout)
-		retryTimeout = null
+	function ensureFAB() {
+		if (disposed || document.querySelector('.gpth-fab') || remountPromise) return
+
+		disposeFeature('floating theme menu', fabCleanup)
+		fabCleanup = null
+		remountPromise = mountFAB()
+			.catch((error) => {
+				console.error('[GPThemes] Floating theme menu remount failed:', error)
+			})
+			.finally(() => {
+				remountPromise = null
+			})
 	}
-}
 
-// Schedule retries with exponential backoff
-function scheduleRetry() {
-	clearRetry()
-	retryCount++
+	await mountFAB()
+	if (disposed) return
 
-	if (retryCount <= CONFIG.MAX_RETRIES) {
-		const delay = CONFIG.RETRY_DELAY * retryCount
+	const removeGuard = subscribeDomMutations(ensureFAB)
+	ensureFAB()
 
-		// console.log(`[🎨GPThemes]: Scheduling retry ${retryCount}/${CONFIG.MAX_RETRIES} in ${delay}ms`)
-
-		retryTimeout = setTimeout(async () => {
-			console.info(
-				'[🎨GPThemes]: Re-initializing extension (possible React hydration issue: "Minified React error #XXX;" above?)',
-			)
-
-			if (await initExt()) {
-				// console.log('Injection successful')
-				retryCount = 0
-				clearRetry()
-			} else {
-				scheduleRetry()
-			}
-		}, delay)
-	} else {
-		console.log('[🎨GPThemes]: Maximum retries reached')
+	return () => {
+		disposed = true
+		removeGuard()
+		disposeFeature('floating theme menu', fabCleanup)
+		fabCleanup = null
 	}
-}
-
-// Cleanup fn
-function cleanup() {
-	clearRetry()
-	disposeRuntimeModules()
-}
-
-// Emergency cleanup if script re-runs
-if (typeof window[CLEANUP_KEY] === 'function') window[CLEANUP_KEY]()
-window[CLEANUP_KEY] = cleanup
-
-let initialThemeCleanup = initThemes()
-let guardianObserver = null
-
-function startGuardian() {
-	if (guardianObserver || !document.body) return
-	guardianObserver = new MutationObserver(() => {
-		if (retryCount === 0 && !document.querySelector(CONFIG.TARGET_SELECTOR)) {
-			console.info('[🎨GPThemes]: Element missing from body. Re-initializing...')
-			disposeRuntimeModules()
-			start()
-		}
-	})
-	guardianObserver.observe(document.body, { childList: true })
-	addCleanup(() => {
-		guardianObserver?.disconnect()
-		guardianObserver = null
-	})
 }
 
 async function start() {
-	const initialized = await initExt(initialThemeCleanup)
-	initialThemeCleanup = null // prevent reuse
-	if (initialized) {
-		console.log('[🎨GPThemes]: Components initialized')
-		retryCount = 0
-		clearRetry()
-		startGuardian()
-		return
-	}
+	if (started || !document.body) return
+	started = true
+	const generation = ++lifecycleGeneration
 
-	scheduleRetry()
+	await Promise.all([
+		mountFeature('theme manager', initThemes, generation),
+		mountFeature('favicon', installFavicon, generation),
+		mountFeature('library page markers', mountLibraryPageMarkers, generation),
+		mountFeature('suggested prompt markers', mountSuggestedPrompts, generation),
+	])
+	if (!isCurrentLifecycle(generation)) return
+
+	await mountFeature('floating theme menu', mountFloatingThemeMenu, generation)
+	if (!isCurrentLifecycle(generation)) return
+
+	console.info('[GPThemes] Runtime initialized')
 }
 
-// Initial run
+function cleanup() {
+	started = false
+	lifecycleGeneration++
+	while (runtimeCleanups.length) {
+		const dispose = runtimeCleanups.pop()
+		try {
+			dispose()
+		} catch (error) {
+			console.warn('[GPThemes] Runtime cleanup failed:', error)
+		}
+	}
+}
+
+if (typeof window[CLEANUP_KEY] === 'function') window[CLEANUP_KEY]()
+window[CLEANUP_KEY] = cleanup
+
 if (document.body) {
 	start()
 } else {

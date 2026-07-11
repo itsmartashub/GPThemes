@@ -1,102 +1,89 @@
-import { onToggleSettings } from './settingsManager.js'
-
-// =====================================================
-// CONSTANTS
-// =====================================================
-
 const THEMES = {
 	LIGHT: 'light',
 	DARK: 'dark',
 	SYSTEM: 'system',
 	OLED: 'oled',
 }
-
 const STORAGE_KEYS = {
 	THEME: 'theme',
 	IS_OLED: 'isOLED',
 }
-
 const ROOT_THEME_CLASSES = [THEMES.LIGHT, THEMES.DARK]
 const OWNED_THEME_CLASSES = Object.values(THEMES).map((theme) => `gpth-theme-${theme}`)
-
 const PREFERS_LIGHT_MEDIA_QUERY = window.matchMedia('(prefers-color-scheme: light)')
 
 let cachedThemeState = null
-let removeSystemPrefListener = null
+let rootObserver = null
+let initialized = false
 
-// =====================================================
-// UTILITY FUNCTIONS
-// =====================================================
-
-// Core theme management
-function getSysTheme() {
+function getSystemTheme() {
 	return PREFERS_LIGHT_MEDIA_QUERY.matches ? THEMES.LIGHT : THEMES.DARK
 }
-// Theme state management
+
 function getStoredThemeState() {
 	if (cachedThemeState) return cachedThemeState
 
 	try {
+		const storedTheme = localStorage.getItem(STORAGE_KEYS.THEME)
+		const storedOLED = localStorage.getItem(STORAGE_KEYS.IS_OLED) === 'true'
 		cachedThemeState = {
-			theme: localStorage.getItem(STORAGE_KEYS.THEME) || THEMES.SYSTEM,
-			isOLED: localStorage.getItem(STORAGE_KEYS.IS_OLED) === 'true',
+			theme:
+				storedTheme === THEMES.OLED
+					? THEMES.DARK
+					: [THEMES.LIGHT, THEMES.DARK, THEMES.SYSTEM].includes(storedTheme)
+						? storedTheme
+						: THEMES.SYSTEM,
+			isOLED: storedTheme === THEMES.OLED || storedOLED,
 		}
 	} catch (error) {
-		console.warn('LocalStorage unavailable, using defaults:', error)
+		console.warn('[GPThemes] Local storage unavailable, using system theme:', error)
 		cachedThemeState = { theme: THEMES.SYSTEM, isOLED: false }
 	}
 
 	return cachedThemeState
 }
+
 function invalidateThemeCache() {
 	cachedThemeState = null
 }
 
-// =====================================================
-// UPDATE CSS/DOM (DOm manipulation)
-// =====================================================
+function resolveTheme(theme, isOLED) {
+	const effectiveTheme = theme === THEMES.SYSTEM ? getSystemTheme() : theme
+	const displayTheme = effectiveTheme === THEMES.DARK && isOLED ? THEMES.OLED : effectiveTheme
+	return { displayTheme, effectiveTheme }
+}
+
 function setRootTheme(theme, isOLED) {
 	const root = document.documentElement
-	const effectiveTheme = theme === THEMES.SYSTEM ? getSysTheme() : theme
-	const dataAttrTheme = effectiveTheme === THEMES.DARK && isOLED ? THEMES.OLED : effectiveTheme
+	if (!root) return
 
+	const { displayTheme, effectiveTheme } = resolveTheme(theme, isOLED)
 	root.classList.remove(...ROOT_THEME_CLASSES, ...OWNED_THEME_CLASSES)
-	root.classList.add(effectiveTheme, `gpth-theme-${dataAttrTheme}`)
+	root.classList.add(effectiveTheme, `gpth-theme-${displayTheme}`)
 	root.style.colorScheme = effectiveTheme
-	root.dataset.gpthTheme = dataAttrTheme
-	root.dataset.gptheme = dataAttrTheme
+	root.dataset.gpthTheme = displayTheme
+	root.dataset.gptheme = displayTheme
 }
 
-function updateTheme(newTheme, isOLED = false) {
-	// const { theme: currentTheme } = getStoredThemeState()
+function isThemeApplied(theme, isOLED) {
+	const root = document.documentElement
+	if (!root) return false
 
-	// // Get storage theme value and skip if no change
-	// if (currentTheme === newTheme && String(isOLED) === localStorage.getItem(STORAGE_KEYS.IS_OLED)) return
-
-	const { theme: currTheme, isOLED: currIsOLED } = getStoredThemeState()
-
-	// Skip if no change
-	// Skip if no change
-	if (currTheme === newTheme && currIsOLED === isOLED) return
-
-	// Update storage if theme changed
-	try {
-		localStorage.setItem(STORAGE_KEYS.THEME, newTheme)
-		localStorage.setItem(STORAGE_KEYS.IS_OLED, String(isOLED))
-		invalidateThemeCache()
-	} catch (error) {
-		console.error('Failed to save theme:', error)
-		return
-	}
-
-	// Update DOM
-	setRootTheme(newTheme, isOLED)
-
-	// Update Canvas theme
-	broadcastThemeChange(newTheme)
+	const { displayTheme, effectiveTheme } = resolveTheme(theme, isOLED)
+	return (
+		root.classList.contains(effectiveTheme) &&
+		root.classList.contains(`gpth-theme-${displayTheme}`) &&
+		root.style.colorScheme === effectiveTheme &&
+		root.dataset.gpthTheme === displayTheme &&
+		root.dataset.gptheme === displayTheme
+	)
 }
 
-// Notify other tabs/windows (this update GPT's CodeMirror (Canvas) theme w/o need for page reloading)
+function ensureStoredTheme() {
+	const { theme, isOLED } = getStoredThemeState()
+	if (!isThemeApplied(theme, isOLED)) setRootTheme(theme, isOLED)
+}
+
 function broadcastThemeChange(newTheme) {
 	window.dispatchEvent(
 		new StorageEvent('storage', {
@@ -107,64 +94,77 @@ function broadcastThemeChange(newTheme) {
 	)
 }
 
-// =====================================================
-// EVENTS
-// =====================================================
-function onChangeTheme(e) {
-	const themeBtn = e.target.closest('button[data-gpth-dock-btn]')
-	if (!themeBtn) return
+function updateTheme(newTheme, isOLED = false) {
+	const current = getStoredThemeState()
+	if (current.theme === newTheme && current.isOLED === isOLED) {
+		ensureStoredTheme()
+		return
+	}
 
-	const themeId = themeBtn.id
+	try {
+		localStorage.setItem(STORAGE_KEYS.THEME, newTheme)
+		localStorage.setItem(STORAGE_KEYS.IS_OLED, String(isOLED))
+		invalidateThemeCache()
+	} catch (error) {
+		console.error('[GPThemes] Failed to save theme:', error)
+		return
+	}
 
-	switch (themeId) {
+	setRootTheme(newTheme, isOLED)
+	broadcastThemeChange(newTheme)
+}
+
+function onChangeTheme(event) {
+	const themeButton = event.target.closest('button[data-gpth-dock-btn]')
+	if (!themeButton) return false
+
+	switch (themeButton.id) {
 		case THEMES.LIGHT:
 		case THEMES.DARK:
 		case THEMES.SYSTEM:
-			updateTheme(themeId, false)
-			break
+			updateTheme(themeButton.id, false)
+			return true
 		case THEMES.OLED:
 			updateTheme(THEMES.DARK, true)
-			break
-		case 'gpth-open-settings':
-			onToggleSettings()
-			break
+			return true
 		default:
-			console.warn(`Unknown theme: ${themeId}`)
+			return false
 	}
 }
 
-// System pref handler
-function onSystemPrefChange() {
-	const { theme, isOLED } = getStoredThemeState()
-	if (theme === THEMES.SYSTEM) {
-		setRootTheme(THEMES.SYSTEM, isOLED)
-	}
+function onSystemPreferenceChange() {
+	const { theme } = getStoredThemeState()
+	if (theme === THEMES.SYSTEM) ensureStoredTheme()
 }
 
-// =====================================================
-// Lifecycle: INIT
-// =====================================================
+function onStorageChange(event) {
+	if (event.key !== STORAGE_KEYS.THEME && event.key !== STORAGE_KEYS.IS_OLED) return
+	invalidateThemeCache()
+	ensureStoredTheme()
+}
+
 function init() {
-	const { theme, isOLED } = getStoredThemeState()
-	setRootTheme(theme, isOLED)
+	if (initialized) return cleanup
+	initialized = true
 
-	// Add event listener for theme change based on sys pref
-	if (!removeSystemPrefListener) {
-		PREFERS_LIGHT_MEDIA_QUERY.addEventListener('change', onSystemPrefChange)
-		removeSystemPrefListener = () => {
-			PREFERS_LIGHT_MEDIA_QUERY.removeEventListener('change', onSystemPrefChange)
-			removeSystemPrefListener = null
-			invalidateThemeCache()
-		}
-	}
-
-	// Clean up the event listener when the component is destroyed
-	return () => {
-		removeSystemPrefListener?.()
-	}
+	ensureStoredTheme()
+	rootObserver = new MutationObserver(ensureStoredTheme)
+	rootObserver.observe(document.documentElement, {
+		attributeFilter: ['class', 'data-gpth-theme', 'data-gptheme', 'style'],
+		attributes: true,
+	})
+	PREFERS_LIGHT_MEDIA_QUERY.addEventListener('change', onSystemPreferenceChange)
+	window.addEventListener('storage', onStorageChange)
+	return cleanup
 }
 
-// =====================================================
-// Exports
-// =====================================================
+function cleanup() {
+	rootObserver?.disconnect()
+	rootObserver = null
+	PREFERS_LIGHT_MEDIA_QUERY.removeEventListener('change', onSystemPreferenceChange)
+	window.removeEventListener('storage', onStorageChange)
+	invalidateThemeCache()
+	initialized = false
+}
+
 export { init, onChangeTheme }
