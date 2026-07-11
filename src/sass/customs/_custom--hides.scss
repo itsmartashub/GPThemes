@@ -35,6 +35,7 @@ html[data-gpth-hide-header] header#page-header {
 html[data-gpth-hide-footer] {
 
     /* Footer in basic chats */
+    #main #thread-bottom-container > [data-testid="thread-disclaimer"],
     #main div#thread-bottom-container>div:last-of-type:is(.-mt-4),
     /* Footer in Group Chats */
     #main div.sticky.bottom-0 .min-h-8.w-full.text-xs.text-pretty {

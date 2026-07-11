@@ -1,6 +1,6 @@
 import { PFX } from './consts'
 
-const chatboxRoot = "form[data-type='unified-composer'] .contain-inline-size.bg-token-bg-primary"
+const chatboxRoot = "form[data-type='unified-composer'] .contain-inline-size[data-composer-surface]"
 
 export const SELECTORS = {
 	SUBHEADING: `${PFX}-subheading`,
@@ -112,8 +112,7 @@ export const SELECTORS = {
 		},
 		FOOTER: {
 			TOGGLE_ID: `${PFX}-hide-footer`,
-			// SELECTOR: `#thread-bottom-container > #thread-bottom ~ div.min-h-8 > div`,
-			SELECTOR: `#main div#thread-bottom-container>div:last-of-type:is(.-mt-4),#main div.sticky.bottom-0 .min-h-8.w-full.text-xs.text-pretty`,
+			SELECTOR: `#main #thread-bottom-container > [data-testid="thread-disclaimer"],#main div#thread-bottom-container>div:last-of-type:is(.-mt-4),#main div.sticky.bottom-0 .min-h-8.w-full.text-xs.text-pretty`,
 		},
 		RECENTS_PILL: {
 			TOGGLE_ID: `${PFX}-hide-recents-pill`,

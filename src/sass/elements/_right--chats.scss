@@ -179,6 +179,10 @@
                 background-color: var(--c-accent-20);
             }
         }
+
+        [data-testid="collapsible-user-message-toggle"] {
+            color: currentColor !important;
+        }
     }
 
 
@@ -304,7 +308,8 @@
         [data-testid="writing-block-container"] {
 
             &,
-            [class*="dark:bg-[#2a2a2a]"] {
+            [class*="dark:bg-[#2a2a2a]"],
+            .writing-block-editor {
                 background: var(--c-bg-cm) !important;
             }
         }

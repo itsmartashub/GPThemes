@@ -9,7 +9,7 @@ OPENAAI CSS VARS
     // --sidebar-inline-padding: 12px;
     // --header-height: 60px;
     --white: var(--c-surface-1) !important;
-    --black: var(--c-accent) !important;
+    --black: var(--c-bg-chats-container) !important;
     // --gray-50: #f9f9f9;
     // --gray-100: #ececec;
     // --gray-200: #e3e3e3;
@@ -66,7 +66,7 @@ html,
 
     --icon-primary: currentColor !important;
     --icon-secondary: var(--c-subtext-1) !important;
-    --icon-tertiary: var(--c-surface-2) !important;
+    --icon-tertiary: var(--c-subtext-2) !important;
     // --icon-inverted: #0d0d0d;
     --icon-accent: var(--c-accent) !important;
     --icon-status-warning: var(--c-warning) !important;

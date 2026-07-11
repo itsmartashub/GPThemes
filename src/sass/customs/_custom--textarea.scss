@@ -13,7 +13,7 @@
 }
 
 /* not(.min-h-0) / :not([class*="@lg/thread:grow"]) znaci da ne targetujemo chatbox u "New Chat" layoutu  */
-$chatbox-selector: 'form[data-type="unified-composer"] .contain-inline-size.bg-token-bg-primary';
+$chatbox-selector: 'form[data-type="unified-composer"] .contain-inline-size[data-composer-surface]';
 $chatbox-height-selector: '#thread-bottom-container:not(.min-h-0) #{$chatbox-selector} [class*="_prosemirror-parent"].max-h-52';
 
 #{$chatbox-height-selector} {

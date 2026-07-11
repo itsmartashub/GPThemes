@@ -1,11 +1,9 @@
 /* ===  RIGHT - TEXTAREA PARENT, message type and send button */
 form {
 
-	/* TODO(remove): REMOVE the #composer-background selector when this selector is removed for all user profiles */
-	#composer-background,
 	&[data-type="unified-composer"] {
-		.contain-inline-size.bg-token-bg-primary.dark\:bg-token-bg-elevated-primary.dark-oled\:bg-token-bg-primary {
-			background: var(--c-surface-2) !important;
+		.contain-inline-size[data-composer-surface] {
+			background: var(--c-bg-textarea) !important;
 			caret-color: var(--c-accent);
 			box-shadow: inset 0 0 1px 1px var(--c-accent-08) !important;
 			border: none !important;

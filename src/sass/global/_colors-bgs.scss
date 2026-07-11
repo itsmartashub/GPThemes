@@ -195,13 +195,6 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 // 	// @include dev_high(lightgreen);
 // }
 
-// [class*='bg-black'],// @@@@@ THIS MAKES CHATS NOT VISIBLE IN FIREFOX ON LIGHT THEME
-.bg-token-sidebar-surface-primary {
-	background-color: var(--c-surface-1);
-	// background-color: orange;
-	// background-color: lightgreen;
-}
-
 /* @@@@@ DEBUG FIREFOX -  THIS MAKES CHATS NOT VISIBLE IN FIREFOX ON LIGHT THEME */
 /* [class*='bg-black'] {
 	outline: 2px solid red !important;
