@@ -25,7 +25,7 @@ function templateHTML() {
 			checked: DEFAULT_STATE,
 			label: 'Expand Chatbox',
 			subtitle:
-				'Increase the height of the message box to fit more content. Warning: Always disabled on "Library" page.',
+				'Increase the height of the message box to fit more content. Warning: Always disabled on "Library", "Images" and "Projects" pages.',
 			icon: icon_taller_height,
 			card: true,
 		})}
