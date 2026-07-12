@@ -404,3 +404,23 @@ button.bg-token-interactive-label-accent-default {
 		color: var(--c-on-accent) !important;
 	}
 }
+
+// Codex -> Settings -> Analytics -> Monthly usage limit green line
+.bg-\[\#22c55e\] {
+	background-color: var(--c-accent) !important;
+}
+
+// Codex -> Settings -> Analytics -> Monthly usage limit white line
+.bg-\[\#ebebf0\] {
+	background-color: var(--c-accent-light) !important;
+}
+
+.dark\:bg-\[\#1E1E1E\],
+.bg-\[\#1E1E1E\] {
+	background-color: var(--c-bg-chats-container) !important;
+}
+
+// Codex -> https://chatgpt.com/codex/cloud/tasks -> "Logs" element on right
+.\[--right-bg\:var\(--bg-tertiary\)\] {
+	--right-bg: var(--c-bg-chats-container) !important;
+}

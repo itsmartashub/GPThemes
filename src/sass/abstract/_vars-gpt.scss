@@ -10,6 +10,7 @@ OPENAAI CSS VARS
     --white: var(--c-surface-1) !important;
     // --black: var(--c-accent) !important;
     --black: var(--c-bg-chats-container) !important;
+    --right-bg: var(--c-bg-chats-container) !important;
     // --gray-50: #f9f9f9;
     // --gray-100: #ececec;
     // --gray-200: #e3e3e3;
@@ -44,6 +45,8 @@ html,
     --bg-status-warning: #{color-alpha(--c-warning, 0.2, true)};
     --bg-status-error: #{color-alpha(--c-danger, 0.2, true)};
 
+    --bg-secondary-surface: var(--c-bg-chats-container) !important;
+
     --bg-tooltip: color-mix(var(--c-accent) 10%, var(--c-surface-2)) !important;
     /* .border-token-border-default
 	- border oko "Uprade" btn-a
@@ -52,7 +55,7 @@ html,
     --border-default: var(--c-border) !important;
     --border-light: var(--c-border) !important;
     --border-extra-light: var(--c-border) !important;
-    // --border-heavy: #fff3;
+    --border-heavy: var(--c-border) !important;
     --border-status-warning: #{color-alpha(--c-warning, 0.2, true)};
     --border-status-error: #{color-alpha(--c-danger, 0.2, true)};
     --text-primary: var(--c-txt) !important;
@@ -147,6 +150,9 @@ html,
     // --interactive-bg-accent-hover: oklch(from var(--c-accent) 0.95 0.08 h) !important;
     --interactive-bg-accent-hover: oklch(from var(--c-accent) 0.9 calc(c * 0.4) h) !important;
     --interactive-bg-accent-press: oklch(from var(--c-accent) 0.77 calc(c * 0.4) h) !important;
+
+    --interactive-bg-tertiary-hover: var(--c-accent-12) !important;
+    --interactive-bg-tertiary-press: var(--c-accent-20) !important;
 
     --interactive-label-accent-default: var(--c-accent) !important;
 
