@@ -25,7 +25,7 @@ function templateHTML() {
 			checked: DEFAULT_STATE,
 			label: 'Expand Chatbox',
 			subtitle:
-				'Increase the height of the message box to fit more content. Warning: Always disabled on "Library" and  "New chat" initial page!',
+				'Increase the height of the message box to fit more content. Warning: Always disabled on "Library", "Images" and "Projects" pages.',
 			icon: icon_taller_height,
 			card: true,
 		})}
@@ -38,9 +38,7 @@ function templateHTML() {
 async function saveState(state = DEFAULT_STATE) {
 	try {
 		await setItem(STORAGE_KEY, state)
-		state
-			? Notify.success('Chatbox height preference enabled')
-			: Notify.info('Chatbox height preference disabled')
+		state ? Notify.success('Chatbox height preference enabled') : Notify.info('Chatbox height preference disabled')
 		return true
 	} catch (error) {
 		Notify.error('Failed to save Chatbox height preference')
