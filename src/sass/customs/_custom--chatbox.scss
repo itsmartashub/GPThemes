@@ -12,9 +12,9 @@
     }
 }
 
-/* not(.min-h-0) / :not([class*="@lg/thread:grow"]) znaci da ne targetujemo chatbox u "New Chat" layoutu  */
-$chatbox-selector: 'form[data-type="unified-composer"] .contain-inline-size.bg-token-bg-primary';
-$chatbox-height-selector: '#thread-bottom-container:not(.min-h-0) #{$chatbox-selector} [class*="_prosemirror-parent"].max-h-52';
+/* #thread-bottom-container:not(.min-h-0) znaci da ne targetujemo chatbox u "New Chat" layoutu. Ali sada to izgleda ok, ranije je bilo uzas */
+$chatbox-root: 'form[data-type="unified-composer"] .contain-inline-size[data-composer-surface]';
+$chatbox-height-selector: '#thread-bottom-container #{$chatbox-root} [class*="_prosemirror-parent"].max-h-52';
 
 #{$chatbox-height-selector} {
     transition: max-height 0.25s $easeInOutQuint;
