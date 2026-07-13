@@ -62,3 +62,33 @@ test('Hide Footer targets the current disclaimer without relying on a generic ut
 		assert.doesNotMatch(value, broadFooter)
 	}
 })
+
+test('full theme CSS waits until document idle in every extension manifest', async () => {
+	for (const path of [
+		'src/manifests/chromium-mv3/manifest.json',
+		'src/manifests/firefox-mv2/manifest.json',
+	]) {
+		const manifest = JSON.parse(await source(path))
+		const startScript = manifest.content_scripts.find(({ run_at }) => run_at === 'document_start')
+		const idleScript = manifest.content_scripts.find(({ run_at }) => run_at === 'document_idle')
+
+		assert.deepEqual(startScript.js, ['../../js/inject-theme.js'])
+		assert.equal(startScript.css, undefined)
+		assert.deepEqual(idleScript.css, ['../../sass/index.scss'])
+	}
+})
+
+test('suggested prompts use stable runtime markers without relational host fallbacks', async () => {
+	const textarea = await source('src/sass/elements/_right--textarea.scss')
+
+	assert.match(textarea, /\[data-gpth-suggested-prompts-panel\]/)
+	assert.match(textarea, /\[data-gpth-suggested-prompt-button\]/)
+	assert.doesNotMatch(textarea, /body:has\(#prompt-textarea\)/)
+})
+
+test('activity panel mutation processing does not force computed-style resolution', async () => {
+	const activityPanel = await source('src/js/app/custom-layouts/activityPanel.js')
+
+	assert.doesNotMatch(activityPanel, /getComputedStyle/)
+	assert.doesNotMatch(activityPanel, /data-gpth-activity-surface/)
+})

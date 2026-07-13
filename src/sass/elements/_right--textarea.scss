@@ -216,9 +216,8 @@ form {
 
 }
 
-/* Inline suggested prompts below the composer. JS adds stable markers; the fallback prevents first-paint flash. */
-/* Compatibility fallback: host selectors cover the brief window before JS stamps data-gpth markers. */
-:is([data-gpth-suggested-prompts-panel], body:has(#prompt-textarea) .absolute.start-0.top-full:has(button):not(:has(#prompt-textarea), :has(form)), body:has(#prompt-textarea) [class*="start-0"][class*="top-full"]:has(button):not(:has(#prompt-textarea), :has(form))) {
+/* Inline suggested prompts below the composer. JS adds stable markers after host hydration. */
+[data-gpth-suggested-prompts-panel] {
 	width: 100% !important;
 	max-width: var(--w_prompt_textarea, 48rem) !important;
 	margin-inline: auto !important;
@@ -239,7 +238,7 @@ form {
 	box-shadow: none !important;
 }
 
-:is([data-gpth-suggested-prompts-panel], body:has(#prompt-textarea) .absolute.start-0.top-full:has(button):not(:has(#prompt-textarea), :has(form)), body:has(#prompt-textarea) [class*="start-0"][class*="top-full"]:has(button):not(:has(#prompt-textarea), :has(form))) :is(ul, [role="listbox"], [cmdk-list]) {
+[data-gpth-suggested-prompts-panel] :is(ul, [role="listbox"], [cmdk-list]) {
 	width: 100% !important;
 	margin: 0 !important;
 	padding: 0 !important;
@@ -250,7 +249,7 @@ form {
 	list-style: none !important;
 }
 
-:is([data-gpth-suggested-prompt-row], body:has(#prompt-textarea) .absolute.start-0.top-full:has(button):not(:has(#prompt-textarea), :has(form)) li, body:has(#prompt-textarea) [class*="start-0"][class*="top-full"]:has(button):not(:has(#prompt-textarea), :has(form)) li) {
+[data-gpth-suggested-prompt-row] {
 	margin: 0 !important;
 	padding: 0 !important;
 	border-top: 1px solid color-mix(in oklch, var(--c-txt) 7%, transparent) !important;
@@ -265,7 +264,7 @@ form {
 	}
 }
 
-:is([data-gpth-suggested-prompt-button], body:has(#prompt-textarea) .absolute.start-0.top-full:has(button):not(:has(#prompt-textarea), :has(form)) button, body:has(#prompt-textarea) [class*="start-0"][class*="top-full"]:has(button):not(:has(#prompt-textarea), :has(form)) button) {
+[data-gpth-suggested-prompt-button] {
 	width: 100% !important;
 	min-height: 2.65rem !important;
 	padding: 0.72rem 1.35rem !important;
@@ -299,11 +298,11 @@ form {
 }
 
 @media (width <=40em) {
-	:is([data-gpth-suggested-prompts-panel], body:has(#prompt-textarea) .absolute.start-0.top-full:has(button):not(:has(#prompt-textarea), :has(form)), body:has(#prompt-textarea) [class*="start-0"][class*="top-full"]:has(button):not(:has(#prompt-textarea), :has(form))) {
+	[data-gpth-suggested-prompts-panel] {
 		font-size: 0.82rem !important;
 	}
 
-	:is([data-gpth-suggested-prompt-button], body:has(#prompt-textarea) .absolute.start-0.top-full:has(button):not(:has(#prompt-textarea), :has(form)) button, body:has(#prompt-textarea) [class*="start-0"][class*="top-full"]:has(button):not(:has(#prompt-textarea), :has(form)) button) {
+	[data-gpth-suggested-prompt-button] {
 		min-height: 2.45rem !important;
 		padding-inline: 0.9rem !important;
 

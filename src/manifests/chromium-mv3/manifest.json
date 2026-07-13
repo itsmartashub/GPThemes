@@ -28,9 +28,6 @@
 			"js": [
 				"../../js/inject-theme.js"
 			],
-			"css": [
-				"../../sass/index.scss"
-			],
 			"run_at": "document_start"
 		},
 		{
@@ -40,6 +37,9 @@
 			],
 			"js": [
 				"../../js/content.js"
+			],
+			"css": [
+				"../../sass/index.scss"
 			],
 			"run_at": "document_idle"
 		}

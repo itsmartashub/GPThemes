@@ -129,10 +129,6 @@ aside,
         color: inherit !important;
     }
 
-    [data-gpth-activity-surface] {
-        background: var(--c-surface-2) !important;
-    }
-
     [data-testid="bar-search-sources-header"] {
         background: linear-gradient(180deg,
             var(--c-bg-chats-container) 0%,
