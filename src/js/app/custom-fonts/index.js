@@ -1,4 +1,5 @@
-import { $, $$, bind, removeVar, setVar, setVars } from '../../utils/dom.js'
+import browser from 'webextension-polyfill'
+import { $, bind, removeVar, setVar, setVars } from '../../utils/dom.js'
 import { getItems, setItem, setItems } from '../../utils/storage.js'
 import { renderButton } from '../components/renderButtons'
 import { renderFontBigCard, renderFontSmallCard } from '../components/renderFonts'
@@ -11,20 +12,185 @@ import {
 	SK_TEXT_LINE_HEIGHT,
 } from '../config/consts-storage.js'
 import { SELECTORS } from '../config/selectors'
+import { FONT_CATALOG_FILES, FONT_CATALOG_FINGERPRINT } from './fontCatalog.generated.js'
 
 // let $rootSettings = null
-const fontLinks = {
-	primary: null,
-	secondary: null,
-}
-let preconnectLinksAdded = false
 let cachedElements = null
 let storedValues = null
 
 const focusValues = {}
-const GOOGLE_FONT_BASE = 'https://fonts.googleapis.com/css2?family='
-const GOOGLE_FONT_WEIGHTS =
-	':ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,300;1,400;1,500;1,600;1,700;1,900'
+const FONT_REGISTRY_KEY = '__gpthBundledFontRegistry'
+const FONT_MUTATION_KEY = '__gpthFontMutationCoordinator'
+const FONT_RUNTIME_OWNER = Symbol('gpth-font-runtime-owner')
+const EXTENSION_PROTOCOL = /^(?:chrome|moz|safari-web)-extension:$/
+let fontSyncVersion = 0
+let packagedResources = null
+const catalogPromises = new Map()
+const fontMutations = globalThis[FONT_MUTATION_KEY] ?? {
+	desiredPair: null,
+	owner: null,
+	pendingMutation: null,
+	queue: Promise.resolve(),
+	revision: 0,
+	storageWrites: Promise.resolve(),
+}
+globalThis[FONT_MUTATION_KEY] = fontMutations
+fontMutations.storageWrites ??= Promise.resolve()
+fontMutations.pendingMutation ??= null
+let fontLifecycleGeneration = 0
+let fontLifecycleActive = false
+
+function storedFontPair() {
+	return {
+		fontFamily: storedValues?.fontFamily ?? CONFIG.fontFamily.default,
+		fontFamilySecondary:
+			storedValues?.fontFamilySecondary ?? CONFIG.fontFamilySecondary.default,
+	}
+}
+
+function desiredFontPair() {
+	return { ...(fontMutations.desiredPair ?? storedFontPair()) }
+}
+
+function getPackagedResources() {
+	if (packagedResources) return packagedResources
+	const manifest = browser.runtime.getManifest()
+	packagedResources =
+		manifest.manifest_version === 3
+			? manifest.web_accessible_resources.flatMap(({ resources }) => resources)
+			: manifest.web_accessible_resources
+	return packagedResources
+}
+
+function resolvePackagedResource(sourcePath) {
+	const basename = sourcePath.split('/').at(-1)
+	const extensionIndex = basename.lastIndexOf('.')
+	const stem = basename.slice(0, extensionIndex)
+	const extension = basename.slice(extensionIndex + 1)
+	const escapedStem = stem.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+	const pattern = new RegExp(`(?:^|/)${escapedStem}(?:\\.[^./]+)?\\.${extension}$`)
+	const matches = getPackagedResources().filter((resource) => pattern.test(resource))
+	if (matches.length !== 1) {
+		throw new Error(`Expected one packaged resource for ${sourcePath}, found ${matches.length}`)
+	}
+	const url = browser.runtime.getURL(matches[0])
+	if (!EXTENSION_PROTOCOL.test(new URL(url).protocol)) {
+		throw new Error(`Invalid packaged resource URL for ${sourcePath}`)
+	}
+	return url
+}
+
+async function loadFontCatalog(family) {
+	const sourceFile = FONT_CATALOG_FILES[family]
+	if (!sourceFile) return null
+	let promise = catalogPromises.get(sourceFile)
+	if (!promise) {
+		const url = resolvePackagedResource(sourceFile)
+		promise = fetch(url).then(async (response) => {
+			if (!response.ok) throw new Error(`Font catalog request failed (${response.status})`)
+			const descriptors = await response.json()
+			if (!Array.isArray(descriptors)) throw new Error(`Invalid font catalog for ${family}`)
+			return descriptors
+		})
+		catalogPromises.set(sourceFile, promise)
+		promise.catch(() => catalogPromises.delete(sourceFile))
+	}
+	return promise
+}
+
+function removeRegisteredFaces(registry) {
+	if (!registry) return
+	for (const faces of registry.families.values()) {
+		for (const face of faces) document.fonts.delete(face)
+	}
+	registry.families.clear()
+}
+
+function getFontRegistry() {
+	const existing = globalThis[FONT_REGISTRY_KEY]
+	if (
+		existing?.fingerprint === FONT_CATALOG_FINGERPRINT &&
+		existing.owner === FONT_RUNTIME_OWNER
+	) {
+		return existing
+	}
+	if (existing) removeRegisteredFaces(existing)
+
+	const registry = {
+		fingerprint: FONT_CATALOG_FINGERPRINT,
+		families: new Map(),
+		owner: FONT_RUNTIME_OWNER,
+	}
+	globalThis[FONT_REGISTRY_KEY] = registry
+	return registry
+}
+
+function registerBundledFontFamily(family, descriptors, registry) {
+	if (!globalThis.FontFace || !document.fonts?.add || !document.fonts?.delete) {
+		throw new Error('This browser does not support local FontFace registration')
+	}
+
+	if (registry.families.has(family)) return true
+
+	const faces = []
+	try {
+		for (const descriptor of descriptors) {
+			const assetUrl = resolvePackagedResource(descriptor.asset)
+			const { asset: _asset, ...fontDescriptors } = descriptor
+			const face = new FontFace(family, `url("${assetUrl}") format("woff2")`, fontDescriptors)
+			document.fonts.add(face)
+			faces.push(face)
+		}
+	} catch (error) {
+		for (const face of faces) document.fonts.delete(face)
+		throw error
+	}
+
+	registry.families.set(family, faces)
+	return true
+}
+
+async function syncBundledFontFamilies(families, isCurrent = () => true) {
+	const syncVersion = ++fontSyncVersion
+	const activeFamilies = new Set(
+		families.filter((family) => family && FONT_CATALOG_FILES[family]),
+	)
+	const catalogs = await Promise.all(
+		[...activeFamilies].map(async (family) => [family, await loadFontCatalog(family)]),
+	)
+	if (syncVersion !== fontSyncVersion || !isCurrent()) return false
+
+	const registry = activeFamilies.size > 0 ? getFontRegistry() : globalThis[FONT_REGISTRY_KEY]
+	if (!registry) return true
+	if (
+		registry.fingerprint !== FONT_CATALOG_FINGERPRINT ||
+		registry.owner !== FONT_RUNTIME_OWNER
+	) {
+		removeRegisteredFaces(registry)
+		if (globalThis[FONT_REGISTRY_KEY] === registry) {
+			delete globalThis[FONT_REGISTRY_KEY]
+		}
+		return true
+	}
+	for (const [family, catalog] of catalogs) {
+		registerBundledFontFamily(family, catalog, registry)
+	}
+
+	for (const [family, faces] of registry.families) {
+		if (activeFamilies.has(family)) continue
+		for (const face of faces) document.fonts.delete(face)
+		registry.families.delete(family)
+	}
+	return true
+}
+
+function unregisterAllBundledFonts() {
+	fontSyncVersion += 1
+	const registry = globalThis[FONT_REGISTRY_KEY]
+	if (!registry || registry.owner !== FONT_RUNTIME_OWNER) return
+	removeRegisteredFaces(registry)
+	delete globalThis[FONT_REGISTRY_KEY]
+}
 
 // =====================================================
 // CONFIG
@@ -262,67 +428,7 @@ async function handleNumeric(e, key) {
 
 	setVar(cfg.cssVar, newVal)
 	await setItem(cfg.storageKey, newVal)
-}
-
-// =====================================================
-// GOOGLE FONTS
-// =====================================================
-function addPreconnectLinks() {
-	if (preconnectLinksAdded) return
-
-	document.head.insertAdjacentHTML(
-		'beforeend',
-		`
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        `,
-	)
-	preconnectLinksAdded = true
-}
-function removeFontLinkFor(slot) {
-	if (fontLinks[slot]?.parentNode) fontLinks[slot].remove()
-
-	fontLinks[slot] = null
-}
-function removeAllGoogleFontLinks() {
-	removeFontLinkFor('primary')
-	removeFontLinkFor('secondary')
-
-	// Remove all Google Fonts related links (including preconnect)
-	$$("link[href*='fonts.googleapis.com'], link[href*='fonts.gstatic.com']").forEach((link) => {
-		link.remove()
-	})
-	preconnectLinksAdded = false
-}
-function setGoogleFontFor(slot, font) {
-	// If it's the default font, remove only the font stylesheet
-	if (font === CONFIG.fontFamily.default) {
-		removeFontLinkFor(slot)
-		return
-	}
-
-	// Skip fetching from Google Fonts for custom/local fonts
-	if (font === 'FK Grotesk Neue' || font === 'FK Grotesk') {
-		removeFontLinkFor(slot)
-		return
-	}
-
-	// Ensure preconnect links are there
-	addPreconnectLinks()
-
-	// Remove previous font link if exists
-	removeFontLinkFor(slot)
-
-	// Create and insert only the font-specific stylesheet
-	fontLinks[slot] = document.createElement('link')
-	fontLinks[slot].rel = 'stylesheet'
-	fontLinks[slot].dataset.gpthFontSlot = slot
-
-	// Added &display=swap for immediate text visibility
-	fontLinks[slot].href =
-		`${GOOGLE_FONT_BASE}${encodeURIComponent(font)}${GOOGLE_FONT_WEIGHTS}&display=swap`
-
-	document.head.appendChild(fontLinks[slot])
+	storedValues = { ...storedValues, [key]: newVal }
 }
 
 const formatFontForCSS = (font) => {
@@ -335,96 +441,189 @@ const formatFontForCSS = (font) => {
 		return '"FK Grotesk", "FK Grotesk Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
 	}
 
-	// Only wrap in quotes if its a name with spaces (Google Fonts)
+	// Only wrap family names containing spaces.
 	return font.includes(' ') && !font.startsWith('"') ? `"${font}"` : font
 }
 
-async function handleFontFamilyChange(e, configKey, slot) {
-	const selectedFontFamily = e.target.value
-	const cfg = CONFIG[configKey]
-
-	// console.log(selectedFontFamily)
-
-	try {
-		// If it's the sentinel 'Default', remove css var override entirely
-		if (selectedFontFamily === 'Default') {
-			removeVar(cfg.cssVar)
-			removeFontLinkFor(slot)
-			await setItem(cfg.storageKey, 'Default')
-		} else {
-			const formattedFont = formatFontForCSS(selectedFontFamily)
-			// console.log(formattedFont)
-
-			// Set CSS var immediately for instant visual feedback
-			setVar(cfg.cssVar, formattedFont)
-
-			// Load font with display=swap for faster perceived perf
-			setGoogleFontFor(slot, selectedFontFamily)
-
-			// Save to storage (non-blocking)
-			await setItem(cfg.storageKey, selectedFontFamily)
-		}
-		Notify.success('Font updated successfully')
-	} catch (error) {
-		console.error('Font change failed:', error)
-		// Revert on error
-		const prev = storedValues[configKey]
-		updateInputs({ [configKey]: prev })
-
-		// If previous was Default, remove css var, else set var
-		if (prev === 'Default') {
-			removeVar(cfg.cssVar)
-			removeFontLinkFor(slot)
-		} else {
-			setVar(cfg.cssVar, formatFontForCSS(prev))
-			setGoogleFontFor(slot, prev)
-		}
-		Notify.error('Failed to update font')
+function fontStorageValues(pair) {
+	return {
+		[CONFIG.fontFamily.storageKey]: pair.fontFamily,
+		[CONFIG.fontFamilySecondary.storageKey]: pair.fontFamilySecondary,
 	}
 }
 
+function previousStorageValues(storageValues, previousPair) {
+	const previousValues = {
+		...fontStorageValues(previousPair),
+		[CONFIG.fontSize.storageKey]: storedValues?.fontSize ?? CONFIG.fontSize.default,
+		[CONFIG.lineHeight.storageKey]: storedValues?.lineHeight ?? CONFIG.lineHeight.default,
+		[CONFIG.letterSpacing.storageKey]:
+			storedValues?.letterSpacing ?? CONFIG.letterSpacing.default,
+	}
+	return Object.fromEntries(
+		Object.keys(storageValues).map((storageKey) => [storageKey, previousValues[storageKey]]),
+	)
+}
+
+function setFontStorageItems(storageValues) {
+	const write = setItems(storageValues)
+	fontMutations.storageWrites = write.then(
+		() => undefined,
+		() => undefined,
+	)
+	return write
+}
+
+function applyFontPair(pair) {
+	for (const key of ['fontFamily', 'fontFamilySecondary']) {
+		const value = pair[key]
+		const cssVar = CONFIG[key].cssVar
+		if (value === 'Default') removeVar(cssVar)
+		else setVar(cssVar, formatFontForCSS(value))
+	}
+}
+
+async function preloadBundledFontFamilies(pair) {
+	const families = new Set(
+		[pair.fontFamily, pair.fontFamilySecondary].filter((family) => FONT_CATALOG_FILES[family]),
+	)
+	await Promise.all([...families].map((family) => loadFontCatalog(family)))
+}
+
+function isCurrentFontMutation(revision, lifecycleGeneration) {
+	return (
+		fontLifecycleActive &&
+		fontMutations.owner === FONT_RUNTIME_OWNER &&
+		lifecycleGeneration === fontLifecycleGeneration &&
+		revision === fontMutations.revision
+	)
+}
+
+function enqueueFontMutation({ pair, storageValues, commit, successMessage, errorMessage }) {
+	if (!fontLifecycleActive || fontMutations.owner !== FONT_RUNTIME_OWNER) {
+		return Promise.resolve(false)
+	}
+
+	const revision = ++fontMutations.revision
+	const lifecycleGeneration = fontLifecycleGeneration
+	const previousPair = storedFontPair()
+	const rollbackStorageValues = previousStorageValues(storageValues, previousPair)
+	fontMutations.desiredPair = { ...pair }
+	fontMutations.pendingMutation = {
+		pair: { ...pair },
+		rollbackStorageValues: { ...rollbackStorageValues },
+		storageValues: { ...storageValues },
+	}
+
+	const operation = fontMutations.queue.then(async () => {
+		try {
+			await preloadBundledFontFamilies(pair)
+			if (!isCurrentFontMutation(revision, lifecycleGeneration)) return false
+
+			await setFontStorageItems(storageValues)
+			if (!isCurrentFontMutation(revision, lifecycleGeneration)) return false
+
+			const synced = await syncBundledFontFamilies(
+				[pair.fontFamily, pair.fontFamilySecondary],
+				() => isCurrentFontMutation(revision, lifecycleGeneration),
+			)
+			if (!synced || !isCurrentFontMutation(revision, lifecycleGeneration)) return false
+
+			commit()
+			fontMutations.desiredPair = { ...pair }
+			fontMutations.pendingMutation = null
+			Notify.success(successMessage)
+			return true
+		} catch (error) {
+			console.error('Font mutation failed:', error)
+			if (!isCurrentFontMutation(revision, lifecycleGeneration)) return false
+
+			try {
+				await setFontStorageItems(rollbackStorageValues)
+			} catch (rollbackError) {
+				console.error('Font storage rollback failed:', rollbackError)
+			}
+			if (!isCurrentFontMutation(revision, lifecycleGeneration)) return false
+
+			fontMutations.desiredPair = { ...previousPair }
+			fontMutations.pendingMutation = null
+			await syncBundledFontFamilies(
+				[previousPair.fontFamily, previousPair.fontFamilySecondary],
+				() => isCurrentFontMutation(revision, lifecycleGeneration),
+			)
+			if (!isCurrentFontMutation(revision, lifecycleGeneration)) return false
+			applyFontPair(previousPair)
+			updateInputs(previousPair)
+			Notify.error(errorMessage)
+			return false
+		}
+	})
+
+	fontMutations.queue = operation.catch(() => false)
+	return operation
+}
+
+async function handleFontFamilyChange(e, configKey) {
+	const selectedFontFamily = e.target.value
+	const pair = { ...desiredFontPair(), [configKey]: selectedFontFamily }
+
+	return enqueueFontMutation({
+		pair,
+		storageValues: fontStorageValues(pair),
+		commit: () => {
+			storedValues = { ...storedValues, ...pair }
+			applyFontPair(pair)
+			updateInputs(pair)
+		},
+		successMessage: 'Font updated successfully',
+		errorMessage: 'Failed to update font',
+	})
+}
+
 async function handleFontFamily(e) {
-	await handleFontFamilyChange(e, 'fontFamily', 'primary')
+	await handleFontFamilyChange(e, 'fontFamily')
 }
 
 async function handleFontFamilySecondary(e) {
-	await handleFontFamilyChange(e, 'fontFamilySecondary', 'secondary')
+	await handleFontFamilyChange(e, 'fontFamilySecondary')
 }
 
 async function resetAll() {
-	// 1. Reset input DOM values
-	updateInputs({
+	const defaults = {
 		fontFamily: CONFIG.fontFamily.default,
 		fontFamilySecondary: CONFIG.fontFamilySecondary.default,
 		fontSize: CONFIG.fontSize.default,
 		lineHeight: CONFIG.lineHeight.default,
 		letterSpacing: CONFIG.letterSpacing.default,
-	})
-
-	// 2. Reset DOM styles (CSS vars)
-	// For Font Family, remove the override to let CSS take back control
-	removeVar(CONFIG.fontFamily.cssVar)
-	removeVar(CONFIG.fontFamilySecondary.cssVar)
-	setVars({
-		[CONFIG.fontSize.cssVar]: CONFIG.fontSize.default,
-		[CONFIG.lineHeight.cssVar]: CONFIG.lineHeight.default,
-		[CONFIG.letterSpacing.cssVar]: CONFIG.letterSpacing.default,
-	})
-
-	// 3. Reset storage
-	const defaultsValues = {
-		[CONFIG.fontFamily.storageKey]: CONFIG.fontFamily.default,
-		[CONFIG.fontFamilySecondary.storageKey]: CONFIG.fontFamilySecondary.default,
-		[CONFIG.fontSize.storageKey]: CONFIG.fontSize.default,
-		[CONFIG.lineHeight.storageKey]: CONFIG.lineHeight.default,
-		[CONFIG.letterSpacing.storageKey]: CONFIG.letterSpacing.default,
 	}
-	await setItems(defaultsValues)
+	const defaultsValues = {
+		[CONFIG.fontFamily.storageKey]: defaults.fontFamily,
+		[CONFIG.fontFamilySecondary.storageKey]: defaults.fontFamilySecondary,
+		[CONFIG.fontSize.storageKey]: defaults.fontSize,
+		[CONFIG.lineHeight.storageKey]: defaults.lineHeight,
+		[CONFIG.letterSpacing.storageKey]: defaults.letterSpacing,
+	}
+	const pair = {
+		fontFamily: defaults.fontFamily,
+		fontFamilySecondary: defaults.fontFamilySecondary,
+	}
 
-	// 4. Remove ALL Google Font links (including preconnect)
-	removeAllGoogleFontLinks()
-
-	Notify.success('✅ All fonts have been reset')
+	return enqueueFontMutation({
+		pair,
+		storageValues: defaultsValues,
+		commit: () => {
+			storedValues = defaults
+			updateInputs(defaults)
+			applyFontPair(pair)
+			setVars({
+				[CONFIG.fontSize.cssVar]: defaults.fontSize,
+				[CONFIG.lineHeight.cssVar]: defaults.lineHeight,
+				[CONFIG.letterSpacing.cssVar]: defaults.letterSpacing,
+			})
+		},
+		successMessage: '✅ All fonts have been reset',
+		errorMessage: 'Failed to reset fonts',
+	})
 }
 
 // =====================================================
@@ -500,6 +699,32 @@ const validate = (val, min, max) => {
 
 async function init() {
 	// console.log('[INIT FONTS]')
+	const lifecycleGeneration = ++fontLifecycleGeneration
+	fontLifecycleActive = true
+	const inheritedMutation = fontMutations.pendingMutation
+		? {
+				pair: { ...fontMutations.pendingMutation.pair },
+				rollbackStorageValues: {
+					...fontMutations.pendingMutation.rollbackStorageValues,
+				},
+				storageValues: { ...fontMutations.pendingMutation.storageValues },
+			}
+		: null
+	if (fontMutations.owner !== FONT_RUNTIME_OWNER) {
+		fontMutations.queue = Promise.resolve()
+	}
+	fontMutations.owner = FONT_RUNTIME_OWNER
+	const initializationRevision = ++fontMutations.revision
+	await fontMutations.storageWrites
+	await fontMutations.queue
+	if (
+		!fontLifecycleActive ||
+		lifecycleGeneration !== fontLifecycleGeneration ||
+		fontMutations.owner !== FONT_RUNTIME_OWNER ||
+		initializationRevision !== fontMutations.revision
+	) {
+		return
+	}
 
 	// 1. Get stored values from storage
 	const keys = [
@@ -511,33 +736,87 @@ async function init() {
 	]
 
 	const stored = await getItems(keys)
+	if (
+		!fontLifecycleActive ||
+		lifecycleGeneration !== fontLifecycleGeneration ||
+		fontMutations.owner !== FONT_RUNTIME_OWNER ||
+		initializationRevision !== fontMutations.revision
+	) {
+		return
+	}
 	const getStoredOrDefault = (configKey) =>
 		stored[CONFIG[configKey].storageKey] ?? CONFIG[configKey].default
+	const isInitializationCurrent = () =>
+		fontLifecycleActive &&
+		lifecycleGeneration === fontLifecycleGeneration &&
+		fontMutations.owner === FONT_RUNTIME_OWNER &&
+		initializationRevision === fontMutations.revision
 
-	const fontFamily = getStoredOrDefault('fontFamily')
-	const fontFamilySecondary = getStoredOrDefault('fontFamilySecondary')
-	const fontSize = getStoredOrDefault('fontSize')
-	const lineHeight = getStoredOrDefault('lineHeight')
-	const letterSpacing = getStoredOrDefault('letterSpacing')
+	const pendingValueOrStored = (configKey) =>
+		inheritedMutation?.storageValues[CONFIG[configKey].storageKey] ??
+		getStoredOrDefault(configKey)
+	let fontFamily = inheritedMutation?.pair.fontFamily ?? getStoredOrDefault('fontFamily')
+	let fontFamilySecondary =
+		inheritedMutation?.pair.fontFamilySecondary ?? getStoredOrDefault('fontFamilySecondary')
+	let fontSize = pendingValueOrStored('fontSize')
+	let lineHeight = pendingValueOrStored('lineHeight')
+	let letterSpacing = pendingValueOrStored('letterSpacing')
+	let pair = { fontFamily, fontFamilySecondary }
+	fontMutations.desiredPair = { ...pair }
+	const pendingStorageNeedsWrite =
+		inheritedMutation &&
+		Object.entries(inheritedMutation.storageValues).some(
+			([storageKey, value]) => stored[storageKey] !== value,
+		)
+	let inheritedStorageWritten = Boolean(inheritedMutation && !pendingStorageNeedsWrite)
+	let isCurrent
+	try {
+		if (pendingStorageNeedsWrite) {
+			await preloadBundledFontFamilies(pair)
+			if (!isInitializationCurrent()) return
+			await setFontStorageItems(inheritedMutation.storageValues)
+			inheritedStorageWritten = true
+			if (!isInitializationCurrent()) return
+		}
+		isCurrent = await syncBundledFontFamilies(
+			[fontFamily, fontFamilySecondary],
+			isInitializationCurrent,
+		)
+	} catch (error) {
+		if (!inheritedMutation || !isInitializationCurrent()) throw error
+		console.error('Inherited font mutation failed:', error)
+		if (inheritedStorageWritten) {
+			try {
+				await setFontStorageItems(inheritedMutation.rollbackStorageValues)
+			} catch (rollbackError) {
+				console.error('Inherited font storage rollback failed:', rollbackError)
+			}
+			if (!isInitializationCurrent()) return
+		}
 
-	// 2. Load Google Font if not font family isnt default
-	if (fontFamily !== CONFIG.fontFamily.default) setGoogleFontFor('primary', fontFamily)
-	if (fontFamilySecondary !== CONFIG.fontFamilySecondary.default) {
-		setGoogleFontFor('secondary', fontFamilySecondary)
+		const restored = {
+			...stored,
+			...(inheritedStorageWritten ? inheritedMutation.rollbackStorageValues : {}),
+		}
+		const restoredOrDefault = (configKey) =>
+			restored[CONFIG[configKey].storageKey] ?? CONFIG[configKey].default
+		fontFamily = restoredOrDefault('fontFamily')
+		fontFamilySecondary = restoredOrDefault('fontFamilySecondary')
+		fontSize = restoredOrDefault('fontSize')
+		lineHeight = restoredOrDefault('lineHeight')
+		letterSpacing = restoredOrDefault('letterSpacing')
+		pair = { fontFamily, fontFamilySecondary }
+		fontMutations.desiredPair = { ...pair }
+		fontMutations.pendingMutation = null
+		isCurrent = await syncBundledFontFamilies(
+			[fontFamily, fontFamilySecondary],
+			isInitializationCurrent,
+		)
 	}
+	if (!isCurrent || !isInitializationCurrent()) return
 
-	// 3. Update DOM (CSS vars)
-	// If it's Default, remove the override, otherwise set the var
-	if (fontFamily === 'Default') {
-		removeVar(CONFIG.fontFamily.cssVar)
-	} else {
-		setVar(CONFIG.fontFamily.cssVar, formatFontForCSS(fontFamily))
-	}
-	if (fontFamilySecondary === 'Default') {
-		removeVar(CONFIG.fontFamilySecondary.cssVar)
-	} else {
-		setVar(CONFIG.fontFamilySecondary.cssVar, formatFontForCSS(fontFamilySecondary))
-	}
+	// 2. Update DOM (CSS vars)
+	applyFontPair(pair)
 
 	setVars({
 		[CONFIG.fontSize.cssVar]: fontSize,
@@ -546,6 +825,7 @@ async function init() {
 	})
 
 	storedValues = { fontFamily, fontFamilySecondary, fontSize, lineHeight, letterSpacing }
+	fontMutations.pendingMutation = null
 
 	// console.log(storedValues)
 
@@ -564,6 +844,13 @@ function mount() {
 }
 
 function cleanup() {
+	fontLifecycleActive = false
+	fontLifecycleGeneration += 1
+	if (fontMutations.owner === FONT_RUNTIME_OWNER) {
+		fontMutations.revision += 1
+		fontMutations.owner = null
+	}
+	unregisterAllBundledFonts()
 	cachedElements = null
 	for (const key of Object.keys(focusValues)) {
 		delete focusValues[key]

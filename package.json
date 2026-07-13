@@ -31,8 +31,10 @@
 		"slint": "stylelint \"src/**/*.scss\"",
 		"slint:fix": "stylelint \"src/**/*.scss\" --fix",
 		"check:cycles": "node scripts/check-import-cycles.js",
+		"verify:fonts": "node scripts/sync-font-assets.mjs --verify",
+		"verify:font-packages": "node scripts/verify-font-packages.mjs",
 		"test:runtime": "node --test tests/*.test.mjs",
-		"validate": "pnpm lint && pnpm check:cycles && pnpm test:runtime && pnpm slint && pnpm build:all"
+		"validate": "pnpm lint && pnpm check:cycles && pnpm verify:fonts && pnpm test:runtime && pnpm slint && pnpm build:all && pnpm verify:font-packages"
 	},
 	"author": "itsmarta",
 	"keywords": [
@@ -102,6 +104,7 @@
 		"@parcel/config-webextension": "^2.16.3",
 		"@parcel/transformer-sass": "2.16.3",
 		"autoprefixer": "^10.5.0",
+		"fontkit": "2.0.4",
 		"parcel": "^2.16.3",
 		"postcss": "^8.5.6",
 		"stylelint": "^16.26.1",

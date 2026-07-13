@@ -54,6 +54,18 @@
 	"web_accessible_resources": [
 		{
 			"resources": [
+				"../../assets/fonts/NOTICE.md",
+				"../../assets/fonts/licenses/*.txt",
+				"../../assets/fonts/files/*.woff2",
+				"../../js/app/custom-fonts/generated/*.generated.txt"
+			],
+			"matches": [
+				"https://chat.openai.com/*",
+				"https://chatgpt.com/*"
+			]
+		},
+		{
+			"resources": [
 				"*.png"
 			],
 			"matches": [
@@ -63,7 +75,7 @@
 		}
 	],
 	"content_security_policy": {
-		"extension_pages": "script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;"
+		"extension_pages": "script-src 'self'; style-src 'self'; font-src 'self';"
 	},
 	"action": {
 		"default_popup": "../../popup/popup.html",

@@ -24,8 +24,42 @@ jobs:
         timeout-minutes: 10
 
         steps:
-            - name: Check out repository
+            - name: Resolve exact checkout SHA
+              id: exact
+              shell: bash
+              run: |
+                  set -euo pipefail
+                  if [ "${{ github.event_name }}" = "pull_request" ]; then
+                    EXPECTED=$(jq -r .pull_request.head.sha "$GITHUB_EVENT_PATH")
+                  else
+                    EXPECTED="${{ github.sha }}"
+                  fi
+                  if [ -z "$EXPECTED" ] || [ "$EXPECTED" = "null" ]; then
+                    echo "Unable to resolve expected checkout SHA" >&2
+                    exit 1
+                  fi
+                  echo "expected=$EXPECTED" >> "$GITHUB_OUTPUT"
+                  echo "Expected checkout SHA: $EXPECTED"
+
+            - name: Check out exact head
               uses: actions/checkout@v7
+              with:
+                  ref: ${{ steps.exact.outputs.expected }}
+                  fetch-depth: 1
+
+            - name: Verify exact-head checkout
+              shell: bash
+              run: |
+                  set -euo pipefail
+                  EXPECTED="${{ steps.exact.outputs.expected }}"
+                  ACTUAL=$(git rev-parse HEAD)
+                  echo "Expected SHA: $EXPECTED"
+                  echo "Actual checkout SHA: $ACTUAL"
+                  if [ "$ACTUAL" != "$EXPECTED" ]; then
+                    echo "Exact-head checkout mismatch" >&2
+                    exit 1
+                  fi
+                  echo "exact_head_ok=true"
 
             - name: Install pnpm
               uses: pnpm/action-setup@v6

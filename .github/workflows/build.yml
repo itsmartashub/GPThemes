@@ -13,8 +13,43 @@ jobs:
         timeout-minutes: 15
 
         steps:
-            - name: Check out repository
+            - name: Resolve exact checkout SHA
+              id: exact
+              shell: bash
+              run: |
+                  set -euo pipefail
+                  if [ "${{ github.event_name }}" = "pull_request" ]; then
+                    EXPECTED=$(jq -r .pull_request.head.sha "$GITHUB_EVENT_PATH")
+                  else
+                    EXPECTED="${{ github.sha }}"
+                  fi
+                  if [ -z "$EXPECTED" ] || [ "$EXPECTED" = "null" ]; then
+                    echo "Unable to resolve expected checkout SHA" >&2
+                    exit 1
+                  fi
+                  echo "expected=$EXPECTED" >> "$GITHUB_OUTPUT"
+                  echo "short=${EXPECTED:0:7}" >> "$GITHUB_OUTPUT"
+                  echo "Expected checkout SHA: $EXPECTED"
+
+            - name: Check out exact head
               uses: actions/checkout@v7
+              with:
+                  ref: ${{ steps.exact.outputs.expected }}
+                  fetch-depth: 1
+
+            - name: Verify exact-head checkout
+              shell: bash
+              run: |
+                  set -euo pipefail
+                  EXPECTED="${{ steps.exact.outputs.expected }}"
+                  ACTUAL=$(git rev-parse HEAD)
+                  echo "Expected SHA: $EXPECTED"
+                  echo "Actual checkout SHA: $ACTUAL"
+                  if [ "$ACTUAL" != "$EXPECTED" ]; then
+                    echo "Exact-head checkout mismatch" >&2
+                    exit 1
+                  fi
+                  echo "exact_head_ok=true"
 
             - name: Install pnpm
               uses: pnpm/action-setup@v6
@@ -33,26 +68,21 @@ jobs:
               with:
                   deno-version: 'v2.x'
 
+            - name: Verify pinned font assets
+              run: pnpm verify:fonts
+
             - name: Build and package extensions
               run: pnpm build:all
 
-            - name: Resolve short commit SHA
-              id: sha
-              shell: bash
-              run: |
-                  if [ "${{ github.event.pull_request }}" != "" ]; then
-                    SHA=$(jq -r .pull_request.head.sha "$GITHUB_EVENT_PATH")
-                  else
-                    SHA=$GITHUB_SHA
-                  fi
-                  echo "short=${SHA:0:7}" >> "$GITHUB_OUTPUT"
+            - name: Verify packaged font assets
+              run: pnpm verify:font-packages
 
             - name: Upload release archives
               uses: actions/upload-artifact@v7
               with:
                   name: ${{ github.event.pull_request.number
-                      && format('GPThemes-debug-PR#{0}-{1}', github.event.pull_request.number, steps.sha.outputs.short)
-                      || format('GPThemes-debug-build-{0}', steps.sha.outputs.short) }}
+                      && format('GPThemes-debug-PR#{0}-{1}', github.event.pull_request.number, steps.exact.outputs.short)
+                      || format('GPThemes-debug-build-{0}', steps.exact.outputs.short) }}
                   path: build/releases/*
                   if-no-files-found: error
                   retention-days: 7
