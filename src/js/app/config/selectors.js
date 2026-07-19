@@ -53,6 +53,10 @@ export const SELECTORS = {
 		DISPLAY_CHAT_UNIT_ID: 'display-chat-width-unit',
 		DISPLAY_TEXTAREA_VALUE_ID: 'display-textarea-width-value',
 		DISPLAY_TEXTAREA_UNIT_ID: 'display-textarea-width-unit',
+
+		SLIDER_SIDEBAR_ID: 'slider-sidebar-width',
+		DISPLAY_SIDEBAR_VALUE_ID: 'display-sidebar-width-value',
+		DISPLAY_SIDEBAR_UNIT_ID: 'display-sidebar-width-unit',
 	},
 
 	// Font Controls

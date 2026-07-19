@@ -1,0 +1,127 @@
+.gpth-slider-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+    max-width: 800px;
+}
+
+.gpth-slider {
+
+    // No overflow:hidden here!! This el must NOT clip the marker. Clipping is delegated to gpth-slider__bg below, which holds only the fill
+    &__wrapper {
+        --gpth-slider-width: 13rem;
+        --gpth-slider-height: 2.25rem;
+        --gpth-slider-radius: calc(var(--gpth-slider-height) * 0.3);
+        --gpth-slider-marker-width: 4px;
+        --gpth-slider-marker-offset: -300%;
+        --gpth-slider-content-offset: 10%;
+        --gpth-slider-bg: var(--c-accent-12);
+        --gpth-slider-fill-bg: var(--c-accent-30);
+        --gpth-slider-marker-bg: var(--c-accent);
+        --gpth-slider-text: var(--c-accent);
+        --gpth-slider-fsz: 1rem;
+
+        position: relative;
+        height: var(--gpth-slider-height);
+        width: var(--gpth-slider-width);
+        max-width: 100%;
+        display: flex;
+        align-items: center;
+        color: var(--gpth-slider-text);
+        font-size: 1rem;
+    }
+
+    &__bg {
+        position: absolute;
+        inset: 0;
+        background: var(--gpth-slider-bg);
+        border-radius: var(--gpth-slider-radius);
+        box-shadow: inset 0 0 0 1px var(--c-accent-20);
+        overflow: hidden;
+    }
+
+    &__fill {
+        position: absolute;
+        inset: 0;
+        width: var(--gpth-slider-percent);
+        background: var(--gpth-slider-fill-bg);
+        pointer-events: none;
+        border-top-right-radius: var(--gpth-slider-radius);
+        border-bottom-right-radius: var(--gpth-slider-radius);
+        // no transition: this changes on every 'input' event during a drag. a transition here makes the fill visibly lag behind the cursor
+    }
+
+    &__marker {
+        position: absolute;
+        top: 20%;
+        bottom: 20%;
+        left: var(--gpth-slider-percent);
+        width: var(--gpth-slider-marker-width);
+        transform: translateX(var(--gpth-slider-marker-offset));
+        background: var(--gpth-slider-marker-bg);
+        border-radius: 50vw;
+        pointer-events: none;
+        z-index: 5;
+    }
+
+    &__input {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        outline: none;
+        cursor: pointer;
+        position: relative;
+        z-index: 3;
+        opacity: 0; // invisible but fully functional. native drag/click/keyboard/touch
+
+        &::-webkit-slider-thumb,
+        &::-moz-range-thumb {
+            width: 0;
+            height: 0;
+        }
+
+        &::-webkit-slider-thumb {
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        &::-moz-range-thumb {
+            border: none;
+        }
+
+        &::-webkit-slider-runnable-track,
+        &::-moz-range-track {
+            background: transparent;
+            height: 100%;
+        }
+    }
+
+    &__label,
+    &__value {
+        position: absolute;
+        font-size: 0.8em;
+        opacity: 0.8;
+        pointer-events: none;
+        z-index: 4;
+    }
+
+    &__label {
+        left: var(--gpth-slider-content-offset);
+        font-weight: bold;
+    }
+
+    &__value {
+        right: var(--gpth-slider-content-offset);
+        font-weight: 600;
+        font-size: 0.9em;
+
+        span:last-child {
+            opacity: 0.6;
+            font-weight: 400;
+            margin-left: 2px;
+        }
+    }
+}
