@@ -2,13 +2,9 @@ import { $, setVars } from '../../utils/dom.js'
 import { getItems, removeItems, setItems } from '../../utils/storage.js'
 import { icon_full_width, icon_sync } from '../components/icons.js'
 import { renderButton } from '../components/renderButtons.js'
-import { renderSliderCard } from '../components/renderSlider.js'
+import { renderSliderCard } from '../components/renderSliderCard.js'
 import { renderToggle } from '../components/renderToggles.js'
-import {
-	SK_WIDTH_IS_FULL_ENABLED,
-	SK_WIDTH_IS_SYNC_ENABLED,
-	SK_WIDTH_SETTINGS,
-} from '../config/consts-storage.js'
+import { SK_WIDTH_IS_FULL_ENABLED, SK_WIDTH_IS_SYNC_ENABLED, SK_WIDTH_SETTINGS } from '../config/consts-storage.js'
 import { SELECTORS } from '../config/selectors.js'
 
 // ==========================================
@@ -210,11 +206,7 @@ function onWidthChange({ event, key, shouldSave = false }) {
 		onSyncTextareaWithChatWidth()
 	}
 
-	if (
-		key === 'w_prompt_textarea' &&
-		currentState.syncEnabled &&
-		val !== currentState.settings.w_chat_gpt
-	) {
+	if (key === 'w_prompt_textarea' && currentState.syncEnabled && val !== currentState.settings.w_chat_gpt) {
 		currentState.syncEnabled = false
 	}
 

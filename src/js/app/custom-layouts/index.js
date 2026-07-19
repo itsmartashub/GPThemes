@@ -21,7 +21,7 @@ function templateHTML() {
 			${renderCustomChatboxHeight()}
 			${renderSeparator}
 			${renderCustomChatBubbles()}
-			</section>`
+		</section>`
 }
 // ${renderSeparator}
 // ${renderCustomScrolldown()}
