@@ -19,7 +19,7 @@
         font-size: 1.4rem;
     }
 
-    /* this fix some crazy long width in v4.0.4 */
+    /* this fix some crazy long width for <input type="number"/> */
     input {
         max-width: max-content;
     }
@@ -31,7 +31,7 @@
     }
 
     label,
-    label > * {
+    label>* {
         cursor: pointer !important;
     }
 
@@ -96,6 +96,7 @@
     }
 
     &:has(select) {
+
         &::after,
         &::before {
             display: none;
@@ -103,6 +104,7 @@
     }
 
     &:has(input:focus) {
+
         &::after,
         &::before {
             opacity: 1 !important;
@@ -289,6 +291,7 @@
     &--range {
         input {
             width: 85% !important;
+            max-width: 100% !important;
             margin: 0 auto;
             align-self: flex-end;
         }

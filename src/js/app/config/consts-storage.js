@@ -21,6 +21,7 @@ export const SK_SCROLL_BUTTON_POSITION = 'scrollButtonPosition'
 export const SK_WIDTH_SETTINGS = 'widthSettings'
 export const SK_WIDTH_IS_FULL_ENABLED = 'widthIsFullEnabled'
 export const SK_WIDTH_IS_SYNC_ENABLED = 'widthIsSyncEnabled'
+export const SK_WIDTH_SIDEBAR = 'widthSidebar'
 
 // Typography Settings
 export const SK_TEXT_FONT_FAMILY = 'textFontFamily'
@@ -59,6 +60,8 @@ export const EXPORT_CONFIG = Object.freeze({
 		SK_WIDTH_IS_FULL_ENABLED,
 		SK_WIDTH_IS_SYNC_ENABLED,
 		SK_WIDTH_SETTINGS,
+
+		SK_WIDTH_SIDEBAR,
 
 		SK_TEXT_FONT_FAMILY,
 		SK_TEXT_FONT_SIZE,
