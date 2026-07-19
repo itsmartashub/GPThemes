@@ -13,7 +13,7 @@ const CSS_VAR = '--sidebar-width'
 const CONFIG = Object.freeze({
 	defaultValue: 260,
 	min: 150,
-	max: 500,
+	max: 600,
 	step: 1,
 	unit: 'px',
 })
@@ -32,7 +32,7 @@ function normalizeValue(value) {
 // =====================================================
 function templateHTML() {
 	return `
-		<h4 class="${SELECTORS.SUBHEADING}">Other</h4>
+		<h4 class="${SELECTORS.SUBHEADING}">Element sizes</h4>
 		${renderSlider({
 			name: 'Sidebar Width',
 			inputId: SELECTORS.WIDTH.SLIDER_SIDEBAR_ID,
