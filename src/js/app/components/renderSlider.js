@@ -3,7 +3,7 @@ function decimalsOf(step) {
 }
 
 // Snaps to step, rounds off float drift, clamps to range
-function roundToStep(value, step, min, max) {
+export function roundToStep(value, step, min, max) {
 	const decimals = decimalsOf(step)
 	const snapped = Math.round(value / step) * step
 	const rounded = decimals > 0 ? Number(snapped.toFixed(decimals)) : snapped
