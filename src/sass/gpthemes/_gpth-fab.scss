@@ -32,7 +32,7 @@
 		}
 
 		&__icon {
-			position: relative;
+			// position: relative;
 			display: grid;
 			place-items: center;
 			width: var(--floating-icon-size);
@@ -46,26 +46,26 @@
 			transition: transform 0.15s $easeOutCubic, background-color 0.3s $easeOutCubic, color 0.3s $easeOutCubic;
 			cursor: pointer;
 
-			&::after {
-				content: 'Change theme';
-				position: absolute;
-				top: 50%;
-				left: 0;
-				font-size: 0.725rem;
-				font-weight: bold;
-				border-radius: 50vw;
-				width: max-content;
-				height: max-content;
-				padding: 0.2rem 0.5rem;
-				background-color: var(--c-accent);
-				color: var(--c-on-accent) !important;
-				pointer-events: none;
-				opacity: 0;
-				transform-origin: right center;
-				transform: translate(-110%, -50%) scale(0);
-				transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-				// z-index: -1;
-			}
+			// &::after {
+			// 	content: 'Change theme';
+			// 	position: absolute;
+			// 	top: 50%;
+			// 	left: 0;
+			// 	font-size: 0.725rem;
+			// 	font-weight: bold;
+			// 	border-radius: 50vw;
+			// 	width: max-content;
+			// 	height: max-content;
+			// 	padding: 0.2rem 0.5rem;
+			// 	background-color: var(--c-accent);
+			// 	color: var(--c-on-accent) !important;
+			// 	pointer-events: none;
+			// 	opacity: 0;
+			// 	transform-origin: right center;
+			// 	transform: translate(-110%, -50%) scale(0);
+			// 	transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+			// 	// z-index: -1;
+			// }
 
 			&:hover {
 				background-image: none;
@@ -76,10 +76,10 @@
 					transform: scale(1.1);
 				}
 
-				&::after {
-					opacity: 1 !important;
-					transform: translate(-115%, -50%) scale(1);
-				}
+				// &::after {
+				// 	opacity: 1 !important;
+				// 	transform: translate(-115%, -50%) scale(1);
+				// }
 			}
 		}
 	}
