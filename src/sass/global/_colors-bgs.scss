@@ -431,10 +431,14 @@ button.bg-token-interactive-label-accent-default {
 // }
 
 // Fix code-block background inconsistency (new Run/Edit) code block)
-@layer utilities {
-	.\[--code-block-surface\:var\(--bg-elevated-secondary\)\] {
-		--code-block-surface: var(--c-bg-cm) !important;
-	}
+// !!! @layer utilities break the whole style on Chromium !!! Remove it
+// @layer utilities {
+// 	.\[--code-block-surface\:var\(--bg-elevated-secondary\)\] {
+// 		--code-block-surface: var(--c-bg-cm) !important;
+// 	}
+// }
+[class*="--code-block-surface"] {
+	--code-block-surface: var(--c-bg-cm) !important;
 }
 
 // Stiky header transparentish bg like: "ChatGPT" on top left and "Share" and header action buttons on top right
