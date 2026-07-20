@@ -235,3 +235,11 @@ button.composer-submit-button-color,
 	color: var(--c-on-accent) !important;
 	box-shadow: var(--shadow) !important;
 }
+
+// Thread bottom container
+#thread-bottom-container {
+	&::after {
+		background-color: var(--c-bg-chats-container) !important;
+		opacity: 1 !important;
+	}
+}
