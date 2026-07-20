@@ -16,8 +16,8 @@ export const ELEMENTS = [
 	},
 	{
 		id: SELECTORS.HIDE.FOOTER.TOGGLE_ID,
-		label: 'Hide Footer',
-		subtitle: 'Hide info below the message box for a cleaner view',
+		label: 'Hide AI Disclaimer',
+		subtitle: 'Hide info above the chatbox for a cleaner view',
 		icon: icon_footer,
 		selector: SELECTORS.HIDE.FOOTER.SELECTOR,
 		dataAttr: ATTR_HIDE_FOOTER,

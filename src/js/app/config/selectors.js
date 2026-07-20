@@ -112,7 +112,7 @@ export const SELECTORS = {
 		FOOTER: {
 			TOGGLE_ID: `${PFX}-hide-footer`,
 			// SELECTOR: `#thread-bottom-container > #thread-bottom ~ div.min-h-8 > div`,
-			SELECTOR: `#main div#thread-bottom-container>div:last-of-type:is(.-mt-4),#main div.sticky.bottom-0 .min-h-8.w-full.text-xs.text-pretty`,
+			SELECTOR: `[data-testid="thread-disclaimer"]`,
 		},
 		UPGRADE: {
 			TOGGLE_ID: `${PFX}-hide-upgrade-chip`,
