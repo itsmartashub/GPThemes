@@ -113,6 +113,10 @@ export const SELECTORS = {
 			TOGGLE_ID: `${PFX}-hide-header-model-btn`,
 			SELECTOR: `[data-testid="model-switcher-dropdown-button"]`,
 		},
+		HEADER_ACTIONS_BTN: {
+			TOGGLE_ID: `${PFX}-hide-header-actions-btn`,
+			SELECTOR: `#conversation-header-actions`,
+		},
 		FOOTER: {
 			TOGGLE_ID: `${PFX}-hide-footer`,
 			// SELECTOR: `#thread-bottom-container > #thread-bottom ~ div.min-h-8 > div`,

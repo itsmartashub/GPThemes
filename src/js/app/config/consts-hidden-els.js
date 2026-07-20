@@ -1,9 +1,16 @@
 import { icon_footer, icon_header, icon_upgrade } from '../components/icons'
-import { ATTR_HIDE_FOOTER, ATTR_HIDE_HEADER, ATTR_HIDE_HEADER_MODEL_BTN, ATTR_HIDE_UPGRADE_CHIP } from './consts-attr'
+import {
+	ATTR_HIDE_FOOTER,
+	ATTR_HIDE_HEADER,
+	ATTR_HIDE_HEADER_MODEL_BTN,
+	ATTR_HIDE_HEADER_ACTIONS_BTN,
+	ATTR_HIDE_UPGRADE_CHIP,
+} from './consts-attr'
 import {
 	SK_TOGGLE_HIDE_FOOTER,
 	SK_TOGGLE_HIDE_HEADER,
 	SK_TOGGLE_HIDE_HEADER_MODEL_BTN,
+	SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN,
 	SK_TOGGLE_HIDE_UPGRADE_CHIP,
 } from './consts-storage'
 import { SELECTORS } from './selectors'
@@ -22,11 +29,21 @@ export const ELEMENTS = [
 	{
 		id: SELECTORS.HIDE.HEADER_MODEL_BTN.TOGGLE_ID,
 		label: 'Hide Header ChatGPT',
-		subtitle: 'Hide the top header ChatGPT button only. This is more useful on mobiles.',
+		subtitle: 'Hide the top header ChatGPT button only. This is more useful on mobiles',
 		icon: icon_header,
 		selector: SELECTORS.HIDE.HEADER_MODEL_BTN.SELECTOR,
 		dataAttr: ATTR_HIDE_HEADER_MODEL_BTN,
 		storageKey: SK_TOGGLE_HIDE_HEADER_MODEL_BTN,
+		isHidden: false,
+	},
+	{
+		id: SELECTORS.HIDE.HEADER_ACTIONS_BTN.TOGGLE_ID,
+		label: 'Hide Header Actions',
+		subtitle: 'Hide the top header action buttons on top right (e.g. "Share", "Open canvas", etc.)',
+		icon: icon_header,
+		selector: SELECTORS.HIDE.HEADER_ACTIONS_BTN.SELECTOR,
+		dataAttr: ATTR_HIDE_HEADER_ACTIONS_BTN,
+		storageKey: SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN,
 		isHidden: false,
 	},
 	{

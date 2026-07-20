@@ -10,6 +10,7 @@ export const SK_TOGGLE_ACCENT_TEXT = 'toggleAccentTextState'
 // Layout Toggles
 export const SK_TOGGLE_HIDE_HEADER = 'hideHeader'
 export const SK_TOGGLE_HIDE_HEADER_MODEL_BTN = 'hideHeaderModelBtn'
+export const SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN = 'hideHeaderActionsBtn'
 export const SK_TOGGLE_HIDE_FOOTER = 'hideFooter'
 export const SK_TOGGLE_HIDE_UPGRADE_CHIP = 'hideUpgradeChip'
 export const SK_TOGGLE_CHATBOX_HEIGHT = 'toggleChatboxHeightState'

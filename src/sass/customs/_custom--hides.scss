@@ -34,6 +34,12 @@ html[data-gpth-hide-header-model-btn] {
     }
 }
 
+html[data-gpth-hide-header-actions-btn] {
+    #conversation-header-actions {
+        display: none !important;
+    }
+}
+
 /* TODO: has to handle and this selector in SELECTOR js file for this element */
 // html[data-gpth-hide-header]  .h-header-height.top-0 {
 //     display: none !important;
