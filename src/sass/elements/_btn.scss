@@ -20,7 +20,11 @@ button {
 		color: var(--c-on-accent) !important;
 	}
 
-	&-secondary {
+
+	/* 
+	relative flex h-8 w-8 cursor-pointer items-center justify-center overflow-hidden rounded-full outline-hidden select-none btn-secondary bg-token-bg-primary/65! hover:bg-token-main-surface-secondary/75! shadow-short box-content backdrop-blur-[2px] backdrop-filter sm:shadow-md dark:shadow-none! group-data-stream-active/scroll-root:squircle *:absolute *:inset-0 *:m-auto group-data-stream-active/scroll-root:w-10 motion-safe:transition-[width] motion-safe:duration-120 motion-safe:ease-out *:motion-safe:transition-opacity *:motion-safe:duration-120 *:motion-safe:ease-out absolute start-1/2 z-10 -translate-x-1/2 bottom-[calc(100%+3*var(--spacing)+var(--thread-scroll-to-bottom-banner-offset,0px))]
+	*/
+	&-secondary:not(.backdrop-blur-\[2px\]) {
 		background-color: var(--c-accent-12) !important;
 		color: var(--c-accent) !important;
 		backdrop-filter: blur(1rem);
