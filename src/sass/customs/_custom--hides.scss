@@ -64,7 +64,7 @@ html[data-gpth-hide-footer] {
 /* "Upgrade for free" chip button in header and "Claim offer" button in sidebar */
 html[data-gpth-hide-upgrade-chip] {
 
-    [data-testid="thread-header-right-actions"] button.button-glimmer-cta,
+    header button.button-glimmer-cta,
     .__menu-item[data-testid="accounts-profile-button"]~div>button.h-8.w-full.bg-token-bg-primary {
         display: none !important;
     }

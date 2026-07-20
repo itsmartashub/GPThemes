@@ -125,7 +125,7 @@ export const SELECTORS = {
 		UPGRADE: {
 			TOGGLE_ID: `${PFX}-hide-upgrade-chip`,
 			SELECTOR:
-				'[data-testid="thread-header-right-actions"] button.button-glimmer-cta,.__menu-item[data-testid="accounts-profile-button"] ~ div > button.h-8.w-full.bg-token-bg-primary',
+				'header button.button-glimmer-cta,.__menu-item[data-testid="accounts-profile-button"] ~ div > button.h-8.w-full.bg-token-bg-primary',
 		},
 		PROFILE: {
 			TOGGLE_ID: `${PFX}-hide-profile-btn`,
