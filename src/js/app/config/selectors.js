@@ -127,5 +127,9 @@ export const SELECTORS = {
 			SELECTOR:
 				'[data-testid="thread-header-right-actions"] button.button-glimmer-cta,.__menu-item[data-testid="accounts-profile-button"] ~ div > button.h-8.w-full.bg-token-bg-primary',
 		},
+		PROFILE: {
+			TOGGLE_ID: `${PFX}-hide-profile-btn`,
+			SELECTOR: '[data-testid="accounts-profile-button"]',
+		},
 	},
 }

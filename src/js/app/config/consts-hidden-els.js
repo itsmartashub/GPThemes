@@ -5,6 +5,7 @@ import {
 	ATTR_HIDE_HEADER_MODEL_BTN,
 	ATTR_HIDE_HEADER_ACTIONS_BTN,
 	ATTR_HIDE_UPGRADE_CHIP,
+	ATTR_HIDE_PROFILE_BTN,
 } from './consts-attr'
 import {
 	SK_TOGGLE_HIDE_FOOTER,
@@ -12,6 +13,7 @@ import {
 	SK_TOGGLE_HIDE_HEADER_MODEL_BTN,
 	SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN,
 	SK_TOGGLE_HIDE_UPGRADE_CHIP,
+	SK_TOGGLE_HIDE_PROFILE_BTN,
 } from './consts-storage'
 import { SELECTORS } from './selectors'
 
@@ -64,6 +66,16 @@ export const ELEMENTS = [
 		selector: SELECTORS.HIDE.UPGRADE.SELECTOR,
 		dataAttr: ATTR_HIDE_UPGRADE_CHIP,
 		storageKey: SK_TOGGLE_HIDE_UPGRADE_CHIP,
+		isHidden: false,
+	},
+	{
+		id: SELECTORS.HIDE.PROFILE.TOGGLE_ID,
+		label: 'Hide Profile Button',
+		subtitle: 'Hide profile button from the sidebar',
+		icon: icon_upgrade,
+		selector: SELECTORS.HIDE.PROFILE.SELECTOR,
+		dataAttr: ATTR_HIDE_PROFILE_BTN,
+		storageKey: SK_TOGGLE_HIDE_PROFILE_BTN,
 		isHidden: false,
 	},
 ]

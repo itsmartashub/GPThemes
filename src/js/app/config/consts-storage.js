@@ -13,6 +13,7 @@ export const SK_TOGGLE_HIDE_HEADER_MODEL_BTN = 'hideHeaderModelBtn'
 export const SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN = 'hideHeaderActionsBtn'
 export const SK_TOGGLE_HIDE_FOOTER = 'hideFooter'
 export const SK_TOGGLE_HIDE_UPGRADE_CHIP = 'hideUpgradeChip'
+export const SK_TOGGLE_HIDE_PROFILE_BTN = 'hideProfileBtn'
 export const SK_TOGGLE_CHATBOX_HEIGHT = 'toggleChatboxHeightState'
 export const SK_TOGGLE_FAB_HIDDEN = 'toggleFABHidden'
 
@@ -54,8 +55,10 @@ export const EXPORT_CONFIG = Object.freeze({
 		SK_TOGGLE_CHATBOX_HEIGHT,
 		SK_TOGGLE_HIDE_HEADER,
 		SK_TOGGLE_HIDE_HEADER_MODEL_BTN,
+		SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN,
 		SK_TOGGLE_HIDE_FOOTER,
 		SK_TOGGLE_HIDE_UPGRADE_CHIP,
+		SK_TOGGLE_HIDE_PROFILE_BTN,
 		SK_TOGGLE_FAB_HIDDEN,
 
 		SK_SCROLL_BUTTON_POSITION,
