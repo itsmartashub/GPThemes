@@ -22,8 +22,16 @@
 
 
 /* Header */
-html[data-gpth-hide-header] header#page-header {
-    display: none !important;
+html[data-gpth-hide-header] {
+    header#page-header {
+        display: none !important;
+    }
+}
+
+html[data-gpth-hide-header-model-btn] {
+    [data-testid="model-switcher-dropdown-button"] {
+        display: none !important;
+    }
 }
 
 /* TODO: has to handle and this selector in SELECTOR js file for this element */

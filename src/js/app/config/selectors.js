@@ -109,6 +109,10 @@ export const SELECTORS = {
 			SELECTOR: `header#page-header`,
 			// SELECTOR: `#page-header, .h-header-height.top-0`,
 		},
+		HEADER_MODEL_BTN: {
+			TOGGLE_ID: `${PFX}-hide-header-model-btn`,
+			SELECTOR: `[data-testid="model-switcher-dropdown-button"]`,
+		},
 		FOOTER: {
 			TOGGLE_ID: `${PFX}-hide-footer`,
 			// SELECTOR: `#thread-bottom-container > #thread-bottom ~ div.min-h-8 > div`,
