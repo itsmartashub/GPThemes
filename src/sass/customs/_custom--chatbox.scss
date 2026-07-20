@@ -1,10 +1,18 @@
-[role="presentation"].composer-parent {
+[role="presentation"].contents {
+    // Note that there many elements with this selector, so we need better specifity like using: [class*="mb-(--thread-component-gap"]
+    // document.querySelectorAll('#thread-bottom [class*="max-w-(--thread-content-max-width)"]')
 
-    #thread-bottom [class*="(--thread-content-max-width)"].flex-1:has(form[data-type="unified-composer"] #prompt-textarea) {
-        // border: 1px solid red !important;
+    /* 
+    // This is the element we want to target 
+    [--thread-content-max-width:40rem] @w-lg/main:[--thread-content-max-width:48rem] mx-auto max-w-(--thread-content-max-width) flex-1 mb-(--thread-component-gap,24px) pointer-events-auto
+    
+    // This is the selector for new chat page (2+ elements)
+    [--thread-content-max-width:40rem] @w-lg/main:[--thread-content-max-width:48rem] mx-auto max-w-(--thread-content-max-width) flex-1 pointer-events-auto  */
+
+    #thread-bottom-container [class*="max-w-(--thread-content-max-width)"][class*="mb-(--thread-component-gap"].flex-1 {
+        // border: 4px solid red !important;
         will-change: width, max-width;
         max-width: var(--w_prompt_textarea);
-        // @include dev_high(orange);
 
         @include container('md') {
             --w_prompt_textarea: 100%;
