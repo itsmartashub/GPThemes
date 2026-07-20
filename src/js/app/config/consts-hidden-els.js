@@ -1,6 +1,11 @@
 import { icon_footer, icon_header, icon_upgrade } from '../components/icons'
-import { ATTR_HIDE_FOOTER, ATTR_HIDE_HEADER, ATTR_HIDE_UPGRADE_CHIP } from './consts-attr'
-import { SK_TOGGLE_HIDE_FOOTER, SK_TOGGLE_HIDE_HEADER, SK_TOGGLE_HIDE_UPGRADE_CHIP } from './consts-storage'
+import { ATTR_HIDE_FOOTER, ATTR_HIDE_HEADER, ATTR_HIDE_HEADER_MODEL_BTN, ATTR_HIDE_UPGRADE_CHIP } from './consts-attr'
+import {
+	SK_TOGGLE_HIDE_FOOTER,
+	SK_TOGGLE_HIDE_HEADER,
+	SK_TOGGLE_HIDE_HEADER_MODEL_BTN,
+	SK_TOGGLE_HIDE_UPGRADE_CHIP,
+} from './consts-storage'
 import { SELECTORS } from './selectors'
 
 export const ELEMENTS = [
@@ -13,6 +18,16 @@ export const ELEMENTS = [
 		dataAttr: ATTR_HIDE_HEADER,
 		storageKey: SK_TOGGLE_HIDE_HEADER,
 		isHidden: false, // OFF by default = no data attribute
+	},
+	{
+		id: SELECTORS.HIDE.HEADER_MODEL_BTN.TOGGLE_ID,
+		label: 'Hide Header ChatGPT',
+		subtitle: 'Hide the top header ChatGPT button only. This is more useful on mobiles.',
+		icon: icon_header,
+		selector: SELECTORS.HIDE.HEADER_MODEL_BTN.SELECTOR,
+		dataAttr: ATTR_HIDE_HEADER_MODEL_BTN,
+		storageKey: SK_TOGGLE_HIDE_HEADER_MODEL_BTN,
+		isHidden: false,
 	},
 	{
 		id: SELECTORS.HIDE.FOOTER.TOGGLE_ID,
