@@ -424,3 +424,15 @@ button.bg-token-interactive-label-accent-default {
 .\[--right-bg\:var\(--bg-tertiary\)\] {
 	--right-bg: var(--c-bg-chats-container) !important;
 }
+
+// .bg-\[--code-block-surface\] {
+// 	// --code-block-surface: var(--c-bg-cm) !important;
+// 	background-color: var(--c-bg-cm) !important;
+// }
+
+// Fix code-block background inconsistency
+@layer utilities {
+	.\[--code-block-surface\:var\(--bg-elevated-secondary\)\] {
+		--code-block-surface: var(--c-bg-cm) !important;
+	}
+}
