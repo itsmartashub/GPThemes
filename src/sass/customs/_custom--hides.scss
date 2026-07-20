@@ -69,3 +69,10 @@ html[data-gpth-hide-upgrade-chip] {
         display: none !important;
     }
 }
+
+html[data-gpth-hide-profile-btn] {
+
+    [data-testid="accounts-profile-button"] {
+        display: none !important;
+    }
+}
