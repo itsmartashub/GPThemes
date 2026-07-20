@@ -430,9 +430,14 @@ button.bg-token-interactive-label-accent-default {
 // 	background-color: var(--c-bg-cm) !important;
 // }
 
-// Fix code-block background inconsistency
+// Fix code-block background inconsistency (new Run/Edit) code block)
 @layer utilities {
 	.\[--code-block-surface\:var\(--bg-elevated-secondary\)\] {
 		--code-block-surface: var(--c-bg-cm) !important;
 	}
+}
+
+// Stiky header transparentish bg like: "ChatGPT" on top left and "Share" and header action buttons on top right
+.translucent-surface {
+	background: color-mix(in oklch, var(--c-bg-chats-container) 2%, transparent) !important;
 }
