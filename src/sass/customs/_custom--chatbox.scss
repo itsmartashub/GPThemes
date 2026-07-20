@@ -1,4 +1,4 @@
-[role="presentation"].contents {
+#main [role="presentation"] {
     // Note that there many elements with this selector, so we need better specifity like using: [class*="mb-(--thread-component-gap"]
     // document.querySelectorAll('#thread-bottom [class*="max-w-(--thread-content-max-width)"]')
 

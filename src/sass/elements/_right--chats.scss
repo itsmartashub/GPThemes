@@ -1,24 +1,10 @@
-.contents[role='presentation'] {
-    container: main / inline-size;
+#main [role="presentation"] {
+    container: main / inline-size; // maybe better attach like in original, to: [class^="@container/main"]
 
     --p-chat-bubble-multiply: 1.35; // not used for Group chats !!
 
     /* Main Page chat-container  Bg */
     background-color: var(--c-bg-chats-container) !important;
-
-
-    /* GTP logo in Dual Response chat bubbles */
-    .gizmo-bot-avatar {
-
-        &,
-        &>div.bg-token-main-surface-primary {
-            background-color: var(--c-accent) !important;
-        }
-
-        svg {
-            color: var(--c-on-accent) !important;
-        }
-    }
 
     /* Product/items list in chat bubbles (when search something) */
     .context-list {
@@ -61,18 +47,10 @@
     }
 }
 
-[data-testid^='conversation-turn-'] {
+[data-testid^="conversation-turn-"] {
     @include container('md') {
         --p-chat-bubble: .8rem;
         --br-chat-bubble: calc(var(--br) * 1.5);
-    }
-
-    @include container('sm') {
-
-        /* Wrapper of each chat-bubbles msg, decreise padding-inline. Spacing from chat bubbles to screen edge */
-        .text-base.my-auto.mx-auto[class*="[--thread-content-margin:"] {
-            --thread-content-margin: calc(var(--spacing) * 2) !important;
-        }
     }
 
     /* _________ CANVAS in chat bubbles */
@@ -216,36 +194,6 @@
             }
         }
 
-        /* "SOURCES" button, style for footer icons affects this too!! */
-        button.group\/footnote.bg-token-bg-primary.w-fit.rounded-3xl {
-            --bg-primary: var(--c-accent-10) !important;
-
-            text-transform: uppercase;
-
-            &:is(:hover, :focus) {
-                background-color: var(--c-accent) !important;
-
-                .text-token-text-secondary {
-                    // color: var(--c-accent) !important;color
-                    color: var(--c-on-accent) !important;
-                }
-            }
-        }
-
-        /* Source link big cards with image and text that overlaps rigth the chat bubble */
-        [data-message-author-role="assistant"] .w-50.shrink-0.snap-start[class*="@5xl/thread:w-61"] {
-            .h-full.w-full.bg-clip-padding.bg-token-bg-primary.cursor-pointer.overflow-hidden {
-                background-color: var(--c-accent-08) !important;
-                backdrop-filter: blur(0.25rem);
-                border-color: var(--c-accent-10) !important;
-                transition: translate 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
-
-                &:hover {
-                    translate: 0 -2px;
-                }
-            }
-        }
-
         /* Link cards listed from sources listed when using "Search" */
         a[class*="group/nav-list"] {
             background-color: var(--c-accent-10) !important;
@@ -277,49 +225,17 @@
                 background-image: var(--c-bg-gradient);
             }
         }
-
-
-        /* DALLE Image hover buttons - 👍👎 */
-        .group\/dalle-image {
-            @include imgTrans;
-
-            .group-hover\/dalle-image\:visible.absolute {
-                button {
-                    background-color: var(--c-on-accent) !important;
-                    color: var(--c-accent) !important;
-                    opacity: .8;
-
-                    svg {
-                        color: currentColor !important;
-                        transition: none !important;
-                    }
-
-                    &:hover {
-                        opacity: 1 !important;
-                        background-color: var(--c-accent) !important;
-                        color: var(--c-on-accent) !important;
-                    }
-                }
-            }
-        }
-
-
-        /* New "Edit" writing block in GPT bubble (Edit, Ask for Edit) */
-        [data-testid="writing-block-container"] {
-
-            &,
-            [class*="dark:bg-[#2a2a2a]"],
-            .writing-block-editor {
-                background: var(--c-bg-cm) !important;
-            }
-        }
-
     }
 }
 
 /* Blur chatbox wrapper background and remove ugly grey background on bottom */
-main#main #thread-bottom-container.content-fade:after {
-    // background-color: var(--c-bg-chats-container) !important;
-    background: none !important;
-    backdrop-filter: blur(20px);
-}
+// main#main #thread-bottom-container.content-fade:after {
+//     // background-color: var(--c-bg-chats-container) !important;
+//     background: none !important;
+//     backdrop-filter: blur(20px);
+// }
+
+// Suggestions on chat input when on new chat
+// [data-testid="use-case-prompt-chips"] {
+//     background: red !important;
+// }
