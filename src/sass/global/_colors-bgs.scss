@@ -441,3 +441,9 @@ button.bg-token-interactive-label-accent-default {
 .translucent-surface {
 	background: color-mix(in oklch, var(--c-bg-chats-container) 2%, transparent) !important;
 }
+
+// Maps - location counter bubble marker
+.bg-black {
+	background-color: var(--c-accent-light) !important;
+	color: var(--c-accent) !important;
+}
