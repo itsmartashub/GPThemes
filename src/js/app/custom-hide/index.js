@@ -34,7 +34,7 @@ function templateHTML() {
 
 	return `
 		<section id="${SELECTORS.HIDE.CONTAINER_ID}">
-			<h4 class="${SELECTORS.SUBHEADING}">Hide elements</h4>
+			<h4 class="${SELECTORS.SUBHEADING}">Visibility</h4>
 			<div class="grid grid-cols-[repeat(auto-fit,minmax(7rem,1fr))]">
 				${items}
 			</div>

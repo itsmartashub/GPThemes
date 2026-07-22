@@ -1,4 +1,11 @@
-import { icon_footer, icon_header, icon_upgrade } from '../components/icons'
+import {
+	icon_footer,
+	icon_header,
+	icon_upgrade,
+	icon_header_model,
+	icon_header_btns,
+	icon_profile,
+} from '../components/icons'
 import {
 	ATTR_HIDE_FOOTER,
 	ATTR_HIDE_HEADER,
@@ -32,7 +39,7 @@ export const ELEMENTS = [
 		id: SELECTORS.HIDE.HEADER_MODEL_BTN.TOGGLE_ID,
 		label: 'Hide Header ChatGPT',
 		subtitle: 'Hide the top header ChatGPT button only. This is more useful on mobiles',
-		icon: icon_header,
+		icon: icon_header_model,
 		selector: SELECTORS.HIDE.HEADER_MODEL_BTN.SELECTOR,
 		dataAttr: ATTR_HIDE_HEADER_MODEL_BTN,
 		storageKey: SK_TOGGLE_HIDE_HEADER_MODEL_BTN,
@@ -42,7 +49,7 @@ export const ELEMENTS = [
 		id: SELECTORS.HIDE.HEADER_ACTIONS_BTN.TOGGLE_ID,
 		label: 'Hide Header Actions',
 		subtitle: 'Hide the top header action buttons on top right (e.g. "Share", "Open canvas", etc.)',
-		icon: icon_header,
+		icon: icon_header_btns,
 		selector: SELECTORS.HIDE.HEADER_ACTIONS_BTN.SELECTOR,
 		dataAttr: ATTR_HIDE_HEADER_ACTIONS_BTN,
 		storageKey: SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN,
@@ -72,7 +79,7 @@ export const ELEMENTS = [
 		id: SELECTORS.HIDE.PROFILE.TOGGLE_ID,
 		label: 'Hide Profile Button',
 		subtitle: 'Hide profile button from the sidebar',
-		icon: icon_upgrade,
+		icon: icon_profile,
 		selector: SELECTORS.HIDE.PROFILE.SELECTOR,
 		dataAttr: ATTR_HIDE_PROFILE_BTN,
 		storageKey: SK_TOGGLE_HIDE_PROFILE_BTN,

@@ -10,7 +10,7 @@ const sidebarWidth = createSliderSetting({
 	displayUnitId: SELECTORS.WIDTH.DISPLAY_SIDEBAR_UNIT_ID,
 	name: 'Sidebar Width',
 	min: 150,
-	max: 600,
+	max: 500,
 	step: 1,
 	unit: 'px',
 	defaultValue: 260,

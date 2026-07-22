@@ -242,7 +242,7 @@
 
 header button.button-glimmer-cta {
     color: var(--c-accent) !important;
-    border-color: currentColor !important;
+    border-color: var(--c-accent-20) !important;
 
     &:hover {
         background-color: var(--c-accent-08) !important;
