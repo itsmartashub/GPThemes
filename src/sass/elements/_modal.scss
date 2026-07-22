@@ -106,6 +106,7 @@
 [data-testid="modal-settings"] {
 	[role="dialog"] {
 
+
 		/* === All the .btn inside dialogs not having svg icon inside */
 		.btn:not(svg) {
 			min-width: var(--min-w-btn);
@@ -150,13 +151,13 @@
 		}
 
 		[role='tablist'] {
+
 			// OpenAI removed this sidebar alike style. So maybe move this style to -content- element above (its the settings sidebar active content
 			// &.bg-token-bg-elevated-secondary {
 			// 	background-color: color-alpha($_, 0.055, true);
 			// 	border: 1px solid color-alpha($_, 0.055, true);
 			// 	border-radius: child-radius(var(--br-dialog), var(--p-dialog)) !important;
 			// }
-
 			button {
 				padding: var(--p-btn);
 				background-color: transparent !important;
@@ -206,35 +207,48 @@
 			}
 		}
 
-		/* Memory 100% full */
-		[id*='content-Personalization'][role='tabpanel'] {
-			[class*="dark:text-[#DC2626]"] {
-				color: var(--c-danger) !important;
-				background-color: oklch(from currentColor l c h / 0.11) !important;
+		[role="tabpanel"] {
+
+			// Sticky headers in "Settings" dialog
+			.bg-token-bg-primary.sticky.top-0 {
+				background-color: var(--c-bg-dialog) !important;
 			}
 
+			&[id*='content-Keyboard'] {
+				.sticky-state-container\/keyboard-shortcuts {
+					background-color: var(--c-bg-dialog) !important;
+				}
+			}
+
+			&[id*='content-Personalization'] {
+				[class*="dark:text-[#DC2626]"] {
+					color: var(--c-danger) !important;
+					background-color: oklch(from currentColor l c h / 0.11) !important;
+				}
+			}
+
+			/* "GPT builder profile" content */
+			&[id*='content-Account'] {
+
+				/* "PlaceholderGPT - By community builder" preview - this is bcs of OLED theme */
+				.bg-token-main-surface-primary.relative:has(.gizmo-shadow-stroke svg) {
+					--main-surface-primary: transparent !important;
+				}
+
+				/* "Complete verification to publish GPTs to everyone....." */
+				.bg-token-main-surface-primary:not(.gizmo-shadow-stroke) {
+					--main-surface-primary: var(--c-surface-3) !important;
+				}
+			}
+
+			/* Speech tabpanel in "Settings" */
+			&[id*='Speech'] {
+				.border-l {
+					border: none !important;
+				}
+			}
 		}
 
-		/* "GPT builder profile" content */
-		[id*='content-Account'][role='tabpanel'] {
-
-			/* "PlaceholderGPT - By community builder" preview - this is bcs of OLED theme */
-			.bg-token-main-surface-primary.relative:has(.gizmo-shadow-stroke svg) {
-				--main-surface-primary: transparent !important;
-			}
-
-			/* "Complete verification to publish GPTs to everyone....." */
-			.bg-token-main-surface-primary:not(.gizmo-shadow-stroke) {
-				--main-surface-primary: var(--c-surface-3) !important;
-			}
-		}
-
-		/* Speech tabpanel in "Settings" */
-		[id*='Speech'][role='tabpanel'] {
-			.border-l {
-				border: none !important;
-			}
-		}
 
 		/* Heading "Settings" in Settings Modal */
 		h2.text-lg.font-semibold {

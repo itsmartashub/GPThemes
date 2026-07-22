@@ -176,6 +176,8 @@ html,
 
     --scrollbar-color: var(--c-scrollbar-thumb) !important;
     --scrollbar-color-hover: var(--c-scrollbar-thumb-hover) !important;
+
+    --interactive-button-bg-inactive-primary: var(--c-accent) !important; // "Restore defaults" btn in Settings -> Keyboard (in footer)
 }
 
 /* POPOVER GLOBAL
