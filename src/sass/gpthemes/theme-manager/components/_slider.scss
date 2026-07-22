@@ -54,8 +54,8 @@
 
     &__marker {
         position: absolute;
-        top: 20%;
-        bottom: 20%;
+        top: 25%;
+        bottom: 25%;
         left: var(--gpth-slider-percent);
         width: var(--gpth-slider-marker-width);
         transform: translateX(var(--gpth-slider-marker-offset));

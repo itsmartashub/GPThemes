@@ -51,65 +51,71 @@ const currentReleaseChanges = {
 	// support: [],
 	note: [
 		{
-			details: `Hey there, it's been a while. <br>
-					A few things were broken, and I only just found out. Sorry about that.
-					I've moved on to other AI workflows, so I rarely visit the site this was built for anymore.<br>
-					If something's off, I probably won't know unless you tell me :(`,
+			details: `Hey there. I just wanted to let you know that I rarely visit the site this extension was built for anymore.<br>
+			That means if something breaks or stops working, I probably won't notice unless you let me know :(`,
 		},
 	],
 	features: [
 		{
-			description: 'Hide Upgrade Chips:',
-			details: 'Hide the upgrade chip from the sidebar also when <code>Hide Upgrade Chips</code> is enabled',
+			description: 'Custom Sidebar Width:',
+			details: 'New slider to adjust sidebar width (original is 260px)',
+			issueRef: 218,
+		},
+		{
+			description: 'Hide Profile Button:',
+			details: 'Toggle to hide the Account Profile button from the sidebar',
+			issueRef: 233,
+		},
+		{
+			description: 'Hide Header ChatGPT Button:',
+			details: 'New toggle to hide the top header ChatGPT button',
+			issueRef: 228,
+		},
+		{
+			description: 'Hide Header Actions:',
+			details: 'Hide top-right header buttons including Share, Open Canvas, and options menu',
+			issueRef: 230,
 		},
 	],
 	improvements: [
 		{
-			description: 'Text Editing:',
-			details:
-				'Enhanced styling for new markdown edit blocks, including theme-consistent backgrounds, improved selected text menu dropdowns, and custom accent colors for buttons and text selection',
-			issueRef: 214,
+			description: 'Header Styling:',
+			details: 'Improved translucent backgrounds for header action buttons',
 		},
 		{
-			description: 'UI/UX:',
-			details: 'Improved styling for tooltips, settings & upgrade dialogs, and pricing cards',
+			description: 'Code Blocks:',
+			details: 'Improved styling consistency for code block backgrounds and markdown edit blocks',
 		},
 		{
-			description: 'Sidebar:',
-			details: 'Unify sidebar and chat container background colors',
+			description: 'Codex/Cloud:',
+			details: 'Enhanced style support for Codex Cloud page',
 		},
 	],
 	fixes: [
 		{
-			description: 'Fonts:',
-			details: 'Fixed custom font family application and fallback logic',
-			issueRef: 210,
+			description: 'Message Bubble:',
+			details: 'Fixed selectors to ensure message bubble padding is properly applied',
+			issueRef: 224,
+		},
+		{
+			description: 'Custom Chatbox Width:',
+			details: 'Fixed feature functionality and improved performance',
+			issueRef: 235,
+		},
+		{
+			description: 'Hide Footer:',
+			details: 'Updated selectors to fix broken <code>Hide Footer</code> toggle',
+			issueRef: 226,
 		},
 		{
 			description: 'Expand Chatbox:',
-			details: 'Fixed <code>Expand chatbox</code> feature',
-			issueRef: 209,
+			details: 'Fixed and enhanced support for New Chat page',
+			issueRef: 219,
 		},
 		{
-			description: 'Chatbox:',
-			details:
-				'Fixed chatbox background to match accent theme with blur, and differentiate it with temporary chatbox',
-			issueRef: 211,
-		},
-		{
-			description: 'Chatbox Section:',
-			details: 'Replaced the grey background with a modern backdrop blur for better readability',
-			issueRef: 211,
-		},
-		{
-			description: 'Chat Bubble:',
-			details: 'Fixed user bubble alignment and custom width feature',
-			issueRef: 213,
-		},
-		{
-			description: 'Sidebar:',
-			details:
-				'Fixed background theme consistency, corrected pin icon colors, and improved upgrade chip hiding selectors',
+			description: 'Upgrade Chips:',
+			details: 'Fixed selectors to properly hide new Upgrade chip in header for desktop and mobile',
+			issueRef: 237,
 		},
 	],
 	other: [
