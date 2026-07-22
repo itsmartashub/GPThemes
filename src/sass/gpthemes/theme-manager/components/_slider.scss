@@ -16,10 +16,10 @@
         --gpth-slider-marker-width: 4px;
         --gpth-slider-marker-offset: -300%;
         --gpth-slider-content-offset: 10%;
-        --gpth-slider-bg: var(--c-accent-12);
-        --gpth-slider-fill-bg: var(--c-accent-30);
-        --gpth-slider-marker-bg: var(--c-accent);
-        --gpth-slider-text: var(--c-accent);
+        --gpth-slider-bg: var(--c-accent-50);
+        --gpth-slider-fill-bg: linear-gradient(to right, var(--c-accent-40), var(--c-accent));
+        --gpth-slider-marker-bg: var(--c-on-accent);
+        --gpth-slider-text: var(--c-on-accent);
         --gpth-slider-fsz: 1rem;
 
         position: relative;
@@ -103,14 +103,15 @@
     &__value {
         position: absolute;
         font-size: 0.8em;
-        opacity: 0.8;
         pointer-events: none;
         z-index: 4;
+        text-shadow: 0.2px 0.2px 1px var(--gpth-slider-fill-bg);
     }
 
     &__label {
         left: var(--gpth-slider-content-offset);
         font-weight: bold;
+        opacity: 0.8;
     }
 
     &__value {
