@@ -24,8 +24,11 @@ body,
     /*  scrollbar-width: thin !important; // auto | thin | none | unset
     scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important; */
 
-    /* Use this if you want to remove native scrollbars and want to add your scrollbar width */
-    scrollbar-width: thin !important; // auto | thin | none
+    @supports selector(::-webkit-scrollbar) {
+        /* Use this if you want to remove native scrollbars and want to add your scrollbar width */
+        scrollbar-width: thin !important; // auto | thin | none
+    }
+
     scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important;
 }
 
@@ -63,7 +66,7 @@ body,
 
 //     html,
 //     * {
-//         scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important;
-//         // scrollbar-width: thin !important;
+//         // scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important;
+//         scrollbar-width: auto !important;
 //     }
 // }
