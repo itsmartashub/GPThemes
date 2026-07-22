@@ -6,34 +6,10 @@ main#main {
 			transform: translateY(-0.08rem);
 		}
 	}
+}
 
-	/* Sticky header tags aka "Top Picks", "DALLE", "Writing", etc */
-	.sticky.top-14.bg-token-main-surface-primary.z-10.-ms-4.w-screen.py-2.text-sm {
-		/* "My GPTs" page - sticky header with scrollable pill tags and LR arrows */
-		background-color: var(--c-bg-chats-container) !important;
-		padding-bottom: 0.6rem !important;
-
-		.no-scrollbar.flex.scroll-m-5 {
-			[class*='md:rounded-none'],
-			[class*='md:rounded-lg'] {
-				border-radius: 50vw !important;
-				padding-inline: 1rem !important;
-
-				&[class*="border-b-2"] {
-					border: none !important;
-				}
-			}
-		}
-
-		/* Left/right arrows in tags track */
-		.absolute[class*='bg-linear-to-'] {
-
-			--tw-gradient-from: var(--c-bg-chats-container) !important;
-
-			button {
-				background-color: var(--c-accent) !important;
-				color: var(--c-on-accent) !important;
-			}
-		}
+[data-testid="modal-gizmo-about"] {
+	.bg-token-bg-secondary {
+		background-color: var(--c-bg-dialog) !important;
 	}
 }
