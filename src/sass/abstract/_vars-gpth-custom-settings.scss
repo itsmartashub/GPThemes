@@ -15,6 +15,11 @@
 	--gpthLetterSpacing: none;
 	--gpthLineHeight: 28;
 
+	--gpth-computed-font-family: var(--gpthFontFamily), var(--gpthFontFamilyDefault);
+	--gpth-computed-font-size: calc((var(--gpthFontSize, 16) / 16) * 1rem);
+	--gpth-computed-line-height: calc(var(--gpthLineHeight, 1.5) / 16);
+	--gpth-computed-letter-spacing: calc((var(--gpthLetterSpacing, 0) / 16) * 1px);
+
 	/* ! === CUSTOM SCROLLDOWN POSITION === */
 	--scrollBtnLeft: unset;
 	--scrollBtnRight: 50%;

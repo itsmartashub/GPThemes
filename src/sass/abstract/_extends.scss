@@ -53,6 +53,13 @@
 		inset 0 0 1rem 2rem var(--c-simulator-shadow, var(--c-accent-10));
 }
 
+%text-base {
+	font-family: var(--gpth-computed-font-family) !important;
+	font-size: var(--gpth-computed-font-size) !important;
+	letter-spacing: var(--gpth-computed-letter-spacing) !important;
+	line-height: var(--gpth-computed-line-height) !important;
+}
+
 // Reusable placeholders
 // %error_style {
 // 	@include elStatus("danger");
