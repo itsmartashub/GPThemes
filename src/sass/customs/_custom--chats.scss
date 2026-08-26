@@ -1,14 +1,6 @@
 /* Chats msgs: <article> */
 [data-testid^='conversation-turn-'] {
 
-    /* ! ========== CUSTOM FONT SIZE AND LINE HEIGHT ========== */
-    //  Custom Font-Size and Line Height for chats and markdown code snippets
-    div[data-message-author-role],
-    .prose {
-        line-height: calc(var(--gpthLineHeight) / 16) !important;
-        font-size: calc(calc(var(--gpthFontSize) / 16) * 1rem) !important;
-    }
-
     /* ! ========== CUSTOM WIDTH ========== */
     // Necu da stavim direkt na chat bubble jer nece biti dobro kad imamo double response prikazan. A i USER parent isto mora da menja width da bi user poruka bila u ravni sa GPT bubble-om
     // New selector: 2025-04-10
@@ -132,3 +124,26 @@ html[data-gpth-toggle-bubble-user][data-gpth-toggle-bubble-user-accent] {
         max-width: var(--w_chat_gpt) !important;
     }
 } */
+
+
+// ========== CUSTOM FONTS ==========
+// It has .leading-6 tw class which sets the line-height
+.user-message-bubble-color {
+    @extend %text-base;
+}
+
+.agent-turn {
+
+    &,
+    .prose {
+        @extend %text-base;
+    }
+
+    [class*="DilResponseRoot"] {
+
+        &,
+        [class*="TextBase"] {
+            @extend %text-base;
+        }
+    }
+}

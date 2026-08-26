@@ -134,8 +134,9 @@
                 /* Make the text in edit textarea to be the full-width */
                 span.invisible,
                 textarea {
-                    line-height: calc(var(--gpthLineHeight) / 16) !important;
-                    font-size: calc((var(--gpthFontSize) / 16) * 1rem) !important;
+                    line-height: var(--gpth-computed-line-height) !important;
+                    font-size: var(--gpth-computed-font-size) !important;
+                    letter-spacing: var(--gpth-computed-letter-spacing) !important;
                     width: 100%;
                 }
             }
@@ -177,20 +178,6 @@
             &:hover {
                 background-color: var(--c-accent-10) !important;
                 scale: 0.98 !important;
-            }
-        }
-
-        /* REASONING: "Reasoned about [topic] for [X] seconds" title: Version that toggle its content below */
-        .relative.my-1.min-h-6 {
-
-            /* REASONING: "Reasoned about [topic] for [X] seconds" content */
-            .relative.z-0 {
-                .origin-left.start-0.end-0.top-0 {
-                    ._markdown_1frq2_10.text-sm.markdown.prose.break-words {
-                        font-size: calc(calc((var(--gpthFontSize) / 16) * 1rem) * 0.9) !important;
-                        line-height: calc(calc(var(--gpthLineHeight) / 16) * 0.85) !important;
-                    }
-                }
             }
         }
 
