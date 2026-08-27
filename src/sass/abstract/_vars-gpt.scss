@@ -211,3 +211,23 @@ html,
     --main-surface-tertiary: var(--c-surface-3) !important;
     --sidebar-surface-primary: var(--c-bg-sidebar) !important;
 }
+
+
+// Scheduled -> AI Bubble ([class*="Badge"]) - 2026-08-26
+:where(.puik-root),
+:where(.puik-root [data-theme]) {
+    --color-surface: var(--c-accent-08) !important; // Scheduled -> AI Bubble -> Some card elements bg
+    --color-surface-secondary: var(--c-accent-08) !important; // Scheduled -> AI Bubble -> Some card elements bg
+    --color-surface-tertiary: var(--c-surface-3) !important; // N/A
+    --color-surface-elevated: var(--c-surface-3) !important; // Scheduled -> AI Bubble -> Searcg pill card showed on hover
+    --gray-400: var(--c-surface-3) !important; // Scheduled -> AI Bubble -> New search pills bg (dark theme)
+    --gray-300: var(--c-surface-2) !important; // Scheduled -> AI Bubble -> New search pills bg on hover
+    --gray-75: var(--c-surface-3) !important; // Scheduled -> AI Bubble -> New search pills bg (light theme), hoveer state use fixed rgb bg and i dont want to waste time overriding it and test for many scenarios
+
+    --color-text-info: var(--c-accent) !important; // Scheduled -> AI Bubble -> Huge icons
+
+    /* GPT'S ACCENT */
+    --color-background-discovery-solid: var(--c-accent) !important;
+    --color-background-discovery-solid-hover: var(--c-accent-12) !important;
+    --color-background-discovery-solid-active: var(--c-accent-20) !important;
+}
