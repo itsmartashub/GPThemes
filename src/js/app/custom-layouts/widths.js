@@ -6,6 +6,7 @@ import { renderSliderCard } from '../components/renderSliderCard.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { SK_WIDTH_IS_FULL_ENABLED, SK_WIDTH_IS_SYNC_ENABLED, SK_WIDTH_SETTINGS } from '../config/consts-storage.js'
 import { SELECTORS } from '../config/selectors.js'
+import { renderCustomUserBubbleFullWidth, resetUserBubbleFullWidth } from './toggleUserBubbleFullWidth.js'
 
 // ==========================================
 // STATE/CONSTANTS
@@ -93,6 +94,7 @@ function templateHTML() {
 				card: true,
 				className: '',
 			})}
+			${renderCustomUserBubbleFullWidth()}
 			${renderToggle({
 				id: SELECTORS.WIDTH.TOGGLE_SYNC_ID,
 				checked: false,
@@ -302,7 +304,10 @@ async function onResetAll() {
 
 	setVars(currentState.settings)
 	updateUI(currentState)
-	await removeItems(Object.values(WIDTH_CONFIG.storageKeys))
+	await Promise.all([
+		removeItems(Object.values(WIDTH_CONFIG.storageKeys)),
+		resetUserBubbleFullWidth(),
+	])
 }
 
 // =====================================================

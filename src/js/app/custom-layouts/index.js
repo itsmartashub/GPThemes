@@ -5,6 +5,7 @@ import { mount as mountCustomHides, renderCustomHides } from '../custom-hide/ind
 import { mount as mountChatBubbles, renderCustomChatBubbles } from './toggleChatBubbles.js'
 import { mount as mountCustomSidebarWidth, renderCustomSidebarWidth } from './sidebarWidth.js'
 import { mount as mountCustomChatboxHeight, renderCustomChatboxHeight } from './toggleChatboxHeight.js'
+import { mount as mountCustomUserBubbleFullWidth } from './toggleUserBubbleFullWidth.js'
 import { init as initWidths, mount as mountWidths, templateHTML as renderWidthsSection } from './widths.js'
 
 function templateHTML() {
@@ -39,6 +40,7 @@ function mount() {
 	// Mount other child modules
 	mountCustomSidebarWidth()
 	mountCustomChatboxHeight()
+	mountCustomUserBubbleFullWidth()
 	mountChatBubbles()
 	// mountScrolldown()
 	mountCustomHides()

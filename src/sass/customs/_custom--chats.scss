@@ -22,10 +22,17 @@
     //     max-width: var(--max_w_chat_user, var(--user-chat-width)) !important;
     // }
 
-    //  New selector: 2026-05-10
+    //  New selector: 2026-05-10 - selector for user bubble width. Ne moze na .user-message-bubble-color jer je negde "max-w-(--user-chat-width,70%)" klasa u njegovom parentu ili ni ne postoji (group chat)
     [data-message-author-role="user"] [class*="max-w-(--user-chat-width,70%)"] {
         width: var(--w_chat_user, auto) !important;
         max-width: var(--max_w_chat_user, var(--user-chat-width)) !important;
+    }
+}
+
+html[data-gpth-toggle-user-bubble-fullwidth] {
+    [data-testid^='conversation-turn-'] [data-message-author-role="user"] [class*="max-w-(--user-chat-width,70%)"] {
+        max-width: 100% !important;
+        width: 100% !important;
     }
 }
 
@@ -37,13 +44,6 @@
     padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply));
     border-radius: var(--br-chat-bubble) !important;
     transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
-    // @include dev_high(#7fe37f7d);
-
-    /* User chat bubble in Group chats */
-    // &.group\/message {
-    //     padding-block: calc(var(--spacing) * 2.5) !important;
-    //     padding-inline: calc(var(--spacing) * 4) !important;
-    // }
 }
 
 .agent-turn {
