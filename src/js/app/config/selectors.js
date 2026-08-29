@@ -113,13 +113,17 @@ export const SELECTORS = {
 			TOGGLE_ID: `${PFX}-hide-header-model-btn`,
 			SELECTOR: `[data-testid="model-switcher-dropdown-button"]`,
 		},
+		HEADER_NEW_CHAT_BTN: {
+			TOGGLE_ID: `${PFX}-hide-header-new-chat-btn`,
+			SELECTOR: `#conversation-header-actions a[aria-label][href="/"]`,
+		},
 		HEADER_ACTIONS_BTN: {
 			TOGGLE_ID: `${PFX}-hide-header-actions-btn`,
 			SELECTOR: `#conversation-header-actions`,
 		},
 		HEADER_SHARE_BTN: {
 			TOGGLE_ID: `${PFX}-hide-header-share-btn`,
-			SELECTOR: `[data-testid="share-chat-button"], #conversation-header-actions a[aria-label][href="/"]`,
+			SELECTOR: `[data-testid="share-chat-button"]`,
 		},
 		FOOTER: {
 			TOGGLE_ID: `${PFX}-hide-footer`,
