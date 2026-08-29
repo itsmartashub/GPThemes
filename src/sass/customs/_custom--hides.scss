@@ -34,11 +34,14 @@ html[data-gpth-hide-header-model-btn] {
     }
 }
 
-html[data-gpth-hide-header-share-btn] {
-
-    [data-testid="share-chat-button"],
-    // Share button on mobiles
+html[data-gpth-hide-header-new-chat-btn] {
     #conversation-header-actions a[aria-label][href="/"] {
+        display: none !important;
+    }
+}
+
+html[data-gpth-hide-header-share-btn] {
+    [data-testid="share-chat-button"] {
         display: none !important;
     }
 }
