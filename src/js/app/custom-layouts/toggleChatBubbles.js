@@ -132,9 +132,7 @@ async function onChange(event) {
 	updateInputs(updatedState)
 
 	saveState(updatedState).then(() =>
-		input.checked
-			? Notify.success(`${type} bubble enabled`)
-			: Notify.info(`${type} bubble disabled`),
+		input.checked ? Notify.success(`${type} bubble enabled`) : Notify.info(`${type} bubble disabled`),
 	)
 }
 
