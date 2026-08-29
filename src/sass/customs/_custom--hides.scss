@@ -34,6 +34,15 @@ html[data-gpth-hide-header-model-btn] {
     }
 }
 
+html[data-gpth-hide-header-share-btn] {
+
+    [data-testid="share-chat-button"],
+    // Share button on mobiles
+    #conversation-header-actions a[aria-label][href="/"] {
+        display: none !important;
+    }
+}
+
 html[data-gpth-hide-header-actions-btn] {
     #conversation-header-actions {
         display: none !important;

@@ -117,6 +117,10 @@ export const SELECTORS = {
 			TOGGLE_ID: `${PFX}-hide-header-actions-btn`,
 			SELECTOR: `#conversation-header-actions`,
 		},
+		HEADER_SHARE_BTN: {
+			TOGGLE_ID: `${PFX}-hide-header-share-btn`,
+			SELECTOR: `[data-testid="share-chat-button"], #conversation-header-actions a[aria-label][href="/"]`,
+		},
 		FOOTER: {
 			TOGGLE_ID: `${PFX}-hide-footer`,
 			// SELECTOR: `#thread-bottom-container > #thread-bottom ~ div.min-h-8 > div`,

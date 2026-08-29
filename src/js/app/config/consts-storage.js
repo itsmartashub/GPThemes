@@ -11,6 +11,7 @@ export const SK_TOGGLE_ACCENT_TEXT = 'toggleAccentTextState'
 export const SK_TOGGLE_HIDE_HEADER = 'hideHeader'
 export const SK_TOGGLE_HIDE_HEADER_MODEL_BTN = 'hideHeaderModelBtn'
 export const SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN = 'hideHeaderActionsBtn'
+export const SK_TOGGLE_HIDE_HEADER_SHARE_BTN = 'hideHeaderShareBtn'
 export const SK_TOGGLE_HIDE_FOOTER = 'hideFooter'
 export const SK_TOGGLE_HIDE_UPGRADE_CHIP = 'hideUpgradeChip'
 export const SK_TOGGLE_HIDE_PROFILE_BTN = 'hideProfileBtn'
@@ -56,6 +57,7 @@ export const EXPORT_CONFIG = Object.freeze({
 		SK_TOGGLE_HIDE_HEADER,
 		SK_TOGGLE_HIDE_HEADER_MODEL_BTN,
 		SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN,
+		SK_TOGGLE_HIDE_HEADER_SHARE_BTN,
 		SK_TOGGLE_HIDE_FOOTER,
 		SK_TOGGLE_HIDE_UPGRADE_CHIP,
 		SK_TOGGLE_HIDE_PROFILE_BTN,
