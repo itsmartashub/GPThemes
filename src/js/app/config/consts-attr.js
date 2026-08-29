@@ -1,6 +1,7 @@
 export const ATTR_BUBBLE_USER = 'data-gpth-toggle-bubble-user'
 export const ATTR_BUBBLE_GPT = 'data-gpth-toggle-bubble-gpt'
 export const ATTR_BUBBLE_USER_ACCENT = 'data-gpth-toggle-bubble-user-accent'
+export const ATTR_BUBBLE_USER_FULLWIDTH = 'data-gpth-toggle-user-bubble-fullwidth'
 export const ATTR_CHATBOX_HEIGHT = 'data-gpth-toggle-chatbox-height'
 export const ATTR_HIDE_HEADER = 'data-gpth-hide-header'
 export const ATTR_HIDE_HEADER_MODEL_BTN = 'data-gpth-hide-header-model-btn'

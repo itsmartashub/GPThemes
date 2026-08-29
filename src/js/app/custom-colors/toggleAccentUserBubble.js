@@ -46,9 +46,7 @@ async function loadState() {
 async function saveState(state = DEFAULT_STATE) {
 	try {
 		await setItem(STORAGE_KEY, state)
-		state
-			? Notify.success('User bubble accent enabled')
-			: Notify.info('User bubble accent disabled')
+		state ? Notify.success('User bubble accent enabled') : Notify.info('User bubble accent disabled')
 		return true
 	} catch (error) {
 		onError('Failed to save user accent bubble preference', error)
@@ -83,7 +81,7 @@ function onError(message, error = null) {
 }
 
 async function onChange({ target }) {
-	const userBubble = $(`.${SELECTORS.CHATS.USER}`)
+	const userBubble = $(SELECTORS?.CHATS?.USER)
 
 	if (!userBubble) {
 		onError('User bubble not found on this page.')
@@ -94,13 +92,6 @@ async function onChange({ target }) {
 	const isEnabled = target.checked
 	updateDataAttr(isEnabled)
 	saveState(isEnabled)
-
-	// // Show appropriate notif
-	// if (isEnabled) {
-	// 	Notify.success('User bubble accent enabled')
-	// } else {
-	// 	Notify.info('User bubble accent disabled')
-	// }
 }
 
 // =====================================================

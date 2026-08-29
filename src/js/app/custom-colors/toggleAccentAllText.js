@@ -88,13 +88,13 @@ function onError(message, error = null) {
 }
 
 async function onChange({ target }) {
-	// const userBubble = $(`.${SELECTORS.CHATS.USER}`)
+	const userBubble = $(SELECTORS?.CHATS?.USER_BUBBLE)
 
-	// if (!userBubble) {
-	// 	handleError('User bubble not found on this page.')
-	// 	target.checked = !target.checked
-	// 	return
-	// }
+	if (!userBubble) {
+		Notify.error('User chat not found on this page.')
+		target.checked = !target.checked
+		return
+	}
 
 	const isEnabled = target.checked
 	updateDataAttr(isEnabled)

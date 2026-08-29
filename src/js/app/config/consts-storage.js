@@ -37,6 +37,7 @@ export const SK_TEXT_LINE_HEIGHT = 'textLineHeight'
 // Chat Bubble Settings
 export const SK_TOGGLE_CHAT_BUBBLES_STATE = 'toggleChatBubblesState'
 export const SK_TOGGLE_USER_BUBBLE_ACCENT = 'toggleUserBubbleAccentState'
+export const SK_TOGGLE_USER_BUBBLE_FULLWIDTH = 'toggleUserBubbleFullWidthState'
 
 // Extension Metadata
 export const SK_EXT_VERSION = '_extVersion'
@@ -80,6 +81,7 @@ export const EXPORT_CONFIG = Object.freeze({
 
 		SK_TOGGLE_CHAT_BUBBLES_STATE,
 		SK_TOGGLE_USER_BUBBLE_ACCENT,
+		SK_TOGGLE_USER_BUBBLE_FULLWIDTH,
 	],
 
 	// Settings to exclude from exports (system data)
