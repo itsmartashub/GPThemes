@@ -105,9 +105,8 @@ html,
     --sidebar-body-primary: var(--c-txt) !important;
     --sidebar-icon: currentColor !important;
 
-
     // --main-surface-background: #212121e6;
-    // --message-surface: #323232d9;
+    --message-surface: var(--c-bg-msg-user) !important; // This fix the background of "Share" & options buttons in Scheduled charts when hovered on its parent
     /* 
 	- header of tables in "Shared links" and "Archived chats"
 	- Arrow btn in new chat big buttons */
@@ -202,21 +201,53 @@ html,
 }
 
 
-// Scheduled -> AI Bubble ([class*="Badge"]) - 2026-08-26
-:where(.puik-root),
-:where(.puik-root [data-theme]) {
-    --color-surface: var(--c-accent-08) !important; // Scheduled -> AI Bubble -> Some card elements bg
-    --color-surface-secondary: var(--c-accent-08) !important; // Scheduled -> AI Bubble -> Some card elements bg
-    --color-surface-tertiary: var(--c-surface-3) !important; // N/A
-    --color-surface-elevated: var(--c-surface-3) !important; // Scheduled -> AI Bubble -> Searcg pill card showed on hover
-    --gray-400: var(--c-surface-3) !important; // Scheduled -> AI Bubble -> New search pills bg (dark theme)
-    --gray-300: var(--c-surface-2) !important; // Scheduled -> AI Bubble -> New search pills bg on hover
-    --gray-75: var(--c-surface-3) !important; // Scheduled -> AI Bubble -> New search pills bg (light theme), hoveer state use fixed rgb bg and i dont want to waste time overriding it and test for many scenarios
+// // Scheduled -> AI Bubble ([class*="Badge"]) - 2026-08-26
+// :where(.puik-root),
+// :where(.puik-root [data-theme]) {
+//     --color-surface: var(--c-accent-08) !important; // Scheduled -> AI Bubble -> Some card elements bg
+//     --color-surface-secondary: var(--c-accent-08) !important; // Scheduled -> AI Bubble -> Some card elements bg
+//     --color-surface-tertiary: var(--c-surface-3) !important; // N/A
+//     --color-surface-elevated: var(--c-surface-3) !important; // Scheduled -> AI Bubble -> Searcg pill card showed on hover
+//     --gray-400: var(--c-surface-3) !important; // Scheduled -> AI Bubble -> New search pills bg (dark theme)
+//     --gray-300: var(--c-surface-2) !important; // Scheduled -> AI Bubble -> New search pills bg on hover
+//     --gray-75: var(--c-surface-3) !important; // Scheduled -> AI Bubble -> New search pills bg (light theme), hoveer state use fixed rgb bg and i dont want to waste time overriding it and test for many scenarios
 
-    --color-text-info: var(--c-accent) !important; // Scheduled -> AI Bubble -> Huge icons
+//     --color-text-info: var(--c-accent) !important; // Scheduled -> AI Bubble -> Huge icons
 
-    /* GPT'S ACCENT */
-    --color-background-discovery-solid: var(--c-accent) !important;
-    --color-background-discovery-solid-hover: var(--c-accent-12) !important;
-    --color-background-discovery-solid-active: var(--c-accent-20) !important;
+//     /* GPT'S ACCENT */
+//     --color-background-discovery-solid: var(--c-accent) !important;
+//     --color-background-discovery-solid-hover: var(--c-accent-12) !important;
+//     --color-background-discovery-solid-active: var(--c-accent-20) !important;
+
+//     // This fix failed all text accent for AI chat bubble
+//     --color-text: var(--c-txt) !important;
+//     --color-text-prose: var(--c-txt) !important;
+//     --color-text-emphasis: var(--c-txt) !important;
+// }
+
+
+.puik-root {
+
+    &,
+    [data-theme] {
+        // This fix failed all text accent for AI chat bubble
+        --color-text: var(--c-txt) !important;
+        --color-text-prose: var(--c-txt) !important;
+        --color-text-emphasis: var(--c-txt) !important;
+
+        --color-surface: var(--c-accent-08) !important; // Scheduled -> AI Bubble -> Some card elements bg
+        --color-surface-secondary: var(--c-accent-08) !important; // Scheduled -> AI Bubble -> Some card elements bg
+        --color-surface-tertiary: var(--c-surface-3) !important; // N/A
+        --color-surface-elevated: var(--c-surface-3) !important; // Scheduled -> AI Bubble -> Searcg pill card showed on hover
+        --gray-400: var(--c-surface-3) !important; // Scheduled -> AI Bubble -> New search pills bg (dark theme)
+        --gray-300: var(--c-surface-2) !important; // Scheduled -> AI Bubble -> New search pills bg on hover
+        --gray-75: var(--c-surface-3) !important; // Scheduled -> AI Bubble -> New search pills bg (light theme), hoveer state use fixed rgb bg and i dont want to waste time overriding it and test for many scenarios
+
+        --color-text-info: var(--c-accent) !important; // Scheduled -> AI Bubble -> Huge icons
+
+        /* GPT'S ACCENT */
+        --color-background-discovery-solid: var(--c-accent) !important;
+        --color-background-discovery-solid-hover: var(--c-accent-12) !important;
+        --color-background-discovery-solid-active: var(--c-accent-20) !important;
+    }
 }
