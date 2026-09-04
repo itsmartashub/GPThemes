@@ -57,65 +57,39 @@ const currentReleaseChanges = {
 	],
 	features: [
 		{
-			description: 'Custom Sidebar Width:',
-			details: 'New slider to adjust sidebar width (original is 260px)',
-			issueRef: 218,
+			description: 'User Bubble Full Width:',
+			details:
+				'New toggle to expand the user message bubble from the default <code>70%</code> to <code>100%</code> width, matching the assistant bubble',
+			issueRef: 246,
 		},
 		{
-			description: 'Hide Profile Button:',
-			details: 'Toggle to hide the Account Profile button from the sidebar',
-			issueRef: 233,
+			description: 'Hide Header Share:',
+			details:
+				'New toggle to hide just the header <code>Share</code> button, independent of the broader <code>Hide Header Actions</code> toggle',
+			issueRef: 242,
 		},
 		{
-			description: 'Hide Header ChatGPT Button:',
-			details: 'New toggle to hide the top header ChatGPT button',
-			issueRef: 228,
-		},
-		{
-			description: 'Hide Header Actions:',
-			details: 'Hide top-right header buttons including Share, Open Canvas, and options menu',
-			issueRef: 230,
-		},
-	],
-	improvements: [
-		{
-			description: 'Header Styling:',
-			details: 'Improved translucent backgrounds for header action buttons',
-		},
-		{
-			description: 'Code Blocks:',
-			details: 'Improved styling consistency for code block backgrounds and markdown edit blocks',
-		},
-		{
-			description: 'Codex/Cloud:',
-			details: 'Enhanced style support for Codex Cloud page',
+			description: 'Hide Header "New Chat":',
+			details:
+				"New toggle to hide the top header <code>New Chat</code> button, mostly useful on mobile since it isn't visible on desktop",
+			issueRef: 244,
 		},
 	],
 	fixes: [
 		{
-			description: 'Message Bubble:',
-			details: 'Fixed selectors to ensure message bubble padding is properly applied',
-			issueRef: 224,
+			description: 'Custom Fonts:',
+			details:
+				'Fixed custom fonts not applying to new assistant messages after the recent ChatGPT codebase update (legacy messages were unaffected)',
+			issueRef: 240,
 		},
 		{
-			description: 'Custom Chatbox Width:',
-			details: 'Fixed feature functionality and improved performance',
-			issueRef: 235,
+			description: 'Accent Text Color:',
+			details: 'Fixed accent color not applying to assistant message text',
+			issueRef: 249,
 		},
 		{
-			description: 'Hide Footer:',
-			details: 'Updated selectors to fix broken <code>Hide Footer</code> toggle',
-			issueRef: 226,
-		},
-		{
-			description: 'Expand Chatbox:',
-			details: 'Fixed and enhanced support for New Chat page',
-			issueRef: 219,
-		},
-		{
-			description: 'Upgrade Chips:',
-			details: 'Fixed selectors to properly hide new Upgrade chip in header for desktop and mobile',
-			issueRef: 237,
+			description: 'Scheduled Automation:',
+			details: 'Improved colors for the new Scheduled Automation elements inside chat bubbles',
 		},
 	],
 	other: [
