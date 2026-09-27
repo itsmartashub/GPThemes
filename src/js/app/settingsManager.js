@@ -2,11 +2,7 @@ import { PFX } from './config/consts.js'
 import { SELECTORS } from './config/selectors.js'
 import { init as initColors, mount as mountColors, renderColorsTab } from './custom-colors/index.js'
 import { init as initFonts, mount as mountFonts, renderFontsTab } from './custom-fonts/index.js'
-import {
-	init as initWidths,
-	mount as mountWidths,
-	renderLayoutsTab,
-} from './custom-layouts/index.js'
+import { init as initWidths, mount as mountWidths, renderLayoutsTab } from './custom-layouts/index.js'
 
 // =====================================================
 // STATE - global state (cached refs, constants)
@@ -77,7 +73,7 @@ async function createSettings() {
 
 	// 1. Create root container
 	const el = document.createElement('div')
-	el.className = `${SELECTORS.SETTINGS.ROOT} fixed flex flex-col`
+	el.className = SELECTORS.SETTINGS.ROOT
 	el.innerHTML = templateHTML()
 
 	// 2. Append to DOM FIRST
@@ -133,9 +129,7 @@ function setElements(root) {
 // LISTENERS
 // =====================================================
 function addListeners() {
-	$settings
-		.querySelector(`.${SELECTORS.SETTINGS.TABS.BUTTONS}`)
-		.addEventListener('click', onTabsSwitching)
+	$settings.querySelector(`.${SELECTORS.SETTINGS.TABS.BUTTONS}`)?.addEventListener('click', onTabsSwitching)
 	// handleTabsSwitching()
 }
 
@@ -166,7 +160,7 @@ function onTabsSwitching(e) {
 }
 
 function onOpenSettings() {
-	if (!$settings) return
+	if (!$settings) return console.warn('[GPThemes] $settings not found')
 
 	$settings.classList.add(SELECTORS.SETTINGS.OPEN_STATE)
 
@@ -177,7 +171,7 @@ function onOpenSettings() {
 }
 
 function onCloseSettings() {
-	if (!$settings) return
+	if (!$settings) return console.warn('[GPThemes] $settings not found')
 
 	$settings.classList.remove(SELECTORS.SETTINGS.OPEN_STATE)
 	document.removeEventListener('click', onClickOutside, true)

@@ -1,28 +1,16 @@
 .gpth-settings {
     input[type="range"] {
-
         --track-bg: var(--c-accent-50);
-
         --thumb-bg: var(--c-accent);
-
         --thumb-focus-outline: var(--c-accent);
-
         --track-height: 0.75rem;
-
         --track-radius: 50vw;
-
         --track-outline: 3px solid oklch(var(--from-accent) / 0.8);
-
         --thumb-size-multiplier: 0.8;
-
         --thumb-size: calc(var(--track-height) * var(--thumb-size-multiplier));
-
         --thumb-radius: 50vw;
-
         --thumb-margin-top: calc((var(--track-height) - var(--thumb-size)) / 2);
-
         --focus-outline-size: 3px;
-
         --focus-outline-offset: 0.125rem;
 
         appearance: none;
@@ -35,7 +23,6 @@
             // --track-height: 0.8rem;
 
             --thumb-size-multiplier: 1.4;
-
             --track-outline: 3px solid transparent;
         }
 
@@ -74,10 +61,10 @@
         }
 
         &:focus {
+
             &::-webkit-slider-thumb,
             &::-moz-range-thumb {
-                outline: var(--focus-outline-size) solid
-                    var(--thumb-focus-outline);
+                outline: var(--focus-outline-size) solid var(--thumb-focus-outline);
                 outline-offset: var(--focus-outline-offset);
                 // outline: var(--focus-outline-size) solid var(--thumb-focus-outline);
                 // outline-offset: var(--focus-outline-offset);

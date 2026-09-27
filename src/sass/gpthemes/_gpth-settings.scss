@@ -1,8 +1,5 @@
 .#{$pfx}-settings {
-
-
 	--w-scrollbar: 0.2rem;
-
 	--top: calc(var(--h-header) + 0.5rem + 3rem);
 	--right: 1.3rem;
 	--p: 2rem;
@@ -10,6 +7,10 @@
 	--shadow-color: var(--c-accent-10);
 	--shadow-values: inset 0 0 20px 10px;
 	--c-scrollbar-thumb: var(--c-accent-30) !important;
+
+	position: fixed;
+	display: flex;
+	flex-direction: column;
 	top: var(--top);
 	right: var(--right);
 	width: clamp(25rem, 25vw, 30rem);
