@@ -5,7 +5,6 @@ button {
 .btn {
 	color: var(--c-on-accent) !important;
 	border-radius: var(--br-btn) !important;
-	border: none !important;
 
 	&:not(.btn-small) {
 		padding: var(--p-btn) !important;

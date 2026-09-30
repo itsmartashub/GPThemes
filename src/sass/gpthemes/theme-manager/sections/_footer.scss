@@ -1,5 +1,7 @@
 .#{$pfx}-settings footer {
-	display: grid;
+	display: flex;
+	justify-content: center;
+	margin-top: 2rem;
 
 	button {
 		justify-self: flex-end;

@@ -1,11 +1,7 @@
 .gpth-checkbox {
-
     --chb-w: 3rem;
-
     --chb-h: 1.8rem;
-
     --chb-edge-gap: 0.25rem;
-
     --chb-slider-circle-size: calc(var(--chb-h) - 2 * var(--chb-edge-gap));
 
     position: relative;
@@ -18,7 +14,7 @@
         width: 0;
         height: 0;
 
-        &:checked + .gpth-checkbox__slider {
+        &:checked+.gpth-checkbox__slider {
             background-color: var(--c-accent);
             border-color: transparent !important;
 
@@ -26,6 +22,10 @@
                 transform: translateX(calc(var(--chb-w) - 145%));
                 background-color: var(--c-on-accent);
             }
+        }
+
+        &:disabled+.slider {
+            opacity: 0.25 !important;
         }
     }
 

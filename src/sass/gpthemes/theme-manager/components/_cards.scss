@@ -1,370 +1,420 @@
+/*  .card: glass card used by the font-size (small / big) and slider (range) UI
+
+ Variants
+   .card--small   pill; input + label on one row
+   .card--big     tile; label above input
+   .card--range   slider; the glass surface lives on <label> */
+
+$pill: 50vw;
+$card-transition: all 0.45s $easeOutBack;
+$name-size-compact: 0.42em;
+
+
+// =============================================================================
+//  Base
+// =============================================================================
+
 .card {
+    --card-tooltip-gap: 0.5rem;
+
     display: flex;
     flex-direction: column;
-    font-size: 1.6rem;
     position: relative;
-    // z-index: -1;
-
-    &--small,
-    &--big,
-    &--range label {
-        // background-color: var(--c-surface-2);
-        // box-shadow: 0 0 0 1px var(--c-accent-20);
-        background-color: var(--c-accent-10);
-        border: 1px solid var(--c-accent-12);
-        backdrop-filter: blur(10px) contrast(1.5);
-    }
+    height: 100%;
+    font-size: 1.6rem;
 
     @include dev("sm") {
         font-size: 1.4rem;
     }
 
-    /* this fix some crazy long width for <input type="number"/> */
-    input {
-        max-width: max-content;
-    }
 
+    // -------------------------------------------------------------------------
+    // Shared controls
+    // -------------------------------------------------------------------------
     input,
     select,
     label {
         line-height: 1 !important;
     }
 
-    label,
-    label>* {
-        cursor: pointer !important;
-    }
-
     input,
     select,
     .card__unitname-wrapper {
-        transition: all 0.45s $easeOutBack;
-    }
-
-    input,
-    select {
-        &:focus {
-            outline: none !important;
-            border: none !important;
-        }
+        transition: $card-transition;
     }
 
     input {
         transform-origin: center center;
     }
 
-    &::after,
-    &::before {
-        --card-tooltip-gap: 0.5rem;
+    input[type="number"] {
+        appearance: textfield;
 
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            appearance: none;
+            margin: 0;
+        }
+    }
+
+
+    // -------------------------------------------------------------------------
+    // Shared label
+    // -------------------------------------------------------------------------
+    label {
+        display: flex;
+        width: 100%;
+        height: 100%;
+
+        &,
+        >* {
+            cursor: pointer !important;
+        }
+    }
+
+
+    // -------------------------------------------------------------------------
+    // Shared typography
+    // -------------------------------------------------------------------------
+    .card__name {
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+
+    // -------------------------------------------------------------------------
+    // Tooltip
+    // -------------------------------------------------------------------------
+    &::before,
+    &::after {
         position: absolute;
-        top: var(--card-tooltip-top);
         left: 50%;
-        transform: translateX(-50%);
         z-index: 100;
         opacity: 0;
         pointer-events: none;
+        transform: translateX(-50%);
         translate: 0 -0.5rem;
-        transition: 0.3s ease-in-out, translate 0.3s $easeOutBack;
+        transition:
+            opacity 0.3s ease-in-out,
+            translate 0.3s $easeOutBack;
     }
 
+    // Bubble
     &::after {
-        --card-tooltip-top: calc(100% + var(--card-tooltip-gap));
-
         content: attr(data-gpth-err);
+        top: calc(100% + var(--card-tooltip-gap));
         width: max-content;
-        height: clamp(1.5rem, 50%, max-content);
+        padding: 0.5rem;
         font-size: 0.45em;
         font-weight: bold;
-        padding: 0.5rem;
         color: var(--c-on-accent);
-        border-radius: 50vw;
         background-color: var(--c-accent);
+        border-radius: $pill;
     }
 
+    // Arrow
     &::before {
-
-        --border-w: 0.5rem;
-        // --card-tooltip-top: calc(100% - var(--card-tooltip-gap) - var(--border-w));--card-tooltip-top
-
-        --card-tooltip-top: calc(100% - var(--card-tooltip-gap) + 0.1rem);
-
         content: "";
-        border-width: var(--border-w);
-        border-style: solid;
-        border-color: transparent transparent var(--c-accent) transparent;
+        top: calc(100% - var(--card-tooltip-gap) + 0.1rem);
+        border: 0.5rem solid transparent;
+        border-bottom-color: var(--c-accent);
     }
 
+    // Select has no free-text range to hint at
     &:has(select) {
 
-        &::after,
-        &::before {
+        &::before,
+        &::after {
             display: none;
         }
     }
 
+    // Show tooltip while an input is focused
     &:has(input:focus) {
 
-        &::after,
-        &::before {
+        &::before,
+        &::after {
             opacity: 1 !important;
             translate: 0 0 !important;
         }
     }
+}
 
-    /* Hide arrows in Webkit browsers (Chrome, Safari) */
-    input[type="number"]::-webkit-outer-spin-button,
-    input[type="number"]::-webkit-inner-spin-button {
-        appearance: none;
-        margin: 0;
+
+// =============================================================================
+//  Shared surfaces
+// =============================================================================
+
+.card.card--small,
+.card.card--big,
+.card.card--range label {
+    background-color: var(--c-accent-10);
+    border: 1px solid var(--c-accent-12);
+    backdrop-filter: blur(10px) contrast(1.5);
+}
+
+
+// =============================================================================
+//  Shared compact elements
+// =============================================================================
+
+/* Small + range use the same visual treatment for their unit chip. Variant-specific spacing and behavior are added below */
+.card.card--small .card__unit,
+.card.card--range .card__unit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    font-size: 0.5em;
+    line-height: 1;
+    color: var(--c-accent);
+    background-color: var(--c-accent-12);
+    border-radius: $pill;
+    translate: -0.15rem 0;
+}
+
+// Both variants use the compact name size
+.card.card--small .card__name,
+.card.card--range .card__name {
+    font-size: $name-size-compact;
+}
+
+
+// =============================================================================
+//  Small: pill
+// =============================================================================
+
+.card.card--small {
+    border-radius: $pill;
+
+    label {
+        align-items: center;
+        gap: 0.5rem;
+        height: 3rem;
+        padding: 0.3rem;
+        font-weight: bold;
+        border-radius: $pill;
     }
 
-    /* Hide arrows in Firefox */
-    input[type="number"] {
-        appearance: textfield;
+    input {
+        --tw-ring-color: transparent !important;
+
+        aspect-ratio: 1 / 1;
+        width: min-content;
+        max-width: 100%;
+        height: 100%;
+        padding: 0 !important;
+        color: var(--c-accent);
+        text-align: center;
+        background-color: var(--c-accent-20);
+        outline: none !important;
+        border: none !important;
+        border-radius: $pill;
     }
 
-    /* _________________   SMALL CARDS   _________________ */
+    .card__unit {
+        margin-bottom: 0.25rem;
+        padding: 0.1rem 0.25rem;
+    }
 
-    &--small {
-        border-radius: 50vw;
-        // z-index: -1;
+    &:has(input:focus) {
+        .card__unitname-wrapper {
+            display: none;
+        }
 
         label {
-            height: 3rem;
-            padding: 0.3rem;
-        }
-
-        input:is(:focus, :focus-visible, :focus-within) {
-            translate: scale(1.2);
-            font-size: 1em !important;
+            display: flex !important;
         }
 
         input {
-
-            --tw-ring-color: transparent !important;
-
-            aspect-ratio: 1 / 1;
-            height: 100%;
-            background-color: var(--c-accent-20);
-            color: var(--c-accent);
-            padding: 0 !important;
-            text-align: center;
-            outline: none !important;
-            border: none !important;
-        }
-
-        .card__unit {
-
-            --px: 0.25rem;
-
-            background-color: var(--c-accent-12);
-            color: var(--c-accent);
-            // font-size: 0.72rem;
-            font-size: 0.5em;
-            width: max-content;
-            line-height: 1;
-            padding: 0.1rem var(--px);
-            margin-bottom: 0.25rem;
-            translate: -0.15rem 0;
-        }
-
-        .card__name {
-            font-size: 0.42em;
-        }
-
-        &:has(input:focus):not(&[type="range"]) {
-            .card__unitname-wrapper {
-                display: none;
-            }
-
-            label {
-                display: flex !important;
-            }
-
-            input {
-                width: 100%;
-                transform: unset !important;
-                aspect-ratio: unset !important;
-            }
-        }
-
-        &:hover {
-            input {
-                transform: scale(1.1);
-            }
-
-            .card__unitname-wrapper {
-                transform: translateX(3px);
-            }
-        }
-    }
-
-    /* _________________   BIG CARDS   _________________ */
-    &--big {
-
-        --p: 0.9rem;
-
-        border-radius: 1.5rem;
-        padding: var(--p);
-        z-index: 1;
-
-        @include dev("sm") {
-
-            --p: 0.5rem;
-
-            font-size: 1.4rem;
-            border-radius: 1rem;
-        }
-
-        .card__icon {
-
-            --icon-size: 1.8rem;
-
-            width: var(--icon-size);
-            height: var(--icon-size);
-            display: grid;
-            place-items: center;
-            font-size: 0.5em;
-            font-weight: bold;
-            margin-bottom: 0.3rem;
-            margin-left: -0.05rem;
-            border-radius: 8px;
-            color: var(--c-accent);
-            background-color: var(--c-accent-15);
-
-            @include dev("sm") {
-
-                --icon-size: 1.5rem;
-            }
-        }
-
-        .card__name {
-            color: var(--c-accent);
-            font-size: 0.5em;
-            margin-bottom: 0.2rem;
-            transition: translate 0.2s ease-in-out;
-        }
-
-        select,
-        input {
-            font-size: 1em;
-            position: relative;
-            line-height: 1;
             width: 100%;
-            height: max-content !important;
-            background-color: transparent !important;
-            padding: 4px 0 !important;
-            border-radius: 50vw;
 
-            &:focus {
-                background-color: var(--c-accent-15) !important;
-                color: var(--c-accent);
-                padding: 4px 8px !important;
-            }
-        }
-
-        select {
-            background: none;
-            appearance: none;
-            border: none !important;
-
-            option {
-                font-size: 0.6em !important;
-                background-color: var(--c-surface-2) !important;
-            }
-        }
-
-        &:hover {
-            .card__name {
-                translate: 0 2px;
-            }
-
-            input,
-            select {
-                color: var(--c-accent);
-            }
+            transform: unset !important;
+            aspect-ratio: unset !important;
         }
     }
 
-    /* _________________   RANGE CARDS   _________________ */
-    &--range {
+    &:hover {
         input {
-            width: 85% !important;
-            max-width: 100% !important;
-            margin: 0 auto;
-            align-self: flex-end;
+            transform: scale(1.1);
         }
 
-        .card__unit {
-
-            --px: 0.5rem;
-
-            background-color: var(--c-accent-12);
-            color: var(--c-accent);
-            font-size: 0.5em;
-            width: max-content;
-            line-height: 1;
-            padding: 0.2rem var(--px);
-            translate: -0.15rem 0;
-        }
-
-        .card__name {
-            font-size: 0.42em;
-        }
-
-        .card__output {
-
-            --output-size: 2.5rem;
-            // width: var(--output-size);
-            // height: var(--output-size);
-            aspect-ratio: 1 / 1;
-            background-color: var(--c-accent-20);
-            color: var(--c-accent);
-            font-size: 0.8em;
-            line-height: 1;
-        }
-
-        .icon-locked {
-            @extend %animScaleIn;
-
-            display: none;
-            position: absolute;
-            top: 6%;
-            right: 7%;
-            width: 1.8rem;
-            color: var(--c-accent);
-            z-index: 10;
-        }
-
-        &.is-locked {
-            @include isLockedIcon;
+        .card__unitname-wrapper {
+            transform: translateX(3px);
         }
     }
+}
 
-    /*     &__loader {
-        position: fixed;
-        inset: 0;
+
+// =============================================================================
+//  Big: tile
+// =============================================================================
+.card.card--big {
+    --p: 0.9rem;
+    --icon-size: 1.8rem;
+    --card-radius: 1.5rem;
+
+    z-index: 1;
+    padding: var(--p);
+    border-radius: var(--card-radius);
+
+    @include dev("sm") {
+        --p: 0.5rem;
+        --icon-size: 1.5rem;
+        --card-radius: 1rem;
+    }
+
+    label {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    input {
+        font-weight: bold;
+    }
+
+    .card__icon {
         display: grid;
         place-items: center;
-        background-color: var(--c-surface-2);
-        background-image: linear-gradient(65deg, var(--c-accent), var(--c-surface-1));
-        color: var(--c-on-accent);
-        border-radius: inherit;
-        backdrop-filter: blur(20px);
-        z-index: 110;
-        opacity: 0;
-        pointer-events: none;
+        width: var(--icon-size);
+        height: var(--icon-size);
+        margin-bottom: 0.3rem;
+        margin-left: -0.05rem;
+        font-size: 0.5em;
+        font-weight: bold;
+        color: var(--c-accent);
+        background-color: var(--c-accent-15);
+        border-radius: 8px;
+    }
+
+    .card__name {
+        margin-bottom: 0.2rem;
+        font-size: 0.5em;
+        color: var(--c-accent);
+        transition: translate 0.2s ease-in-out;
+    }
+
+    select,
+    input {
+        position: relative;
+        width: 100%;
+        height: max-content !important;
+        padding: 4px 0 !important;
+        font-size: 1em;
+        background-color: transparent !important;
+        border-radius: $pill;
+
+        &:focus {
+            padding: 4px 8px !important;
+            color: var(--c-accent);
+            background-color: var(--c-accent-15) !important;
+        }
+    }
+
+    select {
+        appearance: none;
+        flex: 1;
+        font-weight: bold;
+
+        // Remove native/forms-plugin arrow image
+        background: none;
+        border: none !important;
+
+        option {
+            font-size: 0.6em !important;
+            background-color: var(--c-surface-2) !important;
+        }
+    }
+
+    &:hover {
+        .card__name {
+            translate: 0 2px;
+        }
+
+        input,
+        select {
+            color: var(--c-accent);
+        }
+    }
+}
+
+
+// =============================================================================
+//  Range: slider
+// =============================================================================
+.card.card--range {
+    label {
+        position: relative;
+        z-index: 1;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 0.75rem;
+        transition: $card-transition;
+    }
+
+    input {
+        flex: 1;
+        align-self: flex-end;
+        width: 85% !important;
+        max-width: 100% !important;
+        margin: 0 auto;
+        font-weight: bold;
+    }
+
+    .card__output-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .card__output {
+        --output-size: 2.5rem;
+
+        display: grid;
+        place-items: center;
+        width: var(--output-size);
+        height: var(--output-size);
+        aspect-ratio: 1 / 1;
+        font-size: 0.8em;
+        font-weight: 600;
+        line-height: 1;
+        color: var(--c-accent);
+        background-color: var(--c-accent-20);
+        border-radius: $pill;
+    }
+
+    .card__unit {
+        margin-bottom: 0.5rem;
+        padding: 0.2rem 0.5rem;
+        font-weight: 600;
+        transform-origin: center;
+        transition: $card-transition;
+    }
+
+    .card__name {
+        width: 100%;
+        overflow-wrap: break-word;
     }
 
 
-    &--loading {
-        opacity: 0.7;
-        pointer-events: none;
+    // -------------------------------------------------------------------------
+    // Locked state
+    // -------------------------------------------------------------------------
+    .icon-locked {
+        @extend %animScaleIn;
+        display: none;
+        position: absolute;
+        top: 6%;
+        right: 7%;
+        z-index: 10;
+        width: 1.8rem;
+        color: var(--c-accent);
+    }
 
-        .card__loader {
-            opacity: 1 !important;
-            pointer-events: all !important;
-        }
-    } */
+    &.is-locked {
+        @include isLockedIcon;
+    }
 }

@@ -1,3 +1,5 @@
+import { renderCheckbox } from './renderCheckbox.js'
+
 export function renderToggle({
 	id,
 	checked = false,
@@ -9,43 +11,34 @@ export function renderToggle({
 	className = '',
 	dataType = '',
 }) {
+	const checkbox = renderCheckbox({
+		id,
+		checked,
+		disabled,
+		dataType: card ? '' : dataType,
+		ariaLabel: card ? label : `Toggle ${label}`,
+	})
+
 	if (card) {
 		return `
             <label class="gpth-switch ${className}" for="${id}">
                 ${icon ? `<div class="gpth-switch__icon" aria-hidden="true">${icon}</div>` : ''}
+
                 <div class="gpth-switch__text">
-                    <div class="title mb-1">${label}</div>
-                    ${subtitle ? `<div class="subtitle">${subtitle}</div>` : ''}
+                    <div class="title">${label}</div>
+                    ${subtitle ? `<div class="subtitle">${subtitle}</div> ` : ''}
                 </div>
-                <div class="gpth-switch__checkbox">
-                    <input
-                        type="checkbox"
-                        id="${id}"
-                        ${checked ? 'checked' : ''}
-                        ${disabled ? 'disabled' : ''}
-                        aria-labelledby="${id}-label"
-                    >
-                    <span class="slider" aria-hidden="true"></span>
-                </div>
-            </label>
-        `
-	} else {
-		return `
-            <label class="gpth-checkbox-wrapper ${className}" for="${id}">
-                ${label ? `<span class="gpth-checkbox__text">${label}</span>` : ''}
-                <div class="gpth-checkbox">
-                <input
-                    type="checkbox"
-                    id="${id}"
-                    class="gpth-checkbox__input"
-                    ${checked ? 'checked' : ''}
-                    ${disabled ? 'disabled' : ''}
-                    aria-label="Toggle ${label}"
-                    ${dataType ? `data-type="${dataType}"` : ''}
-                >
-                <span class="gpth-checkbox__slider"></span>
-                </div>
+
+                ${checkbox}
             </label>
         `
 	}
+
+	return `
+        <label class="gpth-checkbox-wrapper ${className}" for="${id}">
+            ${label ? `<span class="gpth-checkbox__text">${label}</span>` : ''}
+
+            ${checkbox}
+        </label>
+    `
 }

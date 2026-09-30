@@ -111,12 +111,12 @@ function templateHTML() {
       <div class="fonts__props">
         <div class="fonts__bigcards-wrapper">
           <div class="fonts__family fonts__group card card--big h-full">
-            <label for="${CONFIG.fontFamily.id}" class="flex flex-col gap-1 h-full w-full">
-                <div>
+            <label for="${CONFIG.fontFamily.id}">
+                <div class="card__unitname-wrapper">
                     <p class="card__unit card__icon">T</p>
-                    <p class="card__name uppercase font-semibold">FONT FAMILY</p>
+                    <p class="card__name">FONT FAMILY</p>
                 </div>
-                <select id="${CONFIG.fontFamily.id}" class="flex-1 border-none outline-none focus:none font-bold" role="listbox">
+                <select id="${CONFIG.fontFamily.id}" role="listbox">
                     ${CONFIG.fontFamily.options
 						.map((f) => {
 							const val = f.name === 'Default' ? CONFIG.fontFamily.default : f.name
@@ -164,7 +164,8 @@ function templateHTML() {
 			})}
         </div>
       </div>
-      <footer class="flex justify-center mt-8">
+
+      <footer>
         ${renderButton({
 			id: SELECTORS.FONT.RESET_BTN_ID,
 			content: 'Reset Fonts',

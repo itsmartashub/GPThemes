@@ -3,7 +3,7 @@
 	--top: calc(var(--h-header) + 0.5rem + 3rem);
 	--right: 1.3rem;
 	--p: 2rem;
-	--max-h: 75vh;
+	--gpth-settings-max-h: 75vh;
 	--shadow-color: var(--c-accent-10);
 	--shadow-values: inset 0 0 20px 10px;
 	--c-scrollbar-thumb: var(--c-accent-30) !important;
@@ -14,7 +14,7 @@
 	top: var(--top);
 	right: var(--right);
 	width: clamp(25rem, 25vw, 30rem);
-	max-height: var(--max-h);
+	max-height: var(--gpth-settings-max-h);
 	padding: var(--p);
 	opacity: 0;
 	@include menuBg;
@@ -41,7 +41,7 @@
 
 	@include dev('xs') {
 		// --p: 5vw;
-		--max-h: 70vh;
+		--gpth-settings-max-h: 70vh;
 		width: calc(100% - 2.5rem);
 	}
 
@@ -49,19 +49,22 @@
 		--p: 2vw;
 	}
 
-	// section {
-	.#{$pfx}-tab-content {
-		overflow-y: auto;
-		max-height: calc(var(--max-h) * 0.625);
-
-		.#{$pfx}-pane {
-			margin-inline: 0.2rem; // simulate space from the scrollbar
-		}
+	[role="separator"] {
+		--border-light: var(--c-border) !important;
+		display: block !important;
+		margin: 1.5rem 1.25rem;
+		height: 1px;
+		background: var(--c-border);
 	}
 
-	[role="separator"] {
-		display: block !important;
-		--border-light: var(--c-border) !important;
+	p,
+	h2 {
+		margin: 0;
+	}
+
+	.btn-primary {
+		width: 66.6%;
+		margin: 0 auto;
 	}
 }
 
@@ -69,4 +72,29 @@ html.dark .#{$pfx}-settings {
 	--brightness-menu: brightness(0.8);
 	// --c-bg-menu: hsla(var(--accent-h), calc(var(--accent-s) * 0.2), calc(var(--accent-l) * 0.35), 0.3);
 	// --c-bg-menu: oklch(from var(--c-accent) calc(l * 0.35) calc(c * 0.2) h / 0.3);
+}
+
+
+button,
+input,
+optgroup,
+select,
+textarea {
+	outline: none;
+	border: none;
+	background-color: transparent;
+	box-sizing: border-box;
+	font-feature-settings: inherit;
+	font-variation-settings: inherit;
+	letter-spacing: inherit;
+	color: inherit;
+	margin: 0;
+	padding: 0;
+
+	&:focus,
+	&:focus-visible,
+	&:focus-within {
+		outline: none !important;
+		border: none !important;
+	}
 }

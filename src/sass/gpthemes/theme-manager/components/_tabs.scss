@@ -1,17 +1,19 @@
 .#{$pfx}-tabs {
+    // margin-bottom: 4rem; // TODO: videti ovo jos
 
-
-
-    .#{$pfx}-tab-pane {
-        @extend %animFadeIn;
+    .hidden {
+        display: none;
     }
 
-    .#{$pfx}-tab-buttons {
+    &__buttons {
         background-color: var(--c-accent-15);
         color: var(--c-accent);
         display: flex;
         align-items: center;
         border-radius: 100vw;
+        margin-bottom: 1.25rem;
+        padding: 0.25rem;
+        font-weight: 600;
 
         @include dev('xxs') {
             display: grid;
@@ -19,15 +21,35 @@
             gap: 0.5rem;
             border-radius: 1rem;
         }
+    }
 
-        .#{$pfx}-tab-button {
-            flex: 1;
-            border-radius: inherit;
+    &__content {
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: calc(var(--gpth-settings-max-h) * 0.625);
+    }
+}
 
-            &.active {
-                background-color: var(--c-accent);
-                color: var(--c-on-accent) !important;
-            }
+
+.#{$pfx}-tab {
+
+    &-button {
+        flex: 1;
+        border-radius: inherit;
+        // padding: 0.25rem;
+        padding-inline: 1rem;
+        padding-block: 0.4rem;
+        text-align: center;
+        cursor: pointer;
+
+        &.active {
+            background-color: var(--c-accent);
+            color: var(--c-on-accent) !important;
         }
+    }
+
+    &-pane {
+        margin-inline: 0.2rem; // simulate space from the scrollbar
+        @extend %animFadeIn;
     }
 }

@@ -12,8 +12,8 @@ const accentAllTextToggle = createToggleSetting({
 	notifyLabel: 'All text accent',
 	subtitle: 'Make all the text on the page accented',
 	icon: icon_text_color,
-	selector: SELECTORS?.CHATS?.USER,
-	notFoundMessage: 'User chat not found on this page.',
+	selector: 'html.dark, html.light',
+	notFoundMessage: 'Something went wrong',
 })
 
 export const renderAllTextAccent = accentAllTextToggle.templateHTML

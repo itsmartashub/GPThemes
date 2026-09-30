@@ -1,9 +1,15 @@
 .#{$pfx}-settings header {
+	margin-bottom: 1rem;
+
 	.#{$pfx}-settings__title {
 		color: var(--c-accent);
-		// font-size: 1em;
-		// font-weight: 500;
-		// text-align: center;
+		font-size: 1.25em;
+		font-weight: 500;
+		text-align: center;
+
+		span {
+			font-weight: bold;
+		}
 
 		@include dev("sm") {
 			font-size: 1.4rem;

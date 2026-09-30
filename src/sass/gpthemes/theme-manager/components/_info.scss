@@ -7,6 +7,7 @@
     align-items: flex-start;
     gap: 0.55em;
     padding: 0.5em 0.65em;
+    margin: 0.5em;
     border-radius: var(--br-btn) !important;
 
     svg {
@@ -17,22 +18,18 @@
 
     /* TODO: add mixing for this */
     &[data-type="info"] {
-
         --fg: var(--c-accent);
     }
 
     &[data-type="success"] {
-
         --fg: var(--c-success);
     }
 
     &[data-type="warning"] {
-
         --fg: var(--c-warning);
     }
 
     &[data-type="danger"] {
-
         --fg: var(--c-danger);
     }
 }

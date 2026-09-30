@@ -32,9 +32,7 @@ const TABS_CONFIG = [
 function templateHTML() {
 	const buttons = TABS_CONFIG.map(
 		({ label }, i) => `
-			<button class="${SELECTORS.SETTINGS.TABS.BUTTON} py-2 px-4 focus:outline-none text-center ${
-				i === 0 ? ACTIVE_CLASS : ''
-			}" data-tab="${i}">
+			<button class="${SELECTORS.SETTINGS.TABS.BUTTON} ${i === 0 ? ACTIVE_CLASS : ''}" data-tab="${i}">
 				${label}
 			</button>`,
 	).join('')
@@ -48,14 +46,14 @@ function templateHTML() {
 	).join('')
 
 	return `
-		<header class="mb-5">
-			<h2 class="text-center font-medium gpth-settings__title">
-				<span class="font-semibold">GPThemes</span> Customization
+		<header class="gpth-settings__header">
+			<h2 class="gpth-settings__title">
+				<span>GPThemes</span> Customization
 			</h2>
 		</header>
 		<main>
 			<div class="${SELECTORS.SETTINGS.TABS.ROOT}">
-				<div class="${SELECTORS.SETTINGS.TABS.BUTTONS} p-1 font-semibold mb-5">
+				<div class="${SELECTORS.SETTINGS.TABS.BUTTONS}">
 					${buttons}
 				</div>
 				<div class="${SELECTORS.SETTINGS.TABS.CONTENT}">

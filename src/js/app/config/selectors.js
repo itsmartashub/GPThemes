@@ -27,9 +27,9 @@ export const SELECTORS = {
 		OPEN_BTN: `${PFX}-open-settings`,
 		TABS: {
 			ROOT: `${PFX}-tabs`,
-			BUTTONS: `${PFX}-tab-buttons`,
+			BUTTONS: `${PFX}-tabs__buttons`,
+			CONTENT: `${PFX}-tabs__content`,
 			BUTTON: `${PFX}-tab-button`,
-			CONTENT: `${PFX}-tab-content`,
 			PANE: `${PFX}-tab-pane`,
 		},
 	},
