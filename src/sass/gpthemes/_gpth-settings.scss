@@ -1,4 +1,4 @@
-.#{$pfx}-settings {
+.gpth-settings {
 	--w-scrollbar: 0.2rem;
 	--top: calc(var(--h-header) + 0.5rem + 3rem);
 	--right: 1.3rem;
@@ -40,7 +40,6 @@
 	}
 
 	@include dev('xs') {
-		// --p: 5vw;
 		--gpth-settings-max-h: 70vh;
 		width: calc(100% - 2.5rem);
 	}
@@ -51,6 +50,7 @@
 
 	[role="separator"] {
 		--border-light: var(--c-border) !important;
+
 		display: block !important;
 		margin: 1.5rem 1.25rem;
 		height: 1px;
@@ -62,39 +62,35 @@
 		margin: 0;
 	}
 
+	button,
+	input,
+	select,
+	textarea {
+		outline: none;
+		border: none;
+		background-color: transparent;
+		box-sizing: border-box;
+		font-feature-settings: inherit;
+		font-variation-settings: inherit;
+		letter-spacing: inherit;
+		color: inherit;
+		margin: 0;
+		padding: 0;
+
+		&:focus,
+		&:focus-visible,
+		&:focus-within {
+			outline: none !important;
+			border: none !important;
+		}
+	}
+
 	.btn-primary {
 		width: 66.6%;
 		margin: 0 auto;
 	}
 }
 
-html.dark .#{$pfx}-settings {
+html.dark .gpth-settings {
 	--brightness-menu: brightness(0.8);
-	// --c-bg-menu: hsla(var(--accent-h), calc(var(--accent-s) * 0.2), calc(var(--accent-l) * 0.35), 0.3);
-	// --c-bg-menu: oklch(from var(--c-accent) calc(l * 0.35) calc(c * 0.2) h / 0.3);
-}
-
-
-button,
-input,
-optgroup,
-select,
-textarea {
-	outline: none;
-	border: none;
-	background-color: transparent;
-	box-sizing: border-box;
-	font-feature-settings: inherit;
-	font-variation-settings: inherit;
-	letter-spacing: inherit;
-	color: inherit;
-	margin: 0;
-	padding: 0;
-
-	&:focus,
-	&:focus-visible,
-	&:focus-within {
-		outline: none !important;
-		border: none !important;
-	}
 }

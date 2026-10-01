@@ -1,5 +1,5 @@
 /* Using your selector system */
-.#{$pfx}-notify-container {
+.gpth-notify-container {
 
     --spacing: 1rem;
 
@@ -29,7 +29,7 @@
         margin-inline: auto;
     }
 
-    .#{$pfx}-notify {
+    .gpth-notify {
 
         --fg: var(--c-accent);
 

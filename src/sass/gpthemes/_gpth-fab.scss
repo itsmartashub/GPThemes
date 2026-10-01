@@ -1,5 +1,5 @@
 /* FAB */
-.#{$pfx} {
+.gpth {
 	&-fab {
 		--floating-icon-size: 2.8rem;
 		// --top: calc(var(--h-header) + 0.5rem);
@@ -86,7 +86,7 @@
 }
 
 /* FAB DOCK */
-.#{$pfx} {
+.gpth {
 	&-dock {
 		--btn-gap: 1rem;
 
@@ -122,7 +122,7 @@
 			pointer-events: auto !important;
 			clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%) !important;
 
-			.#{$pfx}-dock__btn {
+			.gpth-dock__btn {
 				transform: scale(1) !important;
 			}
 		}
@@ -183,7 +183,7 @@
 }
 
 html.light {
-	.#{$pfx}-dock-icon::after {
+	.gpth-dock-icon::after {
 		color: var(--c-txt);
 	}
 }

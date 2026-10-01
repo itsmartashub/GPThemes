@@ -7,15 +7,14 @@
 @import "abstract/_vars-gpt";
 @import "shared/_easing";
 @import "abstract/_anims";
-@import "abstract/_mixins";
+@import "abstract/mixins/_mixins";
+@import "abstract/mixins/_chb";
 @import "shared/_extends";
 @import "abstract/_extends";
 
 // @import 'dev/_mixins'; // TODO: REMOVE THIS FOR PRODUCTION!
 
-// @import '../libs/jscolorpicker/colorpicker-my-style.scss';
 @import "../libs/jscolorpicker/colorpicker-my-style-optimized";
-// @import '../libs/jscolorpicker/colorpicker.min.scss';
 
 @import "global/_base";
 @import "global/_scrollbars";
@@ -24,21 +23,17 @@
 @import "global/_colors-borders";
 @import "global/_rounded";
 
-/* DARK hljs Theme Styles */
-// @import 'hljs/_ros-pine-moon';
-
-/* OLED hljs Themes */
-// @import 'hljs/oled/_ir-black'; // favorit. yellowish/pink/blue jace boje
-
-// @import 'elements/_forms';
 @import "elements/_accessibility";
 @import "elements/_loadings";
 @import "elements/_forms";
 @import "elements/_menu";
 @import "elements/_sidebar";
 @import "elements/_prose";
+
 // @import "elements/_pre";
 // @import "elements/_analyze_code";
+// @import "elements/_right--scrolldown";
+
 @import "elements/_btn";
 @import "elements/_toast";
 @import "elements/_tooltips";
@@ -50,7 +45,6 @@
 @import "elements/_source-pill-links";
 @import "elements/_canvas";
 @import "elements/_right--chatbox";
-// @import "elements/_right--scrolldown";
 @import "elements/_right--maps";
 @import "elements/_voice-room";
 @import "elements/_images-layout";
@@ -58,8 +52,10 @@
 @import "pages/_codex";
 @import "elements/_transitions";
 @import "elements/_search";
+
 @import "customs/_custom--chats";
 @import "customs/_custom--chatbox";
 @import "customs/_custom--hides";
 @import "customs/_custom--colors";
+
 @import "gpthemes/gpth-index";
