@@ -16,6 +16,14 @@ const STORAGE_KEYS = {
 	IS_OLED: 'isOLED',
 }
 
+// StyleX UI theme classes on <html>
+const STYLEX_THEME_CLASSES = {
+	LIGHT: 'x19aimcq',
+	DARK: 'xntwwlm',
+}
+
+const THEME_CLASSES = [THEMES.LIGHT, THEMES.DARK, STYLEX_THEME_CLASSES.LIGHT, STYLEX_THEME_CLASSES.DARK]
+
 const PREFERS_LIGHT_MEDIA_QUERY = window.matchMedia('(prefers-color-scheme: light)')
 
 let cachedThemeState = null
@@ -49,14 +57,19 @@ function invalidateThemeCache() {
 }
 
 // =====================================================
-// UPDATE CSS/DOM (DOm manipulation)
+// UPDATE CSS/DOM (DOM manipulation)
 // =====================================================
 function setRootTheme(theme, isOLED) {
 	const root = document.documentElement
 	const effectiveTheme = theme === THEMES.SYSTEM ? getSysTheme() : theme
 	const dataAttrTheme = effectiveTheme === THEMES.DARK && isOLED ? THEMES.OLED : effectiveTheme
 
-	root.className = effectiveTheme
+	const stylexThemeClass = effectiveTheme === THEMES.DARK ? STYLEX_THEME_CLASSES.DARK : STYLEX_THEME_CLASSES.LIGHT
+
+	// Remove all known theme classes, then add only the active ones. This preserves any other classes (StyleX layout, etc) on <html>
+	root.classList.remove(...THEME_CLASSES)
+	root.classList.add(effectiveTheme, stylexThemeClass)
+
 	root.style.colorScheme = effectiveTheme
 	root.dataset.gptheme = dataAttrTheme
 }
@@ -69,7 +82,6 @@ function updateTheme(newTheme, isOLED = false) {
 
 	const { theme: currTheme, isOLED: currIsOLED } = getStoredThemeState()
 
-	// Skip if no change
 	// Skip if no change
 	if (currTheme === newTheme && currIsOLED === isOLED) return
 
