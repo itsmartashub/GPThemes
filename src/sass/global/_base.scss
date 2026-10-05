@@ -18,23 +18,6 @@ body {
 // 	display: none !important;
 // }
 
-code.hljs {
-	letter-spacing: -0.2px;
-}
-
-/* Shadow in "Upgrade your plan" */
-.shadow-md {
-	box-shadow: none;
-}
-
-/* "404 |" in "404 | This page could not be found" */
-.next-error-h1 {
-	color: var(--c-accent);
-	border-color: currentColor !important;
-	font-size: var(--fsz-error-404) !important;
-	font-weight: 600 !important;
-}
-
 ::selection {
 	background-color: var(--c-accent-50) !important;
 	color: var(--c-txt) !important;

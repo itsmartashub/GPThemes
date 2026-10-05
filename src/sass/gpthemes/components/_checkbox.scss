@@ -1,0 +1,10 @@
+.gpth-checkbox {
+    --chb-bg: var(--c-accent-30);
+    --chb-border: var(--c-accent-50);
+    --chb-thumb: var(--c-accent-50);
+
+    --chb-active-bg: var(--c-accent);
+    --chb-active-thumb: var(--c-on-accent);
+
+    @include gpthCheckbox;
+}

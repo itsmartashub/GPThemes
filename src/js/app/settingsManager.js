@@ -2,11 +2,7 @@ import { PFX } from './config/consts.js'
 import { SELECTORS } from './config/selectors.js'
 import { init as initColors, mount as mountColors, renderColorsTab } from './custom-colors/index.js'
 import { init as initFonts, mount as mountFonts, renderFontsTab } from './custom-fonts/index.js'
-import {
-	init as initWidths,
-	mount as mountWidths,
-	renderLayoutsTab,
-} from './custom-layouts/index.js'
+import { init as initWidths, mount as mountWidths, renderLayoutsTab } from './custom-layouts/index.js'
 
 // =====================================================
 // STATE - global state (cached refs, constants)
@@ -36,9 +32,7 @@ const TABS_CONFIG = [
 function templateHTML() {
 	const buttons = TABS_CONFIG.map(
 		({ label }, i) => `
-			<button class="${SELECTORS.SETTINGS.TABS.BUTTON} py-2 px-4 focus:outline-none text-center ${
-				i === 0 ? ACTIVE_CLASS : ''
-			}" data-tab="${i}">
+			<button class="${SELECTORS.SETTINGS.TABS.BUTTON} ${i === 0 ? ACTIVE_CLASS : ''}" data-tab="${i}">
 				${label}
 			</button>`,
 	).join('')
@@ -52,14 +46,14 @@ function templateHTML() {
 	).join('')
 
 	return `
-		<header class="mb-5">
-			<h2 class="text-center font-medium gpth-settings__title">
-				<span class="font-semibold">GPThemes</span> Customization
+		<header class="gpth-settings__header">
+			<h2 class="gpth-settings__title">
+				<span>GPThemes</span> Customization
 			</h2>
 		</header>
 		<main>
 			<div class="${SELECTORS.SETTINGS.TABS.ROOT}">
-				<div class="${SELECTORS.SETTINGS.TABS.BUTTONS} p-1 font-semibold mb-5">
+				<div class="${SELECTORS.SETTINGS.TABS.BUTTONS}">
 					${buttons}
 				</div>
 				<div class="${SELECTORS.SETTINGS.TABS.CONTENT}">
@@ -77,7 +71,7 @@ async function createSettings() {
 
 	// 1. Create root container
 	const el = document.createElement('div')
-	el.className = `${SELECTORS.SETTINGS.ROOT} fixed flex flex-col`
+	el.className = SELECTORS.SETTINGS.ROOT
 	el.innerHTML = templateHTML()
 
 	// 2. Append to DOM FIRST
@@ -133,9 +127,7 @@ function setElements(root) {
 // LISTENERS
 // =====================================================
 function addListeners() {
-	$settings
-		.querySelector(`.${SELECTORS.SETTINGS.TABS.BUTTONS}`)
-		.addEventListener('click', onTabsSwitching)
+	$settings.querySelector(`.${SELECTORS.SETTINGS.TABS.BUTTONS}`)?.addEventListener('click', onTabsSwitching)
 	// handleTabsSwitching()
 }
 
@@ -166,7 +158,7 @@ function onTabsSwitching(e) {
 }
 
 function onOpenSettings() {
-	if (!$settings) return
+	if (!$settings) return console.warn('[GPThemes] $settings not found')
 
 	$settings.classList.add(SELECTORS.SETTINGS.OPEN_STATE)
 
@@ -177,7 +169,7 @@ function onOpenSettings() {
 }
 
 function onCloseSettings() {
-	if (!$settings) return
+	if (!$settings) return console.warn('[GPThemes] $settings not found')
 
 	$settings.classList.remove(SELECTORS.SETTINGS.OPEN_STATE)
 	document.removeEventListener('click', onClickOutside, true)

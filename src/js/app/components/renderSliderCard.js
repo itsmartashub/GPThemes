@@ -26,25 +26,24 @@ export function renderSliderCard({
         >
             <label
                 for="${sanitizedInputId}"
-                class="flex flex-col justify-center p-2 gap-4 h-full w-full rounded-xl"
             >
-                <div class="flex items-center gap-2 w-full">
+                <div class="card__output-wrapper">
                     <div
-                        class="card__output flex-none h-10 w-10 font-semibold rounded-full grid items-center justify-center"
+                        class="card__output"
                         id="${displayValue}"
                     >
                         ${sanitizedInputValue}
                     </div>
 
-                    <div class="card__unitname-wrapper grid">
+                    <div class="card__unitname-wrapper">
                         <p
-                            class="card__unit rounded-full flex items-center justify-center mb-2 font-semibold"
+                            class="card__unit"
                             id="${displayUnit}"
                         >
                             ${unit}
                         </p>
 
-                        <p class="card__name uppercase font-semibold w-full break-words">
+                        <p class="card__name">
                             ${sanitizedName}
                         </p>
                     </div>
@@ -55,7 +54,6 @@ export function renderSliderCard({
                     id="${sanitizedInputId}"
                     value="${sanitizedInputValue}"
                     placeholder="${sanitizedInputPlaceholder}"
-                    class="outline-none border-none"
                     min="${min}"
                     max="${max}"
                     step="${step}"

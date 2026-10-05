@@ -23,7 +23,6 @@ function templateHTML() {
 
 			${renderInfo({
 				text: `Supported formats: <strong>#RGB</strong> and <strong>#RRGGBB</strong>. Other color formats (<strong>RGB</strong>, <strong>HSV</strong>, <strong>HSL</strong>) can technically be entered, but they will be automatically converted to <strong>HEX</strong>.`,
-				classNames: 'm-6',
 			})}
 				
 			${renderSeparator}
@@ -33,7 +32,7 @@ function templateHTML() {
 				${renderAllTextAccent()}
 			</div>
 			
-			<footer class="flex justify-center mt-8">
+			<footer>
 				${renderButton({
 					id: SELECTORS.ACCENT.RESET_BTN_ID,
 					content: 'Reset Colors',

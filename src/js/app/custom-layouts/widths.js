@@ -59,7 +59,7 @@ function templateHTML() {
 	const promptUnit = extractUnit(WIDTH_CONFIG.defaults.w_prompt_textarea)
 
 	return `
-		<div class="gpth-layouts__custom-width mb-4">
+		<div class="gpth-layouts__widthSliders">
 			${renderSliderCard({
 				name: 'Chats Width',
 				inputType: 'range',
@@ -84,7 +84,7 @@ function templateHTML() {
 			})}
 		</div>
 
-		<div class="gpth-layouts__toggle-widths">
+		<div class="gpth-layouts__widthToggles">
 			${renderToggle({
 				id: SELECTORS.WIDTH.TOGGLE_FULL_ID,
 				checked: false,
@@ -105,7 +105,7 @@ function templateHTML() {
 				className: '',
 			})}
 		</div>
-		<div class="flex justify-center mt-8">
+		<div class="gpth-layouts__widthResetBtn">
 			${renderButton({
 				id: SELECTORS.WIDTH.RESET_BTN_ID,
 				content: 'Reset Widths',
@@ -304,10 +304,7 @@ async function onResetAll() {
 
 	setVars(currentState.settings)
 	updateUI(currentState)
-	await Promise.all([
-		removeItems(Object.values(WIDTH_CONFIG.storageKeys)),
-		resetUserBubbleFullWidth(),
-	])
+	await Promise.all([removeItems(Object.values(WIDTH_CONFIG.storageKeys)), resetUserBubbleFullWidth()])
 }
 
 // =====================================================

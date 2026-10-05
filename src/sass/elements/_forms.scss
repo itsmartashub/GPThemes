@@ -1,50 +1,61 @@
-input[type='checkbox'] {
-	padding: 7px !important;
-	border: 2px solid var(--c-accent) !important;
-	background-color: transparent !important;
-	border-radius: 4px;
+input[type="checkbox"] {
+    padding: 7px !important;
+    border: 2px solid var(--c-accent) !important;
+    background-color: transparent !important;
+    border-radius: 4px;
 
-	&:checked {
-		// accent-color: var(--c-accent) !important;
-		// background-color: var(--c-subtext-1) !important;
-		background-color: var(--c-accent-50) !important;
-	}
+    &:checked {
+        // accent-color: var(--c-accent) !important;
+        // background-color: var(--c-subtext-1) !important;
+        background-color: var(--c-accent-50) !important;
+    }
 }
 
 /* "Select your Team Plan" dialog radio buttons when clicking "Upgrade plan" > "Team" */
-button[role='radio'] {
-	border-color: var(--c-accent) !important;
+button[role="radio"] {
+    border-color: var(--c-accent) !important;
 
-	&[data-state='checked'] {
-		background-color: var(--c-accent);
-	}
+    &[data-state="checked"] {
+        background-color: var(--c-accent);
+    }
 
-	svg {
-		color: var(--c-on-accent) !important;
-	}
+    svg {
+        color: var(--c-on-accent) !important;
+    }
 }
 
 /* input placeholder color */
 input,
 textarea {
-	outline: none !important;
+    outline: none !important;
 
-	// --black: var(--c-surface-2) !important; // this fix input bg accent on inputs that have bg-token-main-surface-primary: var(--black) bcs we global override the --black to be --accent 
+    // --black: var(--c-surface-2) !important; // this fix input bg accent on inputs that have bg-token-main-surface-primary: var(--black) bcs we global override the --black to be --accent
 
-	&.border-red-500 {
-		background: color-mix(in oklch, var(--c-danger) 10%, transparent 98%) !important;
-		border-color: color-mix(in oklch, var(--c-danger) 15%, transparent 95%) !important;
-		color: var(--c-danger) !important;
-	}
+    &.border-red-500 {
+        background: color-mix(
+            in oklch,
+            var(--c-danger) 10%,
+            transparent 98%
+        ) !important;
+        border-color: color-mix(
+            in oklch,
+            var(--c-danger) 15%,
+            transparent 95%
+        ) !important;
+        color: var(--c-danger) !important;
+    }
 
-	&::placeholder {
-		opacity: 0.6 !important;
-		color: var(--c-subtext-2) !important;
-	}
+    &::placeholder {
+        opacity: 0.6 !important;
+        color: var(--c-subtext-2) !important;
+    }
 }
 
 /* "Share this project" - Sharing Project (folder) dialog - inputs */
-.react-select-container .react-select__control:where(.dark, .dark *):not(:where(.dark .light, .dark .light *)) {
-	background-color: var(--c-surface-3) !important;
-	border-color: var(--c-surface-3) !important;
+.react-select-container
+    .react-select__control:where(.dark, .dark *):not(
+        :where(.dark .light, .dark .light *)
+    ) {
+    background-color: var(--c-surface-3) !important;
+    border-color: var(--c-surface-3) !important;
 }

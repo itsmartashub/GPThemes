@@ -1,71 +1,72 @@
-.#{$pfx}-settings {
+.gpth-settings {
+    --w-scrollbar: 0.2rem;
+    --top: calc(var(--h-header) + 0.5rem + 3rem);
+    --right: 1.3rem;
+    --p: 2rem;
+    --gpth-settings-max-h: 75vh;
+    --shadow-color: var(--c-accent-10);
+    --shadow-values: inset 0 0 20px 10px;
+    --c-scrollbar-thumb: var(--c-accent-30) !important;
 
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: var(--top);
+    right: var(--right);
+    width: clamp(25rem, 25vw, 30rem);
+    max-height: var(--gpth-settings-max-h);
+    padding: var(--p);
+    opacity: 0;
+    @include menuBg;
+    border: 1px solid var(--c-accent-10);
+    border-radius: var(--br-dialog);
+    pointer-events: none;
+    transform: translateX(calc(100% + 1.5rem)) !important;
+    z-index: calc(var(--z-modal) + 10);
+    overflow: clip auto;
+    // overflow: clip;
+    transition:
+        transform 0.3s $easeOutBack,
+        opacity 0.3s ease;
+    // overscroll-behavior: contain;
 
-	--w-scrollbar: 0.2rem;
+    &--open {
+        opacity: 1 !important;
+        pointer-events: all !important;
+        transform: translateX(0%) !important;
+    }
 
-	--top: calc(var(--h-header) + 0.5rem + 3rem);
-	--right: 1.3rem;
-	--p: 2rem;
-	--max-h: 75vh;
-	--shadow-color: var(--c-accent-10);
-	--shadow-values: inset 0 0 20px 10px;
-	--c-scrollbar-thumb: var(--c-accent-30) !important;
-	top: var(--top);
-	right: var(--right);
-	width: clamp(25rem, 25vw, 30rem);
-	max-height: var(--max-h);
-	padding: var(--p);
-	opacity: 0;
-	@include menuBg;
-	border: 1px solid var(--c-accent-10);
-	border-radius: var(--br-dialog);
-	pointer-events: none;
-	transform: translateX(calc(100% + 1.5rem)) !important;
-	z-index: calc(var(--z-modal) + 10);
-	overflow: clip auto;
-	// overflow: clip;
-	transition: transform 0.3s $easeOutBack, opacity 0.3s ease;
-	// overscroll-behavior: contain;
+    @include dev("sm") {
+        --p: 4vw;
+    }
 
+    @include dev("xs") {
+        --gpth-settings-max-h: 70vh;
+        width: calc(100% - 2.5rem);
+    }
 
-	&--open {
-		opacity: 1 !important;
-		pointer-events: all !important;
-		transform: translateX(0%) !important;
-	}
+    @include dev("xxs") {
+        --p: 2vw;
+    }
 
-	@include dev('sm') {
-		--p: 4vw;
-	}
+    [role="separator"] {
+        --border-light: var(--c-border) !important;
 
-	@include dev('xs') {
-		// --p: 5vw;
-		--max-h: 70vh;
-		width: calc(100% - 2.5rem);
-	}
+        display: block !important;
+        margin: 1.5rem 1.25rem;
+        height: 1px;
+        background: var(--c-border);
+    }
 
-	@include dev('xxs') {
-		--p: 2vw;
-	}
-
-	// section {
-	.#{$pfx}-tab-content {
-		overflow-y: auto;
-		max-height: calc(var(--max-h) * 0.625);
-
-		.#{$pfx}-pane {
-			margin-inline: 0.2rem; // simulate space from the scrollbar
-		}
-	}
-
-	[role="separator"] {
-		display: block !important;
-		--border-light: var(--c-border) !important;
-	}
+    .btn-primary {
+        width: 66.6%;
+        margin: 0 auto;
+        padding: var(--p-btn);
+        font-size: 0.985em;
+        font-weight: bold;
+    }
 }
 
-html.dark .#{$pfx}-settings {
-	--brightness-menu: brightness(0.8);
-	// --c-bg-menu: hsla(var(--accent-h), calc(var(--accent-s) * 0.2), calc(var(--accent-l) * 0.35), 0.3);
-	// --c-bg-menu: oklch(from var(--c-accent) calc(l * 0.35) calc(c * 0.2) h / 0.3);
+html.dark .gpth-settings {
+    --brightness-menu: brightness(0.8);
 }
