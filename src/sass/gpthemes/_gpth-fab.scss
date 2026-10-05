@@ -1,362 +1,62 @@
 /* FAB */
-.gpth {
-	&-fab {
-		--floating-icon-size: 2.8rem;
-		// --top: calc(var(--h-header) + 0.5rem);
-		--top: calc(var(--header-height, var(--h-header)) + 0.2rem);
-		--right: 1rem;
-		position: fixed;
-		top: var(--top);
-		right: var(--right);
-		font-family: inherit;
-		transition: scale 0.2s, opacity 0.2s;
+.gpth-fab {
+    --floating-icon-size: 2.8rem;
+    // --top: calc(var(--h-header) + 0.5rem);
+    --top: calc(var(--header-height, var(--h-header)) + 0.2rem);
+    --right: 1rem;
+    position: fixed;
+    top: var(--top);
+    right: var(--right);
+    font-family: inherit;
+    transition:
+        scale 0.2s,
+        opacity 0.2s;
 
-		// this add only for Firefox
-		@-moz-document url-prefix() {
-			--right: 0.95rem;
-		}
+    // this add only for Firefox
+    @-moz-document url-prefix() {
+        --right: 0.95rem;
+    }
 
-		&--hidden {
-			// visibility: hidden;
-			scale: 0;
-			pointer-events: none;
-			opacity: 0;
-		}
+    &--hidden {
+        // visibility: hidden;
+        scale: 0;
+        pointer-events: none;
+        opacity: 0;
+    }
 
-		/* On GPTs page floating is overlaping user image in sticky header so i need to move it down */
-		@include dev('md') {
-			--floating-icon-size: 2.2rem;
-			--right: 6rem;
-			top: calc(var(--header-height, var(--h-header)) / 2);
-			translate: 0 -50%;
-		}
+    /* On GPTs page floating is overlaping user image in sticky header so i need to move it down */
+    @include dev("md") {
+        --floating-icon-size: 2.2rem;
+        --right: 6rem;
+        top: calc(var(--header-height, var(--h-header)) / 2);
+        translate: 0 -50%;
+    }
 
-		&__icon {
-			// position: relative;
-			display: grid;
-			place-items: center;
-			width: var(--floating-icon-size);
-			height: var(--floating-icon-size);
-			color: var(--c-accent);
-			background-image: var(--c-bg-gradient);
-			border: 1px solid var(--c-accent-20);
-			backdrop-filter: blur(10px);
+    &__icon {
+        display: grid;
+        place-items: center;
+        width: var(--floating-icon-size);
+        height: var(--floating-icon-size);
+        color: var(--c-accent);
+        background-image: var(--c-bg-gradient);
+        border: 1px solid var(--c-accent-20);
+        backdrop-filter: blur(10px);
 
-			border-radius: 50vw;
-			transition: transform 0.15s $easeOutCubic, background-color 0.3s $easeOutCubic, color 0.3s $easeOutCubic;
-			cursor: pointer;
+        border-radius: 50vw;
+        transition:
+            transform 0.15s $easeOutCubic,
+            background-color 0.3s $easeOutCubic,
+            color 0.3s $easeOutCubic;
+        cursor: pointer;
 
-			// &::after {
-			// 	content: 'Change theme';
-			// 	position: absolute;
-			// 	top: 50%;
-			// 	left: 0;
-			// 	font-size: 0.725rem;
-			// 	font-weight: bold;
-			// 	border-radius: 50vw;
-			// 	width: max-content;
-			// 	height: max-content;
-			// 	padding: 0.2rem 0.5rem;
-			// 	background-color: var(--c-accent);
-			// 	color: var(--c-on-accent) !important;
-			// 	pointer-events: none;
-			// 	opacity: 0;
-			// 	transform-origin: right center;
-			// 	transform: translate(-110%, -50%) scale(0);
-			// 	transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-			// 	// z-index: -1;
-			// }
+        &:hover {
+            background-image: none;
+            background-color: var(--c-accent);
+            color: var(--c-on-accent);
 
-			&:hover {
-				background-image: none;
-				background-color: var(--c-accent);
-				color: var(--c-on-accent);
-
-				svg {
-					transform: scale(1.1);
-				}
-
-				// &::after {
-				// 	opacity: 1 !important;
-				// 	transform: translate(-115%, -50%) scale(1);
-				// }
-			}
-		}
-	}
+            svg {
+                transform: scale(1.1);
+            }
+        }
+    }
 }
-
-/* FAB DOCK */
-.gpth {
-	&-dock {
-		--btn-gap: 1rem;
-
-		pointer-events: none;
-		opacity: 0;
-		display: grid;
-		place-items: center;
-		gap: var(--btn-gap);
-		width: max-content;
-		height: max-content;
-		padding: 0.8rem;
-		position: absolute;
-		right: 50%;
-		top: 150%;
-		transform: translateX(50%);
-		border-radius: 20vw;
-		clip-path: polygon(0 0, 100% 0, 100% 0, 0% 0);
-		border: 1px solid var(--c-accent-20);
-		background-image: linear-gradient(135deg,
-				var(--c-accent-20) 0%,
-				var(--c-accent-03) 40%,
-				var(--c-accent-03) 60%,
-				var(--c-accent-20) 100%);
-		backdrop-filter: blur(5px);
-		transition: clip-path 0.3s $easeInOutCirc, opacity 0.3s ease-in-out;
-
-		@include dev('sm') {
-			padding: 0.65rem;
-		}
-
-		&--shown {
-			opacity: 1;
-			pointer-events: auto !important;
-			clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%) !important;
-
-			.gpth-dock__btn {
-				transform: scale(1) !important;
-			}
-		}
-
-		&__btns {
-			gap: var(--btn-gap);
-			display: grid;
-		}
-
-		&__btn {
-			--btn-size: 2rem;
-			cursor: pointer;
-			position: relative;
-			width: var(--btn-size);
-			height: var(--btn-size);
-			display: grid;
-			place-items: center;
-			line-height: 1;
-			border-radius: 50vw;
-			color: var(--c-accent);
-			transform: scale(0);
-			transition: 0.3s linear;
-
-			&::after {
-				content: attr(data-gpth-dock-btn);
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				width: max-content;
-				font-size: 0.7rem;
-				text-transform: uppercase;
-				font-weight: 700;
-				padding: 6px;
-				background-color: var(--c-accent);
-				color: var(--c-on-accent);
-				border-radius: 50vw;
-				opacity: 0;
-				transform: translate(-50%, 0%) scale(0);
-				transition: transform 0.3s $easeInOutCirc, opacity 0.4s linear;
-			}
-
-			.icon {
-				--icon-size: 1.5em;
-				height: var(--icon-size);
-				width: var(--icon-size);
-			}
-
-			&:hover {
-				color: transparent !important;
-
-				&::after {
-					opacity: 1 !important;
-					transform: translate(-50%, -50%) scale(1) !important;
-				}
-			}
-		}
-	}
-}
-
-html.light {
-	.gpth-dock-icon::after {
-		color: var(--c-txt);
-	}
-}
-
-
-
-/* 	&__themes {
-		display: grid;
-		place-items: center;
-
-		&-btns {
-			gap: 1rem;
-			display: grid;
-			border-radius: var(--br-btn);
-
-			button {
-				--btn-size: 2rem;
-				--btn-scale: 0;
-				cursor: pointer;
-				position: relative;
-				width: var(--btn-size);
-				height: var(--btn-size);
-				display: grid;
-				place-items: center;
-				line-height: 1;
-				border-radius: 50vw;
-				color: var(--c-accent);
-				transform: scale(var(--btn-scale));
-				transition: color 0.2s ease, transform 0.3s $easeInOutCirc;
-
-				.icon {
-					--icon-size: 1.5em;
-					height: var(--icon-size);
-					width: var(--icon-size);
-				}
-
-				&::after {
-					content: attr(data-gpth-dock-btn);
-					position: absolute;
-					top: 50%;
-					left: 50%;
-					width: max-content;
-					font-size: 0.7rem;
-					text-transform: uppercase;
-					font-weight: 700;
-					padding: 6px;
-					border-radius: 5px;
-					background-color: var(--c-accent);
-					color: var(--c-on-accent);
-					border-radius: 50vw;
-					opacity: 0;
-					transform: translate(-50%, -50%) scale(0);
-					transition: transform 0.3s $easeInOutCirc, opacity 0.4s linear;
-				}
-
-				&:hover {
-					color: transparent;
-					&::after {
-						opacity: 1;
-						transform: translate(-50%, -50%) scale(1);
-					}
-				}
-			}
-		}
-	} */
-
-/* Jos ne koristim ovo. Za image upload */
-/* 	&__upload {
-		display: grid;
-		justify-items: center;
-
-		&--content {
-			display: grid;
-			align-items: center;
-			gap: 1rem;
-		}
-
-		input {
-			display: none;
-		}
-
-		label,
-		button {
-			text-align: center;
-			outline: none;
-			border: none;
-			cursor: pointer;
-			width: 100%;
-			padding: var(--p-btn);
-			border-radius: var(--br-btn);
-			background-color: var(--c-accent);
-			color: var(--c-on-accent);
-			font-size: 1rem;
-		}
-
-		button#uploadImage {
-			display: none;
-		}
-		button#removeImage {
-			display: none;
-		}
-
-		&--preview {
-			display: grid;
-			justify-items: center;
-
-			p {
-				text-align: center;
-				margin-bottom: 1rem;
-				color: var(--c-subtext-2);
-			}
-		}
-		&--placeholderImg {
-			display: grid;
-			justify-items: center;
-			// --img-w: 11rem;
-			--img-w: 95%;
-			--img-h: 7rem;
-			// margin: 0 auto;
-			width: var(--img-w);
-			height: var(--img-h);
-			border-radius: var(--br-btn);
-
-			img {
-				width: var(--img-w);
-				height: var(--img-h);
-				// width: 100%;
-				// height: 100%;
-				object-fit: cover;
-				object-position: center;
-				border-radius: inherit;
-				display: none;
-			}
-		}
-
-		&--placeholder {
-			width: var(--img-w);
-			height: var(--img-h);
-			display: grid;
-			grid-template-columns: 1fr 3fr;
-			overflow: clip;
-			box-shadow: 0 0 0 2px var(--c-accent-20);
-			border-radius: inherit;
-
-			aside {
-				background-color: var(--c-accent-20);
-			}
-			section {
-				// background-color: oklch(var(--from-accent) / 0.01);
-				display: grid;
-				grid-template-rows: 3fr 4fr 2.5fr;
-				gap: 6px;
-				padding: 5px 10px;
-
-				article {
-					width: 70%;
-					border-radius: 10px;
-
-					&:nth-child(1) {
-						// height: 50%;
-						background-color: var(--c-accent-40);
-					}
-					&:nth-child(2) {
-						// height: 2rem;
-						background-color: var(--c-accent-20);
-						justify-self: flex-end;
-					}
-					&:nth-child(3) {
-						// height: 4rem;
-						background-color: var(--c-accent-40);
-						// justify-self: flex-end;
-					}
-				}
-			}
-		}
-	} */

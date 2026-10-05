@@ -6,16 +6,16 @@
     }
 
     &__buttons {
-        background-color: var(--c-accent-15);
-        color: var(--c-accent);
         display: flex;
         align-items: center;
-        border-radius: 100vw;
+        background-color: var(--c-accent-15);
+        color: var(--c-accent);
         margin-bottom: 1.25rem;
-        padding: 0.25rem;
+        padding: 0.35rem;
+        border-radius: 100vw;
         font-weight: 600;
 
-        @include dev('xxs') {
+        @include dev("xxs") {
             display: grid;
             grid-template-columns: 1fr;
             gap: 0.5rem;
@@ -30,15 +30,14 @@
     }
 }
 
-
 .gpth-tab {
-
     &-button {
         flex: 1;
         border-radius: inherit;
-        // padding: 0.25rem;
-        padding-inline: 1rem;
-        padding-block: 0.4rem;
+        // padding: 1rem 0.5rem;
+        // padding-inline: 1rem;
+        // padding-block: 0.4rem;
+        padding: calc(var(--p-btn) * 0.35);
         text-align: center;
         cursor: pointer;
 

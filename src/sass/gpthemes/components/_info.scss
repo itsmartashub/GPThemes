@@ -2,18 +2,20 @@
     color: var(--fg, var(--c-accent));
     background-color: color-alpha(currentColor, 0.15);
     box-shadow: 0 0 0 1px color-alpha(currentColor, 0.25);
-    font-size: 0.765rem;
+    font-size: 0.715em;
     display: flex;
     align-items: flex-start;
-    gap: 0.55em;
-    padding: 0.5em 0.65em;
-    margin: 0.5em;
+    gap: 0.8em;
+    padding: 0.75em;
+    margin: 1.25em;
     border-radius: var(--br-btn) !important;
+    line-height: 1.25;
 
     svg {
+        $size: 1.45em;
         margin-top: 0.125rem;
-        width: 1.3em;
-        height: 1.3em;
+        width: $size;
+        height: $size;
     }
 
     /* TODO: add mixing for this */

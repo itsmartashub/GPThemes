@@ -1,96 +1,72 @@
 .gpth-settings {
-	--w-scrollbar: 0.2rem;
-	--top: calc(var(--h-header) + 0.5rem + 3rem);
-	--right: 1.3rem;
-	--p: 2rem;
-	--gpth-settings-max-h: 75vh;
-	--shadow-color: var(--c-accent-10);
-	--shadow-values: inset 0 0 20px 10px;
-	--c-scrollbar-thumb: var(--c-accent-30) !important;
+    --w-scrollbar: 0.2rem;
+    --top: calc(var(--h-header) + 0.5rem + 3rem);
+    --right: 1.3rem;
+    --p: 2rem;
+    --gpth-settings-max-h: 75vh;
+    --shadow-color: var(--c-accent-10);
+    --shadow-values: inset 0 0 20px 10px;
+    --c-scrollbar-thumb: var(--c-accent-30) !important;
 
-	position: fixed;
-	display: flex;
-	flex-direction: column;
-	top: var(--top);
-	right: var(--right);
-	width: clamp(25rem, 25vw, 30rem);
-	max-height: var(--gpth-settings-max-h);
-	padding: var(--p);
-	opacity: 0;
-	@include menuBg;
-	border: 1px solid var(--c-accent-10);
-	border-radius: var(--br-dialog);
-	pointer-events: none;
-	transform: translateX(calc(100% + 1.5rem)) !important;
-	z-index: calc(var(--z-modal) + 10);
-	overflow: clip auto;
-	// overflow: clip;
-	transition: transform 0.3s $easeOutBack, opacity 0.3s ease;
-	// overscroll-behavior: contain;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: var(--top);
+    right: var(--right);
+    width: clamp(25rem, 25vw, 30rem);
+    max-height: var(--gpth-settings-max-h);
+    padding: var(--p);
+    opacity: 0;
+    @include menuBg;
+    border: 1px solid var(--c-accent-10);
+    border-radius: var(--br-dialog);
+    pointer-events: none;
+    transform: translateX(calc(100% + 1.5rem)) !important;
+    z-index: calc(var(--z-modal) + 10);
+    overflow: clip auto;
+    // overflow: clip;
+    transition:
+        transform 0.3s $easeOutBack,
+        opacity 0.3s ease;
+    // overscroll-behavior: contain;
 
+    &--open {
+        opacity: 1 !important;
+        pointer-events: all !important;
+        transform: translateX(0%) !important;
+    }
 
-	&--open {
-		opacity: 1 !important;
-		pointer-events: all !important;
-		transform: translateX(0%) !important;
-	}
+    @include dev("sm") {
+        --p: 4vw;
+    }
 
-	@include dev('sm') {
-		--p: 4vw;
-	}
+    @include dev("xs") {
+        --gpth-settings-max-h: 70vh;
+        width: calc(100% - 2.5rem);
+    }
 
-	@include dev('xs') {
-		--gpth-settings-max-h: 70vh;
-		width: calc(100% - 2.5rem);
-	}
+    @include dev("xxs") {
+        --p: 2vw;
+    }
 
-	@include dev('xxs') {
-		--p: 2vw;
-	}
+    [role="separator"] {
+        --border-light: var(--c-border) !important;
 
-	[role="separator"] {
-		--border-light: var(--c-border) !important;
+        display: block !important;
+        margin: 1.5rem 1.25rem;
+        height: 1px;
+        background: var(--c-border);
+    }
 
-		display: block !important;
-		margin: 1.5rem 1.25rem;
-		height: 1px;
-		background: var(--c-border);
-	}
-
-	p,
-	h2 {
-		margin: 0;
-	}
-
-	button,
-	input,
-	select,
-	textarea {
-		outline: none;
-		border: none;
-		background-color: transparent;
-		box-sizing: border-box;
-		font-feature-settings: inherit;
-		font-variation-settings: inherit;
-		letter-spacing: inherit;
-		color: inherit;
-		margin: 0;
-		padding: 0;
-
-		&:focus,
-		&:focus-visible,
-		&:focus-within {
-			outline: none !important;
-			border: none !important;
-		}
-	}
-
-	.btn-primary {
-		width: 66.6%;
-		margin: 0 auto;
-	}
+    .btn-primary {
+        width: 66.6%;
+        margin: 0 auto;
+        padding: var(--p-btn);
+        font-size: 0.985em;
+        font-weight: bold;
+    }
 }
 
 html.dark .gpth-settings {
-	--brightness-menu: brightness(0.8);
+    --brightness-menu: brightness(0.8);
 }
