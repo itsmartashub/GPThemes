@@ -1,0 +1,38 @@
+.gpth-fab,
+.gpth-settings {
+    *,
+    ::after,
+    ::before {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    p,
+    h2 {
+        margin: 0;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+        outline: none;
+        border: none;
+        background-color: transparent;
+        box-sizing: border-box;
+        font-feature-settings: inherit;
+        font-variation-settings: inherit;
+        letter-spacing: inherit;
+        color: inherit;
+        // margin: 0;
+        // padding: 0;
+
+        &:focus,
+        &:focus-visible,
+        &:focus-within {
+            outline: none !important;
+            border: none !important;
+        }
+    }
+}
