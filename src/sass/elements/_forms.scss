@@ -32,16 +32,12 @@ textarea {
     // --black: var(--c-surface-2) !important; // this fix input bg accent on inputs that have bg-token-main-surface-primary: var(--black) bcs we global override the --black to be --accent
 
     &.border-red-500 {
-        background: color-mix(
-            in oklch,
-            var(--c-danger) 10%,
-            transparent 98%
-        ) !important;
-        border-color: color-mix(
-            in oklch,
-            var(--c-danger) 15%,
-            transparent 95%
-        ) !important;
+        background: color-mix(in oklch,
+                var(--c-danger) 10%,
+                transparent 98%) !important;
+        border-color: color-mix(in oklch,
+                var(--c-danger) 15%,
+                transparent 95%) !important;
         color: var(--c-danger) !important;
     }
 
@@ -49,13 +45,4 @@ textarea {
         opacity: 0.6 !important;
         color: var(--c-subtext-2) !important;
     }
-}
-
-/* "Share this project" - Sharing Project (folder) dialog - inputs */
-.react-select-container
-    .react-select__control:where(.dark, .dark *):not(
-        :where(.dark .light, .dark .light *)
-    ) {
-    background-color: var(--c-surface-3) !important;
-    border-color: var(--c-surface-3) !important;
 }
