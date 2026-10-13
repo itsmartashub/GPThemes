@@ -1,0 +1,57 @@
+/* Header */
+html[data-gpth-hide-header] {
+
+    // [data-testid="app-shell-header-context-menu-surface"] {
+    header[data-pip-obstacle="app-shell-header"] {
+        display: none !important;
+    }
+}
+
+html[data-gpth-hide-header-model-btn] {
+    [data-testid="model-switcher-dropdown-button"] {
+        display: none !important;
+    }
+}
+
+html[data-gpth-hide-header-new-chat-btn] {
+    #conversation-header-actions a[aria-label][href="/"] {
+        display: none !important;
+    }
+}
+
+html[data-gpth-hide-header-share-btn] {
+    [data-testid="share-chat-button"] {
+        display: none !important;
+    }
+}
+
+html[data-gpth-hide-header-actions-btn] {
+    #conversation-header-actions {
+        display: none !important;
+    }
+}
+
+/* Footer */
+html[data-gpth-hide-footer] {
+
+    /* Footer in basic chats */
+    [data-testid="thread-disclaimer"] {
+        display: none !important;
+    }
+}
+
+/* "Upgrade for free" chip button in header and "Claim offer" button in sidebar */
+html[data-gpth-hide-upgrade-chip] {
+
+    header button.button-glimmer-cta,
+    .__menu-item[data-testid="accounts-profile-button"]~div>button.h-8.w-full.bg-token-bg-primary {
+        display: none !important;
+    }
+}
+
+html[data-gpth-hide-profile-btn] {
+
+    [data-testid="accounts-profile-button"] {
+        display: none !important;
+    }
+}
