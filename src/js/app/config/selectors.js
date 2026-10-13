@@ -90,7 +90,7 @@ export const SELECTORS = {
 	// Chats
 	CHATS: {
 		USER: '.user-message-bubble-color, [data-user-message-bubble]',
-		GPT: '.agent-turn',
+		GPT: '.agent-turn, [data-markdown-text-style="assistant-message"][class^="MarkdownRoot-"]',
 		TOGGLE_USER_BUBBLE_ACCENT_ID: `${PFX}-toggle-user-accent`,
 		TOGGLE_USER_BUBBLE_FULLWIDTH_ID: `${PFX}-toggle-user-bubble-fullwidth`,
 		USER_WIDTH:

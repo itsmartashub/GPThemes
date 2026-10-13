@@ -69,9 +69,11 @@ html.light {
     --c-subtext-2: oklch(from var(--user-text-3, var(--c-accent)) 0.5 calc(c * 0.3) h);
 
     --c-bg-msg-user: var(--c-accent-12);
-    --c-bg-msg-gpt: oklch(from var(--c-surface-1) clamp(0, calc(l * 0.98), 1) clamp(0, calc(c * 1.1), 0.4) h);
+    // --c-bg-msg-gpt: oklch(from var(--c-surface-1) clamp(0, calc(l * 0.95), 1) clamp(0, calc(c * 1.1), 0.4) h);
+    --c-bg-msg-gpt: oklch(from var(--c-bg-chats-container) clamp(0, calc(l * 0.97), 1) clamp(0, calc(c * 1.1), 0.4) h);
 
-    --c-bg-chats-container: oklch(from var(--c-surface-1) clamp(0, calc(l * 1.0189), 1) c h);
+    // --c-bg-chats-container: oklch(from var(--c-surface-2) clamp(0, calc(l * 1.0189), 1) c h);
+    --c-bg-chats-container: oklch(from var(--user-surface-1, var(--c-accent)) 0.965 0.009 h);
 
     --c-bg-modal: oklch(from var(--c-accent) 0.2 calc(c * 0.75) h / 0.3);
     --c-bg-menu: oklch(from var(--c-accent) 0.8 calc(c * 0.25) h / 0.5);

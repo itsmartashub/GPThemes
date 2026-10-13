@@ -1,3 +1,6 @@
+$userBubble: '[data-user-message-bubble]';
+$gptBubble: '[data-markdown-text-style="assistant-message"][class^="MarkdownRoot-"]';
+
 // CHATS/CONVERSATION WIDTH
 [data-thread-user-message-navigation-content] {
     // --thread-content-max-width: var(--thread-content-responsive-max-width, inherit);
@@ -12,19 +15,43 @@
     // }
 }
 
-// USER MESSAGE WIDTH
-[data-user-message-bubble] {
+// USER MESSAGE WIDTH + BG TXT COLORS
+#{$userBubble} {
     // --user-chat-width: 70%; // original value for max-value
     width: var(--w_chat_user, auto) !important;
     max-width: var(--max_w_chat_user, var(--user-chat-width)) !important;
+    background-color: var(--c-bg-msg-user);
+    color: var(--c-txt) !important;
+}
+
+// GPT MESSAGE WIDTH + BG TXT COLORS
+#{$gptBubble} {
+    // border: 2px solid red !important;
+    background-color: var(--c-bg-msg-gpt) !important;
+    // background-color: red !important;
+    padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply)) !important;
+    border-radius: var(--br-chat-bubble) !important;
 }
 
 // FULL WIDTH USER MESSAGE TOGGLE
 html[data-gpth-toggle-user-bubble-fullwidth] {
-    [data-thread-user-message-navigation-content] {
-        [data-user-message-bubble] {
-            max-width: 100% !important;
-            width: 100% !important;
-        }
+    #{$userBubble} {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+}
+
+// TOGGLE BUBBLE
+/* Toggle OFF → replace with transparent colors to "remove" bubble bg */
+html[data-gpth-toggle-bubble-user] #{$userBubble},
+html[data-gpth-toggle-bubble-gpt] #{$gptBubble} {
+    background-color: transparent !important;
+}
+
+html[data-gpth-toggle-bubble-gpt] #{$gptBubble} {
+    padding-inline: 0 !important;
+
+    @include dev('sm') {
+        padding-inline: 0.5rem !important;
     }
 }

@@ -5,9 +5,9 @@
 @import "abstract/_vars-gpth-layout";
 @import "abstract/_vars-gpth-colors";
 // @import "abstract/_vars-gpt";
+
 @import "v7/_vars-gpt";
-@import "v7/_sidebar";
-@import "v7/_tooltip";
+
 @import "shared/_easing";
 @import "abstract/_anims";
 @import "abstract/mixins/_mixins";
@@ -20,11 +20,12 @@
 @import "../libs/jscolorpicker/colorpicker-my-style-optimized";
 
 @import "global/_base";
-@import "global/_scrollbars";
+// @import "global/_scrollbars";
 // @import "global/_colors-txts";
 // @import "global/_colors-bgs";
 // @import "global/_colors-borders";
 // @import "global/_rounded";
+
 
 // @import "elements/_accessibility";
 // @import "elements/_loadings";
@@ -60,6 +61,10 @@
 // @import "customs/_custom--hides";
 // @import "customs/_custom--colors";
 
+
+@import "v7/_sidebar";
+@import "v7/_tooltip";
+@import "v7/_markdown";
 @import "v7/customs/_custom--chats";
 // @import "v7/customs/_custom--chatbox";
 // @import "v7/customs/_custom--hides";

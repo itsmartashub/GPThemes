@@ -45,8 +45,8 @@
     --color-background-mode-toggle-track: var(--c-accent-03) !important;
     --color-background-mode-toggle-selected: var(--c-surface-3) !important; // active toggle (Chat/Work)
     --color-background-panel: var(--c-surface-2) !important;
-    --app-color-background-surface: var(--c-bg-chats-container) !important;
-    --app-color-background-surface-under: var(--c-bg-chats-container) !important;
+    --app-color-background-surface: var(--c-surface-2) !important; // chatbox bg dok se ne ucita tema
+    --app-color-background-surface-under: var(--c-surface-3) !important;
     --app-color-border: var(--c-border) !important;
     --app-color-border-application-menu-separator: var(--c-border) !important;
     --app-color-border-focus: var(--c-accent-40) !important;
@@ -106,7 +106,7 @@
 
 
     // =========================================================
-    --color-surface: var(--c-surface-2) !important;
+    --color-surface: var(--c-bg-chats-container) !important; // app bg, like chats-container, but also code-block bg like: .CodeSurface-UAnpMT, .StickyActionBar-XvAQxh
     --color-surface-secondary: var(--c-surface-2) !important;
     /* POPCORN */
     --color-surface-canvas: var(--c-bg-cm) !important;
@@ -157,7 +157,7 @@
 
 
 
-    --bg-elevated-secondary: var(--c-bg-chats-container) !important;
+    --bg-elevated-secondary: var(--c-surface-2) !important;
     --text-primary: var(--c-txt) !important;
 
 
@@ -168,7 +168,8 @@
     --bg-tertiary: var(--c-surface-3) !important;
     --bg-elevated-primary: var(--c-surface-2) !important;
     --bg-elevated-secondary: var(--c-surface-3) !important;
-    --main-surface-primary: var(--c-surface-2) !important;
+    // --main-surface-primary: var(--c-surface-2) !important;
+    --main-surface-primary: red !important;
     --main-surface-tertiary: var(--c-surface-3) !important;
     --text-primary: var(--c-txt) !important;
     --text-secondary: var(--c-subtext-1) !important;

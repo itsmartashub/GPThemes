@@ -1,0 +1,7 @@
+[class*="CodeSurface-"],
+[class*="StickyActionBar-"] {
+    background-color: var(--c-bg-cm) !important;
+    --color-background-secondary-soft-alpha: var(--c-bg-cm);
+
+    // background-image: linear-gradient(var(--color-background-secondary-soft-alpha), var(--color-background-secondary-soft-alpha));
+}
