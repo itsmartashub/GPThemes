@@ -1,10 +1,7 @@
+// CHATS/CONVERSATION WIDTH
 [data-thread-user-message-navigation-content] {
-
-    box-shadow: 0 0 10px 0 red;
-
     // --thread-content-max-width: var(--thread-content-responsive-max-width, inherit);
     // --thread-content-max-width: var(--w_chat_gpt) !important;
-
 
     will-change: width, max-width;
     max-width: var(--w_chat_gpt) !important;
@@ -13,4 +10,21 @@
     //     --w_chat_gpt: 100%;
     //     width: var(--w_chat_gpt);
     // }
+}
+
+// USER MESSAGE WIDTH
+[data-user-message-bubble] {
+    // --user-chat-width: 70%; // original value for max-value
+    width: var(--w_chat_user, auto) !important;
+    max-width: var(--max_w_chat_user, var(--user-chat-width)) !important;
+}
+
+// FULL WIDTH USER MESSAGE TOGGLE
+html[data-gpth-toggle-user-bubble-fullwidth] {
+    [data-thread-user-message-navigation-content] {
+        [data-user-message-bubble] {
+            max-width: 100% !important;
+            width: 100% !important;
+        }
+    }
 }

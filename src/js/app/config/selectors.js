@@ -89,12 +89,12 @@ export const SELECTORS = {
 
 	// Chats
 	CHATS: {
-		USER: '.user-message-bubble-color',
+		USER: '.user-message-bubble-color, [data-user-message-bubble]',
 		GPT: '.agent-turn',
 		TOGGLE_USER_BUBBLE_ACCENT_ID: `${PFX}-toggle-user-accent`,
 		TOGGLE_USER_BUBBLE_FULLWIDTH_ID: `${PFX}-toggle-user-bubble-fullwidth`,
 		USER_WIDTH:
-			'[data-testid^="conversation-turn-"] [data-message-author-role="user"] [class*="max-w-(--user-chat-width,70%)"]',
+			'[data-testid^="conversation-turn-"] [data-message-author-role="user"] [class*="max-w-(--user-chat-width,70%)"], [data-thread-user-message-navigation-content] [data-user-message-bubble]',
 	},
 
 	// Chatbox
