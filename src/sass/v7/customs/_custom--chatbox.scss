@@ -1,0 +1,4 @@
+[data-pip-obstacle="thread-footer"].max-w-\(--thread-body-max-width\) {
+    will-change: width, max-width;
+    max-width: var(--w_prompt_textarea);
+}

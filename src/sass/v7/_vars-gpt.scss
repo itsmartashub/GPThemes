@@ -1,6 +1,7 @@
-:where(:root:not([data-codex-window-type="extension"]))[data-theme],
-:where(:root:not([data-codex-window-type="extension"])) [data-theme] {
-    // :root {
+// :where(:root:not([data-codex-window-type="extension"]))[data-theme],
+// :where(:root:not([data-codex-window-type="extension"])) [data-theme] {
+// :root {
+:where(:root, [data-theme]) {
     --color-background-composer-primary: var(--c-accent) !important;
 
     --color-text-composer-primary: var(--c-on-accent) !important;
@@ -75,6 +76,9 @@
 
     --app-color-text-error: var(--c-danger) !important;
 
+
+    --app-shell-panel-background: var(--c-bg-chats-container) !important; // kada se otvori WorkspaceContent > aside [data-app-shell-focus-area="right-panel], npr neka slika
+
     --color-text-mode-toggle-inactive:
         color-mix(in oklab, var(--c-txt) 80%, transparent);
     // --shadow-mode-toggle-selected: var(--shadow-md);
@@ -103,6 +107,8 @@
     // --color-image-generation-accent: var(--c-accent) !important;
     // --color-image-generation-text: var(--color-text-accent);
     // --color-image-generation-foreground: var(--app-color-text-on-accent);
+
+    --color-surface-elevated-secondary: var(--c-surface-2) !important; // some dialogs transparent, and many tarnsparent elements
 
 
     // =========================================================
