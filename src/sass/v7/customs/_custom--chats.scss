@@ -60,3 +60,17 @@ html[data-gpth-toggle-bubble-gpt] #{$gptBubble} {
     //     padding-inline: 0.5rem !important;
     // }
 }
+
+// ACCENT USER BUBBLE
+html[data-gpth-toggle-bubble-user-accent] {
+    --c-bg-msg-user: var(--c-accent) !important;
+
+    #{$userBubble} {
+        color: var(--c-on-accent) !important;
+
+        ::selection {
+            background-color: var(--c-on-accent) !important;
+            color: var(--c-accent) !important;
+        }
+    }
+}
