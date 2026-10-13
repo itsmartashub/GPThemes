@@ -1,0 +1,18 @@
+:root,
+:host {
+    --font-content: var(--gpth-computed-font-family);
+    --font-ui-family: var(--gpth-computed-font-family);
+    // --font-sans-default: -apple-system-body, ui-sans-serif, -apple-system, system-ui, "Segoe UI", "Helvetica", "Apple Color Emoji", "Arial", sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+[data-markdown-text-style="assistant-message"][class^="MarkdownRoot-"] {
+
+    --markdown-host-font-size: var(--gpth-computed-font-size) !important;
+    --markdown-line-height: var(--gpth-computed-line-height) !important;
+
+    // @extend %text-base; // CUSTOM FONTS
+    // font-family: var(--gpth-computed-font-family) !important;
+    // font-size: var(--gpth-computed-font-size) !important;
+    // letter-spacing: var(--gpth-computed-letter-spacing) !important;
+    // line-height: var(--gpth-computed-line-height) !important;
+}

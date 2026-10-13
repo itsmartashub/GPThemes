@@ -26,9 +26,7 @@ $gptBubble: '[data-markdown-text-style="assistant-message"][class^="MarkdownRoot
 
 // GPT MESSAGE WIDTH + BG TXT COLORS
 #{$gptBubble} {
-    // border: 2px solid red !important;
     background-color: var(--c-bg-msg-gpt) !important;
-    // background-color: red !important;
     padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply)) !important;
     border-radius: var(--br-chat-bubble) !important;
 }
@@ -51,7 +49,7 @@ html[data-gpth-toggle-bubble-gpt] #{$gptBubble} {
 html[data-gpth-toggle-bubble-gpt] #{$gptBubble} {
     padding-inline: 0 !important;
 
-    @include dev('sm') {
-        padding-inline: 0.5rem !important;
-    }
+    // @include dev('sm') {
+    //     padding-inline: 0.5rem !important;
+    // }
 }
