@@ -1,0 +1,16 @@
+[data-thread-user-message-navigation-content] {
+
+    box-shadow: 0 0 10px 0 red;
+
+    // --thread-content-max-width: var(--thread-content-responsive-max-width, inherit);
+    // --thread-content-max-width: var(--w_chat_gpt) !important;
+
+
+    will-change: width, max-width;
+    max-width: var(--w_chat_gpt) !important;
+
+    // @include container('md') {
+    //     --w_chat_gpt: 100%;
+    //     width: var(--w_chat_gpt);
+    // }
+}
