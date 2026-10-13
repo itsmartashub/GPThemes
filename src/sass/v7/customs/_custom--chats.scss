@@ -20,15 +20,22 @@ $gptBubble: '[data-markdown-text-style="assistant-message"][class^="MarkdownRoot
     // --user-chat-width: 70%; // original value for max-value
     width: var(--w_chat_user, auto) !important;
     max-width: var(--max_w_chat_user, var(--user-chat-width)) !important;
+
     background-color: var(--c-bg-msg-user);
     color: var(--c-txt) !important;
+    border-radius: var(--br-chat-bubble) !important;
+    // padding: var(--p-chat-bubble) !important;
+    padding-block: var(--p-chat-bubble) !important;
+    padding-inline: calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply)) !important;
 }
 
 // GPT MESSAGE WIDTH + BG TXT COLORS
 #{$gptBubble} {
     background-color: var(--c-bg-msg-gpt) !important;
-    padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply)) !important;
     border-radius: var(--br-chat-bubble) !important;
+    // padding: var(--p-chat-bubble) !important;
+    padding-block: var(--p-chat-bubble) !important;
+    padding-inline: calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply)) !important;
 }
 
 // FULL WIDTH USER MESSAGE TOGGLE

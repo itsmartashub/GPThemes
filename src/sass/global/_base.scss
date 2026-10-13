@@ -5,13 +5,13 @@ body {
 	background-color: var(--c-bg-chats-container) !important;
 }
 
-:host,
-html,
-body {
-	font-family: var(--gpth-computed-font-family) !important;
-	letter-spacing: var(--gpth-computed-letter-spacing) !important;
-	line-height: var(--gpth-computed-line-height) !important;
-}
+// :host,
+// html,
+// body {
+// 	font-family: var(--gpth-computed-font-family) !important;
+// 	letter-spacing: var(--gpth-computed-letter-spacing) !important;
+// 	line-height: var(--gpth-computed-line-height) !important;
+// }
 
 ::selection {
 	background-color: var(--c-accent-50) !important;
