@@ -73,4 +73,11 @@ html[data-gpth-toggle-bubble-user-accent] {
             color: var(--c-accent) !important;
         }
     }
+
+    // WHEN ACCENT BUBBLE & ACCENT TXT -> TODO: move to _custom--colors
+    &[data-gpth-toggle-bubble-user] {
+        #{$userBubble} {
+            color: var(--c-txt) !important;
+        }
+    }
 }
