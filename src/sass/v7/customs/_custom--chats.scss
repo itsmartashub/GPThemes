@@ -1,8 +1,6 @@
-$userBubble: '[data-user-message-bubble]';
-$gptBubble: '[data-markdown-text-style="assistant-message"][class^="MarkdownRoot-"]';
-
 // CHATS/CONVERSATION WIDTH
-[data-thread-user-message-navigation-content] {
+#{$CHATS_CONTENT} {
+    // [data-thread-user-message-navigation-content] {
     // --thread-content-max-width: var(--thread-content-responsive-max-width, inherit);
     // --thread-content-max-width: var(--w_chat_gpt) !important;
 
@@ -16,7 +14,7 @@ $gptBubble: '[data-markdown-text-style="assistant-message"][class^="MarkdownRoot
 }
 
 // USER MESSAGE WIDTH + BG TXT COLORS
-#{$userBubble} {
+#{$USER_BUBBLE} {
     // --user-chat-width: 70%; // original value for max-value
     width: var(--w_chat_user, auto) !important;
     max-width: var(--max_w_chat_user, var(--user-chat-width)) !important;
@@ -30,7 +28,9 @@ $gptBubble: '[data-markdown-text-style="assistant-message"][class^="MarkdownRoot
 }
 
 // GPT MESSAGE WIDTH + BG TXT COLORS
-#{$gptBubble} {
+#{$GPT_BUBBLE} {
+    --color-text-user-message: var(--c-txt) !important;
+
     background-color: var(--c-bg-msg-gpt) !important;
     border-radius: var(--br-chat-bubble) !important;
     // padding: var(--p-chat-bubble) !important;
@@ -40,7 +40,7 @@ $gptBubble: '[data-markdown-text-style="assistant-message"][class^="MarkdownRoot
 
 // FULL WIDTH USER MESSAGE TOGGLE
 html[data-gpth-toggle-user-bubble-fullwidth] {
-    #{$userBubble} {
+    #{$USER_BUBBLE} {
         max-width: 100% !important;
         width: 100% !important;
     }
@@ -48,36 +48,15 @@ html[data-gpth-toggle-user-bubble-fullwidth] {
 
 // TOGGLE BUBBLE
 /* Toggle OFF → replace with transparent colors to "remove" bubble bg */
-html[data-gpth-toggle-bubble-user] #{$userBubble},
-html[data-gpth-toggle-bubble-gpt] #{$gptBubble} {
+html[data-gpth-toggle-bubble-user] #{$USER_BUBBLE},
+html[data-gpth-toggle-bubble-gpt] #{$GPT_BUBBLE} {
     background-color: transparent !important;
 }
 
-html[data-gpth-toggle-bubble-gpt] #{$gptBubble} {
+html[data-gpth-toggle-bubble-gpt] #{$GPT_BUBBLE} {
     padding-inline: 0 !important;
 
     // @include dev('sm') {
     //     padding-inline: 0.5rem !important;
     // }
-}
-
-// ACCENT USER BUBBLE
-html[data-gpth-toggle-bubble-user-accent] {
-    --c-bg-msg-user: var(--c-accent) !important;
-
-    #{$userBubble} {
-        color: var(--c-on-accent) !important;
-
-        ::selection {
-            background-color: var(--c-on-accent) !important;
-            color: var(--c-accent) !important;
-        }
-    }
-
-    // WHEN ACCENT BUBBLE & ACCENT TXT -> TODO: move to _custom--colors
-    &[data-gpth-toggle-bubble-user] {
-        #{$userBubble} {
-            color: var(--c-txt) !important;
-        }
-    }
 }

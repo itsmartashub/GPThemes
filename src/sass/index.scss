@@ -7,6 +7,7 @@
 // @import "abstract/_vars-gpt";
 
 @import "v7/_vars-gpt";
+@import "v7/_vars-selectors";
 
 @import "shared/_easing";
 @import "abstract/_anims";
@@ -62,6 +63,7 @@
 // @import "customs/_custom--colors";
 
 
+@import "v7/mixins/custom-fonts";
 @import "v7/_sidebar";
 @import "v7/_tooltip";
 @import "v7/_markdown";

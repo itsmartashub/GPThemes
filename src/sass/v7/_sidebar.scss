@@ -1,7 +1,11 @@
 // SIDEBAR:
-.Navigation-bibgtK {
-    --color-text: var(--c-txt) !important;
-    // --color-text-primary-ghost: var(--color-text);
-    // --color-text-primary-ghost-hover: var(--color-text);
-    // --color-text-secondary-ghost-hover: var(--color-text);
+/* #browser-sidebar-popover is for mobile */
+#browser-sidebar-popover,
+#app-shell-sidebar {
+    nav {
+        --color-text: var(--c-txt) !important;
+        // --color-text-primary-ghost: var(--color-text);
+        // --color-text-primary-ghost-hover: var(--color-text);
+        // --color-text-secondary-ghost-hover: var(--color-text);
+    }
 }

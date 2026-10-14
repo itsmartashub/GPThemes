@@ -1,0 +1,10 @@
+// Usage: #{$CHATS} {}
+
+$CHATS_CONTENT: '[data-thread-user-message-navigation-content]';
+$CHATS_CONVERSATION: '[data-thread-find-target="conversation"]';
+$CHATS: '[data-chatgpt-search-message-ids]';
+$CHATS_BUBBLES: '[data-markdown-text-style] [class^="MarkdownRoot-"]';
+$USER_BUBBLE: '[data-user-message-bubble]';
+$GPT_BUBBLE: '[data-markdown-text-style="assistant-message"][class^="MarkdownRoot-"]';
+
+$CHATBOX_WRAPPER: '[data-pip-obstacle="thread-footer"].max-w-\(--thread-body-max-width\)';

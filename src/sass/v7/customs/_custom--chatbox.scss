@@ -1,4 +1,4 @@
-[data-pip-obstacle="thread-footer"].max-w-\(--thread-body-max-width\) {
+#{CHATBOX_WRAPPER} {
     will-change: width, max-width;
     max-width: var(--w_prompt_textarea);
 }

@@ -1,3 +1,22 @@
+// ACCENT USER BUBBLE
+html[data-gpth-toggle-bubble-user-accent] {
+    --c-bg-msg-user: var(--c-accent) !important;
+    --color-text-user-message: var(--c-on-accent) !important;
+
+    #{$USER_BUBBLE} {
+        --c-txt: currentColor !important;
+        --color-text-secondary: currentColor !important;
+        --color-text-tertiary: currentColor !important;
+
+        color: var(--c-on-accent) !important;
+
+        ::selection {
+            background-color: var(--c-on-accent) !important;
+            color: var(--c-accent) !important;
+        }
+    }
+}
+
 html[data-gpth-toggle-accent-text] {
 
     &.light,

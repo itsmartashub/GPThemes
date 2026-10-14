@@ -1,0 +1,46 @@
+$gpthCustomFontsProps: (
+    font-family,
+    font-size,
+    line-height,
+    letter-spacing
+);
+
+@mixin customFont($props: $gpthCustomFontsProps, $important: true) {
+    @each $prop in $props {
+        @if $important {
+            #{$prop}: var(--gpth-computed-#{$prop}) !important;
+        }
+
+        @else {
+            #{$prop}: var(--gpth-computed-#{$prop});
+        }
+    }
+}
+
+
+/* 
+USAGE
+// All properties, !important by default
+body {
+  @include customFont;
+}
+
+// Only font size, !important by default
+h1 {
+  @include customFont((font-size));
+}
+
+// Selected properties, !important by default
+p {
+  @include customFont((font-size, line-height));
+}
+
+// Explicitly disable !important
+button {
+  @include customFont($important: false);
+}
+
+// Only font size, without !important
+small {
+  @include customFont((font-size), false);
+} */

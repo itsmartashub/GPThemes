@@ -1,28 +1,21 @@
 /* stylelint-disable custom-property-pattern */
 :root {
 	/* ! === CUSTOM FONTS === */
-	--gpthFontFamilyOpenAISans: 'OpenAI Sans'; // Font like on OpenAI's Sora website
-	--gpthFontFamilySystem: -apple-system-body, "ui-sans-serif", -apple-system, "system-ui", Segoe UI, Helvetica, Apple Color Emoji, Arial, "sans-serif", Segoe UI Emoji, Segoe UI Symbol;
-	--gpthFontFamilyDefault: var(--default-font-family, var(--gpthFontFamilySystem)); // --default-font-family is OpenAI's default var
-	// --gpthFontFamilyDefault: var(--gpthFontFamilyOpenAISans, 'ui-sans-serif', '-apple-system', 'system-ui', 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, 'sans-serif', 'Segoe UI Emoji', 'Segoe UI Symbol'); // --default-font-family is OpenAI's default varefault-font-family is OpenAI's default var
-
-	/* 
-	-apple-system-body, "ui-sans-serif", -apple-system, "system-ui", Segoe UI, Helvetica, Apple Color Emoji, Arial, "sans-serif", Segoe UI Emoji, Segoe UI Symbol;
-	*/
-
+	--gpthFontFamilySystem: -apple-system-body, ui-sans-serif, -apple-system, system-ui, Segoe UI, Helvetica, Apple Color Emoji, Arial, sans-serif, Segoe UI Emoji, Segoe UI Symbol;
+	--gpthFontFamilyDefault: var(--gpthFontFamilySystem);
 	--gpthFontFamily: var(--gpthFontFamilyDefault);
 	--gpthFontSize: inherit;
 	--gpthLetterSpacing: none;
 	--gpthLineHeight: 28;
 
-	--gpth-computed-font-family: var(--gpthFontFamily), var(--gpthFontFamilyDefault);
+	--gpth-computed-font-family: var(--gpthFontFamily);
 	--gpth-computed-font-size: calc((var(--gpthFontSize, 16) / 16) * 1rem);
 	--gpth-computed-line-height: calc(var(--gpthLineHeight, 1.5) / 16);
 	--gpth-computed-letter-spacing: calc((var(--gpthLetterSpacing, 0) / 16) * 1px);
 
 	/* ! === CUSTOM SCROLLDOWN POSITION === */
-	--scrollBtnLeft: unset;
-	--scrollBtnRight: 50%;
+	// --scrollBtnLeft: unset;
+	// --scrollBtnRight: 50%;
 
 	/* ! === CUSTOM WIDTH === */
 	--w_chat_user: auto;

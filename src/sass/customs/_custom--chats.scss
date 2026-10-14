@@ -111,21 +111,21 @@ html[data-gpth-toggle-bubble-user][data-gpth-toggle-bubble-user-accent] {
 // ========== CUSTOM FONTS ==========
 // It has .leading-6 tw class which sets the line-height
 .user-message-bubble-color {
-    @extend %text-base;
+    @extend %custom-fonts;
 }
 
 .agent-turn {
 
     &,
     .prose {
-        @extend %text-base;
+        @extend %custom-fonts;
     }
 
     [class*="DilResponseRoot"] {
 
         &,
         [class*="TextBase"] {
-            @extend %text-base;
+            @extend %custom-fonts;
         }
     }
 }
