@@ -16,7 +16,6 @@ export const SK_TOGGLE_HIDE_HEADER_SHARE_BTN = 'hideHeaderShareBtn'
 export const SK_TOGGLE_HIDE_FOOTER = 'hideFooter'
 export const SK_TOGGLE_HIDE_UPGRADE_CHIP = 'hideUpgradeChip'
 export const SK_TOGGLE_HIDE_PROFILE_BTN = 'hideProfileBtn'
-export const SK_TOGGLE_CHATBOX_HEIGHT = 'toggleChatboxHeightState'
 export const SK_TOGGLE_FAB_HIDDEN = 'toggleFABHidden'
 
 // Position Settings - TODO: don't forget to remove this from storage.sync in future, unless you fix the scrolldown alignement feat !!!
@@ -55,7 +54,6 @@ export const EXPORT_CONFIG = Object.freeze({
 		SK_COLOR_ACCENT_LIGHT,
 		SK_TOGGLE_ACCENT_TEXT,
 
-		SK_TOGGLE_CHATBOX_HEIGHT,
 		SK_TOGGLE_HIDE_HEADER,
 		SK_TOGGLE_HIDE_HEADER_MODEL_BTN,
 		SK_TOGGLE_HIDE_HEADER_NEW_CHAT_BTN,

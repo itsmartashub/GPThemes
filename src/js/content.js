@@ -1,7 +1,7 @@
 import { init as initFAB } from './app/custom-fab/index'
 import { init as initThemes } from './app/themeManager'
 
-// !! Chat bubbles and chatbox height are mounted from custom-layouts after Settings render !!
+// !! Chat bubbles are mounted from custom-layouts after Settings render !!
 // !! User bubble accent toggle is mounted from Colors module after Settings render !!
 
 const CONFIG = {

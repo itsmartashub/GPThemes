@@ -18,6 +18,9 @@ import {
 // Register onInstalled listener at module level (before init runs)
 runtime.onInstalled.addListener(onInstallation)
 
+// Storage keys for removed features, cleaned up on update so they dont linger in sync storage
+const OBSOLETE_STORAGE_KEYS = ['gptheme', 'toggleChatboxHeightState']
+
 initBackgroundScript()
 
 async function onInstallation(details) {
@@ -31,7 +34,7 @@ async function onInstallation(details) {
 			if (prevVersion !== currVersion) {
 				await initBadgeColor()
 				await setNewBadge()
-				await removeItems(['gptheme'])
+				await removeItems(OBSOLETE_STORAGE_KEYS)
 				console.log('✅ NEW badge set')
 			} else {
 				const seen = await isBadgeSeen()
