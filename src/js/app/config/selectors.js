@@ -101,7 +101,7 @@ export const SELECTORS = {
 	CHATBOX: {
 		ROOT: chatboxRoot,
 		TEMP: `${chatboxRoot}.dark`,
-		HEIGHT: `#thread-bottom-container ${chatboxRoot} [class*="_prosemirror-parent"].max-h-52`,
+		HEIGHT: `#thread-bottom-container ${chatboxRoot} [class*="_prosemirror-parent"].max-h-52, [class^="ComposerLayoutBody"]`,
 		TOGGLE_MAX_HEIGHT_ID: 'toggle-chatbox-max-height',
 	},
 

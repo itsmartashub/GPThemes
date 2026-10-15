@@ -7,4 +7,6 @@ $CHATS_BUBBLES: '[data-markdown-text-style] [class^="MarkdownRoot-"]';
 $USER_BUBBLE: '[data-user-message-bubble]';
 $GPT_BUBBLE: '[data-markdown-text-style="assistant-message"][class^="MarkdownRoot-"]';
 
-$CHATBOX_WRAPPER: '[data-pip-obstacle="thread-footer"].max-w-\(--thread-body-max-width\)';
+
+// Tailwind escapes parens in class names (`.max-w-\(--thread-body-max-width\)`), and sass eats those escapes inside a string, so match the class as a substring instead
+$CHATBOX_WRAPPER: '[data-pip-obstacle="thread-footer"][class*="max-w-(--thread-body-max-width)"]';
