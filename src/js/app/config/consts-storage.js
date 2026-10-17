@@ -15,7 +15,6 @@ export const SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN = 'hideHeaderActionsBtn'
 export const SK_TOGGLE_HIDE_HEADER_SHARE_BTN = 'hideHeaderShareBtn'
 export const SK_TOGGLE_HIDE_FOOTER = 'hideFooter'
 export const SK_TOGGLE_HIDE_UPGRADE_CHIP = 'hideUpgradeChip'
-export const SK_TOGGLE_HIDE_PROFILE_BTN = 'hideProfileBtn'
 export const SK_TOGGLE_FAB_HIDDEN = 'toggleFABHidden'
 
 // Position Settings - TODO: don't forget to remove this from storage.sync in future, unless you fix the scrolldown alignement feat !!!
@@ -61,7 +60,7 @@ export const EXPORT_CONFIG = Object.freeze({
 		SK_TOGGLE_HIDE_HEADER_SHARE_BTN,
 		SK_TOGGLE_HIDE_FOOTER,
 		SK_TOGGLE_HIDE_UPGRADE_CHIP,
-		SK_TOGGLE_HIDE_PROFILE_BTN,
+
 		SK_TOGGLE_FAB_HIDDEN,
 
 		// SK_SCROLL_BUTTON_POSITION,

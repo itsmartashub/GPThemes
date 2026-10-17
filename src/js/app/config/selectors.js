@@ -108,11 +108,10 @@ export const SELECTORS = {
 		HEADER: {
 			TOGGLE_ID: `${PFX}-hide-header`,
 			SELECTOR: `header#page-header, header[data-pip-obstacle="app-shell-header"]`,
-			// SELECTOR: `#page-header, .h-header-height.top-0`,
 		},
 		HEADER_MODEL_BTN: {
 			TOGGLE_ID: `${PFX}-hide-header-model-btn`,
-			SELECTOR: `[data-testid="model-switcher-dropdown-button"]`,
+			SELECTOR: `[data-testid="model-switcher-dropdown-button"]`, // old ui and new ui mobile only
 		},
 		HEADER_NEW_CHAT_BTN: {
 			TOGGLE_ID: `${PFX}-hide-header-new-chat-btn`,
@@ -120,7 +119,7 @@ export const SELECTORS = {
 		},
 		HEADER_ACTIONS_BTN: {
 			TOGGLE_ID: `${PFX}-hide-header-actions-btn`,
-			SELECTOR: `#conversation-header-actions`,
+			SELECTOR: `#conversation-header-actions`, // old ui and new ui mobile only
 		},
 		HEADER_SHARE_BTN: {
 			TOGGLE_ID: `${PFX}-hide-header-share-btn`,
@@ -128,17 +127,12 @@ export const SELECTORS = {
 		},
 		FOOTER: {
 			TOGGLE_ID: `${PFX}-hide-footer`,
-			// SELECTOR: `#thread-bottom-container > #thread-bottom ~ div.min-h-8 > div`,
-			SELECTOR: `[data-testid="thread-disclaimer"]`,
+			// SELECTOR: `[data-testid="thread-disclaimer"]`, // old ui and new ui mobile only
+			SELECTOR: `[data-testid="thread-disclaimer"], .sticky.bottom-0 .text-codex-description`, // new ui
 		},
 		UPGRADE: {
 			TOGGLE_ID: `${PFX}-hide-upgrade-chip`,
-			SELECTOR:
-				'header button.button-glimmer-cta,.__menu-item[data-testid="accounts-profile-button"] ~ div > button.h-8.w-full.bg-token-bg-primary',
-		},
-		PROFILE: {
-			TOGGLE_ID: `${PFX}-hide-profile-btn`,
-			SELECTOR: '[data-testid="accounts-profile-button"]',
+			SELECTOR: '[data-testid="thread-header-right-actions"] button.button-glimmer-cta',
 		},
 	},
 }

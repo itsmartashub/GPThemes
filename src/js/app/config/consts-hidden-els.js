@@ -5,7 +5,6 @@ import {
 	icon_header_new_chat,
 	icon_header_btns,
 	icon_upgrade,
-	icon_profile,
 	icon_header_share,
 } from '../components/icons'
 import {
@@ -16,7 +15,6 @@ import {
 	ATTR_HIDE_HEADER_ACTIONS_BTN,
 	ATTR_HIDE_HEADER_SHARE_BTN,
 	ATTR_HIDE_UPGRADE_CHIP,
-	ATTR_HIDE_PROFILE_BTN,
 } from './consts-attr'
 import {
 	SK_TOGGLE_HIDE_FOOTER,
@@ -26,7 +24,6 @@ import {
 	SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN,
 	SK_TOGGLE_HIDE_HEADER_SHARE_BTN,
 	SK_TOGGLE_HIDE_UPGRADE_CHIP,
-	SK_TOGGLE_HIDE_PROFILE_BTN,
 } from './consts-storage'
 import { SELECTORS } from './selectors'
 
@@ -39,7 +36,7 @@ export const ELEMENTS = [
 		selector: SELECTORS.HIDE.HEADER.SELECTOR,
 		dataAttr: ATTR_HIDE_HEADER,
 		storageKey: SK_TOGGLE_HIDE_HEADER,
-		isHidden: false, // OFF by default = no data attribute
+		isHidden: false, // OFF by default = no [data] attribute on html
 	},
 	{
 		id: SELECTORS.HIDE.HEADER_MODEL_BTN.TOGGLE_ID,
@@ -95,22 +92,12 @@ export const ELEMENTS = [
 	},
 	{
 		id: SELECTORS.HIDE.UPGRADE.TOGGLE_ID,
-		label: 'Hide Upgrade Chips',
-		subtitle: 'Hide upgrade chips from the top header and sidebar for a cleaner view',
+		label: 'Hide Upgrade Chip',
+		subtitle: 'Hide upgrade chip from the top header (mobile only)',
 		icon: icon_upgrade,
 		selector: SELECTORS.HIDE.UPGRADE.SELECTOR,
 		dataAttr: ATTR_HIDE_UPGRADE_CHIP,
 		storageKey: SK_TOGGLE_HIDE_UPGRADE_CHIP,
-		isHidden: false,
-	},
-	{
-		id: SELECTORS.HIDE.PROFILE.TOGGLE_ID,
-		label: 'Hide Profile Button',
-		subtitle: 'Hide profile button from the sidebar',
-		icon: icon_profile,
-		selector: SELECTORS.HIDE.PROFILE.SELECTOR,
-		dataAttr: ATTR_HIDE_PROFILE_BTN,
-		storageKey: SK_TOGGLE_HIDE_PROFILE_BTN,
 		isHidden: false,
 	},
 ]

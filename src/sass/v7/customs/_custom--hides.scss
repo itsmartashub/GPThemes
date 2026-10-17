@@ -2,23 +2,22 @@
 html[data-gpth-hide-header] {
 
     // header#page-header is mobile only and old UI
-    // [data-testid="app-shell-header-context-menu-surface"] {
-    header[data-pip-obstacle="app-shell-header"],
-    header#page-header {
+    #{$HEADER_DESKTOP},
+    #{$HEADER_MOBILE} {
         display: none !important;
     }
 }
 
 // Mobile only since new UI 2026-10-10
 html[data-gpth-hide-header-model-btn] {
-    [data-testid="model-switcher-dropdown-button"] {
+    #{$HEADER_MODEL} {
         display: none !important;
     }
 }
 
 // Mobile only
 html[data-gpth-hide-header-new-chat-btn] {
-    #conversation-header-actions {
+    #{$HEADER_ACTIONS} {
         gap: 0 !important;
 
         a[aria-label][href="/"] {
@@ -28,42 +27,35 @@ html[data-gpth-hide-header-new-chat-btn] {
 }
 
 // TODO: there is unique selector for this element on new UI (mobile only)
-html[data-gpth-hide-header-share-btn] {
-    [data-testid="share-chat-button"] {
+html[data-gpth-hide-header-actions-btn] {
+    #{$HEADER_ACTIONS} {
         display: none !important;
     }
 }
 
 // TODO: there is unique selector for this element on new UI (mobile only)
-html[data-gpth-hide-header-actions-btn] {
-    #conversation-header-actions {
+html[data-gpth-hide-header-share-btn] {
+    #{$HEADER_SHARE} {
         display: none !important;
     }
 }
 
-// TODO: there is unique selector for this element on new UI
+
 html[data-gpth-hide-footer] {
 
     /* Footer in basic chats */
-    [data-testid="thread-disclaimer"] {
+    // [data-testid="thread-disclaimer"] {
+    #{$FOOTER_AI_DISCLAIMER_DESKTOP},
+    #{$FOOTER_AI_DISCLAIMER_MOBILE} {
         display: none !important;
     }
 }
 
-// TODO: there is unique selector for this element on new UI
+// TODO: there is unique selector for this element on new UI (mobile only, header only)
 html[data-gpth-hide-upgrade-chip] {
 
-    /* "Upgrade for free" chip button in header and "Claim offer" button in sidebar */
-    header button.button-glimmer-cta,
-    .__menu-item[data-testid="accounts-profile-button"]~div>button.h-8.w-full.bg-token-bg-primary {
-        display: none !important;
-    }
-}
-
-// TODO: there is unique selector for this element on new UI
-html[data-gpth-hide-profile-btn] {
-
-    [data-testid="accounts-profile-button"] {
+    /* "Upgrade for free" chip button in header */
+    #{$HEADER_UPGRADE_CHIP} {
         display: none !important;
     }
 }
