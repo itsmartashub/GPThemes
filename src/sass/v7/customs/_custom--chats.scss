@@ -1,23 +1,13 @@
 // CHATS/CONVERSATION WIDTH
 #{$CHATS_CONTENT} {
-    // [data-thread-user-message-navigation-content] {
-    // --thread-content-max-width: var(--thread-content-responsive-max-width, inherit);
-    // --thread-content-max-width: var(--w_chat_gpt) !important;
-
     will-change: width, max-width;
-    max-width: var(--w_chat_gpt) !important;
-
-    // @include container('md') {
-    //     --w_chat_gpt: 100%;
-    //     width: var(--w_chat_gpt);
-    // }
+    max-width: var(--gpth-width-chat) !important;
 }
 
-// USER MESSAGE WIDTH + BG TXT COLORS
+// USER MESSAGE WIDTH + BG/TXT COLORS
 #{$USER_BUBBLE} {
-    // --user-chat-width: 70%; // original value for max-value
-    width: var(--w_chat_user, auto) !important;
-    max-width: var(--max_w_chat_user, var(--user-chat-width)) !important;
+    width: var(--gpth-width-user, auto) !important;
+    max-width: var(--gpth-width-user-max, var(--user-chat-width)) !important;
 
     background-color: var(--c-bg-msg-user);
     color: var(--c-txt) !important;
@@ -27,7 +17,7 @@
     padding-inline: calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply)) !important;
 }
 
-// GPT MESSAGE WIDTH + BG TXT COLORS
+// GPT MESSAGE WIDTH + BG/TXT COLORS
 #{$GPT_BUBBLE} {
     --color-text-user-message: var(--c-txt) !important;
 
@@ -38,16 +28,7 @@
     padding-inline: calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply)) !important;
 }
 
-// FULL WIDTH USER MESSAGE TOGGLE
-html[data-gpth-toggle-user-bubble-fullwidth] {
-    #{$USER_BUBBLE} {
-        max-width: 100% !important;
-        width: 100% !important;
-    }
-}
-
-// TOGGLE BUBBLE
-/* Toggle OFF → replace with transparent colors to "remove" bubble bg */
+// TOGGLE BUBBLE (removes bubble bg when set)
 html[data-gpth-toggle-bubble-user] #{$USER_BUBBLE},
 html[data-gpth-toggle-bubble-gpt] #{$GPT_BUBBLE} {
     background-color: transparent !important;
@@ -59,4 +40,19 @@ html[data-gpth-toggle-bubble-gpt] #{$GPT_BUBBLE} {
     // @include dev('sm') {
     //     padding-inline: 0.5rem !important;
     // }
+}
+
+// Full-width override for chats — triggered by JS setting data-attr on <html>
+html[data-gpth-width-chat-full] {
+    #{$CHATS_CONTENT} {
+        max-width: 100% !important;
+    }
+}
+
+// USER BUBBLE FULL WIDTH — toggle via data-attr on <html>
+html[data-gpth-toggle-user-bubble-fullwidth] {
+    #{$USER_BUBBLE} {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
 }

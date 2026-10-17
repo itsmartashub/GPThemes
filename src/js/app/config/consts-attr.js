@@ -11,3 +11,7 @@ export const ATTR_HIDE_FOOTER = 'data-gpth-hide-footer'
 export const ATTR_HIDE_UPGRADE_CHIP = 'data-gpth-hide-upgrade-chip'
 export const ATTR_HIDE_PROFILE_BTN = 'data-gpth-hide-profile-btn'
 export const ATTR_ACCENT_TEXT = 'data-gpth-toggle-accent-text'
+
+// Width Toggles
+export const ATTR_WIDTH_CHAT_FULL = 'data-gpth-width-chat-full'
+export const ATTR_WIDTH_PROMPT_SYNC = 'data-gpth-width-prompt-sync'

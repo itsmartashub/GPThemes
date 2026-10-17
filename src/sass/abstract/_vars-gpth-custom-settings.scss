@@ -18,9 +18,11 @@
 	// --scrollBtnRight: 50%;
 
 	/* ! === CUSTOM WIDTH === */
-	--w_chat_user: auto;
-	--max_w_chat_user: var(--user-chat-width, 70%);
-	--w_chat_gpt: 48rem;
-	--w_prompt_textarea: 48rem;
-	// --chats-container-mode: normal;
+	// Slider-controlled widths (set by JS via setVars, rem units for viewport-stable sizing)
+	--gpth-width-chat: 48rem;
+	--gpth-width-prompt: 48rem;
+
+	// User bubble widths (driven by CSS only — JS sets data-attrs, CSS does the overrides)
+	--gpth-width-user: auto;
+	--gpth-width-user-max: var(--user-chat-width, 70%);
 }
