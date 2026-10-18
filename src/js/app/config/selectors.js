@@ -16,15 +16,13 @@ export const SELECTORS = {
 	// Floating Button
 	FAB: {
 		ROOT: `${PFX}-fab`,
-		DOCK: `${PFX}-dock`,
-		DOCK_BTNS: `${PFX}-dock__btns`,
-		OPEN_STATE: `${PFX}-dock--shown`,
 	},
 	// Settings Panel
 	SETTINGS: {
 		ROOT: `${PFX}-settings`,
 		OPEN_STATE: `${PFX}-settings--open`,
-		OPEN_BTN: `${PFX}-open-settings`,
+		HEADER_ACTIONS: `${PFX}-settings__actions`,
+		ACTION_BTN: `${PFX}-settings__action-btn`,
 		TABS: {
 			ROOT: `${PFX}-tabs`,
 			BUTTONS: `${PFX}-tabs__buttons`,
@@ -34,12 +32,18 @@ export const SELECTORS = {
 		},
 	},
 
+	// Theme (ChatGPT publishes the resolved mode on <html> as data-theme; the gate matches that attribute)
+	THEME: {
+		GATE: 'html[data-theme]',
+	},
+
 	// Accent Colors
 	ACCENT: {
 		LIGHT_ID: `${PFX}-accent-light-id`,
 		DARK_ID: `${PFX}-accent-dark-id`,
 		RESET_BTN_ID: `${PFX}ResetAllColors`,
 		TOGGLE_ACCENT_TEXT_ID: `${PFX}-toggle-accent-text`,
+		TOGGLE_AMOLED_ID: `${PFX}-toggle-amoled`,
 	},
 
 	// Width Controls

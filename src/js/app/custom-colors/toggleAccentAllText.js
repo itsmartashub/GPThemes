@@ -12,7 +12,7 @@ const accentAllTextToggle = createToggleSetting({
 	notifyLabel: 'All text accent',
 	subtitle: 'Make all the text on the page accented',
 	icon: icon_text_color,
-	selector: 'html.dark, html.light',
+	selector: SELECTORS.THEME.GATE,
 	notFoundMessage: 'Something went wrong',
 })
 

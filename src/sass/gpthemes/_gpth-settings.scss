@@ -67,6 +67,8 @@
     }
 }
 
-html.dark .gpth-settings {
-    --brightness-menu: brightness(0.8);
+.gpth-settings {
+    @include theme("dark") {
+        --brightness-menu: brightness(0.8);
+    }
 }

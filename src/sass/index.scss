@@ -1,3 +1,6 @@
+// Must load before any partial that uses the theme helpers (@include theme / theme-root), e.g. _vars-gpth-colors
+@import "v7/mixins/_theme";
+
 // @import 'abstract/_mq';
 @import "abstract/_bp";
 @import "abstract/_functions";

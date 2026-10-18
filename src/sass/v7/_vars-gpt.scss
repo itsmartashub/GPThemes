@@ -1,7 +1,9 @@
 // :where(:root:not([data-codex-window-type="extension"]))[data-theme],
 // :where(:root:not([data-codex-window-type="extension"])) [data-theme] {
 // :root {
-:where(:root, [data-theme]) {
+// :where(:root, [data-theme]) {
+:root,
+[data-theme] {
     --color-background-composer-primary: var(--c-accent) !important;
 
     --color-text-composer-primary: var(--c-on-accent) !important;

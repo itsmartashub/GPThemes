@@ -19,8 +19,8 @@ html[data-gpth-toggle-bubble-user-accent] {
 
 html[data-gpth-toggle-accent-text] {
 
-    &.light,
-    &.dark {
+    &[data-theme="light"],
+    &[data-theme="dark"] {
         --c-txt: var(--c-accent) !important;
     }
 }

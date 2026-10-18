@@ -15,4 +15,47 @@
 			font-size: 1.4rem;
 		}
 	}
+
+	.gpth-settings__actions {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 0 auto;
+		margin-bottom: 0.2rem;
+		padding: 0.2rem;
+		width: max-content;
+		gap: 0.75rem;
+		border-radius: 50vw;
+		background-color: var(--c-accent-12);
+	}
+
+	.gpth-settings__action-btn {
+		$size: 1.5rem;
+		display: grid;
+		place-items: center;
+		width: $size;
+		height: $size;
+		border-radius: inherit;
+		color: var(--c-accent);
+		text-decoration: none;
+		cursor: pointer;
+		transition:
+			background-color 0.2s ease,
+			transform 0.2s ease;
+
+		.icon {
+			--icon-size: 1.2em;
+			height: var(--icon-size);
+			width: var(--icon-size);
+		}
+
+		&:hover {
+			color: var(--c-accent);
+			background-color: var(--c-accent-12);
+		}
+
+		&:active {
+			transform: scale(0.92);
+		}
+	}
 }

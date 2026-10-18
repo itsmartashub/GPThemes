@@ -6,6 +6,7 @@
 export const SK_COLOR_ACCENT_DARK = 'colorAccentDark'
 export const SK_COLOR_ACCENT_LIGHT = 'colorAccentLight'
 export const SK_TOGGLE_ACCENT_TEXT = 'toggleAccentTextState'
+export const SK_TOGGLE_AMOLED = 'toggleAmoledState'
 
 // Layout Toggles
 export const SK_TOGGLE_HIDE_HEADER = 'hideHeader'
@@ -52,6 +53,7 @@ export const EXPORT_CONFIG = Object.freeze({
 		SK_COLOR_ACCENT_DARK,
 		SK_COLOR_ACCENT_LIGHT,
 		SK_TOGGLE_ACCENT_TEXT,
+		SK_TOGGLE_AMOLED,
 
 		SK_TOGGLE_HIDE_HEADER,
 		SK_TOGGLE_HIDE_HEADER_MODEL_BTN,

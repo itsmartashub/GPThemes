@@ -1,3 +1,4 @@
+// TOGGLE BUBBLES
 export const ATTR_BUBBLE_USER = 'data-gpth-toggle-bubble-user'
 export const ATTR_BUBBLE_GPT = 'data-gpth-toggle-bubble-gpt'
 export const ATTR_BUBBLE_USER_ACCENT = 'data-gpth-toggle-bubble-user-accent'
@@ -12,8 +13,10 @@ export const ATTR_HIDE_HEADER_SHARE_BTN = 'data-gpth-hide-header-share-btn'
 export const ATTR_HIDE_FOOTER = 'data-gpth-hide-footer'
 export const ATTR_HIDE_UPGRADE_CHIP = 'data-gpth-hide-upgrade-chip'
 
+// TOGGLE COLORS
 export const ATTR_ACCENT_TEXT = 'data-gpth-toggle-accent-text'
+export const ATTR_AMOLED = 'data-gpth-amoled'
 
-// Width Toggles
+// TOGGLE WIDTHS
 export const ATTR_WIDTH_CHAT_FULL = 'data-gpth-width-chat-full'
 export const ATTR_WIDTH_PROMPT_SYNC = 'data-gpth-width-prompt-sync'
