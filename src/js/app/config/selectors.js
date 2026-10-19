@@ -52,6 +52,8 @@ export const SELECTORS = {
 		TOGGLE_SYNC_ID: 'toggle-sync-textarea',
 		SLIDER_CHAT_ID: 'slider-chat-width',
 		SLIDER_TEXTAREA_ID: 'slider-textarea-width',
+		RESET_CHAT_ID: 'reset-chat-width',
+		RESET_TEXTAREA_ID: 'reset-textarea-width',
 		RESET_BTN_ID: 'resetWidths',
 		DISPLAY_CHAT_VALUE_ID: 'display-chat-width-value',
 		DISPLAY_CHAT_UNIT_ID: 'display-chat-width-unit',

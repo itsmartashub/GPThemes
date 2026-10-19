@@ -2,6 +2,7 @@ import { $, ROOT_HTML, bind, setVars } from '../../utils/dom.js'
 import { getItems, removeItems, setItems } from '../../utils/storage.js'
 import { icon_full_width, icon_sync } from '../components/icons.js'
 import { renderButton } from '../components/renderButtons.js'
+import { Notify } from '../components/renderNotify.js'
 import { renderSliderCard } from '../components/renderSliderCard.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { ATTR_WIDTH_CHAT_FULL, ATTR_WIDTH_PROMPT_SYNC } from '../config/consts-attr.js'
@@ -35,6 +36,12 @@ const SK = {
 	settings: SK_WIDTH_SETTINGS,
 	fullWidth: SK_WIDTH_IS_FULL_ENABLED,
 	sync: SK_WIDTH_IS_SYNC_ENABLED,
+}
+
+// Per-card reset targets: which state field goes back to which default, and how it reads in the toast
+const RESET = {
+	chat: { stateKey: 'chatRem', defaultValue: SLIDER.DEFAULT_CHAT, label: 'Chats width' },
+	prompt: { stateKey: 'promptRem', defaultValue: SLIDER.DEFAULT_PROMPT, label: 'Prompt width' },
 }
 
 // ==========================================
@@ -117,6 +124,12 @@ function updateUI() {
 	if (elFull) elFull.checked = state.fullWidth
 	if (elSync) elSync.checked = state.sync
 
+	// A reset only makes sense while the slider sits off its default
+	const elResetChat = $(`#${SELECTORS.WIDTH.RESET_CHAT_ID}`)
+	const elResetPrompt = $(`#${SELECTORS.WIDTH.RESET_TEXTAREA_ID}`)
+	if (elResetChat) elResetChat.disabled = state.chatRem === SLIDER.DEFAULT_CHAT
+	if (elResetPrompt) elResetPrompt.disabled = state.promptRem === SLIDER.DEFAULT_PROMPT
+
 	// Defer class toggle to avoid fighting the paint that just happened
 	requestAnimationFrame(() => {
 		$(`#${SELECTORS.WIDTH.SLIDER_CHAT_ID}`)?.closest('.card')?.classList.toggle('is-locked', state.fullWidth)
@@ -156,6 +169,7 @@ function templateHTML() {
 				min: SLIDER.MIN,
 				max: SLIDER.MAX,
 				unit: SLIDER.UNIT,
+				resetId: SELECTORS.WIDTH.RESET_CHAT_ID,
 			})}
 			${renderSliderCard({
 				name: 'Prompt Width',
@@ -167,6 +181,7 @@ function templateHTML() {
 				min: SLIDER.MIN,
 				max: SLIDER.MAX,
 				unit: SLIDER.UNIT,
+				resetId: SELECTORS.WIDTH.RESET_TEXTAREA_ID,
 			})}
 		</div>
 
@@ -254,6 +269,17 @@ async function resetAll() {
 	await Promise.all([removeItems(Object.values(SK)), resetUserBubbleFullWidth()])
 }
 
+/* Per-card reset: only that slider goes back to its default, the toggles stay where they are */
+function resetWidth({ stateKey, defaultValue, label }) {
+	if (state[stateKey] === defaultValue) return Notify.info(`${label} is already at the default`)
+
+	state[stateKey] = defaultValue
+	applyCssVars()
+	updateUI()
+	saveState()
+	Notify.success(`${label} reset to default`)
+}
+
 // ==========================================
 // Lifecycle: INIT  (runs once on extension start, before the panel is in DOM)
 // ==========================================
@@ -284,6 +310,8 @@ function mount() {
 	bind($(`#${SELECTORS.WIDTH.SLIDER_TEXTAREA_ID}`), { input: onPromptSliderInput, change: saveState })
 	bind($(`#${SELECTORS.WIDTH.TOGGLE_FULL_ID}`), { change: onToggleFullWidth })
 	bind($(`#${SELECTORS.WIDTH.TOGGLE_SYNC_ID}`), { change: onToggleSyncWidths })
+	bind($(`#${SELECTORS.WIDTH.RESET_CHAT_ID}`), { click: () => resetWidth(RESET.chat) })
+	bind($(`#${SELECTORS.WIDTH.RESET_TEXTAREA_ID}`), { click: () => resetWidth(RESET.prompt) })
 	bind($(`#${SELECTORS.WIDTH.RESET_BTN_ID}`), { click: resetAll })
 
 	// Hydrate the panel UI from live state (template renders with plain defaults)

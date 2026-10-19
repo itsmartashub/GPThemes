@@ -3,7 +3,8 @@
         &Sliders {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
-            gap: 1rem 0.5rem;
+            gap: 1rem 0.75rem;
+            padding: $cardResetOffset $cardResetOffset 0 0;
             margin-bottom: 1rem;
 
             @include dev('md') {
