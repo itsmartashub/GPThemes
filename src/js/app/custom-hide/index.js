@@ -27,6 +27,7 @@ function templateHTML() {
 			label: cfg.label,
 			subtitle: cfg.subtitle,
 			icon: cfg.icon,
+			badge: cfg.badge,
 			card: true,
 			className: '',
 		}),

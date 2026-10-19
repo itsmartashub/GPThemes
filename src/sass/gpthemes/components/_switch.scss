@@ -55,6 +55,10 @@
         gap: 0.1rem;
 
         .title {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.4rem;
             font-size: 0.8em;
             font-weight: bold;
             color: var(--c-accent);
@@ -72,6 +76,28 @@
         @include dev("xxs") {
             grid-area: text;
         }
+    }
+
+    // Optional pills next to a toggle title, eg NEW or MOBILE + EN. The wrapper keeps pills tighter to each other than to the label
+    &__badges {
+        display: inline-flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.2rem;
+    }
+
+    &__badge {
+        display: inline-block;
+        padding: 0.08rem 0.35rem;
+        font-size: 0.62em;
+        font-weight: 700;
+        line-height: 1.4;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        color: var(--c-on-accent);
+        background-color: var(--c-accent);
+        border-radius: $pill;
     }
 
     .gpth-checkbox {
