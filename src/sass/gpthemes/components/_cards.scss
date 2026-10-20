@@ -200,7 +200,8 @@ $name-size-compact: 0.42em;
         --tw-ring-color: transparent !important;
 
         aspect-ratio: 1 / 1;
-        width: min-content;
+        // width: min-content; // nije dobro u firefox, a i kad je vrednost u minusu pa broj zauzima mesta
+        width: 33%;
         max-width: 100%;
         height: 100%;
         padding: 0 !important;
@@ -405,7 +406,6 @@ $name-size-compact: 0.42em;
     // -------------------------------------------------------------------------
     .card__reset {
         // Slider-card reset badge: its size, and how far it sits outside the card's top-right corner
-        $cardResetSize: 1.2rem;
         $dur: 0.25s;
 
         position: absolute;
@@ -427,6 +427,7 @@ $name-size-compact: 0.42em;
             transform $dur ease,
             scale $dur ease,
             rotate $dur ease,
+            background-color $dur ease ($dur * 0.8),
             opacity $dur ease;
 
         .icon {
@@ -449,6 +450,7 @@ $name-size-compact: 0.42em;
     &:hover .card__reset:not(:disabled) {
         scale: 1;
         rotate: 200deg;
+        background-color: var(--c-danger);
 
         .icon {
             scale: 1;
