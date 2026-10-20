@@ -16,9 +16,10 @@ $FOOTER_AI_DISCLAIMER_MOBILE: '[data-testid="thread-disclaimer"]';
 $HEADER_DESKTOP: 'header[data-pip-obstacle="app-shell-header"]'; // Header for desktops on both project and classic page, and also for some headers on mobile
 $HEADER_MOBILE: 'header#page-header'; // mobile only
 // $HEADER_ACTIONS_CONTAINER: '[data-testid="thread-header-right-actions-container"]';
-$HEADER_ACTIONS: '#conversation-header-actions'; // mobile
+$HEADER_ACTIONS: '#conversation-header-actions'; // mobile and only some profiles
 $HEADER_UPGRADE_CHIP: '[data-testid="thread-header-right-actions"] button.button-glimmer-cta'; // mobile only
 $HEADER_SHARE: '[data-testid="share-chat-button"], header button.button-toolbar[aria-label="Share"]'; // mobile only
 $HEADER_MODEL: '[data-testid="model-switcher-dropdown-button"]'; // mobile only
+$HEADER_NEW_CHAT: '#{$HEADER_DESKTOP} .gap-toolbar-action button[aria-label="New chat"]'
 
-// document.querySelectorAll('[data-app-shell-main-titlebar]')
+    // document.querySelectorAll('[data-app-shell-main-titlebar]')

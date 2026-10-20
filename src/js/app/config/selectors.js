@@ -121,7 +121,7 @@ export const SELECTORS = {
 		},
 		HEADER_NEW_CHAT_BTN: {
 			TOGGLE_ID: `${PFX}-hide-header-new-chat-btn`,
-			SELECTOR: `#conversation-header-actions a[aria-label][href="/"]`,
+			SELECTOR: `#conversation-header-actions a[aria-label][href="/"],header[data-pip-obstacle="app-shell-header"] .gap-toolbar-action button[aria-label="New chat"]`,
 		},
 		HEADER_ACTIONS_BTN: {
 			TOGGLE_ID: `${PFX}-hide-header-actions-btn`,

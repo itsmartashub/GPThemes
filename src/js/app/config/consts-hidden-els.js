@@ -63,7 +63,7 @@ export const ELEMENTS = [
 	{
 		id: SELECTORS.HIDE.HEADER_SHARE_BTN.TOGGLE_ID,
 		label: 'Hide Header Share',
-		subtitle: 'Hide the "Share" button from header. Limitation: scoped to English language only',
+		subtitle: 'Hide the "Share" button from header. Limitation: English only',
 		icon: icon_header_share,
 		badge: 'en',
 		selector: SELECTORS.HIDE.HEADER_SHARE_BTN.SELECTOR,
@@ -74,10 +74,9 @@ export const ELEMENTS = [
 	{
 		id: SELECTORS.HIDE.HEADER_NEW_CHAT_BTN.TOGGLE_ID,
 		label: 'Hide Header New Chat',
-		subtitle:
-			'Hide the top header new chat button. This is more useful on mobiles since this element is not visible on desktops',
+		subtitle: 'Hide the top header new chat button (mobile). Limitation: English only',
 		icon: icon_header_new_chat,
-		badge: 'mobile',
+		badge: 'en',
 		selector: SELECTORS.HIDE.HEADER_NEW_CHAT_BTN.SELECTOR,
 		dataAttr: ATTR_HIDE_HEADER_NEW_CHAT_BTN,
 		storageKey: SK_TOGGLE_HIDE_HEADER_NEW_CHAT_BTN,

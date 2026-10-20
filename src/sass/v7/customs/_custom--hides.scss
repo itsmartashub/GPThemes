@@ -30,6 +30,10 @@ html[data-gpth-hide-header-new-chat-btn] {
             display: none !important;
         }
     }
+
+    #{$HEADER_NEW_CHAT} {
+        display: none !important;
+    }
 }
 
 // TODO: there is unique selector for this element on new UI (mobile only)
