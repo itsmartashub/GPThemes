@@ -38,7 +38,6 @@ function templateHTML() {
 				${renderButton({
 					id: SELECTORS.ACCENT.RESET_BTN_ID,
 					content: 'Reset Colors',
-					className: 'btn-primary',
 				})}
 			</footer>
 		</section>`

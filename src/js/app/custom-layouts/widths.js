@@ -210,7 +210,6 @@ function templateHTML() {
 			${renderButton({
 				id: SELECTORS.WIDTH.RESET_BTN_ID,
 				content: 'Reset Widths',
-				className: 'btn-primary',
 			})}
 		</div>`
 }
