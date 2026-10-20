@@ -37,13 +37,14 @@
 
 %date-pill {
 	background-color: var(--c-accent-20) !important;
-	display: inline-block !important;
+	// display: inline-block !important;
 	color: var(--c-accent) !important;
 	font-weight: bold;
 	text-transform: uppercase;
-	line-height: 1 !important;
+	width: min-content;
+	// line-height: 1 !important;
 	border-radius: 50vw;
-	padding: 0.3rem 0.6rem !important;
+	// padding: 0.3rem 0.6rem !important;
 }
 
 %simulator_bg {
