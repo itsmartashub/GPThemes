@@ -6,6 +6,12 @@ html[data-gpth-hide-header] {
     #{$HEADER_MOBILE} {
         display: none !important;
     }
+
+    [data-app-shell-thread-edge-divider] {
+        &[class^="MainContentFrame"] {
+            margin-top: 0 !important; // Header background / ghost space looking
+        }
+    }
 }
 
 // Mobile only since new UI 2026-10-10
