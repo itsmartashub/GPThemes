@@ -7,6 +7,8 @@
     // Badge bg colors (search pill links)
     --gray-300: var(--c-surface-2) !important;
     --gray-400: var(--c-surface-2) !important;
+    --white: var(--c-surface-1) !important;
+    --black: var(--c-bg-chats-container) !important;
 
     --color-background-composer-primary: var(--c-accent) !important;
 
@@ -202,6 +204,9 @@
     // --color-text-primary-solid: var(--lightningcss-light, #fff) var(--lightningcss-dark, #0d0d0d);
     // --color-background-info-solid: var(--accent-blue);
     // --color-text-info-solid: #fff;
+
+
+    --sidebar-surface-primary: var(--c-bg-chats-container) !important;
 }
 
 // =========================================================

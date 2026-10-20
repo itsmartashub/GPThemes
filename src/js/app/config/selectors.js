@@ -32,9 +32,9 @@ export const SELECTORS = {
 		},
 	},
 
-	// Theme (ChatGPT publishes the resolved mode on <html> as data-theme; the gate matches that attribute)
+	// Theme (ChatGPT publishes the resolved mode on <html> as data-theme and/or a .light/.dark class. The gate accepts both so the toggle works with any build)
 	THEME: {
-		GATE: 'html[data-theme]',
+		GATE: 'html[data-theme], html.dark, html.light',
 	},
 
 	// Accent Colors

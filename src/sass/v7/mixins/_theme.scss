@@ -1,161 +1,40 @@
-// ChatGPT owns light/dark/system and publishes the resolved mode on <html> as data-theme="light|dark". That single attribute is what we theme off. ChatGPT's old .light / .dark classes on <html> are gone for now, so the helpers do not match them. Two switches if the plumbing changes: rename $theme-attr below, or restore a class line in a mixin
+$theme-target: "both" !default; // "attr" | "class" | "both"
+$theme-attr: "data-theme" !default; // only used by "attr" and "both"
 
-$theme-attr: "data-theme" !default;
-
-// Styles <html> itself in a mode. Pass an extra attr to narrow it further, eg theme-root("dark", "[data-gpth-amoled]"). To also match ChatGPT's class again, add `html.#{$mode}#{$extra},` as the first selector below
-/*
-    Styles <html> itself, so top level only, never nested.
-
-    @include theme-root("dark") {
-        --c-surface-1: oklch(0 0 0);
-    }
-
-    -> html[data-theme="dark"] {
-        --c-surface-1: oklch(0 0 0);
-    }
-
-    A second attr narrows it, eg the AMOLED surfaces in abstract/_vars-gpth-colors.scss:
-
-    @include theme-root("dark", "[data-gpth-amoled]") {
-        --c-surface-1: oklch(0 0 0);
-    }
-
-    -> html[data-theme="dark"][data-gpth-amoled] {
-        --c-surface-1: oklch(0 0 0);
-    }
-
-    Anything else in the block becomes a descendant of <html>:
-
-    @include theme-root("light") {
-        body { background: #fff; }
-    }
-
-    -> html[data-theme="light"] body {
-        background: #fff;
-    }
-
-    Use & to keep targeting <html> itself, eg to exclude a variant:
-
-    @include theme-root("dark") {
-        &:not([data-gpth-amoled]) {
-            --c-accent-light: oklch(0.35 0.2 300);
+@mixin theme-root($mode, $extra: "", $target: $theme-target) {
+    @if $target !="class" {
+        html[#{$theme-attr}="#{$mode}"]#{$extra} {
+            @content;
         }
     }
 
-    -> html[data-theme="dark"]:not([data-gpth-amoled]) {
-        --c-accent-light: oklch(0.35 0.2 300);
-    }
-
-    Wrong - nested under a selector the gate becomes a descendant of it and never matches:
-
-    .gpth-settings {
-        @include theme-root("dark") {
-            --c-txt: red;
+    @if $target !="attr" {
+        html.#{$mode}#{$extra} {
+            @content;
         }
-    }
-
-    -> .gpth-settings html[data-theme="dark"] {
-        --c-txt: red;
-    }
-*/
-@mixin theme-root($mode, $extra: "") {
-    html[#{$theme-attr}="#{$mode}"]#{$extra} {
-        @content;
     }
 }
 
-// Styles a descendant in a mode, eg inside .foo: html[data-theme="dark"] .foo. To also match GPT's class again, add `html.#{$mode} &,` as the first selector below
-/*
-    Styles a descendant of <html>, so nest it inside the selector it targets. Top level is an error, `&` has no parent there.
-
-    .gpth-card {
-        @include theme("dark") {
-            border-color: var(--c-border-accent);
+@mixin theme($mode, $target: $theme-target) {
+    @if $target !="class" {
+        html[#{$theme-attr}="#{$mode}"] & {
+            @content;
         }
     }
 
-    -> html[data-theme="dark"] .gpth-card {
-        border-color: var(--c-border-accent);
-    }
-
-    One block can carry both modes, they emit as separate rules:
-
-    [class*=':border-white/10'] {
-        @include theme("dark") {
-            border-color: var(--c-border-accent) !important;
+    @if $target !="attr" {
+        html.#{$mode} & {
+            @content;
         }
-
-        @include theme("light") {
-            border-color: var(--c-border) !important;
-        }
-    }
-
-    -> html[data-theme="dark"] [class*=':border-white/10'] {
-        border-color: var(--c-border-accent) !important;
-    }
-
-    -> html[data-theme="light"] [class*=':border-white/10'] {
-        border-color: var(--c-border) !important;
-    }
-
-    Custom properties work the same, as in gpthemes/_gpth-settings.scss:
-
-    .gpth-settings {
-        @include theme("dark") {
-            --brightness-menu: brightness(0.8);
-        }
-    }
-
-    -> html[data-theme="dark"] .gpth-settings {
-        --brightness-menu: brightness(0.8);
-    }
-
-    & and combinators resolve against the selector you called it in:
-
-    .gpth-card {
-        @include theme("dark") {
-            &__icon { color: var(--c-accent); }
-
-            > .icon { opacity: 0.8; }
-        }
-    }
-
-    -> html[data-theme="dark"] .gpth-card__icon {
-        color: var(--c-accent);
-    }
-
-    -> html[data-theme="dark"] .gpth-card > .icon {
-        opacity: 0.8;
-    }
-
-    Wrong - top level, the gate has no parent selector to attach to:
-
-    @include theme("dark") {
-        .gpth-card { border-color: var(--c-border-accent); }
-    }
-
-    -> Error: Top-level selectors may not contain the parent selector "&"
-
-    Both modes from one place:
-
-    @each $mode in ("light", "dark") {
-        .gpth-card {
-            @include theme($mode) {
-                --c-highlight: var(--c-accent);
-            }
-        }
-    }
-
-    -> html[data-theme="light"] .gpth-card {
-        --c-highlight: var(--c-accent);
-    }
-
-    -> html[data-theme="dark"] .gpth-card {
-        --c-highlight: var(--c-accent);
-    }
-*/
-@mixin theme($mode) {
-    html[#{$theme-attr}="#{$mode}"] & {
-        @content;
     }
 }
+
+/* Usage
+theme-root targets <html> itself. Use it at top level for CSS variables on the root.
+theme targets a child of <html>. Use it nested inside a selector, it fails at top level.
+$theme-target is set once up top, not per call. Default "both" emits both gates, so existing calls emit both.
+theme-root("dark")                        -> html[data-theme="dark"] { ... } + html.dark { ... }
+.card { @include theme("dark") { ... } }  -> html[data-theme="dark"] .card { ... } + html.dark .card { ... }
+theme-root("dark", "[data-gpth-amoled]")  -> html[data-theme="dark"][data-gpth-amoled] { ... } + html.dark[data-gpth-amoled] { ... }
+One form only for one call: @include theme("dark", "class") -> html.dark .card { ... }
+Global switch: $theme-target: "attr" | "class" | "both" */
