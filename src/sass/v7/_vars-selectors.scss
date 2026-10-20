@@ -18,7 +18,7 @@ $HEADER_MOBILE: 'header#page-header'; // mobile only
 // $HEADER_ACTIONS_CONTAINER: '[data-testid="thread-header-right-actions-container"]';
 $HEADER_ACTIONS: '#conversation-header-actions'; // mobile
 $HEADER_UPGRADE_CHIP: '[data-testid="thread-header-right-actions"] button.button-glimmer-cta'; // mobile only
-$HEADER_SHARE: '[data-testid="share-chat-button"]'; // mobile only
+$HEADER_SHARE: '[data-testid="share-chat-button"], header button.button-toolbar[aria-label="Share"]'; // mobile only
 $HEADER_MODEL: '[data-testid="model-switcher-dropdown-button"]'; // mobile only
 
 // document.querySelectorAll('[data-app-shell-main-titlebar]')

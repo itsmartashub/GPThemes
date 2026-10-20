@@ -129,7 +129,7 @@ export const SELECTORS = {
 		},
 		HEADER_SHARE_BTN: {
 			TOGGLE_ID: `${PFX}-hide-header-share-btn`,
-			SELECTOR: `[data-testid="share-chat-button"]`,
+			SELECTOR: `[data-testid="share-chat-button"], header button.button-toolbar[aria-label="Share"]`,
 		},
 		FOOTER: {
 			TOGGLE_ID: `${PFX}-hide-footer`,

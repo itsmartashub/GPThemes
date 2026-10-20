@@ -63,10 +63,9 @@ export const ELEMENTS = [
 	{
 		id: SELECTORS.HIDE.HEADER_SHARE_BTN.TOGGLE_ID,
 		label: 'Hide Header Share',
-		subtitle:
-			'While the "Hide Header Actions" hides all the header action buttons on top right, this will only hide the "Share" button',
+		subtitle: 'Hide the "Share" button from header. Limitation: scoped to English language only',
 		icon: icon_header_share,
-		badge: 'mobile',
+		badge: 'en',
 		selector: SELECTORS.HIDE.HEADER_SHARE_BTN.SELECTOR,
 		dataAttr: ATTR_HIDE_HEADER_SHARE_BTN,
 		storageKey: SK_TOGGLE_HIDE_HEADER_SHARE_BTN,
