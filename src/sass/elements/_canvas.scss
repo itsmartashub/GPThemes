@@ -177,7 +177,7 @@
                     // background-color: var(--c-accent) !important;
                     // color: var(--c-on-accent) !important;
                     --c-simulator-bg: var(--c-accent) !important;
-                    
+
                     @extend %simulator_bg;
 
                     svg {
@@ -351,7 +351,7 @@
         /* "Ask a ChatGPT to edit" on full-width screen less then 1000px width */
         // [class*="bg-[#f4f4f4]"]:has([placeholder="Ask ChatGPT to edit"]) {
         [class*="bg-[#f4f4f4]"]:has(textarea[placeholder*="ChatGPT"]) {
-            background: var(--c-bg-textarea) !important;
+            background: var(--c-bg-chatbox) !important;
             // background-color: var(--c-surface-2) !important;
 
             /* Submit btn */

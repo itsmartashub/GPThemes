@@ -41,7 +41,7 @@ $alphas: (
     --c-border: oklch(from var(--c-txt) l c h / 0.08);
     --c-border-accent: var(--c-accent-12);
     --box-shadow: var(--box-shadow-values) var(--c-accent-12);
-    --c-bg-textarea: linear-gradient(145deg,
+    --c-bg-chatbox: linear-gradient(145deg,
         var(--c-accent-20) 0%,
         var(--c-accent-10) 22%,
         var(--c-accent-10) 68%,

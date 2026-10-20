@@ -1,0 +1,14 @@
+#{$CHATBOX_ON_THREAD_PAGE},
+#{$CHATBOX_ON_NEWCHAT_PAGE} {
+    background: var(--c-bg-chatbox) !important;
+    box-shadow: inset 0 0 1px 1px var(--c-accent-08) !important;
+    backdrop-filter: blur(18px);
+}
+
+// #{$CHATBOX_ON_THREAD_PAGE} {
+//     // background: red !important;
+// }
+
+// #{$CHATBOX_ON_NEWCHAT_PAGE} {
+//     // background: green !important;
+// }
