@@ -4,6 +4,10 @@
 // :where(:root, [data-theme]) {
 :root,
 [data-theme] {
+    // Badge bg colors (search pill links)
+    --gray-300: var(--c-surface-2) !important;
+    --gray-400: var(--c-surface-2) !important;
+
     --color-background-composer-primary: var(--c-accent) !important;
 
     --color-text-composer-primary: var(--c-on-accent) !important;
@@ -48,6 +52,8 @@
     --color-background-mode-toggle-track: var(--c-accent-03) !important;
     --color-background-mode-toggle-selected: var(--c-surface-3) !important; // active toggle (Chat/Work)
     --color-background-panel: var(--c-surface-2) !important;
+    --color-surface-card: var(--c-surface-2) !important;
+    --color-background-button-outline-hover: var(--c-surface-3) !important;
     --app-color-background-surface: var(--c-surface-2) !important; // chatbox bg dok se ne ucita tema
     --app-color-background-surface-under: var(--c-surface-3) !important;
     --app-color-border: var(--c-border) !important;

@@ -4,7 +4,7 @@
 $CHATS_CONTENT: '[data-thread-user-message-navigation-content]';
 $CHATS_CONVERSATION: '[data-thread-find-target="conversation"]';
 $CHATBOX_WRAPPER: '[data-pip-obstacle="thread-footer"][class*="max-w-(--thread-body-max-width)"]'; // Tailwind escapes parens in class names (`.max-w-\(--thread-body-max-width\)`), and sass eats those escapes inside a string, so match the class as a substring instead
-$CHATS: '[data-chatgpt-search-message-ids]';
+$CHATS: '[data-chatgpt-search-message-ids]'; // chats with image doesnt have the selector from $GPT_BUBBLE
 $CHATS_BUBBLES: '[data-markdown-text-style] [class^="MarkdownRoot-"]';
 $USER_BUBBLE: '[data-user-message-bubble]';
 $GPT_BUBBLE: '[data-markdown-text-style="assistant-message"][class^="MarkdownRoot-"]';
