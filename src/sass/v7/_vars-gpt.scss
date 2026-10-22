@@ -1,0 +1,274 @@
+// :where(:root:not([data-codex-window-type="extension"]))[data-theme],
+// :where(:root:not([data-codex-window-type="extension"])) [data-theme] {
+// :root {
+// :where(:root, [data-theme]) {
+:root,
+[data-theme] {
+    // Badge bg colors (search pill links)
+    --gray-300: var(--c-surface-2) !important;
+    --gray-400: var(--c-surface-2) !important;
+    --white: var(--c-surface-1) !important;
+    --black: var(--c-bg-chats-container) !important;
+
+    --color-background-composer-primary: var(--c-accent) !important;
+
+    --color-text-composer-primary: var(--c-on-accent) !important;
+    --color-background-user-message: var(--c-bg-msg-user) !important;
+    --color-text-user-message: var(--c-txt) !important;
+    --color-background-text-selection: var(--c-accent-50) !important;
+    --color-background-attribution-highlight: var(--c-accent-50) !important;
+    --codex-base-accent: var(--c-accent) !important;
+
+    --codex-base-contrast: 50;
+    --codex-base-ink: var(--c-txt) !important;
+    --codex-base-surface: var(--c-bg-chats-container) !important;
+    --app-color-accent-blue: var(--c-accent) !important;
+
+    --app-color-accent-purple: var(--c-accent) !important;
+    --app-color-background-accent: var(--c-accent) !important; // CHECK WHAT THIS IS
+    --app-color-background-accent-active: var(--c-accent-20) !important;
+    --app-color-background-accent-hover: var(--c-accent-12) !important;
+    --app-color-background-application-menu: var(--c-bg-menu) !important;
+    // --app-color-background-button-primary: red !important;
+    --app-color-background-button-primary-active: var(--c-accent-20) !important;
+    --app-color-background-button-primary-hover: var(--c-accent-12) !important;
+    --app-color-background-button-primary-inactive: var(--c-accent-03) !important;
+    --app-color-background-button-secondary: color-mix(in oklab, var(--c-accent) 20%, var(--c-surface-1)) !important;
+    --app-color-background-button-secondary-active: var(--c-accent-20) !important;
+    --app-color-background-button-secondary-hover: var(--c-accent-12) !important;
+    --app-color-background-button-secondary-inactive: var(--c-accent-03) !important;
+    // --app-color-background-button-tertiary: rgba(224, 222, 244, 0.026);
+    --app-color-background-button-tertiary-active: var(--c-accent-20) !important;
+    --app-color-background-button-tertiary-hover: var(--c-accent-20) !important;
+    --color-background-callout-surface: #{color-alpha(--c-accent, 0.25, true)};
+    --app-color-background-control: var(--c-accent-08) !important; // input background in some dialogs, like rename file
+    --color-background-control-opaque: var(--c-bg-menu) !important; // (context)menu when clicked on profile img. TODO: add brightness control, see menuBg extend. Its also tooptip bg, but ive override it with tooltip scss
+    --color-background-composer-action-bar: var(--c-surface-2) !important; // "Choose project" above chatbox when opened some Library attachment
+    --app-color-background-editor-opaque: var(--c-bg-dialog) !important; // dialog like: Memory sumamry
+    --app-color-background-elevated-primary: var(--c-surface-2) !important;
+    --app-color-background-elevated-primary-opaque: var(--c-surface-3) !important; // chatbox
+    // --app-color-background-elevated-secondary: rgba(224, 222, 244, 0.028);
+    --app-color-background-elevated-secondary: var(--c-surface-2) !important;
+    // --app-color-background-elevated-secondary-opaque: blue !important;
+    --app-color-background-elevated-tertiary-opaque: var(--c-surface-3) !important; // NZM
+    --color-background-mode-toggle-track: var(--c-accent-03) !important;
+    --color-background-mode-toggle-selected: var(--c-surface-3) !important; // active toggle (Chat/Work)
+    --color-background-panel: var(--c-surface-2) !important;
+    --color-surface-card: var(--c-surface-2) !important;
+    --color-background-button-outline-hover: var(--c-surface-3) !important;
+    --app-color-background-surface: var(--c-surface-2) !important; // chatbox bg dok se ne ucita tema
+    --app-color-background-surface-under: var(--c-surface-3) !important;
+    --app-color-border: var(--c-border) !important;
+    --app-color-border-application-menu-separator: var(--c-border) !important;
+    --app-color-border-focus: var(--c-accent-40) !important;
+    --app-color-border-heavy: #{color-alpha(--c-txt, 0.2, true)};
+    --app-color-border-light: var(--c-border) !important;
+    --color-border-mode-toggle-selected: var(--c-border) !important;
+    // --app-color-decoration-added: #9ccfd8;
+    // --app-color-decoration-deleted: #908caa;
+    // --app-color-editor-added: rgba(156, 207, 216, 0.23);
+    // --app-color-editor-deleted: rgba(144, 140, 170, 0.23);
+    --app-color-icon-accent: var(--c-accent) !important;
+    --app-color-icon-primary: var(--c-accent-50) !important;
+    --app-color-icon-secondary: var(--c-subtext-1) !important;
+    --app-color-icon-tertiary: var(--c-subtext-2) !important;
+    // --app-color-simple-scrim: orange !important;
+    --app-color-text-accent: var(--c-accent) !important;
+    --app-color-text-on-accent: var(--c-on-accent) !important;
+    --app-color-text-button-primary: var(--c-on-acent) !important;
+    // --app-color-text-button-secondary: violet !important;
+    --app-color-text-button-tertiary: var(--c-subtext-2) !important;
+    --app-color-foreground-application-menu: var(--c-txt) !important;
+    --app-color-text-foreground: var(--c-txt) !important;
+    --app-color-text-foreground-secondary: var(--c-subtext-1) !important;
+    --app-color-text-foreground-tertiary: var(--c-subtext-2) !important;
+    // --app-color-text-unread-badge: rgb(0, 0, 0);
+
+    --app-color-text-error: var(--c-danger) !important;
+
+
+    --app-shell-panel-background: var(--c-bg-chats-container) !important; // kada se otvori WorkspaceContent > aside [data-app-shell-focus-area="right-panel], npr neka slika
+
+    --color-text-mode-toggle-inactive: color-mix(in oklab, var(--c-txt) 80%, transparent);
+    // --shadow-mode-toggle-selected: var(--shadow-md);
+    // --color-background-accent-action: var(--color-background-info-solid);
+    // --color-text-accent-action: var(--color-text-info-solid);
+    // --content-chromatic-channels: clamp(0, l + clamp(-0.015, 0.00887524 + clamp(0, (l - 0.16375795) / 0.82731095, 1) * -0.01874904, 0.015), 1) calc(a * 0.98437580) calc(b * 0.98437580);
+    // --content-neutral-channels: clamp(0, l + clamp(-0.015, 0.00887524 + clamp(0, (l - 0.16375795) / 0.82731095, 1) * -0.01874904, 0.015), 1) calc(a * 0.98437580 + (0.00130965 + clamp(0, (l - 0.16375795) / 0.82731095, 1) * -0.00008634) * min(1, 0.01 / max(hypot((0.00130965 + clamp(0, (l - 0.16375795) / 0.82731095, 1) * -0.00008634), (-0.00389133 + clamp(0, (l - 0.16375795) / 0.82731095, 1) * 0.00052464)), 0.00000001))) calc(b * 0.98437580 + (-0.00389133 + clamp(0, (l - 0.16375795) / 0.82731095, 1) * 0.00052464) * min(1, 0.01 / max(hypot((0.00130965 + clamp(0, (l - 0.16375795) / 0.82731095, 1) * -0.00008634), (-0.00389133 + clamp(0, (l - 0.16375795) / 0.82731095, 1) * 0.00052464)), 0.00000001)));
+    --color-chart-empty: var(--c-accent-08) !important;
+    // --color-chart-sequential-1: var(--orange-800);
+    // --color-chart-sequential-2: var(--orange-600);
+    // --color-chart-sequential-3: var(--orange-400);
+    // --color-chart-sequential-4: var(--orange-200);
+    --app-color-text-secondary: var(--c-subtext-1) !important;
+    --app-color-text-primary-solid: var(--c-accent) !important; // some buttons text color
+    --color-background-primary-solid: var(--c-surface-3) !important; // some buttons bg AND PLATFORM MAIN FONT TEXT???
+    // --app-color-background-card: initial;
+    // --app-color-ads-background-secondary: initial;
+    // --app-color-ads-background-secondary-press: initial;
+    // --app-color-ads-border-medium: initial;
+    // --app-color-ads-text-primary: initial;
+    // --color-border-button-outline: var(--color-border);
+    // --color-background-button-outline-hover: var(--color-background-primary-ghost-hover);
+    // --color-text-button-outline: var(--color-text);
+    // --color-text-mode-toggle-primary: var(--color-text);
+    // --color-text-mode-toggle-accent: var(--color-text-info);
+    // --color-image-generation-accent: var(--c-accent) !important;
+    // --color-image-generation-text: var(--color-text-accent);
+    // --color-image-generation-foreground: var(--app-color-text-on-accent);
+
+    --color-surface-elevated-secondary: var(--c-surface-2) !important;
+
+
+    // =========================================================
+    --color-surface: var(--c-bg-chats-container) !important; // app bg, like chats-container, but also code-block bg like: .CodeSurface-UAnpMT, .StickyActionBar-XvAQxh
+    --color-surface-secondary: color-mix(var(--c-accent) 4%, var(--c-surface-1)) !important; // Library -> Open image -> container
+
+    /* POPCORN */
+    --color-surface-canvas: var(--c-bg-cm) !important;
+
+    // =========================================================
+    // MIX
+    --color-text-success: var(--c-success) !important;
+    --color-text-danger: var(--c-danger) !important;
+    --color-text-header-upgrade: var(--c-subtext-1) !important;
+    --color-background-header-upgrade-hover: var(--c-surface-2);
+    --color-control-thumb-on-accent: var(--c-on-accent) !important;
+    --color-text: var(--c-txt) !important;
+    --color-text-connected: var(--c-accent) !important;
+    --color-text-tip: var(--c-accent) !important;
+
+    // TOOLTIP
+    --color-text-tooltip: var(--c-accent) !important;
+    --color-background-tooltip: var(--c-bg-tooltip) !important;
+    --color-text-tooltip-classic: var(--c-accent) !important;
+    --color-background-tooltip-classic: var(--c-surface-3) !important;
+    --color-text-tooltip-secondary: var(--c-subtext-1) !important;
+    // --color-text-tooltip-tertiary: var(--color-text-tooltip);
+    // --color-text-tooltip-shortcut: var(--color-text-tooltip);
+    // --color-background-tooltip-shortcut: var(--color-text-tooltip);
+    // --color-text-tooltip-info: var(--color-text-tooltip);
+    // --color-text-tooltip-danger: var(--color-text-tooltip);
+    // --color-text-tooltip-warning: var(--color-text-tooltip);
+    // --color-text-tooltip-success: var(--color-text-tooltip);
+    // --color-text-tooltip-description: var(--color-text-tooltip-secondary);
+    // --color-border-tooltip: var(--color-text-tooltip);
+
+    --color-control-thumb-foreground: var(--lightningcss-light, var(--color-text)) var(--lightningcss-dark, var(--black));
+
+    // --switch-track-color: var(--color-text);
+    // --switch-track-color-hover: var(--switch-track-color);
+    // --switch-track-color-checked: var(--color-blue);
+    // --switch-track-color-checked-disabled: var(--switch-track-color-checked);
+    // --switch-thumb-color: var(--color-control-thumb-on-accent);
+    // --color-background-user-message-compact:;
+    // --color-background-message-reaction: ;
+    // --color-chat-accent-black: ;
+
+
+    --color-dialog-overlay: #{color-alpha(--c-surface-1, 0.8, true)}; // za neke modals je ok, za neke kao da je preko dialoga, wtf
+    --color-media-foreground: var(--c-txt) !important;
+    --color-media-background: var(--c-surface-1) !important;
+    --color-background-execution-output: var(--c-surface-2) !important;
+
+
+
+    --bg-elevated-secondary: var(--c-surface-2) !important;
+    --text-primary: var(--c-txt) !important;
+
+
+    // OLD BUT STILL USED
+    --bg-primary: var(--c-bg-chats-container) !important;
+    --bg-primary-inverted: var(--c-accent) !important;
+    --bg-secondary: var(--c-surface-2) !important;
+    --bg-tertiary: var(--c-surface-3) !important;
+    --bg-elevated-primary: var(--c-surface-2) !important;
+    --bg-elevated-secondary: var(--c-surface-3) !important;
+    --main-surface-primary: var(--c-surface-2) !important;
+    // --main-surface-primary: red !important;
+    --main-surface-tertiary: var(--c-surface-3) !important;
+    --text-primary: var(--c-txt) !important;
+    --text-secondary: var(--c-subtext-1) !important;
+    --text-tertiary: var(--c-subtext-2) !important;
+    // --border-default: var(--lightningcss-light, #0000001a) var(--lightningcss-dark, #ffffff26);
+    // --border-heavy: var(--lightningcss-light, #00000026) var(--lightningcss-dark, #fff3);
+    // --border-light: var(--lightningcss-light, #0000000d) var(--lightningcss-dark, #ffffff0d);
+    --icon-accent: var(--c-accent) !important;
+    // --interactive-label-accent-accessible: var(--lightningcss-light, var(--blue-500)) var(--lightningcss-dark, var(--blue-100));
+    --color-text: var(--c-txt) !important;
+    --color-text-secondary: var(--c-subtext-1) !important;
+    --color-text-tertiary: var(--c-subtext-2) !important;
+    --color-border: var(--c-border);
+    --accent-blue: var(--c-accent) !important;
+    // --color-background-primary-solid: var(--text-primary);
+    // --color-text-primary-solid: var(--lightningcss-light, #fff) var(--lightningcss-dark, #0d0d0d);
+    // --color-background-info-solid: var(--accent-blue);
+    // --color-text-info-solid: #fff;
+
+
+    --sidebar-surface-primary: var(--c-bg-chats-container) !important;
+
+    // // Badge color, ali i code-block
+    // --color-background-secondary-soft-alpha: var(--c-surface-3) !important;
+    // --color-text-secondary-soft: var(--c-subtext-2) !important;
+}
+
+// =========================================================
+:root {
+    /* POPCORN  */
+    --popcorn-presentation-background: var(--color-surface-canvas);
+    --popcorn-presentation-thumbnail-background: var(--color-background-viewer-control);
+    // --popcorn-presentation-thumbnail-backdrop-filter: blur(var(--blur-xl));
+    // --popcorn-presentation-thumbnail-shadow: var(--elevation-sidebar);
+
+}
+
+
+// =========================================================
+
+/* OAI WB */
+
+// element.style {
+//     --oai-wb-spacing: var(--spacing, 0.25rem);
+//     --oai-wb-text-primary: var(--wb-text-primary, var(--color-token-text-primary, var(--text-primary, #0d0d0d)));
+//     --oai-wb-text-secondary: var(--wb-text-secondary, var(--color-token-text-secondary, var(--text-secondary, #5d5d5d)));
+//     --oai-wb-text-tertiary: var(--wb-text-tertiary, var(--color-token-text-tertiary, var(--text-tertiary, #8f8f8f)));
+//     --oai-wb-surface-primary: var(--wb-surface-primary, var(--color-token-main-surface-primary, var(--main-surface-primary, #fff)));
+//     --oai-wb-surface-secondary: var(--wb-surface-secondary, var(--color-token-bg-tertiary, var(--main-surface-secondary, #f5f5f5)));
+//     --oai-wb-interactive-secondary-hover: var(--wb-interactive-secondary-hover, var(--color-token-interactive-bg-secondary-hover, var(--oai-wb-surface-secondary)));
+//     --oai-wb-border: var(--wb-border, var(--color-token-border, var(--border-light, rgb(0 0 0 / 8%))));
+//     --oai-wb-border-hover: var(--wb-border-hover, var(--color-token-border-default, var(--border-medium, rgb(0 0 0 / 12%))));
+//     --oai-wb-divider: var(--wb-divider, var(--color-token-border-light, var(--border-light, rgb(0 0 0 / 5%))));
+//     --oai-wb-focus: var(--wb-focus, var(--color-token-focus-border, var(--border-strong, #5b9dd9)));
+//     --oai-wb-control-border: var(--wb-control-border, var(--interactive-border-focus, var(--oai-wb-focus)));
+//     --oai-wb-entity-accent: var(--wb-entity-accent, var(--theme-entity-accent, var(--oai-wb-accent)));
+//     --oai-wb-accent: var(--wb-accent, var(--interactive-label-accent-default, #0285ff));
+//     --oai-wb-on-accent: var(--wb-on-accent, var(--bg-primary, #fff));
+//     --oai-wb-interactive-background: var(--wb-interactive-background, var(--interactive-bg-accent-default,
+//                 color-mix(in srgb, #0285ff 12%, transparent)));
+//     --oai-wb-selection: var(--wb-selection, var(--theme-user-selection-bg, var(--selection, #93c5fd)));
+//     --oai-wb-radius: var(--wb-radius, 1.5rem);
+//     --oai-wb-radius-sm: var(--wb-radius-sm, 0.5rem);
+//     --oai-wb-shadow: var(--wb-shadow, 0 4px 80px rgb(0 0 0 / 2%));
+//     --oai-wb-shadow-lg: var(--wb-shadow-lg, 0 10px 30px rgb(0 0 0 / 12%));
+//     --oai-wb-font-sans: var(--wb-font-sans, var(--font-sans, sans-serif));
+//     --oai-wb-font-mono: var(--wb-font-mono, var(--font-mono, monospace));
+//     --oai-wb-font-size: var(--wb-font-size, 0.875rem);
+//     --oai-wb-shimmer-dark-contrast: var(--wb-shimmer-dark-contrast, var(--oai-wb-text-tertiary));
+//     --oai-wb-shimmer-dark-secondary: var(--wb-shimmer-dark-secondary, var(--oai-wb-text-tertiary));
+// }
+
+
+// :root,
+// :where([data-theme]) {
+//     --wb-text-primary: var(--color-text);
+//     --wb-text-secondary: var(--color-text-secondary);
+//     --wb-text-tertiary: var(--color-text-tertiary);
+//     --wb-surface-primary: var(--color-surface);
+//     --wb-surface-secondary: var(--color-surface-secondary);
+//     --wb-interactive-secondary-hover: var(--color-background-primary-ghost-hover);
+//     --wb-border: var(--color-border);
+//     --wb-border-hover: var(--color-border);
+//     --wb-divider: var(--color-border-subtle);
+//     --wb-focus: var(--color-ring);
+// }

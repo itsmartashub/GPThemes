@@ -1,4 +1,4 @@
-import { icon_lock } from './icons'
+import { icon_lock, icon_reset } from './icons'
 
 export function renderSliderCard({
 	name,
@@ -13,11 +13,26 @@ export function renderSliderCard({
 	step = 1,
 	unit = '',
 	isLocked = false,
+	resetId = '',
 }) {
 	const sanitizedName = sanitizeString(name)
 	const sanitizedInputId = sanitizeString(inputId)
 	const sanitizedInputValue = sanitizeString(inputValue)
 	const sanitizedInputPlaceholder = sanitizeString(inputPlaceholder)
+
+	// Optional per-card reset: only rendered when the caller passes a resetId
+	const resetButton = resetId
+		? `
+            <button
+                type="button"
+                id="${sanitizeString(resetId)}"
+                class="card__reset"
+                title="Reset to default"
+                aria-label="Reset ${sanitizedName} to default"
+            >
+                ${icon_reset}
+            </button>`
+		: ''
 
 	return `
         <div
@@ -63,6 +78,8 @@ export function renderSliderCard({
                     ${isLocked ? 'disabled' : ''}
                 >
             </label>
+
+            ${resetButton}
 
             ${icon_lock}
         </div>

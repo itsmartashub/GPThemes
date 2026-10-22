@@ -1,4 +1,4 @@
-/* Chats msgs: <article> */
+/* Chats msgs */
 [data-testid^='conversation-turn-'] {
 
     /* ! ========== CUSTOM WIDTH ========== */
@@ -15,14 +15,7 @@
         }
     }
 
-    /* ! ========== USER msg width ========== */
-    // New selector: 2025-04-10
-    // .user-message-bubble-color {
-    //     width: var(--w_chat_user, auto) !important;
-    //     max-width: var(--max_w_chat_user, var(--user-chat-width)) !important;
-    // }
-
-    //  New selector: 2026-05-10 - selector for user bubble width. Ne moze na .user-message-bubble-color jer je negde "max-w-(--user-chat-width,70%)" klasa u njegovom parentu ili ni ne postoji (group chat)
+    // Set user bubble width. Ne moze na .user-message-bubble-color jer je negde "max-w-(--user-chat-width,70%)" klasa u njegovom parentu ili ni ne postoji (group chat)
     [data-message-author-role="user"] [class*="max-w-(--user-chat-width,70%)"] {
         width: var(--w_chat_user, auto) !important;
         max-width: var(--max_w_chat_user, var(--user-chat-width)) !important;
@@ -115,35 +108,24 @@ html[data-gpth-toggle-bubble-user][data-gpth-toggle-bubble-user-accent] {
     }
 }
 
-
-/* Group chats: sync custom widths change on this layout too */
-/* header#calpico-page-header~div:not(.sticky.bottom-0) {
-    // border: 5px solid orange;
-
-    [class*="max-w-(--thread-content-max-width)"] {
-        max-width: var(--w_chat_gpt) !important;
-    }
-} */
-
-
 // ========== CUSTOM FONTS ==========
 // It has .leading-6 tw class which sets the line-height
 .user-message-bubble-color {
-    @extend %text-base;
+    @extend %custom-fonts;
 }
 
 .agent-turn {
 
     &,
     .prose {
-        @extend %text-base;
+        @extend %custom-fonts;
     }
 
     [class*="DilResponseRoot"] {
 
         &,
         [class*="TextBase"] {
-            @extend %text-base;
+            @extend %custom-fonts;
         }
     }
 }

@@ -1,5 +1,9 @@
+$cardResetSize: 1.4rem;
+$cardResetOffset: $cardResetSize * 0.2;
+
 @import "_reset";
 @import "components/_typography";
+@import "components/_btn";
 @import "components/_colorpicker";
 @import "components/_range";
 @import "components/_slider";
@@ -17,7 +21,6 @@
 // @import "sections/_main";
 @import "layouts/_gpth-layouts";
 @import "_gpth-fab";
-@import "_gpth-dock";
 @import "_gpth-settings";
 
 // .autoprefix-test {

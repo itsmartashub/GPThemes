@@ -1,0 +1,37 @@
+// ACCENT USER BUBBLE
+html[data-gpth-toggle-bubble-user-accent] {
+    --c-bg-msg-user: var(--c-accent) !important;
+    --color-text-user-message: var(--c-on-accent) !important;
+
+    #{$USER_BUBBLE} {
+        --c-txt: currentColor !important;
+        --color-text-secondary: currentColor !important;
+        --color-text-tertiary: currentColor !important;
+
+        color: var(--c-on-accent) !important;
+
+        // Tipa "Deep research" na pocetku poruke
+        span[class^="Mention-"] {
+            color: currentColor !important;
+            opacity: 0.7;
+            font-weight: bold;
+        }
+
+        ::selection {
+            background-color: var(--c-on-accent) !important;
+            color: var(--c-accent) !important;
+        }
+    }
+
+    &[data-gpth-toggle-bubble-user] {
+         --color-text-user-message: var(--c-txt) !important;
+    }
+}
+
+@include theme-root("light", "[data-gpth-toggle-accent-text]") {
+    --c-txt: var(--c-accent) !important;
+}
+
+@include theme-root("dark", "[data-gpth-toggle-accent-text]") {
+    --c-txt: var(--c-accent) !important;
+}

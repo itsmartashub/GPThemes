@@ -1,0 +1,8 @@
+[data-app-shell-focus-area="right-panel"] {
+
+    // Composer bg when opened image from "Images"
+    [class^="@container"][role="presentation"].bg-surface-secondary {
+            // --color-surface-secondary: color-mix(var(--c-accent) 4%, var(--c-surface-1)) !important;
+            --color-surface-secondary: var(--c-bg-chats-container) !important;
+    }
+}

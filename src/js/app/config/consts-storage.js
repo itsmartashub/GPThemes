@@ -6,6 +6,7 @@
 export const SK_COLOR_ACCENT_DARK = 'colorAccentDark'
 export const SK_COLOR_ACCENT_LIGHT = 'colorAccentLight'
 export const SK_TOGGLE_ACCENT_TEXT = 'toggleAccentTextState'
+export const SK_TOGGLE_AMOLED = 'toggleAmoledState'
 
 // Layout Toggles
 export const SK_TOGGLE_HIDE_HEADER = 'hideHeader'
@@ -15,8 +16,6 @@ export const SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN = 'hideHeaderActionsBtn'
 export const SK_TOGGLE_HIDE_HEADER_SHARE_BTN = 'hideHeaderShareBtn'
 export const SK_TOGGLE_HIDE_FOOTER = 'hideFooter'
 export const SK_TOGGLE_HIDE_UPGRADE_CHIP = 'hideUpgradeChip'
-export const SK_TOGGLE_HIDE_PROFILE_BTN = 'hideProfileBtn'
-export const SK_TOGGLE_CHATBOX_HEIGHT = 'toggleChatboxHeightState'
 export const SK_TOGGLE_FAB_HIDDEN = 'toggleFABHidden'
 
 // Position Settings - TODO: don't forget to remove this from storage.sync in future, unless you fix the scrolldown alignement feat !!!
@@ -26,7 +25,7 @@ export const SK_SCROLL_BUTTON_POSITION = 'scrollButtonPosition'
 export const SK_WIDTH_SETTINGS = 'widthSettings'
 export const SK_WIDTH_IS_FULL_ENABLED = 'widthIsFullEnabled'
 export const SK_WIDTH_IS_SYNC_ENABLED = 'widthIsSyncEnabled'
-export const SK_WIDTH_SIDEBAR = 'widthSidebar'
+// export const SK_WIDTH_SIDEBAR = 'widthSidebar'
 
 // Typography Settings
 export const SK_TEXT_FONT_FAMILY = 'textFontFamily'
@@ -54,8 +53,8 @@ export const EXPORT_CONFIG = Object.freeze({
 		SK_COLOR_ACCENT_DARK,
 		SK_COLOR_ACCENT_LIGHT,
 		SK_TOGGLE_ACCENT_TEXT,
+		SK_TOGGLE_AMOLED,
 
-		SK_TOGGLE_CHATBOX_HEIGHT,
 		SK_TOGGLE_HIDE_HEADER,
 		SK_TOGGLE_HIDE_HEADER_MODEL_BTN,
 		SK_TOGGLE_HIDE_HEADER_NEW_CHAT_BTN,
@@ -63,16 +62,16 @@ export const EXPORT_CONFIG = Object.freeze({
 		SK_TOGGLE_HIDE_HEADER_SHARE_BTN,
 		SK_TOGGLE_HIDE_FOOTER,
 		SK_TOGGLE_HIDE_UPGRADE_CHIP,
-		SK_TOGGLE_HIDE_PROFILE_BTN,
+
 		SK_TOGGLE_FAB_HIDDEN,
 
-		SK_SCROLL_BUTTON_POSITION,
+		// SK_SCROLL_BUTTON_POSITION,
 
 		SK_WIDTH_IS_FULL_ENABLED,
 		SK_WIDTH_IS_SYNC_ENABLED,
 		SK_WIDTH_SETTINGS,
 
-		SK_WIDTH_SIDEBAR,
+		// SK_WIDTH_SIDEBAR,
 
 		SK_TEXT_FONT_FAMILY,
 		SK_TEXT_FONT_SIZE,

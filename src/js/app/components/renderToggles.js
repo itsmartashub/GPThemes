@@ -6,6 +6,7 @@ export function renderToggle({
 	label = '',
 	subtitle = '',
 	icon = '',
+	badge = '',
 	disabled = false,
 	card = false,
 	className = '',
@@ -20,12 +21,20 @@ export function renderToggle({
 	})
 
 	if (card) {
+		const badges = (Array.isArray(badge) ? badge : [badge]).filter(Boolean)
+		const badgesHTML = badges
+			.map((text) => `<span class="gpth-switch__badge">${text}</span>`)
+			.join('')
+
 		return `
             <label class="gpth-switch ${className}" for="${id}">
                 ${icon ? `<div class="gpth-switch__icon" aria-hidden="true">${icon}</div>` : ''}
 
                 <div class="gpth-switch__text">
-                    <div class="title">${label}</div>
+                    <div class="title">
+                        ${label}
+                        ${badgesHTML ? `<span class="gpth-switch__badges">${badgesHTML}</span>` : ''}
+                    </div>
                     ${subtitle ? `<div class="subtitle">${subtitle}</div> ` : ''}
                 </div>
 

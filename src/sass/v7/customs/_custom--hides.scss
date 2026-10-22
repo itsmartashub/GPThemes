@@ -1,0 +1,71 @@
+/* Header */
+html[data-gpth-hide-header] {
+
+    // header#page-header is mobile only and old UI
+    #{$HEADER_DESKTOP},
+    #{$HEADER_MOBILE} {
+        display: none !important;
+    }
+
+    [data-app-shell-thread-edge-divider] {
+        &[class^="MainContentFrame"] {
+            margin-top: 0 !important; // Header background / ghost space looking
+        }
+    }
+}
+
+// Mobile only since new UI 2026-10-10
+html[data-gpth-hide-header-model-btn] {
+    #{$HEADER_MODEL} {
+        display: none !important;
+    }
+}
+
+// Mobile only
+html[data-gpth-hide-header-new-chat-btn] {
+    #{$HEADER_ACTIONS} {
+        gap: 0 !important;
+
+        a[aria-label][href="/"] {
+            display: none !important;
+        }
+    }
+
+    #{$HEADER_NEW_CHAT} {
+        display: none !important;
+    }
+}
+
+// TODO: there is unique selector for this element on new UI (mobile only)
+html[data-gpth-hide-header-actions-btn] {
+    #{$HEADER_ACTIONS} {
+        display: none !important;
+    }
+}
+
+// TODO: there is unique selector for this element on new UI (mobile only)
+html[data-gpth-hide-header-share-btn] {
+    #{$HEADER_SHARE} {
+        display: none !important;
+    }
+}
+
+
+html[data-gpth-hide-footer] {
+
+    /* Footer in basic chats */
+    // [data-testid="thread-disclaimer"] {
+    #{$FOOTER_AI_DISCLAIMER_DESKTOP},
+    #{$FOOTER_AI_DISCLAIMER_MOBILE} {
+        display: none !important;
+    }
+}
+
+// TODO: there is unique selector for this element on new UI (mobile only, header only)
+html[data-gpth-hide-upgrade-chip] {
+
+    /* "Upgrade for free" chip button in header */
+    #{$HEADER_UPGRADE_CHIP} {
+        display: none !important;
+    }
+}

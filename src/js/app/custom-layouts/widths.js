@@ -1,86 +1,187 @@
-import { $, setVars } from '../../utils/dom.js'
+import { $, ROOT_HTML, bind, setVars } from '../../utils/dom.js'
 import { getItems, removeItems, setItems } from '../../utils/storage.js'
 import { icon_full_width, icon_sync } from '../components/icons.js'
 import { renderButton } from '../components/renderButtons.js'
+import { Notify } from '../components/renderNotify.js'
 import { renderSliderCard } from '../components/renderSliderCard.js'
 import { renderToggle } from '../components/renderToggles.js'
+import { ATTR_WIDTH_CHAT_FULL, ATTR_WIDTH_PROMPT_SYNC } from '../config/consts-attr.js'
 import { SK_WIDTH_IS_FULL_ENABLED, SK_WIDTH_IS_SYNC_ENABLED, SK_WIDTH_SETTINGS } from '../config/consts-storage.js'
 import { SELECTORS } from '../config/selectors.js'
 import { renderCustomUserBubbleFullWidth, resetUserBubbleFullWidth } from './toggleUserBubbleFullWidth.js'
 
 // ==========================================
-// STATE/CONSTANTS
+// CONSTANTS
 // ==========================================
-const WIDTH_CONFIG = {
-	defaults: {
-		w_chat_user: 'auto',
-		max_w_chat_user: 'var(--user-chat-width,70%)',
-		w_chat_gpt: '48rem',
-		w_prompt_textarea: '48rem',
-	},
-	fullWidth: {
-		w_chat_user: '100%',
-		max_w_chat_user: '100%',
-		w_chat_gpt: '100%',
-	},
-	ui: {
-		minWidth: 0,
-		maxWidth: 100,
-	},
-	storageKeys: {
-		widthSettings: SK_WIDTH_SETTINGS,
-		syncEnabled: SK_WIDTH_IS_FULL_ENABLED,
-		fullWidthEnabled: SK_WIDTH_IS_SYNC_ENABLED,
-	},
+
+// CSS custom property names - kebab-case, uniform with rest of GPTH vars
+const CSS_VAR = {
+	CHAT: '--gpth-width-chat',
+	PROMPT: '--gpth-width-prompt',
+	USER: '--gpth-width-user',
+	USER_MAX: '--gpth-width-user-max',
 }
 
-let currentState = {
-	settings: { ...WIDTH_CONFIG.defaults },
-	syncEnabled: false,
-	fullWidthEnabled: false,
+// Slider config - rem units are viewport-stable (% shifts when sidebars open/close)
+const SLIDER = {
+	MIN: 0,
+	MAX: 150,
+	DEFAULT_CHAT: 48,
+	DEFAULT_PROMPT: 48,
+	UNIT: 'rem',
 }
 
-let eventListeners = []
+// Storage keys
+const SK = {
+	settings: SK_WIDTH_SETTINGS,
+	fullWidth: SK_WIDTH_IS_FULL_ENABLED,
+	sync: SK_WIDTH_IS_SYNC_ENABLED,
+}
 
-// =====================================================
-// UTILITIES
-// =====================================================
-const extractNumber = (v) => parseFloat(v) || 0
-const extractUnit = (v) => (v?.includes('rem') ? 'REM' : '%')
-const validateValue = (v, min = WIDTH_CONFIG.ui.minWidth, max = WIDTH_CONFIG.ui.maxWidth) =>
-	Number.isNaN(+v) ? min.toString() : Math.max(min, Math.min(max, +v)).toString()
-const formatWithUnit = (val, unit) => `${validateValue(val)}${unit}`
+// Per-card reset targets: which state field goes back to which default, and how it reads in the toast
+const RESET = {
+	chat: { stateKey: 'chatRem', defaultValue: SLIDER.DEFAULT_CHAT, label: 'Chats width' },
+	prompt: { stateKey: 'promptRem', defaultValue: SLIDER.DEFAULT_PROMPT, label: 'Prompt width' },
+}
 
-// =====================================================
+// ==========================================
+// STATE
+// ==========================================
+let state = {
+	chatRem: SLIDER.DEFAULT_CHAT,
+	promptRem: SLIDER.DEFAULT_PROMPT,
+	fullWidth: false,
+	sync: false,
+}
+
+// ==========================================
+// HELPERS
+// ==========================================
+
+/* Clamp a raw input value to the slider range */
+const clamp = (v) => Math.max(SLIDER.MIN, Math.min(SLIDER.MAX, Number(v) || 0))
+
+/* Set or remove a boolean data-attribute on <html> */
+const setAttr = (attr, on) => (on ? ROOT_HTML.setAttribute(attr, '') : ROOT_HTML.removeAttribute(attr))
+
+/* Push slider CSS vars to :root inline style.
+When sync is active, the prompt var mirrors the chat value but we still write it so external reads are always correct */
+function applyCssVars() {
+	const promptRem = state.sync ? state.chatRem : state.promptRem
+	setVars({
+		[CSS_VAR.CHAT]: `${state.chatRem}${SLIDER.UNIT}`,
+		[CSS_VAR.PROMPT]: `${promptRem}${SLIDER.UNIT}`,
+	})
+}
+
+/* Push toggle state as data-attributes on <html>. 
+CSS rules keyed on these attrs handle the actual visual overrides. The same pattern used by toggleUserBubbleFullWidth, toggleChatBubbles, etc */
+function applyAttrs() {
+	setAttr(ATTR_WIDTH_CHAT_FULL, state.fullWidth)
+	setAttr(ATTR_WIDTH_PROMPT_SYNC, state.sync)
+}
+
+function applyAll() {
+	applyCssVars()
+	applyAttrs()
+}
+
+// ==========================================
+// UI
+// ==========================================
+
+function updateSliderEl({ sliderId, outputId, value, disabled }) {
+	const slider = $(sliderId)
+	const output = $(outputId)
+	if (slider) {
+		slider.value = value
+		slider.disabled = disabled
+	}
+	if (output) output.textContent = value
+}
+
+function updateUI() {
+	// When full-width is active the chat slider is decorative. show MAX so it reads "full"
+	const chatDisplayVal = state.fullWidth ? SLIDER.MAX : state.chatRem
+	const promptDisplayVal = state.sync ? state.chatRem : state.promptRem
+
+	updateSliderEl({
+		sliderId: `#${SELECTORS.WIDTH.SLIDER_CHAT_ID}`,
+		outputId: `#${SELECTORS.WIDTH.DISPLAY_CHAT_VALUE_ID}`,
+		value: chatDisplayVal,
+		disabled: state.fullWidth,
+	})
+
+	updateSliderEl({
+		sliderId: `#${SELECTORS.WIDTH.SLIDER_TEXTAREA_ID}`,
+		outputId: `#${SELECTORS.WIDTH.DISPLAY_TEXTAREA_VALUE_ID}`,
+		value: promptDisplayVal,
+		disabled: state.sync,
+	})
+
+	const elFull = $(`#${SELECTORS.WIDTH.TOGGLE_FULL_ID}`)
+	const elSync = $(`#${SELECTORS.WIDTH.TOGGLE_SYNC_ID}`)
+	if (elFull) elFull.checked = state.fullWidth
+	if (elSync) elSync.checked = state.sync
+
+	// A reset only makes sense while the slider sits off its default
+	const elResetChat = $(`#${SELECTORS.WIDTH.RESET_CHAT_ID}`)
+	const elResetPrompt = $(`#${SELECTORS.WIDTH.RESET_TEXTAREA_ID}`)
+	if (elResetChat) elResetChat.disabled = state.chatRem === SLIDER.DEFAULT_CHAT
+	if (elResetPrompt) elResetPrompt.disabled = state.promptRem === SLIDER.DEFAULT_PROMPT
+
+	// Defer class toggle to avoid fighting the paint that just happened
+	requestAnimationFrame(() => {
+		$(`#${SELECTORS.WIDTH.SLIDER_CHAT_ID}`)?.closest('.card')?.classList.toggle('is-locked', state.fullWidth)
+		$(`#${SELECTORS.WIDTH.SLIDER_TEXTAREA_ID}`)?.closest('.card')?.classList.toggle('is-locked', state.sync)
+	})
+}
+
+// ==========================================
+// STORAGE
+// ==========================================
+
+async function saveState() {
+	try {
+		await setItems({
+			[SK.settings]: { chatRem: state.chatRem, promptRem: state.promptRem },
+			[SK.fullWidth]: state.fullWidth,
+			[SK.sync]: state.sync,
+		})
+	} catch (err) {
+		console.error('[↔️ GPThemes] Save failed:', err)
+	}
+}
+
+// ==========================================
 // TEMPLATE
-// =====================================================
+// ==========================================
 function templateHTML() {
-	const chatUnit = extractUnit(WIDTH_CONFIG.defaults.w_chat_gpt)
-	const promptUnit = extractUnit(WIDTH_CONFIG.defaults.w_prompt_textarea)
-
 	return `
 		<div class="gpth-layouts__widthSliders">
 			${renderSliderCard({
 				name: 'Chats Width',
 				inputType: 'range',
 				inputId: SELECTORS.WIDTH.SLIDER_CHAT_ID,
-				inputValue: extractNumber(WIDTH_CONFIG.defaults.w_chat_gpt),
+				inputValue: state.chatRem,
 				displayValue: SELECTORS.WIDTH.DISPLAY_CHAT_VALUE_ID,
 				displayUnit: SELECTORS.WIDTH.DISPLAY_CHAT_UNIT_ID,
-				min: WIDTH_CONFIG.ui.minWidth,
-				max: WIDTH_CONFIG.ui.maxWidth,
-				unit: chatUnit,
+				min: SLIDER.MIN,
+				max: SLIDER.MAX,
+				unit: SLIDER.UNIT,
+				resetId: SELECTORS.WIDTH.RESET_CHAT_ID,
 			})}
 			${renderSliderCard({
 				name: 'Prompt Width',
 				inputType: 'range',
 				inputId: SELECTORS.WIDTH.SLIDER_TEXTAREA_ID,
-				inputValue: extractNumber(WIDTH_CONFIG.defaults.w_prompt_textarea),
+				inputValue: state.promptRem,
 				displayValue: SELECTORS.WIDTH.DISPLAY_TEXTAREA_VALUE_ID,
 				displayUnit: SELECTORS.WIDTH.DISPLAY_TEXTAREA_UNIT_ID,
-				min: WIDTH_CONFIG.ui.minWidth,
-				max: WIDTH_CONFIG.ui.maxWidth,
-				unit: promptUnit,
+				min: SLIDER.MIN,
+				max: SLIDER.MAX,
+				unit: SLIDER.UNIT,
+				resetId: SELECTORS.WIDTH.RESET_TEXTAREA_ID,
 			})}
 		</div>
 
@@ -89,7 +190,7 @@ function templateHTML() {
 				id: SELECTORS.WIDTH.TOGGLE_FULL_ID,
 				checked: false,
 				label: 'Chat Full Width',
-				subtitle: "Expand chats to screen's edge for wider conversation view",
+				subtitle: "Expand chats to screen's edge for a wider conversation view",
 				icon: icon_full_width,
 				card: true,
 				className: '',
@@ -99,7 +200,7 @@ function templateHTML() {
 				id: SELECTORS.WIDTH.TOGGLE_SYNC_ID,
 				checked: false,
 				label: 'Sync Prompt Width',
-				subtitle: 'Adjust prompt field to match the chat width for a more consistent view',
+				subtitle: 'Keep the prompt field width in sync with the chat width',
 				icon: icon_sync,
 				card: true,
 				className: '',
@@ -109,243 +210,114 @@ function templateHTML() {
 			${renderButton({
 				id: SELECTORS.WIDTH.RESET_BTN_ID,
 				content: 'Reset Widths',
-				className: 'btn-primary',
 			})}
 		</div>`
 }
 
-// =====================================================
-// STORAGE
-// =====================================================
-async function saveState(state) {
-	try {
-		await setItems({
-			[WIDTH_CONFIG.storageKeys.widthSettings]: state.settings,
-			[WIDTH_CONFIG.storageKeys.syncEnabled]: state.syncEnabled,
-			[WIDTH_CONFIG.storageKeys.fullWidthEnabled]: state.fullWidthEnabled,
-		})
-	} catch (err) {
-		console.error('[↔️ GPThemes] Save failed:', err)
+// ==========================================
+// EVENT HANDLERS
+// ==========================================
+
+function onChatSliderInput(e) {
+	state.chatRem = clamp(e.target.value)
+	// Moving the slider means the user wants a specific value. Disable full-width mode
+	if (state.fullWidth) {
+		state.fullWidth = false
+		setAttr(ATTR_WIDTH_CHAT_FULL, false)
 	}
+	applyCssVars()
+	updateUI()
 }
 
-// =====================================================
-// CSS/DOM UPDATES
-// =====================================================
-function updateSlider({ sliderId, outputId, unitId, value, disabled = false }) {
-	const numericValue = extractNumber(value)
-	const unit = extractUnit(value)
-
-	const slider = $(sliderId)
-	const output = $(outputId)
-	const unitEl = $(unitId)
-
-	if (slider) {
-		slider.value = numericValue
-		slider.disabled = disabled
+function onPromptSliderInput(e) {
+	state.promptRem = clamp(e.target.value)
+	// Manually moving the prompt slider breaks sync with chat
+	if (state.sync) {
+		state.sync = false
+		setAttr(ATTR_WIDTH_PROMPT_SYNC, false)
 	}
-	if (output) output.textContent = numericValue
-	if (unitEl) unitEl.textContent = unit
+	applyCssVars()
+	updateUI()
 }
 
-function updateUI({ settings, syncEnabled, fullWidthEnabled }) {
-	const chatSliderDisabled = fullWidthEnabled && settings.w_chat_gpt === '100%'
-	const textareaSliderDisabled = syncEnabled
-
-	const sliderData = [
-		{
-			sliderId: `#${SELECTORS.WIDTH.SLIDER_CHAT_ID}`,
-			outputId: `#${SELECTORS.WIDTH.DISPLAY_CHAT_VALUE_ID}`,
-			unitId: `#${SELECTORS.WIDTH.DISPLAY_CHAT_UNIT_ID}`,
-			value: settings.w_chat_gpt,
-			disabled: chatSliderDisabled,
-		},
-		{
-			sliderId: `#${SELECTORS.WIDTH.SLIDER_TEXTAREA_ID}`,
-			outputId: `#${SELECTORS.WIDTH.DISPLAY_TEXTAREA_VALUE_ID}`,
-			unitId: `#${SELECTORS.WIDTH.DISPLAY_TEXTAREA_UNIT_ID}`,
-			value: settings.w_prompt_textarea,
-			disabled: textareaSliderDisabled,
-		},
-	]
-
-	sliderData.forEach(updateSlider)
-
-	// Update toggle states
-	const fullWidthToggle = $(`#${SELECTORS.WIDTH.TOGGLE_FULL_ID}`)
-	const syncWidthsToggle = $(`#${SELECTORS.WIDTH.TOGGLE_SYNC_ID}`)
-
-	if (fullWidthToggle) fullWidthToggle.checked = fullWidthEnabled
-	if (syncWidthsToggle) syncWidthsToggle.checked = syncEnabled
-
-	// Update card locked states
-	requestAnimationFrame(() => {
-		const chatCard = $(`#${SELECTORS.WIDTH.SLIDER_CHAT_ID}`)?.closest('.card')
-		const textareaCard = $(`#${SELECTORS.WIDTH.SLIDER_TEXTAREA_ID}`)?.closest('.card')
-
-		if (chatCard) chatCard.classList.toggle('is-locked', chatSliderDisabled)
-		if (textareaCard) textareaCard.classList.toggle('is-locked', textareaSliderDisabled)
-	})
-}
-
-// =====================================================
-// EVENTS (width logics)
-// =====================================================
-function onSyncTextareaWithChatWidth() {
-	if (currentState.syncEnabled) {
-		currentState.settings.w_prompt_textarea = currentState.settings.w_chat_gpt
-	}
-}
-function onWidthChange({ event, key, shouldSave = false }) {
-	const val = formatWithUnit(event.target.value, event.target.dataset.unit || '%')
-	currentState.settings[key] = val
-
-	if (key === 'w_chat_gpt' && currentState.fullWidthEnabled && val !== '100%') {
-		currentState.fullWidthEnabled = false
-	}
-
-	if (key === 'w_chat_gpt') {
-		onSyncTextareaWithChatWidth()
-	}
-
-	if (key === 'w_prompt_textarea' && currentState.syncEnabled && val !== currentState.settings.w_chat_gpt) {
-		currentState.syncEnabled = false
-	}
-
-	setVars(currentState.settings)
-	updateUI(currentState)
-
-	if (shouldSave) {
-		saveState(currentState)
-	}
-}
-
-// Toggle full width
+/* CSS rule `html[data-gpth-width-chat-full] $CHATS_CONTENT { max-width: 100% }` does the work. JS only sets the attribute and keeps state consistent */
 function onToggleFullWidth() {
-	currentState.fullWidthEnabled = !currentState.fullWidthEnabled
-
-	if (currentState.fullWidthEnabled) {
-		Object.assign(currentState.settings, WIDTH_CONFIG.fullWidth)
-	} else {
-		Object.assign(currentState.settings, {
-			w_chat_user: WIDTH_CONFIG.defaults.w_chat_user,
-			max_w_chat_user: WIDTH_CONFIG.defaults.max_w_chat_user,
-			w_chat_gpt: WIDTH_CONFIG.defaults.w_chat_gpt,
-		})
-	}
-
-	onSyncTextareaWithChatWidth()
-	setVars(currentState.settings)
-	updateUI(currentState)
-	saveState(currentState)
+	state.fullWidth = !state.fullWidth
+	setAttr(ATTR_WIDTH_CHAT_FULL, state.fullWidth)
+	updateUI()
+	saveState()
 }
 
-// Toggle sync chatbox and textarea
+/* CSS rule `html[data-gpth-width-prompt-sync] $CHATBOX_WRAPPER { max-width: var(--gpth-width-chat) }`. We also write the prompt CSS var so it's always correct for non-attr consumer */
 function onToggleSyncWidths() {
-	currentState.syncEnabled = !currentState.syncEnabled
-
-	currentState.settings.w_prompt_textarea = currentState.syncEnabled
-		? currentState.settings.w_chat_gpt
-		: WIDTH_CONFIG.defaults.w_prompt_textarea
-
-	setVars(currentState.settings)
-	updateUI(currentState)
-	saveState(currentState)
-}
-
-// =====================================================
-// EVENTS
-// =====================================================
-
-// TODO: Should be moved on some utils fn
-function addListener(element, event, handler) {
-	if (!element) return
-	element.addEventListener(event, handler)
-	eventListeners.push({ element, event, handler })
-}
-// TODO: Should be moved on some utils fn
-function removeAllListeners() {
-	eventListeners.forEach(({ element, event, handler }) => {
-		element.removeEventListener(event, handler)
-	})
-	eventListeners = []
-}
-
-// Attach slider width listeners (inputs)
-function setupSliderListeners(selector, key) {
-	const slider = $(selector)
-	if (slider) {
-		addListener(slider, 'input', (e) => onWidthChange({ event: e, key, shouldSave: false }))
-		addListener(slider, 'change', () => saveState(currentState))
-	}
-}
-// Attach all width listeners
-function setupListeners() {
-	removeAllListeners()
-
-	addListener($(`#${SELECTORS.WIDTH.TOGGLE_FULL_ID}`), 'change', onToggleFullWidth)
-	addListener($(`#${SELECTORS.WIDTH.TOGGLE_SYNC_ID}`), 'change', onToggleSyncWidths)
-
-	setupSliderListeners(`#${SELECTORS.WIDTH.SLIDER_CHAT_ID}`, 'w_chat_gpt')
-	setupSliderListeners(`#${SELECTORS.WIDTH.SLIDER_TEXTAREA_ID}`, 'w_prompt_textarea')
-
-	addListener($(`#${SELECTORS.WIDTH.RESET_BTN_ID}`), 'click', onResetAll)
+	state.sync = !state.sync
+	applyCssVars()
+	setAttr(ATTR_WIDTH_PROMPT_SYNC, state.sync)
+	updateUI()
+	saveState()
 }
 
 // ==========================================
 // RESET
 // ==========================================
-async function onResetAll() {
-	currentState = {
-		settings: { ...WIDTH_CONFIG.defaults },
-		syncEnabled: false,
-		fullWidthEnabled: false,
-	}
 
-	setVars(currentState.settings)
-	updateUI(currentState)
-	await Promise.all([removeItems(Object.values(WIDTH_CONFIG.storageKeys)), resetUserBubbleFullWidth()])
+async function resetAll() {
+	state = { chatRem: SLIDER.DEFAULT_CHAT, promptRem: SLIDER.DEFAULT_PROMPT, fullWidth: false, sync: false }
+	applyAll()
+	updateUI()
+	await Promise.all([removeItems(Object.values(SK)), resetUserBubbleFullWidth()])
 }
 
-// =====================================================
-// Lifecycle: INIT
-// =====================================================
+/* Per-card reset: only that slider goes back to its default, the toggles stay where they are */
+function resetWidth({ stateKey, defaultValue, label }) {
+	if (state[stateKey] === defaultValue) return Notify.info(`${label} is already at the default`)
+
+	state[stateKey] = defaultValue
+	applyCssVars()
+	updateUI()
+	saveState()
+	Notify.success(`${label} reset to default`)
+}
+
+// ==========================================
+// Lifecycle: INIT  (runs once on extension start, before the panel is in DOM)
+// ==========================================
 async function init() {
 	try {
-		const result = await getItems(Object.values(WIDTH_CONFIG.storageKeys))
+		const result = await getItems(Object.values(SK))
+		const saved = result[SK.settings] || {}
 
-		currentState = {
-			settings: result[WIDTH_CONFIG.storageKeys.widthSettings] || {
-				...WIDTH_CONFIG.defaults,
-			},
-			syncEnabled: result[WIDTH_CONFIG.storageKeys.syncEnabled] || false,
-			fullWidthEnabled: result[WIDTH_CONFIG.storageKeys.fullWidthEnabled] || false,
+		state = {
+			chatRem: clamp(saved.chatRem ?? SLIDER.DEFAULT_CHAT),
+			promptRem: clamp(saved.promptRem ?? SLIDER.DEFAULT_PROMPT),
+			fullWidth: !!result[SK.fullWidth],
+			sync: !!result[SK.sync],
 		}
 
-		if (currentState.fullWidthEnabled) {
-			Object.assign(currentState.settings, WIDTH_CONFIG.fullWidth)
-			if (currentState.syncEnabled) {
-				currentState.settings.w_prompt_textarea = WIDTH_CONFIG.fullWidth.w_chat_gpt
-			}
-		} else if (currentState.syncEnabled) {
-			currentState.settings.w_prompt_textarea = currentState.settings.w_chat_gpt
-		}
-
-		setVars(currentState.settings)
-		updateUI(currentState)
+		// Apply CSS vars + data-attrs so the page renders correctly before the panel opens
+		applyAll()
 	} catch (err) {
 		console.error('[↔️ GPThemes] Init error:', err)
 	}
 }
 
-// =====================================================
-// Lifecycle: MOUNT
-// =====================================================
+// ==========================================
+// Lifecycle: MOUNT  (runs after templateHTML() is injected into the DOM)
+// ==========================================
 function mount() {
-	setupListeners()
+	bind($(`#${SELECTORS.WIDTH.SLIDER_CHAT_ID}`), { input: onChatSliderInput, change: saveState })
+	bind($(`#${SELECTORS.WIDTH.SLIDER_TEXTAREA_ID}`), { input: onPromptSliderInput, change: saveState })
+	bind($(`#${SELECTORS.WIDTH.TOGGLE_FULL_ID}`), { change: onToggleFullWidth })
+	bind($(`#${SELECTORS.WIDTH.TOGGLE_SYNC_ID}`), { change: onToggleSyncWidths })
+	bind($(`#${SELECTORS.WIDTH.RESET_CHAT_ID}`), { click: () => resetWidth(RESET.chat) })
+	bind($(`#${SELECTORS.WIDTH.RESET_TEXTAREA_ID}`), { click: () => resetWidth(RESET.prompt) })
+	bind($(`#${SELECTORS.WIDTH.RESET_BTN_ID}`), { click: resetAll })
+
+	// Hydrate the panel UI from live state (template renders with plain defaults)
+	updateUI()
 }
 
-// =====================================================
+// ==========================================
 // Exports
-// =====================================================
-export { templateHTML, init, mount, onResetAll as resetAll }
+// ==========================================
+export { templateHTML, init, mount, resetAll }

@@ -1,3 +1,5 @@
+import { icon_kofi_cup } from './components/icons.js'
+import { renderHeaderAction } from './components/renderHeaderActions.js'
 import { PFX } from './config/consts.js'
 import { SELECTORS } from './config/selectors.js'
 import { init as initColors, mount as mountColors, renderColorsTab } from './custom-colors/index.js'
@@ -26,9 +28,15 @@ const TABS_CONFIG = [
 	},
 ]
 
+// Small round actions in the header: Ko-fi now, import/export will join here. href renders a link, id renders a button
+const HEADER_ACTIONS = [
+	{ href: 'https://ko-fi.com/http417', label: 'Support on Ko-fi', icon: icon_kofi_cup },
+]
+
 // =====================================================
 // TEMPLATE - UI rendergn
 // =====================================================
+
 function templateHTML() {
 	const buttons = TABS_CONFIG.map(
 		({ label }, i) => `
@@ -45,8 +53,13 @@ function templateHTML() {
 			</div>`,
 	).join('')
 
+	const actions = HEADER_ACTIONS.map(renderHeaderAction).join('')
+
 	return `
 		<header class="gpth-settings__header">
+			<div class="${SELECTORS.SETTINGS.HEADER_ACTIONS}">
+				${actions}
+			</div>
 			<h2 class="gpth-settings__title">
 				<span>GPThemes</span> Customization
 			</h2>
@@ -132,10 +145,10 @@ function addListeners() {
 }
 
 function onClickOutside(e) {
-	const isClickInside = $settings.contains(e.target)
-	const isToggleBtn = e.target.id === SELECTORS.SETTINGS.OPEN_BTN
+	// The FAB is the settings trigger, so clicking it must not count as "outside" (it toggles on its own)
+	const isTrigger = e.target.closest(`.${SELECTORS.FAB.ROOT}`)
 
-	if (!isClickInside && !isToggleBtn) onCloseSettings()
+	if (!$settings.contains(e.target) && !isTrigger) onCloseSettings()
 }
 
 function onTabsSwitching(e) {

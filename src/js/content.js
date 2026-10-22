@@ -1,7 +1,6 @@
 import { init as initFAB } from './app/custom-fab/index'
-import { init as initThemes } from './app/themeManager'
 
-// !! Chat bubbles and chatbox height are mounted from custom-layouts after Settings render !!
+// !! Chat bubbles are mounted from custom-layouts after Settings render !!
 // !! User bubble accent toggle is mounted from Colors module after Settings render !!
 
 const CONFIG = {
@@ -20,7 +19,6 @@ async function initExt() {
 	// console.log(`[🎨GPThemes]: Initializing components (attempt ${retryCount + 1}/${CONFIG.MAX_RETRIES})`)
 
 	try {
-		initThemes()
 		initFAB()
 		// !! Settings modules (colors, fonts, layouts) are initialized inside settingsManager after DOM attach !!
 	} catch (error) {

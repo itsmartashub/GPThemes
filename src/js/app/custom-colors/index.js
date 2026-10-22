@@ -10,6 +10,7 @@ import {
 } from './accentColors.js'
 import { mount as mountAllTextAccent, renderAllTextAccent } from './toggleAccentAllText.js'
 import { mount as mountUserBubbleAccent, renderUserAccentBgToggle } from './toggleAccentUserBubble.js'
+import { mount as mountAmoled, renderAmoledToggle } from './toggleAmoled.js'
 
 // =====================================================
 // TEMPLATE
@@ -30,13 +31,13 @@ function templateHTML() {
 			<div>
 				${renderUserAccentBgToggle()}
 				${renderAllTextAccent()}
+				${renderAmoledToggle()}
 			</div>
 			
 			<footer>
 				${renderButton({
 					id: SELECTORS.ACCENT.RESET_BTN_ID,
 					content: 'Reset Colors',
-					className: 'btn-primary',
 				})}
 			</footer>
 		</section>`
@@ -72,6 +73,7 @@ function mount() {
 	mountAccentColors($resetBtn)
 	mountUserBubbleAccent()
 	mountAllTextAccent()
+	mountAmoled()
 }
 
 // --- EXPORTS ---

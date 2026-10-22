@@ -200,7 +200,8 @@ $name-size-compact: 0.42em;
         --tw-ring-color: transparent !important;
 
         aspect-ratio: 1 / 1;
-        width: min-content;
+        // width: min-content; // nije dobro u firefox, a i kad je vrednost u minusu pa broj zauzima mesta
+        width: 33%;
         max-width: 100%;
         height: 100%;
         padding: 0 !important;
@@ -401,6 +402,62 @@ $name-size-compact: 0.42em;
 
 
     // -------------------------------------------------------------------------
+    // Reset: optional per-card badge, rendered only when the caller passes a resetId
+    // -------------------------------------------------------------------------
+    .card__reset {
+        // Slider-card reset badge: its size, and how far it sits outside the card's top-right corner
+        $dur: 0.25s;
+
+        position: absolute;
+        top: -$cardResetOffset;
+        right: -$cardResetOffset;
+        z-index: 10;
+        display: grid;
+        place-items: center;
+        width: $cardResetSize;
+        height: $cardResetSize;
+        padding: 0;
+        color: var(--c-on-accent);
+        background-color: var(--c-accent);
+        border: 0;
+        border-radius: $pill;
+        cursor: pointer;
+        scale: 0.5;
+        transition:
+            transform $dur ease,
+            scale $dur ease,
+            rotate $dur ease,
+            background-color $dur ease ($dur * 0.8),
+            opacity $dur ease;
+
+        .icon {
+            width: $cardResetSize * 0.8;
+            height: $cardResetSize * 0.8;
+            scale: 0;
+            transition: $dur ease ($dur * .3);
+        }
+
+        &:active:not(:disabled) {
+            transform: scale(0.92);
+        }
+
+        &:disabled {
+            opacity: 0.4;
+            cursor: default;
+        }
+    }
+
+    &:hover .card__reset:not(:disabled) {
+        scale: 1;
+        rotate: 200deg;
+        background-color: var(--c-danger);
+
+        .icon {
+            scale: 1;
+        }
+    }
+
+    // -------------------------------------------------------------------------
     // Locked state
     // -------------------------------------------------------------------------
     .icon-locked {
@@ -416,5 +473,10 @@ $name-size-compact: 0.42em;
 
     &.is-locked {
         @include isLockedIcon;
+
+        // The lock owns the top-right corner, so the reset steps aside
+        .card__reset {
+            display: none;
+        }
     }
 }

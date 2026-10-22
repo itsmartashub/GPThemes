@@ -1,0 +1,26 @@
+// SIDEBAR:
+/* #browser-sidebar-popover is for mobile */
+#browser-sidebar-popover,
+#app-shell-sidebar {
+    nav {
+        --color-text: var(--c-txt) !important;
+        // --color-text-primary-ghost: var(--color-text);
+        // --color-text-primary-ghost-hover: var(--color-text);
+        // --color-text-secondary-ghost-hover: var(--color-text);
+
+        // Sidebar headings like: Pinned, Projects, Recents 
+        button[data-app-action-sidebar-section-toggle].group\/section-toggle {
+            color: var(--c-accent) !important;
+            font-weight: bold;
+            text-transform: uppercase;
+
+            // Text only
+            span.min-w-0 {
+                padding: 0.25rem 0.6rem;
+                background: var(--c-accent-10);
+                box-shadow: 0 0 0 1px var(--c-accent-20);
+                border-radius: 50vw;
+            }
+        }
+    }
+}

@@ -58,15 +58,10 @@
         background: var(--c-border);
     }
 
-    .btn-primary {
-        width: 66.6%;
-        margin: 0 auto;
-        padding: var(--p-btn);
-        font-size: 0.985em;
-        font-weight: bold;
-    }
 }
 
-html.dark .gpth-settings {
-    --brightness-menu: brightness(0.8);
+.gpth-settings {
+    @include theme("dark") {
+        --brightness-menu: brightness(0.8);
+    }
 }

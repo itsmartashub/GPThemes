@@ -16,15 +16,13 @@ export const SELECTORS = {
 	// Floating Button
 	FAB: {
 		ROOT: `${PFX}-fab`,
-		DOCK: `${PFX}-dock`,
-		DOCK_BTNS: `${PFX}-dock__btns`,
-		OPEN_STATE: `${PFX}-dock--shown`,
 	},
 	// Settings Panel
 	SETTINGS: {
 		ROOT: `${PFX}-settings`,
 		OPEN_STATE: `${PFX}-settings--open`,
-		OPEN_BTN: `${PFX}-open-settings`,
+		HEADER_ACTIONS: `${PFX}-settings__actions`,
+		ACTION_BTN: `${PFX}-settings__action-btn`,
 		TABS: {
 			ROOT: `${PFX}-tabs`,
 			BUTTONS: `${PFX}-tabs__buttons`,
@@ -34,12 +32,18 @@ export const SELECTORS = {
 		},
 	},
 
+	// Theme (ChatGPT publishes the resolved mode on <html> as data-theme and/or a .light/.dark class. The gate accepts both so the toggle works with any build)
+	THEME: {
+		GATE: 'html[data-theme], html.dark, html.light',
+	},
+
 	// Accent Colors
 	ACCENT: {
 		LIGHT_ID: `${PFX}-accent-light-id`,
 		DARK_ID: `${PFX}-accent-dark-id`,
 		RESET_BTN_ID: `${PFX}ResetAllColors`,
 		TOGGLE_ACCENT_TEXT_ID: `${PFX}-toggle-accent-text`,
+		TOGGLE_AMOLED_ID: `${PFX}-toggle-amoled`,
 	},
 
 	// Width Controls
@@ -48,15 +52,17 @@ export const SELECTORS = {
 		TOGGLE_SYNC_ID: 'toggle-sync-textarea',
 		SLIDER_CHAT_ID: 'slider-chat-width',
 		SLIDER_TEXTAREA_ID: 'slider-textarea-width',
+		RESET_CHAT_ID: 'reset-chat-width',
+		RESET_TEXTAREA_ID: 'reset-textarea-width',
 		RESET_BTN_ID: 'resetWidths',
 		DISPLAY_CHAT_VALUE_ID: 'display-chat-width-value',
 		DISPLAY_CHAT_UNIT_ID: 'display-chat-width-unit',
 		DISPLAY_TEXTAREA_VALUE_ID: 'display-textarea-width-value',
 		DISPLAY_TEXTAREA_UNIT_ID: 'display-textarea-width-unit',
 
-		SLIDER_SIDEBAR_ID: 'slider-sidebar-width',
-		DISPLAY_SIDEBAR_VALUE_ID: 'display-sidebar-width-value',
-		DISPLAY_SIDEBAR_UNIT_ID: 'display-sidebar-width-unit',
+		// SLIDER_SIDEBAR_ID: 'slider-sidebar-width',
+		// DISPLAY_SIDEBAR_VALUE_ID: 'display-sidebar-width-value',
+		// DISPLAY_SIDEBAR_UNIT_ID: 'display-sidebar-width-unit',
 	},
 
 	// Font Controls
@@ -89,58 +95,50 @@ export const SELECTORS = {
 
 	// Chats
 	CHATS: {
-		USER: '.user-message-bubble-color',
-		GPT: '.agent-turn',
+		USER: '.user-message-bubble-color, [data-user-message-bubble]',
+		GPT: '.agent-turn, [data-markdown-text-style="assistant-message"][class^="MarkdownRoot-"]',
 		TOGGLE_USER_BUBBLE_ACCENT_ID: `${PFX}-toggle-user-accent`,
 		TOGGLE_USER_BUBBLE_FULLWIDTH_ID: `${PFX}-toggle-user-bubble-fullwidth`,
 		USER_WIDTH:
-			'[data-testid^="conversation-turn-"] [data-message-author-role="user"] [class*="max-w-(--user-chat-width,70%)"]',
+			'[data-testid^="conversation-turn-"] [data-message-author-role="user"] [class*="max-w-(--user-chat-width,70%)"], [data-thread-user-message-navigation-content] [data-user-message-bubble]',
 	},
 
 	// Chatbox
 	CHATBOX: {
 		ROOT: chatboxRoot,
 		TEMP: `${chatboxRoot}.dark`,
-		HEIGHT: `#thread-bottom-container ${chatboxRoot} [class*="_prosemirror-parent"].max-h-52`,
-		TOGGLE_MAX_HEIGHT_ID: 'toggle-chatbox-max-height',
 	},
 
 	HIDE: {
 		CONTAINER_ID: `${PFX}-hide-toggles`,
 		HEADER: {
 			TOGGLE_ID: `${PFX}-hide-header`,
-			SELECTOR: `header#page-header`,
-			// SELECTOR: `#page-header, .h-header-height.top-0`,
+			SELECTOR: `header#page-header, header[data-pip-obstacle="app-shell-header"]`,
 		},
 		HEADER_MODEL_BTN: {
 			TOGGLE_ID: `${PFX}-hide-header-model-btn`,
-			SELECTOR: `[data-testid="model-switcher-dropdown-button"]`,
+			SELECTOR: `[data-testid="model-switcher-dropdown-button"]`, // old ui and new ui mobile only
 		},
 		HEADER_NEW_CHAT_BTN: {
 			TOGGLE_ID: `${PFX}-hide-header-new-chat-btn`,
-			SELECTOR: `#conversation-header-actions a[aria-label][href="/"]`,
+			SELECTOR: `#conversation-header-actions a[aria-label][href="/"],header[data-pip-obstacle="app-shell-header"] .gap-toolbar-action button[aria-label="New chat"]`,
 		},
 		HEADER_ACTIONS_BTN: {
 			TOGGLE_ID: `${PFX}-hide-header-actions-btn`,
-			SELECTOR: `#conversation-header-actions`,
+			SELECTOR: `#conversation-header-actions`, // old ui and new ui mobile only
 		},
 		HEADER_SHARE_BTN: {
 			TOGGLE_ID: `${PFX}-hide-header-share-btn`,
-			SELECTOR: `[data-testid="share-chat-button"]`,
+			SELECTOR: `[data-testid="share-chat-button"], header button.button-toolbar[aria-label="Share"]`,
 		},
 		FOOTER: {
 			TOGGLE_ID: `${PFX}-hide-footer`,
-			// SELECTOR: `#thread-bottom-container > #thread-bottom ~ div.min-h-8 > div`,
-			SELECTOR: `[data-testid="thread-disclaimer"]`,
+			// SELECTOR: `[data-testid="thread-disclaimer"]`, // old ui and new ui mobile only
+			SELECTOR: `[data-testid="thread-disclaimer"], .sticky.bottom-0 .text-codex-description`, // new ui
 		},
 		UPGRADE: {
 			TOGGLE_ID: `${PFX}-hide-upgrade-chip`,
-			SELECTOR:
-				'header button.button-glimmer-cta,.__menu-item[data-testid="accounts-profile-button"] ~ div > button.h-8.w-full.bg-token-bg-primary',
-		},
-		PROFILE: {
-			TOGGLE_ID: `${PFX}-hide-profile-btn`,
-			SELECTOR: '[data-testid="accounts-profile-button"]',
+			SELECTOR: '[data-testid="thread-header-right-actions"] button.button-glimmer-cta',
 		},
 	},
 }

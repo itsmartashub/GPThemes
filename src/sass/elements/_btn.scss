@@ -1,139 +1,74 @@
-button {
-	--text-primary: var(--c-txt) !important;
-}
-
-.btn {
-	color: var(--c-on-accent) !important;
-	border-radius: var(--br-btn) !important;
-
-	&:not(.btn-small) {
-		padding: var(--p-btn) !important;
-	}
-
-	svg {
-		color: currentColor !important;
-	}
-
-	&-primary {
-		background-color: var(--c-accent) !important;
-		color: var(--c-on-accent) !important;
-	}
-
-
-	/* 
-	relative flex h-8 w-8 cursor-pointer items-center justify-center overflow-hidden rounded-full outline-hidden select-none btn-secondary bg-token-bg-primary/65! hover:bg-token-main-surface-secondary/75! shadow-short box-content backdrop-blur-[2px] backdrop-filter sm:shadow-md dark:shadow-none! group-data-stream-active/scroll-root:squircle *:absolute *:inset-0 *:m-auto group-data-stream-active/scroll-root:w-10 motion-safe:transition-[width] motion-safe:duration-120 motion-safe:ease-out *:motion-safe:transition-opacity *:motion-safe:duration-120 *:motion-safe:ease-out absolute start-1/2 z-10 -translate-x-1/2 bottom-[calc(100%+3*var(--spacing)+var(--thread-scroll-to-bottom-banner-offset,0px))]
-	*/
-	&-secondary:not(.backdrop-blur-\[2px\]) {
-		background-color: var(--c-accent-12) !important;
-		color: var(--c-accent) !important;
-		backdrop-filter: blur(1rem);
-
-		svg {
-			fill: currentColor !important;
-		}
-	}
-
-	&-ghost {
-		background-color: none !important;
-		color: var(--c-txt) !important;
-		backdrop-filter: blur(1rem);
-
-		// svg {}
-
-		&:hover {
-			background-color: var(--c-accent-08) !important;
-			color: var(--c-accent) !important;
-		}
-	}
-
-	&-danger {
-		background-color: var(--c-danger) !important;
-		color: var(--c-bg-chats-container) !important;
-	}
-
-	&-danger-outline {
-		color: var(--c-danger) !important;
-		background-color: oklch(from currentColor l c h / 0.11) !important;
-	}
-
-
-	&-green {
-		background-color: var(--c-accent) !important;
-	}
-
-	/* .btn-custom - big card buttons in "Discover something new" section in new "Images" layout */
-	&:not(&-secondary, &-danger, &-danger-outline, &-green, &-ghost, &[class*='bg-red-'], .btn-custom) {
-		background-color: var(--c-accent) !important;
-
-		&:hover {
-			color: var(--c-on-accent) !important;
-		}
-	}
-}
-
-/* === All the .btn inside dialogs not having svg icon inside */
-// [role='dialog'] {
-// .btn:not(.btn:has(svg)) {
-// 	.btn:not(svg) {
-// 		min-width: var(--min-w-btn);
-// 	}
+// button {
+// 	--text-primary: var(--c-txt) !important;
 // }
 
-/* === Checkbox button - switcher. In "Chat history & training: and "Custom instructions" */
-button[role='switch'] {
-	border: 1px solid var(--c-accent-50) !important;
+// .btn {
+// 	color: var(--c-on-accent) !important;
+// 	border-radius: var(--br-btn) !important;
 
-	/* Checkbox ON */
-	&[data-state='checked'] {
-		background-color: var(--c-accent) !important;
+// 	&:not(.btn-small) {
+// 		padding: var(--p-btn) !important;
+// 	}
 
-		/* Chb bullet/circle checked */
-		span {
-			background-color: var(--c-on-accent) !important;
-		}
-	}
+// 	svg {
+// 		color: currentColor !important;
+// 	}
 
-	/* Checkbox OFF */
-	&[data-state='unchecked'] {
-		background-color: var(--c-surface-3) !important;
-
-		/* Chb bullet/circle unchecked */
-		span {
-			background-color: var(--c-accent-50) !important;
-		}
-	}
-}
-
-/* === Settings > Theme selector drop down */
-button[role='combobox'] {
-	@extend .btn;
-	@extend .btn-secondary;
-	font-weight: 500 !important;
-	min-width: var(--min-w-btn);
-
-	/* Theme btn - fix height smaller then other btns */
-	height: auto;
-	line-height: inherit;
-}
-
-/* TODO(remove?): Does this still exist? 2025-07-26 */
-/* "Tell us more" example buttons when clicked on 👎 in GPT chat bubble and the same buttons in "Provide Additional Feedback" when clicked on "More" */
-// button.border-token-border-default[class*='hover:bg-token-main-surface-secondary'] {
-// 	border: 1px solid var(--c-accent-10) !important;
-// 	color: var(--c-accent) !important;
-// 	// backdrop-filter: blur(14px);
-
-// 	&.\!bg-token-text-primary {
+// 	&-primary {
 // 		background-color: var(--c-accent) !important;
 // 		color: var(--c-on-accent) !important;
+// 	}
+
+// 	&-secondary {
+// 		background-color: var(--c-accent-12) !important;
+// 		color: var(--c-accent) !important;
+// 		backdrop-filter: blur(1rem);
+
+// 		svg {
+// 			fill: currentColor !important;
+// 		}
+// 	}
+
+// 	&-ghost {
+// 		background-color: none !important;
+// 		color: var(--c-txt) !important;
+// 		backdrop-filter: blur(1rem);
+
+// 		// svg {}
 
 // 		&:hover {
+// 			background-color: var(--c-accent-08) !important;
 // 			color: var(--c-accent) !important;
 // 		}
 // 	}
 
-// 	&:hover {
-// 		transform: translateY(-1px);
-// 		background-color: var(--c-accent-10) !important;
+// 	&-danger {
+// 		background-color: var(--c-danger) !important;
+// 		color: var(--c-bg-chats-container) !important;
+// 	}
+
+// 	&-danger-outline {
+// 		color: var(--c-danger) !important;
+// 		background-color: oklch(from currentColor l c h / 0.11) !important;
+// 	}
+
+
+// 	&-green {
+// 		background-color: var(--c-accent) !important;
+// 	}
+
+// 	/* .btn-custom - big card buttons in "Discover something new" section in new "Images" layout */
+// 	&:not(&-secondary, &-danger, &-danger-outline, &-green, &-ghost, &[class*='bg-red-'], .btn-custom) {
+// 		background-color: var(--c-accent) !important;
+
+// 		&:hover {
+// 			color: var(--c-on-accent) !important;
+// 		}
 // 	}
 // }
+
+button.bg-primary-solid {
+	background-color: var(--c-accent-12) !important;
+	color: var(--c-accent) !important;
+	backdrop-filter: blur(1rem);
+}

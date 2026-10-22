@@ -5,7 +5,6 @@ import {
 	icon_header_new_chat,
 	icon_header_btns,
 	icon_upgrade,
-	icon_profile,
 	icon_header_share,
 } from '../components/icons'
 import {
@@ -16,7 +15,6 @@ import {
 	ATTR_HIDE_HEADER_ACTIONS_BTN,
 	ATTR_HIDE_HEADER_SHARE_BTN,
 	ATTR_HIDE_UPGRADE_CHIP,
-	ATTR_HIDE_PROFILE_BTN,
 } from './consts-attr'
 import {
 	SK_TOGGLE_HIDE_FOOTER,
@@ -26,7 +24,6 @@ import {
 	SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN,
 	SK_TOGGLE_HIDE_HEADER_SHARE_BTN,
 	SK_TOGGLE_HIDE_UPGRADE_CHIP,
-	SK_TOGGLE_HIDE_PROFILE_BTN,
 } from './consts-storage'
 import { SELECTORS } from './selectors'
 
@@ -39,13 +36,14 @@ export const ELEMENTS = [
 		selector: SELECTORS.HIDE.HEADER.SELECTOR,
 		dataAttr: ATTR_HIDE_HEADER,
 		storageKey: SK_TOGGLE_HIDE_HEADER,
-		isHidden: false, // OFF by default = no data attribute
+		isHidden: false, // OFF by default = no [data] attribute on html
 	},
 	{
 		id: SELECTORS.HIDE.HEADER_MODEL_BTN.TOGGLE_ID,
 		label: 'Hide Header ChatGPT',
 		subtitle: 'Hide the top header ChatGPT button only. This is more useful on mobiles',
 		icon: icon_header_model,
+		badge: 'mobile', // moze i string i arr: ['new', 'en']
 		selector: SELECTORS.HIDE.HEADER_MODEL_BTN.SELECTOR,
 		dataAttr: ATTR_HIDE_HEADER_MODEL_BTN,
 		storageKey: SK_TOGGLE_HIDE_HEADER_MODEL_BTN,
@@ -56,6 +54,7 @@ export const ELEMENTS = [
 		label: 'Hide Header Actions',
 		subtitle: 'Hide the top header action buttons on top right (e.g. "Share", "Open canvas", etc.)',
 		icon: icon_header_btns,
+		badge: 'mobile',
 		selector: SELECTORS.HIDE.HEADER_ACTIONS_BTN.SELECTOR,
 		dataAttr: ATTR_HIDE_HEADER_ACTIONS_BTN,
 		storageKey: SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN,
@@ -64,9 +63,9 @@ export const ELEMENTS = [
 	{
 		id: SELECTORS.HIDE.HEADER_SHARE_BTN.TOGGLE_ID,
 		label: 'Hide Header Share',
-		subtitle:
-			'While the "Hide Header Actions" hides all the header action buttons on top right, this will only hide the "Share" button',
+		subtitle: 'Hide the "Share" button from header. Limitation: English only',
 		icon: icon_header_share,
+		badge: 'en',
 		selector: SELECTORS.HIDE.HEADER_SHARE_BTN.SELECTOR,
 		dataAttr: ATTR_HIDE_HEADER_SHARE_BTN,
 		storageKey: SK_TOGGLE_HIDE_HEADER_SHARE_BTN,
@@ -75,9 +74,9 @@ export const ELEMENTS = [
 	{
 		id: SELECTORS.HIDE.HEADER_NEW_CHAT_BTN.TOGGLE_ID,
 		label: 'Hide Header New Chat',
-		subtitle:
-			'Hide the top header new chat button. This is more useful on mobiles since this element is not visible on desktops',
+		subtitle: 'Hide the top header new chat button (mobile). Limitation: English only',
 		icon: icon_header_new_chat,
+		badge: 'en',
 		selector: SELECTORS.HIDE.HEADER_NEW_CHAT_BTN.SELECTOR,
 		dataAttr: ATTR_HIDE_HEADER_NEW_CHAT_BTN,
 		storageKey: SK_TOGGLE_HIDE_HEADER_NEW_CHAT_BTN,
@@ -95,22 +94,13 @@ export const ELEMENTS = [
 	},
 	{
 		id: SELECTORS.HIDE.UPGRADE.TOGGLE_ID,
-		label: 'Hide Upgrade Chips',
-		subtitle: 'Hide upgrade chips from the top header and sidebar for a cleaner view',
+		label: 'Hide Upgrade Chip',
+		subtitle: 'Hide upgrade chip from the top header (mobile only)',
 		icon: icon_upgrade,
+		badge: 'mobile',
 		selector: SELECTORS.HIDE.UPGRADE.SELECTOR,
 		dataAttr: ATTR_HIDE_UPGRADE_CHIP,
 		storageKey: SK_TOGGLE_HIDE_UPGRADE_CHIP,
-		isHidden: false,
-	},
-	{
-		id: SELECTORS.HIDE.PROFILE.TOGGLE_ID,
-		label: 'Hide Profile Button',
-		subtitle: 'Hide profile button from the sidebar',
-		icon: icon_profile,
-		selector: SELECTORS.HIDE.PROFILE.SELECTOR,
-		dataAttr: ATTR_HIDE_PROFILE_BTN,
-		storageKey: SK_TOGGLE_HIDE_PROFILE_BTN,
 		isHidden: false,
 	},
 ]

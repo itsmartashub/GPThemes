@@ -1,0 +1,40 @@
+$theme-target: "both" !default; // "attr" | "class" | "both"
+$theme-attr: "data-theme" !default; // only used by "attr" and "both"
+
+@mixin theme-root($mode, $extra: "", $target: $theme-target) {
+    @if $target !="class" {
+        html[#{$theme-attr}="#{$mode}"]#{$extra} {
+            @content;
+        }
+    }
+
+    @if $target !="attr" {
+        html.#{$mode}#{$extra} {
+            @content;
+        }
+    }
+}
+
+@mixin theme($mode, $target: $theme-target) {
+    @if $target !="class" {
+        html[#{$theme-attr}="#{$mode}"] & {
+            @content;
+        }
+    }
+
+    @if $target !="attr" {
+        html.#{$mode} & {
+            @content;
+        }
+    }
+}
+
+/* Usage
+theme-root targets <html> itself. Use it at top level for CSS variables on the root.
+theme targets a child of <html>. Use it nested inside a selector, it fails at top level.
+$theme-target is set once up top, not per call. Default "both" emits both gates, so existing calls emit both.
+theme-root("dark")                        -> html[data-theme="dark"] { ... } + html.dark { ... }
+.card { @include theme("dark") { ... } }  -> html[data-theme="dark"] .card { ... } + html.dark .card { ... }
+theme-root("dark", "[data-gpth-amoled]")  -> html[data-theme="dark"][data-gpth-amoled] { ... } + html.dark[data-gpth-amoled] { ... }
+One form only for one call: @include theme("dark", "class") -> html.dark .card { ... }
+Global switch: $theme-target: "attr" | "class" | "both" */

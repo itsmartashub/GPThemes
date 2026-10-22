@@ -1,21 +1,16 @@
 html,
 body {
-	--text-primary: var(--c-txt) !important;
+	// --text-primary: var(--c-txt) !important;
 	color: var(--c-txt) !important;
 	background-color: var(--c-bg-chats-container) !important;
 }
 
-:host,
-html,
-body {
-	font-family: var(--gpth-computed-font-family) !important;
-	letter-spacing: var(--gpth-computed-letter-spacing) !important;
-	line-height: var(--gpth-computed-line-height) !important;
-}
-
-/* !!! THIS CAUSES THE PROJECT ITEMS NOT LOADING !!! Bcs OpenAI probably used that small almost invisible element to dynamically load on scroll/when-in-view more projects */
-// .h-px {
-// 	display: none !important;
+// :host,
+// html,
+// body {
+// 	font-family: var(--gpth-computed-font-family) !important;
+// 	letter-spacing: var(--gpth-computed-letter-spacing) !important;
+// 	line-height: var(--gpth-computed-line-height) !important;
 // }
 
 ::selection {
