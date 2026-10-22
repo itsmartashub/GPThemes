@@ -82,43 +82,7 @@ $alphas: (
     --c-success: oklch(51.388% 0.1073 164.622);
 
     --brightness-menu: brightness(0.98);
-
 }
-
-// @include theme-root("light") {
-//     --c-accent: var(--user-accent-light, var(--c-default-accent-light));
-//     --c-on-accent: oklch(from var(--c-accent) 0.95 calc(c * 0.4) h);
-//     --c-accent-light: color-mix(in oklch, var(--c-surface-1), var(--c-accent) 14%);
-
-//     --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.95 0.005 h);
-//     --c-surface-2: oklch(from var(--user-surface-2, var(--c-surface-1)) clamp(0, calc(l * 0.98), 1) clamp(0, calc(c * 1.12), 0.4) h);
-//     --c-surface-3: oklch(from var(--user-surface-3, var(--c-surface-2)) clamp(0, calc(l * 0.98), 1) clamp(0, calc(c * 1.22), 0.4) h);
-
-//     --c-txt: oklch(from var(--user-text-1, var(--c-accent)) 0 c h);
-//     --c-subtext-1: oklch(from var(--user-text-2, var(--c-accent)) 0.3 c h);
-//     --c-subtext-2: oklch(from var(--user-text-3, var(--c-accent)) 0.5 calc(c * 0.3) h);
-
-//     --c-bg-msg-user: var(--c-accent-12);
-//     // --c-bg-msg-gpt: oklch(from var(--c-surface-1) clamp(0, calc(l * 0.95), 1) clamp(0, calc(c * 1.1), 0.4) h);
-//     --c-bg-msg-gpt: oklch(from var(--c-bg-chats-container) clamp(0, calc(l * 0.97), 1) clamp(0, calc(c * 1.1), 0.4) h);
-
-//     // --c-bg-chats-container: oklch(from var(--c-surface-2) clamp(0, calc(l * 1.0189), 1) c h);
-//     --c-bg-chats-container: oklch(from var(--user-surface-1, var(--c-accent)) 0.965 0.009 h);
-
-//     --c-bg-modal: oklch(from var(--c-accent) 0.2 calc(c * 0.75) h / 0.3);
-//     --c-bg-menu: oklch(from var(--c-accent) 0.8 calc(c * 0.25) h / 0.5);
-
-//     --c-danger: oklch(46.52% 0.1688 22.615);
-//     --c-warning: oklch(63.047% 0.1612 50.634);
-//     --c-success: oklch(51.388% 0.1073 164.622);
-
-//     --brightness-menu: brightness(0.98);
-
-//     // --c-scrollbar-thumb: var(--c-surface-2);
-//     // --c-scrollbar-track: transparent;
-
-//     // for hovers: oklch(from currentColor 0.75 calc(c * 0.6) h);
-// }
 
 @include theme-root("dark") {
     // --c-default-accent-dark: #bfa8ff;
