@@ -77,7 +77,7 @@ $alphas: (
 
     --c-bg-modal: oklch(from var(--c-accent) 0.2 calc(c * 0.75) h / 0.3);
     --c-bg-menu: oklch(from var(--c-accent) 0.8 calc(c * 0.25) h / 0.5);
-    --c-bg-tooltip: color-mix(var(--c-accent) 20%, var(--c-surface-3));
+    --c-bg-tooltip: color-mix(var(--c-accent) 20%, var(--c-surface-1));
 
     --c-danger: oklch(46.52% 0.1688 22.615);
     --c-warning: oklch(63.047% 0.1612 50.634);

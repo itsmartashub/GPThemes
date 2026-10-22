@@ -33,7 +33,7 @@
     --app-color-background-button-primary-active: var(--c-accent-20) !important;
     --app-color-background-button-primary-hover: var(--c-accent-12) !important;
     --app-color-background-button-primary-inactive: var(--c-accent-03) !important;
-    // --app-color-background-button-secondary: rgba(224, 222, 244, 0.048);
+    --app-color-background-button-secondary: color-mix(in oklab, var(--c-accent) 20%, var(--c-surface-1)) !important;
     --app-color-background-button-secondary-active: var(--c-accent-20) !important;
     --app-color-background-button-secondary-hover: var(--c-accent-12) !important;
     --app-color-background-button-secondary-inactive: var(--c-accent-03) !important;
@@ -89,8 +89,7 @@
 
     --app-shell-panel-background: var(--c-bg-chats-container) !important; // kada se otvori WorkspaceContent > aside [data-app-shell-focus-area="right-panel], npr neka slika
 
-    --color-text-mode-toggle-inactive:
-        color-mix(in oklab, var(--c-txt) 80%, transparent);
+    --color-text-mode-toggle-inactive: color-mix(in oklab, var(--c-txt) 80%, transparent);
     // --shadow-mode-toggle-selected: var(--shadow-md);
     // --color-background-accent-action: var(--color-background-info-solid);
     // --color-text-accent-action: var(--color-text-info-solid);
@@ -123,7 +122,8 @@
 
     // =========================================================
     --color-surface: var(--c-bg-chats-container) !important; // app bg, like chats-container, but also code-block bg like: .CodeSurface-UAnpMT, .StickyActionBar-XvAQxh
-    --color-surface-secondary: color-mix(var(--c-accent) 4%, var(--c-surface-2))!important;
+    --color-surface-secondary: color-mix(var(--c-accent) 4%, var(--c-surface-1)) !important; // Library -> Open image -> container
+
     /* POPCORN */
     --color-surface-canvas: var(--c-bg-cm) !important;
 

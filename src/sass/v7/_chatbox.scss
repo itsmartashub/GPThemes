@@ -3,26 +3,31 @@
     background: var(--c-bg-chatbox) !important;
     box-shadow: inset 0 0 1px 1px var(--c-accent-08) !important;
     backdrop-filter: blur(18px);
-}
 
-#{$CHATBOX_FOOTER} {
-    // Wrapper for Think, mic and sent button
-    .min-w-0 {
-        --composer-layout-surface-background: transparent !important;
+    #{$CHATBOX_FOOTER} {
+        // Wrapper for Think, mic and sent button
+        .min-w-0 {
+            --composer-layout-surface-background: transparent !important;
+        }
+
+        button.bg-composer-primary.size-token-button-composer.rounded-full {
+            --shadow: 0 0 2px 2px oklch(var(--from-accent) / 0.8) inset, -1px -1px 5px 0px #fff inset;
+            --c-bg-gradient: linear-gradient(-25deg,
+    			transparent 0%,
+    			var(--c-accent-40) 18%,
+    			var(--c-accent) 58%);
+
+        	background: var(--c-bg-gradient) !important;
+        	color: var(--c-on-accent) !important;
+        	box-shadow: var(--shadow) !important;
+        }
     }
 
-    button.bg-composer-primary.size-token-button-composer.rounded-full {
-        --shadow: 0 0 2px 2px oklch(var(--from-accent) / 0.8) inset, -1px -1px 5px 0px #fff inset;
-        --c-bg-gradient: linear-gradient(-25deg,
-			transparent 0%,
-			var(--c-accent-40) 18%,
-			var(--c-accent) 58%);
-
-    	background: var(--c-bg-gradient) !important;
-    	color: var(--c-on-accent) !important;
-    	box-shadow: var(--shadow) !important;
+    #{$CHATBOX_REPLY} {
+        --color-surface-tertiary: var(--c-accent-12) !important;
     }
 }
+
 
 // #{$CHATBOX_ON_THREAD_PAGE} {
 //     // background: red !important;

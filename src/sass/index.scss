@@ -31,7 +31,6 @@
 // @import "global/_colors-borders";
 // @import "global/_rounded";
 
-
 // @import "elements/_accessibility";
 // @import "elements/_loadings";
 // @import "elements/_menu";
@@ -66,12 +65,12 @@
 // @import "customs/_custom--hides";
 // @import "customs/_custom--colors";
 
-
 @import "v7/mixins/custom-fonts";
 @import "v7/_sidebar";
-// @import "v7/_tooltip";
 @import "v7/_toast";
 @import "v7/_badge";
+@import "v7/_right-panel";
+@import "v7/_image-viewer";
 @import "v7/_markdown";
 @import "v7/_chatbox";
 @import "v7/customs/_custom--fonts";
