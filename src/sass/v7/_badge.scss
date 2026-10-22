@@ -1,8 +1,6 @@
 [class^="Badge-"] {
     // --badge-background-color: var(--color-background-secondary-soft-alpha);
     // --badge-text-color: var(--color-text-secondary-soft);
-    // --badge-background-color: var(--c-surface-3) !important;
-    // --badge-text-color: var(--c-subtext-1) !important;
     background: var(--c-surface-3) !important;
-    color: var(--c-subtext-2) !important;
+    color: var(--c-accent) !important;
 }

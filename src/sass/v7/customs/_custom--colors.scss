@@ -10,10 +10,21 @@ html[data-gpth-toggle-bubble-user-accent] {
 
         color: var(--c-on-accent) !important;
 
+        // Tipa "Deep research" na pocetku poruke
+        span[class^="Mention-"] {
+            color: currentColor !important;
+            opacity: 0.7;
+            font-weight: bold;
+        }
+
         ::selection {
             background-color: var(--c-on-accent) !important;
             color: var(--c-accent) !important;
         }
+    }
+
+    &[data-gpth-toggle-bubble-user] {
+         --color-text-user-message: var(--c-txt) !important;
     }
 }
 

@@ -43,7 +43,7 @@
     --color-background-callout-surface: #{color-alpha(--c-accent, 0.25, true)};
     --app-color-background-control: var(--c-accent-08) !important; // input background in some dialogs, like rename file
     --color-background-control-opaque: var(--c-bg-menu) !important; // (context)menu when clicked on profile img. TODO: add brightness control, see menuBg extend. Its also tooptip bg, but ive override it with tooltip scss
-    // --color-background-composer-action-bar: blue !important;
+    --color-background-composer-action-bar: var(--c-surface-2) !important; // "Choose project" above chatbox when opened some Library attachment
     --app-color-background-editor-opaque: var(--c-bg-dialog) !important; // dialog like: Memory sumamry
     --app-color-background-elevated-primary: var(--c-surface-2) !important;
     --app-color-background-elevated-primary-opaque: var(--c-surface-3) !important; // chatbox
@@ -208,9 +208,9 @@
 
     --sidebar-surface-primary: var(--c-bg-chats-container) !important;
 
-    // Badge color
-    --color-background-secondary-soft-alpha: var(--c-surface-3) !important;
-    --color-text-secondary-soft: var(--c-subtext-2) !important;
+    // // Badge color, ali i code-block
+    // --color-background-secondary-soft-alpha: var(--c-surface-3) !important;
+    // --color-text-secondary-soft: var(--c-subtext-2) !important;
 }
 
 // =========================================================
