@@ -59,7 +59,7 @@ $alphas: (
     --c-on-accent: oklch(from var(--c-accent) 0.95 calc(c * 0.4) h);
     --c-accent-light: color-mix(in oklch, var(--c-surface-1), var(--c-accent) 14%);
 
-    --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.95 calc(0.01 * clamp(0, calc(c * 1000), 1)) h);
+    --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.95 calc(0.011 * clamp(0, calc(c * 1000), 1)) h);
     --c-surface-2: oklch(from var(--user-surface-2, var(--c-surface-1)) clamp(0, calc(l * 0.98), 1) clamp(0, calc(c * 1.12), 0.4) h);
     --c-surface-3: oklch(from var(--user-surface-3, var(--c-surface-2)) clamp(0, calc(l * 0.98), 1) clamp(0, calc(c * 1.22), 0.4) h);
 

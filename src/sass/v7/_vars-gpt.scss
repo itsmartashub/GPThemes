@@ -29,27 +29,27 @@
     --app-color-background-accent-active: var(--c-accent-20) !important;
     --app-color-background-accent-hover: var(--c-accent-12) !important;
     --app-color-background-application-menu: var(--c-bg-menu) !important;
-    --app-color-background-button-primary: red !important;
+    // --app-color-background-button-primary: red !important;
     --app-color-background-button-primary-active: var(--c-accent-20) !important;
     --app-color-background-button-primary-hover: var(--c-accent-12) !important;
     --app-color-background-button-primary-inactive: var(--c-accent-03) !important;
-    --app-color-background-button-secondary: rgba(224, 222, 244, 0.048);
+    // --app-color-background-button-secondary: rgba(224, 222, 244, 0.048);
     --app-color-background-button-secondary-active: var(--c-accent-20) !important;
     --app-color-background-button-secondary-hover: var(--c-accent-12) !important;
     --app-color-background-button-secondary-inactive: var(--c-accent-03) !important;
-    --app-color-background-button-tertiary: rgba(224, 222, 244, 0.026);
+    // --app-color-background-button-tertiary: rgba(224, 222, 244, 0.026);
     --app-color-background-button-tertiary-active: var(--c-accent-20) !important;
     --app-color-background-button-tertiary-hover: var(--c-accent-20) !important;
     --color-background-callout-surface: #{color-alpha(--c-accent, 0.25, true)};
     --app-color-background-control: var(--c-accent-08) !important; // input background in some dialogs, like rename file
     --color-background-control-opaque: var(--c-bg-menu) !important; // (context)menu when clicked on profile img. TODO: add brightness control, see menuBg extend. Its also tooptip bg, but ive override it with tooltip scss
-    --color-background-composer-action-bar: blue !important;
+    // --color-background-composer-action-bar: blue !important;
     --app-color-background-editor-opaque: var(--c-bg-dialog) !important; // dialog like: Memory sumamry
     --app-color-background-elevated-primary: var(--c-surface-2) !important;
     --app-color-background-elevated-primary-opaque: var(--c-surface-3) !important; // chatbox
     // --app-color-background-elevated-secondary: rgba(224, 222, 244, 0.028);
     --app-color-background-elevated-secondary: var(--c-surface-2) !important;
-    --app-color-background-elevated-secondary-opaque: blue !important;
+    // --app-color-background-elevated-secondary-opaque: blue !important;
     --app-color-background-elevated-tertiary-opaque: var(--c-surface-3) !important; // NZM
     --color-background-mode-toggle-track: var(--c-accent-03) !important;
     --color-background-mode-toggle-selected: var(--c-surface-3) !important; // active toggle (Chat/Work)
@@ -72,17 +72,17 @@
     --app-color-icon-primary: var(--c-accent-50) !important;
     --app-color-icon-secondary: var(--c-subtext-1) !important;
     --app-color-icon-tertiary: var(--c-subtext-2) !important;
-    --app-color-simple-scrim: orange !important;
+    // --app-color-simple-scrim: orange !important;
     --app-color-text-accent: var(--c-accent) !important;
     --app-color-text-on-accent: var(--c-on-accent) !important;
     --app-color-text-button-primary: var(--c-on-acent) !important;
-    --app-color-text-button-secondary: violet !important;
+    // --app-color-text-button-secondary: violet !important;
     --app-color-text-button-tertiary: var(--c-subtext-2) !important;
     --app-color-foreground-application-menu: var(--c-txt) !important;
     --app-color-text-foreground: var(--c-txt) !important;
     --app-color-text-foreground-secondary: var(--c-subtext-1) !important;
     --app-color-text-foreground-tertiary: var(--c-subtext-2) !important;
-    --app-color-text-unread-badge: rgb(0, 0, 0);
+    // --app-color-text-unread-badge: rgb(0, 0, 0);
 
     --app-color-text-error: var(--c-danger) !important;
 
@@ -118,12 +118,12 @@
     // --color-image-generation-text: var(--color-text-accent);
     // --color-image-generation-foreground: var(--app-color-text-on-accent);
 
-    --color-surface-elevated-secondary: var(--c-surface-2) !important; // some dialogs transparent, and many tarnsparent elements
+    --color-surface-elevated-secondary: var(--c-surface-2) !important;
 
 
     // =========================================================
     --color-surface: var(--c-bg-chats-container) !important; // app bg, like chats-container, but also code-block bg like: .CodeSurface-UAnpMT, .StickyActionBar-XvAQxh
-    --color-surface-secondary: var(--c-surface-2) !important;
+    --color-surface-secondary: color-mix(var(--c-accent) 4%, var(--c-surface-2))!important;
     /* POPCORN */
     --color-surface-canvas: var(--c-bg-cm) !important;
 
@@ -184,8 +184,8 @@
     --bg-tertiary: var(--c-surface-3) !important;
     --bg-elevated-primary: var(--c-surface-2) !important;
     --bg-elevated-secondary: var(--c-surface-3) !important;
-    // --main-surface-primary: var(--c-surface-2) !important;
-    --main-surface-primary: red !important;
+    --main-surface-primary: var(--c-surface-2) !important;
+    // --main-surface-primary: red !important;
     --main-surface-tertiary: var(--c-surface-3) !important;
     --text-primary: var(--c-txt) !important;
     --text-secondary: var(--c-subtext-1) !important;
@@ -207,6 +207,10 @@
 
 
     --sidebar-surface-primary: var(--c-bg-chats-container) !important;
+
+    // Badge color
+    --color-background-secondary-soft-alpha: var(--c-surface-3) !important;
+    --color-text-secondary-soft: var(--c-subtext-2) !important;
 }
 
 // =========================================================
