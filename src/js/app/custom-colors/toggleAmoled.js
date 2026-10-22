@@ -13,7 +13,6 @@ const amoledToggle = createToggleSetting({
 	notifyLabel: 'AMOLED',
 	subtitle: 'Pure black surfaces for OLED screens (dark mode only)',
 	icon: icon_moon_full,
-	badge: 'new',
 })
 
 export const renderAmoledToggle = amoledToggle.templateHTML

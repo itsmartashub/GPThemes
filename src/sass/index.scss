@@ -21,7 +21,8 @@
 
 // @import 'dev/_mixins'; // TODO: REMOVE THIS FOR PRODUCTION!
 
-@import "../libs/jscolorpicker/colorpicker-my-style-optimized";
+@import "../libs/jscolorpicker/colorpicker.min";
+@import "../libs/jscolorpicker/colorpicker-overrides";
 
 @import "global/_base";
 // @import "global/_scrollbars";
