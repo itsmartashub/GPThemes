@@ -1,8 +1,11 @@
 /* stylelint-disable custom-property-pattern */
 :root {
-	/* ! === CUSTOM FONTS === */
-	--gpthFontFamilySystem: -apple-system-body, ui-sans-serif, -apple-system, system-ui, Segoe UI, Helvetica, Apple Color Emoji, Arial, sans-serif, Segoe UI Emoji, Segoe UI Symbol;
-	--gpthFontFamilyDefault: var(--gpthFontFamilySystem);
+	// --font-sans-default: -apple-system-body, ui-sans-serif, -apple-system, system-ui, "Segoe UI", "Helvetica", "Apple Color Emoji", "Arial", sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+	// --font-ui-family: var(--font-sans-default);
+	/* CUSTOM FONTS */
+	// --gpthFontFamilySystem: -apple-system-body, ui-sans-serif, -apple-system, system-ui, Segoe UI, Helvetica, Apple Color Emoji, Arial, sans-serif, Segoe UI Emoji, Segoe UI Symbol;
+	--gpthFontFamilySystem: -apple-system-body, ui-sans-serif, -apple-system, system-ui, "Segoe UI", "Helvetica", "Apple Color Emoji", "Arial", sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+	--gpthFontFamilyDefault: var(--font-sans-default, var(--gpthFontFamilySystem));
 	--gpthFontFamily: var(--gpthFontFamilyDefault);
 	--gpthFontSize: inherit;
 	--gpthLetterSpacing: none;
@@ -13,11 +16,11 @@
 	--gpth-computed-line-height: calc(var(--gpthLineHeight, 1.5) / 16);
 	--gpth-computed-letter-spacing: calc((var(--gpthLetterSpacing, 0) / 16) * 1px);
 
-	/* ! === CUSTOM SCROLLDOWN POSITION === */
+	/* CUSTOM SCROLLDOWN POSITION */
 	// --scrollBtnLeft: unset;
 	// --scrollBtnRight: 50%;
 
-	/* ! === CUSTOM WIDTH === */
+	/* CUSTOM WIDTH */
 	// Slider-controlled widths (set by JS via setVars, rem units for viewport-stable sizing)
 	--gpth-width-chat: 48rem;
 	--gpth-width-prompt: 48rem;
