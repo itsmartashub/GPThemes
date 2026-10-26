@@ -1,38 +1,39 @@
 .agent-turn {
-    [class*="mt-0.5"].mb-3.overflow-hidden.rounded-b-xl.bg-token-main-surface-primary:has(>.markdown.prose) {
-        background-color: transparent !important;
-        // border: 2px solid red !important;
-    }
+	[class*='mt-0.5'].mb-3.overflow-hidden.rounded-b-xl.bg-token-main-surface-primary:has(
+			> .markdown.prose
+		) {
+		background-color: transparent !important;
+		// border: 2px solid red !important;
+	}
 }
 
 /*
 - [role="dialog"] .bg-black.border-t:has(.border-l-4.border-red-500): Analysis in dialogs
 - .agent-turn .markdown.prose~.bg-black.border-t:has(.border-l-4.border-red-500): Analysis in chat-bubbles */
-.agent-turn .markdown.prose~.bg-black.border-t:has(.border-s-4.border-red-500),
-[role="dialog"] .bg-black.border-t:has(.border-s-4.border-red-500) {
-    border-top: unset !important;
-    border-radius: var(--br-btn);
-    background-color: var(--c-accent-12);
+.agent-turn .markdown.prose ~ .bg-black.border-t:has(.border-s-4.border-red-500),
+[role='dialog'] .bg-black.border-t:has(.border-s-4.border-red-500) {
+	background-color: var(--c-accent-12);
+	border-top: unset !important;
+	border-radius: var(--br-btn);
 
-    /* "Analysis" <pre> code parents */
-    .border-s-4.border-red-500 {
-        color: var(--c-accent);
-        border-color: currentColor !important;
-    }
+	/* "Analysis" <pre> code parents */
+	.border-s-4.border-red-500 {
+		color: var(--c-accent);
+		border-color: currentColor !important;
+	}
 }
 
-
 /* Analysis "Result" next to .markdown.prose, and in dialogs */
-.agent-turn .markdown.prose~.bg-token-sidebar-surface-primary:has(>.text-gray-400 ~ .prose),
-[role="dialog"] .bg-token-sidebar-surface-primary:has(>.text-gray-400 ~ .prose) {
-    border-radius: var(--br-btn) !important;
-    background-color: var(--c-accent-12) !important;
-    color: var(--c-accent) !important;
-    border-left: 4px solid currentColor;
+.agent-turn .markdown.prose ~ .bg-token-sidebar-surface-primary:has(> .text-gray-400 ~ .prose),
+[role='dialog'] .bg-token-sidebar-surface-primary:has(> .text-gray-400 ~ .prose) {
+	color: var(--c-accent) !important;
+	background-color: var(--c-accent-12) !important;
+	border-left: 4px solid currentColor;
+	border-radius: var(--br-btn) !important;
 
-    pre {
-        white-space: pre-wrap;
-        border-radius: 0 !important;
-        margin: 0 !important;
-    }
+	pre {
+		margin: 0 !important;
+		white-space: pre-wrap;
+		border-radius: 0 !important;
+	}
 }

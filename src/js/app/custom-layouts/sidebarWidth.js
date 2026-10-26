@@ -4,7 +4,7 @@ import { SELECTORS } from '../config/selectors'
 
 const sidebarWidth = createSliderSetting({
 	storageKey: SK_WIDTH_SIDEBAR,
-	cssVar: '--sidebar-width', // old ui
+	// cssVar: '--sidebar-width', // old ui
 	cssVar: '--app-shell-animated-left-panel-width', // new ui
 	sliderId: SELECTORS.WIDTH.SLIDER_SIDEBAR_ID,
 	displayValueId: SELECTORS.WIDTH.DISPLAY_SIDEBAR_VALUE_ID,

@@ -1,83 +1,83 @@
 .header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1rem 1.5rem;
-    backdrop-filter: blur(2rem);
-    border-radius: 0 0 1.2rem 1.2rem;
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem 1.5rem;
+	border-radius: 0 0 1.2rem 1.2rem;
+	backdrop-filter: blur(2rem);
 
-    &__logo-wrapper {
-        // Chromium gets the full 3D treatment
-        perspective: 400px;
-        transform-style: preserve-3d;
+	&__logo-wrapper {
+		transform-style: preserve-3d;
+		// Chromium gets the full 3D treatment
+		perspective: 400px;
 
-        // Firefox override - remove 3D context from sticky element
-        @-moz-document url-prefix() {
-            perspective: none;
-            transform-style: flat;
-        }
+		// Firefox override - remove 3D context from sticky element
+		@supports (-moz-appearance: none) {
+			transform-style: flat;
+			perspective: none;
+		}
 
-        &:is(:hover, :focus) {
-            .header__logo-kofi {
-                box-shadow: 0 0 0 oklch(from $accent l c h / 0.8);
+		&:is(:hover, :focus) {
+			.header__logo-kofi {
+				box-shadow: 0 0 0 oklch(from $accent l c h / 0.8);
 
-                // Chromium hover
-                transform: rotateY(0deg) skewX(0deg) scale(1, 1);
+				// Chromium hover
+				transform: rotateY(0deg) skewX(0deg) scale(1, 1);
 
-                // Firefox hover
-                @-moz-document url-prefix() {
-                    transform: skewX(0) skewY(0) rotateY(0) scale(1, 1);
-                }
+				// Firefox hover
+				@supports (-moz-appearance: none) {
+					transform: skewX(0) skewY(0) rotateY(0) scale(1, 1);
+				}
 
-                img {
-                    filter: drop-shadow(0 0 0 oklch(from $accent l c h / 1));
-                    translate: 0 -10%;
-                    scale: 0.88;
-                }
-            }
-        }
-    }
+				img {
+					filter: drop-shadow(0 0 0 oklch(from $accent l c h / 1));
+					scale: 0.88;
+					translate: 0 -10%;
+				}
+			}
+		}
+	}
 
-    &__logo-kofi {
-        --shadow: -5px 5px 0px oklch(from $accent l c h / 0.3);
+	&__logo-kofi {
+		--shadow: -5px 5px 0px oklch(from $accent l c h / 0.3);
+		display: grid;
+		gap: 0.5rem;
+		place-items: center;
 
-        width: 8rem;
-        display: grid;
-        place-items: center;
-        gap: 0.5rem;
-        padding: 0.3rem 0.3rem 0.6rem 0.3rem;
-        border: 1px solid oklch(from $accent l c h / 0.1);
-        border-radius: 0.7rem;
-        background-color: oklch(from $accent l c h / 0.08);
-        box-shadow: -5px 5px 0 oklch(from $accent l c h / 0.3);
-        transition: box-shadow 0.2s ease, transform 0.3s ease;
+		width: 8rem;
+		padding: 0.3rem 0.3rem 0.6rem 0.3rem;
+		background-color: oklch(from $accent l c h / 0.08);
+		border: 1px solid oklch(from $accent l c h / 0.1);
+		border-radius: 0.7rem;
+		box-shadow: -5px 5px 0 oklch(from $accent l c h / 0.3);
 
-        // Chromium gets true 3D
-        transform: rotateY(30deg) skewX(2deg) scale(1.05, 0.96);
-        backface-visibility: hidden;
+		// Chromium gets true 3D
+		transform: rotateY(30deg) skewX(2deg) scale(1.05, 0.96);
+		backface-visibility: hidden;
+		transition: box-shadow 0.2s ease, transform 0.3s ease;
 
-        // Firefox gets fake 3D
-        @-moz-document url-prefix() {
-            transform: skewX(8deg) skewY(-1deg) rotateY(-20deg) scale(1.05, 0.96);
-            backface-visibility: visible;
-        }
+		// Firefox gets fake 3D
+		@supports (-moz-appearance: none) {
+			transform: skewX(8deg) skewY(-1deg) rotateY(-20deg) scale(1.05, 0.96);
+			backface-visibility: visible;
+		}
 
-        p {
-            color: $accent;
-            font-weight: 600;
-            text-align: center;
-            font-size: 0.95em;
-            opacity: 0.9;
-        }
+		p {
+			font-size: 0.95em;
+			font-weight: 600;
+			color: $accent;
+			text-align: center;
+			opacity: 0.9;
+		}
 
-        img {
-            filter: drop-shadow(-5px 5px 0 oklch(from $accent l c h / 0.3));
-            width: 70%;
-            transition: filter 0.4s ease, translate 0.3s ease, scale 0.3s ease;
-        }
-    }
+		img {
+			width: 70%;
+			filter: drop-shadow(-5px 5px 0 oklch(from $accent l c h / 0.3));
+			transition: filter 0.4s ease, translate 0.3s ease, scale 0.3s ease;
+		}
+	}
 }

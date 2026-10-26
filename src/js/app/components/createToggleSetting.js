@@ -38,7 +38,9 @@ export function createToggleSetting(config) {
 	async function saveState(state = defaultValue) {
 		try {
 			await setItem(storageKey, state)
-			state ? Notify.success(`${notifyLabel} enabled`) : Notify.info(`${notifyLabel} disabled`)
+			state
+				? Notify.success(`${notifyLabel} enabled`)
+				: Notify.info(`${notifyLabel} disabled`)
 			return true
 		} catch (error) {
 			Notify.error(`Failed to save ${notifyLabel} preference`)

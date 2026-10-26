@@ -1,15 +1,15 @@
 #{$CHATBOX_WRAPPER} {
-    will-change: width, max-width;
-    max-width: var(--gpth-width-prompt);
+	max-width: var(--gpth-width-prompt);
+	will-change: width, max-width;
 }
 
 // Sync prompt width to match chat width. Triggered by JS setting data-attr on <html>
 html[data-gpth-width-prompt-sync] #{$CHATBOX_WRAPPER} {
-    max-width: var(--gpth-width-chat);
+	max-width: var(--gpth-width-chat);
 }
 
 /* When both full-width AND sync are active: chatbox should also go full width.
 --gpth-width-chat var stays at the slider's rem value (so we can restore it), so we need this explicit override instead of relying on the var. */
 html[data-gpth-width-chat-full][data-gpth-width-prompt-sync] #{$CHATBOX_WRAPPER} {
-    max-width: 100%;
+	max-width: 100%;
 }

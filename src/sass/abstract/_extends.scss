@@ -8,13 +8,13 @@
 	animation: animFadeInClipPath 0.2s linear forwards;
 } */
 %animFadeIn {
-	will-change: opacity;
 	animation: animFadeIn var(--anim-duration, 0.2s) linear forwards;
+	will-change: opacity;
 }
 
 %animScaleIn {
-	will-change: opacity, scale;
 	animation: animScaleIn var(--anim-duration, 0.2s) ease forwards;
+	will-change: opacity, scale;
 }
 
 /* %animFadeOut {
@@ -36,12 +36,12 @@
 }
 
 %date-pill {
-	background-color: var(--c-accent-20) !important;
+	width: min-content;
+	font-weight: bold;
 	// display: inline-block !important;
 	color: var(--c-accent) !important;
-	font-weight: bold;
 	text-transform: uppercase;
-	width: min-content;
+	background-color: var(--c-accent-20) !important;
 	// line-height: 1 !important;
 	border-radius: 50vw;
 	// padding: 0.3rem 0.6rem !important;
@@ -57,8 +57,8 @@
 %custom-fonts {
 	font-family: var(--gpth-computed-font-family) !important;
 	font-size: var(--gpth-computed-font-size) !important;
-	letter-spacing: var(--gpth-computed-letter-spacing) !important;
 	line-height: var(--gpth-computed-line-height) !important;
+	letter-spacing: var(--gpth-computed-letter-spacing) !important;
 }
 
 // Reusable placeholders

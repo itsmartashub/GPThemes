@@ -1,17 +1,16 @@
-
 // "Images" -> image opened view
-[class^="ImageViewer-"] {
-    [data-annotation-control] {
-        // Vertical slider controller for size
-        span[role="slider"] {
-            span.size-4.rounded-full {
-                background-color: var(--c-subtext-1) !important;
-            }
-        }
+[class^='ImageViewer-'] {
+	[data-annotation-control] {
+		// Vertical slider controller for size
+		span[role='slider'] {
+			span.size-4.rounded-full {
+				background-color: var(--c-subtext-1) !important;
+			}
+		}
 
-        .backdrop-blur-sm {
-            // background-color: color-mix(in oklab, var(--c-surface-3), transparent 35%);
-            background-color: color-alpha(--c-surface-3, 0.7);
-        }
-    }
+		.backdrop-blur-sm {
+			// background-color: color-mix(in oklab, var(--c-surface-3), transparent 35%);
+			background-color: color-alpha(--c-surface-3, 0.7);
+		}
+	}
 }

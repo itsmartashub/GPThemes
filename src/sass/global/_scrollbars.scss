@@ -1,68 +1,66 @@
 :root {
-    --c-scrollbar-thumb: oklch(from var(--c-txt) l c h / 0.25);
-    --c-scrollbar-thumb-hover: var(--c-accent);
-    --c-scrollbar-track: transparent;
-    --w-scrollbar: 0.425rem;
-    --h-scrollbar-button: 8px;
-    --br-scrollbar: 50vw;
+	--c-scrollbar-thumb: oklch(from var(--c-txt) l c h / 0.25);
+	--c-scrollbar-thumb-hover: var(--c-accent);
+	--c-scrollbar-track: transparent;
+	--w-scrollbar: 0.425rem;
+	--h-scrollbar-button: 8px;
+	--br-scrollbar: 50vw;
 }
-
 
 /* OVO DOLE IZGLEDA DA NISTA NE RADI, NECE DA SE OVERRIDUJE. Jedino ako stavimo scrollbar-width i scrollbar-color da budu unset, onda hoce */
 
 * {
-    scrollbar-color: unset !important;
+	scrollbar-color: unset !important;
 }
 
 html,
 body,
 .gpth-tab-content,
 .overflow-y-auto,
-[class*=":overflow-y-auto"],
+[class*=':overflow-y-auto'],
 .cm-scroller {
-    /* !!!! Add this to * caused showing the scrollbar on all elements, which is not default behavior w/o this extension */
-    /*  scrollbar-width: thin !important; // auto | thin | none | unset
+	scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important;
+	/* !!!! Add this to * caused showing the scrollbar on all elements, which is not default behavior w/o this extension */
+	/*  scrollbar-width: thin !important; // auto | thin | none | unset
     scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important; */
 
-    @supports selector(::-webkit-scrollbar) {
-        /* Use this if you want to remove native scrollbars and want to add your scrollbar width */
-        scrollbar-width: thin !important; // auto | thin | none
-    }
-
-    scrollbar-color: var(--c-scrollbar-thumb) var(--c-scrollbar-track) !important;
+	@supports selector(::-webkit-scrollbar) {
+		/* Use this if you want to remove native scrollbars and want to add your scrollbar width */
+		scrollbar-width: thin !important; // auto | thin | none
+	}
 }
 
 ::-webkit-scrollbar {
-    width: var(--w-scrollbar) !important;
-    height: var(--w-scrollbar) !important;
+	width: var(--w-scrollbar) !important;
+	height: var(--w-scrollbar) !important;
 }
 
 /* Scrollbar edge triangles */
 ::-webkit-scrollbar-button {
-    /* Ako stavimo ovo onda ga nema uopste i thumnb overlappuje iz parenta. Zato cemo staviti height da bude e.g. 8px */
-    // display: none !important;
-    // width: 0 !important;
-    height: var(--h-scrollbar-button) !important;
-    background: var(--c-scrollbar-track) !important;
+	/* Ako stavimo ovo onda ga nema uopste i thumnb overlappuje iz parenta. Zato cemo staviti height da bude e.g. 8px */
+	// display: none !important;
+	// width: 0 !important;
+	height: var(--h-scrollbar-button) !important;
+	background: var(--c-scrollbar-track) !important;
 }
 
 ::-webkit-scrollbar-corner {
-    background: var(--c-scrollbar-track) !important;
+	background: var(--c-scrollbar-track) !important;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--c-scrollbar-track) !important;
-    border-radius: var(--br-scrollbar) !important;
+	background: var(--c-scrollbar-track) !important;
+	border-radius: var(--br-scrollbar) !important;
 }
 
 /* Thumb (draggable part) */
 ::-webkit-scrollbar-thumb {
-    background: var(--c-scrollbar-thumb) !important;
-    border-radius: var(--br-scrollbar) !important;
-    cursor: grab !important;
+	cursor: grab !important;
+	background: var(--c-scrollbar-thumb) !important;
+	border-radius: var(--br-scrollbar) !important;
 }
 
-// @-moz-document url-prefix() {
+// @supports (-moz-appearance: none) {
 
 //     html,
 //     * {

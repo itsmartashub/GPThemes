@@ -2,51 +2,50 @@
 	margin-bottom: 1rem;
 
 	.gpth-settings__title {
-		color: var(--c-accent);
 		font-size: 1.25em;
 		font-weight: 500;
+		color: var(--c-accent);
 		text-align: center;
 
 		span {
 			font-weight: bold;
 		}
 
-		@include dev("sm") {
+		@include dev('sm') {
 			font-size: 1.4rem;
 		}
 	}
 
 	.gpth-settings__actions {
 		display: flex;
-		justify-content: center;
+		gap: 0.75rem;
 		align-items: center;
+		justify-content: center;
+		width: max-content;
+		padding: 0.2rem;
 		margin: 0 auto;
 		margin-bottom: 0.2rem;
-		padding: 0.2rem;
-		width: max-content;
-		gap: 0.75rem;
-		border-radius: 50vw;
 		background-color: var(--c-accent-12);
+		border-radius: 50vw;
 	}
 
 	.gpth-settings__action-btn {
-		$size: 1.5rem;
+    	$size: 1.5rem;
+
 		display: grid;
 		place-items: center;
 		width: $size;
 		height: $size;
-		border-radius: inherit;
 		color: var(--c-accent);
 		text-decoration: none;
 		cursor: pointer;
-		transition:
-			background-color 0.2s ease,
-			transform 0.2s ease;
+		border-radius: inherit;
+		transition: background-color 0.2s ease, transform 0.2s ease;
 
 		.icon {
 			--icon-size: 1.2em;
-			height: var(--icon-size);
 			width: var(--icon-size);
+			height: var(--icon-size);
 		}
 
 		&:hover {

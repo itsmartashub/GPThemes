@@ -1,16 +1,13 @@
 form {
+	#custom-instructions,
+	#branch-format {
+		textarea,
+		input {
+			background-color: var(--c-surface-2) !important;
+		}
+	}
 
-    #custom-instructions,
-    #branch-format {
-
-        textarea,
-        input {
-            background-color: var(--c-surface-2) !important;
-        }
-
-    }
-
-    [class*="focus-within:ring-1"] {
-        background-color: var(--c-surface-2) !important;
-    }
+	[class*='focus-within:ring-1'] {
+		background-color: var(--c-surface-2) !important;
+	}
 }

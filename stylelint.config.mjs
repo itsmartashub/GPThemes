@@ -19,16 +19,17 @@ export default {
 		'rule-empty-line-before': null, // dramaQ
 		'at-rule-empty-line-before': null, // dramaQ
 		'declaration-empty-line-before': null, // dramaQ
-		'selector-pseudo-element-colon-notation': null,
+		// 'selector-pseudo-element-colon-notation': null,
 		'hue-degree-notation': null, // falsepositive
 		'lightness-notation': null, // falsepositive
 		'at-rule-no-vendor-prefix': null, // falsepositive
 		'comment-whitespace-inside': null, // dramaQ
-		'color-function-alias-notation': null, // falsepositive
-		'color-function-notation': null, // dramaQ
-		'length-zero-no-unit': null, // dramaQ
-		'no-duplicate-selectors': null, // falsepositive
-		'shorthand-property-no-redundant-values': null, // dramaQ
+		// 'color-function-alias-notation': null, // falsepositive
+		// 'color-function-notation': null, // dramaQ
+		// 'length-zero-no-unit': null, // dramaQ
+		// 'no-duplicate-selectors': null, // falsepositive
+		'selector-no-qualifying-type': null, // SCSS nesting compatibility
+		// 'shorthand-property-no-redundant-values': null, // dramaQ
 
 		// SCSS - stylelint-config-standard-scss
 		'scss/double-slash-comment-empty-line-before': null,

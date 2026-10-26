@@ -1,8 +1,8 @@
 // Neki badges nisu coverovani sa ovim
-[class^="Badge-"] {
-    // --badge-background-color: var(--color-background-secondary-soft-alpha);
-    // --badge-text-color: var(--color-text-secondary-soft);
-    // background: color-mix(in oklab, var(--c-accent) 4%, var(--c-surface-1));
-    background: var(--c-accent-12) !important;
-    color: var(--c-accent) !important;
+[class^='Badge-'] {
+	color: var(--c-accent) !important;
+	// --badge-background-color: var(--color-background-secondary-soft-alpha);
+	// --badge-text-color: var(--color-text-secondary-soft);
+	// background: color-mix(in oklab, var(--c-accent) 4%, var(--c-surface-1));
+	background: var(--c-accent-12) !important;
 }

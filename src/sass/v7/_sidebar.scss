@@ -2,30 +2,30 @@
 /* #browser-sidebar-popover is for mobile */
 #browser-sidebar-popover,
 #app-shell-sidebar {
-    nav {
-        --color-text: var(--c-txt) !important;
-        // --color-text-primary-ghost: var(--color-text);
-        // --color-text-primary-ghost-hover: var(--color-text);
-        // --color-text-secondary-ghost-hover: var(--color-text);
+	nav {
+		--color-text: var(--c-txt) !important;
+		// --color-text-primary-ghost: var(--color-text);
+		// --color-text-primary-ghost-hover: var(--color-text);
+		// --color-text-secondary-ghost-hover: var(--color-text);
 
-        // Sidebar headings like: Pinned, Projects, Recents
-        button[data-app-action-sidebar-section-toggle].group\/section-toggle {
-            color: var(--c-accent) !important;
-            font-weight: bold;
-            text-transform: uppercase;
+		// Sidebar headings like: Pinned, Projects, Recents
+		button[data-app-action-sidebar-section-toggle].group\/section-toggle {
+			font-weight: bold;
+			color: var(--c-accent) !important;
+			text-transform: uppercase;
 
-            // Text only
-            span.min-w-0 {
-                padding: 0.25rem 0.6rem;
-                background: var(--c-accent-10);
-                box-shadow: 0 0 0 1px var(--c-accent-20);
-                border-radius: 50vw;
-            }
-        }
+			// Text only
+			span.min-w-0 {
+				padding: 0.25rem 0.6rem;
+				background: var(--c-accent-10);
+				border-radius: 50vw;
+				box-shadow: 0 0 0 1px var(--c-accent-20);
+			}
+		}
 
-        // Sidebar when collapsed
-        &[data-app-navigation-rail].bg-surface-secondary {
-            background-color: var(--c-bg-sidebar) !important;
-        }
-    }
+		// Sidebar when collapsed
+		&[data-app-navigation-rail].bg-surface-secondary {
+			background-color: var(--c-bg-sidebar) !important;
+		}
+	}
 }

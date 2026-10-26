@@ -26,11 +26,11 @@ TODO rewrite this to add border-color in "Is this conversation helpful so far? ð
 
 /* Border in dialogs after main heading */
 [class*=':border-white/10'] {
-	@include theme("dark") {
+	@include theme('dark') {
 		border-color: var(--c-border-accent) !important;
 	}
 
-	@include theme("light") {
+	@include theme('light') {
 		border-color: var(--c-border) !important;
 	}
 }
@@ -58,7 +58,6 @@ hr {
 // }
 
 .border-b {
-
 	&.border-token-border-default,
 	&.border-token-border-light {
 		border: none !important;

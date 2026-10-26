@@ -1,18 +1,17 @@
 .fonts {
-    &__props {
-        display: grid;
-        gap: 0.8rem;
-    }
+	&__props {
+		display: grid;
+		gap: 0.8rem;
+	}
 
-    &__bigcards-wrapper,
-    &__smallcards-wrapper {
+	&__bigcards-wrapper,
+	&__smallcards-wrapper {
+		--gap: 0.65rem;
+		display: grid;
 
-        --gap: 0.65rem;
-
-        grid-template-columns: repeat(auto-fit, minmax(8.25rem, 1fr));
-        display: grid;
-        align-items: center;
-        // gap: calc(var(--gap) * 2) var(--gap);gap
-        gap: var(--gap);
-    }
+		grid-template-columns: repeat(auto-fit, minmax(8.25rem, 1fr));
+		// gap: calc(var(--gap) * 2) var(--gap);gap
+		gap: var(--gap);
+		align-items: center;
+	}
 }

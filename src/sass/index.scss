@@ -1,30 +1,31 @@
 // Must load before any partial that uses the theme helpers (@include theme / theme-root), e.g. _vars-gpth-colors
-@import "v7/mixins/_theme";
+@import 'v7/mixins/_theme';
 
 // @import 'abstract/_mq';
-@import "abstract/_bp";
-@import "abstract/_functions";
-@import "abstract/_vars-gpth-custom-settings";
-@import "abstract/_vars-gpth-layout";
-@import "abstract/_vars-gpth-colors";
+@import 'abstract/_bp';
+@import 'abstract/_functions';
+@import 'abstract/_vars-gpth-custom-settings';
+@import 'abstract/_vars-gpth-layout';
+@import 'abstract/_vars-gpth-colors';
 // @import "abstract/_vars-gpt";
 
-@import "v7/_vars-gpt";
-@import "v7/_vars-selectors";
+@import 'v7/_vars-gpt';
+@import 'v7/_vars-selectors';
 
-@import "shared/_easing";
-@import "abstract/_anims";
-@import "abstract/mixins/_mixins";
-@import "abstract/mixins/_chb";
-@import "shared/_extends";
-@import "abstract/_extends";
+@import 'shared/_easing';
+@import 'abstract/_anims';
+@import 'abstract/mixins/_mixins';
+@import 'abstract/mixins/_chb';
+@import 'shared/_extends';
+@import 'abstract/_extends';
 
 // @import 'dev/_mixins'; // TODO: REMOVE THIS FOR PRODUCTION!
 
-@import "../libs/jscolorpicker/colorpicker.min";
-@import "../libs/jscolorpicker/colorpicker-overrides";
+// @import "../libs/jscolorpicker/colorpicker.min";
+@import '../libs/jscolorpicker/v1.1.0/colorpicker.min';
+@import '../libs/jscolorpicker/jscolorpicker-overrides';
 
-@import "global/_base";
+@import 'global/_base';
 // @import "global/_scrollbars";
 // @import "global/_colors-txts";
 // @import "global/_colors-bgs";
@@ -41,7 +42,7 @@
 // @import "elements/_analyze_code";
 // @import "elements/_right--scrolldown";
 
-@import "elements/_btn";
+@import 'elements/_btn';
 // @import "elements/_toast";
 // @import "elements/_tooltips";
 // @import "elements/_logo";
@@ -65,18 +66,18 @@
 // @import "customs/_custom--hides";
 // @import "customs/_custom--colors";
 
-@import "v7/mixins/custom-fonts";
-@import "v7/_sidebar";
-@import "v7/_toast";
-@import "v7/_badge";
-@import "v7/_right-panel";
-@import "v7/_image-viewer";
-@import "v7/_markdown";
-@import "v7/_chatbox";
-@import "v7/customs/_custom--fonts";
-@import "v7/customs/_custom--chats";
-@import "v7/customs/_custom--chatbox";
-@import "v7/customs/_custom--hides";
-@import "v7/customs/_custom--colors";
+@import 'v7/mixins/custom-fonts';
+@import 'v7/_sidebar';
+@import 'v7/_toast';
+@import 'v7/_badge';
+@import 'v7/_right-panel';
+@import 'v7/_image-viewer';
+@import 'v7/_markdown';
+@import 'v7/_chatbox';
+@import 'v7/customs/_custom--fonts';
+@import 'v7/customs/_custom--chats';
+@import 'v7/customs/_custom--chatbox';
+@import 'v7/customs/_custom--hides';
+@import 'v7/customs/_custom--colors';
 
-@import "gpthemes/gpth-index";
+@import 'gpthemes/gpth-index';

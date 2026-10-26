@@ -1,22 +1,14 @@
-$gpthCustomFontsProps: (
-    font-family,
-    font-size,
-    line-height,
-    letter-spacing
-);
+$gpthCustomFontsProps: (font-family, font-size, line-height, letter-spacing);
 
 @mixin customFont($props: $gpthCustomFontsProps, $important: true) {
-    @each $prop in $props {
-        @if $important {
-            #{$prop}: var(--gpth-computed-#{$prop}) !important;
-        }
-
-        @else {
-            #{$prop}: var(--gpth-computed-#{$prop});
-        }
-    }
+	@each $prop in $props {
+		@if $important {
+			#{$prop}: var(--gpth-computed-#{$prop}) !important;
+		} @else {
+			#{$prop}: var(--gpth-computed-#{$prop});
+		}
+	}
 }
-
 
 /* 
 USAGE

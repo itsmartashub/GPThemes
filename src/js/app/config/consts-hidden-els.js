@@ -1,27 +1,27 @@
 import {
 	icon_footer,
 	icon_header,
+	icon_header_btns,
 	icon_header_model,
 	icon_header_new_chat,
-	icon_header_btns,
-	icon_upgrade,
 	icon_header_share,
+	icon_upgrade,
 } from '../components/icons'
 import {
 	ATTR_HIDE_FOOTER,
 	ATTR_HIDE_HEADER,
+	ATTR_HIDE_HEADER_ACTIONS_BTN,
 	ATTR_HIDE_HEADER_MODEL_BTN,
 	ATTR_HIDE_HEADER_NEW_CHAT_BTN,
-	ATTR_HIDE_HEADER_ACTIONS_BTN,
 	ATTR_HIDE_HEADER_SHARE_BTN,
 	ATTR_HIDE_UPGRADE_CHIP,
 } from './consts-attr'
 import {
 	SK_TOGGLE_HIDE_FOOTER,
 	SK_TOGGLE_HIDE_HEADER,
+	SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN,
 	SK_TOGGLE_HIDE_HEADER_MODEL_BTN,
 	SK_TOGGLE_HIDE_HEADER_NEW_CHAT_BTN,
-	SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN,
 	SK_TOGGLE_HIDE_HEADER_SHARE_BTN,
 	SK_TOGGLE_HIDE_UPGRADE_CHIP,
 } from './consts-storage'
@@ -52,7 +52,8 @@ export const ELEMENTS = [
 	{
 		id: SELECTORS.HIDE.HEADER_ACTIONS_BTN.TOGGLE_ID,
 		label: 'Hide Header Actions',
-		subtitle: 'Hide the top header action buttons on top right (e.g. "Share", "Open canvas", etc.)',
+		subtitle:
+			'Hide the top header action buttons on top right (e.g. "Share", "Open canvas", etc.)',
 		icon: icon_header_btns,
 		badge: 'mobile',
 		selector: SELECTORS.HIDE.HEADER_ACTIONS_BTN.SELECTOR,

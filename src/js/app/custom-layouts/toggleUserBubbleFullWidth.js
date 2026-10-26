@@ -10,7 +10,8 @@ const userBubbleFullWidthToggle = createToggleSetting({
 	dataAttr: ATTR_BUBBLE_USER_FULLWIDTH,
 	label: 'User Bubble Full Width',
 	notifyLabel: 'Full width user chat',
-	subtitle: 'Expands the user message width from the default 70% to 100% to match the assistant message width',
+	subtitle:
+		'Expands the user message width from the default 70% to 100% to match the assistant message width',
 	icon: icon_bubble_full_width,
 	selector: SELECTORS?.CHATS?.USER_WIDTH,
 	notFoundMessage: 'User chat not found on this page.',

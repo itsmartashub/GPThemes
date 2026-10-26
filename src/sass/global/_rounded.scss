@@ -50,7 +50,7 @@
 }
 
 .rounded-b-md {
+	border-bottom-right-radius: var(--br-btn) !important;
 	// overflow: clip !important;
 	border-bottom-left-radius: var(--br-btn) !important;
-	border-bottom-right-radius: var(--br-btn) !important;
 }

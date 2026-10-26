@@ -1,54 +1,54 @@
 .gpth-tabs {
-    // margin-bottom: 4rem; // TODO: videti ovo jos
+	// margin-bottom: 4rem; // TODO: videti ovo jos
 
-    .hidden {
-        display: none;
-    }
+	.hidden {
+		display: none;
+	}
 
-    &__buttons {
-        display: flex;
-        align-items: center;
-        background-color: var(--c-accent-15);
-        color: var(--c-accent);
-        margin-bottom: 1.25rem;
-        padding: 0.35rem;
-        border-radius: 100vw;
-        font-weight: 600;
+	&__buttons {
+		display: flex;
+		align-items: center;
+		padding: 0.35rem;
+		margin-bottom: 1.25rem;
+		font-weight: 600;
+		color: var(--c-accent);
+		background-color: var(--c-accent-15);
+		border-radius: 100vw;
 
-        @include dev("xxs") {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.5rem;
-            border-radius: 1rem;
-        }
-    }
+		@include dev('xxs') {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 0.5rem;
+			border-radius: 1rem;
+		}
+	}
 
-    &__content {
-        overflow-y: auto;
-        overflow-x: hidden;
-        max-height: calc(var(--gpth-settings-max-h) * 0.625);
-    }
+	&__content {
+		max-height: calc(var(--gpth-settings-max-h) * 0.625);
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
 }
 
 .gpth-tab {
-    &-button {
-        flex: 1;
-        border-radius: inherit;
-        // padding: 1rem 0.5rem;
-        // padding-inline: 1rem;
-        // padding-block: 0.4rem;
-        padding: calc(var(--p-btn) * 0.35);
-        text-align: center;
-        cursor: pointer;
+	&-button {
+		flex: 1;
+		// padding: 1rem 0.5rem;
+		// padding-inline: 1rem;
+		// padding-block: 0.4rem;
+		padding: calc(var(--p-btn) * 0.35);
+		text-align: center;
+		cursor: pointer;
+		border-radius: inherit;
 
-        &.active {
-            background-color: var(--c-accent);
-            color: var(--c-on-accent) !important;
-        }
-    }
+		&.active {
+			color: var(--c-on-accent) !important;
+			background-color: var(--c-accent);
+		}
+	}
 
-    &-pane {
-        margin-inline: 0.2rem; // simulate space from the scrollbar
-        @extend %animFadeIn;
-    }
+	&-pane {
+		margin-inline: 0.2rem; // simulate space from the scrollbar
+		@extend %animFadeIn;
+	}
 }

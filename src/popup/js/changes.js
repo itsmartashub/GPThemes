@@ -169,4 +169,4 @@ const generateChangelog = () => {
 // Generate the final changelog HTML
 const RELEASE_CHANGES = generateChangelog()
 
-export { RELEASE_CHANGES, links }
+export { links, RELEASE_CHANGES }

@@ -1,74 +1,73 @@
 .gpth-settings {
-    input[type="range"] {
-        --track-bg: var(--c-accent-50);
-        --thumb-bg: var(--c-accent);
-        --thumb-focus-outline: var(--c-accent);
-        --track-height: 0.75rem;
-        --track-radius: 50vw;
-        --track-outline: 3px solid oklch(var(--from-accent) / 0.8);
-        --thumb-size-multiplier: 0.8;
-        --thumb-size: calc(var(--track-height) * var(--thumb-size-multiplier));
-        --thumb-radius: 50vw;
-        --thumb-margin-top: calc((var(--track-height) - var(--thumb-size)) / 2);
-        --focus-outline-size: 3px;
-        --focus-outline-offset: 0.125rem;
+	input[type='range'] {
+		--track-bg: var(--c-accent-50);
+		--thumb-bg: var(--c-accent);
+		--thumb-focus-outline: var(--c-accent);
+		--track-height: 0.75rem;
+		--track-radius: 50vw;
+		--track-outline: 3px solid oklch(var(--from-accent) / 0.8);
+		--thumb-size-multiplier: 0.8;
+		--thumb-size: calc(var(--track-height) * var(--thumb-size-multiplier));
+		--thumb-radius: 50vw;
+		--thumb-margin-top: calc((var(--track-height) - var(--thumb-size)) / 2);
+		--focus-outline-size: 3px;
+		--focus-outline-offset: 0.125rem;
 
-        appearance: none;
-        background-color: transparent;
-        cursor: pointer;
-        // width: var(--input-width)
+		appearance: none;
+		cursor: pointer;
+		background-color: transparent;
+		// width: var(--input-width)
 
-        &:hover,
-        &:focus {
-            // --track-height: 0.8rem;
+		&:hover,
+		&:focus {
+			// --track-height: 0.8rem;
 
-            --thumb-size-multiplier: 1.4;
-            --track-outline: 3px solid transparent;
-        }
+			--thumb-size-multiplier: 1.4;
+			--track-outline: 3px solid transparent;
+		}
 
-        &::-moz-range-track,
-        &::-webkit-slider-runnable-track {
-            background-color: var(--track-bg);
-            border-radius: var(--track-radius);
-            height: var(--track-height);
-            width: 100%;
-            transition: 0.25s;
-            outline: var(--track-outline);
-            // outline-offset: 2px;
-        }
+		&::-moz-range-track,
+		&::-webkit-slider-runnable-track {
+			width: 100%;
+			height: var(--track-height);
+			outline: var(--track-outline);
+			background-color: var(--track-bg);
+			border-radius: var(--track-radius);
+			transition: 0.25s;
+			// outline-offset: 2px;
+		}
 
-        &::-webkit-slider-thumb,
-        &::-moz-range-thumb {
-            background-color: var(--thumb-bg);
-            border-radius: var(--thumb-radius);
-            height: var(--thumb-size);
-            width: var(--thumb-size);
-            transition: 0.25s;
+		&::-webkit-slider-thumb,
+		&::-moz-range-thumb {
+			width: var(--thumb-size);
+			height: var(--thumb-size);
+			background-color: var(--thumb-bg);
+			border-radius: var(--thumb-radius);
+			transition: 0.25s;
 
-            // &:focus {
-            //     outline: var(--focus-outline-size) solid var(--thumb-focus-outline);
-            //     outline-offset: var(--focus-outline-offset);
-            // }
-        }
+			// &:focus {
+			//     outline: var(--focus-outline-size) solid var(--thumb-focus-outline);
+			//     outline-offset: var(--focus-outline-offset);
+			// }
+		}
 
-        &::-webkit-slider-thumb {
-            appearance: none;
-            margin-top: var(--thumb-margin-top);
-        }
+		&::-webkit-slider-thumb {
+			margin-top: var(--thumb-margin-top);
+			appearance: none;
+		}
 
-        &::-moz-range-thumb {
-            border: none;
-        }
+		&::-moz-range-thumb {
+			border: none;
+		}
 
-        &:focus {
-
-            &::-webkit-slider-thumb,
-            &::-moz-range-thumb {
-                outline: var(--focus-outline-size) solid var(--thumb-focus-outline);
-                outline-offset: var(--focus-outline-offset);
-                // outline: var(--focus-outline-size) solid var(--thumb-focus-outline);
-                // outline-offset: var(--focus-outline-offset);
-            }
-        }
-    }
+		&:focus {
+			&::-webkit-slider-thumb,
+			&::-moz-range-thumb {
+				outline: var(--focus-outline-size) solid var(--thumb-focus-outline);
+				outline-offset: var(--focus-outline-offset);
+				// outline: var(--focus-outline-size) solid var(--thumb-focus-outline);
+				// outline-offset: var(--focus-outline-offset);
+			}
+		}
+	}
 }

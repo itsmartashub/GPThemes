@@ -1,17 +1,16 @@
-[data-app-shell-focus-area="right-panel"] {
-
-    // Composer bg when opened image from "Images"
-    [class^="@container"][role="presentation"].bg-surface-secondary {
-            // --color-surface-secondary: color-mix(var(--c-accent) 4%, var(--c-surface-1)) !important;
-            --color-surface-secondary: var(--c-bg-chats-container) !important;
-    }
+[data-app-shell-focus-area='right-panel'] {
+	// Composer bg when opened image from "Images"
+	[class^='@container'][role='presentation'].bg-surface-secondary {
+		// --color-surface-secondary: color-mix(var(--c-accent) 4%, var(--c-surface-1)) !important;
+		--color-surface-secondary: var(--c-bg-chats-container) !important;
+	}
 }
 
 // A moze i [data-testid="chatgpt-library-file-citation"]
-button[class*="filePill-"] {
-    background-color: var(--c-accent-12) !important;
+button[class*='filePill-'] {
+	background-color: var(--c-accent-12) !important;
 
-    &:hover {
-        background-color: var(--c-accent-20) !important;
-    }
+	&:hover {
+		background-color: var(--c-accent-20) !important;
+	}
 }

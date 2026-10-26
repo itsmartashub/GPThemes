@@ -1,57 +1,55 @@
 /* Created image in chat bubbles and in "Library" */
 /* New "Create Image" image wrapper */
 .group\/imagegen-image {
-    border-radius: var(--br-contextmenu) !important;
-    @include imgTrans;
+	border-radius: var(--br-contextmenu) !important;
+	@include imgTrans;
 
-    button[class*="bg-white/15"] {
-        background-color: var(--c-accent-light) !important;
-        color: var(--c-accent) !important;
-        // backdrop-filter: blur(18px) !important;
-    }
+	button[class*='bg-white/15'] {
+		color: var(--c-accent) !important;
+		background-color: var(--c-accent-light) !important;
+		// backdrop-filter: blur(18px) !important;
+	}
 
-    // Text and buttons showed over image on image hover: download, like, dislike and image name
-    // .text-white {
-    //     color: black !important;
+	// Text and buttons showed over image on image hover: download, like, dislike and image name
+	// .text-white {
+	//     color: black !important;
 
-    //     &.ps-4.font-semibold {
-    //         background-color: var(--c-accent-light);
-    //         padding-inline: 0.4rem !important;
-    //         margin-left: 0.5rem;
-    //         border-radius: 50vw;
-    //     }
-    // }
+	//     &.ps-4.font-semibold {
+	//         background-color: var(--c-accent-light);
+	//         padding-inline: 0.4rem !important;
+	//         margin-left: 0.5rem;
+	//         border-radius: 50vw;
+	//     }
+	// }
 }
 
 /* Dialog when opened image from library (created image) */
-[data-testid="modal-lightbox-new"] {
+[data-testid='modal-lightbox-new'] {
+	button[role='option'] {
+		background-color: var(--c-accent-20) !important;
+		border-color: var(--c-accent-20) !important;
+		transition: transform 0.15s $easeOutBack, opacity 0.15s linear;
 
-    button[role="option"] {
-        transition: transform .15s $easeOutBack, opacity .15s linear;
-        border-color: var(--c-accent-20) !important;
-        background-color: var(--c-accent-20) !important;
+		&[aria-selected='false']:hover {
+			opacity: 1 !important;
+			// transform: scale(1) !important;
+		}
+	}
 
-        &[aria-selected="false"]:hover {
-            opacity: 1 !important;
-            // transform: scale(1) !important;
-        }
-    }
+	[role='listbox'] {
+		padding: 0 !important;
+	}
 
-    [role="listbox"] {
-        padding: 0 !important;
-    }
-
-    /* pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-white via-white/90 to-transparent dark:from-[#212121] dark:via-[#212121]/60 dark:to-transparent */
-    /* aside right, vertical aka slider with small library images */
-    .absolute.pointer-events-none {
-
-        &.bg-gradient-to-l,
-        &.bg-gradient-to-r,
-        &.bg-gradient-to-b,
-        &.bg-gradient-to-t {
-            --tw-gradient-via: var(--c-bg-dialog) !important;
-            --tw-gradient-from: var(--c-bg-dialog) !important;
-            --tw-gradient-to: transparent !important;
-        }
-    }
+	/* pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-white via-white/90 to-transparent dark:from-[#212121] dark:via-[#212121]/60 dark:to-transparent */
+	/* aside right, vertical aka slider with small library images */
+	.absolute.pointer-events-none {
+		&.bg-gradient-to-l,
+		&.bg-gradient-to-r,
+		&.bg-gradient-to-b,
+		&.bg-gradient-to-t {
+			--tw-gradient-via: var(--c-bg-dialog) !important;
+			--tw-gradient-from: var(--c-bg-dialog) !important;
+			--tw-gradient-to: transparent !important;
+		}
+	}
 }

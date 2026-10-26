@@ -5,12 +5,12 @@ on:
     workflow_call:
         inputs:
             skip-biome:
-                description: 'Set to true to skip Biome checks'
+                description: "Set to true to skip Biome checks"
                 required: false
                 type: boolean
                 default: false
             skip-stylelint:
-                description: 'Set to true to skip Stylelint checks'
+                description: "Set to true to skip Stylelint checks"
                 required: false
                 type: boolean
                 default: false
@@ -30,13 +30,13 @@ jobs:
             - name: Install pnpm
               uses: pnpm/action-setup@v4
               with:
-                  version: '10'
+                  version: "10"
 
             - name: Setup Node.js & pnpm
               uses: actions/setup-node@v4
               with:
-                  node-version: '24'
-                  cache: 'pnpm'
+                  node-version: "24"
+                  cache: "pnpm"
 
             - name: Install pnpm deps
               run: pnpm install --frozen-lockfile

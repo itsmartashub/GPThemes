@@ -1,6 +1,6 @@
 import { $ } from '../../utils/dom.js'
 import { getItem, setItem } from '../../utils/storage.js'
-import { renderSlider, paintSlider, roundToStep } from './renderSlider.js'
+import { paintSlider, renderSlider, roundToStep } from './renderSlider.js'
 
 export function createSliderSetting(config) {
 	const {

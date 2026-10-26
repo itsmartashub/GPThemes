@@ -1,108 +1,108 @@
 .gpth-switch {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 0.8rem;
-    font-size: 1rem;
-    padding: var(--p-btn);
-    margin-bottom: 0.5rem;
-    border-radius: calc(var(--br-btn) * 1.5);
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: 0.25s ease-in;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.8rem;
+	align-items: center;
+	justify-content: space-between;
+	padding: var(--p-btn);
+	margin-bottom: 0.5rem;
+	font-size: 1rem;
+	cursor: pointer;
+	border: 1px solid transparent;
+	border-radius: calc(var(--br-btn) * 1.5);
+	transition: 0.25s ease-in;
 
-    @include dev("xxs") {
-        display: grid;
-        gap: 1rem 0.5rem;
-        grid-template-areas:
-            "icon . checkbox"
-            "text text text";
-    }
+	@include dev('xxs') {
+		display: grid;
+		grid-template-areas:
+			'icon . checkbox'
+			'text text text';
+		gap: 1rem 0.5rem;
+	}
 
-    &:hover {
-        background-color: var(--c-accent-10);
-        border-color: var(--c-accent-10) !important;
-        transform: scale(0.98);
-    }
+	&:hover {
+		background-color: var(--c-accent-10);
+		border-color: var(--c-accent-10) !important;
+		transform: scale(0.98);
+	}
 
-    &__icon {
-        --icon-size: 2.8em;
-        --svg-muliplicator: 0.6;
+	&__icon {
+		--icon-size: 2.8em;
+		--svg-muliplicator: 0.6;
+		display: grid;
+		place-items: center;
 
-        width: var(--icon-size);
-        height: var(--icon-size);
-        display: grid;
-        place-items: center;
-        border-radius: 1rem;
-        background-color: var(--c-accent-20);
-        color: var(--c-accent);
+		width: var(--icon-size);
+		height: var(--icon-size);
+		color: var(--c-accent);
+		background-color: var(--c-accent-20);
+		border-radius: 1rem;
 
-        svg {
-            width: calc(var(--icon-size) * var(--svg-muliplicator));
-            height: calc(var(--icon-size) * var(--svg-muliplicator));
-        }
+		svg {
+			width: calc(var(--icon-size) * var(--svg-muliplicator));
+			height: calc(var(--icon-size) * var(--svg-muliplicator));
+		}
 
-        @include dev("xxs") {
-            grid-area: icon;
-        }
-    }
+		@include dev('xxs') {
+			grid-area: icon;
+		}
+	}
 
-    &__text {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 0.1rem;
+	&__text {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		gap: 0.1rem;
 
-        .title {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 0.8em;
-            font-weight: bold;
-            color: var(--c-accent);
-            text-transform: uppercase;
-            line-height: 1;
-            margin-bottom: 0.25rem;
-        }
+		.title {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.4rem;
+			align-items: center;
+			margin-bottom: 0.25rem;
+			font-size: 0.8em;
+			font-weight: bold;
+			line-height: 1;
+			color: var(--c-accent);
+			text-transform: uppercase;
+		}
 
-        .subtitle {
-            font-size: 0.7em;
-            line-height: 1.25;
-            font-weight: 400;
-        }
+		.subtitle {
+			font-size: 0.7em;
+			font-weight: 400;
+			line-height: 1.25;
+		}
 
-        @include dev("xxs") {
-            grid-area: text;
-        }
-    }
+		@include dev('xxs') {
+			grid-area: text;
+		}
+	}
 
-    // Optional pills next to a toggle title, eg NEW or MOBILE + EN. The wrapper keeps pills tighter to each other than to the label
-    &__badges {
-        display: inline-flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 0.2rem;
-    }
+	// Optional pills next to a toggle title, eg NEW or MOBILE + EN. The wrapper keeps pills tighter to each other than to the label
+	&__badges {
+		display: inline-flex;
+		flex-wrap: wrap;
+		gap: 0.2rem;
+		align-items: center;
+	}
 
-    &__badge {
-        display: inline-block;
-        padding: 0.08rem 0.35rem;
-        font-size: 0.62em;
-        font-weight: 700;
-        line-height: 1.4;
-        letter-spacing: 0.03em;
-        text-transform: uppercase;
-        white-space: nowrap;
-        color: var(--c-on-accent);
-        background-color: var(--c-accent);
-        border-radius: $pill;
-    }
+	&__badge {
+		display: inline-block;
+		padding: 0.08rem 0.35rem;
+		font-size: 0.62em;
+		font-weight: 700;
+		line-height: 1.4;
+		color: var(--c-on-accent);
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+		white-space: nowrap;
+		background-color: var(--c-accent);
+		border-radius: $pill;
+	}
 
-    .gpth-checkbox {
-        @include dev("xxs") {
-            grid-area: checkbox;
-        }
-    }
+	.gpth-checkbox {
+		@include dev('xxs') {
+			grid-area: checkbox;
+		}
+	}
 }

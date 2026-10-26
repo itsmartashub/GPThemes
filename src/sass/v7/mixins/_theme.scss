@@ -1,32 +1,32 @@
-$theme-target: "both" !default; // "attr" | "class" | "both"
-$theme-attr: "data-theme" !default; // only used by "attr" and "both"
+$theme-target: 'both' !default; // "attr" | "class" | "both"
+$theme-attr: 'data-theme' !default; // only used by "attr" and "both"
 
-@mixin theme-root($mode, $extra: "", $target: $theme-target) {
-    @if $target !="class" {
-        html[#{$theme-attr}="#{$mode}"]#{$extra} {
-            @content;
-        }
-    }
+@mixin theme-root($mode, $extra: '', $target: $theme-target) {
+	@if $target != 'class' {
+		html[#{$theme-attr}='#{$mode}']#{$extra} {
+			@content;
+		}
+	}
 
-    @if $target !="attr" {
-        html.#{$mode}#{$extra} {
-            @content;
-        }
-    }
+	@if $target != 'attr' {
+		html.#{$mode}#{$extra} {
+			@content;
+		}
+	}
 }
 
 @mixin theme($mode, $target: $theme-target) {
-    @if $target !="class" {
-        html[#{$theme-attr}="#{$mode}"] & {
-            @content;
-        }
-    }
+	@if $target != 'class' {
+		html[#{$theme-attr}='#{$mode}'] & {
+			@content;
+		}
+	}
 
-    @if $target !="attr" {
-        html.#{$mode} & {
-            @content;
-        }
-    }
+	@if $target != 'attr' {
+		html.#{$mode} & {
+			@content;
+		}
+	}
 }
 
 /* Usage
