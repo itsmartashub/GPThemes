@@ -212,7 +212,18 @@
     // // Badge color, ali i code-block
     // --color-background-secondary-soft-alpha: var(--c-surface-3) !important;
     // --color-text-secondary-soft: var(--c-subtext-2) !important;
+    --color-background-secondary-soft-alpha-hover: var(--c-accent-20) !important; // Some buttons on hover bg
+    --color-background-secondary-soft-alpha-active: var(--c-accent-40) !important; // Some buttons on hover bg
+
+    /*
+    --button-background-color: var(--color-background-secondary-soft-alpha);
+    --button-background-color-hover: var(--color-background-secondary-soft-alpha-hover);
+    --button-background-color-active: var(--color-background-secondary-soft-alpha-active);
+    --button-text-color: var(--color-text-secondary-soft);
+    --button-ring-color: var(--color-ring-secondary-soft);
+    */
 }
+
 
 // =========================================================
 :root {
