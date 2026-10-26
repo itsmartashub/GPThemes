@@ -1,10 +1,15 @@
+import { debounce } from '../utils/dom.js'
 import { icon_kofi_cup } from './components/icons.js'
 import { renderHeaderAction } from './components/renderHeaderActions.js'
 import { PFX } from './config/consts.js'
 import { SELECTORS } from './config/selectors.js'
 import { init as initColors, mount as mountColors, renderColorsTab } from './custom-colors/index.js'
 import { init as initFonts, mount as mountFonts, renderFontsTab } from './custom-fonts/index.js'
-import { init as initWidths, mount as mountWidths, renderLayoutsTab } from './custom-layouts/index.js'
+import {
+	init as initWidths,
+	mount as mountWidths,
+	renderLayoutsTab,
+} from './custom-layouts/index.js'
 
 // =====================================================
 // STATE - global state (cached refs, constants)
@@ -12,6 +17,7 @@ import { init as initWidths, mount as mountWidths, renderLayoutsTab } from './cu
 let $settings = null
 let $tabButtons = []
 let $tabPanes = []
+let $fab = null
 
 const ACTIVE_CLASS = 'active'
 const HIDDEN_CLASS = 'hidden'
@@ -139,9 +145,19 @@ function setElements(root) {
 // =====================================================
 // LISTENERS
 // =====================================================
+const onWindowResizeDebounced = debounce(onWindowResize, 150)
+
+function onWindowResize() {
+	if (isSettingsOpen() && $fab) {
+		positionPanel($fab, $settings)
+	}
+}
+
 function addListeners() {
-	$settings.querySelector(`.${SELECTORS.SETTINGS.TABS.BUTTONS}`)?.addEventListener('click', onTabsSwitching)
-	// handleTabsSwitching()
+	$settings
+		.querySelector(`.${SELECTORS.SETTINGS.TABS.BUTTONS}`)
+		?.addEventListener('click', onTabsSwitching)
+	window.addEventListener('resize', onWindowResizeDebounced)
 }
 
 function onClickOutside(e) {
@@ -159,8 +175,6 @@ function onTabsSwitching(e) {
 	const newIndex = +btn.dataset.tab
 	const activeIndex = $tabButtons.findIndex((t) => t.classList.contains(ACTIVE_CLASS))
 
-	// console.log(activeIndex, newIndex)
-
 	if (activeIndex === newIndex) return
 
 	// Swap states
@@ -170,9 +184,88 @@ function onTabsSwitching(e) {
 	$tabPanes[newIndex].classList.remove(HIDDEN_CLASS)
 }
 
-function onOpenSettings() {
+// =====================================================
+// PANEL POSITIONING
+// =====================================================
+
+// SMALL_SCREEN_PX must match the $sm breakpoint (640px) in _bp.scss
+const SMALL_SCREEN_PX = 640
+
+/* Gap in pixels between the FAB and the panel edge. */
+const PANEL_GAP = 10
+
+/* Position the settings panel relative to $fab, choosing the side with the most room.
+Order of preference: right → left → below → above.
+On screens ≤ SMALL_SCREEN_PX the panel is a centered sheet — CSS handles it, JS stays out. */
+function positionPanel($fabEl, $panel) {
+	if (!$fabEl || !$panel) return
+	if (window.innerWidth <= SMALL_SCREEN_PX) {
+		// Reset any JS-set position so the CSS sheet layout takes over
+		$panel.style.left = ''
+		$panel.style.top = ''
+		$panel.style.right = ''
+		$panel.style.bottom = ''
+		return
+	}
+
+	const vw = window.innerWidth
+	const vh = window.innerHeight
+	const fab = $fabEl.getBoundingClientRect()
+	const pw = $panel.offsetWidth
+	const ph = $panel.offsetHeight
+
+	const spaceRight = vw - fab.right - PANEL_GAP
+	const spaceLeft = fab.left - PANEL_GAP
+	const spaceBelow = vh - fab.bottom - PANEL_GAP
+
+	const maxTop = Math.max(PANEL_GAP, vh - ph - PANEL_GAP)
+	const maxLeft = Math.max(PANEL_GAP, vw - pw - PANEL_GAP)
+
+	let left, top
+
+	if (spaceRight >= pw) {
+		// Right of FAB
+		left = fab.right + PANEL_GAP
+		top = Math.min(Math.max(fab.top, PANEL_GAP), maxTop)
+	} else if (spaceLeft >= pw) {
+		// Left of FAB
+		left = fab.left - pw - PANEL_GAP
+		top = Math.min(Math.max(fab.top, PANEL_GAP), maxTop)
+	} else if (spaceBelow >= ph) {
+		// Below FAB
+		top = fab.bottom + PANEL_GAP
+		left = Math.min(Math.max(fab.left, PANEL_GAP), maxLeft)
+	} else {
+		// Above FAB (fallback)
+		top = Math.max(fab.top - ph - PANEL_GAP, PANEL_GAP)
+		left = Math.min(Math.max(fab.left, PANEL_GAP), maxLeft)
+	}
+
+	$panel.style.left = `${Math.round(left)}px`
+	$panel.style.top = `${Math.round(top)}px`
+	$panel.style.right = 'auto'
+	$panel.style.bottom = 'auto'
+}
+
+function isSettingsOpen() {
+	return Boolean($settings?.classList.contains(SELECTORS.SETTINGS.OPEN_STATE))
+}
+
+function toggleSettings($fabEl) {
+	if (isSettingsOpen()) {
+		onCloseSettings()
+	} else {
+		onOpenSettings($fabEl)
+	}
+}
+
+function onOpenSettings($fabEl) {
 	if (!$settings) return console.warn('[GPThemes] $settings not found')
 
+	// Cache the triggering FAB element so positionPanel can re-use it
+	$fab = $fabEl ?? $fab
+
+	positionPanel($fab, $settings)
 	$settings.classList.add(SELECTORS.SETTINGS.OPEN_STATE)
 
 	// Small delay to allow reflow before attaching listener
@@ -191,4 +284,11 @@ function onCloseSettings() {
 // =====================================================
 // Exports
 // =====================================================
-export { createSettings, onOpenSettings, onCloseSettings }
+export {
+	createSettings,
+	onOpenSettings,
+	onCloseSettings,
+	toggleSettings,
+	isSettingsOpen,
+	positionPanel,
+}

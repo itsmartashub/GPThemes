@@ -1,0 +1,78 @@
+// Project-level Zed settings (override user settings for this repo)
+{
+    "format_on_save": "on",
+    "tab_size": 4,
+    "soft_wrap": "bounded",
+    "preferred_line_length": 100,
+    // Disable Prettier so it cannot override Biome's style on save
+    "prettier": {
+        "allowed": false,
+    },
+    "languages": {
+        "JavaScript": {
+            "format_on_save": "on",
+            "formatter": {
+                "external": {
+                    "command": "pnpm",
+                    "arguments": [
+                        "exec",
+                        "biome",
+                        "format",
+                        "--stdin-file-path",
+                        "{buffer_path}",
+                    ],
+                },
+            },
+        },
+        "TypeScript": {
+            "format_on_save": "on",
+            "formatter": {
+                "external": {
+                    "command": "pnpm",
+                    "arguments": [
+                        "exec",
+                        "biome",
+                        "format",
+                        "--stdin-file-path",
+                        "{buffer_path}",
+                    ],
+                },
+            },
+        },
+        "TSX": {
+            "format_on_save": "on",
+            "formatter": {
+                "external": {
+                    "command": "pnpm",
+                    "arguments": [
+                        "exec",
+                        "biome",
+                        "format",
+                        "--stdin-file-path",
+                        "{buffer_path}",
+                    ],
+                },
+            },
+        },
+        "JSON": {
+            "format_on_save": "on",
+            "formatter": {
+                "external": {
+                    "command": "pnpm",
+                    "arguments": [
+                        "exec",
+                        "biome",
+                        "format",
+                        "--stdin-file-path",
+                        "{buffer_path}",
+                    ],
+                },
+            },
+        },
+        "SCSS": {
+            // Stylelint handles SCSS; keep Zed from reformatting it
+            "format_on_save": "off",
+            "formatter": null,
+        },
+    },
+}

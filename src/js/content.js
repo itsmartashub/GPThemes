@@ -1,10 +1,11 @@
-import { init as initFAB } from './app/custom-fab/index'
+import { init as initFAB } from './app/custom-fab/index.js'
+import { setupExtensionMessaging } from './app/messaging/index.js'
+import { createSettings } from './app/settingsManager.js'
 
 // !! Chat bubbles are mounted from custom-layouts after Settings render !!
 // !! User bubble accent toggle is mounted from Colors module after Settings render !!
 
 const CONFIG = {
-	// TARGET_SELECTOR: '.gpth-settings',
 	TARGET_SELECTOR: '.gpth-fab',
 	RETRY_DELAY: 3000,
 	MAX_RETRIES: 4,
@@ -19,7 +20,8 @@ async function initExt() {
 	// console.log(`[🎨GPThemes]: Initializing components (attempt ${retryCount + 1}/${CONFIG.MAX_RETRIES})`)
 
 	try {
-		initFAB()
+		await Promise.all([initFAB(), createSettings()])
+		setupExtensionMessaging()
 		// !! Settings modules (colors, fonts, layouts) are initialized inside settingsManager after DOM attach !!
 	} catch (error) {
 		console.error('[🎨GPThemes]: Critical initialization error:', error)
