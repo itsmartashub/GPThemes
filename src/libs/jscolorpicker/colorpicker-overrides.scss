@@ -1,6 +1,4 @@
-// Overrides on top of colorpicker.min.scss (the upstream/minified stylesheet). Keep colorpicker.min.scss untouched. This file only contains the deltas needed to match GPThemes styling. Import min first, then this file.
-
-// Theme variables: replace min's hardcoded light/dark palette with project tokens.
+// Overrides on top of colorpicker.min.scss (the upstream/minified stylesheet). Keep colorpicker.min.scss untouched. This file only contains the deltas needed to match GPThemes styling. Import min first, then this file
 html.light,
 html.dark,
 html[data-theme],
@@ -8,7 +6,6 @@ html[data-theme='light'],
 html[data-theme='dark'] {
   --cp-body-bg: var(--c-surface-2) !important;
   --cp-body-color: var(--c-txt) !important;
-  --cp-body-color-rgb: 33, 37, 41 !important;
 
   --cp-border-color: var(--c-accent-12) !important;
   --cp-hover-color: var(--c-accent-light) !important;
@@ -17,55 +14,16 @@ html[data-theme='dark'] {
   --cp-tertiary-color: var(--c-accent-12) !important;
 }
 
-// Sizing / shadow / checker overrides.
 :root {
-  --cp-box-shadow: 0 0.5rem 1rem var(--c-accent-10);
-  --cp-box-shadow-sm: 0 0.125rem 0.25rem var(--c-accent-10);
-
-  --cp-bg-checker: repeating-conic-gradient(var(--c-accent) 0% 25%, transparent 0% 50%) 50% / 0.5rem 0.5rem;
+    --cp-border-radius-sm: calc(var(--br) * 0.7);
 }
 
-// Picker toggle button: drop min's 1px padding on the non-wide variant.
-.color-picker:not(.cp_wide) {
-  padding: 0;
-}
-
-// Caret uses accent colors.
+// Caret uses accent colors
 .cp_caret {
-  background-color: var(--c-accent-light);
-  color: var(--c-accent);
+  color: var(--c-on-accent);
 }
 
-// Dialog: accent base color + custom responsive width.
-.cp_dialog {
-  --cp-base-color: var(--c-accent);
-
-  --cp-min-w: 12rem;
-  --cp-mid-w: 70%;
-  --cp-max-w: 16rem;
-  width: clamp(var(--cp-min-w), var(--cp-mid-w), var(--cp-max-w));
-
-  @include dev('sm') {
-    --cp-mid-w: 80%;
-    --cp-max-w: 80%;
-  }
-}
-
-// Thumb perf hint.
-.cp_thumb {
-  will-change: left, top;
-}
-
-// Focus styles.
-.color-picker:focus-visible,
-.cp_dialog *:focus-visible {
-  outline: 0;
-  border-color: var(--cp-border-color);
-  box-shadow: 0 0 2px 0.1px var(--c-accent) inset;
-  background-image: none !important;
-}
-
-// Active format button uses accent.
+// Active format button uses accent
 .cp_format[aria-checked='true'] {
   @include accent('prim');
 
@@ -73,21 +31,16 @@ html[data-theme='dark'] {
     @include accent('sec');
   }
 }
+// Action buttons
+.cp_action {
+    @include accent('prim');
 
-// Input group radius.
-.cp_input-group {
-  border-radius: 50vw;
+    &:hover {
+      @include accent('sec');
+    }
 }
 
-.cp_input-group > :first-child {
-  border-radius: var(--cp-border-radius-lg) 0 0 var(--cp-border-radius-lg);
-}
-
-.cp_input-group > :last-child {
-  border-radius: 0 var(--cp-border-radius-lg) var(--cp-border-radius-lg) 0;
-}
-
-// Value input.
+// Value input
 .cp_value {
   border: 1px solid var(--c-accent-10);
   color: var(--c-accent);
@@ -95,19 +48,66 @@ html[data-theme='dark'] {
   background-image: linear-gradient(45deg, var(--c-accent-20));
 }
 
-// Action buttons.
-.cp_action {
-  color: var(--c-on-accent);
-  background-color: var(--c-accent);
+.cp_button {
+    border-radius: var(--cp-border-radius-sm);
 }
 
-.cp_action:hover {
-  background-color: var(--c-accent-light);
-  color: var(--c-accent);
-}
-
-// Performance boost.
+// Thumb performance boost
 .cp_thumb {
+  will-change: left, top;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
+
+// Sizing / shadow / checker overrides
+// :root {
+//   --cp-box-shadow: 0 0.5rem 1rem var(--c-accent-10);
+//   --cp-box-shadow-sm: 0 0.125rem 0.25rem var(--c-accent-10);
+
+//   --cp-bg-checker: repeating-conic-gradient(var(--c-accent) 0% 25%, transparent 0% 50%) 50% / 0.5rem 0.5rem;
+// }
+
+// // Picker toggle button: drop min's 1px padding on the non-wide variant
+// .color-picker:not(.cp_wide) {
+//   padding: 0;
+// }
+
+
+// // Dialog: accent base color + custom responsive width.
+// .cp_dialog {
+//   --cp-base-color: var(--c-accent);
+
+//   --cp-min-w: 12rem;
+//   --cp-mid-w: 70%;
+//   --cp-max-w: 16rem;
+//   width: clamp(var(--cp-min-w), var(--cp-mid-w), var(--cp-max-w));
+
+//   @include dev('sm') {
+//     --cp-mid-w: 80%;
+//     --cp-max-w: 80%;
+//   }
+// }
+
+
+// // Focus styles.
+// .color-picker:focus-visible,
+// .cp_dialog *:focus-visible {
+//   outline: 0;
+//   border-color: var(--cp-border-color);
+//   box-shadow: 0 0 2px 0.1px var(--c-accent) inset;
+//   background-image: none !important;
+// }
+
+
+// // Input group radius.
+// .cp_input-group {
+//   border-radius: 50vw;
+// }
+
+// .cp_input-group > :first-child {
+//   border-radius: var(--cp-border-radius-lg) 0 0 var(--cp-border-radius-lg);
+// }
+
+// .cp_input-group > :last-child {
+//   border-radius: 0 var(--cp-border-radius-lg) var(--cp-border-radius-lg) 0;
+// }

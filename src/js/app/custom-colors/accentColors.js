@@ -1,4 +1,4 @@
-import ColorPicker from '../../../libs/jscolorpicker/colorpicker.min.js'
+import ColorPicker from '../../../libs/jscolorpicker/v1.1.0/colorpicker.min.js'
 import { getVar, removeVar, setVar, setVars } from '../../utils/dom.js'
 import { getItems, removeItems, setItem } from '../../utils/storage.js'
 import { Notify } from '../components/renderNotify.js'
