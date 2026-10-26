@@ -449,7 +449,8 @@ async function init() {
 	]
 
 	const stored = await getItems(keys)
-	const getStoredOrDefault = (configKey) => stored[CONFIG[configKey].storageKey] ?? CONFIG[configKey].default
+	const getStoredOrDefault = (configKey) =>
+		stored[CONFIG[configKey].storageKey] ?? CONFIG[configKey].default
 
 	const fontFamily = getStoredOrDefault('fontFamily')
 	const fontSize = getStoredOrDefault('fontSize')
@@ -491,4 +492,10 @@ function mount() {
 	addListeners()
 }
 
-export { addListeners as handleFontsListeners, init, mount, templateHTML as renderFontsTab, resetAll as resetAllFonts }
+export {
+	addListeners as handleFontsListeners,
+	init,
+	mount,
+	resetAll as resetAllFonts,
+	templateHTML as renderFontsTab,
+}

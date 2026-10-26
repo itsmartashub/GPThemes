@@ -1,4 +1,4 @@
-import { $, ROOT_HTML, bind, setVars } from '../../utils/dom.js'
+import { $, bind, ROOT_HTML, setVars } from '../../utils/dom.js'
 import { getItems, removeItems, setItems } from '../../utils/storage.js'
 import { icon_full_width, icon_sync } from '../components/icons.js'
 import { renderButton } from '../components/renderButtons.js'
@@ -6,9 +6,16 @@ import { Notify } from '../components/renderNotify.js'
 import { renderSliderCard } from '../components/renderSliderCard.js'
 import { renderToggle } from '../components/renderToggles.js'
 import { ATTR_WIDTH_CHAT_FULL, ATTR_WIDTH_PROMPT_SYNC } from '../config/consts-attr.js'
-import { SK_WIDTH_IS_FULL_ENABLED, SK_WIDTH_IS_SYNC_ENABLED, SK_WIDTH_SETTINGS } from '../config/consts-storage.js'
+import {
+	SK_WIDTH_IS_FULL_ENABLED,
+	SK_WIDTH_IS_SYNC_ENABLED,
+	SK_WIDTH_SETTINGS,
+} from '../config/consts-storage.js'
 import { SELECTORS } from '../config/selectors.js'
-import { renderCustomUserBubbleFullWidth, resetUserBubbleFullWidth } from './toggleUserBubbleFullWidth.js'
+import {
+	renderCustomUserBubbleFullWidth,
+	resetUserBubbleFullWidth,
+} from './toggleUserBubbleFullWidth.js'
 
 // ==========================================
 // CONSTANTS
@@ -62,7 +69,8 @@ let state = {
 const clamp = (v) => Math.max(SLIDER.MIN, Math.min(SLIDER.MAX, Number(v) || 0))
 
 /* Set or remove a boolean data-attribute on <html> */
-const setAttr = (attr, on) => (on ? ROOT_HTML.setAttribute(attr, '') : ROOT_HTML.removeAttribute(attr))
+const setAttr = (attr, on) =>
+	on ? ROOT_HTML.setAttribute(attr, '') : ROOT_HTML.removeAttribute(attr)
 
 /* Push slider CSS vars to :root inline style.
 When sync is active, the prompt var mirrors the chat value but we still write it so external reads are always correct */
@@ -132,8 +140,12 @@ function updateUI() {
 
 	// Defer class toggle to avoid fighting the paint that just happened
 	requestAnimationFrame(() => {
-		$(`#${SELECTORS.WIDTH.SLIDER_CHAT_ID}`)?.closest('.card')?.classList.toggle('is-locked', state.fullWidth)
-		$(`#${SELECTORS.WIDTH.SLIDER_TEXTAREA_ID}`)?.closest('.card')?.classList.toggle('is-locked', state.sync)
+		$(`#${SELECTORS.WIDTH.SLIDER_CHAT_ID}`)
+			?.closest('.card')
+			?.classList.toggle('is-locked', state.fullWidth)
+		$(`#${SELECTORS.WIDTH.SLIDER_TEXTAREA_ID}`)
+			?.closest('.card')
+			?.classList.toggle('is-locked', state.sync)
 	})
 }
 
@@ -262,7 +274,12 @@ function onToggleSyncWidths() {
 // ==========================================
 
 async function resetAll() {
-	state = { chatRem: SLIDER.DEFAULT_CHAT, promptRem: SLIDER.DEFAULT_PROMPT, fullWidth: false, sync: false }
+	state = {
+		chatRem: SLIDER.DEFAULT_CHAT,
+		promptRem: SLIDER.DEFAULT_PROMPT,
+		fullWidth: false,
+		sync: false,
+	}
 	applyAll()
 	updateUI()
 	await Promise.all([removeItems(Object.values(SK)), resetUserBubbleFullWidth()])
@@ -306,7 +323,10 @@ async function init() {
 // ==========================================
 function mount() {
 	bind($(`#${SELECTORS.WIDTH.SLIDER_CHAT_ID}`), { input: onChatSliderInput, change: saveState })
-	bind($(`#${SELECTORS.WIDTH.SLIDER_TEXTAREA_ID}`), { input: onPromptSliderInput, change: saveState })
+	bind($(`#${SELECTORS.WIDTH.SLIDER_TEXTAREA_ID}`), {
+		input: onPromptSliderInput,
+		change: saveState,
+	})
 	bind($(`#${SELECTORS.WIDTH.TOGGLE_FULL_ID}`), { change: onToggleFullWidth })
 	bind($(`#${SELECTORS.WIDTH.TOGGLE_SYNC_ID}`), { change: onToggleSyncWidths })
 	bind($(`#${SELECTORS.WIDTH.RESET_CHAT_ID}`), { click: () => resetWidth(RESET.chat) })
@@ -320,4 +340,4 @@ function mount() {
 // ==========================================
 // Exports
 // ==========================================
-export { templateHTML, init, mount, resetAll }
+export { init, mount, resetAll, templateHTML }

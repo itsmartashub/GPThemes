@@ -156,6 +156,7 @@ async function mount() {
 	// Use event delegation for better perf
 	$btnContainer.addEventListener('click', onClick)
 }
+
 // async function init() {
 // 	const position = await getFromStorage()
 // 	// Apply CSS vars early without requiring the settings UI to exist
@@ -163,4 +164,4 @@ async function mount() {
 // }
 
 // export { templateHTML as renderCustomScrolldown, init, mount }
-export { templateHTML as renderCustomScrolldown, mount }
+export { mount, templateHTML as renderCustomScrolldown }

@@ -1,29 +1,29 @@
 .gpth-fab,
 .gpth-settings {
-    p,
-    h2 {
-        margin: 0;
-    }
+	p,
+	h2 {
+		margin: 0;
+	}
 
-    input,
-    select,
-    textarea {
-        outline: none;
-        border: none;
-        background-color: transparent;
-        box-sizing: border-box;
-        font-feature-settings: inherit;
-        font-variation-settings: inherit;
-        letter-spacing: inherit;
-        color: inherit;
-        // margin: 0;
-        // padding: 0;
+	input,
+	select,
+	textarea {
+		box-sizing: border-box;
+		font-variation-settings: inherit;
+		font-feature-settings: inherit;
+		color: inherit;
+		letter-spacing: inherit;
+		outline: none;
+		background-color: transparent;
+		border: none;
+		// margin: 0;
+		// padding: 0;
 
-        &:focus,
-        &:focus-visible,
-        &:focus-within {
-            outline: none !important;
-            border: none !important;
-        }
-    }
+		&:focus,
+		&:focus-visible,
+		&:focus-within {
+			outline: none !important;
+			border: none !important;
+		}
+	}
 }

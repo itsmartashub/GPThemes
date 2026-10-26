@@ -1,76 +1,73 @@
-#main [role="presentation"] {
-    [data-message-author-role="assistant"] {
-        .markdown .not-prose {
-            .bg-linear-to-b {
-                background: none !important;
-            }
+#main [role='presentation'] {
+	[data-message-author-role='assistant'] {
+		.markdown .not-prose {
+			.bg-linear-to-b {
+				background: none !important;
+			}
 
-            /* Search - Maps */
-            .mapboxgl-map {
+			/* Search - Maps */
+			.mapboxgl-map {
+				/* Location counter bubbles in maps */
+				.mapboxgl-marker {
+					/* ============ OLD MAPS ============ */
+					/* Change the text color for selected location counter bubbles in the maps */
+					.text-white.absolute {
+						color: var(--c-on-accent) !important;
+					}
 
-                /* Location counter bubbles in maps */
-                .mapboxgl-marker {
+					/* Location counter bubble markers in the maps - when not selected */
+					svg > [fill='white'] {
+						fill: var(--c-on-accent) !important;
+					}
 
-                    /* ============ OLD MAPS ============ */
-                    /* Change the text color for selected location counter bubbles in the maps */
-                    .text-white.absolute {
-                        color: var(--c-on-accent) !important;
-                    }
+					/* Kao neki svg border od neaktivnih location bubble markers */
+					svg > [fill='black'] {
+						fill: var(--c-accent-20) !important;
+					}
 
-                    /* Location counter bubble markers in the maps - when not selected */
-                    svg>[fill="white"] {
-                        fill: var(--c-on-accent) !important;
-                    }
+					/* Location counter bubble markers in the maps - when selected/active */
+					svg > [fill='#282828'] {
+						fill: var(--c-accent) !important;
+					}
 
-                    /* Kao neki svg border od neaktivnih location bubble markers */
-                    svg>[fill="black"] {
-                        fill: var(--c-accent-20) !important;
-                    }
+					/* ============ NEW MAPS ============ */
+					.text-token-interactive-label-primary-press {
+						--interactive-label-primary-press: var(--c-on-accent) !important;
+						// color: var(--interactive-label-primary-press);
+					}
 
-                    /* Location counter bubble markers in the maps - when selected/active */
-                    svg>[fill="#282828"] {
-                        fill: var(--c-accent) !important;
-                    }
+					.bg-token-interactive-bg-primary-press {
+						--interactive-bg-primary-press: var(--c-accent) !important;
+						// background-color: var(--interactive-bg-primary-press);
+					}
 
-
-                    /* ============ NEW MAPS ============ */
-                    .text-token-interactive-label-primary-press {
-                        --interactive-label-primary-press: var(--c-on-accent) !important;
-                        // color: var(--interactive-label-primary-press);
-                    }
-
-                    .bg-token-interactive-bg-primary-press {
-                        --interactive-bg-primary-press: var(--c-accent) !important;
-                        // background-color: var(--interactive-bg-primary-press);
-                    }
-
-                    .bg-token-bg-primary {
-                        // background-color: color-mix(in oklch, var(--c-surface-2) 40%, transparent) !important;
-                        background-color: var(--c-accent-20) !important;
-                        backdrop-filter: blur(2rem);
-                        box-shadow: 0 0 0 1px var(--c-accent-50)
-                    }
-                }
-            }
-        }
-    }
+					.bg-token-bg-primary {
+						// background-color: color-mix(in oklch, var(--c-surface-2) 40%, transparent) !important;
+						background-color: var(--c-accent-20) !important;
+						box-shadow: 0 0 0 1px var(--c-accent-50);
+						backdrop-filter: blur(2rem);
+					}
+				}
+			}
+		}
+	}
 }
 
 /* ============ NEW MAPS - Google Map sidebar overlay ============ */
 #business-list-container {
-    // background-color: var(--c-surface-1) !important;
-    color: var(--c-accent) !important;
-    background-color: var(--c-accent-12) !important;
-    backdrop-filter: blur(2rem);
+	// background-color: var(--c-surface-1) !important;
+	color: var(--c-accent) !important;
+	background-color: var(--c-accent-12) !important;
+	backdrop-filter: blur(2rem);
 
-    [role="list"] {
-        [class*="hover:"] {
-            transition: transform 0.45s $easeOutQuint, background-color 0.45s $easeOutQuint;
+	[role='list'] {
+		[class*='hover:'] {
+			transition: transform 0.45s $easeOutQuint, background-color 0.45s $easeOutQuint;
 
-            &:hover {
-                background-color: rgba(0 0 0 / 0.125) !important;
-                transform: translateY(-0.225rem);
-            }
-        }
-    }
+			&:hover {
+				background-color: rgba(0 0 0 / 0.125) !important;
+				transform: translateY(-0.225rem);
+			}
+		}
+	}
 }

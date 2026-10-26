@@ -1,27 +1,27 @@
 $cardResetSize: 1.4rem;
 $cardResetOffset: $cardResetSize * 0.2;
 
-@import "_reset";
-@import "components/_typography";
-@import "components/_btn";
-@import "components/_colorpicker";
-@import "components/_range";
-@import "components/_slider";
-@import "components/_tabs";
-@import "components/_cards";
-@import "components/_fonts";
-@import "components/_switch";
-@import "components/_checkbox";
+@import '_reset';
+@import 'components/_typography';
+@import 'components/_btn';
+@import 'components/_colorpicker';
+@import 'components/_range';
+@import 'components/_slider';
+@import 'components/_tabs';
+@import 'components/_cards';
+@import 'components/_fonts';
+@import 'components/_switch';
+@import 'components/_checkbox';
 // @import "components/_scrolldown";
-@import "components/_toggle-chats-bg";
-@import "components/_notification";
-@import "components/_info";
-@import "sections/_header";
-@import "sections/_footer";
+@import 'components/_toggle-chats-bg';
+@import 'components/_notification';
+@import 'components/_info';
+@import 'sections/_header';
+@import 'sections/_footer';
 // @import "sections/_main";
-@import "layouts/_gpth-layouts";
-@import "_gpth-fab";
-@import "_gpth-settings";
+@import 'layouts/_gpth-layouts';
+@import '_gpth-fab';
+@import '_gpth-settings';
 
 // .autoprefix-test {
 //     display: flex;

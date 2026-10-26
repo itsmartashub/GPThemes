@@ -1,93 +1,91 @@
 .gpth-settings {
-    --w-scrollbar: 0.2rem;
-    --p: 2rem;
-    --gpth-settings-max-h: 75vh;
-    --shadow-color: var(--c-accent-10);
-    --shadow-values: inset 0 0 20px 10px;
-    --c-scrollbar-thumb: var(--c-accent-30) !important;
+	--w-scrollbar: 0.2rem;
+	--p: 2rem;
+	--gpth-settings-max-h: 75vh;
+	--shadow-color: var(--c-accent-10);
+	--shadow-values: inset 0 0 20px 10px;
+	--c-scrollbar-thumb: var(--c-accent-30) !important;
 
-    position: fixed;
-    display: flex;
-    flex-direction: column;
+	position: fixed;
 
-    // JS sets inline left/top after positionPanel(). The defaults below are the fallback for first open before any drag
-    top: calc(var(--h-header) + 0.5rem + 3rem);
-    right: 1.3rem;
-    left: auto;
-    width: clamp(25rem, 25vw, 30rem);
-    max-height: var(--gpth-settings-max-h);
-    padding: var(--p);
-    opacity: 0;
-    @include menuBg;
-    border: 1px solid var(--c-accent-10);
-    border-radius: var(--br-dialog);
-    pointer-events: none;
-    transform: scale(0.96) translateY(-6px);
-    transform-origin: top left;
-    z-index: calc(var(--z-modal) + 10);
-    overflow: clip auto;
-    transition:
-        transform 0.25s $easeOutBack,
-        opacity 0.2s ease;
+	// JS sets inline left/top after positionPanel(). The defaults below are the fallback for first open before any drag
+	top: calc(var(--h-header) + 0.5rem + 3rem);
+	right: 1.3rem;
+	left: auto;
+	z-index: calc(var(--z-modal) + 10);
+	display: flex;
+	flex-direction: column;
+	width: clamp(25rem, 25vw, 30rem);
+	max-height: var(--gpth-settings-max-h);
+	padding: var(--p);
+	overflow: clip auto;
+	pointer-events: none;
+	border: 1px solid var(--c-accent-10);
+	border-radius: var(--br-dialog);
+	opacity: 0;
+	transform: scale(0.96) translateY(-6px);
+	transform-origin: top left;
+	transition: transform 0.25s $easeOutBack, opacity 0.2s ease;
+	@include menuBg;
 
-    // Once JS sets an inline left, cancel the CSS right so they don't fight
-    &[style*="left"] {
-        right: auto;
-    }
+	// Once JS sets an inline left, cancel the CSS right so they don't fight
+	&[style*='left'] {
+		right: auto;
+	}
 
-    &--open {
-        opacity: 1 !important;
-        pointer-events: all !important;
-        transform: scale(1) translateY(0) !important;
-    }
+	&--open {
+		pointer-events: all !important;
+		opacity: 1 !important;
+		transform: scale(1) translateY(0) !important;
+	}
 
-    // Small screens: ignore FAB position, center as a bottom sheet
-    @include dev("sm") {
-        --p: 4vw;
-        // Override any JS inline position
-        left: 50% !important;
-        right: auto !important;
-        bottom: 1rem !important;
-        top: auto !important;
-        transform: translateX(-50%) translateY(12px) !important;
-        transform-origin: bottom center;
-        width: calc(100% - 2rem);
-        max-width: 26rem;
+	// Small screens: ignore FAB position, center as a bottom sheet
+	@include dev('sm') {
+		--p: 4vw;
+		top: auto !important;
+		right: auto !important;
+		bottom: 1rem !important;
+		// Override any JS inline position
+		left: 50% !important;
+		width: calc(100% - 2rem);
+		max-width: 26rem;
+		transform: translateX(-50%) translateY(12px) !important;
+		transform-origin: bottom center;
 
-        &--open {
-            transform: translateX(-50%) translateY(0) !important;
-        }
-    }
+		&--open {
+			transform: translateX(-50%) translateY(0) !important;
+		}
+	}
 
-    @include dev("xs") {
-        --gpth-settings-max-h: 70vh;
-        width: calc(100% - 2.5rem);
-    }
+	@include dev('xs') {
+		--gpth-settings-max-h: 70vh;
+		width: calc(100% - 2.5rem);
+	}
 
-    @include dev("xxs") {
-        --p: 2vw;
-    }
+	@include dev('xxs') {
+		--p: 2vw;
+	}
 
-    [role="separator"] {
-        --border-light: var(--c-border) !important;
+	[role='separator'] {
+		--border-light: var(--c-border) !important;
 
-        display: block !important;
-        margin: 1.5rem 1.25rem;
-        height: 1px;
-        background: var(--c-border);
-    }
+		display: block !important;
+		height: 1px;
+		margin: 1.5rem 1.25rem;
+		background: var(--c-border);
+	}
 
-    .btn-primary {
-        width: 66.6%;
-        margin: 0 auto;
-        padding: var(--p-btn);
-        font-size: 0.985em;
-        font-weight: bold;
-    }
+	.btn-primary {
+		width: 66.6%;
+		padding: var(--p-btn);
+		margin: 0 auto;
+		font-size: 0.985em;
+		font-weight: bold;
+	}
 }
 
 .gpth-settings {
-    @include theme("dark") {
-        --brightness-menu: brightness(0.8);
-    }
+	@include theme('dark') {
+		--brightness-menu: brightness(0.8);
+	}
 }

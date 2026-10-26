@@ -92,7 +92,7 @@
 		"not dead"
 	],
 	"devDependencies": {
-		"@biomejs/biome": "2.3.8",
+		"@biomejs/biome": "2.6.3",
 		"@parcel/config-default": "2.16.4",
 		"@parcel/config-webextension": "2.16.4",
 		"@parcel/transformer-sass": "2.16.4",

@@ -1,33 +1,32 @@
 .gpth-scrolldown {
-    $border: 1px solid var(--c-accent-10);
+	&__btns {
+		overflow: hidden;
+		background-color: oklch(var(--from-accent) / 0.05);
+		border: $border;
+	}
 
-    &__btns {
-        background-color: oklch(var(--from-accent) / 0.05);
-        border: $border;
-        overflow: hidden;
-    }
+	&__btn {
+		width: 100%;
+		padding: 0.5rem 0;
+		color: var(--c-accent);
 
-    &__btn {
-        color: var(--c-accent);
-        padding: 0.5rem 0;
-        width: 100%;
+		&#scroll-btn-center {
+			border-right: $border;
+			border-left: $border;
+		}
 
-        &#scroll-btn-center {
-            border-right: $border;
-            border-left: $border;
-        }
+		&:hover {
+			background-color: var(--c-accent-12);
+		}
 
-        &:hover {
-            background-color: var(--c-accent-12);
-        }
+		&.active {
+			background-color: var(--c-accent-15) !important;
+		}
 
-        &.active {
-            background-color: var(--c-accent-15) !important;
-        }
-
-        svg {
-            width: 1rem;
-            height: 1rem;
-        }
-    }
+		svg {
+			width: 1rem;
+			height: 1rem;
+		}
+	}
+	$border: 1px solid var(--c-accent-10);
 }

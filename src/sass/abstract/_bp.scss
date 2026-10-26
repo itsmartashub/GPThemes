@@ -17,89 +17,89 @@ $xxl: 96em; // 1536px
 
 // Mixins using Tailwind's breakpoints
 @mixin dev($bp) {
-    @if $bp =='xxs' {
-        @media (max-width: #{$xxs}) {
-            @content;
-        }
-    }
+	@if $bp == 'xxs' {
+		@media (max-width: #{$xxs}) {
+			@content;
+		}
+	}
 
-    @if $bp =='xs' {
-        @media (max-width: #{$xs}) {
-            @content;
-        }
-    }
+	@if $bp == 'xs' {
+		@media (max-width: #{$xs}) {
+			@content;
+		}
+	}
 
-    @if $bp =='sm' {
-        @media (max-width: #{$sm}) {
-            @content;
-        }
-    }
+	@if $bp == 'sm' {
+		@media (max-width: #{$sm}) {
+			@content;
+		}
+	}
 
-    @if $bp =='md' {
-        @media (max-width: #{$md}) {
-            @content;
-        }
-    }
+	@if $bp == 'md' {
+		@media (max-width: #{$md}) {
+			@content;
+		}
+	}
 
-    @if $bp =='lg' {
-        @media (max-width: #{$lg}) {
-            @content;
-        }
-    }
+	@if $bp == 'lg' {
+		@media (max-width: #{$lg}) {
+			@content;
+		}
+	}
 
-    @if $bp =='xl' {
-        @media (max-width: #{$xl}) {
-            @content;
-        }
-    }
+	@if $bp == 'xl' {
+		@media (max-width: #{$xl}) {
+			@content;
+		}
+	}
 
-    @if $bp =='xxl' {
-        @media (min-width: #{$xxl}) {
-            @content;
-        }
-    }
+	@if $bp == 'xxl' {
+		@media (min-width: #{$xxl}) {
+			@content;
+		}
+	}
 }
 
 @mixin container($bp, $name: main) {
-    @if $bp =='xxs' {
-        @container #{$name} (max-width: #{$xxs}) {
-            @content;
-        }
-    }
+	@if $bp == 'xxs' {
+		@container #{$name} (max-width: #{$xxs}) {
+			@content;
+		}
+	}
 
-    @if $bp =='xs' {
-        @container #{$name} (max-width: #{$xs}) {
-            @content;
-        }
-    }
+	@if $bp == 'xs' {
+		@container #{$name} (max-width: #{$xs}) {
+			@content;
+		}
+	}
 
-    @if $bp =='sm' {
-        @container #{$name} (max-width: #{$sm}) {
-            @content;
-        }
-    }
+	@if $bp == 'sm' {
+		@container #{$name} (max-width: #{$sm}) {
+			@content;
+		}
+	}
 
-    @if $bp =='md' {
-        @container #{$name} (max-width: #{$md}) {
-            @content;
-        }
-    }
+	@if $bp == 'md' {
+		@container #{$name} (max-width: #{$md}) {
+			@content;
+		}
+	}
 
-    @if $bp =='lg' {
-        @container #{$name} (max-width: #{$lg}) {
-            @content;
-        }
-    }
+	@if $bp == 'lg' {
+		@container #{$name} (max-width: #{$lg}) {
+			@content;
+		}
+	}
 
-    @if $bp =='xl' {
-        @container #{$name} (max-width: #{$xl}) {
-            @content;
-        }
-    }
+	@if $bp == 'xl' {
+		@container #{$name} (max-width: #{$xl}) {
+			@content;
+		}
+	}
 
-    @if $bp =='xxl' {
-        @container #{$name} (min-width: #{$xxl}) {
-            @content;
-        }
-    }
+	@if $bp == 'xxl' {
+		@container #{$name} (min-width: #{$xxl}) {
+			@content;
+		}
+	}
 }

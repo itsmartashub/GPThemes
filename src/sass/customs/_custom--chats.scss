@@ -1,131 +1,132 @@
 /* Chats msgs */
 [data-testid^='conversation-turn-'] {
+	/* ! ========== CUSTOM WIDTH ========== */
+	// Necu da stavim direkt na chat bubble jer nece biti dobro kad imamo double response prikazan. A i USER parent isto mora da menja width da bi user poruka bila u ravni sa GPT bubble-om
+	// New selector: 2025-04-10
+	/* ! ========== GPT msg width (and USER's wrapper) ========== */
+	.group\/turn-messages[class*='max-w-(--thread-content-max-width)'] {
+		max-width: var(--w_chat_gpt) !important;
+		will-change: width, max-width;
 
-    /* ! ========== CUSTOM WIDTH ========== */
-    // Necu da stavim direkt na chat bubble jer nece biti dobro kad imamo double response prikazan. A i USER parent isto mora da menja width da bi user poruka bila u ravni sa GPT bubble-om
-    // New selector: 2025-04-10
-    /* ! ========== GPT msg width (and USER's wrapper) ========== */
-    .group\/turn-messages[class*="max-w-(--thread-content-max-width)"] {
-        will-change: width, max-width;
-        max-width: var(--w_chat_gpt) !important;
+		@include container('md') {
+			--w_chat_gpt: 100%;
+			width: var(--w_chat_gpt);
+		}
+	}
 
-        @include container('md') {
-            --w_chat_gpt: 100%;
-            width: var(--w_chat_gpt);
-        }
-    }
-
-    // Set user bubble width. Ne moze na .user-message-bubble-color jer je negde "max-w-(--user-chat-width,70%)" klasa u njegovom parentu ili ni ne postoji (group chat)
-    [data-message-author-role="user"] [class*="max-w-(--user-chat-width,70%)"] {
-        width: var(--w_chat_user, auto) !important;
-        max-width: var(--max_w_chat_user, var(--user-chat-width)) !important;
-    }
+	// Set user bubble width. Ne moze na .user-message-bubble-color jer je negde "max-w-(--user-chat-width,70%)" klasa u njegovom parentu ili ni ne postoji (group chat)
+	[data-message-author-role='user'] [class*='max-w-(--user-chat-width,70%)'] {
+		width: var(--w_chat_user, auto) !important;
+		max-width: var(--max_w_chat_user, var(--user-chat-width)) !important;
+	}
 }
 
 html[data-gpth-toggle-user-bubble-fullwidth] {
-    [data-testid^='conversation-turn-'] [data-message-author-role="user"] [class*="max-w-(--user-chat-width,70%)"] {
-        max-width: 100% !important;
-        width: 100% !important;
-    }
+	[data-testid^='conversation-turn-']
+		[data-message-author-role='user']
+		[class*='max-w-(--user-chat-width,70%)'] {
+		width: 100% !important;
+		max-width: 100% !important;
+	}
 }
 
 /* ! ========== CUSTOM TOGGLE BUBBLES ========== */
 // Out of conversation scope, because on width <1000px for Canvas there is user message in <dialog> element, there's no conversation-turn
 .user-message-bubble-color {
-    background-color: var(--c-bg-msg-user);
-    color: var(--c-txt) !important;
-    padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply));
-    border-radius: var(--br-chat-bubble) !important;
-    transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
+	padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply));
+	color: var(--c-txt) !important;
+	background-color: var(--c-bg-msg-user);
+	border-radius: var(--br-chat-bubble) !important;
+	transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
 }
 
 .agent-turn {
-    background-color: var(--c-bg-msg-gpt);
-    padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply));
-    border-radius: var(--br-chat-bubble) !important;
-    margin-top: 0.4rem;
-    // transition: padding 0.2s ease, background-color 0.2s ease;
-    // @include dev_high(#f28b8b70);
+	padding: var(--p-chat-bubble) calc(var(--p-chat-bubble) * var(--p-chat-bubble-multiply));
+	margin-top: 0.4rem;
+	background-color: var(--c-bg-msg-gpt);
+	border-radius: var(--br-chat-bubble) !important;
+	// transition: padding 0.2s ease, background-color 0.2s ease;
+	// @include dev_high(#f28b8b70);
 }
 
 /* Group Chats - Custom widths */
-main#main [role="presentation"] {
-    header#calpico-page-header~div.flex-1 {
+main#main [role='presentation'] {
+	header#calpico-page-header ~ div.flex-1 {
+		[class*='max-w-(--thread-content-max-width)'] {
+			max-width: var(--w_chat_gpt) !important;
+			will-change: width, max-width;
 
-        [class*="max-w-(--thread-content-max-width)"] {
-            will-change: width, max-width;
-            max-width: var(--w_chat_gpt) !important;
-
-            @include container('md') {
-                --w_chat_gpt: 100%;
-                width: var(--w_chat_gpt);
-            }
-        }
-    }
+			@include container('md') {
+				--w_chat_gpt: 100%;
+				width: var(--w_chat_gpt);
+			}
+		}
+	}
 }
 
 /* Toggle OFF → replace with transparent colors to "remove" bubble bg */
 html[data-gpth-toggle-bubble-user] .user-message-bubble-color,
 html[data-gpth-toggle-bubble-gpt] .agent-turn {
-    background-color: transparent !important;
+	background-color: transparent !important;
 }
 
 /* Toggle OFF → remove background gradient and box shadow from GPT bubble in Group chats */
 // html[data-gpth-toggle-bubble-gpt] [role="presentation"] .group\/message[data-message-id*="CalpicoMessage"] [id^="collapsible-chatgpt-message-"] {
-html[data-gpth-toggle-bubble-gpt] [role="presentation"] .group\/message[data-message-id*="CalpicoMessage"] [data-message-author-role="assistant"] {
-    background-image: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
+html[data-gpth-toggle-bubble-gpt]
+	[role='presentation']
+	.group\/message[data-message-id*='CalpicoMessage']
+	[data-message-author-role='assistant'] {
+	padding: 0 !important;
+	background-image: none !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
 }
 
 html[data-gpth-toggle-bubble-gpt] .agent-turn {
-    padding-inline: 0 !important;
+	padding-inline: 0 !important;
 
-    @include dev('sm') {
-        padding-inline: 0.5rem !important;
-    }
+	@include dev('sm') {
+		padding-inline: 0.5rem !important;
+	}
 }
 
 /* ! ========== CUSTOM COLORS - Agressive accent for User chat ========== */
 html[data-gpth-toggle-bubble-user-accent] {
-    --c-bg-msg-user: var(--c-accent) !important;
+	--c-bg-msg-user: var(--c-accent) !important;
 
-    .user-message-bubble-color {
-        color: var(--c-on-accent) !important;
+	.user-message-bubble-color {
+		color: var(--c-on-accent) !important;
 
-        ::selection {
-            background-color: var(--c-on-accent) !important;
-            color: var(--c-accent) !important;
-        }
-    }
+		::selection {
+			color: var(--c-accent) !important;
+			background-color: var(--c-on-accent) !important;
+		}
+	}
 }
 
 // If user chat bubble off (bg transparent) and accent user bubble is on, the text should be default, and not accent because of readability, and not --c-on-accent
 html[data-gpth-toggle-bubble-user][data-gpth-toggle-bubble-user-accent] {
-    .user-message-bubble-color {
-        color: var(--c-txt) !important;
-    }
+	.user-message-bubble-color {
+		color: var(--c-txt) !important;
+	}
 }
 
 // ========== CUSTOM FONTS ==========
 // It has .leading-6 tw class which sets the line-height
 .user-message-bubble-color {
-    @extend %custom-fonts;
+	@extend %custom-fonts;
 }
 
 .agent-turn {
+	&,
+	.prose {
+		@extend %custom-fonts;
+	}
 
-    &,
-    .prose {
-        @extend %custom-fonts;
-    }
-
-    [class*="DilResponseRoot"] {
-
-        &,
-        [class*="TextBase"] {
-            @extend %custom-fonts;
-        }
-    }
+	[class*='DilResponseRoot'] {
+		&,
+		[class*='TextBase'] {
+			@extend %custom-fonts;
+		}
+	}
 }

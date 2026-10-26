@@ -143,7 +143,7 @@ function showNotification(
 }
 
 function closeNotification(notification, immediate = false) {
-	if (!notification || !notification.parentNode) return
+	if (!notification?.parentNode) return
 
 	const container = notification.parentNode
 

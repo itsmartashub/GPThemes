@@ -1,7 +1,7 @@
-[class*="CodeSurface-"],
-[class*="StickyActionBar-"] {
-    background-color: var(--c-bg-cm) !important;
-    --color-background-secondary-soft-alpha: var(--c-bg-cm);
+[class*='CodeSurface-'],
+[class*='StickyActionBar-'] {
+	--color-background-secondary-soft-alpha: var(--c-bg-cm);
+	background-color: var(--c-bg-cm) !important;
 
-    // background-image: linear-gradient(var(--color-background-secondary-soft-alpha), var(--color-background-secondary-soft-alpha));
+	// background-image: linear-gradient(var(--color-background-secondary-soft-alpha), var(--color-background-secondary-soft-alpha));
 }

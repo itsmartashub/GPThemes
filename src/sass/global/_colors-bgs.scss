@@ -10,9 +10,9 @@
 	// background-color: red !important;
 }
 
-[class*="bg-[#DCDBFF]"] {
-	background-color: var(--c-accent-15) !important;
+[class*='bg-[#DCDBFF]'] {
 	color: var(--c-accent) !important;
+	background-color: var(--c-accent-15) !important;
 }
 
 // .dark\:bg-white {
@@ -109,7 +109,7 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 [class*='bg-red-500'],
 [class*='bg-red-100'],
 [class*='bg-token-surface-error'],
-.btn-primary[class*="bg-red-500"] {
+.btn-primary[class*='bg-red-500'] {
 	color: var(--c-danger) !important;
 	background-color: oklch(from currentColor l c h / 0.11) !important;
 	border: 1px solid oklch(from currentColor l c h / 0.11) !important;
@@ -120,7 +120,7 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 	}
 }
 
-[class*="after:bg-red-500"]::after {
+[class*='after:bg-red-500']::after {
 	background-color: var(--c-danger) !important;
 }
 
@@ -218,7 +218,6 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 - GPTs - Search input and search query bg - var(--c-surface-2) */
 .hover\:bg-gray-50,
 .dark\:hover\:bg-white\/10 {
-
 	&:hover {
 		background-color: var(--c-surface-3) !important;
 	}
@@ -246,15 +245,15 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 .bg-blue-500 - Blue indicator of unread messages in sidebar nav menu item */
 .bg-blue-400,
 .bg-blue-500 {
-	background-color: var(--c-accent) !important;
 	color: var(--c-on-accent) !important;
+	background-color: var(--c-accent) !important;
 }
 
 /* 
 [fill="#007AFF"] - Blue indicator of unread messages for mobile in sidebar collapse/expand icon
 [fill="#0285FF"] - Blue indicator of unread messages for desktop in sidebar collapse/expand icon */
-[fill="#007AFF"],
-[fill="#0285FF"] {
+[fill='#007AFF'],
+[fill='#0285FF'] {
 	fill: var(--c-accent) !important;
 }
 
@@ -262,8 +261,8 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 .text-blue-500.bg-\[\#DAEEFF\] - "Selection" in Create Image prompt textarea
 */
 .bg-\[\#DAEEFF\] {
-	background-color: var(--c-accent-20) !important;
 	color: var(--c-accent) !important;
+	background-color: var(--c-accent-20) !important;
 
 	svg {
 		color: currentColor !important;
@@ -271,21 +270,21 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 	}
 
 	&:hover {
-		background-color: var(--c-accent) !important;
 		color: var(--c-on-accent) !important;
+		background-color: var(--c-accent) !important;
 	}
 }
 
 /* Selected/active action chatbox button in Guest mode ("Search", "Study") */
-[class*="dark:bg-[#2A4A6D]"] {
-	background-color: var(--c-accent-15) !important;
+[class*='dark:bg-[#2A4A6D]'] {
 	color: var(--c-accent) !important;
+	background-color: var(--c-accent-15) !important;
 }
 
 /* .bg-\[\#f4f4f4\] - Search chats dialog active/hover item
 	[class*="dark:bg-[#353535]"] - menu with "Keyboard shortcuts" shown when hold `Ctrl` */
 .bg-\[\#f4f4f4\],
-[class*="dark:bg-[#353535]"] {
+[class*='dark:bg-[#353535]'] {
 	background-color: var(--c-surface-3) !important;
 }
 
@@ -312,26 +311,25 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 	background-color: var(--c-accent-12) !important;
 }
 
-
 /* Highlighted orang-ish text when hover source link in chat-bubble */
 .bg-\[#FCECC1\],
 .dark\:bg-\[\#64572A\] {
-	background-color: var(--c-accent-15) !important;
 	color: var(--c-accent) !important;
+	background-color: var(--c-accent-15) !important;
 	box-shadow: inset 0px 0px 0px 1px var(--c-accent-15) !important;
 }
 
 /* E.g. btn close ("Remove file") of attached file */
 .text-white.bg-black.dark\:bg-white.dark\:text-black {
-	background-color: var(--c-accent) !important;
 	color: var(--c-on-accent) !important;
+	background-color: var(--c-accent) !important;
 	border: none !important;
 }
 
 /* "Share Link" button in DeepSearch preview radix dialog */
 .bg-token-text-primary {
-	background-color: var(--c-accent) !important;
 	color: var(--c-on-accent) !important;
+	background-color: var(--c-accent) !important;
 }
 
 .bg-token-bg-primary {
@@ -345,11 +343,11 @@ This content may violate our Terms of Use or usage policies. is bg-orange-400 no
 }
 
 /* e.g. Tools > Menu > Hover on menuitem */
-[class*="--menu-item-highlighted"] {
+[class*='--menu-item-highlighted'] {
 	--menu-item-highlighted: var(--interactive-bg-secondary-hover) !important;
 }
 
-[class*="--menu-item-active"] {
+[class*='--menu-item-active'] {
 	--menu-item-active: var(--interactive-bg-secondary-press) !important;
 }
 
@@ -369,15 +367,15 @@ a.bg-token-main-surface-primary.group {
 .hover\:bg-token-interactive-bg-primary-selected:hover,
 .hover\:bg-token-interactive-bg-primary-selected\/5:hover {
 	&:hover {
-		background-color: var(--c-accent) !important;
 		color: var(--c-on-accent) !important;
+		background-color: var(--c-accent) !important;
 	}
 }
 
 /* "Get Plus" and "Create a Workspace" pill/chip sticky button on "New Chat" page */
-[class*="dark:bg-[#373669]"] {
-	background-color: var(--c-accent-10) !important;
+[class*='dark:bg-[#373669]'] {
 	color: var(--c-accent) !important;
+	background-color: var(--c-accent-10) !important;
 	backdrop-filter: blur(10px);
 
 	&:hover {
@@ -437,7 +435,7 @@ button.bg-token-interactive-label-accent-default {
 // 		--code-block-surface: var(--c-bg-cm) !important;
 // 	}
 // }
-[class*="--code-block-surface"] {
+[class*='--code-block-surface'] {
 	--code-block-surface: var(--c-bg-cm) !important;
 }
 
@@ -448,12 +446,12 @@ button.bg-token-interactive-label-accent-default {
 
 // Maps - location counter bubble marker
 .bg-black {
-	background-color: var(--c-accent-light) !important;
 	color: var(--c-accent) !important;
+	background-color: var(--c-accent-light) !important;
 }
 
 /* New "Edit" writing block in GPT bubble (Edit, Ask for Edit). Must be in globals bcs int not just in Chats but full scren when expand */
-[class*="dark:bg-[#2a2a2a]"],
+[class*='dark:bg-[#2a2a2a]'],
 .writing-block-editor {
 	background: var(--c-bg-cm) !important;
 }

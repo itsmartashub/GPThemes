@@ -1,77 +1,75 @@
 .gpth-switch {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 0.8rem;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-radius: 0.8rem;
-    border: 1px solid oklch(from $accent l c h / 0.1);
-    background-color: oklch(from $accent l c h / 0.1);
-    cursor: pointer;
-    transition: transform 0.25s ease-in;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.8rem;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.5rem;
+	font-size: 1rem;
+	cursor: pointer;
+	background-color: oklch(from $accent l c h / 0.1);
+	border: 1px solid oklch(from $accent l c h / 0.1);
+	border-radius: 0.8rem;
+	transition: transform 0.25s ease-in;
 
-    &:hover {
-        transform: scale(0.98);
-    }
+	&:hover {
+		transform: scale(0.98);
+	}
 
-    &__icon {
-        --icon-size: 2.8em;
-        --svg-muliplicator: 0.6;
+	&__icon {
+		--icon-size: 2.8em;
+		--svg-muliplicator: 0.6;
+		display: grid;
+		place-items: center;
 
-        width: var(--icon-size);
-        height: var(--icon-size);
-        display: grid;
-        place-items: center;
-        border-radius: 1rem;
-        background-color: oklch(from $accent l c h / 0.2);
-        color: $accent;
+		width: var(--icon-size);
+		height: var(--icon-size);
+		color: $accent;
+		background-color: oklch(from $accent l c h / 0.2);
+		border-radius: 1rem;
 
-        svg {
-            width: calc(var(--icon-size) * var(--svg-muliplicator));
-            height: calc(var(--icon-size) * var(--svg-muliplicator));
-        }
-    }
+		svg {
+			width: calc(var(--icon-size) * var(--svg-muliplicator));
+			height: calc(var(--icon-size) * var(--svg-muliplicator));
+		}
+	}
 
-    &__text {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 0.1rem;
+	&__text {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		gap: 0.1rem;
 
-        .title {
-            font-size: 0.8em;
-            font-weight: bold;
-            color: $accent;
-            text-transform: uppercase;
-            line-height: 1;
-        }
+		.title {
+			font-size: 0.8em;
+			font-weight: bold;
+			line-height: 1;
+			color: $accent;
+			text-transform: uppercase;
+		}
 
-        .subtitle {
-            font-size: 0.7em;
-            line-height: 1.25;
-            font-weight: 400;
-            white-space: pre-line;
-        }
-    }
+		.subtitle {
+			font-size: 0.7em;
+			font-weight: 400;
+			line-height: 1.25;
+			white-space: pre-line;
+		}
+	}
 
-    .gpth-checkbox {
-        @include gpthCheckbox;
-
-        --chb-bg: oklch(from #{$accent} l c h / 0.3);
-        --chb-border: oklch(from #{$accent} l c h / 0.5);
-        --chb-thumb: oklch(from #{$accent} l c h / 0.5);
-        --chb-active-bg: #{$accent};
-        --chb-active-thumb: #{$on-accent};
-        --chb-w: 2.5rem;
-        --chb-h: calc(var(--chb-w) * 0.58);
-        // --chb-edge-gap: calc(var(--chb-w) * 0.077);
-
-    }
+	.gpth-checkbox {
+		--chb-bg: oklch(from #{$accent} l c h / 0.3);
+		--chb-border: oklch(from #{$accent} l c h / 0.5);
+		--chb-thumb: oklch(from #{$accent} l c h / 0.5);
+		--chb-active-bg: #{$accent};
+		--chb-active-thumb: #{$on-accent};
+		--chb-w: 2.5rem;
+		--chb-h: calc(var(--chb-w) * 0.58);
+		@include gpthCheckbox;
+		// --chb-edge-gap: calc(var(--chb-w) * 0.077);
+	}
 }
 
 #toggle-fab-container {
-    display: flex;
-    justify-content: flex-end;
+	display: flex;
+	justify-content: flex-end;
 }

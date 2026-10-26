@@ -20,13 +20,13 @@ jobs:
             - name: Install pnpm
               uses: pnpm/action-setup@v4
               with:
-                  version: '10'
+                  version: "10"
 
             - name: Setup Node.js & pnpm
               uses: actions/setup-node@v4
               with:
-                  node-version: '24'
-                  cache: 'pnpm'
+                  node-version: "24"
+                  cache: "pnpm"
 
             - name: Install pnpm deps
               run: pnpm install --frozen-lockfile
@@ -34,7 +34,7 @@ jobs:
             - name: Setup deno
               uses: denoland/setup-deno@v2
               with:
-                  deno-version: 'v2.x'
+                  deno-version: "v2.x"
 
             # --- BUILD & ZIP ---
             - name: Build and package ext (pnpm build:all)

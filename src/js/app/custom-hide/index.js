@@ -142,4 +142,4 @@ async function mount() {
 	}
 }
 
-export { templateHTML as renderCustomHides, mount }
+export { mount, templateHTML as renderCustomHides }

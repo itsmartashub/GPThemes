@@ -26,26 +26,28 @@
 			- close button in dialogs
 			- "Speech" -> "Voice" -> "Cove"  dropdown on hover
 			- GPTs page - item dialog -> "Conversation Starters" bubble comments on hvoer */
-			[class*="hover:bg-token-main-surface-secondary"] {
+			[class*='hover:bg-token-main-surface-secondary'] {
 				&:hover {
 					--main-surface-secondary: var(--c-surface-3) !important;
 					--main-surface-tertiary: var(--c-surface-3) !important;
 				}
 			}
 
-
 			/* "Memory updated" small dialog. Fix bg color when hover: "Manage memories" */
 			&.max-w-96 {
 				padding: var(--p-contextmenu) !important;
 				border-radius: var(--br-contextmenu) !important;
 
-				[class*="hover:bg-token-main-surface-secondary"] {
+				[class*='hover:bg-token-main-surface-secondary'] {
 					--main-surface-secondary: var(--c-surface-2) !important;
 				}
 			}
 		}
 
-		.border-token-border-default:not([role='separator'], [data-testid*="-pricing-modal-column"]),
+		.border-token-border-default:not(
+				[role='separator'],
+				[data-testid*='-pricing-modal-column']
+			),
 		.border-white,
 		.border-black {
 			border-color: transparent !important;
@@ -59,22 +61,18 @@
 			}
 		}
 
-
-
 		/* ___ DIALOG - "SHARED LINKS" or "ARCHIVED CHATS" - Table  */
 		table {
 			thead {
-
 				th {
 					--main-surface-primary: var(--c-bg-dialog) !important;
-					text-transform: uppercase !important;
 					color: var(--c-txt) !important;
+					text-transform: uppercase !important;
 					// background-color: transparent !important;
 				}
 			}
 
 			tbody {
-
 				/* Link in table Shared Links/Archived Chats
 						NAME - first column Links
 						"Shared links" & "Archived Chats" links in table, but a[href^="/c/"] is also Conversation SVG in "Shared Links", ahh
@@ -100,13 +98,9 @@
 	}
 }
 
-
-
 /* Modal Settings dialog */
-[data-testid="modal-settings"] {
-	[role="dialog"] {
-
-
+[data-testid='modal-settings'] {
+	[role='dialog'] {
 		/* === All the .btn inside dialogs not having svg icon inside */
 		.btn:not(svg) {
 			min-width: var(--min-w-btn);
@@ -115,9 +109,9 @@
 		/* Tab view transitions - In tab dialog part which is changing on tabpanel click (on right side) */
 		[id*='-content-'] {
 			--anim-duration: 0.18s;
-			@extend %animFadeIn;
-			border-radius: child-radius(var(--br-dialog), var(--p-dialog)) !important;
 			background-color: var(--c-bg-dialog) !important;
+			border-radius: child-radius(var(--br-dialog), var(--p-dialog)) !important;
+			@extend %animFadeIn;
 
 			// background-color: color-alpha($_, 0.055, true);
 			// border: 1px solid color-alpha($_, 0.055, true);
@@ -125,7 +119,7 @@
 			/* Main title in settings dialogs. But check the "Settings" -> "Apps" -> "Advanced Settings" btn. It has and this and this style above for h3 */
 			section:nth-of-type(1) {
 				h3.text-lg {
-					&>div {
+					& > div {
 						@extend %date-pill;
 					}
 				}
@@ -142,16 +136,15 @@
 				}
 			}
 
-			button[type="button"][aria-haspopup="menu"] {
-				@extend .btn-secondary;
+			button[type='button'][aria-haspopup='menu'] {
 				min-width: var(--min-w-btn);
-				border-radius: var(--br-btn) !important;
 				font-weight: 500 !important;
+				border-radius: var(--br-btn) !important;
+				@extend .btn-secondary;
 			}
 		}
 
 		[role='tablist'] {
-
 			// OpenAI removed this sidebar alike style. So maybe move this style to -content- element above (its the settings sidebar active content
 			// &.bg-token-bg-elevated-secondary {
 			// 	background-color: color-alpha($_, 0.055, true);
@@ -177,13 +170,12 @@
 				}
 			}
 
-
 			/* ___ DIALOG - "Settings" on smaller devices then deskop */
 			&[data-orientation='vertical'] {
 				flex-wrap: nowrap !important;
 				overflow-y: auto;
 
-				[role="tab"] {
+				[role='tab'] {
 					@include lift;
 				}
 			}
@@ -192,8 +184,8 @@
 				background-color: var(--c-surface-3) !important;
 
 				button[data-state='active'] {
-					background-color: var(--c-accent) !important;
 					color: var(--c-on-accent);
+					background-color: var(--c-accent) !important;
 				}
 			}
 		}
@@ -207,8 +199,7 @@
 			}
 		}
 
-		[role="tabpanel"] {
-
+		[role='tabpanel'] {
 			// Sticky headers in "Settings" dialog
 			.bg-token-bg-primary.sticky.top-0 {
 				background-color: var(--c-bg-dialog) !important;
@@ -221,7 +212,7 @@
 			}
 
 			&[id*='content-Personalization'] {
-				[class*="dark:text-[#DC2626]"] {
+				[class*='dark:text-[#DC2626]'] {
 					color: var(--c-danger) !important;
 					background-color: oklch(from currentColor l c h / 0.11) !important;
 				}
@@ -229,7 +220,6 @@
 
 			/* "GPT builder profile" content */
 			&[id*='content-Account'] {
-
 				/* "PlaceholderGPT - By community builder" preview - this is bcs of OLED theme */
 				.bg-token-main-surface-primary.relative:has(.gizmo-shadow-stroke svg) {
 					--main-surface-primary: transparent !important;
@@ -249,7 +239,6 @@
 			}
 		}
 
-
 		/* Heading "Settings" in Settings Modal */
 		h2.text-lg.font-semibold {
 			text-transform: uppercase;
@@ -263,48 +252,46 @@
 }
 
 /* DeepSearch dialog */
-[data-testid="modal-deep-research-share"] {
-	[role="dialog"] {
-
+[data-testid='modal-deep-research-share'] {
+	[role='dialog'] {
 		/* Remove bg of deepsearch element */
-		&>.bg-token-bg-primary.max-w-4xl.overflow-x-scroll {
+		& > .bg-token-bg-primary.max-w-4xl.overflow-x-scroll {
 			background-color: transparent !important;
 		}
 	}
 }
 
 /* ___ Web Searched Images with links*/
-[data-testid="modal-image-result"] {
-	.fixed.inset-0[class*="before:backdrop-blur"] {
-
+[data-testid='modal-image-result'] {
+	.fixed.inset-0[class*='before:backdrop-blur'] {
 		/* Strange overlay that blured the source links in dialog Web Searched Images with the link below left. It also block the clicking on that link. On the original (w/o extension) its still like that... */
 		&::before {
 			display: none !important;
 		}
 	}
 
-	[role="dialog"] {
-		a[rel="noopener"].min-h-20.w-full {
+	[role='dialog'] {
+		a[rel='noopener'].min-h-20.w-full {
 			width: max-content;
 			max-width: 100%;
+			padding: 1rem;
+			margin: 1rem;
+			color: var(--c-accent);
 			background-color: var(--c-accent-12);
 			border: 1px solid var(--c-accent-15);
 			border-radius: var(--br-btn);
-			color: var(--c-accent);
-			padding: 1rem;
-			margin: 1rem;
 
 			// .truncate {
 			// 	color: var(--c-accent) !important;
 			// }
 
 			/* Link source */
-			.text-token-text-tertiary:has(img[alt="Favicon"]) {
-				color: var(--c-accent) !important;
+			.text-token-text-tertiary:has(img[alt='Favicon']) {
 				font-weight: bold;
+				color: var(--c-accent) !important;
 				text-transform: uppercase;
 
-				img[alt="Favicon"] {
+				img[alt='Favicon'] {
 					border: 1px solid var(--c-accent-50);
 				}
 			}
@@ -316,65 +303,62 @@
 
 		/* Image counter parent */
 		.absolute.right-4.top-4 {
-
 			/* Image counter that have the close button next to it */
 			.text-token-text-tertiary:has(~ button.h-9.w-9) {
+				padding: 0.2rem 1rem !important;
+				font-weight: 500;
 				color: var(--c-accent);
 				background-color: var(--c-accent-12);
 				border: 1px solid var(--c-accent-15);
 				border-radius: 50vw;
-				padding: 0.2rem 1rem !important;
-				font-weight: 500;
 			}
 		}
 	}
 }
 
 /* Modal dialog when clicked on `Upgrade` */
-[data-testid="modal-account-payment"] {
-
-	[role="dialog"] {
-		[role="group"][aria-label].bg-token-main-surface-tertiary.rounded-full {
+[data-testid='modal-account-payment'] {
+	[role='dialog'] {
+		[role='group'][aria-label].bg-token-main-surface-tertiary.rounded-full {
 			background-color: var(--c-accent-10) !important;
 
 			/* "Personal" and "Business" switching buttons */
-			button[aria-label][role="radio"] {
-
-				// Active plan btn 
-				&[data-state="on"] {
+			button[aria-label][role='radio'] {
+				// Active plan btn
+				&[data-state='on'] {
 					color: var(--c-on-accent);
 
 					// Style for element surround btn (in code its next to btn on the same block level, sibling), simulating the button, jeez...
-					&~.absolute.inset-0 {
+					& ~ .absolute.inset-0 {
 						--bg-primary: var(--c-accent) !important;
 					}
 				}
 
-				&[data-state="off"] {
-
+				&[data-state='off'] {
 					color: var(--c-accent) !important;
 				}
 			}
 		}
 
 		/* Free and Plus plans cards */
-		[data-testid*="-pricing-modal-column-wrapper"] {
+		[data-testid*='-pricing-modal-column-wrapper'] {
 			// box-shadow: var(--box-shadow);
 			// border-color: var(--c-accent-15) !important; // not working...
 			transition: scale 0.3s ease;
 
-			&>div[data-testid$="-pricing-modal-column"] {
-				background-image: linear-gradient(135deg,
-						var(--c-accent-20) 0%,
-						var(--c-accent-03) 40%,
-						var(--c-accent-03) 60%,
-						var(--c-accent-20) 100%);
+			& > div[data-testid$='-pricing-modal-column'] {
+				background-image: linear-gradient(
+					135deg,
+					var(--c-accent-20) 0%,
+					var(--c-accent-03) 40%,
+					var(--c-accent-03) 60%,
+					var(--c-accent-20) 100%
+				);
 			}
 
 			&:is(:hover, :focus-within) {
 				scale: 0.985;
 			}
-
 
 			/* Ugly bg behind text in Plans */
 			.bg-token-main-surface-primary {
@@ -392,38 +376,36 @@
 		// }
 
 		/* See "ChatGPT Enterprise" */
-		a[href="https://openai.com/enterprise"] {
+		a[href='https://openai.com/enterprise'] {
 			color: var(--c-accent) !important;
 		}
 	}
 }
 
 /* Modal dialog when clicked on `Upgrade > Bussines toggle > Get Bussiness` */
-[data-testid="modal-workspace-purchase"] {
-
+[data-testid='modal-workspace-purchase'] {
 	/* ___ "Select your Team Plan" dialog radio buttons when clicking "Upgrade plan" > "Team" > "Select billing options" */
-	[role="dialog"] {
-
+	[role='dialog'] {
 		/* input counter for seats */
-		input[type="number"],
-		button[role="radio"] {
+		input[type='number'],
+		button[role='radio'] {
 			border: 1px solid var(--c-accent-12) !important;
 		}
 
-		input[type="number"] {
+		input[type='number'] {
 			background-color: var(--c-surface-3) !important;
 		}
 
 		/* "Flexible plan" and "Annual plan" radio buttons */
-		button[role="radio"] {
+		button[role='radio'] {
 			border: 1px solid var(--c-accent-12) !important;
 
-			&[aria-checked="true"] {
+			&[aria-checked='true'] {
 				background-color: var(--c-surface-3) !important;
 			}
 
 			/* Checked svg icon */
-			&>div>span[data-state="checked"] {
+			& > div > span[data-state='checked'] {
 				background-color: var(--c-accent) !important;
 
 				svg {
@@ -435,8 +417,8 @@
 		/* "Annual" % badge and discount text */
 		.text-\[\#10A37F\],
 		.bg-\[\#10A37F\] {
-			background-color: var(--c-accent) !important;
 			color: var(--c-on-accent) !important;
+			background-color: var(--c-accent) !important;
 			border-radius: 50vw;
 		}
 	}
@@ -444,26 +426,24 @@
 
 /* Sharing dialog */
 .absolute.inset-0.max-w-\[664px\] {
-
-	[role="dialog"].popover {
-		[data-testid="sharing-post-unfurl-view"] {
-
+	[role='dialog'].popover {
+		[data-testid='sharing-post-unfurl-view'] {
 			/* Chat wrapper in sharing dialog */
-			[class*="dark:bg-[#353535]"].h-full {
+			[class*='dark:bg-[#353535]'].h-full {
 				background-color: var(--c-bg-chats-container) !important;
 
-				[data-message-author-role="user"] .user-message-bubble-color,
-				[data-message-author-role="assistant"] {
+				[data-message-author-role='user'] .user-message-bubble-color,
+				[data-message-author-role='assistant'] {
 					padding: 1.2rem !important;
 				}
 
-				[data-message-author-role="user"] {
+				[data-message-author-role='user'] {
 					.user-message-bubble-color {
 						background-color: var(--c-bg-msg-user) !important;
 					}
 				}
 
-				[data-message-author-role="assistant"] {
+				[data-message-author-role='assistant'] {
 					background-color: var(--c-bg-msg-gpt) !important;
 					border-radius: 1.5rem;
 				}
@@ -471,11 +451,11 @@
 		}
 
 		/* Social buttons wrapper */
-		button.relative.flex.flex-col.gap-y-4[class*="disabled:opacity-50"] {
+		button.relative.flex.flex-col.gap-y-4[class*='disabled:opacity-50'] {
 			transition: scale 0.2s $easeInOutBack;
 
 			/* Social circled button */
-			&>.h-16.w-16.rounded-full {
+			& > .h-16.w-16.rounded-full {
 				--text-primary: currentColor !important;
 				@include accent('prim');
 				// transition: background-color 0.2s $easeInCirc;
@@ -484,7 +464,7 @@
 			&:hover {
 				scale: 0.97;
 
-				&>.h-16.w-16.rounded-full {
+				& > .h-16.w-16.rounded-full {
 					@include accent('sec');
 				}
 			}
@@ -493,7 +473,7 @@
 }
 
 /* Dialog with links from sources for mobile */
-[data-testid="modal-search-results"] {
+[data-testid='modal-search-results'] {
 	@include dev('lg') {
 		.bg-token-bg-primary {
 			--bg-primary: var(--c-bg-dialog) !important;
@@ -502,9 +482,8 @@
 }
 
 /* Project files modal dialog when click on uploaded project files */
-[data-testid="modal-project-files"] {
+[data-testid='modal-project-files'] {
 	.group\/file-row {
-
 		/* Delete file button */
 		// button.group\/file-layout {
 		// 	// margin: calc(var(--spacing) * -8) !important;
@@ -513,15 +492,15 @@
 		// }
 
 		&:hover {
-			background-color: var(--c-accent-12) !important;
 			color: var(--c-accent) !important;
+			background-color: var(--c-accent-12) !important;
 		}
 	}
 }
 
 /* Project form modal when click on "New Project" */
 #project-modal-form {
-	input[name="projectName"] {
+	input[name='projectName'] {
 		background-color: var(--c-surface-3) !important;
 	}
 }

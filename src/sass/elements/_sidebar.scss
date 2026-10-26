@@ -3,7 +3,6 @@
 #stage-popover-sidebar {
 	nav {
 		button {
-
 			/* Today, Yesterday - Time heading in sidebar */
 			h2.__menu-label {
 				@extend %date-pill;
@@ -18,7 +17,6 @@
 }
 
 #sidebar-header {
-
 	/* ChatGPT home logo and sidebar collapse icon */
 	a.text-token-text-primary,
 	button.text-token-text-tertiary {
@@ -26,16 +24,14 @@
 	}
 }
 
-
 #history {
 	.__menu-item {
+		--menu-item-active: var(--c-bg-sidebar-link) !important;
+		--menu-item-hover: var(--c-bg-sidebar-link) !important;
+		--menu-item-highlighted: var(--c-bg-sidebar-link) !important;
 		// padding-block: 0.5rem !important;
 		// border-radius: calc(var(--br) * 0.8) !important;
 
 		@include lift;
-
-		--menu-item-active: var(--c-bg-sidebar-link) !important;
-		--menu-item-hover: var(--c-bg-sidebar-link) !important;
-		--menu-item-highlighted: var(--c-bg-sidebar-link) !important;
 	}
 }

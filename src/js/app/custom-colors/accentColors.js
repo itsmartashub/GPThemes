@@ -297,4 +297,4 @@ function mount(resetBtn) {
 // =====================================================
 // Exports
 // =====================================================
-export { templateHTML as renderAccentsColors, onResetAll as resetAllAccents, mount, init }
+export { init, mount, onResetAll as resetAllAccents, templateHTML as renderAccentsColors }

@@ -1,8 +1,7 @@
 .loading-results-shimmer {
+	--main-surface-secondary: var(--c-surface-2) !important;
 
-    --main-surface-secondary: var(--c-surface-2) !important;
-
-    --main-surface-tertiary: var(--c-surface-3) !important;
+	--main-surface-tertiary: var(--c-surface-3) !important;
 }
 
 /* Skeleton loader in Project folder when list (project items) loading */
@@ -11,12 +10,10 @@
 //     --tw-gradient-via: var(--c-accent-light) !important;
 // }
 
-
 * .skeleton-child {
+	--skeleton-gradient-from: var(--c-surface-1) !important;
 
-    --skeleton-gradient-from: var(--c-surface-1) !important;
+	--skeleton-gradient-to: var(--c-surface-2) !important;
 
-    --skeleton-gradient-to: var(--c-surface-2) !important;
-
-    --skeleton-gradient-via: var(--c-surface-3) !important;
+	--skeleton-gradient-via: var(--c-surface-3) !important;
 }

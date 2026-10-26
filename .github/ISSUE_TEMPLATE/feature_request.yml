@@ -1,8 +1,8 @@
 name: 💡 Feature Request (Suggestion)
 # description: Have a new idea/feature for GPThemes? Let me know...
 description: Create a feature request to enhance the experience using GPThemes.
-title: 'your_accurately_describing_title'
-labels: ['enhancement']
+title: "your_accurately_describing_title"
+labels: ["enhancement"]
 body:
     - type: markdown
       attributes:

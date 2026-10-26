@@ -52,7 +52,6 @@
 // 		background-color: oklch(from currentColor l c h / 0.11) !important;
 // 	}
 
-
 // 	&-green {
 // 		background-color: var(--c-accent) !important;
 // 	}
@@ -68,7 +67,7 @@
 // }
 
 button.bg-primary-solid {
-	background-color: var(--c-accent-12) !important;
 	color: var(--c-accent) !important;
+	background-color: var(--c-accent-12) !important;
 	backdrop-filter: blur(1rem);
 }

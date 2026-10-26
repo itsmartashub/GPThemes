@@ -1,70 +1,76 @@
 /* Using your selector system */
 .gpth-notify-container {
-    --w-max: clamp(16rem, 90vw, 22rem);
+	--w-max: clamp(16rem, 90vw, 22rem);
 
-    position: fixed;
-    top: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: var(--w-max);
-    z-index: 999999;
-    pointer-events: none;
-    overflow: visible;
+	position: fixed;
+	top: 1rem;
+	left: 50%;
+	z-index: 999999;
+	width: var(--w-max);
 
-    // Layout/style containment keeps reflows local without clipping the absolutely-stacked cards
-    contain: layout style;
+	// Layout/style containment keeps reflows local without clipping the absolutely-stacked cards
+	contain: layout style;
+	overflow: visible;
+	pointer-events: none;
+	transform: translateX(-50%);
 
-    .gpth-notify {
-        --i: 0;
-        --l: 80%;
-        --fg: var(--c-accent);
-        --bg: oklch(from var(--fg) var(--l) c h);
-        $dur: 0.3s;
+	.gpth-notify {
+		--i: 0;
+		--l: 80%;
+		--fg: var(--c-accent);
+		--bg: oklch(from var(--fg) var(--l) c h);
 
-        // Darker card in dark themes for stronger text contrast/readability
-        @include theme("dark") {
-            --l: 35%;
-        }
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: calc(100 - var(--i));
+		max-width: var(--w-max);
+		padding: calc(var(--p) * 1.5);
+		font-size: 1em;
+		color: var(--fg);
+		pointer-events: auto;
+		background-color: var(--bg);
+		border: 1px solid color-alpha(currentColor, 0.25);
+		border-radius: calc(var(--br) * 1.2);
+		opacity: max(0.4, calc(1 - var(--i) * 0.15));
+		transform: translateY(calc(var(--i) * 12px)) scale(max(0.84, calc(1 - var(--i) * 0.05)));
+		transform-origin: top center;
+		transition: transform $dur $easeOutBack, opacity $dur ease;
+		will-change: transform, opacity;
 
-        position: absolute;
-        top: 0;
-        left: 0;
-        max-width: var(--w-max);
-        padding: calc(var(--p) * 1.5);
-        font-size: 1em;
-        color: var(--fg);
-        background-color: var(--bg);
-        border: 1px solid color-alpha(currentColor, 0.25);
-        border-radius: calc(var(--br) * 1.2);
-        pointer-events: auto;
-        will-change: transform, opacity;
-        transform: translateY(calc(var(--i) * 12px)) scale(max(0.84, calc(1 - var(--i) * 0.05)));
-        opacity: max(0.4, calc(1 - var(--i) * 0.15));
-        z-index: calc(100 - var(--i));
-        transform-origin: top center;
-        transition: transform $dur $easeOutBack, opacity $dur ease;
+		// Darker card in dark themes for stronger text contrast/readability
+		@include theme('dark') {
+			--l: 35%;
+		}
 
-        @media (prefers-reduced-motion: reduce) {
-            transition: none;
-        }
+		@media (prefers-reduced-motion: reduce) {
+			transition: none;
+		}
 
-        &__close-btn {
-            position: absolute;
-            top: 0;
-            right: 0;
-            translate: 25% -25%;
-            font-size: 1.2em;
-            padding: 0 0.125em;
-            color: var(--bg);
-            background-color: var(--fg);
-            border: none;
-            cursor: pointer;
-            line-height: 1;
-            border-radius: 50vw;
-        }
+		&__close-btn {
+			position: absolute;
+			top: 0;
+			right: 0;
+			padding: 0 0.125em;
+			font-size: 1.2em;
+			line-height: 1;
+			color: var(--bg);
+			cursor: pointer;
+			background-color: var(--fg);
+			border: none;
+			border-radius: 50vw;
+			translate: 25% -25%;
+		}
 
-        &--success { --fg: var(--c-success); }
-        &--warning { --fg: var(--c-warning); }
-        &--error { --fg: var(--c-danger); }
-    }
+		&--success {
+			--fg: var(--c-success);
+		}
+		&--warning {
+			--fg: var(--c-warning);
+		}
+		&--error {
+			--fg: var(--c-danger);
+		}
+		$dur: 0.3s;
+	}
 }

@@ -5,20 +5,19 @@
     line-height: var(--gpth-computed-line-height) !important; */
 :root,
 :host,
-[data-codex-window-type=browser] {
-    --font-content: var(--gpth-computed-font-family) !important;
-    --font-ui-family: var(--gpth-computed-font-family) !important;
-    --wb-font-sans: var(--gpth-computed-font-family) !important;
-    --font-sans: var(--gpth-computed-font-family) !important;
-    // --font-sans-default: -apple-system-body, ui-sans-serif, -apple-system, system-ui, "Segoe UI", "Helvetica", "Apple Color Emoji", "Arial", sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+[data-codex-window-type='browser'] {
+	--font-content: var(--gpth-computed-font-family) !important;
+	--font-ui-family: var(--gpth-computed-font-family) !important;
+	--wb-font-sans: var(--gpth-computed-font-family) !important;
+	--font-sans: var(--gpth-computed-font-family) !important;
+	// --font-sans-default: -apple-system-body, ui-sans-serif, -apple-system, system-ui, "Segoe UI", "Helvetica", "Apple Color Emoji", "Arial", sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 :host,
 html,
 body {
-    @include customFont((font-size, line-height, letter-spacing));
+	@include customFont((font-size, line-height, letter-spacing));
 }
-
 
 /* 
 .MarkdownRoot-rZKhxa :is(.Paragraph-kKnbIo,.List-kOVW5V,.ListItem-ncLgmg,.Table-LqdUhs) {
@@ -27,37 +26,37 @@ body {
 }
 */
 // User text in edit mode couldnt be overriden witouht this, and some text in gpt msgs
-[class*="MarkdownRoot-"] :is([class*="Paragraph-"], [class*="List-"], [class*="ListItem-"], [class*="Table-"]) {
-    --codex-chat-font-size: var(--gpth-computed-font-size) !important;
-    --markdown-font-size: var(--gpth-computed-font-size) !important;
-    --markdown-line-height: var(--gpth-computed-line-height) !important;
-    @include customFont;
+[class*='MarkdownRoot-']
+	:is([class*='Paragraph-'], [class*='List-'], [class*='ListItem-'], [class*='Table-']) {
+	--codex-chat-font-size: var(--gpth-computed-font-size) !important;
+	--markdown-font-size: var(--gpth-computed-font-size) !important;
+	--markdown-line-height: var(--gpth-computed-line-height) !important;
+	@include customFont;
 }
 
 #{$CHATS_BUBBLES} {
-    --codex-chat-font-size: var(--gpth-computed-font-size) !important;
-    --markdown-font-size: var(--gpth-computed-font-size) !important;
-    // --codex-chat-font-size: var(--codex-chat-font-size-override, var(--font-ui-size, 13px));
-    --markdown-host-font-size: var(--gpth-computed-font-size) !important;
-    --markdown-line-height: var(--gpth-computed-line-height) !important;
+	--codex-chat-font-size: var(--gpth-computed-font-size) !important;
+	--markdown-font-size: var(--gpth-computed-font-size) !important;
+	// --codex-chat-font-size: var(--codex-chat-font-size-override, var(--font-ui-size, 13px));
+	--markdown-host-font-size: var(--gpth-computed-font-size) !important;
+	--markdown-line-height: var(--gpth-computed-line-height) !important;
 
-    // @extend %custom-fonts;
-    @include customFont;
+	// @extend %custom-fonts;
+	@include customFont;
 }
 
 // Gpt some msg and user msg ([class^="MarkdownRoot"])
-[class^="DilResponseRoot-"],
-[class^="DilRenderer-"] {
-
-    // @extend %custom-fonts;
-    @include customFont;
+[class^='DilResponseRoot-'],
+[class^='DilRenderer-'] {
+	// @extend %custom-fonts;
+	@include customFont;
 }
 
 // User msg
 .text-size-chat {
-    // font-size: var(--gpth-computed-font-size) !important;
-    // line-height: var(--gpth-computed-line-height) !important;
-    @include customFont((font-size, line-height));
+	// font-size: var(--gpth-computed-font-size) !important;
+	// line-height: var(--gpth-computed-line-height) !important;
+	@include customFont((font-size, line-height));
 }
 
 // [class^="Title-"] {

@@ -1,218 +1,209 @@
-#main [role="presentation"] {
-    container: main / inline-size; // maybe better attach like in original, to: [class^="@container/main"]
+#main [role='presentation'] {
+	--p-chat-bubble-multiply: 1.35; // not used for Group chats !!
+	container: main / inline-size; // maybe better attach like in original, to: [class^="@container/main"]
 
-    --p-chat-bubble-multiply: 1.35; // not used for Group chats !!
+	/* Main Page chat-container  Bg */
+	background-color: var(--c-bg-chats-container) !important;
 
-    /* Main Page chat-container  Bg */
-    background-color: var(--c-bg-chats-container) !important;
+	/* Product/items list in chat bubbles (when search something) */
+	.context-list {
+		padding-inline: 0.5rem;
+		background-color: var(--c-surface-2);
+		border-radius: var(--br-btn-big);
+		box-shadow: 0 0 0 1px var(--c-accent-15) !important;
 
-    /* Product/items list in chat bubbles (when search something) */
-    .context-list {
-        box-shadow: 0 0 0 1px var(--c-accent-15) !important;
-        background-color: var(--c-surface-2);
-        padding-inline: 0.5rem;
-        border-radius: var(--br-btn-big);
+		@include lift;
+	}
 
-        @include lift;
-    }
+	/* List of "Chats" in Project */
+	[id*='-content-chats'] {
+		section ol li.group\/project-item {
+			border-radius: var(--br);
+			transition: transform 0.25s ease, background-color 0.25s ease;
 
+			&:hover {
+				transform: translateY(-0.08rem);
+			}
+		}
+	}
 
-    /* List of "Chats" in Project */
-    [id*="-content-chats"] {
+	/* List of "Sources" in Project */
+	[id*='-content-files'] {
+		section .group\/file-row {
+			border-radius: var(--br);
+			transition: transform 0.25s ease, background-color 0.25s ease;
 
-        section ol li.group\/project-item {
-            border-radius: var(--br);
-            transition: transform 0.25s ease, background-color 0.25s ease;
-
-            &:hover {
-                transform: translateY(-0.08rem);
-            }
-        }
-    }
-
-    /* List of "Sources" in Project */
-    [id*="-content-files"] {
-
-        section .group\/file-row {
-            border-radius: var(--br);
-            transition: transform 0.25s ease, background-color 0.25s ease;
-
-            /* Note that original class style is: ".hover\:bg-token-interactive-bg-primary-selected\/5:hover" which I override in "global/_colors-bgs.scss" */
-            &:hover {
-                background-color: var(--c-accent-08) !important;
-                color: var(--c-accent) !important;
-                transform: translateY(-0.08rem);
-            }
-        }
-    }
+			/* Note that original class style is: ".hover\:bg-token-interactive-bg-primary-selected\/5:hover" which I override in "global/_colors-bgs.scss" */
+			&:hover {
+				color: var(--c-accent) !important;
+				background-color: var(--c-accent-08) !important;
+				transform: translateY(-0.08rem);
+			}
+		}
+	}
 }
 
-[data-testid^="conversation-turn-"] {
-    @include container('md') {
-        --p-chat-bubble: .8rem;
-        --br-chat-bubble: calc(var(--br) * 1.5);
-    }
+[data-testid^='conversation-turn-'] {
+	@include container('md') {
+		--p-chat-bubble: .8rem;
+		--br-chat-bubble: calc(var(--br) * 1.5);
+	}
 
-    /* _________ CANVAS in chat bubbles */
-    [id^="textdoc-message"] {
-        --bg-primary: var(--c-bg-cm) !important;
-        --main-surface-primary: var(--c-bg-cm) !important;
+	/* _________ CANVAS in chat bubbles */
+	[id^='textdoc-message'] {
+		--bg-primary: var(--c-bg-cm) !important;
+		--main-surface-primary: var(--c-bg-cm) !important;
 
-        background-color: var(--c-bg-cm) !important;
+		background-color: var(--c-bg-cm) !important;
 
-        /* Sticky header za Canvas gde su "Copy" | "Edit" | "Download" | "RUN CODE" */
-        .sticky.top-0>[class*="dark:bg-token-bg-elevated-secondary/80"] {
-            background-color: color-mix(in oklch, var(--c-bg-cm) 60%, transparent 50%) !important;
-        }
+		/* Sticky header za Canvas gde su "Copy" | "Edit" | "Download" | "RUN CODE" */
+		.sticky.top-0 > [class*='dark:bg-token-bg-elevated-secondary/80'] {
+			background-color: color-mix(in oklch, var(--c-bg-cm) 60%, transparent 50%) !important;
+		}
 
-        /* Gradient on the bottom of code */
-        .absolute.bottom-0.z-20.h-24.w-full.transition-colors {
-            background: linear-gradient(rgb(0 0 0 / 0), var(--c-bg-cm)) !important;
-        }
-    }
+		/* Gradient on the bottom of code */
+		.absolute.bottom-0.z-20.h-24.w-full.transition-colors {
+			background: linear-gradient(rgb(0 0 0 / 0), var(--c-bg-cm)) !important;
+		}
+	}
 
-    /* Dual Responses (paragen) title */
-    [data-testid="paragen-feedback-title"] {
-        background: var(--c-bg-chats-container) !important;
-    }
+	/* Dual Responses (paragen) title */
+	[data-testid='paragen-feedback-title'] {
+		background: var(--c-bg-chats-container) !important;
+	}
 
-    /* Dual Responses */
-    [data-paragen-root="true"] {
-        background-color: var(--c-bg-msg-gpt) !important;
-    }
+	/* Dual Responses */
+	[data-paragen-root='true'] {
+		background-color: var(--c-bg-msg-gpt) !important;
+	}
 
-    /* User and GPT chats footer */
-    [class*="group/turn-messages"]>.flex[class*="justify-"] {
+	/* User and GPT chats footer */
+	[class*='group/turn-messages'] > .flex[class*='justify-'] {
+		/* And User's and GPT's footer icons/btns wrapper */
+		[class*='touch:-me-2 touch:-ms-3.5 -ms-2.5 -me-1'] {
+			/* .group\/footnote is 'SOURCES' */
+			button[aria-label]:not(.group\/footnote) {
+				color: var(--c-accent) !important;
 
-        /* And User's and GPT's footer icons/btns wrapper */
-        [class*="touch:-me-2 touch:-ms-3.5 -ms-2.5 -me-1"] {
+				svg {
+					color: currentColor !important;
+				}
 
-            /* .group\/footnote is 'SOURCES' */
-            button[aria-label]:not(.group\/footnote) {
-                color: var(--c-accent) !important;
+				&:hover {
+					color: var(--c-on-accent) !important;
+					background-color: var(--c-accent) !important;
 
-                svg {
-                    color: currentColor !important;
-                }
+					svg {
+						color: currentColor !important;
+					}
+				}
+			}
+		}
 
-                &:hover {
-                    background-color: var(--c-accent) !important;
-                    color: var(--c-on-accent) !important;
+		/* Only user's footer icons */
+		&.justify-end {
+			[class*='touch:-me-2 touch:-ms-3.5 -ms-2.5 -me-1'] {
+				background: var(--c-accent-12) !important;
+				border: 1px solid var(--c-accent-08) !important;
+				border-radius: 50vw;
+				backdrop-filter: blur(10px);
+			}
+		}
+	}
 
-                    svg {
-                        color: currentColor !important;
-                    }
-                }
-            }
-        }
-
-        /* Only user's footer icons */
-        &.justify-end {
-            [class*="touch:-me-2 touch:-ms-3.5 -ms-2.5 -me-1"] {
-                border-radius: 50vw;
-                backdrop-filter: blur(10px);
-                background: var(--c-accent-12) !important;
-                border: 1px solid var(--c-accent-08) !important;
-            }
-        }
-    }
-
-    /* ================ USER CHAT ================ */
-    &[data-turn="user"] {
-
-        /* User chat bubble - Edit state.
+	/* ================ USER CHAT ================ */
+	&[data-turn='user'] {
+		/* User chat bubble - Edit state.
         There is no [data-message-author-role="user"] when we clicked on "Edit Prompt", so we need select and like this for that case scenario */
-        .rounded-3xl.bg-token-main-surface-tertiary:has(.max-h-\[25dvh\] > .grid > textarea) {
-            --main-surface-tertiary: var(--c-accent-08) !important;
+		.rounded-3xl.bg-token-main-surface-tertiary:has(.max-h-\[25dvh\] > .grid > textarea) {
+			--main-surface-tertiary: var(--c-accent-08) !important;
+			caret-color: var(--c-accent);
 
-            border: 1px solid var(--c-accent-20);
-            caret-color: var(--c-accent);
+			border: 1px solid var(--c-accent-20);
 
-            .max-h-\[25dvh\] {
-                @extend %animFadeIn;
+			.max-h-\[25dvh\] {
+				@extend %animFadeIn;
 
-                /* Make the text in edit textarea to be the full-width */
-                span.invisible,
-                textarea {
-                    line-height: var(--gpth-computed-line-height) !important;
-                    font-size: var(--gpth-computed-font-size) !important;
-                    letter-spacing: var(--gpth-computed-letter-spacing) !important;
-                    width: 100%;
-                }
-            }
-        }
-    }
+				/* Make the text in edit textarea to be the full-width */
+				span.invisible,
+				textarea {
+					width: 100%;
+					font-size: var(--gpth-computed-font-size) !important;
+					line-height: var(--gpth-computed-line-height) !important;
+					letter-spacing: var(--gpth-computed-letter-spacing) !important;
+				}
+			}
+		}
+	}
 
-    [data-message-author-role='user'] {
+	[data-message-author-role='user'] {
+		/* ↪️ Reply in msg */
+		& > .text-token-text-tertiary.mx-2.flex.items-start.justify-end.text-sm.font-normal {
+			padding: 0.5rem;
+			color: var(--c-accent);
+			background-color: var(--c-accent-20);
+			border-left: 0.35rem solid var(--c-accent);
+			border-radius: calc(var(--br) * 1.35);
 
-        /* ↪️ Reply in msg */
-        &>.text-token-text-tertiary.mx-2.flex.items-start.justify-end.text-sm.font-normal {
-            background-color: var(--c-accent-20);
-            padding: 0.5rem;
-            color: var(--c-accent);
-            border-radius: calc(var(--br) * 1.35);
-            border-left: 0.35rem solid var(--c-accent);
+			svg {
+				background-color: var(--c-accent-20);
+				border-radius: 50vw;
+			}
+		}
 
-            svg {
-                border-radius: 50vw;
-                background-color: var(--c-accent-20);
-            }
-        }
+		[data-testid='collapsible-user-message-toggle'] {
+			color: currentColor !important;
+		}
+	}
 
-        [data-testid="collapsible-user-message-toggle"] {
-            color: currentColor !important;
-        }
-    }
+	/* ================ GPT CHAT ================ */
+	.agent-turn {
+		/* TODO: CHECK THIS AND ALL REASONING VERSIONS... */
 
+		/* REASONING: "Reasoned about [topic] for [X] seconds" title: Version with sidebar right open */
+		.relative.bg-clip-padding.bg-token-bg-primary[class*='pt-[13px]'][class*='@max-3xl:-top-2'] {
+			background-color: transparent !important;
+			border-radius: var(--br-chat-bubble) !important;
+			transition: scale 0.25s $easeInOutSine, background-color 0.25s $easeInOutSine;
 
-    /* ================ GPT CHAT ================ */
-    .agent-turn {
-        /* TODO: CHECK THIS AND ALL REASONING VERSIONS... */
+			&:hover {
+				background-color: var(--c-accent-10) !important;
+				scale: 0.98 !important;
+			}
+		}
 
-        /* REASONING: "Reasoned about [topic] for [X] seconds" title: Version with sidebar right open */
-        .relative.bg-clip-padding.bg-token-bg-primary[class*="pt-[13px]"][class*="@max-3xl:-top-2"] {
-            background-color: transparent !important;
-            border-radius: var(--br-chat-bubble) !important;
-            transition: scale 0.25s $easeInOutSine, background-color 0.25s $easeInOutSine;
+		/* Link cards listed from sources listed when using "Search" */
+		a[class*='group/nav-list'] {
+			background-color: var(--c-accent-10) !important;
+			border-color: var(--c-accent-10) !important;
+			border-radius: var(--br);
+			transition: translate 0.25s $easeInOutSine;
 
-            &:hover {
-                background-color: var(--c-accent-10) !important;
-                scale: 0.98 !important;
-            }
-        }
+			.text-token-text-primary.decoration-token-link.line-clamp-5 {
+				transition: color 0.18s ease-in-out;
+			}
 
-        /* Link cards listed from sources listed when using "Search" */
-        a[class*="group/nav-list"] {
-            background-color: var(--c-accent-10) !important;
-            border-color: var(--c-accent-10) !important;
-            border-radius: var(--br);
-            transition: translate 0.25s $easeInOutSine;
+			&:is(:hover, :focus) {
+				translate: 0 -0.1rem;
 
-            .text-token-text-primary.decoration-token-link.line-clamp-5 {
-                transition: color 0.18s ease-in-out;
-            }
+				.text-token-text-primary.decoration-token-link.line-clamp-5 {
+					color: var(--c-accent) !important;
+				}
+			}
+		}
 
-            &:is(:hover, :focus) {
-                translate: 0 -0.1rem;
+		/* DeepSearch: strange border */
+		[class*='@container'].border-token-border-sharp.mx-\[-16px\].contain-inline-size {
+			border: none !important;
 
-                .text-token-text-primary.decoration-token-link.line-clamp-5 {
-                    color: var(--c-accent) !important;
-                }
-            }
-        }
-
-        /* DeepSearch: strange border */
-        [class*="@container"].border-token-border-sharp.mx-\[-16px\].contain-inline-size {
-            border: none !important;
-
-            [data-message-author-role="assistant"] {
-                border-radius: calc(var(--br-chat-bubble) * 0.7);
-                padding: 0.7rem 3%;
-                box-shadow: 0 0 0 1px var(--c-accent-12) !important;
-                background-image: var(--c-bg-gradient);
-            }
-        }
-    }
+			[data-message-author-role='assistant'] {
+				padding: 0.7rem 3%;
+				background-image: var(--c-bg-gradient);
+				border-radius: calc(var(--br-chat-bubble) * 0.7);
+				box-shadow: 0 0 0 1px var(--c-accent-12) !important;
+			}
+		}
+	}
 }
 
 /* Blur chatbox wrapper background and remove ugly grey background on bottom */
@@ -228,10 +219,10 @@
 // }
 
 header button.button-glimmer-cta {
-    color: var(--c-accent) !important;
-    border-color: var(--c-accent-20) !important;
+	color: var(--c-accent) !important;
+	border-color: var(--c-accent-20) !important;
 
-    &:hover {
-        background-color: var(--c-accent-08) !important;
-    }
+	&:hover {
+		background-color: var(--c-accent-08) !important;
+	}
 }

@@ -12,7 +12,7 @@
 // 	}
 // }
 
-[role="listbox"] {
+[role='listbox'] {
 	li {
 		@include lift;
 	}
@@ -20,16 +20,16 @@
 
 /* .btn that IS NOT DISABLED, like "Create" on GPTs page */
 .btn:not(.cursor-not-allowed) {
-	will-change: transform, opacity;
 	transition:
 		transform 0.2s $easeInOutQuad,
 		opacity 0.3s ease-in-out,
 		background-color 0.3s ease-in-out,
 		color 0.3s ease-in-out !important;
+	will-change: transform, opacity;
 
 	&:is(:hover, :active) {
-		transform: translateY(-2px);
 		opacity: 0.8;
+		transform: translateY(-2px);
 	}
 }
 
@@ -40,7 +40,7 @@
 }
 
 /* ___ Switch button circle hover. Ovde ne moze :focus, ostane style kao da je checked ili obrnuto i kad se unhoveruje */
-button[role="switch"] {
+button[role='switch'] {
 	span[data-state] {
 		transition: transform 0.4s $easeInOutBack, background-color 0.3s ease-in-out;
 	}
@@ -53,16 +53,16 @@ button[role="switch"] {
 			position: relative;
 
 			&::after {
-				content: "";
-				width: 100%;
-				height: 100%;
+				position: absolute;
 				top: 0;
 				left: 0;
-				position: absolute;
+				z-index: -1;
+				width: 100%;
+				height: 100%;
+				content: '';
 				background-color: transparent;
 				border-radius: calc(var(--br) / 1.5);
-				transition: background-color .25s;
-				z-index: -1;
+				transition: background-color 0.25s;
 			}
 
 			&:hover::after {

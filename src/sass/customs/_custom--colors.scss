@@ -1,7 +1,6 @@
 html[data-gpth-toggle-accent-text] {
-
-    &.light,
-    &.dark {
-        --c-txt: var(--c-accent) !important;
-    }
+	&.light,
+	&.dark {
+		--c-txt: var(--c-accent) !important;
+	}
 }

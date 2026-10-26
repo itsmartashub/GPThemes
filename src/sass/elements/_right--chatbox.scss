@@ -1,13 +1,12 @@
 /* ===  RIGHT - TEXTAREA PARENT, message type and send button */
 form {
-
-	&[data-type="unified-composer"] {
+	&[data-type='unified-composer'] {
 		.contain-inline-size[data-composer-surface] {
+			caret-color: var(--c-accent);
 			// mzd dodati i [class*="bg-(--composer-surface-primary)"]
 			background: var(--c-bg-textarea) !important;
-			caret-color: var(--c-accent);
-			box-shadow: inset 0 0 1px 1px var(--c-accent-08) !important;
 			border: none !important;
+			box-shadow: inset 0 0 1px 1px var(--c-accent-08) !important;
 			backdrop-filter: blur(18px);
 
 			/* Prompt text field for "Temporary chat" */
@@ -34,12 +33,11 @@ form {
 				- &.text-token-text-secondary:  Reply in classic textarea
 				- &.text-blue-400:  Reply in DALLE textarea when selecting something to remove on image  */
 					&.text-token-text-secondary {
-
 						/* Reply btn icon */
 						.w-7.h-6,
 						/* Cancel btn icon */
 						button.text-token-text-secondary {
-							&:has(>svg) {
+							&:has(> svg) {
 								// background-color: var(--c-accent) !important;
 								// color: var(--c-on-accent) !important;
 								border-radius: 50vw;
@@ -47,13 +45,13 @@ form {
 						}
 
 						/* Reply btn icon */
-						.w-7.h-6:has(>svg) {
+						.w-7.h-6:has(> svg) {
 							color: var(--c-accent) !important;
 							background-color: var(--c-accent-20) !important;
 						}
 
 						/* Cancel btn icon */
-						button.text-token-text-secondary:has(>svg) {
+						button.text-token-text-secondary:has(> svg) {
 							color: var(--c-on-accent) !important;
 							background-color: var(--c-accent) !important;
 						}
@@ -61,46 +59,47 @@ form {
 				}
 			}
 
-			span>button[aria-label="Open in canvas"] {
-				background-color: var(--c-accent-15) !important;
+			span > button[aria-label='Open in canvas'] {
 				color: var(--c-accent) !important;
+				background-color: var(--c-accent-15) !important;
 			}
 
 			/* Tools, Dictate icon, Canvas, Search, Think */
 			button.composer-btn:not(#upload-file-btn),
-			[data-testid="system-hint-search"] .h-9.rounded-full.border.border-token-border-default[class*="bg-token-composer-blue-bg"] {
+			[data-testid='system-hint-search']
+				.h-9.rounded-full.border.border-token-border-default[class*='bg-token-composer-blue-bg'] {
 				background-color: var(--c-accent-10) !important;
 			}
 
 			button.composer-btn,
 			// "Search" for guest mode
-			button[data-testid="composer-button-search"] {
+			button[data-testid='composer-button-search'] {
 				color: var(--c-accent) !important;
 				border-radius: 50vw;
 			}
 
 			// "Search" for guest mode when hover
-			[data-testid="system-hint-search"] .h-9.rounded-full[class*="bg-token-composer-blue-bg"]:hover {
+			[data-testid='system-hint-search']
+				.h-9.rounded-full[class*='bg-token-composer-blue-bg']:hover {
 				background-color: var(--c-accent-15) !important;
 			}
 
 			/* Voice and dictate wrapper */
 			#imagegen-voice-controls {
-
 				/* Dictate btn */
 				.btn.btn-primary.btn-small {
-					@extend .btn-secondary;
 					border-radius: 50vw !important;
+					@extend .btn-secondary;
 				}
 			}
 
 			button[data-testid='send-button'],
 			button[data-testid='stop-button'] {
-				background-color: var(--c-accent) !important;
+				padding: 2px;
 				color: var(--c-txt) !important;
+				background-color: var(--c-accent) !important;
 				border-color: var(--c-accent) !important;
 				border-radius: 100vw !important;
-				padding: 2px;
 
 				&[disabled] {
 					opacity: 0.5 !important;
@@ -110,8 +109,6 @@ form {
 					color: var(--c-on-accent) !important;
 				}
 			}
-
-
 
 			// /* Advanced Voice Mode button */
 			// button.composer-submit-button-color,
@@ -138,31 +135,30 @@ form {
 
 			/* New Advanced Voice Mode button - when recording */
 			.lk-room-container {
-
 				/* "...Closed" */
 				button.bg-token-icon-primary {
-					background-color: var(--c-accent-20) !important;
 					color: var(--c-accent) !important;
+					background-color: var(--c-accent-20) !important;
 				}
 			}
 
 			/* Canvas file-tile */
 			div.group\/file-tile {
-				[id^="textdoc-message-temp"] {
-					border-color: var(--c-accent-10) !important;
-					background-color: var(--c-accent-10) !important;
+				[id^='textdoc-message-temp'] {
 					color: var(--c-accent) !important;
+					background-color: var(--c-accent-10) !important;
+					border-color: var(--c-accent-10) !important;
 
 					/* Ugly gradients on the Canvas edit file attached edges */
-					.absolute.bottom-0.z-20[style*="background: linear-gradient"] {
+					.absolute.bottom-0.z-20[style*='background: linear-gradient'] {
 						background: none !important;
 					}
 				}
 
 				/* Close btn for edit Canvas file-tile attached */
-				button[class*="group-hover/file-tile:block"].absolute.-left-1.-top-1.rounded-full {
-					background-color: var(--c-accent) !important;
+				button[class*='group-hover/file-tile:block'].absolute.-left-1.-top-1.rounded-full {
 					color: var(--c-on-accent) !important;
+					background-color: var(--c-accent) !important;
 				}
 			}
 		}
@@ -173,11 +169,9 @@ form {
 		}
 	}
 
-
 	/* Autocomplete suggestions - Element when clicked example cards below prompt textarea: "Create image", "Summarize text", "Analyze data", "Analyze images", and more... */
-	&+.absolute.start-0.top-full {
+	& + .absolute.start-0.top-full {
 		ul {
-
 			li {
 				transition: translate 0.25s linear, opacity 0.25s linear;
 
@@ -201,37 +195,38 @@ form {
 	}
 }
 
-
 /* Uploaded file in chatbox and in chats too */
 a .bg-primary .p-2.w-80 {
 	.h-10.w-10 {
-		background-color: var(--c-accent-12) !important;
 		color: var(--c-accent) !important;
+		background-color: var(--c-accent-12) !important;
 
 		svg {
-			color: currentColor !important
+			color: currentColor !important;
 		}
 	}
 }
 
 /* Plus button (attach file) in chatbox in Group chat */
 #composer-plus-btn {
-	background-color: var(--c-accent-12) !important;
 	color: var(--c-accent) !important;
+	background-color: var(--c-accent-12) !important;
 }
 
 /* Advanced Voice Mode button and submit btn in chatbox for classic and Group chat layout */
 button.composer-submit-button-color,
 #composer-submit-button,
-[data-testid="composer-speech-button"] {
+[data-testid='composer-speech-button'] {
 	--shadow: 0 0 2px 2px oklch(var(--from-accent) / 0.8) inset, -1px -1px 5px 0px #fff inset;
-	--c-bg-gradient: linear-gradient(-25deg,
-			transparent 0%,
-			var(--c-accent-40) 18%,
-			var(--c-accent) 58%);
+	--c-bg-gradient: linear-gradient(
+		-25deg,
+		transparent 0%,
+		var(--c-accent-40) 18%,
+		var(--c-accent) 58%
+	);
+	color: var(--c-on-accent) !important;
 
 	background: var(--c-bg-gradient) !important;
-	color: var(--c-on-accent) !important;
 	box-shadow: var(--shadow) !important;
 }
 

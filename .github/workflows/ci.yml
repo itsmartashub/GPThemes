@@ -4,17 +4,17 @@ on:
     workflow_dispatch:
         inputs:
             skip_build:
-                description: 'Set to true to skip the main build/packaging job.'
+                description: "Set to true to skip the main build/packaging job."
                 required: false
                 default: false
                 type: boolean
             skip_biome:
-                description: 'Set to true to skip Biome (JS) lint checks.'
+                description: "Set to true to skip Biome (JS) lint checks."
                 required: false
                 default: false
                 type: boolean
             skip_stylelint:
-                description: 'Set to true to skip Stylelint (CSS/SCSS) checks.'
+                description: "Set to true to skip Stylelint (CSS/SCSS) checks."
                 required: false
                 default: false
                 type: boolean

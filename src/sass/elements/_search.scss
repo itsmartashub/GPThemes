@@ -1,43 +1,41 @@
 /* ___ Search list of sources showed on the right h-full of the chats container */
-[data-testid="stage-thread-flyout"] {
-    --main-surface-primary: var(--c-bg-chats-container) !important;
+[data-testid='stage-thread-flyout'] {
+	--main-surface-primary: var(--c-bg-chats-container) !important;
 
-    [data-testid="screen-threadFlyOut"] {
+	[data-testid='screen-threadFlyOut'] {
+		/* Header where main title and tabs are */
+		[data-testid='bar-search-sources-header'] {
+			.border-token-main-surface-tertiary.bg-token-main-surface-tertiary.rounded-full {
+				border-radius: var(--br-btn) !important;
+				box-shadow: 0 0 0 1px var(--c-accent-20) !important;
 
-        /* Header where main title and tabs are */
-        [data-testid="bar-search-sources-header"] {
-            .border-token-main-surface-tertiary.bg-token-main-surface-tertiary.rounded-full {
-                border-radius: var(--br-btn) !important;
-                box-shadow: 0 0 0 1px var(--c-accent-20) !important;
+				/* "Activity" and "X Sources" tab in inactive state */
+				button.btn[class*='min-w-[100px]']:not(.bg-token-main-surface-primary) {
+					color: var(--c-accent) !important;
+				}
+			}
+		}
 
-                /* "Activity" and "X Sources" tab in inactive state */
-                button.btn[class*="min-w-[100px]"]:not(.bg-token-main-surface-primary) {
-                    color: var(--c-accent) !important;
-                }
-            }
-        }
+		/* Add hover state for searched items */
+		// a[class*="hover:bg-token-surface-hover"],
+		a[class*='hover:'][target='_blank'] {
+			transition: transform 0.45s $easeOutQuint, background-color 0.45s $easeOutQuint;
 
-        /* Add hover state for searched items */
-        // a[class*="hover:bg-token-surface-hover"],
-        a[class*="hover:"][target="_blank"] {
-            transition: transform 0.45s $easeOutQuint, background-color 0.45s $easeOutQuint;
+			&:hover {
+				background-color: var(--c-surface-3) !important;
+				transform: translateY(-0.225rem);
+			}
+		}
 
-            &:hover {
-                background-color: var(--c-surface-3) !important;
-                transform: translateY(-0.225rem);
-            }
-        }
-
-        [class*="dark:bg-black"] {
-            background-color: var(--c-bg-sidebar) !important;
-        }
-    }
+		[class*='dark:bg-black'] {
+			background-color: var(--c-bg-sidebar) !important;
+		}
+	}
 }
 
-
 /* [data-testid="modal-chat-screen-entity-flyout"] - for mobile   */
-[data-testid="modal-chat-screen-entity-flyout"] {
-    [class*="dark:bg-black"] {
-        background-color: var(--c-bg-sidebar) !important;
-    }
+[data-testid='modal-chat-screen-entity-flyout'] {
+	[class*='dark:bg-black'] {
+		background-color: var(--c-bg-sidebar) !important;
+	}
 }

@@ -1,16 +1,16 @@
 .gpth-btn-primary {
-    $trans: 0.25s ease;
-    background-color: var(--c-accent);
-    color: var(--c-on-accent);
-    width: 66.6%;
-    margin: 0 auto;
-    padding: var(--p-btn);
-    font-size: 0.985em;
-    font-weight: bold;
-    border-radius: var(--br);
-    transition: scale $trans;
+	width: 66.6%;
+	padding: var(--p-btn);
+	margin: 0 auto;
+	font-size: 0.985em;
+	font-weight: bold;
+	color: var(--c-on-accent);
+	background-color: var(--c-accent);
+	border-radius: var(--br);
+	transition: scale $trans;
 
-    &:hover {
-        scale: 0.98;
-    }
+	&:hover {
+		scale: 0.98;
+	}
+	$trans: 0.25s ease;
 }

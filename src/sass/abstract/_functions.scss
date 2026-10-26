@@ -1,32 +1,35 @@
-@use "sass:string";
+@use 'sass:string';
 
 $_: null !default;
 
-@function color-alpha($color-var: $_,
-  $alpha: $_,
-  $important: $_) {
-  $final-alpha: if($alpha ==$_ or $alpha ==null, "var(--alpha, 0.11)", $alpha);
-  $final-important: if($important ==true, ' !important', '');
+@function color-alpha($color-var: $_, $alpha: $_, $important: $_) {
+	// Handle currentColor case
+	@if $color-var == currentColor {
+		@return string.unquote(
+			'oklch(from currentColor l c h / #{$final-alpha})#{$final-important}'
+		);
+	}
 
-  // Handle currentColor case
-  @if $color-var ==currentColor {
-    @return string.unquote("oklch(from currentColor l c h / #{$final-alpha})#{$final-important}");
-  }
+	// Handle null/default case
+	@if $color-var == $_ or $color-var == null {
+		@return string.unquote(
+			'oklch(from var(--c-accent) l c h / #{$final-alpha})#{$final-important}'
+		);
+	}
 
-  // Handle null/default case
-  @if $color-var ==$_ or $color-var ==null {
-    @return string.unquote("oklch(from var(--c-accent) l c h / #{$final-alpha})#{$final-important}");
-  }
+	// Handle CSS custom properties (start with --)
+	@if string.slice($color-var, 1, 2) == '--' {
+		@return string.unquote(
+			'oklch(from var(#{$color-var}) l c h / #{$final-alpha})#{$final-important}'
+		);
+	}
 
-  // Handle CSS custom properties (start with --)
-  @if string.slice($color-var, 1, 2)=="--" {
-    @return string.unquote("oklch(from var(#{$color-var}) l c h / #{$final-alpha})#{$final-important}");
-  }
-
-  // Handle any other color value (hex, rgb, hsl, named colors, etc.)
-  @return string.unquote("oklch(from #{$color-var} l c h / #{$final-alpha})#{$final-important}");
+	// Handle any other color value (hex, rgb, hsl, named colors, etc.)
+	@return string.unquote('oklch(from #{$color-var} l c h / #{$final-alpha})#{$final-important}');
+	$final-alpha: if($alpha == $_ or $alpha == null, 'var(--alpha, 0.11)', $alpha);
+	$final-important: if($important == true, ' !important', '');
 }
 
 @function child-radius($parent-radius, $parent-padding) {
-  @return max(0px, $parent-radius - $parent-padding);
+	@return max(0px, $parent-radius - $parent-padding);
 }

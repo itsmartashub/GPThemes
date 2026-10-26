@@ -1,55 +1,52 @@
 .lk-room-container {
-    // button[aria-label] {
-    //     border-radius: 50vw !important;
-    // }
+	// button[aria-label] {
+	//     border-radius: 50vw !important;
+	// }
 
-    // button[aria-label] {
-    //     &.btn-primary[class*="bg-black"] {
-    //         background-color: var(--c-accent-20) !important;
+	// button[aria-label] {
+	//     &.btn-primary[class*="bg-black"] {
+	//         background-color: var(--c-accent-20) !important;
 
-    //         svg {
-    //             color: var(--c-accent) !important;
-    //         }
-    //     }
+	//         svg {
+	//             color: var(--c-accent) !important;
+	//         }
+	//     }
 
-    //     &.btn-primary[class*="bg-red-500"] {
-    //         color: var(--c-danger);
-    //         background-color: color-alpha(--c-danger, 0.2, true);
+	//     &.btn-primary[class*="bg-red-500"] {
+	//         color: var(--c-danger);
+	//         background-color: color-alpha(--c-danger, 0.2, true);
 
-    //         svg {
-    //             color: var(--c-danger) !important;
-    //         }
-    //     }
-    // }
+	//         svg {
+	//             color: var(--c-danger) !important;
+	//         }
+	//     }
+	// }
 
-    // button.absolute.w-48 {
-    //     border-radius: calc(var(--br-btn) * 1.5) !important;
-    // }
+	// button.absolute.w-48 {
+	//     border-radius: calc(var(--br-btn) * 1.5) !important;
+	// }
 
-    /* "Choose a voice" slider absolute buttons with gradient */
-    // .bg-gradient-to-r,
-    // .bg-gradient-to-l {
-    //     --gradient-color-from: var(--c-surface-1) !important;
-    // }
+	/* "Choose a voice" slider absolute buttons with gradient */
+	// .bg-gradient-to-r,
+	// .bg-gradient-to-l {
+	//     --gradient-color-from: var(--c-surface-1) !important;
+	// }
 
-    /* "Choose a voice" slider absolute buttons with gradient */
-    .from-\[var\(--main-surface-background\)\] {
-        --tw-gradient-from: var(--c-bg-chats-container) !important;
-    }
+	/* "Choose a voice" slider absolute buttons with gradient */
+	.from-\[var\(--main-surface-background\)\] {
+		--tw-gradient-from: var(--c-bg-chats-container) !important;
+	}
 
-    /* Voice related buttons in chatbox when start recording - NEW Advanced Voice */
-    button.bg-token-icon-primary {
-        background-color: var(--c-accent-20) !important;
-    }
+	/* Voice related buttons in chatbox when start recording - NEW Advanced Voice */
+	button.bg-token-icon-primary {
+		background-color: var(--c-accent-20) !important;
+	}
 }
 
-
-
 /* Advanced Voice - "Monthly limit reached" dialog */
-[role="dialog"] {
-
-    /* "Learn more" */
-    a[href*="-voice-chat-faq"] {
-        @extend %link_hover_underlined;
-    }
+[role='dialog'] {
+	/* "Learn more" */
+	a[href*='-voice-chat-faq'] {
+		@extend %link_hover_underlined;
+	}
 }

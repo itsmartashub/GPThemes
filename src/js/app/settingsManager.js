@@ -286,9 +286,9 @@ function onCloseSettings() {
 // =====================================================
 export {
 	createSettings,
-	onOpenSettings,
-	onCloseSettings,
-	toggleSettings,
 	isSettingsOpen,
+	onCloseSettings,
+	onOpenSettings,
 	positionPanel,
+	toggleSettings,
 }

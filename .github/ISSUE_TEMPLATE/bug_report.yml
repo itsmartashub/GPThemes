@@ -1,7 +1,7 @@
 name: 🐛 Bug Report
 description: Create a report about a bug you experienced while using GPThemes.
-title: 'your_accurately_describing_title'
-labels: ['bug']
+title: "your_accurately_describing_title"
+labels: ["bug"]
 body:
     - type: markdown
       attributes:
@@ -120,8 +120,8 @@ body:
       attributes:
           label: Does this happen when GPThemes is disabled?
           options:
-              - 'No'
-              - 'Yes'
+              - "No"
+              - "Yes"
       validations:
           required: true
 

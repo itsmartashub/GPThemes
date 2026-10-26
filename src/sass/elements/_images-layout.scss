@@ -1,13 +1,18 @@
-body>.pointer-events-none.fixed.inset-0.contain-size[data-shader] {
-	canvas {
-		opacity: 0 !important;
-	}
-
+body > .pointer-events-none.fixed.inset-0.contain-size[data-shader] {
 	// background: radial-gradient(circle at 60% 50%, var(--c-accent-10), var(--c-bg-sidebar), var(--c-bg-sidebar));
 	// background: radial-gradient(farthest-corner at 55% 70%, var(--c-accent-10), transparent, var(--c-bg-sidebar));
 	// background: radial-gradient(farthest-corner at 55% 70%, var(--c-accent-10), transparent, var(--c-bg-sidebar), var(--c-bg-sidebar));
-	background: radial-gradient(farthest-corner at 55% 80%, var(--c-accent-12), var(--c-accent-03), var(--c-bg-sidebar), var(--c-bg-sidebar));
+	background: radial-gradient(
+		farthest-corner at 55% 80%,
+		var(--c-accent-12),
+		var(--c-accent-03),
+		var(--c-bg-sidebar),
+		var(--c-bg-sidebar)
+	);
 	background-blend-mode: difference;
+	canvas {
+		opacity: 0 !important;
+	}
 
 	/* 	background: radial-gradient(circle farthest-side at 15% 75%, var(--c-accent-20) 0%, var(--c-bg-sidebar) 100%),
 	radial-gradient(circle farthest-corner at 50% 50%, var(--c-accent-20) 0%, var(--c-bg-sidebar) 100%),
@@ -41,19 +46,15 @@ body>.pointer-events-none.fixed.inset-0.contain-size[data-shader] {
 
 // .images-app.h-svh
 .images-app.h-svh {
-
 	#main {
-
 		div[class*='@container/images-app-shell'] {
-
-			[role="presentation"] {
-
+			[role='presentation'] {
 				.max-w-app-content {
-
 					section {
 						// border: 5px solid orange !important;
 
-						button .bg-token-interactive-bg-tertiary-hover[class*='corner-superellipse'] {
+						button
+							.bg-token-interactive-bg-tertiary-hover[class*='corner-superellipse'] {
 							// @include imgTrans;
 
 							img {
@@ -68,6 +69,5 @@ body>.pointer-events-none.fixed.inset-0.contain-size[data-shader] {
 				}
 			}
 		}
-
 	}
 }

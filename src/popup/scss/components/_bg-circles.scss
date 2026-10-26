@@ -1,24 +1,24 @@
 .bg-circle {
-    --size: 10rem;
+	--size: 10rem;
 
-    position: fixed;
-    top: 5%;
-    left: 0%;
-    width: var(--size);
-    height: var(--size);
-    border-radius: 50vw;
-    z-index: -1;
-    background-color: $accent;
-    filter: blur(5rem);
-    opacity: .35;
+	position: fixed;
+	top: 5%;
+	left: 0%;
+	z-index: -1;
+	width: var(--size);
+	height: var(--size);
+	background-color: $accent;
+	border-radius: 50vw;
+	opacity: 0.35;
+	filter: blur(5rem);
 
-    &:nth-of-type(2) {
-        top: 40%;
-        left: 80%
-    }
+	&:nth-of-type(2) {
+		top: 40%;
+		left: 80%;
+	}
 
-    &:nth-of-type(3) {
-        top: 90vh;
-        left: 40%
-    }
+	&:nth-of-type(3) {
+		top: 90vh;
+		left: 40%;
+	}
 }

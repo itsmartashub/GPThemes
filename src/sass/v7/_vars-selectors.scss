@@ -14,8 +14,6 @@ $CHATBOX_ON_NEWCHAT_PAGE: 'form[data-chatgpt-composer][data-composer-placement="
 $CHATBOX_FOOTER: '[class^="ComposerLayoutFooter"]';
 $CHATBOX_REPLY: '[class^="ComposerLayoutReplyContext-"]';
 
-
-
 // HIDE ELEMENTS
 $FOOTER_AI_DISCLAIMER_DESKTOP: '.sticky.bottom-0 .text-codex-description';
 $FOOTER_AI_DISCLAIMER_MOBILE: '[data-testid="thread-disclaimer"]';
@@ -27,6 +25,6 @@ $HEADER_ACTIONS: '#conversation-header-actions'; // mobile and only some profile
 $HEADER_UPGRADE_CHIP: '[data-testid="thread-header-right-actions"] button.button-glimmer-cta'; // mobile only
 $HEADER_SHARE: '[data-testid="share-chat-button"], header button.button-toolbar[aria-label="Share"]'; // mobile only
 $HEADER_MODEL: '[data-testid="model-switcher-dropdown-button"]'; // mobile only
-$HEADER_NEW_CHAT: '#{$HEADER_DESKTOP} .gap-toolbar-action button[aria-label="New chat"]'
+$HEADER_NEW_CHAT: '#{$HEADER_DESKTOP} .gap-toolbar-action button[aria-label="New chat"]';
 
-    // document.querySelectorAll('[data-app-shell-main-titlebar]')
+// document.querySelectorAll('[data-app-shell-main-titlebar]')

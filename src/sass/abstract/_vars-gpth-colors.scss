@@ -1,140 +1,169 @@
 $alphas: (
-    '03': 0.03,
-    '08': 0.08,
-    '10': 0.1,
-    '12': 0.12,
-    '13': 0.13,
-    '15': 0.15,
-    '20': 0.2,
-    '30': 0.3,
-    '40': 0.4,
-    '50': 0.5
+	'03': 0.03,
+	'08': 0.08,
+	'10': 0.1,
+	'12': 0.12,
+	'13': 0.13,
+	'15': 0.15,
+	'20': 0.2,
+	'30': 0.3,
+	'40': 0.4,
+	'50': 0.5,
 );
 
 :root {
-    --c-default-accent-light: #4d4d34; // #6c4756; // #695a4a // #564c37 // #564c37 // #41370b
-    --c-default-accent-dark: #c2d8c4; // #bfa8ff;
-    // --c-default-accent-light: #f98be9; // za swatch: #425100 (dark green), #777744 (light green)
-    // --c-default-accent-dark: #e7f98b; // za swatch: #c255fa (pink/purple hc), #ea667a (hc red-ish), #928e82 (gold), #97997c & 7c9986 (green smooth), 8888ff (blue hc), #9dbaf8 (bluish)
+	--c-default-accent-light: #4d4d34; // #6c4756; // #695a4a // #564c37 // #564c37 // #41370b
+	--c-default-accent-dark: #c2d8c4; // #bfa8ff;
+	// --c-default-accent-light: #f98be9; // za swatch: #425100 (dark green), #777744 (light green)
+	// --c-default-accent-dark: #e7f98b; // za swatch: #c255fa (pink/purple hc), #ea667a (hc red-ish), #928e82 (gold), #97997c & 7c9986 (green smooth), 8888ff (blue hc), #9dbaf8 (bluish)
 
-    --from-accent: from var(--c-accent) l c h;
+	--from-accent: from var(--c-accent) l c h;
 
-    @each $name, $val in $alphas {
-        --c-accent-#{$name}: oklch(var(--from-accent) / #{$val});
-    }
-
-    /* Dynamic color functions
+	/* Dynamic color functions
     USAGE:
     .color-danger {
         background: var(--color-alpha);
         --alpha: var(--alpha-subtle);
         --c-seed: var(--danger);
      } */
-    --color-alpha: oklch(from var(--c-seed, var(--c-accent)) l c h / var(--alpha, 0.11));
+	--color-alpha: oklch(from var(--c-seed, var(--c-accent)) l c h / var(--alpha, 0.11));
 
-    // --c-bg-sidebar: oklch(from var(--c-surface-2) clamp(0, calc(l * 1.0165), 1) c h);
-    --c-bg-sidebar: var(--c-bg-chats-container);
-    --c-bg-sidebar-link: var(--c-surface-3);
-    --c-bg-cm: var(--c-surface-1);
-    --c-bg-dialog: var(--c-surface-2);
+	// --c-bg-sidebar: oklch(from var(--c-surface-2) clamp(0, calc(l * 1.0165), 1) c h);
+	--c-bg-sidebar: var(--c-bg-chats-container);
+	--c-bg-sidebar-link: var(--c-surface-3);
+	--c-bg-cm: var(--c-surface-1);
+	--c-bg-dialog: var(--c-surface-2);
 
-    --c-border: oklch(from var(--c-txt) l c h / 0.08);
-    --c-border-accent: var(--c-accent-12);
-    --box-shadow: var(--box-shadow-values) var(--c-accent-12);
-    --c-bg-chatbox: linear-gradient(145deg,
-        var(--c-accent-20) 0%,
-        var(--c-accent-10) 22%,
-        var(--c-accent-10) 68%,
-        var(--c-accent-20) 100%);
+	--c-border: oklch(from var(--c-txt) l c h / 0.08);
+	--c-border-accent: var(--c-accent-12);
+	--box-shadow: var(--box-shadow-values) var(--c-accent-12);
+	--c-bg-chatbox: linear-gradient(
+		145deg,
+		var(--c-accent-20) 0%,
+		var(--c-accent-10) 22%,
+		var(--c-accent-10) 68%,
+		var(--c-accent-20) 100%
+	);
 
-    --c-bg-gradient: linear-gradient(135deg,
-        var(--c-accent-40) 0%,
-        var(--c-accent-10) 40%,
-        var(--c-accent-03) 60%,
-        var(--c-accent-40) 100%);
+	--c-bg-gradient: linear-gradient(
+		135deg,
+		var(--c-accent-40) 0%,
+		var(--c-accent-10) 40%,
+		var(--c-accent-03) 60%,
+		var(--c-accent-40) 100%
+	);
 
+	// LIGHT
+	--c-accent: var(--user-accent-light, var(--c-default-accent-light));
+	--c-on-accent: oklch(from var(--c-accent) 0.95 calc(c * 0.4) h);
+	--c-accent-light: color-mix(in oklch, var(--c-surface-1), var(--c-accent) 14%);
 
-    // LIGHT
-    --c-accent: var(--user-accent-light, var(--c-default-accent-light));
-    --c-on-accent: oklch(from var(--c-accent) 0.95 calc(c * 0.4) h);
-    --c-accent-light: color-mix(in oklch, var(--c-surface-1), var(--c-accent) 14%);
+	--c-surface-1: oklch(
+		from var(--user-surface-1, var(--c-accent)) 0.95 calc(0.011 * clamp(0, calc(c * 1000), 1)) h
+	);
+	--c-surface-2: oklch(
+		from var(--user-surface-2, var(--c-surface-1)) clamp(0, calc(l * 0.98), 1)
+			clamp(0, calc(c * 1.12), 0.4) h
+	);
+	--c-surface-3: oklch(
+		from var(--user-surface-3, var(--c-surface-2)) clamp(0, calc(l * 0.98), 1)
+			clamp(0, calc(c * 1.22), 0.4) h
+	);
 
-    --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.95 calc(0.011 * clamp(0, calc(c * 1000), 1)) h);
-    --c-surface-2: oklch(from var(--user-surface-2, var(--c-surface-1)) clamp(0, calc(l * 0.98), 1) clamp(0, calc(c * 1.12), 0.4) h);
-    --c-surface-3: oklch(from var(--user-surface-3, var(--c-surface-2)) clamp(0, calc(l * 0.98), 1) clamp(0, calc(c * 1.22), 0.4) h);
+	--c-txt: oklch(from var(--user-text-1, var(--c-accent)) 0 c h);
+	--c-subtext-1: oklch(from var(--user-text-2, var(--c-accent)) 0.3 c h);
+	--c-subtext-2: oklch(from var(--user-text-3, var(--c-accent)) 0.5 calc(c * 0.3) h);
 
-    --c-txt: oklch(from var(--user-text-1, var(--c-accent)) 0 c h);
-    --c-subtext-1: oklch(from var(--user-text-2, var(--c-accent)) 0.3 c h);
-    --c-subtext-2: oklch(from var(--user-text-3, var(--c-accent)) 0.5 calc(c * 0.3) h);
+	// --c-bg-chats-container: oklch(from var(--c-surface-1) clamp(0, calc(l * 1.0189), 1) c h);
+	--c-bg-chats-container: oklch(
+		from var(--user-surface-1, var(--c-accent)) 0.965 calc(0.01 * clamp(0, calc(c * 1000), 1)) h
+	);
 
-    // --c-bg-chats-container: oklch(from var(--c-surface-1) clamp(0, calc(l * 1.0189), 1) c h);
-    --c-bg-chats-container: oklch(from var(--user-surface-1, var(--c-accent)) 0.965 calc(0.01 * clamp(0, calc(c * 1000), 1)) h);
+	--c-bg-msg-user: var(--c-accent-12);
+	// --c-bg-msg-gpt: oklch(from var(--c-surface-1) clamp(0, calc(l * 0.95), 1) clamp(0, calc(c * 1.1), 0.4) h);
+	--c-bg-msg-gpt: oklch(
+		from var(--c-bg-chats-container) clamp(0, calc(l * 0.97), 1) clamp(0, calc(c * 1.1), 0.4) h
+	);
 
-    --c-bg-msg-user: var(--c-accent-12);
-    // --c-bg-msg-gpt: oklch(from var(--c-surface-1) clamp(0, calc(l * 0.95), 1) clamp(0, calc(c * 1.1), 0.4) h);
-    --c-bg-msg-gpt: oklch(from var(--c-bg-chats-container) clamp(0, calc(l * 0.97), 1) clamp(0, calc(c * 1.1), 0.4) h);
+	--c-bg-modal: oklch(from var(--c-accent) 0.2 calc(c * 0.75) h / 0.3);
+	--c-bg-menu: oklch(from var(--c-accent) 0.8 calc(c * 0.25) h / 0.5);
+	--c-bg-tooltip: color-mix(var(--c-accent) 20%, var(--c-surface-1));
 
+	--c-danger: oklch(46.52% 0.1688 22.615);
+	--c-warning: oklch(63.047% 0.1612 50.634);
+	--c-success: oklch(51.388% 0.1073 164.622);
 
-    --c-bg-modal: oklch(from var(--c-accent) 0.2 calc(c * 0.75) h / 0.3);
-    --c-bg-menu: oklch(from var(--c-accent) 0.8 calc(c * 0.25) h / 0.5);
-    --c-bg-tooltip: color-mix(var(--c-accent) 20%, var(--c-surface-1));
+	--brightness-menu: brightness(0.98);
 
-    --c-danger: oklch(46.52% 0.1688 22.615);
-    --c-warning: oklch(63.047% 0.1612 50.634);
-    --c-success: oklch(51.388% 0.1073 164.622);
-
-    --brightness-menu: brightness(0.98);
+	@each $name, $val in $alphas {
+		--c-accent-#{$name}: oklch(var(--from-accent) / #{$val});
+	}
 }
 
-@include theme-root("dark") {
-    // --c-default-accent-dark: #bfa8ff;
+@include theme-root('dark') {
+	// --c-default-accent-dark: #bfa8ff;
 
-    --c-accent: var(--user-accent-dark, var(--c-default-accent-dark));
-    // --c-accent: var(--user-accent-dark, #bfa8ff);
+	--c-accent: var(--user-accent-dark, var(--c-default-accent-dark));
+	// --c-accent: var(--user-accent-dark, #bfa8ff);
 
-    --c-on-accent: oklch(from var(--c-accent) 0.25 c h);
-    --c-accent-light: oklch(from var(--c-accent) 0.35 calc(c * 0.4) h);
+	--c-on-accent: oklch(from var(--c-accent) 0.25 c h);
+	--c-accent-light: oklch(from var(--c-accent) 0.35 calc(c * 0.4) h);
 
-    --c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.245 calc(c * 0.189) h);
-    --c-surface-2: oklch(from var(--user-surface-2, var(--c-surface-1)) clamp(0, calc(l * 1.256), 1) clamp(0, calc(c * 1.4), 0.4) h);
-    --c-surface-3: oklch(from var(--user-surface-3, var(--c-surface-2)) clamp(0, calc(l * 1.2), 1) clamp(0, calc(c * 1.4), 0.4) h);
+	--c-surface-1: oklch(from var(--user-surface-1, var(--c-accent)) 0.245 calc(c * 0.189) h);
+	--c-surface-2: oklch(
+		from var(--user-surface-2, var(--c-surface-1)) clamp(0, calc(l * 1.256), 1)
+			clamp(0, calc(c * 1.4), 0.4) h
+	);
+	--c-surface-3: oklch(
+		from var(--user-surface-3, var(--c-surface-2)) clamp(0, calc(l * 1.2), 1)
+			clamp(0, calc(c * 1.4), 0.4) h
+	);
 
-    --c-bg-chats-container: oklch(from var(--c-surface-1) clamp(0, calc(l * 1.014), 1) clamp(0, calc(c * 1.038), 0.4) h);
-    --c-bg-msg-gpt: oklch(from var(--c-bg-chats-container) clamp(0, calc(l * 1.15), 1) clamp(0, calc(c * 1.3), 0.4) h);
+	--c-bg-chats-container: oklch(
+		from var(--c-surface-1) clamp(0, calc(l * 1.014), 1) clamp(0, calc(c * 1.038), 0.4) h
+	);
+	--c-bg-msg-gpt: oklch(
+		from var(--c-bg-chats-container) clamp(0, calc(l * 1.15), 1) clamp(0, calc(c * 1.3), 0.4) h
+	);
 
-    --c-txt: oklch(from var(--user-text-1, var(--c-accent)) 1 calc(0.035 * clamp(0, calc(c * 1000), 1)) h);
-    --c-subtext-1: color-mix(in oklch, var(--c-accent), var(--c-surface-2) 30%);
-    --c-subtext-2: color-mix(in oklch, var(--c-accent), #fff 35%);
+	--c-txt: oklch(
+		from var(--user-text-1, var(--c-accent)) 1 calc(0.035 * clamp(0, calc(c * 1000), 1)) h
+	);
+	--c-subtext-1: color-mix(in oklch, var(--c-accent), var(--c-surface-2) 30%);
+	--c-subtext-2: color-mix(in oklch, var(--c-accent), #fff 35%);
 
-    --c-danger: oklch(75.114% 0.1337 16.727);
-    --c-warning: oklch(84.508% 0.1131 65.67);
-    --c-success: oklab(88.027% -0.1526 0.0307);
+	--c-danger: oklch(75.114% 0.1337 16.727);
+	--c-warning: oklch(84.508% 0.1131 65.67);
+	--c-success: oklab(88.027% -0.1526 0.0307);
 
-    --c-bg-msg-user: oklch(from var(--c-accent) 0.35 calc(c * 0.5) h);
+	--c-bg-msg-user: oklch(from var(--c-accent) 0.35 calc(c * 0.5) h);
 
-    --c-bg-modal: oklch(from var(--c-accent) 1 c h / 0.12);
-    --c-bg-menu: oklch(from var(--c-surface-2) 0.35 clamp(0, calc(c * 1.4), 0.4) h / 0.3);
-    --brightness-menu: brightness(1);
+	--c-bg-modal: oklch(from var(--c-accent) 1 c h / 0.12);
+	--c-bg-menu: oklch(from var(--c-surface-2) 0.35 clamp(0, calc(c * 1.4), 0.4) h / 0.3);
+	--brightness-menu: brightness(1);
 
-    // --c-bg-sidebar: var(--c-surface-1);
-    --c-bg-sidebar-link: var(--c-surface-2);
+	// --c-bg-sidebar: var(--c-surface-1);
+	--c-bg-sidebar-link: var(--c-surface-2);
 
-    // --c-scrollbar-thumb: var(--c-surface-2);
+	// --c-scrollbar-thumb: var(--c-surface-2);
 
-    // for hovers: color-mix(in oklch, currentcolor 20%, transparent);
+	// for hovers: color-mix(in oklch, currentcolor 20%, transparent);
 }
 
-@include theme-root("dark", "[data-gpth-amoled]") {
-    --c-accent-light: oklch(from var(--c-accent) 0.25 calc(c * 0.25) h);
+@include theme-root('dark', '[data-gpth-amoled]') {
+	--c-accent-light: oklch(from var(--c-accent) 0.25 calc(c * 0.25) h);
 
-    --c-surface-1: oklch(0 0 0); // darkest
-    --c-surface-2: oklch(from var(--user-surface-2, var(--c-accent)) 0.23 calc(c * 0.18) h);
-    --c-surface-3: oklch(from var(--user-surface-3, var(--c-surface-2)) clamp(0, calc(l * 1.2), 1) clamp(0, calc(c * 1.2), 0.4) h);
+	--c-surface-1: oklch(0 0 0); // darkest
+	--c-surface-2: oklch(from var(--user-surface-2, var(--c-accent)) 0.23 calc(c * 0.18) h);
+	--c-surface-3: oklch(
+		from var(--user-surface-3, var(--c-surface-2)) clamp(0, calc(l * 1.2), 1)
+			clamp(0, calc(c * 1.2), 0.4) h
+	);
 
-    --c-bg-chats-container: var(--c-surface-1);
+	--c-bg-chats-container: var(--c-surface-1);
 
-    --c-bg-msg-user: oklch(from var(--c-accent) 0.23 calc(c * 0.4) h);
-    --c-bg-msg-gpt: oklch(from var(--c-accent) 0.158 calc(c * 0.2) h);
+	--c-bg-msg-user: oklch(from var(--c-accent) 0.23 calc(c * 0.4) h);
+	--c-bg-msg-gpt: oklch(from var(--c-accent) 0.158 calc(c * 0.2) h);
 
-    --c-bg-modal: oklch(from var(--c-accent) 0.5 calc(c * 0.5) h / 0.35);
+	--c-bg-modal: oklch(from var(--c-accent) 0.5 calc(c * 0.5) h / 0.35);
 }
