@@ -1,8 +1,7 @@
 {
-	"name": "GPThemes - ChatGPT Widescreen, Fonts & Color",
-	"description": "Redesign ChatGPT: custom color, fonts & layouts — widescreen mode, chat bubbles, expandable chatbox, hide header/footer & more",
-	"author": "itsmarta",
-	"homepage_url": "https://github.com/itsmartashub/GPThemes",
+	"manifest_version": 3,
+	"host_permissions": ["https://chat.openai.com/*", "https://chatgpt.com/*"],
+	"permissions": ["storage"],
 	"icons": {
 		"16": "../../assets/icons/16.png",
 		"48": "../../assets/icons/48.png",
@@ -15,5 +14,16 @@
 			"css": ["../../sass/index.scss"],
 			"run_at": "document_idle"
 		}
-	]
+	],
+	"content_security_policy": {
+		"extension_pages": "script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;"
+	},
+	"action": {
+		"default_popup": "../../popup/popup.html",
+		"default_icon": {
+			"16": "../../assets/icons/16.png",
+			"48": "../../assets/icons/48.png",
+			"128": "../../assets/icons/128.png"
+		}
+	}
 }

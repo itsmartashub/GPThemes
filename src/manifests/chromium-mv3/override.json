@@ -1,14 +1,8 @@
 {
-	"manifest_version": 3,
-	"permissions": ["storage"],
-	"host_permissions": ["https://chat.openai.com/*", "https://chatgpt.com/*"],
 	"minimum_chrome_version": "119",
 	"background": {
 		"service_worker": "../../js/background/index.js",
 		"type": "module"
-	},
-	"content_security_policy": {
-		"extension_pages": "script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;"
 	},
 	"icons": {
 		"19": "../../assets/icons/19.png",
@@ -16,12 +10,6 @@
 		"38": "../../assets/icons/38.png"
 	},
 	"action": {
-		"default_popup": "../../popup/popup.html",
-		"default_icon": {
-			"16": "../../assets/icons/16.png",
-			"48": "../../assets/icons/48.png",
-			"128": "../../assets/icons/128.png"
-		},
 		"default_title": "GPThemes - ChatGPT Customization"
 	}
 }

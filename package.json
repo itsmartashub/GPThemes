@@ -1,8 +1,8 @@
 {
 	"name": "gpthemes",
 	"version": "6.5.0",
-	"displayName": "GPThemes - ChatGPT Customization & Tweaks",
-	"description": "Redesign ChatGPT: custom colors, fonts & layouts — widescreen mode, width sliders, expandable chatbox, hide header/footer & more.",
+	"displayName": "GPThemes - ChatGPT Widescreen, Fonts & Colors",
+	"description": "Customize ChatGPT: widescreen mode, colors, fonts, layouts, chat bubbles, hide header/footer & more",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/itsmartashub/GPThemes.git"
@@ -10,7 +10,7 @@
 	"bugs": {
 		"url": "https://github.com/itsmartashub/GPThemes/issues"
 	},
-	"homepage": "https://github.com/itsmartashub/GPThemes/",
+	"homepage": "https://github.com/itsmartashub/GPThemes",
 	"type": "module",
 	"scripts": {
 		"clean:dev": "rm -rf .parcel-cache build/dev",
@@ -23,9 +23,9 @@
 		"prebuild:chrome": "pnpm run manifest",
 		"prebuild:ff": "pnpm run manifest",
 		"dev:chrome": "parcel watch src/manifests/chromium-mv3/manifest.json --dist-dir build/dev/chromium-mv3 --no-hmr",
-		"dev:ff": "parcel watch src/manifests/firefox-mv2/manifest.json --dist-dir build/dev/firefox-mv2 --no-hmr",
+		"dev:ff": "parcel watch src/manifests/firefox-mv3/manifest.json --dist-dir build/dev/firefox-mv3 --no-hmr",
 		"build:chrome": "parcel build src/manifests/chromium-mv3/manifest.json --dist-dir build/prod/gpthemes-chromium-mv3 --no-source-maps",
-		"build:ff": "parcel build src/manifests/firefox-mv2/manifest.json --dist-dir build/prod/gpthemes-firefox-mv2 --no-source-maps",
+		"build:ff": "parcel build src/manifests/firefox-mv3/manifest.json --dist-dir build/prod/gpthemes-firefox-mv3 --no-source-maps",
 		"zip": "deno run --allow-read --allow-write --allow-env scripts/zip.js",
 		"build:all": "pnpm run clean:all && pnpm run build:chrome && pnpm run build:ff && pnpm run zip",
 		"lint": "biome lint",

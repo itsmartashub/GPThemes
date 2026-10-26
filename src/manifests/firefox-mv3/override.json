@@ -1,0 +1,14 @@
+{
+	"background": {
+		"scripts": ["../../js/background/index.js"]
+	},
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "gpthemes@itsmarta",
+			"strict_min_version": "128.0"
+		}
+	},
+	"action": {
+		"default_title": "ChatGPT Widescreen, Custom Fonts & Color"
+	}
+}
