@@ -7,10 +7,9 @@
 	color: var(--c-on-accent);
 	background-color: var(--c-accent);
 	border-radius: var(--br);
-	transition: scale $trans;
+	transition: scale 0.25s ease;
 
 	&:hover {
 		scale: 0.98;
 	}
-	$trans: 0.25s ease;
 }

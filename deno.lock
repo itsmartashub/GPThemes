@@ -17,8 +17,8 @@
         "npm:@parcel/transformer-sass@2.16.4",
         "npm:parcel@2.16.4",
         "npm:postcss@^8.5.31",
-        "npm:stylelint-config-standard-scss@16",
-        "npm:stylelint@^16.26.1",
+        "npm:stylelint-config-standard-scss@17",
+        "npm:stylelint@^17.16.0",
         "npm:webextension-polyfill@0.12"
       ]
     }

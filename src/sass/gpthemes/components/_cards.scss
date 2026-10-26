@@ -427,8 +427,8 @@ $name-size-compact: 0.42em;
 			cursor: default;
 			opacity: 0.4;
 		}
-		// Slider-card reset badge: its size, and how far it sits outside the card's top-right corner
 		$dur: 0.25s;
+		// Slider-card reset badge: its size, and how far it sits outside the card's top-right corner
 	}
 
 	&:hover .card__reset:not(:disabled) {
