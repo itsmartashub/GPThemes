@@ -2,16 +2,16 @@ import { EXT_REPO_URL } from '../../js/app/config/consts'
 
 const links = {
 	issue: (issueNumber) =>
-		`<a href="${EXT_REPO_URL}/issues/${issueNumber}" 
-        target="_blank" 
-        rel="noopener noreferrer" 
+		`<a href="${EXT_REPO_URL}/issues/${issueNumber}"
+        target="_blank"
+        rel="noopener noreferrer"
         class="changelog__issue-link">
         #${issueNumber}
       </a>`,
 	pr: (prNumber) =>
-		`<a href="${EXT_REPO_URL}/pull/${prNumber}" 
-        target="_blank" 
-        rel="noopener noreferrer" 
+		`<a href="${EXT_REPO_URL}/pull/${prNumber}"
+        target="_blank"
+        rel="noopener noreferrer"
         class="changelog__pr-link">
         PR #${prNumber}
       </a>`,
@@ -36,63 +36,67 @@ const SECTION_TYPES = {
 	support: { emoji: '💌', title: 'Support', priority: 7 },
 }
 
-/* 
- <a href="https://ko-fi.com/http417" target="_blank" rel="noopener noreferrer">KO-FI</a> 
- <a href="https://github.com/itsmartashub/GPThemes/issues/new?template=feature_request.yml" target="_blank" rel="noopener noreferrer">GitHub issue</a> 
+/*
+ <a href="https://ko-fi.com/http417" target="_blank" rel="noopener noreferrer">KO-FI</a>
+ <a href="https://github.com/itsmartashub/GPThemes/issues/new?template=feature_request.yml" target="_blank" rel="noopener noreferrer">GitHub issue</a>
 */
 const currentReleaseChanges = {
-	// note: [],
-	// critical: [],
-	// newFixes: [],
-	// features: [],
-	// improvements: [],
-	// fixes: [],
-	// other: [],
-	// support: [],
 	note: [
 		{
-			details: `Hey there. I just wanted to let you know that I rarely visit the site this extension was built for anymore.<br>
-			That means if something breaks or stops working, I probably won't notice unless you let me know :(`,
+			details: `Hey there. ChatGPT rolled out its new UI gradually through A/B testing, so not everyone got it at the same time. Supporting it meant rewriting almost the entire extension to bring every feature back on the new interface. <br>
+            ChatGPT ships many UI variants and profiles, so there is no single stable selector that works everywhere. It seems like some features will work in some places and not in others, and mobile support is still incomplete. It won’t be a pixel-perfect replica of the previous UI. <br>
+            What still looks off in your variant? Report it on GitHub or by email.`,
 		},
 	],
 	features: [
 		{
-			description: 'User Bubble Full Width:',
+			description: 'Draggable Floating Action Button:',
 			details:
-				'New toggle to expand the user message bubble from the default <code>70%</code> to <code>100%</code> width, matching the assistant bubble',
-			issueRef: 246,
+				'The GPThemes button can now be dragged anywhere on screen and remembers its position across sessions',
+			prRef: 260,
+			issueRef: 176,
 		},
 		{
-			description: 'Hide Header Share:',
+			description: 'Per-Slider Reset Buttons:',
 			details:
-				'New toggle to hide just the header <code>Share</code> button, independent of the broader <code>Hide Header Actions</code> toggle',
-			issueRef: 242,
+				'Each customization slider now has a reset button to restore its default value in one click',
+			prRef: 258,
 		},
 		{
-			description: 'Hide Header "New Chat":',
+			description: 'Toggle Badges:',
 			details:
-				"New toggle to hide the top header <code>New Chat</code> button, mostly useful on mobile since it isn't visible on desktop",
-			issueRef: 244,
+				'Toggles now show <code>MOBILE</code>, <code>NEW</code> and <code>EN</code> badges indicating where they apply',
+		},
+		{
+			description: 'AMOLED as Toggle:',
+			details:
+				'AMOLED is no longer a separate theme, it is a toggle that only takes effect in dark mode',
 		},
 	],
-	fixes: [
+	improvements: [
 		{
-			description: 'Custom Fonts:',
+			description: 'ChatGPT New UI Support:',
 			details:
-				'Fixed custom fonts not applying to new assistant messages after the recent ChatGPT codebase update (legacy messages were unaffected)',
-			issueRef: 240,
+				"Reworked GPThemes to fully support ChatGPT's new UI: theming, colors, chats, bubbles, sidebars, composer, right panel, image viewer, tooltips, toasts and more. Existing customization features (custom fonts, accent colors, hide toggles, chatbox widths, accent bubble, buttons, sidebar) were restored and updated for the new UI. Theme handling now follows ChatGPT's own.",
+			prRef: 259,
 		},
 		{
-			description: 'Accent Text Color:',
-			details: 'Fixed accent color not applying to assistant message text',
-			issueRef: 249,
+			description: 'Accent Surfaces:',
+			details:
+				'Accent surfaces no longer tint pure black/white, and monochromatic accents stay pure B/W without red-ish shades',
 		},
 		{
-			description: 'Scheduled Automation:',
-			details: 'Improved colors for the new Scheduled Automation elements inside chat bubbles',
+			description: 'Width Sliders Rework:',
+			details:
+				'Width sliders now use REM instead of %. With %, opening a left or right sidebar shrinks the chats container, so the same percentage no longer matches the intended width and the layout jumps. REM is based on the root font size, so the chosen width stays stable no matter how the container resizes',
 		},
 	],
 	other: [
+		{
+			description: 'Removed Features:',
+			details:
+				'Dropped <code>Expand Chatbox</code> toggle, custom sidebar width, <code>Hide Profile Button</code> toggle, the theme manager and the FAB dock, since ChatGPT now ships native equivalents',
+		},
 		{
 			description: 'Google Fonts:',
 			details:
@@ -123,7 +127,9 @@ const generateChangelog = () => {
 	// Get only sections that have content and sort by priority
 	const sectionsWithContent = Object.entries(currentReleaseChanges)
 		.filter(([_, items]) => items && items.length > 0)
-		.sort(([a], [b]) => (SECTION_TYPES[a]?.priority || 999) - (SECTION_TYPES[b]?.priority || 999))
+		.sort(
+			([a], [b]) => (SECTION_TYPES[a]?.priority || 999) - (SECTION_TYPES[b]?.priority || 999),
+		)
 
 	if (sectionsWithContent.length === 0) {
 		return '<p>No changes in this release.</p>'
