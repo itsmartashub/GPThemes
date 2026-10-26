@@ -8,7 +8,7 @@
         // --color-text-primary-ghost-hover: var(--color-text);
         // --color-text-secondary-ghost-hover: var(--color-text);
 
-        // Sidebar headings like: Pinned, Projects, Recents 
+        // Sidebar headings like: Pinned, Projects, Recents
         button[data-app-action-sidebar-section-toggle].group\/section-toggle {
             color: var(--c-accent) !important;
             font-weight: bold;
@@ -21,6 +21,11 @@
                 box-shadow: 0 0 0 1px var(--c-accent-20);
                 border-radius: 50vw;
             }
+        }
+
+        // Sidebar when collapsed
+        &[data-app-navigation-rail].bg-surface-secondary {
+            background-color: var(--c-bg-sidebar) !important;
         }
     }
 }
