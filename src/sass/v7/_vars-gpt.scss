@@ -154,7 +154,7 @@
     // --color-text-tooltip-description: var(--color-text-tooltip-secondary);
     // --color-border-tooltip: var(--color-text-tooltip);
 
-    --color-control-thumb-foreground: var(--lightningcss-light, var(--color-text)) var(--lightningcss-dark, var(--black));
+    // --color-control-thumb-foreground: var(--lightningcss-light, var(--color-text)) var(--lightningcss-dark, var(--black));
 
     // --switch-track-color: var(--color-text);
     // --switch-track-color-hover: var(--switch-track-color);
@@ -169,8 +169,9 @@
     --color-dialog-overlay: #{color-alpha(--c-surface-1, 0.8, true)}; // za neke modals je ok, za neke kao da je preko dialoga, wtf
     --color-media-foreground: var(--c-txt) !important;
     --color-media-background: var(--c-surface-1) !important;
+    --color-text-execution-output: var(--c-subtext-1) !important;
     --color-background-execution-output: var(--c-surface-2) !important;
-
+    // --color-text-execution-output-label: #b4b4b4;
 
 
     --bg-elevated-secondary: var(--c-surface-2) !important;

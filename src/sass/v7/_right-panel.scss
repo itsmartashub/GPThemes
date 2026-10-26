@@ -6,3 +6,12 @@
             --color-surface-secondary: var(--c-bg-chats-container) !important;
     }
 }
+
+// A moze i [data-testid="chatgpt-library-file-citation"]
+button[class*="filePill-"] {
+    background-color: var(--c-accent-12) !important;
+
+    &:hover {
+        background-color: var(--c-accent-20) !important;
+    }
+}
