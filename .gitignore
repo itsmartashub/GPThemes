@@ -9,3 +9,5 @@ build
 
 release.md
 release.html
+# generated manifests
+src/manifests/*/manifest.json

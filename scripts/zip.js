@@ -1,16 +1,13 @@
 // Using a CDN urlURL for fflate, which is compatible with Deno's ES module import. zipSync is used for synchronous, high-perf compression
 import { zipSync } from 'npm:fflate@0.8.2'
 
+const ROOT = new URL('..', import.meta.url)
+
 const CONFIG = {
-	// Paths to the manifest files to read the extension version from
-	manifestPaths: {
-		chrome: 'src/manifests/chromium-mv3/manifest.json',
-		firefox: 'src/manifests/firefox-mv2/manifest.json',
-	},
 	// Directory containing the built extension files
-	inputDir: 'build/prod',
+	inputDir: new URL('build/prod', ROOT).pathname,
 	// Directory where the final zip files will be placed
-	outputDir: 'build/releases',
+	outputDir: new URL('build/releases', ROOT).pathname,
 	// Prefix for the output filenames
 	filenamePrefix: 'gpthemes-',
 	// Subfolders within inputDir for each browser build
@@ -22,11 +19,10 @@ const CONFIG = {
 
 createZipFiles()
 
-// Reads the version string from a manifest file.
-async function readExtVersionFromManifest(manifestPath) {
-	const manifestContent = await Deno.readTextFile(manifestPath)
-	const manifest = JSON.parse(manifestContent)
-	return manifest.version
+// Reads the single source-of-truth version from package.json.
+async function readExtVersion() {
+	const pkg = JSON.parse(await Deno.readTextFile(new URL('package.json', ROOT)))
+	return pkg.version
 }
 
 // Ensures a directory exists, creating it recursively if necessary
@@ -78,7 +74,7 @@ async function createZip(inputPath, zipPath) {
 
 // Zipping process for a specific browser
 async function createZipFile(browser) {
-	const version = await readExtVersionFromManifest(CONFIG.manifestPaths[browser])
+	const version = await readExtVersion()
 
 	// Construct paths
 	const inputPath = `${CONFIG.inputDir}/${CONFIG.filenamePrefix}${CONFIG.folders[browser]}`
