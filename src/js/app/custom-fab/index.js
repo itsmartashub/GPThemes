@@ -1,10 +1,10 @@
-import { $ } from '../../utils/dom.js'
+import { debounce } from '../../utils/dom.js'
 import { getItem, watchStorageChanges } from '../../utils/storage.js'
 import { icon_paint } from '../components/icons.js'
 import { SK_TOGGLE_FAB_HIDDEN } from '../config/consts-storage.js'
 import { SELECTORS } from '../config/selectors.js'
-import { setupExtensionMessaging } from '../messaging/index.js'
-import { createSettings, onCloseSettings, onOpenSettings } from '../settingsManager.js'
+import { onCloseSettings, toggleSettings } from '../settingsManager.js'
+import { applyFABPosition, clampToViewport, loadFABPosition, makeDraggable } from './drag.js'
 
 // =====================================================
 // CONSTANTS
@@ -19,6 +19,9 @@ const STORAGE_KEY = SK_TOGGLE_FAB_HIDDEN
 const elements = {
 	FAB: null,
 }
+
+// Handle returned by makeDraggable, used to suppress drag-release clicks and for teardown
+let drag = null
 
 // =====================================================
 // TEMPLATE
@@ -44,8 +47,8 @@ async function createFAB() {
 	// 2. Cache elements
 	setElements($FAB)
 
-	// 3. Load initial state
-	await setInitialFABVisibility()
+	// 3. Load initial state in parallel (non-blocking)
+	await Promise.allSettled([setInitialFABVisibility(), restoreFABPosition($FAB)])
 
 	// 4. Wire up listeners (after DOM ready)
 	requestAnimationFrame(() => {
@@ -67,18 +70,29 @@ function setElements(FAB) {
 // LISTENERS
 // =====================================================
 
+// Named reference so it can be removed on teardown if needed
+const onViewportResizeDebounced = debounce(onViewportResize, 150)
+
 function addListeners() {
 	elements.FAB.addEventListener('click', onFABClick)
+
+	drag = makeDraggable(elements.FAB, {
+		onDragStart: onCloseSettings,
+	})
+
+	// Re-clamp the FAB whenever the viewport changes
+	window.addEventListener('resize', onViewportResizeDebounced)
 }
 
 function onFABClick() {
-	// The FAB toggles the settings panel
-	if ($(`.${SELECTORS.SETTINGS.OPEN_STATE}`)) {
-		onCloseSettings()
-		return
-	}
+	// Drag-release must not count as a click (didDrag flag clears after this frame)
+	if (drag?.wasDragged()) return
 
-	onOpenSettings()
+	toggleSettings(elements.FAB)
+}
+
+function onViewportResize() {
+	clampToViewport(elements.FAB)
 }
 
 // =====================================================
@@ -90,8 +104,8 @@ function setFABVisibility(isHidden = false) {
 
 	elements.FAB.classList.toggle(`${SELECTORS.FAB.ROOT}--hidden`, isHidden)
 
-	// auto-close settings if FAB hidden
-	if (isHidden && $(`.${SELECTORS.SETTINGS.OPEN_STATE}`)) onCloseSettings()
+	// Auto-close settings if FAB is hidden
+	if (isHidden) onCloseSettings()
 }
 
 // Load initial visibilty state from storage
@@ -105,6 +119,18 @@ async function setInitialFABVisibility() {
 		if (isHidden) setFABVisibility(true)
 	} catch (error) {
 		console.warn('[FAB] Could not load visibility state:', error)
+	}
+}
+
+/* Restore the last dragged position from local storage, or keep the default CSS position. */
+async function restoreFABPosition($FAB) {
+	try {
+		const pos = await loadFABPosition()
+		if (pos) applyFABPosition($FAB, pos.x, pos.y)
+		// Always clamp after applying — saved pos may be from a larger/different screen
+		clampToViewport($FAB)
+	} catch (err) {
+		console.warn('[FAB] Could not restore position:', err)
 	}
 }
 
@@ -131,10 +157,6 @@ function onStorageChange(changes, area) {
 async function init() {
 	try {
 		await createFAB()
-
-		// Initialize sub-modules
-		createSettings()
-		setupExtensionMessaging()
 
 		// Listen for storage sync changes (cross-tab)
 		watchStorageChanges(onStorageChange)

@@ -18,7 +18,10 @@ export const SK_TOGGLE_HIDE_FOOTER = 'hideFooter'
 export const SK_TOGGLE_HIDE_UPGRADE_CHIP = 'hideUpgradeChip'
 export const SK_TOGGLE_FAB_HIDDEN = 'toggleFABHidden'
 
-// Position Settings - TODO: don't forget to remove this from storage.sync in future, unless you fix the scrolldown alignement feat !!!
+// FAB drag position (local only bcs its device-specific, excluded from export)
+export const SK_FAB_POSITION = 'fabPosition'
+
+// Position settings - TODO: don't forget to remove this from storage.sync in future, unless you fix the scrolldown alignement feat !!!
 export const SK_SCROLL_BUTTON_POSITION = 'scrollButtonPosition'
 
 // Width Settings
@@ -83,6 +86,6 @@ export const EXPORT_CONFIG = Object.freeze({
 		SK_TOGGLE_USER_BUBBLE_FULLWIDTH,
 	],
 
-	// Settings to exclude from exports (system data)
-	EXCLUDE: [SK_EXT_VERSION, SK_DB_VERSION, SK_BADGE_SEEN],
+	// Settings to exclude from exports (system data + device-specific data)
+	EXCLUDE: [SK_EXT_VERSION, SK_DB_VERSION, SK_BADGE_SEEN, SK_FAB_POSITION],
 })
