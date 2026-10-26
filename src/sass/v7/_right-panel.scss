@@ -14,3 +14,20 @@ button[class*='filePill-'] {
 		background-color: var(--c-accent-20) !important;
 	}
 }
+
+// Banner above chatbox (e.g. "Chat memory full"). There is more types of it, e.g. surface-
+aside[class*="banner-"] {
+    background-color: var(--c-surface-2);
+
+    // --blue-400: var(--c-accent) !important;
+    // --blue-100: var(--c-accent-20) !important;
+
+    button[class*="blue"] {
+        background-color: var(--c-accent-12) !important;
+        color: var(--c-accent) !important;
+
+        &:hover {
+            background-color: var(--c-accent-15) !important;
+        }
+    }
+}
