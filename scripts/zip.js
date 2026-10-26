@@ -13,7 +13,7 @@ const CONFIG = {
 	// Subfolders within inputDir for each browser build
 	folders: {
 		chrome: 'chromium-mv3',
-		firefox: 'firefox-mv2',
+		firefox: 'firefox-mv3',
 	},
 }
 
