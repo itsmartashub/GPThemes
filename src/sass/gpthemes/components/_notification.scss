@@ -19,6 +19,7 @@
 		--l: 80%;
 		--fg: var(--c-accent);
 		--bg: oklch(from var(--fg) var(--l) c h);
+		$dur: 0.3s;
 
 		position: absolute;
 		top: 0;
@@ -71,6 +72,5 @@
 		&--error {
 			--fg: var(--c-danger);
 		}
-		$dur: 0.3s;
 	}
 }

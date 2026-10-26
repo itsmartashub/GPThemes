@@ -144,12 +144,12 @@
 			transition: 0.3s ease-in-out;
 
 			svg {
+				$size: 1.4em;
 				width: $size;
 				height: $size;
 				color: currentColor;
 				border-radius: 50vw;
 				transition: 0.3s ease-in-out;
-				$size: 1.4em;
 			}
 
 			&:hover {

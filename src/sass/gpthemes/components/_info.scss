@@ -12,10 +12,11 @@
 	box-shadow: 0 0 0 1px color-alpha(currentColor, 0.25);
 
 	svg {
+		$size: 1.45em;
+
 		width: $size;
 		height: $size;
 		margin-top: 0.125rem;
-		$size: 1.45em;
 	}
 
 	/* TODO: add mixing for this */

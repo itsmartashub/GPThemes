@@ -390,6 +390,8 @@ $name-size-compact: 0.42em;
 	// Reset: optional per-card badge, rendered only when the caller passes a resetId
 	// -------------------------------------------------------------------------
 	.card__reset {
+	    $dur: 0.25s;
+
 		position: absolute;
 		top: -$cardResetOffset;
 		right: -$cardResetOffset;
@@ -427,7 +429,6 @@ $name-size-compact: 0.42em;
 			cursor: default;
 			opacity: 0.4;
 		}
-		$dur: 0.25s;
 		// Slider-card reset badge: its size, and how far it sits outside the card's top-right corner
 	}
 

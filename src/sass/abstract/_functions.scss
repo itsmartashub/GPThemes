@@ -3,6 +3,9 @@
 $_: null !default;
 
 @function color-alpha($color-var: $_, $alpha: $_, $important: $_) {
+	$final-alpha: if($alpha == $_ or $alpha == null, 'var(--alpha, 0.11)', $alpha);
+	$final-important: if($important == true, ' !important', '');
+
 	// Handle currentColor case
 	@if $color-var == currentColor {
 		@return string.unquote(
@@ -25,9 +28,9 @@ $_: null !default;
 	}
 
 	// Handle any other color value (hex, rgb, hsl, named colors, etc.)
-	@return string.unquote('oklch(from #{$color-var} l c h / #{$final-alpha})#{$final-important}');
-	$final-alpha: if($alpha == $_ or $alpha == null, 'var(--alpha, 0.11)', $alpha);
-	$final-important: if($important == true, ' !important', '');
+	@return string.unquote(
+		'oklch(from #{$color-var} l c h / #{$final-alpha})#{$final-important}'
+	);
 }
 
 @function child-radius($parent-radius, $parent-padding) {
