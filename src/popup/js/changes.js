@@ -43,23 +43,32 @@ const SECTION_TYPES = {
 const currentReleaseChanges = {
 	note: [
 		{
-			details: `Hey there. ChatGPT rolled out its new UI gradually through A/B testing, so not everyone got it at the same time. Supporting it meant rewriting almost the entire extension to bring every feature back on the new interface. <br>
-            ChatGPT ships many UI variants and profiles, so there is no single stable selector that works everywhere. It seems like some features will work in some places and not in others, and mobile support is still incomplete. It won’t be a pixel-perfect replica of the previous UI. <br>
-            What still looks off in your variant? Report it on GitHub or by email.`,
+			details: `<strong>Hey there :)</strong> ChatGPT rolled out its new UI gradually through A/B testing, so not everyone got it at the same time. Supporting it meant rewriting almost the entire extension. <br> There are many UI variants and no single stable selector that works everywhere, so some features may work in some places and not in others, and mobile support is still incomplete. It won't be a pixel-perfect replica of the previous UI. <br><br> Thanks for your patience while things were broken, and especially to those who left a kind review anyway. Genuinely glad there are people who get what goes on behind the scenes. <br> <strong>What still looks off in your variant? Report it on GitHub or by email.</strong>`,
 		},
 	],
 	features: [
 		{
+			description: 'ChatGPT New UI Support:',
+			details:
+				'Reworked GPThemes for ChatGPT’s new UI. There were too many changes to list here',
+			prRef: 259,
+		},
+		{
+			description: 'Light/Dark Mode & AMOLED:',
+			details:
+				"Because of ChatGPT's new theme logic, light/dark mode now follows ChatGPT's own settings instead of the old dock buttons, so the dock with the 3 theme buttons were removed. AMOLED moved to the <code>Colors</code> section as a toggle and only takes effect in dark mode",
+		},
+		{
 			description: 'Draggable Floating Action Button:',
 			details:
-				'The GPThemes button can now be dragged anywhere on screen and remembers its position across sessions',
+				'The GPThemes button can now be dragged anywhere on screen and remembers its position across sessions, and the settings panel opens relative to it',
 			prRef: 260,
 			issueRef: 176,
 		},
 		{
 			description: 'Per-Slider Reset Buttons:',
 			details:
-				'Each customization slider now has a reset button to restore its default value in one click',
+				'Each customization slider now has a reset button that restores only that slider to its default value',
 			prRef: 258,
 		},
 		{
@@ -68,17 +77,16 @@ const currentReleaseChanges = {
 				'Toggles now show <code>MOBILE</code>, <code>NEW</code> and <code>EN</code> badges indicating where they apply',
 		},
 		{
-			description: 'AMOLED as Toggle:',
+			description: 'Stacked Notifications:',
 			details:
-				'AMOLED is no longer a separate theme, it is a toggle that only takes effect in dark mode',
+				'Notifications got a cleaner look and a smoother animation, and no longer lag. They now stack neatly at the top center, so they stay noticeable without getting in your way',
 		},
 	],
-	improvements: [
+	fixes: [
 		{
-			description: 'ChatGPT New UI Support:',
+			description: 'Hide Toggles:',
 			details:
-				"Reworked GPThemes to fully support ChatGPT's new UI: theming, colors, chats, bubbles, sidebars, composer, right panel, image viewer, tooltips, toasts and more. Existing customization features (custom fonts, accent colors, hide toggles, chatbox widths, accent bubble, buttons, sidebar) were restored and updated for the new UI. Theme handling now follows ChatGPT's own.",
-			prRef: 259,
+				'Fixed broken <code>Hide header</code>, <code>Hide share button</code> and <code>Hide new chat</code> after the UI update (the last two work in English only due to selector limitations), and restored the swapped <code>Hide header actions</code> / <code>Hide header share</code> selectors',
 		},
 		{
 			description: 'Accent Surfaces:',
@@ -86,9 +94,19 @@ const currentReleaseChanges = {
 				'Accent surfaces no longer tint pure black/white, and monochromatic accents stay pure B/W without red-ish shades',
 		},
 		{
-			description: 'Width Sliders Rework:',
+			description: 'Accent Toggles:',
 			details:
-				'Width sliders now use REM instead of %. With %, opening a left or right sidebar shrinks the chats container, so the same percentage no longer matches the intended width and the layout jumps. REM is based on the root font size, so the chosen width stays stable no matter how the container resizes',
+				'Updated <code>Accent user bubble</code> and <code>Accent all text</code> to work on the new UI',
+		},
+		{
+			description: 'Custom Fonts:',
+			details:
+				'Fixed custom fonts not applying to chat messages and other elements, and added support for the Codex browser window theme',
+		},
+		{
+			description: 'Width Sliders:',
+			details:
+				'Chats and chatbox widths now work on the new UI composer and use <code>rem</code> instead of <code>%</code>, so the width stays stable when sidebars open',
 		},
 	],
 	other: [

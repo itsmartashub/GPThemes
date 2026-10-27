@@ -16,7 +16,7 @@
 
 	.gpth-notify {
 		--i: 0;
-		--l: 80%;
+		--l: 92%;
 		--fg: var(--c-accent);
 		--bg: oklch(from var(--fg) var(--l) c h);
 		$dur: 0.3s;
