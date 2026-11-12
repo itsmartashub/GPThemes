@@ -108,4 +108,8 @@ export const SELECTORS = {
 		ROOT: chatboxRoot,
 		TEMP: `${chatboxRoot}.dark`,
 	},
+
+	HIDE: {
+		CONTAINER_ID: `${PFX}-hide-toggles`,
+	},
 }
