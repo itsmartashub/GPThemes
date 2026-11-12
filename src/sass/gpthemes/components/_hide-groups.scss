@@ -1,0 +1,131 @@
+/* Expandable group container for the Visibility / hide-toggles section
+- Uses native <details>/<summary> for open/close. No JS state needed
+- Animation: the CSS grid-template-rows trick. Override the UA stylesheet's `display:none` on collapsed details content with `display:grid`, then animate between `grid-template-rows: 0fr` (closed) and `1fr` (open)
+- An inner wrapper holds the actual padding so height collapses to 0 */
+
+.gpth-hide-group {
+	margin-bottom: 0.5rem;
+	border: 1px solid var(--c-accent-12);
+	border-radius: 1rem;
+	overflow: hidden;
+
+	&[open] {
+		.gpth-hide-group__chevron {
+			transform: rotate(180deg);
+		}
+
+		.gpth-hide-group__body {
+			grid-template-rows: 1fr;
+			border-top-color: var(--c-accent-12);
+		}
+	}
+
+	&__summary {
+		display: flex;
+		gap: 0.55rem;
+		align-items: center;
+		padding: 0.5rem 0.65rem;
+		cursor: pointer;
+		user-select: none;
+		list-style: none;
+		transition: background-color 0.15s ease;
+
+		&::-webkit-details-marker {
+			display: none;
+		}
+
+		&::marker {
+			display: none;
+		}
+
+		&:hover {
+			background-color: var(--c-accent-10);
+		}
+	}
+
+	&__icon {
+		--icon-size: 1.5rem;
+
+		display: grid;
+		flex-shrink: 0;
+		place-items: center;
+		width: var(--icon-size);
+		height: var(--icon-size);
+		color: var(--c-accent);
+
+		svg {
+			width: var(--icon-size);
+			height: var(--icon-size);
+		}
+	}
+
+	&__label {
+		flex: 1;
+		font-size: 0.72rem;
+		font-weight: 700;
+		line-height: 1;
+		color: var(--c-accent);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+
+	// Active-count badge. Hidden via the HTML `hidden` attribute when count is 0
+	&__count {
+		display: inline-grid;
+		flex-shrink: 0;
+		place-items: center;
+		min-width: 1.3rem;
+		height: 1.3rem;
+		padding: 0 0.3rem;
+		font-size: 0.58rem;
+		font-weight: 700;
+		line-height: 1;
+		color: var(--c-on-accent);
+		background-color: var(--c-accent);
+		border-radius: 50vw;
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+
+	// Chevron — rotates when open
+	&__chevron {
+		display: grid;
+		flex-shrink: 0;
+		place-items: center;
+		color: var(--c-accent);
+		opacity: 0.7;
+		transition: transform 0.25s ease;
+
+		svg {
+			width: 1rem;
+			height: 1rem;
+		}
+	}
+
+
+	// Body is aanimated with the CSS grid-rows trick. display:grid !important overrides the UA `display:none` on details content
+	&__body {
+		display: grid !important;
+		grid-template-rows: 0fr;
+		overflow: hidden;
+		border-top: 1px solid transparent;
+		transition:
+			grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+			border-top-color 0.28s ease;
+	}
+
+	// Inner wrapper: min-height:0 lets the grid actually collapse to zero height
+	&__body-inner {
+		min-height: 0;
+		overflow: hidden;
+		padding: 0.4rem 0.4rem 0.5rem;
+
+		// No bottom margin on the last compact toggle row
+		.gpth-switch--compact:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
