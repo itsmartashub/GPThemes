@@ -7,101 +7,111 @@ import {
 	icon_header_share,
 	icon_upgrade,
 } from '../components/icons'
-import {
-	ATTR_HIDE_FOOTER,
-	ATTR_HIDE_HEADER,
-	ATTR_HIDE_HEADER_ACTIONS_BTN,
-	ATTR_HIDE_HEADER_MODEL_BTN,
-	ATTR_HIDE_HEADER_NEW_CHAT_BTN,
-	ATTR_HIDE_HEADER_SHARE_BTN,
-	ATTR_HIDE_UPGRADE_CHIP,
-} from './consts-attr'
-import {
-	SK_TOGGLE_HIDE_FOOTER,
-	SK_TOGGLE_HIDE_HEADER,
-	SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN,
-	SK_TOGGLE_HIDE_HEADER_MODEL_BTN,
-	SK_TOGGLE_HIDE_HEADER_NEW_CHAT_BTN,
-	SK_TOGGLE_HIDE_HEADER_SHARE_BTN,
-	SK_TOGGLE_HIDE_UPGRADE_CHIP,
-} from './consts-storage'
-import { SELECTORS } from './selectors'
+
+/* Prefixes: single place to rename if the ext ever rebrands */
+const ATTR_PFX = 'data-gpth-hide-'
+const ID_PFX = 'gpth-hide-'
+
+function defineHide({
+	slug,
+	storageKey,
+	label,
+	subtitle,
+	icon,
+	selector,
+	group,
+	badge,
+	isHidden = false,
+}) {
+	return {
+		id: `${ID_PFX}${slug}`,
+		dataAttr: `${ATTR_PFX}${slug}`,
+		storageKey,
+		label,
+		subtitle,
+		icon,
+		selector,
+		group,
+		badge,
+		isHidden,
+	}
+}
 
 export const ELEMENTS = [
-	{
-		id: SELECTORS.HIDE.HEADER.TOGGLE_ID,
-		label: 'Hide Header',
-		subtitle: 'Hide the top header section to maximize screen space.',
+	// HEADER
+	defineHide({
+		slug: 'header',
+		storageKey: 'hideHeader',
+		label: 'Header',
+		subtitle: 'Hide the top header to maximize screen space.',
 		icon: icon_header,
-		selector: SELECTORS.HIDE.HEADER.SELECTOR,
-		dataAttr: ATTR_HIDE_HEADER,
-		storageKey: SK_TOGGLE_HIDE_HEADER,
-		isHidden: false, // OFF by default = no [data] attribute on html
-	},
-	{
-		id: SELECTORS.HIDE.HEADER_MODEL_BTN.TOGGLE_ID,
-		label: 'Hide Header ChatGPT',
-		subtitle: 'Hide the top header ChatGPT button only. This is more useful on mobiles',
+		selector: 'header#page-header, header[data-pip-obstacle="app-shell-header"]',
+		group: 'header',
+	}),
+	defineHide({
+		slug: 'header-model-btn',
+		storageKey: 'hideHeaderModelBtn',
+		label: 'ChatGPT Button',
+		subtitle: 'Hide the ChatGPT model button. More useful on mobile.',
 		icon: icon_header_model,
-		badge: 'mobile', // moze i string i arr: ['new', 'en']
-		selector: SELECTORS.HIDE.HEADER_MODEL_BTN.SELECTOR,
-		dataAttr: ATTR_HIDE_HEADER_MODEL_BTN,
-		storageKey: SK_TOGGLE_HIDE_HEADER_MODEL_BTN,
-		isHidden: false,
-	},
-	{
-		id: SELECTORS.HIDE.HEADER_ACTIONS_BTN.TOGGLE_ID,
-		label: 'Hide Header Actions',
-		subtitle:
-			'Hide the top header action buttons on top right (e.g. "Share", "Open canvas", etc.)',
+		badge: 'mobile',
+		selector: '[data-testid="model-switcher-dropdown-button"]',
+		group: 'header',
+	}),
+	defineHide({
+		slug: 'header-actions-btn',
+		storageKey: 'hideHeaderActionsBtn',
+		label: 'Action Buttons',
+		subtitle: 'Hide the top-right action buttons (Share, Open canvas, etc.)',
 		icon: icon_header_btns,
 		badge: 'mobile',
-		selector: SELECTORS.HIDE.HEADER_ACTIONS_BTN.SELECTOR,
-		dataAttr: ATTR_HIDE_HEADER_ACTIONS_BTN,
-		storageKey: SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN,
-		isHidden: false,
-	},
-	{
-		id: SELECTORS.HIDE.HEADER_SHARE_BTN.TOGGLE_ID,
-		label: 'Hide Header Share',
-		subtitle: 'Hide the "Share" button from header. Limitation: English only',
+		selector: '#conversation-header-actions',
+		group: 'header',
+	}),
+	defineHide({
+		slug: 'header-share-btn',
+		storageKey: 'hideHeaderShareBtn',
+		label: 'Share Button',
+		subtitle: 'Hide the Share button from the header. English only.',
 		icon: icon_header_share,
 		badge: 'en',
-		selector: SELECTORS.HIDE.HEADER_SHARE_BTN.SELECTOR,
-		dataAttr: ATTR_HIDE_HEADER_SHARE_BTN,
-		storageKey: SK_TOGGLE_HIDE_HEADER_SHARE_BTN,
-		isHidden: false,
-	},
-	{
-		id: SELECTORS.HIDE.HEADER_NEW_CHAT_BTN.TOGGLE_ID,
-		label: 'Hide Header New Chat',
-		subtitle: 'Hide the top header new chat button (mobile). Limitation: English only',
+		selector:
+			'[data-testid="share-chat-button"], header button.button-toolbar[aria-label="Share"]',
+		group: 'header',
+	}),
+	defineHide({
+		slug: 'header-new-chat-btn',
+		storageKey: 'hideHeaderNewChatBtn',
+		label: 'New Chat Button',
+		subtitle: 'Hide the new chat button in the header (mobile). English only.',
 		icon: icon_header_new_chat,
 		badge: 'en',
-		selector: SELECTORS.HIDE.HEADER_NEW_CHAT_BTN.SELECTOR,
-		dataAttr: ATTR_HIDE_HEADER_NEW_CHAT_BTN,
-		storageKey: SK_TOGGLE_HIDE_HEADER_NEW_CHAT_BTN,
-		isHidden: false,
-	},
-	{
-		id: SELECTORS.HIDE.FOOTER.TOGGLE_ID,
-		label: 'Hide AI Disclaimer',
-		subtitle: 'Hide info above the chatbox for a cleaner view',
+		selector:
+			'#conversation-header-actions a[aria-label][href="/"],header[data-pip-obstacle="app-shell-header"] .gap-toolbar-action button[aria-label="New chat"]',
+		group: 'header',
+	}),
+
+	// OTHER
+	defineHide({
+		slug: 'footer',
+		storageKey: 'hideFooter',
+		label: 'AI Disclaimer',
+		subtitle: 'Hide the disclaimer text above the chatbox.',
 		icon: icon_footer,
-		selector: SELECTORS.HIDE.FOOTER.SELECTOR,
-		dataAttr: ATTR_HIDE_FOOTER,
-		storageKey: SK_TOGGLE_HIDE_FOOTER,
-		isHidden: false,
-	},
-	{
-		id: SELECTORS.HIDE.UPGRADE.TOGGLE_ID,
-		label: 'Hide Upgrade Chip',
-		subtitle: 'Hide upgrade chip from the top header (mobile only)',
+		selector: '[data-testid="thread-disclaimer"], .sticky.bottom-0 .text-codex-description',
+		group: 'other',
+	}),
+	defineHide({
+		slug: 'upgrade-chip',
+		storageKey: 'hideUpgradeChip',
+		label: 'Upgrade Chip',
+		subtitle: 'Hide the upgrade chip in the header (mobile only).',
 		icon: icon_upgrade,
 		badge: 'mobile',
-		selector: SELECTORS.HIDE.UPGRADE.SELECTOR,
-		dataAttr: ATTR_HIDE_UPGRADE_CHIP,
-		storageKey: SK_TOGGLE_HIDE_UPGRADE_CHIP,
-		isHidden: false,
-	},
+		selector: '[data-testid="thread-header-right-actions"] button.button-glimmer-cta',
+		group: 'other',
+	}),
 ]
+
+/* Flat key list consumed by EXPORT_CONFIG in consts-storage.js. Avoids maintaining a second list */
+export const HIDE_STORAGE_KEYS = ELEMENTS.map((el) => el.storageKey)
