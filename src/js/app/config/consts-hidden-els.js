@@ -5,6 +5,7 @@ import {
 	icon_header_model,
 	icon_header_new_chat,
 	icon_header_share,
+	icon_sidebar_panel,
 	icon_upgrade,
 } from '../components/icons'
 
@@ -89,6 +90,71 @@ export const ELEMENTS = [
 		selector:
 			'#conversation-header-actions a[aria-label][href="/"],header[data-pip-obstacle="app-shell-header"] .gap-toolbar-action button[aria-label="New chat"]',
 		group: 'header',
+	}),
+
+	// SIDEBAR
+	defineHide({
+		slug: 'sidebar-images',
+		storageKey: 'hideSidebarImages',
+		label: 'Images',
+		subtitle: 'Hide the Images from the sidebar',
+		icon: icon_sidebar_panel,
+		selector: 'button[data-sidebar-destination="builtin:images"]',
+		group: 'sidebar',
+	}),
+	defineHide({
+		slug: 'sidebar-scheduled',
+		storageKey: 'hideSidebarScheduled',
+		label: 'Scheduled',
+		subtitle: 'Hide the Scheduled from the sidebar',
+		icon: icon_sidebar_panel,
+		selector: 'button[data-sidebar-destination="builtin:automations"]',
+		group: 'sidebar',
+	}),
+	defineHide({
+		slug: 'sidebar-library',
+		storageKey: 'hideSidebarLibrary',
+		label: 'Library',
+		subtitle: 'Hide the Scheduled from the sidebar',
+		icon: icon_sidebar_panel,
+		selector: 'button[data-sidebar-destination="builtin:library"]',
+		group: 'sidebar',
+	}),
+	defineHide({
+		slug: 'sidebar-plugins',
+		storageKey: 'hideSidebarPlugins',
+		label: 'Plugins',
+		subtitle: 'Hide the Plugins from the sidebar',
+		icon: icon_sidebar_panel,
+		selector: 'button[data-sidebar-destination="builtin:skills"]',
+		group: 'sidebar',
+	}),
+	defineHide({
+		slug: 'sidebar-pinned',
+		storageKey: 'hideSidebarPinned',
+		label: 'Pinned',
+		subtitle: 'Hide the Pinned section from the sidebar',
+		icon: icon_sidebar_panel,
+		selector: '[data-sidebar-project-container-id="pinned"]',
+		group: 'sidebar',
+	}),
+	defineHide({
+		slug: 'sidebar-project',
+		storageKey: 'hideSidebarProject',
+		label: 'Project',
+		subtitle: 'Hide the Project section from the sidebar',
+		icon: icon_sidebar_panel,
+		selector: '[data-app-action-sidebar-section-heading="Projects"]',
+		group: 'sidebar',
+	}),
+	defineHide({
+		slug: 'sidebar-recents',
+		storageKey: 'hideSidebarRecents',
+		label: 'Recents',
+		subtitle: 'Hide the Recents section from the sidebar',
+		icon: icon_sidebar_panel,
+		selector: '[data-app-action-sidebar-section-heading="Recents"]',
+		group: 'sidebar',
 	}),
 
 	// OTHER
