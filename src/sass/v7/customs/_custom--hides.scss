@@ -1,28 +1,63 @@
-/* Header */
-html[data-gpth-hide-header] {
-	// header#page-header is mobile only and old UI
-	#{$HEADER_DESKTOP},
-	#{$HEADER_MOBILE} {
-		display: none !important;
-	}
+/*
+- Hides are split in two tiers
+- Plain entries need only display: none, so a map plus @each keeps them one line each
+- Entries that need extra styles use whenHidden, which accepts any CSS, including nesting
+- Selectors live here and not in _vars-selectors, because the hide toggles are their only consumers */
 
-	[data-app-shell-thread-edge-divider] {
-		&[class^='MainContentFrame'] {
-			margin-top: 0 !important; // Header background / ghost space looking
+@mixin whenHidden($slug) {
+	html[data-gpth-hide-#{$slug}] {
+		@content;
+	}
+}
+
+$hidesPlain: (
+	// ======== HEADER ========
+	// Mobile only since new UI 2026-10-10
+	header-model-btn: '[data-testid="model-switcher-dropdown-button"]',
+	// TODO: there is unique selector for this element on new UI (mobile only)
+	header-actions-btn: '#conversation-header-actions',
+	// TODO: there is unique selector for this element on new UI (mobile only)
+	header-share-btn: '[data-testid="share-chat-button"], header button.button-toolbar[aria-label="Share"]',
+	// Footer in basic chats
+	footer: '.sticky.bottom-0 .text-codex-description, [data-testid="thread-disclaimer"]',
+	// TODO: there is unique selector for this element on new UI (mobile only, header only)
+	upgrade-chip: '[data-testid="thread-header-right-actions"] button.button-glimmer-cta',
+
+	// ======== SIDEBAR ========
+	sidebar-images: 'button[data-sidebar-destination="builtin:images"]',
+	sidebar-scheduled: 'button[data-sidebar-destination="builtin:automations"]',
+	sidebar-library: 'button[data-sidebar-destination="builtin:library"]',
+	sidebar-plugins: 'button[data-sidebar-destination="builtin:skills"]',
+	sidebar-pinned: '[data-sidebar-project-container-id="pinned"]',
+	sidebar-project: '[data-app-action-sidebar-section-heading="Projects"]',
+	sidebar-recents: '[data-app-action-sidebar-section-heading="Recents"]',
+);
+
+@each $slug, $selector in $hidesPlain {
+	html[data-gpth-hide-#{$slug}] {
+		#{$selector} {
+			display: none !important;
 		}
 	}
 }
 
-// Mobile only since new UI 2026-10-10
-html[data-gpth-hide-header-model-btn] {
-	#{$HEADER_MODEL} {
+/* ======== HEADER ======== */
+@include whenHidden(header) {
+	// header#page-header is mobile only and old UI
+	header[data-pip-obstacle="app-shell-header"],
+	header#page-header {
 		display: none !important;
+	}
+
+	// Header background / ghost space looking
+	[data-app-shell-thread-edge-divider][class^='MainContentFrame'] {
+		margin-top: 0 !important;
 	}
 }
 
 // Mobile only
-html[data-gpth-hide-header-new-chat-btn] {
-	#{$HEADER_ACTIONS} {
+@include whenHidden(header-new-chat-btn) {
+	#conversation-header-actions {
 		gap: 0 !important;
 
 		a[aria-label][href='/'] {
@@ -30,38 +65,7 @@ html[data-gpth-hide-header-new-chat-btn] {
 		}
 	}
 
-	#{$HEADER_NEW_CHAT} {
-		display: none !important;
-	}
-}
-
-// TODO: there is unique selector for this element on new UI (mobile only)
-html[data-gpth-hide-header-actions-btn] {
-	#{$HEADER_ACTIONS} {
-		display: none !important;
-	}
-}
-
-// TODO: there is unique selector for this element on new UI (mobile only)
-html[data-gpth-hide-header-share-btn] {
-	#{$HEADER_SHARE} {
-		display: none !important;
-	}
-}
-
-html[data-gpth-hide-footer] {
-	/* Footer in basic chats */
-	// [data-testid="thread-disclaimer"] {
-	#{$FOOTER_AI_DISCLAIMER_DESKTOP},
-	#{$FOOTER_AI_DISCLAIMER_MOBILE} {
-		display: none !important;
-	}
-}
-
-// TODO: there is unique selector for this element on new UI (mobile only, header only)
-html[data-gpth-hide-upgrade-chip] {
-	/* "Upgrade for free" chip button in header */
-	#{$HEADER_UPGRADE_CHIP} {
+	header[data-pip-obstacle="app-shell-header"] .gap-toolbar-action button[aria-label="New chat"] {
 		display: none !important;
 	}
 }
