@@ -108,37 +108,4 @@ export const SELECTORS = {
 		ROOT: chatboxRoot,
 		TEMP: `${chatboxRoot}.dark`,
 	},
-
-	HIDE: {
-		CONTAINER_ID: `${PFX}-hide-toggles`,
-		HEADER: {
-			TOGGLE_ID: `${PFX}-hide-header`,
-			SELECTOR: `header#page-header, header[data-pip-obstacle="app-shell-header"]`,
-		},
-		HEADER_MODEL_BTN: {
-			TOGGLE_ID: `${PFX}-hide-header-model-btn`,
-			SELECTOR: `[data-testid="model-switcher-dropdown-button"]`, // old ui and new ui mobile only
-		},
-		HEADER_NEW_CHAT_BTN: {
-			TOGGLE_ID: `${PFX}-hide-header-new-chat-btn`,
-			SELECTOR: `#conversation-header-actions a[aria-label][href="/"],header[data-pip-obstacle="app-shell-header"] .gap-toolbar-action button[aria-label="New chat"]`,
-		},
-		HEADER_ACTIONS_BTN: {
-			TOGGLE_ID: `${PFX}-hide-header-actions-btn`,
-			SELECTOR: `#conversation-header-actions`, // old ui and new ui mobile only
-		},
-		HEADER_SHARE_BTN: {
-			TOGGLE_ID: `${PFX}-hide-header-share-btn`,
-			SELECTOR: `[data-testid="share-chat-button"], header button.button-toolbar[aria-label="Share"]`,
-		},
-		FOOTER: {
-			TOGGLE_ID: `${PFX}-hide-footer`,
-			// SELECTOR: `[data-testid="thread-disclaimer"]`, // old ui and new ui mobile only
-			SELECTOR: `[data-testid="thread-disclaimer"], .sticky.bottom-0 .text-codex-description`, // new ui
-		},
-		UPGRADE: {
-			TOGGLE_ID: `${PFX}-hide-upgrade-chip`,
-			SELECTOR: '[data-testid="thread-header-right-actions"] button.button-glimmer-cta',
-		},
-	},
 }
