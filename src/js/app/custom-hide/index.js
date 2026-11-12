@@ -2,14 +2,64 @@ import { $, ROOT_HTML } from '../../utils/dom.js'
 import { getItems, setItem } from '../../utils/storage.js'
 import { Notify } from '../components/renderNotify.js'
 import { renderToggle } from '../components/renderToggles.js'
+import {
+	icon_chevron_down,
+	icon_dots_circle,
+	icon_header,
+	icon_sidebar_panel,
+} from '../components/icons.js'
 import { ELEMENTS } from '../config/consts-hidden-els.js'
 import { SELECTORS } from '../config/selectors'
 
 // =====================================================
 // STATE
 // =====================================================
-// Precompute map for O(1) lookups
+
 const ELEMENTS_MAP = new Map(ELEMENTS.map((cfg) => [cfg.id, cfg]))
+
+const GROUPS = [
+	{ key: 'header', label: 'Header', icon: icon_header },
+	{ key: 'sidebar', label: 'Sidebar', icon: icon_sidebar_panel },
+	{ key: 'other', label: 'Other', icon: icon_dots_circle },
+]
+
+function renderGroup({ key, label, icon }) {
+	const items = ELEMENTS.filter((el) => el.group === key)
+	if (!items.length) return ''
+
+	const rows = items
+		.map((cfg) =>
+			renderToggle({
+				id: cfg.id,
+				checked: cfg.isHidden,
+				label: cfg.label,
+				subtitle: cfg.subtitle,
+				icon: cfg.icon,
+				badge: cfg.badge,
+				disabled: cfg.disabled ?? false,
+				card: true,
+				compact: true,
+			}),
+		)
+		.join('')
+
+	/* All groups start collapsed so the user explicitly opens what they need. The inner wrapper div is required by the CSS grid-trick anim */
+	return `
+		<details class="gpth-hide-group" id="gpth-hide-group-${key}">
+			<summary class="gpth-hide-group__summary">
+				<span class="gpth-hide-group__icon" aria-hidden="true">${icon}</span>
+				<span class="gpth-hide-group__label">${label}</span>
+				<span class="gpth-hide-group__count" data-count-for="${key}" hidden></span>
+				<span class="gpth-hide-group__chevron" aria-hidden="true">${icon_chevron_down}</span>
+			</summary>
+			<div class="gpth-hide-group__body">
+				<div class="gpth-hide-group__body-inner">
+					${rows}
+				</div>
+			</div>
+		</details>
+	`
+}
 
 // =====================================================
 // TEMPLATE
@@ -20,25 +70,11 @@ function templateHTML() {
 		return ''
 	}
 
-	const items = ELEMENTS.map((cfg) =>
-		renderToggle({
-			id: cfg.id,
-			checked: cfg.isHidden, // false by default = OFF
-			label: cfg.label,
-			subtitle: cfg.subtitle,
-			icon: cfg.icon,
-			badge: cfg.badge,
-			card: true,
-			className: '',
-		}),
-	).join('')
-
 	return `
 		<section id="${SELECTORS.HIDE.CONTAINER_ID}">
 			<h4 class="${SELECTORS.SUBHEADING}">Visibility</h4>
-			<div class="grid grid-cols-[repeat(auto-fit,minmax(7rem,1fr))]">
-				${items}
-			</div>
+
+			${GROUPS.map(renderGroup).join('')}
 		</section>
 	`
 }
@@ -46,6 +82,7 @@ function templateHTML() {
 // =====================================================
 // STORAGE
 // =====================================================
+
 // Save state to storage
 async function saveState(key, value, label) {
 	try {
@@ -61,9 +98,7 @@ async function saveState(key, value, label) {
 // Load saved state from storage
 async function loadState() {
 	try {
-		const result = await getItems(ELEMENTS.map((cfg) => cfg.storageKey))
-
-		return result
+		return await getItems(ELEMENTS.map((cfg) => cfg.storageKey).filter(Boolean))
 	} catch (error) {
 		console.error('Failed to load toggle states:', error)
 		return {}
@@ -73,6 +108,7 @@ async function loadState() {
 // =====================================================
 // UPDATE CSS/DOM
 // =====================================================
+
 // Apply data attribute without saving
 function updateDataAttr(dataAttr, isHidden) {
 	if (!dataAttr || !ROOT_HTML) return
@@ -89,6 +125,20 @@ function updateDataAttr(dataAttr, isHidden) {
 	// isHidden ? ROOT_HTML.setAttribute(dataAttr, '') : ROOT_HTML.removeAttribute(dataAttr)
 }
 
+/* Recount active toggles in a group and update the badge. Called after mount and on every change */
+function updateGroupCount(groupKey) {
+	const items = ELEMENTS.filter((cfg) => cfg.group === groupKey && !cfg.disabled && cfg.id)
+	const activeCount = items.filter((cfg) => document.getElementById(cfg.id)?.checked).length
+
+	const badge = document.querySelector(`[data-count-for="${groupKey}"]`)
+	if (!badge) return
+	badge.textContent = activeCount > 0 ? String(activeCount) : ''
+	badge.toggleAttribute('hidden', activeCount === 0)
+}
+function updateAllGroupCounts() {
+	GROUPS.forEach(({ key }) => updateGroupCount(key))
+}
+
 // Handle toggle change - check element existence ON EVERY TOGGLE
 function onChange({ target }) {
 	if (!target.matches('input[type="checkbox"]')) return
@@ -99,7 +149,7 @@ function onChange({ target }) {
 	// Check if element exists RIGHT NOW
 	const element = $(cfg.selector)
 	if (!element) {
-		Notify.error(`${cfg.label.replace('Hide ', '')} not found on this page`)
+		Notify.error(`${cfg.label} not found on this page`)
 		target.checked = !target.checked // Revert toggle
 		return
 	}
@@ -107,6 +157,7 @@ function onChange({ target }) {
 	const isHidden = target.checked
 	updateDataAttr(cfg.dataAttr, isHidden)
 	saveState(cfg.storageKey, isHidden, cfg.label)
+	updateGroupCount(cfg.group)
 }
 
 // =====================================================
@@ -133,6 +184,8 @@ async function mount() {
 			if (input) input.checked = isHidden
 			updateDataAttr(cfg.dataAttr, isHidden)
 		}
+
+		updateAllGroupCounts()
 	} catch (e) {
 		Notify.error('Failed to load hide settings')
 		console.error('Failed to load hide controls: ', e)

@@ -9,6 +9,7 @@ export function renderToggle({
 	badge = '',
 	disabled = false,
 	card = false,
+	compact = false,
 	className = '',
 	dataType = '',
 }) {
@@ -26,8 +27,12 @@ export function renderToggle({
 			.map((text) => `<span class="gpth-switch__badge">${text}</span>`)
 			.join('')
 
+		const cls = ['gpth-switch', compact ? 'gpth-switch--compact' : '', className]
+			.filter(Boolean)
+			.join(' ')
+
 		return `
-            <label class="gpth-switch ${className}" for="${id}">
+            <label class="${cls}" for="${id}">
                 ${icon ? `<div class="gpth-switch__icon" aria-hidden="true">${icon}</div>` : ''}
 
                 <div class="gpth-switch__text">
@@ -35,7 +40,7 @@ export function renderToggle({
                         ${label}
                         ${badgesHTML ? `<span class="gpth-switch__badges">${badgesHTML}</span>` : ''}
                     </div>
-                    ${subtitle ? `<div class="subtitle">${subtitle}</div> ` : ''}
+                    ${subtitle && !compact ? `<div class="subtitle">${subtitle}</div> ` : ''}
                 </div>
 
                 ${checkbox}

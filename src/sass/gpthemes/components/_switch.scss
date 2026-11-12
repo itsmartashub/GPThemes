@@ -105,4 +105,33 @@
 			grid-area: checkbox;
 		}
 	}
+
+	/* Compact row variant
+	Used inside the visibility accordion groups. Strips the subtitle, shrinks the icon, and collapses vertical padding */
+	&--compact {
+		display: flex;
+		flex-wrap: nowrap;
+		padding: 0.35rem 0.5rem;
+		margin-bottom: 0.2rem;
+		border-radius: calc(var(--br-btn) * 1);
+
+		.gpth-switch__icon {
+			--icon-size: 1.8rem;
+			--svg-muliplicator: 0.55;
+			border-radius: 0.55rem;
+			flex-shrink: 0;
+		}
+
+		/* subtitle is excluded at the renderToggle level when compact:true, so nothing
+		   extra needed here, but the guard is cheap if ever rendered accidentally */
+		.gpth-switch__text .subtitle {
+			display: none;
+		}
+
+		/* kill the mobile grid layout for compact rows */
+		@include dev('xxs') {
+			display: flex;
+			grid-template-areas: unset;
+		}
+	}
 }

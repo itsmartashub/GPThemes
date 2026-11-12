@@ -1,6 +1,5 @@
-// =============================================
-// STORAGE KEYS - Centralized constant definitions
-// =============================================
+// Hide storage keys live in consts-hidden-els.js (single source of truth). Import HIDE_STORAGE_KEYS from there instead of listing them here
+import { HIDE_STORAGE_KEYS } from './consts-hidden-els'
 
 // Color Settings
 export const SK_COLOR_ACCENT_DARK = 'colorAccentDark'
@@ -8,14 +7,7 @@ export const SK_COLOR_ACCENT_LIGHT = 'colorAccentLight'
 export const SK_TOGGLE_ACCENT_TEXT = 'toggleAccentTextState'
 export const SK_TOGGLE_AMOLED = 'toggleAmoledState'
 
-// Layout Toggles
-export const SK_TOGGLE_HIDE_HEADER = 'hideHeader'
-export const SK_TOGGLE_HIDE_HEADER_MODEL_BTN = 'hideHeaderModelBtn'
-export const SK_TOGGLE_HIDE_HEADER_NEW_CHAT_BTN = 'hideHeaderNewChatBtn'
-export const SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN = 'hideHeaderActionsBtn'
-export const SK_TOGGLE_HIDE_HEADER_SHARE_BTN = 'hideHeaderShareBtn'
-export const SK_TOGGLE_HIDE_FOOTER = 'hideFooter'
-export const SK_TOGGLE_HIDE_UPGRADE_CHIP = 'hideUpgradeChip'
+// FAB
 export const SK_TOGGLE_FAB_HIDDEN = 'toggleFABHidden'
 
 // FAB drag position (local only bcs its device-specific, excluded from export)
@@ -46,10 +38,6 @@ export const SK_EXT_VERSION = '_extVersion'
 export const SK_DB_VERSION = '_dbVersion'
 export const SK_BADGE_SEEN = '_isBadgeSeen'
 
-// =============================================
-// EXPORT CONFIG - For backup/restore functionality
-// =============================================
-
 export const EXPORT_CONFIG = Object.freeze({
 	// Settings to include in exports (user prefs)
 	INCLUDE: [
@@ -58,13 +46,8 @@ export const EXPORT_CONFIG = Object.freeze({
 		SK_TOGGLE_ACCENT_TEXT,
 		SK_TOGGLE_AMOLED,
 
-		SK_TOGGLE_HIDE_HEADER,
-		SK_TOGGLE_HIDE_HEADER_MODEL_BTN,
-		SK_TOGGLE_HIDE_HEADER_NEW_CHAT_BTN,
-		SK_TOGGLE_HIDE_HEADER_ACTIONS_BTN,
-		SK_TOGGLE_HIDE_HEADER_SHARE_BTN,
-		SK_TOGGLE_HIDE_FOOTER,
-		SK_TOGGLE_HIDE_UPGRADE_CHIP,
+		// All hide element keys are derived from ELEMENTS. No manual list to maintain
+		...HIDE_STORAGE_KEYS,
 
 		SK_TOGGLE_FAB_HIDDEN,
 
