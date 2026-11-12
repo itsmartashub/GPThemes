@@ -18,10 +18,8 @@ $hidesPlain: (
 	header-actions-btn: '#conversation-header-actions',
 	// TODO: there is unique selector for this element on new UI (mobile only)
 	header-share-btn: '[data-testid="share-chat-button"], header button.button-toolbar[aria-label="Share"]',
-	// Footer in basic chats
-	footer: '.sticky.bottom-0 .text-codex-description, [data-testid="thread-disclaimer"]',
 	// TODO: there is unique selector for this element on new UI (mobile only, header only)
-	upgrade-chip: '[data-testid="thread-header-right-actions"] button.button-glimmer-cta',
+	header-upgrade-chip: '.text-text-header-upgrade',
 
 	// ======== SIDEBAR ========
 	sidebar-images: 'button[data-sidebar-destination="builtin:images"]',
@@ -31,6 +29,10 @@ $hidesPlain: (
 	sidebar-pinned: '[data-sidebar-project-container-id="pinned"]',
 	sidebar-project: '[data-app-action-sidebar-section-heading="Projects"]',
 	sidebar-recents: '[data-app-action-sidebar-section-heading="Recents"]',
+
+
+	// ======== OTHER ========
+	footer: '.sticky.bottom-0 .text-codex-description, [data-testid="thread-disclaimer"]',
 );
 
 @each $slug, $selector in $hidesPlain {

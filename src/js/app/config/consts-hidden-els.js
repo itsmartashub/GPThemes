@@ -50,6 +50,15 @@ export const ELEMENTS = [
 		group: 'header',
 	}),
 	defineHide({
+		slug: 'header-upgrade-chip',
+		storageKey: 'hideHeaderUpgradeChip',
+		label: 'Upgrade Chip',
+		subtitle: 'Hide the upgrade chip in the header',
+		icon: icon_upgrade,
+		selector: '.text-text-header-upgrade',
+		group: 'header',
+	}),
+	defineHide({
 		slug: 'header-model-btn',
 		storageKey: 'hideHeaderModelBtn',
 		label: 'ChatGPT Button',
@@ -165,16 +174,6 @@ export const ELEMENTS = [
 		subtitle: 'Hide the disclaimer text above the chatbox.',
 		icon: icon_footer,
 		selector: '[data-testid="thread-disclaimer"], .sticky.bottom-0 .text-codex-description',
-		group: 'other',
-	}),
-	defineHide({
-		slug: 'upgrade-chip',
-		storageKey: 'hideUpgradeChip',
-		label: 'Upgrade Chip',
-		subtitle: 'Hide the upgrade chip in the header (mobile only).',
-		icon: icon_upgrade,
-		badge: 'mobile',
-		selector: '[data-testid="thread-header-right-actions"] button.button-glimmer-cta',
 		group: 'other',
 	}),
 ]
