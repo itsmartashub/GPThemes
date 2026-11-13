@@ -1,32 +1,23 @@
-import { $, ROOT_HTML } from '../../utils/dom.js'
-import { getItems, setItem } from '../../utils/storage.js'
+import { $ } from '../../utils/dom.js'
+import { icon_chevron_down } from '../components/icons.js'
 import { Notify } from '../components/renderNotify.js'
 import { renderToggle } from '../components/renderToggles.js'
-import {
-	icon_chevron_down,
-	icon_dots_circle,
-	icon_header,
-    icon_sidebar,
-    icon_experimental
-} from '../components/icons.js'
-import { ELEMENTS } from '../config/consts-hidden-els.js'
-import { SELECTORS } from '../config/selectors'
+import { ELEMENTS, GROUPS } from '../config/consts-hides.js'
+import { SELECTORS } from '../config/selectors.js'
+import { isElementAvailable, loadState, saveState, updateDataAttr } from './hideState.js'
+
+// Derived once. The catalog is static, so regrouping it on every render would be waste
+const ELEMENTS_BY_ID = new Map(ELEMENTS.map((cfg) => [cfg.id, cfg]))
+const ELEMENTS_BY_GROUP = new Map(
+	GROUPS.map(({ key }) => [key, ELEMENTS.filter((cfg) => cfg.group === key)]),
+)
 
 // =====================================================
-// STATE
+// TEMPLATE
 // =====================================================
-
-const ELEMENTS_MAP = new Map(ELEMENTS.map((cfg) => [cfg.id, cfg]))
-
-const GROUPS = [
-	{ key: 'header', label: 'Header', icon: icon_header },
-	{ key: 'sidebar', label: 'Sidebar', icon: icon_sidebar },
-	{ key: 'other', label: 'Other', icon: icon_dots_circle },
-	{ key: 'experimental', label: 'Experimental', icon: icon_experimental },
-]
 
 function renderGroup({ key, label, icon }) {
-	const items = ELEMENTS.filter((el) => el.group === key)
+	const items = ELEMENTS_BY_GROUP.get(key) ?? []
 	if (!items.length) return ''
 
 	const rows = items
@@ -38,7 +29,7 @@ function renderGroup({ key, label, icon }) {
 				subtitle: cfg.subtitle,
 				icon: cfg.icon,
 				badge: cfg.badge,
-				disabled: cfg.disabled ?? false,
+				disabled: cfg.disabled,
 				card: true,
 				compact: true,
 			}),
@@ -63,9 +54,6 @@ function renderGroup({ key, label, icon }) {
 	`
 }
 
-// =====================================================
-// TEMPLATE
-// =====================================================
 function templateHTML() {
 	if (!Array.isArray(ELEMENTS) || ELEMENTS.length === 0) {
 		console.warn('ELEMENTS array is empty or invalid')
@@ -82,89 +70,61 @@ function templateHTML() {
 }
 
 // =====================================================
-// STORAGE
+// GROUP COUNTS
 // =====================================================
 
-// Save state to storage
-async function saveState(key, value, label) {
-	try {
-		await setItem(key, value)
+/* Recount active toggles in a group and update its badge. Called after mount and on every change */
+function updateGroupCount(groupKey, container) {
+	const items = ELEMENTS_BY_GROUP.get(groupKey) ?? []
+	const activeCount = items.filter(
+		(cfg) => !cfg.disabled && $(`#${cfg.id}`, container)?.checked,
+	).length
 
-		const element = label ? label.replace('Hide ', '') : 'Element'
-		value ? Notify.info(`😶‍🌫️ ${element} hidden`) : Notify.success(`👁️ ${element} shown`)
-	} catch (e) {
-		Notify.error(`Failed to hide element`)
-		console.error('Failed to save toggle state', key, e)
-	}
-}
-// Load saved state from storage
-async function loadState() {
-	try {
-		return await getItems(ELEMENTS.map((cfg) => cfg.storageKey).filter(Boolean))
-	} catch (error) {
-		console.error('Failed to load toggle states:', error)
-		return {}
-	}
-}
-
-// =====================================================
-// UPDATE CSS/DOM
-// =====================================================
-
-// Apply data attribute without saving
-function updateDataAttr(dataAttr, isHidden) {
-	if (!dataAttr || !ROOT_HTML) return
-
-	if (isHidden) {
-		// When element should be hidden, SET the data attr
-		ROOT_HTML.setAttribute(dataAttr, '')
-	} else {
-		// When element should be shown, REMOVE the data attr
-		ROOT_HTML.removeAttribute(dataAttr)
-	}
-
-	// When element should be hidden, ADD the data attr. When element should be shown, REMOVE the data attr
-	// isHidden ? ROOT_HTML.setAttribute(dataAttr, '') : ROOT_HTML.removeAttribute(dataAttr)
-}
-
-/* Recount active toggles in a group and update the badge. Called after mount and on every change */
-function updateGroupCount(groupKey) {
-	const items = ELEMENTS.filter((cfg) => cfg.group === groupKey && !cfg.disabled && cfg.id)
-	const activeCount = items.filter((cfg) => document.getElementById(cfg.id)?.checked).length
-
-	const badge = document.querySelector(`[data-count-for="${groupKey}"]`)
+	const badge = $(`[data-count-for="${groupKey}"]`, container)
 	if (!badge) return
+
 	badge.textContent = activeCount > 0 ? String(activeCount) : ''
 	badge.toggleAttribute('hidden', activeCount === 0)
 }
-function updateAllGroupCounts() {
-	GROUPS.forEach(({ key }) => updateGroupCount(key))
+
+function updateAllGroupCounts(container) {
+	for (const { key } of GROUPS) updateGroupCount(key, container)
 }
 
-// Handle toggle change - check element existence ON EVERY TOGGLE
-function onChange({ target }) {
+// =====================================================
+// EVENTS
+// =====================================================
+
+function onChange(event) {
+	const target = event.target
 	if (!target.matches('input[type="checkbox"]')) return
 
-	const cfg = ELEMENTS_MAP.get(target.id)
+	const cfg = ELEMENTS_BY_ID.get(target.id)
 	if (!cfg) return
 
-	// Check if element exists RIGHT NOW
-	const element = $(cfg.selector)
-	if (!element) {
+	// The el has to exist on the current page, otherwise the toggle would only lie to the user
+	if (!isElementAvailable(cfg)) {
 		Notify.error(`${cfg.label} not found on this page`)
-		target.checked = !target.checked // Revert toggle
+		target.checked = !target.checked
 		return
 	}
 
 	const isHidden = target.checked
-	updateDataAttr(cfg.dataAttr, isHidden)
-	saveState(cfg.storageKey, isHidden, cfg.label)
-	updateGroupCount(cfg.group)
+	updateDataAttr(cfg, isHidden)
+	saveState(cfg, isHidden).then((saved) => {
+		if (!saved) return
+
+		const element = cfg.label ? cfg.label.replace('Hide ', '') : 'Element'
+		if (isHidden) Notify.info(`😶‍🌫️ ${element} hidden`)
+		else Notify.success(`👁️ ${element} shown`)
+	})
+	updateGroupCount(cfg.group, event.currentTarget)
 }
 
 // =====================================================
-// Lifecycle: MOUNT
+// LIFECYCLE: MOUNT
 // =====================================================
+
 // Hydrate and wire events after render
 async function mount() {
 	const container = document.getElementById(SELECTORS.HIDE.CONTAINER_ID)
@@ -173,28 +133,23 @@ async function mount() {
 		return
 	}
 
-	try {
-		// Load all states in parallel
-		const savedStates = await loadState()
+	const savedStates = await loadState(ELEMENTS)
 
-		// Apply saved states
-		for (const cfg of ELEMENTS) {
-			const saved = savedStates?.[cfg.storageKey]
-			const isHidden = typeof saved === 'boolean' ? saved : cfg.isHidden
+	for (const cfg of ELEMENTS) {
+		const saved = savedStates?.[cfg.storageKey]
+		const isHidden = typeof saved === 'boolean' ? saved : cfg.isHidden
 
-			const input = $(`#${cfg.id}`, container)
-			if (input) input.checked = isHidden
-			updateDataAttr(cfg.dataAttr, isHidden)
-		}
-
-		updateAllGroupCounts()
-	} catch (e) {
-		Notify.error('Failed to load hide settings')
-		console.error('Failed to load hide controls: ', e)
-	} finally {
-		// ALWAYS attach the listener, even if loading state failed
-		container.addEventListener('change', onChange)
+		const input = $(`#${cfg.id}`, container)
+		if (input) input.checked = isHidden
+		updateDataAttr(cfg, isHidden)
 	}
+
+	updateAllGroupCounts(container)
+
+	// Remove first so a repeated mount cannot stack listeners
+	container.removeEventListener('change', onChange)
+	container.addEventListener('change', onChange)
 }
 
+// --- EXPORTS ---
 export { mount, templateHTML as renderCustomHides }
