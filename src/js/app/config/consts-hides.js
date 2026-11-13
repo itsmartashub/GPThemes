@@ -1,4 +1,7 @@
 import {
+	icon_ads,
+	icon_dots_circle,
+	icon_experimental,
 	icon_footer,
 	icon_header,
 	icon_header_btns,
@@ -6,38 +9,19 @@ import {
 	icon_header_new_chat,
 	icon_header_share,
 	icon_sidebar,
-    icon_upgrade,
-	icon_ads
-} from '../components/icons'
+	icon_upgrade,
+} from '../components/icons.js'
 
 /* Prefixes: single place to rename if the ext ever rebrands */
 const ATTR_PFX = 'data-gpth-hide-'
 const ID_PFX = 'gpth-hide-'
 
-function defineHide({
-	slug,
-	storageKey,
-	label,
-	subtitle,
-	icon,
-	selector,
-	group,
-	badge,
-	isHidden = false,
-}) {
-	return {
-		id: `${ID_PFX}${slug}`,
-		dataAttr: `${ATTR_PFX}${slug}`,
-		storageKey,
-		label,
-		subtitle,
-		icon,
-		selector,
-		group,
-		badge,
-		isHidden,
-	}
-}
+export const GROUPS = [
+	{ key: 'header', label: 'Header', icon: icon_header },
+	{ key: 'sidebar', label: 'Sidebar', icon: icon_sidebar },
+	{ key: 'other', label: 'Other', icon: icon_dots_circle },
+	{ key: 'experimental', label: 'Experimental', icon: icon_experimental },
+]
 
 export const ELEMENTS = [
 	// HEADER
@@ -125,7 +109,7 @@ export const ELEMENTS = [
 		slug: 'sidebar-library',
 		storageKey: 'hideSidebarLibrary',
 		label: 'Library',
-		subtitle: 'Hide the Scheduled from the sidebar',
+		subtitle: 'Hide the Library from the sidebar',
 		icon: icon_sidebar,
 		selector: '[data-sidebar-destination="builtin:library"]',
 		group: 'sidebar',
@@ -176,7 +160,7 @@ export const ELEMENTS = [
 		icon: icon_footer,
 		selector: '[data-testid="thread-disclaimer"], .sticky.bottom-0 .text-codex-description',
 		group: 'other',
-    }),
+	}),
 
 	// EXPERIMENTAL
 	defineHide({
@@ -186,10 +170,38 @@ export const ELEMENTS = [
 		subtitle: 'Hide the chats ads (very unstable)',
 		icon: icon_ads,
 		selector: '.QdG_CWCs',
-        group: 'experimental',
-		badge: 'unstable'
-    }),
+		group: 'experimental',
+		badge: 'unstable',
+	}),
 ]
+
+
+function defineHide({
+	slug,
+	storageKey,
+	label,
+	subtitle,
+	icon,
+	selector,
+	group,
+	badge,
+	isHidden = false,
+	disabled = false,
+}) {
+	return {
+		id: `${ID_PFX}${slug}`,
+		dataAttr: `${ATTR_PFX}${slug}`,
+		storageKey,
+		label,
+		subtitle,
+		icon,
+		selector,
+		group,
+		badge,
+		isHidden,
+		disabled,
+	}
+}
 
 /* Flat key list consumed by EXPORT_CONFIG in consts-storage.js. Avoids maintaining a second list */
 export const HIDE_STORAGE_KEYS = ELEMENTS.map((el) => el.storageKey)
