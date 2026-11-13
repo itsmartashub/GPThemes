@@ -22,10 +22,10 @@ $hidesPlain: (
 	header-upgrade-chip: '.text-text-header-upgrade',
 
 	// ======== SIDEBAR ========
-	sidebar-images: 'button[data-sidebar-destination="builtin:images"]',
-	sidebar-scheduled: 'button[data-sidebar-destination="builtin:automations"]',
-	sidebar-library: 'button[data-sidebar-destination="builtin:library"]',
-	sidebar-plugins: 'button[data-sidebar-destination="builtin:skills"]',
+	sidebar-images: '[data-sidebar-destination="builtin:images"]',
+	sidebar-scheduled: '[data-sidebar-destination="builtin:automations"]',
+	sidebar-library: '[data-sidebar-destination="builtin:library"]',
+	sidebar-plugins: '[data-sidebar-destination="builtin:skills"]',
 	sidebar-pinned: '[data-sidebar-project-container-id="pinned"]',
 	sidebar-project: '[data-app-action-sidebar-section-heading="Projects"]',
 	sidebar-recents: '[data-app-action-sidebar-section-heading="Recents"]',

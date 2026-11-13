@@ -108,7 +108,7 @@ export const ELEMENTS = [
 		label: 'Images',
 		subtitle: 'Hide the Images from the sidebar',
 		icon: icon_sidebar_panel,
-		selector: 'button[data-sidebar-destination="builtin:images"]',
+		selector: '[data-sidebar-destination="builtin:images"]',
 		group: 'sidebar',
 	}),
 	defineHide({
@@ -117,7 +117,7 @@ export const ELEMENTS = [
 		label: 'Scheduled',
 		subtitle: 'Hide the Scheduled from the sidebar',
 		icon: icon_sidebar_panel,
-		selector: 'button[data-sidebar-destination="builtin:automations"]',
+		selector: '[data-sidebar-destination="builtin:automations"]',
 		group: 'sidebar',
 	}),
 	defineHide({
@@ -126,7 +126,7 @@ export const ELEMENTS = [
 		label: 'Library',
 		subtitle: 'Hide the Scheduled from the sidebar',
 		icon: icon_sidebar_panel,
-		selector: 'button[data-sidebar-destination="builtin:library"]',
+		selector: '[data-sidebar-destination="builtin:library"]',
 		group: 'sidebar',
 	}),
 	defineHide({
@@ -135,7 +135,7 @@ export const ELEMENTS = [
 		label: 'Plugins',
 		subtitle: 'Hide the Plugins from the sidebar',
 		icon: icon_sidebar_panel,
-		selector: 'button[data-sidebar-destination="builtin:skills"]',
+		selector: '[data-sidebar-destination="builtin:skills"]',
 		group: 'sidebar',
 	}),
 	defineHide({
