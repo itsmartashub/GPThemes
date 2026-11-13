@@ -44,16 +44,6 @@ export const ELEMENTS = [
 		group: 'header',
 	}),
 	defineHide({
-		slug: 'header-model-btn',
-		storageKey: 'hideHeaderModelBtn',
-		label: 'ChatGPT Button',
-		subtitle: 'Hide the ChatGPT model button. More useful on mobile.',
-		icon: icon_header_model,
-		badge: 'mobile',
-		selector: '[data-testid="model-switcher-dropdown-button"]',
-		group: 'header',
-	}),
-	defineHide({
 		slug: 'header-actions-btn',
 		storageKey: 'hideHeaderActionsBtn',
 		label: 'Action Buttons',
@@ -174,7 +164,6 @@ export const ELEMENTS = [
 		badge: 'unstable',
 	}),
 ]
-
 
 function defineHide({
 	slug,

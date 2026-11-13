@@ -12,13 +12,9 @@
 
 $hidesPlain: (
 	// ======== HEADER ========
-	// Mobile only since new UI 2026-10-10
-	header-model-btn: '[data-testid="model-switcher-dropdown-button"]',
 	// TODO: there is unique selector for this element on new UI (mobile only)
 	header-actions-btn: '#conversation-header-actions',
-	// TODO: there is unique selector for this element on new UI (mobile only)
 	header-share-btn: '[data-testid="share-chat-button"], header button.button-toolbar[aria-label="Share"]',
-	// TODO: there is unique selector for this element on new UI (mobile only, header only)
 	header-upgrade-chip: '.text-text-header-upgrade',
 
 	// ======== SIDEBAR ========
