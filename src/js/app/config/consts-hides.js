@@ -5,14 +5,12 @@ import {
 	icon_footer,
 	icon_header,
 	icon_header_btns,
-	icon_header_model,
 	icon_header_new_chat,
 	icon_header_share,
 	icon_sidebar,
 	icon_upgrade,
 } from '../components/icons.js'
 
-/* Prefixes: single place to rename if the ext ever rebrands */
 const ATTR_PFX = 'data-gpth-hide-'
 const ID_PFX = 'gpth-hide-'
 
@@ -24,7 +22,7 @@ export const GROUPS = [
 ]
 
 export const ELEMENTS = [
-	// HEADER
+	// ============= HEADER =============
 	defineHide({
 		slug: 'header',
 		storageKey: 'hideHeader',
@@ -41,16 +39,6 @@ export const ELEMENTS = [
 		subtitle: 'Hide the upgrade chip in the header',
 		icon: icon_upgrade,
 		selector: '.text-text-header-upgrade',
-		group: 'header',
-	}),
-	defineHide({
-		slug: 'header-actions-btn',
-		storageKey: 'hideHeaderActionsBtn',
-		label: 'Action Buttons',
-		subtitle: 'Hide the top-right action buttons (Share, Open canvas, etc.)',
-		icon: icon_header_btns,
-		badge: 'mobile',
-		selector: '#conversation-header-actions',
 		group: 'header',
 	}),
 	defineHide({
@@ -72,11 +60,11 @@ export const ELEMENTS = [
 		icon: icon_header_new_chat,
 		badge: 'en',
 		selector:
-			'#conversation-header-actions a[aria-label][href="/"],header[data-pip-obstacle="app-shell-header"] .gap-toolbar-action button[aria-label="New chat"]',
+			'header [data-test-id="header-shell-slot"] .gap-toolbar-action button[aria-label="New chat"]',
 		group: 'header',
 	}),
 
-	// SIDEBAR
+	// ============= SIDEBAR =============
 	defineHide({
 		slug: 'sidebar-images',
 		storageKey: 'hideSidebarImages',
@@ -141,7 +129,7 @@ export const ELEMENTS = [
 		group: 'sidebar',
 	}),
 
-	// OTHER
+	// ============= OTHER =============
 	defineHide({
 		slug: 'footer',
 		storageKey: 'hideFooter',
@@ -152,7 +140,7 @@ export const ELEMENTS = [
 		group: 'other',
 	}),
 
-	// EXPERIMENTAL
+	// ============= EXPERIMENTAL =============
 	defineHide({
 		slug: 'chat-ads',
 		storageKey: 'hideChatAds',

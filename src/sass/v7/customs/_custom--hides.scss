@@ -12,10 +12,10 @@
 
 $hidesPlain: (
 	// ======== HEADER ========
-	// TODO: there is unique selector for this element on new UI (mobile only)
-	header-actions-btn: '#conversation-header-actions',
+	header: 'header[data-pip-obstacle="app-shell-header"]',
 	header-share-btn: '[data-testid="share-chat-button"], header button.button-toolbar[aria-label="Share"]',
 	header-upgrade-chip: '.text-text-header-upgrade',
+	header-new-chat-btn: 'header[data-pip-obstacle="app-shell-header"] .gap-toolbar-action button[aria-label="New chat"]',
 
 	// ======== SIDEBAR ========
 	sidebar-images: '[data-sidebar-destination="builtin:images"]',
@@ -43,30 +43,21 @@ $hidesPlain: (
 }
 
 /* ======== HEADER ======== */
-@include whenHidden(header) {
-	// header#page-header is mobile only and old UI
-	header[data-pip-obstacle="app-shell-header"],
-	header#page-header {
-		display: none !important;
-	}
+// @include whenHidden(header) {
+// 	// header#page-header is mobile only and old UI
+// 	header[data-pip-obstacle="app-shell-header"],
+// 	header#page-header {
+// 		display: none !important;
+// 	}
 
-	// Header background / ghost space looking
-	[data-app-shell-thread-edge-divider][class^='MainContentFrame'] {
-		margin-top: 0 !important;
-	}
-}
+// 	// Header background / ghost space looking
+// 	[data-app-shell-thread-edge-divider][class^='MainContentFrame'] {
+// 		margin-top: 0 !important;
+// 	}
+// }
 
-// Mobile only
-@include whenHidden(header-new-chat-btn) {
-	#conversation-header-actions {
-		gap: 0 !important;
-
-		a[aria-label][href='/'] {
-			display: none !important;
-		}
-	}
-
-	header[data-pip-obstacle="app-shell-header"] .gap-toolbar-action button[aria-label="New chat"] {
-		display: none !important;
-	}
-}
+// @include whenHidden(header-new-chat-btn) {
+// 	header[data-pip-obstacle="app-shell-header"] .gap-toolbar-action button[aria-label="New chat"] {
+// 		display: none !important;
+// 	}
+// }
