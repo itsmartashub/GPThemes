@@ -5,8 +5,9 @@ import {
 	icon_header_model,
 	icon_header_new_chat,
 	icon_header_share,
-	icon_sidebar_panel,
-	icon_upgrade,
+	icon_sidebar,
+    icon_upgrade,
+	icon_ads
 } from '../components/icons'
 
 /* Prefixes: single place to rename if the ext ever rebrands */
@@ -107,7 +108,7 @@ export const ELEMENTS = [
 		storageKey: 'hideSidebarImages',
 		label: 'Images',
 		subtitle: 'Hide the Images from the sidebar',
-		icon: icon_sidebar_panel,
+		icon: icon_sidebar,
 		selector: '[data-sidebar-destination="builtin:images"]',
 		group: 'sidebar',
 	}),
@@ -116,7 +117,7 @@ export const ELEMENTS = [
 		storageKey: 'hideSidebarScheduled',
 		label: 'Scheduled',
 		subtitle: 'Hide the Scheduled from the sidebar',
-		icon: icon_sidebar_panel,
+		icon: icon_sidebar,
 		selector: '[data-sidebar-destination="builtin:automations"]',
 		group: 'sidebar',
 	}),
@@ -125,7 +126,7 @@ export const ELEMENTS = [
 		storageKey: 'hideSidebarLibrary',
 		label: 'Library',
 		subtitle: 'Hide the Scheduled from the sidebar',
-		icon: icon_sidebar_panel,
+		icon: icon_sidebar,
 		selector: '[data-sidebar-destination="builtin:library"]',
 		group: 'sidebar',
 	}),
@@ -134,7 +135,7 @@ export const ELEMENTS = [
 		storageKey: 'hideSidebarPlugins',
 		label: 'Plugins',
 		subtitle: 'Hide the Plugins from the sidebar',
-		icon: icon_sidebar_panel,
+		icon: icon_sidebar,
 		selector: '[data-sidebar-destination="builtin:skills"]',
 		group: 'sidebar',
 	}),
@@ -143,7 +144,7 @@ export const ELEMENTS = [
 		storageKey: 'hideSidebarPinned',
 		label: 'Pinned',
 		subtitle: 'Hide the Pinned section from the sidebar',
-		icon: icon_sidebar_panel,
+		icon: icon_sidebar,
 		selector: '[data-sidebar-project-container-id="pinned"]',
 		group: 'sidebar',
 	}),
@@ -152,7 +153,7 @@ export const ELEMENTS = [
 		storageKey: 'hideSidebarProject',
 		label: 'Project',
 		subtitle: 'Hide the Project section from the sidebar',
-		icon: icon_sidebar_panel,
+		icon: icon_sidebar,
 		selector: '[data-app-action-sidebar-section-heading="Projects"]',
 		group: 'sidebar',
 	}),
@@ -161,7 +162,7 @@ export const ELEMENTS = [
 		storageKey: 'hideSidebarRecents',
 		label: 'Recents',
 		subtitle: 'Hide the Recents section from the sidebar',
-		icon: icon_sidebar_panel,
+		icon: icon_sidebar,
 		selector: '[data-app-action-sidebar-section-heading="Recents"]',
 		group: 'sidebar',
 	}),
@@ -171,11 +172,23 @@ export const ELEMENTS = [
 		slug: 'footer',
 		storageKey: 'hideFooter',
 		label: 'AI Disclaimer',
-		subtitle: 'Hide the disclaimer text above the chatbox.',
+		subtitle: 'Hide the disclaimer text above the chatbox',
 		icon: icon_footer,
 		selector: '[data-testid="thread-disclaimer"], .sticky.bottom-0 .text-codex-description',
 		group: 'other',
-	}),
+    }),
+
+	// EXPERIMENTAL
+	defineHide({
+		slug: 'chat-ads',
+		storageKey: 'hideChatAds',
+		label: 'Chat Ads',
+		subtitle: 'Hide the chats ads (very unstable)',
+		icon: icon_ads,
+		selector: '.QdG_CWCs',
+        group: 'experimental',
+		badge: 'unstable'
+    }),
 ]
 
 /* Flat key list consumed by EXPORT_CONFIG in consts-storage.js. Avoids maintaining a second list */

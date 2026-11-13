@@ -6,7 +6,8 @@ import {
 	icon_chevron_down,
 	icon_dots_circle,
 	icon_header,
-	icon_sidebar_panel,
+    icon_sidebar,
+    icon_experimental
 } from '../components/icons.js'
 import { ELEMENTS } from '../config/consts-hidden-els.js'
 import { SELECTORS } from '../config/selectors'
@@ -19,8 +20,9 @@ const ELEMENTS_MAP = new Map(ELEMENTS.map((cfg) => [cfg.id, cfg]))
 
 const GROUPS = [
 	{ key: 'header', label: 'Header', icon: icon_header },
-	{ key: 'sidebar', label: 'Sidebar', icon: icon_sidebar_panel },
+	{ key: 'sidebar', label: 'Sidebar', icon: icon_sidebar },
 	{ key: 'other', label: 'Other', icon: icon_dots_circle },
+	{ key: 'experimental', label: 'Experimental', icon: icon_experimental },
 ]
 
 function renderGroup({ key, label, icon }) {
