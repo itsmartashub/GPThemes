@@ -33,6 +33,9 @@ $hidesPlain: (
 
 	// ======== OTHER ========
 	footer: '.sticky.bottom-0 .text-codex-description, [data-testid="thread-disclaimer"]',
+
+	// ======== EXPERIMENTAL ========
+	chat-ads: '.QdG_CWCs'
 );
 
 @each $slug, $selector in $hidesPlain {
