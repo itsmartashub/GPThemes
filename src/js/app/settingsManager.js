@@ -19,6 +19,7 @@ let $settings = null
 let $tabButtons = []
 let $tabPanes = []
 let $fab = null
+let listenersAttached = false
 
 const ACTIVE_CLASS = 'active'
 const HIDDEN_CLASS = 'hidden'
@@ -44,7 +45,7 @@ const HEADER_ACTIONS = [
 ]
 
 // =====================================================
-// TEMPLATE - UI rendergn
+// TEMPLATE - UI rendering
 // =====================================================
 
 function templateHTML() {
@@ -90,33 +91,18 @@ function templateHTML() {
 // Lifecycle: CREATE (build DOM, init modules, mount)
 // =====================================================
 async function createSettings() {
-	// console.log('[CREATE SETTINGS]')
-
 	// 1. Create root container
 	const el = document.createElement('div')
 	el.className = SELECTORS.SETTINGS.ROOT
 	el.innerHTML = templateHTML()
 
-	// 2. Append to DOM FIRST
+	// 2. Append to DOM first — appendChild is synchronous, elements are ready immediately after
 	document.body.appendChild(el)
 
-	// 3. Cache elements AFTER they're in DOM
+	// 3. Cache elements
 	setElements(el)
 
-	// 4. Init modules in parallel, mount sequentially after DOM ready
-	/* await Promise.allSettled(TABS_CONFIG.map(({ init }) => init()))
-
-	//  Wait for next tick to ensure DOM is fully ready
-	requestAnimationFrame(() => {
-		// 5. Mount modules
-		TABS_CONFIG.forEach(({ mount }) => {
-			mount(el)
-		})
-		// 6. Attach global listeners
-		addListeners()
-	}) */
-
-	// Check results of each init
+	// 4. Init all modules in parallel, log any failures
 	const results = await Promise.allSettled(TABS_CONFIG.map(({ init }) => init()))
 
 	results.forEach((result, index) => {
@@ -124,21 +110,16 @@ async function createSettings() {
 			console.error(`[Settings] ${TABS_CONFIG[index].id} init failed:`, result.reason)
 		}
 	})
-	//  Wait for next tick to ensure DOM is fully ready
-	requestAnimationFrame(() => {
-		// 5. Mount modules
-		TABS_CONFIG.forEach(({ mount }) => {
-			mount(el)
-		})
-		// 6. Attach global listeners
-		addListeners()
-	})
+
+	// 5. Mount modules and attach listeners
+	TABS_CONFIG.forEach(({ mount }) => mount(el))
+	addListeners()
 
 	return el
 }
 
 // =====================================================
-// ELEMENTS - cache DOM elemnt references
+// ELEMENTS - cache DOM element references
 // =====================================================
 function setElements(root) {
 	$settings = root
@@ -158,6 +139,10 @@ function onWindowResize() {
 }
 
 function addListeners() {
+	// Guard against duplicate listeners if createSettings is somehow called more than once
+	if (listenersAttached) return
+	listenersAttached = true
+
 	$settings
 		.querySelector(`.${SELECTORS.SETTINGS.TABS.BUTTONS}`)
 		?.addEventListener('click', onTabsSwitching)
@@ -276,7 +261,9 @@ function onOpenSettings($fabEl) {
 	positionPanel($fab, $settings)
 	$settings.classList.add(SELECTORS.SETTINGS.OPEN_STATE)
 
-	// Small delay to allow reflow before attaching listener
+	// Always remove before adding to prevent ghost listeners if opened without closing first
+	document.removeEventListener('click', onClickOutside, true)
+	// Defer so this open-click doesn't immediately trigger onClickOutside
 	requestAnimationFrame(() => {
 		document.addEventListener('click', onClickOutside, true)
 	})

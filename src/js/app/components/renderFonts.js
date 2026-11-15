@@ -12,7 +12,7 @@ export function renderFontSmallCard({
 	return `
         <div class="${className} card card--small" data-gpth-err="${min}${unit} &hArr; ${max}${unit}">
             <label for="${inputId}">
-                <input type="${inputType}" id="${inputId}" value="${inputValue}" placeholder="${inputPlaceholder}" minlength="${min}" maxlength="${max}">
+                <input type="${inputType}" id="${inputId}" value="${inputValue}" placeholder="${inputPlaceholder}" min="${min}" max="${max}">
 
                 <div class="card__unitname-wrapper">
                     <p class="card__unit">pixels</p>
@@ -41,7 +41,7 @@ export function renderFontBigCard({
                     <p class="card__name">${name}</p>
                 </div>
 
-                <input type="${inputType}" id="${inputId}" value="${inputValue}" placeholder="${inputPlaceholder}" minlength="${min}" maxlength="${max}">
+                <input type="${inputType}" id="${inputId}" value="${inputValue}" placeholder="${inputPlaceholder}" min="${min}" max="${max}">
             </label>
         </div>`
 }

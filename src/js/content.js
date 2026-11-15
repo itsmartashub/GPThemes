@@ -5,24 +5,13 @@ import { createSettings } from './app/settingsManager.js'
 // !! Chat bubbles are mounted from custom-layouts after Settings render !!
 // !! User bubble accent toggle is mounted from Colors module after Settings render !!
 
-const CONFIG = {
-	TARGET_SELECTOR: '.gpth-fab',
-	RETRY_DELAY: 3000,
-	MAX_RETRIES: 4,
-}
-
-// Track number of attempts
-let retryCount = 0
-let retryTimeout = null // For cleanup
+const FAB_SELECTOR = '.gpth-fab'
 
 // Main init fn
 async function initExt() {
-	// console.log(`[🎨GPThemes]: Initializing components (attempt ${retryCount + 1}/${CONFIG.MAX_RETRIES})`)
-
 	try {
 		await Promise.all([initFAB(), createSettings()])
 		setupExtensionMessaging()
-		// !! Settings modules (colors, fonts, layouts) are initialized inside settingsManager after DOM attach !!
 	} catch (error) {
 		console.error('[🎨GPThemes]: Critical initialization error:', error)
 		return false
@@ -30,55 +19,40 @@ async function initExt() {
 	return true
 }
 
-// Schedule retries with exponential backoff
-function scheduleRetry() {
-	retryCount++
+// =====================================================
+// FAB WATCHDOG — MutationObserver
+// =====================================================
+/* ChatGPT's React re-renders can remove our injected elements from the DOM
+A MutationObserver on body fires exactly when this happens, with no polling overhead. We only watch direct children (subtree: false) since FAB is appended directly to body */
 
-	if (retryCount <= CONFIG.MAX_RETRIES) {
-		const delay = CONFIG.RETRY_DELAY * retryCount
+let observer = null
 
-		// console.log(`[🎨GPThemes]: Scheduling retry ${retryCount}/${CONFIG.MAX_RETRIES} in ${delay}ms`)
+function watchFAB() {
+	if (observer) return
 
-		retryTimeout = setTimeout(() => {
-			// Check if our components exist before retrying
-			if (document.querySelector(CONFIG.TARGET_SELECTOR)) {
-				// console.log('[🎨GPThemes]: Components already present, stopping retries')
-				cleanup()
-				return
-			}
+	observer = new MutationObserver(() => {
+		if (document.querySelector(FAB_SELECTOR)) return
+		console.info('[🎨GPThemes]: FAB removed by page re-render, re-initializing…')
+		initExt()
+	})
 
-			console.info(
-				'[🎨GPThemes]: Re-initializing extension (possible React hydration issue: "Minified React error #XXX;" above?)',
-			)
-
-			if (initExt()) {
-				// console.log('Injection successful')
-				cleanup()
-			} else {
-				scheduleRetry()
-			}
-		}, delay)
-	} else {
-		console.log('[🎨GPThemes]: Maximum retries reached')
-	}
+	observer.observe(document.body, { childList: true })
 }
 
-// Cleanup fn
 function cleanup() {
-	if (retryTimeout) {
-		clearTimeout(retryTimeout)
-		retryTimeout = null
-	}
+	observer?.disconnect()
+	observer = null
 }
 
 // Initial run
-if (!document.querySelector(CONFIG.TARGET_SELECTOR)) {
-	initExt()
-	scheduleRetry()
+if (!document.querySelector(FAB_SELECTOR)) {
+	initExt().then((ok) => {
+		if (ok) watchFAB()
+	})
 } else {
-	console.log('[🎨GPThemes]: Components already present on first check')
+	watchFAB()
 }
 
-// Emergency cleanup if script re-runs
+// Emergency cleanup if the content script re-runs in the same context
 if (window._gpthCleanup) window._gpthCleanup()
 window._gpthCleanup = cleanup

@@ -73,3 +73,7 @@ export const onEnter = (fn) => (e) => {
 		e.target.blur()
 	}
 }
+
+// Escape HTML special characters for safe injection into innerHTML or attribute values
+const ESCAPE_MAP = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }
+export const escapeHTML = (str) => String(str).replace(/[&<>"']/g, (c) => ESCAPE_MAP[c])

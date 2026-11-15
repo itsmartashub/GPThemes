@@ -147,7 +147,7 @@ async function onChange(event) {
 async function mount() {
 	const container = $(`.${SELECTORS.TOGGLE_BUBBLES.ITEMS_CONTAINER}`)
 	if (!container) {
-		console.warning(`Element with class ${SELECTORS.TOGGLE_BUBBLES.ITEMS_CONTAINER} not found`)
+		console.warn(`Element with class ${SELECTORS.TOGGLE_BUBBLES.ITEMS_CONTAINER} not found`)
 		return
 	}
 

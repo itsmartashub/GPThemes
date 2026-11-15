@@ -1,53 +1,54 @@
+import { escapeHTML } from '../../utils/dom.js'
 import { icon_lock, icon_reset } from './icons'
 
 export function renderSliderCard({
-	name,
-	inputId,
-	inputType,
-	inputValue,
-	inputPlaceholder = '',
-	displayValue,
-	displayUnit,
-	min = 10,
-	max = 100,
-	step = 1,
-	unit = '',
-	isLocked = false,
-	resetId = '',
+    name,
+    inputId,
+    inputType,
+    inputValue,
+    inputPlaceholder = '',
+    displayValue,
+    displayUnit,
+    min = 10,
+    max = 100,
+    step = 1,
+    unit = '',
+    isLocked = false,
+    resetId = '',
 }) {
-	const sanitizedName = sanitizeString(name)
-	const sanitizedInputId = sanitizeString(inputId)
-	const sanitizedInputValue = sanitizeString(inputValue)
-	const sanitizedInputPlaceholder = sanitizeString(inputPlaceholder)
+    const safeName = escapeHTML(name)
+    const safeInputId = escapeHTML(inputId)
+    const safeInputValue = escapeHTML(inputValue)
+    const safeInputPlaceholder = escapeHTML(inputPlaceholder)
 
-	// Optional per-card reset: only rendered when the caller passes a resetId
-	const resetButton = resetId
-		? `
+    // Optional per-card reset: only rendered when the caller passes a resetId
+    const resetButton = resetId
+        ? `
             <button
                 type="button"
-                id="${sanitizeString(resetId)}"
+                id="${escapeHTML(resetId)}"
                 class="card__reset"
                 title="Reset to default"
-                aria-label="Reset ${sanitizedName} to default"
+                aria-label="Reset ${safeName} to default"
             >
                 ${icon_reset}
             </button>`
-		: ''
+        : ''
 
-	return `
+    return `
         <div
             class="card card--range ${isLocked ? 'is-locked' : ''}"
             data-gpth-err="${min}${unit} &hArr; ${max}${unit}"
         >
             <label
-                for="${sanitizedInputId}"
+                for="${safeInputId}"
             >
                 <div class="card__output-wrapper">
                     <div
                         class="card__output"
                         id="${displayValue}"
                     >
-                        ${sanitizedInputValue}
+                        ${safeInputValue}
                     </div>
 
                     <div class="card__unitname-wrapper">
@@ -59,22 +60,22 @@ export function renderSliderCard({
                         </p>
 
                         <p class="card__name">
-                            ${sanitizedName}
+                            ${safeName}
                         </p>
                     </div>
                 </div>
 
                 <input
                     type="${inputType}"
-                    id="${sanitizedInputId}"
-                    value="${sanitizedInputValue}"
-                    placeholder="${sanitizedInputPlaceholder}"
+                    id="${safeInputId}"
+                    value="${safeInputValue}"
+                    placeholder="${safeInputPlaceholder}"
                     min="${min}"
                     max="${max}"
                     step="${step}"
                     aria-valuemin="${min}"
                     aria-valuemax="${max}"
-                    aria-valuenow="${sanitizedInputValue}"
+                    aria-valuenow="${safeInputValue}"
                     ${isLocked ? 'disabled' : ''}
                 >
             </label>
@@ -84,10 +85,4 @@ export function renderSliderCard({
             ${icon_lock}
         </div>
     `
-}
-
-function sanitizeString(str) {
-	const div = document.createElement('div')
-	div.textContent = str
-	return div.innerHTML
 }
