@@ -1,7 +1,3 @@
-// :where(:root:not([data-codex-window-type="extension"]))[data-theme],
-// :where(:root:not([data-codex-window-type="extension"])) [data-theme] {
-// :root {
-// :where(:root, [data-theme]) {
 :root,
 [data-theme] {
 	// ACCENT TOKENS
@@ -273,9 +269,9 @@
 }
 
 // =========================================================
-// Platform utilities and components that paint with palette colors instead of theme vars.
+// Platform utilities and components that paint with palette colors instead of theme vars
 
-// Settings -> Billing -> "Upgrade" button: blue text on a blue tint, no token involved.
+// Settings -> Billing -> "Upgrade" button: blue text on a blue tint, no token involved
 [class*='light-dark(var(--blue-500),var(--blue-50))'] {
 	color: var(--c-accent) !important;
 }
@@ -289,13 +285,13 @@
 	background-color: var(--c-accent-12) !important;
 }
 
-// Share dialog and other codex dialogs paint the scrim with a literal #e3e3e380 instead of a var.
+// Share dialog and other codex dialogs paint the scrim with a literal #e3e3e380 instead of a var
 [class*='dimmedOverlay'] {
 	background: var(--color-dialog-overlay) !important;
 }
 
 // =========================================================
-// Pricing overlay ("Upgrade your plan"): a self-contained design system that re-declares a literal palette on main.surface-*.
+// Pricing overlay ("Upgrade your plan"): a self-contained design system that re-declares a literal palette on main.surface-*
 [class*='surface-'] {
 	--bg-primary: var(--c-surface-2) !important;
 	--bg-secondary: var(--c-surface-3) !important;
@@ -339,7 +335,6 @@
 	[data-pricing-align-card-rows="action-first"] {
     	background-color: transparent !important;
 	}
-
 }
 
 [class*="audienceToggle"], [class*="cardToggle"] {
@@ -348,7 +343,7 @@
        	color: var(--c-on-accent) !important;
    	}
 }
-// The recommended card fades into a literal light-blue stop, so replace the whole gradient with an accent one.
+// The recommended card fades into a literal light-blue stop, so replace the whole gradient with an accent one
 [class*='cardHighlight'] {
 	background: linear-gradient(
 		180deg,
@@ -357,15 +352,8 @@
 	) !important;
 }
 
-// The Personal/Business switch track uses --bg-secondary, which equals the dialog background here, so it vanished.
-// [class*='audienceToggle'],
-// [class*='cardToggle'] {
-// 	--bg-primary: var(--c-surface-1) !important;
-// 	background: oklch(from var(--c-surface-3) calc(l * 0.96) c h) !important;
-// }
-
 // =========================================================
-// Pricing and checkout overlay: own literal --checkout-* palette on [data-checkout-theme], plus a locally redefined blue ramp.
+// Pricing and checkout overlay: own literal --checkout-* palette on [data-checkout-theme], plus a locally redefined blue ramp
 [data-checkout-theme] {
 	--checkout-text-primary: var(--c-txt) !important;
 	--checkout-text-secondary: var(--c-subtext-1) !important;
