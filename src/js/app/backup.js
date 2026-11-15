@@ -2,6 +2,7 @@ import { EXT_CURR_VERSION, EXT_NAME } from './config/consts.js'
 import { EXPORT_CONFIG } from './config/consts-storage.js'
 import { storageSync } from '../utils/storage.js'
 import { Notify } from './components/renderNotify.js'
+import { showConfirm } from './components/renderConfirm.js'
 
 // =====================================================
 // CONSTANTS
@@ -200,6 +201,38 @@ function sanitiseSettings(settings) {
 		if (KNOWN_KEYS.has(key)) clean[key] = settings[key]
 	}
 	return clean
+}
+
+// =====================================================
+// RESET
+// =====================================================
+
+/*
+Removes all exportable user preference keys from sync storage, then reloads.
+Keys in EXPORT_CONFIG.EXCLUDE (system metadata, device-specific data) are intentionally left untouched — they must survive a reset so the extension stays operational.
+A confirm dialog guards the action; the function is a no-op if the user cancels.
+*/
+export async function resetSettings() {
+	const confirmed = await showConfirm({
+		title: 'Reset all settings?',
+		message:
+			'This will remove all your customizations and restore the extension defaults. This cannot be undone.',
+		confirmLabel: 'Reset',
+		cancelLabel: 'Cancel',
+		danger: true,
+	})
+
+	if (!confirmed) return
+
+	try {
+		await storageSync.removeItems(EXPORT_CONFIG.INCLUDE)
+		Notify.success('Settings reset. Reloading…')
+
+		setTimeout(() => window.location.reload(), 1200)
+	} catch (err) {
+		console.error('[GPThemes:reset]', err)
+		Notify.error('Reset failed. Please try again.')
+	}
 }
 
 // =====================================================
