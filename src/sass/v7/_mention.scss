@@ -1,0 +1,11 @@
+// Inline mentions (@GPT, @tool) inside messages
+[class^='Mention-'] {
+	// The platform resolves these from the link token, we force the theme accent here as well
+	--inline-mention-base-color: var(--c-accent) !important;
+	--inline-mention-color: var(--c-accent) !important;
+
+	color: var(--c-accent) !important;
+
+	// Platform already uses var(--font-content), this guarantees the custom font in scoped containers
+	@include customFont((font-family));
+}

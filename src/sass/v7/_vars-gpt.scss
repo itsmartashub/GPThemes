@@ -4,11 +4,57 @@
 // :where(:root, [data-theme]) {
 :root,
 [data-theme] {
+	// ACCENT TOKENS
+	--color-text-on-accent: var(--c-on-accent) !important;
+	--color-background-accent-solid: var(--c-accent) !important;
+	--color-background-accent-solid-hover: oklch(
+		from var(--c-accent) clamp(0, calc(l * 1.1), 1) c h
+	) !important;
+	--color-background-accent-solid-active: oklch(
+		from var(--c-accent) clamp(0, calc(l * 1.2), 1) c h
+	) !important;
+	--color-text-accent-solid: var(--c-on-accent) !important;
+	--color-ring-accent: var(--c-accent) !important;
+	--color-border-accent-outline: var(--c-accent) !important;
+	--color-background-accent-ghost-hover: var(--c-accent-20) !important;
+	--color-background-accent-ghost-active: var(--c-accent-30) !important;
+	--color-background-accent-outline-hover: var(--c-accent-20) !important;
+	--color-background-accent-outline-active: var(--c-accent-30) !important;
+	--color-background-accent-soft-alt: var(--c-accent-12) !important;
+	--color-border-accent-outline-hover: var(--c-accent) !important;
+	--color-border-accent-soft-alt: var(--c-accent) !important;
+	--color-text-accent: var(--c-accent) !important;
+	--color-text-accent-hover: color-mix(in oklab, var(--c-accent) 80%, var(--c-txt)) !important;
+	--color-text-accent-ghost: var(--c-accent) !important;
+	--color-text-accent-ghost-hover: var(--c-accent) !important;
+	--color-text-accent-outline: var(--c-accent) !important;
+	--color-text-accent-outline-hover: var(--c-accent) !important;
+	--color-text-accent-soft-alt: var(--c-accent) !important;
+	--color-background-accent-soft-alpha: var(--c-accent-12) !important;
+	--color-background-accent-soft-alpha-hover: var(--c-accent-20) !important;
+	--color-background-accent-soft-alpha-active: var(--c-accent-30) !important;
+	--color-text-accent-soft: var(--c-accent) !important;
+	--checkbox-checked-background-color: var(--c-accent) !important;
+	--checkbox-checked-mark-color: var(--c-on-accent) !important;
+	--switch-track-color-checked: var(--c-accent) !important;
+	--switch-thumb-color-checked: var(--c-on-accent) !important;
+	--switch-track-color-checked-disabled: var(--c-accent) !important;
+
 	// Badge bg colors (search pill links)
 	--gray-300: var(--c-surface-2) !important;
 	--gray-400: var(--c-surface-2) !important;
 	--white: var(--c-surface-1) !important;
 	--black: var(--c-bg-chats-container) !important;
+
+	// Solid ramp steps that components paint inline (quiz answer dots, status badges, info buttons).
+	--blue-400: var(--c-accent) !important;
+	--blue-500: var(--c-accent) !important;
+	--green-400: oklch(from var(--c-success) clamp(0, calc(l * 1.25), 1) c h) !important;
+	--green-500: var(--c-success) !important;
+	--green-600: oklch(from var(--c-success) clamp(0, calc(l * 0.85), 1) c h) !important;
+	--red-400: oklch(from var(--c-danger) clamp(0, calc(l * 1.25), 1) c h) !important;
+	--red-500: var(--c-danger) !important;
+	--red-600: oklch(from var(--c-danger) clamp(0, calc(l * 0.85), 1) c h) !important;
 
 	--color-background-composer-primary: var(--c-accent) !important;
 
@@ -53,7 +99,8 @@
 	--app-color-background-elevated-primary-opaque: var(--c-surface-3) !important; // chatbox
 	// --app-color-background-elevated-secondary: rgba(224, 222, 244, 0.028);
 	--app-color-background-elevated-secondary: var(--c-surface-2) !important;
-	// --app-color-background-elevated-secondary-opaque: blue !important;
+	--app-color-background-elevated-secondary-opaque: var(--c-surface-3) !important;
+	--app-color-background-card: var(--c-surface-2) !important;
 	--app-color-background-elevated-tertiary-opaque: var(--c-surface-3) !important; // NZM
 	--color-background-mode-toggle-track: var(--c-accent-03) !important;
 	--color-background-mode-toggle-selected: var(--c-surface-3) !important; // active toggle (Chat/Work)
@@ -68,6 +115,9 @@
 	--app-color-border-heavy: #{color-alpha(--c-txt, 0.2, true)};
 	--app-color-border-light: var(--c-border) !important;
 	--color-border-mode-toggle-selected: var(--c-border) !important;
+	--color-border-button-outline: var(--c-border) !important;
+	--color-text-button-outline: var(--c-txt) !important;
+	--color-text-mode-toggle-primary: var(--c-txt) !important;
 	// --app-color-decoration-added: #9ccfd8;
 	// --app-color-decoration-deleted: #908caa;
 	// --app-color-editor-added: rgba(156, 207, 216, 0.23);
@@ -79,7 +129,7 @@
 	// --app-color-simple-scrim: orange !important;
 	--app-color-text-accent: var(--c-accent) !important;
 	--app-color-text-on-accent: var(--c-on-accent) !important;
-	--app-color-text-button-primary: var(--c-on-acent) !important;
+	--app-color-text-button-primary: var(--c-on-accent) !important;
 	// --app-color-text-button-secondary: violet !important;
 	--app-color-text-button-tertiary: var(--c-subtext-2) !important;
 	--app-color-foreground-application-menu: var(--c-txt) !important;
@@ -90,14 +140,10 @@
 
 	--app-color-text-error: var(--c-danger) !important;
 
-	--app-shell-panel-background: var(--c-bg-chats-container) !important; // kada se otvori WorkspaceContent > aside [data-app-shell-focus-area="right-panel], npr neka slika
-
 	--color-text-mode-toggle-inactive: color-mix(in oklab, var(--c-txt) 80%, transparent);
 	// --shadow-mode-toggle-selected: var(--shadow-md);
 	// --color-background-accent-action: var(--color-background-info-solid);
 	// --color-text-accent-action: var(--color-text-info-solid);
-	// --content-chromatic-channels: clamp(0, l + clamp(-0.015, 0.00887524 + clamp(0, (l - 0.16375795) / 0.82731095, 1) * -0.01874904, 0.015), 1) calc(a * 0.98437580) calc(b * 0.98437580);
-	// --content-neutral-channels: clamp(0, l + clamp(-0.015, 0.00887524 + clamp(0, (l - 0.16375795) / 0.82731095, 1) * -0.01874904, 0.015), 1) calc(a * 0.98437580 + (0.00130965 + clamp(0, (l - 0.16375795) / 0.82731095, 1) * -0.00008634) * min(1, 0.01 / max(hypot((0.00130965 + clamp(0, (l - 0.16375795) / 0.82731095, 1) * -0.00008634), (-0.00389133 + clamp(0, (l - 0.16375795) / 0.82731095, 1) * 0.00052464)), 0.00000001))) calc(b * 0.98437580 + (-0.00389133 + clamp(0, (l - 0.16375795) / 0.82731095, 1) * 0.00052464) * min(1, 0.01 / max(hypot((0.00130965 + clamp(0, (l - 0.16375795) / 0.82731095, 1) * -0.00008634), (-0.00389133 + clamp(0, (l - 0.16375795) / 0.82731095, 1) * 0.00052464)), 0.00000001)));
 	--color-chart-empty: var(--c-accent-08) !important;
 	// --color-chart-sequential-1: var(--orange-800);
 	// --color-chart-sequential-2: var(--orange-600);
@@ -117,13 +163,14 @@
 	// --color-text-mode-toggle-primary: var(--color-text);
 	// --color-text-mode-toggle-accent: var(--color-text-info);
 	// --color-image-generation-accent: var(--c-accent) !important;
+	--color-image-generation-accent: var(--c-accent) !important;
 	// --color-image-generation-text: var(--color-text-accent);
 	// --color-image-generation-foreground: var(--app-color-text-on-accent);
 
 	--color-surface-elevated-secondary: var(--c-surface-2) !important;
 
 	// =========================================================
-	--color-surface: var(--c-bg-chats-container) !important; // app bg, like chats-container, but also code-block bg like: .CodeSurface-UAnpMT, .StickyActionBar-XvAQxh
+	--color-surface: var(--c-bg-chats-container) !important; // app bg, like chats-container, but also code-block bg like: .CodeSurface-UAnpMT, .StickyActionBar-XvAQxh, and also some dialogs like codex-dialog in https://chatgpt.com/images when open image
 	--color-surface-secondary: color-mix(var(--c-accent) 4%, var(--c-surface-1)) !important; // Library -> Open image -> container
 
 	/* POPCORN */
@@ -133,11 +180,15 @@
 	// MIX
 	--color-text-success: var(--c-success) !important;
 	--color-text-danger: var(--c-danger) !important;
+	--color-text-danger-soft-alpha: var(--c-danger) !important; // Settings: "Delete", "Delete all" buttons
 	--color-text-header-upgrade: var(--c-subtext-1) !important;
 	--color-background-header-upgrade-hover: var(--c-surface-2);
-	--color-control-thumb-on-accent: var(--c-on-accent) !important;
 	--color-text-connected: var(--c-accent) !important;
 	--color-text-tip: var(--c-accent) !important;
+
+	// Links and inline mentions
+	--link-primary-text-color: var(--c-accent) !important;
+	--link-primary-text-color-hover: var(--c-subtext-2) !important;
 
 	// TOOLTIP
 	--color-text-tooltip: var(--c-accent) !important;
@@ -159,30 +210,27 @@
 
 	// --switch-track-color: var(--color-text);
 	// --switch-track-color-hover: var(--switch-track-color);
-	// --switch-track-color-checked: var(--color-blue);
-	// --switch-track-color-checked-disabled: var(--switch-track-color-checked);
 	// --switch-thumb-color: var(--color-control-thumb-on-accent);
 	// --color-background-user-message-compact:;
 	// --color-background-message-reaction: ;
 	// --color-chat-accent-black: ;
 
 	--color-dialog-overlay: #{color-alpha(--c-surface-1, 0.8, true)}; // za neke modals je ok, za neke kao da je preko dialoga, wtf
-	--color-media-foreground: var(--c-txt) !important;
-	--color-media-background: var(--c-surface-1) !important;
+	--color-media-foreground: var(--c-on-accent) !important;
+	--color-media-background: var(--c-accent) !important;
+	--color-media-control-background: var(--c-accent) !important;
 	--color-text-execution-output: var(--c-subtext-1) !important;
 	--color-background-execution-output: var(--c-surface-2) !important;
 	// --color-text-execution-output-label: #b4b4b4;
 
 	// OLD BUT STILL USED
 	--bg-primary: var(--c-bg-chats-container) !important;
-	--bg-primary-inverted: var(--c-accent) !important;
 	--bg-secondary: var(--c-surface-2) !important;
 	--bg-tertiary: var(--c-surface-3) !important;
 	--bg-elevated-primary: var(--c-surface-2) !important;
 	--bg-elevated-secondary: var(--c-surface-3) !important;
 	--main-surface-primary: var(--c-surface-2) !important;
 	// --main-surface-primary: red !important;
-	--main-surface-tertiary: var(--c-surface-3) !important;
 	--text-primary: var(--c-txt) !important;
 	--text-secondary: var(--c-subtext-1) !important;
 	--text-tertiary: var(--c-subtext-2) !important;
@@ -190,18 +238,15 @@
 	// --border-heavy: var(--lightningcss-light, #00000026) var(--lightningcss-dark, #fff3);
 	// --border-light: var(--lightningcss-light, #0000000d) var(--lightningcss-dark, #ffffff0d);
 	--icon-accent: var(--c-accent) !important;
-	// --interactive-label-accent-accessible: var(--lightningcss-light, var(--blue-500)) var(--lightningcss-dark, var(--blue-100));
+	--interactive-label-accent-accessible: var(--c-accent) !important;
 	--color-text: var(--c-txt) !important;
 	--color-text-secondary: var(--c-subtext-1) !important;
 	--color-text-tertiary: var(--c-subtext-2) !important;
 	--color-border: var(--c-border);
-	--accent-blue: var(--c-accent) !important;
 	// --color-background-primary-solid: var(--text-primary);
 	// --color-text-primary-solid: var(--lightningcss-light, #fff) var(--lightningcss-dark, #0d0d0d);
 	// --color-background-info-solid: var(--accent-blue);
 	// --color-text-info-solid: #fff;
-
-	--sidebar-surface-primary: var(--c-bg-chats-container) !important;
 
 	// // Badge color, ali i code-block
 	// --color-background-secondary-soft-alpha: var(--c-surface-3) !important;
@@ -225,6 +270,133 @@
 	--popcorn-presentation-thumbnail-background: var(--color-background-viewer-control);
 	// --popcorn-presentation-thumbnail-backdrop-filter: blur(var(--blur-xl));
 	// --popcorn-presentation-thumbnail-shadow: var(--elevation-sidebar);
+}
+
+// =========================================================
+// Platform utilities and components that paint with palette colors instead of theme vars.
+
+// Settings -> Billing -> "Upgrade" button: blue text on a blue tint, no token involved.
+[class*='light-dark(var(--blue-500),var(--blue-50))'] {
+	color: var(--c-accent) !important;
+}
+
+[class*='light-dark(var(--blue-a25),--alpha(var(--blue-100)/15%))'] {
+	background-color: var(--c-accent-08) !important;
+}
+
+[class*='light-dark(--alpha(var(--blue-400)/9%),--alpha(var(--blue-100)/20%))']:hover,
+[class*='light-dark(--alpha(var(--blue-400)/9%),--alpha(var(--blue-100)/20%))'][data-state='open'] {
+	background-color: var(--c-accent-12) !important;
+}
+
+// Share dialog and other codex dialogs paint the scrim with a literal #e3e3e380 instead of a var.
+[class*='dimmedOverlay'] {
+	background: var(--color-dialog-overlay) !important;
+}
+
+// =========================================================
+// Pricing overlay ("Upgrade your plan"): a self-contained design system that re-declares a literal palette on main.surface-*.
+[class*='surface-'] {
+	--bg-primary: var(--c-surface-2) !important;
+	--bg-secondary: var(--c-surface-3) !important;
+	--bg-tertiary: var(--c-surface-3) !important;
+	--bg-elevated-primary: var(--c-surface-2) !important;
+	--bg-elevated-secondary: var(--c-surface-3) !important;
+	--main-surface-primary: var(--c-surface-2) !important;
+	--main-surface-tertiary: var(--c-surface-1) !important;
+	--text-primary: var(--c-txt) !important;
+	--text-secondary: var(--c-subtext-1) !important;
+	--text-tertiary: var(--c-subtext-2) !important;
+	--border-default: var(--c-border) !important;
+	--border-heavy: var(--c-border) !important;
+	--border-light: var(--c-border) !important;
+	--blue-50: var(--c-accent-08) !important;
+	--blue-100: var(--c-accent-20) !important;
+	--blue-200: var(--c-accent-30) !important;
+	--blue-400: var(--c-accent) !important;
+	--blue-500: var(--c-accent) !important;
+	--accent-blue: var(--c-accent) !important;
+	--icon-accent: var(--c-accent) !important;
+	--interactive-label-accent-accessible: var(--c-accent) !important;
+	--color-background-info-solid: var(--c-accent) !important;
+	--color-background-info-solid-hover: oklch(
+		from var(--c-accent) clamp(0, calc(l * 1.1), 1) c h
+	) !important;
+	--color-background-info-solid-active: oklch(
+		from var(--c-accent) clamp(0, calc(l * 1.2), 1) c h
+	) !important;
+	--color-text-info-solid: var(--c-on-accent) !important;
+	--color-text-primary-solid: var(--c-on-accent) !important;
+}
+
+// Plan cards re-declare their own literal white token locally, so the inherited palette cannot reach them.
+[class*='cardSurface'] {
+	--main-surface-primary: var(--c-surface-1) !important;
+	--main-surface-secondary: var(--c-surface-2) !important;
+	--main-surface-tertiary: var(--c-surface-3) !important;
+
+	// Odd bg in cards for top elements where title, button and pricing are
+	[data-pricing-align-card-rows="action-first"] {
+    	background-color: transparent !important;
+	}
+
+}
+
+[class*="audienceToggle"], [class*="cardToggle"] {
+   button[role="radio"][data-state="on"] {
+       	background-color: var(--c-accent) !important;
+       	color: var(--c-on-accent) !important;
+   	}
+}
+// The recommended card fades into a literal light-blue stop, so replace the whole gradient with an accent one.
+[class*='cardHighlight'] {
+	background: linear-gradient(
+		180deg,
+		var(--c-surface-1),
+		color-mix(in oklab, var(--c-accent) 18%, var(--c-surface-1))
+	) !important;
+}
+
+// The Personal/Business switch track uses --bg-secondary, which equals the dialog background here, so it vanished.
+// [class*='audienceToggle'],
+// [class*='cardToggle'] {
+// 	--bg-primary: var(--c-surface-1) !important;
+// 	background: oklch(from var(--c-surface-3) calc(l * 0.96) c h) !important;
+// }
+
+// =========================================================
+// Pricing and checkout overlay: own literal --checkout-* palette on [data-checkout-theme], plus a locally redefined blue ramp.
+[data-checkout-theme] {
+	--checkout-text-primary: var(--c-txt) !important;
+	--checkout-text-secondary: var(--c-subtext-1) !important;
+	--checkout-text-tertiary: var(--c-subtext-2) !important;
+	--checkout-icon-accent: var(--c-accent) !important;
+	--checkout-bg-primary: var(--c-surface-2) !important;
+	--checkout-page-background: var(--c-bg-chats-container) !important;
+	--checkout-bg-secondary: var(--c-surface-3) !important;
+	--checkout-border-default: var(--c-border) !important;
+	--checkout-border-heavy: var(--c-border) !important;
+	--checkout-button-background: var(--c-accent) !important;
+	--checkout-button-foreground: var(--c-on-accent) !important;
+	--checkout-button-hover: oklch(
+		from var(--c-accent) clamp(0, calc(l * 1.1), 1) c h
+	) !important;
+	--checkout-text-status-warning: var(--c-warning) !important;
+	--checkout-text-status-success: var(--c-success) !important;
+	--checkout-bg-status-warning: color-mix(
+		in oklab,
+		var(--c-warning) 12%,
+		var(--c-surface-2)
+	) !important;
+	--checkout-border-status-warning: color-mix(
+		in oklab,
+		var(--c-warning) 30%,
+		var(--c-surface-2)
+	) !important;
+	--bg-tertiary: var(--c-surface-3) !important;
+	--blue-100: color-mix(in oklab, var(--c-accent) 45%, var(--c-surface-1)) !important;
+	--blue-400: var(--c-accent) !important;
+	--blue-500: var(--c-accent) !important;
 }
 
 // =========================================================
