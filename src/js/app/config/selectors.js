@@ -5,6 +5,19 @@ const chatboxRoot = "form[data-type='unified-composer'] .contain-inline-size[dat
 export const SELECTORS = {
 	SUBHEADING: `${PFX}-subheading`,
 
+	// Confirm Dialog
+	CONFIRM: {
+		ROOT: `${PFX}-confirm`,
+		OPEN_STATE: `${PFX}-confirm--open`,
+		PANEL: `${PFX}-confirm__panel`,
+		TITLE: `${PFX}-confirm__title`,
+		MESSAGE: `${PFX}-confirm__message`,
+		ACTIONS: `${PFX}-confirm__actions`,
+		CONFIRM_BTN: `${PFX}-confirm__btn--confirm`,
+		CANCEL_BTN: `${PFX}-confirm__btn--cancel`,
+		DANGER_MOD: `${PFX}-confirm__btn--danger`,
+	},
+
 	// Notification System
 	NOTIFY: {
 		CONTAINER: `${PFX}-notify-container`,
