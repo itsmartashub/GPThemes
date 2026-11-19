@@ -1,8 +1,9 @@
 import { debounce } from '../utils/dom.js'
-import { icon_kofi_cup } from './components/icons.js'
+import { icon_kofi_cup, icon_export, icon_import, icon_reset_all } from './components/icons.js'
 import { renderHeaderAction } from './components/renderHeaderActions.js'
 import { PFX } from './config/consts.js'
 import { SELECTORS } from './config/selectors.js'
+import { exportSettings, importSettings, resetSettings } from './backup.js'
 import { init as initColors, mount as mountColors, renderColorsTab } from './custom-colors/index.js'
 import { init as initFonts, mount as mountFonts, renderFontsTab } from './custom-fonts/index.js'
 import {
@@ -36,6 +37,9 @@ const TABS_CONFIG = [
 
 // Small round actions in the header: Ko-fi now, import/export will join here. href renders a link, id renders a button
 const HEADER_ACTIONS = [
+	{ id: `${PFX}-import`, label: 'Import settings', icon: icon_import },
+	{ id: `${PFX}-export`, label: 'Export settings', icon: icon_export },
+	{ id: `${PFX}-reset`, label: 'Reset all settings', icon: icon_reset_all },
 	{ href: 'https://ko-fi.com/http417', label: 'Support on Ko-fi', icon: icon_kofi_cup },
 ]
 
@@ -158,6 +162,10 @@ function addListeners() {
 		.querySelector(`.${SELECTORS.SETTINGS.TABS.BUTTONS}`)
 		?.addEventListener('click', onTabsSwitching)
 	window.addEventListener('resize', onWindowResizeDebounced)
+
+	$settings.querySelector(`#${PFX}-import`)?.addEventListener('click', () => importSettings())
+	$settings.querySelector(`#${PFX}-export`)?.addEventListener('click', exportSettings)
+	$settings.querySelector(`#${PFX}-reset`)?.addEventListener('click', resetSettings)
 }
 
 function onClickOutside(e) {

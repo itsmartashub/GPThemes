@@ -1,0 +1,117 @@
+// Confirm dialog uses native <dialog> for correct focus trapping and Escape handling
+.gpth-confirm {
+	// Reset browser <dialog> defaults, then re-center via margin auto + inset
+	position: fixed;
+	inset: 0;
+	margin: auto;
+	padding: 0;
+	background: transparent;
+	border: none;
+	outline: none;
+
+	// Backdrop - same translucent accent the rest of the UI uses for modals
+	&::backdrop {
+		background-color: var(--c-bg-modal);
+		backdrop-filter: blur(4px);
+		opacity: 0;
+		transition: opacity 0.2s ease;
+	}
+
+	// Open state - JS adds this class on the next frame after showModal()
+	&--open {
+		&::backdrop {
+			opacity: 1;
+		}
+
+		.gpth-confirm__panel {
+			opacity: 1;
+			transform: scale(1) translateY(0);
+		}
+	}
+
+	&__panel {
+
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		width: clamp(18rem, 90vw, 24rem);
+		background-color: var(--c-surface-2);
+		padding: var(--p-dialog) calc(var(--p-dialog) * 1.2);
+		border: 1px solid var(--c-accent-12);
+		border-radius: var(--br-dialog);
+		opacity: 0;
+		transform: scale(0.94) translateY(-8px);
+		transform-origin: center top;
+		transition: opacity 0.22s ease, transform 0.25s $easeOutBack;
+
+		@media (prefers-reduced-motion: reduce) {
+			transition: none;
+		}
+	}
+
+	&__title {
+		font-size: 1.05em;
+		font-weight: 600;
+		color: var(--c-accent);
+	}
+
+	&__message {
+		font-size: 0.9em;
+		line-height: 1.5;
+		color: var(--c-subtext-1);
+	}
+
+	&__actions {
+		display: flex;
+		gap: 0.5rem;
+		justify-content: flex-end;
+		margin-top: 0.25rem;
+
+		button {
+			padding: 0.45em 1.1em;
+			font-size: 0.875em;
+			font-weight: 500;
+			cursor: pointer;
+			border: 1px solid var(--c-accent-20);
+			border-radius: var(--br-btn);
+			transition: background-color 0.18s ease, transform 0.18s ease, opacity 0.18s ease;
+
+			&:active {
+				transform: scale(0.95);
+			}
+		}
+	}
+
+	// Cancel - secondary/ghost style
+	&__btn--cancel {
+		color: var(--c-subtext-1);
+		background-color: transparent;
+
+		&:hover {
+			background-color: var(--c-accent-10);
+			color: var(--c-accent);
+		}
+	}
+
+	// Confirm - accent-filled, same as .gpth-btn-primary
+	&__btn--confirm {
+		color: var(--c-on-accent);
+		background-color: var(--c-accent);
+		border-color: transparent;
+
+		&:hover {
+			opacity: 0.88;
+		}
+	}
+
+	// Danger modifier - applied alongside --confirm for destructive actions
+	&__btn--danger {
+		color: oklch(from var(--c-danger) 0.97 calc(c * 0.3) h);
+		background-color: var(--c-danger);
+		border-color: transparent;
+
+		&:hover {
+			opacity: 0.88;
+		}
+	}
+}
