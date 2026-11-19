@@ -23,11 +23,19 @@ export function showConfirm({
 		// Focus the cancel btn by default
 		dialog.querySelector(`.${SELECTORS.CONFIRM.CANCEL_BTN}`)?.focus()
 
+		let finished = false
+
 		function finish(result) {
-			dialog.addEventListener('transitionend', () => dialog.remove(), { once: true })
+			// Guard against finish being called more than once (e.g. button click + Escape)
+			if (finished) return
+			finished = true
+
+			// Close the native dialog before animating out so Escape can't re-trigger 'cancel'
+			dialog.close()
 			dialog.classList.remove(SELECTORS.CONFIRM.OPEN_STATE)
 
-			// Fallback removal if the transition never fires (eg reduced-motion)
+			dialog.addEventListener('transitionend', () => dialog.remove(), { once: true })
+			// Fallback removal if the transition never fires (e.g. reduced-motion)
 			setTimeout(() => dialog.remove(), 320)
 
 			resolve(result)
@@ -40,7 +48,7 @@ export function showConfirm({
 			.querySelector(`.${SELECTORS.CONFIRM.CANCEL_BTN}`)
 			.addEventListener('click', () => finish(false), { once: true })
 
-		// Native <dialog> fires 'cancel' on Escape before closing. Ths prevent the default close so the animation runs
+		// Native <dialog> fires 'cancel' on Escape before closing. Prevent the default close so our animation runs
 		dialog.addEventListener(
 			'cancel',
 			(e) => {

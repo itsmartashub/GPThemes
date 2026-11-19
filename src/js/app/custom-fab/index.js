@@ -23,6 +23,9 @@ const elements = {
 // Handle returned by makeDraggable, used to suppress drag-release clicks and for teardown
 let drag = null
 
+// Cleanup fn returned by watchStorageChanges — stored so we can remove the listener if needed
+let unwatchStorage = null
+
 // =====================================================
 // TEMPLATE
 // =====================================================
@@ -50,16 +53,14 @@ async function createFAB() {
 	// 3. Load initial state in parallel (non-blocking)
 	await Promise.allSettled([setInitialFABVisibility(), restoreFABPosition($FAB)])
 
-	// 4. Wire up listeners (after DOM ready)
-	requestAnimationFrame(() => {
-		addListeners()
-	})
+	// 4. Wire up listeners
+	addListeners()
 
 	return $FAB
 }
 
 // =====================================================
-// ELEMENTS - cache DOM elemnt references
+// ELEMENTS - cache DOM element references
 // =====================================================
 
 function setElements(FAB) {
@@ -108,7 +109,7 @@ function setFABVisibility(isHidden = false) {
 	if (isHidden) onCloseSettings()
 }
 
-// Load initial visibilty state from storage
+// Load initial visibility state from storage
 async function setInitialFABVisibility() {
 	// Show FAB immediately (non-blocking)
 	setFABVisibility(false)
@@ -158,8 +159,9 @@ async function init() {
 	try {
 		await createFAB()
 
-		// Listen for storage sync changes (cross-tab)
-		watchStorageChanges(onStorageChange)
+		// Listen for storage sync changes (cross-tab). Store cleanup so it can be removed if needed
+		unwatchStorage?.()
+		unwatchStorage = watchStorageChanges(onStorageChange)
 	} catch (err) {
 		console.error('[FAB:init] Failed:', err)
 	}
