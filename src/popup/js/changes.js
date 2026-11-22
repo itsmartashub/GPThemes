@@ -41,7 +41,7 @@ const currentReleaseChanges = {
 		{
 			description: 'Backup & Restore:',
 			details:
-				'Export your setup to a file, import it on another browser, or reset everything',
+				'Export your setup to a file, import it on another browser, or reset everything (check out the "Other" section)',
 			prRef: 274,
 		},
 		{
@@ -107,6 +107,11 @@ const currentReleaseChanges = {
 			description: 'Removed Toggles:',
 			details:
 				'<code>Hide Header ChatGPT</code> and <code>Hide Header Actions</code> are gone. ChatGPT keeps changing that part of the header, so the toggles had nothing stable left to target',
+		},
+		{
+			description: 'FAB Position:',
+			details:
+				"Exports don't include the GPThemes drag button position. It's tied to your screen size, so it would end up in the wrong place on another device or screen preferences",
 		},
 		{
 			description: 'Google Fonts:',
