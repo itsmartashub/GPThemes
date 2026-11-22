@@ -1,10 +1,7 @@
 /* stylelint-disable custom-property-pattern */
 :root {
-	// --font-sans-default: -apple-system-body, ui-sans-serif, -apple-system, system-ui, "Segoe UI", "Helvetica", "Apple Color Emoji", "Arial", sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
-	// --font-ui-family: var(--font-sans-default);
 	/* CUSTOM FONTS */
-	// --gpthFontFamilySystem: -apple-system-body, ui-sans-serif, -apple-system, system-ui, Segoe UI, Helvetica, Apple Color Emoji, Arial, sans-serif, Segoe UI Emoji, Segoe UI Symbol;
-	--gpthFontFamilySystem: -apple-system-body, ui-sans-serif, -apple-system, system-ui, 'Segoe UI', 'Helvetica', 'Apple Color Emoji', 'Arial', sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+	--gpthFontFamilySystem: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbo', 'Noto Color Emoji';
 	--gpthFontFamilyDefault: var(--font-sans-default, var(--gpthFontFamilySystem));
 	--gpthFontFamily: var(--gpthFontFamilyDefault);
 	--gpthFontSize: inherit;
@@ -29,3 +26,8 @@
 	--gpth-width-user: auto;
 	--gpth-width-user-max: var(--user-chat-width, 70%);
 }
+
+
+/* GPT DEFAULTS:
+
+var(--default-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"); */

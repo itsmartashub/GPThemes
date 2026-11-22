@@ -36,84 +36,77 @@ const SECTION_TYPES = {
 	support: { emoji: '💌', title: 'Support', priority: 7 },
 }
 
-/*
- <a href="https://ko-fi.com/http417" target="_blank" rel="noopener noreferrer">KO-FI</a>
- <a href="https://github.com/itsmartashub/GPThemes/issues/new?template=feature_request.yml" target="_blank" rel="noopener noreferrer">GitHub issue</a>
-*/
 const currentReleaseChanges = {
-	note: [
-		{
-			details: `<strong>Hey there :)</strong> ChatGPT rolled out its new UI gradually through A/B testing, so not everyone got it at the same time. Supporting it meant rewriting almost the entire extension. <br> There are many UI variants and no single stable selector that works everywhere, so some features may work in some places and not in others, and mobile support is still incomplete. It won't be a pixel-perfect replica of the previous UI. <br><br> Thanks for your patience while things were broken, and especially to those who left a kind review anyway. Genuinely glad there are people who get what goes on behind the scenes. <br> <strong>What still looks off in your variant? Report it on GitHub or by email.</strong>`,
-		},
-	],
 	features: [
 		{
-			description: 'ChatGPT New UI Support:',
+			description: 'Backup & Restore:',
 			details:
-				'Reworked GPThemes for ChatGPT’s new UI. There were too many changes to list here',
-			prRef: 259,
+				'Export your setup to a file, import it on another browser, or reset everything',
+			prRef: 274,
 		},
 		{
-			description: 'Light/Dark Mode & AMOLED:',
+			description: 'Sidebar Hide Toggles:',
 			details:
-				"Because of ChatGPT's new theme logic, light/dark mode now follows ChatGPT's own settings instead of the old dock buttons, so the dock with the 3 theme buttons were removed. AMOLED moved to the <code>Colors</code> section as a toggle and only takes effect in dark mode",
+				'New toggles to hide <code>Images</code>, <code>Scheduled</code>, <code>Library</code>, <code>Plugins</code>, <code>Pinned</code>, <code>Project</code> and <code>Recents</code> from the sidebar',
+			prRef: 267,
+			issueRef: 266,
 		},
 		{
-			description: 'Draggable Floating Action Button:',
+			description: 'Compact Hide Settings:',
 			details:
-				'The GPThemes button can now be dragged anywhere on screen and remembers its position across sessions, and the settings panel opens relative to it',
-			prRef: 260,
-			issueRef: 176,
+				'Hide toggles are grouped into collapsible <code>Header</code>, <code>Sidebar</code>, <code>Other</code> and <code>Experimental</code> sections with compact rows',
+			prRef: 265,
 		},
 		{
-			description: 'Per-Slider Reset Buttons:',
-			details:
-				'Each customization slider now has a reset button that restores only that slider to its default value',
-			prRef: 258,
+			description: 'Hide Chat Ads:',
+			details: 'Experimental toggle that hides in-chat ad cards. Expect occasional breakage',
+			prRef: 271,
+			issueRef: 270,
+		},
+	],
+	improvements: [
+		{
+			description: 'Better Theme Coverage:',
+			details: 'Text styles, accent and surface colors now reach more parts of ChatGPT',
 		},
 		{
-			description: 'Toggle Badges:',
+			description: 'Button That Comes Back:',
 			details:
-				'Toggles now show <code>MOBILE</code>, <code>NEW</code> and <code>EN</code> badges indicating where they apply',
+				'If ChatGPT removes the GPThemes button during a page update, it is now restored on its own',
 		},
 		{
-			description: 'Stacked Notifications:',
+			description: 'No Slowdown Over Time:',
 			details:
-				'Notifications got a cleaner look and a smoother animation, and no longer lag. They now stack neatly at the top center, so they stay noticeable without getting in your way',
+				'Opening the settings many times no longer stacks hidden work in the background',
+			prRef: 275,
 		},
 	],
 	fixes: [
 		{
-			description: 'Hide Toggles:',
-			details:
-				'Fixed broken <code>Hide header</code>, <code>Hide share button</code> and <code>Hide new chat</code> after the UI update (the last two work in English only due to selector limitations), and restored the swapped <code>Hide header actions</code> / <code>Hide header share</code> selectors',
-		},
-		{
-			description: 'Accent Surfaces:',
-			details:
-				'Accent surfaces no longer tint pure black/white, and monochromatic accents stay pure B/W without red-ish shades',
-		},
-		{
-			description: 'Accent Toggles:',
-			details:
-				'Updated <code>Accent user bubble</code> and <code>Accent all text</code> to work on the new UI',
-		},
-		{
 			description: 'Custom Fonts:',
-			details:
-				'Fixed custom fonts not applying to chat messages and other elements, and added support for the Codex browser window theme',
+			details: 'Your chosen font applies to user and assistant messages again',
+			issueRef: 263,
 		},
 		{
-			description: 'Width Sliders:',
+			description: 'GPT Bubble Toggle:',
+			details: 'The toggle works again on assistant messages',
+			issueRef: 268,
+		},
+		{
+			description: 'Hide Upgrade Chip:',
+			details: 'The <code>Upgrade</code> chip hides on desktop and mobile again',
+		},
+		{
+			description: 'Header Toggles:',
 			details:
-				'Chats and chatbox widths now work on the new UI composer and use <code>rem</code> instead of <code>%</code>, so the width stays stable when sidebars open',
+				'<code>New chat</code> and the full header hide follow the current ChatGPT header',
 		},
 	],
 	other: [
 		{
-			description: 'Removed Features:',
+			description: 'Removed Toggles:',
 			details:
-				'Dropped <code>Expand Chatbox</code> toggle, custom sidebar width, <code>Hide Profile Button</code> toggle, the theme manager and the FAB dock, since ChatGPT now ships native equivalents',
+				'<code>Hide Header ChatGPT</code> and <code>Hide Header Actions</code> are gone. ChatGPT keeps changing that part of the header, so the toggles had nothing stable left to target',
 		},
 		{
 			description: 'Google Fonts:',

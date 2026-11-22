@@ -15,8 +15,9 @@ import {
 	setExtStoredVersion,
 } from './versionControl'
 
-// Register onInstalled listener at module level (before init runs)
+// Register listeners at module level (before init runs) so the worker never misses an event while init is still awaiting storage
 runtime.onInstalled.addListener(onInstallation)
+runtime.onMessage.addListener(onMessage)
 
 // Storage keys for removed features, cleaned up on update so they dont linger in sync storage
 const OBSOLETE_STORAGE_KEYS = ['gptheme', 'toggleChatboxHeightState']
@@ -94,12 +95,6 @@ async function initBackgroundScript() {
 				await setVersionBadge()
 				await setExtStoredVersion(currentVersion)
 			}
-		}
-
-		// Register msg listener
-		if (!globalThis.hasSetBadgeListener) {
-			runtime.onMessage.addListener(onMessage)
-			globalThis.hasSetBadgeListener = true
 		}
 
 		console.log('✅ Background script ready')
